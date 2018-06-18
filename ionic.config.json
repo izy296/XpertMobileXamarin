@@ -1,0 +1,8 @@
+{
+  "name": "xpert-mobile",
+  "app_id": "40b644db",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
