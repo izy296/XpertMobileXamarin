@@ -1,0 +1,50 @@
+<!-- -->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <strong>Dashboard</strong>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button tappable (click)="sync()">
+        <ion-icon name="sync"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding class="animated fadeIn common-bg">
+  <div>
+    <div style="display: block">
+      <canvas baseChart   [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend"
+        [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      <h1 color="black" text-center class="text-1x">
+        <strong>Marge par Vendeur</strong>
+      </h1>
+    </div>
+  </div>
+  
+  <div style="display: block">
+    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
+      (chartClick)="chartClicked($event)">
+    </canvas>
+    <h1 color="black" text-center class="text-1x">
+      <strong>Encaissement / Decaissement</strong>
+    </h1>
+  </div>
+  
+  <ion-fab bottom right>
+    <button ion-fab>
+      <ion-icon name="add"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab color="green" (click)="addEncaissementPage('ENC')">
+        <ion-icon color="white" name="add"></ion-icon>
+      </button>
+      <button color="danger" ion-fab (click)="addEncaissementPage('DEC')">
+        <ion-icon name="remove"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,44 @@
+<!-- -->
+<ion-content padding class="animated fadeIn login auth-page">
+  <div class="login-content">
+
+    <!-- Logo -->
+    <div padding-horizontal text-center class="animated fadeInDown">
+      <div class="logo"></div>
+      
+    </div>
+
+    <!-- Login form -->
+    <form #f="ngForm" class="list-form"  (ngSubmit)="OnSignin(f)">
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="contact" item-start class="text-primary"></ion-icon>
+          Username
+        </ion-label>
+        <ion-input type="text" [(ngModel)]="username" name="username" required username></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>
+          <ion-icon name="lock" item-start class="text-primary"></ion-icon>
+          Password
+        </ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+      <ion-item no-lines>
+        <ion-label> se souvenir</ion-label>
+        <ion-toggle checked="true" #rememberMe></ion-toggle>
+      </ion-item>
+    </form>
+    <p text-right ion-text color="secondary" tappable (click)="setAddressNetwork()">
+      <strong>changer l'address du serveur</strong>
+    </p>
+    <div>
+     
+      <button ion-button icon-start block color="dark" type="submit" (click)="OnSignin(f)" [disabled]="!f.valid">
+        <ion-icon name="log-in"></ion-icon>
+        Connexion
+      </button>
+    </div>
+  </div>
+</ion-content> 

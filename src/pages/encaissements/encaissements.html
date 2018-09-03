@@ -1,0 +1,156 @@
+<!-- -->
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button menuToggle start>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+
+        <ion-toolbar>
+            <ion-segment color="white" [(ngModel)]="type">
+                <ion-segment-button color="green" value="ENC" (click)="getEncaissementSPerPage()">
+                    <ion-icon color="white" name="trending-up"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="DEC" color="danger" (click)="getEncaissementSPerPage()">
+                    <ion-icon color="danger" name="trending-down"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button color="white" (click)="getEncaissementSPerPage()" value="All">
+                    <span>All</span>
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+        <ion-buttons end>
+            <button ion-button tappable (click)="getEncaissementSPerPage()">
+                <ion-icon name="sync"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding class="animated fadeIn common-bg">
+    <ion-fab top left>
+        <button ion-fab mini (click)="showMenuFilter()">
+            <ion-icon name="options"></ion-icon>
+        </button>
+    </ion-fab>
+
+    <ion-list *ngIf="filter">
+        <ion-item>
+            <span ion-datepicker [modalOptions]="" (ionChanged)="setDateDebut($event);" [(value)]="localDateDebut" clear class="ScheduleDate"
+                float-right>
+                <span> {{localDateDebut | date : 'dd-MM-y'}}
+                    <ion-icon name="clipboard" item-left></ion-icon>
+                </span>
+            </span>
+        </ion-item>
+        <ion-item>
+            <span ion-datepicker [modalOptions]="" (ionChanged)="setDateFin($event);" [(value)]="localDateFin" clear class="ScheduleDate"
+                float-right>
+                <span> {{localDateFin | date : 'dd-MM-y'}}
+                    <ion-icon name="clipboard" item-left></ion-icon>
+                </span>
+            </span>
+        </ion-item>
+        <ion-item>
+            <ion-label>Caisse</ion-label>
+            <ion-select name="codeCompte" [(ngModel)]="codeCompte" required>
+                <ion-option value="all">
+                    all
+                </ion-option>
+                <ion-option *ngFor="let caisse of caissesList" [value]="caisse.CODE_COMPTE">
+                    {{ caisse.DESIGN_COMPTE }}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Motif</ion-label>
+            <ion-select name="codeMotif" [(ngModel)]="codeMotif" required>
+                <ion-option value="all">
+                    all
+                </ion-option>
+                <ion-option *ngFor="let motif of motifsList" [value]="motif.CODE_MOTIF ">
+                    {{ motif.DESIGN_MOTIF }}
+                </ion-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tiers</ion-label>
+            <select-searchable item-content name="tiers" [(ngModel)]="tiers" [items]="listTiers" itemValueField="CODE_TIERS" itemTextField="NOM_TIERS1"
+                [canSearch]="true" (onChange)="tiersChange($event)">
+            </select-searchable>
+        </ion-item>
+        <ion-item>
+            <button ion-button full (click)="filterEncaiss()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="isLoading" align-center>
+        <ion-spinner name="crescent">
+        </ion-spinner>
+    </div> 
+    <ion-list [virtualScroll]="encaissementList">
+        <ion-card no-margin margin-bottom class="full-width" [ngClass]="(encaissement.CODE_TYPE  =='ENC')?'border-encaiss':'border-decaiss'"
+            padding *virtualItem="let encaissement">
+            <ion-grid class="filters" no-padding>
+                <ion-row>
+                    <ion-col width-60>
+                        <span ion-text color="black">
+                            <strong class="text-sm">{{ encaissement.DESIGN_COMPTE }} </strong>
+                        </span>
+                    </ion-col>
+                    <ion-col width-40 text-right>
+                        <span ion-text color="primary">
+                            <strong class="text-sm">{{encaissement.TOTAL_ENCAISS | xpertCurrency}} </strong>
+                        </span>
+                    </ion-col>
+                    <ion-col width-10>
+                        <ion-icon float-right name="more" class="text-2x" Tappable (click)="showMenu($event,encaissement)">
+                        </ion-icon>
+                    </ion-col>
+                </ion-row>
+                <ion-row margin-top>
+                    <ion-col width-60>
+                        <span ion-text class="text-1x" color="black">
+                            <strong class="text-sm">{{encaissement.DESIGN_MOTIF}} </strong>
+                        </span>
+                    </ion-col>
+                    <ion-col width-40 text-right>
+                        <span ion-text color="primary">
+                            <strong class="text-sm">{{encaissement.DATE_ENCAISS | date : "dd-MM-y" }}</strong>
+                        </span>
+                    </ion-col>
+                    <ion-col width-10 text-right>
+
+                    </ion-col>
+                </ion-row>
+                <ion-row margin-top>
+                    <ion-col width-70>
+                        <span ion-text class="text-1x" color="black">
+                            <strong class="text-sm">{{encaissement.NOM_TIERS}} </strong>
+                        </span>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-card>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+    <ion-fab bottom right>
+        <button ion-fab>
+            <ion-icon name="add"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+            <button ion-fab color="green" (click)="addEncaissementPage('ENC')">
+                <ion-icon color="white" name="add"></ion-icon>
+            </button>
+            <button color="danger" ion-fab (click)="addEncaissementPage('DEC')">
+                <ion-icon name="remove"></ion-icon>
+            </button>
+
+        </ion-fab-list>
+    </ion-fab>
+
+
+
+</ion-content>

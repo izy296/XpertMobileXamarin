@@ -1,0 +1,22 @@
+<!-- Generated template for the MenuSommaireComponent component -->
+<div>
+  <form #f="ngForm" class="list-form" (ngSubmit)="add()">
+    <ion-list>
+      <ion-item>
+        <ion-label>Date debut</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" value="" ng-model [(ngModel)]="dateDebut" name="dateDebut"
+          required>
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Date Fin</ion-label>
+        <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" value="" ng-model [(ngModel)]="dateFin" name="dateFin"
+          required>
+        </ion-datetime>
+      </ion-item>
+      <button ion-button icon-start block color="dark" type="submit" [disabled]="!f.valid">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-list>
+  </form>
+</div>
