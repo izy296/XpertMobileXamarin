@@ -1,0 +1,30 @@
+<!-- Generated template for the EncaissComponent component -->
+<ion-list [virtualScroll]="encaissementList">
+  <ion-grid *virtualItem="let encaissement" class="encaiss" [ngClass]="(encaissement.CODE_TYPE  =='ENC')?'border-encaiss':'border-decaiss'"
+    (press)="showMenu($event,encaissement)">
+    <ion-row>
+      <ion-col>
+        <strong class="text-sm">{{encaissement.DESIGN_MOTIF}} </strong>
+      </ion-col>
+      <ion-col float-right>
+        <strong class="text-sm" float-right>{{encaissement.TOTAL_ENCAISS | xpertCurrency}} </strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <strong class="text-sm">{{ encaissement.DESIGN_COMPTE }} </strong>
+      </ion-col>
+      <ion-col float-right>
+        <strong class="text-sm" float-right>{{encaissement.DATE_ENCAISS | date : "dd-MM-y" }}</strong>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8>
+        <strong class="text-sm">{{encaissement.NOM_TIERS}} </strong>
+      </ion-col>
+      <ion-col>
+        <strong ion-text class="text-sm" float-right>{{encaissement.CREATED_BY}}</strong>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-list>
