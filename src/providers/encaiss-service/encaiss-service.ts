@@ -1,12 +1,12 @@
-import { Http } from '@angular/http';
 import { HttpInterceptor } from './../../Module/httpInterceptor';
-import { AuthServiceProvider } from '../auth-service/auth-service';
 import { HelperServiceProvider } from '../helper-service/helper-service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Motif } from '../../models/motif';
+import { Tiers } from '../../models/tiers';
 @Injectable()
 export class EncaisseServiceProvider {
-  private BASE_URL: string = "XpertPharm.Rest.Api/api/";
+  private BASE_URL: string = "api/";
   private ENCAISSEMENT_URL: string = "Encaissements/";
   private ENCAISSEMENT_Per_Page_URL: string = "EncaissementsPerPage/";
   private ADD_ENCAISSEMENT_URL: string = "addEncaissement";
@@ -16,20 +16,42 @@ export class EncaisseServiceProvider {
   private COMPTES_URL: string = "comptes"
   private TIERS_URL: string = "tiers";
   private STATISTIC_URL: string = "statistic/";
+  private SESSION_URL: string = "session/";
   private headers: Headers;
   motifsList = [];
+  motifFilter: Motif = {
+    CODE_MOTIF: "all",
+    DESIGN_MOTIF: "Tous"
+  };
+  motifListForFilter = [];
   tiersList = [];
+  tiersListForForm = [];
+  tiersForm: Tiers = {
+    CODE_TIERS: null,
+    NOM_TIERS: "  ",
+    NOM_TIERS1: "  ",
+    SOLDE_TIERS: 0
+  };
+  tiersListForFilter = [];
+  tiersFilter: Tiers = {
+    CODE_TIERS: "all",
+    NOM_TIERS: "Tous",
+    NOM_TIERS1: "Tous",
+    SOLDE_TIERS: 0
+  };
   caissesList = [];
   constructor(
     private http: HttpInterceptor,
-    private helperService: HelperServiceProvider,
-    private authService: AuthServiceProvider) {
+    private helperService: HelperServiceProvider, ) {
     this.loadCaisses();
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
+
   }
   getStatisticEncaiss(date_start, date_end): Observable<any> {
-   
+
+    console.log("url : "+ this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.STATISTIC_URL + date_start + "/" + date_end);
+    
     return this.http.get(
       this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.STATISTIC_URL + date_start + "/" + date_end
     )
@@ -54,17 +76,18 @@ export class EncaisseServiceProvider {
       .do(this.helperService.logResponse)
       .catch(this.helperService.catchError)
   }
-  getEncaissementsPerPage(type: string, page: number, dateDebut: string, dateFin: string, codeTiers: string, codeMotif: string, codeCompte: string): Observable<any> {
+  getEncaissementsPerPage(type: string, page: number, idCaisse: string, dateDebut: string, dateFin: string, codeTiers: string, codeMotif: string, codeCompte: string): Observable<any> {
     let url: string;
+    console.log("the encaisse  service ", idCaisse);
+
     if (dateDebut == null && dateFin == null) {
-      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/";
-      console.log(url);
-      
+      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/" + idCaisse + "/";
     }
     else {
-      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/" + dateDebut + "/" + dateFin + "/" + codeTiers + "/" + codeMotif + "/" + codeCompte;
+      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/" + idCaisse + "/" + dateDebut + "/" + dateFin + "/" + codeTiers + "/" + codeMotif + "/" + codeCompte + "/";
     }
-    console.log("At encaiss service",this.authService.getToken());    
+    console.log("url for get encaissemtns ", url);
+
     return this.http.get(url)
       .map(this.helperService.extractData)
       .do(this.helperService.logResponse)
@@ -89,6 +112,14 @@ export class EncaisseServiceProvider {
   getCaisses(): Observable<any> {
     return this.http.get(
       this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.CAISSES_URL
+    )
+      .do(this.helperService.logResponse)
+      .map(this.helperService.extractData)
+      .catch(this.helperService.catchError);
+  }
+  getSessions(): Observable<any> {
+    return this.http.get(
+      this.helperService.networkAddress + this.BASE_URL + this.SESSION_URL
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -130,8 +161,6 @@ export class EncaisseServiceProvider {
       .catch(this.helperService.catchError);
   }
   deleteEncaissement(codeEncaiss: string) {
-    console.log("in the method delete");
-    
     let body = {
       "CODE_ENCAISS": codeEncaiss
     };
@@ -146,23 +175,26 @@ export class EncaisseServiceProvider {
   loadMotifs() {
     this.getMotifs("ENC").subscribe(
       data => {
-        this.motifsList = data;
+        this.motifsList = [...data];
+        this.motifListForFilter = [...data];
+        this.motifListForFilter.unshift(this.motifFilter);
         this.loadTiers();
       },
       error => {
-        console.log(error);
-        this.loadMotifs();
+        this.helperService.showNotifError(error)
       });
   }
   loadTiers() {
     this.getTiers().subscribe(
       data => {
-        this.tiersList = data;
+        this.tiersListForFilter = [...data];
+        this.tiersListForForm = [...data];
+        this.tiersListForFilter.unshift(this.tiersFilter);
+        this.tiersListForForm.unshift(this.tiersForm);
       },
       error => {
-        console.log(error);
+        this.helperService.showNotifError(error)
       });
-
   }
   loadCaisses() {
     this.getCaisses().subscribe(
@@ -171,9 +203,9 @@ export class EncaisseServiceProvider {
         this.loadMotifs();
       }
       , error => {
-        console.log(error);
+        this.helperService.showNotifError(error)
       });
-
   }
+
 
 }

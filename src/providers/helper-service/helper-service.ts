@@ -2,13 +2,18 @@ import { Storage } from '@ionic/storage';
 import { Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+import { ToastController } from 'ionic-angular';
 @Injectable()
 export class HelperServiceProvider {
     NETWORK_ADDRESS_KEY: string = 'network_address';
     DATE_STATISTIC_KEY: string = 'Date_Statistic';
+    USERNAME: string = ' ';
+    ROLE: string = ' ';
     networkAddress: string;
     datesStatistic = new Array();
-    public constructor(private storage: Storage) {
+    public constructor(
+        private storage: Storage,
+        public toastCtrl: ToastController) {
         this.getDatesStatistic();
     }
     async getNetworkAdress() {
@@ -18,7 +23,7 @@ export class HelperServiceProvider {
                 this.saveNetworkAddress("http://localhost/");
             }
         }, (error) => {
-            console.log(error);
+            this.showNotifError("Network Address :"+error)
         });
         return this.networkAddress;
     }
@@ -27,8 +32,9 @@ export class HelperServiceProvider {
             if (dates != null) {
                 this.datesStatistic = dates;
             }
-        }, (error) => {
-            console.log(error);
+        }, (error) => {       
+                 this.showNotifError(" statistique :"+error)
+
         });
     }
     async deleteDateStat(dateDebut, dateFin) {
@@ -51,13 +57,12 @@ export class HelperServiceProvider {
             dateDebut,
             dateFin
         });
-        console.log("datastartistic", this.datesStatistic);
         await this.storage.set(this.DATE_STATISTIC_KEY, this.datesStatistic);
         this.getDatesStatistic();
     }
     catchError(error: Response | any) {
         console.log(error);
-        return Observable.throw(error.json().error || "Server error");
+        return Observable.throw(error.json().ExceptionMessage || "Server error");
     }
     logResponse(res: Response) {
         console.log(res);
@@ -66,4 +71,27 @@ export class HelperServiceProvider {
         return res.json();
     }
 
+    showNotifSuccess(success:string) {
+        
+        let toast = this.toastCtrl.create({
+            message:  success,
+            duration: 3000,
+            position: 'bottom',
+            cssClass: 'dark-trans',
+            closeButtonText: 'OK',
+            showCloseButton: true
+        });
+        toast.present();
+    }
+    showNotifError(error: string) {
+        let toast = this.toastCtrl.create({
+            message: 'Erreur ' + error,
+            duration: 3000,
+            position: 'bottom',
+            cssClass: 'dark-trans',
+            closeButtonText: 'OK',
+            showCloseButton: true
+        });
+        toast.present();
+    }
 }

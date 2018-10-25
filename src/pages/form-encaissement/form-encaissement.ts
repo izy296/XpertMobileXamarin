@@ -1,11 +1,15 @@
 import { EncaissementsPage } from './../encaissements/encaissements';
 import { Tiers } from './../../models/tiers';
 import { SelectSearchableComponent } from 'ionic-select-searchable';
-import { OnInit } from '@angular/core';
+import { OnInit, ViewChild, ElementRef } from '@angular/core';
 import { EncaisseServiceProvider } from './../../providers/encaiss-service/encaiss-service';
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
-
+import { NavController, NavParams, Button } from 'ionic-angular';
+import { HelperServiceProvider } from '../../providers/helper-service/helper-service';
+import { Motif } from '../../models/motif';
+import { NgForm } from '@angular/forms';
+import { XpertCurrencyPipe } from '../../pipes/xpert-currency/xpert-currency';
+import { IonicSelectableModule } from 'ionic-selectable';
 /**
  * Generated class for the FormEncaissementPage page.
  *
@@ -18,31 +22,35 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 })
 export class FormEncaissementPage implements OnInit {
   myInput;
+  btnValidate: Button;
   update: boolean = false;
   method: string = "Ajouter";
-  motifsList = [];
+  @ViewChild('f') form: NgForm;
   encaissement: any;
   title: string;
   caissesList = [];
-  codeMotif: string;
   codeCompte: string;
   codeType: string;
-  tiers: Tiers ;
+  tiers: Tiers;
+  motif: Motif;
   listTiers: Tiers[];
+  listMotifs: Motif[];
   totalEncaiss: number;
   dateEncaiss: string = new Date().toISOString();
   hours = new Date().getHours();
-  encaissementsPage : EncaissementsPage;
+  encaissementsPage: EncaissementsPage;
+  private el: HTMLInputElement;
   public localDate: Date = new Date();
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private encaisseService: EncaisseServiceProvider,
-    private toastCtrl: ToastController
+    private helperService: HelperServiceProvider,
+    private montantInput: ElementRef,
+    public xpertPipe: XpertCurrencyPipe
   ) {
     this.encaissementsPage = this.navParams.get('encaissementsPage');
-    console.log("modification page : ", this.encaissementsPage.page);    
+    this.el = this.montantInput.nativeElement;
   }
   ionViewDidLoad() {
 
@@ -53,22 +61,22 @@ export class FormEncaissementPage implements OnInit {
   setDate(date: Date) {
     this.localDate = date;
     this.dateEncaiss = this.localDate.toISOString();
-    console.log(this.localDate.setHours(this.hours));
     this.dateEncaiss = this.localDate.toISOString();
   }
   getMotifs() {
-    this.motifsList = this.encaisseService.motifsList;
+    this.listMotifs = this.encaisseService.motifsList;
   }
   getTiers() {
-    this.listTiers = this.encaisseService.tiersList;
+    this.listTiers = this.encaisseService.tiersListForForm;
+    this.tiers = this.encaisseService.tiersForm;
+    console.log("tier list : ", this.listTiers);
   }
   getCaisses() {
     this.caissesList = this.encaisseService.caissesList;
+    console.log("liste caisse ---------------------------", this.caissesList);
   }
-  goBack(){
+  goBack() {
     this.navCtrl.pop();
-    console.log("go back");
-    
   }
   updateEncaissement() {
     this.encaisseService.updateEncaissement(
@@ -77,47 +85,54 @@ export class FormEncaissementPage implements OnInit {
       this.codeCompte,
       this.totalEncaiss,
       this.codeType,
-      this.codeMotif,
+      this.motif.CODE_MOTIF,
       this.tiers.CODE_TIERS
     ).subscribe(data => {
-      this.encaissementsPage.getEncaissementSPerPage();
+      if (this.encaissementsPage) {
+        this.encaissementsPage.getEncaissementSPerPage();
+      }
+      this.helperService.showNotifSuccess("l'encaissement a bien etait modifier")
       this.navCtrl.pop();
     }, (error) => {
-      let toast = this.toastCtrl.create({
-        message: 'Erreur ' + error,
-        duration: 3000,
-        position: 'bottom',
-        cssClass: 'dark-trans',
-        closeButtonText: 'OK',
-        showCloseButton: true
-      });
-      toast.present();
+      this.form.form.enable();
+      this.helperService.showNotifError(error)
     });
   }
-
   addEncaissement() {
     this.encaisseService.addEncaissement(
       this.dateEncaiss,
       this.codeCompte,
       this.totalEncaiss,
       this.codeType,
-      this.codeMotif,
+      this.motif.CODE_MOTIF,
       this.tiers.CODE_TIERS
     ).subscribe(data => {
-      this.encaissementsPage.getEncaissementSPerPage();
+      if (this.encaissementsPage)
+        this.encaissementsPage.getEncaissementSPerPage();
+      this.helperService.showNotifSuccess("l'encaissement a bien etait ajouter")
       this.navCtrl.pop();
+    }, (error) => {
+      this.form.form.enable();
+      this.helperService.showNotifError(error)
     });
   }
   ngOnInit() {
     /// test if we are in the update or add Encaissment
     this.update = this.navParams.get('update');
+    this.initForm();
     if (this.update) {
+      console.log("--------------------------- enter update form ");
       this.initUpdateForm();
     } else {
       this.codeType = this.navParams.get('type');
+      this.tiers = {
+        CODE_TIERS: "",
+        NOM_TIERS: "",
+        NOM_TIERS1: "",
+        SOLDE_TIERS: 0
+      }
       //this.initAddForm();
     }
-    this.initForm();
   }
   initForm() {
     this.initTitle();
@@ -128,18 +143,20 @@ export class FormEncaissementPage implements OnInit {
   initUpdateForm() {
     this.method = 'Modifier';
     this.encaissement = this.navParams.get('encaissement');
-    console.log('--------------init update FORM ------------------');
-    console.log(this.encaissement);
-    console.log('---------------------------------');   
     this.codeType = this.encaissement.CODE_TYPE;
     this.dateEncaiss = this.encaissement.DATE_ENCAISS;
     this.totalEncaiss = this.encaissement.TOTAL_ENCAISS;
     this.tiers = {
-      CODE_TIERS : this.encaissement.CODE_TIERS,
-      NOM_TIERS : this.encaissement.NOM_TIERS
+      CODE_TIERS: this.encaissement.CODE_TIERS,
+      NOM_TIERS: this.encaissement.NOM_TIERS,
+      NOM_TIERS1: this.encaissement.NOM_TIERS1,
+      SOLDE_TIERS: this.encaissement.SOLDE_TIERS
     };
     this.codeCompte = this.encaissement.CODE_COMPTE;
-    this.codeMotif = this.encaissement.CODE_MOTIF;
+    this.motif = {
+      CODE_MOTIF: this.encaissement.CODE_MOTIF,
+      DESIGN_MOTIF: this.encaissement.DESIGN_MOTIF
+    };
   }
   initTitle() {
     if (this.codeType == 'ENC') {
@@ -148,7 +165,13 @@ export class FormEncaissementPage implements OnInit {
       this.title = "Decaissement";
     }
   }
-  validate() {
+  updateAmount(event) {
+    console.log("update ", this.xpertPipe.transform(event.target.value));
+    event.target.value = this.xpertPipe.transform(event.target.value);
+  }
+  validate(f) {
+    this.form.form.disable();
+    console.log(this.form);
     if (this.update) {
       this.updateEncaissement();
     }
@@ -157,5 +180,6 @@ export class FormEncaissementPage implements OnInit {
     }
   }
   tiersChange(event: { component: SelectSearchableComponent, value: any }) {
+    console.log(this.tiers.SOLDE_TIERS);
   }
 }

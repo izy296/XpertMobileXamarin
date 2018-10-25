@@ -1,5 +1,4 @@
 import { HttpInterceptor } from './../../Module/httpInterceptor';
-import { DashboardPage } from '../../pages/dashboard/dashboard';
 import { HelperServiceProvider } from '../helper-service/helper-service';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
@@ -14,7 +13,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DashboardServiceProvider {
 
-  private BASE_URL: string = "XpertPharm.Rest.Api/api/";
+  private BASE_URL: string = "api/";
   DASHBOARD_URL : string ="Dashboard/";
   MARGE_PAR_VENDEUR_URL : string ="MargeParVendeur";
   public labelMargeParvendeur : string[];
@@ -25,26 +24,13 @@ export class DashboardServiceProvider {
     console.log('Hello StatisticServiceProvider Provider');
   }
   public initDashBoard(){
-    var newBarChartLabels = [];
-    this.getMargeParVendeur().subscribe(data => {
-      console.log("dahsboard provider ",data[0].Exercice);
-     
-      data.forEach(el => {
-        if (newBarChartLabels.find(e => e == el.Exercice) == undefined) {
-          newBarChartLabels.push(el.Exercice);
-        }            
-      });
-      this.labelMargeParvendeur = newBarChartLabels;
-      console.log("dashboard",this.labelMargeParvendeur);
-      
-    }, (error) => {
-      console.log(error);
-    });
+    
   }
-  getMargeParVendeur(): Observable<any> {
-    console.log("url ",this.helperService.networkAddress,this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL);    
+  getMargeParVendeur(date_start:Date,date_end:Date): Observable<any> {
+    
+    console.log("url :",this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL+'/'+date_start.toISOString().substring(0,10)+'/'+date_end.toISOString().substring(0,10)+'/');    
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL
+      this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL+'/'+date_start.toISOString().substring(0,10)+'/'+date_end.toISOString().substring(0,10)+'/'
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
