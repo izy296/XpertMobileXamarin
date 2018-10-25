@@ -1,20 +1,13 @@
 import { AuthServiceProvider } from './../providers/auth-service/auth-service';
-
 import { ConnectionBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from "@angular/http";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 
 @Injectable()
 export class HttpInterceptor extends Http {
-    
-    private token: string = 'token';
-    
-    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions,public authService :AuthServiceProvider) {
+    constructor(backend: ConnectionBackend, defaultOptions: RequestOptions, public authService: AuthServiceProvider) {
         super(backend, defaultOptions);
-        
-    }    
-   
-    
+    }
     request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
         return super.request(url, options);
     }
@@ -63,12 +56,10 @@ export class HttpInterceptor extends Http {
         if (options.headers == null) {
             options.headers = new Headers();
         }
-        
-        
+
         options.headers.append('Content-Type', 'application/json');
         options.headers.append('Authorization', 'Bearer ' + this.authService.token);
         return options;
-
     }
 
     // /**
