@@ -5,6 +5,14 @@
 ion-content{
   font-family: 'Open Sans',sans-serif;
 }
+.logo-img{
+  width: 120px;
+  height: 120px;
+  margin: 20px auto 0;
+  border-radius: 10%;
+  background: url("../assets/img/logo_v_tl.png") no-repeat;
+  background-size: 100%;
+}
 .custom-popover .popover-content {
   width: 100%;
   position: relative;
@@ -554,4 +562,7 @@ ion-icon[ng-reflect-disabled="true"] {
 
 .fadeInDown {
   animation-name: fadeInDown;
+}
+.header_logo{
+  background: #FFF;
 }

@@ -18,9 +18,46 @@
   <ion-card class="border-bottom">
     <ion-item tappable class="border-bottom ">
       <span ion-text>
-        <strong>Sommaire </strong>
+        <strong>Session </strong>
       </span>
-      <ion-icon name="add" item-end Tappable (click)="showMenuSommaire()"></ion-icon>
+    </ion-item>
+    <div *ngIf="!showSession" text-center>
+      <ion-spinner > </ion-spinner>
+    </div>  
+    <ion-grid *ngFor=" let sess of session" (press)="showSessionDetail(sess.ID_CAISSE)">
+      <ion-row>
+        <ion-col>
+          <span ion-text class="text-big" color="black">Utilisateur</span>
+        </ion-col>
+        <ion-col float-right>
+          <strong ion-text class="text-big" float-right>{{ sess.DEBUTEE_PAR }} </strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <strong class="text-sm">Compte</strong>
+        </ion-col>
+        <ion-col float-right>
+          <strong class="text-sm" float-right>{{ sess.DESIGN_COMPTE }}</strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8>
+          <strong class="text-sm">Montant Encaisser </strong>
+        </ion-col>
+        <ion-col>
+          <strong ion-text class="text-sm" color="danger" float-right>{{ sess.MONT_ENCAISSEMENT | xpertCurrency }}
+          </strong>
+        </ion-col>
+        <hr size=1 align="center" width="60%">
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  <ion-card class="border-bottom">
+    <ion-item tappable class="border-bottom ">
+      <span ion-text>
+        <strong>Encaissements</strong>
+      </span>
     </ion-item>
     <ion-grid no-padding margin-top>
       <ion-list>
@@ -53,51 +90,19 @@
             </ion-row>
           </div>
         </ion-item>
-        <ion-item-sliding *ngFor="let date of datesStatistic">
-          <ion-item>
-            <div>
-              <h4 text-center> {{date.dateDebut | date : 'dd-MM-yyyy'}} - {{ date.dateFin | date : 'dd-MM-yyyy'}} </h4>
-              <ion-row>
-                <ion-col class="text-sm" width-70>
-                  <span ion-text color="primary">
-                    <strong>Encaissement </strong>
-                  </span>
-                </ion-col>
-                <ion-col class="text-sm" width-10 text-right>
-                  <span ion-text color="primary">
-                    <strong>{{ date.ENC | xpertCurrency :2 }} </strong>
-                  </span>
-                </ion-col>
-              </ion-row>
-              <ion-row margin-top>
-                <ion-col class="text-sm" width-70>
-                  <span ion-text color="danger">
-                    <strong>Decaissement </strong>
-                  </span>
-                </ion-col>
-                <ion-col class="text-sm" width-10 text-right>
-                  <span ion-text color="danger">
-                    <strong>{{ date.DEC | xpertCurrency : 2 }} </strong>
-                  </span>
-                </ion-col>
-              </ion-row>
-            </div>
-          </ion-item>
-          <ion-item-options side="right">
-            <button ion-button (click)="delete(date.dateDebut,date.dateFin)" color="danger">
-              <ion-icon name="trash"></ion-icon>
-            </button>
-          </ion-item-options>
-        </ion-item-sliding>
       </ion-list>
     </ion-grid>
   </ion-card>
+  <div style="display: block">
+    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType"
+      (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
   <ion-card class="border-bottom">
     <ion-item tappable class="border-bottom">
       <span ion-text>
         <strong>Comptes</strong>
       </span>
-      <ion-icon name="more" item-end Tappable></ion-icon>
     </ion-item>
     <ion-grid class="" no-padding margin-top>
       <ion-list>
@@ -120,24 +125,17 @@
       </ion-list>
     </ion-grid>
   </ion-card>
-
-  <div style="display: block">
-    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)"
-      (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-  <ion-fab bottom right>
+  <ion-fab bottom right #fabAddEncaiss>
     <button ion-fab>
       <ion-icon name="add"></ion-icon>
     </button>
     <ion-fab-list side="top">
-      <button ion-fab color="green" (click)="addEncaissementPage('ENC')">
-        <ion-icon color="white" name="add"></ion-icon>
-      </button>
-      <button color="danger" ion-fab (click)="addEncaissementPage('DEC')">
+      <button color="danger" ion-fab (click)="addEncaissementPage('DEC',fabAddEncaiss)">
         <ion-icon name="remove"></ion-icon>
       </button>
-
+      <button ion-fab color="green" (click)="addEncaissementPage('ENC',fabAddEncaiss)">
+        <ion-icon color="white" name="add"></ion-icon>
+      </button>
     </ion-fab-list>
   </ion-fab>
 </ion-content>

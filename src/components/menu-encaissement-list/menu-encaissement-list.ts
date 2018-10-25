@@ -2,7 +2,6 @@ import { EncaissementsPage } from './../../pages/encaissements/encaissements';
 import { ToastController } from 'ionic-angular';
 import { EncaisseServiceProvider } from './../../providers/encaiss-service/encaiss-service';
 import { FormEncaissementPage } from './../../pages/form-encaissement/form-encaissement';
-import { EncaissementPage } from './../../pages/encaissements/encaissement/encaissement';
 import { NavParams, AlertController } from 'ionic-angular';
 import { Component } from '@angular/core';
 import { App, NavController, ModalController, ViewController } from 'ionic-angular';
@@ -11,13 +10,12 @@ import { App, NavController, ModalController, ViewController } from 'ionic-angul
     <ion-list>
       <button ion-item  (click)="updateEncaissement()">Modifier</button>
       <button ion-item (click) ="deleteEncaissement()">Supprimer</button>
-      <button ion-item (click)="showDetail()">Detail</button>
     </ion-list>
   `
 })
 export class MenuEncaissementListComponent {
   encaissement: any;
-  encaissementsPage : EncaissementsPage;
+  encaissementsPage: EncaissementsPage;
   constructor(
     public viewCtrl: ViewController,
     public navCtrl: NavController,
@@ -29,14 +27,13 @@ export class MenuEncaissementListComponent {
     public toastCtrl: ToastController
   ) {
     this.encaissement = navParams.get('data');
-    this.encaissementsPage = navParams.get('parent');     
+    // on recupere la reference de la page qui appele le composant menu
+    this.encaissementsPage = navParams.get('parent');
   }
-  showDetail() {
-    this.navCtrl.push(EncaissementPage, this.encaissement);
-  }
+ 
   updateEncaissement() {
     this.navCtrl.pop();
-    this.navCtrl.push(FormEncaissementPage, { 'encaissement': this.encaissement, 'update': true,'encaissementsPage':this.encaissementsPage });
+    this.navCtrl.push(FormEncaissementPage, { 'encaissement': this.encaissement, 'update': true, 'encaissementsPage': this.encaissementsPage });
   }
   deleteEncaissement() {
     const confirm = this.alertCtrl.create({
@@ -55,6 +52,10 @@ export class MenuEncaissementListComponent {
                   showCloseButton: true
                 }
               ).present();
+              this.navCtrl.pop();
+
+              // on met a jour la page des encaissments a partir du composant menu 
+              this.encaissementsPage.getEncaissementSPerPage();
             }, (error) => {
               this.toastCtrl.create(
                 {

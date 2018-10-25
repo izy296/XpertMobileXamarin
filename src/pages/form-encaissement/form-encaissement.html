@@ -5,7 +5,7 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-    <ion-navbar>
+    <ion-navbar hideBackButton>
         <ion-title>{{ method }} {{ title }}</ion-title>
         <ion-buttons left>
             <button ion-button (click)="goBack()">
@@ -15,50 +15,59 @@
     </ion-navbar>
 </ion-header>
 <ion-content padding>
-    <form #f="ngForm" class="list-form" (ngSubmit)="validate()">
+    <form #f="ngForm" (ngSubmit)="validate(encaissForm)">
         <ion-list>
-            <!--  <ion-item>
-                <ion-label>Date</ion-label>
-                <ion-datetime displayFormat="DD-MM-YYYY" pickerFormat="DD-MM-YYYY" value="" ng-model [(ngModel)]="dateEncaiss" name="dateEncaiss"
-                    required></ion-datetime>
-            </ion-item> -->
             <ion-item>
-                <span ion-datepicker [modalOptions]="" (ionChanged)="setDate($event);" [(value)]="localDate" clear class="ScheduleDate" float-right>
-                    <span> {{localDate | date : 'dd-MM-y'}}
-                        <ion-icon name="clipboard" item-left></ion-icon>
+
+                <span ion-datepicker [cancelText]="Annuler" [modalOptions]="" [localeStrings]="{weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Vend', 'Sam'],
+                months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']}"
+                    (ionChanged)="setDate($event);" [(value)]="localDate" clear class="ScheduleDate">
+                    <span float-left>
+                        {{localDate | date : 'dd-MM-y'}}
                     </span>
+                    <ion-icon name="calendar" float-right></ion-icon>
                 </span>
+
             </ion-item>
             <ion-item>
-                <ion-label>Motif</ion-label>
-                <ion-select name="codeMotif" [(ngModel)]="codeMotif" required>
-                    <ion-option *ngFor="let motif of motifsList" [value]="motif.CODE_MOTIF ">
-                        {{ motif.DESIGN_MOTIF }}
-                    </ion-option>
-                </ion-select>
+                <ion-label floating>Motif</ion-label>
+                <ionic-selectable item-content searchPlaceholder="motif" [focusSearchbar]="true" name="Motif"
+                    [(ngModel)]="motif" [items]="listMotifs" itemValueField="CODE_MOTIF" itemTextField="DESIGN_MOTIF"
+                    [canSearch]="true">
+                </ionic-selectable>
             </ion-item>
             <ion-item>
-                <ion-label>Caisse</ion-label>
-                <ion-select name="codeCompte" [(ngModel)]="codeCompte" required>
+                <ion-label floating>Compte</ion-label>
+                <ion-select name="codeCompte" [(ngModel)]="codeCompte" interface="popover" required>
                     <ion-option *ngFor="let caisse of caissesList" [value]="caisse.CODE_COMPTE">
                         {{ caisse.DESIGN_COMPTE }}
                     </ion-option>
                 </ion-select>
             </ion-item>
             <ion-item>
-                <ion-label>Tiers</ion-label>
-                <select-searchable item-content name="tiers" [(ngModel)]="tiers" [items]="listTiers" itemValueField="CODE_TIERS" itemTextField="NOM_TIERS"
-                    [canSearch]="true" (onChange)="tiersChange($event)">
-                </select-searchable>
+                <ion-label floating>Tiers</ion-label>
+                <ionic-selectable item-content searchPlaceholder="tiers" [focusSearchbar]="true" name="tiers"
+                    [(ngModel)]="tiers" [items]="listTiers" itemValueField="CODE_TIERS" itemTextField="NOM_TIERS"
+                    [canSearch]="true"  (onChange)="tiersChange($event)">
+                </ionic-selectable>
             </ion-item>
+            
             <ion-item>
-                <ion-label>Montant : </ion-label>
-                <ion-input name="totalEncaiss" type="number" placeholder="entrez le montant" [(ngModel)]="totalEncaiss" required></ion-input>
+                <ion-input name="totalEncaiss" placeholder="veuillez saisir le montant" [(ngModel)]="totalEncaiss"></ion-input>
             </ion-item>
-            <button ion-button icon-start block color="dark" type="submit" [disabled]="!f.valid">
-                <ion-icon name="add"></ion-icon>
-                {{ method }}
-            </button>
+            <br>
+            <div text-center>
+                <button ion-button icon-start color="dark" type="submit" [disabled]="!f.valid">
+                    {{ method }}
+                </button>
+                <button ion-button icon-start color="dark" (click)="goBack()">
+                    Annuler
+                </button>
+            </div>
+            <br><br>
+            <div bottom>
+                Solde Tiers : <strong>{{ tiers.SOLDE_TIERS | xpertCurrency }}</strong>
+            </div>
         </ion-list>
     </form>
 </ion-content>
