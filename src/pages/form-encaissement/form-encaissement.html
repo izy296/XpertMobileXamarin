@@ -18,7 +18,6 @@
     <form #f="ngForm" (ngSubmit)="validate(encaissForm)">
         <ion-list>
             <ion-item>
-
                 <span ion-datepicker [cancelText]="Annuler" [modalOptions]="" [localeStrings]="{weekdays: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Vend', 'Sam'],
                 months: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']}"
                     (ionChanged)="setDate($event);" [(value)]="localDate" clear class="ScheduleDate">
@@ -27,7 +26,6 @@
                     </span>
                     <ion-icon name="calendar" float-right></ion-icon>
                 </span>
-
             </ion-item>
             <ion-item>
                 <ion-label floating>Motif</ion-label>

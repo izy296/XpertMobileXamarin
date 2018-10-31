@@ -6,17 +6,17 @@ import { Motif } from '../../models/motif';
 import { Tiers } from '../../models/tiers';
 @Injectable()
 export class EncaisseServiceProvider {
-  private BASE_URL: string = "api/";
-  private ENCAISSEMENT_URL: string = "Encaissements/";
-  private ENCAISSEMENT_Per_Page_URL: string = "EncaissementsPerPage/";
+  private BASE_URL: string = "api";
+  private ENCAISSEMENT_URL: string = "Encaissements";
+  private ENCAISSEMENT_Per_Page_URL: string = "EncaissementsPerPage";
   private ADD_ENCAISSEMENT_URL: string = "addEncaissement";
   private DELETE_ENCAISSEMENT_URL: string = "deleteEncaissement";
-  private MOTIFS_URL: string = "motifs/";
+  private MOTIFS_URL: string = "motifs";
   private CAISSES_URL: string = "caisses";
   private COMPTES_URL: string = "comptes"
   private TIERS_URL: string = "tiers";
-  private STATISTIC_URL: string = "statistic/";
-  private SESSION_URL: string = "session/";
+  private STATISTIC_URL: string = "statistic";
+  private SESSION_URL: string = "session";
   private headers: Headers;
   motifsList = [];
   motifFilter: Motif = {
@@ -42,18 +42,15 @@ export class EncaisseServiceProvider {
   caissesList = [];
   constructor(
     private http: HttpInterceptor,
-    private helperService: HelperServiceProvider, ) {
+    private helperService: HelperServiceProvider ) {
     this.loadCaisses();
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
 
   }
-  getStatisticEncaiss(date_start, date_end): Observable<any> {
-
-    console.log("url : "+ this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.STATISTIC_URL + date_start + "/" + date_end);
-    
+  getStatisticEncaiss(date_start, date_end): Observable<any> {   
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.STATISTIC_URL + date_start + "/" + date_end
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.STATISTIC_URL,date_start,date_end)  
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -61,7 +58,7 @@ export class EncaisseServiceProvider {
   }
   getComptes(): Observable<any> {
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.COMPTES_URL
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.COMPTES_URL)
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -69,25 +66,20 @@ export class EncaisseServiceProvider {
   }
   getEncaissements(type: string): Observable<any> {
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + type
-
+      this.helperService.createLink(this.BASE_URL,type)
     )
       .map(this.helperService.extractData)
       .do(this.helperService.logResponse)
       .catch(this.helperService.catchError)
   }
   getEncaissementsPerPage(type: string, page: number, idCaisse: string, dateDebut: string, dateFin: string, codeTiers: string, codeMotif: string, codeCompte: string): Observable<any> {
-    let url: string;
-    console.log("the encaisse  service ", idCaisse);
-
+    let url: string;  
     if (dateDebut == null && dateFin == null) {
-      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/" + idCaisse + "/";
+      url = this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_Per_Page_URL,type,page,idCaisse);
     }
     else {
-      url = this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_Per_Page_URL + type + "/" + page + "/" + idCaisse + "/" + dateDebut + "/" + dateFin + "/" + codeTiers + "/" + codeMotif + "/" + codeCompte + "/";
+      url = this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_Per_Page_URL,type,page,idCaisse,dateDebut,dateFin,codeTiers,codeMotif,codeMotif,codeCompte)
     }
-    console.log("url for get encaissemtns ", url);
-
     return this.http.get(url)
       .map(this.helperService.extractData)
       .do(this.helperService.logResponse)
@@ -95,7 +87,7 @@ export class EncaisseServiceProvider {
   }
   getMotifs(type: string): Observable<any> {
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.MOTIFS_URL + type
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.MOTIFS_URL,type)
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -103,7 +95,7 @@ export class EncaisseServiceProvider {
   }
   getTiers(): Observable<any> {
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.TIERS_URL
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.TIERS_URL)
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -111,15 +103,18 @@ export class EncaisseServiceProvider {
   }
   getCaisses(): Observable<any> {
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.CAISSES_URL
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.CAISSES_URL)
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
       .catch(this.helperService.catchError);
   }
   getSessions(): Observable<any> {
-    return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.SESSION_URL
+    const url = this.helperService.createLink(this.BASE_URL,this.SESSION_URL);
+    console.log("url session get Sessions :  ",url);
+    console.log("http://localhost/xpertpharm.rest.api/api/session/");
+    
+    return this.http.get(url
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -135,7 +130,7 @@ export class EncaisseServiceProvider {
       "CODE_TIERS": codeTiers
     };
     return this.http.post(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.ADD_ENCAISSEMENT_URL, body
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.ADD_ENCAISSEMENT_URL), body
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
@@ -153,7 +148,7 @@ export class EncaisseServiceProvider {
       "CODE_TIERS": codeTiers
     };
     return this.http.put(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL,
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL),
       body
     )
       .do(this.helperService.logResponse)
@@ -165,7 +160,7 @@ export class EncaisseServiceProvider {
       "CODE_ENCAISS": codeEncaiss
     };
     return this.http.post(
-      this.helperService.networkAddress + this.BASE_URL + this.ENCAISSEMENT_URL + this.DELETE_ENCAISSEMENT_URL, body
+      this.helperService.createLink(this.BASE_URL,this.ENCAISSEMENT_URL,this.DELETE_ENCAISSEMENT_URL), body
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)

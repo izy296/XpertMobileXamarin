@@ -9,7 +9,7 @@ import { HelperServiceProvider } from '../../providers/helper-service/helper-ser
 import { Motif } from '../../models/motif';
 import { NgForm } from '@angular/forms';
 import { XpertCurrencyPipe } from '../../pipes/xpert-currency/xpert-currency';
-import { IonicSelectableModule } from 'ionic-selectable';
+import { TiersServiceProvider } from '../../providers/tiers-service/tiers-service';
 /**
  * Generated class for the FormEncaissementPage page.
  *
@@ -47,7 +47,8 @@ export class FormEncaissementPage implements OnInit {
     private encaisseService: EncaisseServiceProvider,
     private helperService: HelperServiceProvider,
     private montantInput: ElementRef,
-    public xpertPipe: XpertCurrencyPipe
+    public xpertPipe: XpertCurrencyPipe,
+    private tiersService : TiersServiceProvider
   ) {
     this.encaissementsPage = this.navParams.get('encaissementsPage');
     this.el = this.montantInput.nativeElement;
@@ -73,7 +74,6 @@ export class FormEncaissementPage implements OnInit {
   }
   getCaisses() {
     this.caissesList = this.encaisseService.caissesList;
-    console.log("liste caisse ---------------------------", this.caissesList);
   }
   goBack() {
     this.navCtrl.pop();
@@ -120,8 +120,7 @@ export class FormEncaissementPage implements OnInit {
     /// test if we are in the update or add Encaissment
     this.update = this.navParams.get('update');
     this.initForm();
-    if (this.update) {
-      console.log("--------------------------- enter update form ");
+    if (this.update) {      
       this.initUpdateForm();
     } else {
       this.codeType = this.navParams.get('type');
@@ -157,6 +156,15 @@ export class FormEncaissementPage implements OnInit {
       CODE_MOTIF: this.encaissement.CODE_MOTIF,
       DESIGN_MOTIF: this.encaissement.DESIGN_MOTIF
     };
+    if(this.tiers.CODE_TIERS!="")
+    this.getSoldeTiers(this.tiers.CODE_TIERS);
+  }
+  getSoldeTiers(codeTiers:string){
+    this.tiersService.getTiers(codeTiers).subscribe(data => {
+      this.tiers = data;      
+    }, error => {
+      this.helperService.showNotifError(error)
+    });
   }
   initTitle() {
     if (this.codeType == 'ENC') {

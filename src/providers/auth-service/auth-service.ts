@@ -11,7 +11,7 @@ import { Http, Headers, RequestOptions } from '@angular/http';
 */
 @Injectable()
 export class AuthServiceProvider {
-  private BASE_URL: string = "api/";
+  private BASE_URL: string = "api";
   private TOKEN_URL: string = "token";
   private TEST_URL: string = "test";
   private ACCOUNT_DETAIL_URL:string = "getAccountDetail";
@@ -28,13 +28,7 @@ export class AuthServiceProvider {
   getAuthentification(username: string, password: string) {
     this.headers = new Headers();
     this.headers.append('Content-Type', 'application/json');
-    console.log("------------------------------------- address ---------------------");
-    console.log(this.helperService.networkAddress + this.BASE_URL + this.TOKEN_URL);
-    console.log("------------------------------------ adress ----------------------");
-
-
-
-    return this.http.post(this.helperService.networkAddress + this.BASE_URL + this.TOKEN_URL, 'username=' + username + '&password=' + password + '&grant_type=' + this.GRANT_TYPE
+    return this.http.post(this.helperService.networkAddress+this.BASE_URL+"/"+this.TOKEN_URL, 'username=' + username + '&password=' + password + '&grant_type=' + this.GRANT_TYPE
     ).do(this.helperService.logResponse)
       .map(this.helperService.extractData)
       .catch((error) => {
@@ -48,22 +42,13 @@ export class AuthServiceProvider {
     this.headers.append('Content-Type', 'application/json');
     this.headers.append('Authorization', 'bearer ' + this.token);
     this.authorisationOptions = new RequestOptions({ headers: this.headers });
-    console.log("---------------------------------");
     console.log('Token set ', this.getToken());
-    console.log("---------------------------------");
-
-    await this.storage.set(this.TOKEN_KEY, this.token);
-    this.storage.get(this.TOKEN_KEY).then((val) => {
-      console.log("----------------------------");
-      console.log("the value from Auth service : " + val);
-      console.log("----------------------------");
-
-
-    })
+    await this.storage.set(this.TOKEN_KEY, this.token);  
   }
   
   public testConnexion() {
-    return this.http.get(this.helperService.networkAddress + this.BASE_URL + this.TEST_URL)
+    return this.http.get(
+      this.helperService.createLink(this.BASE_URL,this.TEST_URL))
     .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
       .catch((error) => {
@@ -72,7 +57,8 @@ export class AuthServiceProvider {
       })
   }
   public getAccountDetail() {
-    return this.http.get(this.helperService.networkAddress + this.BASE_URL + this.ACCOUNT_DETAIL_URL)
+    return this.http.get(
+      this.helperService.createLink(this.BASE_URL,this.ACCOUNT_DETAIL_URL))
     .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
       .catch((error) => {

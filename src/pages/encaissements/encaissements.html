@@ -30,6 +30,13 @@
     </div>
     <ion-list [virtualScroll]="encaissementList">
         <ion-grid *virtualItem="let encaissement" class="encaiss" [ngClass]="(encaissement.CODE_TYPE  =='ENC')?'border-encaiss':'border-decaiss'"
+        (press)="showMenu($event,encaissement)">
+        <encaiss [encaissement]="encaissement">
+        </encaiss>
+        </ion-grid>
+  </ion-list>
+  <!--     <ion-list [virtualScroll]="encaissementList">
+        <ion-grid *virtualItem="let encaissement" class="encaiss" [ngClass]="(encaissement.CODE_TYPE  =='ENC')?'border-encaiss':'border-decaiss'"
             (press)="showMenu($event,encaissement)">
             <ion-row>
                 <ion-col>
@@ -60,7 +67,7 @@
                 <hr size=1 align="center" width="80%">
             </ion-row>
         </ion-grid>
-    </ion-list>
+    </ion-list> -->
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data..."></ion-infinite-scroll-content>
     </ion-infinite-scroll>

@@ -23,7 +23,7 @@ export class HelperServiceProvider {
                 this.saveNetworkAddress("http://localhost/");
             }
         }, (error) => {
-            this.showNotifError("Network Address :"+error)
+            this.showNotifError("Network Address :" + error)
         });
         return this.networkAddress;
     }
@@ -32,8 +32,8 @@ export class HelperServiceProvider {
             if (dates != null) {
                 this.datesStatistic = dates;
             }
-        }, (error) => {       
-                 this.showNotifError(" statistique :"+error)
+        }, (error) => {
+            this.showNotifError(" statistique :" + error)
 
         });
     }
@@ -71,10 +71,10 @@ export class HelperServiceProvider {
         return res.json();
     }
 
-    showNotifSuccess(success:string) {
-        
+    showNotifSuccess(success: string) {
+
         let toast = this.toastCtrl.create({
-            message:  success,
+            message: success,
             duration: 3000,
             position: 'bottom',
             cssClass: 'dark-trans',
@@ -93,5 +93,13 @@ export class HelperServiceProvider {
             showCloseButton: true
         });
         toast.present();
+    }
+    createLink(...argume): string {
+        let strUrl = this.networkAddress;
+        argume.forEach(element => {
+            strUrl += element + "/";
+        });
+        console.log("the utrl WITH CREATE LINK ",strUrl);      
+        return strUrl;
     }
 }

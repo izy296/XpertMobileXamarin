@@ -25,13 +25,14 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { HttpModule, XHRBackend, RequestOptions } from "@angular/http";
 import { SelectSearchableModule } from 'ionic-select-searchable';
 import { DatePickerModule } from 'ionic3-datepicker';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpFactory } from '../Module/httpFactory';
 import { XpertChartComponent } from '../components/xpert-chart/xpert-chart';
 import { EncaissComponent } from '../components/encaiss/encaiss'
 import { MenuFilterComponent } from '../components/menu-filter/menu-filter';
 import { IonicSelectableModule } from 'ionic-selectable';
 import { IonPullupModule } from 'ionic-pullup';
+import { TiersServiceProvider } from '../providers/tiers-service/tiers-service';
+
 // end import services
 // end import services
 
@@ -94,7 +95,6 @@ import { IonPullupModule } from 'ionic-pullup';
       useFactory: HttpFactory,
       deps: [XHRBackend, RequestOptions, AuthServiceProvider]
     },
-    BarcodeScanner,
     StatusBar,
     SplashScreen,
     Keyboard,
@@ -104,6 +104,7 @@ import { IonPullupModule } from 'ionic-pullup';
     XpertCurrencyPipe,
     DashboardServiceProvider,
     HelperServiceProvider,
+    TiersServiceProvider,
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 

@@ -13,24 +13,25 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DashboardServiceProvider {
 
-  private BASE_URL: string = "api/";
-  DASHBOARD_URL : string ="Dashboard/";
-  MARGE_PAR_VENDEUR_URL : string ="MargeParVendeur";
-  public labelMargeParvendeur : string[];
+  private BASE_URL: string = "api";
+  DASHBOARD_URL: string = "Dashboard";
+  MARGE_PAR_VENDEUR_URL: string = "MargeParVendeur";
+  public labelMargeParvendeur: string[];
   constructor(
     public http: HttpInterceptor,
     private helperService: HelperServiceProvider
   ) {
-    console.log('Hello StatisticServiceProvider Provider');
   }
-  public initDashBoard(){
-    
+  public initDashBoard() {
+
   }
-  getMargeParVendeur(date_start:Date,date_end:Date): Observable<any> {
-    
-    console.log("url :",this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL+'/'+date_start.toISOString().substring(0,10)+'/'+date_end.toISOString().substring(0,10)+'/');    
+  getMargeParVendeur(date_start: Date, date_end: Date): Observable<any> {
+
+    console.log("url :", this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL + '/' + date_start.toISOString().substring(0, 10) + '/' + date_end.toISOString().substring(0, 10) + '/');
+    const url = this.helperService.createLink(this.BASE_URL, this.DASHBOARD_URL, this.MARGE_PAR_VENDEUR_URL, date_start.toISOString().substring(0, 10), date_end.toISOString().substring(0, 10));
+    console.log("createLink dashboar durl : ", url);
     return this.http.get(
-      this.helperService.networkAddress + this.BASE_URL + this.DASHBOARD_URL + this.MARGE_PAR_VENDEUR_URL+'/'+date_start.toISOString().substring(0,10)+'/'+date_end.toISOString().substring(0,10)+'/'
+      url
     )
       .do(this.helperService.logResponse)
       .map(this.helperService.extractData)
