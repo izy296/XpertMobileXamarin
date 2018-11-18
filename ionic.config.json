@@ -1,8 +1,0 @@
-{
-  "name": "xpert-mobile",
-  "integrations": {
-    "cordova": {}
-  },
-  "type": "ionic-angular",
-  "pro_id": "40b644db"
-}
