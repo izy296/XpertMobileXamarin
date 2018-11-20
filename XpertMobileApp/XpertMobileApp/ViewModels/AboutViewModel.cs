@@ -9,9 +9,9 @@ namespace XpertMobileApp.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "About";
+            Title = "À propos";
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https://xamarin.com/platform")));
+            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https:www.google.com")));
         }
 
         public ICommand OpenWebCommand { get; }
