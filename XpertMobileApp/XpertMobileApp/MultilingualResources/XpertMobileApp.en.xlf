@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="fr" target-language="en" original="XPERTMOBILEAPP/APPRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6900.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="XPERTMOBILEAPP/APPRESOURCES.RESX" datatype="resx">
+        <trans-unit id="lbl_ConnexionInfos" translate="yes" xml:space="preserve">
+          <source>Informations de connexion</source>
+          <target state="new">Informations de connexion</target>
+        </trans-unit>
+        <trans-unit id="lbl_PortNumber" translate="yes" xml:space="preserve">
+          <source>Port</source>
+          <target state="new">Port</target>
+        </trans-unit>
+        <trans-unit id="lbl_SelectLanguage" translate="yes" xml:space="preserve">
+          <source>Langage</source>
+          <target state="translated">Language</target>
+        </trans-unit>
+        <trans-unit id="lbl_ServerName" translate="yes" xml:space="preserve">
+          <source>Serveur</source>
+          <target state="new">Serveur</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>
