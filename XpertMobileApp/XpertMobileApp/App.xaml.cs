@@ -1,4 +1,9 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using Plugin.Multilingual;
+using System;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Data;
@@ -13,7 +18,6 @@ namespace XpertMobileApp
     {
 
         private static string LOCAL_DB_NAME = "LinkedResto.db3";
-        public static string RestServiceUrl { get; internal set; }
         public static User User { get; internal set; }
         public static User CurrentUser { get; internal set; }
 
@@ -26,6 +30,10 @@ namespace XpertMobileApp
         public App()
         {
             InitializeComponent();
+
+            var culture = CrossMultilingual.Current.DeviceCultureInfo;
+            // culture.TwoLetterISOLanguageName
+            App.SetAppLanguage("ar");            
 
             MainPage = new LoginPage(); // = new MainPage();
         }
@@ -45,6 +53,39 @@ namespace XpertMobileApp
             // Handle when your app resumes
         }
 
+        public static void SetAppLanguage(string language)
+        {
+            try
+            {
+                var culture = new CultureInfo(language);
+                AppResources.Culture = culture;
+                CrossMultilingual.Current.CurrentCultureInfo = culture;
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+
+        public static bool IsConected
+        {
+            get
+            {
+                return CrossConnectivity.Current.IsConnected;
+            }
+        }
+
+        public static string RestServiceUrl
+        {
+            get
+            {
+                if (Settings != null && !string.IsNullOrEmpty(Settings.ServerName) && !string.IsNullOrEmpty(Settings.Port))
+                {
+                    return "http://" + Settings.ServerName + ":" + Settings.Port + "/";
+                }
+                return "";
+            }
+        }
 
         public static TokenDatabaseControler TokenDatabase
         {
@@ -111,5 +152,61 @@ namespace XpertMobileApp
             }
 
         }
+
+        // ------ Internet connexion infos ---------
+        #region Verification de la connexion internet et affichage d'une alerte en cas de deconnexion
+
+        private static bool alertDisplayed = false;
+        private static Label labelInfo;
+        private static Page currentPage;
+        private static Timer timer;
+
+        public static void StatrtCheckIfInternet(Label label, Page page)
+        {
+            labelInfo = label;
+            label.Text = "Vous n'êtes pas connecté à internet";
+            label.IsVisible = false;
+
+            currentPage = page;
+
+            if (timer == null)
+            {
+                timer = new Timer((e) =>
+                {
+                    CheckIfInternetOverTimeAsync();
+                }, null, 10, (int)TimeSpan.FromSeconds(3).TotalMilliseconds);
+            }
+        }
+
+        private static void CheckIfInternetOverTimeAsync()
+        {
+            if (!App.IsConected)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                       labelInfo.IsVisible = true;
+                       if (!alertDisplayed)
+                       {
+                            alertDisplayed = true;
+                            await ShowDisplayAlert();
+                       }
+                });
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(() => {
+                    labelInfo.IsVisible = false;
+                    // Remettre l'affichage de l'alerte a false quand internet revient
+                    alertDisplayed = false;
+                });
+            }
+        }
+
+        private static async Task ShowDisplayAlert()
+        {
+            await currentPage.DisplayAlert("Internet", "Vous n'êtes pas connecté à internet", "Ok");
+        }
+
+        #endregion
     }
 }
