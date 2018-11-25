@@ -15,6 +15,16 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+
+            <Style x:Key="DefaultTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#3897f0"/>
+            </Style>
+
+            <Style x:Key="DefaultBtnStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
