@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.LoginPage"
              
              BackgroundColor="White"
@@ -18,6 +19,9 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <!--Affichage de l'alerte en cas de deconnexion -->
+            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red"/>
+
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
                     <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
@@ -39,20 +43,19 @@
                         <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
 
                         <StackLayout>
-                            <Label x:Name="Lbl_UserName" Text="Nom d'utilisateur"  />
-                            <Entry x:Name="Ent_UserName" Text="" Placeholder="UserName" />
+                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"  />
+                            <Entry x:Name="Ent_UserName" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
                         </StackLayout>
 
                         <StackLayout Padding="0,10,0,0">
-                            <Label x:Name="Lbl_PassWord" Text="Mot de passe"/>
-                            <Entry x:Name="Ent_PassWord" Text="" IsPassword="True" Placeholder="PassWord"/>
+                            <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}"/>
+                            <Entry x:Name="Ent_PassWord" Text="" Placeholder="{i18n:Translate lp_ph_PassWord}" IsPassword="True"/>
                         </StackLayout>
 
                         <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
-                                BackgroundColor="{StaticResource Primary}"
-                                TextColor="White"
-                                Text="Connexion" Clicked="ConnectUserAsync"/>
-
+                                Style="{DynamicResource DefaultBtnStyle}"
+                                Text="{i18n:Translate lp_btn_Login}" Clicked="ConnectUserAsync"/>
+                        
                     </StackLayout>
                 </Grid>
             </StackLayout>
@@ -62,7 +65,7 @@
             <Button x:Name="Btn_Config" Margin="0" WidthRequest="50" HeightRequest="50"    
                     HorizontalOptions="End" BackgroundColor="White"
                                 Image="param_32.png"
-                                Text="" Clicked="Settings_Clicked"/>
+                                Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>

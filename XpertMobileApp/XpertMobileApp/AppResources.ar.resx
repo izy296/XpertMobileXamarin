@@ -12,7 +12,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lbl_SelectLanguage" xml:space="preserve">
+  <data name="lp_btn_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_lbl_PassWord" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="lp_lbl_UserName" xml:space="preserve">
+    <value>إسم المستخدم</value>
+  </data>
+  <data name="lp_ph_PassWord" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="lp_ph_UserName" xml:space="preserve">
+    <value>إسم المستخدم</value>
+  </data>
+  <data name="sp_btn_SaveSettings" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="sp_btn_settings" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
+    <value>معلومات السرفر المركزي</value>
+  </data>
+  <data name="sp_lbl_PortNumber" xml:space="preserve">
+    <value>رفم المنفذ</value>
+  </data>
+  <data name="sp_lbl_SelectLanguage" xml:space="preserve">
     <value>اللغة</value>
+  </data>
+  <data name="sp_lbl_ServerName" xml:space="preserve">
+    <value>عنوان السرفر</value>
+  </data>
+  <data name="sp_btn_TestConnection" xml:space="preserve">
+    <value>اختبار الاتصال</value>
+  </data>
+  <data name="pn_About" xml:space="preserve">
+    <value>حول التطبيق</value>
+  </data>
+  <data name="pn_Analyses" xml:space="preserve">
+    <value>تحاليل</value>
+  </data>
+  <data name="pn_encaissement" xml:space="preserve">
+    <value>الايصالات</value>
+  </data>
+  <data name="pn_home" xml:space="preserve">
+    <value>الرئيسية</value>
   </data>
 </root>

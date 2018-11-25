@@ -117,16 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="lbl_ConnexionInfos" xml:space="preserve">
+  <data name="lp_btn_Login" xml:space="preserve">
+    <value>Connexion</value>
+  </data>
+  <data name="lp_btn_Settings" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lp_lbl_PassWord" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="lp_lbl_UserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="lp_ph_PassWord" xml:space="preserve">
+    <value>Mot de passe</value>
+  </data>
+  <data name="lp_ph_UserName" xml:space="preserve">
+    <value>Nom d'utilisateur</value>
+  </data>
+  <data name="pn_About" xml:space="preserve">
+    <value>À propos</value>
+  </data>
+  <data name="pn_Analyses" xml:space="preserve">
+    <value>Analyses</value>
+  </data>
+  <data name="pn_encaissement" xml:space="preserve">
+    <value>Encaissement</value>
+  </data>
+  <data name="pn_home" xml:space="preserve">
+    <value>Accueil</value>
+  </data>
+  <data name="sp_btn_SaveSettings" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="sp_btn_settings" xml:space="preserve">
+    <value>Fermer</value>
+  </data>
+  <data name="sp_btn_TestConnection" xml:space="preserve">
+    <value>Tester la connexion</value>
+  </data>
+  <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
     <value>Informations de connexion</value>
   </data>
-  <data name="lbl_PortNumber" xml:space="preserve">
+  <data name="sp_lbl_PortNumber" xml:space="preserve">
     <value>Port</value>
   </data>
-  <data name="lbl_SelectLanguage" xml:space="preserve">
+  <data name="sp_lbl_SelectLanguage" xml:space="preserve">
     <value>Langage</value>
   </data>
-  <data name="lbl_ServerName" xml:space="preserve">
+  <data name="sp_lbl_ServerName" xml:space="preserve">
     <value>Serveur</value>
+  </data>
+  <data name="alrt_msg_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="alrt_msg_ConnectionError" xml:space="preserve">
+    <value>Connexion échoué veullez vérifier les informations du serveur</value>
+  </data>
+  <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
+    <value>Connexion établie avec succes</value>
+  </data>
+  <data name="alrt_msg_Info" xml:space="preserve">
+    <value>Infos</value>
+  </data>
+  <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
+    <value>Veuillez rensegner les informations du serveur</value>
+  </data>
+  <data name="alrt_msg_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="alrt_msg_SaveSettings" xml:space="preserve">
+    <value>Do you ant to save the settings</value>
+  </data>
+  <data name="alrt_msg_SettingsSaved" xml:space="preserve">
+    <value>Settings saved with succes</value>
+  </data>
+  <data name="alrt_msg_title_Settings" xml:space="preserve">
+    <value>Settings</value>
   </data>
 </root>

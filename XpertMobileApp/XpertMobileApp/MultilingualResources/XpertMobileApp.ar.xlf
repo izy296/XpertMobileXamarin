@@ -6,21 +6,73 @@
     </header>
     <body>
       <group id="XPERTMOBILEAPP/APPRESOURCES.RESX" datatype="resx">
-        <trans-unit id="lbl_ConnexionInfos" translate="yes" xml:space="preserve">
+        <trans-unit id="lp_btn_Login" translate="yes" xml:space="preserve">
+          <source>Connexion</source>
+          <target state="translated">تسجيل الدخول</target>
+        </trans-unit>
+        <trans-unit id="lp_btn_Settings" translate="yes" xml:space="preserve">
+          <source></source>
+          <target state="new"></target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_PassWord" translate="yes" xml:space="preserve">
+          <source>Mot de passe</source>
+          <target state="translated">كلمة المرور</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserName" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur</source>
+          <target state="translated">إسم المستخدم</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_PassWord" translate="yes" xml:space="preserve">
+          <source>Mot de passe</source>
+          <target state="translated">كلمة المرور</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserName" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur</source>
+          <target state="translated">إسم المستخدم</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_SaveSettings" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="translated">حفظ</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_settings" translate="yes" xml:space="preserve">
+          <source>Fermer</source>
+          <target state="translated">إغلاق</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ConnexionInfos" translate="yes" xml:space="preserve">
           <source>Informations de connexion</source>
-          <target state="new">Informations de connexion</target>
+          <target state="translated">معلومات السرفر المركزي</target>
         </trans-unit>
-        <trans-unit id="lbl_PortNumber" translate="yes" xml:space="preserve">
+        <trans-unit id="sp_lbl_PortNumber" translate="yes" xml:space="preserve">
           <source>Port</source>
-          <target state="new">Port</target>
+          <target state="translated">رفم المنفذ</target>
         </trans-unit>
-        <trans-unit id="lbl_SelectLanguage" translate="yes" xml:space="preserve">
+        <trans-unit id="sp_lbl_SelectLanguage" translate="yes" xml:space="preserve">
           <source>Langage</source>
           <target state="translated">اللغة</target>
         </trans-unit>
-        <trans-unit id="lbl_ServerName" translate="yes" xml:space="preserve">
+        <trans-unit id="sp_lbl_ServerName" translate="yes" xml:space="preserve">
           <source>Serveur</source>
-          <target state="new">Serveur</target>
+          <target state="translated">عنوان السرفر</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_TestConnection" translate="yes" xml:space="preserve">
+          <source>Tester la connexion</source>
+          <target state="translated">اختبار الاتصال</target>
+        </trans-unit>
+        <trans-unit id="pn_About" translate="yes" xml:space="preserve">
+          <source>À propos</source>
+          <target state="translated">حول التطبيق</target>
+        </trans-unit>
+        <trans-unit id="pn_Analyses" translate="yes" xml:space="preserve">
+          <source>Analyses</source>
+          <target state="translated">تحاليل</target>
+        </trans-unit>
+        <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
+          <source>Encaissement</source>
+          <target state="translated">الايصالات</target>
+        </trans-unit>
+        <trans-unit id="pn_home" translate="yes" xml:space="preserve">
+          <source>Accueil</source>
+          <target state="translated">الرئيسية</target>
         </trans-unit>
       </group>
     </body>

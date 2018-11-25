@@ -18,10 +18,10 @@ namespace XpertMobileApp.Views
 
             menuItems = new List<HomeMenuItem>
             {
-                new HomeMenuItem {Id = MenuItemType.Home, Title="Accueil" },
-                new HomeMenuItem {Id = MenuItemType.Browse, Title="Encaissement" },
-                new HomeMenuItem {Id = MenuItemType.EncAnalyses, Title="Analyses" },                
-                new HomeMenuItem {Id = MenuItemType.About, Title="À propos" }
+                new HomeMenuItem {Id = MenuItemType.Home, Image = "", Title=AppResources.pn_home },
+                new HomeMenuItem {Id = MenuItemType.Browse, Image = "", Title=AppResources.pn_encaissement },
+                new HomeMenuItem {Id = MenuItemType.EncAnalyses, Image = "", Title=AppResources.pn_Analyses },                
+                new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
             };
 
             ListViewMenu.ItemsSource = menuItems;

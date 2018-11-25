@@ -61,38 +61,236 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cancel.
+        /// </summary>
+        internal static string alrt_msg_Cancel {
+            get {
+                return ResourceManager.GetString("alrt_msg_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connexion échoué veullez vérifier les informations du serveur.
+        /// </summary>
+        internal static string alrt_msg_ConnectionError {
+            get {
+                return ResourceManager.GetString("alrt_msg_ConnectionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connexion établie avec succes.
+        /// </summary>
+        internal static string alrt_msg_ConnectionSucces {
+            get {
+                return ResourceManager.GetString("alrt_msg_ConnectionSucces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Infos.
+        /// </summary>
+        internal static string alrt_msg_Info {
+            get {
+                return ResourceManager.GetString("alrt_msg_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez rensegner les informations du serveur.
+        /// </summary>
+        internal static string alrt_msg_MissingServerInfos {
+            get {
+                return ResourceManager.GetString("alrt_msg_MissingServerInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ok.
+        /// </summary>
+        internal static string alrt_msg_Ok {
+            get {
+                return ResourceManager.GetString("alrt_msg_Ok", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Do you ant to save the settings.
+        /// </summary>
+        internal static string alrt_msg_SaveSettings {
+            get {
+                return ResourceManager.GetString("alrt_msg_SaveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings saved with succes.
+        /// </summary>
+        internal static string alrt_msg_SettingsSaved {
+            get {
+                return ResourceManager.GetString("alrt_msg_SettingsSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Settings.
+        /// </summary>
+        internal static string alrt_msg_title_Settings {
+            get {
+                return ResourceManager.GetString("alrt_msg_title_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Connexion.
+        /// </summary>
+        internal static string lp_btn_Login {
+            get {
+                return ResourceManager.GetString("lp_btn_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        internal static string lp_btn_Settings {
+            get {
+                return ResourceManager.GetString("lp_btn_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mot de passe.
+        /// </summary>
+        internal static string lp_lbl_PassWord {
+            get {
+                return ResourceManager.GetString("lp_lbl_PassWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur.
+        /// </summary>
+        internal static string lp_lbl_UserName {
+            get {
+                return ResourceManager.GetString("lp_lbl_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mot de passe.
+        /// </summary>
+        internal static string lp_ph_PassWord {
+            get {
+                return ResourceManager.GetString("lp_ph_PassWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur.
+        /// </summary>
+        internal static string lp_ph_UserName {
+            get {
+                return ResourceManager.GetString("lp_ph_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à À propos.
+        /// </summary>
+        internal static string pn_About {
+            get {
+                return ResourceManager.GetString("pn_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Analyses.
+        /// </summary>
+        internal static string pn_Analyses {
+            get {
+                return ResourceManager.GetString("pn_Analyses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Encaissement.
+        /// </summary>
+        internal static string pn_encaissement {
+            get {
+                return ResourceManager.GetString("pn_encaissement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Accueil.
+        /// </summary>
+        internal static string pn_home {
+            get {
+                return ResourceManager.GetString("pn_home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enregistrer.
+        /// </summary>
+        internal static string sp_btn_SaveSettings {
+            get {
+                return ResourceManager.GetString("sp_btn_SaveSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fermer.
+        /// </summary>
+        internal static string sp_btn_settings {
+            get {
+                return ResourceManager.GetString("sp_btn_settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tester la connexion.
+        /// </summary>
+        internal static string sp_btn_TestConnection {
+            get {
+                return ResourceManager.GetString("sp_btn_TestConnection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Informations de connexion.
         /// </summary>
-        internal static string lbl_ConnexionInfos {
+        internal static string sp_lbl_ConnexionInfos {
             get {
-                return ResourceManager.GetString("lbl_ConnexionInfos", resourceCulture);
+                return ResourceManager.GetString("sp_lbl_ConnexionInfos", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Port.
         /// </summary>
-        internal static string lbl_PortNumber {
+        internal static string sp_lbl_PortNumber {
             get {
-                return ResourceManager.GetString("lbl_PortNumber", resourceCulture);
+                return ResourceManager.GetString("sp_lbl_PortNumber", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Langage.
         /// </summary>
-        internal static string lbl_SelectLanguage {
+        internal static string sp_lbl_SelectLanguage {
             get {
-                return ResourceManager.GetString("lbl_SelectLanguage", resourceCulture);
+                return ResourceManager.GetString("sp_lbl_SelectLanguage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Serveur.
         /// </summary>
-        internal static string lbl_ServerName {
+        internal static string sp_lbl_ServerName {
             get {
-                return ResourceManager.GetString("lbl_ServerName", resourceCulture);
+                return ResourceManager.GetString("sp_lbl_ServerName", resourceCulture);
             }
         }
     }
