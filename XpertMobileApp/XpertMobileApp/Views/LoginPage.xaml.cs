@@ -16,6 +16,17 @@ namespace XpertMobileApp.Views
 			InitializeComponent ();
 
             NavigationPage.SetHasNavigationBar(this, false);
+            Init();
+        }
+
+        private void Init()
+        {
+            App.StatrtCheckIfInternet(Lbl_NoInternet, this);
+
+            Ent_UserName.Text = "";
+            Ent_PassWord.Text = "";
+            Ent_UserName.Completed += (s, e) => Ent_PassWord.Focus();
+            Ent_PassWord.Completed += (s, e) => ConnectUserAsync(s, e);
         }
 
         async Task ConnectUserAsync(object sender, EventArgs e)
@@ -51,7 +62,7 @@ namespace XpertMobileApp.Views
                     // Alerte apres la connexion
                     // DependencyService.Get<ITextToSpeech>().Speak("Hello" + " " + user.UserName + "!");
 
-                    // suavegrade du user et du token en cours dans la bdd local
+                    //  suavegrade du user et du token en cours dans la bdd local
                     //  await App.UserDatabase.SaveItemAsync(user);
                     //  await App.TokenDatabase.SaveItemAsync(result);
 
