@@ -1,0 +1,62 @@
+﻿^contentpage {
+    background-color: white;
+    padding: 20;
+}
+
+.header
+{
+    font-size : large;
+    text-align : center;
+    margin-bottom : 20;
+}
+
+stacklayout.outer
+{
+    padding : 20;
+}
+
+entry
+{
+    width : 150;
+}
+
+#boxline
+{
+    background-color : gray;
+    height : 3;
+    margin-top : 20;
+    margin-bottom : 20;
+}
+
+stacklayout > * {
+
+}
+
+/* Selects all Buttons and all Labels */
+label, button 
+{
+
+}
+
+/* Selects all Labels inside of a StackLayout */
+stacklayout label 
+{
+
+}
+
+/*Selects all Labels with StackLayout as a direct parent*/
+stacklayout > label 
+{
+
+}
+
+/*Selects all Entries directly after a Label*/
+label+entry 
+{
+
+}
+/*Selects all Entries preceded by a Label*/
+label~entry 
+{
+
+}
