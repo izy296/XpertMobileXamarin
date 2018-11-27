@@ -24,19 +24,15 @@
         </trans-unit>
         <trans-unit id="lp_ph_PassWord" translate="yes" xml:space="preserve">
           <source>Mot de passe</source>
-          <target state="translated">كلمة المرور</target>
+          <target state="translated"></target>
         </trans-unit>
         <trans-unit id="lp_ph_UserName" translate="yes" xml:space="preserve">
           <source>Nom d'utilisateur</source>
-          <target state="translated">إسم المستخدم</target>
+          <target state="translated"></target>
         </trans-unit>
         <trans-unit id="sp_btn_SaveSettings" translate="yes" xml:space="preserve">
           <source>Enregistrer</source>
           <target state="translated">حفظ</target>
-        </trans-unit>
-        <trans-unit id="sp_btn_settings" translate="yes" xml:space="preserve">
-          <source>Fermer</source>
-          <target state="translated">إغلاق</target>
         </trans-unit>
         <trans-unit id="sp_lbl_ConnexionInfos" translate="yes" xml:space="preserve">
           <source>Informations de connexion</source>
@@ -73,6 +69,83 @@
         <trans-unit id="pn_home" translate="yes" xml:space="preserve">
           <source>Accueil</source>
           <target state="translated">الرئيسية</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">خروج</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionError" translate="yes" xml:space="preserve">
+          <source>Connexion échoué veullez vérifier les informations du serveur</source>
+          <target state="translated">فشل تسجيل الدخول يرجى التحقق من معلومات الخادم</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionSucces" translate="yes" xml:space="preserve">
+          <source>Connexion établie avec succes</source>
+          <target state="translated">تم الاتصال بنجاح</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Info" translate="yes" xml:space="preserve">
+          <source>Infos</source>
+          <target state="translated">Infos</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_MissingServerInfos" translate="yes" xml:space="preserve">
+          <source>Veuillez renseigner les informations du serveur</source>
+          <target state="needs-review-translation">يرجى ملء معلومات الخادم</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Ok" translate="yes" xml:space="preserve">
+          <source>Ok</source>
+          <target state="translated">نعم</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SaveSettings" translate="yes" xml:space="preserve">
+          <source>Voulez-vous enregistrer la configuration</source>
+          <target state="needs-review-translation">هل تريد حفظ الإعدادات</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SettingsSaved" translate="yes" xml:space="preserve">
+          <source>La configuration a été enregistrées avec succès</source>
+          <target state="needs-review-translation">تم حفظ الإعدادات  بنجاح</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_title_Settings" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="needs-review-translation">الإعدادات</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_AppDescription" translate="yes" xml:space="preserve">
+          <source>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</source>
+          <target state="translated">يتيح لك الوصول إلى معلوماتك بسرعة أينما كنت</target>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_DevelopedBy" translate="yes" xml:space="preserve">
+          <source>Application développé  par</source>
+          <target state="needs-review-translation">تم تطوير التطبيق من قبل</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_LearnMore" translate="yes" xml:space="preserve">
+          <source>En savoir plus ..</source>
+          <target state="translated">اقرأ المزيد ..</target>
+        </trans-unit>
+        <trans-unit id="CompanyName" translate="yes" xml:space="preserve">
+          <source>XpertSoft</source>
+          <target state="translated">XpertSoft</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Alert" translate="yes" xml:space="preserve">
+          <source>Alerte</source>
+          <target state="translated">تحذير</target>
+        </trans-unit>
+        <trans-unit id="app_speech_Hello" translate="yes" xml:space="preserve">
+          <source>Bonjour</source>
+          <target state="translated">مرحبا</target>
+        </trans-unit>
+        <trans-unit id="lp_Login" translate="yes" xml:space="preserve">
+          <source>Login</source>
+          <target state="translated">تسجيل الدخول</target>
+        </trans-unit>
+        <trans-unit id="lp_login_WrongAcces" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur ou mot de passe incorrect!</source>
+          <target state="translated">إسم المستخدم أو كلمة المرور خاطئة!</target>
+        </trans-unit>
+        <trans-unit id="btn_Close" translate="yes" xml:space="preserve">
+          <source>Fermer</source>
+          <target state="translated">خروج</target>
         </trans-unit>
       </group>
     </body>

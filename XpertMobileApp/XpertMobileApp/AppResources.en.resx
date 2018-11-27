@@ -30,9 +30,6 @@
   <data name="sp_btn_SaveSettings" xml:space="preserve">
     <value>Save</value>
   </data>
-  <data name="sp_btn_settings" xml:space="preserve">
-    <value>Close</value>
-  </data>
   <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
     <value>Connection informations</value>
   </data>
@@ -45,6 +42,9 @@
   <data name="sp_lbl_ServerName" xml:space="preserve">
     <value>Server</value>
   </data>
+  <data name="sp_btn_TestConnection" xml:space="preserve">
+    <value>Test the connection</value>
+  </data>
   <data name="pn_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -56,5 +56,44 @@
   </data>
   <data name="pn_home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="alrt_msg_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="alrt_msg_ConnectionError" xml:space="preserve">
+    <value>Login failed please check the server information</value>
+  </data>
+  <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
+    <value>Connection successfully established</value>
+  </data>
+  <data name="alrt_msg_Info" xml:space="preserve">
+    <value>Infos</value>
+  </data>
+  <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
+    <value>Please fill in the server informations</value>
+  </data>
+  <data name="alrt_msg_Ok" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="alrt_msg_SaveSettings" xml:space="preserve">
+    <value>Do you ant to save the settings</value>
+  </data>
+  <data name="alrt_msg_SettingsSaved" xml:space="preserve">
+    <value>Settings saved with succes</value>
+  </data>
+  <data name="alrt_msg_title_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="abtp_lbl_AppDescription" xml:space="preserve">
+    <value>, it allows you to access your informations quickly where you are</value>
+  </data>
+  <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
+    <value>Application developed by</value>
+  </data>
+  <data name="abtp_lbl_LearnMore" xml:space="preserve">
+    <value>Learn more ..</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>XpertSoft</value>
   </data>
 </root>

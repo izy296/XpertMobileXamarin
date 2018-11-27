@@ -9,7 +9,7 @@ namespace XpertMobileApp.ViewModels
     {
         public AboutViewModel()
         {
-            Title = "À propos";
+            Title = AppResources.pn_About;
 
             OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https:www.google.com")));
         }

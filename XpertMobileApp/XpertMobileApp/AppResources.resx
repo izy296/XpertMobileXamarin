@@ -150,9 +150,6 @@
   <data name="sp_btn_SaveSettings" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
-  <data name="sp_btn_settings" xml:space="preserve">
-    <value>Fermer</value>
-  </data>
   <data name="sp_btn_TestConnection" xml:space="preserve">
     <value>Tester la connexion</value>
   </data>
@@ -181,18 +178,45 @@
     <value>Infos</value>
   </data>
   <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
-    <value>Veuillez rensegner les informations du serveur</value>
+    <value>Veuillez renseigner les informations du serveur</value>
   </data>
   <data name="alrt_msg_Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
   <data name="alrt_msg_SaveSettings" xml:space="preserve">
-    <value>Do you ant to save the settings</value>
+    <value>Voulez-vous enregistrer la configuration</value>
   </data>
   <data name="alrt_msg_SettingsSaved" xml:space="preserve">
-    <value>Settings saved with succes</value>
+    <value>La configuration a été enregistrées avec succès</value>
   </data>
   <data name="alrt_msg_title_Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Configuration</value>
+  </data>
+  <data name="abtp_lbl_AppDescription" xml:space="preserve">
+    <value>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</value>
+  </data>
+  <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
+    <value>Application développé  par</value>
+  </data>
+  <data name="abtp_lbl_LearnMore" xml:space="preserve">
+    <value>En savoir plus ..</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>XpertSoft</value>
+  </data>
+  <data name="alrt_msg_Alert" xml:space="preserve">
+    <value>Alerte</value>
+  </data>
+  <data name="app_speech_Hello" xml:space="preserve">
+    <value>Bonjour</value>
+  </data>
+  <data name="lp_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="lp_login_WrongAcces" xml:space="preserve">
+    <value>Nom d'utilisateur ou mot de passe incorrect!</value>
+  </data>
+  <data name="btn_Close" xml:space="preserve">
+    <value>Fermer</value>
   </data>
 </root>

@@ -61,6 +61,42 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à , elle vous permet d&apos;accéder a vos informations rapidement là ou vous soyez.
+        /// </summary>
+        internal static string abtp_lbl_AppDescription {
+            get {
+                return ResourceManager.GetString("abtp_lbl_AppDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Application développé  par.
+        /// </summary>
+        internal static string abtp_lbl_DevelopedBy {
+            get {
+                return ResourceManager.GetString("abtp_lbl_DevelopedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à En savoir plus ...
+        /// </summary>
+        internal static string abtp_lbl_LearnMore {
+            get {
+                return ResourceManager.GetString("abtp_lbl_LearnMore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Alerte.
+        /// </summary>
+        internal static string alrt_msg_Alert {
+            get {
+                return ResourceManager.GetString("alrt_msg_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cancel.
         /// </summary>
         internal static string alrt_msg_Cancel {
@@ -97,7 +133,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Veuillez rensegner les informations du serveur.
+        ///   Recherche une chaîne localisée semblable à Veuillez renseigner les informations du serveur.
         /// </summary>
         internal static string alrt_msg_MissingServerInfos {
             get {
@@ -115,7 +151,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Do you ant to save the settings.
+        ///   Recherche une chaîne localisée semblable à Voulez-vous enregistrer la configuration.
         /// </summary>
         internal static string alrt_msg_SaveSettings {
             get {
@@ -124,7 +160,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Settings saved with succes.
+        ///   Recherche une chaîne localisée semblable à La configuration a été enregistrées avec succès.
         /// </summary>
         internal static string alrt_msg_SettingsSaved {
             get {
@@ -133,11 +169,38 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Settings.
+        ///   Recherche une chaîne localisée semblable à Configuration.
         /// </summary>
         internal static string alrt_msg_title_Settings {
             get {
                 return ResourceManager.GetString("alrt_msg_title_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bonjour.
+        /// </summary>
+        internal static string app_speech_Hello {
+            get {
+                return ResourceManager.GetString("app_speech_Hello", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Fermer.
+        /// </summary>
+        internal static string btn_Close {
+            get {
+                return ResourceManager.GetString("btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à XpertSoft.
+        /// </summary>
+        internal static string CompanyName {
+            get {
+                return ResourceManager.GetString("CompanyName", resourceCulture);
             }
         }
         
@@ -174,6 +237,24 @@ namespace XpertMobileApp {
         internal static string lp_lbl_UserName {
             get {
                 return ResourceManager.GetString("lp_lbl_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Login.
+        /// </summary>
+        internal static string lp_Login {
+            get {
+                return ResourceManager.GetString("lp_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur ou mot de passe incorrect!.
+        /// </summary>
+        internal static string lp_login_WrongAcces {
+            get {
+                return ResourceManager.GetString("lp_login_WrongAcces", resourceCulture);
             }
         }
         
@@ -237,15 +318,6 @@ namespace XpertMobileApp {
         internal static string sp_btn_SaveSettings {
             get {
                 return ResourceManager.GetString("sp_btn_SaveSettings", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à Fermer.
-        /// </summary>
-        internal static string sp_btn_settings {
-            get {
-                return ResourceManager.GetString("sp_btn_settings", resourceCulture);
             }
         }
         

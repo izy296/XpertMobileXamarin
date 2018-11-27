@@ -22,16 +22,13 @@
     <value>إسم المستخدم</value>
   </data>
   <data name="lp_ph_PassWord" xml:space="preserve">
-    <value>كلمة المرور</value>
+    <value></value>
   </data>
   <data name="lp_ph_UserName" xml:space="preserve">
-    <value>إسم المستخدم</value>
+    <value></value>
   </data>
   <data name="sp_btn_SaveSettings" xml:space="preserve">
     <value>حفظ</value>
-  </data>
-  <data name="sp_btn_settings" xml:space="preserve">
-    <value>إغلاق</value>
   </data>
   <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
     <value>معلومات السرفر المركزي</value>
@@ -59,5 +56,59 @@
   </data>
   <data name="pn_home" xml:space="preserve">
     <value>الرئيسية</value>
+  </data>
+  <data name="alrt_msg_Cancel" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="alrt_msg_ConnectionError" xml:space="preserve">
+    <value>فشل تسجيل الدخول يرجى التحقق من معلومات الخادم</value>
+  </data>
+  <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
+    <value>تم الاتصال بنجاح</value>
+  </data>
+  <data name="alrt_msg_Info" xml:space="preserve">
+    <value>Infos</value>
+  </data>
+  <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
+    <value>يرجى ملء معلومات الخادم</value>
+  </data>
+  <data name="alrt_msg_Ok" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="alrt_msg_SaveSettings" xml:space="preserve">
+    <value>هل تريد حفظ الإعدادات</value>
+  </data>
+  <data name="alrt_msg_SettingsSaved" xml:space="preserve">
+    <value>تم حفظ الإعدادات  بنجاح</value>
+  </data>
+  <data name="alrt_msg_title_Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="abtp_lbl_AppDescription" xml:space="preserve">
+    <value>يتيح لك الوصول إلى معلوماتك بسرعة أينما كنت</value>
+  </data>
+  <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
+    <value>تم تطوير التطبيق من قبل</value>
+  </data>
+  <data name="abtp_lbl_LearnMore" xml:space="preserve">
+    <value>اقرأ المزيد ..</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>XpertSoft</value>
+  </data>
+  <data name="alrt_msg_Alert" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="app_speech_Hello" xml:space="preserve">
+    <value>مرحبا</value>
+  </data>
+  <data name="lp_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_login_WrongAcces" xml:space="preserve">
+    <value>إسم المستخدم أو كلمة المرور خاطئة!</value>
+  </data>
+  <data name="btn_Close" xml:space="preserve">
+    <value>خروج</value>
   </data>
 </root>

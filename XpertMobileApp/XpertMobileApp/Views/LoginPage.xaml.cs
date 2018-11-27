@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Data;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views
@@ -29,18 +30,23 @@ namespace XpertMobileApp.Views
             Ent_PassWord.Completed += (s, e) => ConnectUserAsync(s, e);
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Lbl_UserName.Text = AppResources.lp_lbl_UserName;
+            Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
+            Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
+            Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
+            Btn_LogIn.Text = AppResources.lp_btn_Login;
+        }
+
         async Task ConnectUserAsync(object sender, EventArgs e)
         {
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
             {
-                await DisplayAlert("Alerte", "Veuillez rensegner les informations du serveur", "Ok");
-                return;
-            }
-            DateTime dlimit = new DateTime(2018, 12, 30);
-            if (DateTime.Now > dlimit)
-            {
-                await DisplayAlert("Erreur", "Veuillez Contacter votre administrateur", "Ok");
+                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
                 return;
             }
 
@@ -60,7 +66,7 @@ namespace XpertMobileApp.Views
                     App.User = user;
                     
                     // Alerte apres la connexion
-                    // DependencyService.Get<ITextToSpeech>().Speak("Hello" + " " + user.UserName + "!");
+                     DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                     //  suavegrade du user et du token en cours dans la bdd local
                     //  await App.UserDatabase.SaveItemAsync(user);
@@ -83,12 +89,12 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    await DisplayAlert("Login", "Connexion refusée, veuillez vérifier vos identifiants de connexion!", "Ok");
+                    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
                 }
             }
             else
             {
-                await DisplayAlert("Login", "Nom d'utilisateur ou mot de passe incorrect!", "Ok");
+                await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
             }
         }
 
@@ -102,7 +108,7 @@ namespace XpertMobileApp.Views
             }
             catch (WebException e)
             {
-                await DisplayAlert("Alert", e.Message, "ok");
+                await DisplayAlert(AppResources.alrt_msg_Alert, e.Message, AppResources.alrt_msg_Ok);
                 return null;
             }
         }

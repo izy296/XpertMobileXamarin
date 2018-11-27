@@ -34,10 +34,6 @@
           <source>Enregistrer</source>
           <target state="translated">Save</target>
         </trans-unit>
-        <trans-unit id="sp_btn_settings" translate="yes" xml:space="preserve">
-          <source>Fermer</source>
-          <target state="translated">Close</target>
-        </trans-unit>
         <trans-unit id="sp_lbl_ConnexionInfos" translate="yes" xml:space="preserve">
           <source>Informations de connexion</source>
           <target state="translated">Connection informations</target>
@@ -56,7 +52,7 @@
         </trans-unit>
         <trans-unit id="sp_btn_TestConnection" translate="yes" xml:space="preserve">
           <source>Tester la connexion</source>
-          <target state="new">Tester la connexion</target>
+          <target state="translated">Test the connection</target>
         </trans-unit>
         <trans-unit id="pn_About" translate="yes" xml:space="preserve">
           <source>À propos</source>
@@ -73,6 +69,83 @@
         <trans-unit id="pn_home" translate="yes" xml:space="preserve">
           <source>Accueil</source>
           <target state="translated">Home</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">Cancel</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionError" translate="yes" xml:space="preserve">
+          <source>Connexion échoué veullez vérifier les informations du serveur</source>
+          <target state="translated">Login failed please check the server information</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionSucces" translate="yes" xml:space="preserve">
+          <source>Connexion établie avec succes</source>
+          <target state="translated">Connection successfully established</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Info" translate="yes" xml:space="preserve">
+          <source>Infos</source>
+          <target state="translated">Infos</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_MissingServerInfos" translate="yes" xml:space="preserve">
+          <source>Veuillez renseigner les informations du serveur</source>
+          <target state="needs-review-translation">Please fill in the server informations</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Ok" translate="yes" xml:space="preserve">
+          <source>Ok</source>
+          <target state="translated">Ok</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SaveSettings" translate="yes" xml:space="preserve">
+          <source>Voulez-vous enregistrer la configuration</source>
+          <target state="needs-review-translation">Do you ant to save the settings</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SettingsSaved" translate="yes" xml:space="preserve">
+          <source>La configuration a été enregistrées avec succès</source>
+          <target state="needs-review-translation">Settings saved with succes</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_title_Settings" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="needs-review-translation">Settings</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_AppDescription" translate="yes" xml:space="preserve">
+          <source>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</source>
+          <target state="translated">, it allows you to access your informations quickly where you are</target>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_DevelopedBy" translate="yes" xml:space="preserve">
+          <source>Application développé  par</source>
+          <target state="needs-review-translation">Application developed by</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_LearnMore" translate="yes" xml:space="preserve">
+          <source>En savoir plus ..</source>
+          <target state="translated">Learn more ..</target>
+        </trans-unit>
+        <trans-unit id="CompanyName" translate="yes" xml:space="preserve">
+          <source>XpertSoft</source>
+          <target state="translated">XpertSoft</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Alert" translate="yes" xml:space="preserve">
+          <source>Alerte</source>
+          <target state="new">Alerte</target>
+        </trans-unit>
+        <trans-unit id="app_speech_Hello" translate="yes" xml:space="preserve">
+          <source>Bonjour</source>
+          <target state="new">Bonjour</target>
+        </trans-unit>
+        <trans-unit id="lp_Login" translate="yes" xml:space="preserve">
+          <source>Login</source>
+          <target state="new">Login</target>
+        </trans-unit>
+        <trans-unit id="lp_login_WrongAcces" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur ou mot de passe incorrect!</source>
+          <target state="new">Nom d'utilisateur ou mot de passe incorrect!</target>
+        </trans-unit>
+        <trans-unit id="btn_Close" translate="yes" xml:space="preserve">
+          <source>Fermer</source>
+          <target state="new">Fermer</target>
         </trans-unit>
       </group>
     </body>

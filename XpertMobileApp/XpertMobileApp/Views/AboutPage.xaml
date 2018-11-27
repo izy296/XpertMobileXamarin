@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.AboutPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
              BackgroundColor="White"
              Title="{Binding Title}">
@@ -39,9 +40,9 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Application dévloppé par" />
-                                <Span Text="XpertSoft" FontAttributes="Bold"  />
-                                <Span Text=", elle vous permet d'accéder a vos informations rapidement là ou vous soyez" />
+                                <Span Text="{i18n:Translate abtp_lbl_DevelopedBy}" />
+                                <Span Text="{i18n:Translate CompanyName}" FontAttributes="Bold"  />
+                                <Span Text="{i18n:Translate abtp_lbl_AppDescription}" />
                                 <Span Text="." />
                             </FormattedString.Spans>
                         </FormattedString>
@@ -60,7 +61,7 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="En savoir plus .."
+                <Button Margin="0,10,0,0" Text="{i18n:Translate abtp_lbl_LearnMore}"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
                         TextColor="White" />
