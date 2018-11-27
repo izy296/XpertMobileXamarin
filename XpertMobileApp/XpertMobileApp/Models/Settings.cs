@@ -15,11 +15,28 @@ namespace XpertMobileApp.Models
         [PrimaryKey]
         public int Id { get; set; }
 
-        private string serverName { get; set; }
+        private string serverName;
 
-        private string port { get; set; }
+        private string port;
 
-        private bool autoRefreshVente { get; set; }
+        private string language;
+
+        public string ServerName
+        {
+            set
+            {
+                if (serverName != value)
+                {
+                    serverName = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ServerName"));
+                    isModified = true;
+                }
+            }
+            get
+            {
+                return serverName;
+            }
+        }
 
         public string Port
         {
@@ -38,20 +55,20 @@ namespace XpertMobileApp.Models
             }
         }
 
-        public string ServerName
+        public string Language
         {
             set
             {
-                if (serverName != value)
+                if (language != value)
                 {
-                    serverName = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ServerName"));
+                    language = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Language"));
                     isModified = true;
                 }
             }
             get
             {
-                return serverName;
+                return language;
             }
         }
 

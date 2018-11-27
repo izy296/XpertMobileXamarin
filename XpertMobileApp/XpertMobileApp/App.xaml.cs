@@ -31,11 +31,9 @@ namespace XpertMobileApp
         {
             InitializeComponent();
 
-            var culture = CrossMultilingual.Current.DeviceCultureInfo;
-            // culture.TwoLetterISOLanguageName
-            App.SetAppLanguage("ar");            
-
-            MainPage = new LoginPage(); // = new MainPage();
+            App.SetAppLanguage(Settings.Language);
+        
+            MainPage = new BasePage(); // = new MainPage();
         }
 
         protected override void OnStart()
@@ -57,9 +55,19 @@ namespace XpertMobileApp
         {
             try
             {
-                var culture = new CultureInfo(language);
+                string val = language;
+                if (string.IsNullOrEmpty(val))
+                {
+                    // Set the device language
+                    val = CrossMultilingual.Current.DeviceCultureInfo.TwoLetterISOLanguageName;
+                }
+
+                Settings.Language = val;
+
+                var culture = new CultureInfo(val);
                 AppResources.Culture = culture;
                 CrossMultilingual.Current.CurrentCultureInfo = culture;
+  
             }
             catch (Exception)
             {
