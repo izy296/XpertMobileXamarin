@@ -60,7 +60,7 @@ namespace XpertMobileApp.Views
                 // Cas d'un souci avec le web service 
                 if (result == null) return;
 
-                if (1 != null) // result.access_token != null
+                if (result.access_token != null)
                 {
                     user.Id = result.userID;
                     App.User = user;
@@ -68,9 +68,9 @@ namespace XpertMobileApp.Views
                     // Alerte apres la connexion
                      DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
-                    //  suavegrade du user et du token en cours dans la bdd local
-                    //  await App.UserDatabase.SaveItemAsync(user);
-                    //  await App.TokenDatabase.SaveItemAsync(result);
+                    // suavegrade du user et du token en cours dans la bdd local
+                    await App.UserDatabase.SaveItemAsync(user);
+                    await App.TokenDatabase.SaveItemAsync(result);
 
                     App.CurrentUser = user;
 
@@ -102,9 +102,8 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                return new Token();
-               // Token result = App.RestService.Login(user.UserName, user.PassWord);
-               // return result != null ? result : new Token();
+                Token result = App.RestService.Login(user.UserName, user.PassWord);
+                return result != null ? result : new Token();
             }
             catch (WebException e)
             {
@@ -116,7 +115,7 @@ namespace XpertMobileApp.Views
 
         private bool CheckUser(User user)
         {
-            if (user.UserName != "" && user.PassWord != "")
+            if (user.UserName != "") //  && user.PassWord != ""
             {
                 return true;
             }
