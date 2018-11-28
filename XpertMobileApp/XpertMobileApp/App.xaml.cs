@@ -33,7 +33,7 @@ namespace XpertMobileApp
 
             App.SetAppLanguage(Settings.Language);
         
-            MainPage = new BasePage(); // = new MainPage();
+            MainPage = new LoginPage(); // MainPage();  
         }
 
         protected override void OnStart()
@@ -87,11 +87,20 @@ namespace XpertMobileApp
         {
             get
             {
-                if (Settings != null && !string.IsNullOrEmpty(Settings.ServerName) && !string.IsNullOrEmpty(Settings.Port))
-                {
-                    return "http://" + Settings.ServerName + ":" + Settings.Port + "/";
-                }
-                return "";
+
+                string result = "";
+
+                if (Settings == null) return result;
+
+                if(!string.IsNullOrEmpty(Settings.ServerName))
+                   result += "http://" + Settings.ServerName;
+
+                if (!string.IsNullOrEmpty(Settings.Port))
+                    result += ":" + Settings.Port + "/";
+                else
+                    result += "/";
+
+                return result;
             }
         }
 
