@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views.SettingsPage"
+             >
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Orientation="Vertical" BackgroundColor="White" VerticalOptions="FillAndExpand">
+                <StackLayout>
+                    <!--Affichage de l'alerte en cas de deconnexion -->
+                    <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red"/>
+                </StackLayout>
+                <StackLayout x:Name="MainLayout" VerticalOptions="FillAndExpand">
+
+                    <StackLayout.Padding>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <On Platform="iOS" Value="10, 0, 10, 20" />
+                            <On Platform="Android" Value="10, 20, 10, 20" />
+                            <On Platform="UWP" Value="0, 0, 0, 0" />
+                        </OnPlatform>
+                    </StackLayout.Padding>
+
+                    <StackLayout x:Name="LanguageSettingsZone" Padding="0,20,0,0" >
+                        <Label x:Name="lbl_LanguageSelector" Text="{i18n:Translate sp_lbl_SelectLanguage}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}" />
+                        <Picker ItemsSource="{Binding Languages}"
+                            ItemDisplayBinding="{Binding DisplayName}"
+                            x:Name="LanguagesPicker"/>
+                    </StackLayout>
+
+                    <StackLayout x:Name="GeneralSettingsZone" Padding="0,20,0,10" >
+                        <Label x:Name="lbl_ConnexionInfos" Text="{i18n:Translate sp_lbl_ConnexionInfos}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}"
+                               Margin="0,0,0,15" />
+                        <!--
+                            <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,0,0,10"/>
+                        -->
+                        <Label x:Name="lbl_ServerName" Text="{i18n:Translate sp_lbl_ServerName}"/>
+                        <Entry x:Name="et_ServerName" Text="{Binding Settings.ServerName, Mode=TwoWay}" />
+
+                        <Label x:Name="lbl_PortNumber" Text="{i18n:Translate sp_lbl_PortNumber}"/>
+                        <Entry x:Name="et_Port" Text="{Binding Settings.Port, Mode=TwoWay}"/>
+
+                        <Button  x:Name="Btn_TestCnx" Text="{i18n:Translate sp_btn_TestConnection}" 
+                                 WidthRequest="150" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
+                                 Clicked="TestConnexion_Clicked"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid Padding="0,0,0,10" x:Name="CommandeGrid" IsVisible="false" VerticalOptions="End">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="45"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="1" x:Name="settings" Orientation="Horizontal" HorizontalOptions="End">
+                        <Button WidthRequest="150" Text="{i18n:Translate btn_Close}" x:Name="Btn_CloseSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SettingsClose_Clicked"/>
+                        <Button WidthRequest="150" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
