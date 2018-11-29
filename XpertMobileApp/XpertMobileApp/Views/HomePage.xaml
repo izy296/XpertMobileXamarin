@@ -2,14 +2,115 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.HomePage"
-             
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              BackgroundImage="bg.jpg"
              >
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+                <Grid  BackgroundColor="White" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="Session" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+                    
+                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                        <Label Text="Utilisateur" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Medium"/>
+                        <Label Text="Compte" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="Encaissement" TextColor="{StaticResource DefaultTextColor}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
+                        <Label Text="Administrateur" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End"/>
+                        <Label Text="CAISSE COMPTOIR" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                        <Label Text="102 510.92 DA" TextColor="Red" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+                <Grid  BackgroundColor="White" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="Encaissement" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="0" Padding="0,5" HorizontalOptions="Center">
+                        <Label Text="Aujourd'hui" TextColor="{StaticResource DefaultTextColor}" FontSize="Medium" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
+                        <Label Text="Encaissement" TextColor="{StaticResource Primary}"/>
+                        <Label Text="Décaissement" TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
+                        <Label Text="252 510.92 DA" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                        <Label Text="32 510.92 DA" TextColor="Red" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+                <Grid  BackgroundColor="White" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="Comptes" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                        <Label Text="Caisse comptoir" TextColor="{StaticResource Primary}"/>
+                        <Label Text="Caisse principal" TextColor="{StaticResource Primary}"/>
+                        <Label Text="Caisse Devis" TextColor="{StaticResource Primary}"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" HorizontalOptions="End">
+                        <Label Text="2 510 DA" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                        <Label Text="22 510.92 DA" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                        <Label Text="24 510.92 DA" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5" IsVisible="False"
+                                Style="{DynamicResource DefaultBtnStyle}"
+                                Text="Rafraichir" Clicked="GetSessionInfos"/>
         </StackLayout>
+
+
+
+
     </ContentPage.Content>
 </ContentPage>
