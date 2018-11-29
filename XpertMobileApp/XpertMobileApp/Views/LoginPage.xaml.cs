@@ -63,14 +63,23 @@ namespace XpertMobileApp.Views
                 if (result.access_token != null)
                 {
                     user.Id = result.userID;
+                    user.Token = result;
                     App.User = user;
                     
                     // Alerte apres la connexion
                      DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                     // suavegrade du user et du token en cours dans la bdd local
-                    await App.UserDatabase.SaveItemAsync(user);
-                    await App.TokenDatabase.SaveItemAsync(result);
+
+                    try
+                    { 
+                       // await App.UserDatabase.SaveItemAsync(user);
+                       // await App.TokenDatabase.SaveItemAsync(result);
+                    }
+                    catch(Exception ex)
+                    {
+                        await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                    }
 
                     App.CurrentUser = user;
 

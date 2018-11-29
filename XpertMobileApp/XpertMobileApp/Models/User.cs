@@ -12,6 +12,9 @@ namespace XpertMobileApp.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
 
+        public Token Token { get; set; }
+
+
         public User() { }
 
         public User(string userName, string passWord)
