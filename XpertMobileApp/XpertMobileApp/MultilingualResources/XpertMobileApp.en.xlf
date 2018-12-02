@@ -129,23 +129,23 @@
         </trans-unit>
         <trans-unit id="alrt_msg_Alert" translate="yes" xml:space="preserve">
           <source>Alerte</source>
-          <target state="new">Alerte</target>
+          <target state="translated">Alert</target>
         </trans-unit>
         <trans-unit id="app_speech_Hello" translate="yes" xml:space="preserve">
           <source>Bonjour</source>
-          <target state="new">Bonjour</target>
+          <target state="translated">Hello</target>
         </trans-unit>
         <trans-unit id="lp_Login" translate="yes" xml:space="preserve">
           <source>Login</source>
-          <target state="new">Login</target>
+          <target state="translated">Login</target>
         </trans-unit>
         <trans-unit id="lp_login_WrongAcces" translate="yes" xml:space="preserve">
           <source>Nom d'utilisateur ou mot de passe incorrect!</source>
-          <target state="new">Nom d'utilisateur ou mot de passe incorrect!</target>
+          <target state="translated">Username or password incorrect!</target>
         </trans-unit>
         <trans-unit id="btn_Close" translate="yes" xml:space="preserve">
           <source>Fermer</source>
-          <target state="new">Fermer</target>
+          <target state="translated">Close</target>
         </trans-unit>
       </group>
     </body>
