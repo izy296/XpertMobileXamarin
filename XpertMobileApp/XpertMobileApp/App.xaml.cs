@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Data;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views;
@@ -100,7 +101,7 @@ namespace XpertMobileApp
                 else
                     result += "/";
 
-                return result;
+                return result + ServiceUrlDeco.BASE_URL;
             }
         }
 
