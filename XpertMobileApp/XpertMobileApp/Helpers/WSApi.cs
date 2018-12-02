@@ -99,6 +99,15 @@ namespace XpertMobileApp.Helpers
             return result;
         }
 
+        public static string CreateLink(string BaseUrl, params string[] linkFragment)
+        {
+            string url = BaseUrl;
+            foreach (var item in linkFragment)
+            {
+                url += linkFragment + "/";
+            }
 
+            return url;
+        }
     }
 }

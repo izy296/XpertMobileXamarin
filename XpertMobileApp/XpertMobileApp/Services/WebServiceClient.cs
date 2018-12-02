@@ -5,6 +5,7 @@ using System.Collections.Specialized;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Xpert.Pharm.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 
@@ -12,14 +13,21 @@ namespace XpertMobileApp.Services
 {
     public class WebServiceClient
     {
-        public Token Login(string username, string password)
+
+        public static async Task<List<T>> RetrievAauthorizedData<T>(string url)
+        {
+            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
+            return await WSApi.ExecuteGet<List<T>>(url, App.User.Token.access_token);
+        }
+
+        public static Token Login(string baseUrl, string username, string password)
         {
             try
             {
                 using (WebClient client = new WebClient())
                 {
                     // url de l'authentification et du recupération du token
-                    string url = App.RestServiceUrl + ServiceUrlDeco.TOKEN_URL;
+                    string url = baseUrl + ServiceUrlDeco.TOKEN_URL;
 
                     // Preparation des paramettres
                     NameValueCollection values = new NameValueCollection();
@@ -30,7 +38,7 @@ namespace XpertMobileApp.Services
                     byte[] result = WSApi.ExecutePostForm(url, values);
                     Token tokenInfos = JsonConvert.DeserializeObject<Token>(Encoding.UTF8.GetString(result));
                     DateTime dt = new DateTime();
-                    dt = DateTime.Today;
+                    dt = DateTime.Now;
                     tokenInfos.expire_Date = dt.AddSeconds(tokenInfos.expires_in);
                     return tokenInfos;
                 }
@@ -41,6 +49,107 @@ namespace XpertMobileApp.Services
             }
         }
 
+        public static async Task<List<TRS_JOURNEES>> GetSessionInfos(string baseUrl)
+        {
+            string url = baseUrl + ServiceUrlDeco.SESSION_INFO_URL;
 
+            return await RetrievAauthorizedData<TRS_JOURNEES>(url);
+        }
+
+        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type, string page, string idCaisse, string startDate, string endDate,
+             string codeTiers, string codeMotif, string codeCompte)
+        {
+            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_PER_PAGE_URL;            
+
+            if (string.IsNullOrEmpty(startDate) && string.IsNullOrEmpty(endDate))
+            {
+                url += WSApi.CreateLink(url, type, page, idCaisse);
+            }
+            else
+            {
+                url += WSApi.CreateLink(type, page, idCaisse, startDate, endDate, codeTiers, codeMotif, codeMotif, codeCompte);
+            }
+
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, type);
+           
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
+        {
+            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
+
+            url += WSApi.CreateLink(url, ServiceUrlDeco.STATISTIC_URL, startDate?.ToString(), endDate?.ToString());
+
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<List<View_BSE_COMPTE>> getComptes()
+        {
+            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
+
+            url += WSApi.CreateLink(url, ServiceUrlDeco.COMPTES_URL);
+
+            return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
+        }
+
+        internal async Task<List<View_TRS_ENCAISS>> GetMotifs(string type)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.MOTIFS_URL, type);
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<List<View_TRS_ENCAISS>> GetTiers(string type)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.TIERS_URL);
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<List<View_TRS_ENCAISS>> GetCaisses(string type)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.CAISSES_URL);
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        internal async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.ADD_ENCAISSEMENT_URL);
+
+            string strdata = JsonConvert.SerializeObject(encaiss);
+            byte[] data = Encoding.UTF8.GetBytes(strdata);
+            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
+            byte[] resultData = await WSApi.ExecutePost(url, data, tokenInfos.access_token);
+            string resposeData = Encoding.UTF8.GetString(resultData);
+            return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
+        }
+
+        internal async Task<View_TRS_ENCAISS> UpdateEncaissement(View_TRS_ENCAISS encaiss)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.UPDATE_ENCAISSEMENT_URL);
+
+            string strdata = JsonConvert.SerializeObject(encaiss);
+            byte[] data = Encoding.UTF8.GetBytes(strdata);
+            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
+            byte[] resultData = await WSApi.ExecutePost(url, data, tokenInfos.access_token);
+            string resposeData = Encoding.UTF8.GetString(resultData);
+            return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
+        }
+
+        internal async Task<View_TRS_ENCAISS> DeleteEncaissement(string codeEncaiss)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.DELETE_ENCAISSEMENT_URL);
+
+            string strdata = JsonConvert.SerializeObject(codeEncaiss);
+            byte[] data = Encoding.UTF8.GetBytes(strdata);
+            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
+            byte[] resultData = await WSApi.ExecutePost(url, data, tokenInfos.access_token);
+            string resposeData = Encoding.UTF8.GetString(resultData);
+            return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
+        }
     }
 }
