@@ -24,21 +24,7 @@ namespace XpertMobileApp.Views
 
         async Task ConnectUserAsync(object sender, EventArgs e)
         {
-            await GetSessionInfos();
+
         }
-
-        internal async Task<List<TRS_JOURNEES>> GetSessionInfos()
-        {
-            string url = App.RestServiceUrl + ServiceUrlDeco.SESSION_INFO_URL;
-
-            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
-            
-            List<TRS_JOURNEES> resultData = await WSApi.ExecuteGet<List<TRS_JOURNEES>>(url, App.User.Token.access_token);
-            //string resposeData = Encoding.UTF8.GetString(resultData);
-            //result = JsonConvert.DeserializeObject<VteServiceResponse>(resposeData);
-
-            return resultData;
-        }
-
     }
 }

@@ -1,11 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Pharm.DAL;
 using XpertMobileApp.Data;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -111,7 +114,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                Token result = App.RestService.Login(user.UserName, user.PassWord);
+                Token result = WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
                 return result != null ? result : new Token();
             }
             catch (WebException e)

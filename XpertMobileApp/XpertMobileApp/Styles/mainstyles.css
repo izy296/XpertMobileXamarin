@@ -17,7 +17,7 @@ stacklayout.outer
 
 entry
 {
-    width : 150;
+
 }
 
 #boxline
@@ -28,35 +28,43 @@ entry
     margin-bottom : 20;
 }
 
+/* Selects all elements into stacklayout
 stacklayout > * {
 
 }
+ */
 
-/* Selects all Buttons and all Labels */
+/* Selects all Buttons and all Labels
 label, button 
 {
 
 }
+ */
 
-/* Selects all Labels inside of a StackLayout */
+/* Selects all Labels inside of a StackLayout 
 stacklayout label 
 {
 
 }
+*/
 
-/*Selects all Labels with StackLayout as a direct parent*/
+/*Selects all Labels with StackLayout as a direct parent
 stacklayout > label 
 {
 
 }
+*/
 
-/*Selects all Entries directly after a Label*/
+/*Selects all Entries directly after a Label
 label+entry 
 {
 
 }
-/*Selects all Entries preceded by a Label*/
+*/
+
+/*Selects all Entries preceded by a Label
 label~entry 
 {
 
 }
+*/

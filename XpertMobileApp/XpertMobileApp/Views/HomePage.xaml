@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.HomePage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             BackgroundImage="bg.jpg"
+             BackgroundColor="#ecf0f1"
              >
     <ContentPage.Content>
 
@@ -106,7 +106,7 @@
             </Frame>
             <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5" IsVisible="False"
                                 Style="{DynamicResource DefaultBtnStyle}"
-                                Text="Rafraichir" Clicked="GetSessionInfos"/>
+                                Text="Rafraichir" />
         </StackLayout>
 
 
