@@ -85,6 +85,23 @@ namespace XpertMobileApp.Views
                     }
 
                     App.CurrentUser = user;
+                   
+                   
+                    // Tests
+
+ 
+                    /*
+                      
+                   List<TRS_JOURNEES> journees = await WebServiceClient.GetSessionInfos(App.RestServiceUrl);
+
+                   List<View_BSE_COMPTE> comptes = await WebServiceClient.getComptes();
+
+                   List<BSE_ENCAISS_MOTIFS> motifs = await WebServiceClient.GetMotifs("");
+
+                   List<View_TRS_TIERS> tiers = await WebServiceClient.GetTiers("");
+
+                   List<View_BSE_COMPTE> caisses = await WebServiceClient.GetCaisses("");
+                   */
 
                     if (Device.OS == TargetPlatform.Android)
                     {
