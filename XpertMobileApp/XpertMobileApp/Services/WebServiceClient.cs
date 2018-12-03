@@ -56,31 +56,30 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<TRS_JOURNEES>(url);
         }
 
-        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type, string page, string idCaisse, string startDate, string endDate,
+        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, string startDate, string endDate,
              string codeTiers, string codeMotif, string codeCompte)
         {
-            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_PER_PAGE_URL;            
-
+            string url = "";
             if (string.IsNullOrEmpty(startDate) && string.IsNullOrEmpty(endDate))
             {
-                url += WSApi.CreateLink(url, type, page, idCaisse);
+                url += WSApi.CreateLink(baseUrl, ServiceUrlDeco.ENCAISSEMENT_PER_PAGE_URL, type, page, idCaisse);
             }
             else
             {
-                url += WSApi.CreateLink(type, page, idCaisse, startDate, endDate, codeTiers, codeMotif, codeMotif, codeCompte);
+                url += WSApi.CreateLink(baseUrl, ServiceUrlDeco.ENCAISSEMENT_PER_PAGE_URL, type, page, idCaisse, startDate, endDate, codeTiers, codeMotif, codeMotif, codeCompte);
             }
 
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
 
-        internal async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type)
+        internal static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, type);
            
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
 
-        internal async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
+        internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
         {
             string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
 
@@ -89,7 +88,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
 
-        internal async Task<List<View_BSE_COMPTE>> getComptes()
+        internal static async Task<List<View_BSE_COMPTE>> getComptes()
         {
             string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
 
@@ -98,25 +97,25 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
 
-        internal async Task<List<View_TRS_ENCAISS>> GetMotifs(string type)
+        internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetMotifs(string type)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.MOTIFS_URL, type);
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+            return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
         }
 
-        internal async Task<List<View_TRS_ENCAISS>> GetTiers(string type)
+        internal static async Task<List<View_TRS_TIERS>> GetTiers(string type)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.TIERS_URL);
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+            return await RetrievAauthorizedData<View_TRS_TIERS>(url);
         }
 
-        internal async Task<List<View_TRS_ENCAISS>> GetCaisses(string type)
+        internal static async Task<List<View_BSE_COMPTE>> GetCaisses(string type)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.CAISSES_URL);
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+            return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
 
-        internal async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)
+        internal static async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.ADD_ENCAISSEMENT_URL);
 
@@ -128,7 +127,7 @@ namespace XpertMobileApp.Services
             return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
         }
 
-        internal async Task<View_TRS_ENCAISS> UpdateEncaissement(View_TRS_ENCAISS encaiss)
+        internal static async Task<View_TRS_ENCAISS> UpdateEncaissement(View_TRS_ENCAISS encaiss)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.UPDATE_ENCAISSEMENT_URL);
 
@@ -140,7 +139,7 @@ namespace XpertMobileApp.Services
             return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
         }
 
-        internal async Task<View_TRS_ENCAISS> DeleteEncaissement(string codeEncaiss)
+        internal static async Task<View_TRS_ENCAISS> DeleteEncaissement(string codeEncaiss)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.DELETE_ENCAISSEMENT_URL);
 

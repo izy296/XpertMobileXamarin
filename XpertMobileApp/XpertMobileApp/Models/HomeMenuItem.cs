@@ -7,7 +7,7 @@ namespace XpertMobileApp.Models
     public enum MenuItemType
     {
         Home,
-        Browse,
+        Encaissements,
         EncAnalyses,
         About
     }

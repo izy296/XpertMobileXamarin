@@ -1,25 +1,24 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Pharm.DAL;
-using XpertMobileApp.Helpers;
-using XpertMobileApp.Models;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
+        HomeViewModel viewModel;
+
         public HomePage()
         {
             InitializeComponent();
+
+            Title = AppResources.pn_home;
+
+            BindingContext = viewModel = new HomeViewModel();
         }
 
         async Task ConnectUserAsync(object sender, EventArgs e)

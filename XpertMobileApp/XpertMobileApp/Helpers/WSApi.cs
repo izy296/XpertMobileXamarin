@@ -104,7 +104,10 @@ namespace XpertMobileApp.Helpers
             string url = BaseUrl;
             foreach (var item in linkFragment)
             {
-                url += linkFragment + "/";
+                if (!string.IsNullOrEmpty(item))
+                { }
+                url += item + "/";
+               
             }
 
             return url;

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpertMobileApp.iOS", "Xpert
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpertMobileApp.UWP", "XpertMobileApp\XpertMobileApp.UWP\XpertMobileApp.UWP.csproj", "{6345AD04-C251-4874-94E6-06C8F9C3BB0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XpertMobileApp", "XpertMobileApp\XpertMobileApp\XpertMobileApp.csproj", "{14270B20-E569-45A6-B74E-20C049C17D14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XpertMobileApp", "XpertMobileApp\XpertMobileApp\XpertMobileApp.csproj", "{14270B20-E569-45A6-B74E-20C049C17D14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
