@@ -11,9 +11,9 @@ namespace XpertMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ItemDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        ItemDetailViewModel<Item> viewModel;
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public ItemDetailPage(ItemDetailViewModel<Item> viewModel)
         {
             InitializeComponent();
 
@@ -30,7 +30,7 @@ namespace XpertMobileApp.Views
                 Description = "This is an item description."
             };
 
-            viewModel = new ItemDetailViewModel(item);
+            viewModel = new ItemDetailViewModel<Item>(item);
             BindingContext = viewModel;
         }
     }

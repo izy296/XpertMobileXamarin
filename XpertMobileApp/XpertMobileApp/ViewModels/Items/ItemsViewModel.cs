@@ -17,7 +17,8 @@ namespace XpertMobileApp.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = Title = AppResources.pn_encaissement;
+
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

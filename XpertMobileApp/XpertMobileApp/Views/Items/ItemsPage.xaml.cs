@@ -31,7 +31,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel<Item>(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
