@@ -219,4 +219,19 @@
   <data name="btn_Close" xml:space="preserve">
     <value>Fermer</value>
   </data>
+  <data name="DATE_ENCAISS" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DESIGN_COMPTE" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="DESIGN_MOTIF" xml:space="preserve">
+    <value>Motif</value>
+  </data>
+  <data name="NOM_TIERS" xml:space="preserve">
+    <value>Tiers</value>
+  </data>
+  <data name="TOTAL_ENCAISS" xml:space="preserve">
+    <value>Total encaissé</value>
+  </data>
 </root>

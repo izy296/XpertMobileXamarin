@@ -147,6 +147,26 @@
           <source>Fermer</source>
           <target state="translated">خروج</target>
         </trans-unit>
+        <trans-unit id="DESIGN_COMPTE" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="new">Compte</target>
+        </trans-unit>
+        <trans-unit id="DATE_ENCAISS" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target state="new">Date</target>
+        </trans-unit>
+        <trans-unit id="DESIGN_MOTIF" translate="yes" xml:space="preserve">
+          <source>Motif</source>
+          <target state="new">Motif</target>
+        </trans-unit>
+        <trans-unit id="NOM_TIERS" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="new">Tiers</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_ENCAISS" translate="yes" xml:space="preserve">
+          <source>Total encaissé</source>
+          <target state="new">Total encaissé</target>
+        </trans-unit>
       </group>
     </body>
   </file>

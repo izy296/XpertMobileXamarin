@@ -205,6 +205,33 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date.
+        /// </summary>
+        internal static string DATE_ENCAISS {
+            get {
+                return ResourceManager.GetString("DATE_ENCAISS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Compte.
+        /// </summary>
+        internal static string DESIGN_COMPTE {
+            get {
+                return ResourceManager.GetString("DESIGN_COMPTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Motif.
+        /// </summary>
+        internal static string DESIGN_MOTIF {
+            get {
+                return ResourceManager.GetString("DESIGN_MOTIF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion.
         /// </summary>
         internal static string lp_btn_Login {
@@ -273,6 +300,15 @@ namespace XpertMobileApp {
         internal static string lp_ph_UserName {
             get {
                 return ResourceManager.GetString("lp_ph_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tiers.
+        /// </summary>
+        internal static string NOM_TIERS {
+            get {
+                return ResourceManager.GetString("NOM_TIERS", resourceCulture);
             }
         }
         
@@ -363,6 +399,15 @@ namespace XpertMobileApp {
         internal static string sp_lbl_ServerName {
             get {
                 return ResourceManager.GetString("sp_lbl_ServerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total encaissé.
+        /// </summary>
+        internal static string TOTAL_ENCAISS {
+            get {
+                return ResourceManager.GetString("TOTAL_ENCAISS", resourceCulture);
             }
         }
     }
