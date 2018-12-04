@@ -7,22 +7,33 @@ using SQLite;
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
 using System;
+using XpertMobileApp;
+using XpertMobileApp.Models;
 
 namespace Xpert.Pharm.DAL
 {
+   
+    public class BASE_CLASS
+    {
+        public int Index { get; set; }
+    }
 
-    public partial class TRS_ENCAISS
+    public partial class TRS_ENCAISS : BASE_CLASS
     {
         [PrimaryKey()]
         public string CODE_ENCAISS { get; set; } // varchar(32)
+
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
+        public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
+        public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
+
         public string NUM_ENCAISS { get; set; } // varchar(32)
         public string CODE_TIERS { get; set; } // varchar(32)
         public string CODE_MOTIF { get; set; } // varchar(32)
-        public string CODE_COMPTE { get; set; } // varchar(32)
-        public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
+        public string CODE_COMPTE { get; set; } // varchar(32       
         public string CODE_MODE { get; set; } // varchar(1)
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
-        public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
         //public decimal TOTAL_PAYE { get; set; } // money(19,4) Calculé dans la vue
         public string CODE_TYPE { get; set; } // varchar(4)
         public string REF_REG { get; set; } // varchar(200)
@@ -41,21 +52,24 @@ namespace Xpert.Pharm.DAL
         public bool MONTANT_SUM { get; set; } // 
         public DateTime? DATE_VALEUR { get; set; }
         public bool ANNULEE { get; set; }
-
     }
 
     // View
     public partial class View_TRS_ENCAISS : TRS_ENCAISS
     {
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
+        public string NOM_TIERS { get; set; } // varchar(501)
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
+        public string DESIGN_COMPTE { get; set; } // varchar(100)
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
+        public string DESIGN_MOTIF { get; set; } // varchar(300)
+
+        public string DESIGN_MODE { get; set; } // varchar(300)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
-        public string NOM_TIERS { get; set; } // varchar(501)
-        public string DESIGN_COMPTE { get; set; } // varchar(100)
         public string TYPE_TIERS { get; set; } // varchar(5)
         public string ADRESSE_TIERS { get; set; } // varchar(500)
         public string NUM_ASSURE { get; set; } // varchar(12)
-        public string DESIGN_MODE { get; set; } // varchar(300)
-        public string DESIGN_MOTIF { get; set; } // varchar(300)
         public decimal TOTAL_ENCAISS_REAL { get; set; } // money(19,4)
         public decimal TOTAL_RESTE { get; set; } // money(19,4)
         public decimal TOTAL_RESTE_REAL { get; set; } // money(19,4)
@@ -68,6 +82,11 @@ namespace Xpert.Pharm.DAL
         public string CODE_COMPTE_TYPE { get; set; }
         public string DESIGNATION_TYPE_COMPTE { get; set; }
         public string CODE_FAMILLE_TIERS { get; set; }
+
+        public override string ToString()
+        {
+            return AppResources.pn_encaissement + " N° : " + NUM_ENCAISS;
+        }
     }
 
     public partial class TRS_JOURNEES
@@ -137,5 +156,114 @@ namespace Xpert.Pharm.DAL
         public string MODE_REG { get; set; }
         public int TYPE_COMPTE { get; set; }
         public string CODE_GROUPE { get; set; }
+    }
+
+    public partial class TRS_TIERS
+    {
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string NUM_TIERS { get; set; } // varchar(32)
+        public string CODE_FAMILLE { get; set; } // varchar(10)
+        public string CODE_TYPE { get; set; } // varchar(5)
+        public string NOM_TIERS { get; set; } // varchar(250)
+        public string PRENOM_TIERS { get; set; } // varchar(250)
+        public string GERANT { get; set; } // varchar(200)
+        public string ADRESSE_TIERS { get; set; } // varchar(500)
+        public string TEL1_TIERS { get; set; } // varchar(50)
+        public string TEL2_TIERS { get; set; } // varchar(50)
+        public string FAX_TIERS { get; set; } // varchar(50)
+        public string RC_TIERS { get; set; } // varchar(50)
+        public string MF_TIERS { get; set; } // varchar(20)
+        public string AI_TIERS { get; set; } // varchar(20)
+        public string COMPTE_TIERS { get; set; } // varchar(60)
+        public string NUM_ASSURE { get; set; } // varchar(12)
+        public short ACTIF_TIERS { get; set; } // tinyint(3)
+        public decimal SEUIL_CREDIT { get; set; } // money(19,4)
+        public string RANG_AD { get; set; } // char(2)
+        public short NBR_JOUR_ALERTE_CREDIT { get; set; } // smallint(5)
+        public DateTime? DATE_NAISSANCE { get; set; } // datetime(3)
+        public string GROUPE_SANGUIN { get; set; } // varchar(10)
+        public DateTime? DATE_GROUPAGE { get; set; } // datetime(3)
+        public int? TYPE_PRIX_VENTE { get; set; }
+        public string RANG_CASNOS { get; set; } // char(2)
+        public string NUM_CARTE_IDENT { get; set; }
+        public DateTime? DATE_CART_IDENT { get; set; }
+        public string WILAYA_CARTE_ID { get; set; }
+        public bool EXON_TIMBRE { get; set; }
+        public bool EXON_TVA { get; set; }
+        public string CODE_GROUPE { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public string CREATED_BY { get; set; }
+        public string MACHINE_NAME_CREATED { get; set; }
+        public DateTime? MODIFIED_ON { get; set; }
+        public string MODIFIED_BY { get; set; }
+        public string MACHINE_NAME_MODIFIED { get; set; }
+        public string APP_NAME { get; set; }
+        public string APP_VERSION { get; set; }
+        public decimal TOTAL_CREDIT { get; set; } // money(19,4)
+        public decimal TOTAL_PAIEMENT { get; set; } // money(19,4)
+        public decimal RESTE_CREDIT { get; set; } // money(19,4)
+        public decimal RESTE_PAIEMENT { get; set; } // money(19,4)       
+        public decimal SOLDE { get; set; } // money(19,4)   
+        public bool INCLUDE_UG { get; set; }
+        public bool PPA_BY_PRIXVENTE { get; set; }
+
+
+        // information pour Malade CVM
+        public string SEXE { get; set; } // tinyint(3)
+        public string LP { get; set; }//varchar(10) 
+        public byte CODE_SIT_FAM { get; set; } // tinyint(3)
+        public string CODE_TYPE_CONTRAT { get; set; } // tinyint(3)
+        public string NUM_CCP { get; set; } // varchar(20)
+        public DateTime? DATE_FIN_CONTRAT { get; set; } // datetime(3)
+        public string OBS { get; set; } // nvarchar(250)
+        public string NUM_KAFALA_AY_DROIT { get; set; }//varchar(50)
+        public string ID_CVM_CENTRE { get; set; }//
+        public string AGE { get; set; }//
+
+    }
+
+    public partial class View_TRS_TIERS : TRS_TIERS
+    {
+        public string NOM_TIERS1 { get; set; } // varchar(501)
+        public string DESIGN_FAMILLE { get; set; } // varchar(50)
+        public string DESIGNATION_TYPE { get; set; } // varchar(200)
+        public decimal SOLDE_TIERS { get; set; } // money(19,4)        
+        public short STATUT_TIERS { get; set; } // 
+        public DateTime? LAST_CREANCE { get; set; } // datetime(3)
+        public DateTime? LAST_ENCAISS { get; set; } // datetime(3)
+        public string DESIGNATION_LP
+        {
+            get
+            {
+                string DLP = string.Empty;
+                if (LP != null)
+                {
+                    switch (this.LP.Trim())
+                    {
+                        case "E":
+                            DLP = "Enfant";
+                            break;
+                        case "AS":
+                            DLP = "Assuré";
+                            break;
+                        case "C":
+                            DLP = "Conjoint";
+                            break;
+                        case "ASC":
+                            DLP = "Ascendant";
+                            break;
+                    }
+                }
+                return DLP;
+            }
+        }
+    }
+
+    public partial class BSE_ENCAISS_MOTIFS
+    {
+        public string CODE_MOTIF { get; set; } // varchar(20)
+        public string DESIGN_MOTIF { get; set; } // varchar(300)
+        public string TYPE_MOTIF { get; set; } // varchar(3)
+        public bool IS_SYSTEM { get; set; } // varchar(3)
     }
 }

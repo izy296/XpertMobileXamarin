@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
@@ -21,11 +22,11 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as TRS_ENCAISS;
+            var item = args.SelectedItem as View_TRS_ENCAISS;
             if (item == null)
                 return;
 
-      //      await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new EncaissementDetailPage(new ItemDetailViewModel<View_TRS_ENCAISS>(item)));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
