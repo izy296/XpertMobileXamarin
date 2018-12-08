@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -22,14 +23,13 @@ namespace XpertMobileApp.ViewModels
             Items = new ObservableCollection<View_TRS_ENCAISS>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-/*
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "Ajout", async (obj, item) =>
+            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "AddItem", async (obj, item) =>
             {
-                var newItem = item as Item;
+                var newItem = item as View_TRS_ENCAISS;
                 Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
+              //  await DataStore.AddItemAsync(newItem);
             });
-*/
+
         }
 
         async Task ExecuteLoadItemsCommand()

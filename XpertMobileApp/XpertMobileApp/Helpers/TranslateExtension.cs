@@ -39,5 +39,13 @@ namespace XpertMobileApp.Helpers
             }
             return translation;
         }
+
+        public static string GetTranslation(string key)
+        {
+            var ci = CrossMultilingual.Current.CurrentCultureInfo;
+
+            string translation = resmgr.Value.GetString(key, ci);
+            return string.IsNullOrEmpty(translation)? key : translation;
+        }
     }
 }

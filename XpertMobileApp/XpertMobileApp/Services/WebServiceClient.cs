@@ -90,14 +90,12 @@ namespace XpertMobileApp.Services
 
         internal static async Task<List<View_BSE_COMPTE>> getComptes()
         {
-            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
-
-            url += WSApi.CreateLink(url, ServiceUrlDeco.COMPTES_URL);
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.COMPTES_URL);
 
             return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
 
-        internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetMotifs(string type)
+        internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetMotifs(string type= "ENC")
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.MOTIFS_URL, type);
             return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
