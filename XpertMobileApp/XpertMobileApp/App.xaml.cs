@@ -34,7 +34,7 @@ namespace XpertMobileApp
 
             App.SetAppLanguage(Settings.Language);
         
-            MainPage = new LoginPage(); // MainPage();  
+            MainPage = new LoginPage(); // LoginPage();  
         }
 
         protected override void OnStart()
@@ -160,6 +160,10 @@ namespace XpertMobileApp
                 if (settings == null)
                 {
                     settings = App.SettingsDatabase.GetFirstItemAsync().Result;
+                    if (settings == null)
+                    {
+                        settings = new Settings();
+                    }
                 }
                 return settings;
             }

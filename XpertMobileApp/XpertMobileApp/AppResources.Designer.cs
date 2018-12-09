@@ -196,6 +196,33 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Compte.
+        /// </summary>
+        internal static string CODE_COMPTE {
+            get {
+                return ResourceManager.GetString("CODE_COMPTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Motif.
+        /// </summary>
+        internal static string CODE_MOTIF {
+            get {
+                return ResourceManager.GetString("CODE_MOTIF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tiers.
+        /// </summary>
+        internal static string CODE_TIERS {
+            get {
+                return ResourceManager.GetString("CODE_TIERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à XpertSoft.
         /// </summary>
         internal static string CompanyName {
@@ -304,6 +331,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Please enter the amount.
+        /// </summary>
+        internal static string msg_EnterTheAmount {
+            get {
+                return ResourceManager.GetString("msg_EnterTheAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string NOM_TIERS {
@@ -345,6 +381,15 @@ namespace XpertMobileApp {
         internal static string pn_home {
             get {
                 return ResourceManager.GetString("pn_home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Solde tiers.
+        /// </summary>
+        internal static string SOLDE_TIERS {
+            get {
+                return ResourceManager.GetString("SOLDE_TIERS", resourceCulture);
             }
         }
         

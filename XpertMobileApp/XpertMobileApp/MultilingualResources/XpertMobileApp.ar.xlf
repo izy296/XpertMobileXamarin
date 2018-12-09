@@ -167,6 +167,26 @@
           <source>Total encaissé</source>
           <target state="new">Total encaissé</target>
         </trans-unit>
+        <trans-unit id="msg_EnterTheAmount" translate="yes" xml:space="preserve">
+          <source>Please enter the amount</source>
+          <target state="new">Please enter the amount</target>
+        </trans-unit>
+        <trans-unit id="CODE_COMPTE" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="new">Compte</target>
+        </trans-unit>
+        <trans-unit id="CODE_MOTIF" translate="yes" xml:space="preserve">
+          <source>Motif</source>
+          <target state="new">Motif</target>
+        </trans-unit>
+        <trans-unit id="CODE_TIERS" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="new">Tiers</target>
+        </trans-unit>
+        <trans-unit id="SOLDE_TIERS" translate="yes" xml:space="preserve">
+          <source>Solde tiers</source>
+          <target state="new">Solde tiers</target>
+        </trans-unit>
       </group>
     </body>
   </file>

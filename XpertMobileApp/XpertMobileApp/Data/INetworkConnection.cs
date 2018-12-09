@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace itMobileApp.Data
+namespace XpertMobileApp.Data
 {
     public interface INetworkConnection
     {

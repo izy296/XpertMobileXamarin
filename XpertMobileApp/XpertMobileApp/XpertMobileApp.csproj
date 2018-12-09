@@ -34,6 +34,7 @@
     <Content Include="Styles\mainstyles.css" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
@@ -43,7 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <XliffResource Include="MultilingualResources\XpertMobileApp.ar.xlf" />
-    <XliffResource Include="MultilingualResources\XpertMobileApp.en.xlf" />
+    <XliffResource Include="MultilingualResources\XpertMobileApp.en.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
   </ItemGroup>
   <ItemGroup>
     <Compile Update="AppResources - Copier.Designer.cs">
@@ -80,6 +83,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Encaissement\EncaissementsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Encaissement\NewEncaissementPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HomePage.xaml">
