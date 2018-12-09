@@ -14,10 +14,15 @@ namespace XpertMobileApp.Services
     public class WebServiceClient
     {
 
+        public static string Token
+        {
+            get { return App.User.Token.access_token; } 
+        }
+
         public static async Task<List<T>> RetrievAauthorizedData<T>(string url)
         {
             Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
-            return await WSApi.ExecuteGet<List<T>>(url, App.User.Token.access_token);
+            return await WSApi.ExecuteGet<List<T>>(url, Token);
         }
 
         public static Token Login(string baseUrl, string username, string password)
@@ -47,6 +52,20 @@ namespace XpertMobileApp.Services
             {
                 throw new WebException("Un problème est survenu lors de la tentative de connexion : " + e.Message, e);
             }
+        }
+
+        internal static async Task<View_TRS_ENCAISS> SaveEncaissements(View_TRS_ENCAISS item)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL);
+            url += ServiceUrlDeco.ADD_ENCAISSEMENT_URL;
+            View_TRS_ENCAISS result = null;
+            string strdata = JsonConvert.SerializeObject(item);
+            byte[] data = Encoding.UTF8.GetBytes(strdata);
+            byte[] resultData = await WSApi.ExecutePost(url, data, Token);
+            string resposeData = Encoding.UTF8.GetString(resultData);
+            result = JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
+
+            return result;
         }
 
         public static async Task<List<TRS_JOURNEES>> GetSessionInfos(string baseUrl)

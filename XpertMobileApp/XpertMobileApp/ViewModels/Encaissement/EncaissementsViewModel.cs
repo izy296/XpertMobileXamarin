@@ -15,6 +15,7 @@ namespace XpertMobileApp.ViewModels
     {
         public ObservableCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+        public Command AddItemCommand { get; set; }
 
         public EncaissementsViewModel()
         {
@@ -22,14 +23,42 @@ namespace XpertMobileApp.ViewModels
 
             Items = new ObservableCollection<View_TRS_ENCAISS>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
 
             MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "AddItem", async (obj, item) =>
             {
-                var newItem = item as View_TRS_ENCAISS;
-                Items.Add(newItem);
-              //  await DataStore.AddItemAsync(newItem);
+                AddItemCommand.Execute(item);
+
             });
 
+        }
+
+        async Task ExecuteAddItemCommand(View_TRS_ENCAISS item)
+        {
+            if (App.IsConected)
+            { 
+                var newItem = item as View_TRS_ENCAISS;
+
+                // Save the added Item in the local bdd
+                //  await DataStore.AddItemAsync(newItem);
+
+                // TODO : test if connected else mark as not synchronizd
+                View_TRS_ENCAISS result = await WebServiceClient.SaveEncaissements(newItem);
+
+                Items.Insert(0, result);
+
+                UpdateItemIndex(Items);
+            }
+        }
+
+        private void UpdateItemIndex<T>(ObservableCollection<T> items)
+        {
+            int i = 0;
+            foreach (var item in items)
+            {
+                i += 1;
+                (item as BASE_CLASS).Index = i;
+            }
         }
 
         async Task ExecuteLoadItemsCommand()
