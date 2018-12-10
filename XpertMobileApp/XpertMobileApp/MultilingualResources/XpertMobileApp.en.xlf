@@ -187,6 +187,50 @@
           <source>Solde tiers</source>
           <target state="new">Solde tiers</target>
         </trans-unit>
+        <trans-unit id="cmd_Add" translate="yes" xml:space="preserve">
+          <source>Ajouter</source>
+          <target state="new">Ajouter</target>
+        </trans-unit>
+        <trans-unit id="cmd_Cancel" translate="yes" xml:space="preserve">
+          <source>Annuler</source>
+          <target state="new">Annuler</target>
+        </trans-unit>
+        <trans-unit id="cmd_Delete" translate="yes" xml:space="preserve">
+          <source>Supprimer</source>
+          <target state="new">Supprimer</target>
+        </trans-unit>
+        <trans-unit id="cmd_Save" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="new">Enregistrer</target>
+        </trans-unit>
+        <trans-unit id="cmd_Update" translate="yes" xml:space="preserve">
+          <source>Modifier</source>
+          <target state="new">Modifier</target>
+        </trans-unit>
+        <trans-unit id="txt_Compte" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="new">Compte</target>
+        </trans-unit>
+        <trans-unit id="txt_Decaiss" translate="yes" xml:space="preserve">
+          <source>Décaissement</source>
+          <target state="new">Décaissement</target>
+        </trans-unit>
+        <trans-unit id="txt_Encaiss" translate="yes" xml:space="preserve">
+          <source>Encaissement</source>
+          <target state="new">Encaissement</target>
+        </trans-unit>
+        <trans-unit id="txt_Today" translate="yes" xml:space="preserve">
+          <source>Aujourd'hui</source>
+          <target state="new">Aujourd'hui</target>
+        </trans-unit>
+        <trans-unit id="txt_User" translate="yes" xml:space="preserve">
+          <source>Utilisateur</source>
+          <target state="new">Utilisateur</target>
+        </trans-unit>
+        <trans-unit id="txt_UserSession" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <target state="new">Session</target>
+        </trans-unit>
       </group>
     </body>
   </file>
