@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Xpert.Pharm.DAL;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 
@@ -75,6 +78,15 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<TRS_JOURNEES>(url);
         }
 
+        internal static async Task<List<View_VTE_Vente_Td>> GetMargeParVendeur(DateTime? startDate, DateTime? endDate)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.DASHBOARD_URL, ServiceUrlDeco.MARGE_PAR_VENDEUR_URL);
+            url += "?startDate=" + startDate?.ToString("yyyyMMddHHmmss");
+            url += "&endDate=" + endDate?.ToString("yyyyMMddHHmmss");
+
+            return await RetrievAauthorizedData<View_VTE_Vente_Td>(url);
+        }
+
         public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, string startDate, string endDate,
              string codeTiers, string codeMotif, string codeCompte)
         {
@@ -106,6 +118,9 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
+
+
+        
 
         internal static async Task<List<View_BSE_COMPTE>> getComptes()
         {

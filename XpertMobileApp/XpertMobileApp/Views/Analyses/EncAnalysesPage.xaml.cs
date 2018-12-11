@@ -27,55 +27,95 @@ namespace XpertMobileApp.Views
         public EncAnalysesPage ()
 		{
 			InitializeComponent ();
+
             BindingContext = viewModel = new Vte_AnalysesViewModel();
+
+            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, "StatsDataLoaded", (obj, items) =>
+            {
+                DisplayStats(items);
+            });
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                 viewModel.LoadItemsCommand.Execute(null);
+            LoadStats(btn_Year);
+        }
 
-            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, "StatsDataLoaded", async (obj, items) =>
+        private void StatFilter_Clicked(object sender, EventArgs e)
+        {
+            LoadStats((Button)sender);
+        }
+
+        private void DisplayStats(ObservableCollection<View_VTE_Vente_Td>  items)
+        {
+            entries1.Clear();
+            foreach (var item in viewModel.Items)
             {
-                entries1.Clear();
-                foreach (var item in viewModel.Items)
-                {
-                    entries1.Add(
-                        new Entry((float)item.Sum_TOTAL_VENTE)
-                        {
-                            Label = item.CREATED_BY,
-                            ValueLabel = item.Sum_TOTAL_VENTE.ToString("F2"),
-                            Color = SKColor.Parse("#68B9C0")
-                        });
-                }
-                Chart1.Chart = new BarChart() { Entries = entries1, LabelTextSize = 22F };
+                entries1.Add(
+                    new Entry((float)item.Sum_TOTAL_VENTE)
+                    {
+                        Label = item.CREATED_BY,
+                        ValueLabel = item.Sum_TOTAL_VENTE.ToString("F2"),
+                        Color = SKColor.Parse("#68B9C0")
+                    });
+            }
+            Chart1.Chart = new BarChart() { Entries = entries1, LabelTextSize = 22F };
 
-                entries2.Clear();
-                foreach (var item in viewModel.Items)
-                {
-                    entries2.Add(
-                        new Entry((float)item.Sum_MARGE)
-                        {
-                            Label = item.CREATED_BY,
-                            ValueLabel = item.Sum_MARGE.ToString("F2"),
-                            Color = SKColor.Parse("#68B9C0")
-                        });
-                }
-                Chart2.Chart = new BarChart() { Entries = entries2, LabelTextSize = 22F };
+            entries2.Clear();
+            foreach (var item in viewModel.Items)
+            {
+                entries2.Add(
+                    new Entry((float)item.Sum_MARGE)
+                    {
+                        Label = item.CREATED_BY,
+                        ValueLabel = item.Sum_MARGE.ToString("F2"),
+                        Color = SKColor.Parse("#68B9C0")
+                    });
+            }
+            Chart2.Chart = new BarChart() { Entries = entries2, LabelTextSize = 22F };
 
-                //Chart1.Chart = new DonutChart() { Entries = entries };                
-                // or: var chart = new PointChart() { Entries = entries };
-                // or: var chart = new LineChart() { Entries = entries };
-                // or: var chart = new DonutChart() { Entries = entries };
-                // or: var chart = new RadialGaugeChart() { Entries = entries };
-                // or: var chart = new RadarChart() { Entries = entries };
-            });
+            //Chart1.Chart = new DonutChart() { Entries = entries };                
+            // or: var chart = new PointChart() { Entries = entries };
+            // or: var chart = new LineChart() { Entries = entries };
+            // or: var chart = new DonutChart() { Entries = entries };
+            // or: var chart = new RadialGaugeChart() { Entries = entries };
+            // or: var chart = new RadarChart() { Entries = entries };
+        }
 
+        private void LoadStats(Button btn)
+        {
+            StatsPeriode selectedType = viewModel.StartPeriodType;
 
+            btn_Day.BackgroundColor   = Color.FromHex("#2196F3");
+            btn_Week.BackgroundColor  = Color.FromHex("#2196F3");
+            btn_Month.BackgroundColor = Color.FromHex("#2196F3");
+            btn_Year.BackgroundColor  = Color.FromHex("#2196F3");
 
+            btn.BackgroundColor = Color.FromHex("#51adf6");
+            switch (btn.ClassId)
+            {
+                case "btn_Day":
+                    selectedType = StatsPeriode.Day;
 
+                    break;
+                case "btn_Week":
+                    selectedType = StatsPeriode.Week;
+                    break;
+                case "btn_Month":
+                    selectedType = StatsPeriode.Month;
+                    break;
+                case "btn_Year":
+                    selectedType = StatsPeriode.Year;
+                    break;
+            }
+
+            if (viewModel.StartPeriodType != selectedType)
+            {
+                viewModel.StartPeriodType = selectedType;
+                viewModel.LoadItemsCommand.Execute(null);
+            }
         }
     }
 }

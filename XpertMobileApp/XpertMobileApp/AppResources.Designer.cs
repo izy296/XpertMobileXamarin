@@ -196,6 +196,51 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter.
+        /// </summary>
+        internal static string cmd_Add {
+            get {
+                return ResourceManager.GetString("cmd_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Annuler.
+        /// </summary>
+        internal static string cmd_Cancel {
+            get {
+                return ResourceManager.GetString("cmd_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Supprimer.
+        /// </summary>
+        internal static string cmd_Delete {
+            get {
+                return ResourceManager.GetString("cmd_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enregistrer.
+        /// </summary>
+        internal static string cmd_Save {
+            get {
+                return ResourceManager.GetString("cmd_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Modifier.
+        /// </summary>
+        internal static string cmd_Update {
+            get {
+                return ResourceManager.GetString("cmd_Update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Compte.
         /// </summary>
         internal static string CODE_COMPTE {
@@ -453,6 +498,96 @@ namespace XpertMobileApp {
         internal static string TOTAL_ENCAISS {
             get {
                 return ResourceManager.GetString("TOTAL_ENCAISS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Compte.
+        /// </summary>
+        internal static string txt_Compte {
+            get {
+                return ResourceManager.GetString("txt_Compte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Jour.
+        /// </summary>
+        internal static string txt_Day {
+            get {
+                return ResourceManager.GetString("txt_Day", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Décaissement.
+        /// </summary>
+        internal static string txt_Decaiss {
+            get {
+                return ResourceManager.GetString("txt_Decaiss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Encaissement.
+        /// </summary>
+        internal static string txt_Encaiss {
+            get {
+                return ResourceManager.GetString("txt_Encaiss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mois.
+        /// </summary>
+        internal static string txt_Month {
+            get {
+                return ResourceManager.GetString("txt_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Aujourd&apos;hui.
+        /// </summary>
+        internal static string txt_Today {
+            get {
+                return ResourceManager.GetString("txt_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Utilisateur.
+        /// </summary>
+        internal static string txt_User {
+            get {
+                return ResourceManager.GetString("txt_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Session.
+        /// </summary>
+        internal static string txt_UserSession {
+            get {
+                return ResourceManager.GetString("txt_UserSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Semaine.
+        /// </summary>
+        internal static string txt_Week {
+            get {
+                return ResourceManager.GetString("txt_Week", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Année.
+        /// </summary>
+        internal static string txt_Year {
+            get {
+                return ResourceManager.GetString("txt_Year", resourceCulture);
             }
         }
     }

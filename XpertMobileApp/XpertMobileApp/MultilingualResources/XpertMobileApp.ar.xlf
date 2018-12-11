@@ -231,6 +231,22 @@
           <source>Session</source>
           <target state="new">Session</target>
         </trans-unit>
+        <trans-unit id="txt_Day" translate="yes" xml:space="preserve">
+          <source>Jour</source>
+          <target state="new">Jour</target>
+        </trans-unit>
+        <trans-unit id="txt_Month" translate="yes" xml:space="preserve">
+          <source>Mois</source>
+          <target state="new">Mois</target>
+        </trans-unit>
+        <trans-unit id="txt_Week" translate="yes" xml:space="preserve">
+          <source>Semaine</source>
+          <target state="new">Semaine</target>
+        </trans-unit>
+        <trans-unit id="txt_Year" translate="yes" xml:space="preserve">
+          <source>Année</source>
+          <target state="new">Année</target>
+        </trans-unit>
       </group>
     </body>
   </file>

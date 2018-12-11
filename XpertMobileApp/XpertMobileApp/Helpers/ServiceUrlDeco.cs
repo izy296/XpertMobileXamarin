@@ -35,6 +35,11 @@ namespace XpertMobileApp.Helpers
         public static string STATISTIC_URL = "statistic";
 
         public static string SESSION_URL = "session";
+
+        public static string DASHBOARD_URL = "Dashboard";
+
+        public static string MARGE_PAR_VENDEUR_URL = "MargeParVendeur";
+
     }
 
 }

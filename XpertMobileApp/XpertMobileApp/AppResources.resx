@@ -249,4 +249,49 @@
   <data name="SOLDE_TIERS" xml:space="preserve">
     <value>Solde tiers</value>
   </data>
+  <data name="cmd_Add" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="cmd_Cancel" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="cmd_Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="cmd_Save" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="cmd_Update" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
+  <data name="txt_Compte" xml:space="preserve">
+    <value>Compte</value>
+  </data>
+  <data name="txt_Decaiss" xml:space="preserve">
+    <value>Décaissement</value>
+  </data>
+  <data name="txt_Encaiss" xml:space="preserve">
+    <value>Encaissement</value>
+  </data>
+  <data name="txt_Today" xml:space="preserve">
+    <value>Aujourd'hui</value>
+  </data>
+  <data name="txt_User" xml:space="preserve">
+    <value>Utilisateur</value>
+  </data>
+  <data name="txt_UserSession" xml:space="preserve">
+    <value>Session</value>
+  </data>
+  <data name="txt_Day" xml:space="preserve">
+    <value>Jour</value>
+  </data>
+  <data name="txt_Month" xml:space="preserve">
+    <value>Mois</value>
+  </data>
+  <data name="txt_Week" xml:space="preserve">
+    <value>Semaine</value>
+  </data>
+  <data name="txt_Year" xml:space="preserve">
+    <value>Année</value>
+  </data>
 </root>
