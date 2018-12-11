@@ -20,16 +20,16 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
+                    
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="Session" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <Label Text="{i18n:Translate txt_UserSession}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
-                    
+                   
                     <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
-                        <Label Text="Utilisateur" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Medium"/>
-                        <Label Text="Compte" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="Encaissement" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{i18n:Translate txt_User}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Medium"/>
+                        <Label Text="{i18n:Translate txt_Compte}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{i18n:Translate txt_Encaiss}" TextColor="{StaticResource DefaultTextColor}"/>
                     </StackLayout>
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="Administrateur" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End"/>
@@ -59,12 +59,12 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="0" Padding="0,5" HorizontalOptions="Center">
-                        <Label Text="Aujourd'hui" TextColor="{StaticResource DefaultTextColor}" FontSize="Medium" />
+                        <Label Text="{i18n:Translate txt_Today}" TextColor="{StaticResource DefaultTextColor}" FontSize="Medium" />
                     </StackLayout>
-
+                    
                     <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="Encaissement" TextColor="{StaticResource Primary}"/>
-                        <Label Text="Décaissement" TextColor="Red"/>
+                        <Label Text="{i18n:Translate txt_Encaiss}" TextColor="{StaticResource Primary}"/>
+                        <Label Text="{i18n:Translate txt_Decaiss}" TextColor="Red"/>
                     </StackLayout>
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
                         <Label Text="252 510.92 DA" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
@@ -88,7 +88,7 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="Comptes" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <Label Text="{i18n:Translate txt_Compte}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
 

@@ -57,8 +57,7 @@ namespace XpertMobileApp.Views.Encaissement
             Item = new View_TRS_ENCAISS
             {
                 DATE_ENCAISS = DateTime.Now,
-                CODE_TYPE = "ENC",
-                TOTAL_ENCAISS = 0
+                CODE_TYPE = "ENC"
             };
 
             BindingContext = this;
