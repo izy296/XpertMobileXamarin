@@ -42,7 +42,41 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
-              viewModel.LoadItemsCommand.Execute(null);
+                LoadStats(btn_All);
+        }
+
+        private void TypeFilter_Clicked(object sender, EventArgs e)
+        {
+            LoadStats((Button)sender);
+        }
+
+        private void LoadStats(Button btn)
+        {
+            EncaissDisplayType selectedType = viewModel.EncaissDisplayType;
+
+            btn_All.BackgroundColor = Color.FromHex("#2196F3");
+            btn_Decaiss.BackgroundColor = Color.FromHex("#2196F3");
+            btn_Encaiss.BackgroundColor = Color.FromHex("#2196F3");
+
+            btn.BackgroundColor = Color.FromHex("#51adf6");
+            switch (btn.ClassId)
+            {
+                case "all":
+                    selectedType = EncaissDisplayType.None;
+                    break;
+                case "Encaiss":
+                    selectedType = EncaissDisplayType.Encaiss;
+                    break;
+                case "Decaiss":
+                    selectedType = EncaissDisplayType.Decaiss;
+                    break; 
+            }
+
+            if (viewModel.EncaissDisplayType != selectedType)
+            {
+                viewModel.EncaissDisplayType = selectedType;
+                viewModel.LoadItemsCommand.Execute(viewModel.EncaissDisplayType);
+            }
         }
     }
 }

@@ -11,8 +11,12 @@ using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
 {
+    public enum EncaissDisplayType { None, Encaiss, Decaiss };
+
     public class EncaissementsViewModel : BaseViewModel
     {
+        public EncaissDisplayType EncaissDisplayType;
+
         public ObservableCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
@@ -28,7 +32,6 @@ namespace XpertMobileApp.ViewModels
             MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "AddItem", async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
-
             });
 
         }
@@ -68,10 +71,13 @@ namespace XpertMobileApp.ViewModels
 
             IsBusy = true;
 
+            // Recupérer le type a afficher ENC,DEC or All
+            string type = GetCurrentType();
+
             try
             {
                 Items.Clear();
-                var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, "all", "1", "all", "", "", "", "", "");
+                var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, "1", "all", "", "", "", "", "");
                 int index = 1;
                 foreach (var item in items)
                 {
@@ -88,6 +94,25 @@ namespace XpertMobileApp.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        private string GetCurrentType()
+        {
+            string type = "";
+            switch (EncaissDisplayType)
+            {
+                case EncaissDisplayType.None:
+                    type = "all";
+                    break;
+                case EncaissDisplayType.Encaiss:
+                    type = "ENC";
+                    break;
+                case EncaissDisplayType.Decaiss:
+                    type = "DEC";
+                    break;
+            }
+
+            return type;
         }
     }
 
