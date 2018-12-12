@@ -71,9 +71,9 @@ namespace XpertMobileApp.Services
             return result;
         }
 
-        public static async Task<List<TRS_JOURNEES>> GetSessionInfos(string baseUrl)
+        public static async Task<List<TRS_JOURNEES>> GetSessionInfos()
         {
-            string url = baseUrl + ServiceUrlDeco.SESSION_INFO_URL;
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.SESSION_INFO_URL);
 
             return await RetrievAauthorizedData<TRS_JOURNEES>(url);
         }
@@ -85,6 +85,15 @@ namespace XpertMobileApp.Services
             url += "&endDate=" + endDate?.ToString("yyyyMMddHHmmss");
 
             return await RetrievAauthorizedData<View_VTE_Vente_Td>(url);
+        }
+
+        internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
+        {
+            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.STATISTIC_URL);
+            url += "?startDate=" + startDate?.ToString("yyyyMMddHHmmss");
+            url += "&endDate=" + endDate?.ToString("yyyyMMddHHmmss");
+
+            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
 
         public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, string startDate, string endDate,
@@ -109,18 +118,6 @@ namespace XpertMobileApp.Services
            
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
-
-        internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
-        {
-            string url = App.RestServiceUrl + ServiceUrlDeco.ENCAISSEMENT_URL;
-
-            url += WSApi.CreateLink(url, ServiceUrlDeco.STATISTIC_URL, startDate?.ToString(), endDate?.ToString());
-
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
-        }
-
-
-        
 
         internal static async Task<List<View_BSE_COMPTE>> getComptes()
         {

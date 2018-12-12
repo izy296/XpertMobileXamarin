@@ -21,7 +21,21 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new HomeViewModel();
         }
 
-        async Task ConnectUserAsync(object sender, EventArgs e)
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Items.Count == 0)
+                viewModel.LoadItemsCommand.Execute(null);
+
+            if (viewModel.Sessions.Count == 0)
+                viewModel.LoadSessionsCommand.Execute(null);
+
+            if (viewModel.Encaissements.Count == 0)
+                viewModel.LoadEncaissStatCommand.Execute(null);
+        }
+
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
         }
