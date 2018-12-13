@@ -282,6 +282,9 @@
   <data name="txt_UserSession" xml:space="preserve">
     <value>Session</value>
   </data>
+  <data name="txt_All" xml:space="preserve">
+    <value>Tous</value>
+  </data>
   <data name="txt_Day" xml:space="preserve">
     <value>Jour</value>
   </data>
@@ -293,5 +296,11 @@
   </data>
   <data name="txt_Year" xml:space="preserve">
     <value>Année</value>
+  </data>
+  <data name="msg_Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="msg_DeleteConfirmation" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer cet élément ?</value>
   </data>
 </root>

@@ -247,6 +247,18 @@
           <source>Année</source>
           <target state="new">Année</target>
         </trans-unit>
+        <trans-unit id="txt_All" translate="yes" xml:space="preserve">
+          <source>Tous</source>
+          <target state="new">Tous</target>
+        </trans-unit>
+        <trans-unit id="msg_Confirmation" translate="yes" xml:space="preserve">
+          <source>Confirmation</source>
+          <target state="new">Confirmation</target>
+        </trans-unit>
+        <trans-unit id="msg_DeleteConfirmation" translate="yes" xml:space="preserve">
+          <source>Voulez-vous vraiment supprimer cet élément ?</source>
+          <target state="new">Voulez-vous vraiment supprimer cet élément ?</target>
+        </trans-unit>
       </group>
     </body>
   </file>

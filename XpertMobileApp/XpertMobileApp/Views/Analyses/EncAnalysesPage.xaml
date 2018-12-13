@@ -21,11 +21,11 @@
                 </StackLayout>
             </ScrollView>
             <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" 
-                         HorizontalOptions="CenterAndExpand" BackgroundColor="Gray">
-                <Button x:Name="btn_Day" ClassId="btn_Day" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate txt_Day}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
-                <Button x:Name="btn_Week" ClassId="btn_Week" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate txt_Week}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
-                <Button x:Name="btn_Month" ClassId="btn_Month" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate txt_Month}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
-                <Button x:Name="btn_Year" ClassId="btn_Year" HorizontalOptions="CenterAndExpand" Text="{i18n:Translate txt_Year}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                         HorizontalOptions="Fill" BackgroundColor="Gray">
+                <Button x:Name="btn_Day" ClassId="btn_Day" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Day}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Week" ClassId="btn_Week" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Week}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Month" ClassId="btn_Month" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Month}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Year" ClassId="btn_Year" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Year}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

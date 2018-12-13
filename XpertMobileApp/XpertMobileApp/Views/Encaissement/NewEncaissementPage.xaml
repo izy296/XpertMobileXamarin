@@ -23,7 +23,7 @@
     
     <ContentPage.Content>
 
-        <ScrollView Orientation="Vertical">
+        <ScrollView Orientation="Vertical" Padding="15">
             <StackLayout>
                 <Label Text="{i18n:Translate DATE_ENCAISS}" Margin="5, 0, 0, 0" />
                 <DatePicker x:Name="dp_DateEncaiss"                        

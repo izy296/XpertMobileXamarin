@@ -376,6 +376,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Confirmation.
+        /// </summary>
+        internal static string msg_Confirmation {
+            get {
+                return ResourceManager.GetString("msg_Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Voulez-vous vraiment supprimer cet élément ?.
+        /// </summary>
+        internal static string msg_DeleteConfirmation {
+            get {
+                return ResourceManager.GetString("msg_DeleteConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Please enter the amount.
         /// </summary>
         internal static string msg_EnterTheAmount {
@@ -498,6 +516,15 @@ namespace XpertMobileApp {
         internal static string TOTAL_ENCAISS {
             get {
                 return ResourceManager.GetString("TOTAL_ENCAISS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tous.
+        /// </summary>
+        internal static string txt_All {
+            get {
+                return ResourceManager.GetString("txt_All", resourceCulture);
             }
         }
         
