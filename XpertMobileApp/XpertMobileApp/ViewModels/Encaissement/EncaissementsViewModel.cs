@@ -5,19 +5,22 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
 {
-    public enum EncaissDisplayType { None, Encaiss, Decaiss };
+    public enum EncaissDisplayType { None, All, Encaiss, Decaiss };
 
     public class EncaissementsViewModel : BaseViewModel
     {
+        private const int PageSize = 10;
+
         public EncaissDisplayType EncaissDisplayType;
 
-        public ObservableCollection<View_TRS_ENCAISS> Items { get; set; }
+        public InfiniteScrollCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
@@ -25,15 +28,35 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_encaissement;
 
-            Items = new ObservableCollection<View_TRS_ENCAISS>();
+            // Items = new InfiniteScrollCollection<View_TRS_ENCAISS>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
 
+            AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
             MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "AddItem", async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
             });
 
+
+            Items = new InfiniteScrollCollection<View_TRS_ENCAISS>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+
+                    // Recupérer le type a afficher ENC,DEC or All
+                    string type = GetCurrentType();
+                    // load the next page
+                    var page = (Items.Count / PageSize) + 1;
+                    var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, page.ToString(), "all", "", "", "", "", "");
+                    UpdateItemIndex(items);
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                }
+            };
         }
 
         async Task ExecuteAddItemCommand(View_TRS_ENCAISS item)
@@ -50,11 +73,21 @@ namespace XpertMobileApp.ViewModels
 
                 Items.Insert(0, result);
 
-                UpdateItemIndex(Items);
+                UpdateItemIndex<View_TRS_ENCAISS>(Items);
             }
         }
 
-        private void UpdateItemIndex<T>(ObservableCollection<T> items)
+        private void UpdateItemIndex<T>(InfiniteScrollCollection<T> items)
+        {
+            int i = 0;
+            foreach (var item in items)
+            {
+                i += 1;
+                (item as BASE_CLASS).Index = i;
+            }
+        }
+
+        private void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;
             foreach (var item in items)
@@ -69,30 +102,14 @@ namespace XpertMobileApp.ViewModels
             if (IsBusy)
                 return;
 
-            IsBusy = true;
-
-            // Recupérer le type a afficher ENC,DEC or All
-            string type = GetCurrentType();
-
             try
             {
                 Items.Clear();
-                var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, "1", "all", "", "", "", "", "");
-                int index = 1;
-                foreach (var item in items)
-                {
-                    item.Index = index;
-                    Items.Add(item);
-                    index += 1;
-                }
+                await Items.LoadMoreAsync();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
 
@@ -101,7 +118,7 @@ namespace XpertMobileApp.ViewModels
             string type = "";
             switch (EncaissDisplayType)
             {
-                case EncaissDisplayType.None:
+                case EncaissDisplayType.All:
                     type = "all";
                     break;
                 case EncaissDisplayType.Encaiss:

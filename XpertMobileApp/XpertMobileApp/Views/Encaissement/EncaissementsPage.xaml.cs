@@ -62,7 +62,7 @@ namespace XpertMobileApp.Views
             switch (btn.ClassId)
             {
                 case "all":
-                    selectedType = EncaissDisplayType.None;
+                    selectedType = EncaissDisplayType.All;
                     break;
                 case "Encaiss":
                     selectedType = EncaissDisplayType.Encaiss;
@@ -75,7 +75,7 @@ namespace XpertMobileApp.Views
             if (viewModel.EncaissDisplayType != selectedType)
             {
                 viewModel.EncaissDisplayType = selectedType;
-                viewModel.LoadItemsCommand.Execute(viewModel.EncaissDisplayType);
+                viewModel.LoadItemsCommand.Execute(null);
             }
         }
     }
