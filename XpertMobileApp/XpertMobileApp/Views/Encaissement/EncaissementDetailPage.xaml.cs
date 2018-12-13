@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -118,6 +115,22 @@ namespace XpertMobileApp.Views.Encaissement
 
             viewModel = new ItemDetailViewModel<View_TRS_ENCAISS>(item);
             BindingContext = viewModel;
+        }
+
+        async void Delete_Clicked(object sender, EventArgs e)
+        {
+            var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_DeleteConfirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+
+            if (res)
+            {
+                MessagingCenter.Send(this, "DeleteItem", viewModel.Item);
+                await Navigation.PopAsync();
+            }
+        }
+
+        async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }

@@ -163,21 +163,20 @@ namespace XpertMobileApp.Services
             string strdata = JsonConvert.SerializeObject(encaiss);
             byte[] data = Encoding.UTF8.GetBytes(strdata);
             Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
-            byte[] resultData = await WSApi.ExecutePost(url, data, tokenInfos.access_token);
+            byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
             string resposeData = Encoding.UTF8.GetString(resultData);
             return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
         }
 
-        internal static async Task<View_TRS_ENCAISS> DeleteEncaissement(string codeEncaiss)
+        internal static async Task<bool> DeleteEncaissement(View_TRS_ENCAISS encaiss)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDeco.ENCAISSEMENT_URL, ServiceUrlDeco.DELETE_ENCAISSEMENT_URL);
 
-            string strdata = JsonConvert.SerializeObject(codeEncaiss);
-            byte[] data = Encoding.UTF8.GetBytes(strdata);
-            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
-            byte[] resultData = await WSApi.ExecutePost(url, data, tokenInfos.access_token);
+            string strdata = JsonConvert.SerializeObject(encaiss);
+            byte[] data = Encoding.UTF8.GetBytes(strdata);            
+            byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
             string resposeData = Encoding.UTF8.GetString(resultData);
-            return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
+            return JsonConvert.DeserializeObject<bool>(resposeData);
         }
     }
 }

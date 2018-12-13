@@ -23,6 +23,7 @@ namespace XpertMobileApp.ViewModels
         public InfiniteScrollCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
+        public Command DeleteItemCommand { get; set; }
 
         public EncaissementsViewModel()
         {
@@ -37,6 +38,11 @@ namespace XpertMobileApp.ViewModels
                 AddItemCommand.Execute(item);
             });
 
+            DeleteItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteDeleteItemCommand(item));
+            MessagingCenter.Subscribe<EncaissementDetailPage, View_TRS_ENCAISS>(this, "DeleteItem", async (obj, item) =>
+            {
+                DeleteItemCommand.Execute(item);
+            });
 
             Items = new InfiniteScrollCollection<View_TRS_ENCAISS>
             {
@@ -57,6 +63,24 @@ namespace XpertMobileApp.ViewModels
                     return items;
                 }
             };
+        }
+
+        async Task ExecuteDeleteItemCommand(View_TRS_ENCAISS item)
+        {
+            if (App.IsConected)
+            {
+                var newItem = item as View_TRS_ENCAISS;
+
+                // Save the added Item in the local bdd
+                // await DataStore.DeleteItemAsync(newItem);
+
+                // TODO : test if connected else mark as not synchronizd
+                bool result = await WebServiceClient.DeleteEncaissement(newItem);
+                if (result)
+                { 
+                    Items.Remove(item);
+                }
+            }
         }
 
         async Task ExecuteAddItemCommand(View_TRS_ENCAISS item)

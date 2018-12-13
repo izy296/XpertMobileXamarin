@@ -4,6 +4,24 @@
              x:Class="XpertMobileApp.Views.Encaissement.EncaissementDetailPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ScrollView Orientation="Vertical" VerticalOptions="Fill" >
         <StackLayout x:Name="sl_content" Spacing="20" Padding="15" >
 
