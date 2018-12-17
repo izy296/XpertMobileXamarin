@@ -42,7 +42,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage ()
+        public NewEncaissementPage (View_TRS_ENCAISS item = null)
 		{
 			InitializeComponent ();
             
@@ -54,18 +54,32 @@ namespace XpertMobileApp.Views.Encaissement
             LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
             LoadTiersCommand   = new Command(async () => await ExecuteLoadTiersCommand());
 
-            Item = new View_TRS_ENCAISS
+            if(item != null)
             {
-                DATE_ENCAISS = DateTime.Now,
-                CODE_TYPE = "ENC"
-            };
+                Item = item;
+            } 
+            else
+            {
+                Item = new View_TRS_ENCAISS
+                {
+                    DATE_ENCAISS = DateTime.Now,
+                    CODE_TYPE = "ENC"
+                };
+            }
 
             BindingContext = this;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            if(string.IsNullOrEmpty(Item.CODE_COMPTE))
+            { 
+                MessagingCenter.Send(this, "AddItem", Item);
+            } else
+            {
+                MessagingCenter.Send(this, "UpdateItem", Item);
+            }
+
             await Navigation.PopModalAsync();
         }
 
@@ -107,6 +121,9 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     Motifs.Add(item);
                 }
+
+                if(Item != null)
+                    SelectMotif(Item.CODE_MOTIF);
             }
             catch (Exception ex)
             {
@@ -135,6 +152,10 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     Comptes.Add(itemC);
                 }
+
+                if(Item != null)
+                    SelectCompte(Item.CODE_COMPTE);
+
             }
             catch (Exception ex)
             {
@@ -162,6 +183,9 @@ namespace XpertMobileApp.Views.Encaissement
                  {
                      Tiers.Add(itemT);
                  }
+
+                 if(Item != null)
+                    SelectTier(Item.CODE_TIERS);
             }
             catch (Exception ex)
             {
@@ -173,6 +197,41 @@ namespace XpertMobileApp.Views.Encaissement
             }
         }
 
+        private void SelectMotif(string codeElem)
+        {
+            for (int i = 0; i < Motifs.Count; i++)
+            {
+                if(Motifs[i].CODE_MOTIF == codeElem)
+                {
+                    MotifsPicker.SelectedIndex = i;
+                    return;
+                }
+            }
+        }
+
+        private void SelectCompte(string codeElem)
+        {
+            for (int i = 0; i < Comptes.Count; i++)
+            {
+                if (Comptes[i].CODE_COMPTE == codeElem)
+                {
+                    ComptesPicker.SelectedIndex = i;
+                    return;
+                }
+            }
+        }
+
+        private void SelectTier(string codeElem)
+        {
+            for (int i = 0; i < Tiers.Count; i++)
+            {
+                if (Tiers[i].CODE_TIERS == codeElem)
+                {
+                    TiersPicker.SelectedIndex = i;
+                    return;
+                }
+            }
+        }
         private void MotifPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var motif = Motifs[MotifsPicker.SelectedIndex];

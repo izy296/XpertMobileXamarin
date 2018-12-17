@@ -22,6 +22,11 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
 
             displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
         }
@@ -30,6 +35,7 @@ namespace XpertMobileApp.Views.Encaissement
         {
             if (obj == null) return;
 
+            sl_content.Children.Clear();
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj))
             {
                 string name = descriptor.Name;
@@ -120,7 +126,6 @@ namespace XpertMobileApp.Views.Encaissement
         async void Delete_Clicked(object sender, EventArgs e)
         {
             var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_DeleteConfirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
-
             if (res)
             {
                 MessagingCenter.Send(this, "DeleteItem", viewModel.Item);
@@ -131,6 +136,11 @@ namespace XpertMobileApp.Views.Encaissement
         async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
+        }
+
+        private async void Update_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(viewModel.Item)));
         }
     }
 }
