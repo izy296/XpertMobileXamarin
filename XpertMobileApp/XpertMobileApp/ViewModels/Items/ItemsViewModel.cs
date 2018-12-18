@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Views;
 
@@ -22,7 +22,7 @@ namespace XpertMobileApp.ViewModels
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "Ajout", async (obj, item) =>
+            MessagingCenter.Subscribe<NewItemPage, Item>(this, MCDico.ADD_ITEM, async (obj, item) =>
             {
                 var newItem = item as Item;
                 Items.Add(newItem);

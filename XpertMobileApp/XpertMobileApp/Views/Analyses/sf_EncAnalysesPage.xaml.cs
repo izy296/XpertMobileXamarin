@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels.Analyses;
 
 namespace XpertMobileApp.Views
@@ -21,7 +22,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new SF_Vte_AnalysesViewModel();
 
-            MessagingCenter.Subscribe<SF_Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, "StatsDataLoaded", (obj, items) =>
+            MessagingCenter.Subscribe<SF_Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
             {
                 DisplayStats(items);
             });

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Pharm.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -75,10 +76,10 @@ namespace XpertMobileApp.Views.Encaissement
         {
             if(string.IsNullOrEmpty(Item.CODE_COMPTE))
             { 
-                MessagingCenter.Send(this, "AddItem", Item);
+                MessagingCenter.Send(this, MCDico.ADD_ITEM, Item);
             } else
             {
-                MessagingCenter.Send(this, "UpdateItem", Item);
+                MessagingCenter.Send(this, MCDico.UPDATE_ITEM, Item);
             }
 
             await Navigation.PopModalAsync();

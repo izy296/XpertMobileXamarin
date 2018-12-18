@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views
@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, MCDico.ADD_ITEM, Item);
             await Navigation.PopModalAsync();
         }
 

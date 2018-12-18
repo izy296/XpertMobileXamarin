@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels.Analyses
@@ -56,7 +57,7 @@ namespace XpertMobileApp.ViewModels.Analyses
                     Items.Add(item);
                 }
 
-                MessagingCenter.Send(this, "StatsDataLoaded", Items);
+                MessagingCenter.Send(this, MCDico.STATS_DATA_LOADED, Items);
             }
             catch (Exception ex)
             {

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels.Analyses;
 using Entry = Microcharts.Entry;
 
@@ -30,7 +31,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new Vte_AnalysesViewModel();
 
-            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, "StatsDataLoaded", (obj, items) =>
+            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
             {
                 DisplayStats(items);
             });

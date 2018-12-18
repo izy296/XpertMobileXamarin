@@ -103,7 +103,7 @@ namespace XpertMobileApp
                 else
                     result += "/";
 
-                return result + ServiceUrlDeco.BASE_URL;
+                return result + ServiceUrlDico.BASE_URL;
             }
         }
 

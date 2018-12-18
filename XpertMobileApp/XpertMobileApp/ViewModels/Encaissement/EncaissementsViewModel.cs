@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Pharm.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views.Encaissement;
 
@@ -34,7 +35,7 @@ namespace XpertMobileApp.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.ADD_ITEM, async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
             });
@@ -46,7 +47,7 @@ namespace XpertMobileApp.ViewModels
             });
 
             UpdateItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteUpdateItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, "UpdateItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
             {
                 UpdateItemCommand.Execute(item);
             });
@@ -83,7 +84,7 @@ namespace XpertMobileApp.ViewModels
 
                 // TODO : test if connected else mark as not synchronizd
                 View_TRS_ENCAISS result = await WebServiceClient.UpdateEncaissement(newItem);
-                MessagingCenter.Send(this, "RefrechItem", result);
+                MessagingCenter.Send(this, MCDico.REFRESH_ITEM, result);
                 if (result != null)
                 {
                     int idx = Items.IndexOf(item);
