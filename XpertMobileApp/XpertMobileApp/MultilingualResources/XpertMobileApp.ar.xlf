@@ -149,115 +149,116 @@
         </trans-unit>
         <trans-unit id="DESIGN_COMPTE" translate="yes" xml:space="preserve">
           <source>Compte</source>
-          <target state="new">Compte</target>
+          <target state="translated">الحساب</target>
         </trans-unit>
         <trans-unit id="DATE_ENCAISS" translate="yes" xml:space="preserve">
           <source>Date</source>
-          <target state="new">Date</target>
+          <target state="translated">التاريخ</target>
         </trans-unit>
         <trans-unit id="DESIGN_MOTIF" translate="yes" xml:space="preserve">
           <source>Motif</source>
-          <target state="new">Motif</target>
+          <target state="translated">السبب</target>
         </trans-unit>
         <trans-unit id="NOM_TIERS" translate="yes" xml:space="preserve">
           <source>Tiers</source>
-          <target state="new">Tiers</target>
+          <target state="translated">المتعامل</target>
         </trans-unit>
         <trans-unit id="TOTAL_ENCAISS" translate="yes" xml:space="preserve">
           <source>Total encaissé</source>
-          <target state="new">Total encaissé</target>
+          <target state="translated">المبلغ الإجمالي</target>
         </trans-unit>
         <trans-unit id="msg_EnterTheAmount" translate="yes" xml:space="preserve">
-          <source>Please enter the amount</source>
-          <target state="new">Please enter the amount</target>
+          <source>Entrer le montant s'il vous plaît </source>
+          <target state="needs-review-translation">يرجى إدخال المبلغ</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CODE_COMPTE" translate="yes" xml:space="preserve">
           <source>Compte</source>
-          <target state="new">Compte</target>
+          <target state="translated">الحساب</target>
         </trans-unit>
         <trans-unit id="CODE_MOTIF" translate="yes" xml:space="preserve">
           <source>Motif</source>
-          <target state="new">Motif</target>
+          <target state="translated">السبب</target>
         </trans-unit>
         <trans-unit id="CODE_TIERS" translate="yes" xml:space="preserve">
           <source>Tiers</source>
-          <target state="new">Tiers</target>
+          <target state="translated">المتعامل</target>
         </trans-unit>
         <trans-unit id="SOLDE_TIERS" translate="yes" xml:space="preserve">
           <source>Solde tiers</source>
-          <target state="new">Solde tiers</target>
+          <target state="translated">ميزان المتعامل</target>
         </trans-unit>
         <trans-unit id="cmd_Add" translate="yes" xml:space="preserve">
           <source>Ajouter</source>
-          <target state="new">Ajouter</target>
+          <target state="translated">إضافة</target>
         </trans-unit>
         <trans-unit id="cmd_Cancel" translate="yes" xml:space="preserve">
           <source>Annuler</source>
-          <target state="new">Annuler</target>
+          <target state="translated">خروج</target>
         </trans-unit>
         <trans-unit id="cmd_Delete" translate="yes" xml:space="preserve">
           <source>Supprimer</source>
-          <target state="new">Supprimer</target>
+          <target state="translated">حذف</target>
         </trans-unit>
         <trans-unit id="cmd_Save" translate="yes" xml:space="preserve">
           <source>Enregistrer</source>
-          <target state="new">Enregistrer</target>
+          <target state="translated">حفظ</target>
         </trans-unit>
         <trans-unit id="cmd_Update" translate="yes" xml:space="preserve">
           <source>Modifier</source>
-          <target state="new">Modifier</target>
+          <target state="translated">تعديل</target>
         </trans-unit>
         <trans-unit id="txt_Compte" translate="yes" xml:space="preserve">
           <source>Compte</source>
-          <target state="new">Compte</target>
+          <target state="translated">الحساب</target>
         </trans-unit>
         <trans-unit id="txt_Decaiss" translate="yes" xml:space="preserve">
           <source>Décaissement</source>
-          <target state="new">Décaissement</target>
+          <target state="translated">إنفاق</target>
         </trans-unit>
         <trans-unit id="txt_Encaiss" translate="yes" xml:space="preserve">
           <source>Encaissement</source>
-          <target state="new">Encaissement</target>
+          <target state="translated">صرف</target>
         </trans-unit>
         <trans-unit id="txt_Today" translate="yes" xml:space="preserve">
           <source>Aujourd'hui</source>
-          <target state="new">Aujourd'hui</target>
+          <target state="translated">اليوم</target>
         </trans-unit>
         <trans-unit id="txt_User" translate="yes" xml:space="preserve">
           <source>Utilisateur</source>
-          <target state="new">Utilisateur</target>
+          <target state="translated">المستخدم</target>
         </trans-unit>
         <trans-unit id="txt_UserSession" translate="yes" xml:space="preserve">
           <source>Session</source>
-          <target state="new">Session</target>
+          <target state="translated">الدورة</target>
         </trans-unit>
         <trans-unit id="txt_Day" translate="yes" xml:space="preserve">
           <source>Jour</source>
-          <target state="new">Jour</target>
+          <target state="translated">اليوم</target>
         </trans-unit>
         <trans-unit id="txt_Month" translate="yes" xml:space="preserve">
           <source>Mois</source>
-          <target state="new">Mois</target>
+          <target state="translated">الشهر</target>
         </trans-unit>
         <trans-unit id="txt_Week" translate="yes" xml:space="preserve">
           <source>Semaine</source>
-          <target state="new">Semaine</target>
+          <target state="translated">الأسبوع</target>
         </trans-unit>
         <trans-unit id="txt_Year" translate="yes" xml:space="preserve">
           <source>Année</source>
-          <target state="new">Année</target>
+          <target state="translated">السنة</target>
         </trans-unit>
         <trans-unit id="txt_All" translate="yes" xml:space="preserve">
           <source>Tous</source>
-          <target state="new">Tous</target>
+          <target state="translated">الكل</target>
         </trans-unit>
         <trans-unit id="msg_Confirmation" translate="yes" xml:space="preserve">
           <source>Confirmation</source>
-          <target state="new">Confirmation</target>
+          <target state="translated">تأكيد</target>
         </trans-unit>
         <trans-unit id="msg_DeleteConfirmation" translate="yes" xml:space="preserve">
           <source>Voulez-vous vraiment supprimer cet élément ?</source>
-          <target state="new">Voulez-vous vraiment supprimer cet élément ?</target>
+          <target state="translated">متأكد من حذف هذا العنصر؟</target>
         </trans-unit>
       </group>
     </body>

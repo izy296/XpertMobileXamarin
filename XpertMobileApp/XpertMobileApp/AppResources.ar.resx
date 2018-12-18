@@ -111,4 +111,88 @@
   <data name="btn_Close" xml:space="preserve">
     <value>خروج</value>
   </data>
+  <data name="DESIGN_COMPTE" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="DATE_ENCAISS" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="DESIGN_MOTIF" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="NOM_TIERS" xml:space="preserve">
+    <value>المتعامل</value>
+  </data>
+  <data name="TOTAL_ENCAISS" xml:space="preserve">
+    <value>المبلغ الإجمالي</value>
+  </data>
+  <data name="msg_EnterTheAmount" xml:space="preserve">
+    <value>يرجى إدخال المبلغ</value>
+  </data>
+  <data name="CODE_COMPTE" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="CODE_MOTIF" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="CODE_TIERS" xml:space="preserve">
+    <value>المتعامل</value>
+  </data>
+  <data name="SOLDE_TIERS" xml:space="preserve">
+    <value>ميزان المتعامل</value>
+  </data>
+  <data name="cmd_Add" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+  <data name="cmd_Cancel" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="cmd_Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="cmd_Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="cmd_Update" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="txt_Compte" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="txt_Decaiss" xml:space="preserve">
+    <value>إنفاق</value>
+  </data>
+  <data name="txt_Encaiss" xml:space="preserve">
+    <value>صرف</value>
+  </data>
+  <data name="txt_Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="txt_User" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="txt_UserSession" xml:space="preserve">
+    <value>الدورة</value>
+  </data>
+  <data name="txt_Day" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="txt_Month" xml:space="preserve">
+    <value>الشهر</value>
+  </data>
+  <data name="txt_Week" xml:space="preserve">
+    <value>الأسبوع</value>
+  </data>
+  <data name="txt_Year" xml:space="preserve">
+    <value>السنة</value>
+  </data>
+  <data name="txt_All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="msg_Confirmation" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+  <data name="msg_DeleteConfirmation" xml:space="preserve">
+    <value>متأكد من حذف هذا العنصر؟</value>
+  </data>
 </root>
