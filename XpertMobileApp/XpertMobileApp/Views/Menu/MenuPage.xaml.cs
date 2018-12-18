@@ -20,7 +20,6 @@ namespace XpertMobileApp.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Home, Image = "", Title=AppResources.pn_home },
                 new HomeMenuItem {Id = MenuItemType.Encaissements, Image = "", Title=AppResources.pn_encaissement },
-                new HomeMenuItem {Id = MenuItemType.Items, Image = "", Title="Items" },
                 new HomeMenuItem {Id = MenuItemType.EncAnalyses, Image = "", Title=AppResources.pn_Analyses },                
                 new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
             };

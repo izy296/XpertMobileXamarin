@@ -162,7 +162,6 @@ namespace XpertMobileApp.Services
 
             string strdata = JsonConvert.SerializeObject(encaiss);
             byte[] data = Encoding.UTF8.GetBytes(strdata);
-            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
             byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
             string resposeData = Encoding.UTF8.GetString(resultData);
             return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
