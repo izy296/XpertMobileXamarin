@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XpertMobileApp.Helpers
 {
-    public class ServiceUrlDeco
+    public static class ServiceUrlDico
     {
         public static string BASE_URL = "api/";
 
