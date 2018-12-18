@@ -17,18 +17,25 @@ namespace XpertMobileApp.Views.Encaissement
 	{
         ItemDetailViewModel<View_TRS_ENCAISS> viewModel;
 
-        public EncaissementDetailPage(ItemDetailViewModel<View_TRS_ENCAISS> viewModel)
+        public EncaissementDetailPage(View_TRS_ENCAISS encaiss)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = this.viewModel = new ItemDetailViewModel<View_TRS_ENCAISS>(encaiss);
+
+            displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
+
+            // TODO put into th generic view model 
+            MessagingCenter.Subscribe<EncaissementsViewModel, View_TRS_ENCAISS>(this, "RefrechItem", async (obj, item) =>
+            {
+                displayObject(typeof(View_TRS_ENCAISS), item);
+                // viewModel.Item = item;
+            });
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
         }
 
         private void displayObject(Type type, object obj)
@@ -39,7 +46,7 @@ namespace XpertMobileApp.Views.Encaissement
             foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj))
             {
                 string name = descriptor.Name;
-                object value = descriptor.GetValue(viewModel.Item);
+                object value = descriptor.GetValue(obj);
                 value = getFormatedValue(value);
 
                 var attribute = GetFieldInfosAttribue(type, name);
