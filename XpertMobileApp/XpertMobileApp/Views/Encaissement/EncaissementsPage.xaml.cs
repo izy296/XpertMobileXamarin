@@ -26,7 +26,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new EncaissementDetailPage(new ItemDetailViewModel<View_TRS_ENCAISS>(item)));
+            await Navigation.PushAsync(new EncaissementDetailPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage()));
+            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
         protected override void OnAppearing()
@@ -63,12 +63,19 @@ namespace XpertMobileApp.Views
             {
                 case "all":
                     selectedType = EncaissDisplayType.All;
+                    if (ToolbarItems.IndexOf(btn_Additem) >= 0)
+                        ToolbarItems.Remove(btn_Additem);
+
                     break;
                 case "Encaiss":
-                    selectedType = EncaissDisplayType.Encaiss;
+                    selectedType = EncaissDisplayType.ENC;
+                    if(ToolbarItems.IndexOf(btn_Additem) < 0)
+                        ToolbarItems.Add(btn_Additem);
                     break;
                 case "Decaiss":
-                    selectedType = EncaissDisplayType.Decaiss;
+                    selectedType = EncaissDisplayType.DEC;
+                    if (ToolbarItems.IndexOf(btn_Additem) < 0)
+                        ToolbarItems.Add(btn_Additem);
                     break; 
             }
 
