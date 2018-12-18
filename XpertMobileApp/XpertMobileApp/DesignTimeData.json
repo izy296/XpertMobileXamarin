@@ -1,0 +1,72 @@
+﻿{
+  "SettingsPage.xaml": {
+    "ServiceUrl": "Frites",
+    "AutoRefreshVente": 1
+  },
+  "ProductsTemplate.xaml": {
+    "DESIGN_FAMILLE": null,
+    "IMAGE_PRODUIT2": "http://localhost:8080/Image/GetImage/12",
+    "CODE_PRODUIT": "12",
+    "DESIGN_PRODUIT": "Steque Grilles",
+    "DESCRIPTION_PRODUIT": null,
+    "CODE_FAMILLE": "2",
+    "PRIX_VENTE": 450,
+    "ETAT_PRODUIT": true,
+    "NEW_PRODUIT": false,
+    "IMAGE_PRODUIT": "http://localhost:8080/Image/GetImage/12",
+    "CREATED_ON": null,
+    "CREATED_BY": null,
+    "MODIFIED_ON": null,
+    "MODIFIED_BY": null
+  },
+  "ProductSelectionTemplate.xaml": {
+    "Name": "Frites",
+    "Price": 150,
+    "Quantity": 2,
+    "SUPP_PRIX": 100,
+    "SupplementsInfos": "Frites, Salades",
+    "ObservationsInfos": "Mayaunaise, Hrissa",
+    "MT_HT": 400,
+    "Selectioninfos": "2u x 150 da/u  (+ sup: 100)"
+  },
+
+  "SalesForm222.xaml": [
+    {
+      "Name": "Chtitha lhem",
+      "Price": 450,
+      "Quantity": 1,
+      "SUPP_PRIX": 0,
+      "Supplement": "Mayaunaise, Hrissa",
+      "MT_HT": 450,
+      "Selectioninfos": "1u x 450 da/u"
+    },
+    {
+      "Name": "Frites",
+      "Price": 150,
+      "Quantity": 2,
+      "SUPP_PRIX": 100,
+      "Supplement": "Mayaunaise, Hrissa",
+      "MT_HT": 400,
+      "Selectioninfos": "2u x 150 da/u  (+ sup: 100)"
+    },
+    {
+      "Name": "Poulet roti",
+      "Price": 700,
+      "Quantity": 1,
+      "SUPP_PRIX": 100,
+      "Supplement": "Mayaunaise, Hrissa",
+      "MT_HT": 800,
+      "Selectioninfos": "1u x 700 da/u  (+ sup: 100)"
+    },
+    {
+      "Name": "Salades varie",
+      "Price": 150,
+      "Quantity": 2,
+      "SUPP_PRIX": 0,
+      "Supplement": "Mayaunaise, Hrissa",
+      "MT_HT": 300,
+      "Selectioninfos": "2u x 300 da/u"
+    }
+  ]
+
+}

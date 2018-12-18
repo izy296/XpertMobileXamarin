@@ -19,7 +19,7 @@
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
   <ItemGroup>
-    <Compile Remove="Data\INetworkConnection.cs" />
+    <Compile Remove="Api\INetworkConnection.cs" />
     <Compile Remove="ViewModels\Encaissement\EncaissementDetailViewModel.cs" />
     <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
     <Compile Remove="ViewModels\ItemsViewModel.cs" />
@@ -141,5 +141,8 @@
     <None Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\ViewModels\" />
   </ItemGroup>
 </Project>
