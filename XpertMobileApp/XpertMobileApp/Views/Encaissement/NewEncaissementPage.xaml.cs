@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views.Encaissement
 {
@@ -42,7 +43,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage (View_TRS_ENCAISS item = null)
+        public NewEncaissementPage (View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC)
 		{
 			InitializeComponent ();
             
@@ -50,7 +51,7 @@ namespace XpertMobileApp.Views.Encaissement
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Tiers   = new ObservableCollection<View_TRS_TIERS>();
 
-            LoadIMotifsCommand = new Command(async () => await ExecuteLoadMotifsCommand());
+            LoadIMotifsCommand = new Command(async () => await ExecuteLoadMotifsCommand(type));
             LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
             LoadTiersCommand   = new Command(async () => await ExecuteLoadTiersCommand());
 
@@ -104,7 +105,7 @@ namespace XpertMobileApp.Views.Encaissement
             TiersPicker.SelectedIndexChanged += TiersPicker_SelectedIndexChanged;
         }
 
-        async Task ExecuteLoadMotifsCommand()
+        async Task ExecuteLoadMotifsCommand(EncaissDisplayType type)
         {
             /*
             if (IsBusy)
@@ -116,7 +117,8 @@ namespace XpertMobileApp.Views.Encaissement
             try
             {
                 Motifs.Clear();
-                var itemsM = await WebServiceClient.GetMotifs();
+
+                var itemsM = await WebServiceClient.GetMotifs(type.ToString());
                 foreach (var item in itemsM)
                 {
                     Motifs.Add(item);

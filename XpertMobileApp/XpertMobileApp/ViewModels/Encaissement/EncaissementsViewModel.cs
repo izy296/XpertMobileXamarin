@@ -12,7 +12,7 @@ using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
 {
-    public enum EncaissDisplayType { None, All, Encaiss, Decaiss };
+    public enum EncaissDisplayType { None, All, ENC, DEC };
 
     public class EncaissementsViewModel : BaseViewModel
     {
@@ -83,9 +83,11 @@ namespace XpertMobileApp.ViewModels
 
                 // TODO : test if connected else mark as not synchronizd
                 View_TRS_ENCAISS result = await WebServiceClient.UpdateEncaissement(newItem);
+                MessagingCenter.Send(this, "RefrechItem", result);
                 if (result != null)
                 {
-                    item = result;
+                    int idx = Items.IndexOf(item);
+                    Items[idx] = result;
                 }
             }
         }
@@ -170,10 +172,10 @@ namespace XpertMobileApp.ViewModels
                 case EncaissDisplayType.All:
                     type = "all";
                     break;
-                case EncaissDisplayType.Encaiss:
+                case EncaissDisplayType.ENC:
                     type = "ENC";
                     break;
-                case EncaissDisplayType.Decaiss:
+                case EncaissDisplayType.DEC:
                     type = "DEC";
                     break;
             }

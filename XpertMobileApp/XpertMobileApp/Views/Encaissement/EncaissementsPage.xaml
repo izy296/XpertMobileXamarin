@@ -9,7 +9,7 @@
              x:Name="Encaissements">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
+        <ToolbarItem x:Name="btn_Additem"  Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>

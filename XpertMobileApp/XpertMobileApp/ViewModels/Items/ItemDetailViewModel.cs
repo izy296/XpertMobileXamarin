@@ -1,16 +1,31 @@
 ﻿using System;
+using Xamarin.Forms;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
     public class ItemDetailViewModel<T> : BaseViewModel
     {
-        public T Item { get; set; }
-        public ItemDetailViewModel(T item)
+        private T item;
+        public T Item
         {
-            Title = item?.ToString();
-            Item = item;
+            get { return item; }
+            set { SetProperty(ref item, value); }
+        }
+
+        
+        public ItemDetailViewModel(T obj)
+        {
+            Title = obj?.ToString();
+            Item = obj;
+            
+            MessagingCenter.Subscribe<ContentPage, T >(this, "RefrechItem", async (generic, itm) =>
+            {
+                Item = itm;
+            });
+                    
         }
     }
 }
