@@ -1,0 +1,93 @@
+﻿using SampleBrowser.SfChart;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Diagnostics;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using XpertMobileApp.DAL;
+using XpertMobileApp.Services;
+
+namespace XpertMobileApp.ViewModels.Analyses
+{
+
+    public class SF_Vte_AnalysesViewModel : BaseViewModel
+    {
+        public ObservableCollection<ChartDataModel> Entries1 { get; set; }
+        public ObservableCollection<ChartDataModel> Entries2 { get; set; }
+
+        public StatsPeriode StartPeriodType;
+
+        public ObservableCollection<View_VTE_Vente_Td> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
+
+        public SF_Vte_AnalysesViewModel()
+        {
+            Title = AppResources.pn_Analyses;
+
+            Entries1 = new ObservableCollection<ChartDataModel>();
+
+            Entries2 = new ObservableCollection<ChartDataModel>();
+
+            Items = new ObservableCollection<View_VTE_Vente_Td>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+        }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                DateTime endDate = DateTime.Now;
+                DateTime startDate = DateTime.Now;
+
+                startDate = GetTheStartDate(startDate);
+
+                Items.Clear();
+                var items = await WebServiceClient.GetMargeParVendeur(startDate, endDate);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+
+                MessagingCenter.Send(this, "StatsDataLoaded", Items);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private DateTime GetTheStartDate(DateTime startDate)
+        {
+            if (StartPeriodType == StatsPeriode.Day)
+            {
+                startDate = DateTime.Now;
+            }
+            else if (StartPeriodType == StatsPeriode.Week)
+            {
+                startDate = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+            }
+            else if (StartPeriodType == StatsPeriode.Month)
+            {
+                startDate = new DateTime(startDate.Year, startDate.Month, 1);
+            }
+            else
+            {
+                startDate = new DateTime(startDate.Year, 1, 1);
+            }
+
+            return startDate;
+        }
+    }
+}

@@ -30,6 +30,8 @@ namespace XpertMobileApp
 
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDgzNjlAMzEzNjJlMzMyZTMwYW9KSjRINjJybys3QVhUM0pvelpCMkhaV0kwcHM0ZkJ5cmpGYWJLZTFLTT0=;NDgzNzBAMzEzNjJlMzMyZTMwa09wVkRFcVFLTVgza1p6MHdEVDRtUkJ4d252NG5iTDZMTTEwT1Rxc054Zz0=");
+
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
