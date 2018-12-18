@@ -1,10 +1,10 @@
 using AVFoundation;
 using Xamarin.Forms;
-using XpertMobileApp.Data;
-using XpertMobileApp.iOS.Data;
+using XpertMobileApp.iOS.Models;
+using XpertMobileApp.Models;
 
 [assembly: Dependency(typeof(TextToSpeech_iOS))]
-namespace XpertMobileApp.iOS.Data
+namespace XpertMobileApp.iOS.Models
 {
 	public class TextToSpeech_iOS : ITextToSpeech
 	{

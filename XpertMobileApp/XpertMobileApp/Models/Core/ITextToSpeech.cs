@@ -1,4 +1,4 @@
-﻿namespace XpertMobileApp.Data
+﻿namespace XpertMobileApp.Models
 {
 	public interface ITextToSpeech
 	{

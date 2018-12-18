@@ -89,8 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\LocalStorage\FileHelper.cs" />
-    <Compile Include="Data\NetworkConnection.cs" />
-    <Compile Include="Data\TextToSpeech_Android.cs" />
+    <Compile Include="Models\Core\TextToSpeech_Android.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

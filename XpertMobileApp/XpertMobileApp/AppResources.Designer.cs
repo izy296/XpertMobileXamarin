@@ -394,7 +394,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Please enter the amount.
+        ///   Recherche une chaîne localisée semblable à Entrer le montant s&apos;il vous plaît .
         /// </summary>
         internal static string msg_EnterTheAmount {
             get {

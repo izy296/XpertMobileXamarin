@@ -244,7 +244,7 @@
     <value>Tiers</value>
   </data>
   <data name="msg_EnterTheAmount" xml:space="preserve">
-    <value>Please enter the amount</value>
+    <value>Entrer le montant s'il vous plaît </value>
   </data>
   <data name="SOLDE_TIERS" xml:space="preserve">
     <value>Solde tiers</value>

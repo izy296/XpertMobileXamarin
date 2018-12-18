@@ -19,7 +19,8 @@
     <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
   </Target>
   <ItemGroup>
-    <Compile Remove="DAL\Xpert_DAL_Type.cs" />
+    <Compile Remove="Data\INetworkConnection.cs" />
+    <Compile Remove="ViewModels\Encaissement\EncaissementDetailViewModel.cs" />
     <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
     <Compile Remove="ViewModels\ItemsViewModel.cs" />
   </ItemGroup>
@@ -38,6 +39,8 @@
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
@@ -63,6 +66,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
+      <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Encaissement\EncaissementDetailPage.xaml.cs">
       <DependentUpon>EncaissementDetailPage.xaml</DependentUpon>

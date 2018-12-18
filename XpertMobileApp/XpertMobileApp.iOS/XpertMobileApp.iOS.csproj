@@ -72,7 +72,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Data\LocalStorage\FileHelper.cs" />
-    <Compile Include="Data\TextToSpeech_iOS.cs" />
+    <Compile Include="Models\Core\TextToSpeech_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

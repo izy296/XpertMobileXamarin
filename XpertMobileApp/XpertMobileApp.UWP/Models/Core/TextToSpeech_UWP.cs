@@ -3,11 +3,11 @@ using System.Diagnostics;
 using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml.Controls;
 using Xamarin.Forms;
-using XpertMobileApp.Data;
-using XpertMobileApp.UWP.Data;
+using XpertMobileApp.Models;
+using XpertMobileApp.UWP.Models;
 
 [assembly: Dependency(typeof(TextToSpeech_UWP))]
-namespace XpertMobileApp.UWP.Data
+namespace XpertMobileApp.UWP.Models
 {
 	public class TextToSpeech_UWP : ITextToSpeech
 	{

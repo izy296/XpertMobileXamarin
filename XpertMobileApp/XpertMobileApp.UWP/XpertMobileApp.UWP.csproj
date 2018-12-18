@@ -100,7 +100,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Data\LocalStorage\FileHelper.cs" />
-    <Compile Include="Data\TextToSpeech_UWP.cs" />
+    <Compile Include="Models\Core\TextToSpeech_UWP.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
