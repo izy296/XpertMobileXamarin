@@ -260,6 +260,31 @@
           <source>Voulez-vous vraiment supprimer cet élément ?</source>
           <target state="translated">متأكد من حذف هذا العنصر؟</target>
         </trans-unit>
+        <trans-unit id="cmd_Filter" translate="yes" xml:space="preserve">
+          <source>Filtre</source>
+          <target state="needs-review-translation">تصفية</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_Filter" translate="yes" xml:space="preserve">
+          <source>Filtrer</source>
+          <target state="new">Filtrer</target>
+        </trans-unit>
+        <trans-unit id="txt_EndDate" translate="yes" xml:space="preserve">
+          <source>Date fin</source>
+          <target state="new">Date fin</target>
+        </trans-unit>
+        <trans-unit id="txt_StartDate" translate="yes" xml:space="preserve">
+          <source>Date début</source>
+          <target state="new">Date début</target>
+        </trans-unit>
+        <trans-unit id="txt_MarginsByseller" translate="yes" xml:space="preserve">
+          <source>Marges par vendeur</source>
+          <target state="new">Marges par vendeur</target>
+        </trans-unit>
+        <trans-unit id="txt_SalesBySeller" translate="yes" xml:space="preserve">
+          <source>Ventes par vendeur</source>
+          <target state="new">Ventes par vendeur</target>
+        </trans-unit>
       </group>
     </body>
   </file>

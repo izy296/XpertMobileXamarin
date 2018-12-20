@@ -195,4 +195,7 @@
   <data name="msg_DeleteConfirmation" xml:space="preserve">
     <value>متأكد من حذف هذا العنصر؟</value>
   </data>
+  <data name="cmd_Filter" xml:space="preserve">
+    <value>تصفية</value>
+  </data>
 </root>

@@ -223,6 +223,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Filtre.
+        /// </summary>
+        internal static string cmd_Filter {
+            get {
+                return ResourceManager.GetString("cmd_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Enregistrer.
         /// </summary>
         internal static string cmd_Save {
@@ -565,11 +574,56 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date fin.
+        /// </summary>
+        internal static string txt_EndDate {
+            get {
+                return ResourceManager.GetString("txt_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Filtrer.
+        /// </summary>
+        internal static string txt_Filter {
+            get {
+                return ResourceManager.GetString("txt_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Marges par vendeur.
+        /// </summary>
+        internal static string txt_MarginsByseller {
+            get {
+                return ResourceManager.GetString("txt_MarginsByseller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mois.
         /// </summary>
         internal static string txt_Month {
             get {
                 return ResourceManager.GetString("txt_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes par vendeur.
+        /// </summary>
+        internal static string txt_SalesBySeller {
+            get {
+                return ResourceManager.GetString("txt_SalesBySeller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date début.
+        /// </summary>
+        internal static string txt_StartDate {
+            get {
+                return ResourceManager.GetString("txt_StartDate", resourceCulture);
             }
         }
         

@@ -303,4 +303,22 @@
   <data name="msg_DeleteConfirmation" xml:space="preserve">
     <value>Voulez-vous vraiment supprimer cet élément ?</value>
   </data>
+  <data name="cmd_Filter" xml:space="preserve">
+    <value>Filtre</value>
+  </data>
+  <data name="txt_EndDate" xml:space="preserve">
+    <value>Date fin</value>
+  </data>
+  <data name="txt_Filter" xml:space="preserve">
+    <value>Filtrer</value>
+  </data>
+  <data name="txt_StartDate" xml:space="preserve">
+    <value>Date début</value>
+  </data>
+  <data name="txt_MarginsByseller" xml:space="preserve">
+    <value>Marges par vendeur</value>
+  </data>
+  <data name="txt_SalesBySeller" xml:space="preserve">
+    <value>Ventes par vendeur</value>
+  </data>
 </root>

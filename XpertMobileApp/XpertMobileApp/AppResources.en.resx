@@ -195,4 +195,22 @@
   <data name="msg_DeleteConfirmation" xml:space="preserve">
     <value>Are you sure you want to delete this item?</value>
   </data>
+  <data name="cmd_Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="txt_Filter" xml:space="preserve">
+    <value>Filtrer</value>
+  </data>
+  <data name="txt_EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="txt_StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="txt_MarginsByseller" xml:space="preserve">
+    <value>Margins by seller</value>
+  </data>
+  <data name="txt_SalesBySeller" xml:space="preserve">
+    <value>Sales by seller</value>
+  </data>
 </root>
