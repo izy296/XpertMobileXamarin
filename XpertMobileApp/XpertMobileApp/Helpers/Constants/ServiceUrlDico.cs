@@ -16,7 +16,7 @@ namespace XpertMobileApp.Helpers
 
         public static string ENCAISSEMENT_URL = "Encaissements";
 
-        public static string ENCAISSEMENT_PER_PAGE_URL = "EncaissementsPerPage";
+        public static string ENCAISSEMENT_PER_PAGE_URL = "GetEncaissements";
 
         public static string ADD_ENCAISSEMENT_URL = "addEncaissement";
 
@@ -39,6 +39,8 @@ namespace XpertMobileApp.Helpers
         public static string DASHBOARD_URL = "Dashboard";
 
         public static string MARGE_PAR_VENDEUR_URL = "MargeParVendeur";
+
+        public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
     }
 

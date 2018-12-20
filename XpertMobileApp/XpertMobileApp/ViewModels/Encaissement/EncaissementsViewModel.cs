@@ -19,7 +19,11 @@ namespace XpertMobileApp.ViewModels
     {
         private const int PageSize = 10;
 
-        public EncaissDisplayType EncaissDisplayType;
+        private int elementsCount;
+
+        public EncaissDisplayType EncaissDisplayType { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-90);
+        public DateTime EndDate { get; set; } = DateTime.Now;
 
         public InfiniteScrollCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
@@ -27,48 +31,68 @@ namespace XpertMobileApp.ViewModels
         public Command DeleteItemCommand { get; set; }
         public Command UpdateItemCommand { get; set; }
 
+        public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
+        public View_BSE_COMPTE SelectedCompte { get; set; }
+        public Command LoadComptesCommand { get; set; }
+
+
         public EncaissementsViewModel()
         {
             Title = AppResources.pn_encaissement;
 
-            // Items = new InfiniteScrollCollection<View_TRS_ENCAISS>();
+            Comptes = new ObservableCollection<View_BSE_COMPTE>();
+            LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
+
+            // Listing
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
+            // Ajout
             AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
             MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.ADD_ITEM, async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
             });
 
+            // Supression
             DeleteItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteDeleteItemCommand(item));
-            MessagingCenter.Subscribe<EncaissementDetailPage, View_TRS_ENCAISS>(this, "DeleteItem", async (obj, item) =>
+            MessagingCenter.Subscribe<EncaissementDetailPage, View_TRS_ENCAISS>(this, MCDico.DELETE_ITEM, async (obj, item) =>
             {
                 DeleteItemCommand.Execute(item);
             });
 
+            // Modification
             UpdateItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteUpdateItemCommand(item));
             MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
             {
                 UpdateItemCommand.Execute(item);
             });
 
+            // chargement infini
             Items = new InfiniteScrollCollection<View_TRS_ENCAISS>
             {
                 OnLoadMore = async () =>
                 {
+
                     IsBusy = true;
 
                     // Recupérer le type a afficher ENC,DEC or All
                     string type = GetCurrentType();
+
+                    elementsCount = await WebServiceClient.GetEncaissementsCount(App.RestServiceUrl, type, "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
+
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, page.ToString(), "all", "", "", "", "", "");
+                    var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
                     UpdateItemIndex(items);
 
                     IsBusy = false;
 
                     // return the items that need to be added
                     return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return Items.Count < elementsCount;
                 }
             };
         }
@@ -182,6 +206,34 @@ namespace XpertMobileApp.ViewModels
             }
 
             return type;
+        }
+
+        async Task ExecuteLoadComptesCommand()
+        {
+            /*
+            if (IsBusy)
+                return;
+            */
+
+            IsBusy = true;
+
+            try
+            {
+                Comptes.Clear();
+                var itemsC = await WebServiceClient.getComptes();
+                foreach (var itemC in itemsC)
+                {
+                    Comptes.Add(itemC);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 

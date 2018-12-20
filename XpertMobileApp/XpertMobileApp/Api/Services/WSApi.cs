@@ -73,10 +73,10 @@ namespace XpertMobileApp.Helpers
             return result;
         }
 
-        public static async Task<T> ExecuteGet<T>(string url, string token = null) where T : class
+        public static async Task<T> ExecuteGet<T>(string url, string token = null) 
         {
             string jsonResult = "";
-            T result = null;
+            T result;
             using (WebClient clt = new WebClient())
             {
                 if (!string.IsNullOrEmpty(token))
@@ -111,6 +111,14 @@ namespace XpertMobileApp.Helpers
             }
 
             return url;
+        }
+
+        public static string AddParam(string BaseUrl, string name, string value)
+        {
+            string param = "";
+            string separator = BaseUrl.Contains("?") ? "&" : "?";
+            param = string.Format("{0}{1}={2}", separator, name, value);
+            return param;
         }
     }
 }

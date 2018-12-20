@@ -24,8 +24,12 @@ namespace XpertMobileApp.Services
 
         public static async Task<List<T>> RetrievAauthorizedData<T>(string url)
         {
-            Token tokenInfos = await App.TokenDatabase.GetFirstItemAsync();
             return await WSApi.ExecuteGet<List<T>>(url, Token);
+        }
+
+        public static async Task<T> RetrievValAauthorizedData<T>(string url)
+        {
+            return await WSApi.ExecuteGet<T>(url, Token);
         }
 
         public static Token Login(string baseUrl, string username, string password)
@@ -96,20 +100,41 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
 
-        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, string startDate, string endDate,
-             string codeTiers, string codeMotif, string codeCompte)
+        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, DateTime? startDate, DateTime? endDate, string codeTiers, string codeMotif, string codeCompte)
         {
-            string url = "";
-            if (string.IsNullOrEmpty(startDate) && string.IsNullOrEmpty(endDate))
-            {
-                url += WSApi.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_PER_PAGE_URL, type, page, idCaisse);
-            }
-            else
-            {
-                url += WSApi.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_PER_PAGE_URL, type, page, idCaisse, startDate, endDate, codeTiers, codeMotif, codeMotif, codeCompte);
-            }
+            string url = WSApi.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ENCAISSEMENT_PER_PAGE_URL);
 
+            url += WSApi.AddParam(url, "type", type);
+            url += WSApi.AddParam(url, "page", page);
+            url += WSApi.AddParam(url, "id_caisse", idCaisse);
+            url += WSApi.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
+            url += WSApi.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
+            if (!string.IsNullOrEmpty(codeTiers))
+                url += WSApi.AddParam(url, "codeTiers", codeTiers);
+            if (!string.IsNullOrEmpty(codeCompte))
+                url += WSApi.AddParam(url, "codeCompte", codeCompte);
+            if(!string.IsNullOrEmpty(codeMotif))
+                url += WSApi.AddParam(url, "codeMotif", codeMotif);
+            
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
+        }
+
+        public static async Task<int> GetEncaissementsCount(string baseUrl, string type, string idCaisse, DateTime? startDate, DateTime? endDate, string codeTiers, string codeMotif, string codeCompte)
+        {
+            string url = WSApi.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ENCAISSEMENTS_COUNT);
+
+            url += WSApi.AddParam(url, "type", type);
+            url += WSApi.AddParam(url, "id_caisse", idCaisse);
+            url += WSApi.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
+            url += WSApi.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
+            if (!string.IsNullOrEmpty(codeTiers))
+                url += WSApi.AddParam(url, "codeTiers", codeTiers);
+            if (!string.IsNullOrEmpty(codeCompte))
+                url += WSApi.AddParam(url, "codeCompte", codeCompte);
+            if (!string.IsNullOrEmpty(codeMotif))
+                url += WSApi.AddParam(url, "codeMotif", codeMotif);
+
+            return await RetrievValAauthorizedData<int>(url);
         }
 
         internal static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type)

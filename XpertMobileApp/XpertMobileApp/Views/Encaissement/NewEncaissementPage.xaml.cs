@@ -65,7 +65,7 @@ namespace XpertMobileApp.Views.Encaissement
                 Item = new View_TRS_ENCAISS
                 {
                     DATE_ENCAISS = DateTime.Now,
-                    CODE_TYPE = "ENC"
+                    CODE_TYPE = type.ToString()
                 };
             }
 
@@ -74,7 +74,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(Item.CODE_COMPTE))
+            if(string.IsNullOrEmpty(Item.CODE_ENCAISS))
             { 
                 MessagingCenter.Send(this, MCDico.ADD_ITEM, Item);
             } else
