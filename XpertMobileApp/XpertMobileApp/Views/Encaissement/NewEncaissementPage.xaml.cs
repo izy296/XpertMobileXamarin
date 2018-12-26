@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -19,6 +20,9 @@ namespace XpertMobileApp.Views.Encaissement
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewEncaissementPage : ContentPage
 	{
+
+        public View_TRS_TIERS SelectedTiers { get; set; }
+
         public ObservableCollection<BSE_ENCAISS_MOTIFS> Motifs { get; set; }
         private BSE_ENCAISS_MOTIFS selectedMotif;
         public BSE_ENCAISS_MOTIFS SelectedMotif
@@ -38,23 +42,19 @@ namespace XpertMobileApp.Views.Encaissement
         public View_BSE_COMPTE SelectedCompte { get; set; }
         public Command LoadComptesCommand { get; set; }
 
-        public ObservableCollection<View_TRS_TIERS> Tiers { get; set; }
-        public View_TRS_TIERS SelectedTier { get; set; }
-        public Command LoadTiersCommand { get; set; }
-
         public View_TRS_ENCAISS Item { get; set; }
 
         public NewEncaissementPage (View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC)
 		{
 			InitializeComponent ();
-            
+
+            _loginPopup = new ListViewPage();
+
             Motifs  = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
-            Tiers   = new ObservableCollection<View_TRS_TIERS>();
 
             LoadIMotifsCommand = new Command(async () => await ExecuteLoadMotifsCommand(type));
             LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
-            LoadTiersCommand   = new Command(async () => await ExecuteLoadTiersCommand());
 
             if(item != null)
             {
@@ -70,6 +70,13 @@ namespace XpertMobileApp.Views.Encaissement
             }
 
             BindingContext = this;
+
+            MessagingCenter.Subscribe<ListViewPage, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            {
+                SelectedTiers = selectedItem;
+
+                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+            });
         }
 
         async void Save_Clicked(object sender, EventArgs e)
@@ -97,13 +104,9 @@ namespace XpertMobileApp.Views.Encaissement
             if (Motifs.Count == 0)
                 LoadIMotifsCommand.Execute(null);
 
-            if (Tiers.Count == 0)
-               LoadTiersCommand.Execute(null);
-
             if (Comptes.Count == 0)
                LoadComptesCommand.Execute(null);
 
-            TiersPicker.SelectedIndexChanged += TiersPicker_SelectedIndexChanged;
         }
 
         async Task ExecuteLoadMotifsCommand(EncaissDisplayType type)
@@ -170,36 +173,6 @@ namespace XpertMobileApp.Views.Encaissement
             }
         }
 
-        async Task ExecuteLoadTiersCommand()
-        {
-            /*
-            if (IsBusy)
-                return;
-            */
-            IsBusy = true;
-
-            try
-            {
-                 Tiers.Clear();
-                 var itemsT = await WebServiceClient.GetTiers("C");
-                 foreach (var itemT in itemsT)
-                 {
-                     Tiers.Add(itemT);
-                 }
-
-                 if(Item != null)
-                    SelectTier(Item.CODE_TIERS);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
         private void SelectMotif(string codeElem)
         {
             for (int i = 0; i < Motifs.Count; i++)
@@ -224,17 +197,6 @@ namespace XpertMobileApp.Views.Encaissement
             }
         }
 
-        private void SelectTier(string codeElem)
-        {
-            for (int i = 0; i < Tiers.Count; i++)
-            {
-                if (Tiers[i].CODE_TIERS == codeElem)
-                {
-                    TiersPicker.SelectedIndex = i;
-                    return;
-                }
-            }
-        }
         private void MotifPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var motif = Motifs[MotifsPicker.SelectedIndex];
@@ -247,12 +209,11 @@ namespace XpertMobileApp.Views.Encaissement
             Item.CODE_COMPTE = compte.CODE_COMPTE;            
         }
 
-        private void TiersPicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var tier = Tiers[TiersPicker.SelectedIndex];
-            Item.CODE_TIERS = tier.CODE_TIERS;
+        private ListViewPage _loginPopup;
 
-            TierSolde.Text = string.Format("{0:F2} DA", tier.SOLDE_TIERS);
+        private async void btn_Select_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(_loginPopup);
         }
     }
 }

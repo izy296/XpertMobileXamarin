@@ -72,23 +72,13 @@ namespace XpertMobileApp.Views
             viewModel.Entries1.Clear();
             foreach (var item in viewModel.Items)
             {
-                viewModel.Entries1.Add(
-                    new ChartDataModel(item.CREATED_BY, (double)item.Sum_TOTAL_VENTE)
-                    {
-                      //  Label = item.CREATED_BY,
-                      //  Color = Color.FromHex("#68B9C0")
-                    });
+                viewModel.Entries1.Add(new ChartDataModel(item.CREATED_BY, (double)item.Sum_TOTAL_VENTE));
             }
 
             viewModel.Entries2.Clear();
             foreach (var item in viewModel.Items)
             {
-                viewModel.Entries2.Add(
-                    new ChartDataModel(item.CREATED_BY, (double)item.Sum_MARGE)
-                    {
-                      //  Label = item.CREATED_BY,
-                      //  Color = Color.FromHex("#68B9C0")
-                    });
+                viewModel.Entries2.Add(new ChartDataModel(item.CREATED_BY, (double)item.Sum_MARGE));
             }
         }
 

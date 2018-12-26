@@ -58,7 +58,7 @@ namespace XpertMobileApp.Views
                     new Entry((float)item.Sum_TOTAL_VENTE)
                     {
                         Label = item.CREATED_BY,
-                        ValueLabel = item.Sum_TOTAL_VENTE.ToString("F2"),
+                        ValueLabel = item.Sum_TOTAL_VENTE.ToString("N2"),
                         Color = SKColor.Parse("#68B9C0")
                     });
             }
@@ -71,7 +71,7 @@ namespace XpertMobileApp.Views
                     new Entry((float)item.Sum_MARGE)
                     {
                         Label = item.CREATED_BY,
-                        ValueLabel = item.Sum_MARGE.ToString("F2"),
+                        ValueLabel = item.Sum_MARGE.ToString("N2"),
                         Color = SKColor.Parse("#68B9C0")
                     });
             }

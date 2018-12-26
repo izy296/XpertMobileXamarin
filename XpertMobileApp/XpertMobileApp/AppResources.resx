@@ -321,4 +321,13 @@
   <data name="txt_SalesBySeller" xml:space="preserve">
     <value>Ventes par vendeur</value>
   </data>
+  <data name="cmd_SelectElement" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
+  <data name="ph_seachedtxt" xml:space="preserve">
+    <value>Rechercher ....</value>
+  </data>
+  <data name="cmd_seach" xml:space="preserve">
+    <value>Chercher</value>
+  </data>
 </root>

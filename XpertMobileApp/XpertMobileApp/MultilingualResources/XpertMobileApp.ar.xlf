@@ -285,6 +285,18 @@
           <source>Ventes par vendeur</source>
           <target state="new">Ventes par vendeur</target>
         </trans-unit>
+        <trans-unit id="ph_seachedtxt" translate="yes" xml:space="preserve">
+          <source>Rechercher ....</source>
+          <target state="new">Rechercher ....</target>
+        </trans-unit>
+        <trans-unit id="cmd_SelectElement" translate="yes" xml:space="preserve">
+          <source>Sélectionner</source>
+          <target state="new">Sélectionner</target>
+        </trans-unit>
+        <trans-unit id="cmd_seach" translate="yes" xml:space="preserve">
+          <source>Chercher</source>
+          <target state="new">Chercher</target>
+        </trans-unit>
       </group>
     </body>
   </file>

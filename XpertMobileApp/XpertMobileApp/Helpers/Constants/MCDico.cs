@@ -10,6 +10,7 @@ namespace XpertMobileApp.Helpers
         public static string UPDATE_ITEM = "Update_Item";
         public static string DELETE_ITEM = "Delete_Item";
         public static string REFRESH_ITEM = "Refresh_Item";
+        public static string ITEM_SELECTED = "Item_Selected";
 
         public static string STATS_DATA_LOADED = "Stats_Data_Loaded";
     }

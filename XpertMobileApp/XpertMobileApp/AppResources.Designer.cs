@@ -241,6 +241,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chercher.
+        /// </summary>
+        internal static string cmd_seach {
+            get {
+                return ResourceManager.GetString("cmd_seach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sélectionner.
+        /// </summary>
+        internal static string cmd_SelectElement {
+            get {
+                return ResourceManager.GetString("cmd_SelectElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Modifier.
         /// </summary>
         internal static string cmd_Update {
@@ -417,6 +435,15 @@ namespace XpertMobileApp {
         internal static string NOM_TIERS {
             get {
                 return ResourceManager.GetString("NOM_TIERS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rechercher .....
+        /// </summary>
+        internal static string ph_seachedtxt {
+            get {
+                return ResourceManager.GetString("ph_seachedtxt", resourceCulture);
             }
         }
         

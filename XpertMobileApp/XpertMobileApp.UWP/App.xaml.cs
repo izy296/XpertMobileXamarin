@@ -52,6 +52,9 @@ namespace XpertMobileApp.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
+                Rg.Plugins.Popup.Popup.Init();
+
+                // Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Popup.GetExtraAssemblies());
                 Xamarin.Forms.Forms.Init(e);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)

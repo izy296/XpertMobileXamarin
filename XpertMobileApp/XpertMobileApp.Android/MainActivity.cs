@@ -23,8 +23,25 @@ namespace XpertMobileApp.Droid
 
             Instance = this;
 
+            // Init popup plugin
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        public override void OnBackPressed()
+        {
+            // Init popup plugin Back button Pressed
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else
+            {
+                // Do something if there are not any pages in the `PopupStack`
+            }
+        }
+
     }
 }
