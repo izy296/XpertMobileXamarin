@@ -48,7 +48,7 @@ namespace XpertMobileApp.Views.Encaissement
 		{
 			InitializeComponent ();
 
-            _loginPopup = new ListViewPage();
+            itemSelector = new ItemSelector();
 
             Motifs  = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
@@ -71,10 +71,12 @@ namespace XpertMobileApp.Views.Encaissement
 
             BindingContext = this;
 
-            MessagingCenter.Subscribe<ListViewPage, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
                 SelectedTiers = selectedItem;
 
+                Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
+                TierSolde.Text = string.Format("{0:F2} DA", SelectedTiers.SOLDE_TIERS);
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
         }
@@ -209,11 +211,11 @@ namespace XpertMobileApp.Views.Encaissement
             Item.CODE_COMPTE = compte.CODE_COMPTE;            
         }
 
-        private ListViewPage _loginPopup;
+        private ItemSelector itemSelector;
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(_loginPopup);
+            await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }
 }

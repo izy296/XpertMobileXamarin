@@ -38,6 +38,7 @@
     <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.180" />
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
@@ -73,6 +74,9 @@
     <Compile Update="Views\Encaissement\EncaissementDetailPage.xaml.cs">
       <DependentUpon>EncaissementDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Selector\ItemSelector.xaml.cs">
+      <DependentUpon>ItemSelector.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">
@@ -99,6 +103,18 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\ItemSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoadingPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoginPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoginSuccessPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
