@@ -15,7 +15,7 @@
                             <StackLayout.Padding>
                                 <OnPlatform x:TypeArguments="Thickness" WinPhone="3,3,3,3" />
                             </StackLayout.Padding>
-                            <Label Text="Imports" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
+                            <Label Text="{i18n:Translate txt_Sales}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
                             <BoxView Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                             <StackLayout Orientation="Horizontal"  VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
                                 <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
@@ -28,7 +28,7 @@
                             <StackLayout.Padding>
                                 <OnPlatform x:TypeArguments="Thickness" WinPhone="3,3,3,3" />
                             </StackLayout.Padding>
-                            <Label Text="Exports" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
+                            <Label Text="{i18n:Translate txt_Margin}" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
                             <BoxView Grid.Row="1" Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                             <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
                                 <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
@@ -42,7 +42,7 @@
             <chart:SfChart x:Name="Chart_Ventes" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                 <chart:SfChart.Title>
-                    <chart:ChartTitle Text="UK Trade in Food Groups - 2015"  />
+                    <chart:ChartTitle Text="{i18n:Translate txt_TotalSalesBySeler}" FontSize="20" TextColor="{StaticResource Accent}" />
                 </chart:SfChart.Title>
 
                 <chart:SfChart.ChartBehaviors>
@@ -52,7 +52,7 @@
                 <chart:SfChart.PrimaryAxis>
                     <chart:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
                         <chart:CategoryAxis.Title>
-                            <chart:ChartAxisTitle Text="Food"/>
+                            <chart:ChartAxisTitle Text="{i18n:Translate txt_Seler}"/>
                         </chart:CategoryAxis.Title>
                     </chart:CategoryAxis>
                 </chart:SfChart.PrimaryAxis>
@@ -77,12 +77,12 @@
                 <chart:SfChart.Series>
 
                     <chart:ColumnSeries x:Name="barSeries1" ItemsSource="{Binding Entries1}" XBindingPath="Name" 
-                                     YBindingPath="Value" LegendIcon="SeriesType" Label="Imports" 
+                                     YBindingPath="Value" LegendIcon="SeriesType" Label="{i18n:Translate txt_Sales}" 
                                      EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate1}">
                         <chart:ColumnSeries.DataMarker>
                             <chart:ChartDataMarker ShowLabel="True">
                                 <chart:ChartDataMarker.LabelStyle>
-                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12">
+                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12" BackgroundColor="Transparent">
                                     </chart:DataMarkerLabelStyle>
                                 </chart:ChartDataMarker.LabelStyle>
                             </chart:ChartDataMarker>
@@ -95,7 +95,7 @@
             <chart:SfChart x:Name="Chart_Marges" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                 <chart:SfChart.Title>
-                    <chart:ChartTitle Text="UK Trade in Food Groups - 2015" />
+                    <chart:ChartTitle Text="{i18n:Translate txt_TotalMarginBySeler}" FontSize="20" TextColor="{StaticResource Accent}" />
                 </chart:SfChart.Title>
 
                 <chart:SfChart.ChartBehaviors>
@@ -105,7 +105,7 @@
                 <chart:SfChart.PrimaryAxis>
                     <chart:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
                         <chart:CategoryAxis.Title>
-                            <chart:ChartAxisTitle Text="Food" />
+                            <chart:ChartAxisTitle Text="{i18n:Translate txt_Seler}" />
                         </chart:CategoryAxis.Title>
                     </chart:CategoryAxis>
                 </chart:SfChart.PrimaryAxis>
@@ -130,12 +130,12 @@
 
                 <chart:SfChart.Series>
                     <chart:ColumnSeries x:Name="barSeries2" ItemsSource="{Binding Entries2}" XBindingPath="Name" 
-                                     YBindingPath="Value" LegendIcon="SeriesType" Label="Exports" 
+                                     YBindingPath="Value" LegendIcon="SeriesType" Label="{i18n:Translate txt_Margin}" 
                                      EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate2}">
                         <chart:ColumnSeries.DataMarker>
                             <chart:ChartDataMarker ShowLabel="True">
                                 <chart:ChartDataMarker.LabelStyle>
-                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12">
+                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12" BackgroundColor="Transparent">
                                     </chart:DataMarkerLabelStyle>
                                 </chart:ChartDataMarker.LabelStyle>
                             </chart:ChartDataMarker>
@@ -146,7 +146,7 @@
             </chart:SfChart>
             
             <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" 
-                         HorizontalOptions="Fill" BackgroundColor="Gray">
+                         HorizontalOptions="Fill" BackgroundColor="Gray" VerticalOptions="End">
                 <Button x:Name="btn_Day" ClassId="btn_Day" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Day}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
                 <Button x:Name="btn_Week" ClassId="btn_Week" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Week}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
                 <Button x:Name="btn_Month" ClassId="btn_Month" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Month}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>

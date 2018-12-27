@@ -19,7 +19,7 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return App.CurrentUser != null;
+                return App.User != null;
             }
         }
 

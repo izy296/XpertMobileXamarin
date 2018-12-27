@@ -297,6 +297,26 @@
           <source>Chercher</source>
           <target state="new">Chercher</target>
         </trans-unit>
+        <trans-unit id="cmd_Disconnect" translate="yes" xml:space="preserve">
+          <source>Déconnexion</source>
+          <target state="new">Déconnexion</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalMarginBySeler" translate="yes" xml:space="preserve">
+          <source>Total marges par vendeur</source>
+          <target state="new">Total marges par vendeur</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalSalesBySeler" translate="yes" xml:space="preserve">
+          <source>Total ventes par vendeur</source>
+          <target state="new">Total ventes par vendeur</target>
+        </trans-unit>
+        <trans-unit id="txt_Margin" translate="yes" xml:space="preserve">
+          <source>Marges</source>
+          <target state="new">Marges</target>
+        </trans-unit>
+        <trans-unit id="txt_Sales" translate="yes" xml:space="preserve">
+          <source>Ventes</source>
+          <target state="new">Ventes</target>
+        </trans-unit>
       </group>
     </body>
   </file>

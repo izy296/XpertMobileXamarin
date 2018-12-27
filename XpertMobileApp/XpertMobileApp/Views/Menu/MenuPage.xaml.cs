@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -27,6 +28,7 @@ namespace XpertMobileApp.Views
             ListViewMenu.ItemsSource = menuItems;
 
             ListViewMenu.SelectedItem = menuItems[0];
+
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)
@@ -35,6 +37,12 @@ namespace XpertMobileApp.Views
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
+        }
+
+        private void btn_Disconnect_Clicked(object sender, EventArgs e)
+        {
+            App.User = null;
+            Application.Current.MainPage = new LoginPage();
         }
     }
 }

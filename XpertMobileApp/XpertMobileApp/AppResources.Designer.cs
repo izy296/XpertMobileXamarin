@@ -223,6 +223,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Déconnexion.
+        /// </summary>
+        internal static string cmd_Disconnect {
+            get {
+                return ResourceManager.GetString("cmd_Disconnect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Filtre.
         /// </summary>
         internal static string cmd_Filter {
@@ -619,6 +628,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Marges.
+        /// </summary>
+        internal static string txt_Margin {
+            get {
+                return ResourceManager.GetString("txt_Margin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Marges par vendeur.
         /// </summary>
         internal static string txt_MarginsByseller {
@@ -637,11 +655,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes.
+        /// </summary>
+        internal static string txt_Sales {
+            get {
+                return ResourceManager.GetString("txt_Sales", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ventes par vendeur.
         /// </summary>
         internal static string txt_SalesBySeller {
             get {
                 return ResourceManager.GetString("txt_SalesBySeller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vendeur.
+        /// </summary>
+        internal static string txt_Seler {
+            get {
+                return ResourceManager.GetString("txt_Seler", resourceCulture);
             }
         }
         
@@ -660,6 +696,24 @@ namespace XpertMobileApp {
         internal static string txt_Today {
             get {
                 return ResourceManager.GetString("txt_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total marges par vendeur.
+        /// </summary>
+        internal static string txt_TotalMarginBySeler {
+            get {
+                return ResourceManager.GetString("txt_TotalMarginBySeler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total ventes par vendeur.
+        /// </summary>
+        internal static string txt_TotalSalesBySeler {
+            get {
+                return ResourceManager.GetString("txt_TotalSalesBySeler", resourceCulture);
             }
         }
         

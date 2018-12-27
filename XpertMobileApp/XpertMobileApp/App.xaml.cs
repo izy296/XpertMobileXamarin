@@ -20,7 +20,6 @@ namespace XpertMobileApp
 
         private static string LOCAL_DB_NAME = "LinkedResto.db3";
         public static User User { get; internal set; }
-        public static User CurrentUser { get; internal set; }
 
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
@@ -76,7 +75,6 @@ namespace XpertMobileApp
             {
             }
         }
-
 
         public static bool IsConected
         {

@@ -8,20 +8,20 @@
              Title="{Binding Title}">
     
     <ContentPage.Content>
-        <StackLayout Padding="0" Margin="0" Spacing="0">
-            <ScrollView>
-                <StackLayout Padding="0,10,0,0">
+        <StackLayout Padding="0" Margin="0" Spacing="0" VerticalOptions="Fill" >
+            <ScrollView VerticalOptions="FillAndExpand">
+                <StackLayout Padding="0,10,0,0" VerticalOptions="FillAndExpand" >
                     <Label Text="{i18n:Translate txt_SalesBySeller}"
                            Margin="0,10,0,10" HorizontalOptions="Center" TextColor="{StaticResource Key=Primary}" FontSize="Large"/>
-                    <forms:ChartView x:Name="Chart1" HeightRequest="265"/>
+                    <forms:ChartView x:Name="Chart1" HeightRequest="250" />
 
                     <Label Text="{i18n:Translate txt_MarginsByseller}" 
                            Margin="0,10,0,10" HorizontalOptions="Center" TextColor="{StaticResource Key=Primary}" FontSize="Large"/>
-                    <forms:ChartView x:Name="Chart2" HeightRequest="265"/>
+                    <forms:ChartView x:Name="Chart2" HeightRequest="250" />
                 </StackLayout>
             </ScrollView>
             <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" 
-                         HorizontalOptions="Fill" BackgroundColor="Gray">
+                         HorizontalOptions="Fill" VerticalOptions="End">
                 <Button x:Name="btn_Day" ClassId="btn_Day" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Day}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
                 <Button x:Name="btn_Week" ClassId="btn_Week" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Week}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
                 <Button x:Name="btn_Month" ClassId="btn_Month" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Month}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>

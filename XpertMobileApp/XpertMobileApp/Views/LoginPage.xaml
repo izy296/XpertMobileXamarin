@@ -61,11 +61,16 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout Grid.Row="2" BackgroundColor="Transparent">
-            <Button x:Name="Btn_Config" Margin="0" WidthRequest="50" HeightRequest="50"    
+        <StackLayout Grid.Row="2" BackgroundColor="Transparent" Orientation="Horizontal">
+            <Button x:Name="Btn_Exit" Margin="0" 
+                    WidthRequest="50" HeightRequest="50" Image="logout.png"    
                     HorizontalOptions="End" BackgroundColor="White"
-                                Image="param_32.png"
-                                Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
+                    Text="{i18n:Translate cmd_Disconnect}" Clicked="Exit_Clicked"/>
+            
+            <Button x:Name="Btn_Config" Margin="0" 
+                    WidthRequest="50" HeightRequest="50" Image="param_32.png"    
+                    HorizontalOptions="End" BackgroundColor="White"
+                    Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>
