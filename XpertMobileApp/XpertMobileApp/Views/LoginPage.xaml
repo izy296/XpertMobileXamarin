@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
         <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <!--Affichage de l'alerte en cas de deconnexion -->
-            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red"/>
+            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
                 <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
@@ -28,8 +28,8 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1">
-            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -61,16 +61,18 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout Grid.Row="2" BackgroundColor="Transparent" Orientation="Horizontal">
+        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+
+            <Button x:Name="Btn_Config" Margin="0" 
+                    WidthRequest="50" HeightRequest="50" Image="param_32.png"    
+                    HorizontalOptions="End" BackgroundColor="White"
+                    Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
+            
             <Button x:Name="Btn_Exit" Margin="0" 
                     WidthRequest="50" HeightRequest="50" Image="logout.png"    
                     HorizontalOptions="End" BackgroundColor="White"
                     Text="{i18n:Translate cmd_Disconnect}" Clicked="Exit_Clicked"/>
             
-            <Button x:Name="Btn_Config" Margin="0" 
-                    WidthRequest="50" HeightRequest="50" Image="param_32.png"    
-                    HorizontalOptions="End" BackgroundColor="White"
-                    Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
         </StackLayout>
     </Grid>
 </ContentPage>
