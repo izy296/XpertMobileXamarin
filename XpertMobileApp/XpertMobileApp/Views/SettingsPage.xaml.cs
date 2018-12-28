@@ -92,7 +92,13 @@ namespace XpertMobileApp.Views
                 return;
             }
 
-            bool reachable = await this.IsBlogReachableAndRunning(App.Settings.ServerName, Convert.ToInt32(App.Settings.Port));
+            int port;
+            if (string.IsNullOrEmpty(App.Settings.Port))
+                port = 80;
+            else
+                port = Convert.ToInt32(App.Settings.Port);
+
+            bool reachable = await this.IsBlogReachableAndRunning(App.Settings.ServerName, port);
             if (reachable)
             {
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionSucces, AppResources.alrt_msg_Ok);
