@@ -35,7 +35,7 @@
                 <Label Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
                 <Picker ItemsSource="{Binding Motifs}"
                                 ItemDisplayBinding="{Binding DESIGN_MOTIF}"
-                                SelectedItem="selectedMotif"
+                                SelectedItem="{Binding SelectedMotif}"
                                 TextColor="{StaticResource Primary}"
                                 SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30" 
@@ -44,7 +44,7 @@
                 <Label Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
                 <Picker ItemsSource="{Binding Comptes}"
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                SelectedItem="SelectedCompte"
+                                SelectedItem="{Binding SelectedCompte}"
                                 TextColor="{StaticResource Primary}"
                                 SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30"                 

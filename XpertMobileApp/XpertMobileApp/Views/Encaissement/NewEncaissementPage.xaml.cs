@@ -39,7 +39,20 @@ namespace XpertMobileApp.Views.Encaissement
         public Command LoadIMotifsCommand { get; set; }
 
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
+
+        private View_BSE_COMPTE selectedCompte;
+        public View_BSE_COMPTE SelectedCompte
+        {
+            get
+            {
+                return selectedCompte;
+            }
+            set
+            {
+                selectedCompte = value;
+            }
+        }
+
         public Command LoadComptesCommand { get; set; }
 
         public View_TRS_ENCAISS Item { get; set; }
@@ -83,6 +96,18 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            if (SelectedTiers == null)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_ThirdNotEmpty, AppResources.alrt_msg_Ok);
+                return;
+            }
+
+            if (SelectedCompte == null)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
+                return;
+            }
+
             if(string.IsNullOrEmpty(Item.CODE_ENCAISS))
             { 
                 MessagingCenter.Send(this, MCDico.ADD_ITEM, Item);
