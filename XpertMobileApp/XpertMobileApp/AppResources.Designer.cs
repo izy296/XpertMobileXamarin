@@ -340,6 +340,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez sélectionner un compte.
+        /// </summary>
+        internal static string error_AccountNotEmpty {
+            get {
+                return ResourceManager.GetString("error_AccountNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez sélectionner un tiers.
+        /// </summary>
+        internal static string error_ThirdNotEmpty {
+            get {
+                return ResourceManager.GetString("error_ThirdNotEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion.
         /// </summary>
         internal static string lp_btn_Login {

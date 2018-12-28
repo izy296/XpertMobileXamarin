@@ -317,6 +317,18 @@
           <source>Ventes</source>
           <target state="new">Ventes</target>
         </trans-unit>
+        <trans-unit id="txt_Seler" translate="yes" xml:space="preserve">
+          <source>Vendeur</source>
+          <target state="new">Vendeur</target>
+        </trans-unit>
+        <trans-unit id="error_ThirdNotEmpty" translate="yes" xml:space="preserve">
+          <source>Veuillez sélectionner un tiers</source>
+          <target state="new">Veuillez sélectionner un tiers</target>
+        </trans-unit>
+        <trans-unit id="error_AccountNotEmpty" translate="yes" xml:space="preserve">
+          <source>Veuillez sélectionner un compte</source>
+          <target state="new">Veuillez sélectionner un compte</target>
+        </trans-unit>
       </group>
     </body>
   </file>

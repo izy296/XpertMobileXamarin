@@ -348,4 +348,10 @@
   <data name="txt_TotalSalesBySeler" xml:space="preserve">
     <value>Total ventes par vendeur</value>
   </data>
+  <data name="error_AccountNotEmpty" xml:space="preserve">
+    <value>Veuillez sélectionner un compte</value>
+  </data>
+  <data name="error_ThirdNotEmpty" xml:space="preserve">
+    <value>Veuillez sélectionner un tiers</value>
+  </data>
 </root>
