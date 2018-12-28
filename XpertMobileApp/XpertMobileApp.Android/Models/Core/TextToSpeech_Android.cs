@@ -31,7 +31,21 @@ namespace XpertMobileApp.Droid.Models
         {
             if (status.Equals(OperationResult.Success))
             {
-                speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+                try
+                {
+                    if (Android.OS.Build.VERSION.SdkInt >= Android.OS.Build.VERSION_CODES.Lollipop)
+                    {
+                        speaker.Speak(toSpeak, QueueMode.Flush, null, null);
+                    }
+                    else
+                    {
+                        speaker.Speak(toSpeak, QueueMode.Flush, null);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
         }
         #endregion
