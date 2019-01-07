@@ -329,6 +329,10 @@
           <source>Veuillez sélectionner un compte</source>
           <target state="new">Veuillez sélectionner un compte</target>
         </trans-unit>
+        <trans-unit id="alrt_msg_CantTestConnexionSettings" translate="yes" xml:space="preserve">
+          <source>Erreur lors de la tentative de connexion</source>
+          <target state="new">Erreur lors de la tentative de connexion</target>
+        </trans-unit>
       </group>
     </body>
   </file>

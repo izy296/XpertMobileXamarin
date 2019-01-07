@@ -106,6 +106,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur lors de la tentative de connexion.
+        /// </summary>
+        internal static string alrt_msg_CantTestConnexionSettings {
+            get {
+                return ResourceManager.GetString("alrt_msg_CantTestConnexionSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion échoué veullez vérifier les informations du serveur.
         /// </summary>
         internal static string alrt_msg_ConnectionError {

@@ -354,4 +354,7 @@
   <data name="error_ThirdNotEmpty" xml:space="preserve">
     <value>Veuillez sélectionner un tiers</value>
   </data>
+  <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
+    <value>Erreur lors de la tentative de connexion</value>
+  </data>
 </root>

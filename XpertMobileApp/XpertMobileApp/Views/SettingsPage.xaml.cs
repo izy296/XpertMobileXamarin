@@ -92,32 +92,46 @@ namespace XpertMobileApp.Views
                 return;
             }
 
-            int port;
-            if (string.IsNullOrEmpty(App.Settings.Port))
-                port = 80;
-            else
-                port = Convert.ToInt32(App.Settings.Port);
+            try
+            { 
+                int port = 80;
+                if (!string.IsNullOrEmpty(App.Settings.Port))
+                { 
+                    port = Convert.ToInt32(App.Settings.Port);
+                }
 
-            bool reachable = await this.IsBlogReachableAndRunning(App.Settings.ServerName, port);
-            if (reachable)
-            {
-                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionSucces, AppResources.alrt_msg_Ok);
+                bool reachable = await this.IsBlogReachableAndRunning(App.Settings.ServerName, port);
+                if (reachable)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionSucces, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionError, AppResources.alrt_msg_Ok);
+                }
             }
-            else
+            catch 
             {
-                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionError, AppResources.alrt_msg_Ok);
+                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_CantTestConnexionSettings, AppResources.alrt_msg_Ok);
             }
         }
 
         public async Task<bool> IsBlogReachableAndRunning(string host, int port = 80, int msTimeout = 5000)
         {
-            var connectivity = CrossConnectivity.Current;
-            if (!connectivity.IsConnected)
-                return false;
+            try
+            { 
+                var connectivity = CrossConnectivity.Current;
+                if (!connectivity.IsConnected)
+                    return false;
 
-            var reachable = await connectivity.IsRemoteReachable(host, port, msTimeout);
+                var reachable = await connectivity.IsRemoteReachable(host, port, msTimeout);
 
-            return reachable;
+                return reachable;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

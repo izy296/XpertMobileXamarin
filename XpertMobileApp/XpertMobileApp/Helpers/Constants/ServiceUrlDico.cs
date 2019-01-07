@@ -26,8 +26,6 @@ namespace XpertMobileApp.Helpers
 
         public static string MOTIFS_URL = "motifs";
 
-        public static string CAISSES_URL = "caisses";
-
         public static string COMPTES_URL = "comptes";
 
         public static string TIERS_URL = "tiers";

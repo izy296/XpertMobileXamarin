@@ -163,12 +163,6 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_TRS_TIERS>(url);
         }
 
-        internal static async Task<List<View_BSE_COMPTE>> GetCaisses(string type)
-        {
-            string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.CAISSES_URL);
-            return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
-        }
-
         internal static async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)
         {
             string url = WSApi.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ADD_ENCAISSEMENT_URL);
