@@ -357,4 +357,10 @@
   <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
     <value>Erreur lors de la tentative de connexion</value>
   </data>
+  <data name="err_msg_badConnexionUrl" xml:space="preserve">
+    <value>L'url de connexion est incorrecte</value>
+  </data>
+  <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
+    <value>Veuillez vérifier les informations d'authentification</value>
+  </data>
 </root>

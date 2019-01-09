@@ -349,6 +349,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;url de connexion est incorrecte.
+        /// </summary>
+        internal static string err_msg_badConnexionUrl {
+            get {
+                return ResourceManager.GetString("err_msg_badConnexionUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez vérifier les informations d&apos;authentification.
+        /// </summary>
+        internal static string err_msg_IncorrectLoginInfos {
+            get {
+                return ResourceManager.GetString("err_msg_IncorrectLoginInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Veuillez sélectionner un compte.
         /// </summary>
         internal static string error_AccountNotEmpty {

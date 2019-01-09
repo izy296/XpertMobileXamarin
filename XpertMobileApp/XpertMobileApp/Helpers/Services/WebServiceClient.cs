@@ -32,32 +32,16 @@ namespace XpertMobileApp.Services
             return await WSApi.ExecuteGet<T>(url, Token);
         }
 
-        public static Token Login(string baseUrl, string username, string password)
+        public static async Task<Token> Login(string baseUrl, string username, string password)
         {
             try
-            {
-                using (WebClient client = new WebClient())
-                {
-                    // url de l'authentification et du recupération du token
-                    string url = baseUrl + ServiceUrlDico.TOKEN_URL;
-
-                    // Preparation des paramettres
-                    NameValueCollection values = new NameValueCollection();
-                    values.Add("username", username);
-                    values.Add("password", password);
-                    values.Add("grant_type", "password");
-
-                    byte[] result = WSApi.ExecutePostForm(url, values);
-                    Token tokenInfos = JsonConvert.DeserializeObject<Token>(Encoding.UTF8.GetString(result));
-                    DateTime dt = new DateTime();
-                    dt = DateTime.Now;
-                    tokenInfos.expire_Date = dt.AddSeconds(tokenInfos.expires_in);
-                    return tokenInfos;
-                }
+            { 
+                string url = baseUrl + "Token";
+                return await WSApi2.Log_in(url, username, password);
             }
-            catch (WebException e)
+            catch (XpertException e)
             {
-                throw new WebException("Un problème est survenu lors de la tentative de connexion : " + e.Message, e);
+                throw new XpertException(e.Message, e.Code);
             }
         }
 

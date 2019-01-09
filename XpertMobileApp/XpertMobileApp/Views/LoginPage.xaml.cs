@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Data;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
@@ -97,10 +98,6 @@ namespace XpertMobileApp.Views
                         Application.Current.MainPage = new MainPage();
                     }
                 }
-                else
-                {
-                    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
-                }
             }
             else
             {
@@ -112,16 +109,21 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                Token result = WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
+                Token result = await WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
                 return result != null ? result : new Token();
             }
-            catch (WebException e)
+            catch (XpertException e)
             {
-                await DisplayAlert(AppResources.alrt_msg_Alert, e.Message, AppResources.alrt_msg_Ok);
+                if(e.Code == XpertException.ERROR_XPERT_INCORRECTPASSWORD)
+                { 
+                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.err_msg_IncorrectLoginInfos, AppResources.alrt_msg_Ok);
+                } else
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Alert, e.Message, AppResources.alrt_msg_Ok);
+                }
                 return null;
             }
         }
-
 
         private bool CheckUser(User user)
         {

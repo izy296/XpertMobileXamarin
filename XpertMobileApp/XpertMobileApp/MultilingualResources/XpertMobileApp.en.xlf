@@ -333,6 +333,14 @@
           <source>Erreur lors de la tentative de connexion</source>
           <target state="new">Erreur lors de la tentative de connexion</target>
         </trans-unit>
+        <trans-unit id="err_msg_badConnexionUrl" translate="yes" xml:space="preserve">
+          <source>L'url de connexion est incorrecte</source>
+          <target state="new">L'url de connexion est incorrecte</target>
+        </trans-unit>
+        <trans-unit id="err_msg_IncorrectLoginInfos" translate="yes" xml:space="preserve">
+          <source>Veuillez vérifier les informations d'authentification</source>
+          <target state="new">Veuillez vérifier les informations d'authentification</target>
+        </trans-unit>
       </group>
     </body>
   </file>
