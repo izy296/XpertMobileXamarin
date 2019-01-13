@@ -6,6 +6,9 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Acr.UserDialogs;
+using Plugin.FirebasePushNotification;
+using Android.Content;
 
 namespace XpertMobileApp.Droid
 {
@@ -27,7 +30,18 @@ namespace XpertMobileApp.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            UserDialogs.Init(this);
+
             LoadApplication(new App());
+
+            FirebasePushNotificationManager.ProcessIntent(this, Intent);
+        }
+
+        protected override void OnNewIntent(Intent intent)
+        {
+            base.OnNewIntent(intent);
+            FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
 
         public override void OnBackPressed()
