@@ -1,4 +1,6 @@
-﻿using Plugin.Connectivity;
+﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
+using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
 using System;
 using System.Globalization;
@@ -34,13 +36,38 @@ namespace XpertMobileApp
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
-        
-            MainPage = new LoginPage(); // LoginPage();  
+
+            string currentVersion = "1.0";
+            if(App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion , currentVersion) >= 0)
+            {
+                MainPage = new UpdatePage(); // LoginPage();  
+            }
+            else
+            {
+                MainPage = new LoginPage();
+            }  
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
+
+            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+            {
+                string currentVerision = "1.0";
+                object CriticalVersion;
+
+                if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
+                {
+                    if (String.Compare(Convert.ToString(CriticalVersion),currentVerision) > 0)
+                    {
+                        App.Settings.ShouldUpdate = true;
+                        App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
+                        App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    }
+                }
+
+            };
         }
 
         protected override void OnSleep()

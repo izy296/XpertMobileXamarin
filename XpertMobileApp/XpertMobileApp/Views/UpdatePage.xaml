@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.UpdatePage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             BackgroundColor="White"
+             >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="20,0,20,0">
+            <ContentView Padding="0,-50,0,20" VerticalOptions="FillAndExpand">
+                <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
+            </ContentView>
+            <Label Text="{i18n:Translate txt_ShouldUpdateVersion}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand"
+                Margin="20" TextColor="{StaticResource DefaultTextColor}"   />
+            <Button x:Name="btn_VersionUpdate" Text="{i18n:Translate txt_UpdateVersion}" 
+                    Style="{StaticResource DefaultBtnStyle}" 
+                    Clicked="btn_VersionUpdate_Clicked"
+                    HorizontalOptions="Center" BorderRadius="5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
