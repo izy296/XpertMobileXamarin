@@ -367,6 +367,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Erreur de chargement de données.
+        /// </summary>
+        internal static string err_msg_loadingDataError {
+            get {
+                return ResourceManager.GetString("err_msg_loadingDataError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Veuillez sélectionner un compte.
         /// </summary>
         internal static string error_AccountNotEmpty {
@@ -628,6 +637,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Comptes.
+        /// </summary>
+        internal static string txt_Comptes {
+            get {
+                return ResourceManager.GetString("txt_Comptes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Jour.
         /// </summary>
         internal static string txt_Day {
@@ -651,6 +669,15 @@ namespace XpertMobileApp {
         internal static string txt_Encaiss {
             get {
                 return ResourceManager.GetString("txt_Encaiss", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Encaissements.
+        /// </summary>
+        internal static string txt_Encaissments {
+            get {
+                return ResourceManager.GetString("txt_Encaissments", resourceCulture);
             }
         }
         
@@ -727,6 +754,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l&apos;utiliser.
+        /// </summary>
+        internal static string txt_ShouldUpdateVersion {
+            get {
+                return ResourceManager.GetString("txt_ShouldUpdateVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Date début.
         /// </summary>
         internal static string txt_StartDate {
@@ -759,6 +795,15 @@ namespace XpertMobileApp {
         internal static string txt_TotalSalesBySeler {
             get {
                 return ResourceManager.GetString("txt_TotalSalesBySeler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mettre à jour.
+        /// </summary>
+        internal static string txt_UpdateVersion {
+            get {
+                return ResourceManager.GetString("txt_UpdateVersion", resourceCulture);
             }
         }
         

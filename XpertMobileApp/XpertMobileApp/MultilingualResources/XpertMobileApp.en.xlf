@@ -341,6 +341,26 @@
           <source>Veuillez vérifier les informations d'authentification</source>
           <target state="new">Veuillez vérifier les informations d'authentification</target>
         </trans-unit>
+        <trans-unit id="err_msg_loadingDataError" translate="yes" xml:space="preserve">
+          <source>Erreur de chargement de données</source>
+          <target state="new">Erreur de chargement de données</target>
+        </trans-unit>
+        <trans-unit id="txt_Comptes" translate="yes" xml:space="preserve">
+          <source>Comptes</source>
+          <target state="new">Comptes</target>
+        </trans-unit>
+        <trans-unit id="txt_Encaissments" translate="yes" xml:space="preserve">
+          <source>Encaissements</source>
+          <target state="new">Encaissements</target>
+        </trans-unit>
+        <trans-unit id="txt_ShouldUpdateVersion" translate="yes" xml:space="preserve">
+          <source>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</source>
+          <target state="new">Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</target>
+        </trans-unit>
+        <trans-unit id="txt_UpdateVersion" translate="yes" xml:space="preserve">
+          <source>Mettre à jour</source>
+          <target state="new">Mettre à jour</target>
+        </trans-unit>
       </group>
     </body>
   </file>

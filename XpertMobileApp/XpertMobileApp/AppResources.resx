@@ -363,4 +363,19 @@
   <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
     <value>Veuillez vérifier les informations d'authentification</value>
   </data>
+  <data name="err_msg_loadingDataError" xml:space="preserve">
+    <value>Erreur de chargement de données</value>
+  </data>
+  <data name="txt_Comptes" xml:space="preserve">
+    <value>Comptes</value>
+  </data>
+  <data name="txt_Encaissments" xml:space="preserve">
+    <value>Encaissements</value>
+  </data>
+  <data name="txt_ShouldUpdateVersion" xml:space="preserve">
+    <value>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</value>
+  </data>
+  <data name="txt_UpdateVersion" xml:space="preserve">
+    <value>Mettre à jour</value>
+  </data>
 </root>

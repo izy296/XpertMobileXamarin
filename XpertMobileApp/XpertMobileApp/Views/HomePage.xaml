@@ -52,9 +52,9 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
+                        
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="Encaissement" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <Label Text="{i18n:Translate txt_Encaissments}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
 
@@ -88,7 +88,7 @@
                         </Grid.RowDefinitions>
 
                         <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
-                            <Label Text="{i18n:Translate txt_Compte}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                            <Label Text="{i18n:Translate txt_Comptes}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                             <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                         </StackLayout>
 

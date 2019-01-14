@@ -84,12 +84,12 @@ namespace XpertMobileApp.Views
                     {
                         await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
                     }
-
-                    if (Device.OS == TargetPlatform.Android)
+                    
+                    if (Device.RuntimePlatform == Device.Android)
                     {
                         Application.Current.MainPage = new MainPage();
                     }
-                    else if (Device.OS == TargetPlatform.iOS)
+                    else if (Device.RuntimePlatform == Device.iOS)
                     {
                         await Navigation.PushModalAsync(new MainPage(), false);
                     }
