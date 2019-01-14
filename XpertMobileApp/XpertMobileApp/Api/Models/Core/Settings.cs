@@ -72,6 +72,9 @@ namespace XpertMobileApp.Models
             }
         }
 
+        public bool ShouldUpdate { get; set; }
+        public string DestinationVersion { get; set; }
+
         public Settings() { }
 
     }
