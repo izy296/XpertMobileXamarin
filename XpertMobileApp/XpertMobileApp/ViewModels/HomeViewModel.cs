@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -75,11 +76,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-
+                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
         }
 
@@ -91,7 +89,7 @@ namespace XpertMobileApp.ViewModels
                 var items = await WebServiceClient.GetSessionInfos();
 
                 if(items.Count > 0)
-                    this.CurrentSession = items[3];
+                    this.CurrentSession = items[0];
 
                 foreach (var item in items)
                 {
@@ -106,11 +104,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
- 
+                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
         }
 
@@ -127,11 +122,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-
+                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
         }
     }

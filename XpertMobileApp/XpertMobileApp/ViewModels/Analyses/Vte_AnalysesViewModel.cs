@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -54,7 +55,8 @@ namespace XpertMobileApp.ViewModels.Analyses
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                 AppResources.alrt_msg_Ok);
             }
             finally
             {

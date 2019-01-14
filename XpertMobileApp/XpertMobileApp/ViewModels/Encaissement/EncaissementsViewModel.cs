@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -72,7 +73,6 @@ namespace XpertMobileApp.ViewModels
             {
                 OnLoadMore = async () =>
                 {
-
                     IsBusy = true;
 
                     // Recupérer le type a afficher ENC,DEC or All
@@ -99,57 +99,93 @@ namespace XpertMobileApp.ViewModels
 
         async Task ExecuteUpdateItemCommand(View_TRS_ENCAISS item)
         {
-            if (App.IsConected)
+            try
             {
-                var newItem = item as View_TRS_ENCAISS;
-
-                // Save the added Item in the local bdd
-                // await DataStore.DeleteItemAsync(newItem);
-
-                // TODO : test if connected else mark as not synchronizd
-                View_TRS_ENCAISS result = await WebServiceClient.UpdateEncaissement(newItem);
-                MessagingCenter.Send(this, MCDico.REFRESH_ITEM, result);
-                if (result != null)
+                if (App.IsConected)
                 {
-                    int idx = Items.IndexOf(item);
-                    Items[idx] = result;
+                    var newItem = item as View_TRS_ENCAISS;
+
+                    // Save the added Item in the local bdd
+                    // await DataStore.DeleteItemAsync(newItem);
+
+                    // TODO : test if connected else mark as not synchronizd
+                    View_TRS_ENCAISS result = await WebServiceClient.UpdateEncaissement(newItem);
+                    MessagingCenter.Send(this, MCDico.REFRESH_ITEM, result);
+                    if (result != null)
+                    {
+                        int idx = Items.IndexOf(item);
+                        Items[idx] = result;
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
         async Task ExecuteDeleteItemCommand(View_TRS_ENCAISS item)
         {
-            if (App.IsConected)
+            try
             {
-                var newItem = item as View_TRS_ENCAISS;
+                if (App.IsConected)
+                {
+                    var newItem = item as View_TRS_ENCAISS;
 
-                // Save the added Item in the local bdd
-                // await DataStore.DeleteItemAsync(newItem);
+                    // Save the added Item in the local bdd
+                    // await DataStore.DeleteItemAsync(newItem);
 
-                // TODO : test if connected else mark as not synchronizd
-                bool result = await WebServiceClient.DeleteEncaissement(newItem);
-                if (result)
-                { 
-                    Items.Remove(item);
+                    // TODO : test if connected else mark as not synchronizd
+                    bool result = await WebServiceClient.DeleteEncaissement(newItem);
+                    if (result)
+                    {
+                        Items.Remove(item);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
         async Task ExecuteAddItemCommand(View_TRS_ENCAISS item)
         {
-            if (App.IsConected)
+            try
             { 
-                var newItem = item as View_TRS_ENCAISS;
+                if (App.IsConected)
+                { 
+                    var newItem = item as View_TRS_ENCAISS;
 
-                // Save the added Item in the local bdd
-                //  await DataStore.AddItemAsync(newItem);
+                    // Save the added Item in the local bdd
+                    //  await DataStore.AddItemAsync(newItem);
 
-                // TODO : test if connected else mark as not synchronizd
-                View_TRS_ENCAISS result = await WebServiceClient.SaveEncaissements(newItem);
+                    // TODO : test if connected else mark as not synchronizd
+                    View_TRS_ENCAISS result = await WebServiceClient.SaveEncaissements(newItem);
 
-                Items.Insert(0, result);
+                    Items.Insert(0, result);
 
-                UpdateItemIndex<View_TRS_ENCAISS>(Items);
+                    UpdateItemIndex<View_TRS_ENCAISS>(Items);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
@@ -185,7 +221,12 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
 
@@ -228,7 +269,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
             finally
             {

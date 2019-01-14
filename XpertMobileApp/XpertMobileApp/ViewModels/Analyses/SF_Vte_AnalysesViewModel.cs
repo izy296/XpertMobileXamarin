@@ -1,4 +1,5 @@
-﻿using SampleBrowser.SfChart;
+﻿using Acr.UserDialogs;
+using SampleBrowser.SfChart;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,7 +62,8 @@ namespace XpertMobileApp.ViewModels.Analyses
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
             finally
             {

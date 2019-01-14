@@ -60,7 +60,7 @@ namespace XpertMobileApp.Helpers
             }
             else
             {
-                throw new Exception(response.ReasonPhrase);
+                throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
             }
         }
 
