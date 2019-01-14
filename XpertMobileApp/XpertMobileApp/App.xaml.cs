@@ -68,6 +68,22 @@ namespace XpertMobileApp
                 }
 
             };
+
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                try
+                {
+                    object url;
+                    // Case action is page to open
+                    if (p.Data.TryGetValue("urlPage", out url) && !string.IsNullOrEmpty(Convert.ToString(url)))
+                    {
+                        Device.OpenUri(new Uri(Convert.ToString(url)));
+                    }
+                }
+                catch (Exception e)
+                {
+                }
+            };
         }
 
         protected override void OnSleep()
