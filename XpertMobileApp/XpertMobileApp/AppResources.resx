@@ -378,4 +378,10 @@
   <data name="txt_UpdateVersion" xml:space="preserve">
     <value>Mettre à jour</value>
   </data>
+  <data name="sp_lbl_ServiceName" xml:space="preserve">
+    <value>Url du service</value>
+  </data>
+  <data name="txt_Loading" xml:space="preserve">
+    <value>Chargement ...</value>
+  </data>
 </root>

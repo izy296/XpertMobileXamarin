@@ -12,7 +12,7 @@
         </trans-unit>
         <trans-unit id="lp_btn_Settings" translate="yes" xml:space="preserve">
           <source></source>
-          <target state="new"></target>
+          <target state="translated"></target>
         </trans-unit>
         <trans-unit id="lp_lbl_PassWord" translate="yes" xml:space="preserve">
           <source>Mot de passe</source>
@@ -76,7 +76,7 @@
         </trans-unit>
         <trans-unit id="alrt_msg_ConnectionError" translate="yes" xml:space="preserve">
           <source>Connexion échoué veullez vérifier les informations du serveur</source>
-          <target state="translated">فشل تسجيل الدخول يرجى التحقق من معلومات الخادم</target>
+          <target state="translated">تعذر الوصول للخدمة</target>
         </trans-unit>
         <trans-unit id="alrt_msg_ConnectionSucces" translate="yes" xml:space="preserve">
           <source>Connexion établie avec succes</source>
@@ -267,99 +267,107 @@
         </trans-unit>
         <trans-unit id="txt_Filter" translate="yes" xml:space="preserve">
           <source>Filtrer</source>
-          <target state="new">Filtrer</target>
+          <target state="translated">تصفية</target>
         </trans-unit>
         <trans-unit id="txt_EndDate" translate="yes" xml:space="preserve">
           <source>Date fin</source>
-          <target state="new">Date fin</target>
+          <target state="translated">تاريخ الانتهاء</target>
         </trans-unit>
         <trans-unit id="txt_StartDate" translate="yes" xml:space="preserve">
           <source>Date début</source>
-          <target state="new">Date début</target>
+          <target state="translated">تاريخ البداية</target>
         </trans-unit>
         <trans-unit id="txt_MarginsByseller" translate="yes" xml:space="preserve">
           <source>Marges par vendeur</source>
-          <target state="new">Marges par vendeur</target>
+          <target state="translated">إجمالي الهوامش لكل البائع</target>
         </trans-unit>
         <trans-unit id="txt_SalesBySeller" translate="yes" xml:space="preserve">
           <source>Ventes par vendeur</source>
-          <target state="new">Ventes par vendeur</target>
+          <target state="translated">إجمالي المبيعات لكل البائع</target>
         </trans-unit>
         <trans-unit id="ph_seachedtxt" translate="yes" xml:space="preserve">
           <source>Rechercher ....</source>
-          <target state="new">Rechercher ....</target>
+          <target state="translated">بحث ...</target>
         </trans-unit>
         <trans-unit id="cmd_SelectElement" translate="yes" xml:space="preserve">
           <source>Sélectionner</source>
-          <target state="new">Sélectionner</target>
+          <target state="translated">اختيار</target>
         </trans-unit>
         <trans-unit id="cmd_seach" translate="yes" xml:space="preserve">
           <source>Chercher</source>
-          <target state="new">Chercher</target>
+          <target state="translated">بحث</target>
         </trans-unit>
         <trans-unit id="cmd_Disconnect" translate="yes" xml:space="preserve">
           <source>Déconnexion</source>
-          <target state="new">Déconnexion</target>
+          <target state="translated">تسجيل الخروج</target>
         </trans-unit>
         <trans-unit id="txt_TotalMarginBySeler" translate="yes" xml:space="preserve">
           <source>Total marges par vendeur</source>
-          <target state="new">Total marges par vendeur</target>
+          <target state="translated">إجمالي الهوامش لكل البائع</target>
         </trans-unit>
         <trans-unit id="txt_TotalSalesBySeler" translate="yes" xml:space="preserve">
           <source>Total ventes par vendeur</source>
-          <target state="new">Total ventes par vendeur</target>
+          <target state="translated">إجمالي المبيعات لكل البائع</target>
         </trans-unit>
         <trans-unit id="txt_Margin" translate="yes" xml:space="preserve">
           <source>Marges</source>
-          <target state="new">Marges</target>
+          <target state="translated">هوامش الربح</target>
         </trans-unit>
         <trans-unit id="txt_Sales" translate="yes" xml:space="preserve">
           <source>Ventes</source>
-          <target state="new">Ventes</target>
+          <target state="translated">مبيعات</target>
         </trans-unit>
         <trans-unit id="txt_Seler" translate="yes" xml:space="preserve">
           <source>Vendeur</source>
-          <target state="new">Vendeur</target>
+          <target state="translated">بائع</target>
         </trans-unit>
         <trans-unit id="error_ThirdNotEmpty" translate="yes" xml:space="preserve">
           <source>Veuillez sélectionner un tiers</source>
-          <target state="new">Veuillez sélectionner un tiers</target>
+          <target state="translated">يرجى اختيار المتعامل</target>
         </trans-unit>
         <trans-unit id="error_AccountNotEmpty" translate="yes" xml:space="preserve">
           <source>Veuillez sélectionner un compte</source>
-          <target state="new">Veuillez sélectionner un compte</target>
+          <target state="translated">يرجى اختيار الحساب</target>
         </trans-unit>
         <trans-unit id="alrt_msg_CantTestConnexionSettings" translate="yes" xml:space="preserve">
           <source>Erreur lors de la tentative de connexion</source>
-          <target state="new">Erreur lors de la tentative de connexion</target>
+          <target state="translated">خطأ أثناء محاولة الاتصال</target>
         </trans-unit>
         <trans-unit id="err_msg_badConnexionUrl" translate="yes" xml:space="preserve">
           <source>L'url de connexion est incorrecte</source>
-          <target state="new">L'url de connexion est incorrecte</target>
+          <target state="translated">عنوان الخدمة المستعمل لتسجيل الدخول غير صحيح</target>
         </trans-unit>
         <trans-unit id="err_msg_IncorrectLoginInfos" translate="yes" xml:space="preserve">
           <source>Veuillez vérifier les informations d'authentification</source>
-          <target state="new">Veuillez vérifier les informations d'authentification</target>
+          <target state="translated">يرجى التحقق من معلومات المصادقة</target>
         </trans-unit>
         <trans-unit id="err_msg_loadingDataError" translate="yes" xml:space="preserve">
           <source>Erreur de chargement de données</source>
-          <target state="new">Erreur de chargement de données</target>
+          <target state="translated">خطأ في تحميل البيانات</target>
         </trans-unit>
         <trans-unit id="txt_Comptes" translate="yes" xml:space="preserve">
           <source>Comptes</source>
-          <target state="new">Comptes</target>
+          <target state="translated">الحساب</target>
         </trans-unit>
         <trans-unit id="txt_Encaissments" translate="yes" xml:space="preserve">
           <source>Encaissements</source>
-          <target state="new">Encaissements</target>
+          <target state="translated">صرف</target>
         </trans-unit>
         <trans-unit id="txt_ShouldUpdateVersion" translate="yes" xml:space="preserve">
           <source>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</source>
-          <target state="new">Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</target>
+          <target state="translated">يرجى تثبيت النسخة الجديدة للتطبيق </target>
         </trans-unit>
         <trans-unit id="txt_UpdateVersion" translate="yes" xml:space="preserve">
           <source>Mettre à jour</source>
-          <target state="new">Mettre à jour</target>
+          <target state="translated">تحديث</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ServiceName" translate="yes" xml:space="preserve">
+          <source>Url du service</source>
+          <target state="translated">رابط الخدمة</target>
+        </trans-unit>
+        <trans-unit id="txt_Loading" translate="yes" xml:space="preserve">
+          <source>Chargement ...</source>
+          <target state="translated">تحميل ...</target>
         </trans-unit>
       </group>
     </body>

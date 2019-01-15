@@ -12,7 +12,7 @@
         </trans-unit>
         <trans-unit id="lp_btn_Settings" translate="yes" xml:space="preserve">
           <source></source>
-          <target state="new"></target>
+          <target state="translated"></target>
         </trans-unit>
         <trans-unit id="lp_lbl_PassWord" translate="yes" xml:space="preserve">
           <source>Mot de passe</source>
@@ -76,7 +76,7 @@
         </trans-unit>
         <trans-unit id="alrt_msg_ConnectionError" translate="yes" xml:space="preserve">
           <source>Connexion échoué veullez vérifier les informations du serveur</source>
-          <target state="translated">Login failed please check the server information</target>
+          <target state="translated">Service not reachable</target>
         </trans-unit>
         <trans-unit id="alrt_msg_ConnectionSucces" translate="yes" xml:space="preserve">
           <source>Connexion établie avec succes</source>
@@ -287,79 +287,87 @@
         </trans-unit>
         <trans-unit id="ph_seachedtxt" translate="yes" xml:space="preserve">
           <source>Rechercher ....</source>
-          <target state="new">Rechercher ....</target>
+          <target state="translated">Search ...</target>
         </trans-unit>
         <trans-unit id="cmd_SelectElement" translate="yes" xml:space="preserve">
           <source>Sélectionner</source>
-          <target state="new">Sélectionner</target>
+          <target state="translated">Select</target>
         </trans-unit>
         <trans-unit id="cmd_seach" translate="yes" xml:space="preserve">
           <source>Chercher</source>
-          <target state="new">Chercher</target>
+          <target state="translated">Search</target>
         </trans-unit>
         <trans-unit id="cmd_Disconnect" translate="yes" xml:space="preserve">
           <source>Déconnexion</source>
-          <target state="new">Déconnexion</target>
+          <target state="translated">Sign Out</target>
         </trans-unit>
         <trans-unit id="txt_TotalMarginBySeler" translate="yes" xml:space="preserve">
           <source>Total marges par vendeur</source>
-          <target state="new">Total marges par vendeur</target>
+          <target state="translated">Total margins by seller</target>
         </trans-unit>
         <trans-unit id="txt_TotalSalesBySeler" translate="yes" xml:space="preserve">
           <source>Total ventes par vendeur</source>
-          <target state="new">Total ventes par vendeur</target>
+          <target state="translated">Total sales by seller</target>
         </trans-unit>
         <trans-unit id="txt_Margin" translate="yes" xml:space="preserve">
           <source>Marges</source>
-          <target state="new">Marges</target>
+          <target state="translated">Margins</target>
         </trans-unit>
         <trans-unit id="txt_Sales" translate="yes" xml:space="preserve">
           <source>Ventes</source>
-          <target state="new">Ventes</target>
+          <target state="translated">Sales</target>
         </trans-unit>
         <trans-unit id="txt_Seler" translate="yes" xml:space="preserve">
           <source>Vendeur</source>
-          <target state="new">Vendeur</target>
+          <target state="translated">Seller</target>
         </trans-unit>
         <trans-unit id="error_ThirdNotEmpty" translate="yes" xml:space="preserve">
           <source>Veuillez sélectionner un tiers</source>
-          <target state="new">Veuillez sélectionner un tiers</target>
+          <target state="translated">Please select a third</target>
         </trans-unit>
         <trans-unit id="error_AccountNotEmpty" translate="yes" xml:space="preserve">
           <source>Veuillez sélectionner un compte</source>
-          <target state="new">Veuillez sélectionner un compte</target>
+          <target state="translated">Please select an account</target>
         </trans-unit>
         <trans-unit id="alrt_msg_CantTestConnexionSettings" translate="yes" xml:space="preserve">
           <source>Erreur lors de la tentative de connexion</source>
-          <target state="new">Erreur lors de la tentative de connexion</target>
+          <target state="translated">Error while trying to connect</target>
         </trans-unit>
         <trans-unit id="err_msg_badConnexionUrl" translate="yes" xml:space="preserve">
           <source>L'url de connexion est incorrecte</source>
-          <target state="new">L'url de connexion est incorrecte</target>
+          <target state="translated">The login URL is incorrect</target>
         </trans-unit>
         <trans-unit id="err_msg_IncorrectLoginInfos" translate="yes" xml:space="preserve">
           <source>Veuillez vérifier les informations d'authentification</source>
-          <target state="new">Veuillez vérifier les informations d'authentification</target>
+          <target state="translated">Please check your credentials</target>
         </trans-unit>
         <trans-unit id="err_msg_loadingDataError" translate="yes" xml:space="preserve">
           <source>Erreur de chargement de données</source>
-          <target state="new">Erreur de chargement de données</target>
+          <target state="translated">Error loading data</target>
         </trans-unit>
         <trans-unit id="txt_Comptes" translate="yes" xml:space="preserve">
           <source>Comptes</source>
-          <target state="new">Comptes</target>
+          <target state="translated">Accounts</target>
         </trans-unit>
         <trans-unit id="txt_Encaissments" translate="yes" xml:space="preserve">
           <source>Encaissements</source>
-          <target state="new">Encaissements</target>
+          <target state="translated">Receipts</target>
         </trans-unit>
         <trans-unit id="txt_ShouldUpdateVersion" translate="yes" xml:space="preserve">
           <source>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</source>
-          <target state="new">Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</target>
+          <target state="translated">Please update your application to continue using it</target>
         </trans-unit>
         <trans-unit id="txt_UpdateVersion" translate="yes" xml:space="preserve">
           <source>Mettre à jour</source>
-          <target state="new">Mettre à jour</target>
+          <target state="translated">Update</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ServiceName" translate="yes" xml:space="preserve">
+          <source>Url du service</source>
+          <target state="translated">Service url</target>
+        </trans-unit>
+        <trans-unit id="txt_Loading" translate="yes" xml:space="preserve">
+          <source>Chargement ...</source>
+          <target state="translated">Loading ...</target>
         </trans-unit>
       </group>
     </body>

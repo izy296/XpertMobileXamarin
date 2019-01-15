@@ -610,6 +610,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Url du service.
+        /// </summary>
+        internal static string sp_lbl_ServiceName {
+            get {
+                return ResourceManager.GetString("sp_lbl_ServiceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Total encaissé.
         /// </summary>
         internal static string TOTAL_ENCAISS {
@@ -696,6 +705,15 @@ namespace XpertMobileApp {
         internal static string txt_Filter {
             get {
                 return ResourceManager.GetString("txt_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chargement ....
+        /// </summary>
+        internal static string txt_Loading {
+            get {
+                return ResourceManager.GetString("txt_Loading", resourceCulture);
             }
         }
         

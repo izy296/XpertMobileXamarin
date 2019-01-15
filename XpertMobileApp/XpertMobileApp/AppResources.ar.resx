@@ -15,6 +15,9 @@
   <data name="lp_btn_Login" xml:space="preserve">
     <value>تسجيل الدخول</value>
   </data>
+  <data name="lp_btn_Settings" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="lp_lbl_PassWord" xml:space="preserve">
     <value>كلمة المرور</value>
   </data>
@@ -61,7 +64,7 @@
     <value>خروج</value>
   </data>
   <data name="alrt_msg_ConnectionError" xml:space="preserve">
-    <value>فشل تسجيل الدخول يرجى التحقق من معلومات الخادم</value>
+    <value>تعذر الوصول للخدمة</value>
   </data>
   <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
     <value>تم الاتصال بنجاح</value>
@@ -197,5 +200,80 @@
   </data>
   <data name="cmd_Filter" xml:space="preserve">
     <value>تصفية</value>
+  </data>
+  <data name="txt_Filter" xml:space="preserve">
+    <value>تصفية</value>
+  </data>
+  <data name="txt_EndDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="txt_StartDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="txt_MarginsByseller" xml:space="preserve">
+    <value>إجمالي الهوامش لكل البائع</value>
+  </data>
+  <data name="txt_SalesBySeller" xml:space="preserve">
+    <value>إجمالي المبيعات لكل البائع</value>
+  </data>
+  <data name="ph_seachedtxt" xml:space="preserve">
+    <value>بحث ...</value>
+  </data>
+  <data name="cmd_SelectElement" xml:space="preserve">
+    <value>اختيار</value>
+  </data>
+  <data name="cmd_seach" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="cmd_Disconnect" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="txt_TotalMarginBySeler" xml:space="preserve">
+    <value>إجمالي الهوامش لكل البائع</value>
+  </data>
+  <data name="txt_TotalSalesBySeler" xml:space="preserve">
+    <value>إجمالي المبيعات لكل البائع</value>
+  </data>
+  <data name="txt_Margin" xml:space="preserve">
+    <value>هوامش الربح</value>
+  </data>
+  <data name="txt_Sales" xml:space="preserve">
+    <value>مبيعات</value>
+  </data>
+  <data name="txt_Seler" xml:space="preserve">
+    <value>بائع</value>
+  </data>
+  <data name="error_ThirdNotEmpty" xml:space="preserve">
+    <value>يرجى اختيار المتعامل</value>
+  </data>
+  <data name="error_AccountNotEmpty" xml:space="preserve">
+    <value>يرجى اختيار الحساب</value>
+  </data>
+  <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
+    <value>خطأ أثناء محاولة الاتصال</value>
+  </data>
+  <data name="err_msg_badConnexionUrl" xml:space="preserve">
+    <value>عنوان الخدمة المستعمل لتسجيل الدخول غير صحيح</value>
+  </data>
+  <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
+    <value>يرجى التحقق من معلومات المصادقة</value>
+  </data>
+  <data name="err_msg_loadingDataError" xml:space="preserve">
+    <value>خطأ في تحميل البيانات</value>
+  </data>
+  <data name="txt_Comptes" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="txt_Encaissments" xml:space="preserve">
+    <value>صرف</value>
+  </data>
+  <data name="txt_ShouldUpdateVersion" xml:space="preserve">
+    <value>يرجى تثبيت النسخة الجديدة للتطبيق </value>
+  </data>
+  <data name="txt_UpdateVersion" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="sp_lbl_ServiceName" xml:space="preserve">
+    <value>رابط الخدمة</value>
   </data>
 </root>

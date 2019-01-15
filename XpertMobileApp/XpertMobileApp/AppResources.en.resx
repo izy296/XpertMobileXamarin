@@ -15,6 +15,9 @@
   <data name="lp_btn_Login" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="lp_btn_Settings" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="lp_lbl_PassWord" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -61,7 +64,7 @@
     <value>Cancel</value>
   </data>
   <data name="alrt_msg_ConnectionError" xml:space="preserve">
-    <value>Login failed please check the server information</value>
+    <value>Service not reachable</value>
   </data>
   <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
     <value>Connection successfully established</value>
@@ -212,5 +215,65 @@
   </data>
   <data name="txt_SalesBySeller" xml:space="preserve">
     <value>Sales by seller</value>
+  </data>
+  <data name="ph_seachedtxt" xml:space="preserve">
+    <value>Search ...</value>
+  </data>
+  <data name="cmd_SelectElement" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="cmd_seach" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="cmd_Disconnect" xml:space="preserve">
+    <value>Sign Out</value>
+  </data>
+  <data name="txt_TotalMarginBySeler" xml:space="preserve">
+    <value>Total margins by seller</value>
+  </data>
+  <data name="txt_TotalSalesBySeler" xml:space="preserve">
+    <value>Total sales by seller</value>
+  </data>
+  <data name="txt_Margin" xml:space="preserve">
+    <value>Margins</value>
+  </data>
+  <data name="txt_Sales" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="txt_Seler" xml:space="preserve">
+    <value>Seller</value>
+  </data>
+  <data name="error_ThirdNotEmpty" xml:space="preserve">
+    <value>Please select a third</value>
+  </data>
+  <data name="error_AccountNotEmpty" xml:space="preserve">
+    <value>Please select an account</value>
+  </data>
+  <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
+    <value>Error while trying to connect</value>
+  </data>
+  <data name="err_msg_badConnexionUrl" xml:space="preserve">
+    <value>The login URL is incorrect</value>
+  </data>
+  <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
+    <value>Please check your credentials</value>
+  </data>
+  <data name="err_msg_loadingDataError" xml:space="preserve">
+    <value>Error loading data</value>
+  </data>
+  <data name="txt_Comptes" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
+  <data name="txt_Encaissments" xml:space="preserve">
+    <value>Receipts</value>
+  </data>
+  <data name="txt_ShouldUpdateVersion" xml:space="preserve">
+    <value>Please update your application to continue using it</value>
+  </data>
+  <data name="txt_UpdateVersion" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="sp_lbl_ServiceName" xml:space="preserve">
+    <value>Service url</value>
   </data>
 </root>
