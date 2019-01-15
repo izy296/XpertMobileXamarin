@@ -17,7 +17,7 @@ namespace XpertMobileApp.ViewModels.Analyses
 
     public class Vte_AnalysesViewModel : BaseViewModel
     {
-        public StatsPeriode StartPeriodType;
+        public StatsPeriode StartPeriodType = StatsPeriode.None;
 
         public ObservableCollection<View_VTE_Vente_Td> Items { get; set; }
         public Command LoadItemsCommand { get; set; }

@@ -20,7 +20,7 @@ namespace XpertMobileApp.ViewModels.Analyses
         public ObservableCollection<ChartDataModel> Entries1 { get; set; }
         public ObservableCollection<ChartDataModel> Entries2 { get; set; }
 
-        public StatsPeriode StartPeriodType;
+        public StatsPeriode StartPeriodType = StatsPeriode.None;
 
         public ObservableCollection<View_VTE_Vente_Td> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
@@ -55,7 +55,10 @@ namespace XpertMobileApp.ViewModels.Analyses
                 var items = await WebServiceClient.GetMargeParVendeur(startDate, endDate);
                 foreach (var item in items)
                 {
-                    Items.Add(item);
+                    if(item.Sum_TOTAL_VENTE != 0)
+                    { 
+                        Items.Add(item);
+                    }
                 }
 
                 MessagingCenter.Send(this, MCDico.STATS_DATA_LOADED, Items);

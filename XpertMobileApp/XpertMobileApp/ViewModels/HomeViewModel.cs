@@ -88,9 +88,6 @@ namespace XpertMobileApp.ViewModels
                 Sessions.Clear();
                 var items = await WebServiceClient.GetSessionInfos();
 
-                if(items.Count > 0)
-                    this.CurrentSession = items[0];
-
                 foreach (var item in items)
                 {
                     Sessions.Add(item);

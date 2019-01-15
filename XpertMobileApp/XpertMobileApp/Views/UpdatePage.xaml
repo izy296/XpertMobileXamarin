@@ -13,10 +13,12 @@
             <Label Text="{i18n:Translate txt_ShouldUpdateVersion}"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand"
+                XAlign="Center"
                 Margin="20" TextColor="{StaticResource DefaultTextColor}"   />
             <Button x:Name="btn_VersionUpdate" Text="{i18n:Translate txt_UpdateVersion}" 
                     Style="{StaticResource DefaultBtnStyle}" 
                     Clicked="btn_VersionUpdate_Clicked"
+                     
                     HorizontalOptions="Center" BorderRadius="5"/>
         </StackLayout>
     </ContentPage.Content>
