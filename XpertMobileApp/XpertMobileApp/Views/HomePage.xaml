@@ -34,7 +34,7 @@
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{Binding CurrentSession.USER_SESSION}" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End"/>
                         <Label Text="{Binding CurrentSession.DESIGN_COMPTE}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
-                        <Label Text="{Binding CurrentSession.MONT_ENCAISSEMENT, StringFormat='{0:F2} DA'}" TextColor="Red" HorizontalOptions="End"/>
+                        <Label Text="{Binding CurrentSession.MONT_ENCAISSEMENT, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>
             </Frame>
@@ -67,8 +67,8 @@
                         <Label Text="{i18n:Translate txt_Decaiss}" TextColor="Red"/>
                     </StackLayout>
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
-                        <Label Text="{Binding TotalEncaiss, StringFormat='{0:F2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
-                        <Label Text="{Binding TotalDecaiss, StringFormat='{0:F2} DA'}" TextColor="Red" HorizontalOptions="End"/>
+                        <Label Text="{Binding TotalEncaiss, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                        <Label Text="{Binding TotalDecaiss, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>
             </Frame>
@@ -107,7 +107,7 @@
                                         <ViewCell>
                                             <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
                                                 <Label Text="{Binding DESIGNATION_TYPE}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource Primary}"/>
-                                                <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:F2}'}" TextColor="{StaticResource Primary}" HorizontalOptions="EndAndExpand"/>
+                                                <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="EndAndExpand"/>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>

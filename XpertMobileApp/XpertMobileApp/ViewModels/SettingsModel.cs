@@ -56,6 +56,7 @@ namespace XpertMobileApp.ViewModels
             if (this.Settings == null)
             {
                 this.Settings = new Settings();
+                // App.Settings = this.Settings;
             }
             this.Settings.isModified = false;           
         }

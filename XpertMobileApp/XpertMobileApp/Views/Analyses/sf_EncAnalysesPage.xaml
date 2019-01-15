@@ -19,7 +19,7 @@
                             <BoxView Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                             <StackLayout Orientation="Horizontal"  VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
                                 <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
-                                <Label Text="{Binding Value,StringFormat=' :  {0} DA'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
+                                <Label Text="{Binding Value,StringFormat=' :  {0:N2} DA'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
                             </StackLayout>
                         </StackLayout>
                     </DataTemplate>
@@ -32,13 +32,16 @@
                             <BoxView Grid.Row="1" Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
                             <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
                                 <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
-                                <Label Text="{Binding Value,StringFormat=' :  {0} DA'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
+                                <Label Text="{Binding Value,StringFormat=' : {0:N2} DA'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
                             </StackLayout>
                         </StackLayout>
                     </DataTemplate>
                 </ResourceDictionary>
             </StackLayout.Resources>
 
+            <Label Text="{i18n:Translate txt_Loading}" IsVisible="{Binding IsBusy}" BackgroundColor="Green" TextColor="White" 
+                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            
             <chart:SfChart x:Name="Chart_Ventes" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                 <chart:SfChart.Title>
@@ -80,9 +83,9 @@
                                      YBindingPath="Value" LegendIcon="SeriesType" Label="{i18n:Translate txt_Sales}" 
                                      EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate1}">
                         <chart:ColumnSeries.DataMarker>
-                            <chart:ChartDataMarker ShowLabel="True">
+                            <chart:ChartDataMarker ShowLabel="False">
                                 <chart:ChartDataMarker.LabelStyle>
-                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12" BackgroundColor="Transparent">
+                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="0,0.00 'DA'"  Font="12" BackgroundColor="Transparent">
                                     </chart:DataMarkerLabelStyle>
                                 </chart:ChartDataMarker.LabelStyle>
                             </chart:ChartDataMarker>
@@ -133,9 +136,9 @@
                                      YBindingPath="Value" LegendIcon="SeriesType" Label="{i18n:Translate txt_Margin}" 
                                      EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate2}">
                         <chart:ColumnSeries.DataMarker>
-                            <chart:ChartDataMarker ShowLabel="True">
+                            <chart:ChartDataMarker ShowLabel="False">
                                 <chart:ChartDataMarker.LabelStyle>
-                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#.## 'DA'"  Font="12" BackgroundColor="Transparent">
+                                    <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="0,0.00 'DA'"  Font="12" BackgroundColor="Transparent">
                                     </chart:DataMarkerLabelStyle>
                                 </chart:ChartDataMarker.LabelStyle>
                             </chart:ChartDataMarker>
