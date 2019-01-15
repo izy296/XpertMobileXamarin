@@ -33,12 +33,15 @@
                                Margin="0,0,0,15" />
                         <!--
                             <BoxView HeightRequest="1" BackgroundColor="LightGray" Margin="0,0,0,10"/>
-                        -->
+
                         <Label x:Name="lbl_ServerName" Text="{i18n:Translate sp_lbl_ServerName}"/>
                         <Entry x:Name="et_ServerName" Text="{Binding Settings.ServerName, Mode=TwoWay}" />
 
                         <Label x:Name="lbl_PortNumber" Text="{i18n:Translate sp_lbl_PortNumber}"/>
                         <Entry x:Name="et_Port" Text="{Binding Settings.Port, Mode=TwoWay}"/>
+                        -->
+                        <Label x:Name="lbl_ServiceName" Text="{i18n:Translate sp_lbl_ServiceName}"/>
+                        <Entry x:Name="et_ServiceName" Text="{Binding Settings.ServiceUrl, Mode=TwoWay}" />
 
                         <Button  x:Name="Btn_TestCnx" Text="{i18n:Translate sp_btn_TestConnection}" 
                                  WidthRequest="150" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"

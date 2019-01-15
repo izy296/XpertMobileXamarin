@@ -6,6 +6,7 @@ using System;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Data;
@@ -37,15 +38,19 @@ namespace XpertMobileApp
 
             App.SetAppLanguage(Settings.Language);
 
-            string currentVersion = "1.0";
-            if(App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion , currentVersion) >= 0)
+            MainPage = new LoginPage();
+
+            /*
+            string currentVersion = AppInfo.Version.ToString();
+            if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion , currentVersion) >= 0)
             {
-                MainPage = new UpdatePage(); // LoginPage();  
+                MainPage = new UpdatePage();
             }
             else
             {
                 MainPage = new LoginPage();
-            }  
+            } 
+            */
         }
 
         protected override void OnStart()
@@ -54,7 +59,7 @@ namespace XpertMobileApp
 
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
-                string currentVerision = "1.0";
+                string currentVerision = AppInfo.Version.ToString();
                 object CriticalVersion;
 
                 if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
@@ -131,20 +136,7 @@ namespace XpertMobileApp
         {
             get
             {
-
-                string result = "";
-
-                if (Settings == null) return result;
-
-                if(!string.IsNullOrEmpty(Settings.ServerName))
-                   result += "http://" + Settings.ServerName;
-
-                if (!string.IsNullOrEmpty(Settings.Port))
-                    result += ":" + Settings.Port + "/";
-                else
-                    result += "/";
-
-                return result + ServiceUrlDico.BASE_URL;
+                return Settings.ServiceUrl + ServiceUrlDico.BASE_URL;
             }
         }
 

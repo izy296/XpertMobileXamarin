@@ -49,8 +49,7 @@ namespace XpertMobileApp.Views
             App.SetAppLanguage(language.ShortName);
 
             lbl_LanguageSelector.Text = AppResources.sp_lbl_SelectLanguage;
-            lbl_ServerName.Text       = AppResources.sp_lbl_ServerName;
-            lbl_PortNumber.Text       = AppResources.sp_lbl_PortNumber;
+            lbl_ServiceName.Text      = AppResources.sp_lbl_ServiceName;
             Btn_CloseSettings.Text    = AppResources.btn_Close;
             Btn_SaveSettings.Text     = AppResources.sp_btn_SaveSettings;
             Btn_TestCnx.Text          = AppResources.sp_btn_TestConnection;
@@ -93,14 +92,9 @@ namespace XpertMobileApp.Views
             }
 
             try
-            { 
-                int port = 80;
-                if (!string.IsNullOrEmpty(App.Settings.Port))
-                { 
-                    port = Convert.ToInt32(App.Settings.Port);
-                }
-
-                bool reachable = await this.IsBlogReachableAndRunning(App.Settings.ServerName, port);
+            {
+                string serviceUrl = et_ServiceName.Text;
+                bool reachable = await this.IsBlogReachableAndRunning(serviceUrl);
                 if (reachable)
                 {
                     await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionSucces, AppResources.alrt_msg_Ok);
@@ -116,7 +110,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public async Task<bool> IsBlogReachableAndRunning(string host, int port = 80, int msTimeout = 5000)
+        public async Task<bool> IsBlogReachableAndRunning(string url, int msTimeout = 5000)
         {
             try
             { 
@@ -124,7 +118,9 @@ namespace XpertMobileApp.Views
                 if (!connectivity.IsConnected)
                     return false;
 
-                var reachable = await connectivity.IsRemoteReachable(host, port, msTimeout);
+                var uri = new System.Uri(url);
+                TimeSpan ts = new TimeSpan(0, 0, 0, msTimeout);
+                bool reachable = await connectivity.IsRemoteReachable(uri, ts);
 
                 return reachable;
             }
