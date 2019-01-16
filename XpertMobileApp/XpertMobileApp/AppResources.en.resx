@@ -276,4 +276,7 @@
   <data name="sp_lbl_ServiceName" xml:space="preserve">
     <value>Service url</value>
   </data>
+  <data name="txt_Loading" xml:space="preserve">
+    <value>Loading ...</value>
+  </data>
 </root>

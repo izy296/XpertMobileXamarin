@@ -84,17 +84,17 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ENCAISSEMENT_PER_PAGE_URL);
 
-            url += WSApi.AddParam(url, "type", type);
-            url += WSApi.AddParam(url, "page", page);
-            url += WSApi.AddParam(url, "id_caisse", idCaisse);
-            url += WSApi.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
-            url += WSApi.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
+            url += WSApi2.AddParam(url, "type", type);
+            url += WSApi2.AddParam(url, "page", page);
+            url += WSApi2.AddParam(url, "id_caisse", idCaisse);
+            url += WSApi2.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
+            url += WSApi2.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
             if (!string.IsNullOrEmpty(codeTiers))
-                url += WSApi.AddParam(url, "codeTiers", codeTiers);
+                url += WSApi2.AddParam(url, "codeTiers", codeTiers);
             if (!string.IsNullOrEmpty(codeCompte))
-                url += WSApi.AddParam(url, "codeCompte", codeCompte);
+                url += WSApi2.AddParam(url, "codeCompte", codeCompte);
             if(!string.IsNullOrEmpty(codeMotif))
-                url += WSApi.AddParam(url, "codeMotif", codeMotif);
+                url += WSApi2.AddParam(url, "codeMotif", codeMotif);
             
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
@@ -137,10 +137,30 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
         }
 
-        internal static async Task<List<View_TRS_TIERS>> GetTiers(string type)
+        internal static async Task<List<View_TRS_TIERS>> GetTiers(string type, int page = 1, int nbrRows = 10, string searchText = "")
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_URL);
+
+            url += WSApi2.AddParam(url, "type", type);
+            url += WSApi2.AddParam(url, "page", Convert.ToString(page));
+            url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
+
+            if (!string.IsNullOrEmpty(searchText))
+                url += WSApi2.AddParam(url, "searchText", searchText);
+
             return await RetrievAauthorizedData<View_TRS_TIERS>(url);
+        }
+
+        public static async Task<int> GetTiersCount(string type, string searchText= "")
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_COUNT_URL);
+
+            url += WSApi2.AddParam(url, "type", type);
+
+            if (!string.IsNullOrEmpty(searchText))
+                url += WSApi2.AddParam(url, "searchText", searchText);
+
+            return await RetrievValAauthorizedData<int>(url);
         }
 
         internal static async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)

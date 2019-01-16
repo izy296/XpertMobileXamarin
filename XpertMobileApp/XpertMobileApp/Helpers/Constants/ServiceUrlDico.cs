@@ -30,6 +30,8 @@ namespace XpertMobileApp.Helpers
 
         public static string TIERS_URL = "tiers";
 
+        public static string TIERS_COUNT_URL = "TiersCount";
+
         public static string STATISTIC_URL = "statistic";
 
         public static string SESSION_URL = "session";

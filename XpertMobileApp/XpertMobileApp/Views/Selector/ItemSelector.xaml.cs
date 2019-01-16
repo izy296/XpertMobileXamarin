@@ -5,6 +5,7 @@ using Rg.Plugins.Popup.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Helpers;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace XpertMobileApp.Views
 {
@@ -40,10 +41,10 @@ namespace XpertMobileApp.Views
             btnSelect.IsEnabled = true;
         }
 
-        private void btn_Search_Clicked(object sender, EventArgs e)
+        private async Task btn_Search_Clicked(object sender, EventArgs e)
         {
             string searchedTxt = ent_Filter.Text;
-            viewModel.FilterItems(searchedTxt);
+            await viewModel.FilterItems(searchedTxt);
         }
     }
 }

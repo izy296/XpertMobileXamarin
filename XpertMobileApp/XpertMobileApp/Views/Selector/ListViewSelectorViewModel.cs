@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -14,59 +16,76 @@ namespace XpertMobileApp.ViewModels
 {
     public class ListViewSelectorViewModel : BaseViewModel
     {
-        public ObservableCollection<View_TRS_TIERS> AllItems { get; set; }
-        public ObservableCollection<View_TRS_TIERS> Items { get; set; }
+        private const int PageSize = 10;
+
+        private int elementsCount;
+
+        private string SearchText ="";
+
+        public InfiniteScrollCollection<View_TRS_TIERS> Items { get; set; }
         public View_TRS_TIERS SelectedItem { get; set; }
         public Command LoadItemsCommand { get; set; }
 
 
-        public ListViewSelectorViewModel()
+        public ListViewSelectorViewModel(string title= "" )
         {
-            Title = AppResources.pn_encaissement;
-
-            AllItems = new ObservableCollection<View_TRS_TIERS>();
-            Items = new ObservableCollection<View_TRS_TIERS>();
+            Title = title;
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            // chargement infini
+            Items = new InfiniteScrollCollection<View_TRS_TIERS>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+
+                    elementsCount = await WebServiceClient.GetTiersCount("C", this.SearchText);
+
+                    // load the next page
+                    var page = (Items.Count / PageSize) + 1;
+                    var items = await WebServiceClient.GetTiers("C", page, PageSize, this.SearchText);
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return Items.Count < elementsCount;
+                }
+            };
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-
             if (IsBusy)
                 return;
 
-
-            IsBusy = true;
-
             try
             {
-                AllItems.Clear();
-                var itemsC = await WebServiceClient.GetTiers("C");
-                foreach (var itemC in itemsC)
-                {
-                    AllItems.Add(itemC);
-                }
-                FilterItems();
+                Items.Clear();
+                await Items.LoadMoreAsync();
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
             finally
             {
-                IsBusy = false;
+                
             }
 
         }
 
-        public void FilterItems(string txt = "")
+        public async Task FilterItems(string txt = "")
         {
+            this.SearchText = txt;
+
             Items.Clear();
-            foreach (var item in AllItems.Where(x => x.NOM_TIERS1.Contains(txt) || txt == ""))
-            {
-                Items.Add(item);
-            }
+            await Items.LoadMoreAsync();
         }
     }
 }
