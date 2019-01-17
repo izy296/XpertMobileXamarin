@@ -9,7 +9,7 @@ namespace XpertMobileApp.ViewModels
     {
         public LoginViewModel()
         {
-            Title = "Authentification";
+            Title = AppResources.pn_Login;
         }
     }
 }

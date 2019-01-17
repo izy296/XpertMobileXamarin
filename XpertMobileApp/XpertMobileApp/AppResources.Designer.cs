@@ -394,6 +394,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Cette licence est généré pour un autre appareil.
+        /// </summary>
+        internal static string InvalidDevice {
+            get {
+                return ResourceManager.GetString("InvalidDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Activer.
+        /// </summary>
+        internal static string lp_btn_Activate {
+            get {
+                return ResourceManager.GetString("lp_btn_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion.
         /// </summary>
         internal static string lp_btn_Login {
@@ -412,11 +430,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Identifiant client.
+        /// </summary>
+        internal static string lp_lbl_ClientId {
+            get {
+                return ResourceManager.GetString("lp_lbl_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mot de passe.
         /// </summary>
         internal static string lp_lbl_PassWord {
             get {
                 return ResourceManager.GetString("lp_lbl_PassWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Email.
+        /// </summary>
+        internal static string lp_lbl_UserEemail {
+            get {
+                return ResourceManager.GetString("lp_lbl_UserEemail", resourceCulture);
             }
         }
         
@@ -448,6 +484,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Identifiant client.
+        /// </summary>
+        internal static string lp_ph_ClientId {
+            get {
+                return ResourceManager.GetString("lp_ph_ClientId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mot de passe.
         /// </summary>
         internal static string lp_ph_PassWord {
@@ -457,11 +502,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Email.
+        /// </summary>
+        internal static string lp_ph_UserEemail {
+            get {
+                return ResourceManager.GetString("lp_ph_UserEemail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nom d&apos;utilisateur.
         /// </summary>
         internal static string lp_ph_UserName {
             get {
                 return ResourceManager.GetString("lp_ph_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Application activée.
+        /// </summary>
+        internal static string msg_ActivationSucces {
+            get {
+                return ResourceManager.GetString("msg_ActivationSucces", resourceCulture);
             }
         }
         
@@ -493,6 +556,33 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous utilisez une licence crackée.
+        /// </summary>
+        internal static string msg_Licence_Cracked {
+            get {
+                return ResourceManager.GetString("msg_Licence_Cracked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Votre licence a expiré, vous devez réactiver votre application.
+        /// </summary>
+        internal static string msg_Licence_Expired {
+            get {
+                return ResourceManager.GetString("msg_Licence_Expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Votre application n&apos;est pas encore activée, veuillez procéder a l&apos;activation..
+        /// </summary>
+        internal static string msg_Licence_NotActivated {
+            get {
+                return ResourceManager.GetString("msg_Licence_NotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string NOM_TIERS {
@@ -520,6 +610,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Activation.
+        /// </summary>
+        internal static string pn_Activation {
+            get {
+                return ResourceManager.GetString("pn_Activation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Analyses.
         /// </summary>
         internal static string pn_Analyses {
@@ -543,6 +642,15 @@ namespace XpertMobileApp {
         internal static string pn_home {
             get {
                 return ResourceManager.GetString("pn_home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Authentification.
+        /// </summary>
+        internal static string pn_Login {
+            get {
+                return ResourceManager.GetString("pn_Login", resourceCulture);
             }
         }
         

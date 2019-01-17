@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Data;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -21,7 +23,7 @@ namespace XpertMobileApp
     public partial class App : Application
     {
 
-        private static string LOCAL_DB_NAME = "LinkedResto.db3";
+        private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
         static TokenDatabaseControler tokenDatabase;
@@ -39,6 +41,13 @@ namespace XpertMobileApp
             App.SetAppLanguage(Settings.Language);
 
             MainPage = new LoginPage();
+
+            // Vérification de la licence
+            LicState licState = LicActivator.CheckLicence().Result;
+            if (licState != LicState.Valid)
+            {                
+                MainPage = new ActivationPage(licState);
+            }
 
             /*
             string currentVersion = AppInfo.Version.ToString();

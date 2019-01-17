@@ -77,6 +77,9 @@
     <Compile Update="Views\Encaissement\EncaissementDetailPage.xaml.cs">
       <DependentUpon>EncaissementDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Licence\ActivationPage.xaml.cs">
+      <DependentUpon>ActivationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
     </Compile>

@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views.ActivationPage"
+             
+             BackgroundColor="White"
+             >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="White" 
+                     VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            <!--Affichage de l'alerte en cas de deconnexion -->
+            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
+                    <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Column="1">
+
+                        <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
+
+                        <StackLayout>
+                            <Label x:Name="Lbl_UserEemail" Text="{i18n:Translate lp_lbl_UserEemail}"  />
+                            <Entry x:Name="Ent_UserEemail" Text="" Placeholder="{i18n:Translate lp_ph_UserEemail}" />
+                        </StackLayout>
+
+                        <StackLayout Padding="0,10,0,0">
+                            <Label x:Name="Lbl_ClientId" Text="{i18n:Translate lp_lbl_ClientId}"/>
+                            <Entry x:Name="Ent_ClientId" Text="" Placeholder="{i18n:Translate lp_ph_ClientId}" />
+                        </StackLayout>
+
+                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
+                                Style="{DynamicResource DefaultBtnStyle}"
+                                Text="{i18n:Translate lp_btn_Activate}" Clicked="ConnectUserAsync"/>
+
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

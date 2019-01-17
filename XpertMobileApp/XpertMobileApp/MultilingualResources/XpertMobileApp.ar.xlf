@@ -369,6 +369,54 @@
           <source>Chargement ...</source>
           <target state="translated">تحميل ...</target>
         </trans-unit>
+        <trans-unit id="pn_Activation" translate="yes" xml:space="preserve">
+          <source>Activation</source>
+          <target state="new">Activation</target>
+        </trans-unit>
+        <trans-unit id="pn_Login" translate="yes" xml:space="preserve">
+          <source>Authentification</source>
+          <target state="new">Authentification</target>
+        </trans-unit>
+        <trans-unit id="lp_btn_Activate" translate="yes" xml:space="preserve">
+          <source>Activer</source>
+          <target state="new">Activer</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_ClientId" translate="yes" xml:space="preserve">
+          <source>Identifiant client</source>
+          <target state="new">Identifiant client</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserEemail" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="new">Email</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_ClientId" translate="yes" xml:space="preserve">
+          <source>Identifiant client</source>
+          <target state="new">Identifiant client</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserEemail" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="new">Email</target>
+        </trans-unit>
+        <trans-unit id="msg_ActivationSucces" translate="yes" xml:space="preserve">
+          <source>Application activée</source>
+          <target state="new">Application activée</target>
+        </trans-unit>
+        <trans-unit id="InvalidDevice" translate="yes" xml:space="preserve">
+          <source>Cette licence est généré pour un autre appareil</source>
+          <target state="new">Cette licence est généré pour un autre appareil</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_Cracked" translate="yes" xml:space="preserve">
+          <source>Vous utilisez une licence crackée</source>
+          <target state="new">Vous utilisez une licence crackée</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_Expired" translate="yes" xml:space="preserve">
+          <source>Votre licence a expiré, vous devez réactiver votre application</source>
+          <target state="new">Votre licence a expiré, vous devez réactiver votre application</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_NotActivated" translate="yes" xml:space="preserve">
+          <source>Votre application n'est pas encore activée, veuillez procéder a l'activation.</source>
+          <target state="new">Votre application n'est pas encore activée, veuillez procéder a l'activation.</target>
+        </trans-unit>
       </group>
     </body>
   </file>

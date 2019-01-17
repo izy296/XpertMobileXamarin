@@ -384,4 +384,40 @@
   <data name="txt_Loading" xml:space="preserve">
     <value>Chargement ...</value>
   </data>
+  <data name="pn_Activation" xml:space="preserve">
+    <value>Activation</value>
+  </data>
+  <data name="pn_Login" xml:space="preserve">
+    <value>Authentification</value>
+  </data>
+  <data name="InvalidDevice" xml:space="preserve">
+    <value>Cette licence est généré pour un autre appareil</value>
+  </data>
+  <data name="lp_btn_Activate" xml:space="preserve">
+    <value>Activer</value>
+  </data>
+  <data name="lp_lbl_ClientId" xml:space="preserve">
+    <value>Identifiant client</value>
+  </data>
+  <data name="lp_lbl_UserEemail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lp_ph_ClientId" xml:space="preserve">
+    <value>Identifiant client</value>
+  </data>
+  <data name="lp_ph_UserEemail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="msg_ActivationSucces" xml:space="preserve">
+    <value>Application activée</value>
+  </data>
+  <data name="msg_Licence_Cracked" xml:space="preserve">
+    <value>Vous utilisez une licence crackée</value>
+  </data>
+  <data name="msg_Licence_Expired" xml:space="preserve">
+    <value>Votre licence a expiré, vous devez réactiver votre application</value>
+  </data>
+  <data name="msg_Licence_NotActivated" xml:space="preserve">
+    <value>Votre application n'est pas encore activée, veuillez procéder a l'activation.</value>
+  </data>
 </root>
