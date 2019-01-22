@@ -70,5 +70,10 @@ namespace XpertMobileApp.IOS.Services
         {
             throw new System.NotImplementedException();
         }
+
+        public void RequestPermissions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -46,7 +46,7 @@ namespace XpertMobileApp.Droid
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
-            InitPermissions();
+            // InitPermissions();
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -78,7 +78,7 @@ namespace XpertMobileApp.Droid
             }
         }
 
-        void RequestReadPhoneStatePermission()
+        public static void RequestReadPhoneStatePermission()
         {
             Log.Info("DeviceInfos", "CAMERA permission has NOT been granted. Requesting permission.");
 

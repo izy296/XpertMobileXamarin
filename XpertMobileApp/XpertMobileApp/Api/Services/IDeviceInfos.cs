@@ -8,6 +8,8 @@ namespace XpertMobileApp.Services
     {
         bool HasPermission();
 
+        void RequestPermissions();
+
         string GetImei();
 
         string GetSubscriberId();

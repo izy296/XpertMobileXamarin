@@ -42,7 +42,13 @@ namespace XpertMobileApp.Views
             Ent_UserEemail.Text = "";
             Ent_ClientId.Text = "";
             Ent_UserEemail.Completed += (s, e) => Ent_ClientId.Focus();
-            Ent_ClientId.Completed += (s, e) => ConnectUserAsync(s, e);
+            Ent_ClientId.Completed += (s, e) => ActivateUserAsync(s, e);
+
+            var DInfos = DependencyService.Get<IDeviceInfos>();
+            if (!DInfos.HasPermission())
+            {
+                DInfos.RequestPermissions();
+            }
         }
 
         protected override void OnAppearing()
@@ -59,8 +65,19 @@ namespace XpertMobileApp.Views
             Btn_LogIn.Text = AppResources.lp_btn_Activate;
         }
 
-        async Task ConnectUserAsync(object sender, EventArgs e)
+        async Task ActivateUserAsync(object sender, EventArgs e)
         {
+            var DInfos = DependencyService.Get<IDeviceInfos>();
+            if (!DInfos.HasPermission())
+            {
+                var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.alrt_msg_MissingDeviceInfos, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                if (res)
+                {
+                    DInfos.RequestPermissions();
+                    return;
+                }
+            }
+
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
             {
@@ -135,19 +152,6 @@ namespace XpertMobileApp.Views
                 return true;
             }
             return false;
-        }
-
-        protected void Settings_Clicked(object sender, EventArgs e)
-        {
-             SettingsPage sp = new SettingsPage(true);
-             this.Navigation.PushModalAsync(new NavigationPage(sp));
-        }
-
-        private void Exit_Clicked(object sender, EventArgs e)
-        {
-            //System.Environment.Exit(1);
-            var closer = DependencyService.Get<ICloseApplication>();
-            closer?.closeApplication();
         }
     }
 }

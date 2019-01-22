@@ -74,5 +74,10 @@ namespace XpertMobileApp.UWP.Services
 
             throw new Exception("NO API FOR DEVICE ID PRESENT!");
         }
+
+        public void RequestPermissions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

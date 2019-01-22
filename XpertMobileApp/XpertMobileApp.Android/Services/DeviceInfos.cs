@@ -17,7 +17,13 @@ namespace XpertMobileApp.Droid.Services
 
         public bool HasPermission()
         {
-            return ActivityCompat.CheckSelfPermission(MainActivity.Instance, Manifest.Permission.ReadPhoneState) != (int)Permission.Granted;
+            bool result =  ActivityCompat.CheckSelfPermission(MainActivity.Instance, Manifest.Permission.ReadPhoneState) == (int)Permission.Granted;
+            return result;
+        }
+
+        public void RequestPermissions()
+        {
+            MainActivity.RequestReadPhoneStatePermission();
         }
 
         public string GetImei()
@@ -117,6 +123,7 @@ namespace XpertMobileApp.Droid.Services
                 return e.Message;
             }
         }
+
 
     }
 }
