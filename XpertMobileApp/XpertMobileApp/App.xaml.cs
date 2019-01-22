@@ -42,6 +42,7 @@ namespace XpertMobileApp
 
             MainPage = new LoginPage();
 
+            /*
             // Vérification de la licence
             LicState licState = LicActivator.CheckLicence().Result;
             if (licState != LicState.Valid)
@@ -49,7 +50,7 @@ namespace XpertMobileApp
                 MainPage = new ActivationPage(licState);
             }
 
-            /*
+          
             string currentVersion = AppInfo.Version.ToString();
             if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion , currentVersion) >= 0)
             {

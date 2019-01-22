@@ -75,6 +75,7 @@
     <Compile Include="Models\Core\TextToSpeech_iOS.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\CloseApplication.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />

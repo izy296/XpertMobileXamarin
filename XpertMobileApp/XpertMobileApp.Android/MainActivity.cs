@@ -9,6 +9,10 @@ using Android.OS;
 using Acr.UserDialogs;
 using Plugin.FirebasePushNotification;
 using Android.Content;
+using Android;
+using Android.Support.V4.App;
+using Android.Util;
+using Android.Support.Design.Widget;
 
 namespace XpertMobileApp.Droid
 {
@@ -16,6 +20,11 @@ namespace XpertMobileApp.Droid
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
+
+        static string[] PERMISSIONS_NEED = {
+            Manifest.Permission.ReadPhoneState,
+            Manifest.Permission.Camera
+        };
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -36,6 +45,8 @@ namespace XpertMobileApp.Droid
             LoadApplication(new App());
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+
+            InitPermissions();
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -57,5 +68,43 @@ namespace XpertMobileApp.Droid
             }
         }
 
+        static readonly int REQUEST_READ_PHONE_STATE = 0;
+
+        private void InitPermissions()
+        {
+            if (ActivityCompat.CheckSelfPermission(this, Manifest.Permission.ReadPhoneState) != (int)Permission.Granted)
+            {
+                RequestReadPhoneStatePermission();
+            }
+        }
+
+        void RequestReadPhoneStatePermission()
+        {
+            Log.Info("DeviceInfos", "CAMERA permission has NOT been granted. Requesting permission.");
+
+            if (ActivityCompat.ShouldShowRequestPermissionRationale(MainActivity.Instance, Manifest.Permission.Camera))
+            {
+                // Provide an additional rationale to the user if the permission was not granted
+                // and the user would benefit from additional context for the use of the permission.
+                // For example if the user has previously denied the permission.
+                Log.Info("DeviceInfo", "Displaying camera permission rationale to provide additional context.");
+
+                UserDialogs.Instance.AlertAsync("Read phone informations permission is needed toactivate your licence",
+                                                "Alert", "Ok");
+                ActivityCompat.RequestPermissions(MainActivity.Instance, new string[] { Manifest.Permission.ReadPhoneState }, REQUEST_READ_PHONE_STATE);
+
+                /*
+                Snackbar.Make(layout, "Read phone informations permission is needed toactivate your licence", Snackbar.LengthIndefinite).SetAction("Ok", new Action<Android.Views.View>(delegate (Android.Views.View obj) {
+                    ActivityCompat.RequestPermissions(MainActivity.Instance, new string[] { Manifest.Permission.ReadPhoneState }, REQUEST_CAMERA);
+                })).Show();
+                */
+            }
+            else
+            {
+                // Camera permission has not been granted yet. Request it directly.
+                ActivityCompat.RequestPermissions(MainActivity.Instance, new string[] { Manifest.Permission.ReadPhoneState }, REQUEST_READ_PHONE_STATE);
+            }
+
+        }
     }
 }
