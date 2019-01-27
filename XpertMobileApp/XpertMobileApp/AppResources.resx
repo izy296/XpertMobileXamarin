@@ -409,7 +409,7 @@
     <value>Email</value>
   </data>
   <data name="msg_ActivationSucces" xml:space="preserve">
-    <value>Application activée</value>
+    <value>L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</value>
   </data>
   <data name="msg_Licence_Cracked" xml:space="preserve">
     <value>Vous utilisez une licence crackée</value>
@@ -418,6 +418,27 @@
     <value>Votre licence a expiré, vous devez réactiver votre application</value>
   </data>
   <data name="msg_Licence_NotActivated" xml:space="preserve">
-    <value>Votre application n'est pas encore activée, veuillez procéder a l'activation.</value>
+    <value>Votre application n'est pas encore activée, veuillez procéder a son activation.</value>
+  </data>
+  <data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
+    <value>Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</value>
+  </data>
+  <data name="lp_lbl_UserPhone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="lp_ph_UserPhone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
+  <data name="Exception_errMsg_20" xml:space="preserve">
+    <value>L'option demandé n'est pas disponible dans votre licence</value>
+  </data>
+  <data name="Exception_errMsg_21" xml:space="preserve">
+    <value>Client avec produit concerné non existant</value>
+  </data>
+  <data name="Exception_errMsg_22" xml:space="preserve">
+    <value>Nombre de licences expiré</value>
+  </data>
+  <data name="Exception_errMsg_23" xml:space="preserve">
+    <value>Vous êtes déjà enregistré</value>
   </data>
 </root>

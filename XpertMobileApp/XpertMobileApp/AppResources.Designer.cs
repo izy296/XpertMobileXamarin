@@ -142,6 +142,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous devez autoriser l&apos;application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d&apos;activer votre licence..
+        /// </summary>
+        internal static string alrt_msg_MissingDeviceInfos {
+            get {
+                return ResourceManager.GetString("alrt_msg_MissingDeviceInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Veuillez renseigner les informations du serveur.
         /// </summary>
         internal static string alrt_msg_MissingServerInfos {
@@ -394,6 +403,42 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;option demandé n&apos;est pas disponible dans votre licence.
+        /// </summary>
+        internal static string Exception_errMsg_20 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Client avec produit concerné non existant.
+        /// </summary>
+        internal static string Exception_errMsg_21 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_21", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nombre de licences expiré.
+        /// </summary>
+        internal static string Exception_errMsg_22 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_22", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous êtes déjà enregistré.
+        /// </summary>
+        internal static string Exception_errMsg_23 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_23", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cette licence est généré pour un autre appareil.
         /// </summary>
         internal static string InvalidDevice {
@@ -466,6 +511,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Téléphone.
+        /// </summary>
+        internal static string lp_lbl_UserPhone {
+            get {
+                return ResourceManager.GetString("lp_lbl_UserPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Login.
         /// </summary>
         internal static string lp_Login {
@@ -520,7 +574,16 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Application activée.
+        ///   Recherche une chaîne localisée semblable à Téléphone.
+        /// </summary>
+        internal static string lp_ph_UserPhone {
+            get {
+                return ResourceManager.GetString("lp_ph_UserPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;activation de votre licence s&apos;est éffectué avec succes, vous pouvez désormais utiliser votre application..
         /// </summary>
         internal static string msg_ActivationSucces {
             get {
@@ -574,7 +637,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Votre application n&apos;est pas encore activée, veuillez procéder a l&apos;activation..
+        ///   Recherche une chaîne localisée semblable à Votre application n&apos;est pas encore activée, veuillez procéder a son activation..
         /// </summary>
         internal static string msg_Licence_NotActivated {
             get {

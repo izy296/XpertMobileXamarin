@@ -28,6 +28,7 @@ namespace XpertMobileApp
 
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
+        static ClientDatabaseControler clientDatabase;        
         static SettingsDatabaseControler settingsDatabase;
         static WebServiceClient resteService;
         private static Settings settings;
@@ -40,27 +41,28 @@ namespace XpertMobileApp
 
             App.SetAppLanguage(Settings.Language);
 
-            MainPage = new LoginPage();
+           // MainPage = new UpdatePage();
 
-            /*
+        
             // Vérification de la licence
             LicState licState = LicActivator.CheckLicence().Result;
-            if (licState != LicState.Valid)
-            {                
-                MainPage = new ActivationPage(licState);
-            }
 
-          
-            string currentVersion = AppInfo.Version.ToString();
-            if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion , currentVersion) >= 0)
+            if (licState == LicState.Valid)
             {
-                MainPage = new UpdatePage();
+                string currentVersion = AppInfo.Version.ToString();
+                if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
+                {
+                    MainPage = new UpdatePage();
+                }
+                else
+                {
+                    MainPage = new LoginPage();
+                }
             }
             else
             {
-                MainPage = new LoginPage();
-            } 
-            */
+                MainPage = new ActivationPage(licState); 
+            }
         }
 
         protected override void OnStart()
@@ -81,7 +83,6 @@ namespace XpertMobileApp
                         App.SettingsDatabase.SaveItemAsync(App.Settings);
                     }
                 }
-
             };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
@@ -159,6 +160,18 @@ namespace XpertMobileApp
                     tokenDatabase = new TokenDatabaseControler(DependencyService.Get<IFileHelper>().GetLocalFilePath(LOCAL_DB_NAME));
                 }
                 return tokenDatabase;
+            }
+        }
+
+        public static ClientDatabaseControler ClientDatabase
+        {
+            get
+            {
+                if (clientDatabase == null)
+                {
+                    clientDatabase = new ClientDatabaseControler(DependencyService.Get<IFileHelper>().GetLocalFilePath(LOCAL_DB_NAME));
+                }
+                return clientDatabase;
             }
         }
 

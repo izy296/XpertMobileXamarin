@@ -24,6 +24,7 @@
                     <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
                 </ContentView>
             </StackLayout>
+            <Label x:Name="lic_Message" Text="" Margin="20,20,20,0" XAlign="Center" TextColor="Red" Style="{StaticResource DefaultTextStyle}" />
         </StackLayout>
         <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
@@ -36,22 +37,32 @@
                     </Grid.ColumnDefinitions>
 
                     <StackLayout Grid.Column="1">
-
-                        <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
+                        <StackLayout>
+                            <Label x:Name="Lbl_UserEemail" Text="{i18n:Translate lp_lbl_UserEemail}" Style="{StaticResource BlackDefaultLblStyle}" />
+                            <Entry x:Name="Ent_UserEemail" Text="{ Binding Client.Email, Mode=TwoWay}" Placeholder="{i18n:Translate lp_ph_UserEemail}" />
+                        </StackLayout>
 
                         <StackLayout>
-                            <Label x:Name="Lbl_UserEemail" Text="{i18n:Translate lp_lbl_UserEemail}"  />
-                            <Entry x:Name="Ent_UserEemail" Text="" Placeholder="{i18n:Translate lp_ph_UserEemail}" />
+                            <Label x:Name="Lbl_UserPhone" Text="{i18n:Translate lp_lbl_UserPhone}" Style="{StaticResource BlackDefaultLblStyle}" />
+                            <Entry x:Name="Ent_UserPhone" Text="{ Binding Client.Phone, Mode=TwoWay}" Placeholder="{i18n:Translate lp_ph_UserPhone}" />
                         </StackLayout>
-
+                        
                         <StackLayout Padding="0,10,0,0">
-                            <Label x:Name="Lbl_ClientId" Text="{i18n:Translate lp_lbl_ClientId}"/>
-                            <Entry x:Name="Ent_ClientId" Text="" Placeholder="{i18n:Translate lp_ph_ClientId}" />
+                            <Label x:Name="Lbl_ClientId" Text="{i18n:Translate lp_lbl_ClientId}" Style="{StaticResource BlackDefaultLblStyle}"/>
+                            <Entry x:Name="Ent_ClientId" Text="{Binding Client.ClientId, Mode=TwoWay}" Placeholder="{i18n:Translate lp_ph_ClientId}" />
                         </StackLayout>
 
-                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
+                        <StackLayout Padding="0,10,0,0" IsVisible="False">
+                            <Label x:Name="Lbl_DeviceId" Text="DeviceId" Style="{StaticResource BlackDefaultLblStyle}"/>
+                            <Label x:Name="val_DeviceId" Text="{Binding Client.DeviceId}"/>
+                        </StackLayout>
+                        <StackLayout Padding="0" Orientation="Horizontal">
+                            <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5" HorizontalOptions="Center"
                                 Style="{DynamicResource DefaultBtnStyle}"
-                                Text="{i18n:Translate lp_btn_Activate}" Clicked="ConnectUserAsync"/>
+                                Text="{i18n:Translate lp_btn_Activate}" Clicked="ActivateUserAsync"/>
+
+                            <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="{Binding IsBusy}" HorizontalOptions="End"/>
+                        </StackLayout>
 
                     </StackLayout>
                 </Grid>

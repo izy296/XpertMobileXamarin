@@ -56,6 +56,7 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
             string message = LicActivator.GetLicenceMsgFromState(currentLicenceState);
+            lic_Message.Text = message;
 
             // User if translation if changed
             Lbl_UserEemail.Text = AppResources.lp_lbl_UserEemail;
@@ -67,6 +68,9 @@ namespace XpertMobileApp.Views
 
         async Task ActivateUserAsync(object sender, EventArgs e)
         {
+            if (viewModel.IsBusy)
+                return;
+
             var DInfos = DependencyService.Get<IDeviceInfos>();
             if (!DInfos.HasPermission())
             {
@@ -85,63 +89,44 @@ namespace XpertMobileApp.Views
                 return;
             }
 
-            Client client = new Client(Ent_UserEemail.Text, Ent_ClientId.Text);
-
-            if (this.CheckUser(client))
+            if (this.CheckUser(viewModel.Client))
             {
                 try
                 {
-                    Client result = await viewModel.ActivateClient(client);
-                    DateTime LicenceEndDate = viewModel.GetEndDate(result.LicenceTxt);
-                    int nbrDays = Convert.ToInt32(DateTime.Now.Subtract(LicenceEndDate).TotalDays);
+                    Client result = await viewModel.ActivateClient();
+                    if (result == null)
+                        return;
+
+                    DateTime LicenceEndDate = await viewModel.GetEndDate(result.LicenceTxt);
+                    int nbrDays = Convert.ToInt32(LicenceEndDate.Subtract(DateTime.Now).TotalDays);
                     if(nbrDays > 0)
                     {
                         await DisplayAlert(AppResources.alrt_msg_Info, 
                             String.Format(AppResources.msg_ActivationSucces), AppResources.alrt_msg_Ok);
+
+                        if (Device.RuntimePlatform == Device.Android)
+                        {
+                            Application.Current.MainPage = new LoginPage();
+                        }
+                        else if (Device.RuntimePlatform == Device.iOS)
+                        {
+                            await Navigation.PushModalAsync(new LoginPage(), false);
+                        }
+                        else
+                        {
+                            Application.Current.MainPage = new LoginPage();
+                        }
                     }
 
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
-                }
-
-                if (Device.RuntimePlatform == Device.Android)
-                {
-                    Application.Current.MainPage = new MainPage();
-                }
-                else if (Device.RuntimePlatform == Device.iOS)
-                {
-                    await Navigation.PushModalAsync(new MainPage(), false);
-                }
-                else
-                {
-                    Application.Current.MainPage = new MainPage();
+                    await DisplayAlert(AppResources.lp_Login, "Erreur lors de l'activation : " + ex.Message, AppResources.alrt_msg_Ok);
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
-            }
-        }
-
-        private async Task<Token> Login(User user)
-        {
-            try
-            {
-                Token result = await WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
-                return result != null ? result : new Token();
-            }
-            catch (XpertException e)
-            {
-                if(e.Code == XpertException.ERROR_XPERT_INCORRECTPASSWORD)
-                { 
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.err_msg_IncorrectLoginInfos, AppResources.alrt_msg_Ok);
-                } else
-                {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, e.Message, AppResources.alrt_msg_Ok);
-                }
-                return null;
+                await DisplayAlert(AppResources.lp_Login, "Informations d'activation manquantes", AppResources.alrt_msg_Ok);
             }
         }
 

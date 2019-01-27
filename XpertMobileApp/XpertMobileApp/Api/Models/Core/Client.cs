@@ -9,12 +9,11 @@ namespace XpertMobileApp.Models
         public string Id { get; set; }
 
         public string Email { get; set; }
+        public string Phone { get; set; }
         public string ClientId { get; set; }
-
+        public string DeviceId { get; set; }
+        
         public string LicenceTxt { get; set; }
-
-        public Token Token { get; set; }
-
 
         public Client() { }
 

@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Text;
 using System.Collections.Generic;
 using XpertMobileApp.Models;
+using System.IO;
 
 namespace XpertMobileApp.Helpers
 {
@@ -43,6 +44,40 @@ namespace XpertMobileApp.Helpers
             else
             {
                 throw new Exception(response.ReasonPhrase);
+            }
+        }
+
+        public static async Task<string> PostValue<T>(string url, T data)
+        {
+            string strdata = JsonConvert.SerializeObject(data);
+
+            HttpResponseMessage response = await PostResponse(url, strdata, null);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string responseStr = await response.Content.ReadAsStringAsync();
+                return responseStr;
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+               //  var responseStr = response.Content.ReadAsStringAsync().Result;
+
+                var stream = response.Content.ReadAsStreamAsync().Result;
+                StreamReader reader = new StreamReader(stream);
+                string text = reader.ReadToEnd();
+
+                // string des = JsonConvert.DeserializeObject(content);
+
+                if (string.IsNullOrEmpty(text) || text.Split('-').Length < 2)
+                {
+                    throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+                }
+                string[] str = text.Split('-');
+                throw new XpertException(str[1], Convert.ToInt32(str[0]) + 20);
+            }
+            else
+            {
+                throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
             }
         }
 

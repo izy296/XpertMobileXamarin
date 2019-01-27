@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xpert.Pharm.DAL;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -190,6 +191,16 @@ namespace XpertMobileApp.Services
             byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
             string resposeData = Encoding.UTF8.GetString(resultData);
             return JsonConvert.DeserializeObject<bool>(resposeData);
+        }
+
+        internal static async Task<LicenceInfos> ActivateClient(Client client)
+        {
+            
+            string url = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
+            string result = await WSApi2.PostValue<Client>(url, client);
+            client.LicenceTxt = result;
+            LicenceInfos licInfos = LicActivator.DecryptLicence(result);
+            return licInfos;
         }
     }
 }

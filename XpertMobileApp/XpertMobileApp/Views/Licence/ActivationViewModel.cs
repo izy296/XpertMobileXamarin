@@ -1,28 +1,66 @@
 ﻿
 
+using Acr.UserDialogs;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Data;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
     public class ActivationViewModel : BaseViewModel
     {
+        public IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
+
+        public Client Client { get; set; }
+
         public ActivationViewModel()
         {
-            Title = AppResources.pn_Activation;
+            Client = new Client();
+            Client.DeviceId = DInfos.GetDeviceId();
         }
 
-        internal Task<Client> ActivateClient(Client client)
+        internal async Task<Client> ActivateClient()
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (IsBusy)
+                    return null;
+
+                IsBusy = true;
+
+                LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
+
+                await App.ClientDatabase.SaveItemAsync(Client);
+
+                App.Settings.ServiceUrl = lInfos.Mobile_Remote_URL;
+                await App.SettingsDatabase.SaveItemAsync(App.Settings);
+
+                IsBusy = false;
+
+                return Client;
+            }
+            catch (XpertException ex)
+            {
+                string msgKey = string.Format("Exception_errMsg_{0}", ex.Code);                
+                await UserDialogs.Instance.AlertAsync(TranslateExtension.GetTranslation(msgKey), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+                return null;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
-        internal DateTime GetEndDate(string licenceTxt)
+        internal async Task<DateTime> GetEndDate(string licenceTxt)
         {
-            throw new NotImplementedException();
+            return await LicActivator.GetLicenceEndDate(licenceTxt);
         }
-
     }
 }

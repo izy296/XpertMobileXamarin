@@ -3,6 +3,7 @@ using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using System;
 
 namespace XpertMobileApp.Data
 {
@@ -30,7 +31,15 @@ namespace XpertMobileApp.Data
 
         public Task<Client> GetFirstItemAsync()
         {
-            return database.Table<Client>().FirstOrDefaultAsync();
+            try
+            { 
+             var result = database.Table<Client>().FirstOrDefaultAsync();
+             return result;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         public Task<int> SaveItemAsync(Client item)
@@ -41,6 +50,7 @@ namespace XpertMobileApp.Data
             }
             else
             {
+                item.Id = Guid.NewGuid().ToString();
                 return database.InsertAsync(item);
             }
         }

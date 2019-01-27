@@ -398,8 +398,8 @@
           <target state="new">Email</target>
         </trans-unit>
         <trans-unit id="msg_ActivationSucces" translate="yes" xml:space="preserve">
-          <source>Application activée</source>
-          <target state="new">Application activée</target>
+          <source>L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</source>
+          <target state="new">L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</target>
         </trans-unit>
         <trans-unit id="InvalidDevice" translate="yes" xml:space="preserve">
           <source>Cette licence est généré pour un autre appareil</source>
@@ -414,8 +414,36 @@
           <target state="new">Votre licence a expiré, vous devez réactiver votre application</target>
         </trans-unit>
         <trans-unit id="msg_Licence_NotActivated" translate="yes" xml:space="preserve">
-          <source>Votre application n'est pas encore activée, veuillez procéder a l'activation.</source>
-          <target state="new">Votre application n'est pas encore activée, veuillez procéder a l'activation.</target>
+          <source>Votre application n'est pas encore activée, veuillez procéder a son activation.</source>
+          <target state="new">Votre application n'est pas encore activée, veuillez procéder a son activation.</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_MissingDeviceInfos" translate="yes" xml:space="preserve">
+          <source>Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</source>
+          <target state="new">Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserPhone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="new">Téléphone</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserPhone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="new">Téléphone</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_20" translate="yes" xml:space="preserve">
+          <source>L'option demandé n'est pas disponible dans votre licence</source>
+          <target state="new">L'option demandé n'est pas disponible dans votre licence</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_21" translate="yes" xml:space="preserve">
+          <source>Client avec produit concerné non existant</source>
+          <target state="new">Client avec produit concerné non existant</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_22" translate="yes" xml:space="preserve">
+          <source>Nombre de licences expiré</source>
+          <target state="new">Nombre de licences expiré</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_23" translate="yes" xml:space="preserve">
+          <source>Vous êtes déjà enregistré</source>
+          <target state="new">Vous êtes déjà enregistré</target>
         </trans-unit>
       </group>
     </body>

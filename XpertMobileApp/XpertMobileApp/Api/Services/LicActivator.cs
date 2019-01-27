@@ -1,10 +1,15 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Key_Activator;
 using XpertMobileApp.Data;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 
 namespace XpertMobileApp.Api.Services
 {
@@ -14,13 +19,13 @@ namespace XpertMobileApp.Api.Services
     {
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
 
-        private static ClientDatabaseControler clientDatabase = new ClientDatabaseControler(DependencyService.Get<IFileHelper>().GetLocalFilePath(LOCAL_DB_NAME));
+        public static IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
 
         public async static Task<LicState> CheckLicence()
         {
             try
             { 
-                Client client = await clientDatabase.GetFirstItemAsync();
+                Client client = App.ClientDatabase.GetFirstItemAsync().Result;
 
                 if(client == null || string.IsNullOrEmpty(client.LicenceTxt))
                 {
@@ -29,12 +34,16 @@ namespace XpertMobileApp.Api.Services
 
                 var LicenceInfos = DecryptLicence(client.LicenceTxt);
 
-                if(LicenceInfos.DeviceId != "currentDeviceId")
+
+                //System.Environment.Exit(1);
+                var DInfos = DependencyService.Get<IDeviceInfos>();
+                string serial = DInfos?.GetDeviceId();
+                if (LicenceInfos.DeviceId != serial)
                 {
                     return LicState.InvalidDevice;
                 }
 
-                int nbrDays = Convert.ToInt32(DateTime.Now.Subtract(LicenceInfos.EndDate).TotalDays);
+                int nbrDays = Convert.ToInt32(LicenceInfos.ExpirationDate.Subtract(DateTime.Now).TotalDays);
                 if (nbrDays >= 0)
                 {
                     return LicState.Valid;
@@ -44,23 +53,25 @@ namespace XpertMobileApp.Api.Services
                     return LicState.Expired;
                 }
             }
-            catch
+            catch(Exception e)
             {
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
                 return LicState.Cracked;
             }
         }
 
-        internal static async Task<DateTime?> GetLicenceEndDate(string licenceTxt)
+        internal static async Task<DateTime> GetLicenceEndDate(string licenceTxt)
         {
             if(await CheckLicence() == LicState.Valid)
             {
-                Client client = await clientDatabase.GetFirstItemAsync();
+                Client client = await App.ClientDatabase.GetFirstItemAsync();
                 var LicenceInfos = DecryptLicence(client.LicenceTxt);
-                return LicenceInfos.EndDate;
+                return LicenceInfos.ExpirationDate;
             }
             else
             {
-                return null;
+                throw new XpertException("Invlide licence", XpertException.ERROR_XPERT_INVALIDELICENCE);
             }
         }
 
@@ -92,14 +103,12 @@ namespace XpertMobileApp.Api.Services
             return message;
         }
 
-        internal Task<Client> ActivateClient(Client client)
-        {
-            throw new NotImplementedException();
-        }
-
         internal static LicenceInfos DecryptLicence(string licenceTxt)
         {
-            throw new NotImplementedException();
+            StringEncryptMobile decriptor = new StringEncryptMobile("XpEMobrtile@2019", DInfos.GetDeviceId());
+            string result = decriptor.Decrypt(licenceTxt);
+            LicenceInfos lInfos = JsonConvert.DeserializeObject<LicenceInfos>(result);
+            return lInfos;
         }
     }
 }

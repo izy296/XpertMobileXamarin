@@ -38,9 +38,22 @@ namespace XpertMobileApp.Models
 
         public const int ERROR_XPERT_DATEPEREMPTION_ERROR = 7;
 
+        public const int ERROR_XPERT_INVALIDELICENCE = 8;
+        
         public const int ERROR_ACCESS_DENIED = 9;
 
         public const int ERROR_BAD_URL = 10;
+
+
+        // error activation
+
+        public const int ERROR_OPTION_DENIED = 20;
+
+        public const int ERROR_PRODUCT_OR_CLIENT_NOTFOUND = 21;
+
+        public const int ERROR_NBR_LICENCES_EXPRIRED = 22;
+
+        public const int ERROR_ALREADY_REGISTRED = 23;
 
 
 
