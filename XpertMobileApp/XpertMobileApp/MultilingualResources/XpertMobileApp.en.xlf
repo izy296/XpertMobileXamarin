@@ -371,79 +371,79 @@
         </trans-unit>
         <trans-unit id="pn_Activation" translate="yes" xml:space="preserve">
           <source>Activation</source>
-          <target state="new">Activation</target>
+          <target state="translated">Activation</target>
         </trans-unit>
         <trans-unit id="pn_Login" translate="yes" xml:space="preserve">
           <source>Authentification</source>
-          <target state="new">Authentification</target>
+          <target state="translated">Authentication</target>
         </trans-unit>
         <trans-unit id="lp_btn_Activate" translate="yes" xml:space="preserve">
           <source>Activer</source>
-          <target state="new">Activer</target>
+          <target state="translated">Activate</target>
         </trans-unit>
         <trans-unit id="lp_lbl_ClientId" translate="yes" xml:space="preserve">
           <source>Identifiant client</source>
-          <target state="new">Identifiant client</target>
+          <target state="translated">Customer ID</target>
         </trans-unit>
         <trans-unit id="lp_lbl_UserEemail" translate="yes" xml:space="preserve">
           <source>Email</source>
-          <target state="new">Email</target>
+          <target state="translated">Email</target>
         </trans-unit>
         <trans-unit id="lp_ph_ClientId" translate="yes" xml:space="preserve">
           <source>Identifiant client</source>
-          <target state="new">Identifiant client</target>
+          <target state="translated">Customer ID</target>
         </trans-unit>
         <trans-unit id="lp_ph_UserEemail" translate="yes" xml:space="preserve">
           <source>Email</source>
-          <target state="new">Email</target>
+          <target state="translated">Email</target>
         </trans-unit>
         <trans-unit id="msg_ActivationSucces" translate="yes" xml:space="preserve">
           <source>L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</source>
-          <target state="new">L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</target>
+          <target state="translated">Activation of your license has been successfully completed, you can now use your application.</target>
         </trans-unit>
         <trans-unit id="InvalidDevice" translate="yes" xml:space="preserve">
           <source>Cette licence est généré pour un autre appareil</source>
-          <target state="new">Cette licence est généré pour un autre appareil</target>
+          <target state="translated">This license is generated for another device</target>
         </trans-unit>
         <trans-unit id="msg_Licence_Cracked" translate="yes" xml:space="preserve">
           <source>Vous utilisez une licence crackée</source>
-          <target state="new">Vous utilisez une licence crackée</target>
+          <target state="translated">You are using a cracked license</target>
         </trans-unit>
         <trans-unit id="msg_Licence_Expired" translate="yes" xml:space="preserve">
           <source>Votre licence a expiré, vous devez réactiver votre application</source>
-          <target state="new">Votre licence a expiré, vous devez réactiver votre application</target>
+          <target state="translated">Your license has expired, you must reactivate your application</target>
         </trans-unit>
         <trans-unit id="msg_Licence_NotActivated" translate="yes" xml:space="preserve">
           <source>Votre application n'est pas encore activée, veuillez procéder a son activation.</source>
-          <target state="new">Votre application n'est pas encore activée, veuillez procéder a son activation.</target>
+          <target state="translated">Your application is not yet activated, please fill in the following form to activate your application.</target>
         </trans-unit>
         <trans-unit id="alrt_msg_MissingDeviceInfos" translate="yes" xml:space="preserve">
           <source>Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</source>
-          <target state="new">Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</target>
+          <target state="translated">You must allow the app to access your device information to identify you and allow you to activate your license.</target>
         </trans-unit>
         <trans-unit id="lp_lbl_UserPhone" translate="yes" xml:space="preserve">
           <source>Téléphone</source>
-          <target state="new">Téléphone</target>
+          <target state="translated">Phone</target>
         </trans-unit>
         <trans-unit id="lp_ph_UserPhone" translate="yes" xml:space="preserve">
           <source>Téléphone</source>
-          <target state="new">Téléphone</target>
+          <target state="translated">Phone</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_20" translate="yes" xml:space="preserve">
           <source>L'option demandé n'est pas disponible dans votre licence</source>
-          <target state="new">L'option demandé n'est pas disponible dans votre licence</target>
+          <target state="translated">The requested option is not available in your license</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_21" translate="yes" xml:space="preserve">
           <source>Client avec produit concerné non existant</source>
-          <target state="new">Client avec produit concerné non existant</target>
+          <target state="translated">Customer or relevant product does not exist</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_22" translate="yes" xml:space="preserve">
           <source>Nombre de licences expiré</source>
-          <target state="new">Nombre de licences expiré</target>
+          <target state="translated">Number of licenses expired</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_23" translate="yes" xml:space="preserve">
           <source>Vous êtes déjà enregistré</source>
-          <target state="new">Vous êtes déjà enregistré</target>
+          <target state="translated">You are already registered</target>
         </trans-unit>
       </group>
     </body>
