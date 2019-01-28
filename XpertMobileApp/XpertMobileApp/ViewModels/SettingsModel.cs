@@ -96,9 +96,16 @@ namespace XpertMobileApp.ViewModels
             }
             catch (XpertException ex)
             {
-                string msgKey = string.Format("Exception_errMsg_{0}", ex.Code);
-                await UserDialogs.Instance.AlertAsync(TranslateExtension.GetTranslation(msgKey), AppResources.alrt_msg_Alert,
+                if (ex.Code == XpertException.ERROR_XPERT_UNKNOWN)
+                {
+                    await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    string msgKey = string.Format("Exception_errMsg_{0}", ex.Code);
+                    await UserDialogs.Instance.AlertAsync(TranslateExtension.GetTranslation(msgKey), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
+                }
                 return false;
             }
             finally

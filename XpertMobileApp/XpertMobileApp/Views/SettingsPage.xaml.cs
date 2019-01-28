@@ -48,7 +48,8 @@ namespace XpertMobileApp.Views
             if(client != null)
             {
                 DateTime expirationDate = LicActivator.GetLicenceEndDate(client.LicenceTxt).Result;
-                lbl_ExperationDate.Text = string.Format("{0} : {1}", TranslateExtension.GetTranslation("msg_ExpireOn"),string.Format("dd/MM/YYYY", expirationDate));
+                lbl_ExperationDate.Text = string.Format("{0} : {1}", TranslateExtension.GetTranslation("msg_ExpireOn"),
+                    expirationDate.ToString("dd/MM/yyyy"));
             }
         }
 

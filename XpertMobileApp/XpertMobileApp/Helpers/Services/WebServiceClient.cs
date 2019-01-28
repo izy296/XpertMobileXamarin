@@ -208,8 +208,8 @@ namespace XpertMobileApp.Services
             string result = await WSApi2.PutValue<Client>(url, client);
 
             if (string.IsNullOrEmpty(result))
-                return true;
-            else return false;
+                return false;
+            else return true;
         }
     }
 }
