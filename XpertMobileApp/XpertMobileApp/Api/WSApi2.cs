@@ -47,40 +47,6 @@ namespace XpertMobileApp.Helpers
             }
         }
 
-        public static async Task<string> PostValue<T>(string url, T data)
-        {
-            string strdata = JsonConvert.SerializeObject(data);
-
-            HttpResponseMessage response = await PostResponse(url, strdata, null);
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                string responseStr = await response.Content.ReadAsStringAsync();
-                return responseStr;
-            }
-            else if (response.StatusCode == HttpStatusCode.BadRequest)
-            {
-               //  var responseStr = response.Content.ReadAsStringAsync().Result;
-
-                var stream = response.Content.ReadAsStreamAsync().Result;
-                StreamReader reader = new StreamReader(stream);
-                string text = reader.ReadToEnd();
-
-                // string des = JsonConvert.DeserializeObject(content);
-
-                if (string.IsNullOrEmpty(text) || text.Split('-').Length < 2)
-                {
-                    throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
-                }
-                string[] str = text.Split('-');
-                throw new XpertException(str[1], Convert.ToInt32(str[0]) + 20);
-            }
-            else
-            {
-                throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
-            }
-        }
-
         public static async Task<T> PostAauthorizedValue<T, T1>(string url, T1 data, string token)
         {
             string strdata = JsonConvert.SerializeObject(data);
@@ -343,5 +309,76 @@ namespace XpertMobileApp.Helpers
             param = string.Format("{0}{1}={2}", separator, name, value);
             return param;
         }
+
+        #region Used for activation
+
+        public static async Task<string> PutValue<T>(string url, T data)
+        {
+            string strdata = JsonConvert.SerializeObject(data);
+
+            HttpResponseMessage response = await PutResponse(url, strdata, null);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string responseStr = await response.Content.ReadAsStringAsync();
+                return responseStr;
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                //  var responseStr = response.Content.ReadAsStringAsync().Result;
+
+                var stream = response.Content.ReadAsStreamAsync().Result;
+                StreamReader reader = new StreamReader(stream);
+                string text = reader.ReadToEnd();
+
+                // string des = JsonConvert.DeserializeObject(content);
+
+                if (string.IsNullOrEmpty(text) || text.Split('-').Length < 2)
+                {
+                    throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+                }
+                string[] str = text.Split('-');
+                throw new XpertException(str[1], Convert.ToInt32(str[0]) + 20);
+            }
+            else
+            {
+                throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+            }
+        }
+
+        public static async Task<string> PostValue<T>(string url, T data)
+        {
+            string strdata = JsonConvert.SerializeObject(data);
+
+            HttpResponseMessage response = await PostResponse(url, strdata, null);
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                string responseStr = await response.Content.ReadAsStringAsync();
+                return responseStr;
+            }
+            else if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                //  var responseStr = response.Content.ReadAsStringAsync().Result;
+
+                var stream = response.Content.ReadAsStreamAsync().Result;
+                StreamReader reader = new StreamReader(stream);
+                string text = reader.ReadToEnd();
+
+                // string des = JsonConvert.DeserializeObject(content);
+
+                if (string.IsNullOrEmpty(text) || text.Split('-').Length < 2)
+                {
+                    throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+                }
+                string[] str = text.Split('-');
+                throw new XpertException(str[1], Convert.ToInt32(str[0]) + 30);
+            }
+            else
+            {
+                throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+            }
+        }
+        #endregion
     }
 }

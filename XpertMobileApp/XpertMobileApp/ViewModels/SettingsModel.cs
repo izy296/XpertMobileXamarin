@@ -5,6 +5,10 @@ using System.Text;
 using System.Collections.ObjectModel;
 using XpertMobileApp.Model;
 using System.Linq;
+using System.Threading.Tasks;
+using XpertMobileApp.Services;
+using Acr.UserDialogs;
+using XpertMobileApp.Helpers;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -65,6 +69,42 @@ namespace XpertMobileApp.ViewModels
         {
             App.SettingsDatabase.SaveItemAsync(Settings);
             this.Settings.isModified = false;
+        }
+
+        internal async Task<bool> DeactivateClient()
+        {
+            try
+            {
+                if (IsBusy)
+                    return false;
+
+                IsBusy = true;
+
+                Client client = App.ClientDatabase.GetFirstItemAsync().Result;
+
+                if (client == null) return false;
+
+                bool result = await WebServiceClient.DeactivateClient(client);
+                if (result)
+                { 
+                    await App.ClientDatabase.DeleteItemAsync(client);
+                }
+
+                IsBusy = false;
+
+                return true;
+            }
+            catch (XpertException ex)
+            {
+                string msgKey = string.Format("Exception_errMsg_{0}", ex.Code);
+                await UserDialogs.Instance.AlertAsync(TranslateExtension.GetTranslation(msgKey), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+                return false;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

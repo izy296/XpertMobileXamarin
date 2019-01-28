@@ -441,4 +441,25 @@
   <data name="Exception_errMsg_23" xml:space="preserve">
     <value>Vous êtes déjà enregistré</value>
   </data>
+  <data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
+    <value>Si vous désactivé votre licence vous ne pourrez plus l'utiliser jusqu'a sa reactivation, voulez vous continuer ?</value>
+  </data>
+  <data name="msg_ExpireOn" xml:space="preserve">
+    <value>Expire le</value>
+  </data>
+  <data name="sp_btn_RemoveLicence" xml:space="preserve">
+    <value>Désactiver la licence</value>
+  </data>
+  <data name="sp_lbl_LicenceInfos" xml:space="preserve">
+    <value>Information sur la licence</value>
+  </data>
+  <data name="Exception_errMsg_31" xml:space="preserve">
+    <value>Votre licence a déjà été désactivé!</value>
+  </data>
+  <data name="Exception_errMsg_32" xml:space="preserve">
+    <value>Nous n'avons pas pu trouver votre licence!</value>
+  </data>
+  <data name="msg_DeactivationSucces" xml:space="preserve">
+    <value>La désactivation de votre licence s'est déroulé avec succes.</value>
+  </data>
 </root>

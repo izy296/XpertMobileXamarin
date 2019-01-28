@@ -6,6 +6,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Collections.ObjectModel;
 using XpertMobileApp.Model;
+using XpertMobileApp.Api.Services;
+using XpertMobileApp.Models;
+using XpertMobileApp.Helpers;
 
 namespace XpertMobileApp.Views
 {
@@ -40,6 +43,13 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
             LanguagesPicker.SelectedIndexChanged += LanguagesPicker_SelectedIndexChanged;
+
+            Client client = App.ClientDatabase.GetFirstItemAsync().Result;
+            if(client != null)
+            {
+                DateTime expirationDate = LicActivator.GetLicenceEndDate(client.LicenceTxt).Result;
+                lbl_ExperationDate.Text = string.Format("{0} : {1}", TranslateExtension.GetTranslation("msg_ExpireOn"),string.Format("dd/MM/YYYY", expirationDate));
+            }
         }
 
         private void LanguagesPicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,6 +64,8 @@ namespace XpertMobileApp.Views
             Btn_SaveSettings.Text     = AppResources.sp_btn_SaveSettings;
             Btn_TestCnx.Text          = AppResources.sp_btn_TestConnection;
             lbl_ConnexionInfos.Text   = AppResources.sp_lbl_ConnexionInfos;
+            Btn_RemoveLicence.Text    = AppResources.sp_btn_RemoveLicence;
+            lbl_LicenceInfos.Text     = AppResources.sp_lbl_LicenceInfos;
         }
 
         protected override async void OnDisappearing()
@@ -127,6 +139,37 @@ namespace XpertMobileApp.Views
             catch (Exception e)
             {
                 throw new Exception(e.Message);
+            }
+        }
+
+        private async void Btn_RemoveLicence_Clicked(object sender, EventArgs e)
+        {
+            var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.alrt_msg_CondifirmDesactivateLicence, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+            if (res)
+            {
+                bool result = await viewModel.DeactivateClient();
+                if (result)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info,
+                                String.Format(AppResources.msg_DeactivationSucces), AppResources.alrt_msg_Ok);
+
+                    if (Device.RuntimePlatform == Device.Android)
+                    {
+                        Application.Current.MainPage = new ActivationPage();
+                    }
+                    else if (Device.RuntimePlatform == Device.iOS)
+                    {
+                        await Navigation.PushModalAsync(new ActivationPage(), false);
+                    }
+                    else
+                    {
+                        Application.Current.MainPage = new ActivationPage();
+                    }
+                }
+                else
+                {
+
+                }
             }
         }
     }

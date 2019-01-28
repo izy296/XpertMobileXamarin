@@ -279,4 +279,61 @@
   <data name="txt_Loading" xml:space="preserve">
     <value>Loading ...</value>
   </data>
+  <data name="pn_Activation" xml:space="preserve">
+    <value>Activation</value>
+  </data>
+  <data name="pn_Login" xml:space="preserve">
+    <value>Authentication</value>
+  </data>
+  <data name="lp_btn_Activate" xml:space="preserve">
+    <value>Activate</value>
+  </data>
+  <data name="lp_lbl_ClientId" xml:space="preserve">
+    <value>Customer ID</value>
+  </data>
+  <data name="lp_lbl_UserEemail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lp_ph_ClientId" xml:space="preserve">
+    <value>Customer ID</value>
+  </data>
+  <data name="lp_ph_UserEemail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="msg_ActivationSucces" xml:space="preserve">
+    <value>Activation of your license has been successfully completed, you can now use your application.</value>
+  </data>
+  <data name="InvalidDevice" xml:space="preserve">
+    <value>This license is generated for another device</value>
+  </data>
+  <data name="msg_Licence_Cracked" xml:space="preserve">
+    <value>You are using a cracked license</value>
+  </data>
+  <data name="msg_Licence_Expired" xml:space="preserve">
+    <value>Your license has expired, you must reactivate your application</value>
+  </data>
+  <data name="msg_Licence_NotActivated" xml:space="preserve">
+    <value>Your application is not yet activated, please fill in the following form to activate your application.</value>
+  </data>
+  <data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
+    <value>You must allow the app to access your device information to identify you and allow you to activate your license.</value>
+  </data>
+  <data name="lp_lbl_UserPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="lp_ph_UserPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Exception_errMsg_20" xml:space="preserve">
+    <value>The requested option is not available in your license</value>
+  </data>
+  <data name="Exception_errMsg_21" xml:space="preserve">
+    <value>Customer or relevant product does not exist</value>
+  </data>
+  <data name="Exception_errMsg_22" xml:space="preserve">
+    <value>Number of licenses expired</value>
+  </data>
+  <data name="Exception_errMsg_23" xml:space="preserve">
+    <value>You are already registered</value>
+  </data>
 </root>

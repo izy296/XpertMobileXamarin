@@ -115,6 +115,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Si vous désactivé votre licence vous ne pourrez plus l&apos;utiliser jusqu&apos;a sa reactivation, voulez vous continuer ?.
+        /// </summary>
+        internal static string alrt_msg_CondifirmDesactivateLicence {
+            get {
+                return ResourceManager.GetString("alrt_msg_CondifirmDesactivateLicence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Connexion échoué veullez vérifier les informations du serveur.
         /// </summary>
         internal static string alrt_msg_ConnectionError {
@@ -439,6 +448,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Votre licence a déjà été désactivé!.
+        /// </summary>
+        internal static string Exception_errMsg_31 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_31", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nous n&apos;avons pas pu trouver votre licence!.
+        /// </summary>
+        internal static string Exception_errMsg_32 {
+            get {
+                return ResourceManager.GetString("Exception_errMsg_32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Cette licence est généré pour un autre appareil.
         /// </summary>
         internal static string InvalidDevice {
@@ -601,6 +628,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à La désactivation de votre licence s&apos;est déroulé avec succes..
+        /// </summary>
+        internal static string msg_DeactivationSucces {
+            get {
+                return ResourceManager.GetString("msg_DeactivationSucces", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Voulez-vous vraiment supprimer cet élément ?.
         /// </summary>
         internal static string msg_DeleteConfirmation {
@@ -615,6 +651,15 @@ namespace XpertMobileApp {
         internal static string msg_EnterTheAmount {
             get {
                 return ResourceManager.GetString("msg_EnterTheAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Expire le.
+        /// </summary>
+        internal static string msg_ExpireOn {
+            get {
+                return ResourceManager.GetString("msg_ExpireOn", resourceCulture);
             }
         }
         
@@ -727,6 +772,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Désactiver la licence.
+        /// </summary>
+        internal static string sp_btn_RemoveLicence {
+            get {
+                return ResourceManager.GetString("sp_btn_RemoveLicence", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Enregistrer.
         /// </summary>
         internal static string sp_btn_SaveSettings {
@@ -750,6 +804,15 @@ namespace XpertMobileApp {
         internal static string sp_lbl_ConnexionInfos {
             get {
                 return ResourceManager.GetString("sp_lbl_ConnexionInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Information sur la licence.
+        /// </summary>
+        internal static string sp_lbl_LicenceInfos {
+            get {
+                return ResourceManager.GetString("sp_lbl_LicenceInfos", resourceCulture);
             }
         }
         

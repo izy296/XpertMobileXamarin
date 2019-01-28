@@ -279,4 +279,61 @@
   <data name="txt_Loading" xml:space="preserve">
     <value>تحميل ...</value>
   </data>
+  <data name="pn_Activation" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+  <data name="pn_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_btn_Activate" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+  <data name="lp_lbl_ClientId" xml:space="preserve">
+    <value>معرف العميل</value>
+  </data>
+  <data name="lp_lbl_UserEemail" xml:space="preserve">
+    <value>بريد</value>
+  </data>
+  <data name="lp_ph_ClientId" xml:space="preserve">
+    <value>معرف العميل</value>
+  </data>
+  <data name="lp_ph_UserEemail" xml:space="preserve">
+    <value>بريد</value>
+  </data>
+  <data name="msg_ActivationSucces" xml:space="preserve">
+    <value>اكتمل تنشيط الترخيص الخاص بك بنجاح ، يمكنك الآن استخدام التطبيق الخاص بك.</value>
+  </data>
+  <data name="InvalidDevice" xml:space="preserve">
+    <value>تم إنشاء هذا الترخيص لجهاز آخر</value>
+  </data>
+  <data name="msg_Licence_Cracked" xml:space="preserve">
+    <value>أنت تستخدم ترخيصًا غير مرخص به</value>
+  </data>
+  <data name="msg_Licence_Expired" xml:space="preserve">
+    <value>انتهت صلاحية الترخيص الخاص بك ، يجب إعادة تنشيط طلبك</value>
+  </data>
+  <data name="msg_Licence_NotActivated" xml:space="preserve">
+    <value>التطبيق غير مفعل, يرجى ملأ الاستمارة لتفعيله.</value>
+  </data>
+  <data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
+    <value>يجب عليك السماح للتطبيق بالوصول إلى معلومات جهازك لتحديد هويتك والسماح لك بتفعيل الترخيص الخاص بك.</value>
+  </data>
+  <data name="lp_lbl_UserPhone" xml:space="preserve">
+    <value>هاتف</value>
+  </data>
+  <data name="lp_ph_UserPhone" xml:space="preserve">
+    <value>هاتف</value>
+  </data>
+  <data name="Exception_errMsg_20" xml:space="preserve">
+    <value>الخيار المطلوب غير متوفر في الترخيص الخاص بك</value>
+  </data>
+  <data name="Exception_errMsg_21" xml:space="preserve">
+    <value>زالزبون أن المنتوج المطلوب غير متوفر في حسابكم</value>
+  </data>
+  <data name="Exception_errMsg_22" xml:space="preserve">
+    <value>عدد تراخيص التطبيق نفذت في حسابكم</value>
+  </data>
+  <data name="Exception_errMsg_23" xml:space="preserve">
+    <value>تم تسجيلك من قبل</value>
+  </data>
 </root>

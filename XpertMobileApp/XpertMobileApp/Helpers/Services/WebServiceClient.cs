@@ -195,12 +195,21 @@ namespace XpertMobileApp.Services
 
         internal static async Task<LicenceInfos> ActivateClient(Client client)
         {
-            
-            string url = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
+            string url = ServiceUrlDico.LICENCE_ACTIVATION_URL;
             string result = await WSApi2.PostValue<Client>(url, client);
             client.LicenceTxt = result;
             LicenceInfos licInfos = LicActivator.DecryptLicence(result);
             return licInfos;
+        }
+
+        internal static async Task<bool> DeactivateClient(Client client)
+        {
+            string url = ServiceUrlDico.LICENCE_DEACTIVATION_URL;
+            string result = await WSApi2.PutValue<Client>(url, client);
+
+            if (string.IsNullOrEmpty(result))
+                return true;
+            else return false;
         }
     }
 }

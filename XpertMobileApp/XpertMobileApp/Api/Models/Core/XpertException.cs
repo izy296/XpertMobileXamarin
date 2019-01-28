@@ -55,6 +55,10 @@ namespace XpertMobileApp.Models
 
         public const int ERROR_ALREADY_REGISTRED = 23;
 
+        // error desactivation
+        public const int ERROR_ALREADY_DESACTIVATED = 31;
+
+        public const int ERROR__CLIENT_NOTFOUND = 32;
 
 
         public XpertException(string module, int code, string message, Exception e, object[] args)
