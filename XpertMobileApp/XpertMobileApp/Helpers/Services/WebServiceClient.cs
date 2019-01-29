@@ -207,9 +207,7 @@ namespace XpertMobileApp.Services
             string url = ServiceUrlDico.LICENCE_DEACTIVATION_URL;
             string result = await WSApi2.PutValue<Client>(url, client);
 
-            if (string.IsNullOrEmpty(result))
-                return false;
-            else return true;
+            return !string.IsNullOrEmpty(result);            
         }
     }
 }
