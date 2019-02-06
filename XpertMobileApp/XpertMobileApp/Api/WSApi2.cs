@@ -369,7 +369,7 @@ namespace XpertMobileApp.Helpers
 
                 if (string.IsNullOrEmpty(text) || text.Split('-').Length < 2)
                 {
-                    throw new XpertException(response.ReasonPhrase, XpertException.ERROR_XPERT_UNKNOWN);
+                    throw new XpertException(text, XpertException.ERROR_XPERT_UNKNOWN);
                 }
                 string[] str = text.Split('-');
                 throw new XpertException(str[1], Convert.ToInt32(str[0]) + 30);

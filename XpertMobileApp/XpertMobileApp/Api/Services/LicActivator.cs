@@ -65,8 +65,7 @@ namespace XpertMobileApp.Api.Services
         {
             if(await CheckLicence() == LicState.Valid)
             {
-                Client client = await App.ClientDatabase.GetFirstItemAsync();
-                var LicenceInfos = DecryptLicence(client.LicenceTxt);
+                var LicenceInfos = DecryptLicence(licenceTxt);
                 return LicenceInfos.ExpirationDate;
             }
             else

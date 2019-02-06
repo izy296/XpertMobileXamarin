@@ -63,7 +63,7 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 Encaissements.Clear();
-                var items = await WebServiceClient.GetStatisticEncaiss(DateTime.Now.AddYears(-1), DateTime.Now);
+                var items = await WebServiceClient.GetStatisticEncaiss(DateTime.Now, DateTime.Now);
                 if (items.Count > 0)
                 { 
                     foreach (var item in items)
