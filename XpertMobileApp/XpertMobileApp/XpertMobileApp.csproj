@@ -164,4 +164,7 @@
       <Generator>MSBuild:Compile</Generator>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Api\Models\Core\" />
+  </ItemGroup>
 </Project>
