@@ -473,6 +473,10 @@
           <source>La désactivation de votre licence s'est déroulé avec succes.</source>
           <target state="new">La désactivation de votre licence s'est déroulé avec succes.</target>
         </trans-unit>
+        <trans-unit id="pn_Ventes" translate="yes" xml:space="preserve">
+          <source>Ventes</source>
+          <target state="new">Ventes</target>
+        </trans-unit>
       </group>
     </body>
   </file>

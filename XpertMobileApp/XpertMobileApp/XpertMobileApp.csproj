@@ -80,6 +80,12 @@
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Ventes\VenteTemplate.xaml.cs">
+      <DependentUpon>VenteTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\VentesPage.xaml.cs">
+      <DependentUpon>VentesPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="AppResources.resx">
@@ -122,7 +128,7 @@
     <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\EncaissementTemplate.xaml">
+    <EmbeddedResource Update="Views\Encaissement\EncaissementTemplate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UpdatePage.xaml">
@@ -163,8 +169,5 @@
     <None Update="Views\SettingsPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\Models\Core\" />
   </ItemGroup>
 </Project>
