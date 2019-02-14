@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class=" XpertMobileApp.Views.Templates.RowElementTemplate">
+    <ContentView.Content>
+        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+                <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="1" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
+                    </StackLayout>
+                    
+                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    </StackLayout>
+<!--
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
+  -->                  
+                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2} DA'}" 
+                          Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Grid.Column="2" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='P : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_TTC, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    
+                </Grid>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

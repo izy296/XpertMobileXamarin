@@ -80,6 +80,12 @@
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Ventes\VenteDetailPage.xaml.cs">
+      <DependentUpon>VenteDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\RowElementTemplate.xaml.cs">
+      <DependentUpon>RowElementTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Ventes\VenteTemplate.xaml.cs">
       <DependentUpon>VenteTemplate.xaml</DependentUpon>
     </Compile>

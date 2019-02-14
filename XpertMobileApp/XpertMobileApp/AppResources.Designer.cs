@@ -763,6 +763,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes.
+        /// </summary>
+        internal static string pn_Ventes {
+            get {
+                return ResourceManager.GetString("pn_Ventes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Solde tiers.
         /// </summary>
         internal static string SOLDE_TIERS {
@@ -907,6 +916,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Détails.
+        /// </summary>
+        internal static string txt_Details {
+            get {
+                return ResourceManager.GetString("txt_Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Encaissement.
         /// </summary>
         internal static string txt_Encaiss {
@@ -939,6 +957,15 @@ namespace XpertMobileApp {
         internal static string txt_Filter {
             get {
                 return ResourceManager.GetString("txt_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Entête.
+        /// </summary>
+        internal static string txt_header {
+            get {
+                return ResourceManager.GetString("txt_header", resourceCulture);
             }
         }
         

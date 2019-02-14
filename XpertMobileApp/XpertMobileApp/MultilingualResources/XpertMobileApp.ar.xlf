@@ -477,6 +477,14 @@
           <source>Ventes</source>
           <target state="new">Ventes</target>
         </trans-unit>
+        <trans-unit id="txt_Details" translate="yes" xml:space="preserve">
+          <source>Détails</source>
+          <target state="new">Détails</target>
+        </trans-unit>
+        <trans-unit id="txt_header" translate="yes" xml:space="preserve">
+          <source>Entête</source>
+          <target state="new">Entête</target>
+        </trans-unit>
       </group>
     </body>
   </file>

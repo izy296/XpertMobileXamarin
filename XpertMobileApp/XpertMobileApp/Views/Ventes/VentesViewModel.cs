@@ -55,13 +55,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsBusy = true;
 
-
-
-                    elementsCount = await WebServiceClient.GetVentesCount(App.RestServiceUrl, "all", "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
+                    elementsCount = await WebServiceClient.GetVentesCount("all", "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
 
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetVentes(App.RestServiceUrl, "all", page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
+                    var items = await WebServiceClient.GetVentes("all", page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
                     UpdateItemIndex(items);
 
                     IsBusy = false;

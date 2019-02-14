@@ -45,6 +45,18 @@ namespace XpertMobileApp.Helpers
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
         public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
+
+
+        // Encaissements
+
+        public static string VENTES_URL = "Ventes";
+
+        public static string VENTES_COUNT = "GetVentesCount";
+
+        public static string VENTES_PER_PAGE_URL = "GetVentes";
+
+        public static string VENTES_DETAILS_URL = "GetVenteDetails";
+
     }
 
 }

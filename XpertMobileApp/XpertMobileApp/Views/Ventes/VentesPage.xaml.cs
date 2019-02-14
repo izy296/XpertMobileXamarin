@@ -24,16 +24,14 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            /*
             var item = args.SelectedItem as View_VTE_VENTE;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new EncaissementDetailPage(item));
+            await Navigation.PushAsync(new VenteDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;
-            */
+            ItemsListView.SelectedItem = null;                        
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -46,43 +44,11 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
-                LoadStats(EncaissDisplayType.All);
+                LoadStats();
         }
 
-        private void TypeFilter_Clicked(object sender, EventArgs e)
+        private void LoadStats()
         {
-            btn_All.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Decaiss.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Encaiss.BackgroundColor = Color.FromHex("#2196F3");
-
-            Button btn = (Button)sender;
-            btn.BackgroundColor = Color.FromHex("#51adf6");
-        }
-
-        private void LoadStats(EncaissDisplayType type)
-        {
-            switch (type)
-            {
-                case EncaissDisplayType.All:
-                    if (ToolbarItems.IndexOf(btn_Additem) >= 0)
-                        ToolbarItems.Remove(btn_Additem);
-                    break;
-                case EncaissDisplayType.ENC:
-                    if(ToolbarItems.IndexOf(btn_Additem) < 0)
-                        ToolbarItems.Add(btn_Additem);
-                    break;
-                case EncaissDisplayType.DEC:
-                    if (ToolbarItems.IndexOf(btn_Additem) < 0)
-                        ToolbarItems.Add(btn_Additem);
-                    break; 
-            }
-
-            if (viewModel.EncaissDisplayType != type)
-            {
-                viewModel.EncaissDisplayType = type;
-              //  viewModel.LoadItemsCommand.Execute(null);
-            }
-
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -92,18 +58,12 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {
-            // Pas possible de binder une date nullable a picker de date Xamarin en attendant de trouver une solution on affect manuelement
-            // viewModel.StartDate = dp_StartDate.Date;
-            // viewModel.EndDate = dp_EndDate.Date;            
+        {        
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            // Anuler les filtres 
-            //viewModel.StartDate = null;
-            //viewModel.EndDate = null;
             viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
             viewModel.LoadItemsCommand.Execute(null);            

@@ -462,4 +462,13 @@
   <data name="msg_DeactivationSucces" xml:space="preserve">
     <value>La désactivation de votre licence s'est déroulé avec succes.</value>
   </data>
+  <data name="pn_Ventes" xml:space="preserve">
+    <value>Ventes</value>
+  </data>
+  <data name="txt_Details" xml:space="preserve">
+    <value>Détails</value>
+  </data>
+  <data name="txt_header" xml:space="preserve">
+    <value>Entête</value>
+  </data>
 </root>
