@@ -1,9 +1,5 @@
-﻿using System;
-using Xamarin.Forms;
-using Xpert.Pharm.DAL;
+﻿using Xamarin.Forms;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Models;
-using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {

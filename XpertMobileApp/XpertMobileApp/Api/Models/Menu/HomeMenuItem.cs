@@ -8,6 +8,7 @@ namespace XpertMobileApp.Models
     {
         Home,
         Encaissements,
+        Ventes,
         Items,
         EncAnalyses,
         About

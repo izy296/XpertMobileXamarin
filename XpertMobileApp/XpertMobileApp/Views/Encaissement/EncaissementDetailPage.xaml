@@ -6,6 +6,7 @@
              Title="{Binding Title}">
     
     <ContentPage.ToolbarItems>
+        
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -13,6 +14,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
+        
         <ToolbarItem Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -20,6 +22,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
+        
         <ToolbarItem Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -27,6 +30,7 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
+        
     </ContentPage.ToolbarItems>
     
     <ScrollView Orientation="Vertical" VerticalOptions="Fill" >
