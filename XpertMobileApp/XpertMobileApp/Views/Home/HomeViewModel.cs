@@ -71,7 +71,8 @@ namespace XpertMobileApp.ViewModels
                         Encaissements.Add(item);
                     }
                     this.TotalEncaiss = items[0].TOTAL_ENCAISS;
-                    this.TotalDecaiss = items[1].TOTAL_ENCAISS;
+                    if (items.Count > 1)
+                        this.TotalDecaiss = items[1].TOTAL_ENCAISS;
                 }
             }
             catch (Exception ex)

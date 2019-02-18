@@ -22,6 +22,8 @@ namespace XpertMobileApp.ViewModels
 
         private int elementsCount;
 
+        public View_TRS_TIERS SelectedTiers { get; set; }
+
         public EncaissDisplayType EncaissDisplayType { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-90);
         public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
@@ -54,12 +56,12 @@ namespace XpertMobileApp.ViewModels
                 OnLoadMore = async () =>
                 {
                     IsBusy = true;
-
-                    elementsCount = await WebServiceClient.GetVentesCount("all", "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
+                    
+                    elementsCount = await WebServiceClient.GetVentesCount("all", "all", StartDate, EndDate, SelectedTiers?.CODE_TIERS, "", SelectedCompte?.CODE_COMPTE);
 
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetVentes("all", page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
+                    var items = await WebServiceClient.GetVentes("all", page.ToString(), "all", StartDate, EndDate, SelectedTiers?.CODE_TIERS, "", SelectedCompte?.CODE_COMPTE);
                     UpdateItemIndex(items);
 
                     IsBusy = false;

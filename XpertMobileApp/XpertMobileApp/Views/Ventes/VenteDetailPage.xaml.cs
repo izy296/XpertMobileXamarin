@@ -77,6 +77,9 @@ namespace XpertMobileApp.Views.Encaissement
             {
                 viewModel.ItemRows.Clear();
                 var itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
+
+                UpdateItemIndex(itemsC);
+
                 foreach (var itemC in itemsC)
                 {
                     viewModel.ItemRows.Add(itemC);
@@ -90,6 +93,16 @@ namespace XpertMobileApp.Views.Encaissement
             finally
             {
                 IsBusy = false;
+            }
+        }
+
+        private void UpdateItemIndex<T>(List<T> items)
+        {
+            int i = 0;
+            foreach (var item in items)
+            {
+                i += 1;
+                (item as BASE_CLASS).Index = i;
             }
         }
     }

@@ -52,7 +52,7 @@
                             <Entry x:Name="Ent_ClientId" Text="{Binding Client.ClientId, Mode=TwoWay}" Placeholder="{i18n:Translate lp_ph_ClientId}" />
                         </StackLayout>
 
-                        <StackLayout Padding="0,10,0,0" IsVisible="False">
+                        <StackLayout Padding="0,10,0,0" IsVisible="True">
                             <Label x:Name="Lbl_DeviceId" Text="DeviceId" Style="{StaticResource BlackDefaultLblStyle}"/>
                             <Label x:Name="val_DeviceId" Text="{Binding Client.DeviceId}"/>
                         </StackLayout>

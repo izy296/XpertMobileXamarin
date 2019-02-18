@@ -46,6 +46,12 @@ namespace XpertMobileApp.ViewModels
                     var page = (Items.Count / PageSize) + 1;
                     var items = await WebServiceClient.GetTiers("C", page, PageSize, this.SearchText);
 
+                    // First element to clear filter
+                    View_TRS_TIERS fElem = new View_TRS_TIERS();
+                    fElem.NOM_TIERS1 = "";
+                    fElem.CODE_TIERS = "";
+                    items.Insert(0, fElem);
+
                     IsBusy = false;
 
                     // return the items that need to be added

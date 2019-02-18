@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Pharm.DAL;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
@@ -19,7 +21,17 @@ namespace XpertMobileApp.Views
 		{
 			InitializeComponent ();
 
+            itemSelector = new ItemSelector();
+
             BindingContext = viewModel = new VentesViewModel();
+
+
+            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            {
+                viewModel.SelectedTiers = selectedItem;
+                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+            });
+
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -72,6 +84,12 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private ItemSelector itemSelector;
+        private async void btn_Select_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }
 }

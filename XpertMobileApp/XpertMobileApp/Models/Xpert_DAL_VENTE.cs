@@ -74,7 +74,7 @@ namespace XpertMobileApp.DAL
         }
     }
 
-    public partial class VTE_VENTE_DETAIL
+    public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)

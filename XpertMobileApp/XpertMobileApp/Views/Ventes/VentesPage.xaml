@@ -9,14 +9,6 @@
              x:Name="Ventes">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Additem"  Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -24,7 +16,6 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-
     </ContentPage.ToolbarItems>
 
     <StackLayout VerticalOptions="FillAndExpand">
@@ -55,23 +46,30 @@
 
             <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
             <DatePicker Grid.Column="1" Grid.Row="1"
-                        x:Name="dp_EndDate"                        
+                        x:Name="dp_EndDate"
                         Format="dd/MM/yyyy"
                         TextColor="Black"
                         Date="{Binding EndDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
             <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Comptes}"
-                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
-                                TextColor="Black"
-                                SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
-                                Margin="30, 0, 30, 10"                 
-                                x:Name="ComptesPicker"/>
+            <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
+                 Clicked="btn_Select_Clicked"  HeightRequest="35"/>
+            </Grid>
 
 
-            <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                 <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_ApplyFilter_Clicked"/>
