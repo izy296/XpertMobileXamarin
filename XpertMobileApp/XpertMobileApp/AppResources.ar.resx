@@ -336,4 +336,37 @@
   <data name="Exception_errMsg_23" xml:space="preserve">
     <value>تم تسجيلك من قبل</value>
   </data>
+  <data name="msg_ExpireOn" xml:space="preserve">
+    <value>تنتهي في</value>
+  </data>
+  <data name="sp_lbl_LicenceInfos" xml:space="preserve">
+    <value>معلومات الترخيص</value>
+  </data>
+  <data name="sp_btn_RemoveLicence" xml:space="preserve">
+    <value>تعطيل الترخيص</value>
+  </data>
+  <data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
+    <value>إذا قمت بإلغاء الترخيص الخاص بك ، فلن تتمكن من استخدامه حتى إعادة تنشيطه ، فهل تريد المتابعة؟</value>
+  </data>
+  <data name="Exception_errMsg_31" xml:space="preserve">
+    <value>تم تعطيل الترخيص الخاص بك!</value>
+  </data>
+  <data name="Exception_errMsg_32" xml:space="preserve">
+    <value>لم نتمكن من العثور على ترخيصك!</value>
+  </data>
+  <data name="msg_DeactivationSucces" xml:space="preserve">
+    <value>لقد تم إلغاء تنشيط الترخيص الخاص بك بنجاح.</value>
+  </data>
+  <data name="pn_Ventes" xml:space="preserve">
+    <value>مبيعات</value>
+  </data>
+  <data name="txt_Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="txt_header" xml:space="preserve">
+    <value>معلومات المستند</value>
+  </data>
+  <data name="txt_Client" xml:space="preserve">
+    <value>الزبون</value>
+  </data>
 </root>

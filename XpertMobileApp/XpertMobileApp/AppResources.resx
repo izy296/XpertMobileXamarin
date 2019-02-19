@@ -471,4 +471,7 @@
   <data name="txt_header" xml:space="preserve">
     <value>Entête</value>
   </data>
+  <data name="txt_Client" xml:space="preserve">
+    <value>Client</value>
+  </data>
 </root>

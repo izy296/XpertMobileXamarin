@@ -880,6 +880,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Client.
+        /// </summary>
+        internal static string txt_Client {
+            get {
+                return ResourceManager.GetString("txt_Client", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Compte.
         /// </summary>
         internal static string txt_Compte {

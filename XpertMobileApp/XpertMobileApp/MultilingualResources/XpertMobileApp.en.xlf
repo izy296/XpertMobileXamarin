@@ -447,43 +447,47 @@
         </trans-unit>
         <trans-unit id="msg_ExpireOn" translate="yes" xml:space="preserve">
           <source>Expire le</source>
-          <target state="new">Expire le</target>
+          <target state="translated">Expires on</target>
         </trans-unit>
         <trans-unit id="sp_lbl_LicenceInfos" translate="yes" xml:space="preserve">
           <source>Information sur la licence</source>
-          <target state="new">Information sur la licence</target>
+          <target state="translated">License Information</target>
         </trans-unit>
         <trans-unit id="sp_btn_RemoveLicence" translate="yes" xml:space="preserve">
           <source>Désactiver la licence</source>
-          <target state="new">Désactiver la licence</target>
+          <target state="translated">Disable license</target>
         </trans-unit>
         <trans-unit id="alrt_msg_CondifirmDesactivateLicence" translate="yes" xml:space="preserve">
           <source>Si vous désactivé votre licence vous ne pourrez plus l'utiliser jusqu'a sa reactivation, voulez vous continuer ?</source>
-          <target state="new">Si vous désactivé votre licence vous ne pourrez plus l'utiliser jusqu'a sa reactivation, voulez vous continuer ?</target>
+          <target state="translated">If you deactivate your license you will not be able to use it until its reactivation, do you want to continue?</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_31" translate="yes" xml:space="preserve">
           <source>Votre licence a déjà été désactivé!</source>
-          <target state="new">Votre licence a déjà été désactivé!</target>
+          <target state="translated">Your license has already been disabled!</target>
         </trans-unit>
         <trans-unit id="Exception_errMsg_32" translate="yes" xml:space="preserve">
           <source>Nous n'avons pas pu trouver votre licence!</source>
-          <target state="new">Nous n'avons pas pu trouver votre licence!</target>
+          <target state="translated">We could not find your license!</target>
         </trans-unit>
         <trans-unit id="msg_DeactivationSucces" translate="yes" xml:space="preserve">
           <source>La désactivation de votre licence s'est déroulé avec succes.</source>
-          <target state="new">La désactivation de votre licence s'est déroulé avec succes.</target>
+          <target state="translated">The deactivation of your license has been successful.</target>
         </trans-unit>
         <trans-unit id="pn_Ventes" translate="yes" xml:space="preserve">
           <source>Ventes</source>
-          <target state="new">Ventes</target>
+          <target state="translated">Sales</target>
         </trans-unit>
         <trans-unit id="txt_Details" translate="yes" xml:space="preserve">
           <source>Détails</source>
-          <target state="new">Détails</target>
+          <target state="translated">Details</target>
         </trans-unit>
         <trans-unit id="txt_header" translate="yes" xml:space="preserve">
           <source>Entête</source>
-          <target state="new">Entête</target>
+          <target state="translated">Heading</target>
+        </trans-unit>
+        <trans-unit id="txt_Client" translate="yes" xml:space="preserve">
+          <source>Client</source>
+          <target state="translated">Customer</target>
         </trans-unit>
       </group>
     </body>

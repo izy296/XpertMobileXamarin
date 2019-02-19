@@ -336,4 +336,37 @@
   <data name="Exception_errMsg_23" xml:space="preserve">
     <value>You are already registered</value>
   </data>
+  <data name="msg_ExpireOn" xml:space="preserve">
+    <value>Expires on</value>
+  </data>
+  <data name="sp_lbl_LicenceInfos" xml:space="preserve">
+    <value>License Information</value>
+  </data>
+  <data name="sp_btn_RemoveLicence" xml:space="preserve">
+    <value>Disable license</value>
+  </data>
+  <data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
+    <value>If you deactivate your license you will not be able to use it until its reactivation, do you want to continue?</value>
+  </data>
+  <data name="Exception_errMsg_31" xml:space="preserve">
+    <value>Your license has already been disabled!</value>
+  </data>
+  <data name="Exception_errMsg_32" xml:space="preserve">
+    <value>We could not find your license!</value>
+  </data>
+  <data name="msg_DeactivationSucces" xml:space="preserve">
+    <value>The deactivation of your license has been successful.</value>
+  </data>
+  <data name="pn_Ventes" xml:space="preserve">
+    <value>Sales</value>
+  </data>
+  <data name="txt_Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="txt_header" xml:space="preserve">
+    <value>Heading</value>
+  </data>
+  <data name="txt_Client" xml:space="preserve">
+    <value>Customer</value>
+  </data>
 </root>

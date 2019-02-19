@@ -73,7 +73,7 @@ namespace XpertMobileApp.DAL
             return "N° " + NUM_VENTE;
         }
     }
-
+    
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
         public string CODE_DETAIL { get; set; } // varchar(32)
