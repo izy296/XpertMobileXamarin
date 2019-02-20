@@ -489,6 +489,10 @@
           <source>Client</source>
           <target state="translated">Customer</target>
         </trans-unit>
+        <trans-unit id="pn_Tiers" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="new">Tiers</target>
+        </trans-unit>
       </group>
     </body>
   </file>

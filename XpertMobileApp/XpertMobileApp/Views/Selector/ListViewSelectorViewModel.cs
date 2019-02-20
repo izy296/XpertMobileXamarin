@@ -40,11 +40,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsBusy = true;
 
-                    elementsCount = await WebServiceClient.GetTiersCount("C", this.SearchText);
+                    elementsCount = await WebServiceClient.GetTiersCount("C","", this.SearchText);
 
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetTiers("C", page, PageSize, this.SearchText);
+                    var items = await WebServiceClient.GetTiers(page, PageSize, "C","", this.SearchText);
 
                     // First element to clear filter
                     View_TRS_TIERS fElem = new View_TRS_TIERS();

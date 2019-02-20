@@ -158,7 +158,7 @@ namespace Xpert.Pharm.DAL
         public string CODE_GROUPE { get; set; }
     }
 
-    public partial class TRS_TIERS
+    public partial class TRS_TIERS : BASE_CLASS
     {
         public string CODE_TIERS { get; set; } // varchar(32)
         public string NUM_TIERS { get; set; } // varchar(32)
@@ -265,5 +265,24 @@ namespace Xpert.Pharm.DAL
         public string DESIGN_MOTIF { get; set; } // varchar(300)
         public string TYPE_MOTIF { get; set; } // varchar(3)
         public bool IS_SYSTEM { get; set; } // varchar(3)
+    }
+
+    public partial class BSE_TIERS_FAMILLE
+    {
+        public string CODE_FAMILLE { get; set; } // varchar(10)
+        public string DESIGN_FAMILLE { get; set; } // varchar(50)
+        public string CODE_TYPE { get; set; } // varchar(4)
+        public short STATUT { get; set; }
+    }
+
+    public partial class View_BSE_TIERS_FAMILLE : BSE_TIERS_FAMILLE
+    {
+        public string DESIGNATION_TYPE { get; set; } // varchar(200)
+    }
+
+    public class BSE_TABLE_TYPE
+    {
+        public string CODE_TYPE { get; set; }
+        public string DESIGNATION_TYPE { get; set; }
     }
 }

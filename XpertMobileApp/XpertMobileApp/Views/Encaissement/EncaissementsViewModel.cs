@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Pharm.DAL;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views.Encaissement;
@@ -83,7 +84,8 @@ namespace XpertMobileApp.ViewModels
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
                     var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
-                    UpdateItemIndex(items);
+
+                    XpertHelper.UpdateItemIndex(items);
 
                     IsBusy = false;
 
@@ -190,16 +192,6 @@ namespace XpertMobileApp.ViewModels
         }
 
         private void UpdateItemIndex<T>(InfiniteScrollCollection<T> items)
-        {
-            int i = 0;
-            foreach (var item in items)
-            {
-                i += 1;
-                (item as BASE_CLASS).Index = i;
-            }
-        }
-
-        private void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;
             foreach (var item in items)

@@ -132,19 +132,37 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
 
+        internal static async Task<List<View_BSE_TIERS_FAMILLE>> getTiersFamilles()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TIERS_FAMILLES_URL);
+
+            return await RetrievAauthorizedData<View_BSE_TIERS_FAMILLE>(url);
+        }
+
+        internal static async Task<List<BSE_TABLE_TYPE>> getTiersTypes()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TIERS_TYPES_URL);
+
+            return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
+        }
+
         internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetMotifs(string type= "ENC")
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.MOTIFS_URL, type);
             return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
         }
 
-        internal static async Task<List<View_TRS_TIERS>> GetTiers(string type, int page = 1, int nbrRows = 10, string searchText = "")
+        internal static async Task<List<View_TRS_TIERS>> GetTiers(int page = 1, int nbrRows = 10, string type = "", string famille= "", string searchText = "")
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_URL);
 
-            url += WSApi2.AddParam(url, "type", type);
             url += WSApi2.AddParam(url, "page", Convert.ToString(page));
             url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
+
+            if (!string.IsNullOrEmpty(type))
+                url += WSApi2.AddParam(url, "type", type);
+            if (!string.IsNullOrEmpty(famille))
+                url += WSApi2.AddParam(url, "famille", famille);
 
             if (!string.IsNullOrEmpty(searchText))
                 url += WSApi2.AddParam(url, "searchText", searchText);
@@ -152,11 +170,15 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_TRS_TIERS>(url);
         }
 
-        public static async Task<int> GetTiersCount(string type, string searchText= "")
+        public static async Task<int> GetTiersCount(string type = "", string famille = "", string searchText= "")
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_COUNT_URL);
 
-            url += WSApi2.AddParam(url, "type", type);
+            if (!string.IsNullOrEmpty(type))
+                url += WSApi2.AddParam(url, "type", type);
+
+            if (!string.IsNullOrEmpty(famille))
+                url += WSApi2.AddParam(url, "famille", famille);
 
             if (!string.IsNullOrEmpty(searchText))
                 url += WSApi2.AddParam(url, "searchText", searchText);

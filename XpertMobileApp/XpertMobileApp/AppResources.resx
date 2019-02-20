@@ -474,4 +474,7 @@
   <data name="txt_Client" xml:space="preserve">
     <value>Client</value>
   </data>
+  <data name="pn_Tiers" xml:space="preserve">
+    <value>Tiers</value>
+  </data>
 </root>
