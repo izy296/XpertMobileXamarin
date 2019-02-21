@@ -1,9 +1,6 @@
 ﻿using Acr.UserDialogs;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -36,7 +33,6 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
         public View_BSE_COMPTE SelectedCompte { get; set; }
         public Command LoadComptesCommand { get; set; }
-
 
         public EncaissementsViewModel()
         {

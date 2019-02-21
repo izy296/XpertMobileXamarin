@@ -46,37 +46,38 @@
                         Format="dd/MM/yyyy"
                         TextColor="Black"
                         Date="{Binding StartDate, Mode=TwoWay}"
-                        Margin="30, 0, 30, 10"/>
+                        Margin="15, 0, 15, 10"/>
 
             <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
             <DatePicker Grid.Column="1" Grid.Row="1"
-                        x:Name="dp_EndDate"
-                        Format="dd/MM/yyyy"
-                        TextColor="Black"
-                        Date="{Binding EndDate, Mode=TwoWay}"
-                        Margin="30, 0, 30, 10"/>
-
-            <!-- Searched text -->
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
-            <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" x:Name="ent_SearchedTiers" Text="{Binding SearchedText, Mode=TwoWay}"/>
-
-             <!-- Familles -->
-            <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding Familles}"
-                         ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
-                         SelectedItem="{Binding SelectedFamille}"
-                         TextColor="{StaticResource Primary}"
-                         Margin="30, 0, 30, 30" 
-                         x:Name="FamillesPicker"/>
+                    x:Name="dp_EndDate"
+                    Format="dd/MM/yyyy"
+                    TextColor="Black"
+                    Date="{Binding EndDate, Mode=TwoWay}"
+                    Margin="15, 0, 15, 10"/>
 
             <!-- Types -->
-            <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
-                         ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                         SelectedItem="{Binding SelectedType}"
-                         TextColor="{StaticResource Primary}"
-                         Margin="30, 0, 30, 30" 
-                         x:Name="TypesPicker"/>
+            <Label Grid.Column="0" Grid.Row="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="0" Grid.Row="3"  ItemsSource="{Binding Types}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedType}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesPicker"/>
+            
+            <!-- Familles -->
+            <Label Grid.Column="1" Grid.Row="2" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Familles}"
+                         ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
+                         SelectedItem="{Binding SelectedFamille}"
+                         TextColor="Black"
+                         Margin="15, 0, 15, 10" 
+                         x:Name="FamillesPicker"/>
+
+            <!-- Searched text -->
+            <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+                <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
             
             <!-- Button -->
             <StackLayout Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
@@ -98,7 +99,7 @@
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    IsRefreshing="{Binding IsBusy}"
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
 

@@ -970,6 +970,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Famille.
+        /// </summary>
+        internal static string txt_Famille {
+            get {
+                return ResourceManager.GetString("txt_Famille", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Filtrer.
         /// </summary>
         internal static string txt_Filter {
@@ -1092,6 +1101,15 @@ namespace XpertMobileApp {
         internal static string txt_TotalSalesBySeler {
             get {
                 return ResourceManager.GetString("txt_TotalSalesBySeler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type.
+        /// </summary>
+        internal static string txt_Types {
+            get {
+                return ResourceManager.GetString("txt_Types", resourceCulture);
             }
         }
         

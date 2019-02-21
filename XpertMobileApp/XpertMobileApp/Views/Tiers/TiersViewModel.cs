@@ -15,6 +15,9 @@ namespace XpertMobileApp.ViewModels
         {
             private const int PageSize = 10;
 
+            public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-6);
+            public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
+
             private int elementsCount;
 
             public string SearchedText { get; set; }
@@ -48,6 +51,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     OnLoadMore = async () =>
                     {
+
                         IsBusy = true;
 
                         elementsCount = await WebServiceClient.GetTiersCount(SelectedType?.CODE_TYPE, 
@@ -77,14 +81,20 @@ namespace XpertMobileApp.ViewModels
             /*
             if (IsBusy)
                 return;
-            */
 
             IsBusy = true;
+            */
 
             try
             {
                 Types.Clear();
                 var itemsC = await WebServiceClient.getTiersTypes();
+
+                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                allElem.CODE_TYPE = "";
+                allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                Types.Add(allElem);
+
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -97,7 +107,7 @@ namespace XpertMobileApp.ViewModels
             }
             finally
             {
-                IsBusy = false;
+               // IsBusy = false;
             }
         }
 
@@ -107,14 +117,22 @@ namespace XpertMobileApp.ViewModels
             /*
             if (IsBusy)
                 return;
-            */
 
             IsBusy = true;
+            */
+
+
 
             try
             {
                 Familles.Clear();
                 var itemsC = await WebServiceClient.getTiersFamilles();
+
+                View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
+                allElem.CODE_FAMILLE = "";
+                allElem.DESIGN_FAMILLE = AppResources.txt_All;
+                Familles.Add(allElem);
+
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);
@@ -127,7 +145,7 @@ namespace XpertMobileApp.ViewModels
             }
             finally
             {
-                IsBusy = false;
+               // IsBusy = false;
             }
         }
 

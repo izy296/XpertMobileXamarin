@@ -477,4 +477,10 @@
   <data name="pn_Tiers" xml:space="preserve">
     <value>Tiers</value>
   </data>
+  <data name="txt_Famille" xml:space="preserve">
+    <value>Famille</value>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>Type</value>
+  </data>
 </root>
