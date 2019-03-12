@@ -491,15 +491,19 @@
         </trans-unit>
         <trans-unit id="pn_Tiers" translate="yes" xml:space="preserve">
           <source>Tiers</source>
-          <target state="new">Tiers</target>
+          <target state="translated">المتعاملين</target>
         </trans-unit>
         <trans-unit id="txt_Famille" translate="yes" xml:space="preserve">
           <source>Famille</source>
-          <target state="new">Famille</target>
+          <target state="translated">الفئة</target>
         </trans-unit>
         <trans-unit id="txt_Types" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="new">Type</target>
+          <target state="translated">النوع</target>
+        </trans-unit>
+        <trans-unit id="pn_Produits" translate="yes" xml:space="preserve">
+          <source>Produits</source>
+          <target state="translated">المنتوجات</target>
         </trans-unit>
       </group>
     </body>

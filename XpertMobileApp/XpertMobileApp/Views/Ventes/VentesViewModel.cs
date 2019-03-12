@@ -2,16 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
-using Xpert.Pharm.DAL;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
-using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
 {

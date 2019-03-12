@@ -369,4 +369,16 @@
   <data name="txt_Client" xml:space="preserve">
     <value>الزبون</value>
   </data>
+  <data name="pn_Tiers" xml:space="preserve">
+    <value>المتعاملين</value>
+  </data>
+  <data name="txt_Famille" xml:space="preserve">
+    <value>الفئة</value>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="pn_Produits" xml:space="preserve">
+    <value>المنتوجات</value>
+  </data>
 </root>

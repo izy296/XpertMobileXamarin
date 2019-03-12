@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
-using Xpert.Pharm.DAL;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 
 
@@ -51,23 +51,30 @@ namespace XpertMobileApp.ViewModels
                 {
                     OnLoadMore = async () =>
                     {
+                        try
+                        { 
 
-                        IsBusy = true;
+                            IsBusy = true;
 
-                        elementsCount = await WebServiceClient.GetTiersCount(SelectedType?.CODE_TYPE, 
-                                             SelectedFamille?.CODE_FAMILLE, this.SearchedText);
+                            elementsCount = await WebServiceClient.GetTiersCount(SelectedType?.CODE_TYPE, 
+                                                 SelectedFamille?.CODE_FAMILLE, this.SearchedText);
 
-                        // load the next page
-                        var page = (Items.Count / PageSize) + 1;
-                        var items = await WebServiceClient.GetTiers(page, PageSize, SelectedType?.CODE_TYPE, 
-                                            SelectedFamille?.CODE_FAMILLE, this.SearchedText);
+                            // load the next page
+                            var page = (Items.Count / PageSize) + 1;
+                            var items = await WebServiceClient.GetTiers(page, PageSize, SelectedType?.CODE_TYPE, 
+                                                SelectedFamille?.CODE_FAMILLE, this.SearchedText);
 
-                        XpertHelper.UpdateItemIndex(items);
+                            XpertHelper.UpdateItemIndex(items);
 
-                        IsBusy = false;
+                            IsBusy = false;
 
-                        // return the items that need to be added
-                        return items;
+                            // return the items that need to be added
+                            return items;
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.Message);
+                        }
                     },
                     OnCanLoadMore = () =>
                     {

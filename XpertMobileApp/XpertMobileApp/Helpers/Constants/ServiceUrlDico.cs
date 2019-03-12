@@ -61,6 +61,17 @@ namespace XpertMobileApp.Helpers
 
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
+
+        // Encaissements
+
+        public static string PRODUITS_URL = "Produits";
+
+        public static string PRODUITS_COUNT = "GetProduitsCount";
+
+        public static string PRODUITS_PER_PAGE_URL = "GetProduits";
+
+        public static string PRODUITS_DETAILS_URL = "GetProduitDetails";
+
     }
 
 }

@@ -14,6 +14,7 @@ namespace XpertMobileApp.Views
 
         public HomePage()
         {
+            
             InitializeComponent();
 
             Title = AppResources.pn_home;

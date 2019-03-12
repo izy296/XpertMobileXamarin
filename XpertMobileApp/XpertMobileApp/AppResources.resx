@@ -483,4 +483,7 @@
   <data name="txt_Types" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="pn_Produits" xml:space="preserve">
+    <value>Produits</value>
+  </data>
 </root>

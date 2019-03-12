@@ -1,15 +1,11 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Pharm.DAL;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 

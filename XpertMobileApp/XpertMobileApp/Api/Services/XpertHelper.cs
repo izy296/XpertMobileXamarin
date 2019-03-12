@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Xpert.Pharm.DAL;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api.Services
 {

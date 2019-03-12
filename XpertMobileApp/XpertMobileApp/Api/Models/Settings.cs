@@ -15,7 +15,7 @@ namespace XpertMobileApp.Models
         [PrimaryKey]
         public int Id { get; set; }
 
-        private string language;
+        private string language = "fr";
 
 
         private string serviceUrl;
@@ -57,6 +57,5 @@ namespace XpertMobileApp.Models
         public string DestinationVersion { get; set; }
 
         public Settings() { }
-
     }
 }

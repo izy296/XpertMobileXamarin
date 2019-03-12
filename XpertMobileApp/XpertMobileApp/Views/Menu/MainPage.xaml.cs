@@ -15,6 +15,8 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
+            FlowDirection = App.PageFlowDirection;
+
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
@@ -35,6 +37,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Ventes:
                         MenuPages.Add(id, new NavigationPage(new VentesPage()));
                         break;
+                    case (int)MenuItemType.Produits:
+                        MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
+                        break;                        
                     case (int)MenuItemType.Tiers:
                         MenuPages.Add(id, new NavigationPage(new TiersPage()));
                         break;

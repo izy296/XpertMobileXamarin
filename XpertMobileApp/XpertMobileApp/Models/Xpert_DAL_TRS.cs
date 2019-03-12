@@ -10,7 +10,7 @@ using System;
 using XpertMobileApp;
 using XpertMobileApp.Models;
 
-namespace Xpert.Pharm.DAL
+namespace XpertMobileApp.DAL
 {
    
     public class BASE_CLASS

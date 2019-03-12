@@ -763,6 +763,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Produits.
+        /// </summary>
+        internal static string pn_Produits {
+            get {
+                return ResourceManager.GetString("pn_Produits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string pn_Tiers {

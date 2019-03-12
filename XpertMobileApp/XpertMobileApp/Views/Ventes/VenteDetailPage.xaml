@@ -43,7 +43,7 @@
             </Frame>
             
             <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <StackLayout x:Name="sl_rows" VerticalOptions="FillAndExpand" >
+                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
                     
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                         <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
@@ -52,7 +52,6 @@
 
                     <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding ItemRows}"
-                    VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadRowsCommand}"
                     IsPullToRefreshEnabled="true"

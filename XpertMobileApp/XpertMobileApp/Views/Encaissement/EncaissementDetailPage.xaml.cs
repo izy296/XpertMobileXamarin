@@ -5,7 +5,7 @@ using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Pharm.DAL;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;

@@ -501,6 +501,10 @@
           <source>Type</source>
           <target state="new">Type</target>
         </trans-unit>
+        <trans-unit id="pn_Produits" translate="yes" xml:space="preserve">
+          <source>Produits</source>
+          <target state="new">Produits</target>
+        </trans-unit>
       </group>
     </body>
   </file>

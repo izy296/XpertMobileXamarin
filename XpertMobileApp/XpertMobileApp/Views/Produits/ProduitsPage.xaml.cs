@@ -1,53 +1,38 @@
-﻿using Rg.Plugins.Popup.Services;
-using System;
-using System.Linq;
-
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
-using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VentesPage : ContentPage
+	public partial class ProduitsPage : ContentPage
 	{
-        VentesViewModel viewModel;
+        ProduitsViewModel viewModel;
 
-        public VentesPage()
+        public ProduitsPage()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 
-            itemSelector = new ItemSelector();
-
-            BindingContext = viewModel = new VentesViewModel();
-
-
-            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
-            {
-                viewModel.SelectedTiers = selectedItem;
-                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-            });
-
+            BindingContext = viewModel = new ProduitsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as View_VTE_VENTE;
+            var item = args.SelectedItem as View_AssistantCommandes;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new VenteDetailPage(item));
+        //  await Navigation.PushAsync(new EncaissementDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
         protected override void OnAppearing()
@@ -56,6 +41,11 @@ namespace XpertMobileApp.Views
 
             if (viewModel.Items.Count == 0)
                 LoadStats();
+        }
+
+        private void TypeFilter_Clicked(object sender, EventArgs e)
+        {
+            LoadStats();
         }
 
         private void LoadStats()
@@ -69,12 +59,18 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
+            // Pas possible de binder une date nullable a picker de date Xamarin en attendant de trouver une solution on affect manuelement
+            // viewModel.StartDate = dp_StartDate.Date;
+            // viewModel.EndDate = dp_EndDate.Date;            
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
+            // Anuler les filtres 
+            //viewModel.StartDate = null;
+            //viewModel.EndDate = null;
             viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
             viewModel.LoadItemsCommand.Execute(null);            
@@ -83,12 +79,6 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-        }
-
-        private ItemSelector itemSelector;
-        private async void btn_Select_Clicked(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }
 }

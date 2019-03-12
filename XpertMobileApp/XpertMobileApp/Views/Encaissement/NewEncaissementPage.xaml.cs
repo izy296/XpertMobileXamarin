@@ -1,17 +1,12 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Pharm.DAL;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 

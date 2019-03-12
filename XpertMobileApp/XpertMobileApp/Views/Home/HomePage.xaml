@@ -4,6 +4,7 @@
              x:Class="XpertMobileApp.Views.HomePage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              BackgroundColor="#ecf0f1"
+             FlowDirection="MatchParent"
              >
     <ContentPage.Content>
         <ScrollView>

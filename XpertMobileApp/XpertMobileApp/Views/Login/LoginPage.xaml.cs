@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Pharm.DAL;
-using XpertMobileApp.Data;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 

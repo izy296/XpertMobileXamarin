@@ -10,6 +10,7 @@ namespace XpertMobileApp.Models
         Encaissements,
         Ventes,
         Tiers,
+        Produits,
         Items,
         EncAnalyses,
         About

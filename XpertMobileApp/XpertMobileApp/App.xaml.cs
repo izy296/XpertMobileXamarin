@@ -3,6 +3,7 @@ using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
@@ -33,17 +34,33 @@ namespace XpertMobileApp
         static WebServiceClient resteService;
         private static Settings settings;
 
+        public static FlowDirection PageFlowDirection
+        {
+            get
+            {
+                if (App.Settings.Language == "ar")
+                {
+                    return FlowDirection.RightToLeft;
+                }
+                else
+                {
+                    return FlowDirection.LeftToRight;
+                }
+            }
+        }
+
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDgzNjlAMzEzNjJlMzMyZTMwYW9KSjRINjJybys3QVhUM0pvelpCMkhaV0kwcHM0ZkJ5cmpGYWJLZTFLTT0=;NDgzNzBAMzEzNjJlMzMyZTMwa09wVkRFcVFLTVgza1p6MHdEVDRtUkJ4d252NG5iTDZMTTEwT1Rxc054Zz0=");
 
             InitializeComponent();
 
+
             App.SetAppLanguage(Settings.Language);
 
-           // MainPage = new UpdatePage();
+            // MainPage = new UpdatePage();
 
-        
+
             // Vérification de la licence
             LicState licState = LicActivator.CheckLicence().Result;
 
@@ -71,18 +88,39 @@ namespace XpertMobileApp
 
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
+                bool saveSettings = false;
+
+                // Traitement du message obligant la mise à jour
                 string currentVerision = AppInfo.Version.ToString();
                 object CriticalVersion;
-
                 if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
                 {
-                    if (String.Compare(Convert.ToString(CriticalVersion),currentVerision) > 0)
+                    if (String.Compare(Convert.ToString(CriticalVersion), currentVerision) > 0)
                     {
                         App.Settings.ShouldUpdate = true;
                         App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
-                        App.SettingsDatabase.SaveItemAsync(App.Settings);
+                        saveSettings = true;
+
                     }
                 }
+
+                // Mise à jour de l'app settings depuis un message push
+                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(App.Settings))
+                {
+                    string fieldName = descriptor.Name;
+                    object currentValue = descriptor.GetValue(App.Settings);
+                    currentValue = getFormatedValue(currentValue);
+
+                    object remoteValue = null;
+                    if (p.Data.TryGetValue(fieldName, out remoteValue) && !string.IsNullOrEmpty(Convert.ToString(remoteValue)))
+                    {
+                        descriptor.SetValue(App.Settings, remoteValue);
+                        saveSettings = true;
+                    }
+                }
+
+                if (saveSettings)
+                    App.SettingsDatabase.SaveItemAsync(App.Settings);
             };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
@@ -288,5 +326,27 @@ namespace XpertMobileApp
         }
 
         #endregion
+
+        private string getFormatedValue(object value)
+        {
+            if (value == null) return "";
+
+            string result = value.ToString();
+
+            if (value is DateTime)
+            {
+                result = string.Format("{0:dd/MM/yyyy HH:mm}", value);
+            }
+            else if (value is decimal)
+            {
+                result = string.Format("{0:F2} DA", value);
+            }
+            else
+            {
+                result = string.Format("{0}", value);
+            }
+
+            return result;
+        }
     }
 }

@@ -7,7 +7,8 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using Xpert.Pharm.DAL;
+
+using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels

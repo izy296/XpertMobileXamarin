@@ -1,16 +1,10 @@
 ﻿using Acr.UserDialogs;
 using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
-using Xpert.Pharm.DAL;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
-using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.ViewModels
 {
