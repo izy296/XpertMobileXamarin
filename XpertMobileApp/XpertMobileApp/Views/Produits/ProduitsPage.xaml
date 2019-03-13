@@ -9,14 +9,6 @@
              x:Name="Produits">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Additem"  Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="add.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -24,7 +16,6 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-
     </ContentPage.ToolbarItems>
 
     <StackLayout VerticalOptions="FillAndExpand">
@@ -45,33 +36,28 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
-            <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="0" Grid.Row="1" 
-                        x:Name="dp_StartDate"                        
-                        Format="dd/MM/yyyy"
-                        TextColor="Black"
-                        Date="{Binding StartDate, Mode=TwoWay}"
-                        Margin="30, 0, 30, 10"/>
+                <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
+                         ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
+                         SelectedItem="{Binding SelectedFamille}"
+                         TextColor="Black"
+                         Margin="15, 0, 15, 10" 
+                         x:Name="FamillesPicker"/>
 
-            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="1" Grid.Row="1"
-                        x:Name="dp_EndDate"                        
-                        Format="dd/MM/yyyy"
-                        TextColor="Black"
-                        Date="{Binding EndDate, Mode=TwoWay}"
-                        Margin="30, 0, 30, 10"/>
+                <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding Types}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedType}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesPicker"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Comptes}"
-                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
-                                TextColor="Black"
-                                SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
-                                Margin="30, 0, 30, 10"                 
-                                x:Name="ComptesPicker"/>
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+                <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
 
 
-            <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                 <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_ApplyFilter_Clicked"/>
@@ -93,15 +79,15 @@
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
-                
+
                 <ListView.Behaviors>
                     <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
                 </ListView.Behaviors>
-                
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <template:EncaissementTemplate />
+                            <template:ProduitTemplate />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -118,16 +104,8 @@
                         <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
                     </Grid>
                 </ListView.Footer>
-                
-            </ListView>
-        </StackLayout>
 
-        <!-- Type listing filter  -->
-        <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
-                         HorizontalOptions="Fill">
-            <Button x:Name="btn_All" ClassId="all" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_All}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
-            <Button x:Name="btn_Encaiss" ClassId="Encaiss" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Encaiss}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
-            <Button x:Name="btn_Decaiss" ClassId="Decaiss" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Decaiss}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
+            </ListView>
         </StackLayout>
     </StackLayout>
 </ContentPage>

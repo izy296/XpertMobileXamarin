@@ -77,6 +77,12 @@
     <Compile Update="Views\Licence\ActivationPage.xaml.cs">
       <DependentUpon>ActivationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
+      <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\ProduitTemplate.xaml.cs">
+      <DependentUpon>ProduitTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Produits\ProduitsPage.xaml.cs">
       <DependentUpon>ProduitsPage.xaml</DependentUpon>
     </Compile>

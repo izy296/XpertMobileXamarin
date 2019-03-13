@@ -23,7 +23,7 @@ namespace XpertMobileApp.ViewModels
         public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-90);
         public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
 
-        public InfiniteScrollCollection<View_AssistantCommandes> Items { get; set; }
+        public InfiniteScrollCollection<STK_PRODUITS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
         public Command DeleteItemCommand { get; set; }
@@ -44,28 +44,28 @@ namespace XpertMobileApp.ViewModels
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             // Ajout
-            AddItemCommand = new Command<View_AssistantCommandes>(async (View_AssistantCommandes item) => await ExecuteAddItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_AssistantCommandes>(this, MCDico.ADD_ITEM, async (obj, item) =>
+            AddItemCommand = new Command<STK_PRODUITS>(async (STK_PRODUITS item) => await ExecuteAddItemCommand(item));
+            MessagingCenter.Subscribe<NewEncaissementPage, STK_PRODUITS>(this, MCDico.ADD_ITEM, async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
             });
 
             // Supression
-            DeleteItemCommand = new Command<View_AssistantCommandes>(async (View_AssistantCommandes item) => await ExecuteDeleteItemCommand(item));
-            MessagingCenter.Subscribe<EncaissementDetailPage, View_AssistantCommandes>(this, MCDico.DELETE_ITEM, async (obj, item) =>
+            DeleteItemCommand = new Command<STK_PRODUITS>(async (STK_PRODUITS item) => await ExecuteDeleteItemCommand(item));
+            MessagingCenter.Subscribe<EncaissementDetailPage, STK_PRODUITS>(this, MCDico.DELETE_ITEM, async (obj, item) =>
             {
                 DeleteItemCommand.Execute(item);
             });
 
             // Modification
-            UpdateItemCommand = new Command<View_AssistantCommandes>(async (View_AssistantCommandes item) => await ExecuteUpdateItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_AssistantCommandes>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
+            UpdateItemCommand = new Command<STK_PRODUITS>(async (STK_PRODUITS item) => await ExecuteUpdateItemCommand(item));
+            MessagingCenter.Subscribe<NewEncaissementPage, STK_PRODUITS>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
             {
                 UpdateItemCommand.Execute(item);
             });
 
             // chargement infini
-            Items = new InfiniteScrollCollection<View_AssistantCommandes>
+            Items = new InfiniteScrollCollection<STK_PRODUITS>
             {
                 OnLoadMore = async () =>
                 {
@@ -94,20 +94,20 @@ namespace XpertMobileApp.ViewModels
             };
         }
 
-        async Task ExecuteUpdateItemCommand(View_AssistantCommandes item)
+        async Task ExecuteUpdateItemCommand(STK_PRODUITS item)
         {
             try
             {
                 if (App.IsConected)
                 {
-                    var newItem = item as View_AssistantCommandes;
+                    var newItem = item as STK_PRODUITS;
 
                     // Save the added Item in the local bdd
                     // await DataStore.DeleteItemAsync(newItem);
 
                     // TODO : test if connected else mark as not synchronizd
                     /*
-                    View_AssistantCommandes result = await WebServiceClient.UpdateEncaissement(newItem);
+                    STK_PRODUITS result = await WebServiceClient.UpdateEncaissement(newItem);
                     MessagingCenter.Send(this, MCDico.REFRESH_ITEM, result);
                     if (result != null)
                     {
@@ -128,13 +128,13 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteDeleteItemCommand(View_AssistantCommandes item)
+        async Task ExecuteDeleteItemCommand(STK_PRODUITS item)
         {
             try
             {
                 if (App.IsConected)
                 {
-                    var newItem = item as View_AssistantCommandes;
+                    var newItem = item as STK_PRODUITS;
 
                     // Save the added Item in the local bdd
                     // await DataStore.DeleteItemAsync(newItem);
@@ -160,25 +160,25 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteAddItemCommand(View_AssistantCommandes item)
+        async Task ExecuteAddItemCommand(STK_PRODUITS item)
         {
             try
             { 
                 if (App.IsConected)
                 { 
-                    var newItem = item as View_AssistantCommandes;
+                    var newItem = item as STK_PRODUITS;
 
                     // Save the added Item in the local bdd
                     //  await DataStore.AddItemAsync(newItem);
 
                     // TODO : test if connected else mark as not synchronizd
                     /*
-                     View_AssistantCommandes result = await WebServiceClient.SaveEncaissements(newItem);
+                     STK_PRODUITS result = await WebServiceClient.SaveEncaissements(newItem);
 
                      Items.Insert(0, result);
                     */
 
-     UpdateItemIndex<View_AssistantCommandes>(Items);
+                    UpdateItemIndex<STK_PRODUITS>(Items);
  }
 }
 catch (Exception ex)

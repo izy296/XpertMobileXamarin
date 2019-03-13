@@ -312,10 +312,10 @@ namespace XpertMobileApp.Services
             return await RetrievValAauthorizedData<int>(url);
         }
 
-        public static async Task<List<View_AssistantCommandes>> GetProduits(int page = 1, int nbrRows = 10, string type = "", 
+        public static async Task<List<STK_PRODUITS>> GetProduits(int page = 1, int nbrRows = 10, string type = "", 
                  string famille = "", string searchText = "")
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_PER_PAGE_URL);
 
             url += WSApi2.AddParam(url, "page", Convert.ToString(page));
             url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
@@ -327,7 +327,7 @@ namespace XpertMobileApp.Services
             if (!string.IsNullOrEmpty(searchText))
                 url += WSApi2.AddParam(url, "searchText", searchText);
 
-            return await RetrievAauthorizedData<View_AssistantCommandes>(url);
+            return await RetrievAauthorizedData<STK_PRODUITS>(url);
         }
 
         public static async Task<List<View_AssistantCommandes>> GetProduitDetails(string codeVente)
