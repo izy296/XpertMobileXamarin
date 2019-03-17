@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -15,66 +17,22 @@ namespace XpertMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProduitDetailPage : ContentPage
 	{
-        ItemDetailViewModel<STK_PRODUITS> viewModel;
+        ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK> viewModel;
+
+        private STK_PRODUITS item;
+        public STK_PRODUITS Item
+        {
+            get { return item; }
+            set { item = value; }
+        }
 
         public ProduitDetailPage(STK_PRODUITS prod)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = new ItemDetailViewModel<STK_PRODUITS>(prod);
+            this.Item = prod;
 
-            displayObject(typeof(STK_PRODUITS), viewModel.Item);
 
-            // TODO put into th generic view model 
-            MessagingCenter.Subscribe<EncaissementsViewModel, STK_PRODUITS>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
-            {
-                displayObject(typeof(STK_PRODUITS), item);
-                // viewModel.Item = item;
-            });
-        }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
-
-        private void displayObject(Type type, object obj)
-        {
-            if (obj == null) return;
-
-            sl_content.Children.Clear();
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj))
-            {
-                string name = descriptor.Name;
-                object value = descriptor.GetValue(obj);
-                value = getFormatedValue(value);
-
-                var attribute = GetFieldInfosAttribue(type, name);
-
-                if (attribute == null || !attribute.VisibleInFich) continue;
-
-                string[] styleFN = new String[] { "lbl_fieldName" };
-                var lbl_FieldName = new Label
-                {
-                    Text = TranslateExtension.GetTranslation(name) + " : ",
-                    FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
-                    FontAttributes = FontAttributes.Bold,
-                    TextColor = Color.LightGray,
-                    StyleClass = styleFN
-                };
-                sl_content.Children.Add(lbl_FieldName);
-
-                string[] styleFV = new String[] { "lbl_fieldValue" };
-                var lbl_FieldValue = new Label
-                {
-                    Text = Convert.ToString(value),
-                    FontSize = Device.GetNamedSize(NamedSize.Small, typeof(Label)),
-                    TextColor = Color.Black,
-                    Margin = new Thickness(10, 0, 0, 0),
-                    StyleClass = styleFV
-                };
-                sl_content.Children.Add(lbl_FieldValue);
-            }
         }
 
         private string getFormatedValue(object value)
@@ -99,36 +57,64 @@ namespace XpertMobileApp.Views
             return result;
         }
 
-        private FieldInfos GetFieldInfosAttribue(Type type, string fieldName)
-        {
-            try
-            { 
-                var attrs = (FieldInfos[])type.GetProperty(fieldName).GetCustomAttributes(typeof(FieldInfos), false);
-                if(attrs.Count()> 0)
-                {
-                    return attrs[0];
-                }
-            }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return null;
-        }
-
-        async void Delete_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
         async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();
         }
 
-        private async void Update_Clicked(object sender, EventArgs e)
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if(this.viewModel == null)
+            { 
+                var ProdInfos = await WebServiceClient.GetProduitDetails(this.Item.CODE_PRODUIT);
+
+                BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK>(ProdInfos, Item.CODE_PRODUIT);
+                this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+            }
+            viewModel.LoadRowsCommand.Execute(null);
+        }
+
+        async Task ExecuteLoadRowsCommand()
         {
 
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                viewModel.ItemRows.Clear();
+                var itemsC = await WebServiceClient.GetLots(this.Item.CODE_PRODUIT);
+
+                UpdateItemIndex(itemsC);
+
+                foreach (var itemC in itemsC)
+                {
+                    viewModel.ItemRows.Add(itemC);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        private void UpdateItemIndex<T>(List<T> items)
+        {
+            int i = 0;
+            foreach (var item in items)
+            {
+                i += 1;
+                (item as BASE_CLASS).Index = i;
+            }
         }
     }
 }

@@ -247,6 +247,7 @@ namespace XpertMobileApp.Services
 
         #endregion
 
+        
         #region Ventes
 
         public static async Task<int> GetVentesCount(string type, string idCaisse, DateTime? startDate, DateTime? endDate, string codeClient, string codeMotif, string codeUser)
@@ -330,12 +331,20 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<STK_PRODUITS>(url);
         }
 
-        public static async Task<List<View_AssistantCommandes>> GetProduitDetails(string codeVente)
+        public static async Task<View_AssistantCommandes> GetProduitDetails(string codeProduit)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_DETAILS_URL);
-            url += WSApi2.AddParam(url, "codeVente", codeVente);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
 
-            return await RetrievAauthorizedData<View_AssistantCommandes>(url);
+            return await RetrievValAauthorizedData<View_AssistantCommandes>(url);
+        }
+
+        public static async Task<List<View_STK_STOCK>> GetLots(string codeProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_LOTS_URL);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+
+            return await RetrievAauthorizedData<View_STK_STOCK>(url);
         }
 
         #endregion

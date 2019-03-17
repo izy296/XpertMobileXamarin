@@ -157,5 +157,10 @@ namespace XpertMobileApp.DAL
             }
         }
 
+        public override string ToString()
+        {
+            return "N° " + CODE_PRODUIT;
+        }
+
     }
 }
