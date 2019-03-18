@@ -505,6 +505,42 @@
           <source>Produits</source>
           <target state="new">Produits</target>
         </trans-unit>
+        <trans-unit id="txt_Arrivage" translate="yes" xml:space="preserve">
+          <source>Qarrivage</source>
+          <target state="new">Qarrivage</target>
+        </trans-unit>
+        <trans-unit id="txt_Qte" translate="yes" xml:space="preserve">
+          <source>Qte</source>
+          <target state="new">Qte</target>
+        </trans-unit>
+        <trans-unit id="txt_QteMin" translate="yes" xml:space="preserve">
+          <source>QMin</source>
+          <target state="new">QMin</target>
+        </trans-unit>
+        <trans-unit id="txt_Rotation" translate="yes" xml:space="preserve">
+          <source>Rotation</source>
+          <target state="new">Rotation</target>
+        </trans-unit>
+        <trans-unit id="txt_Lots" translate="yes" xml:space="preserve">
+          <source>Lots</source>
+          <target state="new">Lots</target>
+        </trans-unit>
+        <trans-unit id="txt_Product" translate="yes" xml:space="preserve">
+          <source>Produit</source>
+          <target state="new">Produit</target>
+        </trans-unit>
+        <trans-unit id="txt_Prix" translate="yes" xml:space="preserve">
+          <source>Prix</source>
+          <target state="new">Prix</target>
+        </trans-unit>
+        <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
+          <source>Ref</source>
+          <target state="new">Ref</target>
+        </trans-unit>
+        <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
+          <source>A commander</source>
+          <target state="new">A commander</target>
+        </trans-unit>
       </group>
     </body>
   </file>

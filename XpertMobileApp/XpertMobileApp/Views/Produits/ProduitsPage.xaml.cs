@@ -39,6 +39,12 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
+            if(viewModel.Familles.Count == 0)
+                viewModel.LoadFamillesCommand.Execute(null);
+
+            if (viewModel.Types.Count == 0)
+                viewModel.LoadTypesCommand.Execute(null);
+
             if (viewModel.Items.Count == 0)
                 LoadStats();
         }
@@ -69,9 +75,9 @@ namespace XpertMobileApp.Views
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             // Anuler les filtres 
-            //viewModel.StartDate = null;
-            //viewModel.EndDate = null;
-            viewModel.SelectedCompte = null;
+            // viewModel.StartDate = null;
+            // viewModel.EndDate = null;
+            // viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
             viewModel.LoadItemsCommand.Execute(null);            
         }

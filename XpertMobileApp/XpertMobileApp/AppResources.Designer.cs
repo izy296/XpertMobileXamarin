@@ -889,11 +889,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à A commander.
+        /// </summary>
+        internal static string txt_Acommande {
+            get {
+                return ResourceManager.GetString("txt_Acommande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tous.
         /// </summary>
         internal static string txt_All {
             get {
                 return ResourceManager.GetString("txt_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Qarrivage.
+        /// </summary>
+        internal static string txt_Arrivage {
+            get {
+                return ResourceManager.GetString("txt_Arrivage", resourceCulture);
             }
         }
         
@@ -1015,6 +1033,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Lots.
+        /// </summary>
+        internal static string txt_Lots {
+            get {
+                return ResourceManager.GetString("txt_Lots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Marges.
         /// </summary>
         internal static string txt_Margin {
@@ -1038,6 +1065,60 @@ namespace XpertMobileApp {
         internal static string txt_Month {
             get {
                 return ResourceManager.GetString("txt_Month", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Prix.
+        /// </summary>
+        internal static string txt_Prix {
+            get {
+                return ResourceManager.GetString("txt_Prix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Produit.
+        /// </summary>
+        internal static string txt_Product {
+            get {
+                return ResourceManager.GetString("txt_Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Qte.
+        /// </summary>
+        internal static string txt_Qte {
+            get {
+                return ResourceManager.GetString("txt_Qte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à QMin.
+        /// </summary>
+        internal static string txt_QteMin {
+            get {
+                return ResourceManager.GetString("txt_QteMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ref.
+        /// </summary>
+        internal static string txt_Ref {
+            get {
+                return ResourceManager.GetString("txt_Ref", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rotation.
+        /// </summary>
+        internal static string txt_Rotation {
+            get {
+                return ResourceManager.GetString("txt_Rotation", resourceCulture);
             }
         }
         

@@ -347,6 +347,17 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_STK_STOCK>(url);
         }
 
+        public static async Task<List<BSE_TABLE_TYPE>> GetProduitTypes()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_TYPES_URL);
+            return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
+        }
+
+        public static async Task<List<BSE_TABLE>> GetProduitFamilles()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_FAMILLES_URL);
+            return await RetrievAauthorizedData<BSE_TABLE>(url);
+        }
         #endregion
     }
 }

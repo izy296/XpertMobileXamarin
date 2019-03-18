@@ -40,20 +40,6 @@ namespace XpertMobileApp.Views.Encaissement
             });
         }
 
-        public VenteDetailPage()
-        {
-            InitializeComponent();
-
-            var item = new View_VTE_VENTE
-            {
-                NUM_VENTE = "Item 1",
-                TITRE_VENTE = "This is a compte.."
-            };
-
-            viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(item, "");
-            BindingContext = viewModel;
-        }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();

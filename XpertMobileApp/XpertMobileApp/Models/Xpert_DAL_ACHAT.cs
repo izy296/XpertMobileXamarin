@@ -3,6 +3,15 @@
 namespace XpertMobileApp.DAL
 {
 
+    public partial class BSE_TABLE
+    {
+        public string CODE { get; set; } // varchar(32)
+        public string DESIGNATION { get; set; } // char(8) 
+        public bool? REINTEGRER_STOCK { get; set; }
+        public bool? GENERER_VENTE_COMPTOIR { get; set; }
+        public bool? GENERER_VENTE_CHIFA { get; set; }
+    }
+
     public partial class STK_PRODUITS : BASE_CLASS
     {
         public string CODE_PRODUIT { get; set; } // varchar(11)

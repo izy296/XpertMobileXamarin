@@ -19,26 +19,33 @@ namespace XpertMobileApp.ViewModels
 
         private int elementsCount;
 
-        public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-90);
-        public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
-
-        public InfiniteScrollCollection<STK_PRODUITS> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
         public Command DeleteItemCommand { get; set; }
         public Command UpdateItemCommand { get; set; }
-         
-        public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
-        public Command LoadComptesCommand { get; set; }
+
+        public InfiniteScrollCollection<STK_PRODUITS> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
+
+        public string SearchedText { get; set; }
+
+        public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
+        public BSE_TABLE_TYPE SelectedType { get; set; }
+        public Command LoadTypesCommand { get; set; }
+
+        public ObservableCollection<BSE_TABLE> Familles { get; set; }
+        public BSE_TABLE SelectedFamille { get; set; }
+        public Command LoadFamillesCommand { get; set; }
 
         public ProduitsViewModel()
         {
-            Title = AppResources.pn_encaissement;
+            Title = AppResources.pn_Produits;
 
-            Comptes = new ObservableCollection<View_BSE_COMPTE>();
-            LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
+            Types = new ObservableCollection<BSE_TABLE_TYPE>();
+            Familles = new ObservableCollection<BSE_TABLE>();
+            LoadTypesCommand = new Command(async () => await ExecuteLoadTypesCommand());
+
+            Familles = new ObservableCollection<BSE_TABLE>();
+            LoadFamillesCommand = new Command(async () => await ExecuteLoadFamillesCommand());
 
             // Listing
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -71,14 +78,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsBusy = true;
 
-                    // Recupérer le type a afficher ENC,DEC or All
-                    string type = GetCurrentType();
-
-                    elementsCount = await WebServiceClient.GetProduitsCount("", "", "");
+                    elementsCount = await WebServiceClient.GetProduitsCount(SelectedType?.CODE_TYPE, SelectedFamille?.CODE, SearchedText);
 
                     // load the next page
                     var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetProduits(page, PageSize, "", "", "");
+                    var items = await WebServiceClient.GetProduits(page, PageSize, SelectedType?.CODE_TYPE, SelectedFamille?.CODE, SearchedText);
 
                     XpertHelper.UpdateItemIndex(items);
 
@@ -163,9 +167,9 @@ namespace XpertMobileApp.ViewModels
         async Task ExecuteAddItemCommand(STK_PRODUITS item)
         {
             try
-            { 
+            {
                 if (App.IsConected)
-                { 
+                {
                     var newItem = item as STK_PRODUITS;
 
                     // Save the added Item in the local bdd
@@ -179,85 +183,97 @@ namespace XpertMobileApp.ViewModels
                     */
 
                     UpdateItemIndex<STK_PRODUITS>(Items);
- }
-}
-catch (Exception ex)
-{
- await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-     AppResources.alrt_msg_Ok);
-}
-finally
-{
- IsBusy = false;
-}
-}
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
 
-private void UpdateItemIndex<T>(InfiniteScrollCollection<T> items)
-{
-int i = 0;
-foreach (var item in items)
-{
- i += 1;
- (item as BASE_CLASS).Index = i;
-}
-}
+        private void UpdateItemIndex<T>(InfiniteScrollCollection<T> items)
+        {
+            int i = 0;
+            foreach (var item in items)
+            {
+                i += 1;
+                (item as BASE_CLASS).Index = i;
+            }
+        }
 
-async Task ExecuteLoadItemsCommand()
-{
-if (IsBusy)
- return;
-
-try
-{
- Items.Clear();
- await Items.LoadMoreAsync();
-}
-catch (Exception ex)
-{
- await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-     AppResources.alrt_msg_Ok);
-}
-finally
-{
- IsBusy = false;
-}
-}
-
-private string GetCurrentType()
-{
-string type = "";
-switch (EncaissDisplayType)
-{
- case EncaissDisplayType.All:
-     type = "all";
-     break;
- case EncaissDisplayType.ENC:
-     type = "ENC";
-     break;
- case EncaissDisplayType.DEC:
-     type = "DEC";
-     break;
-}
-
-return type;
-}
-
-async Task ExecuteLoadComptesCommand()
-{
-/*
-if (IsBusy)
- return;
-*/
-
-                    IsBusy = true;
+        async Task ExecuteLoadItemsCommand()
+        {
+            if (IsBusy)
+                return;
 
             try
             {
-                Comptes.Clear();
-                var itemsC = await WebServiceClient.getComptes();
+                Items.Clear();
+                await Items.LoadMoreAsync();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task ExecuteLoadTypesCommand()
+        {
+            /*
+            if (IsBusy)
+             return;
+
+            IsBusy = true;
+            */
+
+
+            try
+            {
+                Types.Clear();
+                var itemsC = await WebServiceClient.GetProduitTypes();
                 foreach (var itemC in itemsC)
                 {
-                    Comptes.Add(itemC);
+                    Types.Add(itemC);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        async Task ExecuteLoadFamillesCommand()
+        {
+            /*
+            if (IsBusy)
+             return;
+             
+            IsBusy = true;
+            */
+
+
+            try
+            {
+                Familles.Clear();
+                var itemsC = await WebServiceClient.GetProduitFamilles();
+                foreach (var itemC in itemsC)
+                {
+                    Familles.Add(itemC);
                 }
             }
             catch (Exception ex)
