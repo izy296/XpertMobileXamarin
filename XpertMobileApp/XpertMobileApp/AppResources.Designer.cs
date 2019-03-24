@@ -907,7 +907,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Qarrivage.
+        ///   Recherche une chaîne localisée semblable à Arrivage.
         /// </summary>
         internal static string txt_Arrivage {
             get {
@@ -939,6 +939,15 @@ namespace XpertMobileApp {
         internal static string txt_Comptes {
             get {
                 return ResourceManager.GetString("txt_Comptes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Jrs Couverts.
+        /// </summary>
+        internal static string txt_CovredDays {
+            get {
+                return ResourceManager.GetString("txt_CovredDays", resourceCulture);
             }
         }
         
@@ -1087,7 +1096,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Qte.
+        ///   Recherche une chaîne localisée semblable à Qté.
         /// </summary>
         internal static string txt_Qte {
             get {
@@ -1096,7 +1105,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à QMin.
+        ///   Recherche une chaîne localisée semblable à Qté Min.
         /// </summary>
         internal static string txt_QteMin {
             get {
@@ -1105,7 +1114,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Ref.
+        ///   Recherche une chaîne localisée semblable à Réf.
         /// </summary>
         internal static string txt_Ref {
             get {

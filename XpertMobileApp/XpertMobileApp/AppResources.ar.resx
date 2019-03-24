@@ -381,4 +381,34 @@
   <data name="pn_Produits" xml:space="preserve">
     <value>المنتوجات</value>
   </data>
+  <data name="txt_Arrivage" xml:space="preserve">
+    <value>القادم</value>
+  </data>
+  <data name="txt_Qte" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="txt_QteMin" xml:space="preserve">
+    <value>أقل كمية</value>
+  </data>
+  <data name="txt_Rotation" xml:space="preserve">
+    <value>الدوران</value>
+  </data>
+  <data name="txt_Lots" xml:space="preserve">
+    <value>الدفعة</value>
+  </data>
+  <data name="txt_Product" xml:space="preserve">
+    <value>المنتوج</value>
+  </data>
+  <data name="txt_Prix" xml:space="preserve">
+    <value>ثمن</value>
+  </data>
+  <data name="txt_Ref" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="txt_Acommande" xml:space="preserve">
+    <value>شراء</value>
+  </data>
+  <data name="txt_CovredDays" xml:space="preserve">
+    <value>التغطية</value>
+  </data>
 </root>

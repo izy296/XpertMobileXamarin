@@ -490,7 +490,7 @@
     <value>A commander</value>
   </data>
   <data name="txt_Arrivage" xml:space="preserve">
-    <value>Qarrivage</value>
+    <value>Arrivage</value>
   </data>
   <data name="txt_Lots" xml:space="preserve">
     <value>Lots</value>
@@ -502,15 +502,18 @@
     <value>Produit</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
-    <value>Qte</value>
+    <value>Qté</value>
   </data>
   <data name="txt_QteMin" xml:space="preserve">
-    <value>QMin</value>
+    <value>Qté Min</value>
   </data>
   <data name="txt_Ref" xml:space="preserve">
-    <value>Ref</value>
+    <value>Réf</value>
   </data>
   <data name="txt_Rotation" xml:space="preserve">
     <value>Rotation</value>
+  </data>
+  <data name="txt_CovredDays" xml:space="preserve">
+    <value>Jrs Couverts</value>
   </data>
 </root>

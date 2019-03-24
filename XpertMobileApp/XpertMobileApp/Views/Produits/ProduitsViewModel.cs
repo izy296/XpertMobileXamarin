@@ -241,6 +241,12 @@ namespace XpertMobileApp.ViewModels
             {
                 Types.Clear();
                 var itemsC = await WebServiceClient.GetProduitTypes();
+
+                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                allElem.CODE_TYPE = "";
+                allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                itemsC.Add(allElem);
+
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -271,6 +277,12 @@ namespace XpertMobileApp.ViewModels
             {
                 Familles.Clear();
                 var itemsC = await WebServiceClient.GetProduitFamilles();
+
+                BSE_TABLE allElem = new BSE_TABLE();
+                allElem.CODE = "";
+                allElem.DESIGNATION = AppResources.txt_All;
+                Familles.Add(allElem);
+
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);

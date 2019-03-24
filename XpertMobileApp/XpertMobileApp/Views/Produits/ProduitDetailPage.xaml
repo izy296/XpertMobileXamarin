@@ -6,77 +6,82 @@
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              Title="{Binding Title}">
 
-    <ScrollView Orientation="Vertical" VerticalOptions="FillAndExpand" >
-        <StackLayout x:Name="sl_content" Padding="5" >
+    <StackLayout x:Name="sl_content" Padding="5" >
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Grid  BackgroundColor="White" >
 
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <Grid  BackgroundColor="White" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Product}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_Product}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
+                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,0,0">
+                    <Label Text="{Binding Item.PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold"/>
+                </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding Item.PRODUIT}" TextColor="{StaticResource DefaultTextColor}"/>
-                    </StackLayout>
+                <StackLayout Grid.Column="0" Grid.Row="2"  Grid.ColumnSpan="2" Spacing="0" Margin="5,0,5,10" Padding="0" HorizontalOptions="FillAndExpand">
+                    <Grid>
 
-                    <StackLayout Grid.Column="0" Grid.Row="2"  Grid.ColumnSpan="2" Spacing="0" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
-                        <Grid>
-                            
-                            <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Ref}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.REFERENCE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Ref}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.REFERENCE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Prix}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.PRIX_UNITAIRE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Prix}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.PRIX_UNITAIRE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center"/>
 
-                            <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Qte}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_STOCK, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Qte}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_STOCK, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                        </Grid>
-                    </StackLayout>
+                        <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Qte}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_STOCK, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                    <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
-                        <Grid>
-                            
-                            <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_QteMin}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.STOCK_MIN, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="3" Grid.Row="0" Text="{i18n:Translate txt_QteMin}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="3" Grid.Row="1" Text="{ Binding Item.STOCK_MIN, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Arrivage}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_ARRIVAGE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                    </Grid>
+                </StackLayout>
 
-                            <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Rotation}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_ROTATION, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
+                    <Grid>
 
-                            <Label Grid.Column="3" Grid.Row="0" Text="{i18n:Translate txt_Acommande}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                            <Label Grid.Column="3" Grid.Row="1" Text="{ Binding Item.QTE_COMMANDE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center" />
-                        
-                        </Grid>
-                    </StackLayout>
+                        <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Arrivage}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.QTE_ARRIVAGE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                </Grid>
-            </Frame>
+                        <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Rotation}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_ROTATION, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+                        <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Acommande}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_COMMANDE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center" />
 
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_Lots}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
+                        <Label Grid.Column="3" Grid.Row="0" Text="{i18n:Translate txt_CovredDays}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="3" Grid.Row="1" Text="{ Binding Item.CovredDays, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
-                    <ListView x:Name="ItemsListView"
+                    </Grid>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Lots}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout> 
+
+                <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding ItemRows}"
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadRowsCommand}"
@@ -84,17 +89,16 @@
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     CachingStrategy="RecycleElement">
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <template:Stk_RowElementTemplate />
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:Stk_RowElementTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                    </ListView>
-                </StackLayout>
-            </Frame>
-        </StackLayout>
-    </ScrollView>
+                </ListView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </ContentPage>    

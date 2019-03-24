@@ -23,13 +23,16 @@
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
                     </StackLayout>
                     
-                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
-                        <Label Text="{Binding LOT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0" Orientation="Horizontal">
+                        <Label Text="{Binding LOT}" Grid.Column="0" TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding Expiration}" Grid.Column="1" TextColor="{StaticResource DefaultTextColor}" 
+                               HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default"/>
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
                     -->
-                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
+                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
                           Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
                     <Label Grid.Column="2" Grid.Row="1" Text="{ Binding VAL_STK, StringFormat='Val. : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />
                     <Label Grid.Column="3" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='PV. {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>

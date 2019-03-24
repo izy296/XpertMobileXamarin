@@ -28,7 +28,7 @@ namespace XpertMobileApp.DAL
         public decimal SHP { get; set; } // money(19,4)
         public decimal TARIF { get; set; } // money(19,4)
         public string CODE_CNAS { get; set; } // varchar(11)
-        public char REMB { get; set; } // char(1)
+        public string REMB { get; set; } // char(1)
         public string DATE_REMB { get; set; } // varchar(8)
         public string D_NON_REMB { get; set; } // varchar(8)
         public string DESCRIPTION { get; set; } // varchar(2000)
@@ -62,6 +62,7 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FORME { get; set; } // 
         public string DESIGN_LABO { get; set; } // 
         public string DESIGN_TYPE { get; set; }
+        public string DESIGN_FAMILLE { get; set; } // nvarchar(50)
     }
 
     public class View_AssistantCommandes : BASE_CLASS

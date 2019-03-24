@@ -1,13 +1,10 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -31,8 +28,6 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             this.Item = prod;
-
-
         }
 
         private string getFormatedValue(object value)
@@ -78,7 +73,6 @@ namespace XpertMobileApp.Views
 
         async Task ExecuteLoadRowsCommand()
         {
-
             if (IsBusy)
                 return;
 

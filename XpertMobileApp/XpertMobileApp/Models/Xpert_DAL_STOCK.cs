@@ -19,6 +19,7 @@ namespace XpertMobileApp.Models
         public string CODE_ENTREE { get; set; } // varchar(50)
         public decimal QUANTITE { get; set; } // numeric(18,2)
         public DateTime? DATE_PEREMPTION { get; set; } // datetime(3)
+
         public string CODE_EMPLACEMENT { get; set; } // varchar(10)
         public string CODE_BARRE_LOT { get; set; } // nvarchar(50)
         public string CODE_DOC { get; set; } // varchar(50)
@@ -34,6 +35,14 @@ namespace XpertMobileApp.Models
         public decimal PENDING_QUANTITY { get; set; } // numeric(18,2)
         public bool GENERATE_BL { get; set; } // {trace Arrivage en instance} :: generer un bon de reception .
         public bool GENERATE_DECAISS { get; set; } // {trace Arrivage en instance} :: generer un rembouresement client .
+
+        public string Expiration
+        {
+            get
+            {
+                return DATE_PEREMPTION != null ? "Ex : " + DATE_PEREMPTION.Value.ToString("dd/MM/yyyy") : "";
+            }
+        }
     }
 
     public partial class View_STK_STOCK : STK_STOCK

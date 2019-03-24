@@ -506,40 +506,48 @@
           <target state="translated">المنتوجات</target>
         </trans-unit>
         <trans-unit id="txt_Arrivage" translate="yes" xml:space="preserve">
-          <source>Qarrivage</source>
-          <target state="new">Qarrivage</target>
+          <source>Arrivage</source>
+          <target state="needs-review-translation">القادم</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Qte" translate="yes" xml:space="preserve">
-          <source>Qte</source>
-          <target state="new">Qte</target>
+          <source>Qté</source>
+          <target state="needs-review-translation">الكمية</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_QteMin" translate="yes" xml:space="preserve">
-          <source>QMin</source>
-          <target state="new">QMin</target>
+          <source>Qté Min</source>
+          <target state="needs-review-translation">أقل كمية</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Rotation" translate="yes" xml:space="preserve">
           <source>Rotation</source>
-          <target state="new">Rotation</target>
+          <target state="translated">الدوران</target>
         </trans-unit>
         <trans-unit id="txt_Lots" translate="yes" xml:space="preserve">
           <source>Lots</source>
-          <target state="new">Lots</target>
+          <target state="translated">الدفعة</target>
         </trans-unit>
         <trans-unit id="txt_Product" translate="yes" xml:space="preserve">
           <source>Produit</source>
-          <target state="new">Produit</target>
+          <target state="translated">المنتوج</target>
         </trans-unit>
         <trans-unit id="txt_Prix" translate="yes" xml:space="preserve">
           <source>Prix</source>
-          <target state="new">Prix</target>
+          <target state="translated">ثمن</target>
         </trans-unit>
         <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
-          <source>Ref</source>
-          <target state="new">Ref</target>
+          <source>Réf</source>
+          <target state="needs-review-translation">Ref</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
           <source>A commander</source>
-          <target state="new">A commander</target>
+          <target state="translated">شراء</target>
+        </trans-unit>
+        <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
+          <source>Jrs Couverts</source>
+          <target state="translated">التغطية</target>
         </trans-unit>
       </group>
     </body>

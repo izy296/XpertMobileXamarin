@@ -369,4 +369,46 @@
   <data name="txt_Client" xml:space="preserve">
     <value>Customer</value>
   </data>
+  <data name="pn_Tiers" xml:space="preserve">
+    <value>Thrid</value>
+  </data>
+  <data name="txt_Famille" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="pn_Produits" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="txt_Arrivage" xml:space="preserve">
+    <value>Arrival</value>
+  </data>
+  <data name="txt_Qte" xml:space="preserve">
+    <value>Qte</value>
+  </data>
+  <data name="txt_QteMin" xml:space="preserve">
+    <value>QMin</value>
+  </data>
+  <data name="txt_Rotation" xml:space="preserve">
+    <value>Rotation</value>
+  </data>
+  <data name="txt_Lots" xml:space="preserve">
+    <value>Lots</value>
+  </data>
+  <data name="txt_Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="txt_Prix" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="txt_Ref" xml:space="preserve">
+    <value>Ref</value>
+  </data>
+  <data name="txt_Acommande" xml:space="preserve">
+    <value>To order</value>
+  </data>
+  <data name="txt_CovredDays" xml:space="preserve">
+    <value>Covered days</value>
+  </data>
 </root>

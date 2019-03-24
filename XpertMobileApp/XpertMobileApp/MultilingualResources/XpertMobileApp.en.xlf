@@ -491,55 +491,63 @@
         </trans-unit>
         <trans-unit id="pn_Tiers" translate="yes" xml:space="preserve">
           <source>Tiers</source>
-          <target state="new">Tiers</target>
+          <target state="translated">Thrid</target>
         </trans-unit>
         <trans-unit id="txt_Famille" translate="yes" xml:space="preserve">
           <source>Famille</source>
-          <target state="new">Famille</target>
+          <target state="translated">Category</target>
         </trans-unit>
         <trans-unit id="txt_Types" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="new">Type</target>
+          <target state="translated">Type</target>
         </trans-unit>
         <trans-unit id="pn_Produits" translate="yes" xml:space="preserve">
           <source>Produits</source>
-          <target state="new">Produits</target>
+          <target state="translated">Products</target>
         </trans-unit>
         <trans-unit id="txt_Arrivage" translate="yes" xml:space="preserve">
-          <source>Qarrivage</source>
-          <target state="new">Qarrivage</target>
+          <source>Arrivage</source>
+          <target state="needs-review-translation">Arrival</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Qte" translate="yes" xml:space="preserve">
-          <source>Qte</source>
-          <target state="new">Qte</target>
+          <source>Qté</source>
+          <target state="needs-review-translation">Qte</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_QteMin" translate="yes" xml:space="preserve">
-          <source>QMin</source>
-          <target state="new">QMin</target>
+          <source>Qté Min</source>
+          <target state="needs-review-translation">QMin</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Rotation" translate="yes" xml:space="preserve">
           <source>Rotation</source>
-          <target state="new">Rotation</target>
+          <target state="translated">Rotation</target>
         </trans-unit>
         <trans-unit id="txt_Lots" translate="yes" xml:space="preserve">
           <source>Lots</source>
-          <target state="new">Lots</target>
+          <target state="translated">Lots</target>
         </trans-unit>
         <trans-unit id="txt_Product" translate="yes" xml:space="preserve">
           <source>Produit</source>
-          <target state="new">Produit</target>
+          <target state="translated">Product</target>
         </trans-unit>
         <trans-unit id="txt_Prix" translate="yes" xml:space="preserve">
           <source>Prix</source>
-          <target state="new">Prix</target>
+          <target state="translated">Price</target>
         </trans-unit>
         <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
-          <source>Ref</source>
-          <target state="new">Ref</target>
+          <source>Réf</source>
+          <target state="needs-review-translation">Ref</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
           <source>A commander</source>
-          <target state="new">A commander</target>
+          <target state="translated">To order</target>
+        </trans-unit>
+        <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
+          <source>Jrs Couverts</source>
+          <target state="translated">Covered days</target>
         </trans-unit>
       </group>
     </body>
