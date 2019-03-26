@@ -889,7 +889,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à A commander.
+        ///   Recherche une chaîne localisée semblable à A Cmdé.
         /// </summary>
         internal static string txt_Acommande {
             get {

@@ -59,7 +59,7 @@
                         <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.QTE_ARRIVAGE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
                         <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Rotation}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
-                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_ROTATION, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_CONSMOY, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
                         <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate txt_Acommande}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
                         <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_COMMANDE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center" />
