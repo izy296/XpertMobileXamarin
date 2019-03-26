@@ -542,12 +542,13 @@
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
-          <source>A commander</source>
-          <target state="translated">To order</target>
+          <source>A Cmdé</source>
+          <target state="needs-review-translation">To order</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
           <source>Jrs Couverts</source>
-          <target state="translated">Covered days</target>
+          <target state="translated">Covered</target>
         </trans-unit>
       </group>
     </body>

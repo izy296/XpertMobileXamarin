@@ -542,8 +542,9 @@
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
-          <source>A commander</source>
-          <target state="translated">شراء</target>
+          <source>A Cmdé</source>
+          <target state="needs-review-translation">شراء</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
           <source>Jrs Couverts</source>
