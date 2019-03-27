@@ -23,13 +23,16 @@ namespace XpertMobileApp.ViewModels
 
         public bool ContinuesScan { get; set; }
 
-        public int Anti { get; set; }
+        public bool Anti { get; set; } = false;
+
+        public int q { get; set; } = 3;
 
         public RfidScanViewModel()
         {
-           Title = AppResources.pn_RfidScan;
+            Title = AppResources.pn_RfidScan;
 
             Items = new InfiniteScrollCollection<string>();
+            Init();
         }
 
         #region Rfid scaner tool
@@ -53,9 +56,12 @@ namespace XpertMobileApp.ViewModels
             ContinuousRead();
         }
 
-        public string StartInventorySingl(bool Continuous)
+        public void StartInventorySingl()
         {
-            return RFScaner.InventorySingleTag();
+            string element = RFScaner.InventorySingleTag();
+            if (!string.IsNullOrEmpty(element)) {
+                Items.Add(element);
+            }
         }
 
         public void ContinuousRead()
@@ -74,12 +80,13 @@ namespace XpertMobileApp.ViewModels
                         {
                             strTid = "TID:" + res[0] + "\r\n";
                         }
-                        strEPC = "EPC:" + RFScaner.ConvertUiiToEPC(res[1]) + "@";
+                        strEPC = "EPC:" + RFScaner.ConvertUiiToEPC(res[1])+ "@";
                         sb.Append(strTid);
                         sb.Append(strEPC);
                         sb.Append(res[2]);
-
-                        Items.Insert(0, sb.ToString());
+                    
+                        if(!Items.Contains(sb.ToString()))
+                            Items.Add(sb.ToString());
                     }
                 }
             }));

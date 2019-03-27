@@ -31,9 +31,6 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            viewModel.Items.Add("string1");
-            viewModel.Items.Add("string2");
-            viewModel.Items.Add("string3");
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -51,13 +48,12 @@ namespace XpertMobileApp.Views
             
             if (viewModel.ContinuesScan)
             { 
-                viewModel.StartInventorySingl(viewModel.ContinuesScan);
+                viewModel.StartInventorySingl();
             }
             else
             {
-                byte anti = 1;
-                byte q = 1;
-                viewModel.SatrtContenuesInventary(anti, q);
+
+                viewModel.SatrtContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
             }
         }
 

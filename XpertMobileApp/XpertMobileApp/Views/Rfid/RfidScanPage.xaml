@@ -31,19 +31,27 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <Label Grid.Column="0" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
                 <StackLayout Grid.Column="0" Grid.Row="1">
-                <Switch x:Name="CSS" IsToggled="{Binding ContinuesScan, Mode=TwoWay}"></Switch>
+                    <Switch x:Name="CScan" IsToggled="{Binding ContinuesScan, Mode=TwoWay}"></Switch>
                 </StackLayout>
-                <Label Grid.Column="1" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
-                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Anti, Mode=TwoWay}"/>
 
+                <Label Grid.Column="1" Grid.Row="0"  Text="Anti" Margin="5, 0, 0, 0" />
+                <StackLayout Grid.Column="1" Grid.Row="1">
+                    <Switch x:Name="AntiP" IsToggled="{Binding Anti, Mode=TwoWay}"></Switch>
+                </StackLayout>
+                
+                <Label Grid.Column="0" Grid.Row="2"  Text="param q" Margin="5, 0, 0, 0" />
+                <Entry Grid.Column="1" Grid.Row="3" Text="{Binding q, Mode=TwoWay}"/>
+                
                 <!-- Button -->
-                <StackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                     <Button x:Name="btn_Clear" Margin="5" HorizontalOptions="End" Text="Clear" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Clear_Clicked"/>
@@ -57,7 +65,10 @@
             </Grid>
         </StackLayout>
 
-        <!-- Items listing  -->
+        <!-- Items listing  
+        Selecteur de lot
+        -->
+        
         <StackLayout VerticalOptions="FillAndExpand">
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
