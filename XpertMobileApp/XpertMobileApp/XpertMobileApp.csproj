@@ -89,6 +89,12 @@
     <Compile Update="Views\Produits\Stk_RowElementTemplate.xaml.cs">
       <DependentUpon>Stk_RowElementTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Rfid\RfidScanPage.xaml.cs">
+      <DependentUpon>RfidScanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\RfidTemplate.xaml.cs">
+      <DependentUpon>RfidTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
     </Compile>

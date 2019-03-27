@@ -550,6 +550,10 @@
           <source>Jrs Couverts</source>
           <target state="translated">Covered</target>
         </trans-unit>
+        <trans-unit id="pn_RfidScan" translate="yes" xml:space="preserve">
+          <source>Rfid scan</source>
+          <target state="new">Rfid scan</target>
+        </trans-unit>
       </group>
     </body>
   </file>

@@ -516,4 +516,7 @@
   <data name="txt_CovredDays" xml:space="preserve">
     <value>Jrs Couverts</value>
   </data>
+  <data name="pn_RfidScan" xml:space="preserve">
+    <value>Rfid scan</value>
+  </data>
 </root>

@@ -772,6 +772,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Rfid scan.
+        /// </summary>
+        internal static string pn_RfidScan {
+            get {
+                return ResourceManager.GetString("pn_RfidScan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string pn_Tiers {
