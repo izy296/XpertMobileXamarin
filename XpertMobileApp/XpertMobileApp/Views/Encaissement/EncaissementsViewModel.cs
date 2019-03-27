@@ -22,8 +22,8 @@ namespace XpertMobileApp.ViewModels
         private int elementsCount;
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.UtcNow.AddDays(-90);
-        public DateTime EndDate { get; set; } = DateTime.UtcNow.AddDays(1);
+        public DateTime StartDate { get; set; } = DateTime.UtcNow.AddDays(-1);
+        public DateTime EndDate { get; set; } = DateTime.Now;
 
         public InfiniteScrollCollection<View_TRS_ENCAISS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
