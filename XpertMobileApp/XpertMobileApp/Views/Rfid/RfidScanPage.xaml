@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             x:Class="XpertMobileApp.Views.RfidScanPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="{Binding Title}"
+             x:Name="Tiers">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Filter"  Text="Config" Clicked="Filter_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="filter.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout VerticalOptions="FillAndExpand">
+        <!-- Filter -->
+        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+                <Label Grid.Column="0" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
+                <StackLayout Grid.Column="0" Grid.Row="1">
+                <Switch x:Name="CSS" IsToggled="{Binding ContinuesScan, Mode=TwoWay}"></Switch>
+                </StackLayout>
+                <Label Grid.Column="1" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
+                <Entry Grid.Column="1" Grid.Row="1" Text="{Binding Anti, Mode=TwoWay}"/>
+
+                <!-- Button -->
+                <StackLayout Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                    <Button x:Name="btn_Clear" Margin="5" HorizontalOptions="End" Text="Clear" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_Clear_Clicked"/>
+
+                    <Button x:Name="btn_Scan" Margin="5" HorizontalOptions="End" Text="Scan" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_Scan_Clicked"/>
+
+                    <Button x:Name="btn_Stop" Margin="5" HorizontalOptions="End" Text="Stop" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_StopScan_Clicked"/>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+
+        <!-- Items listing  -->
+        <StackLayout VerticalOptions="FillAndExpand">
+            <ListView x:Name="ItemsListView"
+                    ItemsSource="{Binding Items}"
+                    VerticalOptions="FillAndExpand"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement"
+                    ItemSelected="OnItemSelected">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <template:RfidTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.RfidTemplate">
+    <ContentView.Content>
+
+        <StackLayout>
+            <Frame CornerRadius="3" Padding="2" Margin="2" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                <Label Text="{Binding .}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
