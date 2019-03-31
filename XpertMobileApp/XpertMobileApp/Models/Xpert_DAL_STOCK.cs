@@ -145,5 +145,58 @@ namespace XpertMobileApp.Models
                 this.IS_STOCKABLE = !value;
             }
         }
+        
+    
+    }
+    public partial class STK_STOCK_RFID
+    {
+        public string EPC { get; set; }
+        public int? ID_STOCK { get; set; }
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string MACHINE_USER { get; set; }
+    }
+
+
+    public partial class View_STK_STOCK_RFID : STK_STOCK_RFID
+    {
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public string DESIGN_MAGASIN { get; set; }
+        public string DESIGN_EMPLACEMENT { get; set; }
+        public int QTE_SCANEE { get; set; }
+
+    }
+
+    public partial class View_STK_INVENTAIRE
+    {
+        public string NUM_INVENT { get; set; } // varchar(32)
+        public string DESIGN_INVENT { get; set; } // 
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public string TYPE_PRODUIT { get; set; } // varchar(1)
+        public short ETAT_INVENT { get; set; } // smallint(5)
+        public DateTime? DATE_INVENT { get; set; } // 
+        public DateTime? DATE_CLOTURE { get; set; } // 
+        public decimal TOTAL_HT { get; set; } // 
+        public decimal TOTAL_PPA { get; set; } // 
+        public decimal TOTAL_SHP { get; set; } // 
+        public decimal TOTAL_ECART_HT { get; set; } // 
+        public decimal TOTAL_ECART_SHP { get; set; } // 
+        public decimal TOTAL_ECART_PPA { get; set; } // 
+        public bool IS_OUVERT { get; set; } // bit
+        public bool QTE_INV_STOCK { get; set; } // bit
+        public bool QTE_NULL_NEG { get; set; } // bit
+        public bool MAZ_NON_MODIFIE { get; set; } // bit
+        public string EXERCICE { get; set; } // char(4)
+        public string DESIGN_MAGASIN { get; set; } // 
+        public string MACHINE_USER { get; set; } // varchar(300)
+        public decimal TOTAL_ECART_HT_MAZ { get; set; } // 
+        public decimal TOTAL_ECART_SHP_MAZ { get; set; } // 
+        public decimal TOTAL_ECART_PPA_MAZ { get; set; } // 
+        public decimal ECART_GLOBAL_PPA { get; set; }
+        public decimal ECART_GLOBAL_SHP { get; set; }
+        public decimal ECART_GLOBAL_HT { get; set; }
+        public string TYPE_PRODUIT_2 { get; set; } // varchar(MAX)
     }
 }

@@ -77,6 +77,15 @@ namespace XpertMobileApp.Helpers
         public static string PRODUITS_TYPES_URL = "GetProduitsTypes";
 
         public static string PRODUITS_LOTS_URL = "GetLots";
+
+        // RFID
+        public static string RFID_URL = "RFID";
+        public static string RFID_AddRFIDs_URL = "AddRfids";
+        public static string RFID_GET_STOCK_FROM_IDSTOCK = "getStock";
+        public static string RFID_GET_STOCK_FROM_RFID = "getStockFromRFID";
+        
+        public static string RFID_GET_CURENT_INV = "getcurentinv";
+
     }
 
 }

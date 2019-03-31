@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using XpertMobileApp.Api.Services;
@@ -357,6 +358,37 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_FAMILLES_URL);
             return await RetrievAauthorizedData<BSE_TABLE>(url);
+        }
+        #endregion
+
+        #region  RFID
+        internal static async Task<bool> AddRfids(List<STK_STOCK_RFID> rfids)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_AddRFIDs_URL);
+
+            return await WSApi2.PostAauthorizedValue<bool, List<STK_STOCK_RFID>>(url, rfids, App.User.Token.access_token);
+        }
+        internal static async Task<List<View_STK_STOCK>> getStckFroIdStock(int IDStock)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_IDSTOCK);
+            url += WSApi2.AddParam(url, "IdStock", Convert.ToString(IDStock));
+            return await RetrievAauthorizedData<View_STK_STOCK>(url);
+        }
+        internal static async Task<List<View_STK_STOCK_RFID>> getStckFroRFID(string RFID)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_RFID);
+            url += WSApi2.AddParam(url, "RFID", RFID);
+            return await RetrievAauthorizedData<View_STK_STOCK_RFID>(url);
+        }
+        internal static async Task<View_STK_INVENTAIRE> getCurentInventaire()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_CURENT_INV);
+            
+            return await RetrievValAauthorizedData<View_STK_INVENTAIRE>(url);
+        }
+        internal static Task<bool> UpdateCurentInventaire(ObservableCollection<View_STK_STOCK_RFID> lots)
+        {
+            throw new NotImplementedException();
         }
         #endregion
     }
