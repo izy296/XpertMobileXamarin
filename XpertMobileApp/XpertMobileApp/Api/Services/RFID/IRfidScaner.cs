@@ -14,7 +14,7 @@ namespace XpertMobileApp.Services
 
         string InventorySingleTag();
         bool SatrtContenuesInventary(byte anti, byte q);
-        void GetInstance();
-        void Init();
+        bool GetInstance();
+        bool Init();
     }
 }

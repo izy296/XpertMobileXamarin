@@ -31,51 +31,61 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    
-                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <Label Grid.Column="0" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
-                <StackLayout Grid.Column="0" Grid.Row="1">
+                <StackLayout Grid.Column="1" Grid.Row="0">
                     <Switch x:Name="CScan" IsToggled="{Binding ContinuesScan, Mode=TwoWay}"></Switch>
                 </StackLayout>
 
-                <Label Grid.Column="1" Grid.Row="0"  Text="Anti" Margin="5, 0, 0, 0" />
+                <Label Grid.Column="0" Grid.Row="1"  Text="Anti" Margin="5, 0, 0, 0" />
                 <StackLayout Grid.Column="1" Grid.Row="1">
                     <Switch x:Name="AntiP" IsToggled="{Binding Anti, Mode=TwoWay}"></Switch>
                 </StackLayout>
                 
-                <Label Grid.Column="0" Grid.Row="2"  Text="param q" Margin="5, 0, 0, 0" />
-                <Entry Grid.Column="1" Grid.Row="3" Text="{Binding q, Mode=TwoWay}"/>
+                <Label Grid.Column="0" Grid.Row="2"  Text="Valeur Q" Margin="5, 0, 0, 0" />
+                <Entry Grid.Column="1" Grid.Row="2" Text="{Binding q, Mode=TwoWay}"/>
                 
                 <!-- Button -->
-                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
+
+                    <Label Text="{Binding ElementsCount, StringFormat='Total. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
                     <Button x:Name="btn_Clear" Margin="5" HorizontalOptions="End" Text="Clear" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Clear_Clicked"/>
-
                     <Button x:Name="btn_Scan" Margin="5" HorizontalOptions="End" Text="Scan" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Scan_Clicked"/>
 
-                    <Button x:Name="btn_Stop" Margin="5" HorizontalOptions="End" Text="Stop" Style="{DynamicResource DefaultBtnStyle}" 
-                        Clicked="btn_StopScan_Clicked"/>
+
                 </StackLayout>
+              
+               
             </Grid>
+            <StackLayout Orientation="Vertical" >
+
+                <Label  Text="{Binding CurrentLot.DESIGNATION_PRODUIT, StringFormat='Désignation. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                <Label   Text="{Binding CurrentLot.DATE_PEREMPTION, StringFormat='Date Déramption. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                <StackLayout Orientation="Horizontal" >
+                    <Label  Text="{Binding CurrentLot.LOT, StringFormat='lot. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label  Text="{Binding CurrentLot.PPA, StringFormat='PPA. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label  Text="{Binding CurrentLot.SHP, StringFormat='SHP. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                </StackLayout>
+
+            </StackLayout>
         </StackLayout>
 
-        <!-- Items listing  
-        Selecteur de lot
-        -->
-        
+
+
         <StackLayout VerticalOptions="FillAndExpand">
+  
+      
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadItemsCommand}"
-                    IsPullToRefreshEnabled="true"
+                    IsPullToRefreshEnabled="false"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
@@ -88,6 +98,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+
+            <StackLayout>
+                <Button x:Name="SaveRfids" Text="{i18n:Translate sp_btn_SaveRfid}" Clicked="SaveRfids_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
+            </StackLayout>
         </StackLayout>
     </StackLayout>
 </ContentPage>

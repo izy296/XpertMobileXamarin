@@ -519,4 +519,7 @@
   <data name="pn_RfidScan" xml:space="preserve">
     <value>Rfid scan</value>
   </data>
+  <data name="sp_btn_SaveRfid" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
 </root>

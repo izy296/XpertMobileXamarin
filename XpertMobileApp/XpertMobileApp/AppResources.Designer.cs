@@ -819,6 +819,15 @@ namespace XpertMobileApp {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Enregistrer.
         /// </summary>
+        internal static string sp_btn_SaveRfid {
+            get {
+                return ResourceManager.GetString("sp_btn_SaveRfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enregistrer.
+        /// </summary>
         internal static string sp_btn_SaveSettings {
             get {
                 return ResourceManager.GetString("sp_btn_SaveSettings", resourceCulture);

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
@@ -14,12 +16,32 @@ namespace XpertMobileApp.ViewModels
    public class RfidScanViewModel : BaseViewModel
    {
         public IRfidScaner RFScaner = DependencyService.Get<IRfidScaner>();
+         
+        private View_STK_STOCK currentLot;
+        public View_STK_STOCK CurrentLot
+        {
+            get { return currentLot; }
+            set { SetProperty(ref currentLot, value); }
+        }
 
-        public InfiniteScrollCollection<string> Items { get; set; }
+        private int idStock = 15897;
+        public int IdStock
+        {
+            get { return idStock; }
+            set { SetProperty(ref idStock, value); }
+        }
+
+        public Command loadLotsInfo { get; set; }
+        public ObservableCollection<string> Items { get; set; }
 
         bool loopFlag;
 
-        public int elementsCount { get; set; }
+        private int elementsCount;
+        public int ElementsCount
+        {
+            get { return elementsCount; }
+            set { SetProperty(ref elementsCount, value); }
+        }
 
         public bool ContinuesScan { get; set; }
 
@@ -31,16 +53,21 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_RfidScan;
 
-            Items = new InfiniteScrollCollection<string>();
+            Items = new ObservableCollection<string>();
             Init();
+            
         }
 
         #region Rfid scaner tool
 
         public void StopInventory()
         {
-            RFScaner.StopInventory();
-            loopFlag = false;
+            if (loopFlag)
+            {
+                RFScaner.StopInventory();
+                loopFlag = false;
+                
+            }
         }
 
         public void Init()
@@ -51,16 +78,23 @@ namespace XpertMobileApp.ViewModels
 
         public void SatrtContenuesInventary(byte anti, byte q)
         {
-            RFScaner.SatrtContenuesInventary(anti, q);
-            loopFlag = true;
-            ContinuousRead();
+            if (RFScaner.SatrtContenuesInventary(anti, q)) {
+                loopFlag = true;
+                ContinuousRead();
+            };
+            
         }
 
         public void StartInventorySingl()
         {
             string element = RFScaner.InventorySingleTag();
-            if (!string.IsNullOrEmpty(element)) {
-                Items.Add(element);
+            string str = RFScaner.ConvertUiiToEPC(element);
+            if (!string.IsNullOrEmpty(str)) {
+                if (!Items.Contains(str))
+                {
+                    MessagingCenter.Send(this, MCDico.RFID_SCANED, str);
+                }
+                    
             }
         }
 
@@ -80,13 +114,12 @@ namespace XpertMobileApp.ViewModels
                         {
                             strTid = "TID:" + res[0] + "\r\n";
                         }
-                        strEPC = "EPC:" + RFScaner.ConvertUiiToEPC(res[1])+ "@";
-                        sb.Append(strTid);
-                        sb.Append(strEPC);
-                        sb.Append(res[2]);
-                    
-                        if(!Items.Contains(sb.ToString()))
-                            Items.Add(sb.ToString());
+                        strEPC = RFScaner.ConvertUiiToEPC(res[1]);
+                      
+                        if (!Items.Contains(strEPC)) {
+                           MessagingCenter.Send(this, MCDico.RFID_SCANED, strEPC);
+                        }
+                            
                     }
                 }
             }));

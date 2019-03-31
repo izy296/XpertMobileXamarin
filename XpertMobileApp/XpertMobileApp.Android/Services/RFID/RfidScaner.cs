@@ -9,15 +9,19 @@ namespace XpertMobileApp.Droid.Services
     public class RfidScaner : XpertMobileApp.Services.IRfidScaner
     {
         private RFIDWithUHF uhfAPI;
+
         public string[] ReadTagFromBuffer()
         {
             return uhfAPI.ReadTagFromBuffer();
         }
+
         public void StopInventory()
         {
+            
             uhfAPI.StopInventory();
                     
         }
+
         public string InventorySingleTag() {
             return uhfAPI.InventorySingleTag();
         }
@@ -26,22 +30,32 @@ namespace XpertMobileApp.Droid.Services
         {
             return uhfAPI.ConvertUiiToEPC(val);
         }
-        public void GetInstance()
+
+        public bool GetInstance()
         {
-            uhfAPI = RFIDWithUHF.Instance;
+            if (uhfAPI == null)
+            {
+                try
+                {
+                    uhfAPI = RFIDWithUHF.Instance;
+                    uhfAPI.StopInventory();
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return true;
         }
-        public void Init()
+
+        public bool Init()
         {
-            uhfAPI.Init();
+           return uhfAPI.Init();
         }
 
         public bool SatrtContenuesInventary(byte anti, byte q)
         {
             return uhfAPI.StartInventoryTag(anti, q);
-           
-           
         }
-
-
     }
 }
