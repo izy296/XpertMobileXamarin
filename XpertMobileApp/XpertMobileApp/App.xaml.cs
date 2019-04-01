@@ -55,7 +55,6 @@ namespace XpertMobileApp
 
             InitializeComponent();
 
-
             App.SetAppLanguage(Settings.Language);
 
             // MainPage = new UpdatePage();
@@ -73,7 +72,18 @@ namespace XpertMobileApp
                 }
                 else
                 {
-                    MainPage = new LoginPage();
+                    Token token = App.TokenDatabase.GetFirstItemAsync().Result;
+                    if(token != null && DateTime.Now <= token.expire_Date)
+                    {
+                        App.User = new User(token.userName, "");
+                        App.User.Id = token.userID;
+                        App.User.Token = token;
+                        MainPage = new MainPage();
+                    }
+                    else
+                    {
+                        MainPage = new LoginPage();
+                    }                    
                 }
             }
             else

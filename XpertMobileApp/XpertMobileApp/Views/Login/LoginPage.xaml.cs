@@ -5,15 +5,20 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class LoginPage : ContentPage
 	{
-		public LoginPage ()
+        LoginViewModel viewModel;
+
+        public LoginPage ()
 		{
 			InitializeComponent ();
+
+            BindingContext = viewModel = new LoginViewModel();
 
             NavigationPage.SetHasNavigationBar(this, false);
             Init();
@@ -51,18 +56,18 @@ namespace XpertMobileApp.Views
 
             User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-            if (this.CheckUser(user))
+            if (viewModel.CheckUser(user))
             {
                 // Authentification via le WebService
-                Token result = await Login(user);
+                Token token = await viewModel.Login(user);
 
                 // Cas d'un souci avec le web service 
-                if (result == null) return;
+                if (token == null) return;
 
-                if (result.access_token != null)
+                if (token.access_token != null)
                 {
-                    user.Id = result.userID;
-                    user.Token = result;
+                    user.Id = token.userID;
+                    user.Token = token;
                     App.User = user;
                     
                     // Alerte apres la connexion
@@ -73,7 +78,7 @@ namespace XpertMobileApp.Views
                     try
                     { 
                        // await App.UserDatabase.SaveItemAsync(user);
-                       // await App.TokenDatabase.SaveItemAsync(result);
+                        await App.TokenDatabase.SaveItemAsync(token);
                     }
                     catch(Exception ex)
                     {
@@ -98,35 +103,6 @@ namespace XpertMobileApp.Views
             {
                 await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
             }
-        }
-
-        private async Task<Token> Login(User user)
-        {
-            try
-            {
-                Token result = await WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
-                return result != null ? result : new Token();
-            }
-            catch (XpertException e)
-            {
-                if(e.Code == XpertException.ERROR_XPERT_INCORRECTPASSWORD)
-                { 
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.err_msg_IncorrectLoginInfos, AppResources.alrt_msg_Ok);
-                } else
-                {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, e.Message, AppResources.alrt_msg_Ok);
-                }
-                return null;
-            }
-        }
-
-        private bool CheckUser(User user)
-        {
-            if (user.UserName != "") //  && user.PassWord != ""
-            {
-                return true;
-            }
-            return false;
         }
 
         protected void Settings_Clicked(object sender, EventArgs e)

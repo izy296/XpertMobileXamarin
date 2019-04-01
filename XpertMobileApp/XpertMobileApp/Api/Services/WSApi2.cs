@@ -260,7 +260,8 @@ namespace XpertMobileApp.Helpers
                     {
                         string result = await tokenResponse.Content.ReadAsStringAsync();
                         token = JsonConvert.DeserializeObject<Token>(result);
-
+                        var accessExpiration = DateTime.Now.AddSeconds(token.expires_in);
+                        token.expire_Date = accessExpiration;
                         if (string.IsNullOrEmpty(token.error_Descriptjion))
                         {
                             return token;
