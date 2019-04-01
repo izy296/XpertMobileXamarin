@@ -14,9 +14,11 @@ using XpertMobileApp.ViewModels;
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RfidScanPage : ContentPage
+	public partial class RfidScanPage : ContentPage 
 	{
         RfidScanViewModel viewModel;
+        RFID_Manager rfid_manager;
+        public Command loadLotsInfo { get; set; }
         private Command SaveRFIDsCommand { get; set; }
 
         public RfidScanPage()
@@ -24,26 +26,29 @@ namespace XpertMobileApp.Views
 			InitializeComponent ();
 
             BindingContext = viewModel = new RfidScanViewModel();
-            
-            MessagingCenter.Subscribe<RfidScanViewModel, string>(this, MCDico.RFID_SCANED, async (obj, item) =>
+            rfid_manager = new RFID_Manager();
+            loadLotsInfo = new Command(async () => await ExecuteLoadLotCommand());
+            loadLotsInfo.Execute(null);
+            MessagingCenter.Subscribe<RFID_Manager, string>(this, MCDico.RFID_SCANED, async (obj, item) =>
             {
-                viewModel.Items.Add(item);
-                
-                viewModel.ElementsCount++;
+                if (!viewModel.Items.Contains(item)) {
+                    viewModel.Items.Add(item);
+
+                    viewModel.ElementsCount++;
+                }
+
             });
 
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-
+           
         }
-
-        protected override void OnAppearing()
+        protected override void OnDisappearing()
         {
-            base.OnAppearing();
-            viewModel.loadLotsInfo = new Command(async () => await ExecuteLoadLotCommand());
-            viewModel.loadLotsInfo.Execute(null);
+            base.OnDisappearing();
+            rfid_manager.StopInventory();
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -60,7 +65,7 @@ namespace XpertMobileApp.Views
         {
             if (btn_Scan.Text == "Stop")
             {
-                viewModel.StopInventory();
+                rfid_manager.StopInventory();
                 btn_Scan.Text = "Scan";
                 return;
             }
@@ -75,11 +80,11 @@ namespace XpertMobileApp.Views
                     anti = 1;
                 }
                 btn_Scan.Text = "Stop";
-                viewModel.SatrtContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
+                rfid_manager.SatrtContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
             }
             else
             {
-                viewModel.StartInventorySingl();
+                rfid_manager.StartInventorySingl();
             }
 
         }
@@ -122,8 +127,6 @@ namespace XpertMobileApp.Views
                 if (!(lots == null) && lots.Count > 0)
                 {
                     this.viewModel.CurrentLot = lots[0];
-
-                //    this.viewModel.DesignationProd = lot.DESIGNATION_PRODUIT;
                 }
             }
             catch (Exception ex)
@@ -132,5 +135,6 @@ namespace XpertMobileApp.Views
             }
           
         }
+
     }
 }
