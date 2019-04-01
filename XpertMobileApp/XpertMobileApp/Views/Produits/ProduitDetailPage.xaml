@@ -54,7 +54,6 @@
 
                 <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,5,0" HorizontalOptions="FillAndExpand">
                     <Grid>
-
                         <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Arrivage}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
                         <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.QTE_ARRIVAGE, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
@@ -67,6 +66,8 @@
                         <Label Grid.Column="3" Grid.Row="0" Text="{i18n:Translate txt_CovredDays}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
                         <Label Grid.Column="3" Grid.Row="1" Text="{ Binding Item.CovredDays, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
 
+                        <Label Grid.Column="4" Grid.Row="0" Text="{i18n:Translate txt_MANQUANTS}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="4" Grid.Row="1" Text="{ Binding Item.QTE_MANQUANTS, StringFormat='{0:N2}'}" HorizontalOptions="Center"/>
                     </Grid>
                 </StackLayout>
 
