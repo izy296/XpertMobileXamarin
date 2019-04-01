@@ -547,12 +547,21 @@
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
-          <source>Jrs Couverts</source>
-          <target state="translated">Covered</target>
+          <source>Couverts</source>
+          <target state="needs-review-translation">Covered</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="pn_RfidScan" translate="yes" xml:space="preserve">
           <source>Rfid scan</source>
           <target state="new">Rfid scan</target>
+        </trans-unit>
+        <trans-unit id="txt_MANQUANTS" translate="yes" xml:space="preserve">
+          <source>Manquants</source>
+          <target state="new">Manquants</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_SaveRfid" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="new">Enregistrer</target>
         </trans-unit>
       </group>
     </body>

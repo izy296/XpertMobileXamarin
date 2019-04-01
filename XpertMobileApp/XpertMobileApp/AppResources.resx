@@ -514,12 +514,15 @@
     <value>Rotation</value>
   </data>
   <data name="txt_CovredDays" xml:space="preserve">
-    <value>Jrs Couverts</value>
+    <value>Couverts</value>
   </data>
   <data name="pn_RfidScan" xml:space="preserve">
     <value>Rfid scan</value>
   </data>
   <data name="sp_btn_SaveRfid" xml:space="preserve">
     <value>Enregistrer</value>
+  </data>  
+  <data name="txt_MANQUANTS" xml:space="preserve">
+    <value>Manquants</value>
   </data>
-</root>
+ </root>

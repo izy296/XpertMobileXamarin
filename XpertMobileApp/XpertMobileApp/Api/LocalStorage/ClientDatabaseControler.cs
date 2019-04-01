@@ -44,7 +44,7 @@ namespace XpertMobileApp.Data
 
         public Task<int> SaveItemAsync(Client item)
         {
-            if (item.Id != "" && GetItemAsync(item.Id).Result != null)
+            if (GetItemAsync(item.Id).Result != null)
             {
                 return database.UpdateAsync(item);
             }

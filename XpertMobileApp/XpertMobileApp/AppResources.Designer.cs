@@ -961,7 +961,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Jrs Couverts.
+        ///   Recherche une chaîne localisée semblable à Couverts.
         /// </summary>
         internal static string txt_CovredDays {
             get {
@@ -1065,6 +1065,15 @@ namespace XpertMobileApp {
         internal static string txt_Lots {
             get {
                 return ResourceManager.GetString("txt_Lots", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Manquants.
+        /// </summary>
+        internal static string txt_MANQUANTS {
+            get {
+                return ResourceManager.GetString("txt_MANQUANTS", resourceCulture);
             }
         }
         
