@@ -54,8 +54,8 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_VTE_Vente_Td>> GetMargeParVendeur(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.MARGE_PAR_VENDEUR_URL);
-            url += "?startDate=" + startDate?.ToString("yyyyMMddHHmmss");
-            url += "&endDate=" + endDate?.ToString("yyyyMMddHHmmss");
+            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
+            url += "&endDate=" + endDate?.ToString("yyyyMMdd") + "235959";
 
             return await RetrievAauthorizedData<View_VTE_Vente_Td>(url);
         }
@@ -63,8 +63,8 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.STATISTIC_URL);
-            url += "?startDate=" + startDate?.ToString("yyyyMMddHHmmss");
-            url += "&endDate=" + endDate?.ToString("yyyyMMddHHmmss");
+            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
+            url += "&endDate=" + endDate?.ToString("yyyyMMdd")+"235959";
 
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }
