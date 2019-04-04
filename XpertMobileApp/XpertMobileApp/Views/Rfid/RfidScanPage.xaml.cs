@@ -26,17 +26,18 @@ namespace XpertMobileApp.Views
 			InitializeComponent ();
 
             BindingContext = viewModel = new RfidScanViewModel();
-            rfid_manager = new RFID_Manager();
             loadLotsInfo = new Command(async () => await ExecuteLoadLotCommand());
             loadLotsInfo.Execute(null);
             MessagingCenter.Subscribe<RFID_Manager, string>(this, MCDico.RFID_SCANED, async (obj, item) =>
             {
-                if (!viewModel.Items.Contains(item)) {
-                    viewModel.Items.Add(item);
-
-                    viewModel.ElementsCount++;
+                if (!string.IsNullOrEmpty(item)) {
+                    string[] strs = item.Split('@');
+                    if (!viewModel.Items.Contains(strs[0]))
+                    {
+                        viewModel.Items.Add(strs[0]);
+                        viewModel.ElementsCount++;
+                    }
                 }
-
             });
 
         }
@@ -44,6 +45,11 @@ namespace XpertMobileApp.Views
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
            
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (rfid_manager.LoopFlag) btn_Scan.Text = "Stop";
         }
         protected override void OnDisappearing()
         {
@@ -59,6 +65,7 @@ namespace XpertMobileApp.Views
         private void btn_Clear_Clicked(object sender, EventArgs e)
         {
             viewModel.Items.Clear();
+            viewModel.ElementsCount=0;
         }
 
         private void btn_Scan_Clicked(object sender, EventArgs e)
@@ -67,36 +74,45 @@ namespace XpertMobileApp.Views
             {
                 rfid_manager.StopInventory();
                 btn_Scan.Text = "Scan";
+                btn_Clear.IsEnabled = true;
+                AntiP.IsEnabled = true;
+                CScan.IsEnabled = true;
+                qvalue.IsEnabled = true;
                 return;
             }
-
-            if (!viewModel.ContinuesScan)
-            { 
-                byte q = 0;
-                byte anti = 0;
-                if (viewModel.Anti)
+            if (!rfid_manager.LoopFlag) {
+                btn_Clear.IsEnabled = false;
+                AntiP.IsEnabled = false;
+                CScan.IsEnabled = false;
+                qvalue.IsEnabled = false;
+                if (!viewModel.ContinuesScan)
                 {
-                    q = Convert.ToByte(viewModel.q);
-                    anti = 1;
+                    byte q = 0;
+                    byte anti = 0;
+                    if (viewModel.Anti)
+                    {
+                        q = Convert.ToByte(viewModel.q);
+                        anti = 1;
+                    }
+                    btn_Scan.Text = "Stop";
+                    rfid_manager.StartContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
                 }
-                btn_Scan.Text = "Stop";
-                rfid_manager.SatrtContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
+                else
+                {
+                    rfid_manager.StartInventorySingl();
+                }
             }
-            else
-            {
-                rfid_manager.StartInventorySingl();
-            }
+            
 
         }
 
         private void SaveRfids_Clicked(object sender, EventArgs e)
         {
-            int ID_stock = 15897;
             List<STK_STOCK_RFID> rfids = new List<STK_STOCK_RFID>();
             if (viewModel.Items.Count == 0) return;
             foreach (string eleme in viewModel.Items) {
                 STK_STOCK_RFID rfid = new STK_STOCK_RFID();
-                rfid.ID_STOCK = ID_stock;
+                rfid.ID_STOCK = viewModel.IdStock;
                 rfid.EPC = eleme;
                 rfids.Add(rfid);
             }
@@ -123,12 +139,14 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                rfid_manager = new RFID_Manager();
+                if (!rfid_manager.Init()) await DisplayAlert(AppResources.alrt_msg_Alert, "l'intialisation de lecteur Rfid est echoee", AppResources.alrt_msg_Ok);
                 var lots = await WebServiceClient.getStckFroIdStock(viewModel.IdStock);
                 if (!(lots == null) && lots.Count > 0)
                 {
                     this.viewModel.CurrentLot = lots[0];
                 }
-            }
+             }
             catch (Exception ex)
             {
                

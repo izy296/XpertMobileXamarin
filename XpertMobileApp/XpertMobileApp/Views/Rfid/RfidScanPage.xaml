@@ -46,7 +46,7 @@
                 </StackLayout>
                 
                 <Label Grid.Column="0" Grid.Row="2"  Text="Valeur Q" Margin="5, 0, 0, 0" />
-                <Entry Grid.Column="1" Grid.Row="2" Text="{Binding q, Mode=TwoWay}"/>
+                <Entry x:Name="qvalue" Grid.Column="1" Grid.Row="2" Text="{Binding q, Mode=TwoWay}"/>
                 
                 <!-- Button -->
                 <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
@@ -71,8 +71,10 @@
                     <Label  Text="{Binding CurrentLot.LOT, StringFormat='lot. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
                     <Label  Text="{Binding CurrentLot.PPA, StringFormat='PPA. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
                     <Label  Text="{Binding CurrentLot.SHP, StringFormat='SHP. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    
                 </StackLayout>
-
+                <Label  Text="Id_Stock" Margin="5, 0, 0, 0" />
+                <Entry  Text="{Binding IdStock, Mode=TwoWay}"/>
             </StackLayout>
         </StackLayout>
 

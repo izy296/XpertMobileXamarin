@@ -10,11 +10,20 @@ namespace XpertMobileApp.ViewModels
 {
     public class RFID_Manager :IDisposable
     {
-        public IRfidScaner RFScaner = DependencyService.Get<IRfidScaner>();
-        bool loopFlag;
+        private static IRfidScaner RFScaner = null;
+        private static bool loopFlag;
+        public bool LoopFlag {
+            get { return loopFlag; }
+            set { loopFlag = value; }
+        }
         public RFID_Manager() {
+            if(RFScaner == null)
+            {
+                loopFlag = false;
+                RFScaner= DependencyService.Get<IRfidScaner>();
+                RFScaner.GetInstance();
+            }
             loopFlag = false;
-            this.Init();
         }
    
 
@@ -24,17 +33,19 @@ namespace XpertMobileApp.ViewModels
             {
                 RFScaner.StopInventory();
                 loopFlag = false;
-
             }
         }
 
-        public void Init()
+        public bool Init()
         {
-            RFScaner.GetInstance();
-            RFScaner.Init();
+            if (!RFScaner.Init()) {
+                return false;
+            }
+            loopFlag = false;
+            return true;
         }
 
-        public void SatrtContenuesInventary(byte anti, byte q)
+        public void StartContenuesInventary(byte anti, byte q)
         {
             if (RFScaner.SatrtContenuesInventary(anti, q))
             {
@@ -50,7 +61,7 @@ namespace XpertMobileApp.ViewModels
             string str = RFScaner.ConvertUiiToEPC(element);
             if (!string.IsNullOrEmpty(str))
             {
-                MessagingCenter.Send(this, MCDico.RFID_SCANED, str);
+                MessagingCenter.Send(this, MCDico.RFID_SCANED, str+"@");
 
             }
         }
@@ -72,8 +83,11 @@ namespace XpertMobileApp.ViewModels
                             strTid = "TID:" + res[0] + "\r\n";
                         }
                         strEPC = RFScaner.ConvertUiiToEPC(res[1]);
-
-                        MessagingCenter.Send(this, MCDico.RFID_SCANED, strEPC);
+                        strEPC = "EPC:" + RFScaner.ConvertUiiToEPC(res[1]) + "@";
+                        sb.Append(strTid);
+                        sb.Append(strEPC);
+                        sb.Append(res[2]);
+                        MessagingCenter.Send(this, MCDico.RFID_SCANED, sb.ToString());
                     }
                 }
             }));
@@ -82,7 +96,11 @@ namespace XpertMobileApp.ViewModels
 
         public void Dispose()
         {
-            RFScaner.StopInventory();
+            if (RFScaner != null)
+            {
+                RFScaner.StopInventory();
+            }
+            loopFlag = false;
         }
     }
 }
