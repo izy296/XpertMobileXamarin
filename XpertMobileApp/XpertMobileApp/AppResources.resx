@@ -531,4 +531,7 @@
   <data name="txt_QTE_VENTE" xml:space="preserve">
     <value>Vendu</value>
   </data>
+  <data name="pn_rfid_inventaire" xml:space="preserve">
+    <value>Inventaire RFID</value>
+  </data>
 </root>
