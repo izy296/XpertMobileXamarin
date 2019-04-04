@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.LigneInventaireTemplate">
+    <ContentView.Content>
+
+        <StackLayout>
+            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+
+                    
+                    <StackLayout Orientation="Vertical" Spacing="5" Padding="0">
+                    <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
+                        <Label Text="{Binding ID_STOCK ,StringFormat='Id stock . {0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding QTE_INVENTAIRE ,StringFormat='Qte. {0}' ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
+                    </StackLayout>
+                    </StackLayout>
+                    
+       
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

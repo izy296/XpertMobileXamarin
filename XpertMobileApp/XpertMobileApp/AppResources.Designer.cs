@@ -772,6 +772,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Inventaire RFID.
+        /// </summary>
+        internal static string pn_rfid_inventaire {
+            get {
+                return ResourceManager.GetString("pn_rfid_inventaire", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Rfid scan.
         /// </summary>
         internal static string pn_RfidScan {

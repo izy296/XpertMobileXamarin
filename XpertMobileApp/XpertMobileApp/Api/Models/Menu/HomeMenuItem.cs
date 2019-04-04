@@ -13,6 +13,7 @@ namespace XpertMobileApp.Models
         Produits,
         Items,
         rfid,
+        invrfid,
         EncAnalyses,
         About
     }

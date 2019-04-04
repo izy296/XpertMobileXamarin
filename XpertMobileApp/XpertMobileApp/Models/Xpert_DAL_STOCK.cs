@@ -165,7 +165,14 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
         public string DESIGN_MAGASIN { get; set; }
         public string DESIGN_EMPLACEMENT { get; set; }
-        public int QTE_SCANEE { get; set; }
+        public int QTE_INVENTAIRE { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public string CODE_MAGASIN { get; set; }
+        public string LOT { get; set; }
+        public string NUM_ENTREE { get; set; }
+        public decimal PRIX_HT { get; set; }
+        public decimal SHP { get; set; }
+        public decimal PPA { get; set; }
 
     }
 
