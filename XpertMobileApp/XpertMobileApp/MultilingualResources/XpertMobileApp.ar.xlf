@@ -63,8 +63,9 @@
           <target state="translated">تحاليل</target>
         </trans-unit>
         <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
-          <source>Encaissement</source>
-          <target state="translated">الايصالات</target>
+          <source>Trésorerie</source>
+          <target state="needs-review-translation">الخزينة</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="pn_home" translate="yes" xml:space="preserve">
           <source>Accueil</source>
@@ -538,30 +539,35 @@
         </trans-unit>
         <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
           <source>Réf</source>
-          <target state="needs-review-translation">Ref</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">المرجع</target>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
           <source>A Cmdé</source>
-          <target state="needs-review-translation">شراء</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">شراء</target>
         </trans-unit>
         <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
           <source>Couverts</source>
-          <target state="needs-review-translation">التغطية</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">التغطية</target>
         </trans-unit>
         <trans-unit id="pn_RfidScan" translate="yes" xml:space="preserve">
           <source>Rfid scan</source>
-          <target state="new">Rfid scan</target>
+          <target state="translated">المسح الآرفيلد</target>
         </trans-unit>
         <trans-unit id="txt_MANQUANTS" translate="yes" xml:space="preserve">
           <source>Manquants</source>
-          <target state="new">Manquants</target>
+          <target state="translated">الناقصة</target>
         </trans-unit>
         <trans-unit id="sp_btn_SaveRfid" translate="yes" xml:space="preserve">
           <source>Enregistrer</source>
-          <target state="new">Enregistrer</target>
+          <target state="translated">حفظ</target>
+        </trans-unit>
+        <trans-unit id="txt_QTE_VENTE" translate="yes" xml:space="preserve">
+          <source>Vendu</source>
+          <target state="translated">المباعة</target>
+        </trans-unit>
+        <trans-unit id="txt_InfosProdNbrDaysAnalysed" translate="yes" xml:space="preserve">
+          <source>Infos collectées sur les 30 derniers jours</source>
+          <target state="translated">المعلومات تم جمعها في آخر 30 يومًا</target>
         </trans-unit>
       </group>
     </body>

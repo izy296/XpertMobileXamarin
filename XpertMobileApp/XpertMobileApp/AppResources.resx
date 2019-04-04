@@ -142,7 +142,7 @@
     <value>Analyses</value>
   </data>
   <data name="pn_encaissement" xml:space="preserve">
-    <value>Encaissement</value>
+    <value>Trésorerie</value>
   </data>
   <data name="pn_home" xml:space="preserve">
     <value>Accueil</value>
@@ -521,8 +521,14 @@
   </data>
   <data name="sp_btn_SaveRfid" xml:space="preserve">
     <value>Enregistrer</value>
-  </data>  
+  </data>
   <data name="txt_MANQUANTS" xml:space="preserve">
     <value>Manquants</value>
   </data>
- </root>
+  <data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
+    <value>Infos collectées au cours des 30 derniers jours</value>
+  </data>
+  <data name="txt_QTE_VENTE" xml:space="preserve">
+    <value>Vendu</value>
+  </data>
+</root>

@@ -736,7 +736,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Encaissement.
+        ///   Recherche une chaîne localisée semblable à Trésorerie.
         /// </summary>
         internal static string pn_encaissement {
             get {
@@ -1051,6 +1051,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Infos collectées au cours des 30 derniers jours.
+        /// </summary>
+        internal static string txt_InfosProdNbrDaysAnalysed {
+            get {
+                return ResourceManager.GetString("txt_InfosProdNbrDaysAnalysed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chargement ....
         /// </summary>
         internal static string txt_Loading {
@@ -1128,6 +1137,15 @@ namespace XpertMobileApp {
         internal static string txt_Qte {
             get {
                 return ResourceManager.GetString("txt_Qte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vendu.
+        /// </summary>
+        internal static string txt_QTE_VENTE {
+            get {
+                return ResourceManager.GetString("txt_QTE_VENTE", resourceCulture);
             }
         }
         

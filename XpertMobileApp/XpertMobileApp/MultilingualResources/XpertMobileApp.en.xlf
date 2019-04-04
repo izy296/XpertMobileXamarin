@@ -63,8 +63,9 @@
           <target state="translated">Analyzes</target>
         </trans-unit>
         <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
-          <source>Encaissement</source>
-          <target state="translated">Receipts</target>
+          <source>Trésorerie</source>
+          <target state="needs-review-translation">Treasury</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="pn_home" translate="yes" xml:space="preserve">
           <source>Accueil</source>
@@ -538,30 +539,35 @@
         </trans-unit>
         <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
           <source>Réf</source>
-          <target state="needs-review-translation">Ref</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Ref</target>
         </trans-unit>
         <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
           <source>A Cmdé</source>
-          <target state="needs-review-translation">To order</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">To order</target>
         </trans-unit>
         <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
           <source>Couverts</source>
-          <target state="needs-review-translation">Covered</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">Covered</target>
         </trans-unit>
         <trans-unit id="pn_RfidScan" translate="yes" xml:space="preserve">
           <source>Rfid scan</source>
-          <target state="new">Rfid scan</target>
+          <target state="translated">Rfid scan</target>
         </trans-unit>
         <trans-unit id="txt_MANQUANTS" translate="yes" xml:space="preserve">
           <source>Manquants</source>
-          <target state="new">Manquants</target>
+          <target state="translated">Missing</target>
         </trans-unit>
         <trans-unit id="sp_btn_SaveRfid" translate="yes" xml:space="preserve">
           <source>Enregistrer</source>
-          <target state="new">Enregistrer</target>
+          <target state="new">Save</target>
+        </trans-unit>
+        <trans-unit id="txt_QTE_VENTE" translate="yes" xml:space="preserve">
+          <source>Vendu</source>
+          <target state="translated">Sold</target>
+        </trans-unit>
+        <trans-unit id="txt_InfosProdNbrDaysAnalysed" translate="yes" xml:space="preserve">
+          <source>Infos collectées sur les 30 derniers jours</source>
+          <target state="translated">Information collected during the last 30 days</target>
         </trans-unit>
       </group>
     </body>

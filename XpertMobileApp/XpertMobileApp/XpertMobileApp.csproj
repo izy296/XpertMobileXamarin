@@ -47,7 +47,9 @@
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
   </ItemGroup>
   <ItemGroup>
-    <XliffResource Include="MultilingualResources\XpertMobileApp.ar.xlf" />
+    <XliffResource Include="MultilingualResources\XpertMobileApp.ar.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
     <XliffResource Include="MultilingualResources\XpertMobileApp.en.xlf">
       <SubType>Designer</SubType>
     </XliffResource>
