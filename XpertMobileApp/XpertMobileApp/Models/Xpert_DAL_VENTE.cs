@@ -2,13 +2,31 @@
 
 namespace XpertMobileApp.DAL
 {
-    public class View_VTE_Vente_Td
+    public class View_VTE_Vente_Td22
     {
         public decimal Sum_TOTAL_VENTE { get; set; }
         public decimal Sum_TOTAL_ACHAT { get; set; }
         public decimal Sum_MARGE { get; set; }
         public string CREATED_BY { get; set; }
         public string Exercice { get; set; }
+    }
+
+    public partial class STAT_VTE_BY_USER
+    {
+        public DateTime DATE_DEBUT { get; set; }
+        public DateTime DATE_FIN { get; set; }
+        public Int16 CODE_TYPE_PRODUIT { get; set; }
+        public string TYPE_VENTE { get; set; }
+        public string UTILISATEUR { get; set; }
+        public decimal MONTANT_ACHAT { get; set; }
+        public decimal MONTANT_PPA { get; set; }
+        public decimal MONTANT_SHP { get; set; }
+        public decimal MONTANT_VENTE { get; set; }
+        public decimal MONTANT_MARGE { get; set; }
+        public decimal MARGE_TAUX { get; set; }
+        public int NOMBRE_OPERATION { get; set; }
+        public int NOMBRE_PRODUIT { get; set; }
+        public string TOTAL_PAYE { get; set; }
     }
 
     public partial class VTE_VENTE : BASE_CLASS

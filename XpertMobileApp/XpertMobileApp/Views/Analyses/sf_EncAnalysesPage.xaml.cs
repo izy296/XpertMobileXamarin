@@ -22,7 +22,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new SF_Vte_AnalysesViewModel();
 
-            MessagingCenter.Subscribe<SF_Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
+            MessagingCenter.Subscribe<SF_Vte_AnalysesViewModel, ObservableCollection<STAT_VTE_BY_USER>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
             {
                 DisplayStats(items);
             });
@@ -67,18 +67,18 @@ namespace XpertMobileApp.Views
             LoadStats((Button)sender);
         }
 
-        private void DisplayStats(ObservableCollection<View_VTE_Vente_Td>  items)
+        private void DisplayStats(ObservableCollection<STAT_VTE_BY_USER>  items)
         {
             viewModel.Entries1.Clear();
             foreach (var item in viewModel.Items)
             {
-                viewModel.Entries1.Add(new ChartDataModel(item.CREATED_BY, (double)item.Sum_TOTAL_VENTE));
+                viewModel.Entries1.Add(new ChartDataModel(item.UTILISATEUR, (double)item.MONTANT_VENTE));
             }
 
             viewModel.Entries2.Clear();
             foreach (var item in viewModel.Items)
             {
-                viewModel.Entries2.Add(new ChartDataModel(item.CREATED_BY, (double)item.Sum_MARGE));
+                viewModel.Entries2.Add(new ChartDataModel(item.UTILISATEUR, (double)item.MONTANT_MARGE));
             }
         }
 

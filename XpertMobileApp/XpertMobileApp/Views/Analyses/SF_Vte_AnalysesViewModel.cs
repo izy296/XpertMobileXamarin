@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -22,7 +23,7 @@ namespace XpertMobileApp.ViewModels.Analyses
 
         public StatsPeriode StartPeriodType = StatsPeriode.None;
 
-        public ObservableCollection<View_VTE_Vente_Td> Items { get; set; }
+        public ObservableCollection<STAT_VTE_BY_USER> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public SF_Vte_AnalysesViewModel()
@@ -33,7 +34,7 @@ namespace XpertMobileApp.ViewModels.Analyses
 
             Entries2 = new ObservableCollection<ChartDataModel>();
 
-            Items = new ObservableCollection<View_VTE_Vente_Td>();
+            Items = new ObservableCollection<STAT_VTE_BY_USER>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
@@ -53,9 +54,17 @@ namespace XpertMobileApp.ViewModels.Analyses
 
                 Items.Clear();
                 var items = await WebServiceClient.GetMargeParVendeur(startDate, endDate);
-                foreach (var item in items)
+                List<STAT_VTE_BY_USER> result = items
+                .GroupBy(l => l.UTILISATEUR)
+                .Select(cl => new STAT_VTE_BY_USER
                 {
-                    if(item.Sum_TOTAL_VENTE != 0)
+                    UTILISATEUR = cl.First().UTILISATEUR,
+                    MONTANT_VENTE = cl.Sum(c => c.MONTANT_VENTE),
+                    MONTANT_MARGE = cl.Sum(c => c.MONTANT_MARGE),
+                }).ToList();
+                foreach (var item in result)
+                {
+                    if(item.MONTANT_VENTE != 0)
                     { 
                         Items.Add(item);
                     }

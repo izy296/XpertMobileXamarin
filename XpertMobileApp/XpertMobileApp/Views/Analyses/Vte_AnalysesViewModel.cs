@@ -19,14 +19,14 @@ namespace XpertMobileApp.ViewModels.Analyses
     {
         public StatsPeriode StartPeriodType = StatsPeriode.None;
 
-        public ObservableCollection<View_VTE_Vente_Td> Items { get; set; }
+        public ObservableCollection<STAT_VTE_BY_USER> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public Vte_AnalysesViewModel()
         {
             Title = AppResources.pn_Analyses;
 
-            Items = new ObservableCollection<View_VTE_Vente_Td>();
+            Items = new ObservableCollection<STAT_VTE_BY_USER>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 

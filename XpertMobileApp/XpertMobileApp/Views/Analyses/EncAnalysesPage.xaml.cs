@@ -31,7 +31,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new Vte_AnalysesViewModel();
 
-            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<View_VTE_Vente_Td>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
+            MessagingCenter.Subscribe<Vte_AnalysesViewModel, ObservableCollection<STAT_VTE_BY_USER>>(this, MCDico.STATS_DATA_LOADED, (obj, items) =>
             {
                 DisplayStats(items);
             });
@@ -49,29 +49,38 @@ namespace XpertMobileApp.Views
             LoadStats((Button)sender);
         }
 
-        private void DisplayStats(ObservableCollection<View_VTE_Vente_Td>  items)
+        private void DisplayStats(ObservableCollection<STAT_VTE_BY_USER>  items)
         {
+            List<STAT_VTE_BY_USER> result = viewModel.Items
+            .GroupBy(l => l.UTILISATEUR)
+            .Select(cl => new STAT_VTE_BY_USER
+            {
+                UTILISATEUR = cl.First().UTILISATEUR,
+                MONTANT_VENTE = cl.Sum(c => c.MONTANT_VENTE),
+                MONTANT_MARGE = cl.Sum(c => c.MONTANT_MARGE),
+            }).ToList();
+
             entries1.Clear();
-            foreach (var item in viewModel.Items)
+            foreach (var item in result)
             {
                 entries1.Add(
-                    new Entry((float)item.Sum_TOTAL_VENTE)
+                    new Entry((float)item.MONTANT_VENTE)
                     {
-                        Label = item.CREATED_BY,
-                        ValueLabel = item.Sum_TOTAL_VENTE.ToString("N2"),
+                        Label = item.UTILISATEUR,
+                        ValueLabel = item.MONTANT_VENTE.ToString("N2"),
                         Color = SKColor.Parse("#68B9C0")
                     });
             }
             Chart1.Chart = new BarChart() { Entries = entries1, LabelTextSize = 22F };
 
             entries2.Clear();
-            foreach (var item in viewModel.Items)
+            foreach (var item in result)
             {
                 entries2.Add(
-                    new Entry((float)item.Sum_MARGE)
+                    new Entry((float)item.MONTANT_MARGE)
                     {
-                        Label = item.CREATED_BY,
-                        ValueLabel = item.Sum_MARGE.ToString("N2"),
+                        Label = item.UTILISATEUR,
+                        ValueLabel = item.MONTANT_MARGE.ToString("N2"),
                         Color = SKColor.Parse("#68B9C0")
                     });
             }

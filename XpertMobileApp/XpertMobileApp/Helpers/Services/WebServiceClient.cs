@@ -51,13 +51,13 @@ namespace XpertMobileApp.Services
 
         #region statistiques
 
-        internal static async Task<List<View_VTE_Vente_Td>> GetMargeParVendeur(DateTime? startDate, DateTime? endDate)
+        internal static async Task<List<STAT_VTE_BY_USER>> GetMargeParVendeur(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.MARGE_PAR_VENDEUR_URL);
             url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
             url += "&endDate=" + endDate?.ToString("yyyyMMdd") + "235959";
 
-            return await RetrievAauthorizedData<View_VTE_Vente_Td>(url);
+            return await RetrievAauthorizedData<STAT_VTE_BY_USER>(url);
         }
 
         internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
@@ -388,7 +388,7 @@ namespace XpertMobileApp.Services
         }
         internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots,string modeValidate,string numInve,bool isOuvert)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_UPDATE_CURENT_INV);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL);
             url += WSApi2.AddParam(url, "modvalidate", modeValidate);
             url += WSApi2.AddParam(url, "numInv", numInve);
             url += WSApi2.AddParam(url, "isOuvert", isOuvert.ToString());

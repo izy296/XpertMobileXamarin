@@ -42,7 +42,7 @@ namespace XpertMobileApp.Helpers
 
         public static string DASHBOARD_URL = "Dashboard";
 
-        public static string MARGE_PAR_VENDEUR_URL = "MargeParVendeur";
+        public static string MARGE_PAR_VENDEUR_URL = "MarginByUser";
 
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
