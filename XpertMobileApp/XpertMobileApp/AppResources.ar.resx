@@ -403,12 +403,27 @@
     <value>ثمن</value>
   </data>
   <data name="txt_Ref" xml:space="preserve">
-    <value>Ref</value>
+    <value>المرجع</value>
   </data>
   <data name="txt_Acommande" xml:space="preserve">
     <value>شراء</value>
   </data>
   <data name="txt_CovredDays" xml:space="preserve">
     <value>التغطية</value>
+  </data>
+  <data name="pn_RfidScan" xml:space="preserve">
+    <value>المسح الآرفيلد</value>
+  </data>
+  <data name="txt_MANQUANTS" xml:space="preserve">
+    <value>الناقصة</value>
+  </data>
+  <data name="sp_btn_SaveRfid" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="txt_QTE_VENTE" xml:space="preserve">
+    <value>المباعة</value>
+  </data>
+  <data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
+    <value>المعلومات تم جمعها في آخر 30 يومًا</value>
   </data>
 </root>

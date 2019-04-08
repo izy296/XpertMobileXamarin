@@ -566,8 +566,13 @@
           <target state="translated">Sold</target>
         </trans-unit>
         <trans-unit id="txt_InfosProdNbrDaysAnalysed" translate="yes" xml:space="preserve">
-          <source>Infos collectées sur les 30 derniers jours</source>
-          <target state="translated">Information collected during the last 30 days</target>
+          <source>Infos collectées au cours des 30 derniers jours</source>
+          <target state="needs-review-translation">Information collected during the last 30 days</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="pn_rfid_inventaire" translate="yes" xml:space="preserve">
+          <source>Inventaire RFID</source>
+          <target state="new">Inventaire RFID</target>
         </trans-unit>
       </group>
     </body>

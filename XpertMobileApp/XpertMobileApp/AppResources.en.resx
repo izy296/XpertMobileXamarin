@@ -411,4 +411,16 @@
   <data name="txt_CovredDays" xml:space="preserve">
     <value>Covered</value>
   </data>
+  <data name="pn_RfidScan" xml:space="preserve">
+    <value>Rfid scan</value>
+  </data>
+  <data name="txt_MANQUANTS" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="txt_QTE_VENTE" xml:space="preserve">
+    <value>Sold</value>
+  </data>
+  <data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
+    <value>Information collected during the last 30 days</value>
+  </data>
 </root>
