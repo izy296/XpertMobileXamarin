@@ -76,7 +76,7 @@ namespace XpertMobileApp
                     if(token != null && DateTime.Now <= token.expire_Date)
                     {
                         App.User = new User(token.userName, "");
-                        App.User.Id = token.userID;
+                        App.User.UserName = token.userID;
                         App.User.Token = token;
                         MainPage = new MainPage();
                     }
