@@ -206,4 +206,10 @@ namespace XpertMobileApp.Models
         public decimal ECART_GLOBAL_HT { get; set; }
         public string TYPE_PRODUIT_2 { get; set; } // varchar(MAX)
     }
-}
+    public partial class SCANED_RFID
+    {
+        public string EPC { get; set; }
+        public int COUNT { get; set; }
+        public string RSSI { get; set; }
+    }
+ }
