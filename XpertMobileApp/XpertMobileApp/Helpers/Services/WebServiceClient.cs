@@ -426,7 +426,7 @@ namespace XpertMobileApp.Services
         }
         internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots,string modeValidate,string numInve,bool isOuvert)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_UPDATE_CURENT_INV);
             url += WSApi2.AddParam(url, "modvalidate", modeValidate);
             url += WSApi2.AddParam(url, "numInv", numInve);
             url += WSApi2.AddParam(url, "isOuvert", isOuvert.ToString());
