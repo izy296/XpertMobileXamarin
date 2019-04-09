@@ -6,7 +6,13 @@
 
         <StackLayout>
             <Frame CornerRadius="3" Padding="2" Margin="2" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
-                <Label Text="{Binding .}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+               
+                    <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
+                        <Label Text="{Binding EPC}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{Binding COUNT ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
+                        <Label Text="{Binding RSSI ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
+                    </StackLayout>
+
             </Frame>
         </StackLayout>
   </ContentView.Content>

@@ -12,6 +12,12 @@ namespace XpertMobileApp.ViewModels
     {
         private static IRfidScaner RFScaner = null;
         private static bool loopFlag;
+        private static bool isInit=false;
+        public bool IsInit
+        {
+            get { return isInit; }
+            set { isInit = value; }
+        }
         public bool LoopFlag {
             get { return loopFlag; }
             set { loopFlag = value; }
@@ -19,7 +25,6 @@ namespace XpertMobileApp.ViewModels
         public RFID_Manager() {
             if(RFScaner == null)
             {
-                loopFlag = false;
                 RFScaner= DependencyService.Get<IRfidScaner>();
                 RFScaner.GetInstance();
             }
@@ -38,11 +43,11 @@ namespace XpertMobileApp.ViewModels
 
         public bool Init()
         {
-            if (!RFScaner.Init()) {
-                return false;
+            if (!isInit) {
+                loopFlag = false;
+                isInit = RFScaner.Init();
             }
-            loopFlag = false;
-            return true;
+            return isInit;
         }
 
         public void StartContenuesInventary(byte anti, byte q)

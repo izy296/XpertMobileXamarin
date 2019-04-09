@@ -28,20 +28,53 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new RfidScanViewModel();
             loadLotsInfo = new Command(async () => await ExecuteLoadLotCommand());
             loadLotsInfo.Execute(null);
+            rfid_manager = new RFID_Manager();
+            if (!rfid_manager.Init()) {
+                DisplayAlert(AppResources.alrt_msg_Alert, "l'intialisation de lecteur Rfid est echoee", AppResources.alrt_msg_Ok);
+                btn_Clear.IsEnabled = false;
+                btn_Scan.IsEnabled = false;
+                SaveRfids.IsEnabled = false;
+            }
+            
             MessagingCenter.Subscribe<RFID_Manager, string>(this, MCDico.RFID_SCANED, async (obj, item) =>
             {
                 if (!string.IsNullOrEmpty(item)) {
                     string[] strs = item.Split('@');
-                    if (!viewModel.Items.Contains(strs[0]))
+                    int index = checkIsExistRfid(strs[0]);
+                    if (index==-1)
                     {
-                        viewModel.Items.Add(strs[0]);
+                        SCANED_RFID Tag = new SCANED_RFID();
+                        Tag.EPC = strs[0];
+                        Tag.RSSI = strs[1];
+                        Tag.COUNT = 1;
+                        viewModel.Items.Add(Tag);
                         viewModel.ElementsCount++;
+                    }
+                    else
+                    {
+                        viewModel.Items[index].COUNT++;
                     }
                 }
             });
 
         }
-
+        public int checkIsExistRfid(string strEPC)
+        {
+            int existFlag = -1;
+            if (string.IsNullOrEmpty(strEPC))
+            {
+                return existFlag;
+            }
+            for (int i = 0; i < viewModel.Items.Count; i++)
+            {
+                if (strEPC == viewModel.Items[i].EPC)
+                {
+                    existFlag = i;
+                    break;
+                }
+            }
+            return existFlag;
+        }
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
            
@@ -110,10 +143,10 @@ namespace XpertMobileApp.Views
         {
             List<STK_STOCK_RFID> rfids = new List<STK_STOCK_RFID>();
             if (viewModel.Items.Count == 0) return;
-            foreach (string eleme in viewModel.Items) {
+            foreach (SCANED_RFID eleme in viewModel.Items) {
                 STK_STOCK_RFID rfid = new STK_STOCK_RFID();
                 rfid.ID_STOCK = viewModel.IdStock;
-                rfid.EPC = eleme;
+                rfid.EPC = eleme.EPC;
                 rfids.Add(rfid);
             }
             SaveRFIDsCommand = new Command(async () => await AddRfids(rfids));
@@ -139,8 +172,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                rfid_manager = new RFID_Manager();
-                if (!rfid_manager.Init()) await DisplayAlert(AppResources.alrt_msg_Alert, "l'intialisation de lecteur Rfid est echoee", AppResources.alrt_msg_Ok);
+            
                 var lots = await WebServiceClient.getStckFroIdStock(viewModel.IdStock);
                 if (!(lots == null) && lots.Count > 0)
                 {

@@ -30,7 +30,7 @@ namespace XpertMobileApp.ViewModels
         }
 
 
-        public ObservableCollection<string> Items { get; set; }
+        public ObservableCollection<SCANED_RFID> Items { get; set; }
 
 
         private int elementsCount;
@@ -50,7 +50,7 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_RfidScan;
 
-            Items = new ObservableCollection<string>();
+            Items = new ObservableCollection<SCANED_RFID>();
             
         }
 
