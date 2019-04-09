@@ -9,12 +9,21 @@
 
                     
                     <StackLayout Orientation="Vertical" Spacing="5" Padding="0">
-                    <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}"/>
                     <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
-                        <Label Text="{Binding ID_STOCK ,StringFormat='Id stock . {0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                        <Label Text="{Binding QTE_INVENTAIRE ,StringFormat='Qte. {0}' ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
+                    <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding QTE_INVENTAIRE ,StringFormat='Qte: {0}' ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
                     </StackLayout>
+                        <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
+                        <Label Text="{Binding LOT ,StringFormat='Lot :{0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding PPA ,StringFormat='PPA :{0:N2}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding SHP ,StringFormat='SHP :{0:N2}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        
                     </StackLayout>
+                    <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGN_MAGASIN ,StringFormat='Magasin : {0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding NUM_ENTREE ,StringFormat='Num Entree : {0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    </StackLayout>
+                </StackLayout>
                     
        
             </Frame>
