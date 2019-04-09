@@ -1213,6 +1213,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Recherche.
+        /// </summary>
+        internal static string txt_Search {
+            get {
+                return ResourceManager.GetString("txt_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Vendeur.
         /// </summary>
         internal static string txt_Seler {

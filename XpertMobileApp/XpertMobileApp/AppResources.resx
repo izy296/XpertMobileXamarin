@@ -537,4 +537,7 @@
   <data name="pn_Manquants" xml:space="preserve">
     <value>Manquants</value>
   </data>
+  <data name="txt_Search" xml:space="preserve">
+    <value>Recherche</value>
+  </data>
 </root>

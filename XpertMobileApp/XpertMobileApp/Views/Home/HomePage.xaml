@@ -75,8 +75,8 @@
             </Frame>
             
             <!-- Liste des comptes -->
-                <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                    <Grid  BackgroundColor="White" >
+                <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White"  VerticalOptions="Fill">
+                    <Grid  BackgroundColor="White"  VerticalOptions="Start">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -84,8 +84,7 @@
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
@@ -93,16 +92,16 @@
                             <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                         </StackLayout>
 
-                        <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="FillAndExpand">
+                        <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
                             <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding Items}"
-                    VerticalOptions="FillAndExpand"
-                    HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadItemsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement"
-                    ItemSelected="OnItemSelected">
+                                ItemsSource="{Binding Items}"
+                                VerticalOptions="Start"
+                                HasUnevenRows="true"
+                                RefreshCommand="{Binding LoadItemsCommand}"
+                                IsPullToRefreshEnabled="true"
+                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                CachingStrategy="RecycleElement"
+                                ItemSelected="OnItemSelected" >
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
