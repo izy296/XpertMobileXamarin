@@ -35,6 +35,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <Label Grid.Column="0" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
@@ -53,22 +54,20 @@
                 <!-- Button -->
                 <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
-                    <Label Text="{Binding ElementsCount, StringFormat='Total Tag. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                    <Label Text="{Binding TotalElementsCount, StringFormat='Nombre Tag. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label Text="{Binding ElementsCount, StringFormat='Total Tag : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label Text="{Binding TotalElementsCount, StringFormat='Total Tag scané : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
                     <Button x:Name="btn_Clear" Margin="5" HorizontalOptions="End" Text="Clear" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Clear_Clicked"/>
                     <Button x:Name="btn_Scan" Margin="5" HorizontalOptions="End" Text="Scan" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Scan_Clicked"/>
                 </StackLayout>
-
-                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" >
-                <Label Text="{Binding StockCount, StringFormat='Total lot. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                <Label Text="{Binding NotFondCount, StringFormat='Rfid Sans Lot. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                </StackLayout>
-                <Label Grid.Column="0" Grid.Row="5"  Text="{Binding CurrentInv.DATE_INVENT, StringFormat='Date . {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-
-                <Label Grid.Column="1" Grid.Row="5" Text="{Binding CurrentInv.DESIGN_MAGASIN, StringFormat='Magazin. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-         
+                <Label Grid.Column="0" Grid.Row="4" Text="{Binding StockCount, StringFormat='Total lot : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                <Label  Grid.Column="1" Grid.Row="4" Text="{Binding CurrentInv.DESIGN_MAGASIN, StringFormat='Magazin : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                <Label  Grid.Column="0" Grid.Row="5" Text="Num Inventaire :" Margin="5, 0, 0, 0" />
+                <Label  Grid.Column="1" Grid.Row="5" Text= "Date :" Margin="5, 0, 0, 0" />
+                <Label Grid.Column="0" Grid.Row="6" Text="{Binding CurrentInv.NUM_INVENT, Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                <Label Grid.Column="1" Grid.Row="6" Text= "{Binding  CurrentInv.DATE_INVENT, StringFormat=' {0:dd/MM/yyyy}'}" Margin="5, 0, 0, 0" />
+                
             </Grid>
             
               
@@ -99,8 +98,9 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackLayout>
-                <Button x:Name="SaveRfids" Text="{i18n:Translate sp_btn_SaveRfid}" Clicked="SaveRfids_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                <Button x:Name="TraiteRfids" Text="Trait Rfids" Clicked="TraiteRfids_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
+                <Button x:Name="UpdateInventaire" Text="{i18n:Translate sp_btn_SaveRfid}" Clicked="UpdateInventaire_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
             </StackLayout>
         </StackLayout>
     </StackLayout>

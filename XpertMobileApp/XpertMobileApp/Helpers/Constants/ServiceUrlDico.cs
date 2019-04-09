@@ -92,9 +92,10 @@ namespace XpertMobileApp.Helpers
         public static string RFID_URL = "RFID";
         public static string RFID_AddRFIDs_URL = "AddRfids";
         public static string RFID_GET_STOCK_FROM_IDSTOCK = "getStock";
-        public static string RFID_GET_STOCK_FROM_RFID = "getStockFromRFID";
+        public static string RFID_GET_STOCK_FROM_RFIDs = "getStockFromRFIDs";
         
         public static string RFID_GET_CURENT_INV = "getcurentinv";
+        public static string RFID_UPDATE_CURENT_INV = "updatecurentinv";
 
     }
 

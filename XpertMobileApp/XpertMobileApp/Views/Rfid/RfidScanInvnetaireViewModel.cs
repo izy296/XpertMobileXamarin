@@ -17,7 +17,7 @@ namespace XpertMobileApp.ViewModels
    public class RfidScanInvnetaireViewModel : BaseViewModel
    {
         public Command loadInventaireInfo { get; set; }
-
+        public Command SaveInventaireCommand { get; set; }
         private View_STK_INVENTAIRE currentInv;
         public View_STK_INVENTAIRE CurrentInv
         {
@@ -30,8 +30,8 @@ namespace XpertMobileApp.ViewModels
             get { return totalElementsCount; }
             set { SetProperty(ref totalElementsCount, value); }
         }
-        
-        public ObservableCollection<string> Items { get; set; }
+      
+        public List<string> Items { get; set; }
         public ObservableCollection<View_STK_STOCK_RFID> InventoredStock { get; set; }
 
         private int elementsCount;
@@ -46,24 +46,20 @@ namespace XpertMobileApp.ViewModels
             get { return stockCount; }
             set { SetProperty(ref stockCount, value); }
         }
-        private int notFondCount;
-        public int NotFondCount
-        {
-            get { return notFondCount; }
-            set { SetProperty(ref notFondCount, value); }
-        }
+   
         public bool ContinuesScan { get; set; }
 
         public bool Anti { get; set; } = false;
 
         public int q { get; set; } = 3;
-        public Command SaveInventaireCommand { get; set; }
+
         public RfidScanInvnetaireViewModel()
         {
             Title = AppResources.pn_RfidScan;
             SaveInventaireCommand = new Command(async () => await UpdateCurentInventaire());
+            
             loadInventaireInfo = new Command(async () => await ExecuteLoadInvntaireInfoCommand());
-            Items = new ObservableCollection<string>();
+            Items = new List<string>();
             InventoredStock = new ObservableCollection<View_STK_STOCK_RFID>();
            
         }
@@ -79,37 +75,47 @@ namespace XpertMobileApp.ViewModels
                     {
                         this.CurrentInv = CurentInventaire;
                     }
+                    else {
+                        await UserDialogs.Instance.AlertAsync("pas d'inventaire ouvert !", AppResources.alrt_msg_Alert,
+                      AppResources.alrt_msg_Ok);
+                    }
                 }
             }
             catch (Exception ex)
             {
-
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                                   AppResources.alrt_msg_Ok);
             }
 
         }
-        public async Task<bool> UpdateCurentInventaire()
+        public async Task UpdateCurentInventaire()
         {
             try
             {
                 if (App.IsConected)
                 {
-                    List<View_STK_STOCK_RFID> Lots = new List<View_STK_STOCK_RFID>();
-                    foreach (var element in InventoredStock)
-                    {
-                        element.NUM_ENTREE = CurrentInv.NUM_INVENT;
-                        Lots.Add(element as View_STK_STOCK_RFID);
+                    if (CurrentInv == null) {
+                         await UserDialogs.Instance.AlertAsync("pas d'inventaire ouvert !", AppResources.alrt_msg_Alert,
+                                    AppResources.alrt_msg_Ok);
+                        
+                    } else {
+                        List<View_STK_STOCK_RFID> Lots = new List<View_STK_STOCK_RFID>();
+                        foreach (var element in InventoredStock)
+                        {
+                            element.NUM_ENTREE = CurrentInv.NUM_INVENT;
+                            Lots.Add(element as View_STK_STOCK_RFID);
+                        }
+                        bool result = await WebServiceClient.UpdateCurentInventaire(Lots, "ECR", CurrentInv.NUM_INVENT, CurrentInv.IS_OUVERT);
                     }
-                    bool result = await WebServiceClient.UpdateCurentInventaire(Lots, "ECR", CurrentInv.NUM_INVENT, CurrentInv.IS_OUVERT);
-                    return result;
+
 
                 }
-                else return false;
-                
             }
             catch (XpertException e)
             {
-
-               return false;
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+                                    AppResources.alrt_msg_Ok);
+                
             }
         }
 

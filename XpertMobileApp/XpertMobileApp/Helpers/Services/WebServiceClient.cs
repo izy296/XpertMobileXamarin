@@ -413,11 +413,10 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "IdStock", Convert.ToString(IDStock));
             return await RetrievAauthorizedData<View_STK_STOCK>(url);
         }
-        internal static async Task<List<View_STK_STOCK_RFID>> getStockFromRFID(string RFID)
+        internal static async Task<List<View_STK_STOCK_RFID>> getStockFromRFIDs(List<string> RFIDs)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_RFID);
-            url += WSApi2.AddParam(url, "RFID", RFID);
-            return await RetrievAauthorizedData<View_STK_STOCK_RFID>(url);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_RFIDs);
+            return await WSApi2.PostAauthorizedValue< List<View_STK_STOCK_RFID >, List<string>>(url, RFIDs, App.User.Token.access_token);
         }
         internal static async Task<View_STK_INVENTAIRE> getCurentInventaire()
         {

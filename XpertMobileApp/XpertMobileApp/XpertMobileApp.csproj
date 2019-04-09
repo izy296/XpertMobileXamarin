@@ -25,11 +25,15 @@
     <EmbeddedResource Remove="mainstyles.css" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="beep.wav" />
     <None Remove="MultilingualResources\XpertMobileApp.ar.xlf" />
     <None Remove="MultilingualResources\XpertMobileApp.en.xlf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\mainstyles.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="beep.wav" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
@@ -42,6 +46,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.3.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
@@ -97,11 +102,17 @@
     <Compile Update="Views\Produits\Stk_RowElementTemplate.xaml.cs">
       <DependentUpon>Stk_RowElementTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Rfid\RfidScanInvnetairePage.xaml.cs">
+      <DependentUpon>RfidScanInvnetairePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Rfid\RfidScanPage.xaml.cs">
       <DependentUpon>RfidScanPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Rfid\RfidTemplate.xaml.cs">
       <DependentUpon>RfidTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\LigneInventaireTemplate.xaml.cs">
+      <DependentUpon>LigneInventaireTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
