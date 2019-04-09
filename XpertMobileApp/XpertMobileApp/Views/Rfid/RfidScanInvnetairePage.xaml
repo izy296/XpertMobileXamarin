@@ -98,7 +98,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+            <StackLayout >
                 <Button x:Name="TraiteRfids" Text="Trait Rfids" Clicked="TraiteRfids_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
                 <Button x:Name="UpdateInventaire" Text="{i18n:Translate sp_btn_SaveRfid}" Clicked="UpdateInventaire_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
             </StackLayout>
