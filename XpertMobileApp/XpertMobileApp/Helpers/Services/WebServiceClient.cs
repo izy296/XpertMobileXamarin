@@ -123,6 +123,45 @@ namespace XpertMobileApp.Services
 
         #endregion
 
+        #region Manquants
+
+        internal static async Task<List<BSE_DOCUMENT_STATUS>> getManquantsTypes()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.MANQUANTS_TYPES_URL);
+
+            return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
+        }
+
+        internal static async Task<List<View_ACH_MANQUANTS>> GetManquants(int page = 1, int nbrRows = 10, string type = "", string searchText = "")
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.MANQUANTS_PER_PAGE_URL);
+
+            url += WSApi2.AddParam(url, "page", Convert.ToString(page));
+            url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
+
+            if (!string.IsNullOrEmpty(type))
+                url += WSApi2.AddParam(url, "type", type);
+
+            if (!string.IsNullOrEmpty(searchText))
+                url += WSApi2.AddParam(url, "searchText", searchText);
+
+            return await RetrievAauthorizedData<View_ACH_MANQUANTS>(url);
+        }
+
+        public static async Task<int> GetManquantsCount(string type = "", string searchText = "")
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.MANQUANTS_COUNT);
+
+            if (!string.IsNullOrEmpty(type))
+                url += WSApi2.AddParam(url, "type", type);
+
+            if (!string.IsNullOrEmpty(searchText))
+                url += WSApi2.AddParam(url, "searchText", searchText);
+
+            return await RetrievValAauthorizedData<int>(url);
+        }
+        #endregion
+
         #region Encaissements
 
         public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, DateTime? startDate, DateTime? endDate, string codeTiers, string codeMotif, string codeCompte)

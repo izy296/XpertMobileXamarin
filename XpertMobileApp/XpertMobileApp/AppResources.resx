@@ -534,4 +534,7 @@
   <data name="pn_rfid_inventaire" xml:space="preserve">
     <value>Inventaire RFID</value>
   </data>
+  <data name="pn_Manquants" xml:space="preserve">
+    <value>Manquants</value>
+  </data>
 </root>

@@ -574,6 +574,10 @@
           <source>Inventaire RFID</source>
           <target state="new">Inventaire RFID</target>
         </trans-unit>
+        <trans-unit id="pn_Manquants" translate="yes" xml:space="preserve">
+          <source>Manquants</source>
+          <target state="new">Manquants</target>
+        </trans-unit>
       </group>
     </body>
   </file>

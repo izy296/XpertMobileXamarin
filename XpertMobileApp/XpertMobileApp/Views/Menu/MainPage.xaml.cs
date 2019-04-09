@@ -40,6 +40,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Produits:
                         MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
                         break;
+                    case (int)MenuItemType.Manquants:
+                        MenuPages.Add(id, new NavigationPage(new ManquantsPage()));
+                        break;
                     case (int)MenuItemType.rfid:
                         MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
                         break;

@@ -11,6 +11,7 @@ namespace XpertMobileApp.Models
         Ventes,
         Tiers,
         Produits,
+        Manquants,
         Items,
         rfid,
         invrfid,

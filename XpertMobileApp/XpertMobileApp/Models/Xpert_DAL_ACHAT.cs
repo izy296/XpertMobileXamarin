@@ -171,6 +171,45 @@ namespace XpertMobileApp.DAL
         {
             return "N° " + CODE_PRODUIT;
         }
-
     }
+
+    public partial class BSE_DOCUMENT_STATUS
+    {
+        public string CODE_STATUS { get; set; } // int(10)
+        public string NAME { get; set; } // varchar(50)
+        public string DESCRIPTION { get; set; } // varchar(500)
+        public string TYPE { get; set; } // varchar(50)
+    }
+
+    public class View_ACH_MANQUANTS : BASE_CLASS
+    {
+        public int? CODE_MANQUANT { get; set; } // int(10)
+        public string CODE_TYPE { get; set; } // varchar(30)
+        public string CODE_PRODUIT { get; set; } // varchar(30)
+        public string PRODUIT_REFERENCE { get; set; } // varchar(201)
+        public decimal QUANTITE { get; set; } // numeric(19,2)
+        public DateTime? DATE_LIVRAISON_MAX { get; set; } // datetime(3)
+        public string NOTE { get; set; } // varchar(300)
+        public string EXERCICE { get; set; } // char(4)
+        public bool TREATED { get; set; } // bit
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string NOM_USER { get; set; } // varchar(201)
+        public string TYPE_NAME { get; set; } // varchar(50)
+        public string TYPE_DESCRIPTION { get; set; } // varchar(500)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(303)
+        public decimal ARRIVAGE { get; set; } // numeric(19,2)
+        public DateTime? DATE_FIRST_ARRIVAGE { get; set; } // datetime(3)
+        public decimal QTE_STOCK { get; set; } // numeric(19,2)
+        public decimal QTE_REFERENCE { get; set; } // numeric(19,2)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public string Etat { get; set; } // char(3)
+        public bool AUTOCREATED { get; set; } // bit
+        public string DESIGNATION_ETAT { get; set; } // char(3)
+        public decimal STOCK_MIN { get; set; }
+        public string DESIGNATION_TYPE_PRODUIT { get; set; }
+    }
+
 }
