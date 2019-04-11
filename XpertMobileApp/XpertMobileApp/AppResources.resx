@@ -540,4 +540,7 @@
   <data name="txt_Search" xml:space="preserve">
     <value>Recherche</value>
   </data>
+  <data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
+    <value>il y a plusieurs lots pour ce code à barres!</value>
+  </data>
 </root>

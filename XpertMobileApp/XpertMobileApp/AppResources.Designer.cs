@@ -169,6 +169,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à il y a plusieurs lots pour ce code à barres!.
+        /// </summary>
+        internal static string alrt_msg_multiLotForCodeBarre {
+            get {
+                return ResourceManager.GetString("alrt_msg_multiLotForCodeBarre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         internal static string alrt_msg_Ok {

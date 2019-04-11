@@ -22,11 +22,11 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref currentLot, value); }
         }
 
-        private int idStock = 15897;
-        public int IdStock
+        private string _CODE_BARRE_LOT;
+        public string CODE_BARRE_LOT
         {
-            get { return idStock; }
-            set { SetProperty(ref idStock, value); }
+            get { return _CODE_BARRE_LOT; }
+            set { SetProperty(ref _CODE_BARRE_LOT, value); }
         }
 
 

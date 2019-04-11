@@ -10,8 +10,9 @@ namespace XpertMobileApp.ViewModels
 {
     public class RFID_Manager :IDisposable
     {
+       
         private static IRfidScaner RFScaner = null;
-        private static bool loopFlag;
+        private static bool loopFlag=false;
         private static bool isInit=false;
         public bool IsInit
         {
@@ -50,12 +51,16 @@ namespace XpertMobileApp.ViewModels
             return isInit;
         }
 
-        public void StartContenuesInventary(byte anti, byte q)
+        public bool StartContenuesInventary(byte anti, byte q)
         {
             if (RFScaner.SatrtContenuesInventary(anti, q))
             {
                 loopFlag = true;
                 ContinuousRead();
+                return true;
+            }
+            else {
+                return false;
             };
 
         }
@@ -63,10 +68,10 @@ namespace XpertMobileApp.ViewModels
         public void StartInventorySingl()
         {
             string element = RFScaner.InventorySingleTag();
-            string str = RFScaner.ConvertUiiToEPC(element);
+            string str = "EPC:" + RFScaner.ConvertUiiToEPC(element) + "@";
             if (!string.IsNullOrEmpty(str))
             {
-                MessagingCenter.Send(this, MCDico.RFID_SCANED, str+"@");
+                MessagingCenter.Send(this, MCDico.RFID_SCANED, str);
 
             }
         }
@@ -87,7 +92,6 @@ namespace XpertMobileApp.ViewModels
                         {
                             strTid = "TID:" + res[0] + "\r\n";
                         }
-                        strEPC = RFScaner.ConvertUiiToEPC(res[1]);
                         strEPC = "EPC:" + RFScaner.ConvertUiiToEPC(res[1]) + "@";
                         sb.Append(strTid);
                         sb.Append(strEPC);
@@ -98,14 +102,17 @@ namespace XpertMobileApp.ViewModels
             }));
             th.Start();
         }
-
+        
         public void Dispose()
         {
             if (RFScaner != null)
             {
                 RFScaner.StopInventory();
+                RFScaner = null;
             }
             loopFlag = false;
         }
+
+
     }
 }

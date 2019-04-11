@@ -57,8 +57,6 @@
                         Clicked="btn_Clear_Clicked"/>
                     <Button x:Name="btn_Scan" Margin="5" HorizontalOptions="End" Text="Scan" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Scan_Clicked"/>
-
-
                 </StackLayout>
               
                
@@ -73,8 +71,10 @@
                     <Label  Text="{Binding CurrentLot.SHP, StringFormat='SHP. {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
                     
                 </StackLayout>
-                <Label  Text="Id_Stock" Margin="5, 0, 0, 0" />
-                <Entry  Text="{Binding IdStock, Mode=TwoWay}"/>
+                <StackLayout Orientation="Horizontal" >
+                <Label  Text="code barre lot" Margin="5, 0, 0, 0" />
+                    <Entry x:Name="codeBarrLot" Text="{Binding CODE_BARRE_LOT, Mode=TwoWay}" Unfocused="codeBarrLot_Unfocused"/>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
 

@@ -97,6 +97,8 @@ namespace XpertMobileApp.Helpers
         public static string RFID_GET_CURENT_INV = "getcurentinv";
         public static string RFID_UPDATE_CURENT_INV = "updatecurentinv";
 
+        public static string RFID_GET_STOCK_COED_BARRE = "getstockcodebarre";
+
     }
 
 }
