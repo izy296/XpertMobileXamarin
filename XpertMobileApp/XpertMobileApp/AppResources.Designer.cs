@@ -178,6 +178,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pas de lot coresponadant a ce code  à barre !.
+        /// </summary>
+        internal static string alrt_msg_NotFondLotFromCodeBarre {
+            get {
+                return ResourceManager.GetString("alrt_msg_NotFondLotFromCodeBarre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ok.
         /// </summary>
         internal static string alrt_msg_Ok {
@@ -228,6 +237,15 @@ namespace XpertMobileApp {
         internal static string btn_Close {
             get {
                 return ResourceManager.GetString("btn_Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Scane Code barre.
+        /// </summary>
+        internal static string btn_scanCodeBarre {
+            get {
+                return ResourceManager.GetString("btn_scanCodeBarre", resourceCulture);
             }
         }
         

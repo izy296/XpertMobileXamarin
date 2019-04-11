@@ -546,4 +546,10 @@
   <data name="txt_Typesproduct" xml:space="preserve">
     <value>Type de produit</value>
   </data>
+  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+    <value>Pas de lot coresponadant a ce code  à barre !</value>
+  </data>
+  <data name="btn_scanCodeBarre" xml:space="preserve">
+    <value>Scane Code barre</value>
+  </data>
 </root>
