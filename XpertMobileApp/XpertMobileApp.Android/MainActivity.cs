@@ -45,7 +45,42 @@ namespace XpertMobileApp.Droid
             LoadApplication(new App());
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+            // verifier les permission 
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
+            {
+                if (ApplicationContext.CheckSelfPermission(Android.Manifest.Permission.Camera) != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new String[] { Android.Manifest.Permission.Camera }, 1);
+                }
+                else
+                {
+                }
 
+                if (ApplicationContext.CheckSelfPermission(
+                        Manifest.Permission.AccessCoarseLocation) != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new String[] { Manifest.Permission.AccessCoarseLocation },
+                                    1);
+                }
+                if (ApplicationContext.CheckSelfPermission(Manifest.Permission.ReadExternalStorage) != Android.Content.PM.Permission.Granted)
+                {
+
+                    RequestPermissions(new String[] {
+                        Manifest.Permission.WriteExternalStorage,
+                        Manifest.Permission.ReadExternalStorage}, 1);
+                    return;
+                }
+                else
+                {
+
+
+                }
+
+            }
+            else
+            {
+
+            }
             // InitPermissions();
         }
 

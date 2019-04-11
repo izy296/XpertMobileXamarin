@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Api.Services.CODE_BARRE;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -19,13 +20,13 @@ using XpertMobileApp.ViewModels;
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RfidScanPage : ContentPage 
-	{
+	public partial class RfidScanPage : ContentPage, ICallBackReciver
+    {
         RfidScanViewModel viewModel;
         RFID_Manager rfid_manager;
         public Command loadLotsInfo { get; set; }
         private Command SaveRFIDsCommand { get; set; }
-     
+        ICODE_BARRE_Reder CBReder;
         private ISimpleAudioPlayer _simpleAudioPlayer;
         public RfidScanPage()
 		{
@@ -46,7 +47,9 @@ namespace XpertMobileApp.Views
                     SaveRfids.IsEnabled = false;
                 }
             }
-            
+            CBReder= DependencyService.Get<ICODE_BARRE_Reder>();
+            CBReder.GetInstance();
+                
             MessagingCenter.Subscribe<RFID_Manager, string>(this, MCDico.RFID_SCANED, async (obj, item) =>
             {
                 if (!string.IsNullOrEmpty(item)) {
@@ -67,18 +70,6 @@ namespace XpertMobileApp.Views
                         viewModel.Items[index].COUNT++;
                     }
                 }
-            });
-
-            MessagingCenter.Subscribe<RfidScanPage, string>(this, MCDico.CODE_BARRE_SCANED, async (obj, item) =>
-            {
-                _simpleAudioPlayer.Play();
-                if (string.IsNullOrEmpty(item))
-                {
-                   
-                        codeBarrLot.Text = item + "\r\n";
-               
-                }
-               
             });
             
         }
@@ -112,6 +103,11 @@ namespace XpertMobileApp.Views
                 btn_Scan.Text = "Stop";
                 SaveRfids.IsEnabled = true;
             }
+            if (CBReder != null)
+            {
+                if (CBReder.GetIsOpen() == false)
+                    CBReder.Init(this);
+            }
         }
         protected override void OnDisappearing()
         {
@@ -119,6 +115,11 @@ namespace XpertMobileApp.Views
             if (rfid_manager.LoopFlag) {
                 rfid_manager.StopInventory();
                 SaveRfids.IsEnabled = true;
+            }
+            if (CBReder != null)
+            {
+                CBReder.Close();
+                CBReder.setIsOpen(false);
             }
         }
 
@@ -216,10 +217,13 @@ namespace XpertMobileApp.Views
                     {
                         this.viewModel.CurrentLot = lots[0];
                     }
+                    else if(lots.Count == 0)
+                    {
+                        await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NotFondLotFromCodeBarre, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                    }
                     else
                     {
-                        await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_multiLotForCodeBarre, AppResources.alrt_msg_Alert,
-                   AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_multiLotForCodeBarre, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
                         viewModel.CurrentLot = new View_STK_STOCK();
                         viewModel.CODE_BARRE_LOT = "";
                     }
@@ -227,20 +231,22 @@ namespace XpertMobileApp.Views
              }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                   AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
             }
           
         }
 
-        private void codeBarrLot_Unfocused(object sender, FocusEventArgs e)
-        {
-            loadLotsInfo.Execute(null);
-        }
 
         private void btn_Scan_CB_Clicked(object sender, EventArgs e)
         {
+            CBReder.Scan();
             // TODO scan code
+        }
+
+        public void ReciveData(string data)
+        {
+            viewModel.CODE_BARRE_LOT = data;
+            loadLotsInfo.Execute(null);
         }
     }
 }
