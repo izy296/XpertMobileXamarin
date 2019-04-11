@@ -578,6 +578,14 @@
           <source>Manquants</source>
           <target state="new">Manquants</target>
         </trans-unit>
+        <trans-unit id="txt_Search" translate="yes" xml:space="preserve">
+          <source>Recherche</source>
+          <target state="new">Recherche</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_multiLotForCodeBarre" translate="yes" xml:space="preserve">
+          <source>il y a plusieurs lots pour ce code à barres!</source>
+          <target state="new">il y a plusieurs lots pour ce code à barres!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

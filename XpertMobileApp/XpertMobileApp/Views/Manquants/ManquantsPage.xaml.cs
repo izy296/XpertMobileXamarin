@@ -34,17 +34,15 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            /*
-            var item = args.SelectedItem as View_TRS_TIERS;
+            var item = args.SelectedItem as View_ACH_MANQUANTS;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new VenteDetailPage(item));
+            await Navigation.PushAsync(new ProduitDetailPage(item.CODE_PRODUIT));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
-    */    
-    }
+            ItemsListView.SelectedItem = null;
+        }
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
@@ -54,6 +52,9 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if (viewModel.TypesProduit.Count == 0)
+                viewModel.LoadTypesProduitCommand.Execute(null);
 
             if (viewModel.Types.Count == 0)
                 viewModel.LoadTypesCommand.Execute(null);

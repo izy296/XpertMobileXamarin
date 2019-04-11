@@ -39,7 +39,8 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
+<!-- 
             <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
             <DatePicker Grid.Column="0" Grid.Row="1" 
                         x:Name="dp_StartDate"                        
@@ -55,23 +56,32 @@
                     TextColor="Black"
                     Date="{Binding EndDate, Mode=TwoWay}"
                     Margin="15, 0, 15, 10"/>
-
-            <!-- Types -->
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="0" Grid.Row="3"  ItemsSource="{Binding Types}"
+            -->
+            <!-- Types manquants -->
+            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Types}"
                      ItemDisplayBinding="{Binding NAME}"
                      SelectedItem="{Binding SelectedType}"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TypesPicker"/>
 
+            <!-- Types produit -->
+            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Typesproduct}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding TypesProduit}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedTypesProduit}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesProduitPicker"/>
+                
             <!-- Searched text -->
-                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Search}" Margin="5, 0, 0, 0"/>
-                <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Search}" Margin="5, 0, 0, 0"/>
+            <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
             
             <!-- Button -->
-            <StackLayout Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+            <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                      HorizontalOptions="End">
                 <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_ApplyFilter_Clicked"/>

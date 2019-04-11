@@ -1294,6 +1294,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type de produit.
+        /// </summary>
+        internal static string txt_Typesproduct {
+            get {
+                return ResourceManager.GetString("txt_Typesproduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Mettre à jour.
         /// </summary>
         internal static string txt_UpdateVersion {

@@ -543,4 +543,7 @@
   <data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
     <value>il y a plusieurs lots pour ce code à barres!</value>
   </data>
+  <data name="txt_Typesproduct" xml:space="preserve">
+    <value>Type de produit</value>
+  </data>
 </root>

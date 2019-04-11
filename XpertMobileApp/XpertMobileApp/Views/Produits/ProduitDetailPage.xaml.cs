@@ -30,6 +30,14 @@ namespace XpertMobileApp.Views
             this.Item = prod;
         }
 
+        public ProduitDetailPage(string codeProd)
+        {
+            InitializeComponent();
+
+            Item = new STK_PRODUITS();
+            Item.CODE_PRODUIT = codeProd;
+        }
+
         private string getFormatedValue(object value)
         {
             if (value == null) return "";
