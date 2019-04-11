@@ -432,6 +432,12 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "isOuvert", isOuvert.ToString());
             return await WSApi2.PostAauthorizedValue<bool, List<View_STK_STOCK_RFID>>(url, lots, App.User.Token.access_token);
         }
+        internal static async Task<List<View_STK_STOCK>> getStckFromCodeBarre(string cODE_BARRE_LOT)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_COED_BARRE);
+            url += WSApi2.AddParam(url, "codebarre", cODE_BARRE_LOT);
+            return await RetrievAauthorizedData<View_STK_STOCK>(url);
+        }
         #endregion
     }
 }
