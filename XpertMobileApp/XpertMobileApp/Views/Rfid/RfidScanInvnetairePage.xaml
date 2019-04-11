@@ -33,9 +33,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
                 <Label Grid.Column="0" Grid.Row="0"  Text="Continues scan" Margin="5, 0, 0, 0" />
@@ -61,26 +58,56 @@
                     <Button x:Name="btn_Scan" Margin="5" HorizontalOptions="End" Text="Scan" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_Scan_Clicked"/>
                 </StackLayout>
-                <Label Grid.Column="0" Grid.Row="4" Text="{Binding StockCount, StringFormat='Total lot : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                <Label  Grid.Column="1" Grid.Row="4" Text="{Binding CurrentInv.DESIGN_MAGASIN, StringFormat='Magazin : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                <Label  Grid.Column="0" Grid.Row="5" Text="Num Inventaire :" Margin="5, 0, 0, 0" />
-                <Label  Grid.Column="1" Grid.Row="5" Text= "Date :" Margin="5, 0, 0, 0" />
-                <Label Grid.Column="0" Grid.Row="6" Text="{Binding CurrentInv.NUM_INVENT, Mode=TwoWay}" Margin="5, 0, 0, 0" />
-                <Label Grid.Column="1" Grid.Row="6" Text= "{Binding  CurrentInv.DATE_INVENT, StringFormat=' {0:dd/MM/yyyy}'}" Margin="5, 0, 0, 0" />
-                
+                             
             </Grid>
             
               
         </StackLayout>
-        
-        
-    
 
 
         <StackLayout VerticalOptions="FillAndExpand">
-  
-      
-            <ListView x:Name="ItemsListView"
+
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+                <Grid  BackgroundColor="White" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+              
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+                    <Label Grid.Column="0" Grid.Row="1" Text="{Binding StockCount, StringFormat='Total lot : {0}',Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label  Grid.Column="0" Grid.Row="2" Text="Num Inventaire :" Margin="5, 0, 0, 0" />
+                    <Label  Grid.Column="1" Grid.Row="2" Text= "Date :" Margin="5, 0, 0, 0" />
+                    <Label Grid.Column="0" Grid.Row="3" Text="{Binding CurrentInv.NUM_INVENT, Mode=TwoWay}" Margin="5, 0, 0, 0" />
+                    <Label Grid.Column="1" Grid.Row="3" Text= "{Binding  CurrentInv.DATE_INVENT, StringFormat=' {0:dd/MM/yyyy}'}" Margin="5, 0, 0, 0" />
+
+                    
+                 
+                </Grid>
+            </Frame>
+            
+            
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+
+                    <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding InventoredStock}"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
@@ -89,19 +116,26 @@
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <template:LigneInventaireTemplate />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <StackLayout >
-                <Button x:Name="TraiteRfids" Text="Trait Rfids" Clicked="TraiteRfids_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
-                <Button x:Name="UpdateInventaire" Text="{i18n:Translate sp_btn_SaveRfid}" Clicked="UpdateInventaire_Clicked" Style="{DynamicResource DefaultBtnStyle}"/>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template:LigneInventaireTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+            <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="Fill">
+                <Button x:Name="TraiteRfids"  HorizontalOptions="FillAndExpand" Text="Trait Rfids" Style="{DynamicResource DefaultBtnStyle}" Clicked="TraiteRfids_Clicked" ></Button>
+                <Button x:Name="UpdateInventaire"  HorizontalOptions="FillAndExpand" Text="{i18n:Translate sp_btn_SaveRfid}" Style="{DynamicResource DefaultBtnStyle}" Clicked="UpdateInventaire_Clicked"></Button>
+               
             </StackLayout>
+            
+         
         </StackLayout>
+        
+
     </StackLayout>
 </ContentPage>
