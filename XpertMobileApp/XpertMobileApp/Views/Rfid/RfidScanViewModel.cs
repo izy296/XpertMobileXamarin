@@ -40,7 +40,7 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref elementsCount, value); }
         }
 
-        public bool ContinuesScan { get; set; }
+        public bool ContinuesScan { get; set; } = true;
 
         public bool Anti { get; set; } = false;
 

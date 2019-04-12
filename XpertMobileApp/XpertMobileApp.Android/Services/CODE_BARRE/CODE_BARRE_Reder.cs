@@ -100,7 +100,6 @@ namespace XpertMobileApp.Droid.Services
                     Toast.MakeText(MainActivity.Instance, "Init failure!", ToastLength.Short);
             }
 
-            //开始执行任务
             protected override void OnPreExecute()
             {
                 proDialg = new ProgressDialog(MainActivity.Instance);
@@ -126,15 +125,15 @@ namespace XpertMobileApp.Droid.Services
                 {
                     if (length == -1)
                     {
-                        strData = "Scan canceled\r\n";
+                        strData = "Scan canceled";
                     }
                     else if (length == 0)
                     {
-                        strData = "Scan timeout\r\n";
+                        strData = "Scan timeout";
                     }
                     else
                     {
-                        strData = "Scan failure\r\n";
+                        strData = "Scan failure";
                     }
                 }
                 else

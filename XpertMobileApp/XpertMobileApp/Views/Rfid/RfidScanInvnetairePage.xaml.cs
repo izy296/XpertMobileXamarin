@@ -123,7 +123,6 @@ namespace XpertMobileApp.Views
                     btn_Scan.Text = "Scan";
                     btn_Clear.IsEnabled = true;
                     AntiP.IsEnabled = true;
-                    CScan.IsEnabled = true;
                     qvalue.IsEnabled = true;
                     UpdateInventaire.IsEnabled = true;
                     return;
@@ -145,7 +144,6 @@ namespace XpertMobileApp.Views
                     rfid_manager.LoopFlag = true;
                     btn_Clear.IsEnabled = false;
                     AntiP.IsEnabled = false;
-                    CScan.IsEnabled = false;
                     qvalue.IsEnabled = false;
                     UpdateInventaire.IsEnabled = false;
                     btn_Scan.Text = "Stop";
@@ -178,7 +176,6 @@ namespace XpertMobileApp.Views
             {
                 TraiteRfids.IsEnabled = false;
                 UpdateInventaire.IsEnabled = false;
-                CScan.IsEnabled = false;
                 var elements = await WebServiceClient.getStockFromRFIDs(viewModel.Items);
                 viewModel.InventoredStock.Clear();
                 viewModel.StockCount = 0;
@@ -189,7 +186,6 @@ namespace XpertMobileApp.Views
                 }
                 viewModel.StockCount -= 2;
                 UpdateInventaire.IsEnabled = true;
-                CScan.IsEnabled = true;
                 TraiteRfids.IsEnabled = true;
             }
             catch (Exception ex)

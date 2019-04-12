@@ -46,8 +46,8 @@ namespace XpertMobileApp.ViewModels
             get { return stockCount; }
             set { SetProperty(ref stockCount, value); }
         }
-   
-        public bool ContinuesScan { get; set; }
+
+        public bool ContinuesScan { get; set; } = true;
 
         public bool Anti { get; set; } = false;
 

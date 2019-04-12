@@ -152,7 +152,7 @@ namespace XpertMobileApp.Views
                 AntiP.IsEnabled = false;
                 CScan.IsEnabled = false;
                 qvalue.IsEnabled = false;
-                if (!viewModel.ContinuesScan)
+                if (viewModel.ContinuesScan)
                 {
                     byte q = 0;
                     byte anti = 0;
