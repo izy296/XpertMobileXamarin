@@ -71,8 +71,9 @@ namespace XpertMobileApp.Views
                     }
                 }
             });
-            
+            this.codebrarelot.Completed += Codebrarelot_Completed;
         }
+
 
 
         public int checkIsExistRfid(string strEPC)
@@ -136,10 +137,10 @@ namespace XpertMobileApp.Views
 
         private void btn_Scan_Clicked(object sender, EventArgs e)
         {
-            if (btn_Scan.Text == "Stop")
+            if (btn_Scan.Text == AppResources.btn_Stop_Scan_Rfid)
             {
                 rfid_manager.StopInventory();
-                btn_Scan.Text = "Scan";
+                btn_Scan.Text = AppResources.btn_scan_Rfid_Text;
                 btn_Clear.IsEnabled = true;
                 AntiP.IsEnabled = true;
                 CScan.IsEnabled = true;
@@ -161,7 +162,7 @@ namespace XpertMobileApp.Views
                         q = Convert.ToByte(viewModel.q);
                         anti = 1;
                     }
-                    btn_Scan.Text = "Stop";
+                    btn_Scan.Text = AppResources.btn_Stop_Scan_Rfid;
                     SaveRfids.IsEnabled = false;
                     rfid_manager.StartContenuesInventary(Convert.ToByte(viewModel.Anti), (byte)viewModel.q);
                 }
@@ -220,6 +221,8 @@ namespace XpertMobileApp.Views
                     else if(lots.Count == 0)
                     {
                         await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NotFondLotFromCodeBarre, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                        viewModel.CODE_BARRE_LOT = "";
+                        viewModel.CurrentLot = new View_STK_STOCK();
                     }
                     else
                     {
@@ -240,12 +243,15 @@ namespace XpertMobileApp.Views
         private void btn_Scan_CB_Clicked(object sender, EventArgs e)
         {
             CBReder.Scan();
-            // TODO scan code
         }
 
         public void ReciveData(string data)
         {
             viewModel.CODE_BARRE_LOT = data;
+            loadLotsInfo.Execute(null);
+        }
+        private void Codebrarelot_Completed(object sender, EventArgs e)
+        {
             loadLotsInfo.Execute(null);
         }
     }

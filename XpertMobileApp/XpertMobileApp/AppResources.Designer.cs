@@ -88,6 +88,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Échec d&apos;initialisation de lecteur RFID !.
+        /// </summary>
+        internal static string alert_echec_Init_Rfid {
+            get {
+                return ResourceManager.GetString("alert_echec_Init_Rfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Alerte.
         /// </summary>
         internal static string alrt_msg_Alert {
@@ -232,6 +241,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Effacer.
+        /// </summary>
+        internal static string btn_Clear_Text {
+            get {
+                return ResourceManager.GetString("btn_Clear_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Fermer.
         /// </summary>
         internal static string btn_Close {
@@ -241,11 +259,47 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Config.
+        /// </summary>
+        internal static string btn_Filter_RFID_Text {
+            get {
+                return ResourceManager.GetString("btn_Filter_RFID_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Scaner.
+        /// </summary>
+        internal static string btn_scan_Rfid_Text {
+            get {
+                return ResourceManager.GetString("btn_scan_Rfid_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Scane Code barre.
         /// </summary>
         internal static string btn_scanCodeBarre {
             get {
                 return ResourceManager.GetString("btn_scanCodeBarre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Arrêter.
+        /// </summary>
+        internal static string btn_Stop_Scan_Rfid {
+            get {
+                return ResourceManager.GetString("btn_Stop_Scan_Rfid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Traitement Tags :.
+        /// </summary>
+        internal static string btn_Trait_Rfids_text {
+            get {
+                return ResourceManager.GetString("btn_Trait_Rfids_text", resourceCulture);
             }
         }
         
@@ -498,6 +552,42 @@ namespace XpertMobileApp {
         internal static string InvalidDevice {
             get {
                 return ResourceManager.GetString("InvalidDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Continue.
+        /// </summary>
+        internal static string lbl_Continues_scan_RFID {
+            get {
+                return ResourceManager.GetString("lbl_Continues_scan_RFID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date.
+        /// </summary>
+        internal static string lbl_DateInventqire_Text {
+            get {
+                return ResourceManager.GetString("lbl_DateInventqire_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à lot ..
+        /// </summary>
+        internal static string lbl_lot_txt {
+            get {
+                return ResourceManager.GetString("lbl_lot_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Numéro Inventaire :.
+        /// </summary>
+        internal static string lbl_NumInventaire {
+            get {
+                return ResourceManager.GetString("lbl_NumInventaire", resourceCulture);
             }
         }
         

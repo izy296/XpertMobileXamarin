@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views
             if (!rfid_manager.IsInit) {
                 if (!rfid_manager.Init())
                 {
-                    UserDialogs.Instance.AlertAsync("Echec d'initialisation de lecteur RFID !", AppResources.alrt_msg_Alert,
+                    UserDialogs.Instance.AlertAsync(AppResources.alert_echec_Init_Rfid, AppResources.alrt_msg_Alert,
                        AppResources.alrt_msg_Ok);
                     btn_Scan.IsEnabled = false;
                     btn_Clear.IsEnabled = false;
@@ -98,7 +98,7 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if (rfid_manager.LoopFlag) btn_Scan.Text = "Stop";
+            if (rfid_manager.LoopFlag) btn_Scan.Text = AppResources.btn_Stop_Scan_Rfid;
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -113,14 +113,14 @@ namespace XpertMobileApp.Views
 
         private void btn_Scan_Clicked(object sender, EventArgs e)
         {
-            if (btn_Scan.Text == "Stop")
+            if (btn_Scan.Text == AppResources.btn_Stop_Scan_Rfid)
             {
                 // rfid_manager.StopInventory();
                 if (rfid_manager.LoopFlag)
                 {
                     rfid_manager.StopInventory();
                     rfid_manager.LoopFlag = false;
-                    btn_Scan.Text = "Scan";
+                    btn_Scan.Text = AppResources.btn_scan_Rfid_Text;
                     btn_Clear.IsEnabled = true;
                     AntiP.IsEnabled = true;
                     qvalue.IsEnabled = true;
@@ -146,7 +146,7 @@ namespace XpertMobileApp.Views
                     AntiP.IsEnabled = false;
                     qvalue.IsEnabled = false;
                     UpdateInventaire.IsEnabled = false;
-                    btn_Scan.Text = "Stop";
+                    btn_Scan.Text = AppResources.btn_Stop_Scan_Rfid;
                 };
             }
         }

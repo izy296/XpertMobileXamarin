@@ -552,4 +552,34 @@
   <data name="btn_scanCodeBarre" xml:space="preserve">
     <value>Scane Code barre</value>
   </data>
+  <data name="alert_echec_Init_Rfid" xml:space="preserve">
+    <value>Échec d'initialisation de lecteur RFID !</value>
+  </data>
+  <data name="btn_Clear_Text" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="btn_Filter_RFID_Text" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="btn_scan_Rfid_Text" xml:space="preserve">
+    <value>Scaner</value>
+  </data>
+  <data name="btn_Stop_Scan_Rfid" xml:space="preserve">
+    <value>Arrêter</value>
+  </data>
+  <data name="btn_Trait_Rfids_text" xml:space="preserve">
+    <value>Traitement Tags :</value>
+  </data>
+  <data name="lbl_Continues_scan_RFID" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="lbl_DateInventqire_Text" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="lbl_lot_txt" xml:space="preserve">
+    <value>lot .</value>
+  </data>
+  <data name="lbl_NumInventaire" xml:space="preserve">
+    <value>Numéro Inventaire :</value>
+  </data>
 </root>
