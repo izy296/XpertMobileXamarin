@@ -41,7 +41,7 @@ namespace XpertMobileApp.Views
             if (!rfid_manager.IsInit) {
                 if (!rfid_manager.Init())
                 {
-                    DisplayAlert(AppResources.alrt_msg_Alert, "l'intialisation de lecteur Rfid est echoee", AppResources.alrt_msg_Ok);
+                    DisplayAlert(AppResources.alrt_msg_Alert, AppResources.Alrt_failInitRFID_Reader, AppResources.alrt_msg_Ok);
                     btn_Clear.IsEnabled = false;
                     btn_Scan.IsEnabled = false;
                     SaveRfids.IsEnabled = false;
@@ -72,6 +72,15 @@ namespace XpertMobileApp.Views
                 }
             });
             this.codebrarelot.Completed += Codebrarelot_Completed;
+
+            MessagingCenter.Subscribe<LotsSelector, View_STK_STOCK>(this, MCDico.Lots_SELECTED, async (obj, item) =>
+            {
+                if (item != null) {
+                    viewModel.CurrentLot = item;
+                    viewModel.CODE_BARRE_LOT = item.CODE_BARRE_LOT;
+                }
+                
+            });
         }
 
 
@@ -149,12 +158,13 @@ namespace XpertMobileApp.Views
                 return;
             }
             if (!rfid_manager.LoopFlag) {
-                btn_Clear.IsEnabled = false;
-                AntiP.IsEnabled = false;
-                CScan.IsEnabled = false;
-                qvalue.IsEnabled = false;
+              
                 if (viewModel.ContinuesScan)
                 {
+                    btn_Clear.IsEnabled = false;
+                    AntiP.IsEnabled = false;
+                    CScan.IsEnabled = false;
+                    qvalue.IsEnabled = false;
                     byte q = 0;
                     byte anti = 0;
                     if (viewModel.Anti)
@@ -177,35 +187,33 @@ namespace XpertMobileApp.Views
 
         private void SaveRfids_Clicked(object sender, EventArgs e)
         {
-            List<STK_STOCK_RFID> rfids = new List<STK_STOCK_RFID>();
-            if (viewModel.Items.Count == 0) return;
-            if (viewModel.CurrentLot.ID_STOCK == null) return;
-            if (viewModel.Items != null && viewModel.Items.Count > 0)
-            {
-                foreach (SCANED_RFID eleme in viewModel.Items) {
-                STK_STOCK_RFID rfid = new STK_STOCK_RFID();
-                rfid.ID_STOCK = viewModel.CurrentLot.ID_STOCK;
-                rfid.EPC = eleme.EPC;
-                rfids.Add(rfid);
-            }
-                SaveRFIDsCommand = new Command(async () => await AddRfids(rfids));
-                SaveRFIDsCommand.Execute(null);
-            }
+                List<STK_STOCK_RFID> rfids = new List<STK_STOCK_RFID>();
+                if (viewModel.Items.Count == 0) return;
+                if (viewModel.CurrentLot.ID_STOCK == null) return;
+                if (viewModel.Items != null && viewModel.Items.Count > 0)
+                {
+                    foreach (SCANED_RFID eleme in viewModel.Items)
+                    {
+                        STK_STOCK_RFID rfid = new STK_STOCK_RFID();
+                        rfid.ID_STOCK = viewModel.CurrentLot.ID_STOCK;
+                        rfid.EPC = eleme.EPC;
+                        rfids.Add(rfid);
+                    }
+                    SaveRFIDsCommand = new Command(async () => await AddRfids(rfids));
+                    SaveRFIDsCommand.Execute(null);
+                }
         }
 
-        private async Task<bool> AddRfids(List<STK_STOCK_RFID> rfids)
+        private async Task AddRfids(List<STK_STOCK_RFID> rfids)
         {
             try
             {
-                bool result = await WebServiceClient.AddRfids(rfids);
-                return result;
+                int result = await WebServiceClient.AddRfids(rfids);
+                if(result==4) await DisplayAlert(AppResources.Alert_Deplicatrd_Rfid_Tages, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             catch (XpertException e)
             {
-               
                 await DisplayAlert(e.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-             
-                return false;
             }
         }
         async Task ExecuteLoadLotCommand()
@@ -213,22 +221,27 @@ namespace XpertMobileApp.Views
             try
             {
                 if (!string.IsNullOrEmpty(viewModel.CODE_BARRE_LOT)) {
-                    var lots = await WebServiceClient.getStckFromCodeBarre(viewModel.CODE_BARRE_LOT);
-                    if (!(lots == null) && lots.Count > 0)
-                    {
-                        this.viewModel.CurrentLot = lots[0];
-                    }
-                    else if(lots.Count == 0)
-                    {
-                        await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NotFondLotFromCodeBarre, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
-                        viewModel.CODE_BARRE_LOT = "";
-                        viewModel.CurrentLot = new View_STK_STOCK();
-                    }
-                    else
-                    {
-                        await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_multiLotForCodeBarre, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
-                        viewModel.CurrentLot = new View_STK_STOCK();
-                        viewModel.CODE_BARRE_LOT = "";
+                    viewModel.LOTS= await WebServiceClient.getStckFromCodeBarre(viewModel.CODE_BARRE_LOT);
+                    if (viewModel.LOTS != null){
+                        if (viewModel.LOTS.Count == 0)
+                        {
+                            await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NotFondLotFromCodeBarre, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            viewModel.CODE_BARRE_LOT = "";
+                            viewModel.CurrentLot = new View_STK_STOCK();
+                        }
+                        else if ( viewModel.LOTS.Count == 1)
+                        {
+                            this.viewModel.CurrentLot = viewModel.LOTS[0];
+
+                        } 
+                        else if (viewModel.LOTS.Count > 1)
+                        {
+                            await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_multiLotForCodeBarre, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            LotsSelector itemSelector = new LotsSelector(viewModel.LOTS);
+                            await PopupNavigation.Instance.PushAsync(itemSelector);
+                            viewModel.CODE_BARRE_LOT = "";
+                            viewModel.CurrentLot = new View_STK_STOCK();
+                        }
                     }
                 }
              }

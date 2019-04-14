@@ -20,5 +20,6 @@ namespace XpertMobileApp.Helpers
         public static string RFID_SCANED = "Rfid_Scaned";
 
         public static string CODE_BARRE_SCANED = "CODE_BARRE_Scaned";
+        public static string Lots_SELECTED = "Lots_Selected";
     }
 }

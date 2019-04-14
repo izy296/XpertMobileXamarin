@@ -88,11 +88,20 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Échec d&apos;initialisation de lecteur RFID !.
+        ///   Recherche une chaîne localisée semblable à L&apos;une des Tags scannée est déjà affectées a un lots !.
         /// </summary>
-        internal static string alert_echec_Init_Rfid {
+        internal static string Alert_Deplicatrd_Rfid_Tages {
             get {
-                return ResourceManager.GetString("alert_echec_Init_Rfid", resourceCulture);
+                return ResourceManager.GetString("Alert_Deplicatrd_Rfid_Tages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à L&apos;initialisation du lecteur RFID a échoué!.
+        /// </summary>
+        internal static string Alrt_failInitRFID_Reader {
+            get {
+                return ResourceManager.GetString("Alrt_failInitRFID_Reader", resourceCulture);
             }
         }
         
@@ -178,7 +187,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à il y a plusieurs lots pour ce code à barres!.
+        ///   Recherche une chaîne localisée semblable à Il y a plusieurs lots pour ce code à barres !.
         /// </summary>
         internal static string alrt_msg_multiLotForCodeBarre {
             get {
@@ -187,7 +196,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pas de lot coresponadant a ce code  à barre !.
+        ///   Recherche une chaîne localisée semblable à Pas de lot correspondants a ce code à barre !.
         /// </summary>
         internal static string alrt_msg_NotFondLotFromCodeBarre {
             get {
@@ -268,7 +277,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Scaner.
+        ///   Recherche une chaîne localisée semblable à Balayage.
         /// </summary>
         internal static string btn_scan_Rfid_Text {
             get {
@@ -277,7 +286,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Scane Code barre.
+        ///   Recherche une chaîne localisée semblable à Scanner Code à barre.
         /// </summary>
         internal static string btn_scanCodeBarre {
             get {
@@ -286,7 +295,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Arrêter.
+        ///   Recherche une chaîne localisée semblable à Arréter.
         /// </summary>
         internal static string btn_Stop_Scan_Rfid {
             get {
@@ -295,7 +304,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Traitement Tags :.
+        ///   Recherche une chaîne localisée semblable à Traitement.
         /// </summary>
         internal static string btn_Trait_Rfids_text {
             get {
@@ -565,7 +574,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Date.
+        ///   Recherche une chaîne localisée semblable à Date :.
         /// </summary>
         internal static string lbl_DateInventqire_Text {
             get {
@@ -574,7 +583,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à lot ..
+        ///   Recherche une chaîne localisée semblable à Lot..
         /// </summary>
         internal static string lbl_lot_txt {
             get {
@@ -583,7 +592,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Numéro Inventaire :.
+        ///   Recherche une chaîne localisée semblable à Num inventaire :.
         /// </summary>
         internal static string lbl_NumInventaire {
             get {

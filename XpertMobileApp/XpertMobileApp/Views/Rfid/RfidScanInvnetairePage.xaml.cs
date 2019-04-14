@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views
             if (!rfid_manager.IsInit) {
                 if (!rfid_manager.Init())
                 {
-                    UserDialogs.Instance.AlertAsync(AppResources.alert_echec_Init_Rfid, AppResources.alrt_msg_Alert,
+                    UserDialogs.Instance.AlertAsync(AppResources.Alrt_failInitRFID_Reader, AppResources.alrt_msg_Alert,
                        AppResources.alrt_msg_Ok);
                     btn_Scan.IsEnabled = false;
                     btn_Clear.IsEnabled = false;

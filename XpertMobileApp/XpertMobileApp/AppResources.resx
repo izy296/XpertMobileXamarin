@@ -541,12 +541,51 @@
     <value>Recherche</value>
   </data>
   <data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
-    <value>il y a plusieurs lots pour ce code à barres!</value>
+    <value>Il y a plusieurs lots pour ce code à barres !</value>
   </data>
   <data name="txt_Typesproduct" xml:space="preserve">
     <value>Type de produit</value>
   </data>
   <data name="txt_CA" xml:space="preserve">
     <value>Chiffre d'affaires</value>
+  </data>
+  <data name="Alrt_failInitRFID_Reader" xml:space="preserve">
+    <value>L'initialisation du lecteur RFID a échoué!</value>
+  </data>
+  <data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
+    <value>L'une des Tags scannée est déjà affectées a un lots !</value>
+  </data>
+  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+    <value>Pas de lot correspondants a ce code à barre !</value>
+  </data>
+  <data name="btn_Clear_Text" xml:space="preserve">
+    <value>Effacer</value>
+  </data>
+  <data name="btn_Filter_RFID_Text" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="btn_scanCodeBarre" xml:space="preserve">
+    <value>Scanner Code à barre</value>
+  </data>
+  <data name="btn_scan_Rfid_Text" xml:space="preserve">
+    <value>Balayage</value>
+  </data>
+  <data name="btn_Stop_Scan_Rfid" xml:space="preserve">
+    <value>Arréter</value>
+  </data>
+  <data name="btn_Trait_Rfids_text" xml:space="preserve">
+    <value>Traitement</value>
+  </data>
+  <data name="lbl_Continues_scan_RFID" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="lbl_DateInventqire_Text" xml:space="preserve">
+    <value>Date :</value>
+  </data>
+  <data name="lbl_lot_txt" xml:space="preserve">
+    <value>Lot.</value>
+  </data>
+  <data name="lbl_NumInventaire" xml:space="preserve">
+    <value>Num inventaire :</value>
   </data>
 </root>

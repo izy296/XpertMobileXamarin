@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading;
@@ -28,7 +29,12 @@ namespace XpertMobileApp.ViewModels
             get { return _CODE_BARRE_LOT; }
             set { SetProperty(ref _CODE_BARRE_LOT, value); }
         }
-
+        private List<View_STK_STOCK> _LOTS;
+        public List<View_STK_STOCK> LOTS
+        {
+            get { return _LOTS; }
+            set { SetProperty(ref _LOTS, value); }
+        }
 
         public ObservableCollection<SCANED_RFID> Items { get; set; }
 

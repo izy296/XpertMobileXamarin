@@ -561,4 +561,16 @@
   <data name="lbl_NumInventaire" xml:space="preserve">
     <value>رقم الجرد :</value>
   </data>
+  <data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
+    <value>هناك علامات مكررة!</value>
+  </data>
+  <data name="Alrt_failInitRFID_Reader" xml:space="preserve">
+    <value>فشلت تهيئة قارئ RFID!</value>
+  </data>
+  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+    <value>لا يوجد حزم تتوافق مع هذا الرمز الشريطي!</value>
+  </data>
+  <data name="btn_scanCodeBarre" xml:space="preserve">
+    <value>مسح الرمز الشريطي</value>
+  </data>
 </root>

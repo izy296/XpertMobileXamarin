@@ -558,4 +558,19 @@
   <data name="lbl_NumInventaire" xml:space="preserve">
     <value>Inventory number:</value>
   </data>
+  <data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
+    <value>One of the scanned tags is assigned to a batch !</value>
+  </data>
+  <data name="Alrt_failInitRFID_Reader" xml:space="preserve">
+    <value>The initialization of the RFID reader has failed!</value>
+  </data>
+  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+    <value>No lot corresponding to this bar code!</value>
+  </data>
+  <data name="btn_scanCodeBarre" xml:space="preserve">
+    <value>Scan barcode</value>
+  </data>
+  <data name="sp_btn_SaveRfid" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

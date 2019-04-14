@@ -416,11 +416,11 @@ namespace XpertMobileApp.Services
         #endregion
 
         #region  RFID
-        internal static async Task<bool> AddRfids(List<STK_STOCK_RFID> rfids)
+        internal static async Task<int> AddRfids(List<STK_STOCK_RFID> rfids)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_AddRFIDs_URL);
 
-            return await WSApi2.PostAauthorizedValue<bool, List<STK_STOCK_RFID>>(url, rfids, App.User.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<int, List<STK_STOCK_RFID>>(url, rfids, App.User.Token.access_token);
         }
         internal static async Task<List<View_STK_STOCK>> getStckFroIdStock(int IDStock)
         {
