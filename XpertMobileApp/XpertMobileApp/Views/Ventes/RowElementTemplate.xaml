@@ -24,7 +24,7 @@
                     </StackLayout>
                     
                     <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
@@ -32,7 +32,7 @@
                     <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
                           Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
                     <Label Grid.Column="2" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='P : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />
-                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_TTC, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_VENTE, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                     
                 </Grid>
             </Frame>

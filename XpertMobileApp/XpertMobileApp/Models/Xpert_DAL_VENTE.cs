@@ -129,49 +129,76 @@ namespace XpertMobileApp.DAL
 
     }
 
-    public partial class View_VTE_VENTE_LOT : VTE_VENTE_DETAIL
+    public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL
     {
-        public string DESIGNATION_PRODUIT { get; set; } // varchar(754)
-        public string CODE_MAGASIN { get; set; } // varchar(10)
 
         public string NUM_VENTE { get; set; } // varchar(32)
         public DateTime? DATE_VENTE { get; set; } // datetime(3)
         public string NOM_TIERS { get; set; } // varchar(501)
         public string CODE_TIERS { get; set; } // varchar(32)
-        public string TYPE_VENTE { get; set; } // char(2)
-        public decimal QTE_RETOUR { get; set; }
-        public decimal QTE_RESTE_RETOUR { get; set; }
-        public string CODE_ORIGINE { get; set; } // varchar(32)
-        public decimal TAUX_MARGE { get; set; } // money(19,4)
-        public string OWNER { get; set; } // varchar(200)
+        public string TYPE_VENTE { get; set; } // varchar(2)
+        public string CODE_EMPLACEMENT { get; set; } // varchar()
+        public string DESIGNATION_EMPLACEMENT { get; set; } // varchar()
+        public string TITLE_VENTE { get; set; } // varchar(300)
+        public string DESIGNATION { get; set; } // varchar(404)
 
-        public DateTime? DATE_PEREMPTION { get; set; }
+
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+
+        public decimal MT_VENTE { get; set; } // money(19,4)
+
+        public decimal MT_PPA { get; set; } // numeric(38,6)
+        public decimal MT_SHP { get; set; } // numeric(38,6)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        // char(8)
         public string CODE_BARRE { get; set; } // nvarchar(250)
         public string CODE_BARRE_LOT { get; set; } // nvarchar(1500)
-        public int TYPE_VALIDATION { get; set; } // int(10)
-        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
-        public string DESIGNE_EMPLACEMENT { get; set; } // varchar(10)
         public string LOT { get; set; } // varchar(50)
-        public decimal QTE_STOCK { get; set; } // numeric(18,2)
         public decimal PPA { get; set; } // money(19,4)
         public decimal SHP { get; set; } // money(19,4)
-        public string DESIGN_MAGASIN { get; set; } // varchar(100)
-        public string REF_PRODUIT { get; set; } // nvarchar(250)
-        public decimal PRIX_ACH_HT { get; set; } // money(19,4)
-        public decimal PRIX_VENTE { get; set; } // money(19,4)
         public short TYPE_PRODUIT { get; set; } // smallint(5)
-        public decimal TARIF { get; set; } // money(19,4)
-        public string CODE_LABO { get; set; } // smallint(5)
-        public string CODE_FORME { get; set; } // varchar(20)
-        public string DESIGN_LABO { get; set; } // varchar(2500)
-        public string DESIGN_FORME { get; set; } // varchar(100)
-        public string UNITE { get; set; } // varchar(50)
-        public string CONDIT { get; set; } // varchar(50)
-        public string DOSAGE { get; set; } // varchar(50)
-        public string CODE_CNAS { get; set; }
-        public bool PENDING { get; set; }
-        public decimal PENDING_QUANTITY { get; set; }
-        public bool EXON_TVA { get; set; }
-        public decimal QTE_STOCK_PRODUIT { get; set; } // numeric(18,2)
+        public int SENS_DOC { get; set; } // int(10)
+        public string VENTE_USER { get; set; } // varchar(50)
+        public string TITRE_VENTE { get; set; } // varchar(300)
+        public string TYPE_DOC { get; set; }
+        public string CODE_LABO { get; set; }
+        public string CODE_FAMILLE { get; set; } // varchar(10)
+        public string DESIGNATION_LABO { get; set; }
+        public string DESIGNATION_FAMIL { get; set; }
+        public string TYPE_PRODUIT_TITLE { get; set; }
+        public decimal PPA_REEL { get; set; }
+        public decimal SHP_REEL { get; set; }
+        public decimal PRIX_VENTE_REEL { get; set; }
+        public decimal COUT_ACHAT_REEL { get; set; }
+        public decimal MT_VENTE_REEL { get; set; }
+        public decimal MT_ACHAT_REEL { get; set; }
+        public decimal MT_PPA_REEL { get; set; }
+        public decimal MT_SHP_REEL { get; set; }
+
+        public decimal TOTAL_RESTE { get; set; }
+        public decimal TOTAL_PAYE { get; set; }
+        public decimal TOTAL_TTC { get; set; }
+        public string TYPE_DOC_ACHAT { get; set; }
+
+        public decimal TOTAL_RESTE_REEL { get; set; }
+        public decimal TOTAL_PAYE_REEL { get; set; }
+        public decimal TOTAL_TTC_REEL { get; set; }
+
+        public string HEUR_VENTE
+        {
+            get
+            {
+                return DATE_VENTE.Value.TimeOfDay.ToString();
+            }
+        }
+        public string DATE_VENTE1
+        {
+            get
+            {
+                return DATE_VENTE.Value.ToShortDateString();
+            }
+        }
     }
+
+
 }

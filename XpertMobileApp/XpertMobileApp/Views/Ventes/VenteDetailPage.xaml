@@ -5,52 +5,51 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              Title="{Binding Title}">
-    
-    <ScrollView Orientation="Vertical" VerticalOptions="Fill" >
-        <StackLayout x:Name="sl_content" Padding="5" >
-            
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <Grid  BackgroundColor="White" >
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+    <StackLayout x:Name="sl_content" Padding="5" >
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Grid  BackgroundColor="White" >
 
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
-                        <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                        <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
-                    </StackLayout>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
-                        <Label Text="{ Binding Item.TOTAL_PAYE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="{ Binding Item.TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy MM:hh}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
-                    </StackLayout>
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
 
-                </Grid>
-            </Frame>
-            
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
-                    
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
+                <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
+                </StackLayout>
 
-                    <ListView x:Name="ItemsListView"
+                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{ Binding Item.TOTAL_PAYE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{ Binding Item.TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding ItemRows}"
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadRowsCommand}"
@@ -67,8 +66,7 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
-              </StackLayout>
-            </Frame>
-        </StackLayout>
-    </ScrollView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 </ContentPage>    

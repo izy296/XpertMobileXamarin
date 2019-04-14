@@ -333,12 +333,12 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_VTE_VENTE>(url);
         }
 
-        public static async Task<List<View_VTE_VENTE_LOT>> GetVenteDetails(string codeVente)
+        public static async Task<List<View_VTE_JOURNAL_DETAIL>> GetVenteDetails(string codeVente)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_DETAILS_URL);
             url += WSApi2.AddParam(url, "codeVente", codeVente);
 
-            return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
+            return await RetrievAauthorizedData<View_VTE_JOURNAL_DETAIL>(url);
         }
 
         #endregion
