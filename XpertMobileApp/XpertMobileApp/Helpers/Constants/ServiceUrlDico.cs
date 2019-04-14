@@ -44,6 +44,8 @@ namespace XpertMobileApp.Helpers
 
         public static string MARGE_PAR_VENDEUR_URL = "MarginByUser";
 
+        public static string TOTAL_MARGE_PAR_VENDEUR_URL = "GetTotalMargin";
+        
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
@@ -51,7 +53,7 @@ namespace XpertMobileApp.Helpers
         public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
 
 
-        // Encaissements
+        // Ventes
 
         public static string VENTES_URL = "Ventes";
 
@@ -62,7 +64,7 @@ namespace XpertMobileApp.Helpers
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
 
-        // Encaissements
+        // Produits
 
         public static string PRODUITS_URL = "Produits";
 

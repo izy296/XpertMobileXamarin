@@ -586,6 +586,14 @@
           <source>il y a plusieurs lots pour ce code à barres!</source>
           <target state="new">il y a plusieurs lots pour ce code à barres!</target>
         </trans-unit>
+        <trans-unit id="txt_Typesproduct" translate="yes" xml:space="preserve">
+          <source>Type de produit</source>
+          <target state="new">Type de produit</target>
+        </trans-unit>
+        <trans-unit id="txt_CA" translate="yes" xml:space="preserve">
+          <source>Chiffre d'affaires</source>
+          <target state="new">Chiffre d'affaires</target>
+        </trans-unit>
       </group>
     </body>
   </file>

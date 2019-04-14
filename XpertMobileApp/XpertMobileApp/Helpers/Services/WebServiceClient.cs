@@ -60,6 +60,15 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<STAT_VTE_BY_USER>(url);
         }
 
+        internal static async Task<STAT_VTE_BY_USER> GetTotalMargeParVendeur(DateTime? startDate, DateTime? endDate)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.TOTAL_MARGE_PAR_VENDEUR_URL);
+            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
+            url += "&endDate=" + endDate?.ToString("yyyyMMdd") + "235959";
+
+            return await RetrievValAauthorizedData<STAT_VTE_BY_USER>(url);
+        }
+
         internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.STATISTIC_URL);

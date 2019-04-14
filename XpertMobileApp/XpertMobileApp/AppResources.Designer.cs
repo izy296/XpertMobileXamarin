@@ -1069,6 +1069,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chiffre d&apos;affaires.
+        /// </summary>
+        internal static string txt_CA {
+            get {
+                return ResourceManager.GetString("txt_CA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Client.
         /// </summary>
         internal static string txt_Client {

@@ -17,6 +17,20 @@ namespace XpertMobileApp.ViewModels
 
         private int elementsCount;
 
+        decimal totalTurnover;
+        public decimal TotalTurnover
+        {
+            get { return totalTurnover; }
+            set { SetProperty(ref totalTurnover, value); }
+        }
+
+        decimal totalMargin;
+        public decimal TotalMargin
+        {
+            get { return totalMargin; }
+            set { SetProperty(ref totalMargin, value); }
+        }
+
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
@@ -89,6 +103,15 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 Items.Clear();
+
+                // Infos de la journée
+                DateTime endDate = DateTime.Now;
+                DateTime startDate = DateTime.Now;
+                STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
+                TotalTurnover = stat.MONTANT_VENTE;
+                TotalMargin = stat.MONTANT_MARGE;
+
+                // liste des ventes
                 await Items.LoadMoreAsync();
             }
             catch (Exception ex)

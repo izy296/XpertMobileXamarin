@@ -18,7 +18,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout  Spacing="10" Padding="0" >
         <!-- Filter -->
         <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
@@ -82,10 +82,45 @@
 
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
-            <ListView x:Name="ItemsListView"
+
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
+                <Grid  BackgroundColor="White" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                        <Label Text="{i18n:Translate txt_Sales}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="0" Padding="0,5" HorizontalOptions="Center">
+                        <Label Text="{i18n:Translate txt_Today}" TextColor="{StaticResource DefaultTextColor}" FontSize="Medium" />
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
+                        <Label Text="{i18n:Translate txt_CA}" TextColor="{StaticResource Primary}"/>
+                        <Label Text="{i18n:Translate txt_Margin}" TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
+                        <Label Text="{Binding TotalTurnover, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                        <Label Text="{Binding TotalMargin, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"
+                   VerticalOptions="Fill" OutlineColor="White" >
+                <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
-                    VerticalOptions="FillAndExpand"
-                    HasUnevenRows="true"
+                    HasUnevenRows="true" 
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -118,6 +153,7 @@
                 </ListView.Footer>
 
             </ListView>
+            </Frame>
         </StackLayout>
     </StackLayout>
 </ContentPage>
