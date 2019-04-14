@@ -7,9 +7,8 @@
              FlowDirection="MatchParent"
              >
     <ContentPage.Content>
-        <ScrollView>
         <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>
@@ -19,7 +18,7 @@
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
@@ -40,7 +39,7 @@
                 </Grid>
             </Frame>
 
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>
@@ -51,9 +50,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                        
+
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                         <Label Text="{i18n:Translate txt_Encaissments}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
@@ -73,50 +72,40 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-            
+
             <!-- Liste des comptes -->
-                <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White"  VerticalOptions="Fill">
-                    <Grid  BackgroundColor="White"  VerticalOptions="Start">
+            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
+                   OutlineColor="White">
+                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
+                        <Label Text="{i18n:Translate txt_Comptes}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                    </StackLayout>
 
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
-                            <Label Text="{i18n:Translate txt_Comptes}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                            <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                        </StackLayout>
-
-                        <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
-                            <ListView x:Name="ItemsListView"
+                    <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
+                        <ListView x:Name="ItemsListView"
                                 ItemsSource="{Binding Items}"
-                                VerticalOptions="Start"
                                 HasUnevenRows="true"
                                 RefreshCommand="{Binding LoadItemsCommand}"
                                 IsPullToRefreshEnabled="true"
                                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                                 CachingStrategy="RecycleElement"
                                 ItemSelected="OnItemSelected" >
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
-                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
-                                                <Label Text="{Binding DESIGN_COMPTE}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource Primary}"/>
-                                                <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="EndAndExpand"/>
-                                            </StackLayout>
-                                        </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
-                    </Grid>
-                </Frame>
-            </StackLayout>
-        </ScrollView>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
+                                            <Label Text="{Binding DESIGN_COMPTE}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource Primary}"/>
+                                            <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="EndAndExpand"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
