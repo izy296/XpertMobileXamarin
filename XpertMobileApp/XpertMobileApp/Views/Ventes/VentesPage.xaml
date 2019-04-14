@@ -116,9 +116,11 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"
-                   VerticalOptions="Fill" OutlineColor="White" >
+
+            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,5"  HasShadow="True"
+                   VerticalOptions="FillAndExpand" OutlineColor="White" >
                 <ListView x:Name="ItemsListView"
+                    VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
                     RefreshCommand="{Binding LoadItemsCommand}"

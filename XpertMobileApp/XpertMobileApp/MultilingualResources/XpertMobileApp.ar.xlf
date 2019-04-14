@@ -567,32 +567,84 @@
         </trans-unit>
         <trans-unit id="txt_InfosProdNbrDaysAnalysed" translate="yes" xml:space="preserve">
           <source>Infos collectées au cours des 30 derniers jours</source>
-          <target state="needs-review-translation">المعلومات تم جمعها في آخر 30 يومًا</target>
-          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+          <target state="translated">المعلومات تم جمعها في آخر 30 يومًا</target>
         </trans-unit>
         <trans-unit id="pn_rfid_inventaire" translate="yes" xml:space="preserve">
           <source>Inventaire RFID</source>
-          <target state="new">Inventaire RFID</target>
+          <target state="translated">جرد RFID</target>
         </trans-unit>
         <trans-unit id="pn_Manquants" translate="yes" xml:space="preserve">
           <source>Manquants</source>
-          <target state="new">Manquants</target>
+          <target state="translated">المفقودة</target>
         </trans-unit>
         <trans-unit id="txt_Search" translate="yes" xml:space="preserve">
           <source>Recherche</source>
-          <target state="new">Recherche</target>
+          <target state="translated">بحث</target>
         </trans-unit>
         <trans-unit id="alrt_msg_multiLotForCodeBarre" translate="yes" xml:space="preserve">
-          <source>il y a plusieurs lots pour ce code à barres!</source>
-          <target state="new">il y a plusieurs lots pour ce code à barres!</target>
+          <source>Il y a plusieurs lots pour ce code à barres !</source>
+          <target state="needs-review-translation">هناك الكثير من الحزم لهذا الباركود!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Typesproduct" translate="yes" xml:space="preserve">
           <source>Type de produit</source>
-          <target state="new">Type de produit</target>
+          <target state="translated">نوع المنتوج</target>
         </trans-unit>
         <trans-unit id="txt_CA" translate="yes" xml:space="preserve">
           <source>Chiffre d'affaires</source>
-          <target state="new">Chiffre d'affaires</target>
+          <target state="translated">حجم الأعمال</target>
+        </trans-unit>
+        <trans-unit id="Alrt_failInitRFID_Reader" translate="yes" xml:space="preserve">
+          <source>L'initialisation du lecteur RFID a échoué!</source>
+          <target state="new">L'initialisation du lecteur RFID a échoué!</target>
+        </trans-unit>
+        <trans-unit id="Alert_Deplicatrd_Rfid_Tages" translate="yes" xml:space="preserve">
+          <source>L'une des Tags scannée est déjà affectées a un lots !</source>
+          <target state="new">L'une des Tags scannée est déjà affectées a un lots !</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NotFondLotFromCodeBarre" translate="yes" xml:space="preserve">
+          <source>Pas de lot correspondants a ce code à barre !</source>
+          <target state="new">Pas de lot correspondants a ce code à barre !</target>
+        </trans-unit>
+        <trans-unit id="btn_Clear_Text" translate="yes" xml:space="preserve">
+          <source>Effacer</source>
+          <target state="new">Effacer</target>
+        </trans-unit>
+        <trans-unit id="btn_Filter_RFID_Text" translate="yes" xml:space="preserve">
+          <source>Config</source>
+          <target state="new">Config</target>
+        </trans-unit>
+        <trans-unit id="btn_scanCodeBarre" translate="yes" xml:space="preserve">
+          <source>Scanner Code à barre</source>
+          <target state="new">Scanner Code à barre</target>
+        </trans-unit>
+        <trans-unit id="btn_scan_Rfid_Text" translate="yes" xml:space="preserve">
+          <source>Balayage</source>
+          <target state="new">Balayage</target>
+        </trans-unit>
+        <trans-unit id="btn_Stop_Scan_Rfid" translate="yes" xml:space="preserve">
+          <source>Arréter</source>
+          <target state="new">Arréter</target>
+        </trans-unit>
+        <trans-unit id="btn_Trait_Rfids_text" translate="yes" xml:space="preserve">
+          <source>Traitement</source>
+          <target state="new">Traitement</target>
+        </trans-unit>
+        <trans-unit id="lbl_Continues_scan_RFID" translate="yes" xml:space="preserve">
+          <source>Continue</source>
+          <target state="new">Continue</target>
+        </trans-unit>
+        <trans-unit id="lbl_DateInventqire_Text" translate="yes" xml:space="preserve">
+          <source>Date :</source>
+          <target state="new">Date :</target>
+        </trans-unit>
+        <trans-unit id="lbl_lot_txt" translate="yes" xml:space="preserve">
+          <source>Lot.</source>
+          <target state="new">Lot.</target>
+        </trans-unit>
+        <trans-unit id="lbl_NumInventaire" translate="yes" xml:space="preserve">
+          <source>Num inventaire :</source>
+          <target state="new">Num inventaire :</target>
         </trans-unit>
       </group>
     </body>
