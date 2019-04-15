@@ -555,6 +555,9 @@
   <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
     <value>No lot corresponding to this bar code !</value>
   </data>
+  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+    <value>No open inventory!</value>
+  </data>
   <data name="btn_Clear_Text" xml:space="preserve">
     <value>Wipe off</value>
   </data>

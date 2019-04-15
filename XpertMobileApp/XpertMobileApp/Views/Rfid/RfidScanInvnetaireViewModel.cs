@@ -55,7 +55,7 @@ namespace XpertMobileApp.ViewModels
 
         public RfidScanInvnetaireViewModel()
         {
-            Title = AppResources.pn_RfidScan;
+            Title = AppResources.pn_rfid_inventaire;
             SaveInventaireCommand = new Command(async () => await UpdateCurentInventaire());
             
             loadInventaireInfo = new Command(async () => await ExecuteLoadInvntaireInfoCommand());
@@ -95,7 +95,7 @@ namespace XpertMobileApp.ViewModels
                 if (App.IsConected)
                 {
                     if (CurrentInv == null) {
-                         await UserDialogs.Instance.AlertAsync("pas d'inventaire ouvert !", AppResources.alrt_msg_Alert,
+                         await UserDialogs.Instance.AlertAsync(AppResources.alrt_notOpenInventary_Text, AppResources.alrt_msg_Alert,
                                     AppResources.alrt_msg_Ok);
                         
                     } else {

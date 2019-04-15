@@ -241,6 +241,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pas d&apos;inventaire ouvert !.
+        /// </summary>
+        internal static string alrt_notOpenInventary_Text {
+            get {
+                return ResourceManager.GetString("alrt_notOpenInventary_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Bonjour.
         /// </summary>
         internal static string app_speech_Hello {

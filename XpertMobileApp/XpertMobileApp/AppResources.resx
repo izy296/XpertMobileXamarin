@@ -588,4 +588,7 @@
   <data name="lbl_NumInventaire" xml:space="preserve">
     <value>Num inventaire :</value>
   </data>
+  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+    <value>Pas d'inventaire ouvert !</value>
+  </data>
 </root>

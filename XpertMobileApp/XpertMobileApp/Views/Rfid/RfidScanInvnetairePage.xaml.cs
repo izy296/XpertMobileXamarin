@@ -161,8 +161,7 @@ namespace XpertMobileApp.Views
         }
         private void UpdateInventaire_Clicked(object sender, EventArgs e)
         {
-            if (viewModel.InventoredStock != null
-                && viewModel.InventoredStock.Count > 2) {
+            if (viewModel.InventoredStock != null) {
                 viewModel.SaveInventaireCommand.Execute(null);
                 UpdateInventaire.IsEnabled = false;
                 Clear();
@@ -184,7 +183,6 @@ namespace XpertMobileApp.Views
                     viewModel.StockCount++;
                     viewModel.InventoredStock.Add(item);
                 }
-                viewModel.StockCount -= 2;
                 UpdateInventaire.IsEnabled = true;
                 TraiteRfids.IsEnabled = true;
             }
