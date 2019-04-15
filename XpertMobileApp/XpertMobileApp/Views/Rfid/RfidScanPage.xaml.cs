@@ -260,6 +260,7 @@ namespace XpertMobileApp.Views
 
         public void ReciveData(string data)
         {
+            _simpleAudioPlayer.Play();
             viewModel.CODE_BARRE_LOT = data;
             loadLotsInfo.Execute(null);
         }
