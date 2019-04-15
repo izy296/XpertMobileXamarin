@@ -74,11 +74,15 @@ namespace XpertMobileApp.Helpers
 
         public static string PRODUITS_DETAILS_URL = "GetProduitDetails";
 
+        public static string PRODUITS_REF_DETAILS_URL = "GetProduitRefDetails";
+
         public static string PRODUITS_FAMILLES_URL = "GetProduitsFamilles";
 
         public static string PRODUITS_TYPES_URL = "GetProduitsTypes";
 
         public static string PRODUITS_LOTS_URL = "GetLots";
+
+        public static string PRODUITS_LOTS_REF_URL = "GetLotsFromRef";
 
         // Manquants
         public static string MANQUANTS_URL = "Manquants";

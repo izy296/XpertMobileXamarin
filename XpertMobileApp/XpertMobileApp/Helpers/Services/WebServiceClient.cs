@@ -394,10 +394,26 @@ namespace XpertMobileApp.Services
             return await RetrievValAauthorizedData<View_AssistantCommandes>(url);
         }
 
+        public static async Task<View_AssistantCommandes> GetProduitRefDetails(string refProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_REF_DETAILS_URL);
+            url += WSApi2.AddParam(url, "refProduit", refProduit);
+
+            return await RetrievValAauthorizedData<View_AssistantCommandes>(url);
+        }
+
         public static async Task<List<View_STK_STOCK>> GetLots(string codeProduit)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_LOTS_URL);
             url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+
+            return await RetrievAauthorizedData<View_STK_STOCK>(url);
+        }
+
+        public static async Task<List<View_STK_STOCK>> GetLotsFromRef(string refProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_LOTS_REF_URL);
+            url += WSApi2.AddParam(url, "refProduit", refProduit);
 
             return await RetrievAauthorizedData<View_STK_STOCK>(url);
         }

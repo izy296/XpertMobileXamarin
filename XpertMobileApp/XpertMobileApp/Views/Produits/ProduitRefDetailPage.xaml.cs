@@ -12,7 +12,7 @@ using XpertMobileApp.ViewModels;
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProduitDetailPage : ContentPage
+	public partial class ProduitRefDetailPage : ContentPage
 	{
         ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK> viewModel;
 
@@ -23,19 +23,12 @@ namespace XpertMobileApp.Views
             set { item = value; }
         }
 
-        public ProduitDetailPage(STK_PRODUITS prod)
-        {
-            InitializeComponent();
-
-            this.Item = prod;
-        }
-
-        public ProduitDetailPage(string codeProd)
+        public ProduitRefDetailPage(string refProd)
         {
             InitializeComponent();
 
             Item = new STK_PRODUITS();
-            Item.CODE_PRODUIT = codeProd;
+            Item.REFERENCE = refProd;
         }
 
         private string getFormatedValue(object value)
@@ -73,9 +66,10 @@ namespace XpertMobileApp.Views
             {
                 if (this.viewModel == null)
                 { 
-                    var ProdInfos = await WebServiceClient.GetProduitDetails(this.Item.CODE_PRODUIT);
+                    var ProdInfos = await WebServiceClient.GetProduitRefDetails(this.Item.REFERENCE);
 
                     BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK>(ProdInfos, Item.CODE_PRODUIT);
+
                     this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
                 }
                 viewModel.LoadRowsCommand.Execute(null);
@@ -101,7 +95,7 @@ namespace XpertMobileApp.Views
             try
             {
                 viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetLots(this.Item.CODE_PRODUIT);
+                var itemsC = await WebServiceClient.GetLotsFromRef(this.Item.REFERENCE);
 
                 UpdateItemIndex(itemsC);
 
@@ -129,11 +123,6 @@ namespace XpertMobileApp.Views
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
-        }
-
-        private async void RefBtn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ProduitRefDetailPage(item.REFERENCE));            
         }
     }
 }
