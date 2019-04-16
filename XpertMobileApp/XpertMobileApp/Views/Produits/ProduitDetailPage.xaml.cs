@@ -132,8 +132,8 @@ namespace XpertMobileApp.Views
         }
 
         private async void RefBtn_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ProduitRefDetailPage(item.REFERENCE));            
+        {            
+            await Navigation.PushAsync(new ProduitRefDetailPage(viewModel.Item.REFERENCE));            
         }
     }
 }
