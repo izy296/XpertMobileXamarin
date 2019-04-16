@@ -596,55 +596,55 @@
         </trans-unit>
         <trans-unit id="Alrt_failInitRFID_Reader" translate="yes" xml:space="preserve">
           <source>L'initialisation du lecteur RFID a échoué!</source>
-          <target state="new">L'initialisation du lecteur RFID a échoué!</target>
+          <target state="translated">Initialization of the RFID reader failed!</target>
         </trans-unit>
         <trans-unit id="Alert_Deplicatrd_Rfid_Tages" translate="yes" xml:space="preserve">
           <source>L'une des Tags scannée est déjà affectées a un lots !</source>
-          <target state="new">L'une des Tags scannée est déjà affectées a un lots !</target>
+          <target state="translated">One of the scanned tags is already assigned to a batch!</target>
         </trans-unit>
         <trans-unit id="alrt_msg_NotFondLotFromCodeBarre" translate="yes" xml:space="preserve">
-          <source>Pas de lot correspondants a ce code à barre !</source>
-          <target state="new">Pas de lot correspondants a ce code à barre !</target>
+          <source>Pas de lot correspondants a ce code à barre!</source>
+          <target state="translated">No batch matches this bar code!</target>
         </trans-unit>
         <trans-unit id="btn_Clear_Text" translate="yes" xml:space="preserve">
           <source>Effacer</source>
-          <target state="new">Effacer</target>
+          <target state="translated">Delete</target>
         </trans-unit>
         <trans-unit id="btn_Filter_RFID_Text" translate="yes" xml:space="preserve">
           <source>Config</source>
-          <target state="new">Config</target>
+          <target state="translated">Config</target>
         </trans-unit>
         <trans-unit id="btn_scanCodeBarre" translate="yes" xml:space="preserve">
           <source>Scanner Code à barre</source>
-          <target state="new">Scanner Code à barre</target>
+          <target state="translated">Scan Bar Code</target>
         </trans-unit>
         <trans-unit id="btn_scan_Rfid_Text" translate="yes" xml:space="preserve">
           <source>Balayage</source>
-          <target state="new">Balayage</target>
+          <target state="translated">Scanning</target>
         </trans-unit>
         <trans-unit id="btn_Stop_Scan_Rfid" translate="yes" xml:space="preserve">
           <source>Arréter</source>
-          <target state="new">Arréter</target>
+          <target state="translated">Stop</target>
         </trans-unit>
         <trans-unit id="btn_Trait_Rfids_text" translate="yes" xml:space="preserve">
           <source>Traitement</source>
-          <target state="new">Traitement</target>
+          <target state="translated">Processing</target>
         </trans-unit>
         <trans-unit id="lbl_Continues_scan_RFID" translate="yes" xml:space="preserve">
           <source>Continue</source>
-          <target state="new">Continue</target>
+          <target state="translated">Continue</target>
         </trans-unit>
         <trans-unit id="lbl_DateInventqire_Text" translate="yes" xml:space="preserve">
           <source>Date :</source>
-          <target state="new">Date :</target>
+          <target state="translated">Date :</target>
         </trans-unit>
         <trans-unit id="lbl_lot_txt" translate="yes" xml:space="preserve">
           <source>Lot.</source>
-          <target state="new">Lot.</target>
+          <target state="translated">Batch.</target>
         </trans-unit>
         <trans-unit id="lbl_NumInventaire" translate="yes" xml:space="preserve">
           <source>Num inventaire :</source>
-          <target state="new">Num inventaire :</target>
+          <target state="translated">Num inventory :</target>
         </trans-unit>
       </group>
     </body>

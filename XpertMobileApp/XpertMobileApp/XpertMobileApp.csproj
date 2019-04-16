@@ -90,6 +90,9 @@
     <Compile Update="Views\Manquants\ManquantsTemplate.xaml.cs">
       <DependentUpon>ManquantsTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Produits\ProduitRefDetailPage.xaml.cs">
+      <DependentUpon>ProduitRefDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
       <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
     </Compile>
@@ -98,6 +101,9 @@
     </Compile>
     <Compile Update="Views\Produits\ProduitsPage.xaml.cs">
       <DependentUpon>ProduitsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\Stk_RefRowElementTemplate.xaml.cs">
+      <DependentUpon>Stk_RefRowElementTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Produits\Stk_RowElementTemplate.xaml.cs">
       <DependentUpon>Stk_RowElementTemplate.xaml</DependentUpon>
