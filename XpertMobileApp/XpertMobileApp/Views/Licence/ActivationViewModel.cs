@@ -34,6 +34,7 @@ namespace XpertMobileApp.ViewModels
 
                 IsBusy = true;
 
+                Client.DeviceId = DInfos.GetDeviceId();
                 LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
 
                 await App.ClientDatabase.SaveItemAsync(Client);
