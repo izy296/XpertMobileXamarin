@@ -1,8 +1,7 @@
-﻿using XpertMobileApp.Models;
-using SQLite;
+﻿using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xamarin.Forms;
+using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.Data
 {

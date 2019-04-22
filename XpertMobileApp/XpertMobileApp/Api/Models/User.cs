@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.Models
 {

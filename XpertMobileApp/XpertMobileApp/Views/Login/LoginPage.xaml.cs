@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;

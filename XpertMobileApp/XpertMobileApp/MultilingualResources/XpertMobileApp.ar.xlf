@@ -646,6 +646,10 @@
           <source>Num inventaire :</source>
           <target state="translated">رقم المخزون :</target>
         </trans-unit>
+        <trans-unit id="alrt_notOpenInventary_Text" translate="yes" xml:space="preserve">
+          <source>Pas d'inventaire ouvert !</source>
+          <target state="new">Pas d'inventaire ouvert !</target>
+        </trans-unit>
       </group>
     </body>
   </file>

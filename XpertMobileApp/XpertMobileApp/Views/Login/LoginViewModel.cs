@@ -1,9 +1,6 @@
 ﻿using Acr.UserDialogs;
-using System;
 using System.Threading.Tasks;
-using System.Windows.Input;
-
-using Xamarin.Forms;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 

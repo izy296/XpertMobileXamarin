@@ -603,8 +603,9 @@
           <target state="translated">One of the scanned tags is already assigned to a batch!</target>
         </trans-unit>
         <trans-unit id="alrt_msg_NotFondLotFromCodeBarre" translate="yes" xml:space="preserve">
-          <source>Pas de lot correspondants a ce code à barre!</source>
-          <target state="translated">No batch matches this bar code!</target>
+          <source>Pas de lot correspondants a ce code à barre !</source>
+          <target state="needs-review-translation">No batch matches this bar code!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="btn_Clear_Text" translate="yes" xml:space="preserve">
           <source>Effacer</source>
@@ -645,6 +646,10 @@
         <trans-unit id="lbl_NumInventaire" translate="yes" xml:space="preserve">
           <source>Num inventaire :</source>
           <target state="translated">Num inventory :</target>
+        </trans-unit>
+        <trans-unit id="alrt_notOpenInventary_Text" translate="yes" xml:space="preserve">
+          <source>Pas d'inventaire ouvert !</source>
+          <target state="new">Pas d'inventaire ouvert !</target>
         </trans-unit>
       </group>
     </body>

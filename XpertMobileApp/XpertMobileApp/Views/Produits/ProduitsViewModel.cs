@@ -227,6 +227,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+
         async Task ExecuteLoadTypesCommand()
         {
             /*
