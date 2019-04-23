@@ -63,16 +63,14 @@
                         Margin="30, 0, 30, 10"/>
 
             <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Comptes}"
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Comptes}"
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                 SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
                                 TextColor="Black"
-                                SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 10"                 
                                 x:Name="ComptesPicker"/>
 
-
-            <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                 <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_ApplyFilter_Clicked"/>

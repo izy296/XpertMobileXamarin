@@ -19,6 +19,19 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new EncaissementsViewModel();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Items.Count == 0)
+                LoadStats(EncaissDisplayType.All);
+
+            if (viewModel.Comptes.Count == 0)
+                viewModel.LoadExtrasDataCommand.Execute(null);
+        }
+
+        #region Afficher / ajouter un element
+
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as View_TRS_ENCAISS;
@@ -36,16 +49,9 @@ namespace XpertMobileApp.Views
             await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
+        #endregion
 
-            if (viewModel.Items.Count == 0)
-                LoadStats(EncaissDisplayType.All);
-
-            if (viewModel.Comptes.Count == 0)
-                viewModel.LoadComptesCommand.Execute(null);
-        }
+        #region filtres
 
         private EncaissDisplayType GetSelectedType(Button btn)
         {
@@ -109,26 +115,17 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {
-            // Pas possible de binder une date nullable a picker de date Xamarin en attendant de trouver une solution on affect manuelement
-            // viewModel.StartDate = dp_StartDate.Date;
-            // viewModel.EndDate = dp_EndDate.Date;            
+        {         
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            // Anuler les filtres 
-            //viewModel.StartDate = null;
-            //viewModel.EndDate = null;
-            viewModel.SelectedCompte = null;
+           //  viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+           // viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        #endregion 
     }
 }

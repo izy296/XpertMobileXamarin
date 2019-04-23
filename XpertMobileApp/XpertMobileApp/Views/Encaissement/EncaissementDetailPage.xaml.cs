@@ -26,7 +26,7 @@ namespace XpertMobileApp.Views.Encaissement
             displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
 
             // TODO put into th generic view model 
-            MessagingCenter.Subscribe<EncaissementsViewModel, View_TRS_ENCAISS>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
+            MessagingCenter.Subscribe<MsgCenter, View_TRS_ENCAISS>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
             {
                 displayObject(typeof(View_TRS_ENCAISS), item);
                 // viewModel.Item = item;
@@ -135,7 +135,7 @@ namespace XpertMobileApp.Views.Encaissement
             var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_DeleteConfirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
             if (res)
             {
-                MessagingCenter.Send(this, MCDico.DELETE_ITEM, viewModel.Item);
+                MessagingCenter.Send(App.MsgCenter, MCDico.DELETE_ITEM, viewModel.Item);
                 await Navigation.PopAsync();
             }
         }

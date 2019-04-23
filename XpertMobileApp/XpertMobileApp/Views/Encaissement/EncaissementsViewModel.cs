@@ -1,11 +1,14 @@
 ﻿using Acr.UserDialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
@@ -15,210 +18,54 @@ namespace XpertMobileApp.ViewModels
 {
     public enum EncaissDisplayType { None, All, ENC, DEC };
 
-    public class EncaissementsViewModel : BaseViewModel
+    public class EncaissementsViewModel : CrudBaseViewModel<TRS_ENCAISS, View_TRS_ENCAISS>
     {
-        private const int PageSize = 10;
-
-        private int elementsCount;
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.UtcNow.AddDays(-1);
-        public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public InfiniteScrollCollection<View_TRS_ENCAISS> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
-        public Command AddItemCommand { get; set; }
-        public Command DeleteItemCommand { get; set; }
-        public Command UpdateItemCommand { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
+
+        public DateTime EndDate { get; set; } = DateTime.Now;
 
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
         public View_BSE_COMPTE SelectedCompte { get; set; }
-        public Command LoadComptesCommand { get; set; }
 
         public EncaissementsViewModel()
         {
             Title = AppResources.pn_encaissement;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
-            LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
-
-            // Listing
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            // Ajout
-            AddItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteAddItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.ADD_ITEM, async (obj, item) =>
-            {
-                AddItemCommand.Execute(item);
-            });
-
-            // Supression
-            DeleteItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteDeleteItemCommand(item));
-            MessagingCenter.Subscribe<EncaissementDetailPage, View_TRS_ENCAISS>(this, MCDico.DELETE_ITEM, async (obj, item) =>
-            {
-                DeleteItemCommand.Execute(item);
-            });
-
-            // Modification
-            UpdateItemCommand = new Command<View_TRS_ENCAISS>(async (View_TRS_ENCAISS item) => await ExecuteUpdateItemCommand(item));
-            MessagingCenter.Subscribe<NewEncaissementPage, View_TRS_ENCAISS>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
-            {
-                UpdateItemCommand.Execute(item);
-            });
-
-            // chargement infini
-            Items = new InfiniteScrollCollection<View_TRS_ENCAISS>
-            {
-                OnLoadMore = async () =>
-                {
-                    IsBusy = true;
-
-                    // Recupérer le type a afficher ENC,DEC or All
-                    string type = GetCurrentType();
-
-                    DateTime dt = StartDate.ToUniversalTime();
-
-                    
-                    elementsCount = await WebServiceClient.GetEncaissementsCount(App.RestServiceUrl, type, "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
-
-                    // load the next page
-                    var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetEncaissements(App.RestServiceUrl, type, page.ToString(), "all", StartDate, EndDate, "", "", SelectedCompte?.CODE_COMPTE);
-
-                    XpertHelper.UpdateItemIndex(items);
-
-                    IsBusy = false;
-
-                    // return the items that need to be added
-                    return items;
-                },
-                OnCanLoadMore = () =>
-                {
-                    return Items.Count < elementsCount;
-                }
-            };
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        async Task ExecuteUpdateItemCommand(View_TRS_ENCAISS item)
+        protected override Dictionary<string, string> GetFilterParams()
         {
-            try
-            {
-                if (App.IsConected)
-                {
-                    var newItem = item as View_TRS_ENCAISS;
 
-                    // Save the added Item in the local bdd
-                    // await DataStore.DeleteItemAsync(newItem);
+            Dictionary<string, string> result = base.GetFilterParams();
+            string type = GetCurrentType();
 
-                    // TODO : test if connected else mark as not synchronizd
-                    View_TRS_ENCAISS result = await WebServiceClient.UpdateEncaissement(newItem);
-                    MessagingCenter.Send(this, MCDico.REFRESH_ITEM, result);
-                    if (result != null)
-                    {
-                        int idx = Items.IndexOf(item);
-                        Items[idx] = result;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+            result.Add("type", type);            
+            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
+            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+                result.Add("codeCompte", SelectedCompte?.CODE_COMPTE);
+
+            // result.Add("id_caisse", "all");
+            // result.Add("codeMotif", "all");
+            // result.Add("codeTiers", "all");
+
+            return result;
         }
 
-        async Task ExecuteDeleteItemCommand(View_TRS_ENCAISS item)
+        protected override void OnAfterLoadItems(IEnumerable<View_TRS_ENCAISS> list)
         {
-            try
-            {
-                if (App.IsConected)
-                {
-                    var newItem = item as View_TRS_ENCAISS;
+            base.OnAfterLoadItems(list);
 
-                    // Save the added Item in the local bdd
-                    // await DataStore.DeleteItemAsync(newItem);
-
-                    // TODO : test if connected else mark as not synchronizd
-                    bool result = await WebServiceClient.DeleteEncaissement(newItem);
-                    if (result)
-                    {
-                        Items.Remove(item);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        async Task ExecuteAddItemCommand(View_TRS_ENCAISS item)
-        {
-            try
-            { 
-                if (App.IsConected)
-                { 
-                    var newItem = item as View_TRS_ENCAISS;
-
-                    // Save the added Item in the local bdd
-                    //  await DataStore.AddItemAsync(newItem);
-
-                    // TODO : test if connected else mark as not synchronizd
-                    View_TRS_ENCAISS result = await WebServiceClient.SaveEncaissements(newItem);
-
-                    Items.Insert(0, result);
-
-                    UpdateItemIndex<View_TRS_ENCAISS>(Items);
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private void UpdateItemIndex<T>(InfiniteScrollCollection<T> items)
-        {
             int i = 0;
-            foreach (var item in items)
+            foreach (var item in list)
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
-            }
-        }
-
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                Items.Clear();
-                await Items.LoadMoreAsync();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
 
@@ -241,17 +88,15 @@ namespace XpertMobileApp.ViewModels
             return type;
         }
 
-        async Task ExecuteLoadComptesCommand()
+        async Task ExecuteLoadExtrasDataCommand()
         {
-            /*
+            
             if (IsBusy)
                 return;
-            */
-
-            IsBusy = true;
-
+            
             try
             {
+                IsBusy = true;
                 Comptes.Clear();
                 var itemsC = await WebServiceClient.getComptes();
                 foreach (var itemC in itemsC)
@@ -261,7 +106,7 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
             finally

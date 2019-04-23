@@ -10,6 +10,7 @@ using Xpert.Common.WSClient.Services;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Api.ViewModels
@@ -61,21 +62,21 @@ namespace XpertMobileApp.Api.ViewModels
 
             // Ajout
             AddItemCommand = new Command<TView>(async (TView item) => await ExecuteAddItemCommand(item));
-            MessagingCenter.Subscribe<MessagingCenter, TView>(this, MCDico.ADD_ITEM, async (obj, item) =>
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.ADD_ITEM, async (obj, item) =>
             {
                 AddItemCommand.Execute(item);
             });
 
             // Supression
             DeleteItemCommand = new Command<string>(async (string idElem) => await ExecuteDeleteItemCommand(idElem));
-            MessagingCenter.Subscribe<MessagingCenter, TView>(this, MCDico.DELETE_ITEM, async (obj, item) =>
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.DELETE_ITEM, async (obj, item) =>
             {
                 DeleteItemCommand.Execute(item);
             });
 
             // Modification
             UpdateItemCommand = new Command<TView>(async (TView item) => await ExecuteUpdateItemCommand(item));
-            MessagingCenter.Subscribe<MessagingCenter, TView>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
             {
                 UpdateItemCommand.Execute(item);
             });
@@ -86,7 +87,6 @@ namespace XpertMobileApp.Api.ViewModels
                 OnLoadMore = async () =>
                 {
                     IsBusy = true;
-
 
                     elementsCount = await service.ItemsCount(GetFilterParams());
 

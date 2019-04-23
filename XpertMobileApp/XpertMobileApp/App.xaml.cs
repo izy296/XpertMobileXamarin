@@ -27,6 +27,7 @@ namespace XpertMobileApp
 
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
+        public static MsgCenter MsgCenter = new MsgCenter();
 
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;

@@ -105,10 +105,11 @@ namespace XpertMobileApp.Views.Encaissement
 
             if(string.IsNullOrEmpty(Item.CODE_ENCAISS))
             { 
-                MessagingCenter.Send(this, MCDico.ADD_ITEM, Item);
-            } else
+                MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+            }
+            else
             {
-                MessagingCenter.Send(this, MCDico.UPDATE_ITEM, Item);
+                MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
             }
 
             await Navigation.PopModalAsync();
