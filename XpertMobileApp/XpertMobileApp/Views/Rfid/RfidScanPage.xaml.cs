@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.Services.CODE_BARRE;
 using XpertMobileApp.DAL;
@@ -211,7 +212,7 @@ namespace XpertMobileApp.Views
                 int result = await WebServiceClient.AddRfids(rfids);
                 if(result==4) await DisplayAlert(AppResources.Alert_Deplicatrd_Rfid_Tages, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-            catch (XpertException e)
+            catch (XpertWebException e)
             {
                 await DisplayAlert(e.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }

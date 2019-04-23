@@ -4,6 +4,8 @@ using Acr.UserDialogs;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Common.WSClient.Helpers;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Data;
@@ -46,11 +48,12 @@ namespace XpertMobileApp.ViewModels
 
                 return Client;
             }
-            catch (XpertException ex)
+            catch (XpertWebException ex)
             {
-                if(ex.Code == XpertException.ERROR_XPERT_UNKNOWN)
+                if(ex.Code == XpertWebException.ERROR_XPERT_UNKNOWN)
                 {
-                    await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
                 }
                 else
                 { 

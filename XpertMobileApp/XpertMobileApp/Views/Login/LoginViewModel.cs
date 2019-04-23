@@ -20,9 +20,9 @@ namespace XpertMobileApp.ViewModels
                 Token result = await WebServiceClient.Login(App.RestServiceUrl, user.UserName, user.PassWord);
                 return result != null ? result : new Token();
             }
-            catch (XpertException e)
+            catch (XpertWebException e)
             {
-                if (e.Code == XpertException.ERROR_XPERT_INCORRECTPASSWORD)
+                if (e.Code == XpertWebException.ERROR_XPERT_INCORRECTPASSWORD)
                 {
                     await UserDialogs.Instance.AlertAsync(AppResources.err_msg_IncorrectLoginInfos, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }

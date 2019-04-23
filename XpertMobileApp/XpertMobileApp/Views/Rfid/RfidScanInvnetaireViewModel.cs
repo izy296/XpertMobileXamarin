@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -111,7 +112,7 @@ namespace XpertMobileApp.ViewModels
 
                 }
             }
-            catch (XpertException e)
+            catch (XpertWebException e)
             {
                 await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
                                     AppResources.alrt_msg_Ok);

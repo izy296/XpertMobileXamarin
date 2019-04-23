@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using XpertMobileApp.Services;
 using Acr.UserDialogs;
 using XpertMobileApp.Helpers;
+using Xpert.Common.WSClient.Model;
+using Xpert.Common.WSClient.Helpers;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -94,11 +96,12 @@ namespace XpertMobileApp.ViewModels
 
                 return true;
             }
-            catch (XpertException ex)
+            catch (XpertWebException ex)
             {
-                if (ex.Code == XpertException.ERROR_XPERT_UNKNOWN)
+                if (ex.Code == XpertWebException.ERROR_XPERT_UNKNOWN)
                 {
-                    await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
                 }
                 else
                 {

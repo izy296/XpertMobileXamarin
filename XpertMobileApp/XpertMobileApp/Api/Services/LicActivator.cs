@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Common.WSClient.Model;
 using Xpert.Key_Activator;
 using XpertMobileApp.Data;
 using XpertMobileApp.Models;
@@ -70,7 +71,7 @@ namespace XpertMobileApp.Api.Services
             }
             else
             {
-                throw new XpertException("Invlide licence", XpertException.ERROR_XPERT_INVALIDELICENCE);
+                throw new XpertWebException("Invlide licence", XpertWebException.ERROR_XPERT_INVALIDELICENCE);
             }
         }
 

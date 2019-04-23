@@ -38,9 +38,9 @@ namespace XpertMobileApp.Services
                 string url = baseUrl + "Token";
                 return await WSApi2.Log_in(url, username, password);
             }
-            catch (XpertException e)
+            catch (XpertWebException e)
             {
-                throw new XpertException(e.Message, e.Code);
+                throw new XpertWebException(e.Message, e.Code);
             }
         }
 
@@ -56,8 +56,8 @@ namespace XpertMobileApp.Services
         internal static async Task<List<STAT_VTE_BY_USER>> GetMargeParVendeur(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.MARGE_PAR_VENDEUR_URL);
-            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
-            url += "&endDate=" + endDate?.ToString("yyyyMMdd") + "235959";
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
 
             return await RetrievAauthorizedData<STAT_VTE_BY_USER>(url);
         }
@@ -65,8 +65,8 @@ namespace XpertMobileApp.Services
         internal static async Task<STAT_VTE_BY_USER> GetTotalMargeParVendeur(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.TOTAL_MARGE_PAR_VENDEUR_URL);
-            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
-            url += "&endDate=" + endDate?.ToString("yyyyMMdd") + "235959";
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
 
             return await RetrievValAauthorizedData<STAT_VTE_BY_USER>(url);
         }
@@ -74,8 +74,8 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_TRS_ENCAISS>> GetStatisticEncaiss(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.STATISTIC_URL);
-            url += "?startDate=" + startDate?.ToString("yyyyMMdd") + "000000";
-            url += "&endDate=" + endDate?.ToString("yyyyMMdd")+"235959";
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
 
             return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
         }

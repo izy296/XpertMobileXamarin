@@ -21,6 +21,7 @@
   <ItemGroup>
     <Compile Remove="Api\INetworkConnection.cs" />
     <Compile Remove="Api\Models\Token.cs" />
+    <Compile Remove="Api\Models\XpertException.cs" />
     <Compile Remove="Api\Services\WSApi2.cs" />
     <Compile Remove="Views\Items\ItemsPage.xaml.cs" />
     <Compile Remove="Views\Items\ItemsViewModel.cs" />
