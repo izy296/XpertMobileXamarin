@@ -25,6 +25,13 @@ namespace XpertMobileApp.Api.ViewModels
 
         private int elementsCount;
 
+        bool isLoadExtrasBusy = false;
+        public bool IsLoadExtrasBusy
+        {
+            get { return isLoadExtrasBusy; }
+            set { SetProperty(ref isLoadExtrasBusy, value); }
+        }
+
         public InfiniteScrollCollection<TView> Items { get; set; }
 
         public Command LoadItemsCommand { get; set; }

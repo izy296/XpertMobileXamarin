@@ -56,9 +56,12 @@ namespace XpertMobileApp.Views
 
             if (viewModel.Items.Count == 0)
                 LoadStats();
+
+          //  if (viewModel.Familles.Count == 0)
+                viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
-        private void LoadStats()
+        private async void LoadStats()
         {
             viewModel.LoadItemsCommand.Execute(null);
         }

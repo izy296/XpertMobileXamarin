@@ -39,14 +39,11 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if(viewModel.Familles.Count == 0)
-                viewModel.LoadFamillesCommand.Execute(null);
-
-            if (viewModel.Types.Count == 0)
-                viewModel.LoadTypesCommand.Execute(null);
-
             if (viewModel.Items.Count == 0)
                 LoadStats();
+
+            if (viewModel.Familles.Count == 0)
+                viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
@@ -65,21 +62,14 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {
-            // Pas possible de binder une date nullable a picker de date Xamarin en attendant de trouver une solution on affect manuelement
-            // viewModel.StartDate = dp_StartDate.Date;
-            // viewModel.EndDate = dp_EndDate.Date;            
+        {         
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            // Anuler les filtres 
-            // viewModel.StartDate = null;
-            // viewModel.EndDate = null;
-            // viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            // viewModel.LoadItemsCommand.Execute(null);            
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)

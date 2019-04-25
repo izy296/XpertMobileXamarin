@@ -307,43 +307,6 @@ namespace XpertMobileApp.Services
         
         #region Ventes
 
-        public static async Task<int> GetVentesCount(string type, string idCaisse, DateTime? startDate, DateTime? endDate, string codeClient, string codeMotif, string codeUser)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_COUNT);
-
-            url += WSApi2.AddParam(url, "type", type);
-            url += WSApi2.AddParam(url, "id_caisse", idCaisse);
-            url += WSApi2.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
-            url += WSApi2.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
-            if (!string.IsNullOrEmpty(codeUser))
-                url += WSApi2.AddParam(url, "codeUser", codeUser);
-            if (!string.IsNullOrEmpty(codeClient))
-                url += WSApi2.AddParam(url, "codeClient", codeClient);
-            if (!string.IsNullOrEmpty(codeMotif))
-                url += WSApi2.AddParam(url, "codeMotif", codeMotif);
-
-            return await RetrievValAauthorizedData<int>(url);
-        }
-
-        public static async Task<List<View_VTE_VENTE>> GetVentes(string type, string page, string idCaisse, DateTime? startDate, DateTime? endDate, string codeClient, string codeMotif, string codeUser)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_PER_PAGE_URL);
-
-            url += WSApi2.AddParam(url, "type", type);
-            url += WSApi2.AddParam(url, "page", page);
-            url += WSApi2.AddParam(url, "id_caisse", idCaisse);
-            url += WSApi2.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
-            url += WSApi2.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
-            if (!string.IsNullOrEmpty(codeUser))
-                url += WSApi2.AddParam(url, "codeUser", codeUser);
-            if (!string.IsNullOrEmpty(codeClient))
-                url += WSApi2.AddParam(url, "codeClient", codeClient);
-            if (!string.IsNullOrEmpty(codeMotif))
-                url += WSApi2.AddParam(url, "codeMotif", codeMotif);
-
-            return await RetrievAauthorizedData<View_VTE_VENTE>(url);
-        }
-
         public static async Task<List<View_VTE_JOURNAL_DETAIL>> GetVenteDetails(string codeVente)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_DETAILS_URL);

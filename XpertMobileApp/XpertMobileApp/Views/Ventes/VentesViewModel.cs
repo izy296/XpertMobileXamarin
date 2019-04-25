@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
 
-    public class VentesViewModel : BaseViewModel
+    public class VentesViewModel : CrudBaseViewModel<VTE_VENTE, View_VTE_VENTE>
     {
-        private const int PageSize = 10;
-
-        private int elementsCount;
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -38,9 +36,6 @@ namespace XpertMobileApp.ViewModels
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public InfiniteScrollCollection<View_VTE_VENTE> Items { get; set; }
-        public Command LoadItemsCommand { get; set; }
-
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
         public View_BSE_COMPTE SelectedCompte { get; set; }
         public Command LoadComptesCommand { get; set; }
@@ -57,39 +52,33 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_Ventes;
 
-            // Listing
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            // chargement infini
-            Items = new InfiniteScrollCollection<View_VTE_VENTE>
-            {
-                OnLoadMore = async () =>
-                {
-                    IsBusy = true;
-                    
-                    elementsCount = await WebServiceClient.GetVentesCount("all", "all", StartDate, EndDate, SelectedTiers?.CODE_TIERS, "", SelectedCompte?.CODE_COMPTE);
-
-                    // load the next page
-                    var page = (Items.Count / PageSize) + 1;
-                    var items = await WebServiceClient.GetVentes("all", page.ToString(), "all", StartDate, EndDate, SelectedTiers?.CODE_TIERS, "", SelectedCompte?.CODE_COMPTE);
-                    UpdateItemIndex(items);
-
-                    IsBusy = false;
-
-                    // return the items that need to be added
-                    return items;
-                },
-                OnCanLoadMore = () =>
-                {
-                    return Items.Count < elementsCount;
-                }
-            };
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        private void UpdateItemIndex<T>(List<T> items)
+        protected override Dictionary<string, string> GetFilterParams()
         {
+            Dictionary<string, string> result = base.GetFilterParams();
+
+            // result.Add("type", "all");
+            // result.Add("idCaisse", "all");
+            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
+            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+
+            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                result.Add("codeClient", SelectedTiers?.CODE_TIERS);
+
+            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+                result.Add("codeUser", SelectedCompte?.CODE_COMPTE);
+
+            return result;
+        }
+
+        protected override void OnAfterLoadItems(IEnumerable<View_VTE_VENTE> list)
+        {
+            base.OnAfterLoadItems(list);
+
             int i = 0;
-            foreach (var item in items)
+            foreach (var item in list)
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
@@ -105,13 +94,6 @@ namespace XpertMobileApp.ViewModels
             {
                 Items.Clear();
 
-                // Infos de la journée
-                DateTime endDate = DateTime.Now;
-                DateTime startDate = DateTime.Now;
-                STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
-                TotalTurnover = stat.MONTANT_VENTE;
-                TotalMargin = stat.MONTANT_MARGE;
-
                 // liste des ventes
                 await Items.LoadMoreAsync();
             }
@@ -126,23 +108,25 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadComptesCommand()
+        async Task ExecuteLoadExtrasDataCommand()
         {
-            /*
-            if (IsBusy)
-                return;
-            */
 
-            IsBusy = true;
+            if (IsLoadExtrasBusy)
+                return;
 
             try
             {
-                Comptes.Clear();
-                var itemsC = await WebServiceClient.getComptes();
-                foreach (var itemC in itemsC)
-                {
-                    Comptes.Add(itemC);
-                }
+                IsLoadExtrasBusy = true;
+
+                // Infos de la journée
+                DateTime endDate = DateTime.Now;
+                DateTime startDate = DateTime.Now;
+                STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
+                TotalTurnover = stat.MONTANT_VENTE;
+                TotalMargin = stat.MONTANT_MARGE;
+
+                // await ExecuteLoadFamillesCommand();
+                // await ExecuteLoadTypesCommand();
             }
             catch (Exception ex)
             {
@@ -151,7 +135,7 @@ namespace XpertMobileApp.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                IsLoadExtrasBusy = false;
             }
         }
     }

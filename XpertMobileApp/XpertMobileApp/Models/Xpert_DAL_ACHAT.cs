@@ -56,6 +56,11 @@ namespace XpertMobileApp.DAL
         public bool IS_PRINCEPS { get; set; }
         public decimal TARIF_CVM { get; set; } // money(19,4)
 
+
+    }
+
+    public partial class View_STK_PRODUITS : STK_PRODUITS
+    {
         public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
         public string DESIGN_DCI { get; set; } // nvarchar(50)
         public decimal QTE_STOCK { get; set; } // numeric(18,2)

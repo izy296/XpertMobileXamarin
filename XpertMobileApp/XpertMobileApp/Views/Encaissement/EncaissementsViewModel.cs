@@ -91,12 +91,12 @@ namespace XpertMobileApp.ViewModels
         async Task ExecuteLoadExtrasDataCommand()
         {
             
-            if (IsBusy)
+            if (IsLoadExtrasBusy)
                 return;
             
             try
             {
-                IsBusy = true;
+                IsLoadExtrasBusy = true;
                 Comptes.Clear();
                 var itemsC = await WebServiceClient.getComptes();
                 foreach (var itemC in itemsC)
@@ -111,7 +111,7 @@ namespace XpertMobileApp.ViewModels
             }
             finally
             {
-                IsBusy = false;
+                IsLoadExtrasBusy = false;
             }
         }
     }

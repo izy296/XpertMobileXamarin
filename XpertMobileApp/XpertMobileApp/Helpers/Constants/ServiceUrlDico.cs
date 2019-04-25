@@ -55,11 +55,7 @@ namespace XpertMobileApp.Helpers
 
         // Ventes
 
-        public static string VENTES_URL = "Ventes";
-
-        public static string VENTES_COUNT = "GetVentesCount";
-
-        public static string VENTES_PER_PAGE_URL = "GetVentes";
+        public static string VENTES_URL = "VTE_VENTE";
 
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
