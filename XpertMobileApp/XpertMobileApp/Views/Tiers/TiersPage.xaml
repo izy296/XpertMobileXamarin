@@ -39,7 +39,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+                <!--
             <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
             <DatePicker Grid.Column="0" Grid.Row="1" 
                         x:Name="dp_StartDate"                        
@@ -55,10 +55,10 @@
                     TextColor="Black"
                     Date="{Binding EndDate, Mode=TwoWay}"
                     Margin="15, 0, 15, 10"/>
-
+-->
             <!-- Types -->
-            <Label Grid.Column="0" Grid.Row="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3"  ItemsSource="{Binding Types}"
+            <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Types}"
                      ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
                      SelectedItem="{Binding SelectedType}"
                      TextColor="Black"
@@ -66,8 +66,8 @@
                      x:Name="TypesPicker"/>
             
             <!-- Familles -->
-            <Label Grid.Column="1" Grid.Row="2" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Familles}"
+            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="1" Grid.Row="1" ItemsSource="{Binding Familles}"
                          ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
                          SelectedItem="{Binding SelectedFamille}"
                          TextColor="Black"
@@ -75,8 +75,8 @@
                          x:Name="FamillesPicker"/>
 
             <!-- Searched text -->
-            <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
-                <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+                <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
             
             <!-- Button -->

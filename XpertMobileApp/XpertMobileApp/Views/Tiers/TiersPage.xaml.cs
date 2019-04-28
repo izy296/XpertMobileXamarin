@@ -55,14 +55,11 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Familles.Count == 0)
-                viewModel.LoadFamillesCommand.Execute(null);
-
-            if (viewModel.Types.Count == 0)
-                viewModel.LoadTypesCommand.Execute(null);
-
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
+
+            if (viewModel.Familles.Count == 0)
+                viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)

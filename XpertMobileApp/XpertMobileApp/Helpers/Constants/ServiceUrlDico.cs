@@ -28,13 +28,13 @@ namespace XpertMobileApp.Helpers
 
         public static string COMPTES_URL = "comptes";
 
-        public static string TIERS_URL = "tiers";
+
+        public static string TIERS_URL = "TRS_TIERS";
 
         public static string TIERS_FAMILLES_URL = "GetTiersFamilles";
 
         public static string TIERS_TYPES_URL = "GetTiersTypes";
 
-        public static string TIERS_COUNT_URL = "TiersCount";
 
         public static string STATISTIC_URL = "statistic";
 
@@ -47,6 +47,8 @@ namespace XpertMobileApp.Helpers
         public static string TOTAL_MARGE_PAR_VENDEUR_URL = "GetTotalMargin";
         
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
+
+        // Activation
 
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
@@ -64,10 +66,6 @@ namespace XpertMobileApp.Helpers
 
         public static string PRODUITS_URL = "Produits";
 
-        public static string PRODUITS_COUNT = "GetProduitsCount";
-
-        public static string PRODUITS_PER_PAGE_URL = "GetProduits";
-
         public static string PRODUITS_DETAILS_URL = "GetProduitDetails";
 
         public static string PRODUITS_REF_DETAILS_URL = "GetProduitRefDetails";
@@ -81,12 +79,7 @@ namespace XpertMobileApp.Helpers
         public static string PRODUITS_LOTS_REF_URL = "GetLotsFromRef";
 
         // Manquants
-        public static string MANQUANTS_URL = "Manquants";
-
-        public static string MANQUANTS_COUNT = "GetManquantsCount";
-
-        public static string MANQUANTS_PER_PAGE_URL = "GetManquants";
-
+        public static string MANQUANTS_URL = "ACH_MANQUANTS";
         public static string MANQUANTS_TYPES_URL = "GetManquantsTypes";
 
 

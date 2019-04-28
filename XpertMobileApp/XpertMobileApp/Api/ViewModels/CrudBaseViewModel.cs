@@ -34,6 +34,8 @@ namespace XpertMobileApp.Api.ViewModels
 
         public InfiniteScrollCollection<TView> Items { get; set; }
 
+        public TView SelectedItem { get; set; }
+
         public Command LoadItemsCommand { get; set; }
 
         public Command LoadExtrasDataCommand { get; set; }

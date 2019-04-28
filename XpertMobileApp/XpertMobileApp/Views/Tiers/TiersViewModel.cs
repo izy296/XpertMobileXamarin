@@ -1,112 +1,80 @@
 ﻿using Acr.UserDialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 
 
 namespace XpertMobileApp.ViewModels
-    {
-        public class TiersViewModel : BaseViewModel
-        {
-            private const int PageSize = 10;
+{
+     public class TiersViewModel : CrudBaseViewModel<TRS_TIERS, View_TRS_TIERS>
+     {
+        
+         public TiersViewModel()
+         {
+             Title = AppResources.pn_Tiers;
 
-            public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-6);
-            public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
+             Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
+             Types = new ObservableCollection<BSE_TABLE_TYPE>();
 
-            private int elementsCount;
+             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+         }
 
-            public string SearchedText { get; set; }
+         protected override Dictionary<string, string> GetFilterParams()
+         {
+             Dictionary<string, string> result = base.GetFilterParams();
 
-            public InfiniteScrollCollection<View_TRS_TIERS> Items { get; set; }
-            public View_TRS_TIERS SelectedItem { get; set; }
-            public Command LoadItemsCommand { get; set; }
+             result.Add("searchText", SearchedText);
 
-            public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
-            public View_BSE_TIERS_FAMILLE SelectedFamille { get; set; }
-            public Command LoadFamillesCommand { get; set; }
+             if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
+                 result.Add("famille", SelectedFamille?.CODE_FAMILLE);
 
-            public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
-            public BSE_TABLE_TYPE SelectedType { get; set; }
-            public Command LoadTypesCommand { get; set; }
+             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                 result.Add("type", SelectedType?.CODE_TYPE);
 
-        public TiersViewModel(string title = "")
+             return result;
+         }
+
+         protected override void OnAfterLoadItems(IEnumerable<View_TRS_TIERS> list)
+         {
+            base.OnAfterLoadItems(list);
+
+            int i = 0;
+            foreach (var item in list)
             {
-                Title = AppResources.pn_Tiers;
-
-                Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
-                LoadFamillesCommand = new Command(async () => await ExecuteLoadFamillesCommand());
-
-                Types = new ObservableCollection<BSE_TABLE_TYPE>();
-                LoadTypesCommand = new Command(async () => await ExecuteLoadTypesCommand());
-
-                LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-                // chargement infini
-                Items = new InfiniteScrollCollection<View_TRS_TIERS>
-                {
-                    OnLoadMore = async () =>
-                    {
-                        try
-                        { 
-
-                            IsBusy = true;
-
-                            elementsCount = await WebServiceClient.GetTiersCount(SelectedType?.CODE_TYPE, 
-                                                 SelectedFamille?.CODE_FAMILLE, this.SearchedText);
-
-                            // load the next page
-                            var page = (Items.Count / PageSize) + 1;
-                            var items = await WebServiceClient.GetTiers(page, PageSize, SelectedType?.CODE_TYPE, 
-                                                SelectedFamille?.CODE_FAMILLE, this.SearchedText);
-
-                            XpertHelper.UpdateItemIndex(items);
-
-                            IsBusy = false;
-
-                            // return the items that need to be added
-                            return items;
-                        }
-                        catch (Exception ex)
-                        {
-                            throw new Exception(ex.Message);
-                        }
-                    },
-                    OnCanLoadMore = () =>
-                    {
-                        return Items.Count < elementsCount;
-                    }
-                };
+                i += 1;
+                (item as BASE_CLASS).Index = i;
             }
+         }
 
-        async Task ExecuteLoadTypesCommand()
-        {
-            /*
-            if (IsBusy)
+        #region filters data
+
+         public string SearchedText { get; set; }
+
+         public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
+         public View_BSE_TIERS_FAMILLE SelectedFamille { get; set; }
+
+         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
+         public BSE_TABLE_TYPE SelectedType { get; set; }
+
+         async Task ExecuteLoadExtrasDataCommand()
+         {
+
+            if (IsLoadExtrasBusy)
                 return;
-
-            IsBusy = true;
-            */
 
             try
             {
-                Types.Clear();
-                var itemsC = await WebServiceClient.getTiersTypes();
-
-                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                Types.Add(allElem);
-
-                foreach (var itemC in itemsC)
-                {
-                    Types.Add(itemC);
-                }
+                IsLoadExtrasBusy = true;
+                await ExecuteLoadFamillesCommand();
+                await ExecuteLoadTypesCommand();
             }
             catch (Exception ex)
             {
@@ -115,70 +83,60 @@ namespace XpertMobileApp.ViewModels
             }
             finally
             {
-               // IsBusy = false;
+                IsLoadExtrasBusy = false;
             }
-        }
+         }
 
+         async Task ExecuteLoadTypesCommand()
+         {
 
-        async Task ExecuteLoadFamillesCommand()
-        {
-            /*
-            if (IsBusy)
-                return;
+             try
+             {
+                 Types.Clear();
+                 var itemsC = await WebServiceClient.getTiersTypes();
 
-            IsBusy = true;
-            */
+                 BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                 allElem.CODE_TYPE = "";
+                 allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                 Types.Add(allElem);
 
+                 foreach (var itemC in itemsC)
+                 {
+                     Types.Add(itemC);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                     AppResources.alrt_msg_Ok);
+             }
+         }
 
+         async Task ExecuteLoadFamillesCommand()
+         {
 
-            try
-            {
-                Familles.Clear();
-                var itemsC = await WebServiceClient.getTiersFamilles();
+             try
+             {
+                 Familles.Clear();
+                 var itemsC = await WebServiceClient.getTiersFamilles();
 
-                View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
-                allElem.CODE_FAMILLE = "";
-                allElem.DESIGN_FAMILLE = AppResources.txt_All;
-                Familles.Add(allElem);
+                 View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
+                 allElem.CODE_FAMILLE = "";
+                 allElem.DESIGN_FAMILLE = AppResources.txt_All;
+                 Familles.Add(allElem);
 
-                foreach (var itemC in itemsC)
-                {
-                    Familles.Add(itemC);
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-               // IsBusy = false;
-            }
-        }
+                 foreach (var itemC in itemsC)
+                 {
+                     Familles.Add(itemC);
+                 }
+             }
+             catch (Exception ex)
+             {
+                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                     AppResources.alrt_msg_Ok);
+             }
+         }
 
-        async Task ExecuteLoadItemsCommand()
-            {
-                if (IsBusy)
-                    return;
-
-                try
-                {
-                    Items.Clear();
-                    await Items.LoadMoreAsync();
-                }
-                catch (Exception ex)
-                {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-                finally
-                {
-
-                }
-
-            }
-
-
-        }
+        #endregion
     }
+}

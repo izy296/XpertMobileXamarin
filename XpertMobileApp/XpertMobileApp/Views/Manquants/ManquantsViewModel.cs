@@ -1,98 +1,97 @@
 ﻿using Acr.UserDialogs;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 
-
 namespace XpertMobileApp.ViewModels
 {
-    public class ManquantsViewModel : BaseViewModel
+    public class ManquantsViewModel : CrudBaseViewModel<ACH_MANQUANTS, View_ACH_MANQUANTS>
     {
-        private const int PageSize = 10;
 
-        public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
-        public DateTime EndDate { get; set; } = DateTime.Now;
-
-        private int elementsCount;
-
-        public string SearchedText { get; set; }
-
-        public InfiniteScrollCollection<View_ACH_MANQUANTS> Items { get; set; }
-        public View_TRS_TIERS SelectedItem { get; set; }
-        public Command LoadItemsCommand { get; set; }
-
-        public ObservableCollection<BSE_DOCUMENT_STATUS> Types { get; set; }
-        public BSE_DOCUMENT_STATUS SelectedType { get; set; }
-        public Command LoadTypesCommand { get; set; }
-
-        public ObservableCollection<BSE_TABLE_TYPE> TypesProduit { get; set; }
-        public BSE_TABLE_TYPE SelectedTypesProduit { get; set; }
-        public Command LoadTypesProduitCommand { get; set; }
-
-        public ManquantsViewModel(string title = "")
+        public ManquantsViewModel()
         {
             Title = AppResources.pn_Manquants;
 
             Types = new ObservableCollection<BSE_DOCUMENT_STATUS>();
-            LoadTypesCommand = new Command(async () => await ExecuteLoadTypesCommand());
 
             TypesProduit = new ObservableCollection<BSE_TABLE_TYPE>();
-            LoadTypesProduitCommand = new Command(async () => await ExecuteLoadTypesProduitCommand());
 
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+        }
 
-            // chargement infini
-            Items = new InfiniteScrollCollection<View_ACH_MANQUANTS>
+        protected override Dictionary<string, string> GetFilterParams()
+        {
+            Dictionary<string, string> result = base.GetFilterParams();
+
+            result.Add("searchText", SearchedText);
+
+            if (!string.IsNullOrEmpty(SelectedTypesProduit?.CODE_TYPE))
+                result.Add("typeProduit", SelectedTypesProduit?.CODE_TYPE);
+
+            if (!string.IsNullOrEmpty(SelectedType?.CODE_STATUS))
+                result.Add("type", SelectedType?.CODE_STATUS);
+
+            return result;
+        }
+
+        protected override void OnAfterLoadItems(IEnumerable<View_ACH_MANQUANTS> list)
+        {
+            base.OnAfterLoadItems(list);
+
+            int i = 0;
+            foreach (var item in list)
             {
-                OnLoadMore = async () =>
-                {
-                    try
-                    { 
+                i += 1;
+                (item as BASE_CLASS).Index = i;
+            }
+        }
 
-                        IsBusy = true;
+        #region filters data
 
-                        elementsCount = await WebServiceClient.GetManquantsCount(SelectedType?.CODE_STATUS, SelectedTypesProduit?.CODE_TYPE,
-                                             this.SearchedText);
+        public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
+        public DateTime EndDate { get; set; } = DateTime.Now;
 
-                        // load the next page
-                        var page = (Items.Count / PageSize) + 1;
-                        var items = await WebServiceClient.GetManquants(page, PageSize, SelectedType?.CODE_STATUS, SelectedTypesProduit?.CODE_TYPE,
-                                            this.SearchedText);
+        public string SearchedText { get; set; }
 
-                        XpertHelper.UpdateItemIndex(items);
+        public ObservableCollection<BSE_DOCUMENT_STATUS> Types { get; set; }
+        public BSE_DOCUMENT_STATUS SelectedType { get; set; }
 
-                        IsBusy = false;
+        public ObservableCollection<BSE_TABLE_TYPE> TypesProduit { get; set; }
+        public BSE_TABLE_TYPE SelectedTypesProduit { get; set; }
 
-                        // return the items that need to be added
-                        return items;
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.Message);
-                    }
-                },
-                OnCanLoadMore = () =>
-                {
-                    return Items.Count < elementsCount;
-                }
-            };
+        async Task ExecuteLoadExtrasDataCommand()
+        {
+
+            if (IsLoadExtrasBusy)
+                return;
+
+            try
+            {
+                IsLoadExtrasBusy = true;
+                await ExecuteLoadTypesProduitCommand();
+                await ExecuteLoadTypesCommand();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsLoadExtrasBusy = false;
+            }
         }
 
         async Task ExecuteLoadTypesProduitCommand()
         {
-            /*
-            if (IsBusy)
-             return;
-
-            IsBusy = true;
-            */
-
 
             try
             {
@@ -114,20 +113,11 @@ namespace XpertMobileApp.ViewModels
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
-            finally
-            {
-                IsBusy = false;
-            }
+
         }
 
         async Task ExecuteLoadTypesCommand()
         {
-            /*
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-            */
 
             try
             {
@@ -150,32 +140,8 @@ namespace XpertMobileApp.ViewModels
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
-            finally
-            {
-               // IsBusy = false;
-            }
         }
 
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                Items.Clear();
-                await Items.LoadMoreAsync();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-
-            }
-
-        }
+        #endregion
     }
 }

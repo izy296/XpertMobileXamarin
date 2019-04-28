@@ -98,39 +98,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
         }
 
-        internal static async Task<List<View_TRS_TIERS>> GetTiers(int page = 1, int nbrRows = 10, string type = "", string famille= "", string searchText = "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_URL);
 
-            url += WSApi2.AddParam(url, "page", Convert.ToString(page));
-            url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-            if (!string.IsNullOrEmpty(famille))
-                url += WSApi2.AddParam(url, "famille", famille);
-
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievAauthorizedData<View_TRS_TIERS>(url);
-        }
-
-        public static async Task<int> GetTiersCount(string type = "", string famille = "", string searchText= "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIERS_COUNT_URL);
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-
-            if (!string.IsNullOrEmpty(famille))
-                url += WSApi2.AddParam(url, "famille", famille);
-
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievValAauthorizedData<int>(url);
-        }
 
         #endregion
 
@@ -143,130 +111,10 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
         }
 
-        internal static async Task<List<View_ACH_MANQUANTS>> GetManquants(int page = 1, int nbrRows = 10, string type = "", string typeProduit = "", string searchText = "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.MANQUANTS_PER_PAGE_URL);
 
-            url += WSApi2.AddParam(url, "page", Convert.ToString(page));
-            url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-
-            if (!string.IsNullOrEmpty(typeProduit))
-                url += WSApi2.AddParam(url, "typeProduit", typeProduit);
-
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievAauthorizedData<View_ACH_MANQUANTS>(url);
-        }
-
-        public static async Task<int> GetManquantsCount(string type = "", string typeProduit = "", string searchText = "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.MANQUANTS_COUNT);
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-
-            if (!string.IsNullOrEmpty(typeProduit))
-                url += WSApi2.AddParam(url, "typeProduit", typeProduit);
-
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievValAauthorizedData<int>(url);
-        }
         #endregion
 
         #region Encaissements
-
-        public static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string baseUrl, string type, string page, string idCaisse, DateTime? startDate, DateTime? endDate, string codeTiers, string codeMotif, string codeCompte)
-        {
-            string url = WSApi2.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ENCAISSEMENT_PER_PAGE_URL);
-
-            url += WSApi2.AddParam(url, "type", type);
-            url += WSApi2.AddParam(url, "page", page);
-            url += WSApi2.AddParam(url, "id_caisse", idCaisse);
-            url += WSApi2.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
-            url += WSApi2.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
-            if (!string.IsNullOrEmpty(codeTiers))
-                url += WSApi2.AddParam(url, "codeTiers", codeTiers);
-            if (!string.IsNullOrEmpty(codeCompte))
-                url += WSApi2.AddParam(url, "codeCompte", codeCompte);
-            if (!string.IsNullOrEmpty(codeMotif))
-                url += WSApi2.AddParam(url, "codeMotif", codeMotif);
-
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
-        }
-
-        public static async Task<int> GetEncaissementsCount(string baseUrl, string type, string idCaisse, DateTime? startDate, DateTime? endDate, string codeTiers, string codeMotif, string codeCompte)
-        {
-            string url = WSApi2.CreateLink(baseUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ENCAISSEMENTS_COUNT);
-
-            url += WSApi2.AddParam(url, "type", type);
-            url += WSApi2.AddParam(url, "id_caisse", idCaisse);
-            url += WSApi2.AddParam(url, "startDate", startDate?.ToString("yyyyMMddHHmmss"));
-            url += WSApi2.AddParam(url, "endDate", endDate?.ToString("yyyyMMddHHmmss"));
-            if (!string.IsNullOrEmpty(codeTiers))
-                url += WSApi2.AddParam(url, "codeTiers", codeTiers);
-            if (!string.IsNullOrEmpty(codeCompte))
-                url += WSApi2.AddParam(url, "codeCompte", codeCompte);
-            if (!string.IsNullOrEmpty(codeMotif))
-                url += WSApi2.AddParam(url, "codeMotif", codeMotif);
-
-            return await RetrievValAauthorizedData<int>(url);
-        }
-
-        internal static async Task<List<View_TRS_ENCAISS>> GetEncaissements(string type)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, type);
-
-            return await RetrievAauthorizedData<View_TRS_ENCAISS>(url);
-        }
-
-        internal static async Task<View_TRS_ENCAISS> AddEncaissement(View_TRS_ENCAISS encaiss)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.ADD_ENCAISSEMENT_URL);
-
-            return await WSApi2.PostAauthorizedValue<View_TRS_ENCAISS, View_TRS_ENCAISS>(url, encaiss, App.User.Token.access_token);
-        }
-
-        internal static async Task<View_TRS_ENCAISS> UpdateEncaissement(View_TRS_ENCAISS encaiss)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.UPDATE_ENCAISSEMENT_URL);
-
-            string strdata = JsonConvert.SerializeObject(encaiss);
-            byte[] data = Encoding.UTF8.GetBytes(strdata);
-            byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
-            string resposeData = Encoding.UTF8.GetString(resultData);
-            return JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
-        }
-
-        internal static async Task<View_TRS_ENCAISS> SaveEncaissements(View_TRS_ENCAISS item)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL);
-            url += ServiceUrlDico.ADD_ENCAISSEMENT_URL;
-            View_TRS_ENCAISS result = null;
-            string strdata = JsonConvert.SerializeObject(item);
-            byte[] data = Encoding.UTF8.GetBytes(strdata);
-            byte[] resultData = await WSApi.ExecutePost(url, data, Token);
-            string resposeData = Encoding.UTF8.GetString(resultData);
-            result = JsonConvert.DeserializeObject<View_TRS_ENCAISS>(resposeData);
-
-            return result;
-        }
-
-        internal static async Task<bool> DeleteEncaissement(View_TRS_ENCAISS encaiss)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.DELETE_ENCAISSEMENT_URL);
-
-            string strdata = JsonConvert.SerializeObject(encaiss);
-            byte[] data = Encoding.UTF8.GetBytes(strdata);            
-            byte[] resultData = await WSApi.ExecutePost(url, data, App.User.Token.access_token);
-            string resposeData = Encoding.UTF8.GetString(resultData);
-            return JsonConvert.DeserializeObject<bool>(resposeData);
-        }
 
         internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetMotifs(string type = "ENC")
         {
@@ -319,37 +167,6 @@ namespace XpertMobileApp.Services
 
         #region Produits
 
-        public static async Task<int> GetProduitsCount(string type = "", string codeFamille = "", string searchText = "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_COUNT);
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-            if (!string.IsNullOrEmpty(codeFamille))
-                url += WSApi2.AddParam(url, "codeFamille", codeFamille);
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievValAauthorizedData<int>(url);
-        }
-
-        public static async Task<List<STK_PRODUITS>> GetProduits(int page = 1, int nbrRows = 10, string type = "", 
-                 string famille = "", string searchText = "")
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_PER_PAGE_URL);
-
-            url += WSApi2.AddParam(url, "page", Convert.ToString(page));
-            url += WSApi2.AddParam(url, "nbrRows", Convert.ToString(nbrRows));
-
-            if (!string.IsNullOrEmpty(type))
-                url += WSApi2.AddParam(url, "type", type);
-            if (!string.IsNullOrEmpty(famille))
-                url += WSApi2.AddParam(url, "famille", famille);
-            if (!string.IsNullOrEmpty(searchText))
-                url += WSApi2.AddParam(url, "searchText", searchText);
-
-            return await RetrievAauthorizedData<STK_PRODUITS>(url);
-        }
 
         public static async Task<View_AssistantCommandes> GetProduitDetails(string codeProduit)
         {

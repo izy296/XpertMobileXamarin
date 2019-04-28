@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views
         {
            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
-
+         
         protected override void OnAppearing()
         {
             base.OnAppearing();

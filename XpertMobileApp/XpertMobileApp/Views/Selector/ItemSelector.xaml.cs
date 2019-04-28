@@ -43,8 +43,7 @@ namespace XpertMobileApp.Views
 
         private async Task btn_Search_Clicked(object sender, EventArgs e)
         {
-            string searchedTxt = ent_Filter.Text;
-            await viewModel.FilterItems(searchedTxt);
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }
