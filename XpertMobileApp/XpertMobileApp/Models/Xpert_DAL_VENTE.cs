@@ -70,8 +70,6 @@ namespace XpertMobileApp.DAL
         public string CODE_MOTIF { get; set; }
         public string CODE_BARRE { get; set; }
         public string N_ORDRE_PSYCHO { get; set; }
-
-
     }
 
     public partial class View_VTE_VENTE : VTE_VENTE
@@ -88,7 +86,7 @@ namespace XpertMobileApp.DAL
             return "N° " + NUM_VENTE;
         }
     }
-    
+
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
         public string CODE_DETAIL { get; set; } // varchar(32)
@@ -200,5 +198,26 @@ namespace XpertMobileApp.DAL
         }
     }
 
+
+    #region Commandes
+
+    public class ACH_COMMANDES : VTE_VENTE
+    {
+    }
+
+    public class View_ACH_COMMANDES : View_VTE_VENTE
+    {
+    }
+
+    public partial class ACH_COMMANDES_DETAILS : VTE_VENTE_DETAIL
+    {
+    }
+
+    public partial class View_ACH_COMMANDES_DETAILS : View_VTE_JOURNAL_DETAIL
+    {
+
+    }
+
+    #endregion
 
 }
