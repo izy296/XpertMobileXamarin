@@ -127,6 +127,11 @@ namespace XpertMobileApp.DAL
 
     }
 
+    public partial class View_VTE_VENTE_PRODUIT : VTE_VENTE_DETAIL
+    {
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+    }
+
     public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL
     {
 
@@ -198,26 +203,43 @@ namespace XpertMobileApp.DAL
         }
     }
 
-
-    #region Commandes
-
-    public class ACH_COMMANDES : VTE_VENTE
+    public class COM_DOC : BASE_CLASS
     {
+        public string Code_doc { get; set; }
+        public string Title { get; set; }
+        public DateTime? Date_doc { get; set; }
+        public string State { get; set; } // smallint(5)
+        public string Creator { get; set; }
+        public string Third { get; set; }
+
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+
+        public decimal TOTAL_DOC { get; set; }
+        public decimal TOTAL_Payed { get; set; }
+        public decimal TOTAL_Rest
+        {
+            get
+            {
+                return TOTAL_DOC - TOTAL_Payed;
+            }
+        }
     }
 
-    public class View_ACH_COMMANDES : View_VTE_VENTE
+    public class COM_DOC_DETAIL : BASE_CLASS
     {
+        public string Code_doc { get; set; }
+        public string Title { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Price { get; set; }
+        public decimal Amount
+        {
+            get
+            {
+                return Quantity * Price;
+            }
+        }
     }
-
-    public partial class ACH_COMMANDES_DETAILS : VTE_VENTE_DETAIL
-    {
-    }
-
-    public partial class View_ACH_COMMANDES_DETAILS : View_VTE_JOURNAL_DETAIL
-    {
-
-    }
-
-    #endregion
-
 }

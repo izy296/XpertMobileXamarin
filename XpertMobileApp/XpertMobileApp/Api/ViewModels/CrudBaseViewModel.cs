@@ -62,9 +62,17 @@ namespace XpertMobileApp.Api.ViewModels
 
         }
 
+        protected virtual string ContoleurName
+        {
+            get
+            {
+                return typeof(TTable).Name;
+            }
+        }
+
         protected virtual void InitConstructor()
         {
-            service = new CrudService<TView>(App.RestServiceUrl, typeof(TTable).Name, App.User.Token);
+            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
 
             // Listing
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());

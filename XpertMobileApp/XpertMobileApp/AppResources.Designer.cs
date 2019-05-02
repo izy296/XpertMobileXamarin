@@ -871,6 +871,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Commandes.
+        /// </summary>
+        internal static string pn_Commandes {
+            get {
+                return ResourceManager.GetString("pn_Commandes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Trésorerie.
         /// </summary>
         internal static string pn_encaissement {

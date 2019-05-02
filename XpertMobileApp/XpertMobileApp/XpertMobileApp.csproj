@@ -93,6 +93,12 @@
     <Compile Update="Views\Commandes\CommandesTemplate.xaml.cs">
       <DependentUpon>CommandesTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Commandes\CommandeDetailPage.xaml.cs">
+      <DependentUpon>CommandeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\RowCmdTemplate.xaml.cs">
+      <DependentUpon>RowCmdTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Encaissement\EncaissementDetailPage.xaml.cs">
       <DependentUpon>EncaissementDetailPage.xaml</DependentUpon>
     </Compile>

@@ -101,7 +101,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <template:VenteTemplate />
+                           <template:CommandesTemplate />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

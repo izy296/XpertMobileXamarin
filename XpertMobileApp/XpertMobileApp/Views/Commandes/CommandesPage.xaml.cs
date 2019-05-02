@@ -35,11 +35,11 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as View_ACH_COMMANDES;
+            var item = args.SelectedItem as View_VTE_VENTE;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new VenteDetailPage(item));
+            await Navigation.PushAsync(new CommandeDetailPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        

@@ -165,6 +165,17 @@ namespace XpertMobileApp.Services
 
         #endregion
 
+
+        #region 
+        public static async Task<List<View_VTE_VENTE_PRODUIT>> GetCommandeDetails(string codeCommande)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.COMMANDE_DETAILS_URL);
+            url += WSApi2.AddParam(url, "codeCommande", codeCommande);
+
+            return await RetrievAauthorizedData<View_VTE_VENTE_PRODUIT>(url);
+        }
+        #endregion
+
         #region Produits
 
 

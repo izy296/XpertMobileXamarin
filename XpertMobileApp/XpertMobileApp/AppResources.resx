@@ -591,4 +591,7 @@
   <data name="alrt_notOpenInventary_Text" xml:space="preserve">
     <value>Pas d'inventaire ouvert !</value>
   </data>
+  <data name="pn_Commandes" xml:space="preserve">
+    <value>Commandes</value>
+  </data>
 </root>

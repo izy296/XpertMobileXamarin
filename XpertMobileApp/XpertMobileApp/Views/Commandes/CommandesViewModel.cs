@@ -13,7 +13,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class CommandesViewModel : CrudBaseViewModel<ACH_COMMANDES, View_ACH_COMMANDES>
+    public class CommandesViewModel : CrudBaseViewModel<VTE_VENTE, View_VTE_VENTE>
     {
 
         decimal totalTurnover;
@@ -50,9 +50,17 @@ namespace XpertMobileApp.ViewModels
 
         public CommandesViewModel()
         {
-            Title = AppResources.pn_Ventes;
+            Title = AppResources.pn_Commandes;
 
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+        }
+
+        protected override string ContoleurName
+        {
+            get
+            {
+                return "VTE_COMMANDE";
+            }
         }
 
         protected override Dictionary<string, string> GetFilterParams()
@@ -73,7 +81,7 @@ namespace XpertMobileApp.ViewModels
             return result;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_ACH_COMMANDES> list)
+        protected override void OnAfterLoadItems(IEnumerable<View_VTE_VENTE> list)
         {
             base.OnAfterLoadItems(list);
 

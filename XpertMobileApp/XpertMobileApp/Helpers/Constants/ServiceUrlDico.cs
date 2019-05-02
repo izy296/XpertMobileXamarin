@@ -61,6 +61,11 @@ namespace XpertMobileApp.Helpers
 
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
+        // Commandes
+
+        public static string VTE_COMMANDE = "VTE_COMMANDE";
+
+        public static string COMMANDE_DETAILS_URL = "GetCommandesDetails";
 
         // Produits
 
