@@ -483,4 +483,10 @@
   <data name="lbl_NumInventaire" xml:space="preserve">
     <value>رقم المخزون :</value>
   </data>
+  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+    <value>لا توجد عملية جرد مفتوحة !</value>
+  </data>
+  <data name="pn_Commandes" xml:space="preserve">
+    <value>الطلبات</value>
+  </data>
 </root>

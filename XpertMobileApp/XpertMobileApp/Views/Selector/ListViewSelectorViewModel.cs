@@ -36,7 +36,7 @@ namespace XpertMobileApp.ViewModels
             Dictionary<string, string> result = base.GetFilterParams();
 
             result.Add("type", "C");
-            result.Add("SearchText", SearchedText);
+            result.Add("searchText", SearchedText);
             return result;
         }
     }

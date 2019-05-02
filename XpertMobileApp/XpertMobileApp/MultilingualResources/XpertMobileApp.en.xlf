@@ -649,7 +649,11 @@
         </trans-unit>
         <trans-unit id="alrt_notOpenInventary_Text" translate="yes" xml:space="preserve">
           <source>Pas d'inventaire ouvert !</source>
-          <target state="new">Pas d'inventaire ouvert !</target>
+          <target state="translated">No inventory open!</target>
+        </trans-unit>
+        <trans-unit id="pn_Commandes" translate="yes" xml:space="preserve">
+          <source>Commandes</source>
+          <target state="translated">Orders</target>
         </trans-unit>
       </group>
     </body>

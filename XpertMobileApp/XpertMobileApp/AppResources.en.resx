@@ -480,4 +480,10 @@
   <data name="lbl_NumInventaire" xml:space="preserve">
     <value>Num inventory :</value>
   </data>
+  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+    <value>No inventory open!</value>
+  </data>
+  <data name="pn_Commandes" xml:space="preserve">
+    <value>Orders</value>
+  </data>
 </root>
