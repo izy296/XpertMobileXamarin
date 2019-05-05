@@ -367,6 +367,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enlever.
+        /// </summary>
+        internal static string cmd_remove {
+            get {
+                return ResourceManager.GetString("cmd_remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Enregistrer.
         /// </summary>
         internal static string cmd_Save {
@@ -916,6 +925,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouvelle commande.
+        /// </summary>
+        internal static string pn_NewCommande {
+            get {
+                return ResourceManager.GetString("pn_NewCommande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Produits.
         /// </summary>
         internal static string pn_Produits {
@@ -1168,6 +1186,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Échéance.
+        /// </summary>
+        internal static string txt_EcheanceDate {
+            get {
+                return ResourceManager.GetString("txt_EcheanceDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Encaissement.
         /// </summary>
         internal static string txt_Encaiss {
@@ -1366,11 +1393,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Scanner.
+        /// </summary>
+        internal static string txt_ScanRow {
+            get {
+                return ResourceManager.GetString("txt_ScanRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Recherche.
         /// </summary>
         internal static string txt_Search {
             get {
                 return ResourceManager.GetString("txt_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sélectionner.
+        /// </summary>
+        internal static string txt_SelectRow {
+            get {
+                return ResourceManager.GetString("txt_SelectRow", resourceCulture);
             }
         }
         

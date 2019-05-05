@@ -87,6 +87,9 @@
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Commandes\NewCommandePage.xaml.cs">
+      <DependentUpon>NewCommandePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Commandes\CommandesPage.xaml.cs">
       <DependentUpon>CommandesPage.xaml</DependentUpon>
     </Compile>
@@ -117,7 +120,7 @@
     <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
       <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Produits\ProduitTemplate.xaml.cs">
+    <Compile Update="Views\Templates\ProduitTemplate.xaml.cs">
       <DependentUpon>ProduitTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Produits\ProduitsPage.xaml.cs">
@@ -141,8 +144,14 @@
     <Compile Update="Views\Rfid\LigneInventaireTemplate.xaml.cs">
       <DependentUpon>LigneInventaireTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Selector\ProductSelector.xaml.cs">
+      <DependentUpon>ProductSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Selector\ItemSelector.xaml.cs">
       <DependentUpon>ItemSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\ProductSelectorTemplate.xaml.cs">
+      <DependentUpon>ProductSelectorTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Ventes\VenteDetailPage.xaml.cs">
       <DependentUpon>VenteDetailPage.xaml</DependentUpon>
@@ -182,6 +191,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\ProductSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\ItemSelector.xaml">
       <Generator>MSBuild:Compile</Generator>

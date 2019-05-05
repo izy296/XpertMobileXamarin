@@ -654,6 +654,26 @@
           <source>Commandes</source>
           <target state="translated">الطلبات</target>
         </trans-unit>
+        <trans-unit id="txt_EcheanceDate" translate="yes" xml:space="preserve">
+          <source>Échéance</source>
+          <target state="new">Échéance</target>
+        </trans-unit>
+        <trans-unit id="txt_ScanRow" translate="yes" xml:space="preserve">
+          <source>Scanner</source>
+          <target state="new">Scanner</target>
+        </trans-unit>
+        <trans-unit id="txt_SelectRow" translate="yes" xml:space="preserve">
+          <source>Sélectionner</source>
+          <target state="new">Sélectionner</target>
+        </trans-unit>
+        <trans-unit id="pn_NewCommande" translate="yes" xml:space="preserve">
+          <source>Nouvelle commande</source>
+          <target state="new">Nouvelle commande</target>
+        </trans-unit>
+        <trans-unit id="cmd_remove" translate="yes" xml:space="preserve">
+          <source>Enlever</source>
+          <target state="new">Enlever</target>
+        </trans-unit>
       </group>
     </body>
   </file>

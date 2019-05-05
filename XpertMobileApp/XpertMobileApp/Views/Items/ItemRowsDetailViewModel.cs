@@ -37,10 +37,11 @@ namespace XpertMobileApp.ViewModels
 
         public ItemRowsDetailViewModel(T obj, string itemId)
         {
-            Title = obj?.ToString();
             Item = obj;
 
             this.ItemId = itemId;
+
+            Title = string.IsNullOrEmpty(ItemId) ? AppResources.pn_NewCommande : obj?.ToString();
 
             // Listing
             ItemRows = new ObservableCollection<TD>();            

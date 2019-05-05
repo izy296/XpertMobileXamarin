@@ -47,7 +47,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            await Navigation.PushModalAsync(new NavigationPage(new NewCommandePage(null)));
         }
 
         protected override void OnAppearing()

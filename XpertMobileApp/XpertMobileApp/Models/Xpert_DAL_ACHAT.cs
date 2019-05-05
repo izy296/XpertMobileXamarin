@@ -1,4 +1,5 @@
 ﻿using System;
+using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.DAL
 {
@@ -68,6 +69,40 @@ namespace XpertMobileApp.DAL
         public string DESIGN_LABO { get; set; } // 
         public string DESIGN_TYPE { get; set; }
         public string DESIGN_FAMILLE { get; set; } // nvarchar(50)
+
+
+        private decimal selectedQUANTITE;
+        public decimal SelectedQUANTITE
+        {
+            get
+            {
+                return selectedQUANTITE;
+            }
+            set
+            {
+                selectedQUANTITE = value;
+                OnPropertyChanged("SelectedQUANTITE");
+                OnPropertyChanged("HasSelectedQUANTITE");
+            }
+        }
+
+        private bool hasSelectedQUANTITE;
+        public bool HasSelectedQUANTITE
+        {
+            get
+            {
+                return SelectedQUANTITE > 0;
+            }
+        }
+
+
+        public string TRUNCATED_DESIGNATION
+        {
+            get
+            {
+                return DESIGNATION.Truncate(40);
+            }
+        }
     }
 
     public class View_AssistantCommandes : BASE_CLASS

@@ -7,15 +7,25 @@ using SQLite;
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
 using System;
+using System.ComponentModel;
 using XpertMobileApp;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.DAL
 {
    
-    public class BASE_CLASS
+    public class BASE_CLASS : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public int Index { get; set; }
+
+        protected void OnPropertyChanged(string propertyName)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
     public partial class TRS_ENCAISS : BASE_CLASS

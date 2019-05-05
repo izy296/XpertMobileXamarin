@@ -594,4 +594,19 @@
   <data name="pn_Commandes" xml:space="preserve">
     <value>Commandes</value>
   </data>
+  <data name="txt_EcheanceDate" xml:space="preserve">
+    <value>Échéance</value>
+  </data>
+  <data name="txt_ScanRow" xml:space="preserve">
+    <value>Scanner</value>
+  </data>
+  <data name="txt_SelectRow" xml:space="preserve">
+    <value>Sélectionner</value>
+  </data>
+  <data name="pn_NewCommande" xml:space="preserve">
+    <value>Nouvelle commande</value>
+  </data>
+  <data name="cmd_remove" xml:space="preserve">
+    <value>Enlever</value>
+  </data>
 </root>
