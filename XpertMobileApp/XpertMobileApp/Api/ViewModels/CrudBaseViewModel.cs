@@ -207,6 +207,8 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     IsBusy = true;
                     await service.AddItemAsync(item);
+                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
                 }
             }
             catch (Exception ex)

@@ -31,10 +31,13 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             itemSelector = new ProductSelector();
+            TiersSelector = new ItemSelector();
 
             this.Item = vente == null ? new View_VTE_VENTE() : vente;
-            if(vente == null) // new item init object
+            if (vente == null) // new item init object
             {
+                this.Item.TYPE_VENTE = "CC";
+                this.Item.DATE_VENTE = DateTime.Now;
                 this.Item.DATE_ECHEANCE = DateTime.Now;
             }
 
@@ -50,6 +53,16 @@ namespace XpertMobileApp.Views.Encaissement
                 });
             });
 
+            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                    viewModel.SelectedTiers = selectedItem;
+                    viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
+                });
+            });
+
             MessagingCenter.Subscribe<ProductSelector, View_STK_PRODUITS>(this, MCDico.REMOVE_ITEM, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -57,6 +70,7 @@ namespace XpertMobileApp.Views.Encaissement
                     this.RemoveNewRow(selectedItem);
                 });
             });
+
         }
 
         private void RemoveNewRow(View_STK_PRODUITS product)
@@ -81,6 +95,7 @@ namespace XpertMobileApp.Views.Encaissement
             if (row == null)
             {
                 row = new View_VTE_VENTE_PRODUIT();
+                row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 row.PRIX_VTE_TTC = product.PRIX_VENTE_HT; // TODO mettre le bon prix
@@ -154,9 +169,42 @@ namespace XpertMobileApp.Views.Encaissement
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
+        private ItemSelector TiersSelector;
+        private async void btn_Select_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(TiersSelector);
+        }
+
         private void RowScan_Clicked(object sender, EventArgs e)
         {
 
+        }
+
+        async void Save_Clicked(object sender, EventArgs e)
+        {
+            if (dp_EcheanceDate.Date < DateTime.Now)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
+                return;
+            }
+
+            this.Item.Details = viewModel.ItemRows.ToList();
+
+            if (string.IsNullOrEmpty(Item.CODE_VENTE))
+            {
+                MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+            }
+            else
+            {
+                MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+            }
+
+            await Navigation.PopModalAsync();
+        }
+
+        async void Cancel_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopModalAsync();
         }
     }
 }

@@ -609,4 +609,7 @@
   <data name="cmd_remove" xml:space="preserve">
     <value>Enlever</value>
   </data>
+  <data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
+    <value>Veuillez corriger la date d'échéance</value>
+  </data>
 </root>

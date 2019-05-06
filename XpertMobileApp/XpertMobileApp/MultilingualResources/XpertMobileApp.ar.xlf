@@ -674,6 +674,10 @@
           <source>Enlever</source>
           <target state="new">Enlever</target>
         </trans-unit>
+        <trans-unit id="error_DateShouldBeGreaterThanToday" translate="yes" xml:space="preserve">
+          <source>Veuillez corriger la date d'échéance</source>
+          <target state="new">Veuillez corriger la date d'échéance</target>
+        </trans-unit>
       </group>
     </body>
   </file>

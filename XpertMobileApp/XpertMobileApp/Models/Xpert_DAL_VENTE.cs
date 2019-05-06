@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace XpertMobileApp.DAL
 {
@@ -85,6 +86,8 @@ namespace XpertMobileApp.DAL
         {
             return "N° " + NUM_VENTE;
         }
+
+        public List<View_VTE_VENTE_PRODUIT> Details { get; set; }
     }
 
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
@@ -143,7 +146,6 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("MT_TTC");
             }
         }
-
     }
 
     public partial class View_VTE_VENTE_PRODUIT : VTE_VENTE_DETAIL

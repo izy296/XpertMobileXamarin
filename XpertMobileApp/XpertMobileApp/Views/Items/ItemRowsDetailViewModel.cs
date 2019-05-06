@@ -14,6 +14,8 @@ namespace XpertMobileApp.ViewModels
     {
         public Command LoadRowsCommand { get; set; }
 
+        public View_TRS_TIERS SelectedTiers { get; set; }
+
         private string itemId;
         public string ItemId
         {

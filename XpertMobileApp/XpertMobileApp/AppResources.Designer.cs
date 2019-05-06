@@ -511,6 +511,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Veuillez corriger la date d&apos;échéance.
+        /// </summary>
+        internal static string error_DateShouldBeGreaterThanToday {
+            get {
+                return ResourceManager.GetString("error_DateShouldBeGreaterThanToday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Veuillez sélectionner un tiers.
         /// </summary>
         internal static string error_ThirdNotEmpty {
