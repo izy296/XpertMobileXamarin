@@ -41,6 +41,17 @@ namespace XpertMobileApp.Views.Encaissement
             });
         }
 
+        void Handle_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
+        {
+            /*
+            if (e.Value.ToString() == "0" || e.Value.ToString() == "0.0")
+                appleAddButton.IsEnabled = false;
+            else
+                appleAddButton.IsEnabled = true;
+            this.AppleCost.Text = "$" + Convert.ToDouble(e.Value) * 0.49;
+            */
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

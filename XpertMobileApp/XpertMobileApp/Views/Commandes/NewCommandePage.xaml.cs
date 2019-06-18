@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views.Encaissement
 {
@@ -70,7 +73,6 @@ namespace XpertMobileApp.Views.Encaissement
                     this.RemoveNewRow(selectedItem);
                 });
             });
-
         }
 
         private void RemoveNewRow(View_STK_PRODUITS product)
@@ -97,6 +99,7 @@ namespace XpertMobileApp.Views.Encaissement
                 row = new View_VTE_VENTE_PRODUIT();
                 row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
+                row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 row.PRIX_VTE_TTC = product.PRIX_VENTE_HT; // TODO mettre le bon prix
                 row.QUANTITE = 1;
@@ -177,8 +180,48 @@ namespace XpertMobileApp.Views.Encaissement
 
         private void RowScan_Clicked(object sender, EventArgs e)
         {
+            var scaner = new ZXingScannerPage();
+            Navigation.PushAsync(scaner);
+            scaner.OnScanResult += (result) =>
+            {
+                scaner.IsScanning = false;
+                Device.BeginInvokeOnMainThread( async() =>
+                    {
+                        await Navigation.PopAsync();
 
+                        await AddScanedProduct(result.Text);
+
+                    });
+            };
         }
+
+        async Task<bool> AddScanedProduct(string cb_prod)
+        {
+            // Cas prdouit déjà ajouté
+            var row = viewModel.ItemRows.Where(e => e.CODE_BARRE_PRODUIT == cb_prod).FirstOrDefault();
+            if(row != null)
+            { 
+                row.QUANTITE += 1;
+                return true;
+            }
+
+            // Cas prdouit pas déjà ajouté
+            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
+
+            if(prods.Count > 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return false;
+            }
+            else if(prods.Count == 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return false;
+            }
+
+            AddNewRow(prods[0]);
+            return true;
+        } 
 
         async void Save_Clicked(object sender, EventArgs e)
         {

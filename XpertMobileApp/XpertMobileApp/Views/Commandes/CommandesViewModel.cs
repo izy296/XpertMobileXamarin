@@ -51,8 +51,6 @@ namespace XpertMobileApp.ViewModels
         public CommandesViewModel()
         {
             Title = AppResources.pn_Commandes;
-
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
         protected override string ContoleurName
@@ -113,37 +111,6 @@ namespace XpertMobileApp.ViewModels
             finally
             {
                 IsBusy = false;
-            }
-        }
-
-        async Task ExecuteLoadExtrasDataCommand()
-        {
-
-            if (IsLoadExtrasBusy)
-                return;
-
-            try
-            {
-                IsLoadExtrasBusy = true;
-
-                // Infos de la journée
-                DateTime endDate = DateTime.Now;
-                DateTime startDate = DateTime.Now;
-                STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
-                TotalTurnover = stat.MONTANT_VENTE;
-                TotalMargin = stat.MONTANT_MARGE;
-
-                // await ExecuteLoadFamillesCommand();
-                // await ExecuteLoadTypesCommand();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsLoadExtrasBusy = false;
             }
         }
     }
