@@ -51,11 +51,14 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="16.3.0.29" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="16.3.0.29" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="16.3.0.29" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.3.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />

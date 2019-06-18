@@ -42,6 +42,8 @@ namespace XpertMobileApp.Droid
 
             UserDialogs.Init(this);
 
+            ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
             LoadApplication(new App());
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
@@ -82,6 +84,11 @@ namespace XpertMobileApp.Droid
 
             }
             // InitPermissions();
+        }
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+        {
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnNewIntent(Intent intent)

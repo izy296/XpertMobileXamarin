@@ -25,6 +25,9 @@ namespace XpertMobileApp.iOS
             // Init popup plugin
             Rg.Plugins.Popup.Popup.Init();
 
+            // init ZXing
+            ZXing.Net.Mobile.Forms.iOS.Platform.Init();
+
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
 
