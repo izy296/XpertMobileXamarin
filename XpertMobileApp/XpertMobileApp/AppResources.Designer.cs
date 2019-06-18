@@ -889,7 +889,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Commandes.
+        ///   Recherche une chaîne localisée semblable à Commandes clients.
         /// </summary>
         internal static string pn_Commandes {
             get {

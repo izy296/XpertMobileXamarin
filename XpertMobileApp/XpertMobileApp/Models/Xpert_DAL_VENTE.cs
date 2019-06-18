@@ -96,6 +96,8 @@ namespace XpertMobileApp.DAL
         public string CODE_VENTE { get; set; } // varchar(32)
         public int? ID_STOCK { get; set; } // int(10)
         public string CODE_PRODUIT { get; set; } // varchar(32)
+        public string CODE_BARRE_PRODUIT { get; set; } // varchar(32)
+        
 
         public decimal PRIX_VTE_TTC { get; set; } // money(19,4)
         public decimal MT_TTC { get; set; } // money(19,4)

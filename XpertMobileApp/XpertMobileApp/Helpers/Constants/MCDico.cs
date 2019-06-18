@@ -21,5 +21,8 @@ namespace XpertMobileApp.Helpers
 
         public static string CODE_BARRE_SCANED = "CODE_BARRE_Scaned";
         public static string Lots_SELECTED = "Lots_Selected";
+
+        // Product
+        public static string PROD_CB_SCANED = "Prod_CB_Scaned";
     }
 }

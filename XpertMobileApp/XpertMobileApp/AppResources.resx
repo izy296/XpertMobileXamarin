@@ -592,7 +592,7 @@
     <value>Pas d'inventaire ouvert !</value>
   </data>
   <data name="pn_Commandes" xml:space="preserve">
-    <value>Commandes</value>
+    <value>Commandes clients</value>
   </data>
   <data name="txt_EcheanceDate" xml:space="preserve">
     <value>Échéance</value>
