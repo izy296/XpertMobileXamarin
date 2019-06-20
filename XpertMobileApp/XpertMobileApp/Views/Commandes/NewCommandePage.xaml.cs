@@ -60,7 +60,7 @@ namespace XpertMobileApp.Views.Encaissement
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                    //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
                     viewModel.SelectedTiers = selectedItem;
                     viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
                 });
@@ -225,12 +225,13 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            /*
             if (dp_EcheanceDate.Date < DateTime.Now)
             {
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
                 return;
             }
-
+            */
             this.Item.Details = viewModel.ItemRows.ToList();
 
             if (string.IsNullOrEmpty(Item.CODE_VENTE))

@@ -4,6 +4,7 @@
              x:Class="XpertMobileApp.Views.Encaissement.NewCommandePage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="{Binding Title}">
 
 
@@ -82,7 +83,20 @@
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
 
-                    <ListView x:Name="ItemsListView"
+                        <syncfusion:SfListView x:Name="ItemsListView" 
+                            ItemsSource="{Binding ItemRows}"
+                            AutoFitMode="Height"
+                                               >
+                            <syncfusion:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <template:RowCmdTemplate />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </syncfusion:SfListView.ItemTemplate>
+                        </syncfusion:SfListView>
+                    <!--
+                        <ListView x:Name="ItemsListView"
                         ItemsSource="{Binding ItemRows}"
                         HasUnevenRows="true"
                         RefreshCommand="{Binding LoadRowsCommand}"
@@ -99,6 +113,7 @@
                         </ListView.ItemTemplate>
 
                     </ListView>
+                    -->
                 </StackLayout>
             </Frame>
             

@@ -34,15 +34,15 @@
                     -->
                     <Label Grid.Column="1" Grid.Row="1" Text="{ Binding PRIX_VTE_TTC, StringFormat='Prix : {0:N2} DA'}" 
                            FontSize="Default" HorizontalOptions="Start" />
-                    
+
                     <StackLayout Grid.Column="2" Grid.Row="1" >
                         <numeric:SfNumericUpDown 
                                     Minimum="0"
                                     SelectAllOnFocus="True"
                           
                                     x:Name="AppleCount" MaximumDecimalDigits="2" HeightRequest="40" MinimumHeightRequest="40"
-                                    ParsingMode="Decimal" FontSize="12" IsEnabled="True"
-                                     TextColor="Black" AllowNull="false" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+                                    ParsingMode="Decimal" FontSize="13" IsEnabled="True"
+                                    TextColor="Black" AllowNull="false" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
 								    FormatString="n" Watermark="Units" Value="{ Binding QUANTITE, Mode=TwoWay }"
                                     SpinButtonAlignment="Both" TextAlignment="Center" >
 
