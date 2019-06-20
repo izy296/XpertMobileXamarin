@@ -612,4 +612,7 @@
   <data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
     <value>Veuillez corriger la date d'échéance</value>
   </data>
+  <data name="pn_Catalogues" xml:space="preserve">
+    <value>Catalogue</value>
+  </data>
 </root>

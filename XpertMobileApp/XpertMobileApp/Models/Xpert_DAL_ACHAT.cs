@@ -57,6 +57,9 @@ namespace XpertMobileApp.DAL
         public bool IS_PRINCEPS { get; set; }
         public decimal TARIF_CVM { get; set; } // money(19,4)
 
+        public bool IS_NEW { get; set; }
+        public bool SHOW_CATALOG { get; set; }
+        public string IMAGE_URL { get; set; }
 
     }
 

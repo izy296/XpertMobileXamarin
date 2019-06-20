@@ -9,6 +9,7 @@ namespace XpertMobileApp.Models
         Home,
         Encaissements,
         Ventes,
+        Catalogues,
         Commandes,
         Tiers,
         Produits,

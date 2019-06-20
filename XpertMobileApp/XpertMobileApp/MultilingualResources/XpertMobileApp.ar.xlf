@@ -679,6 +679,10 @@
           <source>Veuillez corriger la date d'échéance</source>
           <target state="new">Veuillez corriger la date d'échéance</target>
         </trans-unit>
+        <trans-unit id="pn_Catalogues" translate="yes" xml:space="preserve">
+          <source>Catalogue</source>
+          <target state="new">Catalogue</target>
+        </trans-unit>
       </group>
     </body>
   </file>
