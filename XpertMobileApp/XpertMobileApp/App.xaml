@@ -35,6 +35,37 @@
                 <Setter Property="TextColor" Value="White" />
             </Style>
             
+            
+            <!-- Font awesomone -->
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeBrands">
+                <On Platform="Android" 
+          Value="FABrandsRegular400.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FABrandsRegular400.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeSolid">
+                <On Platform="Android" 
+          Value="FA5FreeSolid900.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" 
+          Value="/Assets/FA5FreeSolid900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" 
+                x:Key="FontAwesomeRegular">
+                <On Platform="Android" 
+          Value="FA5FreeRegular400.otf#Regular" />
+                <On Platform="iOS" 
+          Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" 
+          Value="/Assets/FA5FreeRegular400.otf#Font Awesome 5 Free" />
+            </OnPlatform>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

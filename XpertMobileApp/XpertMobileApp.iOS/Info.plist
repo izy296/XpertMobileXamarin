@@ -34,5 +34,12 @@
     <string>XpertMobileApp</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+
+    <key>UIAppFonts</key>
+    <array>
+      <string>FABrandsRegular400.otf</string>
+      <string>FA5FreeRegular400.otf</string>
+      <string>FA5FreeSolid900.otf</string>
+    </array>
 </dict>
 </plist>

@@ -78,8 +78,13 @@
     <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\CloseApplication.cs" />
     <None Include="Entitlements.plist" />
-    <None Include="Info.plist" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <BundleResource Include="Resources\FA5FreeSolid900.otf" />
+    <BundleResource Include="Resources\FABrandsRegular400.otf" />
+    <BundleResource Include="Resources\FA5FreeRegular400.otf" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">

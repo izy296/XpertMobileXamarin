@@ -217,6 +217,15 @@
   <ItemGroup>
     <Folder Include="Microsoft\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\FA5FreeSolid900.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\FABrandsRegular400.otf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\FA5FreeRegular400.otf" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
