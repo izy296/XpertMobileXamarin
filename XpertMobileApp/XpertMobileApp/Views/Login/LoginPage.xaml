@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.LoginPage"
              
@@ -64,15 +65,17 @@
         <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
             <Button x:Name="Btn_Config" Margin="0" 
-                    WidthRequest="50" HeightRequest="50" Image="param_32.png"    
-                    HorizontalOptions="End" BackgroundColor="White"
-                    Text="{i18n:Translate lp_btn_Settings}" Clicked="Settings_Clicked"/>
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" BackgroundColor="White" 
+                    Clicked="Settings_Clicked"/>
             
             <Button x:Name="Btn_Exit" Margin="0" 
-                    WidthRequest="50" HeightRequest="50" Image="logout.png"    
-                    HorizontalOptions="End" BackgroundColor="White"
-                    Text="{i18n:Translate cmd_Disconnect}" Clicked="Exit_Clicked"/>
-            
+                    WidthRequest="50" HeightRequest="50" 
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" BackgroundColor="White" 
+                    Clicked="Exit_Clicked"/>
+
         </StackLayout>
     </Grid>
 </ContentPage>

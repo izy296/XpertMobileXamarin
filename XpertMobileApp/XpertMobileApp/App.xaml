@@ -6,6 +6,25 @@
     <Application.Resources>
         <ResourceDictionary>
 
+            <!-- Font awesomone -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FABrandsRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/FABrandsRegular400.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FA5FreeSolid900.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" Value="/Assets/FA5FreeSolid900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FA5FreeRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" Value="/Assets/FA5FreeRegular400.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+            
             <!--Global Coverters -->
             <local:OddEvenColorConverter x:Key="oddEvenInvert"></local:OddEvenColorConverter>
             
@@ -15,8 +34,8 @@
             <Color x:Key="Accent">#96d1ff</Color>
             <Color x:Key="LightTextColor">#999999</Color>
             <Color x:Key="DefaultTextColor">#000</Color>
-
             <Color x:Key="NavigationPrimary">#2196F3</Color>
+            
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
@@ -34,38 +53,44 @@
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
-            
-            
-            <!-- Font awesomone -->
-            <OnPlatform x:TypeArguments="x:String" 
-                x:Key="FontAwesomeBrands">
-                <On Platform="Android" 
-          Value="FABrandsRegular400.otf#Regular" />
-                <On Platform="iOS" 
-          Value="FontAwesome5Brands-Regular" />
-                <On Platform="UWP" 
-          Value="/Assets/FABrandsRegular400.otf#Font Awesome 5 Brands" />
-            </OnPlatform>
 
-            <OnPlatform x:TypeArguments="x:String" 
-                x:Key="FontAwesomeSolid">
-                <On Platform="Android" 
-          Value="FA5FreeSolid900.otf#Regular" />
-                <On Platform="iOS" 
-          Value="FontAwesome5Free-Solid" />
-                <On Platform="UWP" 
-          Value="/Assets/FA5FreeSolid900.otf#Font Awesome 5 Free" />
-            </OnPlatform>
 
-            <OnPlatform x:TypeArguments="x:String" 
-                x:Key="FontAwesomeRegular">
-                <On Platform="Android" 
-          Value="FA5FreeRegular400.otf#Regular" />
-                <On Platform="iOS" 
-          Value="FontAwesome5Free-Regular" />
-                <On Platform="UWP" 
-          Value="/Assets/FA5FreeRegular400.otf#Font Awesome 5 Free" />
-            </OnPlatform>
+
+
+
+            <!-- Style font awesomone Button -->
+            <Style x:Key="FAwesome-B-Solid" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="FAwesome-B-Brands" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+            </Style>
+
+            <Style x:Key="FAwesome-B-Regular" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+            </Style>
+
+            <!-- Style font awesomone Label -->
+            
+            <Style x:Key="FAwesome-Brands" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
+            </Style>
+
+            <Style x:Key="FAwesome-Regular" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
