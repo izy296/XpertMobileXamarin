@@ -13,6 +13,7 @@ using Android;
 using Android.Support.V4.App;
 using Android.Util;
 using Android.Support.Design.Widget;
+using FFImageLoading.Forms.Platform;
 
 namespace XpertMobileApp.Droid
 {
@@ -41,6 +42,8 @@ namespace XpertMobileApp.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             UserDialogs.Init(this);
+
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);            
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 

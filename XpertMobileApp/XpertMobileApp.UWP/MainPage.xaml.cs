@@ -21,6 +21,8 @@ namespace XpertMobileApp.UWP
         {
             this.InitializeComponent();
 
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
             ZXing.Net.Mobile.Forms.WindowsUniversal.ZXingScannerViewRenderer.Init();
 
             LoadApplication(new XpertMobileApp.App());

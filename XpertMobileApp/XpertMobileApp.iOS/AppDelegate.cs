@@ -25,6 +25,8 @@ namespace XpertMobileApp.iOS
             // Init popup plugin
             Rg.Plugins.Popup.Popup.Init();
 
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init();
+
             // init ZXing
             ZXing.Net.Mobile.Forms.iOS.Platform.Init();
 

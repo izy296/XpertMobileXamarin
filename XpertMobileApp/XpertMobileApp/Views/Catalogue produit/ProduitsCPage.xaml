@@ -5,6 +5,8 @@
              x:Class="XpertMobileApp.Views.ProduitsCPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="{Binding Title}"
              x:Name="Produits">
 
@@ -13,6 +15,7 @@
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="filter.png"/>
+                    <On Platform="Android" Value="filter.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -73,6 +76,7 @@
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
+                    ItemTapped="ItemsListView_ItemTapped"
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
@@ -87,7 +91,53 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
+                            <Grid HeightRequest="180" Margin="4,4,4,2" BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.8*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <ffimageloading:CachedImage Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center"
+			                        DownsampleToViewSize="False"                                            
+			                        Source = "{Binding IMAGE_URL}" 
+                                    CacheDuration = "1"
+                                    CacheType="Memory"
+                                    >
+                                    
+                                </ffimageloading:CachedImage>
+                                <!--
+                                <Image Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Image.Source>
+                                        <UriImageSource Uri="{Binding IMAGE_URL}" 
+			                                CacheValidity="14" 
+			                                CachingEnabled="True"/>
+                                    </Image.Source>
+                                </Image>
+                                
+                                <Image Source="filter.png" WidthRequest="40" HeightRequest="40" Grid.Column="1" 
+                                       VerticalOptions="Start" HorizontalOptions="End" Margin="7" Aspect="AspectFit" />
+                                -->
+                                <Grid Grid.Column="1" Margin="7">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition x:Name="aheader" Height="25" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="45" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid>
+                                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="Black" Font="16"  />
+                                    </Grid> 
+                                    <Label Grid.Row="1" Text="{Binding PRIX_VENTE_TTC, StringFormat='Qte. {0:N2}'}" TextColor="Gray" Font="12"    />
+                                    <numeric:SfNumericUpDown Grid.Row="2" x:Name="AppleCount" MaximumDecimalDigits="0" HeightRequest="35" WidthRequest="50" MinimumHeightRequest="50" TextColor="Black" AllowNull="false" HorizontalOptions="FillAndExpand" VerticalOptions="Center"
+								FormatString="n" Watermark="Units" Value="{Binding SelectedQUANTITE}" SpinButtonAlignment="Both" ValueChanged="Handle_ValueChanged" TextAlignment="Center" />
+                                    <Label x:Name="AppleCost" Text="$0" Grid.Row="3" TextColor="Black" Font="18" VerticalOptions="Center" FontAttributes="Bold" HorizontalOptions="Start" />
+                                    <Button Text="Add To Cart" Font="16" Grid.Row="3" IsEnabled="True"  x:Name="appleAddButton" HeightRequest="30" WidthRequest="120" BackgroundColor="#d16d10" TextColor="White" HorizontalOptions="End" VerticalOptions="End"
+								Clicked="Handle_Clicked" />
+                                </Grid>
+                            </Grid>
+                            <!--
                             <template:ProduitTemplate />
+                            -->
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
