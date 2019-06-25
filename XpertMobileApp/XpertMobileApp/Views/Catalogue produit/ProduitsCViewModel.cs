@@ -47,7 +47,7 @@ namespace XpertMobileApp.ViewModels
             foreach (var item in list)
             {
                 i += 1;
-                item.IMAGE_URL = App.RestServiceUrl + string.Format("/Images/GetImage?codeProduit={0}", item.CODE_PRODUIT);
+                item.IMAGE_URL = App.RestServiceUrl.Replace("api/","") + string.Format("Images/GetImage?codeProduit={0}", item.CODE_PRODUIT);
                 (item as BASE_CLASS).Index = i;
             }
         }
