@@ -112,6 +112,10 @@ namespace XpertMobileApp.DAL
                 return DESIGNATION.Truncate(40);
             }
         }
+
+        public string Ratings { get; set; } = "1500 Reviews";
+        public string Offer { get; set; } = "10 % Off";
+        public decimal ReviewValue { get; set; } = (decimal)4.5;
     }
 
     public class View_AssistantCommandes : BASE_CLASS
