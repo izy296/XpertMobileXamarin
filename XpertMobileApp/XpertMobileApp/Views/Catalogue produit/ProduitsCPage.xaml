@@ -125,7 +125,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Grid>
-                                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="Black" Font="16"  />
+                                        <Label Text="{Binding SHORT_DESIGNATION}" TextColor="Black" Font="16"  />
                                     </Grid> 
                                     <Label Grid.Row="1" Text="{Binding PRIX_VENTE_TTC, StringFormat='Qte. {0:N2}'}" TextColor="Gray" Font="12"    />
                                     <numeric:SfNumericUpDown Grid.Row="2" x:Name="AppleCount" MaximumDecimalDigits="0" HeightRequest="35" WidthRequest="50" MinimumHeightRequest="50" TextColor="Black" AllowNull="false" HorizontalOptions="FillAndExpand" VerticalOptions="Center"

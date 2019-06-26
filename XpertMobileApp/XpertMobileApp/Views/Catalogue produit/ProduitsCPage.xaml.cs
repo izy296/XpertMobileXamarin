@@ -24,7 +24,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-          await Navigation.PushAsync(new ProduitDetailPage(item));
+           await Navigation.PushAsync(new ProduitDetailPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -75,6 +75,23 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void Handle_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
+        {
+
+        }
+
+        private void Handle_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = e.Item as View_STK_PRODUITS;
+
+            var total = item.SelectedQUANTITE * item.PRIX_VENTE_TTC;
         }
     }
 }

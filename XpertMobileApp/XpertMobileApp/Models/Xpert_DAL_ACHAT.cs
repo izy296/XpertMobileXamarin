@@ -17,6 +17,12 @@ namespace XpertMobileApp.DAL
     {
         public string CODE_PRODUIT { get; set; } // varchar(11)
         public string DESIGNATION { get; set; } // varchar(150)
+        public string SHORT_DESIGNATION {
+            get
+            {
+                return DESIGNATION.Truncate(40);
+            }
+        } 
         public string DOSAGE { get; set; } // varchar(50)
         public string UNITE { get; set; } // varchar(50)
         public string CONDIT { get; set; } // varchar(50)
