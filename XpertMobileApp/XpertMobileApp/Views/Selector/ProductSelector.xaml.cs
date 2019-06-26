@@ -40,7 +40,7 @@ namespace XpertMobileApp.Views
             btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
         }
 
-        private async Task btn_Search_Clicked(object sender, EventArgs e)
+        private async void btn_Search_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
         }
@@ -62,5 +62,6 @@ namespace XpertMobileApp.Views
                 MessagingCenter.Send(this, MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             }
         }
+
     }
 }

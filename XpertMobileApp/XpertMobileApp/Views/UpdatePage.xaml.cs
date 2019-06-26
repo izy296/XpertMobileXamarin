@@ -17,7 +17,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
         }
 
-        private async Task btn_VersionUpdate_Clicked(object sender, EventArgs e)
+        private async void btn_VersionUpdate_Clicked(object sender, EventArgs e)
         {
             var url = string.Empty;
             var appId = string.Empty;

@@ -61,7 +61,7 @@ namespace XpertMobileApp.Views
             Btn_LogIn.Text = AppResources.lp_btn_Activate;
         }
 
-        async Task ActivateUserAsync(object sender, EventArgs e)
+        async void ActivateUserAsync(object sender, EventArgs e)
         {
             if (viewModel.IsBusy)
                 return;

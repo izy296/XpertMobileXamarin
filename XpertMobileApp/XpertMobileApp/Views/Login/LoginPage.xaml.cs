@@ -46,7 +46,7 @@ namespace XpertMobileApp.Views
             Btn_LogIn.Text = AppResources.lp_btn_Login;
         }
 
-        async Task ConnectUserAsync(object sender, EventArgs e)
+        async void ConnectUserAsync(object sender, EventArgs e)
         {
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
