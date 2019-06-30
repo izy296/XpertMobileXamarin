@@ -45,36 +45,27 @@ namespace SampleBrowser.SfListView
             base.OnAttachedTo(bindable);
         }
 
+        int lastPageLoaded = -1;
         private async void DataPager_OnDemandLoading(object sender, OnDemandLoadingEventArgs e)
         {
-            /*
-            var source = PagingViewModel.pagingProducts.Skip(e.StartIndex).Take(e.PageSize);
-            listView.ItemsSource = source.ToList<View_STK_PRODUITS>().ToList();
-            */
+            if(lastPageLoaded == e.StartIndex)
+            {
+                return;
+            }
+            lastPageLoaded = e.StartIndex;
 
             int itemCount = await CrudManager.Products.ItemsCount(GetFilterParams());
-
             dataPager.PageCount = itemCount / e.PageSize;
 
-            var page = (PagingViewModel.pagingProducts.Count / e.PageSize) + 1;
-
             var currentPage = (e.StartIndex / e.PageSize) + 1;
+            var source = await CrudManager.Products.SelectByPage(GetFilterParams(), currentPage, e.PageSize);
 
-            IEnumerable<View_STK_PRODUITS> source;
-            if (currentPage < page)
+            int i = 0;
+            foreach (var item in source)
             {
-                source = PagingViewModel.pagingProducts.Skip(e.StartIndex).Take(e.PageSize);
-            }
-            else { 
-               source = await CrudManager.Products.SelectByPage(GetFilterParams(), page, e.PageSize);
-               int i = PagingViewModel.pagingProducts.Count;
-               foreach (var item in source)
-               {
-                   i += 1;
-                   PagingViewModel.pagingProducts.Add(item);
-                   item.IMAGE_URL = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", item.CODE_PRODUIT);
-                   (item as BASE_CLASS).Index = i;
-               }
+                i += 1;
+                item.IMAGE_URL = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", item.CODE_PRODUIT);
+                (item as BASE_CLASS).Index = i;
             }
 
             listView.ItemsSource = source;
