@@ -615,4 +615,7 @@
   <data name="pn_Catalogues" xml:space="preserve">
     <value>Catalogue</value>
   </data>
+  <data name="txt_NewProduct" xml:space="preserve">
+    <value>Nouveaux</value>
+  </data>
 </root>

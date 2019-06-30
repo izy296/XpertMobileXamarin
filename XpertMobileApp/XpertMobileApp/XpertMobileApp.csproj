@@ -23,6 +23,7 @@
     <Compile Remove="Api\Models\Token.cs" />
     <Compile Remove="Api\Models\XpertException.cs" />
     <Compile Remove="Api\Services\WSApi2.cs" />
+    <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
     <Compile Remove="Views\Items\ItemsPage.xaml.cs" />
     <Compile Remove="Views\Items\ItemsViewModel.cs" />
   </ItemGroup>
@@ -64,6 +65,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.5.922" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.922" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.5.922" />
     <PackageReference Include="Xamarin.Forms" Version="3.5.0.274416" />
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />

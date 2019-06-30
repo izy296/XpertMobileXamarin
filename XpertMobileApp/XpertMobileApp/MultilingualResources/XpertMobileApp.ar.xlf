@@ -683,6 +683,10 @@
           <source>Catalogue</source>
           <target state="new">Catalogue</target>
         </trans-unit>
+        <trans-unit id="txt_NewProduct" translate="yes" xml:space="preserve">
+          <source>Nouveaux</source>
+          <target state="new">Nouveaux</target>
+        </trans-unit>
       </group>
     </body>
   </file>

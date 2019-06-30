@@ -1330,6 +1330,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouveaux.
+        /// </summary>
+        internal static string txt_NewProduct {
+            get {
+                return ResourceManager.GetString("txt_NewProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Prix.
         /// </summary>
         internal static string txt_Prix {
