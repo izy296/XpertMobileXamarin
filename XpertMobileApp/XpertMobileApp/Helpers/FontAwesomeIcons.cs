@@ -12,52 +12,6 @@ namespace FontAwesome
     /// 
     public static partial class FontAwesomeIcons
     {
-        /// <summary>
-        /// fa-500px unicode value.
-        /// <para/>
-        /// This icon supports the following styles: Brands
-        /// <para/>
-        /// See https://fontawesome.com/icons/500px
-        /// </summary>
-        public const string FiveHundredPX = "\uf26e";
-
-        /// <summary>
-        /// fa-abacus unicode value.
-        /// <para/>
-        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid (Pro)
-        /// <para/>
-        /// See https://fontawesome.com/icons/abacus
-        /// </summary>
-        public const string Abacus = "\uf640";
-
-        /// <summary>
-        /// fa-accessible-icon unicode value.
-        /// <para/>
-        /// This icon supports the following styles: Brands
-        /// <para/>
-        /// See https://fontawesome.com/icons/accessible-icon
-        /// </summary>
-        public const string AccessibleIcon = "\uf368";
-
-        /// <summary>
-        /// fa-accusoft unicode value.
-        /// <para/>
-        /// This icon supports the following styles: Brands
-        /// <para/>
-        /// See https://fontawesome.com/icons/accusoft
-        /// </summary>
-        public const string Accusoft = "\uf369";
-
-        /// <summary>
-        /// fa-acorn unicode value.
-        /// <para/>
-        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid (Pro)
-        /// <para/>
-        /// See https://fontawesome.com/icons/acorn
-        /// </summary>
-        public const string Acorn = "\uf6ae";
-
-
         public static string Arrow_Alt_Circle_Down = "\uf358";
         public static string Arrow_Alt_Circle_Left = "\uf359";
         public static string Arrow_Alt_Circle_Right = "\uf35a";
@@ -74,8 +28,10 @@ namespace FontAwesome
         public static string Arrows_Alt_H = "\uf337";
         public static string Arrows_Alt_V = "\uf338";
 
+        // Used
         public static string Sign_Out_Alt = "\uf2f5";
         public static string Cog = "\uf013";
+        public const string Filter = "\uf0b0";
 
     }
 }

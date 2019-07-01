@@ -41,7 +41,7 @@ namespace XpertMobileApp.Views
             btnSelect.IsEnabled = true;
         }
 
-        private async Task btn_Search_Clicked(object sender, EventArgs e)
+        async void btn_Search_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
         }

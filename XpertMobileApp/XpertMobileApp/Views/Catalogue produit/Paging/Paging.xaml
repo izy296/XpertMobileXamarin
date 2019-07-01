@@ -11,11 +11,6 @@
                    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              Title="{Binding Title}">
 
-    <sample1:BaseView.Resources>
-        <ResourceDictionary>
-            <local1:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
-        </ResourceDictionary>
-    </sample1:BaseView.Resources>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">

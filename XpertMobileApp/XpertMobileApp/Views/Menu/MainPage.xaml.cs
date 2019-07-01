@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using SampleBrowser.SfListView;
 
 namespace XpertMobileApp.Views
 {
@@ -37,6 +38,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Ventes:
                         MenuPages.Add(id, new NavigationPage(new VentesPage()));
                         break;
+                    case (int)MenuItemType.Catalogues:
+                        MenuPages.Add(id, new NavigationPage(new Paging()));
+                        break;
                     case (int)MenuItemType.Commandes:
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));
                         break;
@@ -51,7 +55,6 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.invrfid:
                         MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
-                        
                         break;
                     case (int)MenuItemType.Tiers:
                         MenuPages.Add(id, new NavigationPage(new TiersPage()));
