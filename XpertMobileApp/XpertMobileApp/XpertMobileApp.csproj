@@ -104,8 +104,8 @@
     <Compile Update="Views\Catalogue produit\Paging\Paging.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
-    <Compile Update="Views\Catalogue produit\ProduitDetailPage.xaml.cs">
-      <DependentUpon>%(Filename)</DependentUpon>
+    <Compile Update="Views\Catalogue produit\ProduitCDetailPage.xaml.cs">
+      <DependentUpon>ProduitCDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Catalogue produit\ProduitsCPage.xaml.cs">
       <DependentUpon>ProduitsCPage.xaml</DependentUpon>

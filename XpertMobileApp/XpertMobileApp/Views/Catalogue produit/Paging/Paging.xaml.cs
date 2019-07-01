@@ -45,11 +45,11 @@ namespace SampleBrowser.SfListView
 
         private async void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
-            var item = e.AddedItems[0] as STK_PRODUITS;
+            var item = e.AddedItems[0] as View_STK_PRODUITS;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ProduitDetailPage(item));
+            await Navigation.PushAsync(new ProduitCDetailPage(item));
 
             // Manually deselect item.
             // ItemsListView.SelectedItem = null;
