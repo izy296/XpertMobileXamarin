@@ -73,6 +73,9 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Forms.Controls.FlexButton">
+      <Version>0.9.1</Version>
+    </PackageReference>
     <PackageReference Include="Microcharts.Forms">
       <Version>0.8.3-pre</Version>
     </PackageReference>
@@ -103,6 +106,9 @@
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
       <Version>17.1.0.38</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>17.1.0.38</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
       <Version>17.1.0.38</Version>
     </PackageReference>
@@ -119,6 +125,9 @@
       <Version>17.1.0.38</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
+      <Version>17.1.0.38</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>17.1.0.38</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
@@ -277,6 +286,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\new_128.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\shopping_cart_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.Xamarin.Android.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.Xamarin.Android.targets')" />

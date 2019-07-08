@@ -1132,6 +1132,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ajouter au panier.
+        /// </summary>
+        internal static string txt_Buy {
+            get {
+                return ResourceManager.GetString("txt_Buy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chiffre d&apos;affaires.
         /// </summary>
         internal static string txt_CA {

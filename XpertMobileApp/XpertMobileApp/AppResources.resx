@@ -618,4 +618,7 @@
   <data name="txt_NewProduct" xml:space="preserve">
     <value>Nouveaux</value>
   </data>
+  <data name="txt_Buy" xml:space="preserve">
+    <value>Ajouter au panier</value>
+  </data>
 </root>

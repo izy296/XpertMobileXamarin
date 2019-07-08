@@ -688,6 +688,10 @@
           <source>Nouveaux</source>
           <target state="new">Nouveaux</target>
         </trans-unit>
+        <trans-unit id="txt_Buy" translate="yes" xml:space="preserve">
+          <source>Ajouter au panier</source>
+          <target state="new">Ajouter au panier</target>
+        </trans-unit>
       </group>
     </body>
   </file>

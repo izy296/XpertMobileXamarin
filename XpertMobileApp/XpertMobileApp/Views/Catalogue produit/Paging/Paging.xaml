@@ -102,7 +102,7 @@
             </sfPager:SfDataPager>
             <syncfusion:SfListView 
                 x:Name="listView"
-                SelectionMode="SingleDeselect"
+                SelectionMode="Single"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                 SelectionChanged="listView_SelectionChanged"
                 ItemsSource="{Binding Items}"
@@ -145,7 +145,7 @@
                                          BackgroundColor="Transparent" VerticalOptions="Center"
 			                             DownsampleToViewSize="False"                                            
 			                             Source = "{Binding IMAGE_URL}"
-                                         CacheType="Disk">
+                                         CacheType="None">
                                      </ffimageloading:CachedImage>
                                   
                                      <StackLayout Opacity="0.8" IsVisible="{Binding IS_NEW, Mode=TwoWay}">

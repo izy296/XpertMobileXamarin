@@ -150,6 +150,9 @@
     <PackageReference Include="Acr.UserDialogs">
       <Version>7.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Forms.Controls.FlexButton">
+      <Version>0.9.1</Version>
+    </PackageReference>
     <PackageReference Include="Microcharts.Forms">
       <Version>0.8.3-pre</Version>
     </PackageReference>
@@ -180,6 +183,9 @@
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
       <Version>17.1.0.38</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>17.1.0.38</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
       <Version>17.1.0.38</Version>
     </PackageReference>
@@ -196,6 +202,9 @@
       <Version>17.1.0.38</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
+      <Version>17.1.0.38</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>17.1.0.38</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">

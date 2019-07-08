@@ -33,5 +33,97 @@ namespace FontAwesome
         public static string Cog = "\uf013";
         public const string Filter = "\uf0b0";
 
+
+        /// <summary>
+        /// fa-cart-arrow-down unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/cart-arrow-down
+        /// </summary>
+        public const string CartArrowDown = "\uf218";
+
+
+        /// <summary>
+        /// fa-list-ul unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/list-ul
+        /// </summary>
+        public const string ListUl = "\uf0ca";
+
+        /// <summary>
+        /// fa-th unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/th
+        /// </summary>
+        public const string Th = "\uf00a";
+
+        /// <summary>
+        /// fa-th-large unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/th-large
+        /// </summary>
+        public const string ThLarge = "\uf009";
+
+        /// <summary>
+        /// fa-ellipsis-v unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/ellipsis-v
+        /// </summary>
+        public const string EllipsisV = "\uf142";
+
+        /// <summary>
+        /// fa-door-open unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/door-open
+        /// </summary>
+        public const string DoorOpen = "\uf52b";
+
+        /// <summary>
+        /// fa-file-chart-line unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid (Pro)
+        /// <para/>
+        /// See https://fontawesome.com/icons/file-chart-line
+        /// </summary>
+        public const string FileChartLine = "\uf659";
+
+        /// <summary>
+        /// fa-boxes unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/boxes
+        /// </summary>
+        public const string Boxes = "\uf468";
+
+        /// <summary>
+        /// fa-barcode unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/barcode
+        /// </summary>
+        public const string Barcode = "\uf02a";
+
+        /// <summary>
+        /// fa-arrow-left unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/arrow-left
+        /// </summary>
+        public const string ArrowLeft = "\uf060";
+
     }
 }
