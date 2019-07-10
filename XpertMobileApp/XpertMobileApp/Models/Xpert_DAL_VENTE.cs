@@ -43,12 +43,39 @@ namespace XpertMobileApp.DAL
         public string CODE_MODE { get; set; } // varchar(1)
         public decimal MT_TIMBRE { get; set; } // money(19,4)
         public decimal TAUX_REMISE { get; set; } // money(19,4)
-        public decimal TOTAL_HT { get; set; } // money(19,4)
+
+        private decimal tOTAL_HT;
+        public decimal TOTAL_HT
+        {
+            get
+            {
+                return tOTAL_HT;
+            }
+            set
+            {
+                tOTAL_HT = value;
+                OnPropertyChanged("TOTAL_HT");
+            }
+        }
+
+        private decimal tOTAL_TTC;
+        public decimal TOTAL_TTC
+        {
+            get
+            {
+                return tOTAL_TTC;
+            }
+            set
+            {
+                tOTAL_TTC = value;
+                OnPropertyChanged("TOTAL_TTC");
+            }
+        }
+
         public decimal TOTAL_PPA { get; set; } // money(19,4)
         public decimal TOTAL_SHP { get; set; } // money(19,4)
         public decimal TOTAL_REMISE { get; set; } // money(19,4)
         public decimal TOTAL_TVA { get; set; } // money(19,4)
-        public decimal TOTAL_TTC { get; set; } // money(19,4)
         public decimal REMISE_GLOBALE { get; set; } // money(19,4)
         public decimal TOTAL_RTA { get; set; } // money(19,4)
         public bool APPLIQUER_TVA { get; set; } // bit
@@ -152,7 +179,8 @@ namespace XpertMobileApp.DAL
 
     public partial class View_VTE_VENTE_PRODUIT : VTE_VENTE_DETAIL
     {
-        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public string DESIGNATION_PRODUIT { get; set; } 
+        public string IMAGE_URL { get; set; }  
     }
 
     public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL

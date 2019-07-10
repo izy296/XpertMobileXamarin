@@ -103,20 +103,8 @@
                                     CacheDuration = "1"
                                     CacheType="Memory"
                                     >
-                                    
+
                                 </ffimageloading:CachedImage>
-                                <!--
-                                <Image Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center">
-                                    <Image.Source>
-                                        <UriImageSource Uri="{Binding IMAGE_URL}" 
-			                                CacheValidity="14" 
-			                                CachingEnabled="True"/>
-                                    </Image.Source>
-                                </Image>
-                                
-                                <Image Source="filter.png" WidthRequest="40" HeightRequest="40" Grid.Column="1" 
-                                       VerticalOptions="Start" HorizontalOptions="End" Margin="7" Aspect="AspectFit" />
-                                -->
                                 <Grid Grid.Column="1" Margin="7">
                                     <Grid.RowDefinitions>
                                         <RowDefinition x:Name="aheader" Height="25" />
@@ -135,9 +123,7 @@
 								Clicked="Handle_Clicked" />
                                 </Grid>
                             </Grid>
-                            <!--
-                            <template:ProduitTemplate />
-                            -->
+
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

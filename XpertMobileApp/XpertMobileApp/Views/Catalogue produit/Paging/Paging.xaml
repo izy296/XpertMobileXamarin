@@ -134,7 +134,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
-                                <Grid HorizontalOptions="Fill" VerticalOptions="Fill">
+                                <Grid HorizontalOptions="Fill" VerticalOptions="Fill" >
                                        <!--
                                             <sample1:SfImage Source="{Binding IMAGE_URL}" Aspect="AspectFill" 
                                                      BackgroundColor="White" VerticalOptions="Center" 
@@ -205,7 +205,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding PRIX_VENTE_TTC, Converter={StaticResource currencyFormatConverter}}" VerticalOptions="Center" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start"
+                                          <Label Text="{Binding PRIX_VENTE_HT, Converter={StaticResource currencyFormatConverter}}" VerticalOptions="Center" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start"
                                                FontSize="{OnIdiom Phone=18, Tablet=20, Desktop=22}"
                                      TextColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#009688}" />
                                         <Grid Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">

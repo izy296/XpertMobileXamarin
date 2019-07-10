@@ -20,7 +20,7 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.Row="0" WidthRequest="115" Grid.RowSpan="2">
-                        <Image Source="defaultProdImg.png"  Aspect="AspectFill"></Image>
+                        <Image Source="{Binding IMAGE_URL}"  Aspect="AspectFill"></Image>
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="5" Padding="0">

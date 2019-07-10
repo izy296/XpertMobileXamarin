@@ -3,125 +3,126 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.Encaissement.CommandeSummaryPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              Title="{Binding Title}">
 
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" >
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
-                    <On Platform="Android" Value="cancel.png"/>
-                    <On Platform="IOS" Value="cancel.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-        <ToolbarItem Text="{i18n:Translate cmd_Save}" Clicked="Save_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
-                    <On Platform="Android" Value="save.png"/>
-                    <On Platform="IOS" Value="save.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>
-    
     <ContentPage.Content>
         <StackLayout>
-           <ScrollView>
-            <StackLayout x:Name="sl_content" Padding="5" >
 
-               <Frame IsVisible="False" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                <Grid  BackgroundColor="White" >
+            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
+                <Label Text="{i18n:Translate txt_Details}" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
+                <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
+                <Button x:Name="btn_RowScan" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
+            </StackLayout>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
-
-                    <Label Grid.Column="0" Grid.Row="1"  Text="{i18n:Translate txt_EcheanceDate}" FontSize="Medium" Margin="5" />
-                        <DatePicker Grid.Column="1" Grid.Row="1" 
-                            x:Name="dp_EcheanceDate"                        
-                            Format="dd/MM/yyyy"
-                            TextColor="Black"
-                            Date="{Binding Item.DATE_ECHEANCE, Mode=TwoWay}"
-                            Margin="5"/>
-                        <StackLayout Grid.Column="0" Grid.Row="2" >
-                           <Label  Text="{i18n:Translate pn_Tiers}" FontSize="Medium" Margin="5" />
-                           <Entry x:Name="ent_SelectedTiers" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" TextColor="Black" IsEnabled="False" />
-                        </StackLayout>
-                        <Button x:Name="btn_Search"
-                                HeightRequest="40" WidthRequest="75" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Grid.Row="2" Style="{StaticResource DefaultBtnStyle}" 
-                     Clicked="btn_Select_Clicked" />
-                    </Grid>
-            </Frame>
-
-                <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-                    <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
-
-                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                            <StackLayout Padding="0" Margin="0" Spacing="0" 
-                                 Orientation="Horizontal">
-                                <Label Text="{i18n:Translate txt_Details}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                                <Button x:Name="btn_RowSelect" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
-                                <Button x:Name="btn_RowScan" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
-                            </StackLayout>
-
-                            <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                        </StackLayout>
-
-                        <syncfusion:SfListView x:Name="ItemsListView" 
+            <ScrollView Padding="0" Margin="0">
+                <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                    <syncfusion:SfListView x:Name="ItemsListView" 
                             ItemsSource="{Binding ItemRows}"
-                            AutoFitMode="Height"
-                                               >
-                            <syncfusion:SfListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <template:RowCmdTemplate />
-                                    </ViewCell>
-                                </DataTemplate>
-                            </syncfusion:SfListView.ItemTemplate>
-                        </syncfusion:SfListView>
-                        <!--
-                        <ListView x:Name="ItemsListView"
-                        ItemsSource="{Binding ItemRows}"
-                        HasUnevenRows="true"
-                        RefreshCommand="{Binding LoadRowsCommand}"
-                        IsPullToRefreshEnabled="true"
-                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                        CachingStrategy="RecycleElement">
-
-                        <ListView.ItemTemplate>
+                            BackgroundColor="#fcfdff"
+                            AutoFitMode="Height">
+                        <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <template:RowCmdTemplate />
+                                    <Frame CornerRadius="5" Padding="5" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"  OutlineColor="LightGray">
+                                        <Grid Margin="0" Padding="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="{OnIdiom Default=0.4*,  Phone=0.8* }" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="60"/>
+                                            </Grid.RowDefinitions>
+                                            <!-- Image -->
+                                            <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill" 
+                                                          VerticalOptions="Fill" Padding="0" Margin="0"
+                                                          HeightRequest="{OnIdiom Default=160,  Phone=100 }">
+
+                                                <ffimageloading:CachedImage 
+                                                             Aspect="AspectFill" HorizontalOptions="Center" 
+                                                             BackgroundColor="Transparent" VerticalOptions="Center"
+			                                                 DownsampleToViewSize="False"                                            
+			                                                 Source = "{Binding IMAGE_URL}"
+                                                             CacheType="None">
+                                                </ffimageloading:CachedImage>
+
+                                                <StackLayout Opacity="0.8" IsVisible="False">
+                                                    <Image Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
+                                                </StackLayout>
+                                            </Grid>
+
+                                            <!-- Infos -->
+                                            <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
+                                                <StackLayout>
+                                                    <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                                                           TextColor="{StaticResource DefaultTextColor}" 
+                                                           FontAttributes="Bold" FontSize="Default"/>
+                                                    <Label Text="{ Binding PRIX_VTE_TTC, StringFormat='Prix : {0:N2} DA'}" 
+                                                            FontSize="Default" HorizontalOptions="Start" />
+
+                                                    <numeric:SfNumericUpDown  HorizontalOptions="Start"
+                                                        Minimum="0" HeightRequest="40" MinimumHeightRequest="40"
+                                                        SelectAllOnFocus="True"
+                                                        x:Name="NUD_Qte"
+                                                        WidthRequest="200"
+                                                        TextAlignment="Center"
+                                                        ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
+                                                        FontSize="13" IsEnabled="True"
+                                                        TextColor="Black" AllowNull="false" VerticalOptions="Center"
+								                        Value="{Binding QUANTITE, Mode=TwoWay}"
+                                                        ValueChanged="NUD_Qte_ValueChanged"                   
+                                                        SpinButtonAlignment="Both" >
+<!--
+                                                        <numeric:SfNumericUpDown.IncrementButtonSettings>
+                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_up_g16" ButtonHeight="20" ButtonWidth="20" />
+                                                        </numeric:SfNumericUpDown.IncrementButtonSettings>
+
+                                                        <numeric:SfNumericUpDown.DecrementButtonSettings>
+                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_down_r16" ButtonHeight="20" ButtonWidth="20" />
+                                                        </numeric:SfNumericUpDown.DecrementButtonSettings>
+-->
+                                                    </numeric:SfNumericUpDown>
+                                                </StackLayout>
+                                            </Grid>
+
+                                            <!-- Total -->
+                                            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="0" ColumnSpacing="0" Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
+                                                            WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
+                                                            HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White" 
+                                                            Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
+
+                                                <Label Grid.Column="1" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
+                                                               FontSize="Default" HorizontalOptions="EndAndExpand" 
+                                                               HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Chocolate"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
                                 </ViewCell>
                             </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                    </ListView>
-                    -->
-                    </StackLayout>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
                 </Frame>
-            </StackLayout>
-        </ScrollView>
-           <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0" >
-            <flex:FlexButton
+            </ScrollView>
+
+            <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
+                <Label x:Name="lbl_vteTTC" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,20,10"
+                           Text="{ Binding Item.TOTAL_TTC, Mode=TwoWay, StringFormat='Total : {0:N2} DA'}" 
+                           HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />
+
+                <flex:FlexButton
                 x:Name="cmd_Buy"
                 HorizontalOptions="FillAndExpand"
                 IconOrientation="Left" 
@@ -138,10 +139,11 @@
                 HighlightBackgroundColor="#8EA4D2"
                 BorderColor="#8EA4D2"
                 HighlightBorderColor="#8EA4D2"
-                BorderThickness="1"
+                BorderThickness="3"
                 Clicked="cmd_Buy_Clicked"
                 />
         </StackLayout>
+                    
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>    

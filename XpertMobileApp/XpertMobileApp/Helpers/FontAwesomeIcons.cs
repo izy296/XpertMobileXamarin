@@ -125,5 +125,14 @@ namespace FontAwesome
         /// </summary>
         public const string ArrowLeft = "\uf060";
 
+        /// <summary>
+        /// fa-trash-alt unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular, Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/trash-alt
+        /// </summary>
+        public const string TrashAlt = "\uf2ed";
+
     }
 }

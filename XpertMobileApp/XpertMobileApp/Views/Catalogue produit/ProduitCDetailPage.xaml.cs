@@ -61,6 +61,7 @@ namespace XpertMobileApp.Views
                 row = new View_VTE_VENTE_PRODUIT();
                 //row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
+                row.IMAGE_URL = product.IMAGE_URL;
                 row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 row.PRIX_VTE_TTC = product.PRIX_VENTE_HT; // TODO mettre le bon prix

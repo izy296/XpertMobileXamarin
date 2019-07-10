@@ -11,6 +11,7 @@
 
     <StackLayout Padding="0" Margin="0" Spacing="0">
         <Grid BackgroundColor="Black" HeightRequest="60" ColumnSpacing="0" Padding="0" Margin="0">
+            
                 <Button Grid.Column="0" x:Name="Btn_NavigateBack" Margin="0"
                     FontFamily="{StaticResource FontAwesomeSolid}"
                     HorizontalOptions="Start" TextColor="White"                    
@@ -21,11 +22,10 @@
                     HorizontalOptions="End" TextColor="White" FontSize="Medium" ContentLayout="Left,0"
                     Image="shopping_cart_24.png"
                     Text="(0)" BackgroundColor="Transparent" 
-                        Clicked="Btn_HeaderCart_Clicked"
-                    />
+                        Clicked="Btn_HeaderCart_Clicked"/>
         </Grid>
        
-        <ScrollView x:Name="sl_content" Padding="0,0,0,5" Margin="0">
+        <ScrollView x:Name="sl_content" Padding="0,0,0,5" Margin="0" VerticalOptions="FillAndExpand">
             <!--
             OutlineColor="#b3b3b3"
             -->
@@ -127,7 +127,7 @@
             </Frame>
         </ScrollView>
        
-        <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0" >
+        <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0" VerticalOptions="End" >
  
             <flex:FlexButton
                 x:Name="cmd_Buy"
@@ -146,7 +146,7 @@
                 HighlightBackgroundColor="#8EA4D2"
                 BorderColor="#8EA4D2"
                 HighlightBorderColor="#8EA4D2"
-                BorderThickness="1"
+                BorderThickness="3"
                 Clicked="cmd_Buy_Clicked"
                 />
                 <!--

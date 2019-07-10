@@ -692,6 +692,10 @@
           <source>Ajouter au panier</source>
           <target state="new">Ajouter au panier</target>
         </trans-unit>
+        <trans-unit id="txt_ConfimDelProductCmd" translate="yes" xml:space="preserve">
+          <source>Voulez vous vraiment supprimer ce produit du panier ?</source>
+          <target state="new">Voulez vous vraiment supprimer ce produit du panier ?</target>
+        </trans-unit>
       </group>
     </body>
   </file>

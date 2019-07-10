@@ -621,4 +621,7 @@
   <data name="txt_Buy" xml:space="preserve">
     <value>Ajouter au panier</value>
   </data>
+  <data name="txt_ConfimDelProductCmd" xml:space="preserve">
+    <value>Voulez vous vraiment supprimer ce produit du panier ?</value>
+  </data>
 </root>

@@ -1177,6 +1177,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Voulez vous vraiment supprimer ce produit du panier ?.
+        /// </summary>
+        internal static string txt_ConfimDelProductCmd {
+            get {
+                return ResourceManager.GetString("txt_ConfimDelProductCmd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Couverts.
         /// </summary>
         internal static string txt_CovredDays {

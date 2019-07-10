@@ -2,6 +2,7 @@
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -21,6 +22,8 @@ namespace XpertMobileApp.Views.Encaissement
 	public partial class CommandeSummaryPage : ContentPage
 	{
         ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT> viewModel;
+
+        public Command AddItemCommand { get; set; }
 
         private View_VTE_VENTE item;
         public View_VTE_VENTE Item
@@ -51,6 +54,8 @@ namespace XpertMobileApp.Views.Encaissement
                 viewModel.ItemRows.Add(item);
             }
 
+            viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
+
             // this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             MessagingCenter.Subscribe<ProductSelector, View_STK_PRODUITS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
@@ -80,6 +85,11 @@ namespace XpertMobileApp.Views.Encaissement
             });
         }
 
+        private void ItemsRowsChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            UpdateTotaux();
+        }
+
         private void RemoveNewRow(View_STK_PRODUITS product)
         {
             var row = viewModel.ItemRows.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
@@ -104,6 +114,7 @@ namespace XpertMobileApp.Views.Encaissement
                 row = new View_VTE_VENTE_PRODUIT();
                 row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
+                row.IMAGE_URL = product.IMAGE_URL;
                 row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 row.PRIX_VTE_TTC = product.PRIX_VENTE_HT; // TODO mettre le bon prix
@@ -116,6 +127,7 @@ namespace XpertMobileApp.Views.Encaissement
                 row.QUANTITE += 1;
             }
 
+            viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
             row.Index = viewModel.ItemRows.Count();
         }
 
@@ -128,6 +140,7 @@ namespace XpertMobileApp.Views.Encaissement
                 viewModel.LoadRowsCommand.Execute(null);
             }
         }
+
 
         async Task ExecuteLoadRowsCommand()
         {
@@ -226,16 +239,22 @@ namespace XpertMobileApp.Views.Encaissement
 
             AddNewRow(prods[0]);
             return true;
-        } 
+        }
 
-        async void Save_Clicked(object sender, EventArgs e)
+        
+        private void RemoveRow_CLicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
             /*
-            if (dp_EcheanceDate.Date < DateTime.Now)
-            {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
-                return;
-            }
+                if (dp_EcheanceDate.Date < DateTime.Now)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
+                    return;
+                }
             */
             this.Item.Details = viewModel.ItemRows.ToList();
 
@@ -251,14 +270,27 @@ namespace XpertMobileApp.Views.Encaissement
             await Navigation.PopModalAsync();
         }
 
-        async void Cancel_Clicked(object sender, EventArgs e)
+        private async void Btn_Delete_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PopModalAsync();
+            var prodId = (sender as Button).ClassId;
+            var vteD = viewModel.ItemRows.Where(x => x.CODE_PRODUIT == prodId).FirstOrDefault();
+            if (vteD != null)
+            {
+                if (await UserDialogs.Instance.ConfirmAsync(AppResources.txt_ConfimDelProductCmd, AppResources.msg_Confirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel))
+                {
+                    viewModel.ItemRows.Remove(vteD);
+                }
+            }
         }
 
-        private void cmd_Buy_Clicked(object sender, EventArgs e)
+        private void UpdateTotaux()
         {
+            viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+        }
 
+        private void NUD_Qte_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
+        {
+            UpdateTotaux();
         }
     }
 }
