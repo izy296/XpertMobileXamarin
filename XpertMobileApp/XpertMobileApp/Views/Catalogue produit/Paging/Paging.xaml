@@ -147,9 +147,9 @@
 			                             Source = "{Binding IMAGE_URL}"
                                          CacheType="None">
                                      </ffimageloading:CachedImage>
-                                  
-                                     <StackLayout Opacity="0.8" IsVisible="{Binding IS_NEW, Mode=TwoWay}">
-                                        <Image Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
+
+                                     <StackLayout Opacity="0.8" IsVisible="{Binding IS_NEW, Mode=TwoWay}" >
+                                                <Image  Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
                                      </StackLayout>
                                     
                                 </Grid>
@@ -166,6 +166,8 @@
                                         <RowDefinition Height="Auto" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
+                                    
+                                    <!-- Designation & catégorie -->
                                     <Label Text="{Binding DESIGNATION}" LineBreakMode="NoWrap" Grid.Row="0" HorizontalOptions="Start" FontFamily="Bold" 
                                            FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
                                            Opacity="{OnPlatform Default=1, Android=0.87}"
@@ -175,7 +177,9 @@
                                              Opacity="{OnPlatform Default=1, Android=0.54}"
                                            TextColor="{OnPlatform Default=#333333, Android=#000000,UWP=#4C4C4C}">
                                     </Label>
-                                    <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start">
+                                    
+                                    <!-- Votes -->
+                                    <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start" MinimumHeightRequest="40">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="*"/>
@@ -200,19 +204,33 @@
                                         <Label Grid.Column="1" Text="{Binding Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Bold" TextColor="Gray" 
                                FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
                                     </Grid>
-                                    <Grid Grid.Row="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start">
+                                    
+                                    <!-- Prix -->
+                                    <Grid Grid.Row="3" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,-15,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                          <Label Text="{Binding PRIX_VENTE_HT, Converter={StaticResource currencyFormatConverter}}" VerticalOptions="Center" FontAttributes="Bold" Grid.Column="0" HorizontalOptions="Start"
-                                               FontSize="{OnIdiom Phone=18, Tablet=20, Desktop=22}"
-                                     TextColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#009688}" />
-                                        <Grid Grid.Column="1" VerticalOptions="Center" HorizontalOptions="Center">
-                                            <Label Text="{Binding Offer}" HorizontalTextAlignment="Center" LineBreakMode="NoWrap" VerticalTextAlignment="Center" FontFamily="Bold" TextColor="Gray" 
-                                                   FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=11, Tablet=14},macOS=14, UWP={OnIdiom Phone=11,Tablet=14, Desktop=14}}"/>
-                                        </Grid>
-                                    </Grid>
+                                                <StackLayout Grid.Column="0" Padding="0" Margin="0" Spacing="0">
+                                                  <Label Text="{Binding PRIX_VENTE_HT, Converter={StaticResource currencyFormatConverter}}" 
+                                                       HorizontalOptions="Start" FontAttributes="Bold" Margin="0"
+                                                       FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                             TextColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#009688}" />
+
+                                                  <Label Text="{Binding OLD_PRICE, Converter={StaticResource currencyFormatConverter}}" 
+                                                       HorizontalOptions="Start" Margin="0"
+                                                       FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                                       TextColor="LightGray" TextDecorations="Strikethrough"/>
+                                                </StackLayout>
+                                                <Grid Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" 
+                                                         BackgroundColor="Transparent" Margin="0" Padding="0">
+                                                    <Frame CornerRadius="4" BackgroundColor="#f7e7e4" Margin="0" Padding="3" >
+                                                        <Label Text="{Binding Reduction, StringFormat='-{0}%'}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" 
+                                                    VerticalTextAlignment="Center" FontFamily="Bold" TextColor="#ed5353"
+                                                    FontSize="{OnPlatform Android={OnIdiom Phone=11, Tablet=14}, iOS={OnIdiom Phone=11, Tablet=14},macOS=14, UWP={OnIdiom Phone=11,Tablet=14, Desktop=14}}"/>
+                                                    </Frame>
+                                                </Grid>
+                                            </Grid>
                                 </Grid>
                             </Grid>
                         </Frame>

@@ -49,7 +49,8 @@ namespace SampleBrowser.SfListView
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new ProduitCDetailPage(item));
+            await Navigation.PushAsync(new ProduitLotsCDetailPage(item));
+            // await Navigation.PushAsync(new ProduitCDetailPage(item));
 
             // Manually deselect item.
             // ItemsListView.SelectedItem = null;

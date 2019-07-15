@@ -110,14 +110,20 @@
     <Compile Update="Views\Catalogue produit\Paging\Paging.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>
+    <Compile Update="Views\Catalogue produit\ProduitLotsCDetailPage.xaml.cs">
+      <DependentUpon>ProduitLotsCDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Catalogue produit\ProduitCDetailPage.xaml.cs">
       <DependentUpon>ProduitCDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Catalogue produit\ProduitsCPage.xaml.cs">
+    <Compile Update="Views\Catalogue produit\List\ProduitsCPage.xaml.cs">
       <DependentUpon>ProduitsCPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Catalogue produit\Stk_RowElementCTemplate.xaml.cs">
+    <Compile Update="Views\Catalogue produit\List\Stk_RowElementCTemplate.xaml.cs">
       <DependentUpon>Stk_RowElementCTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Stk_C_RowElementTemplate.xaml.cs">
+      <DependentUpon>Stk_C_RowElementTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Commandes\NewCommandePage.xaml.cs">
       <DependentUpon>NewCommandePage.xaml</DependentUpon>

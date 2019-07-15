@@ -113,8 +113,17 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public string Ratings { get; set; } = "1500 Reviews";
-        public string Offer { get; set; } = "10 % Off";
+        public decimal OLD_PRICE
+        {
+            get
+            {
+                decimal red = (PRIX_VENTE_HT * Reduction) / 100;
+                return PRIX_VENTE_HT + red;
+            }
+        }
+
+        public string Ratings { get; set; } = "1500 Votes";
+        public int Reduction { get; set; } = 15;
         public decimal ReviewValue { get; set; } = (decimal)4.5;
     }
 

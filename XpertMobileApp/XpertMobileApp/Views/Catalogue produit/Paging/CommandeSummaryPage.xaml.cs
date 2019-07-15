@@ -54,6 +54,7 @@ namespace XpertMobileApp.Views.Encaissement
                 viewModel.ItemRows.Add(item);
             }
 
+            UpdateTotaux();
             viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
             // this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());

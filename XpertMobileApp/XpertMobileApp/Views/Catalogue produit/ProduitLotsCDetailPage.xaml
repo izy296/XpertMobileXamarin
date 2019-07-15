@@ -1,31 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.ProduitCDetailPage"
+             x:Class="XpertMobileApp.Views.ProduitLotsCDetailPage"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:sample1="clr-namespace:XpertMobileApp.Views"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              Title="{Binding Title}">
 
     <StackLayout Padding="0" Margin="0" Spacing="0">
         <!-- Bar de d'outil -->
-        <Grid BackgroundColor="Black" HeightRequest="60" ColumnSpacing="0" Padding="0" Margin="0">
+        <StackLayout HeightRequest="80" Padding="0" Margin="0">
+            <Grid BackgroundColor="Black" ColumnSpacing="0" Padding="0" Margin="0">
             
-                <Button Grid.Column="0" x:Name="Btn_NavigateBack" Margin="0"
-                    FontFamily="{StaticResource FontAwesomeSolid}"
-                    HorizontalOptions="Start" TextColor="White"                    
-                    Text="{x:Static fontawesome:FontAwesomeIcons.ArrowLeft}" BackgroundColor="Transparent" FontSize="Large"
-                        Clicked="Btn_NavigateBack_Clicked"/>
+                    <Button Grid.Column="0" x:Name="Btn_NavigateBack" Margin="0"
+                        FontFamily="{StaticResource FontAwesomeSolid}"
+                        HorizontalOptions="Start" TextColor="White"                    
+                        Text="{x:Static fontawesome:FontAwesomeIcons.ArrowLeft}" BackgroundColor="Transparent" FontSize="Large"
+                            Clicked="Btn_NavigateBack_Clicked"/>
 
-                  <Button Grid.Column="1" x:Name="Btn_HeaderCart" Margin="0" 
-                    HorizontalOptions="End" TextColor="White" FontSize="Medium" ContentLayout="Left,0"
-                    Image="shopping_cart_24.png"
-                    Text="(0)" BackgroundColor="Transparent" 
-                        Clicked="Btn_HeaderCart_Clicked"/>
-        </Grid>
-
+                      <Button Grid.Column="1" x:Name="Btn_HeaderCart" Margin="0" 
+                        HorizontalOptions="End" TextColor="White" FontSize="Medium" ContentLayout="Left,0"
+                        Image="shopping_cart_24.png"
+                        Text="(0)" BackgroundColor="Transparent" 
+                            Clicked="Btn_HeaderCart_Clicked"/>
+            </Grid>
+        </StackLayout>
+        
         <!-- Infos produits -->
         <ScrollView x:Name="sl_content" Padding="0,0,0,5" Margin="0" VerticalOptions="FillAndExpand">
             <!--
@@ -34,11 +37,11 @@
             <Frame  Margin="0" HasShadow="{OnPlatform Android=false, iOS=false, macOS=false, UWP=false}">
                 <Grid Padding="0" ColumnSpacing="0" Margin="2" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-
-                    <Grid HorizontalOptions="Fill" VerticalOptions="Fill"
+                    <!-- Image -->
+                    <Grid HorizontalOptions="Fill" 
                           HeightRequest="{OnIdiom Phone=240, Tablet=400, Desktop=500}" >
 
                         <ffimageloading:CachedImage 
@@ -56,8 +59,9 @@
 
                     </Grid>
 
-                    <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="Start" Margin="5,0,0,0">
+                    <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="Start" Margin="5,0,0,0" >
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -65,17 +69,20 @@
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
                         
+                        <!-- Designation produit -->
                         <Label Grid.Row="0" Text="{Binding Item.DESIGNATION}" LineBreakMode="NoWrap"  HorizontalOptions="Start" FontFamily="Bold" 
                                                FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
                                                Opacity="{OnPlatform Default=1, Android=0.87}"
                                                TextColor="{OnPlatform Default=#333333, Android=#000000}">
                         </Label>
-                
+
+                        <!-- Catégorie produit -->
                         <Label Grid.Row="1" Text="{Binding Item.DESIGN_TYPE}" FontSize="10"  HorizontalOptions="Start"
                                                  Opacity="{OnPlatform Default=1, Android=0.54}"
                                                TextColor="{OnPlatform Default=#333333, Android=#000000,UWP=#4C4C4C}">
                         </Label>
             
+                        <!-- Votes -->
                         <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -130,6 +137,7 @@
                             </Grid>
                         </Grid>
 
+                        <!-- Description -->
                         <Grid Grid.Row="4" Padding="0" RowSpacing="0" HorizontalOptions="Start">
                             <StackLayout Spacing="0" Padding="0,10,0,0">
                                 <Label Grid.Row="0" Text="Description" FontFamily="Bold"  Margin="0,0,0,10"
@@ -142,14 +150,42 @@
                                 </Label>
                             </StackLayout>
                         </Grid>
+
+                        <!-- Lots -->
+                        <StackLayout x:Name="sl_rows" Grid.Row="5" >
+
+                            <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5" VerticalOptions="Start">
+                                <Label Text="{i18n:Translate txt_Lots}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                                <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                            </StackLayout>
+
+                            <ListView x:Name="ItemsListView" VerticalOptions="StartAndExpand"
+                                    ItemsSource="{Binding ItemRows}"
+                                    HasUnevenRows="true"
+                                    RefreshCommand="{Binding LoadRowsCommand}"
+                                    IsPullToRefreshEnabled="true"
+                                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                    CachingStrategy="RecycleElement">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <template:Stk_C_RowElementTemplate />
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+
+                            </ListView>
+                        </StackLayout>
                     </Grid>
                 </Grid>
             </Frame>
         </ScrollView>
 
         <!-- Actions -->
-        <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0" VerticalOptions="End" >
- 
+        <StackLayout BackgroundColor="Transparent" Padding="0" IsVisible="False"
+                     Margin="3,0,3,3" Spacing="0" VerticalOptions="End" >
+
             <flex:FlexButton
                 x:Name="cmd_Buy"
                 HorizontalOptions="FillAndExpand"
@@ -170,23 +206,6 @@
                 BorderThickness="3"
                 Clicked="cmd_Buy_Clicked"
                 />
-                <!--
-                <Button 
-                        FontFamily="{StaticResource FontAwesomeSolid}"
-                        Text=" Ajouter au panier"
-                        TextColor="White" BackgroundColor="#107C10"/>
-
-
-                <Button  x:Name="btn2" ContentLayout="Top,0" BackgroundColor="#107C10" Image="filter.png"  
-                          Text=" {i18n:Translate txt_Buy}" HorizontalOptions="CenterAndExpand" TextColor="White" />
-
-                <Button  x:Name="btn3" ContentLayout="Left,0" BackgroundColor="#107C10" Image="filter.png"  
-                          Text="{i18n:Translate txt_Buy}" HorizontalOptions="CenterAndExpand" TextColor="White"  Clicked="cmd_Buy_Clicked"/>
-        
-                &#xE7BF;
-                #b71c1c
-                {x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}
-                -->
         </StackLayout>
     </StackLayout>
 </ContentPage>    
