@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -26,6 +28,8 @@ namespace XpertMobileApp.Views
             // Hide the menu
             NavigationPage.SetHasNavigationBar(this, false);
 
+
+
             if (this.viewModel == null)
             {
                 BindingContext = viewModel = new ItemRowsDetailViewModel<View_STK_PRODUITS, View_STK_STOCK>(prod, prod.CODE_PRODUIT);
@@ -38,7 +42,7 @@ namespace XpertMobileApp.Views
             this.UpdateSalesInfos();
         }
 
-        private void UpdateSalesInfos()
+        public void UpdateSalesInfos()
         {
             if(App.CurrentSales.Details != null)
                 Btn_HeaderCart.Text = "(" + App.CurrentSales.Details.Count() + ")";
@@ -48,8 +52,6 @@ namespace XpertMobileApp.Views
         {
             await Navigation.PopAsync();
         }
-
-        
 
         private async void RefBtn_Clicked(object sender, EventArgs e)
         {            
@@ -82,8 +84,40 @@ namespace XpertMobileApp.Views
             }
 
             row.Index = App.CurrentSales.Details.Count();
+        }
 
-           
+        private void AddLotToCart_Clicked(object sender, EventArgs e)
+        {
+            View_STK_STOCK lot = (sender as Button).BindingContext as View_STK_STOCK;
+
+           // View_STK_STOCK lot = this.BindingContext as View_STK_STOCK;
+
+            if (App.CurrentSales.Details == null)
+                App.CurrentSales.Details = new List<View_VTE_VENTE_PRODUIT>();
+
+            var row = App.CurrentSales.Details.Where(x => x.ID_STOCK == lot.ID_STOCK).FirstOrDefault();
+
+            if (row == null)
+            {
+                row = new View_VTE_VENTE_PRODUIT();
+                //row.CODE_VENTE = Item.CODE_VENTE;
+                row.CODE_PRODUIT = lot.CODE_PRODUIT;
+                row.IMAGE_URL = lot.IMAGE_URL;
+                row.ID_STOCK = lot.ID_STOCK;
+                row.CODE_BARRE_PRODUIT = lot.CODE_BARRE;
+                row.DESIGNATION_PRODUIT = lot.DESIGNATION_PRODUIT;
+                row.PRIX_VTE_TTC = lot.PRIX_VENTE; // TODO mettre le bon prix
+                row.QUANTITE = 1;
+
+                App.CurrentSales.Details.Add(row);
+            }
+            else
+            {
+                row.QUANTITE += 1;
+            }
+
+            row.Index = App.CurrentSales.Details.Count();
+            UpdateSalesInfos();
         }
 
         private void cmd_Buy_Clicked(object sender, EventArgs e)

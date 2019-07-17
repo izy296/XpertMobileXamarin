@@ -35,7 +35,13 @@ namespace XpertMobileApp.Models
         public decimal PENDING_QUANTITY { get; set; } // numeric(18,2)
         public bool GENERATE_BL { get; set; } // {trace Arrivage en instance} :: generer un bon de reception .
         public bool GENERATE_DECAISS { get; set; } // {trace Arrivage en instance} :: generer un rembouresement client .
-
+        public string IMAGE_URL
+        {
+            get
+            {
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+            }
+        }
         public string Expiration
         {
             get

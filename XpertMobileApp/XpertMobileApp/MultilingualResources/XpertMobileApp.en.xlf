@@ -696,6 +696,14 @@
           <source>Voulez vous vraiment supprimer ce produit du panier ?</source>
           <target state="new">Voulez vous vraiment supprimer ce produit du panier ?</target>
         </trans-unit>
+        <trans-unit id="txt_Cat_CommandesSaved" translate="yes" xml:space="preserve">
+          <source>Votre commande a bien été envoyée!</source>
+          <target state="new">Votre commande a bien été envoyée!</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_CommandesUpdated" translate="yes" xml:space="preserve">
+          <source>Votre commande a bien été modifiée!</source>
+          <target state="new">Votre commande a bien été modifiée!</target>
+        </trans-unit>
       </group>
     </body>
   </file>

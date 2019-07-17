@@ -24,5 +24,8 @@ namespace XpertMobileApp.Helpers
 
         // Product
         public static string PROD_CB_SCANED = "Prod_CB_Scaned";
+
+        // Catalogue 
+        public static string Add_TO_CART = "Update_Item";
     }
 }

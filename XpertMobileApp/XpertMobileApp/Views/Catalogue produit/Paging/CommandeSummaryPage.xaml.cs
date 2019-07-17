@@ -25,12 +25,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         public Command AddItemCommand { get; set; }
 
-        private View_VTE_VENTE item;
-        public View_VTE_VENTE Item
-        {
-            get { return item; }
-            set { item = value; }
-        }
+
 
         public CommandeSummaryPage(View_VTE_VENTE vente)
         {
@@ -39,15 +34,11 @@ namespace XpertMobileApp.Views.Encaissement
             itemSelector = new ProductSelector();
             TiersSelector = new ItemSelector();
 
-            this.Item = vente == null ? new View_VTE_VENTE() : vente;
-            if (vente == null) // new item init object
-            {
-                this.Item.TYPE_VENTE = "CC";
-                this.Item.DATE_VENTE = DateTime.Now;
-                this.Item.DATE_ECHEANCE = DateTime.Now;
-            }
+            var vte = vente == null ? new View_VTE_VENTE() : vente;
+            vte.TYPE_VENTE = "CC";
+            vte.DATE_VENTE = DateTime.Now;
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT>(this.Item, this.Item?.CODE_VENTE);
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT>(vte, vte?.CODE_VENTE);
 
             foreach (var item in vente.Details)
             {
@@ -113,7 +104,7 @@ namespace XpertMobileApp.Views.Encaissement
             if (row == null)
             {
                 row = new View_VTE_VENTE_PRODUIT();
-                row.CODE_VENTE = Item.CODE_VENTE;
+                row.CODE_VENTE = viewModel.Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.IMAGE_URL = product.IMAGE_URL;
                 row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
@@ -136,7 +127,7 @@ namespace XpertMobileApp.Views.Encaissement
         {
             base.OnAppearing();
 
-            if(this.Item != null && !string.IsNullOrEmpty(this.Item.CODE_VENTE))
+            if(viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_VENTE))
             { 
                 viewModel.LoadRowsCommand.Execute(null);
             }
@@ -145,7 +136,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         async Task ExecuteLoadRowsCommand()
         {
-            if (string.IsNullOrEmpty(this.Item?.CODE_VENTE)) return;
+            if (string.IsNullOrEmpty(this.viewModel.Item?.CODE_VENTE)) return;
 
             if (IsBusy)
                 return;
@@ -155,7 +146,7 @@ namespace XpertMobileApp.Views.Encaissement
             try
             {
                 viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
+                var itemsC = await WebServiceClient.GetCommandeDetails(this.viewModel.Item.CODE_VENTE);
 
                 UpdateItemIndex(itemsC);
 
@@ -250,25 +241,27 @@ namespace XpertMobileApp.Views.Encaissement
 
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
-            /*
-                if (dp_EcheanceDate.Date < DateTime.Now)
-                {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
-                    return;
-                }
-            */
-            this.Item.Details = viewModel.ItemRows.ToList();
+            this.viewModel.Item.Details = viewModel.ItemRows.ToList();
+            this.viewModel.Item.CODE_TIERS = App.User.CODE_TIERS;
+            this.viewModel.Item.DATE_VENTE = DateTime.Now;
 
-            if (string.IsNullOrEmpty(Item.CODE_VENTE))
+            if (string.IsNullOrEmpty(viewModel.Item.CODE_VENTE))
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+                await CrudManager.Commandes.AddItemAsync(viewModel.Item);
+                App.CurrentSales = null;
+                await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                await CrudManager.Commandes.UpdateItemAsync(viewModel.Item);
+                await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-
-            await Navigation.PopModalAsync();
+            
+            for (var counter = 1; counter < 2; counter++)
+            {
+                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+            }            
+            await Navigation.PopAsync();
         }
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)

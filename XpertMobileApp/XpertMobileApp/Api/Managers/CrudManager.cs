@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xpert.Common.WSClient.Services;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api.Managers
 {
@@ -8,7 +10,7 @@ namespace XpertMobileApp.Api.Managers
     {
         internal static ProductManager Products = new ProductManager();
 
-
+        internal static CrudService<View_VTE_VENTE> Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
 
     }
 }

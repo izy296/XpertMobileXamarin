@@ -624,4 +624,10 @@
   <data name="txt_ConfimDelProductCmd" xml:space="preserve">
     <value>Voulez vous vraiment supprimer ce produit du panier ?</value>
   </data>
+  <data name="txt_Cat_CommandesSaved" xml:space="preserve">
+    <value>Votre commande a bien été envoyée!</value>
+  </data>
+  <data name="txt_Cat_CommandesUpdated" xml:space="preserve">
+    <value>Votre commande a bien été modifiée!</value>
+  </data>
 </root>

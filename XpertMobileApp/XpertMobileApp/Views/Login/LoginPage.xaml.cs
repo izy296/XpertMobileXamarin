@@ -68,6 +68,7 @@ namespace XpertMobileApp.Views
                 if (token.access_token != null)
                 {
                     user.Id = token.userID;
+                    user.CODE_TIERS = token.CODE_TIERS;
                     user.Token = token;
                     App.User = user;
                     

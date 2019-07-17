@@ -34,15 +34,19 @@
 
                     <Label Grid.Column="2" Grid.Row="0" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
                           Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Center" />
-                    <StackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="2" HorizontalOptions="End">
-                       <!--
-                        <Button Text="Achter" BackgroundColor="{StaticResource Accent}"/>
-                        -->
-                        <flex:FlexButton
+
+                    <StackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                        <Button CornerRadius="38" Text="Achter" VerticalOptions="Center" ContentLayout="Left,10" 
+                               BackgroundColor="#6279B8" TextColor="White"
+                               Image="shopping_cart_24.png" Clicked="AddToCart_Clicked"></Button>
+
+                        <!--
+
+                    <flex:FlexButton
                             HorizontalOptions="FillAndExpand"
                             IconOrientation="Left" 
                             IconPadding="0,0,5,0"
-                            HeightRequest="55"
+                            HeightRequest="50"
                             Padding="5"
                             Margin="0"
                             Text="Ajouter"
@@ -54,9 +58,14 @@
                             HighlightBackgroundColor="#8EA4D2"
                             BorderColor="#8EA4D2"
                             HighlightBorderColor="#8EA4D2"
-                            BorderThickness="3"  
+                            BorderThickness="3" 
+                            Clicked="AddToCart_Clicked"
+
                             />
+-->
+
                     </StackLayout>
+                    
                 </Grid>
             </Frame>
         </StackLayout>

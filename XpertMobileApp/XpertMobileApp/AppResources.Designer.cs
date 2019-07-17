@@ -1150,6 +1150,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Votre commande a bien été envoyée!.
+        /// </summary>
+        internal static string txt_Cat_CommandesSaved {
+            get {
+                return ResourceManager.GetString("txt_Cat_CommandesSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Votre commande a bien été modifiée!.
+        /// </summary>
+        internal static string txt_Cat_CommandesUpdated {
+            get {
+                return ResourceManager.GetString("txt_Cat_CommandesUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Client.
         /// </summary>
         internal static string txt_Client {
