@@ -4,7 +4,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                  xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
-                 x:Class="XpertMobileApp.Views.ItemSelector">
+                 x:Class="XpertMobileApp.Views.TiersSelector">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
     <StackLayout BackgroundColor="White">
 

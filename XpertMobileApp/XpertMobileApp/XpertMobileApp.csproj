@@ -182,11 +182,11 @@
     <Compile Update="Views\Rfid\LigneInventaireTemplate.xaml.cs">
       <DependentUpon>LigneInventaireTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Selector\ProductSelector.xaml.cs">
+    <Compile Update="Views\Selector\Products\ProductSelector.xaml.cs">
       <DependentUpon>ProductSelector.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Selector\ItemSelector.xaml.cs">
-      <DependentUpon>ItemSelector.xaml</DependentUpon>
+    <Compile Update="Views\Selector\Tiers\TiersSelector.xaml.cs">
+      <DependentUpon>TiersSelector.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Templates\ProductSelectorTemplate.xaml.cs">
       <DependentUpon>ProductSelectorTemplate.xaml</DependentUpon>
@@ -233,10 +233,10 @@
     <EmbeddedResource Update="Views\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Selector\ProductSelector.xaml">
+    <EmbeddedResource Update="Views\Selector\Products\ProductSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Selector\ItemSelector.xaml">
+    <EmbeddedResource Update="Views\Selector\Tiers\TiersSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\LoadingPopupPage.xaml">
@@ -294,6 +294,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Selector\Emballages\" />
     <Folder Include="WebView\" />
   </ItemGroup>
 </Project>

@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace XpertMobileApp.Views
 {
-    public partial class ItemSelector : PopupPage
+    public partial class TiersSelector : PopupPage
     {
 
-        ListViewSelectorViewModel viewModel;
+        TiersSelectorViewModel viewModel;
 
-        public ItemSelector()
+        public TiersSelector()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ListViewSelectorViewModel();
+            BindingContext = viewModel = new TiersSelectorViewModel();
         }
 
         protected override void OnAppearing()

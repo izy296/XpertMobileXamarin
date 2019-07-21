@@ -56,7 +56,7 @@ namespace XpertMobileApp.Views.Encaissement
 		{
 			InitializeComponent ();
 
-            itemSelector = new ItemSelector();
+            itemSelector = new TiersSelector();
 
             Motifs  = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
@@ -79,7 +79,7 @@ namespace XpertMobileApp.Views.Encaissement
 
             BindingContext = this;
 
-            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
                 SelectedTiers = selectedItem;
 
@@ -232,7 +232,7 @@ namespace XpertMobileApp.Views.Encaissement
             Item.CODE_COMPTE = compte.CODE_COMPTE;            
         }
 
-        private ItemSelector itemSelector;
+        private TiersSelector itemSelector;
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {

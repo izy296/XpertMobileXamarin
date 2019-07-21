@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             itemSelector = new ProductSelector();
-            TiersSelector = new ItemSelector();
+            TiersSelector = new TiersSelector();
 
             this.Item = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null) // new item init object
@@ -56,7 +56,7 @@ namespace XpertMobileApp.Views.Encaissement
                 });
             });
 
-            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -172,7 +172,7 @@ namespace XpertMobileApp.Views.Encaissement
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
-        private ItemSelector TiersSelector;
+        private TiersSelector TiersSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(TiersSelector);

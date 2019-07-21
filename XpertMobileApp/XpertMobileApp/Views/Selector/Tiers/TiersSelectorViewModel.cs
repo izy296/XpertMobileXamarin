@@ -11,12 +11,12 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class ListViewSelectorViewModel : CrudBaseViewModel<TRS_TIERS, View_TRS_TIERS>
+    public class TiersSelectorViewModel : CrudBaseViewModel<TRS_TIERS, View_TRS_TIERS>
     {
 
         public string SearchedText { get; set; } = "";
 
-        public ListViewSelectorViewModel(string title= "" )
+        public TiersSelectorViewModel(string title= "" )
         {
             Title = title;
         }

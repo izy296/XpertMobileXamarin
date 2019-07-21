@@ -19,12 +19,12 @@ namespace XpertMobileApp.Views
 		{
 			InitializeComponent ();
 
-            itemSelector = new ItemSelector();
+            itemSelector = new TiersSelector();
 
             BindingContext = viewModel = new ManquantsViewModel();
 
 
-            MessagingCenter.Subscribe<ItemSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
                // viewModel.SelectedTiers = selectedItem;
                // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
@@ -76,7 +76,7 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);            
         }
 
-        private ItemSelector itemSelector;
+        private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);
