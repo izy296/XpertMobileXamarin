@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Encaissement.AchatFormPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             Title="{Binding Title}">
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
+                <Label Text="{i18n:Translate txt_Details}" Margin="5,0,0,0" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
+                <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
+                <Button x:Name="btn_RowScan" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
+            </StackLayout>
+
+            <ScrollView Padding="0" Margin="0">
+                <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                    <syncfusion:SfListView x:Name="ItemsListView" 
+                            ItemsSource="{Binding ItemRows}"
+                            SelectionBackgroundColor="Transparent"
+                            SelectionMode="None"
+                            BackgroundColor="#fcfdff"
+                            AutoFitMode="Height">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame CornerRadius="5" Padding="5" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"  OutlineColor="LightGray">
+                                        <Grid Margin="0" Padding="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="{OnIdiom Default=0.4*,  Phone=0.8* }" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="50"/>
+                                            </Grid.RowDefinitions>
+                                            <!-- Image -->
+                                            <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill" 
+                                                          VerticalOptions="Fill" Padding="0" Margin="0"
+                                                          HeightRequest="{OnIdiom Default=160,  Phone=100 }">
+
+                                                <ffimageloading:CachedImage 
+                                                             Aspect="AspectFill" HorizontalOptions="Center" 
+                                                             BackgroundColor="Transparent" VerticalOptions="Center"
+			                                                 DownsampleToViewSize="False"                                            
+			                                                 Source = "{Binding IMAGE_URL}"
+                                                             CacheType="None">
+                                                </ffimageloading:CachedImage>
+
+                                                <StackLayout Opacity="0.8" IsVisible="False">
+                                                    <Image Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
+                                                </StackLayout>
+                                            </Grid>
+
+                                            <!-- Infos -->
+                                            <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
+                                                <StackLayout>
+                                                    <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                                                           TextColor="{StaticResource DefaultTextColor}" 
+                                                           FontAttributes="Bold" FontSize="Default"/>
+                                                    <Label Text="{Binding ID_STOCK, StringFormat='LOT : {0}'}"  
+                                                           TextColor="{StaticResource DefaultTextColor}" 
+                                                                FontAttributes="Bold" FontSize="Default"/>
+                                                    <Label Text="{ Binding PRIX_VTE_TTC, StringFormat='Prix : {0:N2} DA'}" 
+                                                            FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0"/>
+
+                                                    <numeric:SfNumericUpDown 
+                                                        Minimum="0" HorizontalOptions="Start" Margin="0,10,0,0"
+                                                        WidthRequest="130" 
+                                                        ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
+                                                        FontSize="13" IsEnabled="True"
+                                                        TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                                        x:Name="NUD_Qte"
+								                        Value="{Binding QUANTITE, Mode=TwoWay}"
+                                                        ValueChanged="NUD_Qte_ValueChanged"  
+                                                        SpinButtonAlignment="Both" >
+<!--
+                                                        <numeric:SfNumericUpDown.IncrementButtonSettings>
+                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_up_g16" ButtonHeight="20" ButtonWidth="20" />
+                                                        </numeric:SfNumericUpDown.IncrementButtonSettings>
+
+                                                        <numeric:SfNumericUpDown.DecrementButtonSettings>
+                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_down_r16" ButtonHeight="20" ButtonWidth="20" />
+                                                        </numeric:SfNumericUpDown.DecrementButtonSettings>
+-->
+                                                    </numeric:SfNumericUpDown>
+                                                </StackLayout>
+                                            </Grid>
+
+                                            <!-- Total -->
+                                            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="0" 
+                                                  ColumnSpacing="0" Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
+                                                            WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
+                                                            HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White" 
+                                                            Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
+
+                                                <Label Grid.Column="1" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
+                                                               FontSize="Default" HorizontalOptions="EndAndExpand" 
+                                                               HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Chocolate"/>
+                                            </Grid>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </Frame>
+            </ScrollView>
+
+            <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
+                <Label x:Name="lbl_vteTTC" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,20,10"
+                           Text="{ Binding Item.TOTAL_TTC, Mode=TwoWay, StringFormat='Total : {0:N2} DA'}" 
+                           HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />
+
+                <flex:FlexButton
+                x:Name="cmd_Buy"
+                HorizontalOptions="FillAndExpand"
+                IconOrientation="Left" 
+                IconPadding="0,0,5,0"
+                HeightRequest="55"
+                Padding="0"
+                Margin="0"
+                Text="Confirmer l'achat"
+                CornerRadius="38"
+                Icon="shopping_cart_24.png"
+                ForegroundColor="#ffffff"
+                HighlightForegroundColor="#49516F"
+                BackgroundColor="#6279B8"
+                HighlightBackgroundColor="#8EA4D2"
+                BorderColor="#8EA4D2"
+                HighlightBorderColor="#8EA4D2"
+                BorderThickness="3"
+                Clicked="cmd_Buy_Clicked"
+                />
+        </StackLayout>
+                    
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>    

@@ -218,4 +218,19 @@ namespace XpertMobileApp.Models
         public int COUNT { get; set; }
         public string RSSI { get; set; }
     }
- }
+
+    public partial class BSE_EMBALLAGE
+    {
+        public string CODE { get; set; }
+        public string DESIGNATION { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public decimal QUANTITE { get; set; }
+        public string CODE_UNITE { get; set; }
+    }
+
+    public partial class View_BSE_EMBALLAGE : BSE_EMBALLAGE
+    {
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+    }
+}

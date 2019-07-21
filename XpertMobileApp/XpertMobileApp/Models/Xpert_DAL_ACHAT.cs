@@ -1,8 +1,174 @@
 ﻿using System;
+using System.Collections.Generic;
 using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.DAL
 {
+
+    public partial class ACH_DOCUMENT : BASE_CLASS
+    {
+        public string CODE_DOC { get; set; } // varchar(50)
+        public string NUM_DOC { get; set; } // varchar(20)
+        public DateTime? DATE_DOC { get; set; } // datetime(3)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string CODE_COMMANDE { get; set; } // varchar(50)
+        public string CODE_FACTURE { get; set; } // varchar(50)
+        public string CODE_AVOIR { get; set; } // varchar(50)
+        public string TYPE_DOC { get; set; } // varchar(4)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public string MODE_REGLEMENT { get; set; } // varchar(1)
+        public string REF_TIERS { get; set; } // varchar(50)
+        public decimal TOTAL_HT { get; set; } // money(19,4)
+        public decimal TOTAL_TVA { get; set; } // money(19,4)
+        public decimal TOTAL_PPA { get; set; } // money(19,4)
+        public decimal TOTAL_SHP { get; set; } // money(19,4)
+        public decimal TOTAL_RISTOURNE { get; set; } // money(19,4)
+        public decimal TOTAL_MARGE { get; set; } // money(19,4)
+        public decimal MT_TIMBRE { get; set; } // money(19,4)
+        public decimal TOTAL_TTC { get; set; } // money(19,4)
+        //public decimal TOTAL_PAYE { get; set; } // money(19,4)
+        public decimal TOTAL_PPA_UG { get; set; } // money(19,4)
+        public decimal TOTAL_SHP_UG { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_HT { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_TVA { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_TTC { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_SHP { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_PPA { get; set; } // money(19,4)
+        public decimal TOTAL_FOURN_HT_REMISE { get; set; } // money(19,4)
+        public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
+        public string NOTE_DOC { get; set; } // nvarchar(-1)
+        public int SENS_DOC { get; set; } // int(10)
+        public decimal RISTOUNE_FACT { get; set; } // money(19,4)
+        public decimal TOTAL_VENTE { get; set; } // money(19,4)
+        public string STATUS_DOC { get; set; } // varchar(10)
+        public DateTime? CLOTURE_ON { get; set; } // datetime(3)
+        public string CLOTURED_BY { get; set; } // varchar(200)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string EXERCICE { get; set; } // varchar(4)
+        public bool UPDATE_STOCK { get; set; }
+        public string CODE_MOTIF { get; set; }
+        public bool INCLUDE_UG { get; set; }
+        public bool PPA_BY_PRIXVENTE { get; set; }
+        public string MODE_CAL_MT_ECHANGE { get; set; }
+
+        public decimal PESEE_ENTREE { get; set; }
+        public decimal PESEE_SORTIE { get; set; }
+        public string IMMATRICULATION { get; set; }
+        public DateTime? DATE_PESEE_ENTREE { get; set; }
+        public DateTime? DATE_PESEE_SORTIE { get; set; }
+        public int? CODE_CHAUFFEUR { get; set; }
+    }
+
+    public partial class ACH_DOCUMENT_DETAIL : BASE_CLASS
+    {
+        public string CODE_DOC_DETAIL { get; set; } // varchar(32)
+        public string CODE_ORIGINE_DETAIL { get; set; } // varchar(32)
+        public string CODE_DOC { get; set; } // varchar(50)
+        public int? ID_STOCK { get; set; } // int(10)
+        public string CODE_PRODUIT { get; set; } // varchar(32)
+        public string LOT { get; set; } // varchar(50)
+        public DateTime? DATE_PEREMPTION { get; set; } // datetime(3)
+        public string CODE_MAGASIN { get; set; } // varchar(20)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(50)
+        public decimal QUANTITE { get; set; } // numeric(19,2)
+        public decimal QTE_BONUS { get; set; } // numeric(19,2)
+        public decimal QTE_RECUE { get; set; } // numeric(19,2)
+        public decimal PRIX_UNITAIRE { get; set; } // money(19,4)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public decimal TAUX_RISTOURNE { get; set; } // money(19,4)
+        public decimal TAUX_BONUS { get; set; } // money(19,4)
+        public decimal TAUX_TVA { get; set; } // money(19,4)
+        public decimal COUT_ACHAT { get; set; } // money(19,4)
+        public decimal TAUX_MARGE { get; set; } // money(19,4)
+        public decimal PRIX_TTC { get; set; } // money(19,4)
+        public decimal MT_HT { get; set; } // money(19,4)
+        public decimal MT_RISTOURNE { get; set; } // money(19,4)
+        public decimal MT_TVA { get; set; } // money(19,4)
+        public decimal MT_RISTOURNE_FACT { get; set; } // money(19,4)
+        public decimal MT_TTC { get; set; } // money(19,4)
+        public decimal MT_VENTE { get; set; } // money(19,4)
+        public decimal MT_PPA { get; set; } // money(19,4)
+        public decimal MT_PPA_UG { get; set; } // money(19,4)
+        public decimal MT_SHP { get; set; } // money(19,4)
+        public decimal MT_SHP_UG { get; set; } // money(19,4)
+        public string CODE_BARRE_LOT { get; set; } // varchar(200)
+        public int ORDRE { get; set; } // int(10)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+
+    public partial class View_ACH_DOCUMENT : ACH_DOCUMENT
+    {
+        public string TIERS_NomC { get; set; } // varchar(501)
+        public string DESIGN_MODE_REG { get; set; } // varchar(300)
+        public string DESIGNATION_MAGASIN { get; set; } // varchar(100)
+        public decimal TOTAL_RESTE { get; set; }
+        public int LITIGES { get; set; }
+        public string DESIGN_MOTIF { get; set; }
+        public decimal TOTAL_PAYE { get; set; }
+        public string CODE_FAMILLE_TIERS { get; set; }
+
+        // Totaux avec Valeurs réels
+        public decimal TOTAL_TTC_REEL { get; set; }
+        public decimal TOTAL_RESTE_REEL { get; set; }
+        public decimal TOTAL_HT_REEL { get; set; }
+        public decimal TOTAL_MARGE_REEL { get; set; }
+        public decimal TOTAL_PPA_REEL { get; set; }
+        public decimal TOTAL_PPA_UG_REEL { get; set; }
+        public decimal TOTAL_RISTOURNE_REEL { get; set; }
+        public decimal TOTAL_SHP_REEL { get; set; }
+        public decimal TOTAL_SHP_UG_REEL { get; set; }
+        public decimal TOTAL_TVA_REEL { get; set; }
+        public decimal TOTAL_VENTE_REEL { get; set; }
+        public string DESIGN_FAMILLE_TIERS { get; set; }
+
+        public List<View_ACH_DOCUMENT_DETAIL> Details;
+
+    }
+
+    public partial class View_ACH_DOCUMENT_DETAIL : ACH_DOCUMENT_DETAIL
+    {
+        public string NUM_DOC { get; set; } // varchar(20)
+        public DateTime? DATE_DOC { get; set; } // datetime(3)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string TYPE_DOC { get; set; } // varchar(4)
+        public string REF_TIERS { get; set; } // varchar(50)
+        public string TIERS_NOMC { get; set; } // varchar(501)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // varchar(32)
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public string DESIGN_LABO { get; set; } // varchar(2500)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)
+        public string DESIGN_EMPLACEMENT { get; set; } // varchar(100)
+        public decimal QTE_MANQUANTS { get; set; } // numeric(38,2)
+        public int LITIGES { get; set; } // int(10)
+        public string OLD_CB { get; set; }
+        public bool UPDATE_STOCK { get; set; }
+        public bool INCLUDE_UG { get; set; }
+        public bool PPA_BY_PRIXVENTE { get; set; }
+        public string CODE_MOTIF { get; set; } // varchar(100)
+        public string DESIGNATION_MOTIF { get; set; } // varchar(100)
+        public string CODE_FAMILLE_TIERS { get; set; }
+        public string DESIGN_FAMILLE_TIERS { get; set; }
+        public decimal MT_ACHAT { get; set; }
+        public bool PSYCHOTHROPE { get; set; } // tinyint(3)
+    }
+
 
     public partial class BSE_TABLE
     {

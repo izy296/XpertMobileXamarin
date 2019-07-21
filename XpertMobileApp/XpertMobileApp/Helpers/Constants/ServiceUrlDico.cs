@@ -67,6 +67,13 @@ namespace XpertMobileApp.Helpers
 
         public static string COMMANDE_DETAILS_URL = "GetCommandesDetails";
 
+        // Achats
+        // Commandes
+
+        public static string ACH_ACHATS = "ACH_ACHATS";
+
+        public static string ACHATS_DETAILS_URL = "GetAchatsDetails";
+
         // Produits
 
         public static string PRODUITS_URL = "Produits";

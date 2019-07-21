@@ -101,6 +101,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Achats\AchatsPage.xaml.cs">
+      <DependentUpon>AchatsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Achats\AchatFormPage.xaml.cs">
+      <DependentUpon>AchatFormPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
@@ -157,6 +163,9 @@
     </Compile>
     <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
       <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Emballages\EmballageSelector.xaml.cs">
+      <DependentUpon>EmballageSelector.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Templates\ProduitTemplate.xaml.cs">
       <DependentUpon>ProduitTemplate.xaml</DependentUpon>
@@ -233,6 +242,9 @@
     <EmbeddedResource Update="Views\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Emballages\EmballageSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\Products\ProductSelector.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -294,7 +306,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Selector\Emballages\" />
     <Folder Include="WebView\" />
   </ItemGroup>
 </Project>
