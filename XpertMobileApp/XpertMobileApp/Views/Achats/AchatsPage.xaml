@@ -6,7 +6,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              Title="{Binding Title}"
-             x:Name="Ventes">
+             x:Name="Achats">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btn_Additem"  Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
@@ -110,7 +110,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                           <template:CommandesTemplate />
+                            <template:AchatsTemplate />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

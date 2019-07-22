@@ -107,6 +107,9 @@
     <Compile Update="Views\Achats\AchatFormPage.xaml.cs">
       <DependentUpon>AchatFormPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Achats\AchatsTemplate.xaml.cs">
+      <DependentUpon>AchatsTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>

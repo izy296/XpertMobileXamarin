@@ -853,6 +853,24 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pèse d&apos;entrée.
+        /// </summary>
+        internal static string PESEE_ENTREE {
+            get {
+                return ResourceManager.GetString("PESEE_ENTREE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Pèse de sortie.
+        /// </summary>
+        internal static string PESEE_SORTIE {
+            get {
+                return ResourceManager.GetString("PESEE_SORTIE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Rechercher .....
         /// </summary>
         internal static string ph_seachedtxt {
@@ -867,6 +885,15 @@ namespace XpertMobileApp {
         internal static string pn_About {
             get {
                 return ResourceManager.GetString("pn_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Achats.
+        /// </summary>
+        internal static string pn_Achats {
+            get {
+                return ResourceManager.GetString("pn_Achats", resourceCulture);
             }
         }
         
@@ -948,6 +975,15 @@ namespace XpertMobileApp {
         internal static string pn_NewCommande {
             get {
                 return ResourceManager.GetString("pn_NewCommande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouvel achat.
+        /// </summary>
+        internal static string pn_NewPurchase {
+            get {
+                return ResourceManager.GetString("pn_NewPurchase", resourceCulture);
             }
         }
         

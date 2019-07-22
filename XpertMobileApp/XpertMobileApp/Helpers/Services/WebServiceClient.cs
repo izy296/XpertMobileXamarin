@@ -178,7 +178,7 @@ namespace XpertMobileApp.Services
 
         public static async Task<List<View_ACH_DOCUMENT_DETAIL>> GetAchatsDetails(string codeDoc)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.COMMANDE_DETAILS_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.ACHATS_DETAILS_URL);
             url += WSApi2.AddParam(url, "codeDoc", codeDoc);
 
             return await RetrievAauthorizedData<View_ACH_DOCUMENT_DETAIL>(url);

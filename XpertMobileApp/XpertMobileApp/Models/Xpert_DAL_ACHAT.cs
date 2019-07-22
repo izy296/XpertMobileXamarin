@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xpert.Common.WSClient.Model;
+using XpertMobileApp.Helpers;
 
 namespace XpertMobileApp.DAL
 {
@@ -129,6 +130,21 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_VENTE_REEL { get; set; }
         public string DESIGN_FAMILLE_TIERS { get; set; }
 
+        // Mobile extension
+
+        public override string ToString()
+        {
+            return "N° " + NUM_DOC;
+        }
+
+        public string TITLE_DOCUMENT
+        {
+            get
+            {
+                return DALHelper.GetTypeDesignation(this.TYPE_DOC);
+            }
+        }
+
         public List<View_ACH_DOCUMENT_DETAIL> Details;
 
     }
@@ -167,6 +183,16 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public decimal MT_ACHAT { get; set; }
         public bool PSYCHOTHROPE { get; set; } // tinyint(3)
+
+
+        // Mobile extension
+        public string IMAGE_URL
+        {
+            get
+            {
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+            }
+        }
     }
 
 

@@ -630,4 +630,16 @@
   <data name="txt_Cat_CommandesUpdated" xml:space="preserve">
     <value>Votre commande a bien été modifiée!</value>
   </data>
+  <data name="pn_Achats" xml:space="preserve">
+    <value>Achats</value>
+  </data>
+  <data name="PESEE_ENTREE" xml:space="preserve">
+    <value>Pèse d'entrée</value>
+  </data>
+  <data name="PESEE_SORTIE" xml:space="preserve">
+    <value>Pèse de sortie</value>
+  </data>
+  <data name="pn_NewPurchase" xml:space="preserve">
+    <value>Nouvel achat</value>
+  </data>
 </root>

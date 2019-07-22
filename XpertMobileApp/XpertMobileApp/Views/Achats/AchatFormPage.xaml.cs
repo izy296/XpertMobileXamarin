@@ -33,20 +33,14 @@ namespace XpertMobileApp.Views.Encaissement
             TiersSelector = new TiersSelector();
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
-            ach.TYPE_DOC = "R";
-            ach.DATE_DOC = DateTime.Now;
 
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>(ach, ach?.CODE_DOC);
 
-            foreach (var item in vente.Details)
-            {
-                viewModel.ItemRows.Add(item);
-            }
+            this.viewModel.Title = string.IsNullOrEmpty(ach.CODE_DOC) ? AppResources.pn_NewPurchase : ach?.ToString();
 
-            UpdateTotaux();
+            this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+
             viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
-
-            // this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             MessagingCenter.Subscribe<ProductSelector, View_STK_PRODUITS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
@@ -151,6 +145,8 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     viewModel.ItemRows.Add(itemC);
                 }
+
+                UpdateTotaux();
             }
             catch (Exception ex)
             {
@@ -200,6 +196,11 @@ namespace XpertMobileApp.Views.Encaissement
 
                     });
             };
+        }
+
+        private void HeaderSettings_Clicked(object sender, EventArgs e)
+        {
+            pnl_Header.IsVisible = !pnl_Header.IsVisible;
         }
 
         async Task<bool> AddScanedProduct(string cb_prod)

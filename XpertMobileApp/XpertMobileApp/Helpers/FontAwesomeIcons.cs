@@ -134,5 +134,15 @@ namespace FontAwesome
         /// </summary>
         public const string TrashAlt = "\uf2ed";
 
+
+        /// <summary>
+        /// fa-search unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/search
+        /// </summary>
+        public const string Search = "\uf002";
+
     }
 }

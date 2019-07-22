@@ -704,6 +704,22 @@
           <source>Votre commande a bien été modifiée!</source>
           <target state="new">Votre commande a bien été modifiée!</target>
         </trans-unit>
+        <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
+          <source>Achats</source>
+          <target state="new">Achats</target>
+        </trans-unit>
+        <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
+          <source>Pèse d'entrée</source>
+          <target state="new">Pèse d'entrée</target>
+        </trans-unit>
+        <trans-unit id="PESEE_SORTIE" translate="yes" xml:space="preserve">
+          <source>Pèse de sortie</source>
+          <target state="new">Pèse de sortie</target>
+        </trans-unit>
+        <trans-unit id="pn_NewPurchase" translate="yes" xml:space="preserve">
+          <source>Nouvel achat</source>
+          <target state="new">Nouvel achat</target>
+        </trans-unit>
       </group>
     </body>
   </file>
