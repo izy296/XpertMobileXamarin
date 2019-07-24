@@ -704,8 +704,8 @@
           <target state="new">Votre commande a bien été modifiée!</target>
         </trans-unit>
         <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
-          <source>Achats</source>
-          <target state="new">Achats</target>
+          <source>Liste des pesées</source>
+          <target state="new">Liste des pesées</target>
         </trans-unit>
         <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
           <source>Pèse d'entrée</source>
@@ -718,6 +718,26 @@
         <trans-unit id="pn_NewPurchase" translate="yes" xml:space="preserve">
           <source>Nouvel achat</source>
           <target state="new">Nouvel achat</target>
+        </trans-unit>
+        <trans-unit id="txt_Chauffeur" translate="yes" xml:space="preserve">
+          <source>Chauffeur</source>
+          <target state="new">Chauffeur</target>
+        </trans-unit>
+        <trans-unit id="txt_Immatriculation" translate="yes" xml:space="preserve">
+          <source>Matricule</source>
+          <target state="new">Matricule</target>
+        </trans-unit>
+        <trans-unit id="txt_Date" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target state="new">Date</target>
+        </trans-unit>
+        <trans-unit id="txt_Status" translate="yes" xml:space="preserve">
+          <source>État</source>
+          <target state="new">État</target>
+        </trans-unit>
+        <trans-unit id="pn_NewReception" translate="yes" xml:space="preserve">
+          <source>Nouvelle pesée</source>
+          <target state="new">Nouvelle pesée</target>
         </trans-unit>
       </group>
     </body>

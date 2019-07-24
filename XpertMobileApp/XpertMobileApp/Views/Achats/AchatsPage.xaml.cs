@@ -14,6 +14,7 @@ namespace XpertMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AchatsPage : ContentPage
 	{
+        private string typeDoc = "LF"; 
         AchatsViewModel viewModel;
 
         public AchatsPage()
@@ -22,7 +23,7 @@ namespace XpertMobileApp.Views
 
             itemSelector = new TiersSelector();
 
-            BindingContext = viewModel = new AchatsViewModel();
+            BindingContext = viewModel = new AchatsViewModel(typeDoc);
 
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
@@ -39,7 +40,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AchatFormPage(item));
+            await Navigation.PushAsync(new AchatFormPage(item, typeDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -47,12 +48,17 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new AchatFormPage(null)));
+            await Navigation.PushModalAsync(new NavigationPage(new AchatFormPage(null, typeDoc)));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            if(StatusPicker.ItemsSource!= null && StatusPicker.ItemsSource.Count > 0)
+            { 
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[2];
+            }
 
             if (viewModel.Items.Count == 0)
                 LoadStats();
@@ -75,7 +81,6 @@ namespace XpertMobileApp.Views
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
             viewModel.LoadItemsCommand.Execute(null);            
         }

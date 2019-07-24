@@ -6186,26 +6186,26 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
-			// aapt resource value: 0x7f020161
-			public const int avd_hide_password_1 = 2130837857;
-			
 			// aapt resource value: 0x7f020162
-			public const int avd_hide_password_2 = 2130837858;
+			public const int avd_hide_password_1 = 2130837858;
 			
 			// aapt resource value: 0x7f020163
-			public const int avd_hide_password_3 = 2130837859;
+			public const int avd_hide_password_2 = 2130837859;
+			
+			// aapt resource value: 0x7f020164
+			public const int avd_hide_password_3 = 2130837860;
 			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
 			
-			// aapt resource value: 0x7f020164
-			public const int avd_show_password_1 = 2130837860;
-			
 			// aapt resource value: 0x7f020165
-			public const int avd_show_password_2 = 2130837861;
+			public const int avd_show_password_1 = 2130837861;
 			
 			// aapt resource value: 0x7f020166
-			public const int avd_show_password_3 = 2130837862;
+			public const int avd_show_password_2 = 2130837862;
+			
+			// aapt resource value: 0x7f020167
+			public const int avd_show_password_3 = 2130837863;
 			
 			// aapt resource value: 0x7f020059
 			public const int bg = 2130837593;
@@ -6951,11 +6951,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f020150
 			public const int notification_icon_background = 2130837840;
 			
-			// aapt resource value: 0x7f02015f
-			public const int notification_template_icon_bg = 2130837855;
-			
 			// aapt resource value: 0x7f020160
-			public const int notification_template_icon_low_bg = 2130837856;
+			public const int notification_template_icon_bg = 2130837856;
+			
+			// aapt resource value: 0x7f020161
+			public const int notification_template_icon_low_bg = 2130837857;
 			
 			// aapt resource value: 0x7f020151
 			public const int notification_tile_bg = 2130837841;
@@ -6979,25 +6979,28 @@ namespace XpertMobileApp.Droid
 			public const int roundedbgdark = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int shadow_effect = 2130837848;
+			public const int settings_32 = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int shopping_cart_24 = 2130837849;
+			public const int shadow_effect = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int splash_logo = 2130837850;
+			public const int shopping_cart_24 = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int splash_screen = 2130837851;
+			public const int splash_logo = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int tooltip_frame_dark = 2130837852;
+			public const int splash_screen = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int tooltip_frame_light = 2130837853;
+			public const int tooltip_frame_dark = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int xamarin_logo = 2130837854;
+			public const int tooltip_frame_light = 2130837854;
+			
+			// aapt resource value: 0x7f02015f
+			public const int xamarin_logo = 2130837855;
 			
 			static Drawable()
 			{

@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace XpertMobileApp.Views
 {
-    public partial class EmballageSelector : PopupPage
+    public partial class ChauffeurSelector : PopupPage
     {
 
-        EmballageSelectorViewModel viewModel;
+        ChauffeurSelectorViewModel viewModel;
 
-        public EmballageSelector()
+        public ChauffeurSelector()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new EmballageSelectorViewModel();
+            BindingContext = viewModel = new ChauffeurSelectorViewModel();
         }
 
         protected override void OnAppearing()
@@ -31,7 +31,7 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.Items.ToList());
+            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.SelectedItem);
 
             await PopupNavigation.Instance.PopAsync();
         }

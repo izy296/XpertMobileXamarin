@@ -889,7 +889,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Achats.
+        ///   Recherche une chaîne localisée semblable à Liste des pesées.
         /// </summary>
         internal static string pn_Achats {
             get {
@@ -984,6 +984,15 @@ namespace XpertMobileApp {
         internal static string pn_NewPurchase {
             get {
                 return ResourceManager.GetString("pn_NewPurchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouvelle pesée.
+        /// </summary>
+        internal static string pn_NewReception {
+            get {
+                return ResourceManager.GetString("pn_NewReception", resourceCulture);
             }
         }
         
@@ -1204,6 +1213,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Chauffeur.
+        /// </summary>
+        internal static string txt_Chauffeur {
+            get {
+                return ResourceManager.GetString("txt_Chauffeur", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Client.
         /// </summary>
         internal static string txt_Client {
@@ -1245,6 +1263,15 @@ namespace XpertMobileApp {
         internal static string txt_CovredDays {
             get {
                 return ResourceManager.GetString("txt_CovredDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Date.
+        /// </summary>
+        internal static string txt_Date {
+            get {
+                return ResourceManager.GetString("txt_Date", resourceCulture);
             }
         }
         
@@ -1335,6 +1362,15 @@ namespace XpertMobileApp {
         internal static string txt_header {
             get {
                 return ResourceManager.GetString("txt_header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Matricule.
+        /// </summary>
+        internal static string txt_Immatriculation {
+            get {
+                return ResourceManager.GetString("txt_Immatriculation", resourceCulture);
             }
         }
         
@@ -1542,6 +1578,15 @@ namespace XpertMobileApp {
         internal static string txt_StartDate {
             get {
                 return ResourceManager.GetString("txt_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à État.
+        /// </summary>
+        internal static string txt_Status {
+            get {
+                return ResourceManager.GetString("txt_Status", resourceCulture);
             }
         }
         

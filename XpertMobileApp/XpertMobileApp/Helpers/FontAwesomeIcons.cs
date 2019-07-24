@@ -144,5 +144,14 @@ namespace FontAwesome
         /// </summary>
         public const string Search = "\uf002";
 
+        /// <summary>
+        /// fa-cube unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/cube
+        /// </summary>
+        public const string Cube = "\uf1b2";
+
     }
 }

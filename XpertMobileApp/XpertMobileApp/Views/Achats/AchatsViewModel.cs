@@ -16,6 +16,8 @@ namespace XpertMobileApp.ViewModels
     public class AchatsViewModel : CrudBaseViewModel<ACH_DOCUMENT, View_ACH_DOCUMENT>
     {
 
+        public string TypeDoc { get; set; } = "LF";
+
         decimal totalTurnover;
         public decimal TotalTurnover
         {
@@ -36,9 +38,9 @@ namespace XpertMobileApp.ViewModels
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
-        public Command LoadComptesCommand { get; set; }
+        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
+        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
+        
 
         public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
         public View_BSE_COMPTE SelectedClient { get; set; }
@@ -48,9 +50,36 @@ namespace XpertMobileApp.ViewModels
         public View_BSE_COMPTE SelectedUser { get; set; }
         public Command LoadUsersCommand { get; set; }
 
-        public AchatsViewModel()
+        public AchatsViewModel(string typeDoc)
         {
-            Title = AppResources.pn_Commandes;
+            Title = AppResources.pn_Achats;
+            TypeDoc = typeDoc;
+
+            Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
+
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "",
+                NAME = "",
+            });
+
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "16",
+                NAME = "En attente",
+            });
+
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "17",
+                NAME = "En cours",
+            });
+
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "18",
+                NAME = "Clôturée",
+            });
         }
 
         protected override string ContoleurName
@@ -65,7 +94,8 @@ namespace XpertMobileApp.ViewModels
         {
             Dictionary<string, string> result = base.GetFilterParams();
 
-            // result.Add("type", "all");
+            result.Add("typeDoc", TypeDoc);
+            
             // result.Add("idCaisse", "all");
             result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
@@ -73,8 +103,8 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 result.Add("codeClient", SelectedTiers?.CODE_TIERS);
 
-            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("codeUser", SelectedCompte?.CODE_COMPTE);
+            if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
+                result.Add("statusDoc", SelectedStatus?.CODE_STATUS);
 
             return result;
         }

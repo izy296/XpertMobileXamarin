@@ -1,30 +1,26 @@
-﻿using Acr.UserDialogs;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Extended;
-using Xpert.Common.WSClient.Helpers;
+﻿using System.Collections.Generic;
 using XpertMobileApp.Api.ViewModels;
-using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
-using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class EmballageSelectorViewModel : CrudBaseViewModel<BSE_EMBALLAGE, View_BSE_EMBALLAGE>
+    public class ChauffeurSelectorViewModel : CrudBaseViewModel<BSE_CHAUFFEUR, BSE_CHAUFFEUR>
     {
-
         public string SearchedText { get; set; } = "";
 
-        public EmballageSelectorViewModel(string title= "" )
+        public ChauffeurSelectorViewModel(string title= "" )
         {
             Title = title;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_BSE_EMBALLAGE> list)
+        protected override void OnAfterLoadItems(IEnumerable<BSE_CHAUFFEUR> list)
         {
             base.OnAfterLoadItems(list);
+
+            BSE_CHAUFFEUR fElem = new BSE_CHAUFFEUR();
+            fElem.NOM_CHAUFFEUR = "";
+            fElem.CODE_CHAUFFEUR = "";
+            Items.Insert(0, fElem);
         }
 
         protected override Dictionary<string, string> GetFilterParams()
