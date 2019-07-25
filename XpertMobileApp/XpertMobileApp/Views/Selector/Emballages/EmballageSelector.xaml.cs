@@ -24,9 +24,7 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private async void OnClose(object sender, EventArgs e)
@@ -36,14 +34,14 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
         }
 
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            btnSelect.IsEnabled = true;
-        }
-
         async void btn_Search_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private void ItemsListView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
+        {
+            btnSelect.IsEnabled = true;
         }
     }
 }
