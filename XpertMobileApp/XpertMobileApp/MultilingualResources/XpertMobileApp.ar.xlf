@@ -708,16 +708,16 @@
           <target state="new">Liste des pesées</target>
         </trans-unit>
         <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
-          <source>Pèse d'entrée</source>
-          <target state="new">Pèse d'entrée</target>
+          <source>Pesée d'entrée</source>
+          <target state="new">Pesée d'entrée</target>
         </trans-unit>
         <trans-unit id="PESEE_SORTIE" translate="yes" xml:space="preserve">
-          <source>Pèse de sortie</source>
-          <target state="new">Pèse de sortie</target>
+          <source>Pesée de sortie</source>
+          <target state="new">Pesée de sortie</target>
         </trans-unit>
         <trans-unit id="pn_NewPurchase" translate="yes" xml:space="preserve">
-          <source>Nouvel achat</source>
-          <target state="new">Nouvel achat</target>
+          <source>Nouvelle pesée</source>
+          <target state="new">Nouvelle pesée</target>
         </trans-unit>
         <trans-unit id="txt_Chauffeur" translate="yes" xml:space="preserve">
           <source>Chauffeur</source>

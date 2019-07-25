@@ -853,7 +853,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pèse d&apos;entrée.
+        ///   Recherche une chaîne localisée semblable à Pesée d&apos;entrée.
         /// </summary>
         internal static string PESEE_ENTREE {
             get {
@@ -862,7 +862,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Pèse de sortie.
+        ///   Recherche une chaîne localisée semblable à Pesée de sortie.
         /// </summary>
         internal static string PESEE_SORTIE {
             get {
@@ -979,7 +979,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Nouvel achat.
+        ///   Recherche une chaîne localisée semblable à Nouvelle pesée.
         /// </summary>
         internal static string pn_NewPurchase {
             get {

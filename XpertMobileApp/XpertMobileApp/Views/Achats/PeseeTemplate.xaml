@@ -31,7 +31,7 @@
                     
                     <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="{ Binding PESEE_BRUTE, StringFormat='{0:N2}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="{ Binding PESEE_BRUTE, StringFormat='{0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                         <Label Text="{Binding DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>

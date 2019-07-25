@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -13,28 +14,31 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
-using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
 
-namespace XpertMobileApp.Views.Encaissement
+namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AchatFormPage : ContentPage
 	{
-        ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL> viewModel;
+        AchatsFormViewModel viewModel;
 
         public Command AddItemCommand { get; set; }
 
-        public AchatFormPage(View_ACH_DOCUMENT vente)
+        public AchatFormPage(View_ACH_DOCUMENT vente, string typeDoc)
         {
             InitializeComponent();
 
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector();
+            ChauffeurSelector = new ChauffeurSelector();
+            EmballageSelector = new EmballageSelector();
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
+            ach.TYPE_DOC = typeDoc;
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>(ach, ach?.CODE_DOC);
+            BindingContext = this.viewModel = new AchatsFormViewModel(ach, ach?.CODE_DOC);
 
             this.viewModel.Title = string.IsNullOrEmpty(ach.CODE_DOC) ? AppResources.pn_NewPurchase : ach?.ToString();
 
@@ -54,9 +58,27 @@ namespace XpertMobileApp.Views.Encaissement
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
                     viewModel.SelectedTiers = selectedItem;
                     viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
+                    viewModel.Item.TIERS_NomC = selectedItem.NOM_TIERS1;
+                });
+            });
+
+            MessagingCenter.Subscribe<ChauffeurSelector, BSE_CHAUFFEUR>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.SelectedChauffeur = selectedItem;
+                    viewModel.Item.CODE_CHAUFFEUR = selectedItem.CODE_CHAUFFEUR;
+                    viewModel.Item.NOM_CHAUFFEUR = selectedItem.NOM_CHAUFFEUR;
+                });
+            });
+
+            MessagingCenter.Subscribe<EmballageSelector, List<View_BSE_EMBALLAGE>>(this, MCDico.ITEM_SELECTED, async (obj, items) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    currentRow.Embalages = items;
                 });
             });
 
@@ -96,6 +118,7 @@ namespace XpertMobileApp.Views.Encaissement
             if (row == null)
             {
                 row = new View_ACH_DOCUMENT_DETAIL();
+                row.ParentDoc = viewModel.Item;
                 row.CODE_DOC = viewModel.Item.CODE_DOC;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE = product.CODE_BARRE;
@@ -103,7 +126,16 @@ namespace XpertMobileApp.Views.Encaissement
                 row.PRIX_UNITAIRE = product.PRIX_ACHAT_TTC; // TODO mettre le bon prix
                 row.QUANTITE = 1;
 
+                if (viewModel.ItemRows.Count == 0)
+                {
+                    row.IS_PRINCIPAL = true;
+                    row.PESEE_BRUTE = viewModel.Item.PESEE_BRUTE;
+                }
+
                 viewModel.ItemRows.Add(row);
+                this.viewModel.Item.Details = viewModel.ItemRows.ToList();
+
+
             }
             else
             {
@@ -118,7 +150,10 @@ namespace XpertMobileApp.Views.Encaissement
         {
             base.OnAppearing();
 
-            if(viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC))
+            ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
+            ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
+
+            if (viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC))
             { 
                 viewModel.LoadRowsCommand.Execute(null);
             }
@@ -181,6 +216,17 @@ namespace XpertMobileApp.Views.Encaissement
             await PopupNavigation.Instance.PushAsync(TiersSelector);
         }
 
+        private ChauffeurSelector ChauffeurSelector;
+        private async void btn_ChauffeurSelect_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(ChauffeurSelector);
+        }
+
+        private void btn_SelectImmat_Clicked(object sender, EventArgs e)
+        {
+
+        }
+        
         private void RowScan_Clicked(object sender, EventArgs e)
         {
             var scaner = new ZXingScannerPage();
@@ -262,6 +308,14 @@ namespace XpertMobileApp.Views.Encaissement
             await Navigation.PopAsync();
         }
 
+        private EmballageSelector EmballageSelector;
+        private View_ACH_DOCUMENT_DETAIL currentRow;
+        private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
+        {
+            currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
+            await PopupNavigation.Instance.PushAsync(EmballageSelector);
+        }
+
         private async void Btn_Delete_Clicked(object sender, EventArgs e)
         {
             var prodId = (sender as Button).ClassId;
@@ -283,6 +337,25 @@ namespace XpertMobileApp.Views.Encaissement
         private void NUD_Qte_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {
             UpdateTotaux();
+        }
+
+        private void ne_PeseeBruteChanged(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
+        {
+
+            View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
+
+            var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL = true);
+            principalItem.PESEE_BRUTE = viewModel.Item.PESEE_BRUTE;
+
+            foreach (var item in viewModel.ItemRows.ToList())
+            {
+                if (!item.IS_PRINCIPAL)
+                {
+                    principalItem.PESEE_BRUTE = principalItem.PESEE_BRUTE - item.PESEE_BRUTE;
+                }
+            }
+
+            viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
         }
     }
 }

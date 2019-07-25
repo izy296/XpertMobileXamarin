@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.DAL
 {
@@ -26,7 +28,7 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_RISTOURNE { get; set; } // money(19,4)
         public decimal TOTAL_MARGE { get; set; } // money(19,4)
         public decimal MT_TIMBRE { get; set; } // money(19,4)
-        public decimal TOTAL_TTC { get; set; } // money(19,4)
+
         //public decimal TOTAL_PAYE { get; set; } // money(19,4)
         public decimal TOTAL_PPA_UG { get; set; } // money(19,4)
         public decimal TOTAL_SHP_UG { get; set; } // money(19,4)
@@ -57,10 +59,25 @@ namespace XpertMobileApp.DAL
 
         public decimal PESEE_ENTREE { get; set; }
         public decimal PESEE_SORTIE { get; set; }
+
         public string IMMATRICULATION { get; set; }
         public DateTime? DATE_PESEE_ENTREE { get; set; }
         public DateTime? DATE_PESEE_SORTIE { get; set; }
-        public int? CODE_CHAUFFEUR { get; set; }
+        public string CODE_CHAUFFEUR { get; set; }
+
+        private decimal tOTAL_TTC { get; set; }
+        public decimal TOTAL_TTC
+        {
+            get
+            {
+                return tOTAL_TTC;
+            }
+            set
+            {
+                tOTAL_TTC = value;
+                OnPropertyChanged("TOTAL_TTC");
+            }
+        } 
     }
 
     public partial class ACH_DOCUMENT_DETAIL : BASE_CLASS
@@ -91,7 +108,7 @@ namespace XpertMobileApp.DAL
         public decimal MT_RISTOURNE { get; set; } // money(19,4)
         public decimal MT_TVA { get; set; } // money(19,4)
         public decimal MT_RISTOURNE_FACT { get; set; } // money(19,4)
-        public decimal MT_TTC { get; set; } // money(19,4)
+
         public decimal MT_VENTE { get; set; } // money(19,4)
         public decimal MT_PPA { get; set; } // money(19,4)
         public decimal MT_PPA_UG { get; set; } // money(19,4)
@@ -103,11 +120,107 @@ namespace XpertMobileApp.DAL
         public string CREATED_BY { get; set; } // varchar(200)
         public DateTime? MODIFIED_ON { get; set; } // datetime(3)
         public string MODIFIED_BY { get; set; } // varchar(200)
+
+
+        // Mobile extension
+
+        private decimal mT_TTC;
+        public decimal MT_TTC
+        {
+            get
+            {
+                return PESEE_NET * PRIX_UNITAIRE;
+            }
+        } // money(19,4)
+
+        public bool IS_PRINCIPAL { get; set; }
+
+        public string IMAGE_URL
+        {
+            get
+            {
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+            }
+        }
+
+        public View_ACH_DOCUMENT ParentDoc;
+
+        private decimal pESEE_BRUTE;
+        public decimal PESEE_BRUTE
+        {
+            get
+            {
+                return pESEE_BRUTE;
+            }
+            set
+            {
+                if (pESEE_BRUTE != value)
+                {
+                    pESEE_BRUTE = value;
+
+                    OnPropertyChanged("PESEE_BRUTE");
+                    OnPropertyChanged("PESEE_NET");
+                    OnPropertyChanged("MT_TTC");
+
+                    ParentDoc.PSEE_UPDATED = true;
+                }
+            }
+        }
+
+
+        public decimal PESEE_NET
+        {
+            get
+            {
+                if (Embalages != null)
+                {
+                    decimal totalPoidsEmballage = Embalages.Sum(e => e.Nbr * e.QUANTITE);
+                    return PESEE_BRUTE - totalPoidsEmballage;
+                }
+                else
+                {
+                    return PESEE_BRUTE;
+                }
+            }
+        }
+
+        private List<View_BSE_EMBALLAGE> embalages;
+        public List<View_BSE_EMBALLAGE> Embalages
+        {
+            get
+            {
+                return embalages;
+            }
+            set
+            {
+                embalages = value;
+
+                if (ParentDoc != null)
+                {
+                    ParentDoc.PSEE_UPDATED = true;
+                    OnPropertyChanged("PESEE_NET");
+                    OnPropertyChanged("Nbr_Caisses");
+                }
+            }
+        }
     }
 
     public partial class View_ACH_DOCUMENT : ACH_DOCUMENT
     {
-        public string TIERS_NomC { get; set; } // varchar(501)
+        private string tIERS_NomC;
+        public string TIERS_NomC
+        {
+            get
+            {
+                return tIERS_NomC;
+            }
+            set
+            {
+                tIERS_NomC = value;
+                OnPropertyChanged("TIERS_NomC");
+            }
+        }
+
         public string DESIGN_MODE_REG { get; set; } // varchar(300)
         public string DESIGNATION_MAGASIN { get; set; } // varchar(100)
         public decimal TOTAL_RESTE { get; set; }
@@ -131,10 +244,41 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE_TIERS { get; set; }
 
         // Mobile extension
+        private string nOM_CHAUFFEUR;
+        public string NOM_CHAUFFEUR
+        {
+            get
+            {
+                return nOM_CHAUFFEUR;
+            }
+            set
+            {
+                nOM_CHAUFFEUR = value;
+                OnPropertyChanged("NOM_CHAUFFEUR");
+            }
+        }
 
+
+        public string DESIGNATION_STATUS { get; set; }
         public override string ToString()
         {
             return "N° " + NUM_DOC;
+        }
+
+        private bool pSEE_UPDATED;
+        public bool PSEE_UPDATED
+        {
+            get
+            {
+                return pSEE_UPDATED;
+            }
+            set
+            {
+                pSEE_UPDATED = value;
+
+                OnPropertyChanged("PESEE_BRUTE");
+                OnPropertyChanged("PESEE_NET");
+            }
         }
 
         public string TITLE_DOCUMENT
@@ -142,6 +286,28 @@ namespace XpertMobileApp.DAL
             get
             {
                 return DALHelper.GetTypeDesignation(this.TYPE_DOC);
+            }
+        }
+
+        public decimal PESEE_BRUTE
+        {
+            get
+            {
+
+                return PESEE_ENTREE - PESEE_SORTIE;
+            }
+        }
+
+        public decimal PESEE_NET
+        {
+            get
+            {
+                decimal totalPoidsEmballage = 0;
+                foreach (var item in Details)
+                {
+                    totalPoidsEmballage += item.Embalages.Sum(e => e.Nbr * e.QUANTITE);
+                }
+                return PESEE_ENTREE - (PESEE_SORTIE + totalPoidsEmballage);
             }
         }
 
@@ -185,14 +351,17 @@ namespace XpertMobileApp.DAL
         public bool PSYCHOTHROPE { get; set; } // tinyint(3)
 
 
-        // Mobile extension
-        public string IMAGE_URL
+        // Extension mobile
+        private int nbr_Caisses { get; set; }
+        public int Nbr_Caisses
         {
             get
             {
-                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+                if (Embalages == null) return 0;
+                return Embalages.Sum(x => x.Nbr);
             }
         }
+
     }
 
 

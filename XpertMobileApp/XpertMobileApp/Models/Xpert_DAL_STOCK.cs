@@ -232,5 +232,15 @@ namespace XpertMobileApp.Models
     {
         public string DESIGNATION_PRODUIT { get; set; }
         public string DESIGNATION_UNITE { get; set; }
+
+        public int Nbr { get; set; }
+        public int NbrReturned { get; set; }
+    }
+
+    public class BSE_CHAUFFEUR
+    {
+        public string CODE_CHAUFFEUR { get; set; } //[char](20) NOT NULL,
+        public string NOM_CHAUFFEUR { get; set; } //[varchar](100 ) NOT NULL,
+        public string NUM_PERMIS_CONDUIRE { get; set; }
     }
 }

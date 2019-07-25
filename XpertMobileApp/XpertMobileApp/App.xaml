@@ -28,6 +28,7 @@
             <!--Global Coverters -->
             <local:OddEvenColorConverter x:Key="oddEvenInvert"/>
             <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
 
             <!--Global Styles-->
 

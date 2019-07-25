@@ -634,13 +634,13 @@
     <value>Liste des pesées</value>
   </data>
   <data name="PESEE_ENTREE" xml:space="preserve">
-    <value>Pèse d'entrée</value>
+    <value>Pesée d'entrée</value>
   </data>
   <data name="PESEE_SORTIE" xml:space="preserve">
-    <value>Pèse de sortie</value>
+    <value>Pesée de sortie</value>
   </data>
   <data name="pn_NewPurchase" xml:space="preserve">
-    <value>Nouvel achat</value>
+    <value>Nouvelle pesée</value>
   </data>
   <data name="txt_Chauffeur" xml:space="preserve">
     <value>Chauffeur</value>

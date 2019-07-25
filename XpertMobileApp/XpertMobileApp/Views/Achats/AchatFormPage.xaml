@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.Encaissement.AchatFormPage"
+             x:Class="XpertMobileApp.Views.AchatFormPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate lp_btn_Settings}" Clicked="HeaderSettings_Clicked" >
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="param_32.png"/>
-                    <On Platform="Android" Value="param_32.png"/>
-                    <On Platform="IOS" Value="param_32.png"/>
+                    <On Platform="UWP" Value="settings_32.png"/>
+                    <On Platform="Android" Value="settings_32.png"/>
+                    <On Platform="IOS" Value="settings_32.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -28,7 +29,7 @@
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="135"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
@@ -38,51 +39,85 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                        <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" 
+                               FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
 
-                    <Label Grid.Column="0" Grid.Row="1"  Text="{i18n:Translate txt_EcheanceDate}" FontSize="Medium" Margin="5" />
+                    <Label Grid.Column="0" Grid.Row="1"  Text="{i18n:Translate txt_Date}"
+                           FontSize="Medium" Margin="5" />
                     <DatePicker Grid.Column="1" Grid.Row="1" 
                             x:Name="dp_EcheanceDate"                        
                             Format="dd/MM/yyyy"
-                            TextColor="Black"
-                            Date="{Binding Item.DATE_ECHEANCE, Mode=TwoWay}"
-                            Margin="5"/>
+                            TextColor="Black" FontSize="Medium"
+                            Date="{Binding Item.DATE_DOC, Mode=TwoWay}"
+                            Margin="3"/>
+                   
+                    <Label  Grid.Column="0" Grid.Row="2" Text="{i18n:Translate pn_Tiers}" FontSize="Medium" Margin="5" />
+                    <StackLayout  Grid.Column="1" Grid.Row="2" Orientation="Horizontal" >
 
-                    <Label Grid.Column="0" Grid.Row="2"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
-                    <numeric:SfNumericUpDown  Grid.Column="1" Grid.Row="2" 
-                           Minimum="0" HorizontalOptions="Start" Margin="0,10,0,0"
-                           WidthRequest="130" 
-                           ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
-                           FontSize="13" IsEnabled="True"
-                           TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                           x:Name="NUD_Qte"
-							Value="{Binding Item.PESEE_ENTREE, Mode=TwoWay}"
-                           SpinButtonAlignment="Both" >
-                    </numeric:SfNumericUpDown>
-
-                    <Label Grid.Column="0" Grid.Row="3"  Text="{i18n:Translate PESEE_SORTIE}" FontSize="Medium" Margin="5" />
-                    <numeric:SfNumericUpDown  Grid.Column="1" Grid.Row="3" 
-                           Minimum="0" TextColor="Black" HorizontalOptions="Fill"
-                           ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
-                           Value="{Binding Item.PESEE_SORTIE, Mode=TwoWay}"
-                           SpinButtonAlignment="Both" >
-                    </numeric:SfNumericUpDown>
-
-                    <StackLayout Grid.Column="0" Grid.Row="4" >
-                        <Label  Text="{i18n:Translate pn_Tiers}" FontSize="Medium" Margin="5" />
-                        <Entry x:Name="ent_SelectedTiers" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" 
-                               TextColor="Black" IsEnabled="False" />
-                    </StackLayout>
-                    <Button x:Name="btn_Search" Grid.Column="1" Grid.Row="4" Margin="0" 
+                        <Entry x:Name="ent_SelectedTiers" Text="{Binding Item.TIERS_NomC, Mode=TwoWay}" 
+                               TextColor="Black" IsEnabled="False"  HorizontalOptions="FillAndExpand" />
+                        
+                        <Button x:Name="btn_Search" Margin="0" 
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
-                     Clicked="btn_Select_Clicked" />
+                        Clicked="btn_Select_Clicked" />
+                    </StackLayout>
+
+                    <Label  Grid.Column="0" Grid.Row="3" Text="{i18n:Translate txt_Chauffeur}" FontSize="Medium" Margin="5" />
+                    <StackLayout  Grid.Column="1" Grid.Row="3" Orientation="Horizontal" >
+
+                        <Entry x:Name="ent_SelectedChauffeur" Text="{Binding Item.NOM_CHAUFFEUR, Mode=TwoWay}" 
+                               TextColor="Black" IsEnabled="False" HorizontalOptions="FillAndExpand" />
+
+                        <Button Margin="0" 
+                        WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
+                        Clicked="btn_ChauffeurSelect_Clicked" />
+                    </StackLayout>
+
+                    <Label  Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_Immatriculation}" FontSize="Medium" Margin="5" />
+                    <StackLayout  Grid.Column="1" Grid.Row="4" Orientation="Horizontal" >
+
+                        <Entry x:Name="ent_SelectedImmat" Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" 
+                               TextColor="Black" HorizontalOptions="FillAndExpand" />
+
+                        <Button Margin="0" 
+                        WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
+                        Clicked="btn_SelectImmat_Clicked" />
+                    </StackLayout>
+
+                    <Label Grid.Column="0" Grid.Row="5"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
+                    <StackLayout Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
+                        <numeric1:SfNumericTextBox x:Name="ne_PESEE_ENTREE" Minimum="0" HorizontalOptions="FillAndExpand"
+                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                             SelectAllOnFocus="True" Value="{Binding Item.PESEE_ENTREE, Mode=TwoWay}"
+                              VerticalOptions="Center" Margin="3"
+                        />
+                        <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="End" 
+                               WidthRequest="50" Margin="0,0,0,5"/>
+                    </StackLayout>
+
+                    <Label Grid.Column="0" Grid.Row="6" Text="{i18n:Translate PESEE_SORTIE}" FontSize="Medium" Margin="5" />
+                    <StackLayout Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
+                        <numeric1:SfNumericTextBox x:Name="ne_PESEE_SORTIE" Minimum="0" HorizontalOptions="FillAndExpand"
+                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                             SelectAllOnFocus="True" Value="{Binding Item.PESEE_SORTIE, Mode=TwoWay}"
+                              VerticalOptions="Center" Margin="3"
+                        />
+                        <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="End" 
+                               WidthRequest="50" Margin="0,0,0,5"/>
+                    </StackLayout>
                 </Grid>
             </Frame>
 
@@ -124,7 +159,7 @@
                                                              BackgroundColor="Transparent" VerticalOptions="Center"
 			                                                 DownsampleToViewSize="False"                                            
 			                                                 Source = "{Binding IMAGE_URL}"
-                                                             CacheType="None">
+                                                             CacheType="Memory">
                                                 </ffimageloading:CachedImage>
 
                                                 <StackLayout Opacity="0.8" IsVisible="False">
@@ -138,32 +173,41 @@
                                                     <Label Text="{Binding DESIGNATION_PRODUIT}" 
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontAttributes="Bold" FontSize="Default"/>
-                                                    <Label Text="{Binding ID_STOCK, StringFormat='LOT : {0}'}"  
-                                                           TextColor="{StaticResource DefaultTextColor}" 
-                                                                FontAttributes="Bold" FontSize="Default"/>
-                                                    <Label Text="{ Binding PRIX_TTC, StringFormat='Prix : {0:N2} DA'}" 
+                                                    <Label Text="{ Binding PRIX_UNITAIRE, StringFormat='Prix : {0:N2} DA'}" 
                                                             FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0"/>
 
-                                                    <numeric:SfNumericUpDown 
-                                                        Minimum="0" HorizontalOptions="Start" Margin="0,10,0,0"
-                                                        WidthRequest="130" 
-                                                        ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
-                                                        FontSize="13" IsEnabled="True"
-                                                        TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                                        x:Name="NUD_Qte"
-								                        Value="{Binding QUANTITE, Mode=TwoWay}"
-                                                        ValueChanged="NUD_Qte_ValueChanged"  
-                                                        SpinButtonAlignment="Both" >
-<!--
-                                                        <numeric:SfNumericUpDown.IncrementButtonSettings>
-                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_up_g16" ButtonHeight="20" ButtonWidth="20" />
-                                                        </numeric:SfNumericUpDown.IncrementButtonSettings>
+                                                    <Label Text="{ Binding PESEE_BRUTE, StringFormat='Pesée brute : {0:N2} Kg'}" 
+                                                           IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0">
+                                                    </Label>
 
-                                                        <numeric:SfNumericUpDown.DecrementButtonSettings>
-                                                            <numeric:UpDownButtonSettings ButtonImage="arrow_down_r16" ButtonHeight="20" ButtonWidth="20" />
-                                                        </numeric:SfNumericUpDown.DecrementButtonSettings>
--->
-                                                    </numeric:SfNumericUpDown>
+                                                    <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal"
+                                                   IsVisible="{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}" >
+
+                                                        <Label Text="Pesée brute :" FontSize="Default" HorizontalOptions="Start"/>
+                                                        
+                                                        <numeric1:SfNumericTextBox Minimum="0" Margin="0,-15,0,0" HeightRequest="40"
+                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
+                                                         SelectAllOnFocus="True" Value="{Binding PESEE_BRUTE, Mode=TwoWay}" FontSize="12"
+                                                         ValueChanged="ne_PeseeBruteChanged"/>
+                                                        
+                                                        <Label Text=" Kg" FontSize="Default" HorizontalOptions="Start"/>
+                                                    </StackLayout>
+
+                                                    <Label Text="{ Binding PESEE_NET, StringFormat='Pesée Net : {0:N2} Kg'}" 
+                                                            FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0"/>
+                                                    <!--
+                                                        <numeric:SfNumericUpDown 
+                                                            Minimum="0" HorizontalOptions="Start" Margin="0,10,0,0"
+                                                            WidthRequest="130" 
+                                                            ParsingMode="Double" MaximumDecimalDigits="2" Watermark="Units"
+                                                            FontSize="13" IsEnabled="True"
+                                                            TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                                            x:Name="NUD_Qte"
+								                            Value="{Binding QUANTITE, Mode=TwoWay}"
+                                                            ValueChanged="NUD_Qte_ValueChanged"  
+                                                            SpinButtonAlignment="Both" >
+                                                        </numeric:SfNumericUpDown>
+                                                    -->
                                                 </StackLayout>
                                             </Grid>
 
@@ -171,7 +215,9 @@
                                             <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="0" 
                                                   ColumnSpacing="0" Margin="0">
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="60" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
@@ -183,7 +229,17 @@
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White" 
                                                             Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
 
-                                                <Label Grid.Column="1" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
+                                                <Button x:Name="Btn_SelectCaiss" Margin="0" Grid.Column="1"
+                                                            WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
+                                                            HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.Cube}" BackgroundColor="White" 
+                                                            Clicked="Btn_SelectCaiss_Clicked" VerticalOptions="Center"/>
+
+                                                <Label Grid.Column="2" Text="{ Binding Nbr_Caisses, StringFormat=' Caisses : ({0})'}" 
+                                                               FontSize="Default" HorizontalOptions="Start"
+                                                               HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Chocolate"/>
+                                                
+                                                <Label Grid.Column="3" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
                                                                FontSize="Default" HorizontalOptions="EndAndExpand" 
                                                                HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Chocolate"/>
                                             </Grid>
