@@ -16,6 +16,9 @@ namespace XpertMobileApp.ViewModels
 
         public string SearchedText { get; set; } = "";
 
+        public string TiersFamille { get; set; } = "";
+        
+
         public ProductSelectorViewModel(string title= "" )
         {
             Title = title;
@@ -37,7 +40,8 @@ namespace XpertMobileApp.ViewModels
         protected override Dictionary<string, string> GetFilterParams()
         {
             Dictionary<string, string> result = base.GetFilterParams();
-
+            
+            result.Add("tiersFamille", TiersFamille);
             result.Add("searchText", SearchedText);
             return result;
         }

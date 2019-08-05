@@ -29,7 +29,7 @@
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="135"/>
+                        <ColumnDefinition Width="145"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
@@ -71,21 +71,8 @@
                         Clicked="btn_Select_Clicked" />
                     </StackLayout>
 
-                    <Label  Grid.Column="0" Grid.Row="3" Text="{i18n:Translate txt_Chauffeur}" FontSize="Medium" Margin="5" />
+                    <Label  Grid.Column="0" Grid.Row="3" Text="{i18n:Translate txt_Immatriculation}" FontSize="Medium" Margin="5" />
                     <StackLayout  Grid.Column="1" Grid.Row="3" Orientation="Horizontal" >
-
-                        <Entry x:Name="ent_SelectedChauffeur" Text="{Binding Item.NOM_CHAUFFEUR, Mode=TwoWay}" 
-                               TextColor="Black" IsEnabled="False" HorizontalOptions="FillAndExpand" />
-
-                        <Button Margin="0" 
-                        WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
-                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
-                        Clicked="btn_ChauffeurSelect_Clicked" />
-                    </StackLayout>
-
-                    <Label  Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_Immatriculation}" FontSize="Medium" Margin="5" />
-                    <StackLayout  Grid.Column="1" Grid.Row="4" Orientation="Horizontal" >
 
                         <Entry x:Name="ent_SelectedImmat" Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" 
                                TextColor="Black" HorizontalOptions="FillAndExpand" />
@@ -97,24 +84,23 @@
                         Clicked="btn_SelectImmat_Clicked" />
                     </StackLayout>
 
-                    <Label Grid.Column="0" Grid.Row="5"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
-                    <StackLayout Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
+                    <Label Grid.Column="0" Grid.Row="4"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
+                    <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
                         <numeric1:SfNumericTextBox x:Name="ne_PESEE_ENTREE" Minimum="0" HorizontalOptions="FillAndExpand"
                              ParserMode="Double" MaximumNumberDecimalDigits="2" 
                              SelectAllOnFocus="True" Value="{Binding Item.PESEE_ENTREE, Mode=TwoWay}"
-                              VerticalOptions="Center" Margin="3"
+                              VerticalOptions="Center" Margin="3" ValueChanged="ne_Pesee_entree_Changed"
                         />
                         <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="End" 
                                WidthRequest="50" Margin="0,0,0,5"/>
                     </StackLayout>
 
-                    <Label Grid.Column="0" Grid.Row="6" Text="{i18n:Translate PESEE_SORTIE}" FontSize="Medium" Margin="5" />
-                    <StackLayout Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
+                    <Label Grid.Column="0" Grid.Row="5" Text="{i18n:Translate PESEE_SORTIE}" FontSize="Medium" Margin="5" />
+                    <StackLayout Grid.Column="1" Grid.Row="5" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
                         <numeric1:SfNumericTextBox x:Name="ne_PESEE_SORTIE" Minimum="0" HorizontalOptions="FillAndExpand"
                              ParserMode="Double" MaximumNumberDecimalDigits="2" 
                              SelectAllOnFocus="True" Value="{Binding Item.PESEE_SORTIE, Mode=TwoWay}"
-                              VerticalOptions="Center" Margin="3"
-                        />
+                              VerticalOptions="Center" Margin="3" ValueChanged="ne_Pesee_sortie_Changed"/>
                         <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="End" 
                                WidthRequest="50" Margin="0,0,0,5"/>
                     </StackLayout>
@@ -170,44 +156,71 @@
                                             <!-- Infos -->
                                             <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
                                                 <StackLayout>
+                                                    <!-- Designation -->
                                                     <Label Text="{Binding DESIGNATION_PRODUIT}" 
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontAttributes="Bold" FontSize="Default"/>
-                                                    <Label Text="{ Binding PRIX_UNITAIRE, StringFormat='Prix : {0:N2} DA'}" 
-                                                            FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0"/>
 
-                                                    <Label Text="{ Binding PESEE_BRUTE, StringFormat='Pesée brute : {0:N2} Kg'}" 
-                                                           IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0">
-                                                    </Label>
+                                                    <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100" />
+                                                            <ColumnDefinition Width="*" />
+                                                            <ColumnDefinition Width="25"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="30" />
+                                                        </Grid.RowDefinitions>
 
-                                                    <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal"
-                                                   IsVisible="{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}" >
+                                                        <!-- Pesée brute -->
+                                                        <Label Grid.Column="0" Grid.Row="0" 
+                                                               Text="Pesée brute :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="1" Grid.Row="0"
+                                                            Text="{ Binding PESEE_BRUTE, StringFormat='{0:N2}'}" 
+                                                             IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" VerticalOptions="Start"
+                                                         Minimum="0" FontSize="12" Margin="0,-15,0,0"
+                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                                         SelectAllOnFocus="True" Value="{Binding PESEE_BRUTE, Mode=OneWay}"
+                                                         ValueChanged="ne_PeseeBruteChanged"
+                                                         IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
+                                                        <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                        <Label Text="Pesée brute :" FontSize="Default" HorizontalOptions="Start"/>
-                                                        
-                                                        <numeric1:SfNumericTextBox Minimum="0" Margin="0,-15,0,0" HeightRequest="40"
+                                                        <!-- Déchets -->
+                                                        <Label Grid.Column="0" Grid.Row="1" Text="Déchets :" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1" Minimum="0" Margin="0,-15,0,0"  HeightRequest="20"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
-                                                         SelectAllOnFocus="True" Value="{Binding PESEE_BRUTE, Mode=TwoWay}" FontSize="12"
+                                                         SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" FontSize="12"
                                                          ValueChanged="ne_PeseeBruteChanged"/>
-                                                        
-                                                        <Label Text=" Kg" FontSize="Default" HorizontalOptions="Start"/>
-                                                    </StackLayout>
+                                                        <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                    <Label Text="{ Binding PESEE_NET, StringFormat='Pesée Net : {0:N2} Kg'}" 
-                                                            FontSize="Default" HorizontalOptions="Start" Margin="0,10,0,0"/>
-                                                    <!--
-                                                        <numeric:SfNumericUpDown 
-                                                            Minimum="0" HorizontalOptions="Start" Margin="0,10,0,0"
-                                                            WidthRequest="130" 
-                                                            ParsingMode="Double" MaximumDecimalDigits="2" Watermark="Units"
-                                                            FontSize="13" IsEnabled="True"
-                                                            TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                                            x:Name="NUD_Qte"
-								                            Value="{Binding QUANTITE, Mode=TwoWay}"
-                                                            ValueChanged="NUD_Qte_ValueChanged"  
-                                                            SpinButtonAlignment="Both" >
-                                                        </numeric:SfNumericUpDown>
-                                                    -->
+                                                        <!-- Qte déchets -->
+                                                        <Label Grid.Column="0" Grid.Row="2" 
+                                                               Text="Q.Déchets :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="1" Grid.Row="2"
+                                                            Text="{ Binding QUANTITE_DECHETS, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
+
+                                                        <!-- Pesée net -->
+                                                        <Label Grid.Column="0" Grid.Row="3" 
+                                                               Text="Pesée Net :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="1" Grid.Row="3"
+                                                            Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
+
+                                                        <!-- Prix -->
+                                                        <Label Grid.Column="0" Grid.Row="4" Text="Prix :" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" Minimum="0" Margin="0,-15,0,0"
+                                                             ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
+                                                             SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
+                                                             FontSize="12" ValueChanged="ne_PeseeTTCChanged"
+                                                             />
+                                                        <Label Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
+                                                    </Grid>
+
                                                 </StackLayout>
                                             </Grid>
 

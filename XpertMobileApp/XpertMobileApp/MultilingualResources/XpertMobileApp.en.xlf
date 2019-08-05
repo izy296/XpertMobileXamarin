@@ -740,6 +740,18 @@
           <source>Nouvelle pesée</source>
           <target state="new">Nouvelle pesée</target>
         </trans-unit>
+        <trans-unit id="txt_EmballageEntree" translate="yes" xml:space="preserve">
+          <source>Entrées</source>
+          <target state="new">Entrées</target>
+        </trans-unit>
+        <trans-unit id="txt_EmballageSortie" translate="yes" xml:space="preserve">
+          <source>Sortie</source>
+          <target state="new">Sortie</target>
+        </trans-unit>
+        <trans-unit id="txt_EmballageVides" translate="yes" xml:space="preserve">
+          <source>Vides</source>
+          <target state="new">Vides</target>
+        </trans-unit>
       </group>
     </body>
   </file>

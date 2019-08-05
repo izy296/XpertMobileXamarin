@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -71,7 +72,7 @@ namespace XpertMobileApp.Views
                     user.CODE_TIERS = token.CODE_TIERS;
                     user.Token = token;
                     App.User = user;
-                    
+
                     // Alerte apres la connexion
                      DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 

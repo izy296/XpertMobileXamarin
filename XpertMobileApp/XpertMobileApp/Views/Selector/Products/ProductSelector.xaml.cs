@@ -14,6 +14,18 @@ namespace XpertMobileApp.Views
 
         ProductSelectorViewModel viewModel;
 
+        public string TiersFamille
+        {
+            get
+            {
+                return viewModel.TiersFamille;
+            }
+            set
+            {
+                viewModel.TiersFamille = value;
+            }
+        }
+
         public ProductSelector()
         {
             InitializeComponent();

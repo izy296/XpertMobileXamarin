@@ -657,4 +657,13 @@
   <data name="pn_NewReception" xml:space="preserve">
     <value>Nouvelle pesée</value>
   </data>
+  <data name="txt_EmballageEntree" xml:space="preserve">
+    <value>Entrées</value>
+  </data>
+  <data name="txt_EmballageSortie" xml:space="preserve">
+    <value>Sortie</value>
+  </data>
+  <data name="txt_EmballageVides" xml:space="preserve">
+    <value>Vides</value>
+  </data>
 </root>

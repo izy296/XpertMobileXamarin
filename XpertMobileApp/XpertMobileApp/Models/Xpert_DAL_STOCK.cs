@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Models
@@ -219,13 +217,14 @@ namespace XpertMobileApp.Models
         public string RSSI { get; set; }
     }
 
-    public partial class BSE_EMBALLAGE
+    public partial class BSE_EMBALLAGE : BASE_CLASS
     {
         public string CODE { get; set; }
         public string DESIGNATION { get; set; }
         public string CODE_PRODUIT { get; set; }
-        public decimal QUANTITE { get; set; }
+        public decimal QUANTITE_UNITE { get; set; }
         public string CODE_UNITE { get; set; }
+        public bool IS_INTERNE { get; set; }
     }
 
     public partial class View_BSE_EMBALLAGE : BSE_EMBALLAGE
@@ -233,8 +232,63 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_PRODUIT { get; set; }
         public string DESIGNATION_UNITE { get; set; }
 
-        public int Nbr { get; set; }
-        public int NbrReturned { get; set; }
+        public string CODE_EMBALLAGE
+        {
+            get { return CODE; }
+        }
+
+        public decimal QUANTITE_ENTREE_REEL { get; set; }
+
+        private decimal qUANTITE_ENTREE { get; set; }
+        public decimal QUANTITE_ENTREE
+        {
+            get
+            {
+                return qUANTITE_ENTREE;
+            }
+            set
+            {
+                qUANTITE_ENTREE = value;
+                OnPropertyChanged("QUANTITE_ENTREE");
+            }
+        }
+
+        private decimal qUANTITE_SORTIE { get; set; }
+        public decimal QUANTITE_SORTIE
+        {
+            get
+            {
+                return qUANTITE_SORTIE;
+            }
+            set
+            {
+                qUANTITE_SORTIE = value;
+                OnPropertyChanged("QUANTITE_SORTIE");
+            }
+        }
+
+
+        private decimal qUANTITE_VIDE { get; set; }
+        public decimal QUANTITE_VIDE
+        {
+            get
+            {
+                return qUANTITE_VIDE;
+            }
+            set
+            {
+                qUANTITE_VIDE = value;
+                OnPropertyChanged("QUANTITE_VIDE");
+            }
+        }
+
+        public decimal QTE_DEFF
+        {
+            get
+            {
+                return QUANTITE_ENTREE - QUANTITE_SORTIE;
+            }
+        }
     }
 
     public class BSE_CHAUFFEUR
@@ -243,4 +297,5 @@ namespace XpertMobileApp.Models
         public string NOM_CHAUFFEUR { get; set; } //[varchar](100 ) NOT NULL,
         public string NUM_PERMIS_CONDUIRE { get; set; }
     }
+
 }

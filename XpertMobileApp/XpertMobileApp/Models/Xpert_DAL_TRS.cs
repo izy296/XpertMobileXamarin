@@ -7,7 +7,9 @@ using SQLite;
 // </auto-generated>
 //---------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using XpertMobileApp;
 using XpertMobileApp.Models;
 
@@ -19,6 +21,19 @@ namespace XpertMobileApp.DAL
         public event PropertyChangedEventHandler PropertyChanged;
 
         public int Index { get; set; }
+
+        protected bool SetProperty<T>(ref T backingStore, T value,
+        [CallerMemberName]string propertyName = "",
+        Action onChanged = null)
+            {
+                if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                    return false;
+
+                backingStore = value;
+                onChanged?.Invoke();
+                OnPropertyChanged(propertyName);
+                return true;
+            }
 
         protected void OnPropertyChanged(string propertyName)
         {

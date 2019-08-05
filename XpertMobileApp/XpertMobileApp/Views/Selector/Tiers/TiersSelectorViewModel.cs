@@ -16,9 +16,12 @@ namespace XpertMobileApp.ViewModels
 
         public string SearchedText { get; set; } = "";
 
-        public TiersSelectorViewModel(string title= "" )
+        public string SearchedType { get; set; } = "";
+
+        public TiersSelectorViewModel(string title= "", string type = "")
         {
             Title = title;
+            SearchedType = type;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_TRS_TIERS> list)
@@ -35,7 +38,7 @@ namespace XpertMobileApp.ViewModels
         {
             Dictionary<string, string> result = base.GetFilterParams();
 
-            result.Add("type", "C");
+            result.Add("type", SearchedType);
             result.Add("searchText", SearchedText);
             return result;
         }

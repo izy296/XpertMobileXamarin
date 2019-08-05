@@ -131,7 +131,7 @@ namespace XpertMobileApp.Views.Encaissement
             if (IsBusy)
                 return;
 
-            IsBusy = true;
+            IsBusy = true; 
 
             try
             {

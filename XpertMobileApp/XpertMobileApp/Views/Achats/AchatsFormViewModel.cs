@@ -28,5 +28,31 @@ namespace XpertMobileApp.Views.Achats
 
         }
 
+        public decimal CalculatePeseeNet(decimal peseeBrute, List<View_BSE_EMBALLAGE> emballages)
+        {
+            decimal result = peseeBrute;
+            foreach (var emballage in emballages)
+            {
+                result = result - (emballage.QUANTITE_ENTREE * emballage.QUANTITE_UNITE);
+            }
+
+            return result;
+        }
+
+        public decimal GetPeseeBrute(decimal pEntree, decimal pSortie, List<View_BSE_EMBALLAGE> emballages)
+        {
+            decimal result = 0;
+            decimal qteBruteInitial = pEntree - pSortie;
+
+            foreach (var emballage in emballages)
+            {
+                qteBruteInitial = qteBruteInitial + (emballage.QTE_DEFF * emballage.QUANTITE_UNITE);
+            }
+
+            result = qteBruteInitial;
+
+            return result;
+        }
+
     }
 }

@@ -58,4 +58,10 @@ namespace XpertMobileApp.Models
 
         public Settings() { }
     }
+
+    public class SYS_MOBILE_PARAMETRE
+    {
+        public string DEFAULT_COMPAGNE_LOT { get; set; }
+        public string DEFAULT_ACHATS_MAGASIN { get; set; }
+    }
 }

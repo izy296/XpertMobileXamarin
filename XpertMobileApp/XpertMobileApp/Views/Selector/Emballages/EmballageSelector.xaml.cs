@@ -6,6 +6,8 @@ using XpertMobileApp.ViewModels;
 using XpertMobileApp.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views
 {
@@ -13,6 +15,32 @@ namespace XpertMobileApp.Views
     {
 
         EmballageSelectorViewModel viewModel;
+
+        private List<View_BSE_EMBALLAGE> currentEmballages;
+        public List<View_BSE_EMBALLAGE> CurrentEmballages
+        {
+            get
+            {
+                return viewModel.CurrentEmballages;
+            }
+            set
+            {
+                viewModel.CurrentEmballages = value;
+            }
+        }
+
+        public bool IS_PRINCIPAL
+        {
+            get
+            {
+                return viewModel.IS_PRINCIPAL;
+            }
+            set
+            {
+                viewModel.IS_PRINCIPAL = value;
+
+            }
+        }
 
         public EmballageSelector()
         {

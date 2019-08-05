@@ -1312,6 +1312,33 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Entrées.
+        /// </summary>
+        internal static string txt_EmballageEntree {
+            get {
+                return ResourceManager.GetString("txt_EmballageEntree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sortie.
+        /// </summary>
+        internal static string txt_EmballageSortie {
+            get {
+                return ResourceManager.GetString("txt_EmballageSortie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vides.
+        /// </summary>
+        internal static string txt_EmballageVides {
+            get {
+                return ResourceManager.GetString("txt_EmballageVides", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Encaissement.
         /// </summary>
         internal static string txt_Encaiss {
