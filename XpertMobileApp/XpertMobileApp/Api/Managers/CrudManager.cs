@@ -15,6 +15,8 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
 
-        internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();        
+        internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();
+
+        internal static SYS_PERMISSIONS_Manager Permissions = new SYS_PERMISSIONS_Manager();
     }
 }

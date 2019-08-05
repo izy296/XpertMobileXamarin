@@ -13,6 +13,8 @@ namespace XpertMobileApp.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string CODE_TIERS { get; set; }
+        public string UserGroup { get; set; }
+        public string GroupName { get; set; }
         
         public Token Token { get; set; }
 

@@ -167,7 +167,6 @@ namespace XpertMobileApp.DAL
                 pSEE_UPDATED = value;
 
                 OnPropertyChanged("PESEE_BRUTE");
-                OnPropertyChanged("PESEE_NET");
                 OnPropertyChanged("TOTAL_TTC");
             }
         }
@@ -314,21 +313,20 @@ namespace XpertMobileApp.DAL
             }
         } 
 
-        internal decimal pESEE_BRUTE;
-        public decimal PESEE_BRUTE
+        internal decimal qTE_BRUTE;
+        public decimal QTE_BRUTE
         {
             get
             {
-                return pESEE_BRUTE;
+                return qTE_BRUTE;
             }
             set
             {
-                if (pESEE_BRUTE != value)
+                if (qTE_BRUTE != value)
                 {
-                    pESEE_BRUTE = value;
+                    qTE_BRUTE = value;
 
-                    OnPropertyChanged("PESEE_BRUTE");
-                    OnPropertyChanged("PESEE_NET");
+                    OnPropertyChanged("QTE_BRUTE");
                     OnPropertyChanged("MT_TTC");
 
                     // ParentDoc.PSEE_UPDATED = true;
@@ -389,7 +387,6 @@ namespace XpertMobileApp.DAL
                 Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
                 Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
 
-                OnPropertyChanged("PESEE_NET");
                 OnPropertyChanged("Nbr_Caisses");
                 OnPropertyChanged("Poids_Caisses");
                 OnPropertyChanged("MT_TTC");
@@ -401,10 +398,10 @@ namespace XpertMobileApp.DAL
 
         internal void SetPeseeBrute(decimal v)
         {
-            if(this.pESEE_BRUTE != v)
+            if(this.qTE_BRUTE != v)
             { 
-                this.pESEE_BRUTE = v;
-                OnPropertyChanged("PESEE_BRUTE");
+                this.qTE_BRUTE = v;
+                OnPropertyChanged("QTE_BRUTE");
             }
         }
     }
