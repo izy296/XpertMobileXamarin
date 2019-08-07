@@ -3,6 +3,7 @@ using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
@@ -12,7 +13,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Data;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -29,12 +32,51 @@ namespace XpertMobileApp
         public static User User { get; internal set; }
         public static MsgCenter MsgCenter = new MsgCenter();
 
+        private static SYS_MOBILE_PARAMETRE sysParams;
+
+        public static async Task<SYS_MOBILE_PARAMETRE> GetSysParams()
+        {
+            if (sysParams == null)
+            {
+                var result =  await CrudManager.SysParams.GetParams();
+                return result;
+            }
+            return sysParams;
+        }
+
+        private static List<SYS_OBJET_PERMISSION> permissions;
+        public static async Task<List<SYS_OBJET_PERMISSION>> GetPermissions()
+        {
+            if (permissions == null)
+            {
+                permissions = await CrudManager.Permissions.GetPermissions(User.UserGroup);
+            }
+            return permissions;
+        }
+
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
         static ClientDatabaseControler clientDatabase;        
         static SettingsDatabaseControler settingsDatabase;
         static WebServiceClient resteService;
         private static Settings settings;
+
+        private static View_VTE_VENTE currentSales;
+        public static View_VTE_VENTE CurrentSales
+        {
+            get
+            {
+                if (currentSales == null)
+                {
+                    currentSales = new View_VTE_VENTE();
+                }
+                return currentSales;
+            }
+            set
+            {
+                currentSales = value;
+            }
+        }
 
         public static FlowDirection PageFlowDirection
         {
@@ -53,7 +95,7 @@ namespace XpertMobileApp
 
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDgzNjlAMzEzNjJlMzMyZTMwYW9KSjRINjJybys3QVhUM0pvelpCMkhaV0kwcHM0ZkJ5cmpGYWJLZTFLTT0=;NDgzNzBAMzEzNjJlMzMyZTMwa09wVkRFcVFLTVgza1p6MHdEVDRtUkJ4d252NG5iTDZMTTEwT1Rxc054Zz0=");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("ODgyNDNAMzEzNzJlMzEyZTMwZGJNVm1TdHVNeHdZcWExNVpENUsxcXVqa3pKRy8zVk1qc1ZSbGlNTnVuZz0=");
 
             InitializeComponent();
 
@@ -61,37 +103,55 @@ namespace XpertMobileApp
 
             // MainPage = new UpdatePage();
 
-
             // Vérification de la licence
             LicState licState = LicActivator.CheckLicence().Result;
 
+            /*
+             // ----
+             App.Settings.ServiceUrl = "http://192.168.1.15/";
+             Token token = App.TokenDatabase.GetFirstItemAsync().Result;
+             if (token != null && DateTime.Now <= token.expire_Date)
+             {
+                 App.User = new User(token.userName, "");
+                 App.User.CODE_TIERS = token.CODE_TIERS;
+                 App.User.UserName = token.userID;
+                 App.User.Token = token;
+                 MainPage = new MainPage();
+             }
+             else
+             {
+                 MainPage = new LoginPage();
+             }
+             // ---
+             */
             if (licState == LicState.Valid)
             {
-                string currentVersion = AppInfo.Version.ToString();
-                if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
-                {
-                    MainPage = new UpdatePage();
-                }
-                else
-                {
-                    Token token = App.TokenDatabase.GetFirstItemAsync().Result;
-                    if(token != null && DateTime.Now <= token.expire_Date)
-                    {
-                        App.User = new User(token.userName, "");
-                        App.User.UserName = token.userID;
-                        App.User.Token = token;
-                        MainPage = new MainPage();
-                    }
-                    else
-                    {
-                        MainPage = new LoginPage();
-                    }                    
-                }
+               string currentVersion = AppInfo.Version.ToString();
+               if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
+               {
+                   MainPage = new UpdatePage();
+               }
+               else
+               {
+                   Token token = App.TokenDatabase.GetFirstItemAsync().Result;
+                   if(token != null && DateTime.Now <= token.expire_Date)
+                   {
+                       App.User = new User(token.userName, "");
+                       App.User.UserName = token.userID;
+                       App.User.Token = token;
+                       MainPage = new MainPage();
+                   }
+                   else
+                   {
+                       MainPage = new LoginPage();
+                   }                    
+               }
             }
             else
             {
                 MainPage = new ActivationPage(licState); 
             }
+        
         }
 
         protected override void OnStart()

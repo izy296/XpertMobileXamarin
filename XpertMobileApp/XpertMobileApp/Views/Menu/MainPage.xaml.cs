@@ -20,7 +20,7 @@ namespace XpertMobileApp.Views
 
             MasterBehavior = MasterBehavior.Popover;
 
-            MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
+            MenuPages.Add((int)MenuItemType.Achats, (NavigationPage)Detail);
         }
 
         public async Task NavigateFromMenu(int id)

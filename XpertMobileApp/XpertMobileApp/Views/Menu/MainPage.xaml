@@ -16,7 +16,8 @@
                 </OnPlatform>
             </NavigationPage.Icon>
             <x:Arguments>
-              <views:HomePage />
+                <!--HomePage-->
+                <views:AchatsPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

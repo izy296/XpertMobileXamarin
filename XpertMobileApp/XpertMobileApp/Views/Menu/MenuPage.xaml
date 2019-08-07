@@ -26,7 +26,7 @@
                             <Image Source="logo_v_tl.png" VerticalOptions="Center" HeightRequest="80" />
                         </ContentView>
                     </StackLayout>
-                    <Label Text="Administrateur" TextColor="Black" FontSize="18" Margin="5,0,0,10"/>
+                    <Label x:Name="lbl_MenuUser" Text="Administrateur" TextColor="Black" FontSize="18" Margin="5,0,0,10"/>
                 </StackLayout>
             </ListView.Header>
 
