@@ -179,12 +179,12 @@
                                                         <Label Grid.Column="0" Grid.Row="0" 
                                                                Text="Pesée brute :"  FontSize="Default" HorizontalOptions="Start"/>
                                                         <Label Grid.Column="1" Grid.Row="0"
-                                                            Text="{ Binding PESEE_BRUTE, StringFormat='{0:N2}'}" 
+                                                            Text="{ Binding QTE_BRUTE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" VerticalOptions="Start"
                                                          Minimum="0" FontSize="12" Margin="0,-15,0,0"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                                         SelectAllOnFocus="True" Value="{Binding PESEE_BRUTE, Mode=OneWay}"
+                                                         SelectAllOnFocus="True" Value="{Binding QTE_BRUTE, Mode=OneWay}"
                                                          ValueChanged="ne_PeseeBruteChanged"
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
                                                         <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>

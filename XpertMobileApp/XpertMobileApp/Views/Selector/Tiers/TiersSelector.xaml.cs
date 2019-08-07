@@ -14,6 +14,8 @@ namespace XpertMobileApp.Views
 
         TiersSelectorViewModel viewModel;
 
+        public string SearchedType { get; set; } = "";
+
         public TiersSelector()
         {
             InitializeComponent();
@@ -24,6 +26,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            viewModel.SearchedType = SearchedType;
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);

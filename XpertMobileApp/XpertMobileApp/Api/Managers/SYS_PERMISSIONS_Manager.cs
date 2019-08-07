@@ -21,7 +21,7 @@ namespace XpertMobileApp.Api
         public async Task<List<SYS_OBJET_PERMISSION>> GetPermissions(string idGroup)
         {
             string url = GetActionUrl("GetPermissions");
-
+            url += WSApi2.AddParam(url, "idGroup", idGroup);
             return await WSApi2.RetrievAauthorizedData<SYS_OBJET_PERMISSION>(url, this.Token.access_token);
         }
     }

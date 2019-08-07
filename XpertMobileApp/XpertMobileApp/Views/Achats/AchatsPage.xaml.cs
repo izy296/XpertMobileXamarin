@@ -57,7 +57,7 @@ namespace XpertMobileApp.Views
 
             if(StatusPicker.ItemsSource!= null && StatusPicker.ItemsSource.Count > 0)
             { 
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[2];
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[3];
             }
 
             if (viewModel.Items.Count == 0)

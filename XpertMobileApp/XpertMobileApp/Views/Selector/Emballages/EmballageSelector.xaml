@@ -72,7 +72,7 @@
                                  SpinButtonAlignment="Both" >
                           </numeric:SfNumericUpDown>
 
-                          <Label Text="{i18n:Translate txt_EmballageVides}" Grid.Column="1" Grid.Row="1" 
+                          <Label Text="{i18n:Translate txt_EmballageSortie}" Grid.Column="1" Grid.Row="1" 
                             IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
                           <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="1"
                                  Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
@@ -87,7 +87,7 @@
                                  IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
                           </numeric:SfNumericUpDown>
 
-                          <Label Text="{i18n:Translate txt_EmballageSortie}" Grid.Column="1" Grid.Row="2" 
+                          <Label Text="{i18n:Translate txt_EmballageVides}" Grid.Column="1" Grid.Row="2" 
                                  IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
                           <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="2" 
                                  Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"

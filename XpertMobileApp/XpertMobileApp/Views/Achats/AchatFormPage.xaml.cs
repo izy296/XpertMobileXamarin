@@ -23,6 +23,9 @@ namespace XpertMobileApp.Views
 	{
         AchatsFormViewModel viewModel;
 
+        SYS_MOBILE_PARAMETRE parames;
+        List<SYS_OBJET_PERMISSION> permissions;
+
         public Command AddItemCommand { get; set; }
 
         public AchatFormPage(View_ACH_DOCUMENT vente, string typeDoc)
@@ -35,7 +38,7 @@ namespace XpertMobileApp.Views
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
             ach.TYPE_DOC = typeDoc;
-            ach.DATE_DOC = DateTime.Now;
+            ach.DATE_DOC = DateTime.Now.Date;
 
             BindingContext = this.viewModel = new AchatsFormViewModel(ach, ach?.CODE_DOC);
 
@@ -81,10 +84,12 @@ namespace XpertMobileApp.Views
             });
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
+            parames = await App.GetSysParams();
+            permissions = await App.GetPermissions();
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
 
@@ -164,16 +169,18 @@ namespace XpertMobileApp.Views
                 row = new View_ACH_DOCUMENT_DETAIL();
                 // row.ParentDoc = viewModel.Item;
                 row.CODE_DOC = viewModel.Item.CODE_DOC;
-                row.CODE_MAGASIN = "01";
+
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
 
-                row.TAUX_DECHET = product.TAUX_DECHET;
+                row.TAUX_DECHET   = product.TAUX_DECHET;
                 row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT; 
-                row.PRIX_VENTE = product.PRIX_VENTE_HT;
+                row.PRIX_VENTE    = product.PRIX_VENTE_HT;
+                row.PPA = product.PRIX_VENTE_HT; // TO REMOVE
 
-                row.QUANTITE = 1;
+                row.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
+                row.LOT = parames.DEFAULT_COMPAGNE_LOT;
 
                 if (viewModel.ItemRows.Count == 0)
                 {
@@ -186,11 +193,13 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                row.QUANTITE += 1;
+              //  row.QUANTITE += 1;
             }
 
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
             row.Index = viewModel.ItemRows.Count();
+
+            UpdatePeseeInfos();
         }
 
         private void ne_PeseeTTCChanged(object sender, ValueEventArgs e)
@@ -263,7 +272,7 @@ namespace XpertMobileApp.Views
                     if (item.Embalages != null)
                         totalPoidsEmballage = item.Embalages.Sum(e => e.QUANTITE_ENTREE * e.QUANTITE_UNITE);
 
-                    item.QUANTITE_NET_PRIMAIRE = item.PESEE_BRUTE - totalPoidsEmballage;
+                    item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballage;
                     item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
                     item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
                     item.QTE_RECUE = item.QUANTITE;
@@ -339,6 +348,7 @@ namespace XpertMobileApp.Views
         private TiersSelector TiersSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            TiersSelector.SearchedType = "F";
             await PopupNavigation.Instance.PushAsync(TiersSelector);
         }
 
@@ -364,9 +374,9 @@ namespace XpertMobileApp.Views
         private void ne_PeseeBruteChanged(object sender, ValueEventArgs e)
         {
             View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
-            if(currentItem.PESEE_BRUTE != Convert.ToDecimal(e.Value))
+            if(currentItem.QTE_BRUTE != Convert.ToDecimal(e.Value))
             { 
-                currentItem.PESEE_BRUTE = Convert.ToDecimal(e.Value);
+                currentItem.QTE_BRUTE = Convert.ToDecimal(e.Value);
 
                 UpdatePeseeInfos();
             }
@@ -406,8 +416,17 @@ namespace XpertMobileApp.Views
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)
         {
-            var prodId = (sender as Button).ClassId;
-            var vteD = viewModel.ItemRows.Where(x => x.CODE_PRODUIT == prodId).FirstOrDefault();
+            // var prodId = (sender as Button).ClassId;
+            // var vteD = viewModel.ItemRows.Where(x => x.CODE_PRODUIT == prodId).FirstOrDefault();
+
+            View_ACH_DOCUMENT_DETAIL vteD = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
+
+            if(vteD.IS_PRINCIPAL && viewModel.ItemRows.Count > 1)
+            {
+                await UserDialogs.Instance.AlertAsync("Vous ne pouvez pas supprimer le produit principal tant qu'il y a des produits d'exceptions!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
+
             if (vteD != null)
             {
                 if (await UserDialogs.Instance.ConfirmAsync(AppResources.txt_ConfimDelProductCmd, AppResources.msg_Confirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel))
@@ -419,34 +438,69 @@ namespace XpertMobileApp.Views
 
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
+            if (viewModel.IsBusy == true)
+            {
+                return;
+            }
+
             try
             {
-                this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                this.viewModel.Item.CODE_TIERS = viewModel.SelectedTiers.CODE_TIERS;
-                this.viewModel.Item.CODE_MOTIF = "ES10";
+                if(viewModel.SelectedTiers == null)
+                { 
+                    await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un tiers!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
 
-                if(this.viewModel.Item.PESEE_SORTIE > 0)
+                if (viewModel.Item.PESEE_ENTREE <= 0)
                 {
-                    this.viewModel.Item.STATUS_DOC = StausAchRecDoc.Termine;
+                    await UserDialogs.Instance.AlertAsync("Veuillez saisir la pesée d'entrée!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
+
+                if (viewModel.Item.PESEE_ENTREE < viewModel.Item.PESEE_SORTIE)
+                {
+                    await UserDialogs.Instance.AlertAsync("La pesée d'entrée doit être supérieure à la pesée de sortie!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
+
+                this.viewModel.Item.Details = viewModel.ItemRows.ToList();
+                this.viewModel.Item.CODE_TIERS = viewModel.SelectedTiers?.CODE_TIERS;
+                this.viewModel.Item.CODE_MOTIF = "ES10";
+                this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
+
+
+                if (this.viewModel.Item.PESEE_SORTIE > 0)
+                {
+                  //  this.viewModel.Item.STATUS_DOC = StausAchRecDoc.Termine;
                 } 
 
                 if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC))
                 {
-                    this.viewModel.Item.STATUS_DOC = "17"; // en cours
+                    viewModel.IsBusy = true;
+                    // this.viewModel.Item.STATUS_DOC = "17"; // en cours
                     await CrudManager.Achats.AddItemAsync(viewModel.Item);
                     App.CurrentSales = null;
+                    viewModel.IsBusy = false;
                     await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
                 {
+                    viewModel.IsBusy = true;
                     await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
+                    viewModel.IsBusy = false;
                     await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
 
                 await Navigation.PopModalAsync();
+                int pageCount = Navigation.NavigationStack.Count;
+                if(pageCount > 0)
+                { 
+                   // await (Application.Current.MainPage as XpertMobileApp.Views.MainPage).NavigateFromMenu(3);
+                }
             }
             catch (Exception ex)
             {
+                viewModel.IsBusy = false;
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

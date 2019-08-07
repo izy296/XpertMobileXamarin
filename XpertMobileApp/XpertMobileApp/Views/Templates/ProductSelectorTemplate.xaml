@@ -33,8 +33,10 @@
                         <Label Text="{Binding PRIX_VENTE_HT, StringFormat='Prix : {0:N2}'}" 
                                FontAttributes="Bold" FontSize="Default" TextColor="Red" HorizontalOptions="FillAndExpand"/>
                         <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" HorizontalOptions="End" Margin="0,0,10,0"/>
+                        <!--
                         <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
                                FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>
+                        -->
                     </StackLayout>
 
                 </Grid>
