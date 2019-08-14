@@ -172,40 +172,40 @@
       <Version>1.5.231</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.Core">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.DataSource">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.GridCommon">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfChart">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfListView">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
-      <Version>17.1.0.38</Version>
+      <Version>17.2.0.34</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
       <Version>4.0.0.190-beta</Version>
