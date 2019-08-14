@@ -78,7 +78,7 @@ namespace XpertMobileApp.ViewModels
             Status.Add(new BSE_DOCUMENT_STATUS
             {
                 CODE_STATUS = "18",
-                NAME = "Clôturée",
+                NAME = "Terminé",
             });
         }
 

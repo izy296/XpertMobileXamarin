@@ -29,6 +29,7 @@
             <local:OddEvenColorConverter x:Key="oddEvenInvert"/>
             <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
             <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
+            <local:StatusToBoolForPriceConverter x:Key="statusToBoolForPriceConverter"/>
 
             <!--Global Styles-->
 

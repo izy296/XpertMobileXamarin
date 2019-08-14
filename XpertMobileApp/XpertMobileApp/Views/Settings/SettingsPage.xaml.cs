@@ -106,7 +106,7 @@ namespace XpertMobileApp.Views
 
             try
             {
-                string serviceUrl = et_ServiceName.Text;
+                string serviceUrl = et_ServiceName.Text?.Trim();
                 bool reachable = await this.IsBlogReachableAndRunning(serviceUrl);
                 if (reachable)
                 {

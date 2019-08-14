@@ -40,7 +40,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AchatFormPage(item, typeDoc));
+            await Navigation.PushModalAsync(new AchatFormPage(item, typeDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -57,7 +57,7 @@ namespace XpertMobileApp.Views
 
             if(StatusPicker.ItemsSource!= null && StatusPicker.ItemsSource.Count > 0)
             { 
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[3];
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
             }
 
             if (viewModel.Items.Count == 0)
@@ -93,6 +93,7 @@ namespace XpertMobileApp.Views
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            itemSelector.SearchedType = "F";
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }

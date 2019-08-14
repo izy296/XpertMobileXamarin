@@ -34,7 +34,7 @@ namespace XpertMobileApp.ViewModels
 
                 foreach (var emb in currentEmballages)
                 {
-                    var itm = Items.Where(x => x.CODE_EMBALLAGE == emb.CODE_EMBALLAGE).FirstOrDefault();
+                    var itm = Items.Where(x => x.CODE == emb.CODE_EMBALLAGE).FirstOrDefault();
                     if (itm != null)
                     {
                         itm.QUANTITE_ENTREE = emb.QUANTITE_ENTREE;

@@ -638,6 +638,15 @@ namespace XpertMobileApp.DAL
         }
     }
 
+
+    public static class DocStatus
+    {
+        public static string EnAttente { get { return "16"; } }
+        public static string EnCours { get { return "17"; } }
+        public static string Termine { get { return "18"; } }
+        public static string Cloture { get { return "19"; } }
+    }
+
     public partial class BSE_DOCUMENT_STATUS
     {
         public string CODE_STATUS { get; set; } // int(10)

@@ -25,7 +25,7 @@ namespace XpertMobileApp.Models
             {
                 if (serviceUrl != value)
                 {
-                    serviceUrl = value;
+                    serviceUrl = value?.Trim();
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("ServiceUrl"));
                     isModified = true;
                 }
