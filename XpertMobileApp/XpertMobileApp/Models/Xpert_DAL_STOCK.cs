@@ -220,6 +220,8 @@ namespace XpertMobileApp.Models
     public partial class BSE_EMBALLAGE : BASE_CLASS
     {
         public string CODE { get; set; }
+        public string CODE_EMBALLAGE { get; set; }
+
         public string DESIGNATION { get; set; }
         public string CODE_PRODUIT { get; set; }
         public decimal QUANTITE_UNITE { get; set; }
@@ -231,11 +233,6 @@ namespace XpertMobileApp.Models
     {
         public string DESIGNATION_PRODUIT { get; set; }
         public string DESIGNATION_UNITE { get; set; }
-
-        public string CODE_EMBALLAGE
-        {
-            get { return CODE; }
-        }
 
         public decimal QUANTITE_ENTREE_REEL { get; set; }
 

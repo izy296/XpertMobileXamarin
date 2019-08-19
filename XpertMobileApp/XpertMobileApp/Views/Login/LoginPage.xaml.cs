@@ -70,10 +70,10 @@ namespace XpertMobileApp.Views
                 {
                     user.Id = token.userID;
                     user.CODE_TIERS = token.CODE_TIERS;
-                    user.UserGroup = token.UserGroup;
-                    user.GroupName = token.GroupName;
+                    user.UserGroup  = token.UserGroup;
+                    user.GroupName  = token.GroupName;
                     user.Token = token;
-                    App.User = user;
+                    App.User   = user;
 
                     // Alerte apres la connexion
                      DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");

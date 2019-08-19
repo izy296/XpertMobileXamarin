@@ -42,7 +42,7 @@ namespace XpertMobileApp.ViewModels
             Dictionary<string, string> result = base.GetFilterParams();
             
             result.Add("tiersFamille", TiersFamille);
-            result.Add("searchText", SearchedText);
+            result.Add("searchText", SearchedText);            
             return result;
         }
     }

@@ -9,6 +9,7 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             x:Name="AchatForm"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
@@ -24,7 +25,8 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-
+            
+            <!-- Header -->
             <Frame x:Name="pnl_Header" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
                 <Grid  BackgroundColor="White" >
 
@@ -64,7 +66,7 @@
                         <Entry x:Name="ent_SelectedTiers" Text="{Binding Item.TIERS_NomC, Mode=TwoWay}" 
                                TextColor="Black" IsEnabled="False"  HorizontalOptions="FillAndExpand" />
                         
-                        <Button x:Name="btn_Search" Margin="0" 
+                        <Button x:Name="btn_TeirsSearch" Margin="0" 
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
@@ -77,7 +79,7 @@
                         <Entry x:Name="ent_SelectedImmat" Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" 
                                TextColor="Black" HorizontalOptions="FillAndExpand" />
 
-                        <Button Margin="0" 
+                        <Button Margin="0" x:Name="btn_Immatriculation"
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
@@ -107,6 +109,7 @@
                 </Grid>
             </Frame>
 
+            <!-- Details Bar -->
             <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
                 <Label Text="{i18n:Translate txt_Details}" Margin="5,0,0,0" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
                 <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
@@ -183,6 +186,7 @@
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" VerticalOptions="Start"
                                                          Minimum="0" FontSize="12" Margin="0,-15,0,0"
+                                                         IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding QTE_BRUTE, Mode=OneWay}"
                                                          ValueChanged="ne_PeseeBruteChanged"
@@ -194,7 +198,8 @@
                                                         <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1" Minimum="0" Margin="0,-15,0,0"  HeightRequest="20"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                          SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" FontSize="12"
-                                                         ValueChanged="ne_PeseeBruteChanged"/>
+                                                         IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
+                                                         ValueChanged="ne_tauxDechetsChanged"/>
                                                         <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <!-- Qte déchets -->
@@ -216,6 +221,7 @@
                                                         <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" Minimum="0" Margin="0,-15,0,0"
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
+                                                             IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
                                                              FontSize="12" ValueChanged="ne_PeseeTTCChanged"
                                                              />
                                                         <Label Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
@@ -239,13 +245,15 @@
                                                 <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
                                                             WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
-                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White" 
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White"
+                                                            IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                             Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
 
                                                 <Button x:Name="Btn_SelectCaiss" Margin="0" Grid.Column="1"
                                                             WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.Cube}" BackgroundColor="White" 
+                                                            IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                             Clicked="Btn_SelectCaiss_Clicked" VerticalOptions="Center"/>
 
                                                 <Label Grid.Column="2" Text="{ Binding Nbr_Caisses, StringFormat=' Caisses : ({0})'}" 

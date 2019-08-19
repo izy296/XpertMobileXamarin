@@ -6,7 +6,7 @@ using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Converters
 {
-    public class StatusToBoolForPriceConverter : IValueConverter
+    public class StatusToBoolPeseeBruteConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -14,7 +14,7 @@ namespace XpertMobileApp.Converters
 
             if (obj == null) return false;
 
-            if ((obj.STATUS_DOC == DocStatus.EnAttente || obj.STATUS_DOC == DocStatus.EnCours || obj.STATUS_DOC == DocStatus.Termine) && HasPermission)
+            if ((obj.STATUS_DOC == DocStatus.EnAttente || obj.STATUS_DOC == DocStatus.EnCours) && HasPermission)
             {
                 return true;
             }

@@ -44,7 +44,7 @@ namespace XpertMobileApp
             return sysParams;
         }
 
-        private static List<SYS_OBJET_PERMISSION> permissions;
+        internal static List<SYS_OBJET_PERMISSION> permissions;
         public static async Task<List<SYS_OBJET_PERMISSION>> GetPermissions()
         {
             if (permissions == null)
@@ -138,7 +138,11 @@ namespace XpertMobileApp
                    {
                        App.User = new User(token.userName, "");
                        App.User.UserName = token.userID;
+                       App.User.CODE_TIERS = token.CODE_TIERS;
+                       App.User.UserGroup = token.UserGroup;
+                       App.User.GroupName = token.GroupName;
                        App.User.Token = token;
+
                        MainPage = new MainPage();
                    }
                    else

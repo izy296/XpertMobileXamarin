@@ -25,6 +25,10 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new AchatsViewModel(typeDoc);
 
+            if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
+            {
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
+            }
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
@@ -40,7 +44,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushModalAsync(new AchatFormPage(item, typeDoc));
+            await Navigation.PushAsync(new AchatFormPage(item, typeDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -48,17 +52,12 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new AchatFormPage(null, typeDoc)));
+            await Navigation.PushAsync(new AchatFormPage(null, typeDoc));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            if(StatusPicker.ItemsSource!= null && StatusPicker.ItemsSource.Count > 0)
-            { 
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
-            }
 
             if (viewModel.Items.Count == 0)
                 LoadStats();

@@ -53,15 +53,12 @@ namespace XpertMobileApp.Views
 
         private void btn_Disconnect_Clicked(object sender, EventArgs e)
         {
-            try { 
-            if(App.User != null && App.User.Token != null)
+
+            if (App.User != null && App.User.Token != null)
                 App.TokenDatabase.DeleteItemAsync(App.User.Token);
-            }
-            catch
-            {
-            }
 
             App.User = null;
+            App.permissions = null;
             Application.Current.MainPage = new LoginPage();
         }
     }

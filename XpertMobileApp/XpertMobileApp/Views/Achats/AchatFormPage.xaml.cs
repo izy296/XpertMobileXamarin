@@ -32,13 +32,18 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
+            // NavigationPage.SetHasNavigationBar(this, false);
+
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector();
             EmballageSelector = new EmballageSelector();
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
-            ach.TYPE_DOC = typeDoc;
-            ach.DATE_DOC = DateTime.Now.Date;
+            if(vente == null)
+            { 
+                ach.TYPE_DOC = typeDoc;
+                ach.DATE_DOC = DateTime.Now.Date;
+            }
 
             BindingContext = this.viewModel = new AchatsFormViewModel(ach, ach?.CODE_DOC);
 
@@ -70,7 +75,12 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
+                    foreach (var item in items)
+                    {
+                        item.CODE_EMBALLAGE = item.CODE;
+                    }
                     currentRow.Embalages = items;
+
                     UpdatePeseeInfos();
                 });
             });
@@ -90,12 +100,67 @@ namespace XpertMobileApp.Views
 
             parames = await App.GetSysParams();
             permissions = await App.GetPermissions();
+
+            ApplyVisibility();
+
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
 
             if (viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC))
             { 
                 viewModel.LoadRowsCommand.Execute(null);
+            }
+        }
+
+        private void ApplyVisibility()
+        {
+            btn_Immatriculation.IsVisible = false;
+
+            string userGroup = App.User.GroupName;
+
+            // Par défaut le header est caché s'il n'a pas le droit d'éditer le header
+            pnl_Header.IsVisible = viewModel.hasEditHeader;
+
+            // Commandes pour la selection de produit
+            btn_RowSelect.IsEnabled = viewModel.hasEditDetails;
+            btn_RowScan.IsEnabled = viewModel.hasEditDetails;
+
+            // Champs d'edition du header
+            dp_EcheanceDate.IsEnabled = viewModel.hasEditHeader;
+            btn_TeirsSearch.IsEnabled = viewModel.hasEditHeader;
+            ent_SelectedImmat.IsEnabled = viewModel.hasEditHeader;
+            ne_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
+            ne_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
+
+            if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
+            {
+                ne_PESEE_SORTIE.IsEnabled = false;
+                btn_RowSelect.IsEnabled = false;
+                btn_RowScan.IsEnabled = false;
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.EnAttente)
+            {
+                btn_TeirsSearch.IsEnabled = false;
+                ne_PESEE_ENTREE.IsEnabled = false;
+                ne_PESEE_SORTIE.IsEnabled = false;
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.EnCours)
+            {
+                dp_EcheanceDate.IsEnabled = false;
+                btn_TeirsSearch.IsEnabled = false;
+                ent_SelectedImmat.IsEnabled = false;
+                ne_PESEE_ENTREE.IsEnabled = false;
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Termine || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+            {
+                dp_EcheanceDate.IsEnabled = false;
+                btn_TeirsSearch.IsEnabled = false;
+                ent_SelectedImmat.IsEnabled = false;
+                ne_PESEE_ENTREE.IsEnabled = false;
+                ne_PESEE_SORTIE.IsEnabled = false;
+
+                btn_RowSelect.IsEnabled = false;
+                btn_RowScan.IsEnabled = false;
             }
         }
 
@@ -177,16 +242,20 @@ namespace XpertMobileApp.Views
                 row.TAUX_DECHET   = product.TAUX_DECHET;
                 row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT; 
                 row.PRIX_VENTE    = product.PRIX_VENTE_HT;
-                row.PPA = product.PRIX_VENTE_HT; // TO REMOVE
 
                 row.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
                 row.LOT = parames.DEFAULT_COMPAGNE_LOT;
 
-                if (viewModel.ItemRows.Count == 0)
+                if (viewModel.ItemRows.Count == 0 && viewModel.Item.PESEE_ENTREE > 0)
                 {
                     row.IS_PRINCIPAL = true;
                     row.SetPeseeBrute(viewModel.Item.PESEE_BRUTE);
                 }
+
+                if(viewModel.ItemRows.Count == 0)
+                {
+                    viewModel.Item.STATUS_DOC = DocStatus.EnCours;
+                }                
 
                 viewModel.ItemRows.Add(row);
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
@@ -208,18 +277,21 @@ namespace XpertMobileApp.Views
             {                    
                     item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
             }
+            viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
         }
 
         private void UpdatePeseeInfos()
         {
-            var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL = true);
+            var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL == true);
             decimal qteNetPrimaireInitial = 0;
             if (principalItem != null)
             {
                 // 0 - Calcul du brute initial => celui du camions 
                 qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - viewModel.Item.PESEE_SORTIE;
                 if(principalItem.Embalages != null)
-                   qteNetPrimaireInitial = qteNetPrimaireInitial + principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                {                
+                   qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - (viewModel.Item.PESEE_SORTIE - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE));
+                }
 
                 // 1 - Calcul de la quantité net primaire du produit principal
                 principalItem.SetPeseeBrute(qteNetPrimaireInitial);                  
@@ -353,7 +425,7 @@ namespace XpertMobileApp.Views
         }
 
         private EmballageSelector EmballageSelector;
-        private View_ACH_DOCUMENT_DETAIL currentRow;
+        public static View_ACH_DOCUMENT_DETAIL currentRow;
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
             currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
@@ -380,6 +452,11 @@ namespace XpertMobileApp.Views
 
                 UpdatePeseeInfos();
             }
+        }
+
+        private void ne_tauxDechetsChanged(object sender, ValueEventArgs e)
+        {
+            UpdatePeseeInfos();
         }
 
         private void ne_Pesee_entree_Changed(object sender, ValueEventArgs e)
@@ -416,9 +493,6 @@ namespace XpertMobileApp.Views
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)
         {
-            // var prodId = (sender as Button).ClassId;
-            // var vteD = viewModel.ItemRows.Where(x => x.CODE_PRODUIT == prodId).FirstOrDefault();
-
             View_ACH_DOCUMENT_DETAIL vteD = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
 
             if(vteD.IS_PRINCIPAL && viewModel.ItemRows.Count > 1)
@@ -445,17 +519,19 @@ namespace XpertMobileApp.Views
 
             try
             {
-                if(viewModel.SelectedTiers == null)
+                if(string.IsNullOrEmpty(viewModel.Item.CODE_TIERS))
                 { 
                     await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un tiers!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
                 }
 
+                /*
                 if (viewModel.Item.PESEE_ENTREE <= 0)
                 {
                     await UserDialogs.Instance.AlertAsync("Veuillez saisir la pesée d'entrée!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
                 }
+                */
 
                 if (viewModel.Item.PESEE_ENTREE < viewModel.Item.PESEE_SORTIE)
                 {
@@ -464,39 +540,53 @@ namespace XpertMobileApp.Views
                 }
 
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                this.viewModel.Item.CODE_TIERS = viewModel.SelectedTiers?.CODE_TIERS;
                 this.viewModel.Item.CODE_MOTIF = "ES10";
                 this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
 
-
-                if (this.viewModel.Item.PESEE_SORTIE > 0)
+                if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC)) // Ajout d'une reception
                 {
-                  //  this.viewModel.Item.STATUS_DOC = StausAchRecDoc.Termine;
-                } 
+                    try
+                    { 
+                        UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
-                if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC))
-                {
-                    viewModel.IsBusy = true;
-                    // this.viewModel.Item.STATUS_DOC = "17"; // en cours
-                    await CrudManager.Achats.AddItemAsync(viewModel.Item);
-                    App.CurrentSales = null;
-                    viewModel.IsBusy = false;
-                    await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        viewModel.IsBusy = true;
+                        await CrudManager.Achats.AddItemAsync(viewModel.Item);
+
+                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    finally
+                    {
+                        App.CurrentSales = null;
+                        viewModel.IsBusy = false;
+                        UserDialogs.Instance.HideLoading();
+                    }
                 }
-                else
+                else // Modification d'une reception
                 {
-                    viewModel.IsBusy = true;
-                    await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
-                    viewModel.IsBusy = false;
-                    await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    try
+                    {
+                        UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
+
+                        viewModel.IsBusy = true;
+                        await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
+
+                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    finally
+                    {
+                        viewModel.IsBusy = false;
+                        UserDialogs.Instance.HideLoading();
+                    }
                 }
 
-                await Navigation.PopModalAsync();
+                await Navigation.PopAsync();
+                /*
                 int pageCount = Navigation.NavigationStack.Count;
                 if(pageCount > 0)
                 { 
                    // await (Application.Current.MainPage as XpertMobileApp.Views.MainPage).NavigateFromMenu(3);
                 }
+                */
             }
             catch (Exception ex)
             {

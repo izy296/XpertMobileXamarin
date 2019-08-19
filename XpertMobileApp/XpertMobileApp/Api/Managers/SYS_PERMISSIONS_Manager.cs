@@ -22,7 +22,8 @@ namespace XpertMobileApp.Api
         {
             string url = GetActionUrl("GetPermissions");
             url += WSApi2.AddParam(url, "idGroup", idGroup);
-            return await WSApi2.RetrievAauthorizedData<SYS_OBJET_PERMISSION>(url, this.Token.access_token);
+            var result = await WSApi2.RetrievAauthorizedData<SYS_OBJET_PERMISSION>(url, this.Token.access_token);
+            return result;
         }
     }
 }
