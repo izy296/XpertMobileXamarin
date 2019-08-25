@@ -118,8 +118,135 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfSegmentedControl_segmentedHeight;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedPadding = global::XpertMobileApp.Droid.Resource.Styleable.SfSegmentedControl_segmentedPadding;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfSegmentedControl_segmentedWidth = global::XpertMobileApp.Droid.Resource.Styleable.SfSegmentedControl_segmentedWidth;
+			global::Syncfusion.XForms.Android.Core.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteBorderColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteBorderColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteClearButtonColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteClearButtonColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDisplayMemberPath = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDisplayMemberPath;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownBackgroundColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownBackgroundColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownCornerRadius;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownFooterViewHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownFooterViewHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownHeaderViewHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownHeaderViewHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownItemHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownOpen = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownOpen;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteEnableSelectionIndicator = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteEnableSelectionIndicator;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteHighlightedTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteHighlightedTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIgnoreDiacritic = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIgnoreDiacritic;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteImageMemberPath = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteImageMemberPath;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorText;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIsFocused = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIsFocused;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIsSelectedItemsVisibleInDropDown = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIsSelectedItemsVisibleInDropDown;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteLoadMoreText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteLoadMoreText;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMaximumDropDownHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMaximumDropDownHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMaximumSuggestion = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMaximumSuggestion;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMinimumPrefixCharacters = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMinimumPrefixCharacters;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMultiSelectMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMultiSelectMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteNoResultsFoundText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteNoResultsFoundText;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompletePopUpDelay = global::XpertMobileApp.Droid.Resource.Attribute.autocompletePopUpDelay;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSelectedIndex = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSelectedIndex;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowBorder = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowBorder;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowClearButton = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowClearButton;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowDropDownFooterView = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowDropDownFooterView;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowDropDownHeaderView = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowDropDownHeaderView;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowSuggestionsOnFocus = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowSuggestionsOnFocus;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSuggestionBoxPlacement = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSuggestionBoxPlacement;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSuggestionMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSuggestionMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteText;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTokensWrapMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTokensWrapMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermark = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteWatermark;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermarkColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteWatermarkColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.layoutManager = global::XpertMobileApp.Droid.Resource.Attribute.layoutManager;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.reverseLayout = global::XpertMobileApp.Droid.Resource.Attribute.reverseLayout;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.spanCount = global::XpertMobileApp.Droid.Resource.Attribute.spanCount;
+			global::Com.Syncfusion.Autocomplete.Resource.Attribute.stackFromEnd = global::XpertMobileApp.Droid.Resource.Attribute.stackFromEnd;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Com.Syncfusion.Autocomplete.Resource.Drawable.sfclosebutton = global::XpertMobileApp.Droid.Resource.Drawable.sfclosebutton;
+			global::Com.Syncfusion.Autocomplete.Resource.Drawable.styleinfo = global::XpertMobileApp.Droid.Resource.Drawable.styleinfo;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.append = global::XpertMobileApp.Droid.Resource.Id.append;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.bottom = global::XpertMobileApp.Droid.Resource.Id.bottom;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.contains = global::XpertMobileApp.Droid.Resource.Id.contains;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.containsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.containsWithCaseSensitive;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.custom = global::XpertMobileApp.Droid.Resource.Id.custom;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.delimiter = global::XpertMobileApp.Droid.Resource.Id.delimiter;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.endsWith = global::XpertMobileApp.Droid.Resource.Id.endsWith;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.endsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.endsWithCaseSensitive;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.equals = global::XpertMobileApp.Droid.Resource.Id.equals;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.equalsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.equalsWithCaseSensitive;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.icon = global::XpertMobileApp.Droid.Resource.Id.icon;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.item_touch_helper_previous_elevation = global::XpertMobileApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.none = global::XpertMobileApp.Droid.Resource.Id.none;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.startsWith = global::XpertMobileApp.Droid.Resource.Id.startsWith;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.startsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.startsWithCaseSensitive;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.suggest = global::XpertMobileApp.Droid.Resource.Id.suggest;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.suggestAppend = global::XpertMobileApp.Droid.Resource.Id.suggestAppend;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.token = global::XpertMobileApp.Droid.Resource.Id.token;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.top = global::XpertMobileApp.Droid.Resource.Id.top;
+			global::Com.Syncfusion.Autocomplete.Resource.Id.wrap = global::XpertMobileApp.Droid.Resource.Id.wrap;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView1 = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView1;
+			global::Com.Syncfusion.Autocomplete.Resource.Layout.sfautocomplete_layout = global::XpertMobileApp.Droid.Resource.Layout.sfautocomplete_layout;
+			global::Com.Syncfusion.Autocomplete.Resource.String.library_name = global::XpertMobileApp.Droid.Resource.String.library_name;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_descendantFocusability = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_orientation = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_layoutManager = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_reverseLayout = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_spanCount = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_stackFromEnd = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteBorderColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteBorderColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteClearButtonColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteClearButtonColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDisplayMemberPath = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDisplayMemberPath;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownBackgroundColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownBackgroundColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownCornerRadius;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownFooterViewHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownFooterViewHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownHeaderViewHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownHeaderViewHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownItemHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownOpen = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownOpen;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteEnableSelectionIndicator = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteEnableSelectionIndicator;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteHighlightedTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteHighlightedTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIgnoreDiacritic = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIgnoreDiacritic;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteImageMemberPath = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteImageMemberPath;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorText;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIsFocused = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIsFocused;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteLoadMoreText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteLoadMoreText;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMaximumDropDownHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMaximumDropDownHeight;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMaximumSuggestion = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMaximumSuggestion;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMinimumPrefixCharacters = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMinimumPrefixCharacters;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMultiSelectMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMultiSelectMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteNoResultsFoundText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteNoResultsFoundText;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompletePopUpDelay = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompletePopUpDelay;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSelectedIndex = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSelectedIndex;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowBorder = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowBorder;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownFooterView = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownFooterView;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownHeaderView = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownHeaderView;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowSuggestionsOnFocus = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowSuggestionsOnFocus;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSuggestionBoxPlacement = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSuggestionBoxPlacement;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSuggestionMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSuggestionMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteText;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextColor;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextSize;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTokensWrapMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTokensWrapMode;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermark = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermark;
+			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor;
 			global::Com.Syncfusion.Sfbusyindicator.Resource.Attribute.busyIndicatorAnimationTypes = global::XpertMobileApp.Droid.Resource.Attribute.busyIndicatorAnimationTypes;
 			global::Com.Syncfusion.Sfbusyindicator.Resource.Attribute.busyIndicatorIsBusy = global::XpertMobileApp.Droid.Resource.Attribute.busyIndicatorIsBusy;
 			global::Com.Syncfusion.Sfbusyindicator.Resource.Attribute.busyIndicatorSecondaryColor = global::XpertMobileApp.Droid.Resource.Attribute.busyIndicatorSecondaryColor;
@@ -162,6 +289,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_Out = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Fade_Out;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_In = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Scale_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_Out = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Scale_Out;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Id.annotationLayout = global::XpertMobileApp.Droid.Resource.Id.annotationLayout;
@@ -194,10 +322,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.q = global::XpertMobileApp.Droid.Resource.String.q;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.quarter = global::XpertMobileApp.Droid.Resource.String.quarter;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_close_label = global::XpertMobileApp.Droid.Resource.String.sfchart_close_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_decrease_label = global::XpertMobileApp.Droid.Resource.String.sfchart_decrease_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_high_label = global::XpertMobileApp.Droid.Resource.String.sfchart_high_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_increase_label = global::XpertMobileApp.Droid.Resource.String.sfchart_increase_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_low_label = global::XpertMobileApp.Droid.Resource.String.sfchart_low_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_open_label = global::XpertMobileApp.Droid.Resource.String.sfchart_open_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_others_label = global::XpertMobileApp.Droid.Resource.String.sfchart_others_label;
+			global::Syncfusion.SfChart.XForms.Droid.Resource.String.sfchart_total_label = global::XpertMobileApp.Droid.Resource.String.sfchart_total_label;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.w = global::XpertMobileApp.Droid.Resource.String.w;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.String.week = global::XpertMobileApp.Droid.Resource.String.week;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.layoutManager = global::XpertMobileApp.Droid.Resource.Attribute.layoutManager;
@@ -208,6 +339,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.dropdownbuttonimage = global::XpertMobileApp.Droid.Resource.Drawable.dropdownbuttonimage;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
@@ -238,6 +370,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Attribute.watermark = global::XpertMobileApp.Droid.Resource.Attribute.watermark;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Attribute.watermarkColor = global::XpertMobileApp.Droid.Resource.Attribute.watermarkColor;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Drawable.dropdownbuttonimage = global::XpertMobileApp.Droid.Resource.Drawable.dropdownbuttonimage;
+			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
@@ -279,6 +412,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.ListView.XForms.Android.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
 			global::Syncfusion.ListView.XForms.Android.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
 			global::Syncfusion.ListView.XForms.Android.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Syncfusion.ListView.XForms.Android.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.ListView.XForms.Android.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.ListView.XForms.Android.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.ListView.XForms.Android.Resource.Id.item_touch_helper_previous_elevation = global::XpertMobileApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
@@ -329,6 +463,9 @@ namespace XpertMobileApp.Droid
 			global::Com.Syncfusion.Numerictextbox.Resource.Styleable.SfNumericTextBox_watermark = global::XpertMobileApp.Droid.Resource.Styleable.SfNumericTextBox_watermark;
 			global::Com.Syncfusion.Numerictextbox.Resource.Styleable.SfNumericTextBox_watermarkColor = global::XpertMobileApp.Droid.Resource.Styleable.SfNumericTextBox_watermarkColor;
 			global::Com.Syncfusion.Numericupdown.Resource.String.library_name = global::XpertMobileApp.Droid.Resource.String.library_name;
+			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_decrement_button_accessibility_label = global::XpertMobileApp.Droid.Resource.String.sfnumericupdown_decrement_button_accessibility_label;
+			global::Com.Syncfusion.Numericupdown.Resource.String.sfnumericupdown_increment_button_accessibility_label = global::XpertMobileApp.Droid.Resource.String.sfnumericupdown_increment_button_accessibility_label;
+			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.SfPullToRefresh.XForms.Android.Resource.Drawable.shadow_effect = global::XpertMobileApp.Droid.Resource.Drawable.shadow_effect;
@@ -3231,41 +3368,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010094
 			public const int activityChooserViewStyle = 2130772116;
 			
-			// aapt resource value: 0x7f010221
-			public const int ahBarColor = 2130772513;
+			// aapt resource value: 0x7f01024b
+			public const int ahBarColor = 2130772555;
 			
-			// aapt resource value: 0x7f010229
-			public const int ahBarLength = 2130772521;
+			// aapt resource value: 0x7f010253
+			public const int ahBarLength = 2130772563;
 			
-			// aapt resource value: 0x7f010228
-			public const int ahBarWidth = 2130772520;
+			// aapt resource value: 0x7f010252
+			public const int ahBarWidth = 2130772562;
 			
-			// aapt resource value: 0x7f010226
-			public const int ahCircleColor = 2130772518;
+			// aapt resource value: 0x7f010250
+			public const int ahCircleColor = 2130772560;
 			
-			// aapt resource value: 0x7f010225
-			public const int ahDelayMillis = 2130772517;
+			// aapt resource value: 0x7f01024f
+			public const int ahDelayMillis = 2130772559;
 			
-			// aapt resource value: 0x7f010227
-			public const int ahRadius = 2130772519;
+			// aapt resource value: 0x7f010251
+			public const int ahRadius = 2130772561;
 			
-			// aapt resource value: 0x7f010222
-			public const int ahRimColor = 2130772514;
+			// aapt resource value: 0x7f01024c
+			public const int ahRimColor = 2130772556;
 			
-			// aapt resource value: 0x7f010223
-			public const int ahRimWidth = 2130772515;
+			// aapt resource value: 0x7f01024d
+			public const int ahRimWidth = 2130772557;
 			
-			// aapt resource value: 0x7f010224
-			public const int ahSpinSpeed = 2130772516;
+			// aapt resource value: 0x7f01024e
+			public const int ahSpinSpeed = 2130772558;
 			
-			// aapt resource value: 0x7f01021e
-			public const int ahText = 2130772510;
+			// aapt resource value: 0x7f010248
+			public const int ahText = 2130772552;
 			
-			// aapt resource value: 0x7f01021f
-			public const int ahTextColor = 2130772511;
+			// aapt resource value: 0x7f010249
+			public const int ahTextColor = 2130772553;
 			
-			// aapt resource value: 0x7f010220
-			public const int ahTextSize = 2130772512;
+			// aapt resource value: 0x7f01024a
+			public const int ahTextSize = 2130772554;
 			
 			// aapt resource value: 0x7f0100b9
 			public const int alertDialogButtonGroupStyle = 2130772153;
@@ -3314,6 +3451,132 @@ namespace XpertMobileApp.Droid
 			
 			// aapt resource value: 0x7f010052
 			public const int autoSizeTextType = 2130772050;
+			
+			// aapt resource value: 0x7f010212
+			public const int autocompleteBorderColor = 2130772498;
+			
+			// aapt resource value: 0x7f010227
+			public const int autocompleteClearButtonColor = 2130772519;
+			
+			// aapt resource value: 0x7f01021b
+			public const int autocompleteDisplayMemberPath = 2130772507;
+			
+			// aapt resource value: 0x7f010220
+			public const int autocompleteDropDownBackgroundColor = 2130772512;
+			
+			// aapt resource value: 0x7f010230
+			public const int autocompleteDropDownCornerRadius = 2130772528;
+			
+			// aapt resource value: 0x7f010232
+			public const int autocompleteDropDownFooterViewHeight = 2130772530;
+			
+			// aapt resource value: 0x7f010231
+			public const int autocompleteDropDownHeaderViewHeight = 2130772529;
+			
+			// aapt resource value: 0x7f01022f
+			public const int autocompleteDropDownItemHeight = 2130772527;
+			
+			// aapt resource value: 0x7f010216
+			public const int autocompleteDropDownOpen = 2130772502;
+			
+			// aapt resource value: 0x7f010221
+			public const int autocompleteDropDownTextColor = 2130772513;
+			
+			// aapt resource value: 0x7f010223
+			public const int autocompleteDropDownTextSize = 2130772515;
+			
+			// aapt resource value: 0x7f01021c
+			public const int autocompleteEnableSelectionIndicator = 2130772508;
+			
+			// aapt resource value: 0x7f01022d
+			public const int autocompleteHighlightedTextColor = 2130772525;
+			
+			// aapt resource value: 0x7f010228
+			public const int autocompleteIgnoreDiacritic = 2130772520;
+			
+			// aapt resource value: 0x7f010224
+			public const int autocompleteImageMemberPath = 2130772516;
+			
+			// aapt resource value: 0x7f01021d
+			public const int autocompleteIndicatorText = 2130772509;
+			
+			// aapt resource value: 0x7f01021e
+			public const int autocompleteIndicatorTextColor = 2130772510;
+			
+			// aapt resource value: 0x7f01022e
+			public const int autocompleteIndicatorTextSize = 2130772526;
+			
+			// aapt resource value: 0x7f010229
+			public const int autocompleteIsFocused = 2130772521;
+			
+			// aapt resource value: 0x7f01022c
+			public const int autocompleteIsSelectedItemsVisibleInDropDown = 2130772524;
+			
+			// aapt resource value: 0x7f01022a
+			public const int autocompleteLoadMoreText = 2130772522;
+			
+			// aapt resource value: 0x7f010222
+			public const int autocompleteMaximumDropDownHeight = 2130772514;
+			
+			// aapt resource value: 0x7f010217
+			public const int autocompleteMaximumSuggestion = 2130772503;
+			
+			// aapt resource value: 0x7f01021f
+			public const int autocompleteMinimumPrefixCharacters = 2130772511;
+			
+			// aapt resource value: 0x7f010237
+			public const int autocompleteMode = 2130772535;
+			
+			// aapt resource value: 0x7f010236
+			public const int autocompleteMultiSelectMode = 2130772534;
+			
+			// aapt resource value: 0x7f01022b
+			public const int autocompleteNoResultsFoundText = 2130772523;
+			
+			// aapt resource value: 0x7f01021a
+			public const int autocompletePopUpDelay = 2130772506;
+			
+			// aapt resource value: 0x7f010218
+			public const int autocompleteSelectedIndex = 2130772504;
+			
+			// aapt resource value: 0x7f01020e
+			public const int autocompleteShowBorder = 2130772494;
+			
+			// aapt resource value: 0x7f01020f
+			public const int autocompleteShowClearButton = 2130772495;
+			
+			// aapt resource value: 0x7f010226
+			public const int autocompleteShowDropDownFooterView = 2130772518;
+			
+			// aapt resource value: 0x7f010225
+			public const int autocompleteShowDropDownHeaderView = 2130772517;
+			
+			// aapt resource value: 0x7f010219
+			public const int autocompleteShowSuggestionsOnFocus = 2130772505;
+			
+			// aapt resource value: 0x7f010234
+			public const int autocompleteSuggestionBoxPlacement = 2130772532;
+			
+			// aapt resource value: 0x7f010233
+			public const int autocompleteSuggestionMode = 2130772531;
+			
+			// aapt resource value: 0x7f010214
+			public const int autocompleteText = 2130772500;
+			
+			// aapt resource value: 0x7f010211
+			public const int autocompleteTextColor = 2130772497;
+			
+			// aapt resource value: 0x7f010215
+			public const int autocompleteTextSize = 2130772501;
+			
+			// aapt resource value: 0x7f010235
+			public const int autocompleteTokensWrapMode = 2130772533;
+			
+			// aapt resource value: 0x7f010213
+			public const int autocompleteWatermark = 2130772499;
+			
+			// aapt resource value: 0x7f010210
+			public const int autocompleteWatermarkColor = 2130772496;
 			
 			// aapt resource value: 0x7f01002f
 			public const int background = 2130772015;
@@ -3486,8 +3749,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100c3
 			public const int checkboxStyle = 2130772163;
 			
-			// aapt resource value: 0x7f010211
-			public const int @checked = 2130772497;
+			// aapt resource value: 0x7f01023b
+			public const int @checked = 2130772539;
 			
 			// aapt resource value: 0x7f010173
 			public const int checkedChip = 2130772339;
@@ -3681,8 +3944,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010193
 			public const int cornerRadius = 2130772371;
 			
-			// aapt resource value: 0x7f010210
-			public const int cornerradius = 2130772496;
+			// aapt resource value: 0x7f01023a
+			public const int cornerradius = 2130772538;
 			
 			// aapt resource value: 0x7f0101c2
 			public const int counterEnabled = 2130772418;
@@ -3966,8 +4229,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010025
 			public const int isLightTheme = 2130772005;
 			
-			// aapt resource value: 0x7f01020f
-			public const int isthreestate = 2130772495;
+			// aapt resource value: 0x7f010239
+			public const int isthreestate = 2130772537;
 			
 			// aapt resource value: 0x7f010197
 			public const int itemBackground = 2130772375;
@@ -4332,41 +4595,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100ca
 			public const int seekBarStyle = 2130772170;
 			
-			// aapt resource value: 0x7f010213
-			public const int segmentBackColor = 2130772499;
+			// aapt resource value: 0x7f01023d
+			public const int segmentBackColor = 2130772541;
 			
-			// aapt resource value: 0x7f010214
-			public const int segmentBorderColor = 2130772500;
+			// aapt resource value: 0x7f01023e
+			public const int segmentBorderColor = 2130772542;
 			
-			// aapt resource value: 0x7f010215
-			public const int segmentBorderThickness = 2130772501;
+			// aapt resource value: 0x7f01023f
+			public const int segmentBorderThickness = 2130772543;
 			
-			// aapt resource value: 0x7f010216
-			public const int segmentColor = 2130772502;
+			// aapt resource value: 0x7f010240
+			public const int segmentColor = 2130772544;
 			
-			// aapt resource value: 0x7f01021b
-			public const int segmentCornerRadius = 2130772507;
+			// aapt resource value: 0x7f010245
+			public const int segmentCornerRadius = 2130772549;
 			
-			// aapt resource value: 0x7f01021d
-			public const int segmentDisplayMode = 2130772509;
+			// aapt resource value: 0x7f010247
+			public const int segmentDisplayMode = 2130772551;
 			
-			// aapt resource value: 0x7f01021c
-			public const int segmentPosition = 2130772508;
+			// aapt resource value: 0x7f010246
+			public const int segmentPosition = 2130772550;
 			
-			// aapt resource value: 0x7f010212
-			public const int segmentSelectedIndex = 2130772498;
+			// aapt resource value: 0x7f01023c
+			public const int segmentSelectedIndex = 2130772540;
 			
-			// aapt resource value: 0x7f01021a
-			public const int segmentStrokeThickness = 2130772506;
+			// aapt resource value: 0x7f010244
+			public const int segmentStrokeThickness = 2130772548;
 			
-			// aapt resource value: 0x7f010218
-			public const int segmentedHeight = 2130772504;
+			// aapt resource value: 0x7f010242
+			public const int segmentedHeight = 2130772546;
 			
-			// aapt resource value: 0x7f010217
-			public const int segmentedPadding = 2130772503;
+			// aapt resource value: 0x7f010241
+			public const int segmentedPadding = 2130772545;
 			
-			// aapt resource value: 0x7f010219
-			public const int segmentedWidth = 2130772505;
+			// aapt resource value: 0x7f010243
+			public const int segmentedWidth = 2130772547;
 			
 			// aapt resource value: 0x7f0101fe
 			public const int selectAllOnFocus = 2130772478;
@@ -4437,8 +4700,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010142
 			public const int state_collapsible = 2130772290;
 			
-			// aapt resource value: 0x7f01020e
-			public const int state_indeterminate = 2130772494;
+			// aapt resource value: 0x7f010238
+			public const int state_indeterminate = 2130772536;
 			
 			// aapt resource value: 0x7f010144
 			public const int state_liftable = 2130772292;
@@ -6217,26 +6480,26 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f020057
 			public const int avd_hide_password = 2130837591;
 			
-			// aapt resource value: 0x7f020163
-			public const int avd_hide_password_1 = 2130837859;
+			// aapt resource value: 0x7f020166
+			public const int avd_hide_password_1 = 2130837862;
 			
-			// aapt resource value: 0x7f020164
-			public const int avd_hide_password_2 = 2130837860;
+			// aapt resource value: 0x7f020167
+			public const int avd_hide_password_2 = 2130837863;
 			
-			// aapt resource value: 0x7f020165
-			public const int avd_hide_password_3 = 2130837861;
+			// aapt resource value: 0x7f020168
+			public const int avd_hide_password_3 = 2130837864;
 			
 			// aapt resource value: 0x7f020058
 			public const int avd_show_password = 2130837592;
 			
-			// aapt resource value: 0x7f020166
-			public const int avd_show_password_1 = 2130837862;
+			// aapt resource value: 0x7f020169
+			public const int avd_show_password_1 = 2130837865;
 			
-			// aapt resource value: 0x7f020167
-			public const int avd_show_password_2 = 2130837863;
+			// aapt resource value: 0x7f02016a
+			public const int avd_show_password_2 = 2130837866;
 			
-			// aapt resource value: 0x7f020168
-			public const int avd_show_password_3 = 2130837864;
+			// aapt resource value: 0x7f02016b
+			public const int avd_show_password_3 = 2130837867;
 			
 			// aapt resource value: 0x7f020059
 			public const int bg = 2130837593;
@@ -6854,187 +7117,196 @@ namespace XpertMobileApp.Droid
 			public const int Icon = 2130837797;
 			
 			// aapt resource value: 0x7f020126
-			public const int inputlayout_togglecollapseicon = 2130837798;
+			public const int input_layout_drop_down_icon = 2130837798;
 			
 			// aapt resource value: 0x7f020127
-			public const int inputlayout_togglevisibleicon = 2130837799;
+			public const int inputlayout_togglecollapseicon = 2130837799;
 			
 			// aapt resource value: 0x7f020128
-			public const int ionic3 = 2130837800;
+			public const int inputlayout_togglevisibleicon = 2130837800;
 			
 			// aapt resource value: 0x7f020129
-			public const int logo_h = 2130837801;
+			public const int ionic3 = 2130837801;
 			
 			// aapt resource value: 0x7f02012a
-			public const int logo_h_tl = 2130837802;
+			public const int logo_h = 2130837802;
 			
 			// aapt resource value: 0x7f02012b
-			public const int logo_v = 2130837803;
+			public const int logo_h_tl = 2130837803;
 			
 			// aapt resource value: 0x7f02012c
-			public const int logo_v280 = 2130837804;
+			public const int logo_v = 2130837804;
 			
 			// aapt resource value: 0x7f02012d
-			public const int logo_v400 = 2130837805;
+			public const int logo_v280 = 2130837805;
 			
 			// aapt resource value: 0x7f02012e
-			public const int logo_v_tl = 2130837806;
+			public const int logo_v400 = 2130837806;
 			
 			// aapt resource value: 0x7f02012f
-			public const int logout = 2130837807;
+			public const int logo_v_tl = 2130837807;
 			
 			// aapt resource value: 0x7f020130
-			public const int mr_button_connected_dark = 2130837808;
+			public const int logout = 2130837808;
 			
 			// aapt resource value: 0x7f020131
-			public const int mr_button_connected_light = 2130837809;
+			public const int mr_button_connected_dark = 2130837809;
 			
 			// aapt resource value: 0x7f020132
-			public const int mr_button_connecting_dark = 2130837810;
+			public const int mr_button_connected_light = 2130837810;
 			
 			// aapt resource value: 0x7f020133
-			public const int mr_button_connecting_light = 2130837811;
+			public const int mr_button_connecting_dark = 2130837811;
 			
 			// aapt resource value: 0x7f020134
-			public const int mr_button_dark = 2130837812;
+			public const int mr_button_connecting_light = 2130837812;
 			
 			// aapt resource value: 0x7f020135
-			public const int mr_button_light = 2130837813;
+			public const int mr_button_dark = 2130837813;
 			
 			// aapt resource value: 0x7f020136
-			public const int mr_dialog_close_dark = 2130837814;
+			public const int mr_button_light = 2130837814;
 			
 			// aapt resource value: 0x7f020137
-			public const int mr_dialog_close_light = 2130837815;
+			public const int mr_dialog_close_dark = 2130837815;
 			
 			// aapt resource value: 0x7f020138
-			public const int mr_dialog_material_background_dark = 2130837816;
+			public const int mr_dialog_close_light = 2130837816;
 			
 			// aapt resource value: 0x7f020139
-			public const int mr_dialog_material_background_light = 2130837817;
+			public const int mr_dialog_material_background_dark = 2130837817;
 			
 			// aapt resource value: 0x7f02013a
-			public const int mr_group_collapse = 2130837818;
+			public const int mr_dialog_material_background_light = 2130837818;
 			
 			// aapt resource value: 0x7f02013b
-			public const int mr_group_expand = 2130837819;
+			public const int mr_group_collapse = 2130837819;
 			
 			// aapt resource value: 0x7f02013c
-			public const int mr_media_pause_dark = 2130837820;
+			public const int mr_group_expand = 2130837820;
 			
 			// aapt resource value: 0x7f02013d
-			public const int mr_media_pause_light = 2130837821;
+			public const int mr_media_pause_dark = 2130837821;
 			
 			// aapt resource value: 0x7f02013e
-			public const int mr_media_play_dark = 2130837822;
+			public const int mr_media_pause_light = 2130837822;
 			
 			// aapt resource value: 0x7f02013f
-			public const int mr_media_play_light = 2130837823;
+			public const int mr_media_play_dark = 2130837823;
 			
 			// aapt resource value: 0x7f020140
-			public const int mr_media_stop_dark = 2130837824;
+			public const int mr_media_play_light = 2130837824;
 			
 			// aapt resource value: 0x7f020141
-			public const int mr_media_stop_light = 2130837825;
+			public const int mr_media_stop_dark = 2130837825;
 			
 			// aapt resource value: 0x7f020142
-			public const int mr_vol_type_audiotrack_dark = 2130837826;
+			public const int mr_media_stop_light = 2130837826;
 			
 			// aapt resource value: 0x7f020143
-			public const int mr_vol_type_audiotrack_light = 2130837827;
+			public const int mr_vol_type_audiotrack_dark = 2130837827;
 			
 			// aapt resource value: 0x7f020144
-			public const int mtrl_snackbar_background = 2130837828;
+			public const int mr_vol_type_audiotrack_light = 2130837828;
 			
 			// aapt resource value: 0x7f020145
-			public const int mtrl_tabs_default_indicator = 2130837829;
+			public const int mtrl_snackbar_background = 2130837829;
 			
 			// aapt resource value: 0x7f020146
-			public const int navigation_empty_icon = 2130837830;
+			public const int mtrl_tabs_default_indicator = 2130837830;
 			
 			// aapt resource value: 0x7f020147
-			public const int new_128 = 2130837831;
+			public const int navigation_empty_icon = 2130837831;
 			
 			// aapt resource value: 0x7f020148
-			public const int new_24 = 2130837832;
+			public const int new_128 = 2130837832;
 			
 			// aapt resource value: 0x7f020149
-			public const int new_64 = 2130837833;
+			public const int new_24 = 2130837833;
 			
 			// aapt resource value: 0x7f02014a
-			public const int notification_action_background = 2130837834;
+			public const int new_64 = 2130837834;
 			
 			// aapt resource value: 0x7f02014b
-			public const int notification_bg = 2130837835;
+			public const int notification_action_background = 2130837835;
 			
 			// aapt resource value: 0x7f02014c
-			public const int notification_bg_low = 2130837836;
+			public const int notification_bg = 2130837836;
 			
 			// aapt resource value: 0x7f02014d
-			public const int notification_bg_low_normal = 2130837837;
+			public const int notification_bg_low = 2130837837;
 			
 			// aapt resource value: 0x7f02014e
-			public const int notification_bg_low_pressed = 2130837838;
+			public const int notification_bg_low_normal = 2130837838;
 			
 			// aapt resource value: 0x7f02014f
-			public const int notification_bg_normal = 2130837839;
+			public const int notification_bg_low_pressed = 2130837839;
 			
 			// aapt resource value: 0x7f020150
-			public const int notification_bg_normal_pressed = 2130837840;
+			public const int notification_bg_normal = 2130837840;
 			
 			// aapt resource value: 0x7f020151
-			public const int notification_icon_background = 2130837841;
-			
-			// aapt resource value: 0x7f020161
-			public const int notification_template_icon_bg = 2130837857;
-			
-			// aapt resource value: 0x7f020162
-			public const int notification_template_icon_low_bg = 2130837858;
+			public const int notification_bg_normal_pressed = 2130837841;
 			
 			// aapt resource value: 0x7f020152
-			public const int notification_tile_bg = 2130837842;
+			public const int notification_icon_background = 2130837842;
+			
+			// aapt resource value: 0x7f020164
+			public const int notification_template_icon_bg = 2130837860;
+			
+			// aapt resource value: 0x7f020165
+			public const int notification_template_icon_low_bg = 2130837861;
 			
 			// aapt resource value: 0x7f020153
-			public const int notify_panel_notification_icon_bg = 2130837843;
+			public const int notification_tile_bg = 2130837843;
 			
 			// aapt resource value: 0x7f020154
-			public const int param_32 = 2130837844;
+			public const int notify_panel_notification_icon_bg = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int prevLogo = 2130837845;
+			public const int param_32 = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int Rating = 2130837846;
+			public const int prevLogo = 2130837846;
 			
 			// aapt resource value: 0x7f020157
-			public const int roundedbg = 2130837847;
+			public const int Rating = 2130837847;
 			
 			// aapt resource value: 0x7f020158
-			public const int roundedbgdark = 2130837848;
+			public const int roundedbg = 2130837848;
 			
 			// aapt resource value: 0x7f020159
-			public const int settings_32 = 2130837849;
+			public const int roundedbgdark = 2130837849;
 			
 			// aapt resource value: 0x7f02015a
-			public const int shadow_effect = 2130837850;
+			public const int settings_32 = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int shopping_cart_24 = 2130837851;
+			public const int sfclosebutton = 2130837851;
 			
 			// aapt resource value: 0x7f02015c
-			public const int splash_logo = 2130837852;
+			public const int shadow_effect = 2130837852;
 			
 			// aapt resource value: 0x7f02015d
-			public const int splash_screen = 2130837853;
+			public const int shopping_cart_24 = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int tooltip_frame_dark = 2130837854;
+			public const int splash_logo = 2130837854;
 			
 			// aapt resource value: 0x7f02015f
-			public const int tooltip_frame_light = 2130837855;
+			public const int splash_screen = 2130837855;
 			
 			// aapt resource value: 0x7f020160
-			public const int xamarin_logo = 2130837856;
+			public const int styleinfo = 2130837856;
+			
+			// aapt resource value: 0x7f020161
+			public const int tooltip_frame_dark = 2130837857;
+			
+			// aapt resource value: 0x7f020162
+			public const int tooltip_frame_light = 2130837858;
+			
+			// aapt resource value: 0x7f020163
+			public const int xamarin_logo = 2130837859;
 			
 			static Drawable()
 			{
@@ -7058,8 +7330,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c003b
 			public const int FUNCTION = 2131492923;
 			
-			// aapt resource value: 0x7f0c00d3
-			public const int Itemname = 2131493075;
+			// aapt resource value: 0x7f0c00e1
+			public const int Itemname = 2131493089;
 			
 			// aapt resource value: 0x7f0c003c
 			public const int META = 2131492924;
@@ -7070,44 +7342,44 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c003e
 			public const int SYM = 2131492926;
 			
-			// aapt resource value: 0x7f0c0139
-			public const int ShadowEffectShape = 2131493177;
+			// aapt resource value: 0x7f0c0147
+			public const int ShadowEffectShape = 2131493191;
 			
-			// aapt resource value: 0x7f0c0118
-			public const int action0 = 2131493144;
+			// aapt resource value: 0x7f0c0126
+			public const int action0 = 2131493158;
 			
-			// aapt resource value: 0x7f0c00aa
-			public const int action_bar = 2131493034;
+			// aapt resource value: 0x7f0c00b8
+			public const int action_bar = 2131493048;
 			
 			// aapt resource value: 0x7f0c0001
 			public const int action_bar_activity_content = 2131492865;
 			
-			// aapt resource value: 0x7f0c00a9
-			public const int action_bar_container = 2131493033;
+			// aapt resource value: 0x7f0c00b7
+			public const int action_bar_container = 2131493047;
 			
-			// aapt resource value: 0x7f0c00a5
-			public const int action_bar_root = 2131493029;
+			// aapt resource value: 0x7f0c00b3
+			public const int action_bar_root = 2131493043;
 			
 			// aapt resource value: 0x7f0c0002
 			public const int action_bar_spinner = 2131492866;
 			
-			// aapt resource value: 0x7f0c0088
-			public const int action_bar_subtitle = 2131493000;
+			// aapt resource value: 0x7f0c0097
+			public const int action_bar_subtitle = 2131493015;
 			
-			// aapt resource value: 0x7f0c0087
-			public const int action_bar_title = 2131492999;
+			// aapt resource value: 0x7f0c0096
+			public const int action_bar_title = 2131493014;
 			
-			// aapt resource value: 0x7f0c0115
-			public const int action_container = 2131493141;
+			// aapt resource value: 0x7f0c0123
+			public const int action_container = 2131493155;
 			
-			// aapt resource value: 0x7f0c00ab
-			public const int action_context_bar = 2131493035;
+			// aapt resource value: 0x7f0c00b9
+			public const int action_context_bar = 2131493049;
 			
-			// aapt resource value: 0x7f0c011c
-			public const int action_divider = 2131493148;
+			// aapt resource value: 0x7f0c012a
+			public const int action_divider = 2131493162;
 			
-			// aapt resource value: 0x7f0c0116
-			public const int action_image = 2131493142;
+			// aapt resource value: 0x7f0c0124
+			public const int action_image = 2131493156;
 			
 			// aapt resource value: 0x7f0c0003
 			public const int action_menu_divider = 2131492867;
@@ -7115,29 +7387,29 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0004
 			public const int action_menu_presenter = 2131492868;
 			
-			// aapt resource value: 0x7f0c00a7
-			public const int action_mode_bar = 2131493031;
+			// aapt resource value: 0x7f0c00b5
+			public const int action_mode_bar = 2131493045;
 			
-			// aapt resource value: 0x7f0c00a6
-			public const int action_mode_bar_stub = 2131493030;
+			// aapt resource value: 0x7f0c00b4
+			public const int action_mode_bar_stub = 2131493044;
 			
-			// aapt resource value: 0x7f0c0089
-			public const int action_mode_close_button = 2131493001;
-			
-			// aapt resource value: 0x7f0c0117
-			public const int action_text = 2131493143;
+			// aapt resource value: 0x7f0c0098
+			public const int action_mode_close_button = 2131493016;
 			
 			// aapt resource value: 0x7f0c0125
-			public const int actions = 2131493157;
+			public const int action_text = 2131493157;
 			
-			// aapt resource value: 0x7f0c008a
-			public const int activity_chooser_view_content = 2131493002;
+			// aapt resource value: 0x7f0c0133
+			public const int actions = 2131493171;
+			
+			// aapt resource value: 0x7f0c0099
+			public const int activity_chooser_view_content = 2131493017;
 			
 			// aapt resource value: 0x7f0c002e
 			public const int add = 2131492910;
 			
-			// aapt resource value: 0x7f0c009c
-			public const int alertTitle = 2131493020;
+			// aapt resource value: 0x7f0c00aa
+			public const int alertTitle = 2131493034;
 			
 			// aapt resource value: 0x7f0c0064
 			public const int all = 2131492964;
@@ -7145,8 +7417,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c003f
 			public const int always = 2131492927;
 			
-			// aapt resource value: 0x7f0c00cb
-			public const int annotationLayout = 2131493067;
+			// aapt resource value: 0x7f0c00d9
+			public const int annotationLayout = 2131493081;
+			
+			// aapt resource value: 0x7f0c008d
+			public const int append = 2131493005;
 			
 			// aapt resource value: 0x7f0c0065
 			public const int async = 2131492965;
@@ -7154,8 +7429,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c004d
 			public const int auto = 2131492941;
 			
-			// aapt resource value: 0x7f0c00c8
-			public const int axisLayout = 2131493064;
+			// aapt resource value: 0x7f0c00d6
+			public const int axisLayout = 2131493078;
 			
 			// aapt resource value: 0x7f0c0072
 			public const int ball = 2131492978;
@@ -7169,44 +7444,44 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0066
 			public const int blocking = 2131492966;
 			
-			// aapt resource value: 0x7f0c0084
-			public const int border = 2131492996;
+			// aapt resource value: 0x7f0c0093
+			public const int border = 2131493011;
 			
 			// aapt resource value: 0x7f0c0044
 			public const int bottom = 2131492932;
 			
-			// aapt resource value: 0x7f0c0129
-			public const int bottom_labels = 2131493161;
+			// aapt resource value: 0x7f0c0137
+			public const int bottom_labels = 2131493175;
 			
-			// aapt resource value: 0x7f0c00ba
-			public const int bottomtab_navarea = 2131493050;
+			// aapt resource value: 0x7f0c00c8
+			public const int bottomtab_navarea = 2131493064;
 			
-			// aapt resource value: 0x7f0c00bb
-			public const int bottomtab_tabbar = 2131493051;
+			// aapt resource value: 0x7f0c00c9
+			public const int bottomtab_tabbar = 2131493065;
 			
 			// aapt resource value: 0x7f0c0074
 			public const int box = 2131492980;
 			
-			// aapt resource value: 0x7f0c00bd
-			public const int browser_actions_header_text = 2131493053;
+			// aapt resource value: 0x7f0c00cb
+			public const int browser_actions_header_text = 2131493067;
 			
-			// aapt resource value: 0x7f0c00bf
-			public const int browser_actions_menu_item_icon = 2131493055;
+			// aapt resource value: 0x7f0c00cd
+			public const int browser_actions_menu_item_icon = 2131493069;
 			
-			// aapt resource value: 0x7f0c00c0
-			public const int browser_actions_menu_item_text = 2131493056;
+			// aapt resource value: 0x7f0c00ce
+			public const int browser_actions_menu_item_text = 2131493070;
 			
-			// aapt resource value: 0x7f0c00be
-			public const int browser_actions_menu_items = 2131493054;
+			// aapt resource value: 0x7f0c00cc
+			public const int browser_actions_menu_items = 2131493068;
 			
-			// aapt resource value: 0x7f0c00bc
-			public const int browser_actions_menu_view = 2131493052;
+			// aapt resource value: 0x7f0c00ca
+			public const int browser_actions_menu_view = 2131493066;
 			
-			// aapt resource value: 0x7f0c008f
-			public const int buttonPanel = 2131493007;
+			// aapt resource value: 0x7f0c009e
+			public const int buttonPanel = 2131493022;
 			
-			// aapt resource value: 0x7f0c0119
-			public const int cancel_action = 2131493145;
+			// aapt resource value: 0x7f0c0127
+			public const int cancel_action = 2131493159;
 			
 			// aapt resource value: 0x7f0c004c
 			public const int center = 2131492940;
@@ -7217,20 +7492,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0052
 			public const int center_vertical = 2131492946;
 			
-			// aapt resource value: 0x7f0c00ca
-			public const int chartBehaviorLayout = 2131493066;
+			// aapt resource value: 0x7f0c00d8
+			public const int chartBehaviorLayout = 2131493080;
 			
-			// aapt resource value: 0x7f0c00ce
-			public const int chartLegendScrollView = 2131493070;
+			// aapt resource value: 0x7f0c00dc
+			public const int chartLegendScrollView = 2131493084;
 			
-			// aapt resource value: 0x7f0c00a3
-			public const int checkbox = 2131493027;
+			// aapt resource value: 0x7f0c00b1
+			public const int checkbox = 2131493041;
 			
-			// aapt resource value: 0x7f0c0081
-			public const int @checked = 2131492993;
+			// aapt resource value: 0x7f0c0090
+			public const int @checked = 2131493008;
 			
-			// aapt resource value: 0x7f0c0121
-			public const int chronometer = 2131493153;
+			// aapt resource value: 0x7f0c012f
+			public const int chronometer = 2131493167;
 			
 			// aapt resource value: 0x7f0c0061
 			public const int clip_horizontal = 2131492961;
@@ -7244,53 +7519,62 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c006e
 			public const int compute = 2131492974;
 			
-			// aapt resource value: 0x7f0c00d6
-			public const int container = 2131493078;
+			// aapt resource value: 0x7f0c00e4
+			public const int container = 2131493092;
 			
-			// aapt resource value: 0x7f0c009f
-			public const int content = 2131493023;
+			// aapt resource value: 0x7f0c0081
+			public const int contains = 2131492993;
 			
-			// aapt resource value: 0x7f0c0136
-			public const int contentFrame = 2131493174;
+			// aapt resource value: 0x7f0c0082
+			public const int containsWithCaseSensitive = 2131492994;
 			
-			// aapt resource value: 0x7f0c0092
-			public const int contentPanel = 2131493010;
+			// aapt resource value: 0x7f0c00ad
+			public const int content = 2131493037;
 			
-			// aapt resource value: 0x7f0c00d7
-			public const int coordinator = 2131493079;
+			// aapt resource value: 0x7f0c0144
+			public const int contentFrame = 2131493188;
 			
-			// aapt resource value: 0x7f0c0099
-			public const int custom = 2131493017;
+			// aapt resource value: 0x7f0c00a1
+			public const int contentPanel = 2131493025;
 			
-			// aapt resource value: 0x7f0c0098
-			public const int customPanel = 2131493016;
+			// aapt resource value: 0x7f0c00e5
+			public const int coordinator = 2131493093;
 			
-			// aapt resource value: 0x7f0c00c6
-			public const int dataMarkerLayout = 2131493062;
+			// aapt resource value: 0x7f0c0083
+			public const int custom = 2131492995;
+			
+			// aapt resource value: 0x7f0c00a7
+			public const int customPanel = 2131493031;
+			
+			// aapt resource value: 0x7f0c00d4
+			public const int dataMarkerLayout = 2131493076;
 			
 			// aapt resource value: 0x7f0c006c
 			public const int decimalMode = 2131492972;
 			
-			// aapt resource value: 0x7f0c00a8
-			public const int decor_content_parent = 2131493032;
+			// aapt resource value: 0x7f0c00b6
+			public const int decor_content_parent = 2131493046;
 			
-			// aapt resource value: 0x7f0c008c
-			public const int default_activity_button = 2131493004;
+			// aapt resource value: 0x7f0c009b
+			public const int default_activity_button = 2131493019;
 			
-			// aapt resource value: 0x7f0c00d9
-			public const int design_bottom_sheet = 2131493081;
+			// aapt resource value: 0x7f0c008b
+			public const int delimiter = 2131493003;
 			
-			// aapt resource value: 0x7f0c00de
-			public const int design_menu_item_action_area = 2131493086;
+			// aapt resource value: 0x7f0c00e7
+			public const int design_bottom_sheet = 2131493095;
 			
-			// aapt resource value: 0x7f0c00dd
-			public const int design_menu_item_action_area_stub = 2131493085;
+			// aapt resource value: 0x7f0c00ec
+			public const int design_menu_item_action_area = 2131493100;
 			
-			// aapt resource value: 0x7f0c00dc
-			public const int design_menu_item_text = 2131493084;
+			// aapt resource value: 0x7f0c00eb
+			public const int design_menu_item_action_area_stub = 2131493099;
 			
-			// aapt resource value: 0x7f0c00db
-			public const int design_navigation_view = 2131493083;
+			// aapt resource value: 0x7f0c00ea
+			public const int design_menu_item_text = 2131493098;
+			
+			// aapt resource value: 0x7f0c00e9
+			public const int design_navigation_view = 2131493097;
 			
 			// aapt resource value: 0x7f0c0027
 			public const int disableHome = 2131492903;
@@ -7304,14 +7588,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0076
 			public const int ecg = 2131492982;
 			
-			// aapt resource value: 0x7f0c00ac
-			public const int edit_query = 2131493036;
+			// aapt resource value: 0x7f0c00ba
+			public const int edit_query = 2131493050;
 			
 			// aapt resource value: 0x7f0c0037
 			public const int end = 2131492919;
 			
-			// aapt resource value: 0x7f0c0127
-			public const int end_padder = 2131493159;
+			// aapt resource value: 0x7f0c0135
+			public const int end_padder = 2131493173;
+			
+			// aapt resource value: 0x7f0c0084
+			public const int endsWith = 2131492996;
+			
+			// aapt resource value: 0x7f0c0085
+			public const int endsWithCaseSensitive = 2131492997;
 			
 			// aapt resource value: 0x7f0c0046
 			public const int enterAlways = 2131492934;
@@ -7319,17 +7609,23 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0047
 			public const int enterAlwaysCollapsed = 2131492935;
 			
+			// aapt resource value: 0x7f0c0086
+			public const int equals = 2131492998;
+			
+			// aapt resource value: 0x7f0c0087
+			public const int equalsWithCaseSensitive = 2131492999;
+			
 			// aapt resource value: 0x7f0c0069
 			public const int exact = 2131492969;
 			
 			// aapt resource value: 0x7f0c0048
 			public const int exitUntilCollapsed = 2131492936;
 			
-			// aapt resource value: 0x7f0c008b
-			public const int expand_activities_button = 2131493003;
+			// aapt resource value: 0x7f0c009a
+			public const int expand_activities_button = 2131493018;
 			
-			// aapt resource value: 0x7f0c00a2
-			public const int expanded_menu = 2131493026;
+			// aapt resource value: 0x7f0c00b0
+			public const int expanded_menu = 2131493040;
 			
 			// aapt resource value: 0x7f0c005e
 			public const int fill = 2131492958;
@@ -7346,11 +7642,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c005c
 			public const int @fixed = 2131492956;
 			
-			// aapt resource value: 0x7f0c00e0
-			public const int flyoutcontent_appbar = 2131493088;
+			// aapt resource value: 0x7f0c00ee
+			public const int flyoutcontent_appbar = 2131493102;
 			
-			// aapt resource value: 0x7f0c00e1
-			public const int flyoutcontent_recycler = 2131493089;
+			// aapt resource value: 0x7f0c00ef
+			public const int flyoutcontent_recycler = 2131493103;
 			
 			// aapt resource value: 0x7f0c0067
 			public const int forever = 2131492967;
@@ -7364,14 +7660,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0078
 			public const int globe = 2131492984;
 			
-			// aapt resource value: 0x7f0c00c3
-			public const int gridLineLayout = 2131493059;
+			// aapt resource value: 0x7f0c00d1
+			public const int gridLineLayout = 2131493073;
 			
-			// aapt resource value: 0x7f0c012a
-			public const int gridLinesLayout = 2131493162;
+			// aapt resource value: 0x7f0c0138
+			public const int gridLinesLayout = 2131493176;
 			
-			// aapt resource value: 0x7f0c009e
-			public const int group_divider = 2131493022;
+			// aapt resource value: 0x7f0c00ac
+			public const int group_divider = 2131493036;
 			
 			// aapt resource value: 0x7f0c006a
 			public const int half = 2131492970;
@@ -7385,29 +7681,29 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0079
 			public const int horizontalPulsingBox = 2131492985;
 			
-			// aapt resource value: 0x7f0c008e
-			public const int icon = 2131493006;
+			// aapt resource value: 0x7f0c009d
+			public const int icon = 2131493021;
 			
-			// aapt resource value: 0x7f0c00d1
-			public const int iconView = 2131493073;
+			// aapt resource value: 0x7f0c00df
+			public const int iconView = 2131493087;
 			
-			// aapt resource value: 0x7f0c0126
-			public const int icon_group = 2131493158;
+			// aapt resource value: 0x7f0c0134
+			public const int icon_group = 2131493172;
 			
 			// aapt resource value: 0x7f0c0041
 			public const int ifRoom = 2131492929;
 			
-			// aapt resource value: 0x7f0c0085
-			public const int image = 2131492997;
+			// aapt resource value: 0x7f0c0094
+			public const int image = 2131493012;
 			
-			// aapt resource value: 0x7f0c0086
-			public const int imagewithtext = 2131492998;
+			// aapt resource value: 0x7f0c0095
+			public const int imagewithtext = 2131493013;
 			
-			// aapt resource value: 0x7f0c0082
-			public const int indeterminate = 2131492994;
+			// aapt resource value: 0x7f0c0091
+			public const int indeterminate = 2131493009;
 			
-			// aapt resource value: 0x7f0c0122
-			public const int info = 2131493154;
+			// aapt resource value: 0x7f0c0130
+			public const int info = 2131493168;
 			
 			// aapt resource value: 0x7f0c0068
 			public const int italic = 2131492968;
@@ -7415,32 +7711,32 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0000
 			public const int item_touch_helper_previous_elevation = 2131492864;
 			
-			// aapt resource value: 0x7f0c00d2
-			public const int label = 2131493074;
+			// aapt resource value: 0x7f0c00e0
+			public const int label = 2131493088;
 			
 			// aapt resource value: 0x7f0c004e
 			public const int labeled = 2131492942;
 			
-			// aapt resource value: 0x7f0c00d5
-			public const int largeLabel = 2131493077;
+			// aapt resource value: 0x7f0c00e3
+			public const int largeLabel = 2131493091;
 			
 			// aapt resource value: 0x7f0c0054
 			public const int left = 2131492948;
 			
-			// aapt resource value: 0x7f0c00cd
-			public const int legendHeader = 2131493069;
+			// aapt resource value: 0x7f0c00db
+			public const int legendHeader = 2131493083;
 			
-			// aapt resource value: 0x7f0c00d0
-			public const int legendItemsLayout = 2131493072;
+			// aapt resource value: 0x7f0c00de
+			public const int legendItemsLayout = 2131493086;
 			
-			// aapt resource value: 0x7f0c00c9
-			public const int legendLayout = 2131493065;
+			// aapt resource value: 0x7f0c00d7
+			public const int legendLayout = 2131493079;
 			
-			// aapt resource value: 0x7f0c00cf
-			public const int legendScrollView = 2131493071;
+			// aapt resource value: 0x7f0c00dd
+			public const int legendScrollView = 2131493085;
 			
-			// aapt resource value: 0x7f0c00cc
-			public const int legendViewGroup = 2131493068;
+			// aapt resource value: 0x7f0c00da
+			public const int legendViewGroup = 2131493082;
 			
 			// aapt resource value: 0x7f0c001c
 			public const int line1 = 2131492892;
@@ -7451,41 +7747,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0024
 			public const int listMode = 2131492900;
 			
-			// aapt resource value: 0x7f0c008d
-			public const int list_item = 2131493005;
+			// aapt resource value: 0x7f0c009c
+			public const int list_item = 2131493020;
 			
-			// aapt resource value: 0x7f0c00e4
-			public const int loadingImage = 2131493092;
+			// aapt resource value: 0x7f0c00f2
+			public const int loadingImage = 2131493106;
 			
-			// aapt resource value: 0x7f0c00e2
-			public const int loadingProgressBar = 2131493090;
+			// aapt resource value: 0x7f0c00f0
+			public const int loadingProgressBar = 2131493104;
 			
-			// aapt resource value: 0x7f0c00e5
-			public const int loadingProgressWheel = 2131493093;
+			// aapt resource value: 0x7f0c00f3
+			public const int loadingProgressWheel = 2131493107;
 			
-			// aapt resource value: 0x7f0c012c
-			public const int main_appbar = 2131493164;
+			// aapt resource value: 0x7f0c013a
+			public const int main_appbar = 2131493178;
 			
-			// aapt resource value: 0x7f0c012f
-			public const int main_scrollview = 2131493167;
+			// aapt resource value: 0x7f0c013d
+			public const int main_scrollview = 2131493181;
 			
-			// aapt resource value: 0x7f0c012e
-			public const int main_tablayout = 2131493166;
+			// aapt resource value: 0x7f0c013c
+			public const int main_tablayout = 2131493180;
 			
-			// aapt resource value: 0x7f0c012d
-			public const int main_toolbar = 2131493165;
+			// aapt resource value: 0x7f0c013b
+			public const int main_toolbar = 2131493179;
 			
-			// aapt resource value: 0x7f0c0138
-			public const int masked = 2131493176;
+			// aapt resource value: 0x7f0c0146
+			public const int masked = 2131493190;
 			
-			// aapt resource value: 0x7f0c0134
-			public const int materialformsedittext = 2131493172;
+			// aapt resource value: 0x7f0c0142
+			public const int materialformsedittext = 2131493186;
 			
-			// aapt resource value: 0x7f0c011b
-			public const int media_actions = 2131493147;
+			// aapt resource value: 0x7f0c0129
+			public const int media_actions = 2131493161;
 			
-			// aapt resource value: 0x7f0c00b9
-			public const int message = 2131493049;
+			// aapt resource value: 0x7f0c00c7
+			public const int message = 2131493063;
 			
 			// aapt resource value: 0x7f0c0038
 			public const int middle = 2131492920;
@@ -7496,143 +7792,143 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c007a
 			public const int movieTimer = 2131492986;
 			
-			// aapt resource value: 0x7f0c0102
-			public const int mr_art = 2131493122;
-			
-			// aapt resource value: 0x7f0c00f3
-			public const int mr_cast_checkbox = 2131493107;
-			
-			// aapt resource value: 0x7f0c00ec
-			public const int mr_cast_close_button = 2131493100;
-			
-			// aapt resource value: 0x7f0c00e7
-			public const int mr_cast_group_icon = 2131493095;
-			
-			// aapt resource value: 0x7f0c00e8
-			public const int mr_cast_group_name = 2131493096;
-			
-			// aapt resource value: 0x7f0c00e6
-			public const int mr_cast_list = 2131493094;
-			
-			// aapt resource value: 0x7f0c00eb
-			public const int mr_cast_meta = 2131493099;
-			
-			// aapt resource value: 0x7f0c00ed
-			public const int mr_cast_meta_art = 2131493101;
-			
-			// aapt resource value: 0x7f0c00ef
-			public const int mr_cast_meta_subtitle = 2131493103;
-			
-			// aapt resource value: 0x7f0c00ee
-			public const int mr_cast_meta_title = 2131493102;
-			
-			// aapt resource value: 0x7f0c00f1
-			public const int mr_cast_route_icon = 2131493105;
-			
-			// aapt resource value: 0x7f0c00f2
-			public const int mr_cast_route_name = 2131493106;
-			
-			// aapt resource value: 0x7f0c00f0
-			public const int mr_cast_stop_button = 2131493104;
-			
-			// aapt resource value: 0x7f0c00f4
-			public const int mr_cast_volume_layout = 2131493108;
-			
-			// aapt resource value: 0x7f0c00f5
-			public const int mr_cast_volume_slider = 2131493109;
-			
-			// aapt resource value: 0x7f0c00f7
-			public const int mr_chooser_list = 2131493111;
-			
-			// aapt resource value: 0x7f0c00fa
-			public const int mr_chooser_route_desc = 2131493114;
-			
-			// aapt resource value: 0x7f0c00f8
-			public const int mr_chooser_route_icon = 2131493112;
-			
-			// aapt resource value: 0x7f0c00f9
-			public const int mr_chooser_route_name = 2131493113;
-			
-			// aapt resource value: 0x7f0c00f6
-			public const int mr_chooser_title = 2131493110;
-			
-			// aapt resource value: 0x7f0c00ff
-			public const int mr_close = 2131493119;
-			
-			// aapt resource value: 0x7f0c0105
-			public const int mr_control_divider = 2131493125;
-			
 			// aapt resource value: 0x7f0c0110
-			public const int mr_control_playback_ctrl = 2131493136;
-			
-			// aapt resource value: 0x7f0c0113
-			public const int mr_control_subtitle = 2131493139;
-			
-			// aapt resource value: 0x7f0c0112
-			public const int mr_control_title = 2131493138;
-			
-			// aapt resource value: 0x7f0c0111
-			public const int mr_control_title_container = 2131493137;
-			
-			// aapt resource value: 0x7f0c0100
-			public const int mr_custom_control = 2131493120;
+			public const int mr_art = 2131493136;
 			
 			// aapt resource value: 0x7f0c0101
-			public const int mr_default_control = 2131493121;
+			public const int mr_cast_checkbox = 2131493121;
 			
-			// aapt resource value: 0x7f0c00fc
-			public const int mr_dialog_area = 2131493116;
+			// aapt resource value: 0x7f0c00fa
+			public const int mr_cast_close_button = 2131493114;
 			
-			// aapt resource value: 0x7f0c010b
-			public const int mr_dialog_header_name = 2131493131;
+			// aapt resource value: 0x7f0c00f5
+			public const int mr_cast_group_icon = 2131493109;
+			
+			// aapt resource value: 0x7f0c00f6
+			public const int mr_cast_group_name = 2131493110;
+			
+			// aapt resource value: 0x7f0c00f4
+			public const int mr_cast_list = 2131493108;
+			
+			// aapt resource value: 0x7f0c00f9
+			public const int mr_cast_meta = 2131493113;
 			
 			// aapt resource value: 0x7f0c00fb
-			public const int mr_expandable_area = 2131493115;
-			
-			// aapt resource value: 0x7f0c0114
-			public const int mr_group_expand_collapse = 2131493140;
-			
-			// aapt resource value: 0x7f0c00e9
-			public const int mr_group_volume_route_name = 2131493097;
-			
-			// aapt resource value: 0x7f0c00ea
-			public const int mr_group_volume_slider = 2131493098;
-			
-			// aapt resource value: 0x7f0c0103
-			public const int mr_media_main_control = 2131493123;
-			
-			// aapt resource value: 0x7f0c00fe
-			public const int mr_name = 2131493118;
-			
-			// aapt resource value: 0x7f0c010c
-			public const int mr_picker_close_button = 2131493132;
-			
-			// aapt resource value: 0x7f0c010d
-			public const int mr_picker_list = 2131493133;
-			
-			// aapt resource value: 0x7f0c010e
-			public const int mr_picker_route_icon = 2131493134;
-			
-			// aapt resource value: 0x7f0c010f
-			public const int mr_picker_route_name = 2131493135;
-			
-			// aapt resource value: 0x7f0c0104
-			public const int mr_playback_control = 2131493124;
+			public const int mr_cast_meta_art = 2131493115;
 			
 			// aapt resource value: 0x7f0c00fd
-			public const int mr_title_bar = 2131493117;
+			public const int mr_cast_meta_subtitle = 2131493117;
+			
+			// aapt resource value: 0x7f0c00fc
+			public const int mr_cast_meta_title = 2131493116;
+			
+			// aapt resource value: 0x7f0c00ff
+			public const int mr_cast_route_icon = 2131493119;
+			
+			// aapt resource value: 0x7f0c0100
+			public const int mr_cast_route_name = 2131493120;
+			
+			// aapt resource value: 0x7f0c00fe
+			public const int mr_cast_stop_button = 2131493118;
+			
+			// aapt resource value: 0x7f0c0102
+			public const int mr_cast_volume_layout = 2131493122;
+			
+			// aapt resource value: 0x7f0c0103
+			public const int mr_cast_volume_slider = 2131493123;
+			
+			// aapt resource value: 0x7f0c0105
+			public const int mr_chooser_list = 2131493125;
+			
+			// aapt resource value: 0x7f0c0108
+			public const int mr_chooser_route_desc = 2131493128;
 			
 			// aapt resource value: 0x7f0c0106
-			public const int mr_volume_control = 2131493126;
+			public const int mr_chooser_route_icon = 2131493126;
 			
 			// aapt resource value: 0x7f0c0107
-			public const int mr_volume_group_list = 2131493127;
+			public const int mr_chooser_route_name = 2131493127;
 			
-			// aapt resource value: 0x7f0c0109
-			public const int mr_volume_item_icon = 2131493129;
+			// aapt resource value: 0x7f0c0104
+			public const int mr_chooser_title = 2131493124;
+			
+			// aapt resource value: 0x7f0c010d
+			public const int mr_close = 2131493133;
+			
+			// aapt resource value: 0x7f0c0113
+			public const int mr_control_divider = 2131493139;
+			
+			// aapt resource value: 0x7f0c011e
+			public const int mr_control_playback_ctrl = 2131493150;
+			
+			// aapt resource value: 0x7f0c0121
+			public const int mr_control_subtitle = 2131493153;
+			
+			// aapt resource value: 0x7f0c0120
+			public const int mr_control_title = 2131493152;
+			
+			// aapt resource value: 0x7f0c011f
+			public const int mr_control_title_container = 2131493151;
+			
+			// aapt resource value: 0x7f0c010e
+			public const int mr_custom_control = 2131493134;
+			
+			// aapt resource value: 0x7f0c010f
+			public const int mr_default_control = 2131493135;
 			
 			// aapt resource value: 0x7f0c010a
-			public const int mr_volume_slider = 2131493130;
+			public const int mr_dialog_area = 2131493130;
+			
+			// aapt resource value: 0x7f0c0119
+			public const int mr_dialog_header_name = 2131493145;
+			
+			// aapt resource value: 0x7f0c0109
+			public const int mr_expandable_area = 2131493129;
+			
+			// aapt resource value: 0x7f0c0122
+			public const int mr_group_expand_collapse = 2131493154;
+			
+			// aapt resource value: 0x7f0c00f7
+			public const int mr_group_volume_route_name = 2131493111;
+			
+			// aapt resource value: 0x7f0c00f8
+			public const int mr_group_volume_slider = 2131493112;
+			
+			// aapt resource value: 0x7f0c0111
+			public const int mr_media_main_control = 2131493137;
+			
+			// aapt resource value: 0x7f0c010c
+			public const int mr_name = 2131493132;
+			
+			// aapt resource value: 0x7f0c011a
+			public const int mr_picker_close_button = 2131493146;
+			
+			// aapt resource value: 0x7f0c011b
+			public const int mr_picker_list = 2131493147;
+			
+			// aapt resource value: 0x7f0c011c
+			public const int mr_picker_route_icon = 2131493148;
+			
+			// aapt resource value: 0x7f0c011d
+			public const int mr_picker_route_name = 2131493149;
+			
+			// aapt resource value: 0x7f0c0112
+			public const int mr_playback_control = 2131493138;
+			
+			// aapt resource value: 0x7f0c010b
+			public const int mr_title_bar = 2131493131;
+			
+			// aapt resource value: 0x7f0c0114
+			public const int mr_volume_control = 2131493140;
+			
+			// aapt resource value: 0x7f0c0115
+			public const int mr_volume_group_list = 2131493141;
+			
+			// aapt resource value: 0x7f0c0117
+			public const int mr_volume_item_icon = 2131493143;
+			
+			// aapt resource value: 0x7f0c0118
+			public const int mr_volume_slider = 2131493144;
 			
 			// aapt resource value: 0x7f0c0014
 			public const int mtrl_child_content_container = 2131492884;
@@ -7643,8 +7939,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c002f
 			public const int multiply = 2131492911;
 			
-			// aapt resource value: 0x7f0c00da
-			public const int navigation_header_container = 2131493082;
+			// aapt resource value: 0x7f0c00e8
+			public const int navigation_header_container = 2131493096;
 			
 			// aapt resource value: 0x7f0c0042
 			public const int never = 2131492930;
@@ -7655,14 +7951,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0025
 			public const int normal = 2131492901;
 			
-			// aapt resource value: 0x7f0c0124
-			public const int notification_background = 2131493156;
+			// aapt resource value: 0x7f0c0132
+			public const int notification_background = 2131493170;
 			
-			// aapt resource value: 0x7f0c011e
-			public const int notification_main_column = 2131493150;
+			// aapt resource value: 0x7f0c012c
+			public const int notification_main_column = 2131493164;
 			
-			// aapt resource value: 0x7f0c011d
-			public const int notification_main_column_container = 2131493149;
+			// aapt resource value: 0x7f0c012b
+			public const int notification_main_column_container = 2131493163;
 			
 			// aapt resource value: 0x7f0c0070
 			public const int onKeyFocus = 2131492976;
@@ -7676,8 +7972,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0057
 			public const int parallax = 2131492951;
 			
-			// aapt resource value: 0x7f0c0091
-			public const int parentPanel = 2131493009;
+			// aapt resource value: 0x7f0c00a0
+			public const int parentPanel = 2131493024;
 			
 			// aapt resource value: 0x7f0c000b
 			public const int parent_matrix = 2131492875;
@@ -7694,8 +7990,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0007
 			public const int progress_horizontal = 2131492871;
 			
-			// aapt resource value: 0x7f0c00a4
-			public const int radio = 2131493028;
+			// aapt resource value: 0x7f0c00b2
+			public const int radio = 2131493042;
 			
 			// aapt resource value: 0x7f0c007c
 			public const int rectangle = 2131492988;
@@ -7703,17 +7999,17 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0055
 			public const int right = 2131492949;
 			
-			// aapt resource value: 0x7f0c0123
-			public const int right_icon = 2131493155;
+			// aapt resource value: 0x7f0c0131
+			public const int right_icon = 2131493169;
 			
-			// aapt resource value: 0x7f0c011f
-			public const int right_side = 2131493151;
+			// aapt resource value: 0x7f0c012d
+			public const int right_side = 2131493165;
 			
 			// aapt resource value: 0x7f0c007d
 			public const int rollingBall = 2131492989;
 			
-			// aapt resource value: 0x7f0c00c1
-			public const int rootLayout = 2131493057;
+			// aapt resource value: 0x7f0c00cf
+			public const int rootLayout = 2131493071;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int save_image_matrix = 2131492876;
@@ -7730,68 +8026,68 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0049
 			public const int scroll = 2131492937;
 			
-			// aapt resource value: 0x7f0c0097
-			public const int scrollIndicatorDown = 2131493015;
+			// aapt resource value: 0x7f0c00a6
+			public const int scrollIndicatorDown = 2131493030;
 			
-			// aapt resource value: 0x7f0c0093
-			public const int scrollIndicatorUp = 2131493011;
+			// aapt resource value: 0x7f0c00a2
+			public const int scrollIndicatorUp = 2131493026;
 			
-			// aapt resource value: 0x7f0c0094
-			public const int scrollView = 2131493012;
+			// aapt resource value: 0x7f0c00a3
+			public const int scrollView = 2131493027;
 			
 			// aapt resource value: 0x7f0c005d
 			public const int scrollable = 2131492957;
 			
-			// aapt resource value: 0x7f0c00ae
-			public const int search_badge = 2131493038;
+			// aapt resource value: 0x7f0c00bc
+			public const int search_badge = 2131493052;
 			
-			// aapt resource value: 0x7f0c00ad
-			public const int search_bar = 2131493037;
+			// aapt resource value: 0x7f0c00bb
+			public const int search_bar = 2131493051;
 			
-			// aapt resource value: 0x7f0c00af
-			public const int search_button = 2131493039;
+			// aapt resource value: 0x7f0c00bd
+			public const int search_button = 2131493053;
 			
-			// aapt resource value: 0x7f0c00b4
-			public const int search_close_btn = 2131493044;
+			// aapt resource value: 0x7f0c00c2
+			public const int search_close_btn = 2131493058;
 			
-			// aapt resource value: 0x7f0c00b0
-			public const int search_edit_frame = 2131493040;
+			// aapt resource value: 0x7f0c00be
+			public const int search_edit_frame = 2131493054;
 			
-			// aapt resource value: 0x7f0c00b6
-			public const int search_go_btn = 2131493046;
+			// aapt resource value: 0x7f0c00c4
+			public const int search_go_btn = 2131493060;
 			
-			// aapt resource value: 0x7f0c00b1
-			public const int search_mag_icon = 2131493041;
+			// aapt resource value: 0x7f0c00bf
+			public const int search_mag_icon = 2131493055;
 			
-			// aapt resource value: 0x7f0c00b2
-			public const int search_plate = 2131493042;
+			// aapt resource value: 0x7f0c00c0
+			public const int search_plate = 2131493056;
 			
-			// aapt resource value: 0x7f0c00b3
-			public const int search_src_text = 2131493043;
+			// aapt resource value: 0x7f0c00c1
+			public const int search_src_text = 2131493057;
 			
-			// aapt resource value: 0x7f0c00b7
-			public const int search_voice_btn = 2131493047;
+			// aapt resource value: 0x7f0c00c5
+			public const int search_voice_btn = 2131493061;
 			
-			// aapt resource value: 0x7f0c00b8
-			public const int select_dialog_listview = 2131493048;
+			// aapt resource value: 0x7f0c00c6
+			public const int select_dialog_listview = 2131493062;
 			
 			// aapt resource value: 0x7f0c004f
 			public const int selected = 2131492943;
 			
-			// aapt resource value: 0x7f0c00c5
-			public const int seriesLayout = 2131493061;
+			// aapt resource value: 0x7f0c00d3
+			public const int seriesLayout = 2131493075;
 			
-			// aapt resource value: 0x7f0c0130
-			public const int shellcontent_appbar = 2131493168;
+			// aapt resource value: 0x7f0c013e
+			public const int shellcontent_appbar = 2131493182;
 			
-			// aapt resource value: 0x7f0c0132
-			public const int shellcontent_scrollview = 2131493170;
+			// aapt resource value: 0x7f0c0140
+			public const int shellcontent_scrollview = 2131493184;
 			
-			// aapt resource value: 0x7f0c0131
-			public const int shellcontent_toolbar = 2131493169;
+			// aapt resource value: 0x7f0c013f
+			public const int shellcontent_toolbar = 2131493183;
 			
-			// aapt resource value: 0x7f0c00a0
-			public const int shortcut = 2131493024;
+			// aapt resource value: 0x7f0c00ae
+			public const int shortcut = 2131493038;
 			
 			// aapt resource value: 0x7f0c002a
 			public const int showCustom = 2131492906;
@@ -7808,11 +8104,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c007f
 			public const int slicedCircle = 2131492991;
 			
-			// aapt resource value: 0x7f0c0133
-			public const int sliding_tabs = 2131493171;
+			// aapt resource value: 0x7f0c0141
+			public const int sliding_tabs = 2131493185;
 			
-			// aapt resource value: 0x7f0c00d4
-			public const int smallLabel = 2131493076;
+			// aapt resource value: 0x7f0c00e2
+			public const int smallLabel = 2131493090;
 			
 			// aapt resource value: 0x7f0c0016
 			public const int snackbar_action = 2131492886;
@@ -7826,8 +8122,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c004b
 			public const int snapMargins = 2131492939;
 			
-			// aapt resource value: 0x7f0c0090
-			public const int spacer = 2131493008;
+			// aapt resource value: 0x7f0c009f
+			public const int spacer = 2131493023;
 			
 			// aapt resource value: 0x7f0c0008
 			public const int split_action_bar = 2131492872;
@@ -7847,20 +8143,32 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0056
 			public const int start = 2131492950;
 			
-			// aapt resource value: 0x7f0c011a
-			public const int status_bar_latest_event_content = 2131493146;
+			// aapt resource value: 0x7f0c0088
+			public const int startsWith = 2131493000;
+			
+			// aapt resource value: 0x7f0c0089
+			public const int startsWithCaseSensitive = 2131493001;
+			
+			// aapt resource value: 0x7f0c0128
+			public const int status_bar_latest_event_content = 2131493160;
 			
 			// aapt resource value: 0x7f0c005b
 			public const int stretch = 2131492955;
 			
-			// aapt resource value: 0x7f0c00c4
-			public const int stripLinesLayout = 2131493060;
+			// aapt resource value: 0x7f0c00d2
+			public const int stripLinesLayout = 2131493074;
 			
-			// aapt resource value: 0x7f0c00a1
-			public const int submenuarrow = 2131493025;
+			// aapt resource value: 0x7f0c00af
+			public const int submenuarrow = 2131493039;
 			
-			// aapt resource value: 0x7f0c00b5
-			public const int submit_area = 2131493045;
+			// aapt resource value: 0x7f0c00c3
+			public const int submit_area = 2131493059;
+			
+			// aapt resource value: 0x7f0c008e
+			public const int suggest = 2131493006;
+			
+			// aapt resource value: 0x7f0c008f
+			public const int suggestAppend = 2131493007;
 			
 			// aapt resource value: 0x7f0c0026
 			public const int tabMode = 2131492902;
@@ -7874,8 +8182,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0020
 			public const int tag_unhandled_key_listeners = 2131492896;
 			
-			// aapt resource value: 0x7f0c00c7
-			public const int technicalIndicatorLayout = 2131493063;
+			// aapt resource value: 0x7f0c00d5
+			public const int technicalIndicatorLayout = 2131493077;
 			
 			// aapt resource value: 0x7f0c0021
 			public const int text = 2131492897;
@@ -7883,20 +8191,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0022
 			public const int text2 = 2131492898;
 			
-			// aapt resource value: 0x7f0c0096
-			public const int textSpacerNoButtons = 2131493014;
+			// aapt resource value: 0x7f0c00a5
+			public const int textSpacerNoButtons = 2131493029;
 			
-			// aapt resource value: 0x7f0c0095
-			public const int textSpacerNoTitle = 2131493013;
+			// aapt resource value: 0x7f0c00a4
+			public const int textSpacerNoTitle = 2131493028;
 			
 			// aapt resource value: 0x7f0c005a
 			public const int textStart = 2131492954;
 			
-			// aapt resource value: 0x7f0c00e3
-			public const int textViewStatus = 2131493091;
+			// aapt resource value: 0x7f0c00f1
+			public const int textViewStatus = 2131493105;
 			
-			// aapt resource value: 0x7f0c00df
-			public const int text_input_password_toggle = 2131493087;
+			// aapt resource value: 0x7f0c00ed
+			public const int text_input_password_toggle = 2131493101;
 			
 			// aapt resource value: 0x7f0c0018
 			public const int textinput_counter = 2131492888;
@@ -7907,38 +8215,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c001a
 			public const int textinput_helper_text = 2131492890;
 			
-			// aapt resource value: 0x7f0c012b
-			public const int thumbLayout = 2131493163;
+			// aapt resource value: 0x7f0c0139
+			public const int thumbLayout = 2131493177;
 			
-			// aapt resource value: 0x7f0c0120
-			public const int time = 2131493152;
+			// aapt resource value: 0x7f0c012e
+			public const int time = 2131493166;
 			
 			// aapt resource value: 0x7f0c0023
 			public const int title = 2131492899;
 			
-			// aapt resource value: 0x7f0c009d
-			public const int titleDividerNoCustom = 2131493021;
+			// aapt resource value: 0x7f0c00ab
+			public const int titleDividerNoCustom = 2131493035;
 			
-			// aapt resource value: 0x7f0c00c2
-			public const int titleLayout = 2131493058;
+			// aapt resource value: 0x7f0c00d0
+			public const int titleLayout = 2131493072;
 			
-			// aapt resource value: 0x7f0c009b
-			public const int title_template = 2131493019;
+			// aapt resource value: 0x7f0c00a9
+			public const int title_template = 2131493033;
 			
-			// aapt resource value: 0x7f0c0135
-			public const int toolbar = 2131493173;
+			// aapt resource value: 0x7f0c008c
+			public const int token = 2131493004;
+			
+			// aapt resource value: 0x7f0c0143
+			public const int toolbar = 2131493187;
 			
 			// aapt resource value: 0x7f0c0045
 			public const int top = 2131492933;
 			
-			// aapt resource value: 0x7f0c009a
-			public const int topPanel = 2131493018;
+			// aapt resource value: 0x7f0c00a8
+			public const int topPanel = 2131493032;
 			
-			// aapt resource value: 0x7f0c0128
-			public const int top_labels = 2131493160;
+			// aapt resource value: 0x7f0c0136
+			public const int top_labels = 2131493174;
 			
-			// aapt resource value: 0x7f0c00d8
-			public const int touch_outside = 2131493080;
+			// aapt resource value: 0x7f0c00e6
+			public const int touch_outside = 2131493094;
 			
 			// aapt resource value: 0x7f0c000f
 			public const int transition_current_scene = 2131492879;
@@ -7955,8 +8266,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c0013
 			public const int transition_transform = 2131492883;
 			
-			// aapt resource value: 0x7f0c0083
-			public const int @unchecked = 2131492995;
+			// aapt resource value: 0x7f0c0092
+			public const int @unchecked = 2131493010;
 			
 			// aapt resource value: 0x7f0c0034
 			public const int uniform = 2131492916;
@@ -7976,14 +8287,17 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0c001b
 			public const int view_offset_helper = 2131492891;
 			
-			// aapt resource value: 0x7f0c0137
-			public const int visible = 2131493175;
+			// aapt resource value: 0x7f0c0145
+			public const int visible = 2131493189;
 			
-			// aapt resource value: 0x7f0c0108
-			public const int volume_item_container = 2131493128;
+			// aapt resource value: 0x7f0c0116
+			public const int volume_item_container = 2131493142;
 			
 			// aapt resource value: 0x7f0c0043
 			public const int withText = 2131492931;
+			
+			// aapt resource value: 0x7f0c008a
+			public const int wrap = 2131493002;
 			
 			// aapt resource value: 0x7f0c0035
 			public const int wrap_content = 2131492917;
@@ -8232,196 +8546,202 @@ namespace XpertMobileApp.Droid
 			public const int CustomizedView = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int design_bottom_navigation_item = 2130968612;
+			public const int CustomizedView1 = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int design_bottom_sheet_dialog = 2130968613;
+			public const int design_bottom_navigation_item = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int design_layout_snackbar = 2130968614;
+			public const int design_bottom_sheet_dialog = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int design_layout_snackbar_include = 2130968615;
+			public const int design_layout_snackbar = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int design_layout_tab_icon = 2130968616;
+			public const int design_layout_snackbar_include = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int design_layout_tab_text = 2130968617;
+			public const int design_layout_tab_icon = 2130968617;
 			
 			// aapt resource value: 0x7f04002a
-			public const int design_menu_item_action_area = 2130968618;
+			public const int design_layout_tab_text = 2130968618;
 			
 			// aapt resource value: 0x7f04002b
-			public const int design_navigation_item = 2130968619;
+			public const int design_menu_item_action_area = 2130968619;
 			
 			// aapt resource value: 0x7f04002c
-			public const int design_navigation_item_header = 2130968620;
+			public const int design_navigation_item = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int design_navigation_item_separator = 2130968621;
+			public const int design_navigation_item_header = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int design_navigation_item_subheader = 2130968622;
+			public const int design_navigation_item_separator = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int design_navigation_menu = 2130968623;
+			public const int design_navigation_item_subheader = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int design_navigation_menu_item = 2130968624;
+			public const int design_navigation_menu = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int design_text_input_password_icon = 2130968625;
+			public const int design_navigation_menu_item = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int FlyoutContent = 2130968626;
+			public const int design_text_input_password_icon = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int loading = 2130968627;
+			public const int FlyoutContent = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int loadingimage = 2130968628;
+			public const int loading = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int loadingprogress = 2130968629;
+			public const int loadingimage = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int mr_cast_dialog = 2130968630;
+			public const int loadingprogress = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int mr_cast_group_item = 2130968631;
+			public const int mr_cast_dialog = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int mr_cast_group_volume_item = 2130968632;
+			public const int mr_cast_group_item = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int mr_cast_media_metadata = 2130968633;
+			public const int mr_cast_group_volume_item = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int mr_cast_route_item = 2130968634;
+			public const int mr_cast_media_metadata = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int mr_chooser_dialog = 2130968635;
+			public const int mr_cast_route_item = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int mr_chooser_list_item = 2130968636;
+			public const int mr_chooser_dialog = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int mr_controller_material_dialog_b = 2130968637;
+			public const int mr_chooser_list_item = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int mr_controller_volume_item = 2130968638;
+			public const int mr_controller_material_dialog_b = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int mr_dialog_header_item = 2130968639;
+			public const int mr_controller_volume_item = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int mr_picker_dialog = 2130968640;
+			public const int mr_dialog_header_item = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int mr_picker_route_item = 2130968641;
+			public const int mr_picker_dialog = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int mr_playback_control = 2130968642;
+			public const int mr_picker_route_item = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int mr_volume_control = 2130968643;
+			public const int mr_playback_control = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int mtrl_layout_snackbar = 2130968644;
+			public const int mr_volume_control = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int mtrl_layout_snackbar_include = 2130968645;
+			public const int mtrl_layout_snackbar = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int notification_action = 2130968646;
+			public const int mtrl_layout_snackbar_include = 2130968646;
 			
 			// aapt resource value: 0x7f040047
-			public const int notification_action_tombstone = 2130968647;
+			public const int notification_action = 2130968647;
 			
 			// aapt resource value: 0x7f040048
-			public const int notification_media_action = 2130968648;
+			public const int notification_action_tombstone = 2130968648;
 			
 			// aapt resource value: 0x7f040049
-			public const int notification_media_cancel_action = 2130968649;
+			public const int notification_media_action = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int notification_template_big_media = 2130968650;
+			public const int notification_media_cancel_action = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int notification_template_big_media_custom = 2130968651;
+			public const int notification_template_big_media = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int notification_template_big_media_narrow = 2130968652;
+			public const int notification_template_big_media_custom = 2130968652;
 			
 			// aapt resource value: 0x7f04004d
-			public const int notification_template_big_media_narrow_custom = 2130968653;
+			public const int notification_template_big_media_narrow = 2130968653;
 			
 			// aapt resource value: 0x7f04004e
-			public const int notification_template_custom_big = 2130968654;
+			public const int notification_template_big_media_narrow_custom = 2130968654;
 			
 			// aapt resource value: 0x7f04004f
-			public const int notification_template_icon_group = 2130968655;
+			public const int notification_template_custom_big = 2130968655;
 			
 			// aapt resource value: 0x7f040050
-			public const int notification_template_lines_media = 2130968656;
+			public const int notification_template_icon_group = 2130968656;
 			
 			// aapt resource value: 0x7f040051
-			public const int notification_template_media = 2130968657;
+			public const int notification_template_lines_media = 2130968657;
 			
 			// aapt resource value: 0x7f040052
-			public const int notification_template_media_custom = 2130968658;
+			public const int notification_template_media = 2130968658;
 			
 			// aapt resource value: 0x7f040053
-			public const int notification_template_part_chronometer = 2130968659;
+			public const int notification_template_media_custom = 2130968659;
 			
 			// aapt resource value: 0x7f040054
-			public const int notification_template_part_time = 2130968660;
+			public const int notification_template_part_chronometer = 2130968660;
 			
 			// aapt resource value: 0x7f040055
-			public const int range_navigator_layout = 2130968661;
+			public const int notification_template_part_time = 2130968661;
 			
 			// aapt resource value: 0x7f040056
-			public const int RootLayout = 2130968662;
+			public const int range_navigator_layout = 2130968662;
 			
 			// aapt resource value: 0x7f040057
-			public const int ScrollViewer = 2130968663;
+			public const int RootLayout = 2130968663;
 			
 			// aapt resource value: 0x7f040058
-			public const int select_dialog_item_material = 2130968664;
+			public const int ScrollViewer = 2130968664;
 			
 			// aapt resource value: 0x7f040059
-			public const int select_dialog_multichoice_material = 2130968665;
+			public const int select_dialog_item_material = 2130968665;
 			
 			// aapt resource value: 0x7f04005a
-			public const int select_dialog_singlechoice_material = 2130968666;
+			public const int select_dialog_multichoice_material = 2130968666;
 			
 			// aapt resource value: 0x7f04005b
-			public const int sfcomboBox_layout = 2130968667;
+			public const int select_dialog_singlechoice_material = 2130968667;
 			
 			// aapt resource value: 0x7f04005c
-			public const int ShellContent = 2130968668;
+			public const int sfautocomplete_layout = 2130968668;
 			
 			// aapt resource value: 0x7f04005d
-			public const int support_simple_spinner_dropdown_item = 2130968669;
+			public const int sfcomboBox_layout = 2130968669;
 			
 			// aapt resource value: 0x7f04005e
-			public const int Tabbar = 2130968670;
+			public const int ShellContent = 2130968670;
 			
 			// aapt resource value: 0x7f04005f
-			public const int TextInputLayoutFilledBox = 2130968671;
+			public const int support_simple_spinner_dropdown_item = 2130968671;
 			
 			// aapt resource value: 0x7f040060
-			public const int TextInputLayoutOutlinedBox = 2130968672;
+			public const int Tabbar = 2130968672;
 			
 			// aapt resource value: 0x7f040061
-			public const int Toolbar = 2130968673;
+			public const int TextInputLayoutFilledBox = 2130968673;
 			
 			// aapt resource value: 0x7f040062
-			public const int zxingscanneractivitylayout = 2130968674;
+			public const int TextInputLayoutOutlinedBox = 2130968674;
 			
 			// aapt resource value: 0x7f040063
-			public const int zxingscannerfragmentlayout = 2130968675;
+			public const int Toolbar = 2130968675;
+			
+			// aapt resource value: 0x7f040064
+			public const int zxingscanneractivitylayout = 2130968676;
+			
+			// aapt resource value: 0x7f040065
+			public const int zxingscannerfragmentlayout = 2130968677;
 			
 			static Layout()
 			{
@@ -8464,8 +8784,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f080058
 			public const int Hello = 2131230808;
 			
-			// aapt resource value: 0x7f08005a
-			public const int Load_More = 2131230810;
+			// aapt resource value: 0x7f08005c
+			public const int Load_More = 2131230812;
 			
 			// aapt resource value: 0x7f080022
 			public const int abc_action_bar_home_description = 2131230754;
@@ -8590,8 +8910,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f08004b
 			public const int bottom_sheet_behavior = 2131230795;
 			
-			// aapt resource value: 0x7f08005c
-			public const int cancel_drop = 2131230812;
+			// aapt resource value: 0x7f08005e
+			public const int cancel_drop = 2131230814;
 			
 			// aapt resource value: 0x7f08004c
 			public const int character_counter_content_description = 2131230796;
@@ -8605,11 +8925,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f080002
 			public const int default_web_client_id = 2131230722;
 			
-			// aapt resource value: 0x7f08005d
-			public const int drop_above = 2131230813;
+			// aapt resource value: 0x7f08005f
+			public const int drop_above = 2131230815;
 			
-			// aapt resource value: 0x7f08005e
-			public const int drop_below = 2131230814;
+			// aapt resource value: 0x7f080060
+			public const int drop_below = 2131230816;
 			
 			// aapt resource value: 0x7f08004e
 			public const int fab_transformation_scrim_behavior = 2131230798;
@@ -8644,8 +8964,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f080007
 			public const int library_name = 2131230727;
 			
-			// aapt resource value: 0x7f08005b
-			public const int load_more_items = 2131230811;
+			// aapt resource value: 0x7f08005d
+			public const int load_more_items = 2131230813;
 			
 			// aapt resource value: 0x7f08000a
 			public const int mr_button_content_description = 2131230730;
@@ -8737,38 +9057,53 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f080056
 			public const int path_password_strike_through = 2131230806;
 			
-			// aapt resource value: 0x7f080060
-			public const int q = 2131230816;
+			// aapt resource value: 0x7f080062
+			public const int q = 2131230818;
 			
-			// aapt resource value: 0x7f08005f
-			public const int quarter = 2131230815;
+			// aapt resource value: 0x7f080061
+			public const int quarter = 2131230817;
 			
 			// aapt resource value: 0x7f08003d
 			public const int search_menu_title = 2131230781;
 			
-			// aapt resource value: 0x7f080066
-			public const int sfchart_close_label = 2131230822;
+			// aapt resource value: 0x7f080068
+			public const int sfchart_close_label = 2131230824;
 			
-			// aapt resource value: 0x7f080063
-			public const int sfchart_high_label = 2131230819;
-			
-			// aapt resource value: 0x7f080064
-			public const int sfchart_low_label = 2131230820;
+			// aapt resource value: 0x7f08006b
+			public const int sfchart_decrease_label = 2131230827;
 			
 			// aapt resource value: 0x7f080065
-			public const int sfchart_open_label = 2131230821;
+			public const int sfchart_high_label = 2131230821;
+			
+			// aapt resource value: 0x7f08006a
+			public const int sfchart_increase_label = 2131230826;
+			
+			// aapt resource value: 0x7f080066
+			public const int sfchart_low_label = 2131230822;
 			
 			// aapt resource value: 0x7f080067
-			public const int sfchart_others_label = 2131230823;
+			public const int sfchart_open_label = 2131230823;
+			
+			// aapt resource value: 0x7f080069
+			public const int sfchart_others_label = 2131230825;
+			
+			// aapt resource value: 0x7f08006c
+			public const int sfchart_total_label = 2131230828;
+			
+			// aapt resource value: 0x7f08005a
+			public const int sfnumericupdown_decrement_button_accessibility_label = 2131230810;
+			
+			// aapt resource value: 0x7f08005b
+			public const int sfnumericupdown_increment_button_accessibility_label = 2131230811;
 			
 			// aapt resource value: 0x7f080057
 			public const int status_bar_notification_info_overflow = 2131230807;
 			
-			// aapt resource value: 0x7f080062
-			public const int w = 2131230818;
+			// aapt resource value: 0x7f080064
+			public const int w = 2131230820;
 			
-			// aapt resource value: 0x7f080061
-			public const int week = 2131230817;
+			// aapt resource value: 0x7f080063
+			public const int week = 2131230819;
 			
 			static String()
 			{
@@ -11726,7 +12061,7 @@ namespace XpertMobileApp.Droid
 			public const int DesignTheme_bottomSheetStyle = 1;
 			
 			public static int[] DrawableStates = new int[] {
-					2130772494};
+					2130772536};
 			
 			// aapt resource value: 0
 			public const int DrawableStates_state_indeterminate = 0;
@@ -12496,18 +12831,18 @@ namespace XpertMobileApp.Droid
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] ProgressWheel = new int[] {
-					2130772510,
-					2130772511,
-					2130772512,
-					2130772513,
-					2130772514,
-					2130772515,
-					2130772516,
-					2130772517,
-					2130772518,
-					2130772519,
-					2130772520,
-					2130772521};
+					2130772552,
+					2130772553,
+					2130772554,
+					2130772555,
+					2130772556,
+					2130772557,
+					2130772558,
+					2130772559,
+					2130772560,
+					2130772561,
+					2130772562,
+					2130772563};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;
@@ -12683,6 +13018,176 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 12
 			public const int SearchView_voiceIcon = 12;
 			
+			public static int[] SfAutoComplete = new int[] {
+					2130772494,
+					2130772495,
+					2130772496,
+					2130772497,
+					2130772498,
+					2130772499,
+					2130772500,
+					2130772501,
+					2130772502,
+					2130772503,
+					2130772504,
+					2130772505,
+					2130772506,
+					2130772507,
+					2130772508,
+					2130772509,
+					2130772510,
+					2130772511,
+					2130772512,
+					2130772513,
+					2130772514,
+					2130772515,
+					2130772516,
+					2130772517,
+					2130772518,
+					2130772519,
+					2130772520,
+					2130772521,
+					2130772522,
+					2130772523,
+					2130772524,
+					2130772525,
+					2130772526,
+					2130772527,
+					2130772528,
+					2130772529,
+					2130772530,
+					2130772531,
+					2130772532,
+					2130772533,
+					2130772534,
+					2130772535};
+			
+			// aapt resource value: 4
+			public const int SfAutoComplete_autocompleteBorderColor = 4;
+			
+			// aapt resource value: 25
+			public const int SfAutoComplete_autocompleteClearButtonColor = 25;
+			
+			// aapt resource value: 13
+			public const int SfAutoComplete_autocompleteDisplayMemberPath = 13;
+			
+			// aapt resource value: 18
+			public const int SfAutoComplete_autocompleteDropDownBackgroundColor = 18;
+			
+			// aapt resource value: 34
+			public const int SfAutoComplete_autocompleteDropDownCornerRadius = 34;
+			
+			// aapt resource value: 36
+			public const int SfAutoComplete_autocompleteDropDownFooterViewHeight = 36;
+			
+			// aapt resource value: 35
+			public const int SfAutoComplete_autocompleteDropDownHeaderViewHeight = 35;
+			
+			// aapt resource value: 33
+			public const int SfAutoComplete_autocompleteDropDownItemHeight = 33;
+			
+			// aapt resource value: 8
+			public const int SfAutoComplete_autocompleteDropDownOpen = 8;
+			
+			// aapt resource value: 19
+			public const int SfAutoComplete_autocompleteDropDownTextColor = 19;
+			
+			// aapt resource value: 21
+			public const int SfAutoComplete_autocompleteDropDownTextSize = 21;
+			
+			// aapt resource value: 14
+			public const int SfAutoComplete_autocompleteEnableSelectionIndicator = 14;
+			
+			// aapt resource value: 31
+			public const int SfAutoComplete_autocompleteHighlightedTextColor = 31;
+			
+			// aapt resource value: 26
+			public const int SfAutoComplete_autocompleteIgnoreDiacritic = 26;
+			
+			// aapt resource value: 22
+			public const int SfAutoComplete_autocompleteImageMemberPath = 22;
+			
+			// aapt resource value: 15
+			public const int SfAutoComplete_autocompleteIndicatorText = 15;
+			
+			// aapt resource value: 16
+			public const int SfAutoComplete_autocompleteIndicatorTextColor = 16;
+			
+			// aapt resource value: 32
+			public const int SfAutoComplete_autocompleteIndicatorTextSize = 32;
+			
+			// aapt resource value: 27
+			public const int SfAutoComplete_autocompleteIsFocused = 27;
+			
+			// aapt resource value: 30
+			public const int SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown = 30;
+			
+			// aapt resource value: 28
+			public const int SfAutoComplete_autocompleteLoadMoreText = 28;
+			
+			// aapt resource value: 20
+			public const int SfAutoComplete_autocompleteMaximumDropDownHeight = 20;
+			
+			// aapt resource value: 9
+			public const int SfAutoComplete_autocompleteMaximumSuggestion = 9;
+			
+			// aapt resource value: 17
+			public const int SfAutoComplete_autocompleteMinimumPrefixCharacters = 17;
+			
+			// aapt resource value: 41
+			public const int SfAutoComplete_autocompleteMode = 41;
+			
+			// aapt resource value: 40
+			public const int SfAutoComplete_autocompleteMultiSelectMode = 40;
+			
+			// aapt resource value: 29
+			public const int SfAutoComplete_autocompleteNoResultsFoundText = 29;
+			
+			// aapt resource value: 12
+			public const int SfAutoComplete_autocompletePopUpDelay = 12;
+			
+			// aapt resource value: 10
+			public const int SfAutoComplete_autocompleteSelectedIndex = 10;
+			
+			// aapt resource value: 0
+			public const int SfAutoComplete_autocompleteShowBorder = 0;
+			
+			// aapt resource value: 1
+			public const int SfAutoComplete_autocompleteShowClearButton = 1;
+			
+			// aapt resource value: 24
+			public const int SfAutoComplete_autocompleteShowDropDownFooterView = 24;
+			
+			// aapt resource value: 23
+			public const int SfAutoComplete_autocompleteShowDropDownHeaderView = 23;
+			
+			// aapt resource value: 11
+			public const int SfAutoComplete_autocompleteShowSuggestionsOnFocus = 11;
+			
+			// aapt resource value: 38
+			public const int SfAutoComplete_autocompleteSuggestionBoxPlacement = 38;
+			
+			// aapt resource value: 37
+			public const int SfAutoComplete_autocompleteSuggestionMode = 37;
+			
+			// aapt resource value: 6
+			public const int SfAutoComplete_autocompleteText = 6;
+			
+			// aapt resource value: 3
+			public const int SfAutoComplete_autocompleteTextColor = 3;
+			
+			// aapt resource value: 7
+			public const int SfAutoComplete_autocompleteTextSize = 7;
+			
+			// aapt resource value: 39
+			public const int SfAutoComplete_autocompleteTokensWrapMode = 39;
+			
+			// aapt resource value: 5
+			public const int SfAutoComplete_autocompleteWatermark = 5;
+			
+			// aapt resource value: 2
+			public const int SfAutoComplete_autocompleteWatermarkColor = 2;
+			
 			public static int[] SfBusyIndicator = new int[] {
 					2130772485,
 					2130772486,
@@ -12722,9 +13227,9 @@ namespace XpertMobileApp.Droid
 			public const int SfBusyIndicator_busyIndicatorViewBoxWidth = 3;
 			
 			public static int[] SfCheckBox = new int[] {
-					2130772495,
-					2130772496,
-					2130772497};
+					2130772537,
+					2130772538,
+					2130772539};
 			
 			// aapt resource value: 2
 			public const int SfCheckBox_checked = 2;
@@ -12844,18 +13349,18 @@ namespace XpertMobileApp.Droid
 			public const int SfRating_ratingUnratedStrokeWidth = 8;
 			
 			public static int[] SfSegmentedControl = new int[] {
-					2130772498,
-					2130772499,
-					2130772500,
-					2130772501,
-					2130772502,
-					2130772503,
-					2130772504,
-					2130772505,
-					2130772506,
-					2130772507,
-					2130772508,
-					2130772509};
+					2130772540,
+					2130772541,
+					2130772542,
+					2130772543,
+					2130772544,
+					2130772545,
+					2130772546,
+					2130772547,
+					2130772548,
+					2130772549,
+					2130772550,
+					2130772551};
 			
 			// aapt resource value: 1
 			public const int SfSegmentedControl_segmentBackColor = 1;

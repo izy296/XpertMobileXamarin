@@ -184,6 +184,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_ACH_DOCUMENT_DETAIL>(url);
         }
 
+        public static async Task<List<string>> GetImmatriculations(string str)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.ACHATS_IMMATRICULATIONS_URL);
+            url += WSApi2.AddParam(url, "str", str);
+
+            return await RetrievAauthorizedData<string>(url);
+        }
+
         #region Produits
 
 

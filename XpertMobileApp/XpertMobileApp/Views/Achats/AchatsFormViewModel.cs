@@ -10,6 +10,11 @@ namespace XpertMobileApp.Views.Achats
 {
     public class AchatsFormViewModel : ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>
     {
+        private List<String> immatriculationList;        
+        public List<String> ImmatriculationList {
+            get { return immatriculationList; }
+            set { SetProperty(ref immatriculationList, value); }
+        }
 
         public bool hasEditDetails
         {
@@ -69,7 +74,13 @@ namespace XpertMobileApp.Views.Achats
 
         public AchatsFormViewModel(View_ACH_DOCUMENT obj, string itemId) : base(obj, itemId)
         {
-
+            /*
+            ImmatriculationList = new List<string>();
+            ImmatriculationList.Add("DDD-23234");
+            ImmatriculationList.Add("AAA-09809");
+            ImmatriculationList.Add("CCC-45654");
+            ImmatriculationList.Add("TTT-09854");
+            */
         }
 
         public decimal CalculatePeseeNet(decimal peseeBrute, List<View_BSE_EMBALLAGE> emballages)

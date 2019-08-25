@@ -38,6 +38,8 @@ namespace XpertMobileApp.Views
             TiersSelector = new TiersSelector();
             EmballageSelector = new EmballageSelector();
 
+
+
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
             if(vente == null)
             { 
@@ -46,6 +48,8 @@ namespace XpertMobileApp.Views
             }
 
             BindingContext = this.viewModel = new AchatsFormViewModel(ach, ach?.CODE_DOC);
+
+            // jobFieldAutoComplete.BindingContext = viewModel;
 
             this.viewModel.Title = string.IsNullOrEmpty(ach.CODE_DOC) ? AppResources.pn_NewPurchase : ach?.ToString();
 
@@ -101,6 +105,8 @@ namespace XpertMobileApp.Views
             parames = await App.GetSysParams();
             permissions = await App.GetPermissions();
 
+            viewModel.ImmatriculationList = await GetImmatriculations("");
+
             ApplyVisibility();
 
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
@@ -114,8 +120,8 @@ namespace XpertMobileApp.Views
 
         private void ApplyVisibility()
         {
-            btn_Immatriculation.IsVisible = false;
-
+            //btn_Immatriculation.IsEnabled = false;
+            cmd_Terminate.IsVisible = false;
             string userGroup = App.User.GroupName;
 
             // Par défaut le header est caché s'il n'a pas le droit d'éditer le header
@@ -128,7 +134,7 @@ namespace XpertMobileApp.Views
             // Champs d'edition du header
             dp_EcheanceDate.IsEnabled = viewModel.hasEditHeader;
             btn_TeirsSearch.IsEnabled = viewModel.hasEditHeader;
-            ent_SelectedImmat.IsEnabled = viewModel.hasEditHeader;
+            jobFieldAutoComplete.IsEnabled = viewModel.hasEditHeader;
             ne_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
             ne_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
 
@@ -140,22 +146,32 @@ namespace XpertMobileApp.Views
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.EnAttente)
             {
+                dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
+                jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 ne_PESEE_SORTIE.IsEnabled = false;
+                if (viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
+                {
+                    cmd_Terminate.IsVisible = true;
+                }
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.EnCours)
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
-                ent_SelectedImmat.IsEnabled = false;
+                jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
+                if(viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
+                {
+                    cmd_Terminate.IsVisible = true;
+                }
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.Termine || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
-                ent_SelectedImmat.IsEnabled = false;
+                jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 ne_PESEE_SORTIE.IsEnabled = false;
 
@@ -365,7 +381,6 @@ namespace XpertMobileApp.Views
                 principalItem.QTE_RECUE = principalItem.QUANTITE;
                 principalItem.MT_TTC = principalItem.QUANTITE * principalItem.PRIX_UNITAIRE;
 
-
                 /* Total poids emballages
                  * ==> les caisse pour le produit principal sont déja calculé dans par la pesée d'entrée et de sortie  */
                 decimal totalPoidsEmballage = 0;
@@ -413,7 +428,7 @@ namespace XpertMobileApp.Views
         private ProductSelector itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
-            itemSelector.TiersFamille = viewModel?.SelectedTiers?.CODE_FAMILLE;
+            itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
@@ -442,6 +457,20 @@ namespace XpertMobileApp.Views
         #endregion 
 
         #region Events
+        
+        private void ne_QteNetChanged(object sender, ValueEventArgs e)
+        {
+            View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
+            if (currentItem.QUANTITE != Convert.ToDecimal(e.Value))
+            {               
+                decimal QNet = Convert.ToDecimal(e.Value);
+                decimal QteBrute = (100 * QNet) / (100 - currentItem.TAUX_DECHET);
+
+                currentItem.QTE_BRUTE = Math.Round(QteBrute, 3);
+
+                UpdatePeseeInfos();
+            }
+        }
 
         private void ne_PeseeBruteChanged(object sender, ValueEventArgs e)
         {
@@ -508,6 +537,40 @@ namespace XpertMobileApp.Views
                     viewModel.ItemRows.Remove(vteD);
                 }
             }
+        }
+
+        private async void cmd_Terminate_Clicked(object sender, EventArgs e)
+        {
+            if (viewModel.IsBusy == true)
+            {
+                return;
+            }
+
+
+            if (viewModel.ItemRows.Count == 0 && (viewModel.Item.STATUS_DOC == DocStatus.EnAttente || viewModel.Item.STATUS_DOC == DocStatus.EnCours))
+            {
+                await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
+
+            try
+             {
+                 UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
+
+                 viewModel.IsBusy = true;
+                 viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                 await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
+
+                 await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated,AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+             }
+             finally
+             {
+                 viewModel.IsBusy = false;
+                 UserDialogs.Instance.HideLoading();
+             }
+
+
+             await Navigation.PopAsync();
         }
 
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
@@ -599,5 +662,42 @@ namespace XpertMobileApp.Views
 
         #endregion
 
+        private async Task<List<string>> GetImmatriculations(string str)
+        {
+            List<string> result = null;
+
+         //   if (string.IsNullOrEmpty(str)) return result;
+
+            if (IsBusy)
+                return result;
+
+            IsBusy = true;
+
+            try
+            {
+                result = await WebServiceClient.GetImmatriculations(str);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+                return result;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+
+    }
+
+    public class AutoCompleteRenderer : Syncfusion.SfAutoComplete.XForms.SfAutoComplete
+    {
+        public AutoCompleteRenderer()
+        {
+
+        }
     }
 }

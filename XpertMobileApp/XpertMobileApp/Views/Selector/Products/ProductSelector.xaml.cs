@@ -14,15 +14,15 @@ namespace XpertMobileApp.Views
 
         ProductSelectorViewModel viewModel;
 
-        public string TiersFamille
+        public string CodeTiers
         {
             get
             {
-                return viewModel.TiersFamille;
+                return viewModel.CodeTiers;
             }
             set
             {
-                viewModel.TiersFamille = value;
+                viewModel.CodeTiers = value;
             }
         }
 

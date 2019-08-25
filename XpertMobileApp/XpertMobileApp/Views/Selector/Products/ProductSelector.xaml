@@ -30,7 +30,7 @@
                ItemsSource="{Binding Items}"
                VerticalOptions="FillAndExpand"
                HasUnevenRows="true"
-               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+               SelectedItem="{Binding SelectedItem}"
                RefreshCommand="{Binding LoadItemsCommand}"
                IsPullToRefreshEnabled="true"
                IsRefreshing="{Binding IsBusy, Mode=OneWay}"

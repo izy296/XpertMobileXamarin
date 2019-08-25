@@ -74,6 +74,8 @@ namespace XpertMobileApp.Helpers
 
         public static string ACHATS_DETAILS_URL = "GetAchatsDetails";
 
+        public static string ACHATS_IMMATRICULATIONS_URL = "GetImmatriculations";
+
         // Produits
 
         public static string PRODUITS_URL = "Produits";

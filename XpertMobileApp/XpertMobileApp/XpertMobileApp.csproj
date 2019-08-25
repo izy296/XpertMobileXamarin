@@ -55,6 +55,7 @@
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.34" />
     <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.34" />
     <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.34" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.2.0.34" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.2.0.34" />
     <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.34" />
     <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.2.0.34" />
