@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xpert.Common.WSClient.Model;
@@ -188,6 +189,12 @@ namespace XpertMobileApp.DAL
         public string CODE_DOC_DETAIL { get; set; } // varchar(32)
         public string CODE_ORIGINE_DETAIL { get; set; } // varchar(32)
         public string CODE_DOC { get; set; } // varchar(50)
+        public string CLEANED_CODE_DOC
+        { get
+            {
+                return CODE_DOC?.Replace("/", "");
+            }
+        } // varchar(50)
         public int? ID_STOCK { get; set; } // int(10)
         public string CODE_PRODUIT { get; set; } // varchar(32)
         public string LOT { get; set; } // varchar(50)
@@ -234,8 +241,11 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                qUANTITE_DECHETS = value;
-                OnPropertyChanged("QUANTITE_DECHETS");
+                if(qUANTITE_DECHETS != value)
+                { 
+                    qUANTITE_DECHETS = value;
+                    OnPropertyChanged("QUANTITE_DECHETS");
+                }
             }
         }
 
@@ -251,8 +261,11 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                qUANTITE_NET_PRIMAIRE = value;
-                OnPropertyChanged("QUANTITE_NET_PRIMAIRE");
+                if(qUANTITE_NET_PRIMAIRE != value)
+                { 
+                    qUANTITE_NET_PRIMAIRE = value;
+                    OnPropertyChanged("QUANTITE_NET_PRIMAIRE");
+                }
             }
         }
 
@@ -266,8 +279,11 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                qUANTITE = value;
-                OnPropertyChanged("QUANTITE");
+                if(Math.Round(qUANTITE,2) != Math.Round(value,2))
+                { 
+                    qUANTITE = value;
+                    OnPropertyChanged("QUANTITE");
+                }
             }
         }
 
@@ -281,8 +297,11 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                iS_PRINCIPAL = value;
-                OnPropertyChanged("IS_PRINCIPAL");
+                if(iS_PRINCIPAL != value)
+                { 
+                    iS_PRINCIPAL = value;
+                    OnPropertyChanged("IS_PRINCIPAL");
+                }
             }
         }
 
@@ -322,7 +341,7 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if (qTE_BRUTE != value)
+                if (Math.Round(qTE_BRUTE, 2) != Math.Round(value,2))
                 {
                     qTE_BRUTE = value;
 
@@ -338,6 +357,9 @@ namespace XpertMobileApp.DAL
 
     public partial class View_ACH_DOCUMENT_DETAIL : ACH_DOCUMENT_DETAIL
     {
+        [JsonIgnore]
+        public ACH_DOCUMENT Parent_Doc { get; set; }
+
         public string NUM_DOC { get; set; } // varchar(20)
         public DateTime? DATE_DOC { get; set; } // datetime(3)
         public string CODE_TIERS { get; set; } // varchar(32)
@@ -372,6 +394,23 @@ namespace XpertMobileApp.DAL
         public bool PSYCHOTHROPE { get; set; } // tinyint(3)
 
         // Extension mobile
+        private bool? edited_BY_QteNet { get; set; } = null;
+        public bool? Edited_BY_QteNet
+        {
+            get
+            {
+                return edited_BY_QteNet;
+            }
+           set
+            {
+                if(edited_BY_QteNet != value)
+                { 
+                    edited_BY_QteNet = value;
+                    OnPropertyChanged("QTE_BRUTE");
+                }
+            }
+        }
+
         private List<View_BSE_EMBALLAGE> embalages;
         public List<View_BSE_EMBALLAGE> Embalages
         {
@@ -398,10 +437,11 @@ namespace XpertMobileApp.DAL
 
         internal void SetPeseeBrute(decimal v)
         {
-            if(this.qTE_BRUTE != v)
+            if(Math.Round(this.qTE_BRUTE,2) != Math.Round(v,2))
             { 
                 this.qTE_BRUTE = v;
                 OnPropertyChanged("QTE_BRUTE");
+                OnPropertyChanged("QUANTITE");
             }
         }
     }

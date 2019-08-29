@@ -193,11 +193,12 @@
                                                         <Label Grid.Column="1" Grid.Row="0"
                                                             Text="{ Binding QTE_BRUTE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
+                                                        
                                                         <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" VerticalOptions="Start"
                                                          Minimum="0" FontSize="12" Margin="0,-15,0,0"
-                                                         IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
+                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pb_{0}'}"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                                         SelectAllOnFocus="True" Value="{Binding QTE_BRUTE, Mode=OneWay}"
+                                                         SelectAllOnFocus="True" Value="{Binding QTE_BRUTE}"
                                                          ValueChanged="ne_PeseeBruteChanged"
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
                                                         <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
@@ -231,10 +232,10 @@
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" VerticalOptions="Start"
-                                                         Minimum="0" FontSize="12" Margin="0,-15,0,0"
-                                                         IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
+                                                         Minimum="0" FontSize="12" Margin="0,-15,0,0" 
+                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pn_{0}'}"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                                         SelectAllOnFocus="True" Value="{Binding QUANTITE, Mode=OneWay}"
+                                                         SelectAllOnFocus="True" Value="{Binding QUANTITE}"
                                                          ValueChanged="ne_QteNetChanged"
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
                                                         
@@ -327,6 +328,7 @@
                     <flex:FlexButton
                     x:Name="cmd_Terminate"
                     HorizontalOptions="FillAndExpand"
+                    IsVisible="False"    
                     WidthRequest="120"
                     IconOrientation="Left" 
                     IconPadding="0,0,5,0"

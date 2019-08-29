@@ -31,6 +31,10 @@
             <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
             <local:StatusToBoolForPriceConverter x:Key="statusForPriceConverter"/>
             <local:StatusToBoolPeseeBruteConverter x:Key="statusForPeseeBruteConverter"/>
+            <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
+            <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
+            
+            
             
             <!--Global Styles-->
 

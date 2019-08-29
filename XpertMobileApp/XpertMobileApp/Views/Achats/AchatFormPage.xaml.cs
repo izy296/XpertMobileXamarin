@@ -200,6 +200,7 @@ namespace XpertMobileApp.Views
 
                 foreach (var itemC in itemsC)
                 {
+                    itemC.Parent_Doc = viewModel.Item;
                     viewModel.ItemRows.Add(itemC);
                 }
 
@@ -248,7 +249,7 @@ namespace XpertMobileApp.Views
             if (row == null)
             {
                 row = new View_ACH_DOCUMENT_DETAIL();
-                // row.ParentDoc = viewModel.Item;
+                row.Parent_Doc = viewModel.Item;
                 row.CODE_DOC = viewModel.Item.CODE_DOC;
 
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
@@ -291,15 +292,45 @@ namespace XpertMobileApp.Views
         {
             foreach (var item in viewModel.ItemRows.ToList())
             {                    
-                    item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
             }
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+        }
+
+        async Task<bool> AddScanedProduct(string cb_prod)
+        {
+            // Cas prdouit déjà ajouté
+            var row = viewModel.ItemRows.Where(e => e.CODE_BARRE == cb_prod).FirstOrDefault();
+            if (row != null)
+            {
+                row.QUANTITE += 1;
+                return true;
+            }
+
+            // Cas prdouit pas déjà ajouté
+            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
+
+            if (prods.Count > 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return false;
+            }
+            else if (prods.Count == 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return false;
+            }
+
+            AddNewRow(prods[0]);
+            return true;
         }
 
         private void UpdatePeseeInfos()
         {
             var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL == true);
             decimal qteNetPrimaireInitial = 0;
+
+            // Calcul des infos de l'item principal
             if (principalItem != null)
             {
                 // 0 - Calcul du brute initial => celui du camions 
@@ -332,21 +363,9 @@ namespace XpertMobileApp.Views
                         }
                     }
 
-                    // 3 - Soustraires le nombre de casier de différence entre l'entrée et la sortie
-                    /*
-                    foreach (var item in principalItem.Embalages)
-                    {
-
-                    }
-                    */
                     principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
                     principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE;
                 }
-
-                /*
-                decimal totalBruteException = viewModel.ItemRows.Where(x=>x.IS_PRINCIPAL == false).Sum(x=>x.PESEE_BRUTE);
-                principalItem.SetPeseeBrute(principalItem.PESEE_BRUTE - totalBruteException);
-                */
             }
 
             // Calcul de la quantité net des produits secondaires
@@ -360,16 +379,30 @@ namespace XpertMobileApp.Views
                     if (item.Embalages != null)
                         totalPoidsEmballage = item.Embalages.Sum(e => e.QUANTITE_ENTREE * e.QUANTITE_UNITE);
 
-                    item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballage;
-                    item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
-                    item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
-                    item.QTE_RECUE = item.QUANTITE;
-                    item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                    if(item.Edited_BY_QteNet != true)
+                    { 
+                        item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballage;
+                        item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
+                        item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
+                        // item.SetQteNet(item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS);
+                        item.QTE_RECUE = item.QUANTITE;
+                        item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                    }
+                    else
+                    {
+                        item.QTE_RECUE = item.QUANTITE;
+                        item.QUANTITE_NET_PRIMAIRE = (100 * item.QUANTITE) / (100 - item.TAUX_DECHET);
+                        item.QUANTITE_DECHETS = (item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100;
+                        item.QTE_BRUTE = item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage;
+                        //item.SetPeseeBrute(item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
+                        item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                    }
 
                     totalQteExeption += item.QUANTITE_NET_PRIMAIRE;
                 }
             }
 
+            // calcul des infos de l'item principal
             if (principalItem != null)
             {
                 // Calcul de la quantité net finale du produit principal
@@ -390,35 +423,9 @@ namespace XpertMobileApp.Views
                 principalItem.SetPeseeBrute(principalItem.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
                
             }
+
+            // calcul du total du document
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
-        }
-
-        async Task<bool> AddScanedProduct(string cb_prod)
-        {
-            // Cas prdouit déjà ajouté
-            var row = viewModel.ItemRows.Where(e => e.CODE_BARRE == cb_prod).FirstOrDefault();
-            if(row != null)
-            { 
-                row.QUANTITE += 1;
-                return true;
-            }
-
-            // Cas prdouit pas déjà ajouté
-            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
-
-            if(prods.Count > 0)
-            {
-                await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                return false;
-            }
-            else if(prods.Count == 0)
-            {
-                await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                return false;
-            }
-
-            AddNewRow(prods[0]);
-            return true;
         }
 
         #endregion
@@ -460,27 +467,157 @@ namespace XpertMobileApp.Views
         
         private void ne_QteNetChanged(object sender, ValueEventArgs e)
         {
+            decimal QNet = Convert.ToDecimal(e.Value);
+
+            // Recupération de de l'objet en cours
             View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
-            if (currentItem.QUANTITE != Convert.ToDecimal(e.Value))
-            {               
-                decimal QNet = Convert.ToDecimal(e.Value);
-                decimal QteBrute = (100 * QNet) / (100 - currentItem.TAUX_DECHET);
 
-                currentItem.QTE_BRUTE = Math.Round(QteBrute, 3);
+            // Recupération de l'element qte brute de la ligne en cours
+            string ClassId = string.Format("pb_{0}", currentItem.CLEANED_CODE_DOC);
+            SfNumericTextBox pbruteElem = ((sender as SfNumericTextBox).Parent as Grid).Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
 
+            if (QNet > 0 && currentItem.QTE_BRUTE == 0)
+            {
+                currentItem.Edited_BY_QteNet = true;
+
+                if (pbruteElem != null)
+                {
+                    pbruteElem.IsEnabled = false;
+                }
+            }
+            else
+            {
+                if (pbruteElem != null && QNet == 0)
+                {
+                    pbruteElem.IsEnabled = true;
+                    currentItem.Edited_BY_QteNet = null;
+                }
+            }
+
+            if (Math.Round(currentItem.QUANTITE, 2) != Math.Round(QNet, 2) || currentItem.Edited_BY_QteNet == true)
+            {
+                currentItem.QUANTITE = QNet;
                 UpdatePeseeInfos();
             }
+
+            /*
+            // Recupération de l'element qte brute de la ligne en cours
+            string ClassId = string.Format("pb_{0}", currentItem.CLEANED_CODE_DOC);
+            SfNumericTextBox pbruteElem = ((sender as SfNumericTextBox).Parent as Grid).Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
+
+            if (QNet > 0  && currentItem.QTE_BRUTE == 0)
+            {
+                currentItem.Edited_BY_QteNet = true;
+
+                if(pbruteElem != null)
+                {
+                    pbruteElem.IsEnabled = false;
+                }
+            }
+            else
+            {
+                if (pbruteElem != null && QNet == 0)
+                {
+                    pbruteElem.IsEnabled = true;
+                    currentItem.Edited_BY_QteNet = null;
+                }
+            }
+
+            if (currentItem.QUANTITE != QNet)
+            {
+                UpdatePeseeInfos();
+            }
+            currentItem.QUANTITE = QNet;
+            */
+
+            // (sender as SfNumericTextBox).ValueChanged -= ne_QteNetChanged;
+            // pbruteElem.ValueChanged -= ne_PeseeBruteChanged;
+
+            // pbruteElem.ValueChanged += ne_PeseeBruteChanged;
+            // (sender as SfNumericTextBox).ValueChanged += ne_QteNetChanged;
+
         }
 
         private void ne_PeseeBruteChanged(object sender, ValueEventArgs e)
         {
-            View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
-            if(currentItem.QTE_BRUTE != Convert.ToDecimal(e.Value))
-            { 
-                currentItem.QTE_BRUTE = Convert.ToDecimal(e.Value);
 
+            decimal QBrute = Convert.ToDecimal(e.Value);
+
+            View_ACH_DOCUMENT_DETAIL currentItem = (sender as SfNumericTextBox).BindingContext as View_ACH_DOCUMENT_DETAIL;
+
+            // Recupération de l'element qte brute de la ligne en cours
+            string ClassId = string.Format("pn_{0}", currentItem.CLEANED_CODE_DOC);
+            SfNumericTextBox pnetElem = ((sender as SfNumericTextBox).Parent as Grid).Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
+
+            if (QBrute > 0 && currentItem.QUANTITE == 0)
+            {
+                currentItem.Edited_BY_QteNet = false;
+
+                if (pnetElem != null)
+                {
+                    pnetElem.IsEnabled = false;
+                }
+            }
+            else
+            {
+                if (pnetElem != null && QBrute == 0)
+                {
+                    pnetElem.IsEnabled = true;
+                    currentItem.Edited_BY_QteNet = null;
+                }
+            }
+
+            if (Math.Round(currentItem.QTE_BRUTE, 2) != Math.Round(QBrute, 2) || currentItem.Edited_BY_QteNet == false)
+            {
+                currentItem.QTE_BRUTE = QBrute;
                 UpdatePeseeInfos();
             }
+
+            /*
+            if (currentItem.Edited_BY_QteNet == true)
+            {
+                currentItem.QTE_BRUTE = QBrute;
+                return;
+            }
+
+            // Recupération de l'element qte brute de la ligne en cours
+            string ClassId = string.Format("pn_{0}", currentItem.CLEANED_CODE_DOC);
+            SfNumericTextBox pnetElem = ((sender as SfNumericTextBox).Parent as Grid).Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
+
+            if (QBrute > 0 && currentItem.QTE_BRUTE == 0)
+            {
+                currentItem.Edited_BY_QteNet = false;
+
+                if (pnetElem != null)
+                {
+                    pnetElem.IsEnabled = false;
+                }
+            }
+            else
+            {
+                if (pnetElem != null && QBrute == 0)
+                {
+                    pnetElem.IsEnabled = true;
+                    currentItem.Edited_BY_QteNet = null;
+                }
+            }
+
+            if (currentItem.QTE_BRUTE != QBrute)
+            {
+                 UpdatePeseeInfos();
+            }
+            currentItem.QTE_BRUTE = QBrute;
+            */
+
+            /*
+            (sender as SfNumericTextBox).ValueChanged -= ne_PeseeBruteChanged;
+            pnetElem.ValueChanged -= ne_QteNetChanged;
+
+
+
+            pnetElem.ValueChanged += ne_QteNetChanged;
+            (sender as SfNumericTextBox).ValueChanged += ne_PeseeBruteChanged;
+            */
         }
 
         private void ne_tauxDechetsChanged(object sender, ValueEventArgs e)
@@ -534,7 +671,12 @@ namespace XpertMobileApp.Views
             {
                 if (await UserDialogs.Instance.ConfirmAsync(AppResources.txt_ConfimDelProductCmd, AppResources.msg_Confirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel))
                 {
+                    int index = viewModel.ItemRows.IndexOf(vteD);
                     viewModel.ItemRows.Remove(vteD);
+                    if(viewModel.Item?.Details?.Count - 1 >= index)
+                    { 
+                        viewModel.Item.Details.RemoveAt(index);
+                    }
                 }
             }
         }
