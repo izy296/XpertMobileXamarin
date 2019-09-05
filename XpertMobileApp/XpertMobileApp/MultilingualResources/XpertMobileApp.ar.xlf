@@ -751,6 +751,26 @@
           <source>Vides</source>
           <target state="new">Vides</target>
         </trans-unit>
+        <trans-unit id="txt_agri_Prix" translate="yes" xml:space="preserve">
+          <source>Prix :</source>
+          <target state="new">Prix :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QBrute" translate="yes" xml:space="preserve">
+          <source>Q.Brute :</source>
+          <target state="new">Q.Brute :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QDechet" translate="yes" xml:space="preserve">
+          <source>Q.Déchet :</source>
+          <target state="new">Q.Déchet :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QNet" translate="yes" xml:space="preserve">
+          <source>Q.Net :</source>
+          <target state="new">Q.Net :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_TauxDechet" translate="yes" xml:space="preserve">
+          <source>Déchet % :</source>
+          <target state="new">Déchet % :</target>
+        </trans-unit>
       </group>
     </body>
   </file>

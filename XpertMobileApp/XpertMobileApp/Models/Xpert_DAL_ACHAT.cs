@@ -374,6 +374,8 @@ namespace XpertMobileApp.DAL
         public string CODE_BARRE { get; set; } // nvarchar(250)
         public string CODE_FORME { get; set; } // varchar(20)
         public string UNITE { get; set; } // varchar(50)
+        public string DESIGNATION_UNITE { get; set; }
+        public string CODE_UNITE_ENTETE { get; set; }
         public string CONDIT { get; set; } // varchar(50)
         public string DOSAGE { get; set; } // varchar(50)
         public string DESIGN_LABO { get; set; } // varchar(2500)

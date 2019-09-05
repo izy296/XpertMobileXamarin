@@ -17,7 +17,7 @@
             </NavigationPage.Icon>
             <x:Arguments>
                 <!--HomePage-->
-                <views:AchatsPage />
+                <views:HomePage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

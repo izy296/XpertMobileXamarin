@@ -189,7 +189,7 @@
 
                                                         <!-- Pesée brute -->
                                                         <Label Grid.Column="0" Grid.Row="0" 
-                                                               Text="Pesée brute :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                               Text="{i18n:Translate txt_agri_QBrute}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <Label Grid.Column="1" Grid.Row="0"
                                                             Text="{ Binding QTE_BRUTE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
@@ -200,11 +200,13 @@
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding QTE_BRUTE}"
                                                          ValueChanged="ne_PeseeBruteChanged"
+                                                         IsEnabled="{Binding ., Converter={StaticResource enablePeseeBruteConverter}}"                           
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
+                                                         
                                                         <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <!-- Déchets -->
-                                                        <Label Grid.Column="0" Grid.Row="1" Text="Déchets :" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1" Minimum="0" Margin="0,-15,0,0"  HeightRequest="20"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                          SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" FontSize="12"
@@ -214,14 +216,14 @@
 
                                                         <!-- Qte déchets -->
                                                         <Label Grid.Column="0" Grid.Row="2" 
-                                                               Text="Q.Déchets :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                               Text="{i18n:Translate txt_agri_QDechet}"  FontSize="Default" HorizontalOptions="Start"/>
                                                         <Label Grid.Column="1" Grid.Row="2"
                                                             Text="{ Binding QUANTITE_DECHETS, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
                                                         <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <!-- Pesée net -->
                                                         <Label Grid.Column="0" Grid.Row="3" 
-                                                               Text="Pesée Net :"  FontSize="Default" HorizontalOptions="Start"/>
+                                                               Text="{i18n:Translate txt_agri_QNet}"  FontSize="Default" HorizontalOptions="Start"/>
                                                         <!--
                                                         <Label Grid.Column="1" Grid.Row="3"
                                                             Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" HorizontalOptions="Start" />
@@ -237,12 +239,13 @@
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding QUANTITE}"
                                                          ValueChanged="ne_QteNetChanged"
+                                                         IsEnabled="{Binding ., Converter={StaticResource enablePeseeNetConverter}}"   
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
                                                         
                                                         <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
-
+                                                        
                                                         <!-- Prix -->
-                                                        <Label Grid.Column="0" Grid.Row="4" Text="Prix :" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" Minimum="0" Margin="0,-15,0,0"
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 

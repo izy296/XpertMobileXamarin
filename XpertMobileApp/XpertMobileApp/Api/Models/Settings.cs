@@ -63,5 +63,6 @@ namespace XpertMobileApp.Models
     {
         public string DEFAULT_COMPAGNE_LOT { get; set; }
         public string DEFAULT_ACHATS_MAGASIN { get; set; }
+        public string DEFAULT_UNITE_ACHATS { get; set; }
     }
 }

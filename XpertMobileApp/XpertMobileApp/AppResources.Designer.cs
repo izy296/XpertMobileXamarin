@@ -1159,6 +1159,51 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Prix :.
+        /// </summary>
+        internal static string txt_agri_Prix {
+            get {
+                return ResourceManager.GetString("txt_agri_Prix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Q.Brute :.
+        /// </summary>
+        internal static string txt_agri_QBrute {
+            get {
+                return ResourceManager.GetString("txt_agri_QBrute", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Q.Déchet :.
+        /// </summary>
+        internal static string txt_agri_QDechet {
+            get {
+                return ResourceManager.GetString("txt_agri_QDechet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Q.Net :.
+        /// </summary>
+        internal static string txt_agri_QNet {
+            get {
+                return ResourceManager.GetString("txt_agri_QNet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Déchet % :.
+        /// </summary>
+        internal static string txt_agri_TauxDechet {
+            get {
+                return ResourceManager.GetString("txt_agri_TauxDechet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tous.
         /// </summary>
         internal static string txt_All {

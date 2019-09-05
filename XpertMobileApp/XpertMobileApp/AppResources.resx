@@ -666,4 +666,19 @@
   <data name="txt_EmballageVides" xml:space="preserve">
     <value>Vides</value>
   </data>
+  <data name="txt_agri_Prix" xml:space="preserve">
+    <value>Prix :</value>
+  </data>
+  <data name="txt_agri_QBrute" xml:space="preserve">
+    <value>Q.Brute :</value>
+  </data>
+  <data name="txt_agri_QDechet" xml:space="preserve">
+    <value>Q.Déchet :</value>
+  </data>
+  <data name="txt_agri_QNet" xml:space="preserve">
+    <value>Q.Net :</value>
+  </data>
+  <data name="txt_agri_TauxDechet" xml:space="preserve">
+    <value>Déchet % :</value>
+  </data>
 </root>

@@ -38,8 +38,6 @@ namespace XpertMobileApp.Views
             TiersSelector = new TiersSelector();
             EmballageSelector = new EmballageSelector();
 
-
-
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
             if(vente == null)
             { 
@@ -255,13 +253,15 @@ namespace XpertMobileApp.Views
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-
+                // row.UNITE
                 row.TAUX_DECHET   = product.TAUX_DECHET;
                 row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT; 
                 row.PRIX_VENTE    = product.PRIX_VENTE_HT;
 
                 row.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
                 row.LOT = parames.DEFAULT_COMPAGNE_LOT;
+                row.UNITE = viewModel.Item.CODE_UNITE;
+                row.CODE_UNITE_ENTETE = viewModel.Item.CODE_UNITE;
 
                 if (viewModel.ItemRows.Count == 0 && viewModel.Item.PESEE_ENTREE > 0)
                 {
@@ -402,7 +402,7 @@ namespace XpertMobileApp.Views
                 }
             }
 
-            // calcul des infos de l'item principal
+            // calcul des infos de l'item principalt
             if (principalItem != null)
             {
                 // Calcul de la quantité net finale du produit principal
@@ -467,6 +467,9 @@ namespace XpertMobileApp.Views
         
         private void ne_QteNetChanged(object sender, ValueEventArgs e)
         {
+            if (!viewModel.hasEditDetails)
+                return;
+
             decimal QNet = Convert.ToDecimal(e.Value);
 
             // Recupération de de l'objet en cours
@@ -540,6 +543,9 @@ namespace XpertMobileApp.Views
 
         private void ne_PeseeBruteChanged(object sender, ValueEventArgs e)
         {
+
+            if (!viewModel.hasEditDetails)
+                return;
 
             decimal QBrute = Convert.ToDecimal(e.Value);
 
@@ -747,6 +753,7 @@ namespace XpertMobileApp.Views
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
                 this.viewModel.Item.CODE_MOTIF = "ES10";
                 this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
+                this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
 
                 if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC)) // Ajout d'une reception
                 {

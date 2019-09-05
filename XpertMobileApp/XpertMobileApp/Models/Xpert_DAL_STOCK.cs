@@ -217,6 +217,45 @@ namespace XpertMobileApp.Models
         public string RSSI { get; set; }
     }
 
+    #region Not user from desktop
+    public partial class ACH_DOCUMENT_DETAIL_EMBALLAGE11
+    {
+        public string CODE_DETAIL { get; set; }
+        public string CODE_EMBALLAGE { get; set; }
+        public string CODE_DETAIL_ACHAT { get; set; }
+        public decimal QUANTITE_ENTREE { get; set; }
+        public decimal QUANTITE_SORTIE { get; set; }
+    }
+
+    public partial class View_ACH_DOCUMENT_DETAIL_EMBALLAGE11 : ACH_DOCUMENT_DETAIL_EMBALLAGE11
+    {
+        public string DESIGNATION_EMBALLAGE { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+        public string CODE_UNITE { get; set; }
+        public decimal QUANTITE_UNITE { get; set; }
+        public decimal QTE_DEFF { get; set; }
+        public bool IS_PRINCIPAL { get; set; }
+        public bool IS_INTERNE { get; set; }
+    }
+
+    public partial class BSE_EMBALLAGE11
+    {
+
+        public string CODE { get; set; }
+        public string DESIGNATION { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public decimal QUANTITE_UNITE { get; set; }
+        public string CODE_UNITE { get; set; }
+        public bool IS_INTERNE { get; set; }
+    }
+
+    public partial class View_BSE_EMBALLAGE11 : BSE_EMBALLAGE11
+    {
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+    }
+    #endregion
+
     public partial class BSE_EMBALLAGE : BASE_CLASS
     {
         public string CODE { get; set; }
