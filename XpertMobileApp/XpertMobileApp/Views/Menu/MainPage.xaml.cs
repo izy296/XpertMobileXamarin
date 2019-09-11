@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SampleBrowser.SfListView;
+using XpertMobileApp.Api;
 
 namespace XpertMobileApp.Views
 {
@@ -19,8 +20,21 @@ namespace XpertMobileApp.Views
             FlowDirection = App.PageFlowDirection;
 
             MasterBehavior = MasterBehavior.Popover;
-
-            MenuPages.Add((int)MenuItemType.Achats, (NavigationPage)Detail);
+            if (Constants.AppName == Apps.XCOM_Mob)
+            {
+                this.Detail = new NavigationPage(new HomePage());
+                MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
+            }
+            else if (Constants.AppName == Apps.XAGRI_Mob)
+            {
+                this.Detail = new NavigationPage(new AchatsPage());
+                MenuPages.Add((int)MenuItemType.Achats, (NavigationPage)Detail);
+            }
+            else if (Constants.AppName == Apps.XACATALOG_Mob)
+            {
+                this.Detail = new NavigationPage(new MyCommandesPage());
+                MenuPages.Add((int)MenuItemType.MyCommandes, (NavigationPage)Detail);
+            }
         }
 
         public async Task NavigateFromMenu(int id)
@@ -45,6 +59,9 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new VentesPage()));
                         break;
                     case (int)MenuItemType.Catalogues:
+                        MenuPages.Add(id, new NavigationPage(new Paging()));
+                        break;
+                    case (int)MenuItemType.MyCommandes:
                         MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
                     case (int)MenuItemType.Commandes:

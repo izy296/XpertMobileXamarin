@@ -8,6 +8,7 @@ namespace XpertMobileApp.Api
     {
         public static string XCOM_Mob = "XCOM_Mob";
         public static string XAGRI_Mob = "XAGRI_Mob";
+        public static string XACATALOG_Mob = "XACATALOG_Mob";
     }
 
     public static class Constants
