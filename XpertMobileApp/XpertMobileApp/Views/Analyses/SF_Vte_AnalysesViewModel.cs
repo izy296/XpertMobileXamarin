@@ -45,7 +45,7 @@ namespace XpertMobileApp.ViewModels.Analyses
                 return;
 
             IsBusy = true;
-
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
             try
             {
                 DateTime endDate = DateTime.Now;
@@ -81,6 +81,7 @@ namespace XpertMobileApp.ViewModels.Analyses
             finally
             {
                 IsBusy = false;
+                UserDialogs.Instance.HideLoading();
             }
         }
 
