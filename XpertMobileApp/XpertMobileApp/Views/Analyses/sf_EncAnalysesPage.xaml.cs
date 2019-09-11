@@ -59,7 +59,7 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            LoadStats(btn_Year);
+            LoadStats(btn_Week);
         }
 
         private void StatFilter_Clicked(object sender, EventArgs e)
