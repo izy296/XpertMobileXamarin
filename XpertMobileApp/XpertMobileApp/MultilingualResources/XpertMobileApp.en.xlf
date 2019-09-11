@@ -772,6 +772,14 @@
           <source>Déchet % :</source>
           <target state="new">Déchet % :</target>
         </trans-unit>
+        <trans-unit id="pn_MyCommandes" translate="yes" xml:space="preserve">
+          <source>Mes commandes</source>
+          <target state="new">Mes commandes</target>
+        </trans-unit>
+        <trans-unit id="txt_Waiting" translate="yes" xml:space="preserve">
+          <source>Traitement ...</source>
+          <target state="new">Traitement ...</target>
+        </trans-unit>
       </group>
     </body>
   </file>

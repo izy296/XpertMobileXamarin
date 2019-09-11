@@ -117,6 +117,12 @@
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Catalogue produit\Mes commandes\MyCommandesPage.xaml.cs">
+      <DependentUpon>MyCommandesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Mes commandes\MyCommandesTemplate.xaml.cs">
+      <DependentUpon>MyCommandesTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Catalogue produit\Paging\CommandeSummaryPage.xaml.cs">
       <DependentUpon>CommandeSummaryPage.xaml</DependentUpon>
     </Compile>

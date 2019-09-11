@@ -8,6 +8,9 @@ using XpertMobileApp.DAL;
 using XpertMobileApp;
 using Syncfusion.SfDataGrid.XForms.DataPager;
 using System;
+using XpertMobileApp.Helpers;
+using Xamarin.Forms;
+using XpertMobileApp.Models;
 
 namespace SampleBrowser.SfListView
 {
@@ -30,10 +33,18 @@ namespace SampleBrowser.SfListView
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            { 
+                viewModel.LoadItemsCommand.Execute(null);                
+            }
 
             if (viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
+
+            MessagingCenter.Subscribe<MsgCenter, int>(this, MCDico.DATA_COUNT_LOADED, async (obj, count) =>
+            {
+                // dataPager.PageCount = ;
+              //  viewModel.PageCount = count;
+            });
         }
 
 

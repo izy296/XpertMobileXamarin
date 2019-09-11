@@ -244,24 +244,35 @@ namespace XpertMobileApp.Views.Encaissement
             this.viewModel.Item.Details = viewModel.ItemRows.ToList();
             this.viewModel.Item.CODE_TIERS = App.User.CODE_TIERS;
             this.viewModel.Item.DATE_VENTE = DateTime.Now;
-
-            if (string.IsNullOrEmpty(viewModel.Item.CODE_VENTE))
+            try
             {
-                await CrudManager.Commandes.AddItemAsync(viewModel.Item);
-                App.CurrentSales = null;
-                await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-            else
-            {
-                await CrudManager.Commandes.UpdateItemAsync(viewModel.Item);
-                await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                if (string.IsNullOrEmpty(viewModel.Item.CODE_VENTE))
+                {
+                    await CrudManager.Commandes.AddItemAsync(viewModel.Item);
+                    App.CurrentSales = null;
+                    await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    await CrudManager.Commandes.UpdateItemAsync(viewModel.Item);
+                    await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             
-            for (var counter = 1; counter < 2; counter++)
+                for (var counter = 1; counter < 2; counter++)
+                {
+                    Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                }            
+                await Navigation.PopAsync();
+            }
+            catch(Exception ex)
             {
-                Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
-            }            
-            await Navigation.PopAsync();
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
         }
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)

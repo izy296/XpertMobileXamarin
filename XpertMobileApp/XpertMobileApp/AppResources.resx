@@ -681,4 +681,10 @@
   <data name="txt_agri_TauxDechet" xml:space="preserve">
     <value>Déchet % :</value>
   </data>
+  <data name="pn_MyCommandes" xml:space="preserve">
+    <value>Mes commandes</value>
+  </data>
+  <data name="txt_Waiting" xml:space="preserve">
+    <value>Traitement ...</value>
+  </data>
 </root>

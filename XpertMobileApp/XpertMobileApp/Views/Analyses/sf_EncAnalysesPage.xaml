@@ -38,10 +38,7 @@
                     </DataTemplate>
                 </ResourceDictionary>
             </StackLayout.Resources>
-
-            <Label Text="{i18n:Translate txt_Loading}" IsVisible="{Binding IsBusy}" BackgroundColor="Green" TextColor="White" 
-                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-            
+           
             <chart:SfChart x:Name="Chart_Ventes" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
                 <chart:SfChart.Title>

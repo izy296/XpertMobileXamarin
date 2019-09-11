@@ -970,6 +970,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Mes commandes.
+        /// </summary>
+        internal static string pn_MyCommandes {
+            get {
+                return ResourceManager.GetString("pn_MyCommandes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nouvelle commande.
         /// </summary>
         internal static string pn_NewCommande {
@@ -1731,6 +1740,15 @@ namespace XpertMobileApp {
         internal static string txt_UserSession {
             get {
                 return ResourceManager.GetString("txt_UserSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Traitement ....
+        /// </summary>
+        internal static string txt_Waiting {
+            get {
+                return ResourceManager.GetString("txt_Waiting", resourceCulture);
             }
         }
         

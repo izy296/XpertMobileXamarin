@@ -12,6 +12,7 @@ namespace XpertMobileApp.Models
         Achats,
         Reception,
         Catalogues,
+        MyCommandes,
         Commandes,
         Tiers,
         Produits,

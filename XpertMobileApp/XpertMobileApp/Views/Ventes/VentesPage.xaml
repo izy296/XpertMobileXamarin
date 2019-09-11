@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              x:Class="XpertMobileApp.Views.VentesPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              Title="{Binding Title}"
@@ -57,17 +58,24 @@
             <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                    <!--
                 <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
                  Clicked="btn_Select_Clicked"  HeightRequest="35"/>
-            </Grid>
+                -->
+                    <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Select_Clicked"/>
+                </Grid>
 
 
                 <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"

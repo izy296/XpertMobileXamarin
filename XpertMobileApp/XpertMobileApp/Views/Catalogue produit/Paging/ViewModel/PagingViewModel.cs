@@ -46,6 +46,8 @@ namespace SampleBrowser.SfListView
             if(OnlyNew)
                 result.Add("onlyNew", "1");
 
+            result.Add("onlyCatalogue", "1");
+
             return result;
         }
 
