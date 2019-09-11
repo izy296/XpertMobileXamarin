@@ -11,6 +11,7 @@ using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Api.ViewModels
@@ -121,6 +122,10 @@ namespace XpertMobileApp.Api.ViewModels
 
                 int itemCount = await service.ItemsCount(GetFilterParams());
                 PageCount = itemCount / PageSize;
+                if(PageCount * itemCount < itemCount)
+                {
+                    PageCount += 1; 
+                }
 
                 var currentPage = (PageIndex / PageSize) + 1;
                 var source = await service.SelectByPage(GetFilterParams(), currentPage, PageSize);
@@ -129,6 +134,8 @@ namespace XpertMobileApp.Api.ViewModels
 
                 foreach (var itm in source)
                   Items.Add(itm);
+
+                MessagingCenter.Send(App.MsgCenter, MCDico.DATA_COUNT_LOADED, PageCount);
 
             }
             catch (Exception ex)
