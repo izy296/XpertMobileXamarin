@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -28,10 +29,14 @@ namespace XpertMobileApp.ViewModels
         {
             base.OnAfterLoadItems(list);
 
-            View_TRS_TIERS fElem = new View_TRS_TIERS();
-            fElem.NOM_TIERS1 = "";
-            fElem.CODE_TIERS = "";
-            Items.Insert(0, fElem);
+            var nullItem = Items.Where(x => x.CODE_TIERS == "").FirstOrDefault();
+            if(nullItem == null)
+            { 
+                View_TRS_TIERS fElem = new View_TRS_TIERS();
+                fElem.NOM_TIERS1 = "";
+                fElem.CODE_TIERS = "";
+                Items.Insert(0, fElem);
+            }
         }
 
         protected override Dictionary<string, string> GetFilterParams()
