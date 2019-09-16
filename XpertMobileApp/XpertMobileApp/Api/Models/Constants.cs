@@ -7,6 +7,7 @@ namespace XpertMobileApp.Api
     public static class Apps
     {
         public static string XCOM_Mob = "XCOM_Mob";
+        public static string XPH_Mob = "XCPH_Mob";
         public static string XAGRI_Mob = "XAGRI_Mob";
         public static string XACATALOG_Mob = "XACATALOG_Mob";
     }
@@ -15,7 +16,7 @@ namespace XpertMobileApp.Api
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
-        public static string AppName = Apps.XCOM_Mob;
+        public static string AppName = Apps.XPH_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
     }

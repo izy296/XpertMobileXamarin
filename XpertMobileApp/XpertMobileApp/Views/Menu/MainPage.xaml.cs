@@ -58,6 +58,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Ventes:
                         MenuPages.Add(id, new NavigationPage(new VentesPage()));
                         break;
+                    case (int)MenuItemType.Bordereaux:
+                        MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
+                        break;
                     case (int)MenuItemType.Catalogues:
                         MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;

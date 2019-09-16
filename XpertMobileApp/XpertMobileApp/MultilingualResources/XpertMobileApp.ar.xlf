@@ -779,6 +779,10 @@
           <source>Traitement ...</source>
           <target state="new">Traitement ...</target>
         </trans-unit>
+        <trans-unit id="pn_Bordereaux" translate="yes" xml:space="preserve">
+          <source>Bordereaux</source>
+          <target state="new">Bordereaux</target>
+        </trans-unit>
       </group>
     </body>
   </file>

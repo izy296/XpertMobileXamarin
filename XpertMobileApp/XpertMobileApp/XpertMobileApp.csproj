@@ -117,6 +117,12 @@
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Bordereaux\BordereauxPage.xaml.cs">
+      <DependentUpon>BordereauxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\BordereauxTemplate.xaml.cs">
+      <DependentUpon>BordereauxTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Catalogue produit\Mes commandes\MyCommandesPage.xaml.cs">
       <DependentUpon>MyCommandesPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +182,9 @@
     </Compile>
     <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
       <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Centre\CentresSelector.xaml.cs">
+      <DependentUpon>CentresSelector.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Selector\Chauffeur\ChauffeurSelector.xaml.cs">
       <DependentUpon>ChauffeurSelector.xaml</DependentUpon>
@@ -257,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Centre\CentresSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\Chauffeur\ChauffeurSelector.xaml">
       <Generator>MSBuild:Compile</Generator>

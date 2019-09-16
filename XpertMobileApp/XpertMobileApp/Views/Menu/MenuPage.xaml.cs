@@ -19,7 +19,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
             lbl_MenuUser.Text = App.User.UserName;
 
-            if (Constants.AppName == Apps.XCOM_Mob)
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
             {
                 menuItems = new List<HomeMenuItem>
                 {
@@ -35,7 +35,10 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.EncAnalyses, Image = "", Title=AppResources.pn_Analyses },
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
-
+                if (Constants.AppName == Apps.XPH_Mob)
+                {
+                    menuItems.Insert(4, new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });                    
+                }
             }
             else if (Constants.AppName == Apps.XAGRI_Mob)
             {
