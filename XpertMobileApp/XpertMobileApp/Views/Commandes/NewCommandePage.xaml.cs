@@ -101,7 +101,7 @@ namespace XpertMobileApp.Views.Encaissement
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-                row.PRIX_VTE_TTC = product.PRIX_VENTE_HT; // TODO mettre le bon prix
+                row.PRIX_VTE_HT = product.PRIX_VENTE_HT; // TODO mettre le bon prix
                 row.QUANTITE = 1;
 
                 viewModel.ItemRows.Add(row);

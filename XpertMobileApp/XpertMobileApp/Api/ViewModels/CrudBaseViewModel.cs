@@ -158,6 +158,7 @@ namespace XpertMobileApp.Api.ViewModels
                 if (App.IsConected)
                 {
                     IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await service.UpdateItemAsync(item);
                 }
             }
@@ -168,6 +169,7 @@ namespace XpertMobileApp.Api.ViewModels
             }
             finally
             {
+                UserDialogs.Instance.HideLoading();
                 IsBusy = false;
             }
         }
@@ -182,6 +184,7 @@ namespace XpertMobileApp.Api.ViewModels
                 if (App.IsConected)
                 {
                     IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await service.DeleteItemAsync(codeItem);
                 }
             }
@@ -192,6 +195,7 @@ namespace XpertMobileApp.Api.ViewModels
             }
             finally
             {
+                UserDialogs.Instance.HideLoading();
                 IsBusy = false;
             }
         }
@@ -206,6 +210,7 @@ namespace XpertMobileApp.Api.ViewModels
                 if (App.IsConected)
                 {
                     IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await service.AddItemAsync(item);
                     await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
     AppResources.alrt_msg_Ok);
@@ -219,6 +224,7 @@ namespace XpertMobileApp.Api.ViewModels
             finally
             {
                 IsBusy = false;
+                UserDialogs.Instance.HideLoading();
             }
         }
 

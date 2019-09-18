@@ -687,4 +687,7 @@
   <data name="txt_Waiting" xml:space="preserve">
     <value>Traitement ...</value>
   </data>
+  <data name="pn_Bordereaux" xml:space="preserve">
+    <value>Bordereaux</value>
+  </data>
 </root>

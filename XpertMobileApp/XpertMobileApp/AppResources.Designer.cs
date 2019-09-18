@@ -916,6 +916,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bordereaux.
+        /// </summary>
+        internal static string pn_Bordereaux {
+            get {
+                return ResourceManager.GetString("pn_Bordereaux", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Catalogue.
         /// </summary>
         internal static string pn_Catalogues {

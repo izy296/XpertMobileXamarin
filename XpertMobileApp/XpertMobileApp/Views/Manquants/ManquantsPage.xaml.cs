@@ -19,7 +19,7 @@ namespace XpertMobileApp.Views
 		{
 			InitializeComponent ();
 
-            itemSelector = new TiersSelector();
+            itemSelector = new CentresSelector();
 
             BindingContext = viewModel = new ManquantsViewModel();
 
@@ -76,7 +76,7 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);            
         }
 
-        private TiersSelector itemSelector;
+        private CentresSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);

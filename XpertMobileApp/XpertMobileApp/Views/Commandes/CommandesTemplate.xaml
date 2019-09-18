@@ -31,7 +31,7 @@
                     
                     <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="En cours" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="{ Binding TOTAL_TTC, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="{ Binding TOTAL_HT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                         <Label Text="{Binding DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>

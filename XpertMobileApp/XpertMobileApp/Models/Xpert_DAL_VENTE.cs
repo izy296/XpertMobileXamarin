@@ -170,9 +170,11 @@ namespace XpertMobileApp.DAL
                 qUANTITE = value;
 
                 MT_TTC = qUANTITE * PRIX_VTE_TTC;
+                MT_HT = qUANTITE * PRIX_VTE_HT;
 
                 OnPropertyChanged("QUANTITE");
                 OnPropertyChanged("MT_TTC");
+                OnPropertyChanged("MT_HT");
             }
         }
     }

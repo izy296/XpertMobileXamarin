@@ -33,6 +33,7 @@
             <local:StatusToBoolPeseeBruteConverter x:Key="statusForPeseeBruteConverter"/>
             <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
             <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
+            <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
             
             
             
