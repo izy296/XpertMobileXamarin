@@ -11,7 +11,7 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_About;
 
-            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("https:www.google.com")));
+            OpenWebCommand = new Command(() => Device.OpenUri(new Uri("http:xpertsoft-dz.com")));
         }
 
         public ICommand OpenWebCommand { get; }
