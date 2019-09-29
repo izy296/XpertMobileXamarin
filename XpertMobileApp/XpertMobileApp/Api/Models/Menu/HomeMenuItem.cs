@@ -15,6 +15,7 @@ namespace XpertMobileApp.Models
         Catalogues,
         MyCommandes,
         Commandes,
+        Sessions,
         Tiers,
         Bordereaux,
         Produits,

@@ -24,6 +24,7 @@ namespace XpertMobileApp.Views
                 menuItems = new List<HomeMenuItem>
                 {
                     new HomeMenuItem {Id = MenuItemType.Home, Image = "", Title=AppResources.pn_home },
+                    new HomeMenuItem {Id = MenuItemType.Sessions, Image = "", Title=AppResources.pn_session },
                     new HomeMenuItem {Id = MenuItemType.Encaissements, Image = "", Title=AppResources.pn_encaissement },
                     new HomeMenuItem {Id = MenuItemType.Ventes, Image = "", Title=AppResources.pn_Ventes },
                     new HomeMenuItem {Id = MenuItemType.Commandes, Image = "", Title=AppResources.pn_Commandes },
@@ -37,7 +38,7 @@ namespace XpertMobileApp.Views
                 };
                 if (Constants.AppName == Apps.XPH_Mob)
                 {
-                    menuItems.Insert(3, new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
+                    menuItems.Insert(4, new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
                     menuItems.Insert(5, new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
                 }
             }

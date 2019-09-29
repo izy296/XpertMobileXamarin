@@ -784,6 +784,46 @@
           <source>Bordereaux</source>
           <target state="new">Bordereaux</target>
         </trans-unit>
+        <trans-unit id="pn_VtePsychotrop" translate="yes" xml:space="preserve">
+          <source>Ventes psychotropes</source>
+          <target state="new">Ventes psychotropes</target>
+        </trans-unit>
+        <trans-unit id="txt_InfosPsyco" translate="yes" xml:space="preserve">
+          <source>Infos psycho</source>
+          <target state="new">Infos psycho</target>
+        </trans-unit>
+        <trans-unit id="txt_Centre" translate="yes" xml:space="preserve">
+          <source>Centre</source>
+          <target state="new">Centre</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Cloture" translate="yes" xml:space="preserve">
+          <source>Montant clôture</source>
+          <target state="new">Montant clôture</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Credits" translate="yes" xml:space="preserve">
+          <source>Crédits</source>
+          <target state="new">Crédits</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Ecart" translate="yes" xml:space="preserve">
+          <source>ÉCART</source>
+          <target state="new">ÉCART</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Retour" translate="yes" xml:space="preserve">
+          <source>Retour</source>
+          <target state="new">Retour</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_TarifCHIFA" translate="yes" xml:space="preserve">
+          <source>Tarif Chifa</source>
+          <target state="new">Tarif Chifa</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_VenteCash" translate="yes" xml:space="preserve">
+          <source>Vente cash</source>
+          <target state="new">Vente cash</target>
+        </trans-unit>
+        <trans-unit id="pn_session" translate="yes" xml:space="preserve">
+          <source>Sessions</source>
+          <target state="new">Sessions</target>
+        </trans-unit>
       </group>
     </body>
   </file>

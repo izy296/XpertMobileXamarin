@@ -114,9 +114,8 @@ namespace XpertMobileApp.DAL
         }
     }
 
-    public partial class TRS_JOURNEES
-    {
-        [PrimaryKey()]
+    public partial class TRS_JOURNEES : BASE_CLASS
+    {        
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_COMPTE { get; set; } // varchar(20)
 
