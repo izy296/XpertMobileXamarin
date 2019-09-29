@@ -72,6 +72,7 @@ namespace XpertMobileApp.Api.ViewModels
 
         protected virtual void InitConstructor()
         {
+            string ctrlName = ContoleurName;
             service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
 
             // Listing

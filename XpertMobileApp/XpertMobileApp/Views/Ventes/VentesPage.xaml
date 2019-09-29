@@ -92,7 +92,7 @@
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
 
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
+            <Frame x:Name="vteGlobalInfos" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>

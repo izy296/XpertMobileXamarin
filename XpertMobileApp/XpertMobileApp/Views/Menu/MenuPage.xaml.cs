@@ -37,7 +37,8 @@ namespace XpertMobileApp.Views
                 };
                 if (Constants.AppName == Apps.XPH_Mob)
                 {
-                    menuItems.Insert(4, new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });                    
+                    menuItems.Insert(3, new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
+                    menuItems.Insert(5, new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
                 }
             }
             else if (Constants.AppName == Apps.XAGRI_Mob)

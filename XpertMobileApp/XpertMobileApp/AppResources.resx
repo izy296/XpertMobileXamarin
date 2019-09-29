@@ -690,4 +690,31 @@
   <data name="pn_Bordereaux" xml:space="preserve">
     <value>Bordereaux</value>
   </data>
+  <data name="pn_VtePsychotrop" xml:space="preserve">
+    <value>Ventes psychotropes</value>
+  </data>
+  <data name="txt_InfosPsyco" xml:space="preserve">
+    <value>Infos psycho</value>
+  </data>
+  <data name="txt_Centre" xml:space="preserve">
+    <value>Centre</value>
+  </data>
+  <data name="txt_Mnt_Cloture" xml:space="preserve">
+    <value>Montant clôture</value>
+  </data>
+  <data name="txt_Mnt_Credits" xml:space="preserve">
+    <value>Crédits</value>
+  </data>
+  <data name="txt_Mnt_Ecart" xml:space="preserve">
+    <value>ÉCART</value>
+  </data>
+  <data name="txt_Mnt_Retour" xml:space="preserve">
+    <value>Retour</value>
+  </data>
+  <data name="txt_Mnt_TarifCHIFA" xml:space="preserve">
+    <value>Tarif Chifa</value>
+  </data>
+  <data name="txt_Mnt_VenteCash" xml:space="preserve">
+    <value>Vente cash</value>
+  </data>
 </root>

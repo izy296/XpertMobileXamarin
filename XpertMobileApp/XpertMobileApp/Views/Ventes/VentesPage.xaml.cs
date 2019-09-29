@@ -16,13 +16,15 @@ namespace XpertMobileApp.Views
 	{
         VentesViewModel viewModel;
 
-        public VentesPage()
+        public VentesPage(string typeVente)
 		{
 			InitializeComponent ();
 
+            vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente;
+
             itemSelector = new TiersSelector();
 
-            BindingContext = viewModel = new VentesViewModel();
+            BindingContext = viewModel = new VentesViewModel(typeVente);
 
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
@@ -57,8 +59,10 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 LoadStats();
 
-          //  if (viewModel.Familles.Count == 0)
-                viewModel.LoadExtrasDataCommand.Execute(null);
+              if ( viewModel.TypeVente == VentesTypes.Vente)
+              {                 
+                    viewModel.LoadExtrasDataCommand.Execute(null);
+              }
         }
 
         private async void LoadStats()

@@ -1060,6 +1060,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes psychotropes.
+        /// </summary>
+        internal static string pn_VtePsychotrop {
+            get {
+                return ResourceManager.GetString("pn_VtePsychotrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Solde tiers.
         /// </summary>
         internal static string SOLDE_TIERS {
@@ -1276,6 +1285,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Centre.
+        /// </summary>
+        internal static string txt_Centre {
+            get {
+                return ResourceManager.GetString("txt_Centre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chauffeur.
         /// </summary>
         internal static string txt_Chauffeur {
@@ -1474,6 +1492,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Infos psycho.
+        /// </summary>
+        internal static string txt_InfosPsyco {
+            get {
+                return ResourceManager.GetString("txt_InfosPsyco", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chargement ....
         /// </summary>
         internal static string txt_Loading {
@@ -1515,6 +1542,60 @@ namespace XpertMobileApp {
         internal static string txt_MarginsByseller {
             get {
                 return ResourceManager.GetString("txt_MarginsByseller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Montant clôture.
+        /// </summary>
+        internal static string txt_Mnt_Cloture {
+            get {
+                return ResourceManager.GetString("txt_Mnt_Cloture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Crédits.
+        /// </summary>
+        internal static string txt_Mnt_Credits {
+            get {
+                return ResourceManager.GetString("txt_Mnt_Credits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à ÉCART.
+        /// </summary>
+        internal static string txt_Mnt_Ecart {
+            get {
+                return ResourceManager.GetString("txt_Mnt_Ecart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Retour.
+        /// </summary>
+        internal static string txt_Mnt_Retour {
+            get {
+                return ResourceManager.GetString("txt_Mnt_Retour", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tarif Chifa.
+        /// </summary>
+        internal static string txt_Mnt_TarifCHIFA {
+            get {
+                return ResourceManager.GetString("txt_Mnt_TarifCHIFA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vente cash.
+        /// </summary>
+        internal static string txt_Mnt_VenteCash {
+            get {
+                return ResourceManager.GetString("txt_Mnt_VenteCash", resourceCulture);
             }
         }
         

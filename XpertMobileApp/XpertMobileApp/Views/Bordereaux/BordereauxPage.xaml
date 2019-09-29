@@ -59,26 +59,26 @@
                     Margin="15, 0, 15, 10"/>
             -->
             <!-- Types manquants -->
-            <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Types}"
-                     ItemDisplayBinding="{Binding NAME}"
-                     SelectedItem="{Binding SelectedType}"
+                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Centre}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Centres}"
+                     ItemDisplayBinding="{Binding CODE}"
+                     SelectedItem="{Binding SelectedCentre}"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TypesPicker"/>
 
             <!-- Types produit -->
-            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Typesproduct}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding TypesProduit}"
-                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                     SelectedItem="{Binding SelectedTypesProduit}"
+                <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding brdStatus}"
+                     ItemDisplayBinding="{Binding DESIGN_ETAT}"
+                     SelectedItem="{Binding SelectedSTATUS}"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TypesProduitPicker"/>
                 
-            <!-- Searched text -->
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Search}" Margin="5, 0, 0, 0"/>
-            <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+            <!-- Searched text -->  
+            <Label IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Search}" Margin="5, 0, 0, 0"/>
+            <Entry IsVisible="False" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
             
             <!-- Button -->

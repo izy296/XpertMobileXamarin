@@ -56,7 +56,7 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
 
-            if (viewModel.Types.Count == 0)
+            if (viewModel.Centres.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
         }
 

@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using SampleBrowser.SfListView;
 using XpertMobileApp.Api;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
@@ -56,7 +57,10 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new AchatFormPage(null, "LF")));
                         break;
                     case (int)MenuItemType.Ventes:
-                        MenuPages.Add(id, new NavigationPage(new VentesPage()));
+                        MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.Vente)));
+                        break;
+                    case (int)MenuItemType.Psychotrop:
+                        MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.VentePSYCO)));
                         break;
                     case (int)MenuItemType.Bordereaux:
                         MenuPages.Add(id, new NavigationPage(new BordereauxPage()));

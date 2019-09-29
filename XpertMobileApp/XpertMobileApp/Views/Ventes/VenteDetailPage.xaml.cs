@@ -35,7 +35,7 @@ namespace XpertMobileApp.Views.Encaissement
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             // TODO put into th generic view model 
-            MessagingCenter.Subscribe<EncaissementsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
+            MessagingCenter.Subscribe<SessionsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
             {
                 // viewModel.Item = item;
             });
@@ -65,6 +65,10 @@ namespace XpertMobileApp.Views.Encaissement
 
                 foreach (var itemC in itemsC)
                 {
+                    if (itemC.PSYCHOTHROPE)
+                    {
+                        InfosPsyco.IsVisible = true;
+                    }
                     viewModel.ItemRows.Add(itemC);
                 }
             }

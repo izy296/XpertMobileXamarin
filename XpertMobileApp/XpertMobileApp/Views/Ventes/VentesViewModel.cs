@@ -12,9 +12,16 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
+    public static class VentesTypes
+    {
+        public static string Vente { get { return "VTE"; } }
+        public static string VentePSYCO { get { return "PSYCO"; } }
+        public static string Livraison { get { return "Liv"; } }
+    }
 
     public class VentesViewModel : CrudBaseViewModel<VTE_VENTE, View_VTE_VENTE>
     {
+        public string TypeVente = VentesTypes.Vente;
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -48,11 +55,39 @@ namespace XpertMobileApp.ViewModels
         public View_BSE_COMPTE SelectedUser { get; set; }
         public Command LoadUsersCommand { get; set; }
 
-        public VentesViewModel()
+        protected override string ContoleurName
         {
-            Title = AppResources.pn_Ventes;
+            get
+            {
+                if (TypeVente == VentesTypes.VentePSYCO)
+                {
+                    return "VTE_PSYCHOTROP";
+                }
+                else
+                {
+                    return "VTE_VENTE";
+                }
+            }
+        }        
 
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+        public VentesViewModel( string typeVente)
+        {
+            TypeVente = typeVente;
+            if (typeVente == VentesTypes.Vente)
+            {
+                Title = AppResources.pn_Ventes;
+            }
+            else if(typeVente == VentesTypes.VentePSYCO)
+            {
+                Title = AppResources.pn_VtePsychotrop;
+            }
+
+            base.InitConstructor();
+
+            if (typeVente == VentesTypes.Vente)
+            { 
+                LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            }
         }
 
         protected override Dictionary<string, string> GetFilterParams()

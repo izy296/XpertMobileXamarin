@@ -102,10 +102,15 @@ namespace XpertMobileApp.DAL
 
     public partial class View_VTE_VENTE : VTE_VENTE
     {
+        public string NOM_MEDECIN { get; set; }
+        public string DESIGNATION_WILAYA_DELIVRE { get; set; }
+        public string DATE_DELIVRE_CARTE { get; set; }
+        public string N_CARTE { get; set; }
+
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
         public decimal TOTAL_RESTE { get; set; } // money(19,4)
         public string NOM_TIERS { get; set; } // varchar(501)
-        public string N_CARTE { get; set; }
+
         public string TITRE_VENTE { get; set; } // varchar(300)
         public string TYPE_DOC { get; set; }
 

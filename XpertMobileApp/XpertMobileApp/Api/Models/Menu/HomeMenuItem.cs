@@ -9,6 +9,7 @@ namespace XpertMobileApp.Models
         Home,
         Encaissements,
         Ventes,
+        Psychotrop,
         Achats,
         Reception,
         Catalogues,

@@ -20,9 +20,9 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_Bordereaux;
 
-            Types = new ObservableCollection<BSE_DOCUMENT_STATUS>();
+            Centres = new ObservableCollection<CFA_CENTRES>();
 
-            TypesProduit = new ObservableCollection<BSE_TABLE_TYPE>();
+            brdStatus = new ObservableCollection<CFA_ETAT>();
 
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
@@ -31,11 +31,13 @@ namespace XpertMobileApp.ViewModels
         {
             Dictionary<string, string> result = base.GetFilterParams();
 
-            if (!string.IsNullOrEmpty(SelectedTypesProduit?.CODE_TYPE))
-                result.Add("idCentre", SelectedTypesProduit?.CODE_TYPE);
+            // result.Add("searchText", SearchedText);
 
-            if (!string.IsNullOrEmpty(SelectedType?.CODE_STATUS))
-                result.Add("etat", SelectedType?.CODE_STATUS);
+            if (!string.IsNullOrEmpty(SelectedCentre?.CODE))
+                     result.Add("idCentre", SelectedCentre?.CODE);
+
+            if (!string.IsNullOrEmpty(SelectedSTATUS?.CODE_ETAT))
+                result.Add("etat", SelectedSTATUS?.CODE_ETAT);
 
             return result;
         }
@@ -59,11 +61,11 @@ namespace XpertMobileApp.ViewModels
 
         public string SearchedText { get; set; }
 
-        public ObservableCollection<BSE_DOCUMENT_STATUS> Types { get; set; }
-        public BSE_DOCUMENT_STATUS SelectedType { get; set; }
+        public ObservableCollection<CFA_CENTRES> Centres { get; set; }
+        public CFA_CENTRES SelectedCentre { get; set; }
 
-        public ObservableCollection<BSE_TABLE_TYPE> TypesProduit { get; set; }
-        public BSE_TABLE_TYPE SelectedTypesProduit { get; set; }
+        public ObservableCollection<CFA_ETAT> brdStatus { get; set; }
+        public CFA_ETAT SelectedSTATUS { get; set; }
 
         async Task ExecuteLoadExtrasDataCommand()
         {
@@ -93,17 +95,17 @@ namespace XpertMobileApp.ViewModels
 
             try
             {
-                TypesProduit.Clear();
-                var itemsC = await WebServiceClient.GetProduitTypes();
+                brdStatus.Clear();
+                var itemsC = await WebServiceClient.getBordereauxSTATUS();
 
-                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                CFA_ETAT allElem = new CFA_ETAT();
+                allElem.CODE_ETAT = "";
+                allElem.DESIGN_ETAT = AppResources.txt_All;
                 itemsC.Add(allElem);
 
                 foreach (var itemC in itemsC)
                 {
-                    TypesProduit.Add(itemC);
+                    brdStatus.Add(itemC);
                 }
             }
             catch (Exception ex)
@@ -119,18 +121,17 @@ namespace XpertMobileApp.ViewModels
 
             try
             {
-                Types.Clear();
-                var itemsC = await WebServiceClient.getManquantsTypes();
+                Centres.Clear();
+                var itemsC = await WebServiceClient.getBordereauxCentresTypes();
 
-                BSE_DOCUMENT_STATUS allElem = new BSE_DOCUMENT_STATUS();
-                allElem.CODE_STATUS = "";
-                allElem.NAME = AppResources.txt_All;
-                allElem.DESCRIPTION = AppResources.txt_All;
-                Types.Add(allElem);
+                CFA_CENTRES allElem = new CFA_CENTRES();
+                allElem.CODE = "";
+                allElem.DESIGNATION = "";
+                Centres.Add(allElem);
 
                 foreach (var itemC in itemsC)
                 {
-                    Types.Add(itemC);
+                    Centres.Add(itemC);
                 }
             }
             catch (Exception ex)

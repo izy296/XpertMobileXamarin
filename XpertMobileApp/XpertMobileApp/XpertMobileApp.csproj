@@ -192,6 +192,9 @@
     <Compile Update="Views\Selector\Emballages\EmballageSelector.xaml.cs">
       <DependentUpon>EmballageSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Sessions\SessionsPage.xaml.cs">
+      <DependentUpon>SessionsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Templates\ProduitTemplate.xaml.cs">
       <DependentUpon>ProduitTemplate.xaml</DependentUpon>
     </Compile>
@@ -337,6 +340,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Views\Ventes Psychotrop\" />
     <Folder Include="Views\Selector\Immariculation\" />
     <Folder Include="WebView\" />
   </ItemGroup>

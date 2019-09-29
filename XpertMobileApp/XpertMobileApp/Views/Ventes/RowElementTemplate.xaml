@@ -24,7 +24,8 @@
                     </StackLayout>
                     
                     <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" 
+                               FontSize="Default"/>
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
