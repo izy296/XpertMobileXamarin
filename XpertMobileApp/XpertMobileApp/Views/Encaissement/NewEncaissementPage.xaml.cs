@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
@@ -91,7 +92,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            if (SelectedTiers == null)
+            if (SelectedTiers == null && Constants.AppName == Apps.XPH_Mob)
             {
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_ThirdNotEmpty, AppResources.alrt_msg_Ok);
                 return;
