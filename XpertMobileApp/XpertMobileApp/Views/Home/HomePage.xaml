@@ -29,11 +29,21 @@
                     <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{i18n:Translate txt_User}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Medium"/>
                         <Label Text="{i18n:Translate txt_Compte}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{i18n:Translate txt_Mnt_Cloture}" TextColor="{StaticResource DefaultTextColor}"/>
                         <Label Text="{i18n:Translate txt_Encaiss}" TextColor="{StaticResource DefaultTextColor}"/>
+<!--
+txt_Mnt_Retour MONT_RETOUR
+txt_Mnt_VenteCash
+txt_Mnt_Credits MONT_CREDIT
+txt_Mnt_Ecart MONT_ECART
+txt_Mnt_TarifCHIFA  TR_CHIFA_PAYE
+-->
+
                     </StackLayout>
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{Binding CurrentSession.USER_SESSION}" TextColor="{StaticResource Primary}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End"/>
                         <Label Text="{Binding CurrentSession.DESIGN_COMPTE}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                        <Label Text="{Binding CurrentSession.MONT_CLOTURE_PH, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                         <Label Text="{Binding CurrentSession.MONT_ENCAISSEMENT, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>
