@@ -25,10 +25,10 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new CommandesViewModel();
 
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, this.GetType().Name, async (obj, selectedItem) =>
             {
-                viewModel.SelectedTiers = selectedItem;
-                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                 viewModel.SelectedTiers = selectedItem;
+                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
 
         }
@@ -88,6 +88,7 @@ namespace XpertMobileApp.Views
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            itemSelector.pargentPage = this;
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }

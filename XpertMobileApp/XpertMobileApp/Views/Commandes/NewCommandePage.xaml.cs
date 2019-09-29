@@ -56,13 +56,13 @@ namespace XpertMobileApp.Views.Encaissement
                 });
             });
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, this.GetType().Name, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-                    viewModel.SelectedTiers = selectedItem;
-                    viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
+                     //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                     viewModel.SelectedTiers = selectedItem;
+                     viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
                 });
             });
 
@@ -174,8 +174,9 @@ namespace XpertMobileApp.Views.Encaissement
 
         private TiersSelector TiersSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(TiersSelector);
+        {            
+                TiersSelector.pargentPage = this;
+                await PopupNavigation.Instance.PushAsync(TiersSelector);            
         }
 
         private void RowScan_Clicked(object sender, EventArgs e)

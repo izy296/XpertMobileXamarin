@@ -12,6 +12,8 @@ namespace XpertMobileApp.Views
     public partial class TiersSelector : PopupPage
     {
 
+        public ContentPage pargentPage;
+
         TiersSelectorViewModel viewModel;
 
         public string SearchedType { get; set; } = "";
@@ -35,7 +37,13 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+            string msg = MCDico.ITEM_SELECTED;
+            if (pargentPage != null)
+            {
+                msg = pargentPage.GetType().Name;
+            }
+
+            MessagingCenter.Send(this, msg, viewModel.SelectedItem);
 
             await PopupNavigation.Instance.PopAsync();
         }
