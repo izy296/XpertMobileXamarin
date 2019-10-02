@@ -51,7 +51,6 @@
                         x:Name="dp_StartDate"                        
                         Format="dd/MM/yyyy"
                         TextColor="Black"
-                        
                         Date="{Binding StartDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
@@ -90,7 +89,8 @@
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"                    
+                    BackgroundColor="{StaticResource DefaultLisViewBackColor}"
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
                 

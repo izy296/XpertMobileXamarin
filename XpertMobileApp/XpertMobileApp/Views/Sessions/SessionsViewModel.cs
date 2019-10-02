@@ -17,7 +17,7 @@ namespace XpertMobileApp.ViewModels
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
 
-        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-15);
 
         public DateTime EndDate { get; set; } = DateTime.Now;
 
@@ -26,7 +26,7 @@ namespace XpertMobileApp.ViewModels
 
         public SessionsViewModel()
         {
-            Title = AppResources.pn_encaissement;
+            Title = AppResources.pn_session;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());

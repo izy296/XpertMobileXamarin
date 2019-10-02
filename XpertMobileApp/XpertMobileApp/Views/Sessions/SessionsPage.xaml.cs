@@ -126,6 +126,7 @@ namespace XpertMobileApp.Views
            // viewModel.LoadItemsCommand.Execute(null);
         }
 
-        #endregion 
+        #endregion
+
     }
 }
