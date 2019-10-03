@@ -717,4 +717,7 @@
   <data name="txt_Mnt_VenteCash" xml:space="preserve">
     <value>Vente cash</value>
   </data>
+  <data name="pn_session" xml:space="preserve">
+    <value>Sessions</value>
+  </data>
 </root>

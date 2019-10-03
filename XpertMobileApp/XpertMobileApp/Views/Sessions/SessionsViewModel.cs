@@ -41,7 +41,9 @@ namespace XpertMobileApp.ViewModels
             result.Add("type", type);            
             result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
-            if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+            result.Add("onlyOpned", "");
+            
+            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 result.Add("codeCompte", SelectedCompte?.CODE_COMPTE);
 
             // result.Add("id_caisse", "all");

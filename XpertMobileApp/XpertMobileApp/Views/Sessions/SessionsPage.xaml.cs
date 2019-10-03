@@ -34,11 +34,11 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as View_TRS_ENCAISS;
+            var item = args.SelectedItem as TRS_JOURNEES;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new EncaissementDetailPage(item));
+            await Navigation.PushAsync(new SessionDetailPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -74,6 +74,7 @@ namespace XpertMobileApp.Views
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
         {
+            /*
             btn_All.BackgroundColor = Color.FromHex("#2196F3");
             btn_Decaiss.BackgroundColor = Color.FromHex("#2196F3");
             btn_Encaiss.BackgroundColor = Color.FromHex("#2196F3");
@@ -82,6 +83,7 @@ namespace XpertMobileApp.Views
             btn.BackgroundColor = Color.FromHex("#51adf6");
 
             LoadStats(GetSelectedType(btn));
+            */
         }
 
         private void LoadStats(EncaissDisplayType type)

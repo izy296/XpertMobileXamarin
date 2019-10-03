@@ -96,6 +96,10 @@ namespace XpertMobileApp.Helpers
         public static string MANQUANTS_URL = "ACH_MANQUANTS";
         public static string MANQUANTS_TYPES_URL = "GetManquantsTypes";
 
+        // Centres bordereaux 
+        public static string BORDEREAUX_URL = "CFA_BORDEREAU";
+        public static string BORDEREAUX_CENTRES_URL = "GetBordereauxCentres";
+        public static string BORDEREAUX_ETAT_URL = "GetBordereauxStatus";
 
         // RFID
         public static string RFID_URL = "RFID";

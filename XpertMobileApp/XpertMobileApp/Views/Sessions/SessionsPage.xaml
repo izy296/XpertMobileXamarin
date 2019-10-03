@@ -122,12 +122,12 @@
             </ListView>
         </StackLayout>
 
-        <!-- Type listing filter  -->
+        <!-- Type listing filter 
         <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="Fill">
             <Button x:Name="btn_All" ClassId="all" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_All}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
             <Button x:Name="btn_Encaiss" ClassId="Encaiss" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Encaiss}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
             <Button x:Name="btn_Decaiss" ClassId="Decaiss" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Decaiss}" Style="{DynamicResource DefaultBtnStyle}" Clicked="TypeFilter_Clicked"></Button>
-        </StackLayout>
+        </StackLayout> -->
     </StackLayout>
 </ContentPage>

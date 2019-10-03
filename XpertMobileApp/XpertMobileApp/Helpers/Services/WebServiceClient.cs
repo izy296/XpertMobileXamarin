@@ -111,6 +111,19 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
         }
 
+        internal static async Task<List<CFA_CENTRES>> getBordereauxCentresTypes()
+        { 
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_CENTRES_URL);
+
+            return await RetrievAauthorizedData<CFA_CENTRES>(url);
+        }
+
+        internal static async Task<List<CFA_ETAT>> getBordereauxSTATUS()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_ETAT_URL);
+
+            return await RetrievAauthorizedData<CFA_ETAT>(url);
+        }
 
         #endregion
 

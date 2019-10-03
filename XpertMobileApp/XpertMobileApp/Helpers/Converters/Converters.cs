@@ -17,7 +17,6 @@ using Xamarin.Forms.Internals;
 namespace XpertMobileApp.Converters
 {
     [Preserve(AllMembers = true)]
-
     public class InverseZeroVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -33,6 +32,22 @@ namespace XpertMobileApp.Converters
         }
     }
 
+    [Preserve(AllMembers = true)]
+    public class CloturedIfTrueConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            bool val = (bool)value;
+            return val ? "Cloturé":"";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    [Preserve(AllMembers = true)]
     public class InverseBoolVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

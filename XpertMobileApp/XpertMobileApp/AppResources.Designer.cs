@@ -1042,6 +1042,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Sessions.
+        /// </summary>
+        internal static string pn_session {
+            get {
+                return ResourceManager.GetString("pn_session", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string pn_Tiers {

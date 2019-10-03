@@ -192,6 +192,12 @@
     <Compile Update="Views\Selector\Emballages\EmballageSelector.xaml.cs">
       <DependentUpon>EmballageSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Sessions\SessionDetailPage.xaml.cs">
+      <DependentUpon>SessionDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sessions\SessionTemplate.xaml.cs">
+      <DependentUpon>SessionTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Sessions\SessionsPage.xaml.cs">
       <DependentUpon>SessionsPage.xaml</DependentUpon>
     </Compile>

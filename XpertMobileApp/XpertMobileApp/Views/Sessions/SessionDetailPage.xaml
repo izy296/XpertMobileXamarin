@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Encaissement.SessionDetailPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{Binding Title}">
+
+    <ScrollView Orientation="Vertical" VerticalOptions="Fill" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
+        
+        <StackLayout Spacing="0" BackgroundColor="Transparent" >
+
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <Label Text="{Binding Item.POSTE_DEBUT, StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Journée du " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding Item.DATE_JOURNEE,  StringFormat='{0:dd/MM/yyyy}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <Label Text="Montant clôture" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_CLOTURE_TH, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <Label Text="Caisse théorique" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_CLOTURE_PH, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <Label Text="Écart" TextColor="Black" FontAttributes="Bold" 
+                                   FontSize="Medium"/>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_ECART, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="OrangeRed"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+
+
+        </StackLayout>
+
+
+    </ScrollView>
+
+</ContentPage>    
