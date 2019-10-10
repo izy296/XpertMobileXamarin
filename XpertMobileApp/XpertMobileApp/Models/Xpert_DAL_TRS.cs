@@ -115,7 +115,13 @@ namespace XpertMobileApp.DAL
     }
 
     public partial class TRS_JOURNEES : BASE_CLASS
-    {        
+    {
+
+        public override string ToString()
+        {
+            return  string.Format("{0} ({1})", DEBUTEE_PAR, POSTE_DEBUT);
+        }
+
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_COMPTE { get; set; } // varchar(20)
 

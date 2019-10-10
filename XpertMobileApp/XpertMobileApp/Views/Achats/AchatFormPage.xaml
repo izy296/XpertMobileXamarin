@@ -121,8 +121,8 @@
             <!-- Details Bar -->
             <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
                 <Label Text="{i18n:Translate txt_Details}" Margin="5,0,0,0" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
-                <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
-                <Button x:Name="btn_RowScan" BackgroundColor="Transparent" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
+                <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" IsEnabled="False" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
+                <Button x:Name="btn_RowScan" BackgroundColor="Transparent" IsEnabled="False" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
             </StackLayout>
 
             <ScrollView Padding="0" Margin="0">
@@ -169,22 +169,22 @@
                                             <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
                                                 <StackLayout>
                                                     <!-- Designation -->
-                                                    <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                                                    <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5"
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontAttributes="Bold" FontSize="Default"/>
 
                                                     <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
                                                         <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="100" />
+                                                            <ColumnDefinition Width="90" />
                                                             <ColumnDefinition Width="*" />
                                                             <ColumnDefinition Width="25"/>
                                                         </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
-                                                            <RowDefinition Height="30" />
-                                                            <RowDefinition Height="30" />
-                                                            <RowDefinition Height="30" />
-                                                            <RowDefinition Height="30" />
-                                                            <RowDefinition Height="30" />
+                                                            <RowDefinition Height="35" />
+                                                            <RowDefinition Height="35" />
+                                                            <RowDefinition Height="35" />
+                                                            <RowDefinition Height="35" />
+                                                            <RowDefinition Height="35" />
                                                         </Grid.RowDefinitions>
 
                                                         <!-- Pesée brute -->
@@ -194,24 +194,27 @@
                                                             Text="{ Binding QTE_BRUTE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
                                                         
-                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" VerticalOptions="Start"
-                                                         Minimum="0" FontSize="12" Margin="0,-15,0,0"
-                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pb_{0}'}"
+                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0"
+                                                         Minimum="0" FontSize="12" Margin="0,-10,0,0"  VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding QTE_BRUTE}"
                                                          ValueChanged="ne_PeseeBruteChanged"
                                                          IsEnabled="{Binding ., Converter={StaticResource enablePeseeBruteConverter}}"                           
-                                                         IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
+                                                         IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"
+                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pb_{0}'}"/>
                                                          
                                                         <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <!-- Déchets -->
                                                         <Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
-                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1" Minimum="0" Margin="0,-15,0,0"  HeightRequest="20"
-                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
-                                                         SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" FontSize="12"
+
+                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1"  
+                                                         Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
+                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                                         SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" 
+                                                         ValueChanged="ne_tauxDechetsChanged"
                                                          IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
-                                                         ValueChanged="ne_tauxDechetsChanged"/>
+                                                        />
                                                         <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
 
                                                         <!-- Qte déchets -->
@@ -231,12 +234,12 @@
 
                                                         <Label Grid.Column="1" Grid.Row="3"
                                                             Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" 
-                                                             IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
+                                                             IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start" VerticalOptions="Start"/>
 
-                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" VerticalOptions="Start"
-                                                         Minimum="0" FontSize="12" Margin="0,-15,0,0" 
-                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pn_{0}'}"
+                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" 
+                                                         Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                                         ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pn_{0}'}"
                                                          SelectAllOnFocus="True" Value="{Binding QUANTITE}"
                                                          ValueChanged="ne_QteNetChanged"
                                                          IsEnabled="{Binding ., Converter={StaticResource enablePeseeNetConverter}}"   
@@ -246,11 +249,12 @@
                                                         
                                                         <!-- Prix -->
                                                         <Label Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
-                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" Minimum="0" Margin="0,-15,0,0"
+                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
+                                                             Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
                                                              IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
-                                                             FontSize="12" ValueChanged="ne_PeseeTTCChanged"
+                                                              ValueChanged="ne_PeseeTTCChanged"
                                                              />
                                                         <Label Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
                                                     </Grid>
@@ -284,7 +288,7 @@
                                                             IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                             Clicked="Btn_SelectCaiss_Clicked" VerticalOptions="Center"/>
 
-                                                <Label Grid.Column="2" Text="{ Binding Nbr_Caisses, StringFormat=' Caisses : ({0})'}" 
+                                                <Label Grid.Column="2" Text="{ Binding Nbr_Caisses, StringFormat=' Caisses : ({0:N0})'}" 
                                                                FontSize="Default" HorizontalOptions="Start"
                                                                HorizontalTextAlignment="Start" VerticalOptions="Center" TextColor="Chocolate"/>
                                                 

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.Models;
@@ -28,10 +29,10 @@ namespace XpertMobileApp.ViewModels
             }
             set
             {
+                clearInfos();
                 currentEmballages = value;
 
                 if (currentEmballages == null) return;
-
                 foreach (var emb in currentEmballages)
                 {
                     var itm = Items.Where(x => x.CODE == emb.CODE_EMBALLAGE).FirstOrDefault();
@@ -42,6 +43,16 @@ namespace XpertMobileApp.ViewModels
                         itm.QUANTITE_VIDE = emb.QUANTITE_VIDE;
                     }
                 }
+            }
+        }
+
+        private void clearInfos()
+        {
+            foreach (var itm in Items)
+            {
+                itm.QUANTITE_ENTREE = 0;
+                itm.QUANTITE_SORTIE = 0;
+                itm.QUANTITE_VIDE = 0;
             }
         }
 

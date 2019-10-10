@@ -76,7 +76,7 @@ namespace XpertMobileApp.Views
                     App.User   = user;
 
                     // Alerte apres la connexion
-                     DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+                    // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                     // suavegrade du user et du token en cours dans la bdd local
 

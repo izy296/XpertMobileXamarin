@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -81,7 +82,14 @@ namespace XpertMobileApp.Views
                     {
                         item.CODE_EMBALLAGE = item.CODE;
                     }
-                    currentRow.Embalages = items;
+                    var embs = items.Where(e=> e.QUANTITE_ENTREE != 0 || e.QUANTITE_SORTIE != 0).ToList();
+
+                    var embalages = new List<View_BSE_EMBALLAGE>();
+                    foreach (var item in embs)
+                    {
+                        embalages.Add(XpertHelper.CloneObject<View_BSE_EMBALLAGE>(item));
+                    }
+                    currentRow.Embalages = embalages;
 
                     UpdatePeseeInfos();
                 });

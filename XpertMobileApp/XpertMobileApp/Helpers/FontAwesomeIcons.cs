@@ -153,5 +153,50 @@ namespace FontAwesome
         /// </summary>
         public const string Cube = "\uf1b2";
 
+        /// <summary>
+        /// fa-money-bill-wave unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/money-bill-wave
+        /// </summary>
+        public const string MoneyBillWave = "\uf53a";
+
+        /// <summary>
+        /// fa-calendar-alt unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular, Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/calendar-alt
+        /// </summary>
+        public const string CalendarAlt = "\uf073";
+
+        /// <summary>
+        /// fa-exchange-alt unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/exchange-alt
+        /// </summary>
+        public const string ExchangeAlt = "\uf362";
+
+        /// <summary>
+        /// fa-info unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/info
+        /// </summary>
+        public const string Info = "\uf129";
+
+        /// <summary>
+        /// fa-info-circle unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/info-circle
+        /// </summary>
+        public const string InfoCircle = "\uf05a";
+
     }
 }

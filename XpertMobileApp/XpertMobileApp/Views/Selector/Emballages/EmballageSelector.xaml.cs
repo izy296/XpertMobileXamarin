@@ -47,12 +47,17 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new EmballageSelectorViewModel();
+
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.LoadItemsCommand.Execute(null);
+            if(viewModel.Items.Count == 0)
+            {
+               // viewModel.LoadItemsCommand.Execute(null);
+            }
         }
 
         private async void OnClose(object sender, EventArgs e)
