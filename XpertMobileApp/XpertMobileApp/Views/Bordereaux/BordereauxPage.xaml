@@ -103,7 +103,7 @@
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     CachingStrategy="RecycleElement"
-                    BackgroundColor="#F2F1EF"
+                    BackgroundColor="{StaticResource DefaultLisViewBackColor}"
                     ItemSelected="OnItemSelected">
 
                 <ListView.Behaviors>

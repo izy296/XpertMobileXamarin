@@ -28,7 +28,7 @@
 
     </ContentPage.ToolbarItems>
 
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout VerticalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
         <!-- Filter -->
         <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
@@ -82,16 +82,17 @@
         </StackLayout>
 
         <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand" Padding="0,5,0,0" Margin="0" Spacing="0" BackgroundColor="Transparent">
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
+                    SeparatorVisibility="None"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"                    
-                    BackgroundColor="{StaticResource DefaultLisViewBackColor}"
-                    CachingStrategy="RecycleElement"
+                    BackgroundColor="Transparent"
+                    CachingStrategy="RecycleElement"                     
                     ItemSelected="OnItemSelected">
                 
                 <ListView.Behaviors>
@@ -100,7 +101,7 @@
                 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell >
                             <template:SessionTemplate />
                         </ViewCell>
                     </DataTemplate>

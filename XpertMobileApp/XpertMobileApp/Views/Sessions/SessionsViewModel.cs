@@ -44,7 +44,7 @@ namespace XpertMobileApp.ViewModels
             result.Add("onlyOpned", "");
             
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("codeCompte", SelectedCompte?.CODE_COMPTE);
+                result.Add("compte", SelectedCompte?.CODE_COMPTE);
 
             // result.Add("id_caisse", "all");
             // result.Add("codeMotif", "all");
