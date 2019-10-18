@@ -114,6 +114,9 @@
     <Compile Update="Views\Achats\AchatsTemplate.xaml.cs">
       <DependentUpon>AchatsTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Analyses\AchatsAnalysesPage.xaml.cs">
+      <DependentUpon>AchatsAnalysesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
       <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
     </Compile>
@@ -233,6 +236,9 @@
     </Compile>
     <Compile Update="Views\Templates\ProductSelectorTemplate.xaml.cs">
       <DependentUpon>ProductSelectorTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Tiers\NewTiersPopupPage.xaml.cs">
+      <DependentUpon>NewTiersPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Ventes\VenteDetailPage.xaml.cs">
       <DependentUpon>VenteDetailPage.xaml</DependentUpon>

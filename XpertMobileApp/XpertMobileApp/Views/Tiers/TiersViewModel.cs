@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -16,8 +17,26 @@ namespace XpertMobileApp.ViewModels
 {
      public class TiersViewModel : CrudBaseViewModel<TRS_TIERS, View_TRS_TIERS>
      {
-        
-         public TiersViewModel()
+
+        public bool hasViewSolde
+        {
+            get
+            {
+                if (App.HasAdmin)
+                {
+                    return true;
+                }
+                bool result = false;
+                if (App.permissions != null)
+                {
+                    var obj = App.permissions.Where(x => x.CodeObjet == "BSE_TIERS_FAMILLE_SOLDE").FirstOrDefault();
+                    result = obj != null && obj.AcSelect > 0;
+                }
+                return result;
+            }
+        }
+
+        public TiersViewModel()
          {
              Title = AppResources.pn_Tiers;
 
@@ -51,6 +70,7 @@ namespace XpertMobileApp.ViewModels
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
+                item.SOLDE_TIERS_TXT = hasViewSolde ? "S. " + item.SOLDE_TIERS.ToString("N2") + " DA" : "";
             }
          }
 

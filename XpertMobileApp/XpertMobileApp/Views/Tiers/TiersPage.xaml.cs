@@ -45,10 +45,14 @@ namespace XpertMobileApp.Views
             ItemsListView.SelectedItem = null;                        
     */    
     }
-
+        NewTiersPage form;
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            if (form == null)
+            {
+                form = new NewTiersPage(null);
+            }
+            await Navigation.PushModalAsync(new NavigationPage(form));
         }
 
         protected override void OnAppearing()
