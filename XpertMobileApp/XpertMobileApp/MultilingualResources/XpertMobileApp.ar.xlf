@@ -823,6 +823,40 @@
           <source>Sessions</source>
           <target state="new">Sessions</target>
         </trans-unit>
+        <trans-unit id="txt_Cat_DocumentSaved" translate="yes" xml:space="preserve">
+          <source>Document enregistré avec succès !
+</source>
+          <target state="new">Document enregistré avec succès !
+</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_DocumentUpdated" translate="yes" xml:space="preserve">
+          <source>Document modifié avec succès !</source>
+          <target state="new">Document modifié avec succès !</target>
+        </trans-unit>
+        <trans-unit id="tct_Type" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target state="new">Type</target>
+        </trans-unit>
+        <trans-unit id="txt_Categorie" translate="yes" xml:space="preserve">
+          <source>Famille</source>
+          <target state="new">Famille</target>
+        </trans-unit>
+        <trans-unit id="txt_LastName" translate="yes" xml:space="preserve">
+          <source>Prénom</source>
+          <target state="new">Prénom</target>
+        </trans-unit>
+        <trans-unit id="txt_Name" translate="yes" xml:space="preserve">
+          <source>Nom</source>
+          <target state="new">Nom</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalAchatsByProduct" translate="yes" xml:space="preserve">
+          <source>Achat par produit</source>
+          <target state="new">Achat par produit</target>
+        </trans-unit>
+        <trans-unit id="txt_phone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="new">Téléphone</target>
+        </trans-unit>
       </group>
     </body>
   </file>

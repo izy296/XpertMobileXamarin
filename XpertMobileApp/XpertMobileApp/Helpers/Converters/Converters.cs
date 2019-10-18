@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Converters
 {

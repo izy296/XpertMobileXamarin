@@ -24,6 +24,7 @@ namespace XpertMobileApp.Models
         rfid,
         invrfid,
         EncAnalyses,
+        AchatAgroAnalyses,
         About
     }
     public class HomeMenuItem

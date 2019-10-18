@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -74,6 +76,8 @@ namespace XpertMobileApp.Views
                     user.GroupName  = token.GroupName;
                     user.Token = token;
                     App.User   = user;
+
+                    List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
 
                     // Alerte apres la connexion
                     // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");

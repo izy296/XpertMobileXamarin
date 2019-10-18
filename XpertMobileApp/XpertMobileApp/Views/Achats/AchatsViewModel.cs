@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -16,7 +17,9 @@ namespace XpertMobileApp.ViewModels
     public class AchatsViewModel : CrudBaseViewModel<ACH_DOCUMENT, View_ACH_DOCUMENT>
     {
 
+
         public string TypeDoc { get; set; } = "LF";
+
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -30,6 +33,22 @@ namespace XpertMobileApp.ViewModels
         {
             get { return totalMargin; }
             set { SetProperty(ref totalMargin, value); }
+        }
+
+        public bool hasEditHeader
+        {
+            get
+            {
+                if (App.HasAdmin) return true;
+
+                bool result = false;
+                if (App.permissions != null)
+                {
+                    var obj = App.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_ENTETE").FirstOrDefault();
+                    result = obj != null && obj.AcUpdate > 0;
+                }
+                return result;
+            }
         }
 
         public View_TRS_TIERS SelectedTiers { get; set; }
@@ -99,7 +118,7 @@ namespace XpertMobileApp.ViewModels
             // result.Add("idCaisse", "all");
             result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
-
+            result.Add("codeMotif", "ES10");
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 result.Add("codeClient", SelectedTiers?.CODE_TIERS);
 

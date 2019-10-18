@@ -6,6 +6,8 @@ using XpertMobileApp.ViewModels;
 using XpertMobileApp.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
+using XpertMobileApp.Models;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views
 {
@@ -23,6 +25,12 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new TiersSelectorViewModel();
+
+            MessagingCenter.Subscribe<MsgCenter, View_TRS_TIERS>(this, MCDico.ITEM_ADDED, async (obj, item) =>
+            {
+                if(viewModel.Items.Count>0)
+                    viewModel.Items.Insert(1, item);
+            });
         }
 
         protected override void OnAppearing()
@@ -56,6 +64,17 @@ namespace XpertMobileApp.Views
         async void btn_Search_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        NewTiersPopupPage form;
+        private async void btn_Add_Clicked(object sender, EventArgs e)
+        {
+            if (form == null)
+            { 
+                form = new NewTiersPopupPage(null);
+            }
+            await PopupNavigation.Instance.PushAsync(form);
+         //   await Navigation.PushModalAsync(new NavigationPage(form));
         }
     }
 }

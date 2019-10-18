@@ -149,7 +149,7 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        async Task ExecuteUpdateItemCommand(TView item)
+        public async Task ExecuteUpdateItemCommand(TView item)
         {
             if (IsBusy)
                 return;
@@ -175,7 +175,7 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        async Task ExecuteDeleteItemCommand(string codeItem)
+        public async Task ExecuteDeleteItemCommand(string codeItem)
         {
             if (IsBusy)
                 return;
@@ -201,7 +201,7 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        async Task ExecuteAddItemCommand(TView item)
+        public async Task ExecuteAddItemCommand(TView item)
         {
             if (IsBusy)
                 return;

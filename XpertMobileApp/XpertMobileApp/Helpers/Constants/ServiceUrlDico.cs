@@ -44,6 +44,8 @@ namespace XpertMobileApp.Helpers
 
         public static string MARGE_PAR_VENDEUR_URL = "MarginByUser";
 
+        public static string ACHAT_AGRO_INFOS_URL = "GetAchatsInfos";
+
         public static string TOTAL_MARGE_PAR_VENDEUR_URL = "GetTotalMargin";
         
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
@@ -73,7 +75,7 @@ namespace XpertMobileApp.Helpers
         public static string ACH_ACHATS = "ACH_ACHATS";
 
         public static string ACHATS_DETAILS_URL = "GetAchatsDetails";
-
+        public static string ACHATS_PESEE_URL = "GetPesee";
         public static string ACHATS_IMMATRICULATIONS_URL = "GetImmatriculations";
 
         // Produits

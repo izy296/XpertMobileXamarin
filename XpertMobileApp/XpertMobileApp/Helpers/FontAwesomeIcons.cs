@@ -198,5 +198,14 @@ namespace FontAwesome
         /// </summary>
         public const string InfoCircle = "\uf05a";
 
+        /// <summary>
+        /// fa-sync unicode value.
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular (Pro), Solid
+        /// <para/>
+        /// See https://fontawesome.com/icons/sync
+        /// </summary>
+        public const string Sync = "\uf021";
+
     }
 }

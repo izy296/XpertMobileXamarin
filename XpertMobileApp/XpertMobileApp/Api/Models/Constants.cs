@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xpert.Common.WSClient.Model;
+using Xpert.Common.WSClient.Services;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api
 {
@@ -19,5 +22,6 @@ namespace XpertMobileApp.Api
         public static string AppName = Apps.XAGRI_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
+
     }
 }

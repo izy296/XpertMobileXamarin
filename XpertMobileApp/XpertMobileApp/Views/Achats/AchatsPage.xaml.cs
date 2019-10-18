@@ -1,11 +1,13 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
@@ -16,6 +18,9 @@ namespace XpertMobileApp.Views
 	{
         private string typeDoc = "LF"; 
         AchatsViewModel viewModel;
+
+        SYS_MOBILE_PARAMETRE parames;
+        List<SYS_OBJET_PERMISSION> permissions;
 
         public AchatsPage()
 		{
@@ -35,7 +40,6 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
-
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -55,12 +59,25 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new AchatFormPage(null, typeDoc));
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                LoadStats();
+            parames = await App.GetSysParams();
+            permissions = await App.GetPermissions();
+
+            if (!App.HasAdmin)
+            {
+                ApplyVisibility();
+            }
+
+            //if (viewModel.Items.Count == 0)
+            LoadStats();
+        }
+
+        private void ApplyVisibility()
+        {
+            btn_Additem.IsEnabled = viewModel.hasEditHeader;
         }
 
         private async void LoadStats()
@@ -92,7 +109,7 @@ namespace XpertMobileApp.Views
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
-            itemSelector.SearchedType = "F";
+            itemSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }

@@ -720,4 +720,29 @@
   <data name="pn_session" xml:space="preserve">
     <value>Sessions</value>
   </data>
+  <data name="txt_Cat_DocumentSaved" xml:space="preserve">
+    <value>Document enregistré avec succès !
+</value>
+  </data>
+  <data name="txt_Cat_DocumentUpdated" xml:space="preserve">
+    <value>Document modifié avec succès !</value>
+  </data>
+  <data name="tct_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="txt_Categorie" xml:space="preserve">
+    <value>Famille</value>
+  </data>
+  <data name="txt_LastName" xml:space="preserve">
+    <value>Prénom</value>
+  </data>
+  <data name="txt_Name" xml:space="preserve">
+    <value>Nom</value>
+  </data>
+  <data name="txt_TotalAchatsByProduct" xml:space="preserve">
+    <value>Achat par produit</value>
+  </data>
+  <data name="txt_phone" xml:space="preserve">
+    <value>Téléphone</value>
+  </data>
 </root>

@@ -30,10 +30,19 @@ namespace XpertMobileApp
 
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
+
         public static MsgCenter MsgCenter = new MsgCenter();
 
-        private static SYS_MOBILE_PARAMETRE sysParams;
 
+        public static bool HasAdmin
+        {
+            get
+            {
+                return User.UserGroup == "AD";
+            }
+        }
+
+        private static SYS_MOBILE_PARAMETRE sysParams;
         public static async Task<SYS_MOBILE_PARAMETRE> GetSysParams()
         {
             if (sysParams == null)

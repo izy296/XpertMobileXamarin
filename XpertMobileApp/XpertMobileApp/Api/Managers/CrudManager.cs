@@ -18,5 +18,8 @@ namespace XpertMobileApp.Api.Managers
         internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();
 
         internal static SYS_PERMISSIONS_Manager Permissions = new SYS_PERMISSIONS_Manager();
+
+
+        internal static CrudService<View_TRS_TIERS> TiersService = new CrudService<View_TRS_TIERS>(App.RestServiceUrl, "TRS_TIERS", App.User.Token);
     }
 }

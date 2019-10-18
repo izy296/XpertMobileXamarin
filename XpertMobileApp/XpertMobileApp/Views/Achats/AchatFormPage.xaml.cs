@@ -102,6 +102,11 @@ namespace XpertMobileApp.Views
                     this.RemoveNewRow(selectedItem);
                 });
             });
+
+            if (viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC))
+            {
+                viewModel.LoadRowsCommand.Execute(null);
+            }
         }
 
         protected override async void OnAppearing()
@@ -113,15 +118,15 @@ namespace XpertMobileApp.Views
 
             viewModel.ImmatriculationList = await GetImmatriculations("");
 
-            ApplyVisibility();
+            if (!App.HasAdmin)
+            { 
+                ApplyVisibility();
+            }
 
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
 
-            if (viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC))
-            { 
-                viewModel.LoadRowsCommand.Execute(null);
-            }
+
         }
 
         private void ApplyVisibility()
@@ -345,7 +350,7 @@ namespace XpertMobileApp.Views
                 qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - viewModel.Item.PESEE_SORTIE;
                 if(principalItem.Embalages != null)
                 {                
-                   qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - (viewModel.Item.PESEE_SORTIE - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE));
+                   qteNetPrimaireInitial = qteNetPrimaireInitial - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
                 }
 
                 // 1 - Calcul de la quantité net primaire du produit principal
@@ -443,14 +448,22 @@ namespace XpertMobileApp.Views
         private ProductSelector itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(viewModel?.Item?.CODE_DOC))
+            {
+                await UserDialogs.Instance.AlertAsync("Vous devez valider l'en-têtes avant de pouvoir ajouter des produits !", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+
+                return;
+            }
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
             await PopupNavigation.Instance.PushAsync(itemSelector);
+
         }
 
         private TiersSelector TiersSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
-            TiersSelector.SearchedType = "F";
+            TiersSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(TiersSelector);
         }
 
@@ -459,7 +472,7 @@ namespace XpertMobileApp.Views
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
             currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
-            EmballageSelector.IS_PRINCIPAL = currentRow.IS_PRINCIPAL;
+            EmballageSelector.IS_PRINCIPAL = currentRow.IS_PRINCIPAL || viewModel.Item.PESEE_ENTREE == 0;
             await PopupNavigation.Instance.PushAsync(EmballageSelector);
 
             EmballageSelector.CurrentEmballages = currentRow.Embalages;
@@ -744,6 +757,12 @@ namespace XpertMobileApp.Views
                     return;
                 }
 
+                if (string.IsNullOrEmpty(viewModel.Item.IMMATRICULATION))
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez saisir l'immatriculation!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
+
                 /*
                 if (viewModel.Item.PESEE_ENTREE <= 0)
                 {
@@ -772,7 +791,8 @@ namespace XpertMobileApp.Views
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.AddItemAsync(viewModel.Item);
 
-                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_DocumentSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        
                     }
                     finally
                     {
@@ -790,7 +810,7 @@ namespace XpertMobileApp.Views
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
-                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_DocumentUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                     finally
                     {
@@ -847,7 +867,60 @@ namespace XpertMobileApp.Views
             }
         }
 
+        private async void btn_Pentree_Clicked(object sender, EventArgs e)
+        {
 
+            decimal result = 0;
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                 result = await WebServiceClient.GetPesse();
+                ne_PESEE_ENTREE.Value = result;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        private async void btn_PSortie_Clicked(object sender, EventArgs e)
+        {
+            decimal result = 0;
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                result = await WebServiceClient.GetPesse();
+                ne_PESEE_SORTIE.Value = result;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
     }
 
     public class AutoCompleteRenderer : Syncfusion.SfAutoComplete.XForms.SfAutoComplete

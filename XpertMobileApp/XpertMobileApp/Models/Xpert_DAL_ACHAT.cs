@@ -17,6 +17,16 @@ namespace XpertMobileApp.DAL
         public static string Cloture { get { return "19"; } }
     }
 
+    public class STAT_ACHAT_AGRO
+    {
+        public DateTime? DATE_DOC { get; set; } // datetime(3)
+        public string CODE_PRODUIT { get; set; } // varchar(20)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(20)
+        public decimal Qte_Dechet { get; set; } // varchar(50)
+        public decimal Qte_Net { get; set; } // varchar(50)
+        public decimal Montant { get; set; } // varchar(50)
+    }
+
     public partial class ACH_DOCUMENT : BASE_CLASS
     {
         public string CODE_DOC { get; set; } // varchar(50)
@@ -424,15 +434,18 @@ namespace XpertMobileApp.DAL
             {
                 embalages = value;
                 // ParentDoc.PSEE_UPDATED = true;
+                decimal diff = Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                Diff_Poids_Caisses = diff >= 0 ? "+" + diff.ToString("N0") : "-" + diff.ToString("N0");
 
                 Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
                 Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
 
-                OnPropertyChanged("Nbr_Caisses");
+                OnPropertyChanged("Diff_Poids_Caisses");
                 OnPropertyChanged("Poids_Caisses");
                 OnPropertyChanged("MT_TTC");
             }
         }
+        public string Diff_Poids_Caisses { get; set; }
 
         public decimal Nbr_Caisses { get; set; }
         private decimal Poids_Caisses { get; set; }

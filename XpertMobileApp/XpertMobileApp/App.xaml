@@ -35,7 +35,6 @@
             <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
             <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
-            
 
             <!--Global Styles-->
 
@@ -44,7 +43,7 @@
             <Color x:Key="LightTextColor">#999999</Color>
             <Color x:Key="DefaultTextColor">#000</Color>
             <Color x:Key="DefaultGrayColor">#808080</Color>
-            <Color x:Key="DefaultLisViewBackColor">#F2F1EF</Color>
+            <Color x:Key="DefaultLisViewBackColor">#F4F3F2</Color>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             
             <Style TargetType="NavigationPage">

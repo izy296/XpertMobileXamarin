@@ -20,6 +20,7 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
+                if (App.HasAdmin) return true;
                 bool result = false;
                 if (App.permissions != null)
                 {
@@ -34,6 +35,7 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
+                if (App.HasAdmin) return true;
                 bool result = false;
                 if (App.permissions != null)
                 {
@@ -48,6 +50,7 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
+                if (App.HasAdmin) return true;
                 bool result = false;
                 if (App.permissions != null)
                 {

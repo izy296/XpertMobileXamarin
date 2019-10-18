@@ -258,6 +258,9 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE { get; set; } // varchar(50)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
         public decimal SOLDE_TIERS { get; set; } // money(19,4)        
+
+        public string SOLDE_TIERS_TXT { get; set; } // money(19,4)        
+
         public short STATUT_TIERS { get; set; } // 
         public DateTime? LAST_CREANCE { get; set; } // datetime(3)
         public DateTime? LAST_ENCAISS { get; set; } // datetime(3)

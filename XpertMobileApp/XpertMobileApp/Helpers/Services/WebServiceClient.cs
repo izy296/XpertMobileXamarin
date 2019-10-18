@@ -62,6 +62,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<STAT_VTE_BY_USER>(url);
         }
 
+        internal static async Task<List<STAT_ACHAT_AGRO>> GetAchat(DateTime? startDate, DateTime? endDate)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.ACHAT_AGRO_INFOS_URL);
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
+
+            return await RetrievAauthorizedData<STAT_ACHAT_AGRO>(url);
+        }
         internal static async Task<STAT_VTE_BY_USER> GetTotalMargeParVendeur(DateTime? startDate, DateTime? endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.DASHBOARD_URL, ServiceUrlDico.TOTAL_MARGE_PAR_VENDEUR_URL);
@@ -195,6 +203,13 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "codeDoc", codeDoc);
 
             return await RetrievAauthorizedData<View_ACH_DOCUMENT_DETAIL>(url);
+        }
+
+        public static async Task<decimal> GetPesse()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACHATS_PESEE_URL);
+            decimal result = await RetrievValAauthorizedData<decimal>(url);
+            return result;
         }
 
         public static async Task<List<string>> GetImmatriculations(string str)

@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-                 xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
-                 xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-                 x:Class="XpertMobileApp.Views.ProductSelector">
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             x:Class="XpertMobileApp.Views.ProductSelector">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
     <StackLayout BackgroundColor="White">
 
@@ -21,9 +22,18 @@
 
             <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
                    Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
+           
+           <!--
             <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
                         Clicked="btn_Search_Clicked" />
-       </Grid>
+            -->
+
+             <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Search_Clicked"/>
+            </Grid>
 
        <!-- Listing -->
        <ListView x:Name="ItemsListView"

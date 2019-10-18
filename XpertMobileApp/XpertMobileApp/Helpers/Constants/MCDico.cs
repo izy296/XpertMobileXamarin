@@ -28,5 +28,7 @@ namespace XpertMobileApp.Helpers
         // Catalogue 
         public static string Add_TO_CART = "Update_Item";
         public static string DATA_COUNT_LOADED = "DATA_COUNT_LOADED";
+
+        public static string ITEM_ADDED = "ITEM_ADDED";
     }
 }

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+                 xmlns:fontawesome="clr-namespace:FontAwesome"
                  xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
                  xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                  xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
@@ -23,9 +24,16 @@
 
             <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
                    Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
+           <!--
             <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
                         Clicked="btn_Search_Clicked" />
-       </Grid>
+            -->
+            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Search_Clicked"/>
+            </Grid>
 
        <!-- Listing -->
        <syncfusion:SfListView x:Name="ItemsListView" 
@@ -44,20 +52,25 @@
                                    HasShadow="True"  OutlineColor="LightGray">
                            <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
                           <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="130" />
+                              <ColumnDefinition Width="80" />
                               <ColumnDefinition Width="*" />
-                              <ColumnDefinition Width="100" />
-                              <ColumnDefinition Width="140" />
                           </Grid.ColumnDefinitions>
                           <Grid.RowDefinitions>
-                              <RowDefinition Height="30" />
-                              <RowDefinition Height="30" />
-                              <RowDefinition Height="30" />
+                              <RowDefinition Height="35" />
+                              <RowDefinition Height="35" />
+                              <RowDefinition Height="35" />
                           </Grid.RowDefinitions>
 
                           <StackLayout Padding="2" Grid.Column="0" Margin="0" Spacing="0" Grid.RowSpan="3">
-                              <Label Text="{Binding DESIGNATION}" FontAttributes="Bold" FontSize="Medium"  TextColor="Black" HorizontalOptions="FillAndExpand"/>
-                              <Label Text="{ Binding QUANTITE_UNITE, StringFormat='{0:N2} Kg'}" FontSize="Medium" TextColor="Black" HorizontalOptions="FillAndExpand"/>
-                          </StackLayout>
+                              <Label Text="{Binding DESIGNATION}" FontAttributes="Bold" FontSize="Default"  TextColor="Black" HorizontalOptions="FillAndExpand"/>
+                              <Label Text="{ Binding QUANTITE_UNITE, StringFormat='{0:N2} Kg'}" FontSize="Default" TextColor="Black" HorizontalOptions="FillAndExpand"/>
+
+                              <Frame CornerRadius="10" Margin="0" Padding="5,3,5,3" HeightRequest="25"
+                                     IsVisible="{Binding IS_INTERNE}"  HorizontalOptions="Start" BackgroundColor="Red">
+                                  <Label Text="Interne" TextColor="White" FontSize="Default" HorizontalOptions="Start"/>
+                              </Frame>
+                           </StackLayout>
                                                                       
                            <Label Text="{i18n:Translate txt_EmballageEntree}" Grid.Column="1" Grid.Row="0"/>
                            <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="0"
@@ -65,7 +78,7 @@
                                  MaximumDecimalDigits="0"
                                  WidthRequest="130" 
                                  ParsingMode="Double"
-                                 FontSize="13" IsEnabled="True"
+                                 FontSize="14" IsEnabled="True"
                                  TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                  x:Name="NUD_Qte"
 						         Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"
@@ -79,7 +92,7 @@
                                  MaximumDecimalDigits="0"
                                  WidthRequest="130" 
                                  ParsingMode="Double"
-                                 FontSize="13" IsEnabled="True"
+                                 FontSize="14" IsEnabled="True"
                                  TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                  x:Name="NUD_QteRetourned"
 						         Value="{Binding QUANTITE_SORTIE, Mode=TwoWay}"
@@ -94,7 +107,7 @@
                                  MaximumDecimalDigits="0"
                                  WidthRequest="130" 
                                  ParsingMode="Double"
-                                 FontSize="13" IsEnabled="True"
+                                 FontSize="14" IsEnabled="True"
                                  TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                  x:Name="NUD_QteVide"
 						         Value="{Binding QUANTITE_VIDE, Mode=TwoWay}"

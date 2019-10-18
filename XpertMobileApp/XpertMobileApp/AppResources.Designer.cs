@@ -1177,6 +1177,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Type.
+        /// </summary>
+        internal static string tct_Type {
+            get {
+                return ResourceManager.GetString("tct_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Total encaissé.
         /// </summary>
         internal static string TOTAL_ENCAISS {
@@ -1290,6 +1299,34 @@ namespace XpertMobileApp {
         internal static string txt_Cat_CommandesUpdated {
             get {
                 return ResourceManager.GetString("txt_Cat_CommandesUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Document enregistré avec succès !
+        ///.
+        /// </summary>
+        internal static string txt_Cat_DocumentSaved {
+            get {
+                return ResourceManager.GetString("txt_Cat_DocumentSaved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Document modifié avec succès !.
+        /// </summary>
+        internal static string txt_Cat_DocumentUpdated {
+            get {
+                return ResourceManager.GetString("txt_Cat_DocumentUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Famille.
+        /// </summary>
+        internal static string txt_Categorie {
+            get {
+                return ResourceManager.GetString("txt_Categorie", resourceCulture);
             }
         }
         
@@ -1510,6 +1547,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Prénom.
+        /// </summary>
+        internal static string txt_LastName {
+            get {
+                return ResourceManager.GetString("txt_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Chargement ....
         /// </summary>
         internal static string txt_Loading {
@@ -1618,11 +1664,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom.
+        /// </summary>
+        internal static string txt_Name {
+            get {
+                return ResourceManager.GetString("txt_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Nouveaux.
         /// </summary>
         internal static string txt_NewProduct {
             get {
                 return ResourceManager.GetString("txt_NewProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Téléphone.
+        /// </summary>
+        internal static string txt_phone {
+            get {
+                return ResourceManager.GetString("txt_phone", resourceCulture);
             }
         }
         
@@ -1776,6 +1840,15 @@ namespace XpertMobileApp {
         internal static string txt_Today {
             get {
                 return ResourceManager.GetString("txt_Today", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Achat par produit.
+        /// </summary>
+        internal static string txt_TotalAchatsByProduct {
+            get {
+                return ResourceManager.GetString("txt_TotalAchatsByProduct", resourceCulture);
             }
         }
         
