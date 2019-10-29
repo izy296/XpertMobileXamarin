@@ -80,7 +80,6 @@
                             DropDownItemHeight="50">
                     </auto:AutoCompleteRenderer>
 
-
                     <Label Grid.Column="0" Grid.Row="4"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
                     <StackLayout Grid.Column="1" Grid.Row="4" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
                         <numeric1:SfNumericTextBox x:Name="ne_PESEE_ENTREE" Minimum="0" HorizontalOptions="FillAndExpand"
@@ -92,7 +91,7 @@
                         <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" 
                              VerticalOptions="End"  WidthRequest="50" Margin="0,0,0,5"/>
                         -->
-                        <Button Margin="0,0,0,5" VerticalOptions="End" 
+                        <Button x:Name="btn_Get_PESEE_ENTREE" Margin="0,0,0,5" VerticalOptions="End" 
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" 
@@ -109,7 +108,7 @@
                         <Label FontSize="Medium" Text="Kg" HorizontalOptions="Center" HorizontalTextAlignment="Center" VerticalOptions="End" 
                                WidthRequest="50" Margin="0,0,0,5"/>
                         -->
-                        <Button Margin="0,0,0,5" HorizontalOptions="Center" VerticalOptions="End" 
+                        <Button x:Name="btn_Get_PESEE_SORTIE" Margin="0,0,0,5" HorizontalOptions="Center" VerticalOptions="End" 
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" 

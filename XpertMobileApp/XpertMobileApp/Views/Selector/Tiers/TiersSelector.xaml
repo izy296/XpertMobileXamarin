@@ -22,7 +22,7 @@
             </Grid.RowDefinitions>
 
             <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
-                   Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
+                   Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}" TextChanged="Ent_Filter_TextChanged"/>
            <!--
             <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
                         Clicked="btn_Search_Clicked" />

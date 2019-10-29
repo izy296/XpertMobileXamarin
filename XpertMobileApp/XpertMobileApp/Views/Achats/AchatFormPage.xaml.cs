@@ -78,20 +78,30 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    foreach (var item in items)
+                    try
                     {
-                        item.CODE_EMBALLAGE = item.CODE;
-                    }
-                    var embs = items.Where(e=> e.QUANTITE_ENTREE != 0 || e.QUANTITE_SORTIE != 0).ToList();
+                        foreach (var item in items)
+                        {
+                            item.CODE_EMBALLAGE = item.CODE;
+                        }
+                        var embs = items.Where(e=> e.QUANTITE_ENTREE != 0 || e.QUANTITE_SORTIE != 0).ToList();
+                        var embalages = new List<View_BSE_EMBALLAGE>();
+                        if (embs != null && embs.Count > 0)
+                        { 
+                            foreach (var item in embs)
+                            {
+                                embalages.Add(XpertHelper.CloneObject<View_BSE_EMBALLAGE>(item));
+                            }
+                        }
+                        currentRow.Embalages = embalages;
 
-                    var embalages = new List<View_BSE_EMBALLAGE>();
-                    foreach (var item in embs)
+                        UpdatePeseeInfos();
+                    }
+                    catch (Exception ex)
                     {
-                        embalages.Add(XpertHelper.CloneObject<View_BSE_EMBALLAGE>(item));
+                        UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
                     }
-                    currentRow.Embalages = embalages;
-
-                    UpdatePeseeInfos();
                 });
             });
 
@@ -122,11 +132,16 @@ namespace XpertMobileApp.Views
             { 
                 ApplyVisibility();
             }
+            else
+            {
+                if ((viewModel.Item.STATUS_DOC == DocStatus.EnCours || viewModel.Item.STATUS_DOC == DocStatus.EnAttente) && viewModel.Item.PESEE_ENTREE == 0)
+                {
+                     cmd_Terminate.IsVisible = true;
+                }
+            }
 
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
-
-
         }
 
         private void ApplyVisibility()
@@ -149,9 +164,14 @@ namespace XpertMobileApp.Views
             ne_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
             ne_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
 
+            btn_Get_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
+            btn_Get_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
+
             if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
             {
                 ne_PESEE_SORTIE.IsEnabled = false;
+                btn_Get_PESEE_SORTIE.IsEnabled = false;
+
                 btn_RowSelect.IsEnabled = false;
                 btn_RowScan.IsEnabled = false;
             }
@@ -162,6 +182,8 @@ namespace XpertMobileApp.Views
                 jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 ne_PESEE_SORTIE.IsEnabled = false;
+                btn_Get_PESEE_ENTREE.IsEnabled = false;
+                btn_Get_PESEE_SORTIE.IsEnabled = false;
                 if (viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
                 {
                     cmd_Terminate.IsVisible = true;
@@ -173,7 +195,9 @@ namespace XpertMobileApp.Views
                 btn_TeirsSearch.IsEnabled = false;
                 jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
-                if(viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
+                btn_Get_PESEE_ENTREE.IsEnabled = false;
+
+                if (viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
                 {
                     cmd_Terminate.IsVisible = true;
                 }
@@ -185,6 +209,9 @@ namespace XpertMobileApp.Views
                 jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 ne_PESEE_SORTIE.IsEnabled = false;
+
+                btn_Get_PESEE_ENTREE.IsEnabled = false;
+                btn_Get_PESEE_SORTIE.IsEnabled = false;
 
                 btn_RowSelect.IsEnabled = false;
                 btn_RowScan.IsEnabled = false;
@@ -340,105 +367,118 @@ namespace XpertMobileApp.Views
 
         private void UpdatePeseeInfos()
         {
-            var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL == true);
-            decimal qteNetPrimaireInitial = 0;
-
-            // Calcul des infos de l'item principal
-            if (principalItem != null)
+            try
             {
-                // 0 - Calcul du brute initial => celui du camions 
-                qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - viewModel.Item.PESEE_SORTIE;
-                if(principalItem.Embalages != null)
-                {                
-                   qteNetPrimaireInitial = qteNetPrimaireInitial - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
-                }
+                var principalItem = viewModel.ItemRows.ToList().Find(x => x.IS_PRINCIPAL == true);
+                decimal qteNetPrimaireInitial = 0;
 
-                // 1 - Calcul de la quantité net primaire du produit principal
-                principalItem.SetPeseeBrute(qteNetPrimaireInitial);                  
-                principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
-
-                // 2 - calcul des emballages du l'item principal
-                if (principalItem.Embalages != null)
+                // Calcul des infos de l'item principal
+                if (principalItem != null)
                 {
-                    foreach (var emb in principalItem.Embalages)
+                    // 0 - Calcul du brute initial => celui du camions 
+                    qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - viewModel.Item.PESEE_SORTIE;
+                    if(principalItem.Embalages != null)
+                    {                
+                       qteNetPrimaireInitial = qteNetPrimaireInitial - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                    }
+
+                    // 1 - Calcul de la quantité net primaire du produit principal
+                    principalItem.SetPeseeBrute(qteNetPrimaireInitial);                  
+                    principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
+
+                    // 2 - calcul des emballages du l'item principal
+                    if (principalItem.Embalages != null)
                     {
-                        emb.QUANTITE_ENTREE_REEL = emb.QUANTITE_ENTREE;
-                        foreach (var item in viewModel.ItemRows.ToList())
+                        foreach (var emb in principalItem.Embalages)
                         {
-                            if (!item.IS_PRINCIPAL && item.Embalages != null)
+                            emb.QUANTITE_ENTREE_REEL = emb.QUANTITE_ENTREE;
+                            foreach (var item in viewModel.ItemRows.ToList())
                             {
-                                var curEmb = item.Embalages.Where(x => x.CODE_EMBALLAGE == emb.CODE_EMBALLAGE).FirstOrDefault();
-                                if (curEmb != null)
+                                if (!item.IS_PRINCIPAL && item.Embalages != null)
                                 {
-                                    emb.QUANTITE_ENTREE_REEL = emb.QUANTITE_ENTREE_REEL - curEmb.QUANTITE_ENTREE;
+                                    var curEmb = item.Embalages.Where(x => x.CODE_EMBALLAGE == emb.CODE_EMBALLAGE).FirstOrDefault();
+                                    if (curEmb != null)
+                                    {
+                                        emb.QUANTITE_ENTREE_REEL = emb.QUANTITE_ENTREE_REEL - curEmb.QUANTITE_ENTREE;
+                                    }
                                 }
                             }
                         }
+
+                        principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
+                        principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE;
                     }
-
-                    principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
-                    principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE;
                 }
-            }
 
-            // Calcul de la quantité net des produits secondaires
-            decimal totalQteExeption = 0;
-            foreach (var item in viewModel.ItemRows.ToList())
-            {
-                if (!item.IS_PRINCIPAL)
+                // Calcul de la quantité net des produits secondaires
+                decimal totalQteExeption = 0;
+                foreach (var item in viewModel.ItemRows.ToList())
                 {
-
-                    decimal totalPoidsEmballage = 0;
-                    if (item.Embalages != null)
-                        totalPoidsEmballage = item.Embalages.Sum(e => e.QUANTITE_ENTREE * e.QUANTITE_UNITE);
-
-                    if(item.Edited_BY_QteNet != true)
-                    { 
-                        item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballage;
-                        item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
-                        item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
-                        // item.SetQteNet(item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS);
-                        item.QTE_RECUE = item.QUANTITE;
-                        item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
-                    }
-                    else
+                    if (!item.IS_PRINCIPAL)
                     {
-                        item.QTE_RECUE = item.QUANTITE;
-                        item.QUANTITE_NET_PRIMAIRE = (100 * item.QUANTITE) / (100 - item.TAUX_DECHET);
-                        item.QUANTITE_DECHETS = (item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100;
-                        item.QTE_BRUTE = item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage;
-                        //item.SetPeseeBrute(item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
-                        item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+
+                        decimal totalPoidsEmballage = 0;
+                        decimal totalPoidsEmballageVide = 0;
+                        decimal totalPoidsEmballagePlein = 0;
+                        if (item.Embalages != null)
+                        { 
+                            totalPoidsEmballage = item.Embalages.Sum(e => e.QUANTITE_ENTREE * e.QUANTITE_UNITE);
+                            totalPoidsEmballageVide = item.Embalages.Sum(e => e.QUANTITE_VIDE * e.QUANTITE_UNITE);
+                            totalPoidsEmballagePlein = totalPoidsEmballage - totalPoidsEmballageVide;
+                        }
+                        if (item.Edited_BY_QteNet != true)
+                        { 
+                            item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballagePlein;
+                            item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
+                            item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
+                            // item.SetQteNet(item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS);
+                            item.QTE_RECUE = item.QUANTITE;
+                            item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                        }
+                        else
+                        {
+                            item.QTE_RECUE = item.QUANTITE;
+                            item.QUANTITE_NET_PRIMAIRE = (100 * item.QUANTITE) / (100 - item.TAUX_DECHET);
+                            item.QUANTITE_DECHETS = (item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100;
+                            item.QTE_BRUTE = item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballagePlein;
+                            //item.SetPeseeBrute(item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
+                            item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                        }
+
+                        totalQteExeption += item.QUANTITE_NET_PRIMAIRE;
                     }
-
-                    totalQteExeption += item.QUANTITE_NET_PRIMAIRE;
                 }
-            }
 
-            // calcul des infos de l'item principalt
-            if (principalItem != null)
-            {
-                // Calcul de la quantité net finale du produit principal
+                // calcul des infos de l'item principalt
+                if (principalItem != null)
+                {
+                    // Calcul de la quantité net finale du produit principal
 
-                decimal NetPrimaireExceptions =  viewModel.ItemRows.Where(x => x.IS_PRINCIPAL == false).Sum(x => x.QUANTITE_NET_PRIMAIRE);
-                principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial - NetPrimaireExceptions;
-                principalItem.QUANTITE_DECHETS = ((principalItem.QUANTITE_NET_PRIMAIRE * principalItem.TAUX_DECHET) / 100);
-                principalItem.QUANTITE = principalItem.QUANTITE_NET_PRIMAIRE - principalItem.QUANTITE_DECHETS;
-                principalItem.QTE_RECUE = principalItem.QUANTITE;
-                principalItem.MT_TTC = principalItem.QUANTITE * principalItem.PRIX_UNITAIRE;
+                    decimal NetPrimaireExceptions =  viewModel.ItemRows.Where(x => x.IS_PRINCIPAL == false).Sum(x => x.QUANTITE_NET_PRIMAIRE);
+                    principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial - NetPrimaireExceptions;
+                    principalItem.QUANTITE_DECHETS = ((principalItem.QUANTITE_NET_PRIMAIRE * principalItem.TAUX_DECHET) / 100);
+                    principalItem.QUANTITE = principalItem.QUANTITE_NET_PRIMAIRE - principalItem.QUANTITE_DECHETS;
+                    principalItem.QTE_RECUE = principalItem.QUANTITE;
+                    principalItem.MT_TTC = principalItem.QUANTITE * principalItem.PRIX_UNITAIRE;
 
-                /* Total poids emballages
-                 * ==> les caisse pour le produit principal sont déja calculé dans par la pesée d'entrée et de sortie  */
-                decimal totalPoidsEmballage = 0;
-                if (principalItem.Embalages != null)
-                    totalPoidsEmballage = principalItem.Embalages.Sum(e => e.QUANTITE_ENTREE_REEL * e.QUANTITE_UNITE);
+                    /* Total poids emballages
+                     * ==> les caisse pour le produit principal sont déja calculé dans par la pesée d'entrée et de sortie  */
+                    decimal totalPoidsEmballage = 0;
+                    if (principalItem.Embalages != null)
+                        totalPoidsEmballage = principalItem.Embalages.Sum(e => e.QUANTITE_ENTREE_REEL * e.QUANTITE_UNITE);
 
-                principalItem.SetPeseeBrute(principalItem.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
+                    principalItem.SetPeseeBrute(principalItem.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
                
-            }
+                }
 
-            // calcul du total du document
-            viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+                // calcul du total du document
+                viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.Alert(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                     AppResources.alrt_msg_Ok);
+            }
         }
 
         #endregion
@@ -715,7 +755,6 @@ namespace XpertMobileApp.Views
                 return;
             }
 
-
             if (viewModel.ItemRows.Count == 0 && (viewModel.Item.STATUS_DOC == DocStatus.EnAttente || viewModel.Item.STATUS_DOC == DocStatus.EnCours))
             {
                 await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -726,24 +765,35 @@ namespace XpertMobileApp.Views
              {
                  UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
+                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
+                 this.viewModel.Item.CODE_MOTIF = "ES10";
+                 this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
+                 this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
+
                  viewModel.IsBusy = true;
                  viewModel.Item.STATUS_DOC = DocStatus.Termine;
                  await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
                  await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated,AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
-             }
-             finally
-             {
+
+                await Navigation.PopAsync();
+            }
+            catch(Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
                  viewModel.IsBusy = false;
                  UserDialogs.Instance.HideLoading();
-             }
-
-
-             await Navigation.PopAsync();
+            }
         }
 
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
+            btn_RowSelect.Focus();
+
             if (viewModel.IsBusy == true)
             {
                 return;
@@ -790,9 +840,15 @@ namespace XpertMobileApp.Views
 
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.AddItemAsync(viewModel.Item);
-
+                           /*
+                        UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                            .SetTitle("Choose Type")
+                            .Add("Default", null, "Icon.png")
+                            .Add("E-Mail", null, "addToCart24.png")
+                        );
+                           */ 
                         await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_DocumentSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                        
+                     
                     }
                     finally
                     {

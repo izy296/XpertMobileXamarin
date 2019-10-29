@@ -10,10 +10,12 @@ namespace XpertMobileApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;           
+            View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;
+
+            if (App.HasAdmin) return true;
 
             if (obj == null) return false;
-
+            
             if ((obj.STATUS_DOC == DocStatus.EnAttente || obj.STATUS_DOC == DocStatus.EnCours) && HasPermission)
             {
                 return true;
@@ -49,6 +51,8 @@ namespace XpertMobileApp.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             View_ACH_DOCUMENT_DETAIL obj = (View_ACH_DOCUMENT_DETAIL)value;
+
+            if (App.HasAdmin) return true;
 
             if (obj == null) return false;
 
@@ -87,6 +91,8 @@ namespace XpertMobileApp.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             View_ACH_DOCUMENT_DETAIL obj = (View_ACH_DOCUMENT_DETAIL)value;
+
+            if (App.HasAdmin) return true;
 
             if (obj == null) return false;
 

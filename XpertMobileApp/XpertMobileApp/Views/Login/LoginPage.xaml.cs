@@ -77,6 +77,8 @@ namespace XpertMobileApp.Views
                     user.Token = token;
                     App.User   = user;
 
+                    CrudManager.InitServices();
+
                     List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
 
                     // Alerte apres la connexion

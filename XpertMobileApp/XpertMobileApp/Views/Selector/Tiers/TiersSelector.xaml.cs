@@ -76,5 +76,10 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(form);
          //   await Navigation.PushModalAsync(new NavigationPage(form));
         }
+
+        private void Ent_Filter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            viewModel.LoadItemsCommand.Execute(null);
+        }
     }
 }

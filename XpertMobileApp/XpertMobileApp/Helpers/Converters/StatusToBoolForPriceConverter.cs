@@ -10,7 +10,9 @@ namespace XpertMobileApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;           
+            if (App.HasAdmin) return true;
+
+            View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;
 
             if (obj == null) return false;
 

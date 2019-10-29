@@ -8,120 +8,124 @@
                  xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                  xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                  x:Class="XpertMobileApp.Views.EmballageSelector">
-  <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
-    <StackLayout BackgroundColor="White"
-                 x:Name="EmbSelector">
 
-       <!-- Filter -->
-       <Grid Margin="5,10,5,5">
-           <Grid.ColumnDefinitions>
-               <ColumnDefinition Width="*"/>
-               <ColumnDefinition Width="100"/>
-           </Grid.ColumnDefinitions>
-           <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+      <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <ScrollView Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="White"
+                     x:Name="EmbSelector">
 
-            <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
-                   Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
-           <!--
-            <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
-                        Clicked="btn_Search_Clicked" />
-            -->
-            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
-                    WidthRequest="50" HeightRequest="50"
-                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
-                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
-                    Clicked="btn_Search_Clicked"/>
-            </Grid>
+           <!-- Filter -->
+           <Grid Margin="5,10,5,5">
+               <Grid.ColumnDefinitions>
+                   <ColumnDefinition Width="*"/>
+                   <ColumnDefinition Width="100"/>
+               </Grid.ColumnDefinitions>
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
-       <!-- Listing -->
-       <syncfusion:SfListView x:Name="ItemsListView" 
-                       VerticalOptions="FillAndExpand"
-                       ItemsSource="{Binding Items}"
-                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                       SelectionChanged="ItemsListView_SelectionChanged"
-                       SelectionBackgroundColor="Transparent"
-                       SelectionMode="None"
-                       BackgroundColor="#fcfdff"
-                       AutoFitMode="Height">
-           <syncfusion:SfListView.ItemTemplate>
-               <DataTemplate>
-                   <ViewCell>
-                       <Frame CornerRadius="4" Padding="5,15,5,5" Margin="5" BackgroundColor="Transparent" 
-                                   HasShadow="True"  OutlineColor="LightGray">
-                           <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
-                          <Grid.ColumnDefinitions>
-                              <ColumnDefinition Width="130" />
-                              <ColumnDefinition Width="80" />
-                              <ColumnDefinition Width="*" />
-                          </Grid.ColumnDefinitions>
-                          <Grid.RowDefinitions>
-                              <RowDefinition Height="35" />
-                              <RowDefinition Height="35" />
-                              <RowDefinition Height="35" />
-                          </Grid.RowDefinitions>
+                <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
+                       Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
+               <!--
+                <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
+                            Clicked="btn_Search_Clicked" />
+                -->
+                <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                        WidthRequest="50" HeightRequest="50"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_Search_Clicked"/>
+                </Grid>
 
-                          <StackLayout Padding="2" Grid.Column="0" Margin="0" Spacing="0" Grid.RowSpan="3">
-                              <Label Text="{Binding DESIGNATION}" FontAttributes="Bold" FontSize="Default"  TextColor="Black" HorizontalOptions="FillAndExpand"/>
-                              <Label Text="{ Binding QUANTITE_UNITE, StringFormat='{0:N2} Kg'}" FontSize="Default" TextColor="Black" HorizontalOptions="FillAndExpand"/>
+           <!-- Listing -->
+           <syncfusion:SfListView x:Name="ItemsListView" 
+                           VerticalOptions="FillAndExpand"
+                           ItemsSource="{Binding Items}"
+                           SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                           SelectionChanged="ItemsListView_SelectionChanged"
+                           SelectionBackgroundColor="Transparent"
+                           SelectionMode="None"
+                           BackgroundColor="#fcfdff"
+                           AutoFitMode="Height">
+               <syncfusion:SfListView.ItemTemplate>
+                   <DataTemplate>
+                       <ViewCell>
+                           <Frame CornerRadius="4" Padding="5,15,5,5" Margin="5" BackgroundColor="Transparent" 
+                                       HasShadow="True"  OutlineColor="LightGray">
+                               <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
+                              <Grid.ColumnDefinitions>
+                                  <ColumnDefinition Width="120" />
+                                  <ColumnDefinition Width="60" />
+                                  <ColumnDefinition Width="*" />
+                              </Grid.ColumnDefinitions>
+                              <Grid.RowDefinitions>
+                                  <RowDefinition Height="35" />
+                                  <RowDefinition Height="35" />
+                                  <RowDefinition Height="35" />
+                              </Grid.RowDefinitions>
 
-                              <Frame CornerRadius="10" Margin="0" Padding="5,3,5,3" HeightRequest="25"
-                                     IsVisible="{Binding IS_INTERNE}"  HorizontalOptions="Start" BackgroundColor="Red">
-                                  <Label Text="Interne" TextColor="White" FontSize="Default" HorizontalOptions="Start"/>
-                              </Frame>
-                           </StackLayout>
+                              <StackLayout Padding="2" Grid.Column="0" Margin="0" Spacing="0" Grid.RowSpan="3">
+                                  <Label Text="{Binding DESIGNATION}" FontAttributes="Bold" FontSize="Default"  TextColor="Black" HorizontalOptions="FillAndExpand"/>
+                                  <Label Text="{ Binding QUANTITE_UNITE, StringFormat='{0:N2} Kg'}" FontSize="Default" TextColor="Black" HorizontalOptions="FillAndExpand"/>
+
+                                  <Frame CornerRadius="10" Margin="0" Padding="5,3,5,3" HeightRequest="25"
+                                         IsVisible="{Binding IS_INTERNE}"  HorizontalOptions="Start" BackgroundColor="Red">
+                                      <Label Text="Interne" TextColor="White" FontSize="Default" HorizontalOptions="Start"/>
+                                  </Frame>
+                               </StackLayout>
                                                                       
-                           <Label Text="{i18n:Translate txt_EmballageEntree}" Grid.Column="1" Grid.Row="0"/>
-                           <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="0"
-                                 Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
-                                 MaximumDecimalDigits="0"
-                                 WidthRequest="130" 
-                                 ParsingMode="Double"
-                                 FontSize="14" IsEnabled="True"
-                                 TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                 x:Name="NUD_Qte"
-						         Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"
-                                 SpinButtonAlignment="Both" >
-                          </numeric:SfNumericUpDown>
+                               <Label Text="{i18n:Translate txt_EmballageEntree}" Grid.Column="1" Grid.Row="0"/>
+                               <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="0"
+                                     Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
+                                     MaximumDecimalDigits="0"
+                                     
+                                     ParsingMode="Double"
+                                     FontSize="13" IsEnabled="True"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     x:Name="NUD_Qte"
+						             Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"
+                                     SpinButtonAlignment="Both" >
+                              </numeric:SfNumericUpDown>
 
-                          <Label Text="{i18n:Translate txt_EmballageSortie}" Grid.Column="1" Grid.Row="1" 
-                            IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
-                          <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="1"
-                                 Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
-                                 MaximumDecimalDigits="0"
-                                 WidthRequest="130" 
-                                 ParsingMode="Double"
-                                 FontSize="14" IsEnabled="True"
-                                 TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                 x:Name="NUD_QteRetourned"
-						         Value="{Binding QUANTITE_SORTIE, Mode=TwoWay}"
-                                 SpinButtonAlignment="Both" 
-                                 IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
-                          </numeric:SfNumericUpDown>
+                              <Label Text="{i18n:Translate txt_EmballageSortie}" Grid.Column="1" Grid.Row="1" 
+                                IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
+                              <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="1"
+                                     Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
+                                     MaximumDecimalDigits="0"
+                                     
+                                     ParsingMode="Double"
+                                     FontSize="13" IsEnabled="True"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     x:Name="NUD_QteRetourned"
+						             Value="{Binding QUANTITE_SORTIE, Mode=TwoWay}"
+                                     SpinButtonAlignment="Both" 
+                                     IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
+                              </numeric:SfNumericUpDown>
 
-                          <Label Text="{i18n:Translate txt_EmballageVides}" Grid.Column="1" Grid.Row="2" 
-                                 IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
-                          <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="2" 
-                                 Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
-                                 MaximumDecimalDigits="0"
-                                 WidthRequest="130" 
-                                 ParsingMode="Double"
-                                 FontSize="14" IsEnabled="True"
-                                 TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                 x:Name="NUD_QteVide"
-						         Value="{Binding QUANTITE_VIDE, Mode=TwoWay}"
-                                 SpinButtonAlignment="Both" 
-                                 IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
-                          </numeric:SfNumericUpDown>
+                              <Label Text="{i18n:Translate txt_EmballageVides}" Grid.Column="1" Grid.Row="2" 
+                                     IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}"/>
+                              <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="2" 
+                                     Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
+                                     MaximumDecimalDigits="0"
+                                     
+                                     ParsingMode="Double"
+                                     FontSize="13" IsEnabled="True"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     x:Name="NUD_QteVide"
+						             Value="{Binding QUANTITE_VIDE, Mode=TwoWay}"
+                                     SpinButtonAlignment="Both" 
+                                     IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
+                              </numeric:SfNumericUpDown>
 
-                      </Grid>
-                       </Frame>
-                   </ViewCell>
-               </DataTemplate>
-           </syncfusion:SfListView.ItemTemplate>
-       </syncfusion:SfListView>        
-    </StackLayout >
-    <Button x:Name="btnSelect" Text="Valider" TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose"></Button>
-  </StackLayout>
+                          </Grid>
+                           </Frame>
+                       </ViewCell>
+                   </DataTemplate>
+               </syncfusion:SfListView.ItemTemplate>
+           </syncfusion:SfListView>        
+        </StackLayout >
+        </ScrollView>
+        <Button x:Name="btnSelect" Text="Valider" TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose"></Button>
+    </StackLayout>
+
 </pages:PopupPage>

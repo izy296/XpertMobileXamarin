@@ -62,8 +62,10 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.Items.ToList());
+            ent_Filter.Focus();
 
+            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.Items.ToList());
+            
             await PopupNavigation.Instance.PopAsync();
         }
 

@@ -76,9 +76,6 @@
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <XliffResource Include="MultilingualResources\XpertMobileApp.ar.xlf">
       <SubType>Designer</SubType>
     </XliffResource>
@@ -355,5 +352,8 @@
     <Folder Include="Views\Ventes Psychotrop\" />
     <Folder Include="Views\Selector\Immariculation\" />
     <Folder Include="WebView\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\002 - XpertSoft V5\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 </Project>
