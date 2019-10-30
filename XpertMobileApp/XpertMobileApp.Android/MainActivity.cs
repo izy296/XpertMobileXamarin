@@ -51,6 +51,7 @@ namespace XpertMobileApp.Droid
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
             // verifier les permission 
+            /*
             if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
             {
                 if (ApplicationContext.CheckSelfPermission(Android.Manifest.Permission.Camera) != Android.Content.PM.Permission.Granted)
@@ -86,6 +87,7 @@ namespace XpertMobileApp.Droid
             {
 
             }
+            */
             // InitPermissions();
         }
 

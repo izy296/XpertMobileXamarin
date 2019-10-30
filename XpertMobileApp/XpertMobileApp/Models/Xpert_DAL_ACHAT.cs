@@ -139,6 +139,17 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION_STATUS { get; set; }
 
         // Mobile extension
+        private bool isSelected;
+        public bool IsSelected
+        {
+            get { return isSelected; }
+            set
+            {
+                isSelected = value;
+                OnPropertyChanged("IsSelected");
+            }
+        }
+
         private string nOM_CHAUFFEUR;
         public string NOM_CHAUFFEUR
         {

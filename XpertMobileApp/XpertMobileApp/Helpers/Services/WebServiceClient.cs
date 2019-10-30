@@ -220,6 +220,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<string>(url);
         }
 
+        public static async Task<string> GenerateProductionOrder(string[] strs)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.ACHATS_GENERATE_PRODUCTION_URL);
+            url += WSApi2.AddParam(url, "param01", "param01");
+
+            return await WSApi2.PostAauthorizedValue<string, string[]>(url, strs, Token);
+        }
+
         #region Produits
 
 

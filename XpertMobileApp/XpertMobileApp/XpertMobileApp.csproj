@@ -26,6 +26,7 @@
     <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
     <Compile Remove="Views\Items\ItemsPage.xaml.cs" />
     <Compile Remove="Views\Items\ItemsViewModel.cs" />
+    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\AchatsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="mainstyles.css" />
@@ -99,16 +100,16 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Views\Achats\AchatsPage.xaml.cs">
+    <Compile Update="Views\Manafiaa\Achats\AchatsPage.xaml.cs">
       <DependentUpon>AchatsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Achats\AchatFormPage.xaml.cs">
+    <Compile Update="Views\Manafiaa\Achats\AchatFormPage.xaml.cs">
       <DependentUpon>AchatFormPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Achats\PeseeTemplate.xaml.cs">
+    <Compile Update="Views\Manafiaa\Achats\PeseeTemplate.xaml.cs">
       <DependentUpon>PeseeTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Achats\AchatsTemplate.xaml.cs">
+    <Compile Update="Views\Manafiaa\Achats\AchatsTemplate.xaml.cs">
       <DependentUpon>AchatsTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Analyses\AchatsAnalysesPage.xaml.cs">
@@ -170,6 +171,15 @@
     </Compile>
     <Compile Update="Views\Licence\ActivationPage.xaml.cs">
       <DependentUpon>ActivationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\AchatsOHPage.xaml.cs">
+      <DependentUpon>AchatsOHPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\AchatsOHTemplate.xaml.cs">
+      <DependentUpon>AchatsOHTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\PeseeOHTemplate.xaml.cs">
+      <DependentUpon>PeseeOHTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Manquants\ManquantsPage.xaml.cs">
       <DependentUpon>ManquantsPage.xaml</DependentUpon>

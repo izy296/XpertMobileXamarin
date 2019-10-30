@@ -109,4 +109,21 @@ namespace XpertMobileApp.Converters
             throw new NotImplementedException();
         }
     }
+
+    [Preserve(AllMembers = true)]
+    public class SelectionBoolToImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((bool)value)
+                return "Selected.png";
+            else
+                return "NotSelected.png";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

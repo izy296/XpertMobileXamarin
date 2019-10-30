@@ -56,6 +56,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Achats:
                         MenuPages.Add(id, new NavigationPage(new AchatsPage()));
                         break;
+                    case (int)MenuItemType.AchatsProduction:
+                        MenuPages.Add(id, new NavigationPage(new AchatsOHPage()));
+                        break;
                     case (int)MenuItemType.Reception:
                         MenuPages.Add(id, new NavigationPage(new AchatFormPage(null, "LF")));
                         break;
