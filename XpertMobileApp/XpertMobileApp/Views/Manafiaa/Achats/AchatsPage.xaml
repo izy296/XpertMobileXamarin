@@ -117,6 +117,7 @@
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
                     BackgroundColor="Transparent"
+                    
                     SeparatorVisibility="None"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
