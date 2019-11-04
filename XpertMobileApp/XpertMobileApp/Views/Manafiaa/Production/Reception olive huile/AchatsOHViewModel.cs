@@ -20,6 +20,7 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<View_ACH_DOCUMENT> SelectedDocs { get; set; }
 
         public string TypeDoc { get; set; } = "LF";
+        public string MotifDoc { get; set; } = AchRecMotifs.PesageForProduction;
 
         private bool selectionMode;
         public bool SelectionMode
@@ -76,9 +77,10 @@ namespace XpertMobileApp.ViewModels
         public View_BSE_COMPTE SelectedUser { get; set; }
         public Command LoadUsersCommand { get; set; }
 
-        public AchatsOHViewModel(string typeDoc)
+        public AchatsOHViewModel(string typeDoc, string motifDoc)
         {
             Title = AppResources.pn_Achats;
+            MotifDoc = motifDoc;
             TypeDoc = typeDoc;
 
             Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
@@ -107,6 +109,16 @@ namespace XpertMobileApp.ViewModels
                 CODE_STATUS = "18",
                 NAME = "Terminé",
             });
+
+            if (App.HasAdmin)
+            {
+                Status.Add(new BSE_DOCUMENT_STATUS
+                {
+                    CODE_STATUS = "19",
+                    NAME = "Clôturée",
+                });
+            }
+
         }
 
         protected override string ContoleurName
@@ -122,11 +134,11 @@ namespace XpertMobileApp.ViewModels
             Dictionary<string, string> result = base.GetFilterParams();
 
             result.Add("typeDoc", TypeDoc);
-            
+            result.Add("motifDoc", MotifDoc);
             // result.Add("idCaisse", "all");
             result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
-            result.Add("codeMotif", "ES10");
+
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 result.Add("codeClient", SelectedTiers?.CODE_TIERS);
 

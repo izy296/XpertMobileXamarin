@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using SampleBrowser.SfListView;
 using XpertMobileApp.Api;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views
 {
@@ -57,10 +58,7 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new AchatsPage()));
                         break;
                     case (int)MenuItemType.AchatsProduction:
-                        MenuPages.Add(id, new NavigationPage(new AchatsOHPage()));
-                        break;
-                    case (int)MenuItemType.Reception:
-                        MenuPages.Add(id, new NavigationPage(new AchatFormPage(null, "LF")));
+                        MenuPages.Add(id, new NavigationPage(new AchatsOHPage(AchRecMotifs.PesageForProduction)));
                         break;
                     case (int)MenuItemType.Ventes:
                         MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.Vente)));

@@ -21,18 +21,22 @@ namespace XpertMobileApp.Views
 	public partial class AchatsOHPage : ContentPage
 	{
         private string typeDoc = "LF";
+        public string MotifDoc { get; set; }
+
         AchatsOHViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
 
-        public AchatsOHPage()
+        public AchatsOHPage(string motifDoc)
 		{
 			InitializeComponent ();
 
+            MotifDoc = motifDoc;
+
             itemSelector = new TiersSelector();
 
-            BindingContext = viewModel = new AchatsOHViewModel(typeDoc);
+            BindingContext = viewModel = new AchatsOHViewModel(typeDoc, motifDoc);
 
             if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
             {
@@ -48,13 +52,73 @@ namespace XpertMobileApp.Views
             viewModel.SelectedDocs.CollectionChanged += SlectedItempsChanged;
         }
 
+        #region Selections 
+
+        private void selectionCancelImage_Tapped(object sender, EventArgs e)
+        {
+            for (int i = 0; i < viewModel.SelectedDocs.Count; i++)
+            {
+                var item = viewModel.SelectedDocs[i] as View_ACH_DOCUMENT;
+                item.IsSelected = false;
+            }
+            this.viewModel.SelectedDocs.Clear();
+
+            UpdateSelectionTempate();
+        }
+
+        private void selectionEditImage_Tapped(object sender, EventArgs e)
+        {
+            UpdateSelectionTempate();
+        }
+
+        public void UpdateSelectionTempate()
+        {
+            if (viewModel.SelectedDocs.Count > 0 || ItemsListView.SelectionMode == ListViewSelectionMode.Single)
+            {
+                ItemsListView.SelectionMode = ListViewSelectionMode.None;
+                editImageParent.IsVisible = false;
+                cancelImageParent.IsVisible = true;
+                GenerateOrdreProd.IsVisible = true;
+            }
+            else
+            {
+                ItemsListView.SelectionMode = ListViewSelectionMode.Single;
+                editImageParent.IsVisible = true;
+                cancelImageParent.IsVisible = false;
+                GenerateOrdreProd.IsVisible = false;
+            }
+
+            /*
+            if (ListView.SelectedItems.Count > 0 || selectionEditImageParent.IsVisible)
+            {
+                ListView.SelectionMode = SelectionMode.Multiple;
+                ListView.SelectionBackgroundColor = Color.Transparent;
+                ListView.SelectedItems.Clear();
+                SelectionViewModel.HeaderInfo = ListView.SelectedItems.Count + " selected";
+                SelectionViewModel.TitleInfo = "";
+                SelectionViewModel.IsVisible = true;
+                selectionEditImageParent.IsVisible = false;
+            }
+            else
+            {
+                ListView.SelectionMode = SelectionMode.Single;
+                ListView.SelectionBackgroundColor = Color.FromRgb(228, 228, 228);
+                SelectionViewModel.HeaderInfo = "";
+                SelectionViewModel.TitleInfo = "Music Library";
+                SelectionViewModel.IsVisible = false;
+                selectionEditImageParent.IsVisible = true;
+            }
+            */
+        }
+        #endregion Selections
+
         private void SlectedItempsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             decimal totalQte = viewModel.SelectedDocs.Sum(x => x.PESEE_BRUTE);
             int totalCount = viewModel.SelectedDocs.Count();
 
-            txt_PoidsTotal.Text = totalQte.ToString();
-            txt_Count.Text = totalCount.ToString();
+            txt_PoidsTotal.Text = "Quantité : "  + totalQte.ToString() ;
+            txt_Count.Text = "Selection : " + "(" + totalCount.ToString() + ")";
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -63,7 +127,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AchatFormPage(item, typeDoc));
+            await Navigation.PushAsync(new AchatFormPage(item, typeDoc, MotifDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -89,7 +153,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc));
+            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, MotifDoc));
         }
 
         protected override async void OnAppearing()
@@ -183,5 +247,7 @@ namespace XpertMobileApp.Views
                 IsBusy = false;
             }
         }
+
+
     }
 }

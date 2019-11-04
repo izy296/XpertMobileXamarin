@@ -126,4 +126,21 @@ namespace XpertMobileApp.Converters
             throw new NotImplementedException();
         }
     }
+
+    [Preserve(AllMembers = true)]
+    public class SelectionModeToVisbileConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((ListViewSelectionMode)value == ListViewSelectionMode.None)
+                return true;
+            else
+                return false;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

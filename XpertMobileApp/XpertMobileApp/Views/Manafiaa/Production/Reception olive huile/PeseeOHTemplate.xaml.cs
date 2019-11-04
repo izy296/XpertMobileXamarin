@@ -15,6 +15,10 @@ namespace XpertMobileApp.Views.Templates
 		public PeseeOHTemplate()
 		{
 			InitializeComponent ();
-		}
+ 
+          //  var lv = this.Parent as ListView;
+          //  selectionImage.IsVisible = lv.SelectionMode == ListViewSelectionMode.None;
+
+        }
 	}
 }

@@ -21,7 +21,8 @@ namespace XpertMobileApp.ViewModels.Analyses
     {
         public ObservableCollection<ChartDataModel> Entries1 { get; set; }
         public ObservableCollection<ChartDataModel> Entries2 { get; set; }
-
+        public ObservableCollection<ChartDataModel> Entries3 { get; set; }
+        
         public StatsPeriode StartPeriodType = StatsPeriode.None;
 
         public ObservableCollection<STAT_ACHAT_AGRO> Items { get; set; }
@@ -34,6 +35,8 @@ namespace XpertMobileApp.ViewModels.Analyses
             Entries1 = new ObservableCollection<ChartDataModel>();
 
             Entries2 = new ObservableCollection<ChartDataModel>();
+
+            Entries3 = new ObservableCollection<ChartDataModel>();
 
             Items = new ObservableCollection<STAT_ACHAT_AGRO>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -55,6 +58,7 @@ namespace XpertMobileApp.ViewModels.Analyses
 
                 Items.Clear();
                 var items = await WebServiceClient.GetAchat(startDate, endDate);
+
                 List<STAT_ACHAT_AGRO> result = items
                 .GroupBy(l => l.CODE_PRODUIT)
                 .Select(cl => new STAT_ACHAT_AGRO
@@ -65,10 +69,33 @@ namespace XpertMobileApp.ViewModels.Analyses
                 }).ToList();
                 foreach (var item in result)
                 {
-                    if(item.Montant != 0)
-                    { 
+                    if (item.Montant != 0)
+                    {
                         Items.Add(item);
                     }
+                }
+
+                Entries1.Clear();
+                foreach (var item in Items)
+                {
+                    double val = (double)item.Montant;
+                    Entries1.Add(new ChartDataModel(item.CODE_PRODUIT, val));
+                }
+
+                Entries2.Clear();
+                foreach (var item in Items)
+                {
+                    double val = (double)item.Qte_Net;
+                    Entries2.Add(new ChartDataModel(item.CODE_PRODUIT, val));
+                }
+
+                Entries3.Clear();
+                foreach (var item in items)
+                {                    
+                    double val = (double)item.Qte_Net;
+                    DateTime dte = item.DATE_DOC ?? DateTime.Now;
+                    int prod = Convert.ToInt32(item.CODE_PRODUIT);
+                    Entries3.Add(new ChartDataModel("P" + prod + " - "+ dte.ToString("ddd, d MMM "), val));
                 }
 
                 MessagingCenter.Send(this, MCDico.STATS_DATA_LOADED, Items);

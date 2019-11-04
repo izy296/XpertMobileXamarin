@@ -27,6 +27,7 @@
     <Compile Remove="Views\Items\ItemsPage.xaml.cs" />
     <Compile Remove="Views\Items\ItemsViewModel.cs" />
     <Compile Remove="Views\Manafiaa\Production\Reception olive huile\AchatsViewModel.cs" />
+    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="mainstyles.css" />

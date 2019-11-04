@@ -8,6 +8,12 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.DAL
 {
+    public static class AchRecMotifs
+    {
+        public static string PesageReception { get { return "ES10"; } }
+        public static string PesageForProduction { get { return "ES11"; } }
+    }
+
 
     public static class StausAchRecDoc
     {
@@ -138,7 +144,11 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public string DESIGNATION_STATUS { get; set; }
 
+
+
         // Mobile extension
+        public decimal QTE_NET { get; set; }
+
         private bool isSelected;
         public bool IsSelected
         {
@@ -166,7 +176,15 @@ namespace XpertMobileApp.DAL
 
         public override string ToString()
         {
-            return "N° " + NUM_DOC;
+            string result = "N° " + NUM_DOC;
+            if (!string.IsNullOrEmpty(TIERS_NomC)) 
+            {
+                result += "(" + TIERS_NomC + ")";
+            }
+            return result;
+
+
+
         }
 
         public string TITLE_DOCUMENT

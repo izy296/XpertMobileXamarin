@@ -16,7 +16,8 @@ namespace XpertMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AchatsPage : ContentPage
 	{
-        private string typeDoc = "LF"; 
+        private string typeDoc = "LF";
+        private string motifDoc = AchRecMotifs.PesageReception;
         AchatsViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
@@ -48,7 +49,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AchatFormPage(item, typeDoc));
+            await Navigation.PushAsync(new AchatFormPage(item, typeDoc, motifDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -56,7 +57,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc));
+            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
         }
 
         protected override async void OnAppearing()

@@ -858,6 +858,10 @@
           <source>Téléphone</source>
           <target state="new">Téléphone</target>
         </trans-unit>
+        <trans-unit id="pn_AchatsProduction" translate="yes" xml:space="preserve">
+          <source>Réception pour production</source>
+          <target state="new">Réception pour production</target>
+        </trans-unit>
       </group>
     </body>
   </file>

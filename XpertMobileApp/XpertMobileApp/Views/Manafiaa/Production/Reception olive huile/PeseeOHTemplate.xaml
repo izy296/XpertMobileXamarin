@@ -12,52 +12,48 @@
          -->
 
         <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#edeceb">
-                <Grid  BackgroundColor="Transparent" >
+            <Grid  BackgroundColor="Transparent" >
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                <StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
-                    </StackLayout>
-                    
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
-                        <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                </StackLayout>
 
-                        <Label Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="{Binding IMMATRICULATION}" TextColor="{StaticResource DefaultTextColor}"/>
-                    </StackLayout>
+                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
+                    <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
 
-                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
-                        <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Black"/>
-                        <Label Text="{ Binding PESEE_ENTREE, StringFormat='E. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
-                        <Label Text="{ Binding PESEE_SORTIE, StringFormat='S. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="OrangeRed"/>
-                    </StackLayout>
+                    <Label Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding IMMATRICULATION}" TextColor="{StaticResource DefaultTextColor}"/>
+                </StackLayout>
 
-                    <Image Grid.Column="3"
+                <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
+                    <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Black"/>
+                    <Label Text="{ Binding PESEE_ENTREE, StringFormat='E. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
+                    <Label Text="{ Binding PESEE_SORTIE, StringFormat='S. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="OrangeRed"/>
+                </StackLayout>
+
+                <Image Grid.Column="3"
                    x:Name="selectionImage"
                    Margin="10,0,10,0"
                    HeightRequest="28"
                    WidthRequest="28"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
-
+                   IsVisible="{Binding Parent.SelectionMode, Converter={StaticResource selectionModeToVisbileConverter}}"
                    Source="{Binding Path=IsSelected, Converter={StaticResource BoolToImageConverter}}"/>
-                    
-            </Grid>
-            </Frame>
 
-        <!--
-                           IsVisible="{Binding SelectionMode, Source={x:Reference listView}, Converter={StaticResource SelectionModeToVisbileConverter}}"
-        -->
-  </ContentView.Content>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
 </ContentView>

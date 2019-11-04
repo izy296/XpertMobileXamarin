@@ -36,6 +36,8 @@
             <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
             <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
+            <local:SelectionModeToVisbileConverter x:Key="selectionModeToVisbileConverter"/>
+            
             <!--Global Styles-->
 
             <Color x:Key="Primary">#2196F3</Color>

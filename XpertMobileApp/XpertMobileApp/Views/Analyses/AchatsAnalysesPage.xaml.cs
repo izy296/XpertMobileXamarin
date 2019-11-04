@@ -2,6 +2,7 @@
 using Syncfusion.SfChart.XForms;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
@@ -69,19 +70,29 @@ namespace XpertMobileApp.Views
 
         private void DisplayStats(ObservableCollection<STAT_ACHAT_AGRO>  items)
         {
-            viewModel.Entries1.Clear();
-            foreach (var item in viewModel.Items)
-            {
-                double val = (double)item.Montant;
-                viewModel.Entries1.Add(new ChartDataModel(item.CODE_PRODUIT, val));
-            }
+            /*
+Chart_AchatDetails.Height = chartBounds + (chartArea * parseInt(id));
+chart.redraw();
 
-            viewModel.Entries2.Clear();
-            foreach (var item in viewModel.Items)
-            {
-                double val = (double)item.Qte_Net;
-                viewModel.Entries2.Add(new ChartDataModel(item.CODE_PRODUIT, val));
-            }
+Chart_AchatDetails.Series.Add()
+
+Entries3.Clear();
+string[] prods = items.Select(x => x.CODE_PRODUIT).Distinct().ToArray();
+foreach (var prod in prods)
+{
+    StackingBarSeries serie = new StackingBarSeries();
+    foreach (var item in items)
+    {
+        if(item.CODE_PRODUIT == prod) 
+        { 
+            double val = (double)item.Qte_Net;
+            DateTime dte = item.DATE_DOC ?? DateTime.Now;
+            Entries3.Add(new ChartDataModel(dte.ToString("ddd, d MMM "), val));
+        }
+    }
+    serie.ItemsSource =
+}
+*/
         }
 
         private void LoadStats(Button btn)

@@ -29,7 +29,7 @@ namespace XpertMobileApp.Views
 
         public Command AddItemCommand { get; set; }
 
-        public AchatFormPage(View_ACH_DOCUMENT vente, string typeDoc)
+        public AchatFormPage(View_ACH_DOCUMENT vente, string typeDoc, string motif)
         {
             InitializeComponent();
 
@@ -43,6 +43,7 @@ namespace XpertMobileApp.Views
             if(vente == null)
             { 
                 ach.TYPE_DOC = typeDoc;
+                ach.CODE_MOTIF = motif;
                 ach.DATE_DOC = DateTime.Now.Date;
             }
 
@@ -766,7 +767,7 @@ namespace XpertMobileApp.Views
                  UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
                  this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                 this.viewModel.Item.CODE_MOTIF = "ES10";
+                 // this.viewModel.Item.CODE_MOTIF = "ES10";
                  this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
                  this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
 
@@ -828,7 +829,7 @@ namespace XpertMobileApp.Views
                 }
 
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                this.viewModel.Item.CODE_MOTIF = "ES10";
+                // this.viewModel.Item.CODE_MOTIF = "ES10";
                 this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
                 this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
 

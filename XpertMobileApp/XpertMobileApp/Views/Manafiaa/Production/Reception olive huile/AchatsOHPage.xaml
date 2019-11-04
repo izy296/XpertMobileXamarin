@@ -6,6 +6,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:local="clr-namespace:XpertMobileApp.Behaviors"
              Title="{Binding Title}"
              x:Name="Achats">
 
@@ -27,6 +28,67 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Name="ItemTemplate"  x:Key="ItemTemplate">
+                <ViewCell>
+                        <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#edeceb">
+                    <Grid  BackgroundColor="Transparent" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
+                        </StackLayout>
+                            <!--  -->
+                            <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
+                            <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+
+                            <Label Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                            <Label Text="{Binding IMMATRICULATION}" TextColor="{StaticResource DefaultTextColor}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
+                            <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Black"/>
+                            <Label Text="{ Binding PESEE_ENTREE, StringFormat='E. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
+                            <Label Text="{ Binding PESEE_SORTIE, StringFormat='S. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="OrangeRed"/>
+                        </StackLayout>
+
+                        <Image Grid.Column="3" Grid.Row="1" 
+                           x:Name="selectionImage"
+                           Margin="10,0,10,0"
+                           HeightRequest="28"
+                           WidthRequest="28"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           IsVisible="{Binding SelectionMode, Source={x:Reference ItemsListView}, Converter={StaticResource selectionModeToVisbileConverter}}"
+                           Source="{Binding Path=IsSelected, Converter={StaticResource BoolToImageConverter}}"
+                           />
+                      
+                    </Grid>
+                </Frame>
+                </ViewCell>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+            <!--
+                    Source="{Binding Path=IsSelected, Converter={StaticResource BoolToImageConverter}}"
+                   IsVisible="{Binding SelectionMode, Source={x:Reference ItemsListView}, Converter={StaticResource selectionModeToVisbileConverter}}"
+                   Source="{Binding Path=IsSelected, Converter={StaticResource BoolToImageConverter}}"
+           -->
 
     <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
         <!-- Filter -->
@@ -109,10 +171,71 @@
             </Grid>
         </StackLayout>
 
-        <StackLayout>
-            <Label x:Name="txt_PoidsTotal"/>
-            <Label x:Name="txt_Count"/>
-            <Button x:Name="btn_Production" Text="Envoyer en production" Clicked="btn_Production_Clicked" HorizontalOptions="End"/>
+         <!-- Infos selection 
+        <StackLayout BackgroundColor="{StaticResource Accent}" Padding="5">
+            <Label x:Name="txt_PoidsTotal" Style="{StaticResource BlackDefaultLblStyle}"/>
+            <Label x:Name="txt_Count" Style="{StaticResource BlackDefaultLblStyle}"/>
+            <Button x:Name="btn_Production" Text="Envoyer en production" 
+                    Style="{StaticResource DefaultBtnStyle}" Clicked="btn_Production_Clicked" HorizontalOptions="End"/>
+        </StackLayout>
+-->
+        <!-- Infos selection -->
+        <StackLayout HeightRequest="50">
+            <Grid x:Name="headerGrid" BackgroundColor="#FFEEEEF2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="cancelImageParent" IsVisible="{Binding IsVisible}" Grid.Column="0">
+
+                    <Image Source="SelectionCancel.png"
+                          x:Name="selectionCancelImage"
+                          Grid.Column="0"
+                          HeightRequest="25"
+                          WidthRequest="30"
+                          Margin="10,0,10,0"
+                          HorizontalOptions="Start"
+                          VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="selectionCancelImage_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </Grid>
+                <StackLayout Grid.Column="1" Margin="0,3,0,3" Spacing="0" Padding="0">
+                    
+                    <Label LineBreakMode="NoWrap" x:Name="txt_Count"
+                    Text="dddd" 
+                   FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
+
+                    <Label LineBreakMode="NoWrap" Grid.Column="0" x:Name="txt_PoidsTotal"
+                   Text="cccc" FontAttributes="Bold"
+                   FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
+                    
+                </StackLayout>
+
+                <Grid Grid.Column="2" x:Name="GenerateOrdreProd" IsVisible="False">
+                    <Button x:Name="btn_Production" Text="Envoyer en production"  FontSize="Small" Margin="2"
+                        Style="{StaticResource DefaultBtnStyle}" Clicked="btn_Production_Clicked" HorizontalOptions="End"/>
+                </Grid>
+                
+                <Grid Grid.Column="2" x:Name="editImageParent">
+
+                    <Image Source="SelectionEdit.png"
+                       x:Name="selectionEditImage"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       Margin="0,0,10,0"
+                       HorizontalOptions="End"
+                       VerticalOptions="Center">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="selectionEditImage_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                </Grid>
+            </Grid>
         </StackLayout>
         
         <!-- Items listing  -->
@@ -122,9 +245,10 @@
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
-                    SelectionMode="None"
+                    SelectionMode="Single"
                     BackgroundColor="Transparent"
                     SeparatorVisibility="None"
+                    ItemTemplate="{StaticResource ItemTemplate}"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -135,14 +259,6 @@
                 <ListView.Behaviors>
                     <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
                 </ListView.Behaviors>
-
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <template:PeseeOHTemplate />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
 
                 <ListView.Footer>
                     <Grid Padding="6" IsVisible="{Binding IsBusy}">

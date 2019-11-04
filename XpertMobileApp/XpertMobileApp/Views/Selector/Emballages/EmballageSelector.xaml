@@ -83,8 +83,8 @@
                                      FontSize="13" IsEnabled="True"
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_Qte"
-						             Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"
-                                     SpinButtonAlignment="Both" >
+						             Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"                                                                                             
+                                     SpinButtonAlignment="Left" >
                               </numeric:SfNumericUpDown>
 
                               <Label Text="{i18n:Translate txt_EmballageSortie}" Grid.Column="1" Grid.Row="1" 
@@ -98,7 +98,7 @@
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_QteRetourned"
 						             Value="{Binding QUANTITE_SORTIE, Mode=TwoWay}"
-                                     SpinButtonAlignment="Both" 
+                                     SpinButtonAlignment="Left" 
                                      IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
                               </numeric:SfNumericUpDown>
 
@@ -113,7 +113,7 @@
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_QteVide"
 						             Value="{Binding QUANTITE_VIDE, Mode=TwoWay}"
-                                     SpinButtonAlignment="Both" 
+                                     SpinButtonAlignment="Left" 
                                      IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
                               </numeric:SfNumericUpDown>
 

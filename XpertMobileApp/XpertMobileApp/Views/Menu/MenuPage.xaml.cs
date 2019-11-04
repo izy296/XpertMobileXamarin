@@ -55,13 +55,13 @@ namespace XpertMobileApp.Views
                 if (App.HasAdmin)
                 {
                     menuItems.Insert(2,
-                        new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = "Trésorerie" });
+                        new HomeMenuItem { Id = MenuItemType.AchatAgroAnalyses, Image = "", Title = AppResources.pn_Analyses });
 
-                    menuItems.Insert(3,
+                    menuItems.Insert(1,
                          new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = "Encaissements" });
 
-                    menuItems.Insert(4,
-                        new HomeMenuItem { Id = MenuItemType.AchatAgroAnalyses, Image = "", Title = AppResources.pn_Analyses });
+                    menuItems.Insert(1,
+                        new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = "Trésorerie" });
                 }
             }
             else if(Constants.AppName == Apps.XACATALOG_Mob)

@@ -99,6 +99,15 @@ namespace XpertMobileApp.ViewModels
                 CODE_STATUS = "18",
                 NAME = "Terminé",
             });
+
+            if (App.HasAdmin)
+            {
+                Status.Add(new BSE_DOCUMENT_STATUS
+                {
+                    CODE_STATUS = "19",
+                    NAME = "Clôturée",
+                });
+            }
         }
 
         protected override string ContoleurName
@@ -118,7 +127,7 @@ namespace XpertMobileApp.ViewModels
             // result.Add("idCaisse", "all");
             result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
-            result.Add("codeMotif", "ES10");
+            result.Add("motifDoc", "ES10");
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 result.Add("codeClient", SelectedTiers?.CODE_TIERS);
 
