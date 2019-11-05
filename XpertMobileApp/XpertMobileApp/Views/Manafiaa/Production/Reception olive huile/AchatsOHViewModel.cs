@@ -79,7 +79,7 @@ namespace XpertMobileApp.ViewModels
 
         public AchatsOHViewModel(string typeDoc, string motifDoc)
         {
-            Title = AppResources.pn_Achats;
+            Title = AppResources.pn_AchatsProduction;
             MotifDoc = motifDoc;
             TypeDoc = typeDoc;
 

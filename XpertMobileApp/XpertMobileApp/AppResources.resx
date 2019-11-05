@@ -748,4 +748,7 @@
   <data name="pn_AchatsProduction" xml:space="preserve">
     <value>Réception pour production</value>
   </data>
+  <data name="pn_OrdresProduction" xml:space="preserve">
+    <value>Ordres de production</value>
+  </data>
 </root>

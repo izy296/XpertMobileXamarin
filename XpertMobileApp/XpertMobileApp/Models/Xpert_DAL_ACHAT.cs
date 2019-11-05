@@ -14,7 +14,6 @@ namespace XpertMobileApp.DAL
         public static string PesageForProduction { get { return "ES11"; } }
     }
 
-
     public static class StausAchRecDoc
     {
         public static string EnAttente { get { return "16"; } }
@@ -722,7 +721,6 @@ namespace XpertMobileApp.DAL
         }
     }
 
-
     public static class DocStatus
     {
         public static string EnAttente { get { return "16"; } }
@@ -773,5 +771,52 @@ namespace XpertMobileApp.DAL
         public decimal STOCK_MIN { get; set; }
         public string DESIGNATION_TYPE_PRODUIT { get; set; }
     }
+
+    #region production
+
+    public partial class PRD_AGRICULTURE : BASE_CLASS
+    {
+        public string CODE_DOC { get; set; } //32,
+        public string NUM_DOC { get; set; } //32,
+        public DateTime DATE_PRODUCTION { get; set; }
+        public string CODE_TIERS { get; set; }
+        public string STATUS_DOC { get; set; }
+        decimal QTE_PRODUITE { get; set; }
+        public string NOTE_DOC { get; set; }
+        public DateTime DATE_LIVRAISON { get; set; }
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+
+    public partial class View_PRD_AGRICULTURE : PRD_AGRICULTURE
+    {
+        public string NOM_TIERS { get; set; }
+        public string DESIGNATION_STATUS { get; set; }
+        public string DESIGN_FAMILLE_TIERS { get; set; }
+        public string CODE_FAMILLE_TIERS { get; set; }
+    }
+
+    public partial class PRD_AGRICULTURE_DETAIL : BASE_CLASS
+    {
+        public string CODE_DETAIL { get; set; } //[char](20) NOT NULL,
+        public string CODE_DOC { get; set; } //[char](20) NOT NULL,
+        public string CODE_TIERS { get; set; } //[char](20) NOT NULL,
+        public string CODE_ORIGINE_DETAIL { get; set; } //[char](20) NOT NULL,
+        public string CODE_DOC_RECEPTION { get; set; }
+        public string QTE_DETAIL_PRODUITE { get; set; }
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+
+    public partial class View_PRD_AGRICULTURE_DETAIL : PRD_AGRICULTURE
+    {
+        public string NOM_TIERS { get; set; }
+        public string CODE_TIERS_RESPONSABLE { get; set; }
+    }
+    #endregion
 
 }
