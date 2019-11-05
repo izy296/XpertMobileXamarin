@@ -861,6 +861,10 @@
           <source>Réception pour production</source>
           <target state="new">Réception pour production</target>
         </trans-unit>
+        <trans-unit id="pn_OrdresProduction" translate="yes" xml:space="preserve">
+          <source>Ordres de production</source>
+          <target state="new">Ordres de production</target>
+        </trans-unit>
       </group>
     </body>
   </file>

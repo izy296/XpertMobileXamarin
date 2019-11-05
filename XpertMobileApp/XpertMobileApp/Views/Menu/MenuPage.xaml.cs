@@ -48,19 +48,20 @@ namespace XpertMobileApp.Views
                 {
                     new HomeMenuItem {Id = MenuItemType.Achats, Image = "", Title=AppResources.pn_Achats },
                     new HomeMenuItem {Id = MenuItemType.AchatsProduction, Image = "", Title=AppResources.pn_AchatsProduction },
+                    new HomeMenuItem {Id = MenuItemType.OrdresProduction, Image = "", Title=AppResources.pn_OrdresProduction },
                     new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
 
                 if (App.HasAdmin)
                 {
-                    menuItems.Insert(2,
+                    menuItems.Insert(4,
                         new HomeMenuItem { Id = MenuItemType.AchatAgroAnalyses, Image = "", Title = AppResources.pn_Analyses });
 
-                    menuItems.Insert(1,
+                    menuItems.Insert(3,
                          new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = "Encaissements" });
 
-                    menuItems.Insert(1,
+                    menuItems.Insert(3,
                         new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = "Trésorerie" });
                 }
             }
