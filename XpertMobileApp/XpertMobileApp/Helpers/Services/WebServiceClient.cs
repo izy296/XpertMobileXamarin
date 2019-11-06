@@ -205,6 +205,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_ACH_DOCUMENT_DETAIL>(url);
         }
 
+        public static async Task<List<View_PRD_AGRICULTURE_DETAIL>> GetProductionDetails(string codeDoc)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_DETAILS_URL);
+            url += WSApi2.AddParam(url, "codeDoc", codeDoc);
+
+            return await RetrievAauthorizedData<View_PRD_AGRICULTURE_DETAIL>(url);
+        }
+        
         public static async Task<decimal> GetPesse()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACHATS_PESEE_URL);
@@ -222,7 +230,7 @@ namespace XpertMobileApp.Services
 
         public static async Task<string> GenerateProductionOrder(string[] strs)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.ACHATS_GENERATE_PRODUCTION_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.PRODUCTION_GENERATE_PRODUCTION_URL);
             url += WSApi2.AddParam(url, "param01", "param01");
 
             return await WSApi2.PostAauthorizedValue<string, string[]>(url, strs, Token);

@@ -751,4 +751,16 @@
   <data name="pn_OrdresProduction" xml:space="preserve">
     <value>Ordres de production</value>
   </data>
+  <data name="QTE_PRODUITE" xml:space="preserve">
+    <value>Qte Produite</value>
+  </data>
+  <data name="txt_QteProduite" xml:space="preserve">
+    <value>Qte Produite</value>
+  </data>
+  <data name="txt_Productivite" xml:space="preserve">
+    <value>Productivité</value>
+  </data>
+  <data name="txt_QteApport" xml:space="preserve">
+    <value>Apport</value>
+  </data>
 </root>

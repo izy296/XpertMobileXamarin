@@ -207,5 +207,14 @@ namespace FontAwesome
         /// </summary>
         public const string Sync = "\uf021";
 
+        /// <summary>
+        /// fa-save unicode value ("\uf0c7").
+        /// <para/>
+        /// This icon supports the following styles: Light (Pro), Regular, Solid, Duotone (Pro)
+        /// <para/>
+        /// See https://fontawesome.com/icons/save
+        /// </summary>
+        public const string Save = "\uf0c7";
+
     }
 }

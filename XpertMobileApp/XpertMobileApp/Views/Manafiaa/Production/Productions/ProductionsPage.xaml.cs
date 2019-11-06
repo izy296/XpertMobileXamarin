@@ -59,11 +59,11 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as View_ACH_DOCUMENT;
+            var item = args.SelectedItem as View_PRD_AGRICULTURE;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new AchatFormPage(item, typeDoc, MotifDoc));
+            await Navigation.PushAsync(new ProductionFormPage(item, typeDoc, MotifDoc));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
@@ -71,7 +71,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, MotifDoc));
+            await Navigation.PushAsync(new ProductionFormPage(null, typeDoc, MotifDoc));
         }
 
         protected override async void OnAppearing()

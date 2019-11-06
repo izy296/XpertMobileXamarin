@@ -181,9 +181,6 @@ namespace XpertMobileApp.DAL
                 result += "(" + TIERS_NomC + ")";
             }
             return result;
-
-
-
         }
 
         public string TITLE_DOCUMENT
@@ -778,16 +775,38 @@ namespace XpertMobileApp.DAL
     {
         public string CODE_DOC { get; set; } //32,
         public string NUM_DOC { get; set; } //32,
-        public DateTime DATE_PRODUCTION { get; set; }
+        public DateTime? DATE_DOC { get; set; }
         public string CODE_TIERS { get; set; }
         public string STATUS_DOC { get; set; }
-        decimal QTE_PRODUITE { get; set; }
+
+        public int NBR_EMBALLAGE { get; set; }
         public string NOTE_DOC { get; set; }
-        public DateTime DATE_LIVRAISON { get; set; }
         public DateTime? CREATED_ON { get; set; } // datetime(3)
         public string CREATED_BY { get; set; } // varchar(200)
         public DateTime? MODIFIED_ON { get; set; } // datetime(3)
         public string MODIFIED_BY { get; set; } // varchar(200)
+
+        public override string ToString()
+        {
+            return "N° " + NUM_DOC;
+        }
+
+
+        private decimal qTE_PRODUITE;
+        public decimal QTE_PRODUITE
+        {
+            get
+            {
+                return qTE_PRODUITE;
+            }
+            set
+            {
+                qTE_PRODUITE = value;
+                OnPropertyChanged("QTE_PRODUITE");
+                OnPropertyChanged("PRODUCTIVITE");
+                
+            }
+        }
     }
 
     public partial class View_PRD_AGRICULTURE : PRD_AGRICULTURE
@@ -796,26 +815,60 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION_STATUS { get; set; }
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public string CODE_FAMILLE_TIERS { get; set; }
+        public decimal PRODUCTIVITE
+        {
+            get
+            {
+                if (TOTAL_QTE_APPORT == 0) return 0;
+                decimal prd = QTE_PRODUITE / TOTAL_QTE_APPORT;
+                return prd;
+            }
+        }
+        public decimal TOTAL_QTE_APPORT { get; set; }
+
+        // Mobile
+        public List<View_PRD_AGRICULTURE_DETAIL> Details;
     }
 
     public partial class PRD_AGRICULTURE_DETAIL : BASE_CLASS
     {
-        public string CODE_DETAIL { get; set; } //[char](20) NOT NULL,
+        public string CODE_DOC_DETAIL { get; set; } //[char](20) NOT NULL,
         public string CODE_DOC { get; set; } //[char](20) NOT NULL,
         public string CODE_TIERS { get; set; } //[char](20) NOT NULL,
         public string CODE_ORIGINE_DETAIL { get; set; } //[char](20) NOT NULL,
         public string CODE_DOC_RECEPTION { get; set; }
-        public string QTE_DETAIL_PRODUITE { get; set; }
         public DateTime? CREATED_ON { get; set; } // datetime(3)
         public string CREATED_BY { get; set; } // varchar(200)
         public DateTime? MODIFIED_ON { get; set; } // datetime(3)
         public string MODIFIED_BY { get; set; } // varchar(200)
+
+        private decimal qTE_DETAIL_PRODUITE;
+        public decimal QTE_DETAIL_PRODUITE
+        {
+            get
+            {
+                return qTE_DETAIL_PRODUITE;
+            }
+            set
+            {
+                qTE_DETAIL_PRODUITE = value;
+                OnPropertyChanged("QTE_DETAIL_PRODUITE");
+            }
+        }
     }
 
-    public partial class View_PRD_AGRICULTURE_DETAIL : PRD_AGRICULTURE
+    public partial class View_PRD_AGRICULTURE_DETAIL : PRD_AGRICULTURE_DETAIL
     {
         public string NOM_TIERS { get; set; }
+        public string NUM_DOC { get; set; }
+        public string NUM_DOC_RECEPTION { get; set; }
         public string CODE_TIERS_RESPONSABLE { get; set; }
+        public string NOTE_DOC { get; set; }
+        public decimal QTE_APPORT { get; set; }
+
+        // Mobile
+        [JsonIgnore]
+        public View_PRD_AGRICULTURE Parent_Doc { get; set; }
     }
     #endregion
 

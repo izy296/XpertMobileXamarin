@@ -173,6 +173,9 @@
     <Compile Update="Views\Licence\ActivationPage.xaml.cs">
       <DependentUpon>ActivationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Manafiaa\Production\Productions\ProductionFormPage.xaml.cs">
+      <DependentUpon>ProductionFormPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Manafiaa\Production\Productions\ProductionsPage.xaml.cs">
       <DependentUpon>ProductionsPage.xaml</DependentUpon>
     </Compile>

@@ -1096,6 +1096,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Qte Produite.
+        /// </summary>
+        internal static string QTE_PRODUITE {
+            get {
+                return ResourceManager.GetString("QTE_PRODUITE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Solde tiers.
         /// </summary>
         internal static string SOLDE_TIERS {
@@ -1727,6 +1736,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Productivité.
+        /// </summary>
+        internal static string txt_Productivite {
+            get {
+                return ResourceManager.GetString("txt_Productivite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Qté.
         /// </summary>
         internal static string txt_Qte {
@@ -1745,11 +1763,29 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Apport.
+        /// </summary>
+        internal static string txt_QteApport {
+            get {
+                return ResourceManager.GetString("txt_QteApport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Qté Min.
         /// </summary>
         internal static string txt_QteMin {
             get {
                 return ResourceManager.GetString("txt_QteMin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Qte Produite.
+        /// </summary>
+        internal static string txt_QteProduite {
+            get {
+                return ResourceManager.GetString("txt_QteProduite", resourceCulture);
             }
         }
         

@@ -866,6 +866,22 @@
           <source>Ordres de production</source>
           <target state="new">Ordres de production</target>
         </trans-unit>
+        <trans-unit id="QTE_PRODUITE" translate="yes" xml:space="preserve">
+          <source>Qte Produite</source>
+          <target state="new">Qte Produite</target>
+        </trans-unit>
+        <trans-unit id="txt_QteProduite" translate="yes" xml:space="preserve">
+          <source>Qte Produite</source>
+          <target state="new">Qte Produite</target>
+        </trans-unit>
+        <trans-unit id="txt_QteApport" translate="yes" xml:space="preserve">
+          <source>Apport</source>
+          <target state="new">Apport</target>
+        </trans-unit>
+        <trans-unit id="txt_Productivite" translate="yes" xml:space="preserve">
+          <source>Productivité</source>
+          <target state="new">Productivité</target>
+        </trans-unit>
       </group>
     </body>
   </file>
