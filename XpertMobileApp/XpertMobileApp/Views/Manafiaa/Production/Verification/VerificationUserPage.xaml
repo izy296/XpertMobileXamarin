@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.VerificationUserPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Select"  Text="Select" Clicked="btn_Select_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="btn_Scan"  Text="Scan" Clicked="btn_Scan_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ScrollView Orientation="Vertical" VerticalOptions="Fill" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
+        <StackLayout Spacing="0" BackgroundColor="Transparent" Padding="5">
+            <!--
+            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
+                <Label Text="{i18n:Translate txt_Details}" Margin="5,0,0,0" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
+                <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" IsEnabled="True" HeightRequest="40" 
+                        WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End"
+                        Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
+                <Button x:Name="btn_RowScan" BackgroundColor="Transparent" IsEnabled="True" HeightRequest="40" 
+                        WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" 
+                        Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
+            </StackLayout>
+            -->
+            <!-- User / date -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="{Binding Tiers.NOM_TIERS1, Mode=TwoWay, StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.InfoCircle}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding Tiers.LAST_CREANCE, Mode=TwoWay,  StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Ecart  
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Écart" TextColor="Black" FontAttributes="Bold" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.ExchangeAlt}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Tiers.SOLDE_TIERS, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="OrangeRed"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            -->
+            <!-- Caisse théorique  
+            
+                Tiers.TEL1_TIERS;
+                tiers.RESTE_PAIEMENT;
+            -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Caisse théorique" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.MoneyBillWave}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Tiers.SOLDE_TIERS, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="OrangeRed"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Montant cloture physique  
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant clôture" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.MoneyBillWave}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_CLOTURE_PH, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+-->
+            
+            <!-- Détails 
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Détails " TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.CalendarAlt}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Encaissements " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_ENCAISSEMENT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Décaissements " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_DECAISSEMENT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Ventes " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_VENTE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Crédits " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_CREDIT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Retour " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.MONT_RETOUR, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+-->
+            <!-- Montant cloture physique  
+            retour, vente cash, Tarif CHIFA, Crédits, écart 
+            -->
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>    
