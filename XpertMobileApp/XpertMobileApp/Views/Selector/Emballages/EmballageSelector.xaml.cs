@@ -42,6 +42,19 @@ namespace XpertMobileApp.Views
             }
         }
 
+        public bool IS_SALES
+        {
+            get
+            {
+                return viewModel.IS_PRINCIPAL;
+            }
+            set
+            {
+                viewModel.IS_PRINCIPAL = value;
+
+            }
+        }
+
         public EmballageSelector()
         {
             InitializeComponent();

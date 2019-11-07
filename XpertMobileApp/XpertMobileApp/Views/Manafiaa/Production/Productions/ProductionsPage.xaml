@@ -10,7 +10,7 @@
              x:Name="Achats">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Additem"  Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked" Icon="add.png">
+        <ToolbarItem x:Name="btn_VeridUser"  Text="{i18n:Translate cmd_Verif}" Clicked="btn_VeridUser_Clicked" Icon="add.png">
         </ToolbarItem>
 
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked" Icon="filter.png">

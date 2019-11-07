@@ -80,10 +80,12 @@
                                      MaximumDecimalDigits="0"
                                      
                                      ParsingMode="Double"
-                                     FontSize="13" IsEnabled="True"
+                                     FontSize="13"
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_Qte"
-						             Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"                                                                                             
+						             Value="{Binding QUANTITE_ENTREE, Mode=TwoWay}"    
+                                     IsEnabled="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_SALES, 
+                                            Converter='inverseBoolVisibilityConverter'}"  
                                      SpinButtonAlignment="Left" >
                               </numeric:SfNumericUpDown>
 
@@ -94,11 +96,11 @@
                                      MaximumDecimalDigits="0"
                                      
                                      ParsingMode="Double"
-                                     FontSize="13" IsEnabled="True"
+                                     FontSize="13" 
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_QteRetourned"
 						             Value="{Binding QUANTITE_SORTIE, Mode=TwoWay}"
-                                     SpinButtonAlignment="Left" 
+                                     SpinButtonAlignment="Left"                                                      
                                      IsVisible="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_PRINCIPAL}">
                               </numeric:SfNumericUpDown>
 
@@ -107,9 +109,10 @@
                               <numeric:SfNumericUpDown Grid.Column="2" Grid.Row="2" 
                                      Minimum="0" HorizontalOptions="Start" Margin="0,-15,0,0"
                                      MaximumDecimalDigits="0"
-                                     
+                                     IsEnabled="{Binding Source={x:Reference EmbSelector}, Path=BindingContext.IS_SALES, 
+                                            Converter='inverseBoolVisibilityConverter'}"   
                                      ParsingMode="Double"
-                                     FontSize="13" IsEnabled="True"
+                                     FontSize="13"
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      x:Name="NUD_QteVide"
 						             Value="{Binding QUANTITE_VIDE, Mode=TwoWay}"

@@ -869,6 +869,30 @@ namespace XpertMobileApp.DAL
         // Mobile
         [JsonIgnore]
         public View_PRD_AGRICULTURE Parent_Doc { get; set; }
+
+        private List<View_BSE_EMBALLAGE> embalages;
+        public List<View_BSE_EMBALLAGE> Embalages
+        {
+            get
+            {
+                return embalages;
+            }
+            set
+            {
+                embalages = value;
+                /*
+                decimal diff = Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                Diff_Poids_Caisses = diff >= 0 ? "+" + diff.ToString("N0") : "-" + diff.ToString("N0");
+
+                Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
+                Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
+
+                OnPropertyChanged("Diff_Poids_Caisses");
+                OnPropertyChanged("Poids_Caisses");
+                OnPropertyChanged("MT_TTC");
+                */
+            }
+        }
     }
     #endregion
 

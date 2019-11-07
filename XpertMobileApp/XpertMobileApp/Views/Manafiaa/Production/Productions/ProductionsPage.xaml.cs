@@ -92,7 +92,7 @@ namespace XpertMobileApp.Views
 
         private void ApplyVisibility()
         {
-            btn_Additem.IsEnabled = viewModel.hasEditHeader;
+            //btn_Additem.IsEnabled = viewModel.hasEditHeader;
         }
 
         private async void LoadStats()
@@ -128,6 +128,9 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
-
+        private async void btn_VeridUser_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new VerificationUserPage(""));
+        }
     }
 }

@@ -412,6 +412,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vérification.
+        /// </summary>
+        internal static string cmd_Verif {
+            get {
+                return ResourceManager.GetString("cmd_Verif", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Compte.
         /// </summary>
         internal static string CODE_COMPTE {

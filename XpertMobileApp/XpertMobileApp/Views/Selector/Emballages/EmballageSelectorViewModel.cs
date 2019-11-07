@@ -20,6 +20,17 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        bool iS_SALES = false;
+        public bool IS_SALES
+        {
+            get { return iS_SALES; }
+            set
+            {
+                iS_SALES = value;
+                OnPropertyChanged("IS_SALES");
+            }
+        }
+
         private List<View_BSE_EMBALLAGE> currentEmballages;
         public List<View_BSE_EMBALLAGE> CurrentEmballages
         {

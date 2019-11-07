@@ -881,6 +881,10 @@
           <source>Productivité</source>
           <target state="new">Productivité</target>
         </trans-unit>
+        <trans-unit id="cmd_Verif" translate="yes" xml:space="preserve">
+          <source>Vérification</source>
+          <target state="new">Vérification</target>
+        </trans-unit>
       </group>
     </body>
   </file>

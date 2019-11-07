@@ -266,7 +266,7 @@
                 </Frame>
             </ScrollView>
 
-            <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
+            <StackLayout IsVisible="False" BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
                 <Label x:Name="lbl_vteTTC" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,20,10"
                            Text="{ Binding Item.TOTAL_TTC, Mode=TwoWay, StringFormat='Total : {0:N2} DA'}" 
                            HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />

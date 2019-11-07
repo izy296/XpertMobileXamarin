@@ -96,6 +96,7 @@ namespace XpertMobileApp.Views
                         }
                         currentRow.Embalages = embalages;
 
+                        SaveEmballages(currentRow, embalages);
                         UpdatePeseeInfos();
                     }
                     catch (Exception ex)
@@ -126,8 +127,6 @@ namespace XpertMobileApp.Views
 
             parames = await App.GetSysParams();
             permissions = await App.GetPermissions();
-
-            viewModel.ImmatriculationList = await GetImmatriculations("");
 
             if (!App.HasAdmin)
             { 
@@ -373,11 +372,12 @@ namespace XpertMobileApp.Views
         }
 
         private EmballageSelector EmballageSelector;
-        public static View_ACH_DOCUMENT_DETAIL currentRow;
+        public static View_PRD_AGRICULTURE_DETAIL currentRow;
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
-            currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
-            //EmballageSelector.IS_PRINCIPAL = currentRow.IS_PRINCIPAL || viewModel.Item.PESEE_ENTREE == 0;
+            currentRow = (sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL;
+            EmballageSelector.IS_PRINCIPAL = false;
+            EmballageSelector.IS_SALES = true;
             await PopupNavigation.Instance.PushAsync(EmballageSelector);
 
             EmballageSelector.CurrentEmballages = currentRow.Embalages;
@@ -742,66 +742,15 @@ namespace XpertMobileApp.Views
 
         #endregion
 
-        private async Task<List<string>> GetImmatriculations(string str)
-        {
-            List<string> result = null;
-
-         //   if (string.IsNullOrEmpty(str)) return result;
-
-            if (IsBusy)
-                return result;
-
-            IsBusy = true;
-
-            try
-            {
-                result = await WebServiceClient.GetImmatriculations(str);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-                return result;
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        private async void btn_PSortie_Clicked(object sender, EventArgs e)
-        {
-            decimal result = 0;
-
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            try
-            {
-                /*
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                result = await WebServiceClient.GetPesse();
-                ne_PESEE_SORTIE.Value = result;
-                */
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-                IsBusy = false;
-            }
-        }
-
         private async void btn_SaveQteProduite_Clicked(object sender, EventArgs e)
         {
-            decimal result = 0;
+            bool result = false;
+
+            if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC))
+            {
+                await UserDialogs.Instance.AlertAsync("Veuillez enregistrer le document avant d'introduire la quantité produite!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
 
             if (IsBusy)
                 return;
@@ -810,11 +759,13 @@ namespace XpertMobileApp.Views
 
             try
             {
-                /*
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                 result = await WebServiceClient.GetPesse();
-                ne_PESEE_ENTREE.Value = result;
-                */
+
+                result = await WebServiceClient.SaveQteProduite(viewModel.Item.CODE_DOC, viewModel.Item.QTE_PRODUITE);
+                if (result)
+                {
+                    await UserDialogs.Instance.AlertAsync("La quantité produite a bien été enregistré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
             catch (Exception ex)
             {
@@ -827,5 +778,44 @@ namespace XpertMobileApp.Views
                 IsBusy = false;
             }
         }
+
+        private async void SaveEmballages(View_PRD_AGRICULTURE_DETAIL detail, List<View_BSE_EMBALLAGE> Embalages)
+        {
+
+            bool result = false;
+
+            if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC))
+            {
+                await UserDialogs.Instance.AlertAsync("Veuillez enregistrer le document avant d'introduire la quantité produite!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                result = await WebServiceClient.SaveProdEmballages(Embalages, detail.CODE_DOC_DETAIL);
+                if (result)
+                {
+                    await UserDialogs.Instance.AlertAsync("Les emballages ont bien été enregistrés!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
     }
 }

@@ -230,10 +230,31 @@ namespace XpertMobileApp.Services
 
         public static async Task<string> GenerateProductionOrder(string[] strs)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.PRODUCTION_GENERATE_PRODUCTION_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_GENERATE_PRODUCTION_URL);
             url += WSApi2.AddParam(url, "param01", "param01");
 
             return await WSApi2.PostAauthorizedValue<string, string[]>(url, strs, Token);
+        }
+
+        public static async Task<bool> SaveQteProduite(string codeDoc, decimal Qte)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_SAVE_QTE_PRODUITE_URL);
+            url += WSApi2.AddParam(url, "param02", "param02");
+
+            Dictionary<string, decimal> values = new Dictionary<string, decimal>();
+            values.Add(codeDoc, Qte);
+
+            return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, decimal>>(url, values, Token);
+        }
+
+        public static async Task<bool> SaveProdEmballages(List<View_BSE_EMBALLAGE> embalagges, string codeDetail)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_SAVE_EMBALLAGES_URL);
+            url += WSApi2.AddParam(url, "codeDetail", codeDetail);
+            url += WSApi2.AddParam(url, "param03", "param03");
+
+
+            return await WSApi2.PostAauthorizedValue<bool, List<View_BSE_EMBALLAGE>>(url, embalagges, Token);
         }
 
         #region Produits

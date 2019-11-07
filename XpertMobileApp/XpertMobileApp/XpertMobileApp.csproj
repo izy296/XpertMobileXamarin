@@ -188,6 +188,9 @@
     <Compile Update="Views\Manafiaa\Production\Reception olive huile\PeseeOHTemplate.xaml.cs">
       <DependentUpon>PeseeOHTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Manafiaa\Production\Verification\VerificationUserPage.xaml.cs">
+      <DependentUpon>VerificationUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Manquants\ManquantsPage.xaml.cs">
       <DependentUpon>ManquantsPage.xaml</DependentUpon>
     </Compile>
