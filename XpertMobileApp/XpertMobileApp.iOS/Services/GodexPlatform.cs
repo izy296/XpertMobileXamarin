@@ -35,6 +35,11 @@ namespace XpertMobileApp.Droid.Services
             throw new NotImplementedException();
         }
 
+        public string GetMX30HardWareName()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Openport(string address, int type)
         {
             throw new NotImplementedException();

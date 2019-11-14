@@ -1,5 +1,7 @@
-﻿using Com.Godex;
+﻿using Android.Bluetooth;
+using Com.Godex;
 using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using XpertMobileApp.Api.Services;
 
@@ -10,6 +12,27 @@ namespace XpertMobileApp.Droid.Services
 {
     public class GodexPlatform : IGodexPlatform
     {
+        public string GetMX30HardWareName() {
+            BluetoothAdapter btAdapter = BluetoothAdapter.DefaultAdapter;
+            if (btAdapter != null)
+            {
+                var pairedDevices = btAdapter.BondedDevices ;
+
+                if (pairedDevices!=null && pairedDevices.Count> 0)
+                {
+                    foreach (BluetoothDevice device in pairedDevices)
+                    {
+                        String deviceName = device.Name;
+                        String deviceHardwareAddress = device.Address;
+                        if (deviceName.Equals("MX30"))
+                        {
+                            return deviceHardwareAddress;
+                        }
+                    }
+                }
+            }
+            return "";
+        }
 
         public void Bar_QRCode(int PosX, int PosY, int Mode, int Type, string ErrLevel, int Mask, int Mul,  int Rotation, string Data)
         {

@@ -7,6 +7,7 @@ namespace XpertMobileApp.Api.Services
 {
     public interface IGodexPlatform
     {
+        string GetMX30HardWareName();
         void getMainContext();
         void Debug(int select);
         void Openport(string address, int type);
