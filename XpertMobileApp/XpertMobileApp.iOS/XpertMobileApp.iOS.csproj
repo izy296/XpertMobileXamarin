@@ -77,6 +77,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\CloseApplication.cs" />
+    <Compile Include="Services\GodexPlatform.cs" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist">
       <SubType>Designer</SubType>
