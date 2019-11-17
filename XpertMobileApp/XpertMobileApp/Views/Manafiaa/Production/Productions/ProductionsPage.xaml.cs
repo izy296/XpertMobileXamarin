@@ -8,12 +8,14 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
+using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
@@ -131,6 +133,53 @@ namespace XpertMobileApp.Views
         private async void btn_VeridUser_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new VerificationUserPage(""));
+        }
+
+        private async void btn_Scaner_Clicked(object sender, EventArgs e)
+        {
+            var scaner = new ZXingScannerPage();
+            await Navigation.PushAsync(scaner);
+            scaner.OnScanResult += (result) =>
+            {
+                scaner.IsScanning = false;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PopAsync();
+
+                    await OpenFormAsync(result.Text);
+                });
+            };
+        }
+
+        private async System.Threading.Tasks.Task OpenFormAsync(string text)
+        {
+            try
+            {
+                string[] str = text.Split('-');
+                if (str.Count() > 0)
+                {
+                    string CodeTiers = str[1];
+                    string CodeDoc = str[0];
+
+                     var elem = await CrudManager.ProductionInfosManager.GetProductionFromCodeReception(CodeDoc);
+                    
+                     if (elem != null)
+                     {
+                        await Navigation.PushAsync(new ProductionFormPage(elem, typeDoc, MotifDoc));
+                     }
+                     else
+                     {
+                        await UserDialogs.Instance.AlertAsync("Aucun document de production trouvé pour cette réception!", AppResources.alrt_msg_Alert,
+            AppResources.alrt_msg_Ok);
+                    }
+                   
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+            }
         }
     }
 }
