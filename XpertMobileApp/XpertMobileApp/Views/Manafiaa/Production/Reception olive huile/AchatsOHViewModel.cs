@@ -151,12 +151,18 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_ACH_DOCUMENT> list)
         {
             base.OnAfterLoadItems(list);
-
+            
             int i = 0;
             foreach (var item in list)
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
+
+                if(SelectedDocs.Count > 0 && SelectedDocs.Where(x => x.CODE_DOC == item.CODE_DOC).Count() > 0)
+                {
+                    item.IsSelected = true;
+                }
+
             }
         }
 

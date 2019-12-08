@@ -15,8 +15,8 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{i18n:Translate lp_btn_Settings}"
-                    Icon="settings_32.png" Clicked="HeaderSettings_Clicked" >
+        <ToolbarItem Text="Impr" Icon="printer_24.png" Clicked="AchImpr_Clicked" />
+        <ToolbarItem Text="{i18n:Translate lp_btn_Settings}" Icon="settings_32.png" Clicked="HeaderSettings_Clicked" >
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -32,6 +32,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -113,6 +115,17 @@
                         Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" 
                         Clicked="btn_PSortie_Clicked" />
+                    </StackLayout>
+
+                    <Label x:Name="lbl_IS_Individuel" Grid.Column="0" Grid.Row="6" Text="Individuel" FontSize="Medium" Margin="5" />
+                    <StackLayout x:Name="tgl_IS_Individuel" Grid.Column="1" Grid.Row="6" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
+                        <Switch IsToggled="{Binding Item.IS_INDIVIDUAL, Mode=TwoWay}" />
+                    </StackLayout>
+
+                    <Label x:Name="lbl_NOTE" Grid.Column="0" Grid.Row="7" Text="Note" FontSize="Medium" Margin="5" />
+                    <StackLayout x:Name="stk_lbl_NOTE" Grid.Column="1" Grid.Row="7" Orientation="Horizontal" 
+                                 Padding="0" Margin="0" Spacing="0" >
+                        <Editor Text="{Binding Item.NOTE_DOC, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
                 </Grid>
             </Frame>
@@ -247,15 +260,16 @@
                                                         <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
                                                         
                                                         <!-- Prix -->
-                                                        <Label Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
                                                         <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
                                                              Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
+                                                             IsVisible="{Binding IS_ACHAT}"                      
                                                              IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
                                                               ValueChanged="ne_PeseeTTCChanged"
                                                              />
-                                                        <Label Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
+                                                        <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
                                                     </Grid>
 
                                                 </StackLayout>
@@ -267,6 +281,7 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="50" />
                                                     <ColumnDefinition Width="50" />
+                                                    <ColumnDefinition Width="60" />
                                                     <ColumnDefinition Width="60" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
@@ -290,8 +305,15 @@
                                                 <Label Grid.Column="2" Text="{ Binding Diff_Poids_Caisses, StringFormat=' Caisses : ({0} kg)'}" 
                                                                HorizontalOptions="Start" VerticalOptions="Start" FontSize="11"
                                                                HorizontalTextAlignment="Start"  TextColor="Chocolate"/>
-                                                
-                                                <Label Grid.Column="3" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
+
+                                                <Button  Grid.Column="3" x:Name="Btn_SelectExtraUser" Margin="0"
+                                                            WidthRequest="60" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
+                                                            IsVisible="{Binding IS_ACHAT, Converter={StaticResource inverseBoolVisibilityConverter}}"
+                                                            HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.users}" BackgroundColor="White" 
+                                                            Clicked="Btn_SelectExtraUser_Clicked" VerticalOptions="Center"/>
+
+                                                <Label Grid.Column="4" IsVisible="{Binding IS_ACHAT}" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
                                                                FontSize="Default" HorizontalOptions="EndAndExpand" 
                                                                HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Chocolate"/>
                                             </Grid>
@@ -307,6 +329,7 @@
             <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
                 <Label x:Name="lbl_vteTTC" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,20,10"
                            Text="{ Binding Item.TOTAL_TTC, Mode=TwoWay, StringFormat='Total : {0:N2} DA'}" 
+                           IsVisible="{Binding Item.IS_ACHAT}"
                            HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />
                 
                 <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal">

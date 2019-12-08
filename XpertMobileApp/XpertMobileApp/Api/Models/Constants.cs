@@ -19,7 +19,7 @@ namespace XpertMobileApp.Api
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
-        public static string AppName = Apps.XAGRI_Mob;
+        public static string AppName = Apps.XPH_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 

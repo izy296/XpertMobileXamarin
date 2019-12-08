@@ -140,6 +140,8 @@ namespace XpertMobileApp.ViewModels
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+
+            GetItemsSum();
         }
 
         async Task ExecuteLoadItemsCommand()

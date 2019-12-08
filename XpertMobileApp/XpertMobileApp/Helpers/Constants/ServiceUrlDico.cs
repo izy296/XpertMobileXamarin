@@ -83,8 +83,11 @@ namespace XpertMobileApp.Helpers
         public static string PRODUCTION_DETAILS_URL = "GetDetails";
         public static string PRODUCTION_GENERATE_PRODUCTION_URL = "GenerateProductionOrder";
         public static string PRODUCTION_SAVE_QTE_PRODUITE_URL = "SaveQteProduite";
+        public static string PRODUCTION_UPDATE_STATUS_URL = "UpdateStatus";
         public static string PRODUCTION_SAVE_EMBALLAGES_URL = "SaveDetailsEmbalages";
-        
+        public static string PRODUCTION_PRINT_QR_CODE_URL = "PrintQRCodeRecept";
+        public static string PRODUCTION_UPDATE_LIVRAISON_INFOS_URL = "SetInfoLivraison";
+
         // Produits
 
         public static string PRODUITS_URL = "Produits";

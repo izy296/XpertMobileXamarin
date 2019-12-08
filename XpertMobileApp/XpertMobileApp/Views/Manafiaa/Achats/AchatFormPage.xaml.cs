@@ -35,6 +35,11 @@ namespace XpertMobileApp.Views
 
             // NavigationPage.SetHasNavigationBar(this, false);
 
+            lbl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
+            tgl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
+            stk_lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
+            lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
+
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector();
             EmballageSelector = new EmballageSelector();
@@ -75,7 +80,27 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<EmballageSelector, List<View_BSE_EMBALLAGE>>(this, MCDico.ITEM_SELECTED, async (obj, items) =>
+            MessagingCenter.Subscribe<AnnexTiersSelector, List<VIEW_ACH_INFO_ANEX>>(this, MCDico.ITEM_SELECTED, async (obj, items) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    try
+                    {
+                        if(items != null && items.Count > 0)
+                        { 
+                            currentRow.ANNEX_USERS = items;
+                            currentRow.QUANTITE = currentRow.QTE_RECUE = items.Sum(x => x.QUANTITE_APPORT);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                    }
+                });
+            });
+
+            MessagingCenter.Subscribe<EmballageSelector, List<View_BSE_EMBALLAGE>>(this, CurrentStream, async (obj, items) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -85,10 +110,10 @@ namespace XpertMobileApp.Views
                         {
                             item.CODE_EMBALLAGE = item.CODE;
                         }
-                        var embs = items.Where(e=> e.QUANTITE_ENTREE != 0 || e.QUANTITE_SORTIE != 0).ToList();
+                        var embs = items.Where(e => e.QUANTITE_ENTREE != 0 || e.QUANTITE_SORTIE != 0).ToList();
                         var embalages = new List<View_BSE_EMBALLAGE>();
                         if (embs != null && embs.Count > 0)
-                        { 
+                        {
                             foreach (var item in embs)
                             {
                                 embalages.Add(XpertHelper.CloneObject<View_BSE_EMBALLAGE>(item));
@@ -296,7 +321,16 @@ namespace XpertMobileApp.Views
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 // row.UNITE
                 row.TAUX_DECHET   = product.TAUX_DECHET;
-                row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT; 
+                row.CODE_MOTIF = viewModel.Item.CODE_MOTIF;
+                if (viewModel.Item.CODE_MOTIF == AchRecMotifs.PesageForProduction)
+                { 
+                    row.PRIX_UNITAIRE = 0;
+                }
+                else
+                {
+                    row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT;
+                }
+
                 row.PRIX_VENTE    = product.PRIX_VENTE_HT;
 
                 row.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
@@ -510,10 +544,14 @@ namespace XpertMobileApp.Views
 
         private EmballageSelector EmballageSelector;
         public static View_ACH_DOCUMENT_DETAIL currentRow;
+        public string CurrentStream = Guid.NewGuid().ToString();
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
             currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
+            EmballageSelector.CurrentStream = CurrentStream;
             EmballageSelector.IS_PRINCIPAL = currentRow.IS_PRINCIPAL || viewModel.Item.PESEE_ENTREE == 0;
+            EmballageSelector.IS_SALES = true;
+
             await PopupNavigation.Instance.PushAsync(EmballageSelector);
 
             EmballageSelector.CurrentEmballages = currentRow.Embalages;
@@ -802,7 +840,13 @@ namespace XpertMobileApp.Views
 
             try
             {
-                if(string.IsNullOrEmpty(viewModel.Item.CODE_TIERS))
+                if (viewModel.Item.STATUS_DOC == DocStatus.EnProduction || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+                {
+                    await UserDialogs.Instance.AlertAsync("Document " + viewModel.Item.DESIGNATION_STATUS + ", Vous ne pouvez pas le modifier!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(viewModel.Item.CODE_TIERS))
                 { 
                     await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un tiers!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
@@ -977,6 +1021,59 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.HideLoading();
                 IsBusy = false;
             }
+        }
+
+        private async void AchImpr_Clicked(object sender, EventArgs e)
+        {
+            bool result = false;
+
+            if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC))
+            {
+                await UserDialogs.Instance.AlertAsync("Vous devez enregistrer le document avant de pouvoir imprimer l'étiquette", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
+
+            string codeDocRecept = viewModel.Item.CODE_DOC;
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
+                /*
+                if (result)
+                {
+                    await UserDialogs.Instance.AlertAsync("La quantité produite a bien été enregistré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }*/
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        private AnnexTiersSelector AnnexTiersSelector;
+        private async void Btn_SelectExtraUser_Clicked(object sender, EventArgs e)
+        {
+            AnnexTiersSelector = new AnnexTiersSelector();
+            currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
+            AnnexTiersSelector.CODE_DOC = viewModel.Item.CODE_DOC;
+            AnnexTiersSelector.CurrentAnnex = currentRow.ANNEX_USERS;
+            AnnexTiersSelector.PrixPrestation = currentRow.PRIX_VENTE;
+            AnnexTiersSelector.IS_ACHAT = true;
+
+            await PopupNavigation.Instance.PushAsync(AnnexTiersSelector);
         }
     }
 

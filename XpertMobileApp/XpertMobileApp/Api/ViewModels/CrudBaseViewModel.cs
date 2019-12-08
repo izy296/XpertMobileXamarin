@@ -32,6 +32,13 @@ namespace XpertMobileApp.Api.ViewModels
             set { SetProperty(ref isLoadExtrasBusy, value); }
         }
 
+        decimal elementsSum;
+        public decimal ElementsSum
+        {
+            get { return elementsSum; }
+            set { SetProperty(ref elementsSum, value); }
+        }
+
         public InfiniteScrollCollection<TView> Items { get; set; }
 
         public TView SelectedItem { get; set; }
@@ -125,6 +132,11 @@ namespace XpertMobileApp.Api.ViewModels
                     return Items.Count < elementsCount;
                 }
             };
+        }
+
+        internal async Task GetItemsSum()
+        {
+            ElementsSum = await service.ItemsSum(GetFilterParams());
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -229,7 +241,10 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        public virtual void ClearFilters()
+        {
 
+        }
 
     }
 }

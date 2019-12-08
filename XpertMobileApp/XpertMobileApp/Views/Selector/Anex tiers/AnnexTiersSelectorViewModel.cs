@@ -9,36 +9,41 @@ namespace XpertMobileApp.ViewModels
     public class AnnexTiersSelectorViewModel : CrudBaseViewModel<ACH_INFO_ANEX, VIEW_ACH_INFO_ANEX>
     {
 
-        private List<VIEW_ACH_INFO_ANEX> currentEmballages;
-        public List<VIEW_ACH_INFO_ANEX> CurrentEmballages
+        private bool iS_ACHAT;
+        public bool IS_ACHAT
         {
             get
             {
-                return currentEmballages;
+                return iS_ACHAT;
             }
             set
             {
-                clearInfos();
-                currentEmballages = value;
 
-                if (currentEmballages == null) return;
-                foreach (var emb in currentEmballages)
+                iS_ACHAT = value;
+                OnPropertyChanged("IS_ACHAT");
+            }
+        }
+
+        private List<VIEW_ACH_INFO_ANEX> currentAnnex;
+        public List<VIEW_ACH_INFO_ANEX> CurrentAnnex
+        {
+            get
+            {
+                return currentAnnex;
+            }
+            set
+            {
+
+                currentAnnex = value;
+
+                if (currentAnnex == null) return;
+                foreach (var emb in currentAnnex)
                 {
-                    var itm = Items.Where(x => x.ID_LIGNE == emb.ID_LIGNE).FirstOrDefault();
-                    if (itm != null)
-                    {
-                        itm.NOM_TIERS = emb.NOM_TIERS;
-                        itm.QUANTITE_APPORT = emb.QUANTITE_APPORT;
-                        itm.CODE_DOC = emb.CODE_DOC;
-                    }
+                    Items.Add(emb);
                 }
             }
         }
 
-        private void clearInfos()
-        {
-            CurrentEmballages.Clear();
-        }
 
         public string SearchedText { get; set; } = "";
 

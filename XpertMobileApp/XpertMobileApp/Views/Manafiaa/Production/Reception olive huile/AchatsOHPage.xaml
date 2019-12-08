@@ -61,9 +61,16 @@
 
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
                             <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Black"/>
-                            <Label Text="{ Binding PESEE_ENTREE, StringFormat='E. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
+                            <Label Text="{Binding QTE_NET, StringFormat='{0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
+
+                            <Frame CornerRadius="10" Margin="0" Padding="6,4,6,4" HeightRequest="25"
+                                   IsVisible="{Binding IS_INDIVIDUAL}"  HorizontalOptions="End" BackgroundColor="Red">
+                                    <Label Text="Individuel" TextColor="White" FontSize="Default" HorizontalOptions="Start"/>
+                            </Frame>
+                                <!--
                             <Label Text="{ Binding PESEE_SORTIE, StringFormat='S. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="OrangeRed"/>
-                        </StackLayout>
+                            -->
+                         </StackLayout>
 
                         <Image Grid.Column="3" Grid.Row="1" 
                            x:Name="selectionImage"
@@ -180,8 +187,8 @@
         </StackLayout>
 -->
         <!-- Infos selection -->
-        <StackLayout HeightRequest="50">
-            <Grid x:Name="headerGrid" BackgroundColor="#FFEEEEF2">
+        <StackLayout HeightRequest="50" MinimumHeightRequest="50">
+            <Grid x:Name="headerGrid" BackgroundColor="LightGray">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
@@ -206,11 +213,11 @@
                 <StackLayout Grid.Column="1" Margin="0,3,0,3" Spacing="0" Padding="0">
                     
                     <Label LineBreakMode="NoWrap" x:Name="txt_Count"
-                    Text="dddd" 
+                    Text="Selection : (0)" 
                    FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
 
                     <Label LineBreakMode="NoWrap" Grid.Column="0" x:Name="txt_PoidsTotal"
-                   Text="cccc" FontAttributes="Bold"
+                   Text="Quantité : 0 Kg" FontAttributes="Bold"
                    FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
                     
                 </StackLayout>
@@ -239,7 +246,7 @@
         </StackLayout>
         
         <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand" Padding="0,5,0,0" Margin="0" Spacing="0" BackgroundColor="Transparent" >
+        <StackLayout VerticalOptions="FillAndExpand" Padding="0" Margin="0" Spacing="0" BackgroundColor="Transparent" >
 
                 <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"

@@ -100,8 +100,20 @@ namespace XpertMobileApp.ViewModels
                 NAME = "Terminé",
             });
 
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "19",
+                NAME = "En production",
+            });
+
             if (App.HasAdmin)
             {
+                Status.Add(new BSE_DOCUMENT_STATUS
+                {
+                    CODE_STATUS = "22",
+                    NAME = "Livré",
+                });
+
                 Status.Add(new BSE_DOCUMENT_STATUS
                 {
                     CODE_STATUS = "19",

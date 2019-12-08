@@ -23,12 +23,28 @@ namespace XpertMobileApp.ViewModels
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
 
-        public DateTime StartDate { get; set; } = DateTime.Now;
 
-        public DateTime EndDate { get; set; } = DateTime.Now;
+        DateTime startDate = DateTime.Now;
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { SetProperty(ref startDate, value); }
+        }
+
+        DateTime endDate = DateTime.Now;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { SetProperty(ref endDate, value); }
+        }
 
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
+        View_BSE_COMPTE selectedCompte;
+        public View_BSE_COMPTE SelectedCompte
+        {
+            get { return selectedCompte; }
+            set { SetProperty(ref selectedCompte, value); }
+        }
 
         public EncaissementsViewModel()
         {
@@ -114,6 +130,13 @@ namespace XpertMobileApp.ViewModels
                 IsLoadExtrasBusy = false;
             }
         }
-    }
 
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+            SelectedCompte = null;
+        }
+    }
 }

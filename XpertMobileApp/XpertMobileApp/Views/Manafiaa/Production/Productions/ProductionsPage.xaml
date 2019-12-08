@@ -151,15 +151,17 @@
 
                 <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                              HorizontalOptions="End">
-                    <Button x:Name="btn_Scaner" Margin="5" HorizontalOptions="End" 
-                            Text="Scaner" Style="{DynamicResource DefaultBtnStyle}" 
-                        Clicked="btn_Scaner_Clicked"/>
+
                     
                     <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                        Clicked="btn_ApplyFilter_Clicked"/>
+                        Clicked="btn_ApplyFilter_Clicked" CornerRadius="8"/>
 
+                    <Button x:Name="btn_Scaner" Margin="5" HorizontalOptions="End" Image="scan_qr_24.png"
+                            Text="Scaner" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_Scaner_Clicked" CornerRadius="8"/>
+                    
                     <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                        Clicked="btn_CancelFilter_Clicked"/>
+                        Clicked="btn_CancelFilter_Clicked" CornerRadius="8"/>
                 </StackLayout>
             </Grid>
         </StackLayout>
@@ -176,9 +178,8 @@
                 <StackLayout Grid.Column="1" Margin="0,3,0,3" Spacing="0" Padding="0">
 
                     <Label LineBreakMode="NoWrap" Grid.Column="0" x:Name="txt_PoidsTotal"
-                   Text="Quantité listée : 0 Kg" FontAttributes="Bold"
+                   Text="{Binding ElementsSum, StringFormat='Quantité listée : {0:N2} Kg'}" FontAttributes="Bold"
                    FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
-
                 </StackLayout>
             </Grid>
         </StackLayout>

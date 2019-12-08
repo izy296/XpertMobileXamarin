@@ -35,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="beep.wav" />
+    <None Remove="beep03.mp3" />
+    <None Remove="beep07.mp3" />
     <None Remove="MultilingualResources\XpertMobileApp.ar.xlf" />
     <None Remove="MultilingualResources\XpertMobileApp.en.xlf" />
   </ItemGroup>
@@ -43,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="beep.wav" />
+    <EmbeddedResource Include="beep03.mp3" />
+    <EmbeddedResource Include="beep07.mp3" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
@@ -203,6 +207,9 @@
     <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
       <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Selector\Anex tiers\AnnexTiersSelector.xaml.cs">
+      <DependentUpon>AnnexTiersSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Selector\Centre\CentresSelector.xaml.cs">
       <DependentUpon>CentresSelector.xaml</DependentUpon>
     </Compile>
@@ -298,6 +305,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Login\LoginPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Anex tiers\AnnexTiersSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\Centre\CentresSelector.xaml">
       <Generator>MSBuild:Compile</Generator>

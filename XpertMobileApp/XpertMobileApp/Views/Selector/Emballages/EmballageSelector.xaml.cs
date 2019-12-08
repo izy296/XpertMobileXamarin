@@ -8,11 +8,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using XpertMobileApp.Models;
+using Acr.UserDialogs;
+using Xpert.Common.WSClient.Helpers;
 
 namespace XpertMobileApp.Views
 {
     public partial class EmballageSelector : PopupPage
     {
+        public string CurrentStream;
 
         EmballageSelectorViewModel viewModel;
 
@@ -46,11 +49,11 @@ namespace XpertMobileApp.Views
         {
             get
             {
-                return viewModel.IS_PRINCIPAL;
+                return viewModel.IS_SALES;
             }
             set
             {
-                viewModel.IS_PRINCIPAL = value;
+                viewModel.IS_SALES = value;
 
             }
         }
@@ -75,11 +78,25 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            ent_Filter.Focus();
+            try
+            { 
+                ent_Filter.Focus();
 
-            MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.Items.ToList());
+                string msg = MCDico.ITEM_SELECTED;
+                if (!string.IsNullOrEmpty(CurrentStream))
+                {
+                    msg = CurrentStream;
+                }
+
+                MessagingCenter.Send(this, msg, viewModel.Items.ToList());
             
-            await PopupNavigation.Instance.PopAsync();
+                await PopupNavigation.Instance.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+            }
         }
 
         async void btn_Search_Clicked(object sender, EventArgs e)

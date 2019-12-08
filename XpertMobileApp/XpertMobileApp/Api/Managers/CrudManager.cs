@@ -22,6 +22,10 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_TRS_TIERS> TiersService = new CrudService<View_TRS_TIERS>(App.RestServiceUrl, "TRS_TIERS", App.User.Token);
 
+        internal static ProductionInfosManager ProductionInfosManager = new ProductionInfosManager();
+
+        internal static TiersManager TiersManager = new TiersManager();
+        
         public static void InitServices()
         {
             SysParams = new SYS_PARAMS_Manager();
@@ -31,6 +35,9 @@ namespace XpertMobileApp.Api.Managers
             Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
             Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
             TiersService = new CrudService<View_TRS_TIERS>(App.RestServiceUrl, "TRS_TIERS", App.User.Token);
+
+            ProductionInfosManager = new ProductionInfosManager();
+            TiersManager = new TiersManager();
         }
     }
 }

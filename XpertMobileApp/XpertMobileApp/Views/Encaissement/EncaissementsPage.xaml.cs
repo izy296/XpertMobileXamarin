@@ -121,9 +121,9 @@ namespace XpertMobileApp.Views
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-           //  viewModel.SelectedCompte = null;
-            FilterPanel.IsVisible = false;
-           // viewModel.LoadItemsCommand.Execute(null);
+            //  viewModel.SelectedCompte = null;
+            viewModel.ClearFilters();
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         #endregion 

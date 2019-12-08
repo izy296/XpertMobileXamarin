@@ -1,9 +1,12 @@
 ﻿using Acr.UserDialogs;
+using Plugin.SimpleAudioPlayer;
 using Rg.Plugins.Popup.Services;
 using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -35,9 +38,21 @@ namespace XpertMobileApp.Views
 
             // NavigationPage.SetHasNavigationBar(this, false);
 
+            if (vente.STATUS_DOC == DocProdStatus.PrdEnAttente)
+                cmd_Terminate.Text = "En cours";
+            else if (vente.STATUS_DOC == DocProdStatus.PrdEnCours)
+                cmd_Terminate.Text = "Terminer";
+            /*
+            else if (vente.STATUS_DOC == DocProdStatus.PrdTermine)
+                cmd_Terminate.Text = "Livrer";
+             */
+            else
+                cmd_Terminate.IsVisible = false;
+
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector();
             EmballageSelector = new EmballageSelector();
+            AnnexTiersSelector = new AnnexTiersSelector();
 
             var ach = vente == null ? new View_PRD_AGRICULTURE() : vente;
             if(vente == null)
@@ -75,7 +90,7 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<EmballageSelector, List<View_BSE_EMBALLAGE>>(this, MCDico.ITEM_SELECTED, async (obj, items) =>
+            MessagingCenter.Subscribe<EmballageSelector, List<View_BSE_EMBALLAGE>>(this, CurrentStream, async (obj, items) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -372,15 +387,30 @@ namespace XpertMobileApp.Views
         }
 
         private EmballageSelector EmballageSelector;
+        public string CurrentStream = Guid.NewGuid().ToString();
         public static View_PRD_AGRICULTURE_DETAIL currentRow;
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
             currentRow = (sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL;
-            EmballageSelector.IS_PRINCIPAL = false;
-            EmballageSelector.IS_SALES = true;
+            EmballageSelector.CurrentStream = CurrentStream;
+            EmballageSelector.IS_PRINCIPAL = true;
+            EmballageSelector.IS_SALES = false;
             await PopupNavigation.Instance.PushAsync(EmballageSelector);
 
             EmballageSelector.CurrentEmballages = currentRow.Embalages;
+        }
+
+        private AnnexTiersSelector AnnexTiersSelector;
+        private async void Btn_SelectExtraUser_Clicked(object sender, EventArgs e)
+        {
+            AnnexTiersSelector = new AnnexTiersSelector();
+            currentRow = (sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL;
+            AnnexTiersSelector.CODE_DOC = currentRow.CODE_DOC_RECEPTION;
+            AnnexTiersSelector.IS_ACHAT = false;
+            AnnexTiersSelector.TotalQteProduite = currentRow.QTE_DETAIL_PRODUITE;
+            AnnexTiersSelector.CurrentAnnex = currentRow.ANNEX_USERS;
+
+            await PopupNavigation.Instance.PushAsync(AnnexTiersSelector);
         }
 
         private void btn_SelectImmat_Clicked(object sender, EventArgs e)
@@ -623,7 +653,7 @@ namespace XpertMobileApp.Views
                 return;
             }
 
-            if (viewModel.ItemRows.Count == 0 && (viewModel.Item.STATUS_DOC == DocStatus.EnAttente || viewModel.Item.STATUS_DOC == DocStatus.EnCours))
+            if (viewModel.ItemRows.Count == 0)
             {
                 await UserDialogs.Instance.AlertAsync("Veuillez saisir les détails de la production!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return;
@@ -633,16 +663,22 @@ namespace XpertMobileApp.Views
              {
                  UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
-                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                 // this.viewModel.Item.CODE_MOTIF = "ES10";
-                 // this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
-                 // this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
-
                  viewModel.IsBusy = true;
-                 viewModel.Item.STATUS_DOC = DocStatus.Termine;
-                 await CrudManager.Productions.UpdateItemAsync(viewModel.Item);
+                string nextSatus = "";
+                if (viewModel.Item.STATUS_DOC == DocProdStatus.PrdEnAttente)
+                    nextSatus = DocProdStatus.PrdEnCours;
+                else if (viewModel.Item.STATUS_DOC == DocProdStatus.PrdEnCours)
+                    nextSatus = DocProdStatus.PrdTermine;
+                /*
+                else if (viewModel.Item.STATUS_DOC == DocProdStatus.PrdTermine)
+                    nextSatus = DocProdStatus.PrdLivre;
+                */
+                bool result = await WebServiceClient.UpdateStatus(viewModel.Item.CODE_DOC, nextSatus);
 
-                 await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated,AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                if (result)
+                {
+                    await UserDialogs.Instance.AlertAsync("L'état de la production a bien été modifié!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
 
                 await Navigation.PopAsync();
             }
@@ -817,5 +853,148 @@ namespace XpertMobileApp.Views
             }
         }
 
+        private async void Btn_PrintRecept_Clicked(object sender, EventArgs e)
+        {
+            bool result = false;
+
+            string codeDocRecept = ((sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_RECEPTION; 
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
+                /*
+                if (result)
+                {
+                    await UserDialogs.Instance.AlertAsync("La quantité produite a bien été enregistré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }*/
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        private async void btn_Livrer_Clicked(object sender, EventArgs e)
+        {
+            bool result = false;
+
+            Button btn = (sender as Button);
+
+            string codeDocRecept = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_RECEPTION;
+            string codeDocDetail = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_DETAIL;
+
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                result = await WebServiceClient.LivrerProduction(codeDocRecept, codeDocDetail);
+
+                if (result)
+                {
+                    btn.IsVisible = false;
+                   // await UserDialogs.Instance.AlertAsync("La quantité produite a bien été enregistré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        Stream GetStreamFromFile(string filename)
+        {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream("XpertMobileApp." + filename);
+            return stream;
+        }
+
+        private async Task VerifiProd(string scanedText, string refCodeDoc)
+        {
+            try
+            {
+                string[] str = scanedText.Split('-');
+                if (str.Count() >= 2)
+                {
+                    string CodeDoc = str[0];
+                    if (!string.IsNullOrEmpty(refCodeDoc) && refCodeDoc.Equals(CodeDoc))
+                    {
+
+                        try
+                        {
+                            ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                            player.Load(GetStreamFromFile("beep07.mp3"));
+                            player.Play();
+                        }
+                        catch { }
+
+                        await UserDialogs.Instance.AlertAsync("L'emballage est correct!", AppResources.alrt_msg_Alert,
+                                 AppResources.alrt_msg_Ok);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                            player.Load(GetStreamFromFile("beep03.mp3"));
+                            player.Play();
+                        }
+                        catch { }
+
+                        await UserDialogs.Instance.AlertAsync("L'emballage n'appartient pas a cet ordre de production!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+            }
+        }
+
+        private void Btn_Btn_VerifProd_Clicked(object sender, EventArgs e)
+        {
+            Button btn = (sender as Button);
+
+            var scaner = new ZXingScannerPage();
+            scaner.Title = "Vérification emballage";
+            
+            Navigation.PushAsync(scaner);
+            scaner.OnScanResult += (result) =>
+            {
+                scaner.IsScanning = false;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    string codeDocRecept = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_RECEPTION;
+
+                    VerifiProd(result.Text, codeDocRecept);
+
+                  //  await Navigation.PopAsync();
+                });
+            };
+        }
     }
 }

@@ -83,6 +83,7 @@ namespace XpertMobileApp.DAL
 
         public decimal PESEE_ENTREE { get; set; }
         public decimal PESEE_SORTIE { get; set; }
+        public bool IS_INDIVIDUAL { get; set; }
 
         public string IMMATRICULATION { get; set; }
         public DateTime? DATE_PESEE_ENTREE { get; set; }
@@ -217,6 +218,13 @@ namespace XpertMobileApp.DAL
 
         public List<View_ACH_DOCUMENT_DETAIL> Details;
 
+        public bool IS_ACHAT
+        {
+            get
+            {
+                return CODE_MOTIF != AchRecMotifs.PesageForProduction;
+            }
+        }
     }
 
     public partial class ACH_DOCUMENT_DETAIL : BASE_CLASS
@@ -430,6 +438,14 @@ namespace XpertMobileApp.DAL
         public decimal MT_ACHAT { get; set; }
         public bool PSYCHOTHROPE { get; set; } // tinyint(3)
 
+        public bool IS_ACHAT
+        {
+            get
+            {
+                return CODE_MOTIF != AchRecMotifs.PesageForProduction;
+            }
+        }
+
         // Extension mobile
         private bool? edited_BY_QteNet { get; set; } = null;
         public bool? Edited_BY_QteNet
@@ -447,6 +463,8 @@ namespace XpertMobileApp.DAL
                 }
             }
         }
+
+        public List<VIEW_ACH_INFO_ANEX> ANNEX_USERS;
 
         private List<View_BSE_EMBALLAGE> embalages;
         public List<View_BSE_EMBALLAGE> Embalages
@@ -724,6 +742,15 @@ namespace XpertMobileApp.DAL
         public static string EnCours { get { return "17"; } }
         public static string Termine { get { return "18"; } }
         public static string Cloture { get { return "19"; } }
+        public static string EnProduction { get { return "20"; } }
+        public static string Livre { get { return "22"; } }
+    }
+
+    public static class DocProdStatus
+    {
+        public static string PrdEnAttente { get { return "30"; } }
+        public static string PrdEnCours { get { return "31"; } }
+        public static string PrdTermine { get { return "32"; } }
     }
 
     public partial class BSE_DOCUMENT_STATUS
@@ -865,6 +892,15 @@ namespace XpertMobileApp.DAL
         public string CODE_TIERS_RESPONSABLE { get; set; }
         public string NOTE_DOC { get; set; }
         public decimal QTE_APPORT { get; set; }
+        public string ACH_CODE_STATUS { get; set; }        
+
+        public bool Delevred 
+        {
+            get
+            {
+                return ACH_CODE_STATUS != DocStatus.Livre;
+            }
+        }
 
         // Mobile
         [JsonIgnore]
@@ -891,6 +927,54 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("Poids_Caisses");
                 OnPropertyChanged("MT_TTC");
                 */
+            }
+        }
+        public List<VIEW_ACH_INFO_ANEX> ANNEX_USERS;
+
+        public bool HAS_ExtraUser
+        {
+            get
+            {
+                return ANNEX_USERS != null && ANNEX_USERS.Count > 0;
+            }
+        }
+    }
+
+    public partial class View_PRD_AGRICULTURE_DETAIL_INFO
+    {
+        public DateTime DATE_DOC { get; set; }
+        public string NUM_DOC { get; set; }
+        public string CODE_DOC { get; set; }
+        public string CODE_DOC_DETAIL { get; set; }
+        public string CODE_TIERS { get; set; }
+
+        public string NOM_TIERS { get; set; }
+        public string CODE_DOC_RECEPTION { get; set; }
+        public decimal QTE_APPORT { get; set; }
+        public decimal QTE_DETAIL_PRODUITE { get; set; }
+        public decimal QTE_PRODUITE { get; set; }
+        public decimal MT_REGLE { get; set; }
+
+        public decimal MT_PRESTATION { get; set; }
+        public decimal MT_REGLE_PRESTATION { get; set; }
+        public decimal MT_BIDONS { get; set; }
+        public decimal MT_REGLE_EMBALLAGE { get; set; }
+
+        public decimal TOTAL_RESTE
+        {
+            get
+            {
+                return (MT_PRESTATION + MT_BIDONS) - (MT_REGLE_PRESTATION + MT_REGLE_EMBALLAGE);
+            }
+        }
+
+        public string ACH_CODE_STATUS { get; set; }
+
+        public bool Delevred
+        {
+            get
+            {
+                return ACH_CODE_STATUS != DocStatus.Livre;
             }
         }
     }

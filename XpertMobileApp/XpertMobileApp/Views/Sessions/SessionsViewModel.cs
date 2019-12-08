@@ -15,14 +15,42 @@ namespace XpertMobileApp.ViewModels
     public class SessionsViewModel : CrudBaseViewModel<TRS_JOURNEES, TRS_JOURNEES>
     {
 
-        public EncaissDisplayType EncaissDisplayType { get; set; }
+        EncaissDisplayType encaissDisplayType;
+        public EncaissDisplayType EncaissDisplayType
+        {
+            get { return encaissDisplayType; }
+            set { SetProperty(ref encaissDisplayType, value); }
+        }
 
-        public DateTime StartDate { get; set; } = DateTime.Now.AddDays(-15);
+        DateTime startDate = DateTime.Now.AddDays(-15);
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { SetProperty(ref startDate, value); }
+        }
 
-        public DateTime EndDate { get; set; } = DateTime.Now;
+        DateTime endDate = DateTime.Now;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { SetProperty(ref endDate, value); }
+        }
 
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
+        View_BSE_COMPTE selectedCompte;
+        public View_BSE_COMPTE SelectedCompte
+        {
+            get { return selectedCompte; }
+            set { SetProperty(ref selectedCompte, value); }
+        }
+
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            StartDate = DateTime.Now.AddDays(-15);
+            EndDate = DateTime.Now;
+            SelectedCompte = null;
+        }
 
         public SessionsViewModel()
         {

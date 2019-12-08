@@ -1,8 +1,9 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Plugin.Connectivity;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
@@ -64,16 +65,19 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await App.GetSysParams();
-            permissions = await App.GetPermissions();
+            var connectivity = CrossConnectivity.Current;
+            if (connectivity.IsConnected)
+            { 
+                parames = await App.GetSysParams();
+                permissions = await App.GetPermissions();
+
+                LoadStats();
+            }
 
             if (!App.HasAdmin)
             {
                 ApplyVisibility();
             }
-
-            //if (viewModel.Items.Count == 0)
-            LoadStats();
         }
 
         private void ApplyVisibility()
@@ -83,7 +87,7 @@ namespace XpertMobileApp.Views
 
         private async void LoadStats()
         {
-            viewModel.LoadItemsCommand.Execute(null);
+             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)

@@ -65,12 +65,6 @@
     <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DeviceAPI">
-      <HintPath>DLL\DLLOrigine\DeviceAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="EZioAD">
-      <HintPath>..\..\Xpert.Dll\EZioAD.dll</HintPath>
-    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -176,11 +170,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CODE_BARRE\CODE_BARRE_Reder.cs" />
-    <Compile Include="Services\CODE_BARRE\GodexPlatform.cs" />
     <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\CloseApplication.cs" />
-    <Compile Include="Services\RFID\RfidScaner.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -188,7 +179,6 @@
     <AndroidAsset Include="Assets\FA5FreeSolid900.otf" />
     <AndroidAsset Include="Assets\FABrandsRegular400.otf" />
     <AndroidAsset Include="Assets\FA5FreeRegular400.otf" />
-    <None Include="DLL\DLLOrigine\DeviceAPI.rar" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml">
@@ -356,8 +346,10 @@
     <AndroidResource Include="Resources\drawable\SortIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DLL\DeviceAPI.dll" />
-    <Content Include="DLL\DLLOrigine\DeviceAPI.dll" />
+    <AndroidResource Include="Resources\drawable\printer_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\scan_qr_24.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.Xamarin.Android.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.Xamarin.Android.targets')" />

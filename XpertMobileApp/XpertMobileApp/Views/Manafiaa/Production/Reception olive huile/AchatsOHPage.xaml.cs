@@ -114,10 +114,10 @@ namespace XpertMobileApp.Views
 
         private void SlectedItempsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            decimal totalQte = viewModel.SelectedDocs.Sum(x => x.PESEE_BRUTE);
+            decimal totalQte = viewModel.SelectedDocs.Sum(x => x.QTE_NET);
             int totalCount = viewModel.SelectedDocs.Count();
 
-            txt_PoidsTotal.Text = "Quantité : "  + totalQte.ToString() ;
+            txt_PoidsTotal.Text = "Quantité : "  + totalQte.ToString() + " Kg";
             txt_Count.Text = "Selection : " + "(" + totalCount.ToString() + ")";
         }
 
@@ -138,16 +138,18 @@ namespace XpertMobileApp.Views
             var selectedItem = e.Item as View_ACH_DOCUMENT;
             if (selectedItem == null)
                 return;
-
-            var item = viewModel.SelectedDocs.Where(x => x.CODE_DOC == selectedItem.CODE_DOC).SingleOrDefault();
-            selectedItem.IsSelected = item == null;
-            if (item != null)
-            {
-                viewModel.SelectedDocs.Remove(selectedItem);
-            }
-            else
-            {
-                viewModel.SelectedDocs.Add(selectedItem);
+            if(ItemsListView.SelectionMode == ListViewSelectionMode.None)
+            { 
+                var item = viewModel.SelectedDocs.Where(x => x.CODE_DOC == selectedItem.CODE_DOC).SingleOrDefault();
+                selectedItem.IsSelected = item == null;
+                if (item != null)
+                {
+                    viewModel.SelectedDocs.Remove(item);
+                }
+                else
+                {
+                    viewModel.SelectedDocs.Add(selectedItem);
+                }
             }
         }
 
@@ -210,11 +212,6 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
-        private string GenerateProductionOrder() 
-        {
-            return "idDoc";
-        }
-
         private async void btn_Production_Clicked(object sender, EventArgs e)
         {
             string  result = "";
@@ -223,6 +220,22 @@ namespace XpertMobileApp.Views
                 return;
 
             IsBusy = true;
+
+            /*
+            int indivdualCount = viewModel.SelectedDocs.Where(x => x.IS_INDIVIDUAL == true).Count();
+            if(viewModel.SelectedDocs.Count > indivdualCount && indivdualCount > 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Vous avez choisit des receptions non individuelles avec d'autres qui sont individuelles!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
+            */
+
+            int Net0Count = viewModel.SelectedDocs.Where(x => x.QTE_NET <= 0).Count();
+            if(Net0Count > 0)
+            {
+                await UserDialogs.Instance.AlertAsync("Vous avez choisit des receptions avec des quantiés null!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return;
+            }
 
             try
             {

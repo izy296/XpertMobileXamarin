@@ -59,13 +59,28 @@ namespace XpertMobileApp.ViewModels
         public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
         public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public string SearchedText { get; set; }
+        private string searchedText;
+        public string SearchedText
+        {
+            get { return searchedText; }
+            set { SetProperty(ref searchedText, value); }
+        }
 
         public ObservableCollection<CFA_CENTRES> Centres { get; set; }
-        public CFA_CENTRES SelectedCentre { get; set; }
+        CFA_CENTRES selectedCentre;
+        public CFA_CENTRES SelectedCentre
+        {
+            get { return selectedCentre; }
+            set { SetProperty(ref selectedCentre, value); }
+        }
 
         public ObservableCollection<CFA_ETAT> brdStatus { get; set; }
-        public CFA_ETAT SelectedSTATUS { get; set; }
+        CFA_ETAT selectedSTATUS;
+        public CFA_ETAT SelectedSTATUS
+        {
+            get { return selectedSTATUS; }
+            set { SetProperty(ref selectedSTATUS, value); }
+        }
 
         async Task ExecuteLoadExtrasDataCommand()
         {
@@ -141,6 +156,13 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            SearchedText = "";
+            SelectedCentre = null;
+            SelectedSTATUS = null;
+        }
         #endregion
     }
 }

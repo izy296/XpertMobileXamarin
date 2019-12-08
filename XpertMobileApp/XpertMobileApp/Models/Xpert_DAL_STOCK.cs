@@ -334,4 +334,33 @@ namespace XpertMobileApp.Models
         public string NUM_PERMIS_CONDUIRE { get; set; }
     }
 
+
+    public partial class ACH_INFO_ANEX
+    {
+        public string ID_LIGNE { get; set; }
+        public string CODE_DOC { get; set; }
+        public string NOM_TIERS { get; set; }
+        public decimal QUANTITE_APPORT { get; set; }
+
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+
+    }
+
+    public partial class VIEW_ACH_INFO_ANEX : ACH_INFO_ANEX
+    {
+        public decimal PRIX_PRODUIT { get; set; }
+        public decimal MT_PRODUIT { get; set; }
+        public decimal QUANTITE_PRODUITE { get; set; }
+
+        public decimal MT_ANNEX
+        {
+            get
+            {
+                return PRIX_PRODUIT * QUANTITE_APPORT;
+            }
+        }
+    }
 }

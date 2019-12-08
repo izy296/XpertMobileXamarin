@@ -212,7 +212,15 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<View_PRD_AGRICULTURE_DETAIL>(url);
         }
-        
+
+        public static async Task<List<View_PRD_AGRICULTURE_DETAIL>> GetProductionInfos(string codeDoc)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_DETAILS_URL);
+            url += WSApi2.AddParam(url, "codeDoc", codeDoc);
+
+            return await RetrievAauthorizedData<View_PRD_AGRICULTURE_DETAIL>(url);
+        }
+
         public static async Task<decimal> GetPesse()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACHATS_PESEE_URL);
@@ -245,6 +253,40 @@ namespace XpertMobileApp.Services
             values.Add(codeDoc, Qte);
 
             return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, decimal>>(url, values, Token);
+        }
+
+        public static async Task<bool> PrintQRProduit(string codeDoc, int Qte, string printerName)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_PRINT_QR_CODE_URL);
+            url += WSApi2.AddParam(url, "param05", "param05");
+            url += WSApi2.AddParam(url, "printerName", printerName);
+
+            Dictionary<string, int> values = new Dictionary<string, int>();
+            values.Add(codeDoc, Qte);
+
+            return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, int>>(url, values, Token);
+        }
+
+        public static async Task<bool> LivrerProduction(string codeDoc, string codeDocDetail)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_UPDATE_LIVRAISON_INFOS_URL);
+            url += WSApi2.AddParam(url, "param06", "param06");
+
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add(codeDoc, codeDocDetail);
+
+            return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, string>>(url, values, Token);
+        }
+
+        public static async Task<bool> UpdateStatus(string codeDoc, string status)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_UPDATE_STATUS_URL);
+            url += WSApi2.AddParam(url, "param04", "param04");
+
+            Dictionary<string, string> values = new Dictionary<string, string>();
+            values.Add(codeDoc, status);
+
+            return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, string>>(url, values, Token);
         }
 
         public static async Task<bool> SaveProdEmballages(List<View_BSE_EMBALLAGE> embalagges, string codeDetail)

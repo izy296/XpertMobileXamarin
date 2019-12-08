@@ -52,14 +52,36 @@ namespace XpertMobileApp.ViewModels
         }
 
         #region filters data
-
-        public string SearchedText { get; set; } = "";
+        private string searchedText;
+        public string SearchedText
+        {
+            get { return searchedText; }
+            set { SetProperty(ref searchedText, value); }
+        }
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
-        public BSE_TABLE_TYPE SelectedType { get; set; }
+        private BSE_TABLE_TYPE selectedType;
+        public BSE_TABLE_TYPE SelectedType
+        {
+            get { return selectedType; }
+            set { SetProperty(ref selectedType, value); }
+        }
 
         public ObservableCollection<BSE_TABLE> Familles { get; set; }
-        public BSE_TABLE SelectedFamille { get; set; }
+        private BSE_TABLE selectedFamille;
+        public BSE_TABLE SelectedFamille
+        {
+            get { return selectedFamille; }
+            set { SetProperty(ref selectedFamille, value); }
+        }
+
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            searchedText = "";
+            SelectedType = null;
+            SelectedFamille = null;
+        }
 
         async Task ExecuteLoadExtrasDataCommand()
         {

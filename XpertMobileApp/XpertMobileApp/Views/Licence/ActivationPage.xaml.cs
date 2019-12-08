@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Plugin.FirebasePushNotification;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -89,6 +91,9 @@ namespace XpertMobileApp.Views
                 try
                 {
                     Client result = await viewModel.ActivateClient();
+
+                    // Client result = await viewModel.ActivateClient();
+
                     if (result == null)
                         return;
 

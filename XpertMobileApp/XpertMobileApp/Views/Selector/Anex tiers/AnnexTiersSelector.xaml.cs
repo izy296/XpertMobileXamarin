@@ -14,18 +14,38 @@ namespace XpertMobileApp.Views
     public partial class AnnexTiersSelector : PopupPage
     {
 
+        public string CODE_DOC { get; set; }
+        public decimal PrixPrestation { get; set; }
+        public decimal TotalQteProduite
+        {
+            get;
+            set;
+        }
+
         AnnexTiersSelectorViewModel viewModel;
 
-        private List<VIEW_ACH_INFO_ANEX> currentEmballages;
-        public List<VIEW_ACH_INFO_ANEX> CurrentEmballages
+        public bool IS_ACHAT
         {
             get
             {
-                return viewModel.CurrentEmballages;
+                return viewModel.IS_ACHAT;
             }
             set
             {
-                viewModel.CurrentEmballages = value;
+                viewModel.IS_ACHAT = value;
+            }
+        }
+
+        public List<VIEW_ACH_INFO_ANEX> CurrentAnnex
+        {
+            get
+            {
+                return viewModel.CurrentAnnex;
+            }
+            set
+            {
+                viewModel.CurrentAnnex = value;
+                UpdateQte();
             }
         }
 
@@ -35,16 +55,19 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new AnnexTiersSelectorViewModel();
 
-            viewModel.LoadItemsCommand.Execute(null);
+           // viewModel.LoadItemsCommand.Execute(null);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            if(viewModel.Items.Count == 0)
+
+            /*
+            if(viewModel.Items.Count == 0 && this.IS_ACHAT == false)
             {
-               // viewModel.LoadItemsCommand.Execute(null);
+                viewModel.LoadItemsCommand.Execute(null);
             }
+            */
         }
 
         private async void OnClose(object sender, EventArgs e)
@@ -62,23 +85,44 @@ namespace XpertMobileApp.Views
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            viewModel.Items.Add(new VIEW_ACH_INFO_ANEX()
+            if(viewModel.Items.Where(x=>x.NOM_TIERS == TiersName.Text).Count() == 0 
+                && !string.IsNullOrEmpty(TiersQte.Text))
             {
-                NOM_TIERS = TiersName.Text,
-                QUANTITE_APPORT = Convert.ToDecimal(TiersQte.Text.Trim())
-                
-            });
-        }
+                viewModel.Items.Add(new VIEW_ACH_INFO_ANEX()
+                {
+                    NOM_TIERS = TiersName.Text,
+                    CODE_DOC = CODE_DOC,
+                    PRIX_PRODUIT = PrixPrestation,
+                    QUANTITE_APPORT = Convert.ToDecimal(TiersQte.Text.Trim())
+                });
 
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            var elem = (sender as Button).BindingContext as VIEW_ACH_INFO_ANEX;
-            viewModel.Items.Remove(elem);
+                TiersQte.Text = "";
+                TiersName.Text = "";
+
+                UpdateQte();
+            }
         }
 
         private void Btn_Delete_Clicked(object sender, EventArgs e)
         {
+            var elem = (sender as Button).BindingContext as VIEW_ACH_INFO_ANEX;
+            viewModel.Items.Remove(elem);
+            UpdateQte();
+        }
 
+        private void UpdateQte()
+        {
+            decimal qteTotalApport = viewModel.Items.Sum(x => x.QUANTITE_APPORT);
+            lbl_TotalQte.Text = qteTotalApport.ToString("N2") + " Kg";
+
+            if(TotalQteProduite > 0)
+            { 
+                foreach (var item in CurrentAnnex)
+                {
+                        var qtePercent = (item.QUANTITE_APPORT * 100) / qteTotalApport;
+                        item.QUANTITE_PRODUITE = (qtePercent * TotalQteProduite) / 100;
+                }
+            }
         }
     }
 }

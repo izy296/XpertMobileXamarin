@@ -70,21 +70,43 @@ namespace XpertMobileApp.ViewModels
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
-                item.SOLDE_TIERS_TXT = hasViewSolde ? "S. " + item.SOLDE_TIERS.ToString("N2") + " DA" : "";
+                if (hasViewSolde)
+                { 
+                    item.SOLDE_TIERS_TXT = hasViewSolde ? "S. " + item.SOLDE_TIERS.ToString("N2") + " DA" : "";
+                }
+                else
+                {
+                    item.SOLDE_TIERS_TXT = "tél. " + item.TEL1_TIERS;
+                }
             }
          }
 
         #region filters data
 
-         public string SearchedText { get; set; }
+        private string searchedText;
+        public string SearchedText
+        {
+            get { return searchedText; }
+            set { SetProperty(ref searchedText, value); }
+        }
 
-         public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
-         public View_BSE_TIERS_FAMILLE SelectedFamille { get; set; }
+        public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
+    
+         View_BSE_TIERS_FAMILLE selectedFamille;
+         public View_BSE_TIERS_FAMILLE SelectedFamille
+         {
+             get { return selectedFamille; }
+             set { SetProperty(ref selectedFamille, value); }
+         }
 
          public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
-         public BSE_TABLE_TYPE SelectedType { get; set; }
-
-         async Task ExecuteLoadExtrasDataCommand()
+         private BSE_TABLE_TYPE selectedType;
+         public BSE_TABLE_TYPE SelectedType
+         {
+            get { return selectedType; }
+            set { SetProperty(ref selectedType, value); }
+         }
+        async Task ExecuteLoadExtrasDataCommand()
          {
 
             if (IsLoadExtrasBusy)
@@ -156,6 +178,14 @@ namespace XpertMobileApp.ViewModels
                      AppResources.alrt_msg_Ok);
              }
          }
+
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            SearchedText = "";
+            SelectedFamille = null;
+            SelectedType = null;
+        }
 
         #endregion
     }
