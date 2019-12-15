@@ -8,19 +8,18 @@ using XpertMobileApp.ViewModels;
 namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class TresoreriePage : ContentPage
     {
-        HomeViewModel viewModel;
+        TresoreriePageViewModel viewModel;
 
-        public HomePage()
+        public TresoreriePage()
         {
             
             InitializeComponent();
 
             Title = AppResources.pn_home;
-            lblUser.Text = App.User?.UserName;
-            lblClientName.Text = App.Settings.ClientName;
-            BindingContext = viewModel = new HomeViewModel();
+
+            BindingContext = viewModel = new TresoreriePageViewModel();
         }
 
         protected override void OnAppearing()
@@ -32,14 +31,12 @@ namespace XpertMobileApp.Views
 
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
+
+            if (viewModel.Encaissements.Count == 0)
+                viewModel.LoadEncaissStatCommand.Execute(null);
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-
-        }
-
-        private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
 
         }

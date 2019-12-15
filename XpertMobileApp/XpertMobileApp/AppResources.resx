@@ -142,7 +142,7 @@
     <value>Analyses</value>
   </data>
   <data name="pn_encaissement" xml:space="preserve">
-    <value>Trésorerie</value>
+    <value>Encaiss &amp; Décaiss</value>
   </data>
   <data name="pn_home" xml:space="preserve">
     <value>Accueil</value>
@@ -196,7 +196,7 @@
     <value>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</value>
   </data>
   <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
-    <value>Application développé  par</value>
+    <value>Application développé  par </value>
   </data>
   <data name="abtp_lbl_LearnMore" xml:space="preserve">
     <value>En savoir plus ..</value>
@@ -694,7 +694,7 @@
     <value>Ventes psychotropes</value>
   </data>
   <data name="txt_InfosPsyco" xml:space="preserve">
-    <value>Infos psycho</value>
+    <value>Ordonnancier</value>
   </data>
   <data name="txt_Centre" xml:space="preserve">
     <value>Centre</value>
@@ -765,5 +765,8 @@
   </data>
   <data name="cmd_Verif" xml:space="preserve">
     <value>Vérification</value>
+  </data>
+  <data name="pn_Tresorerie" xml:space="preserve">
+    <value>Trésorerie</value>
   </data>
 </root>

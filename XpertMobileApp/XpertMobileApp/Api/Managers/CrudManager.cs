@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xpert.Common.WSClient.Services;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Api.Managers
 {
@@ -25,7 +26,9 @@ namespace XpertMobileApp.Api.Managers
         internal static ProductionInfosManager ProductionInfosManager = new ProductionInfosManager();
 
         internal static TiersManager TiersManager = new TiersManager();
-        
+
+        internal static CrudService<TDB_SIMPLE_INDICATORS> SimpleIndicatorsService = new CrudService<TDB_SIMPLE_INDICATORS>(App.RestServiceUrl, "TDB_SIMPLE_INDICATORS", App.User.Token);
+
         public static void InitServices()
         {
             SysParams = new SYS_PARAMS_Manager();

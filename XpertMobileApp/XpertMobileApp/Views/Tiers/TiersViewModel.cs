@@ -72,7 +72,7 @@ namespace XpertMobileApp.ViewModels
                 (item as BASE_CLASS).Index = i;
                 if (hasViewSolde)
                 { 
-                    item.SOLDE_TIERS_TXT = hasViewSolde ? "S. " + item.SOLDE_TIERS.ToString("N2") + " DA" : "";
+                    item.SOLDE_TIERS_TXT = hasViewSolde ? item.SOLDE_TIERS.ToString("N2") + " DA" : "";
                 }
                 else
                 {

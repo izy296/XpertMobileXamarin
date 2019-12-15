@@ -7,24 +7,23 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
-using XpertMobileApp.Api;
-using XpertMobileApp.Api.Managers;
+
 using XpertMobileApp.DAL;
-using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
 
-    public class HomeViewModel : BaseViewModel
+    public class TresoreriePageViewModel : BaseViewModel
     {
-        public ObservableCollection<TDB_SIMPLE_INDICATORS> Items { get; set; }
+        public ObservableCollection<View_BSE_COMPTE> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
         public ObservableCollection<TRS_JOURNEES> Sessions { get; set; }
         public Command LoadSessionsCommand { get; set; }
 
-
+        public ObservableCollection<View_TRS_ENCAISS> Encaissements { get; set; }
+        public Command LoadEncaissStatCommand { get; set; }
         
 
         private TRS_JOURNEES currentSession;
@@ -45,23 +44,49 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref totalDecaiss, value); }
         }
 
-        public HomeViewModel()
+        public TresoreriePageViewModel()
         {
             Title = AppResources.pn_home;
 
-            Items = new ObservableCollection<TDB_SIMPLE_INDICATORS>();
+            Items = new ObservableCollection<View_BSE_COMPTE>();
             Sessions = new ObservableCollection<TRS_JOURNEES>();
+            Encaissements = new ObservableCollection<View_TRS_ENCAISS>();
 
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             LoadSessionsCommand = new Command(async () => await ExecuteLoadSessionsCommand());
+
+            LoadEncaissStatCommand = new Command(async () => await ExecuteLoadEncaissStatCommand());
+        }
+
+        async Task ExecuteLoadEncaissStatCommand()
+        {
+            try
+            {
+                Encaissements.Clear();
+                var items = await WebServiceClient.GetStatisticEncaiss(DateTime.Now, DateTime.Now);
+                if (items.Count > 0)
+                { 
+                    foreach (var item in items)
+                    {
+                        Encaissements.Add(item);
+                    }
+                    this.TotalEncaiss = items[0].TOTAL_ENCAISS;
+                    if (items.Count > 1)
+                        this.TotalDecaiss = items[1].TOTAL_ENCAISS;
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
 
         async Task ExecuteLoadSessionsCommand()
         {
             try
             {
-                /*
                 Sessions.Clear();
                 var items = await WebServiceClient.GetSessionInfos();
 
@@ -75,7 +100,6 @@ namespace XpertMobileApp.ViewModels
                     }
                     
                 }
-                */
             }
             catch (Exception ex)
             {
@@ -88,9 +112,8 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 Items.Clear();
-                var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,10);
+                var items = await WebServiceClient.getComptes();
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -101,20 +124,6 @@ namespace XpertMobileApp.ViewModels
                 await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
-        }
-
-        protected  Dictionary<string, string> GetFilterParams()
-        {
-            Dictionary<string, string> result = new Dictionary<string, string>();
-
-            result.Add("profile", App.User.UserGroup);
-            result.Add("appName", Constants.AppName);
-
-            return result;
         }
     }
 }

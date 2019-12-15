@@ -179,6 +179,10 @@
     <AndroidAsset Include="Assets\FA5FreeSolid900.otf" />
     <AndroidAsset Include="Assets\FABrandsRegular400.otf" />
     <AndroidAsset Include="Assets\FA5FreeRegular400.otf" />
+    <AndroidAsset Include="Assets\Gilroy-SemiBold.ttf" />
+    <AndroidAsset Include="Assets\Gilroy-Light.ttf" />
+    <AndroidAsset Include="Assets\Gilroy-Medium.ttf" />
+    <AndroidAsset Include="Assets\Gilroy-Regular.ttf" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml">

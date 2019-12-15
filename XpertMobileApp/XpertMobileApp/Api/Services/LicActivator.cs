@@ -22,29 +22,37 @@ namespace XpertMobileApp.Api.Services
 
         public static IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
 
-        public async static Task<LicState> CheckLicence()
+        public static LicenceInfos GetLicenceInfos()
+        {
+            Client client = App.ClientDatabase.GetFirstItemAsync().Result;
+            if (client == null || string.IsNullOrEmpty(client.LicenceTxt))
+            {
+                return null;
+            }
+
+            var LicenceInfos = DecryptLicence(client.LicenceTxt);
+
+            return LicenceInfos;
+        }
+
+        public async static Task<LicState> CheckLicence(LicenceInfos licenceInfos)
         {
             try
             { 
-                Client client = App.ClientDatabase.GetFirstItemAsync().Result;
-
-                if(client == null || string.IsNullOrEmpty(client.LicenceTxt))
+                if(licenceInfos == null)
                 {
                     return LicState.NotActivated;
                 }
 
-                var LicenceInfos = DecryptLicence(client.LicenceTxt);
-
-
                 //System.Environment.Exit(1);
                 var DInfos = DependencyService.Get<IDeviceInfos>();
                 string serial = DInfos?.GetDeviceId();
-                if (LicenceInfos.DeviceId != serial)
+                if (licenceInfos.DeviceId != serial)
                 {
                     return LicState.InvalidDevice;
                 }
 
-                int nbrDays = Convert.ToInt32(LicenceInfos.ExpirationDate.Subtract(DateTime.Now).TotalDays);
+                int nbrDays = Convert.ToInt32(licenceInfos.ExpirationDate.Subtract(DateTime.Now).TotalDays);
                 if (nbrDays >= 0)
                 {
                     return LicState.Valid;
@@ -64,10 +72,11 @@ namespace XpertMobileApp.Api.Services
 
         internal static async Task<DateTime> GetLicenceEndDate(string licenceTxt)
         {
-            if(await CheckLicence() == LicState.Valid)
+            LicenceInfos licenceInfos = GetLicenceInfos();
+            LicState state = await CheckLicence(licenceInfos);
+            if (state == LicState.Valid)
             {
-                var LicenceInfos = DecryptLicence(licenceTxt);
-                return LicenceInfos.ExpirationDate;
+                return licenceInfos.ExpirationDate;
             }
             else
             {

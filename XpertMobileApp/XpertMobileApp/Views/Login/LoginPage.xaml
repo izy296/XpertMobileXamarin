@@ -62,20 +62,38 @@
             </StackLayout>
         </ScrollView>
 
-        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Fill" >
+            <Grid HorizontalOptions="FillAndExpand">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
 
-            <Button x:Name="Btn_Config" Margin="0" 
-                    WidthRequest="50" HeightRequest="50"
-                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
-                    Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" BackgroundColor="White" 
-                    Clicked="Settings_Clicked"/>
+            <Label Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <FormattedString.Spans>
+                            <Span x:Name="XpertVersion" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
+                        </FormattedString.Spans>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+                
+            <StackLayout Grid.Column="1" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" HorizontalOptions="End" >
+                <Button x:Name="Btn_Config" Margin="0" 
+                        WidthRequest="50" HeightRequest="50"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" BackgroundColor="White" 
+                        Clicked="Settings_Clicked"/>
             
-            <Button x:Name="Btn_Exit" Margin="0" 
-                    WidthRequest="50" HeightRequest="50" 
-                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
-                    Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" BackgroundColor="White" 
-                    Clicked="Exit_Clicked"/>
-
+                <Button x:Name="Btn_Exit" Margin="0" 
+                        WidthRequest="50" HeightRequest="50" 
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" BackgroundColor="White" 
+                        Clicked="Exit_Clicked"/>
+            </StackLayout>
+            </Grid>
         </StackLayout>
     </Grid>
 </ContentPage>

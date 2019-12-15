@@ -105,6 +105,14 @@ namespace XpertMobileApp.DAL
         public string NOM_MEDECIN { get; set; }
         public string DESIGNATION_WILAYA_DELIVRE { get; set; }
         public string DATE_DELIVRE_CARTE { get; set; }
+        public string DATE_DELIVRE_CARTE_TITLE
+        {
+            get
+            {
+                return !string.IsNullOrEmpty(DATE_DELIVRE_CARTE) && DATE_DELIVRE_CARTE.ToString().Length>=10 ? DATE_DELIVRE_CARTE.ToString().Substring(0, 10) : "";
+            }
+        }
+
         public string N_CARTE { get; set; }
 
         public decimal TOTAL_PAYE { get; set; } // money(19,4)

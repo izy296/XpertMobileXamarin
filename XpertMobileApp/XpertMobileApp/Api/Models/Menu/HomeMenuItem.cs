@@ -8,6 +8,7 @@ namespace XpertMobileApp.Models
     {
         Home,
         Encaissements,
+        Tresorerie,
         Ventes,
         Psychotrop,
         Achats,
@@ -36,6 +37,8 @@ namespace XpertMobileApp.Models
         public string Title { get; set; }
 
         public string Image { get; set; }
+
+        public int Mobile_Edition { get; set; }
 
         public Type TargetType { get; set; }
     }

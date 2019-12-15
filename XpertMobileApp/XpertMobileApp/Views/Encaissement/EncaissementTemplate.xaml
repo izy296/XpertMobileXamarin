@@ -32,7 +32,7 @@
                     
                     <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{ Binding TOTAL_ENCAISS, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="{Binding DATE_ENCAISS, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                        <Label Text="{Binding DATE_ENCAISS, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                         <Label Text="{Binding CREATED_BY}"  TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>

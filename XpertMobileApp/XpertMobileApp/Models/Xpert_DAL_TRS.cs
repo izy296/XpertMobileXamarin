@@ -10,6 +10,7 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing;
 using System.Runtime.CompilerServices;
 using XpertMobileApp;
 using XpertMobileApp.Models;
@@ -283,7 +284,6 @@ namespace XpertMobileApp.DAL
         public bool INCLUDE_UG { get; set; }
         public bool PPA_BY_PRIXVENTE { get; set; }
 
-
         // information pour Malade CVM
         public string SEXE { get; set; } // tinyint(3)
         public string LP { get; set; }//varchar(10) 
@@ -305,7 +305,7 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
         public decimal SOLDE_TIERS { get; set; } // money(19,4)        
 
-        public string SOLDE_TIERS_TXT { get; set; } // money(19,4)        
+        public string SOLDE_TIERS_TXT { get; set; } // money(19,4)         
 
         public short STATUT_TIERS { get; set; } // 
         public DateTime? LAST_CREANCE { get; set; } // datetime(3)

@@ -63,7 +63,7 @@
           <target state="translated">تحاليل</target>
         </trans-unit>
         <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
-          <source>Trésorerie</source>
+          <source>Encaiss &amp; Décaiss</source>
           <target state="needs-review-translation">الخزينة</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
@@ -116,7 +116,7 @@
           <target state="translated">يتيح لك الوصول إلى معلوماتك بسرعة أينما كنت</target>
         </trans-unit>
         <trans-unit id="abtp_lbl_DevelopedBy" translate="yes" xml:space="preserve">
-          <source>Application développé  par</source>
+          <source>Application développé  par </source>
           <target state="needs-review-translation">تم تطوير التطبيق من قبل</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
@@ -788,8 +788,8 @@
           <target state="new">Ventes psychotropes</target>
         </trans-unit>
         <trans-unit id="txt_InfosPsyco" translate="yes" xml:space="preserve">
-          <source>Infos psycho</source>
-          <target state="new">Infos psycho</target>
+          <source>Ordonnancier</source>
+          <target state="new">Ordonnancier</target>
         </trans-unit>
         <trans-unit id="txt_Centre" translate="yes" xml:space="preserve">
           <source>Centre</source>
@@ -884,6 +884,10 @@
         <trans-unit id="cmd_Verif" translate="yes" xml:space="preserve">
           <source>Vérification</source>
           <target state="new">Vérification</target>
+        </trans-unit>
+        <trans-unit id="pn_Tresorerie" translate="yes" xml:space="preserve">
+          <source>Trésorerie</source>
+          <target state="new">Trésorerie</target>
         </trans-unit>
       </group>
     </body>

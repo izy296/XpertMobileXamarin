@@ -21,26 +21,31 @@ namespace XpertMobileApp.Views
 
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
             {
-                menuItems = new List<HomeMenuItem>
+                menuItems = new List<HomeMenuItem>();
+
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = AppResources.pn_home });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Ventes, Image = "", Title = AppResources.pn_Ventes });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
+
+                if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
                 {
-                    new HomeMenuItem {Id = MenuItemType.Home, Image = "", Title=AppResources.pn_home },
-                    new HomeMenuItem {Id = MenuItemType.Sessions, Image = "", Title=AppResources.pn_session },
-                    new HomeMenuItem {Id = MenuItemType.Encaissements, Image = "", Title=AppResources.pn_encaissement },
-                    new HomeMenuItem {Id = MenuItemType.Ventes, Image = "", Title=AppResources.pn_Ventes },
-                    new HomeMenuItem {Id = MenuItemType.Commandes, Image = "", Title=AppResources.pn_Commandes },
-                    new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },
-                    new HomeMenuItem {Id = MenuItemType.Produits, Image = "", Title=AppResources.pn_Produits },
-                    // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
-                    // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },
-                    new HomeMenuItem {Id = MenuItemType.Manquants, Image = "", Title=AppResources.pn_Manquants },
-                    new HomeMenuItem {Id = MenuItemType.EncAnalyses, Image = "", Title=AppResources.pn_Analyses },
-                    new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
-                };
-                if (Constants.AppName == Apps.XPH_Mob)
-                {
-                    menuItems.Insert(4, new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
-                    menuItems.Insert(5, new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Image = "", Title = AppResources.pn_session });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Image = "", Title = AppResources.pn_Commandes });
+                    if (Constants.AppName == Apps.XPH_Mob)
+                    {
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
+                    }
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, Image = "", Title = AppResources.pn_Produits });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Manquants, Image = "", Title = AppResources.pn_Manquants });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Image = "", Title = AppResources.pn_Analyses });
                 }
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
+
+                // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
+                // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },                    
             }
             else if (Constants.AppName == Apps.XAGRI_Mob)
             {

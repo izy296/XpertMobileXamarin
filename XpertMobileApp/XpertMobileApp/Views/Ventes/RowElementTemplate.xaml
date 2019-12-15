@@ -23,9 +23,13 @@
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
                     </StackLayout>
                     
-                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
+                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0" Orientation="Horizontal">
                         <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" 
                                FontSize="Default"/>
+                        <Frame BackgroundColor="OrangeRed" CornerRadius="10" IsVisible="{Binding PSYCHOTHROPE}" HasShadow="True"
+                               Margin="0" Padding="2,1,2,1" HeightRequest="13">
+                            <Label Text="Psy" TextColor="White" FontSize="Micro" />
+                        </Frame>
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>

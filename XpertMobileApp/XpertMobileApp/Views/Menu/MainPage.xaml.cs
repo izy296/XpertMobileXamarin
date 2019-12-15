@@ -51,6 +51,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Sessions:
                         MenuPages.Add(id, new NavigationPage(new SessionsPage()));
                         break;
+                    case (int)MenuItemType.Tresorerie:
+                        MenuPages.Add(id, new NavigationPage(new TresoreriePage()));
+                        break;
                     case (int)MenuItemType.Encaissements:
                         MenuPages.Add(id, new NavigationPage(new EncaissementsPage()));
                         break;

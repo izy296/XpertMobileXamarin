@@ -58,6 +58,8 @@ namespace XpertMobileApp.Views.Encaissement
 
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
                 viewModel.ItemRows.Clear();
                 var itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
 
@@ -79,6 +81,7 @@ namespace XpertMobileApp.Views.Encaissement
             }
             finally
             {
+                UserDialogs.Instance.HideLoading();
                 IsBusy = false;
             }
         }

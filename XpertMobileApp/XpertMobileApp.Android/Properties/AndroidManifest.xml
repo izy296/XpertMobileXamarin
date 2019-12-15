@@ -14,7 +14,7 @@
 	<!-- If your app targets Android 9 or lower, you can declare
          ACCESS_COARSE_LOCATION instead. -->
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<application android:label="XpertMobileApp.Android" android:usesCleartextTraffic="true" android:icon="@drawable/Icon">
+	<application android:label="XpertMobile" android:usesCleartextTraffic="true" android:icon="@drawable/Icon">
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>

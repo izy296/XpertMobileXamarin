@@ -5,8 +5,31 @@
              x:Class="XpertMobileApp.App">
     <Application.Resources>
         <ResourceDictionary>
-
-            <!-- Font awesomone -->
+            <!-- Font Gilroy --> 
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
+                <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
+                <On Platform="iOS" Value="Gilroy-Light" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Light.ttf#Font Gilroy Light" />
+              </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyMedium">
+            <On Platform="Android" Value="Gilroy-Medium.ttf#GilroyMedium" />
+            <On Platform="iOS" Value="Gilroy-Medium" />
+            <On Platform="UWP" Value="/Assets/Gilroy-Medium.ttf#Font Gilroy Medium" />
+          </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyRegular">
+            <On Platform="Android" Value="Gilroy-Regular.ttf#GilroyRegular" />
+            <On Platform="iOS" Value="Gilroy-Regular" />
+            <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
+          </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroySemiBold">
+            <On Platform="Android" Value="Gilroy-SemiBold.ttf#GilroySemiBold" />
+            <On Platform="iOS" Value="Gilroy-SemiBold" />
+            <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+          </OnPlatform>
+          
+          
+          
+          <!-- Font awesomone -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
                 <On Platform="Android" Value="FABrandsRegular400.otf#Regular" />
                 <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
@@ -37,6 +60,7 @@
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
             <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
             <local:SelectionModeToVisbileConverter x:Key="selectionModeToVisbileConverter"/>
+            <local:DecimalToColor x:Key="decimalToColor"/>
             
             <!--Global Styles-->
 

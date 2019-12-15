@@ -15,6 +15,26 @@ namespace XpertMobileApp.Api
         public static string XACATALOG_Mob = "XACATALOG_Mob";
     }
 
+    public static class Mobile_Edition
+    {
+        public static int Lite = 1;
+        public static int Standard = 2;
+        public static int Pro = 3;
+
+        public static string GetEditionTitle(int CodeEdition)
+        {
+            if (CodeEdition == 3)
+                return "Edition PRO ";
+            else if (CodeEdition == 2)
+                return "Edition STANDARD ";
+            else 
+                return "Edition LITE ";
+        }
+
+    }
+
+
+
     public static class Constants
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";

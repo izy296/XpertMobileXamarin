@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -23,6 +24,8 @@ namespace XpertMobileApp.Views
 			InitializeComponent ();
 
             BindingContext = viewModel = new LoginViewModel();
+            
+            XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
 
             NavigationPage.SetHasNavigationBar(this, false);
             Init();

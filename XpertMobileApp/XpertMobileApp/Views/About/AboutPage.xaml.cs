@@ -2,6 +2,7 @@
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 
 namespace XpertMobileApp.Views
 {
@@ -12,7 +13,12 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
-            XpertVersion.Text = VersionTracking.CurrentVersion;
+            XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
     }
 }

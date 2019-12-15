@@ -16,7 +16,8 @@
     
     <StackLayout VerticalOptions="FillAndExpand">
         <ListView x:Name="ListViewMenu"
-                  HasUnevenRows="True"                
+                  HasUnevenRows="True"        
+                  SeparatorVisibility="None"
                   >
             
            <ListView.Header>
@@ -35,7 +36,7 @@
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="10">
-                            <Label Text="{Binding Title}" FontSize="Default"/>
+                            <Label Text="{Binding Title}" FontSize="Default" FontFamily="{StaticResource FontGilroyRegular}"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

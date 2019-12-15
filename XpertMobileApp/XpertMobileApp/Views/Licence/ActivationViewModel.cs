@@ -37,12 +37,14 @@ namespace XpertMobileApp.ViewModels
                 IsBusy = true;
 
                 Client.DeviceId = DInfos.GetDeviceId();
-                Client.AppName = Constants.AppName;
+                Client.AppName = Constants.AppName;                
                 LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
 
                 await App.ClientDatabase.SaveItemAsync(Client);
 
                 App.Settings.ServiceUrl = lInfos.Mobile_Remote_URL;
+                App.Settings.ClientName = !string.IsNullOrEmpty(lInfos.ClientName) ? lInfos.ClientName : "-";
+                App.Settings.Mobile_Edition = lInfos.Mobile_Edition;
                 await App.SettingsDatabase.SaveItemAsync(App.Settings);
 
                 IsBusy = false;

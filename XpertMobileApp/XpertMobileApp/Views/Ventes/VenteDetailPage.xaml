@@ -64,7 +64,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="{Binding Item.DATE_DELIVRE_CARTE, StringFormat='Délivré le : {0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
+                    <Label Text="{Binding Item.DATE_DELIVRE_CARTE_TITLE, StringFormat='Délivré le : {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
                     <Label Text="{Binding Item.DESIGNATION_WILAYA_DELIVRE, StringFormat='Willaya : {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
                 </StackLayout>
             </Grid>

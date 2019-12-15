@@ -70,7 +70,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Application développé  par.
+        ///   Recherche une chaîne localisée semblable à Application développé  par .
         /// </summary>
         internal static string abtp_lbl_DevelopedBy {
             get {
@@ -961,7 +961,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Trésorerie.
+        ///   Recherche une chaîne localisée semblable à Encaiss &amp; Décaiss.
         /// </summary>
         internal static string pn_encaissement {
             get {
@@ -1083,6 +1083,15 @@ namespace XpertMobileApp {
         internal static string pn_Tiers {
             get {
                 return ResourceManager.GetString("pn_Tiers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Trésorerie.
+        /// </summary>
+        internal static string pn_Tresorerie {
+            get {
+                return ResourceManager.GetString("pn_Tresorerie", resourceCulture);
             }
         }
         
@@ -1574,7 +1583,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Infos psycho.
+        ///   Recherche une chaîne localisée semblable à Ordonnancier.
         /// </summary>
         internal static string txt_InfosPsyco {
             get {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace XpertMobileApp.Models
 {
-    class LicenceInfos
+    public class LicenceInfos
     {
         public string DeviceId { get; set; }
 
@@ -15,6 +15,10 @@ namespace XpertMobileApp.Models
         public string Phone { get; set; }
 
         public string ClientId { get; set; }
+        
+        public string ClientName { get; set; }
+
+        public int Mobile_Edition { get; set; }
 
         public DateTime ActivationDate { get; set; }
 

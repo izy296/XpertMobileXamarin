@@ -53,8 +53,11 @@ namespace XpertMobileApp.Models
             }
         }
 
+        public int Mobile_Edition { get; set; }
         public bool ShouldUpdate { get; set; }
         public string DestinationVersion { get; set; }
+
+        public string ClientName { get; set; } = "Pharmacie Ben Mohamed";
 
         public Settings() { }
     }

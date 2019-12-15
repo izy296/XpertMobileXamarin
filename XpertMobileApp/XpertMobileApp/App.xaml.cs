@@ -110,31 +110,14 @@ namespace XpertMobileApp
 
             App.SetAppLanguage(Settings.Language);
 
-            // MainPage = new UpdatePage();
-
             // Vérification de la licence
-            LicState licState = LicActivator.CheckLicence().Result;
+            LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
+            LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
 
-            /*
-             // ----
-             App.Settings.ServiceUrl = "http://192.168.1.15/";
-             Token token = App.TokenDatabase.GetFirstItemAsync().Result;
-             if (token != null && DateTime.Now <= token.expire_Date)
-             {
-                 App.User = new User(token.userName, "");
-                 App.User.CODE_TIERS = token.CODE_TIERS;
-                 App.User.UserName = token.userID;
-                 App.User.Token = token;
-                 MainPage = new MainPage();
-             }
-             else
-             {
-                 MainPage = new LoginPage();
-             }
-             // ---
-             */
             if (licState == LicState.Valid)
             {
+               Settings.Mobile_Edition = licenceInfos.Mobile_Edition;
+
                string currentVersion = AppInfo.Version.ToString();
                if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
                {
