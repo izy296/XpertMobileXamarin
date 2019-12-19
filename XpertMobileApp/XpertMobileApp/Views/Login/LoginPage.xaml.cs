@@ -75,10 +75,11 @@ namespace XpertMobileApp.Views
                 {
                     user.Id = token.userID;
                     user.CODE_TIERS = token.CODE_TIERS;
-                    user.UserGroup  = token.UserGroup;
-                    user.GroupName  = token.GroupName;
+                    user.UserGroup = token.UserGroup;
+                    user.GroupName = token.GroupName;
+                    user.ClientId = App.Settings.ClientId;
                     user.Token = token;
-                    App.User   = user;
+                    App.User = user;
 
                     CrudManager.InitServices();
 

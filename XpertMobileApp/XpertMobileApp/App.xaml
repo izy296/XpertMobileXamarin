@@ -60,8 +60,8 @@
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
             <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
             <local:SelectionModeToVisbileConverter x:Key="selectionModeToVisbileConverter"/>
-            <local:DecimalToColor x:Key="decimalToColor"/>
-            
+            <local:DecimalToColorConverter x:Key="decimalToColor"/>
+            <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
             <!--Global Styles-->
 
             <Color x:Key="Primary">#2196F3</Color>

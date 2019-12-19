@@ -32,7 +32,7 @@ namespace XpertMobileApp.Views
         public SettingsPage (bool isModal = false)
 		{
 			InitializeComponent();
-            CommandeGrid.IsVisible = isModal;
+            //CommandeGrid.IsVisible = isModal;
             BindingContext = viewModel = new SettingsModel();
 
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);

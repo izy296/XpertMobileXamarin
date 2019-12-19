@@ -44,6 +44,7 @@ namespace XpertMobileApp.ViewModels
 
                 App.Settings.ServiceUrl = lInfos.Mobile_Remote_URL;
                 App.Settings.ClientName = !string.IsNullOrEmpty(lInfos.ClientName) ? lInfos.ClientName : "-";
+                App.Settings.ClientId = lInfos.ClientId;
                 App.Settings.Mobile_Edition = lInfos.Mobile_Edition;
                 await App.SettingsDatabase.SaveItemAsync(App.Settings);
 

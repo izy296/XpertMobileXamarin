@@ -1078,6 +1078,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Configuration.
+        /// </summary>
+        internal static string pn_Settings {
+            get {
+                return ResourceManager.GetString("pn_Settings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Tiers.
         /// </summary>
         internal static string pn_Tiers {
@@ -1168,6 +1177,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Activé.
+        /// </summary>
+        internal static string sp_lbl_Activate {
+            get {
+                return ResourceManager.GetString("sp_lbl_Activate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Informations de connexion.
         /// </summary>
         internal static string sp_lbl_ConnexionInfos {
@@ -1182,6 +1200,15 @@ namespace XpertMobileApp {
         internal static string sp_lbl_LicenceInfos {
             get {
                 return ResourceManager.GetString("sp_lbl_LicenceInfos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Notifications.
+        /// </summary>
+        internal static string sp_lbl_Notifications {
+            get {
+                return ResourceManager.GetString("sp_lbl_Notifications", resourceCulture);
             }
         }
         
@@ -1759,6 +1786,15 @@ namespace XpertMobileApp {
         internal static string txt_Productivite {
             get {
                 return ResourceManager.GetString("txt_Productivite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nom/Réf.
+        /// </summary>
+        internal static string txt_ProductRef {
+            get {
+                return ResourceManager.GetString("txt_ProductRef", resourceCulture);
             }
         }
         

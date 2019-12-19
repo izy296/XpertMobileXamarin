@@ -105,6 +105,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.AchatAgroAnalyses:
                         MenuPages.Add(id, new NavigationPage(new AchatsAnalysesPage()));
                         break;
+                    case (int)MenuItemType.Settings:
+                        MenuPages.Add(id, new NavigationPage(new SettingsPage()));
+                        break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
                         break;

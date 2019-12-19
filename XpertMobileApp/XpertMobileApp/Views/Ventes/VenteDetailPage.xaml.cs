@@ -73,15 +73,18 @@ namespace XpertMobileApp.Views.Encaissement
                     }
                     viewModel.ItemRows.Add(itemC);
                 }
+
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
             finally
             {
-                UserDialogs.Instance.HideLoading();
+
                 IsBusy = false;
             }
         }

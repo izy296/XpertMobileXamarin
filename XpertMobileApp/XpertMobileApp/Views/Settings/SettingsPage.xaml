@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.SettingsPage"
+             Title="{Binding Title}"
              >
     <ContentPage.Content>
         <ScrollView Orientation="Vertical">
@@ -21,7 +22,7 @@
                         </OnPlatform>
                     </StackLayout.Padding>
                     <!-- language informations -->
-                    <StackLayout x:Name="LanguageSettingsZone" Padding="0,20,0,0" >
+                    <StackLayout x:Name="LanguageSettingsZone" Padding="0,20,0,0">
                         <Label x:Name="lbl_LanguageSelector" Text="{i18n:Translate sp_lbl_SelectLanguage}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}" />
                         <Picker ItemsSource="{Binding Languages}"
                             ItemDisplayBinding="{Binding DisplayName}"
@@ -29,7 +30,7 @@
                     </StackLayout>
 
                     <!-- Service url -->
-                    <StackLayout x:Name="GeneralSettingsZone" Padding="0,20,0,10" >
+                    <StackLayout x:Name="GeneralSettingsZone" Padding="0,20,0,10"  IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
                         <Label x:Name="lbl_ConnexionInfos" Text="{i18n:Translate sp_lbl_ConnexionInfos}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}"
                                Margin="0,0,0,15" />
                         <Label x:Name="lbl_ServiceName" Text="{i18n:Translate sp_lbl_ServiceName}"/>
@@ -39,9 +40,17 @@
                                  WidthRequest="150" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
                                  Clicked="TestConnexion_Clicked"/>
                     </StackLayout>
-                    
+
+                    <!-- Notifications -->
+                    <StackLayout x:Name="GeneralNotifications" Padding="0,20,0,10" IsVisible="{Binding IsConnected}">
+                        <Label x:Name="lbl_Notifications" Text="{i18n:Translate sp_lbl_Notifications}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}"
+                               Margin="0,0,0,15" />
+                        <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_Activate}"/>
+                        <Switch x:Name="sw_ActivateNotif" IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
+                    </StackLayout>
+
                     <!-- Licence informations -->
-                    <StackLayout x:Name="LicenceSettingsZone" Padding="0,20,0,0" >
+                    <StackLayout x:Name="LicenceSettingsZone" Padding="0,20,0,0" IsVisible="{Binding IsConnected}">
                         <Label x:Name="lbl_LicenceInfos" Text="{i18n:Translate sp_lbl_LicenceInfos}" FontSize="Large" Style="{DynamicResource DefaultTextStyle}" />
                         <Label x:Name="lbl_ExperationDate" Text="" Style="{DynamicResource DefaultTextStyle}" />
                         <Button  x:Name="Btn_RemoveLicence" Text="{i18n:Translate sp_btn_RemoveLicence}" 
@@ -50,7 +59,7 @@
                     </StackLayout>
                 </StackLayout>
 
-                <Grid Padding="0,0,0,10" x:Name="CommandeGrid" IsVisible="false" VerticalOptions="End">
+                <Grid Padding="0,0,0,10" x:Name="CommandeGrid" VerticalOptions="End">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="Auto"/>

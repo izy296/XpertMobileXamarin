@@ -890,6 +890,22 @@
           <source>Trésorerie</source>
           <target state="new">Trésorerie</target>
         </trans-unit>
+        <trans-unit id="txt_ProductRef" translate="yes" xml:space="preserve">
+          <source>Nom/Réf</source>
+          <target state="new">Nom/Réf</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_Notifications" translate="yes" xml:space="preserve">
+          <source>Notifications</source>
+          <target state="new">Notifications</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_Activate" translate="yes" xml:space="preserve">
+          <source>Activé</source>
+          <target state="new">Activé</target>
+        </trans-unit>
+        <trans-unit id="pn_Settings" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="new">Configuration</target>
+        </trans-unit>
       </group>
     </body>
   </file>

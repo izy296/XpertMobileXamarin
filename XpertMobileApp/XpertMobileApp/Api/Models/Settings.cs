@@ -53,6 +53,9 @@ namespace XpertMobileApp.Models
             }
         }
 
+        public bool SubscribedToFBNotifications { get; set; } = false;
+
+        public string ClientId { get; set; }
         public int Mobile_Edition { get; set; }
         public bool ShouldUpdate { get; set; }
         public string DestinationVersion { get; set; }

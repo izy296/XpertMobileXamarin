@@ -42,6 +42,7 @@ namespace XpertMobileApp.Views
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Manquants, Image = "", Title = AppResources.pn_Manquants });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Image = "", Title = AppResources.pn_Analyses });
                 }
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
 
                 // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },

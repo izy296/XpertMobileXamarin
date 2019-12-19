@@ -133,6 +133,7 @@ namespace XpertMobileApp
                        App.User.CODE_TIERS = token.CODE_TIERS;
                        App.User.UserGroup = token.UserGroup;
                        App.User.GroupName = token.GroupName;
+                       App.User.ClientId = licenceInfos.ClientId;
                        App.User.Token = token;
 
                        MainPage = new MainPage();

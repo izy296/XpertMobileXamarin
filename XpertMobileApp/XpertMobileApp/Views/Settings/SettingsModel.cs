@@ -21,6 +21,14 @@ namespace XpertMobileApp.ViewModels
 
         public ObservableCollection<Language> Languages { get; }
 
+        public bool IsConnected
+        {
+            get
+            {
+                return App.User != null;
+            }
+        }
+
         public bool IsAdminUser
         {
             get
@@ -31,7 +39,7 @@ namespace XpertMobileApp.ViewModels
 
         public SettingsModel()
         {
-            Title = "Configuration";
+            Title = AppResources.pn_Settings;
 
             Languages = new ObservableCollection<Language>()
             {
@@ -69,6 +77,15 @@ namespace XpertMobileApp.ViewModels
 
         public void SaveSettings()
         {
+            if (Settings.SubscribedToFBNotifications)
+            {
+                FireBaseHelper.RegisterUserForDefaultTopics(App.User, App.User.ClientId);
+            }
+            else
+            {
+                FireBaseHelper.UnsubscribeFromAllTopics();
+            }
+
             App.SettingsDatabase.SaveItemAsync(Settings);
             this.Settings.isModified = false;
         }

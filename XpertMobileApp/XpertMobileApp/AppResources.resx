@@ -769,4 +769,16 @@
   <data name="pn_Tresorerie" xml:space="preserve">
     <value>Trésorerie</value>
   </data>
+  <data name="txt_ProductRef" xml:space="preserve">
+    <value>Nom/Réf</value>
+  </data>
+  <data name="pn_Settings" xml:space="preserve">
+    <value>Configuration</value>
+  </data>
+  <data name="sp_lbl_Activate" xml:space="preserve">
+    <value>Activé</value>
+  </data>
+  <data name="sp_lbl_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
 </root>

@@ -28,6 +28,7 @@ namespace XpertMobileApp.Models
         invrfid,
         EncAnalyses,
         AchatAgroAnalyses,
+        Settings,
         About
     }
     public class HomeMenuItem

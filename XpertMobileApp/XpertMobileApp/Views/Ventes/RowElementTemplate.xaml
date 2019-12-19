@@ -26,14 +26,15 @@
                     <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0" Orientation="Horizontal">
                         <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" 
                                FontSize="Default"/>
-                        <Frame BackgroundColor="OrangeRed" CornerRadius="10" IsVisible="{Binding PSYCHOTHROPE}" HasShadow="True"
-                               Margin="0" Padding="2,1,2,1" HeightRequest="13">
-                            <Label Text="Psy" TextColor="White" FontSize="Micro" />
-                        </Frame>
+
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
                     -->
+                    <Frame Grid.Column="1" Grid.Row="1" BackgroundColor="Red" CornerRadius="10" WidthRequest="22" IsVisible="{Binding PSYCHOTHROPE}" HasShadow="True"
+                               Margin="-2,0,0,0" Padding="3,2,3,2" HeightRequest="13" VerticalOptions="Center"  HorizontalOptions="Start">
+                        <Label Text="PSY" TextColor="White" FontSize="Micro" HorizontalTextAlignment="Center" />
+                    </Frame>
                     <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
                           Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
                     <Label Grid.Column="2" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='P : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />

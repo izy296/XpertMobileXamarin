@@ -8,18 +8,16 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Helpers
 {
-    public class FireBaseHelper
+    public static class FireBaseHelper
     {
-        public void SaveToken()
+        public static void SaveToken()
         {
             string firebaseToken = CrossFirebasePushNotification.Current.Token;
         }
 
-        public void RegisterUser(User user, string IdClient)
+        public static void RegisterUserForDefaultTopics(User user, string IdClient)
         {
-            #region FireBase notification
 
-            // FireBasehelper.RegisterClient();
             CrossFirebasePushNotification.Current.UnsubscribeAll();
 
             // Topic global XpertSoft
@@ -35,20 +33,23 @@ namespace XpertMobileApp.Helpers
             }
 
             // Topic privé du client
-            string clientTopic = "Client" + IdClient;
-            if (!CrossFirebasePushNotification.Current.SubscribedTopics.Contains(clientTopic))
+            string clientTopic = string.Format("Client_{0}", IdClient);
+            if (!string.IsNullOrEmpty(IdClient) && !CrossFirebasePushNotification.Current.SubscribedTopics.Contains(clientTopic))
             {
                 CrossFirebasePushNotification.Current.Subscribe(clientTopic);
             }
 
             // Topic privé du user
-            string PrivateTopic = "Topic" + user.Id;
-            if (!CrossFirebasePushNotification.Current.SubscribedTopics.Contains(PrivateTopic))
+            string PrivateTopic = string.Format("Topic_{0}_{1}", IdClient, user.UserName);
+            if (!string.IsNullOrEmpty(user.UserName) && !CrossFirebasePushNotification.Current.SubscribedTopics.Contains(PrivateTopic))
             {
                 CrossFirebasePushNotification.Current.Subscribe(PrivateTopic);
             }
+        }
 
-            #endregion
+        public static void UnsubscribeFromAllTopics()
+        {
+            CrossFirebasePushNotification.Current.UnsubscribeAll();
         }
     }
 }

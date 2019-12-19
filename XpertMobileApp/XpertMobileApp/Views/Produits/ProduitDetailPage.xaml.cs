@@ -77,6 +77,7 @@ namespace XpertMobileApp.Views
                     var ProdInfos = await WebServiceClient.GetProduitDetails(this.Item.CODE_PRODUIT);
 
                     BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK>(ProdInfos, Item.CODE_PRODUIT);
+
                     this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
                 }
                 viewModel.LoadRowsCommand.Execute(null);
@@ -101,6 +102,7 @@ namespace XpertMobileApp.Views
 
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 viewModel.ItemRows.Clear();
                 var itemsC = await WebServiceClient.GetLots(this.Item.CODE_PRODUIT);
 
@@ -110,9 +112,11 @@ namespace XpertMobileApp.Views
                 {
                     viewModel.ItemRows.Add(itemC);
                 }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

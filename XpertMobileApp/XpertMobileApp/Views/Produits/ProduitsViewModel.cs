@@ -30,6 +30,9 @@ namespace XpertMobileApp.ViewModels
 
             result.Add("searchText", SearchedText);
 
+            if (!string.IsNullOrEmpty(SearchedRef))
+                result.Add("searchedRef", SearchedRef);
+            
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
                 result.Add("famille", SelectedFamille?.CODE);
 
@@ -58,6 +61,14 @@ namespace XpertMobileApp.ViewModels
             get { return searchedText; }
             set { SetProperty(ref searchedText, value); }
         }
+
+        private string searchedRef;
+        public string SearchedRef
+        {
+            get { return searchedRef; }
+            set { SetProperty(ref searchedRef, value); }
+        }
+        
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
         private BSE_TABLE_TYPE selectedType;

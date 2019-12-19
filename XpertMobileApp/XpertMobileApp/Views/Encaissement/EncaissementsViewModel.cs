@@ -46,11 +46,21 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref selectedCompte, value); }
         }
 
+        public ObservableCollection<BSE_ENCAISS_MOTIFS> Motifs { get; set; }
+        BSE_ENCAISS_MOTIFS selectedMotif;
+        public BSE_ENCAISS_MOTIFS SelectedMotif
+        {
+            get { return selectedMotif; }
+            set { SetProperty(ref selectedMotif, value); }
+        }
+
+
         public EncaissementsViewModel()
         {
             Title = AppResources.pn_encaissement;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
+            Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
@@ -65,6 +75,9 @@ namespace XpertMobileApp.ViewModels
             result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
             if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 result.Add("codeCompte", SelectedCompte?.CODE_COMPTE);
+
+            if (!string.IsNullOrEmpty(SelectedMotif?.CODE_MOTIF))
+                result.Add("codeMotif", SelectedMotif?.CODE_MOTIF);
 
             // result.Add("id_caisse", "all");
             // result.Add("codeMotif", "all");
@@ -115,9 +128,16 @@ namespace XpertMobileApp.ViewModels
                 IsLoadExtrasBusy = true;
                 Comptes.Clear();
                 var itemsC = await WebServiceClient.getComptes();
+                var itemsM = await WebServiceClient.GetMotifs();
+                
                 foreach (var itemC in itemsC)
                 {
                     Comptes.Add(itemC);
+                }
+
+                foreach (var itemM in itemsM)
+                {
+                    Motifs.Add(itemM);
                 }
             }
             catch (Exception ex)
@@ -137,6 +157,7 @@ namespace XpertMobileApp.ViewModels
             StartDate = DateTime.Now;
             EndDate = DateTime.Now;
             SelectedCompte = null;
+            selectedMotif = null;
         }
     }
 }

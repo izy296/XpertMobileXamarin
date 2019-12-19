@@ -1,4 +1,5 @@
 
+using FontAwesome;
 using SampleBrowser.SfChart;
 using SQLite;
 //---------------------------------------------------------------------------------------------------
@@ -113,6 +114,22 @@ namespace XpertMobileApp.DAL
         public override string ToString()
         {
             return AppResources.pn_encaissement + " N° : " + NUM_ENCAISS;
+        }
+
+        public Color ValColor
+        {
+            get
+            {
+                return CODE_TYPE == "ENC" ? Color.Black : Color.Red; 
+            }
+        }
+
+        public string ValIcon
+        {
+            get
+            {
+                return CODE_TYPE == "ENC" ? FontAwesomeIcons.Arrow_Up : FontAwesomeIcons.Arrow_Down;
+            }
         }
     }
 
