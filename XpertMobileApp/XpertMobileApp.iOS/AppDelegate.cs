@@ -32,7 +32,7 @@ namespace XpertMobileApp.iOS
 
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            Syncfusion.XForms.iOS.Buttons.SfRadioButtonRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

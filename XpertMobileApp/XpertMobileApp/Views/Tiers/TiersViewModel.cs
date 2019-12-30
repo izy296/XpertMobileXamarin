@@ -52,7 +52,9 @@ namespace XpertMobileApp.ViewModels
 
              result.Add("searchText", SearchedText);
 
-             if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
+            result.Add("soldeFilter", SoldOperator);
+
+            if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
                  result.Add("famille", SelectedFamille?.CODE_FAMILLE);
 
              if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
@@ -90,6 +92,12 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref searchedText, value); }
         }
 
+        private string soldOperator;
+        public string SoldOperator
+        {
+            get { return soldOperator; }
+            set { SetProperty(ref soldOperator, value); }
+        }
         public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
     
          View_BSE_TIERS_FAMILLE selectedFamille;

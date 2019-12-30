@@ -5,11 +5,11 @@
     <ContentView.Content>
 
         <StackLayout>
-            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+            <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                     <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{ Binding SOLDE_TIERS_TXT, StringFormat='{0}'}"
                                TextColor="{Binding SOLDE, Converter={StaticResource decimalToColorInverse}}" FontFamily="{StaticResource FontGilroySemiBold}"
-                               FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End"/>
+                               FontAttributes="Bold" FontSize="Default" HorizontalOptions="End"/>
                         <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="End" TextColor="LightGray"/>
                         <Label Text="{Binding LAST_CREANCE, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                         <!--

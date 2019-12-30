@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Services;
+using Syncfusion.XForms.Buttons;
 using System;
 using System.Linq;
 
@@ -87,6 +88,14 @@ namespace XpertMobileApp.Views
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);
+        }
+
+        private void rg_solde_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                viewModel.SoldOperator = (sender as SfRadioButton).ClassId;
+            }
         }
     }
 }
