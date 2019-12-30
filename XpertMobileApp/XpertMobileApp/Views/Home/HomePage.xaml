@@ -20,7 +20,7 @@
                    OutlineColor="LightGray">
                 <StackLayout Spacing="10" Padding="15" >
                      <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label Text="Bienvenu" TextColor="Black" FontAttributes="Bold" 
+                        <Label Text="Bienvenue" TextColor="Black" FontAttributes="Bold" 
                                     FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
                      </StackLayout>
 

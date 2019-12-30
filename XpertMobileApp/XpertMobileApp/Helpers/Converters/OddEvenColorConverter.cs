@@ -10,9 +10,9 @@ namespace XpertMobileApp.Converters
         {
             int index = (int)value;
             if ((index % 2) == 0)
-                return Color.Green;
+                return Color.FromHex("#87D37C");
               else
-                return Color.Red;
+                return Color.FromHex("#ff6b6b");
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

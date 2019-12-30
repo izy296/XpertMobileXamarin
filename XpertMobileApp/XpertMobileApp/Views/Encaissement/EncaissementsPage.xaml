@@ -28,7 +28,7 @@
 
     </ContentPage.ToolbarItems>
 
-    <StackLayout VerticalOptions="FillAndExpand">
+    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
         <!-- Filter -->
         <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
@@ -98,6 +98,7 @@
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
+                    SeparatorVisibility="None"                      
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"

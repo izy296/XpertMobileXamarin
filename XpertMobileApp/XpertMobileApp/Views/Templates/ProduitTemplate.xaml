@@ -6,11 +6,11 @@
     <ContentView.Content>
 
         <StackLayout>
-            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+            <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -21,8 +21,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
-                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">

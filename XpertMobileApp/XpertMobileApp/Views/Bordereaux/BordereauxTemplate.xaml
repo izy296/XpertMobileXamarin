@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.Templates.BordereauxTemplate">
     <ContentView.Content>
-
-        <StackLayout Padding="0,10,0,0" Margin="5,5,5,5" BackgroundColor="White">
-            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+<!--
+        Padding="0,10,0,0" Margin="5,5,5,5" BackgroundColor="White"
+        -->
+        <StackLayout >
+            <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
@@ -19,8 +21,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
-                                 HorizontalOptions="Fill" HeightRequest="40">
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 <!--
                      BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}"
@@ -57,23 +58,28 @@
 
                         <Frame HorizontalOptions="FillAndExpand"  BorderColor="LightGray" Padding="0" Margin="0"
                                BackgroundColor="{Binding BrdEncoursPassed, Converter={StaticResource brdStatusToColor}}">
-                            <Label Text="En cours" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="En cours" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                   TextColor="{Binding BrdEncoursPassed, Converter={StaticResource brdStatusToTextColor}}"/>
                         </Frame>
                         <Frame HorizontalOptions="FillAndExpand"  BorderColor="LightGray"  Padding="0" Margin="0"
                                BackgroundColor="{Binding BrdCloturedPassed, Converter={StaticResource brdStatusToColor}}">
-                            <Label Text="Clôturé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="Clôturé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                   TextColor="{Binding BrdCloturedPassed, Converter={StaticResource brdStatusToTextColor}}"/> 
                         </Frame>
                         <Frame HorizontalOptions="FillAndExpand" BorderColor="LightGray"  Padding="0" Margin="0"
                                BackgroundColor="{Binding BrdDeposedPassed, Converter={StaticResource brdStatusToColor}}">
-                            <Label Text="Déposé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="Déposé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center" 
+                                   TextColor="{Binding BrdDeposedPassed, Converter={StaticResource brdStatusToTextColor}}"/>
                         </Frame>
                         <Frame HorizontalOptions="FillAndExpand" BorderColor="LightGray"  Padding="0" Margin="0"
                                BackgroundColor="{Binding BrdValidtedPassed, Converter={StaticResource brdStatusToColor}}">
-                            <Label Text="Validé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="Validé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                   TextColor="{Binding BrdValidtedPassed, Converter={StaticResource brdStatusToTextColor}}"/>
                         </Frame>
                         <Frame HorizontalOptions="FillAndExpand" BorderColor="LightGray"  Padding="0" Margin="0"
                                BackgroundColor="{Binding BrdPayedPassed, Converter={StaticResource brdStatusToColor}}">
-                            <Label Text="Payé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            <Label Text="Payé" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                   TextColor="{Binding BrdPayedPassed, Converter={StaticResource brdStatusToTextColor}}"/>
                         </Frame>
                     </StackLayout>
                 </Grid>

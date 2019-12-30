@@ -6,7 +6,7 @@
     <ContentView.Content>
 
         <StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="Transparent" >
-            <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#F2F1EF">
+            <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" Padding="0" Margin="0" RowSpacing="0">
 
                     <Grid.ColumnDefinitions>

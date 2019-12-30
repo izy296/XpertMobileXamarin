@@ -37,8 +37,6 @@
     <None Remove="beep.wav" />
     <None Remove="beep03.mp3" />
     <None Remove="beep07.mp3" />
-    <None Remove="MultilingualResources\XpertMobileApp.ar.xlf" />
-    <None Remove="MultilingualResources\XpertMobileApp.en.xlf" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\mainstyles.css" />

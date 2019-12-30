@@ -46,7 +46,7 @@ namespace XpertMobileApp.ViewModels
 
         public TresoreriePageViewModel()
         {
-            Title = AppResources.pn_home;
+            Title = AppResources.pn_Tresorerie;
 
             Items = new ObservableCollection<View_BSE_COMPTE>();
             Sessions = new ObservableCollection<TRS_JOURNEES>();
@@ -118,9 +118,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     Items.Add(item);
                 }
+                IsBusy = false;
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

@@ -57,6 +57,7 @@
             <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
             <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
             <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
+            <local:BordereauStatusToTextColor x:Key="brdStatusToTextColor"/>
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
             <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
             <local:SelectionModeToVisbileConverter x:Key="selectionModeToVisbileConverter"/>
@@ -91,8 +92,23 @@
             </Style>
 
 
-
-
+            <!-- Style frame for list-->
+            <Style x:Key="StackLOddEven" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,3,0,3" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="{Binding Index, Converter={StaticResource oddEvenInvert}}"/>
+            </Style>
+            
+            <Style x:Key="FrameForList" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Margin" Value="8,3,8,3" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="OutlineColor" Value="#F2F1EF"/>
+            </Style>
 
             <!-- Style font awesomone Button -->
             <Style x:Key="FAwesome-B-Solid" TargetType="Button">

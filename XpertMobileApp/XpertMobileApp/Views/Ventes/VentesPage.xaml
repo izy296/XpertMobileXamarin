@@ -20,7 +20,7 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout  Spacing="10" Padding="0" >
+    <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
         <!-- Filter -->
         <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
@@ -92,7 +92,7 @@
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
 
-            <Frame x:Name="vteGlobalInfos" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White" >
+            <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
                 <Grid  BackgroundColor="White" >
 
                     <Grid.ColumnDefinitions>
@@ -125,13 +125,16 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-
+<!--
             <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,5"  HasShadow="True"
                    VerticalOptions="FillAndExpand" OutlineColor="White" >
-                <ListView x:Name="ItemsListView"
+            </Frame>
+            -->
+            <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
+                    SeparatorVisibility="None"                            
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -164,7 +167,7 @@
                 </ListView.Footer>
 
             </ListView>
-            </Frame>
+
         </StackLayout>
     </StackLayout>
 </ContentPage>

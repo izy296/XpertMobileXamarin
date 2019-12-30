@@ -84,16 +84,16 @@ txt_Mnt_TarifCHIFA  TR_CHIFA_PAYE
             </Frame>
 
             <!-- Liste des comptes -->
-            <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
+            <Frame CornerRadius="10" Padding="1" Margin="5" BackgroundColor="White" HasShadow="True"  
                    OutlineColor="White">
-                <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+                <StackLayout x:Name="sl_rows" VerticalOptions="Start" Spacing="0" >
 
-                    <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
+                    <StackLayout Spacing="0" Padding="5,5,5,2" Margin="0">
                         <Label Text="{i18n:Translate txt_Comptes}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                         <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="0" Grid.Row="1" VerticalOptions="Start">
+                    <StackLayout VerticalOptions="Start" BackgroundColor="{StaticResource DefaultLisViewBackColor}" Margin="2" Padding="0,5,0,0">
                         <ListView x:Name="ItemsListView"
                                 ItemsSource="{Binding Items}"
                                 HasUnevenRows="true"
@@ -105,10 +105,14 @@ txt_Mnt_TarifCHIFA  TR_CHIFA_PAYE
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="5,5,5,5">
-                                            <Label Text="{Binding DESIGN_COMPTE}" HorizontalOptions="StartAndExpand" TextColor="{StaticResource Primary}"/>
-                                            <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="EndAndExpand"/>
-                                        </StackLayout>
+                                        <Frame Style="{StaticResource FrameForList}">
+                                            <StackLayout>
+                                                <Label Text="{Binding DESIGN_COMPTE}" HorizontalOptions="StartAndExpand" TextColor="Black"/>
+                                                <Label Text="{Binding SOLDE_COMPTE, StringFormat='{0:N2} DA'}"
+                                                       TextColor="{Binding SOLDE_COMPTE, Converter={StaticResource decimalToColor}}" 
+                                                       FontFamily="{StaticResource FontGilroyMedium}" HorizontalOptions="EndAndExpand"/>
+                                            </StackLayout>
+                                        </Frame>
                                     </ViewCell>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
