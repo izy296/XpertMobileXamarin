@@ -19,7 +19,7 @@ namespace XpertMobileApp {
     // à l'aide d'un outil, tel que ResGen ou Visual Studio.
     // Pour ajouter ou supprimer un membre, modifiez votre fichier .ResX, puis réexécutez ResGen
     // avec l'option /str ou régénérez votre projet VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class AppResources {
@@ -1921,6 +1921,15 @@ namespace XpertMobileApp {
         internal static string txt_ShouldUpdateVersion {
             get {
                 return ResourceManager.GetString("txt_ShouldUpdateVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Solde.
+        /// </summary>
+        internal static string txt_Solde {
+            get {
+                return ResourceManager.GetString("txt_Solde", resourceCulture);
             }
         }
         

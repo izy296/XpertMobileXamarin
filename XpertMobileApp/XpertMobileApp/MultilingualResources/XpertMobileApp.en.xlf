@@ -559,7 +559,7 @@
         </trans-unit>
         <trans-unit id="sp_btn_SaveRfid" translate="yes" xml:space="preserve">
           <source>Enregistrer</source>
-          <target state="new">Save</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Save</target>
         </trans-unit>
         <trans-unit id="txt_QTE_VENTE" translate="yes" xml:space="preserve">
           <source>Vendu</source>
@@ -658,7 +658,7 @@
         </trans-unit>
         <trans-unit id="txt_EcheanceDate" translate="yes" xml:space="preserve">
           <source>Échéance</source>
-          <target state="new">Échéance</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Due</target>
         </trans-unit>
         <trans-unit id="txt_ScanRow" translate="yes" xml:space="preserve">
           <source>Scanner</source>
@@ -666,15 +666,15 @@
         </trans-unit>
         <trans-unit id="txt_SelectRow" translate="yes" xml:space="preserve">
           <source>Sélectionner</source>
-          <target state="new">Sélectionner</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Select</target>
         </trans-unit>
         <trans-unit id="pn_NewCommande" translate="yes" xml:space="preserve">
           <source>Nouvelle commande</source>
-          <target state="new">Nouvelle commande</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">New Order</target>
         </trans-unit>
         <trans-unit id="cmd_remove" translate="yes" xml:space="preserve">
           <source>Enlever</source>
-          <target state="new">Enlever</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Remove</target>
         </trans-unit>
         <trans-unit id="error_DateShouldBeGreaterThanToday" translate="yes" xml:space="preserve">
           <source>Veuillez corriger la date d'échéance</source>
@@ -682,15 +682,15 @@
         </trans-unit>
         <trans-unit id="pn_Catalogues" translate="yes" xml:space="preserve">
           <source>Catalogue</source>
-          <target state="new">Catalogue</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Catalog</target>
         </trans-unit>
         <trans-unit id="txt_NewProduct" translate="yes" xml:space="preserve">
           <source>Nouveaux</source>
-          <target state="new">Nouveaux</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">New</target>
         </trans-unit>
         <trans-unit id="txt_Buy" translate="yes" xml:space="preserve">
           <source>Ajouter au panier</source>
-          <target state="new">Ajouter au panier</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Add to Cart</target>
         </trans-unit>
         <trans-unit id="txt_ConfimDelProductCmd" translate="yes" xml:space="preserve">
           <source>Voulez vous vraiment supprimer ce produit du panier ?</source>
@@ -726,15 +726,15 @@
         </trans-unit>
         <trans-unit id="txt_Immatriculation" translate="yes" xml:space="preserve">
           <source>Matricule</source>
-          <target state="new">Matricule</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Personnel Number</target>
         </trans-unit>
         <trans-unit id="txt_Date" translate="yes" xml:space="preserve">
           <source>Date</source>
-          <target state="new">Date</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">What's the date today?</target>
         </trans-unit>
         <trans-unit id="txt_Status" translate="yes" xml:space="preserve">
           <source>État</source>
-          <target state="new">État</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Status</target>
         </trans-unit>
         <trans-unit id="pn_NewReception" translate="yes" xml:space="preserve">
           <source>Nouvelle pesée</source>
@@ -742,19 +742,19 @@
         </trans-unit>
         <trans-unit id="txt_EmballageEntree" translate="yes" xml:space="preserve">
           <source>Entrées</source>
-          <target state="new">Entrées</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Inputs</target>
         </trans-unit>
         <trans-unit id="txt_EmballageSortie" translate="yes" xml:space="preserve">
           <source>Sortie</source>
-          <target state="new">Sortie</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Output</target>
         </trans-unit>
         <trans-unit id="txt_EmballageVides" translate="yes" xml:space="preserve">
           <source>Vides</source>
-          <target state="new">Vides</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Blank</target>
         </trans-unit>
         <trans-unit id="txt_agri_Prix" translate="yes" xml:space="preserve">
           <source>Prix :</source>
-          <target state="new">Prix :</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Price</target>
         </trans-unit>
         <trans-unit id="txt_agri_QBrute" translate="yes" xml:space="preserve">
           <source>Q.Brute :</source>
@@ -774,11 +774,11 @@
         </trans-unit>
         <trans-unit id="pn_MyCommandes" translate="yes" xml:space="preserve">
           <source>Mes commandes</source>
-          <target state="new">Mes commandes</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">My orders</target>
         </trans-unit>
         <trans-unit id="txt_Waiting" translate="yes" xml:space="preserve">
           <source>Traitement ...</source>
-          <target state="new">Traitement ...</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Processing</target>
         </trans-unit>
         <trans-unit id="pn_Bordereaux" translate="yes" xml:space="preserve">
           <source>Bordereaux</source>
@@ -794,7 +794,7 @@
         </trans-unit>
         <trans-unit id="txt_Centre" translate="yes" xml:space="preserve">
           <source>Centre</source>
-          <target state="new">Centre</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Center</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Cloture" translate="yes" xml:space="preserve">
           <source>Montant clôture</source>
@@ -802,15 +802,15 @@
         </trans-unit>
         <trans-unit id="txt_Mnt_Credits" translate="yes" xml:space="preserve">
           <source>Crédits</source>
-          <target state="new">Crédits</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Credits</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Ecart" translate="yes" xml:space="preserve">
           <source>ÉCART</source>
-          <target state="new">ÉCART</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">VARIANCE</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Retour" translate="yes" xml:space="preserve">
           <source>Retour</source>
-          <target state="new">Retour</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Back</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_TarifCHIFA" translate="yes" xml:space="preserve">
           <source>Tarif Chifa</source>
@@ -822,7 +822,7 @@
         </trans-unit>
         <trans-unit id="pn_session" translate="yes" xml:space="preserve">
           <source>Sessions</source>
-          <target state="new">Sessions</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Rounds</target>
         </trans-unit>
         <trans-unit id="txt_Cat_DocumentSaved" translate="yes" xml:space="preserve">
           <source>Document enregistré avec succès !
@@ -836,19 +836,19 @@
         </trans-unit>
         <trans-unit id="tct_Type" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="new">Type</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Type name</target>
         </trans-unit>
         <trans-unit id="txt_Categorie" translate="yes" xml:space="preserve">
           <source>Famille</source>
-          <target state="new">Famille</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Family</target>
         </trans-unit>
         <trans-unit id="txt_LastName" translate="yes" xml:space="preserve">
           <source>Prénom</source>
-          <target state="new">Prénom</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">First Name</target>
         </trans-unit>
         <trans-unit id="txt_Name" translate="yes" xml:space="preserve">
           <source>Nom</source>
-          <target state="new">Nom</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Last Name</target>
         </trans-unit>
         <trans-unit id="txt_TotalAchatsByProduct" translate="yes" xml:space="preserve">
           <source>Achat par produit</source>
@@ -856,7 +856,7 @@
         </trans-unit>
         <trans-unit id="txt_phone" translate="yes" xml:space="preserve">
           <source>Téléphone</source>
-          <target state="new">Téléphone</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Phone</target>
         </trans-unit>
         <trans-unit id="pn_AchatsProduction" translate="yes" xml:space="preserve">
           <source>Réception pour production</source>
@@ -880,15 +880,15 @@
         </trans-unit>
         <trans-unit id="txt_Productivite" translate="yes" xml:space="preserve">
           <source>Productivité</source>
-          <target state="new">Productivité</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Productivity</target>
         </trans-unit>
         <trans-unit id="cmd_Verif" translate="yes" xml:space="preserve">
           <source>Vérification</source>
-          <target state="new">Vérification</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Checking</target>
         </trans-unit>
         <trans-unit id="pn_Tresorerie" translate="yes" xml:space="preserve">
           <source>Trésorerie</source>
-          <target state="new">Trésorerie</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Cash Flow</target>
         </trans-unit>
         <trans-unit id="txt_ProductRef" translate="yes" xml:space="preserve">
           <source>Nom/Réf</source>
@@ -896,15 +896,19 @@
         </trans-unit>
         <trans-unit id="sp_lbl_Notifications" translate="yes" xml:space="preserve">
           <source>Notifications</source>
-          <target state="new">Notifications</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Notifications</target>
         </trans-unit>
         <trans-unit id="sp_lbl_Activate" translate="yes" xml:space="preserve">
           <source>Activé</source>
-          <target state="new">Activé</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Enabled</target>
         </trans-unit>
         <trans-unit id="pn_Settings" translate="yes" xml:space="preserve">
           <source>Configuration</source>
-          <target state="new">Configuration</target>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Setup</target>
+        </trans-unit>
+        <trans-unit id="txt_Solde" translate="yes" xml:space="preserve">
+          <source>Solde</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Balance</target>
         </trans-unit>
       </group>
     </body>

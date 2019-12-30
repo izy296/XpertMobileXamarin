@@ -417,6 +417,9 @@
   <data name="txt_MANQUANTS" xml:space="preserve">
     <value>Missing</value>
   </data>
+  <data name="sp_btn_SaveRfid" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="txt_QTE_VENTE" xml:space="preserve">
     <value>Sold</value>
   </data>
@@ -485,5 +488,104 @@
   </data>
   <data name="pn_Commandes" xml:space="preserve">
     <value>Orders</value>
+  </data>
+  <data name="txt_EcheanceDate" xml:space="preserve">
+    <value>Due</value>
+  </data>
+  <data name="txt_SelectRow" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="pn_NewCommande" xml:space="preserve">
+    <value>New Order</value>
+  </data>
+  <data name="cmd_remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="pn_Catalogues" xml:space="preserve">
+    <value>Catalog</value>
+  </data>
+  <data name="txt_NewProduct" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="txt_Buy" xml:space="preserve">
+    <value>Add to Cart</value>
+  </data>
+  <data name="txt_Immatriculation" xml:space="preserve">
+    <value>Personnel Number</value>
+  </data>
+  <data name="txt_Date" xml:space="preserve">
+    <value>What's the date today?</value>
+  </data>
+  <data name="txt_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="txt_EmballageEntree" xml:space="preserve">
+    <value>Inputs</value>
+  </data>
+  <data name="txt_EmballageSortie" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="txt_EmballageVides" xml:space="preserve">
+    <value>Blank</value>
+  </data>
+  <data name="txt_agri_Prix" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="pn_MyCommandes" xml:space="preserve">
+    <value>My orders</value>
+  </data>
+  <data name="txt_Waiting" xml:space="preserve">
+    <value>Processing</value>
+  </data>
+  <data name="txt_Centre" xml:space="preserve">
+    <value>Center</value>
+  </data>
+  <data name="txt_Mnt_Credits" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="txt_Mnt_Ecart" xml:space="preserve">
+    <value>VARIANCE</value>
+  </data>
+  <data name="txt_Mnt_Retour" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="pn_session" xml:space="preserve">
+    <value>Rounds</value>
+  </data>
+  <data name="tct_Type" xml:space="preserve">
+    <value>Type name</value>
+  </data>
+  <data name="txt_Categorie" xml:space="preserve">
+    <value>Family</value>
+  </data>
+  <data name="txt_LastName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="txt_Name" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="txt_phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="txt_Productivite" xml:space="preserve">
+    <value>Productivity</value>
+  </data>
+  <data name="cmd_Verif" xml:space="preserve">
+    <value>Checking</value>
+  </data>
+  <data name="pn_Tresorerie" xml:space="preserve">
+    <value>Cash Flow</value>
+  </data>
+  <data name="sp_lbl_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="sp_lbl_Activate" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="pn_Settings" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="txt_Solde" xml:space="preserve">
+    <value>Balance</value>
   </data>
 </root>

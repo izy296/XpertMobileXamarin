@@ -489,4 +489,100 @@
   <data name="pn_Commandes" xml:space="preserve">
     <value>الطلبات</value>
   </data>
+  <data name="txt_EcheanceDate" xml:space="preserve">
+    <value>الإكمال</value>
+  </data>
+  <data name="txt_SelectRow" xml:space="preserve">
+    <value>تحديد الموجود</value>
+  </data>
+  <data name="pn_NewCommande" xml:space="preserve">
+    <value>أمر جديد</value>
+  </data>
+  <data name="cmd_remove" xml:space="preserve">
+    <value>منع</value>
+  </data>
+  <data name="pn_Catalogues" xml:space="preserve">
+    <value>الكتالوج</value>
+  </data>
+  <data name="txt_NewProduct" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="txt_Buy" xml:space="preserve">
+    <value>إضافة إلى سلة</value>
+  </data>
+  <data name="txt_Immatriculation" xml:space="preserve">
+    <value>رقم الموظف</value>
+  </data>
+  <data name="txt_Date" xml:space="preserve">
+    <value>ما تاريخ اليوم؟</value>
+  </data>
+  <data name="txt_Status" xml:space="preserve">
+    <value>حالة</value>
+  </data>
+  <data name="txt_EmballageEntree" xml:space="preserve">
+    <value>الإدخالات</value>
+  </data>
+  <data name="txt_EmballageSortie" xml:space="preserve">
+    <value>الخروج</value>
+  </data>
+  <data name="txt_EmballageVides" xml:space="preserve">
+    <value>(فراغات)</value>
+  </data>
+  <data name="txt_agri_Prix" xml:space="preserve">
+    <value>الأسعار:</value>
+  </data>
+  <data name="pn_MyCommandes" xml:space="preserve">
+    <value>الأوامر الخاصة بي</value>
+  </data>
+  <data name="txt_Waiting" xml:space="preserve">
+    <value>معالجة</value>
+  </data>
+  <data name="txt_Centre" xml:space="preserve">
+    <value>التوقيت الرسمي المركزي</value>
+  </data>
+  <data name="txt_Mnt_Credits" xml:space="preserve">
+    <value>الرصيد</value>
+  </data>
+  <data name="txt_Mnt_Retour" xml:space="preserve">
+    <value>عودة</value>
+  </data>
+  <data name="pn_session" xml:space="preserve">
+    <value>جلسات العمل</value>
+  </data>
+  <data name="tct_Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="txt_Categorie" xml:space="preserve">
+    <value>العائلة</value>
+  </data>
+  <data name="txt_LastName" xml:space="preserve">
+    <value>الاسم الأول</value>
+  </data>
+  <data name="txt_Name" xml:space="preserve">
+    <value>اسم العائلة</value>
+  </data>
+  <data name="txt_phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+  <data name="txt_Productivite" xml:space="preserve">
+    <value>الإنتاجية</value>
+  </data>
+  <data name="cmd_Verif" xml:space="preserve">
+    <value>يتم التحقق…</value>
+  </data>
+  <data name="pn_Tresorerie" xml:space="preserve">
+    <value>التدفق النقدي</value>
+  </data>
+  <data name="sp_lbl_Notifications" xml:space="preserve">
+    <value>الإعلامات</value>
+  </data>
+  <data name="sp_lbl_Activate" xml:space="preserve">
+    <value>‏‏تم التنشيط</value>
+  </data>
+  <data name="pn_Settings" xml:space="preserve">
+    <value>يتم التكوين</value>
+  </data>
+  <data name="txt_Solde" xml:space="preserve">
+    <value>المتبقي</value>
+  </data>
 </root>

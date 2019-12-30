@@ -64,7 +64,7 @@
         </trans-unit>
         <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
           <source>Encaiss &amp; Décaiss</source>
-          <target state="needs-review-translation">الخزينة</target>
+          <target state="translated">الخزينة</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="pn_home" translate="yes" xml:space="preserve">
@@ -89,7 +89,7 @@
         </trans-unit>
         <trans-unit id="alrt_msg_MissingServerInfos" translate="yes" xml:space="preserve">
           <source>Veuillez renseigner les informations du serveur</source>
-          <target state="needs-review-translation">يرجى ملء معلومات الخادم</target>
+          <target state="translated">يرجى ملء معلومات الخادم</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="alrt_msg_Ok" translate="yes" xml:space="preserve">
@@ -98,17 +98,17 @@
         </trans-unit>
         <trans-unit id="alrt_msg_SaveSettings" translate="yes" xml:space="preserve">
           <source>Voulez-vous enregistrer la configuration</source>
-          <target state="needs-review-translation">هل تريد حفظ الإعدادات</target>
+          <target state="translated">هل تريد حفظ الإعدادات</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="alrt_msg_SettingsSaved" translate="yes" xml:space="preserve">
           <source>La configuration a été enregistrées avec succès</source>
-          <target state="needs-review-translation">تم حفظ الإعدادات  بنجاح</target>
+          <target state="translated">تم حفظ الإعدادات  بنجاح</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="alrt_msg_title_Settings" translate="yes" xml:space="preserve">
           <source>Configuration</source>
-          <target state="needs-review-translation">الإعدادات</target>
+          <target state="translated">الإعدادات</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="abtp_lbl_AppDescription" translate="yes" xml:space="preserve">
@@ -117,7 +117,7 @@
         </trans-unit>
         <trans-unit id="abtp_lbl_DevelopedBy" translate="yes" xml:space="preserve">
           <source>Application développé  par </source>
-          <target state="needs-review-translation">تم تطوير التطبيق من قبل</target>
+          <target state="translated">تم تطوير التطبيق من قبل</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="abtp_lbl_LearnMore" translate="yes" xml:space="preserve">
@@ -170,7 +170,7 @@
         </trans-unit>
         <trans-unit id="msg_EnterTheAmount" translate="yes" xml:space="preserve">
           <source>Entrer le montant s'il vous plaît </source>
-          <target state="needs-review-translation">يرجى إدخال المبلغ</target>
+          <target state="translated">يرجى إدخال المبلغ</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="CODE_COMPTE" translate="yes" xml:space="preserve">
@@ -263,7 +263,7 @@
         </trans-unit>
         <trans-unit id="cmd_Filter" translate="yes" xml:space="preserve">
           <source>Filtre</source>
-          <target state="needs-review-translation">تصفية</target>
+          <target state="translated">تصفية</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Filter" translate="yes" xml:space="preserve">
@@ -508,17 +508,17 @@
         </trans-unit>
         <trans-unit id="txt_Arrivage" translate="yes" xml:space="preserve">
           <source>Arrivage</source>
-          <target state="needs-review-translation">القادم</target>
+          <target state="translated">الوارد</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Qte" translate="yes" xml:space="preserve">
           <source>Qté</source>
-          <target state="needs-review-translation">الكمية</target>
+          <target state="translated">الكمية</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_QteMin" translate="yes" xml:space="preserve">
           <source>Qté Min</source>
-          <target state="needs-review-translation">أقل كمية</target>
+          <target state="translated">أقل كمية</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Rotation" translate="yes" xml:space="preserve">
@@ -583,7 +583,7 @@
         </trans-unit>
         <trans-unit id="alrt_msg_multiLotForCodeBarre" translate="yes" xml:space="preserve">
           <source>Il y a plusieurs lots pour ce code à barres !</source>
-          <target state="needs-review-translation">هناك الكثير من الحزم لهذا الباركود!</target>
+          <target state="translated">هناك الكثير من الحزم لهذا الباركود!</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Typesproduct" translate="yes" xml:space="preserve">
@@ -652,258 +652,262 @@
         </trans-unit>
         <trans-unit id="pn_Commandes" translate="yes" xml:space="preserve">
           <source>Commandes clients</source>
-          <target state="needs-review-translation">الطلبات</target>
+          <target state="translated">طلبات الزبائن</target>
           <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_EcheanceDate" translate="yes" xml:space="preserve">
           <source>Échéance</source>
-          <target state="new">Échéance</target>
+          <target state="translated" state-qualifier="tm-suggestion">الاستحقاق</target>
         </trans-unit>
         <trans-unit id="txt_ScanRow" translate="yes" xml:space="preserve">
           <source>Scanner</source>
-          <target state="new">Scanner</target>
+          <target state="translated">مسح</target>
         </trans-unit>
         <trans-unit id="txt_SelectRow" translate="yes" xml:space="preserve">
           <source>Sélectionner</source>
-          <target state="new">Sélectionner</target>
+          <target state="translated" state-qualifier="tm-suggestion">اختيار</target>
         </trans-unit>
         <trans-unit id="pn_NewCommande" translate="yes" xml:space="preserve">
           <source>Nouvelle commande</source>
-          <target state="new">Nouvelle commande</target>
+          <target state="translated" state-qualifier="tm-suggestion">طلب جديد</target>
         </trans-unit>
         <trans-unit id="cmd_remove" translate="yes" xml:space="preserve">
           <source>Enlever</source>
-          <target state="new">Enlever</target>
+          <target state="translated" state-qualifier="tm-suggestion">حذف</target>
         </trans-unit>
         <trans-unit id="error_DateShouldBeGreaterThanToday" translate="yes" xml:space="preserve">
           <source>Veuillez corriger la date d'échéance</source>
-          <target state="new">Veuillez corriger la date d'échéance</target>
+          <target state="translated">يرجى تصحيح تاريخ الاستحقاق</target>
         </trans-unit>
         <trans-unit id="pn_Catalogues" translate="yes" xml:space="preserve">
           <source>Catalogue</source>
-          <target state="new">Catalogue</target>
+          <target state="translated" state-qualifier="tm-suggestion">الفهرس</target>
         </trans-unit>
         <trans-unit id="txt_NewProduct" translate="yes" xml:space="preserve">
           <source>Nouveaux</source>
-          <target state="new">Nouveaux</target>
+          <target state="translated" state-qualifier="tm-suggestion">جديد</target>
         </trans-unit>
         <trans-unit id="txt_Buy" translate="yes" xml:space="preserve">
           <source>Ajouter au panier</source>
-          <target state="new">Ajouter au panier</target>
+          <target state="translated" state-qualifier="tm-suggestion">إضافة إلى سلة</target>
         </trans-unit>
         <trans-unit id="txt_ConfimDelProductCmd" translate="yes" xml:space="preserve">
           <source>Voulez vous vraiment supprimer ce produit du panier ?</source>
-          <target state="new">Voulez vous vraiment supprimer ce produit du panier ?</target>
+          <target state="translated">هل أنت متأكد أنك تريد إزالة هذا المنتج من السلة؟</target>
         </trans-unit>
         <trans-unit id="txt_Cat_CommandesSaved" translate="yes" xml:space="preserve">
           <source>Votre commande a bien été envoyée!</source>
-          <target state="new">Votre commande a bien été envoyée!</target>
+          <target state="translated">تم ارسال طلبك!</target>
         </trans-unit>
         <trans-unit id="txt_Cat_CommandesUpdated" translate="yes" xml:space="preserve">
           <source>Votre commande a bien été modifiée!</source>
-          <target state="new">Votre commande a bien été modifiée!</target>
+          <target state="translated">تم تعديل طلبك!</target>
         </trans-unit>
         <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
           <source>Liste des pesées</source>
-          <target state="new">Liste des pesées</target>
+          <target state="translated">قائمة الأوزان</target>
         </trans-unit>
         <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
           <source>Pesée d'entrée</source>
-          <target state="new">Pesée d'entrée</target>
+          <target state="translated">وزن الدخول</target>
         </trans-unit>
         <trans-unit id="PESEE_SORTIE" translate="yes" xml:space="preserve">
           <source>Pesée de sortie</source>
-          <target state="new">Pesée de sortie</target>
+          <target state="translated">وزن الخروج</target>
         </trans-unit>
         <trans-unit id="pn_NewPurchase" translate="yes" xml:space="preserve">
           <source>Nouvelle pesée</source>
-          <target state="new">Nouvelle pesée</target>
+          <target state="translated">وزنة جديدة</target>
         </trans-unit>
         <trans-unit id="txt_Chauffeur" translate="yes" xml:space="preserve">
           <source>Chauffeur</source>
-          <target state="new">Chauffeur</target>
+          <target state="translated">السائق</target>
         </trans-unit>
         <trans-unit id="txt_Immatriculation" translate="yes" xml:space="preserve">
           <source>Matricule</source>
-          <target state="new">Matricule</target>
+          <target state="translated" state-qualifier="tm-suggestion">رقم اللوحة</target>
         </trans-unit>
         <trans-unit id="txt_Date" translate="yes" xml:space="preserve">
           <source>Date</source>
-          <target state="new">Date</target>
+          <target state="translated" state-qualifier="tm-suggestion">التاريخ</target>
         </trans-unit>
         <trans-unit id="txt_Status" translate="yes" xml:space="preserve">
           <source>État</source>
-          <target state="new">État</target>
+          <target state="translated" state-qualifier="exact-match">الحالة</target>
         </trans-unit>
         <trans-unit id="pn_NewReception" translate="yes" xml:space="preserve">
           <source>Nouvelle pesée</source>
-          <target state="new">Nouvelle pesée</target>
+          <target state="translated">وزنة جديدة</target>
         </trans-unit>
         <trans-unit id="txt_EmballageEntree" translate="yes" xml:space="preserve">
           <source>Entrées</source>
-          <target state="new">Entrées</target>
+          <target state="translated" state-qualifier="tm-suggestion">الواردات</target>
         </trans-unit>
         <trans-unit id="txt_EmballageSortie" translate="yes" xml:space="preserve">
           <source>Sortie</source>
-          <target state="new">Sortie</target>
+          <target state="translated" state-qualifier="exact-match">الخروج</target>
         </trans-unit>
         <trans-unit id="txt_EmballageVides" translate="yes" xml:space="preserve">
           <source>Vides</source>
-          <target state="new">Vides</target>
+          <target state="translated" state-qualifier="tm-suggestion">(فراغات)</target>
         </trans-unit>
         <trans-unit id="txt_agri_Prix" translate="yes" xml:space="preserve">
           <source>Prix :</source>
-          <target state="new">Prix :</target>
+          <target state="translated" state-qualifier="tm-suggestion">السعر:</target>
         </trans-unit>
         <trans-unit id="txt_agri_QBrute" translate="yes" xml:space="preserve">
           <source>Q.Brute :</source>
-          <target state="new">Q.Brute :</target>
+          <target state="translated">الوزن الإجمالي :</target>
         </trans-unit>
         <trans-unit id="txt_agri_QDechet" translate="yes" xml:space="preserve">
           <source>Q.Déchet :</source>
-          <target state="new">Q.Déchet :</target>
+          <target state="translated">وزن النفايات :</target>
         </trans-unit>
         <trans-unit id="txt_agri_QNet" translate="yes" xml:space="preserve">
           <source>Q.Net :</source>
-          <target state="new">Q.Net :</target>
+          <target state="translated">الوزن الصافي :</target>
         </trans-unit>
         <trans-unit id="txt_agri_TauxDechet" translate="yes" xml:space="preserve">
           <source>Déchet % :</source>
-          <target state="new">Déchet % :</target>
+          <target state="translated">النفايات % :</target>
         </trans-unit>
         <trans-unit id="pn_MyCommandes" translate="yes" xml:space="preserve">
           <source>Mes commandes</source>
-          <target state="new">Mes commandes</target>
+          <target state="translated" state-qualifier="tm-suggestion">طلباتي</target>
         </trans-unit>
         <trans-unit id="txt_Waiting" translate="yes" xml:space="preserve">
           <source>Traitement ...</source>
-          <target state="new">Traitement ...</target>
+          <target state="translated" state-qualifier="tm-suggestion">معالجة...</target>
         </trans-unit>
         <trans-unit id="pn_Bordereaux" translate="yes" xml:space="preserve">
           <source>Bordereaux</source>
-          <target state="new">Bordereaux</target>
+          <target state="translated">ملفات الفواتير</target>
         </trans-unit>
         <trans-unit id="pn_VtePsychotrop" translate="yes" xml:space="preserve">
           <source>Ventes psychotropes</source>
-          <target state="new">Ventes psychotropes</target>
+          <target state="translated">مبيعات المؤثرات العقلية</target>
         </trans-unit>
         <trans-unit id="txt_InfosPsyco" translate="yes" xml:space="preserve">
           <source>Ordonnancier</source>
-          <target state="new">Ordonnancier</target>
+          <target state="translated">الوصفات الطبية</target>
         </trans-unit>
         <trans-unit id="txt_Centre" translate="yes" xml:space="preserve">
           <source>Centre</source>
-          <target state="new">Centre</target>
+          <target state="translated" state-qualifier="tm-suggestion">المركز</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Cloture" translate="yes" xml:space="preserve">
           <source>Montant clôture</source>
-          <target state="new">Montant clôture</target>
+          <target state="translated">المبلغ الإغلاق</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Credits" translate="yes" xml:space="preserve">
           <source>Crédits</source>
-          <target state="new">Crédits</target>
+          <target state="translated" state-qualifier="tm-suggestion">الرصيد</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Ecart" translate="yes" xml:space="preserve">
           <source>ÉCART</source>
-          <target state="new">ÉCART</target>
+          <target state="translated">الفارق</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_Retour" translate="yes" xml:space="preserve">
           <source>Retour</source>
-          <target state="new">Retour</target>
+          <target state="translated" state-qualifier="exact-match">عودة</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_TarifCHIFA" translate="yes" xml:space="preserve">
           <source>Tarif Chifa</source>
-          <target state="new">Tarif Chifa</target>
+          <target state="translated">أسعار الشفا</target>
         </trans-unit>
         <trans-unit id="txt_Mnt_VenteCash" translate="yes" xml:space="preserve">
           <source>Vente cash</source>
-          <target state="new">Vente cash</target>
+          <target state="translated">المبيعات النقدية</target>
         </trans-unit>
         <trans-unit id="pn_session" translate="yes" xml:space="preserve">
           <source>Sessions</source>
-          <target state="new">Sessions</target>
+          <target state="translated" state-qualifier="tm-suggestion">جلسات العمل</target>
         </trans-unit>
         <trans-unit id="txt_Cat_DocumentSaved" translate="yes" xml:space="preserve">
           <source>Document enregistré avec succès !
-</source>
-          <target state="new">Document enregistré avec succès !
-</target>
+          </source>
+          <target state="translated">تم حفظ المستند بنجاح!
+          </target>
         </trans-unit>
         <trans-unit id="txt_Cat_DocumentUpdated" translate="yes" xml:space="preserve">
           <source>Document modifié avec succès !</source>
-          <target state="new">Document modifié avec succès !</target>
+          <target state="translated">التعدل تم بنجاح!</target>
         </trans-unit>
         <trans-unit id="tct_Type" translate="yes" xml:space="preserve">
           <source>Type</source>
-          <target state="new">Type</target>
+          <target state="translated" state-qualifier="exact-match">نوع</target>
         </trans-unit>
         <trans-unit id="txt_Categorie" translate="yes" xml:space="preserve">
           <source>Famille</source>
-          <target state="new">Famille</target>
+          <target state="translated" state-qualifier="exact-match">العائلة</target>
         </trans-unit>
         <trans-unit id="txt_LastName" translate="yes" xml:space="preserve">
           <source>Prénom</source>
-          <target state="new">Prénom</target>
+          <target state="translated" state-qualifier="exact-match">الاسم</target>
         </trans-unit>
         <trans-unit id="txt_Name" translate="yes" xml:space="preserve">
           <source>Nom</source>
-          <target state="new">Nom</target>
+          <target state="translated" state-qualifier="exact-match">اللقب</target>
         </trans-unit>
         <trans-unit id="txt_TotalAchatsByProduct" translate="yes" xml:space="preserve">
           <source>Achat par produit</source>
-          <target state="new">Achat par produit</target>
+          <target state="translated">الشراء حسب المنتج</target>
         </trans-unit>
         <trans-unit id="txt_phone" translate="yes" xml:space="preserve">
           <source>Téléphone</source>
-          <target state="new">Téléphone</target>
+          <target state="translated" state-qualifier="exact-match">الهاتف</target>
         </trans-unit>
         <trans-unit id="pn_AchatsProduction" translate="yes" xml:space="preserve">
           <source>Réception pour production</source>
-          <target state="new">Réception pour production</target>
+          <target state="translated">استقبال للإنتاج</target>
         </trans-unit>
         <trans-unit id="pn_OrdresProduction" translate="yes" xml:space="preserve">
           <source>Ordres de production</source>
-          <target state="new">Ordres de production</target>
+          <target state="translated">أوامر الإنتاج</target>
         </trans-unit>
         <trans-unit id="QTE_PRODUITE" translate="yes" xml:space="preserve">
           <source>Qte Produite</source>
-          <target state="new">Qte Produite</target>
+          <target state="translated">الكمية المنتجة</target>
         </trans-unit>
         <trans-unit id="txt_QteProduite" translate="yes" xml:space="preserve">
           <source>Qte Produite</source>
-          <target state="new">Qte Produite</target>
+          <target state="translated">الكمية المنتجة</target>
         </trans-unit>
         <trans-unit id="txt_QteApport" translate="yes" xml:space="preserve">
           <source>Apport</source>
-          <target state="new">Apport</target>
+          <target state="translated">الإسهام</target>
         </trans-unit>
         <trans-unit id="txt_Productivite" translate="yes" xml:space="preserve">
           <source>Productivité</source>
-          <target state="new">Productivité</target>
+          <target state="translated" state-qualifier="exact-match">الإنتاجية</target>
         </trans-unit>
         <trans-unit id="cmd_Verif" translate="yes" xml:space="preserve">
           <source>Vérification</source>
-          <target state="new">Vérification</target>
+          <target state="translated" state-qualifier="tm-suggestion">يتم التحقق…</target>
         </trans-unit>
         <trans-unit id="pn_Tresorerie" translate="yes" xml:space="preserve">
           <source>Trésorerie</source>
-          <target state="new">Trésorerie</target>
+          <target state="translated" state-qualifier="tm-suggestion">المالية</target>
         </trans-unit>
         <trans-unit id="txt_ProductRef" translate="yes" xml:space="preserve">
           <source>Nom/Réf</source>
-          <target state="new">Nom/Réf</target>
+          <target state="translated">الإسم او المرجع</target>
         </trans-unit>
         <trans-unit id="sp_lbl_Notifications" translate="yes" xml:space="preserve">
           <source>Notifications</source>
-          <target state="new">Notifications</target>
+          <target state="translated" state-qualifier="tm-suggestion">الإشعارات</target>
         </trans-unit>
         <trans-unit id="sp_lbl_Activate" translate="yes" xml:space="preserve">
           <source>Activé</source>
-          <target state="new">Activé</target>
+          <target state="translated" state-qualifier="tm-suggestion">‏‏تم التنشيط</target>
         </trans-unit>
         <trans-unit id="pn_Settings" translate="yes" xml:space="preserve">
           <source>Configuration</source>
-          <target state="new">Configuration</target>
+          <target state="translated" state-qualifier="tm-suggestion">الإعدادات</target>
+        </trans-unit>
+        <trans-unit id="txt_Solde" translate="yes" xml:space="preserve">
+          <source>Solde</source>
+          <target state="translated" state-qualifier="tm-suggestion">الرصيد</target>
         </trans-unit>
       </group>
     </body>
