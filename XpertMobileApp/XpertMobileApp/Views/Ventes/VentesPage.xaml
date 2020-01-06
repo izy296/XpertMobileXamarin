@@ -36,12 +36,15 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 
             <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
             <DatePicker Grid.Column="0" Grid.Row="1" 
                         x:Name="dp_StartDate"                        
                         Format="dd/MM/yyyy"
+                        
                         TextColor="Black"
                         Date="{Binding StartDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
@@ -54,22 +57,27 @@
                         Date="{Binding EndDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
-            <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="50"/>
-                </Grid.ColumnDefinitions>
+            <!-- Type de ventes -->
+            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0"/>
+            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
+                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                                SelectedItem="{Binding SelectedType , Mode=TwoWay}"
+                                TextColor="Black"
+                                Margin="30, 0, 30, 10"                 
+                                x:Name="TypesPicker"/>
+                
+            <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+                <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <!-- Tiers -->
                     <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
-                    <!--
-                <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
-                 Clicked="btn_Select_Clicked"  HeightRequest="35"/>
-                -->
                     <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
                     WidthRequest="50" HeightRequest="50"
                     HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
@@ -77,15 +85,14 @@
                     Clicked="btn_Select_Clicked"/>
                 </Grid>
 
-
-                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
-                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_ApplyFilter_Clicked"/>
+                    <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_ApplyFilter_Clicked"/>
 
-                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_CancelFilter_Clicked"/>
-            </StackLayout>
+                    <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_CancelFilter_Clicked"/>
+                </StackLayout>
             </Grid>
         </StackLayout>
 

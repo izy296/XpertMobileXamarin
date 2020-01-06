@@ -83,7 +83,7 @@ namespace XpertMobileApp.Views
 
                     CrudManager.InitServices();
 
-                    List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
+
 
                     // Alerte apres la connexion
                     // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
@@ -91,8 +91,9 @@ namespace XpertMobileApp.Views
                     // suavegrade du user et du token en cours dans la bdd local
 
                     try
-                    { 
-                       // await App.UserDatabase.SaveItemAsync(user);
+                    {
+                        List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
+                        // await App.UserDatabase.SaveItemAsync(user);
                         await App.TokenDatabase.SaveItemAsync(token);
                     }
                     catch(Exception ex)

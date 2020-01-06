@@ -56,11 +56,20 @@ namespace XpertMobileApp
         internal static List<SYS_OBJET_PERMISSION> permissions;
         public static async Task<List<SYS_OBJET_PERMISSION>> GetPermissions()
         {
-            if (permissions == null)
-            {
-                permissions = await CrudManager.Permissions.GetPermissions(User.UserGroup);
+            try 
+            { 
+                if (permissions == null)
+                {
+                    permissions = await CrudManager.Permissions.GetPermissions(User.UserGroup);
+                }
+                return permissions;
             }
-            return permissions;
+            catch (Exception e) 
+            {
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                return new List<SYS_OBJET_PERMISSION>();
+            }
         }
 
         static TokenDatabaseControler tokenDatabase;

@@ -308,4 +308,12 @@ namespace XpertMobileApp.DAL
             }
         }
     }
+
+    public partial class BSE_DOCUMENTS_TYPE
+    {
+        public string CODE_TYPE { get; set; }
+        public string DESIGNATION_TYPE { get; set; }
+        public string TYPE_DATA { get; set; }
+        public string TYPE_DOC { get; set; }
+    }
 }

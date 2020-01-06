@@ -825,9 +825,10 @@
         </trans-unit>
         <trans-unit id="txt_Cat_DocumentSaved" translate="yes" xml:space="preserve">
           <source>Document enregistré avec succès !
-          </source>
-          <target state="translated">تم حفظ المستند بنجاح!
+</source>
+          <target state="needs-review-translation">تم حفظ المستند بنجاح!
           </target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
         </trans-unit>
         <trans-unit id="txt_Cat_DocumentUpdated" translate="yes" xml:space="preserve">
           <source>Document modifié avec succès !</source>

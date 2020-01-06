@@ -193,6 +193,7 @@ namespace XpertMobileApp.ViewModels
             SearchedText = "";
             SelectedFamille = null;
             SelectedType = null;
+            SoldOperator = "";
         }
 
         #endregion

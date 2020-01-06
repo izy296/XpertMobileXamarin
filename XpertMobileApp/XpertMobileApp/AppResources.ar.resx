@@ -382,7 +382,7 @@
     <value>المنتوجات</value>
   </data>
   <data name="txt_Arrivage" xml:space="preserve">
-    <value>القادم</value>
+    <value>الوارد</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
     <value>الكمية</value>
@@ -487,22 +487,28 @@
     <value>لا توجد عملية جرد مفتوحة !</value>
   </data>
   <data name="pn_Commandes" xml:space="preserve">
-    <value>الطلبات</value>
+    <value>طلبات الزبائن</value>
   </data>
   <data name="txt_EcheanceDate" xml:space="preserve">
-    <value>الإكمال</value>
+    <value>الاستحقاق</value>
+  </data>
+  <data name="txt_ScanRow" xml:space="preserve">
+    <value>مسح</value>
   </data>
   <data name="txt_SelectRow" xml:space="preserve">
-    <value>تحديد الموجود</value>
+    <value>اختيار</value>
   </data>
   <data name="pn_NewCommande" xml:space="preserve">
-    <value>أمر جديد</value>
+    <value>طلب جديد</value>
   </data>
   <data name="cmd_remove" xml:space="preserve">
-    <value>منع</value>
+    <value>حذف</value>
+  </data>
+  <data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
+    <value>يرجى تصحيح تاريخ الاستحقاق</value>
   </data>
   <data name="pn_Catalogues" xml:space="preserve">
-    <value>الكتالوج</value>
+    <value>الفهرس</value>
   </data>
   <data name="txt_NewProduct" xml:space="preserve">
     <value>جديد</value>
@@ -510,17 +516,44 @@
   <data name="txt_Buy" xml:space="preserve">
     <value>إضافة إلى سلة</value>
   </data>
+  <data name="txt_ConfimDelProductCmd" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد إزالة هذا المنتج من السلة؟</value>
+  </data>
+  <data name="txt_Cat_CommandesSaved" xml:space="preserve">
+    <value>تم ارسال طلبك!</value>
+  </data>
+  <data name="txt_Cat_CommandesUpdated" xml:space="preserve">
+    <value>تم تعديل طلبك!</value>
+  </data>
+  <data name="pn_Achats" xml:space="preserve">
+    <value>قائمة الأوزان</value>
+  </data>
+  <data name="PESEE_ENTREE" xml:space="preserve">
+    <value>وزن الدخول</value>
+  </data>
+  <data name="PESEE_SORTIE" xml:space="preserve">
+    <value>وزن الخروج</value>
+  </data>
+  <data name="pn_NewPurchase" xml:space="preserve">
+    <value>وزنة جديدة</value>
+  </data>
+  <data name="txt_Chauffeur" xml:space="preserve">
+    <value>السائق</value>
+  </data>
   <data name="txt_Immatriculation" xml:space="preserve">
-    <value>رقم الموظف</value>
+    <value>رقم اللوحة</value>
   </data>
   <data name="txt_Date" xml:space="preserve">
-    <value>ما تاريخ اليوم؟</value>
+    <value>التاريخ</value>
   </data>
   <data name="txt_Status" xml:space="preserve">
-    <value>حالة</value>
+    <value>الحالة</value>
+  </data>
+  <data name="pn_NewReception" xml:space="preserve">
+    <value>وزنة جديدة</value>
   </data>
   <data name="txt_EmballageEntree" xml:space="preserve">
-    <value>الإدخالات</value>
+    <value>الواردات</value>
   </data>
   <data name="txt_EmballageSortie" xml:space="preserve">
     <value>الخروج</value>
@@ -529,25 +562,65 @@
     <value>(فراغات)</value>
   </data>
   <data name="txt_agri_Prix" xml:space="preserve">
-    <value>الأسعار:</value>
+    <value>السعر:</value>
+  </data>
+  <data name="txt_agri_QBrute" xml:space="preserve">
+    <value>الوزن الإجمالي :</value>
+  </data>
+  <data name="txt_agri_QDechet" xml:space="preserve">
+    <value>وزن النفايات :</value>
+  </data>
+  <data name="txt_agri_QNet" xml:space="preserve">
+    <value>الوزن الصافي :</value>
+  </data>
+  <data name="txt_agri_TauxDechet" xml:space="preserve">
+    <value>النفايات % :</value>
   </data>
   <data name="pn_MyCommandes" xml:space="preserve">
-    <value>الأوامر الخاصة بي</value>
+    <value>طلباتي</value>
   </data>
   <data name="txt_Waiting" xml:space="preserve">
-    <value>معالجة</value>
+    <value>معالجة...</value>
+  </data>
+  <data name="pn_Bordereaux" xml:space="preserve">
+    <value>ملفات الفواتير</value>
+  </data>
+  <data name="pn_VtePsychotrop" xml:space="preserve">
+    <value>مبيعات المؤثرات العقلية</value>
+  </data>
+  <data name="txt_InfosPsyco" xml:space="preserve">
+    <value>الوصفات الطبية</value>
   </data>
   <data name="txt_Centre" xml:space="preserve">
-    <value>التوقيت الرسمي المركزي</value>
+    <value>المركز</value>
+  </data>
+  <data name="txt_Mnt_Cloture" xml:space="preserve">
+    <value>المبلغ الإغلاق</value>
   </data>
   <data name="txt_Mnt_Credits" xml:space="preserve">
     <value>الرصيد</value>
   </data>
+  <data name="txt_Mnt_Ecart" xml:space="preserve">
+    <value>الفارق</value>
+  </data>
   <data name="txt_Mnt_Retour" xml:space="preserve">
     <value>عودة</value>
   </data>
+  <data name="txt_Mnt_TarifCHIFA" xml:space="preserve">
+    <value>أسعار الشفا</value>
+  </data>
+  <data name="txt_Mnt_VenteCash" xml:space="preserve">
+    <value>المبيعات النقدية</value>
+  </data>
   <data name="pn_session" xml:space="preserve">
     <value>جلسات العمل</value>
+  </data>
+  <data name="txt_Cat_DocumentSaved" xml:space="preserve">
+    <value>تم حفظ المستند بنجاح!
+          </value>
+  </data>
+  <data name="txt_Cat_DocumentUpdated" xml:space="preserve">
+    <value>التعدل تم بنجاح!</value>
   </data>
   <data name="tct_Type" xml:space="preserve">
     <value>نوع</value>
@@ -556,13 +629,31 @@
     <value>العائلة</value>
   </data>
   <data name="txt_LastName" xml:space="preserve">
-    <value>الاسم الأول</value>
+    <value>الاسم</value>
   </data>
   <data name="txt_Name" xml:space="preserve">
-    <value>اسم العائلة</value>
+    <value>اللقب</value>
+  </data>
+  <data name="txt_TotalAchatsByProduct" xml:space="preserve">
+    <value>الشراء حسب المنتج</value>
   </data>
   <data name="txt_phone" xml:space="preserve">
     <value>الهاتف</value>
+  </data>
+  <data name="pn_AchatsProduction" xml:space="preserve">
+    <value>استقبال للإنتاج</value>
+  </data>
+  <data name="pn_OrdresProduction" xml:space="preserve">
+    <value>أوامر الإنتاج</value>
+  </data>
+  <data name="QTE_PRODUITE" xml:space="preserve">
+    <value>الكمية المنتجة</value>
+  </data>
+  <data name="txt_QteProduite" xml:space="preserve">
+    <value>الكمية المنتجة</value>
+  </data>
+  <data name="txt_QteApport" xml:space="preserve">
+    <value>الإسهام</value>
   </data>
   <data name="txt_Productivite" xml:space="preserve">
     <value>الإنتاجية</value>
@@ -571,18 +662,21 @@
     <value>يتم التحقق…</value>
   </data>
   <data name="pn_Tresorerie" xml:space="preserve">
-    <value>التدفق النقدي</value>
+    <value>المالية</value>
+  </data>
+  <data name="txt_ProductRef" xml:space="preserve">
+    <value>الإسم او المرجع</value>
   </data>
   <data name="sp_lbl_Notifications" xml:space="preserve">
-    <value>الإعلامات</value>
+    <value>الإشعارات</value>
   </data>
   <data name="sp_lbl_Activate" xml:space="preserve">
     <value>‏‏تم التنشيط</value>
   </data>
   <data name="pn_Settings" xml:space="preserve">
-    <value>يتم التكوين</value>
+    <value>الإعدادات</value>
   </data>
   <data name="txt_Solde" xml:space="preserve">
-    <value>المتبقي</value>
+    <value>الرصيد</value>
   </data>
 </root>

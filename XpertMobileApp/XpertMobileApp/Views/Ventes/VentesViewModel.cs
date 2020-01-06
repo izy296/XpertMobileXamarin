@@ -43,13 +43,8 @@ namespace XpertMobileApp.ViewModels
         public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
 
-        public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
-        public View_BSE_COMPTE SelectedCompte { get; set; }
-        public Command LoadComptesCommand { get; set; }
-
-        public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
-        public View_BSE_COMPTE SelectedClient { get; set; }
-        public Command LoadClientsCommand { get; set; }
+        public ObservableCollection<BSE_DOCUMENTS_TYPE> Types { get; set; }
+        public BSE_DOCUMENTS_TYPE SelectedType { get; set; }
 
         public ObservableCollection<View_BSE_COMPTE> User { get; set; }
         public View_BSE_COMPTE SelectedUser { get; set; }
@@ -73,6 +68,7 @@ namespace XpertMobileApp.ViewModels
         public VentesViewModel( string typeVente)
         {
             TypeVente = typeVente;
+            Types = new ObservableCollection<BSE_DOCUMENTS_TYPE>();
             if (typeVente == VentesTypes.Vente)
             {
                 Title = AppResources.pn_Ventes;
@@ -102,8 +98,8 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 result.Add("codeClient", SelectedTiers?.CODE_TIERS);
 
-            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("codeUser", SelectedCompte?.CODE_COMPTE);
+            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                result.Add("type", SelectedType?.CODE_TYPE);
 
             return result;
         }
@@ -157,11 +153,14 @@ namespace XpertMobileApp.ViewModels
                 DateTime endDate = DateTime.Now;
                 DateTime startDate = DateTime.Now;
                 STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
+
+                await ExecuteLoadTypesCommand();
+
                 TotalTurnover = stat.MONTANT_VENTE;
                 TotalMargin = stat.MONTANT_MARGE;
 
                 // await ExecuteLoadFamillesCommand();
-                // await ExecuteLoadTypesCommand();
+
             }
             catch (Exception ex)
             {
@@ -171,6 +170,38 @@ namespace XpertMobileApp.ViewModels
             finally
             {
                 IsLoadExtrasBusy = false;
+            }
+        }
+
+        async Task ExecuteLoadTypesCommand()
+        {
+            try
+            {
+              //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                Types.Clear();
+                var itemsC = await WebServiceClient.GetVenteTypes();
+
+                foreach (var itemC in itemsC)
+                {
+                    Types.Add(itemC);
+                }
+
+                BSE_DOCUMENTS_TYPE empty = new BSE_DOCUMENTS_TYPE();
+                empty.CODE_TYPE = "";
+                Types.Insert(0, empty);
+
+              //  UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+              //  UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }

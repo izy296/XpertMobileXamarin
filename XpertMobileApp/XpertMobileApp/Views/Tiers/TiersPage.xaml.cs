@@ -80,6 +80,9 @@ namespace XpertMobileApp.Views
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
+            soldeG.IsChecked = false;
+            soldeE.IsChecked = false;
+            soldeL.IsChecked = false;
             viewModel.ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);            
         }
