@@ -88,6 +88,11 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+                if (IsBusy)
+                    return;
+
+                IsBusy = true;
+
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 Items.Clear();
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,10);
@@ -95,9 +100,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     Items.Add(item);
                 }
+                IsBusy = false;
             }
             catch (Exception ex)
             {
+                IsBusy = false;
                 await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

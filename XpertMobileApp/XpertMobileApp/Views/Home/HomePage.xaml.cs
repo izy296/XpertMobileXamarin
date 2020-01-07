@@ -17,7 +17,7 @@ namespace XpertMobileApp.Views
             
             InitializeComponent();
 
-            Title = AppResources.pn_home;
+           // Title = AppResources.pn_home;
             lblUser.Text = App.User?.UserName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
@@ -42,6 +42,11 @@ namespace XpertMobileApp.Views
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
 
+        }
+
+        private void btn_Refresh_Clicked(object sender, EventArgs e)
+        {
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }
