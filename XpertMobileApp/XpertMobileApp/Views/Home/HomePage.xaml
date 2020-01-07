@@ -4,6 +4,7 @@
              x:Class="XpertMobileApp.Views.HomePage"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
@@ -21,17 +22,18 @@
     -->
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
-           
+
             <!-- Liste des comptes -->
-            <Frame CornerRadius="0" Padding="40,0,40,70" Margin="0"
+            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
+                   Margin="0" IsClippedToBounds="true"
                    BorderColor="{StaticResource NavigationPrimary}"
-                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" 
-                   OutlineColor="{StaticResource NavigationPrimary}">
+                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
+                
                 <StackLayout Spacing="10" Padding="15,0,15,15" >
-                     <StackLayout Orientation="Vertical" Padding="0" Margin="0">
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
                         <Label x:Name="lblClientName" Text="Pharmacie Ben Mohamed " FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
                                HorizontalTextAlignment="Center" TextColor="White"/>
-                     </StackLayout>
+                    </StackLayout>
 
                     <Label 
                         HorizontalOptions="Center" Style="{StaticResource FAwesome-B-Solid}" 
@@ -48,11 +50,11 @@
                                HorizontalTextAlignment="Center" TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
-            </Frame>
+            </yummy:PancakeView>
             
             <syncfusion:SfListView Margin="10,-60,10,0"
                 x:Name="listView"
-                SelectionMode="Single"
+                SelectionMode="None"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                 SelectionChanged="listView_SelectionChanged"
                 ItemsSource="{Binding Items}"
@@ -84,8 +86,8 @@
                             <!--
                             {Binding Color} OutlineColor="LightGray" 
                             -->
-                            <Frame OutlineColor="#EEEEEE" BackgroundColor="White" CornerRadius="8"
-                                   Margin="5" Padding="3" HasShadow="{OnPlatform Android=true, iOS=false, macOS=false, UWP=true}">
+                        <yummy:PancakeView BackgroundColor="White" CornerRadius="8"
+                                   Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                                 <Grid Padding="0" ColumnSpacing="0" Margin="0" >
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="50" />
@@ -106,7 +108,7 @@
                                        HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
                                           
                                 </Grid>
-                            </Frame>
+                            </yummy:PancakeView>
                         </DataTemplate>
                     </syncfusion:SfListView.ItemTemplate>
                 </syncfusion:SfListView>
