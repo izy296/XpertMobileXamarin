@@ -910,6 +910,18 @@
           <source>Solde</source>
           <target state="translated" state-qualifier="tm-suggestion">الرصيد</target>
         </trans-unit>
+        <trans-unit id="vteTotalVente" translate="yes" xml:space="preserve">
+          <source>Total ventes</source>
+          <target state="new">Total ventes</target>
+        </trans-unit>
+        <trans-unit id="vte_TotalBoite" translate="yes" xml:space="preserve">
+          <source>Total boite</source>
+          <target state="new">Total boite</target>
+        </trans-unit>
+        <trans-unit id="vte_TotalProd" translate="yes" xml:space="preserve">
+          <source>Total produits</source>
+          <target state="new">Total produits</target>
+        </trans-unit>
       </group>
     </body>
   </file>

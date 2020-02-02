@@ -124,8 +124,24 @@ foreach (var prod in prods)
             if (viewModel.StartPeriodType != selectedType)
             {
                 viewModel.StartPeriodType = selectedType;
+                viewModel.StartDate = viewModel.GetTheStartDate();
                 viewModel.LoadItemsCommand.Execute(null);
             }
+        }
+
+        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
+        {
+            viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private void Filter_Clicked(object sender, EventArgs e)
+        {
+            FilterPanel.IsVisible = !FilterPanel.IsVisible;
         }
     }
 }

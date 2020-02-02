@@ -167,21 +167,10 @@
         </StackLayout>
 
         <!-- Infos selection -->
-        <StackLayout HeightRequest="50" MinimumHeightRequest="50">
-            <Grid x:Name="headerGrid" BackgroundColor="LightGray">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-
-                <StackLayout Grid.Column="1" Margin="0,3,0,3" Spacing="0" Padding="0">
-
-                    <Label LineBreakMode="NoWrap" Grid.Column="0" x:Name="txt_PoidsTotal"
+        <StackLayout Padding="8" BackgroundColor="LightGray">
+            <Label LineBreakMode="NoWrap" Grid.Column="0" x:Name="txt_PoidsTotal"
                    Text="{Binding ElementsSum, StringFormat='Quantité listée : {0:N2} Kg'}" FontAttributes="Bold"
-                   FontSize="12" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
-                </StackLayout>
-            </Grid>
+                   FontSize="Default" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center"/>
         </StackLayout>
 
         <!-- Items listing  -->

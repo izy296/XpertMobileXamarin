@@ -26,6 +26,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
 
+            viewModel.LoadSummaries = typeVente == VentesTypes.Vente;
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
@@ -70,12 +71,12 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void Filter_Clicked(object sender, EventArgs e)
+        private async void Filter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = !FilterPanel.IsVisible;
         }
 
-        private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
+        private async void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {        
             viewModel.LoadItemsCommand.Execute(null);
         }

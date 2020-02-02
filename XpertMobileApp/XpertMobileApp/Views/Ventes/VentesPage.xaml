@@ -98,7 +98,7 @@
 
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
-
+            <!-- Today infos  -->
             <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
                 <Grid  BackgroundColor="White" >
 
@@ -132,11 +132,39 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-<!--
-            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,5"  HasShadow="True"
-                   VerticalOptions="FillAndExpand" OutlineColor="White" >
+
+            <!-- Summaries Infos -->
+            <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="{StaticResource Accent}"
+                   BorderColor="{StaticResource Accent}">
+                <Grid >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+                    <ListView x:Name="SummariesListView"
+                            VerticalOptions="Fill"
+                            ItemsSource="{Binding Summaries}"
+                              
+                            HasUnevenRows="true"
+                            SelectionMode="None"                        
+                            SeparatorVisibility="None">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Spacing="0" Padding="5" Orientation="Horizontal" >
+                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                        <Label Grid.Column="0" Text="{Binding key}" TextColor="White"/>
+                                        <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2} DA'}" TextColor="White" 
+                                               HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Frame>
-            -->
+
             <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"

@@ -17,8 +17,9 @@ namespace XpertMobileApp.ViewModels
         public string SearchedText { get; set; } = "";
 
         public string CodeTiers { get; set; } = "";
-        
 
+        public string AutoriserReception { get; set; } = "";
+        
         public ProductSelectorViewModel(string title= "" )
         {
             Title = title;
@@ -43,6 +44,7 @@ namespace XpertMobileApp.ViewModels
             
             result.Add("codeTiers", CodeTiers);
             result.Add("searchText", SearchedText);
+            result.Add("autoriserReception", AutoriserReception);
             return result;
         }
     }

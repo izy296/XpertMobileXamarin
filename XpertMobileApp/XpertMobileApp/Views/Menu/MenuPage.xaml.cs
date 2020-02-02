@@ -65,10 +65,10 @@ namespace XpertMobileApp.Views
                         new HomeMenuItem { Id = MenuItemType.AchatAgroAnalyses, Image = "", Title = AppResources.pn_Analyses });
 
                     menuItems.Insert(3,
-                         new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = "Encaissements" });
+                         new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
 
                     menuItems.Insert(3,
-                        new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = "Trésorerie" });
+                        new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
                 }
             }
             else if(Constants.AppName == Apps.XACATALOG_Mob)

@@ -525,14 +525,13 @@ namespace XpertMobileApp.Views
         {
             if (string.IsNullOrEmpty(viewModel?.Item?.CODE_DOC))
             {
-                await UserDialogs.Instance.AlertAsync("Vous devez valider l'en-têtes avant de pouvoir ajouter des produits !", AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync("Vous devez valider l'en-têtes avant de pouvoir ajouter des produits !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
 
                 return;
             }
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
+            itemSelector.AutoriserReception = "1";
             await PopupNavigation.Instance.PushAsync(itemSelector);
-
         }
 
         private TiersSelector TiersSelector;

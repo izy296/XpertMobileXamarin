@@ -784,4 +784,13 @@
   <data name="txt_Solde" xml:space="preserve">
     <value>Solde</value>
   </data>
+  <data name="vteTotalVente" xml:space="preserve">
+    <value>Total ventes</value>
+  </data>
+  <data name="vte_TotalBoite" xml:space="preserve">
+    <value>Total boite</value>
+  </data>
+  <data name="vte_TotalProd" xml:space="preserve">
+    <value>Total produits</value>
+  </data>
 </root>

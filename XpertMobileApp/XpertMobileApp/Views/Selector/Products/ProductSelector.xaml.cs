@@ -26,6 +26,18 @@ namespace XpertMobileApp.Views
             }
         }
 
+        public string AutoriserReception
+        {
+            get
+            {
+                return viewModel.AutoriserReception;
+            }
+            set
+            {
+                viewModel.AutoriserReception = value;
+            }
+        }
+
         public ProductSelector()
         {
             InitializeComponent();

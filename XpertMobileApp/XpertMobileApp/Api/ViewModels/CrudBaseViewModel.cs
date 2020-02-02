@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -20,6 +21,9 @@ namespace XpertMobileApp.Api.ViewModels
     where TView : new()
     {
         ICurdService<TView> service;
+
+        public bool LoadSummaries { get; set; } = false;
+        public ObservableCollection<SAMMUARY> Summaries { get; set; }
 
         public const int PageSize = 10;
 
@@ -81,6 +85,7 @@ namespace XpertMobileApp.Api.ViewModels
         {
             string ctrlName = ContoleurName;
             service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
+            Summaries = new ObservableCollection<SAMMUARY>();
 
             // Listing
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -120,6 +125,19 @@ namespace XpertMobileApp.Api.ViewModels
 
                     var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
 
+                    if (LoadSummaries && elementsCount > 0) 
+                    { 
+                        var res = await service.ItemsSums(GetFilterParams());
+                        foreach (var item in res)
+                        {
+                            Summaries.Add(new SAMMUARY()
+                            {
+                                key = item.Key,
+                                Value = Convert.ToDecimal(item.Value)
+                            });
+                        }
+                    }
+
                     OnAfterLoadItems(items);
 
                     IsBusy = false;
@@ -139,6 +157,11 @@ namespace XpertMobileApp.Api.ViewModels
             ElementsSum = await service.ItemsSum(GetFilterParams());
         }
 
+        internal async Task<SortedDictionary<string, decimal>> GetItemsSums()
+        {
+            var result = await service.ItemsSums(GetFilterParams());
+            return result;
+        }
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)

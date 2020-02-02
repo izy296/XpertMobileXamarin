@@ -2058,5 +2058,32 @@ namespace XpertMobileApp {
                 return ResourceManager.GetString("txt_Year", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total boite.
+        /// </summary>
+        internal static string vte_TotalBoite {
+            get {
+                return ResourceManager.GetString("vte_TotalBoite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total produits.
+        /// </summary>
+        internal static string vte_TotalProd {
+            get {
+                return ResourceManager.GetString("vte_TotalProd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total ventes.
+        /// </summary>
+        internal static string vteTotalVente {
+            get {
+                return ResourceManager.GetString("vteTotalVente", resourceCulture);
+            }
+        }
     }
 }

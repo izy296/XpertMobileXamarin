@@ -6,8 +6,63 @@
              xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
              BackgroundColor="White"
              Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Icon="filter.png"
+                     Clicked="Filter_Clicked" />
+
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout x:Name="stack" BackgroundColor="LightGray">
+            <!-- Filter -->
+            <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="0" Grid.Row="1" 
+                        x:Name="dp_StartDate"                        
+                        Format="dd/MM/yyyy"
+                        
+                        TextColor="Black"
+                        Date="{Binding StartDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+                    <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="1" Grid.Row="1"
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding EndDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+                    <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                        <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_ApplyFilter_Clicked"/>
+
+                        <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_CancelFilter_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+
             <ScrollView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" Margin="0,5,0,0" Padding="0">
                 <StackLayout Margin="0,0,0,0" Padding="0">
                     <StackLayout.Resources>

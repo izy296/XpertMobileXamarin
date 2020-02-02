@@ -2,6 +2,7 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="XpertMobileApp.Views.Templates.ProductSelectorTemplate">
     <ContentView.Content>
 
@@ -20,6 +21,7 @@
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.Row="0" WidthRequest="115" Grid.RowSpan="2">
+                        <!--
                         <Image Aspect="AspectFill"   >
 
                         <Image.Source>
@@ -28,6 +30,14 @@
 			                    CachingEnabled="False"/>
                         </Image.Source>
                         </Image>
+-->
+
+                        <ffimageloading:CachedImage 
+                                         Aspect="AspectFill"                                     
+			                             DownsampleToViewSize="False"                                            
+			                             Source = "{Binding IMAGE_URL}"
+                                         CacheType="None">
+                        </ffimageloading:CachedImage>
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="5" Padding="0">

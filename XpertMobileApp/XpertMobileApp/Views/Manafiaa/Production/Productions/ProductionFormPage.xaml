@@ -210,25 +210,25 @@
                                             <Grid Grid.Column="0" Grid.Row="1" Padding="0" 
                                                   ColumnSpacing="0" Margin="0">
                                                 <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="45" />
+                                                    <ColumnDefinition Width="45" />
                                                     <ColumnDefinition Width="50" />
-                                                    <ColumnDefinition Width="50" />
                                                     <ColumnDefinition Width="60" />
-                                                    <ColumnDefinition Width="60" />
-                                                    <ColumnDefinition Width="60" />
+                                                    <ColumnDefinition Width="40" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
-                                                            WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
+                                                            WidthRequest="45" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White"
 
                                                             Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
                                                 
                                                 <Button x:Name="Btn_PrintRecept" Margin="0" Grid.Column="1"
-                                                            WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_DOC_RECEPTION}"
+                                                            WidthRequest="45" HeightRequest="50" ClassId="{Binding CODE_DOC_RECEPTION}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.print}" BackgroundColor="White" 
 
@@ -260,7 +260,7 @@
 
 
                                                 <Button  Grid.Column="4" x:Name="Btn_VerifProd" Margin="0"
-                                                            WidthRequest="60" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
+                                                            WidthRequest="45" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}" BackgroundColor="White" 
                                                             Clicked="Btn_Btn_VerifProd_Clicked" VerticalOptions="Center"/>

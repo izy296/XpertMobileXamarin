@@ -20,4 +20,11 @@ namespace XpertMobileApp.Models
 
         public decimal CustomValue { get; set; }
     }
+
+    public class SAMMUARY
+    {
+        public string key { get; set; } // varchar(50)
+        public string Title { get; set; } // varchar(50)
+        public decimal Value { get; set; } // char(3000)
+    }
 }

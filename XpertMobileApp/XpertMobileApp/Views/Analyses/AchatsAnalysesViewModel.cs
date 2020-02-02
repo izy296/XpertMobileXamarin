@@ -19,6 +19,9 @@ namespace XpertMobileApp.ViewModels.Analyses
 
     public class AchatsAnalysesViewModel : BaseViewModel
     {
+        public DateTime StartDate { get; set; } = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+        public DateTime EndDate { get; set; } = DateTime.Now;
+
         public ObservableCollection<ChartDataModel> Entries1 { get; set; }
         public ObservableCollection<ChartDataModel> Entries2 { get; set; }
         public ObservableCollection<ChartDataModel> Entries3 { get; set; }
@@ -51,10 +54,8 @@ namespace XpertMobileApp.ViewModels.Analyses
             UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
             try
             {
-                DateTime endDate = DateTime.Now;
-                DateTime startDate = DateTime.Now;
-
-                startDate = GetTheStartDate(startDate);
+                DateTime endDate = this.EndDate ;
+                DateTime startDate = this.StartDate;
 
                 Items.Clear();
                 var items = await WebServiceClient.GetAchat(startDate, endDate);
@@ -112,26 +113,24 @@ namespace XpertMobileApp.ViewModels.Analyses
             }
         }
 
-        private DateTime GetTheStartDate(DateTime startDate)
+        internal DateTime GetTheStartDate()
         {
             if (StartPeriodType == StatsPeriode.Day)
             {
-                startDate = DateTime.Now;
+                return DateTime.Now;
             }
             else if (StartPeriodType == StatsPeriode.Week)
             {
-                startDate = DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
+                return DateTime.Now.StartOfWeek(DayOfWeek.Sunday);
             }
             else if (StartPeriodType == StatsPeriode.Month)
             {
-                startDate = new DateTime(startDate.Year, startDate.Month, 1);
+                return new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             }
             else
             {
-                startDate = new DateTime(startDate.Year, 1, 1);
+                return new DateTime(DateTime.Now.Year, 1, 1);
             }
-
-            return startDate;
         }
     }
 }
