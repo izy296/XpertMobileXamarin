@@ -5,6 +5,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              BackgroundColor="#ecf0f1"
              FlowDirection="MatchParent"
+             Title="{Binding Title}"
              >
     <ContentPage.Content>
         <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">

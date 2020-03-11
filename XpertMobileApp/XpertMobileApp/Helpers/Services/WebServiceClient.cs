@@ -133,6 +133,13 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
+        internal static async Task<List<CFA_ETAT>> get_CFA_Fact_STATUS()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_ETAT_URL);
+
+            return await RetrievAauthorizedData<CFA_ETAT>(url);
+        }
+
         #endregion
 
         #region Encaissements

@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-             x:Class="XpertMobileApp.Views.VentesPage"
+             x:Class="XpertMobileApp.Views.BordereauFactsPage"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
@@ -58,10 +58,10 @@
                         Margin="30, 0, 30, 10"/>
 
             <!-- Type de ventes -->
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
-                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                                SelectedItem="{Binding SelectedType , Mode=TwoWay}"
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding FactStatus}"
+                                ItemDisplayBinding="{Binding DESIGN_ETAT}"
+                                SelectedItem="{Binding SelectedSTATUS , Mode=TwoWay}"
                                 TextColor="Black"
                                 Margin="30, 0, 30, 10"                 
                                 x:Name="TypesPicker"/>
@@ -98,49 +98,18 @@
 
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
-            
-            <!-- Today infos  -->
-            <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
-                <Grid  BackgroundColor="White" >
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_Today}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{i18n:Translate txt_CA}" TextColor="{StaticResource Primary}"/>
-                        <Label Text="{i18n:Translate txt_Margin}" TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
-                        <Label Text="{Binding TotalTurnover, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
-                        <Label Text="{Binding TotalMargin, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
-                    </StackLayout>
-                </Grid>
-            </Frame>
 
             <!-- Summaries Infos -->
             <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="#1E47BD"
                    BorderColor="{StaticResource Accent}">
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="75"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <ListView x:Name="SummariesListView"
                             VerticalOptions="Fill"
                             ItemsSource="{Binding Summaries}"
-                              
+                            HeightRequest="170"
                             HasUnevenRows="true"
                             SelectionMode="None"                        
                             SeparatorVisibility="None">
@@ -148,7 +117,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" >
+                                    <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" Margin="2">
                                         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                             <Label Grid.Column="0" Text="{Binding key}" TextColor="White" FontAttributes="Bold"/>
                                             <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2}'}" TextColor="White" 
@@ -180,7 +149,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <template:VenteTemplate />
+                            <template:BordereauFactTemplate />
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

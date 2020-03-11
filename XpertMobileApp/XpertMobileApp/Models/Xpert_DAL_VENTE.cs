@@ -316,4 +316,28 @@ namespace XpertMobileApp.DAL
         public string TYPE_DATA { get; set; }
         public string TYPE_DOC { get; set; }
     }
+
+    public partial class FACTURE_CHIFA : BASE_CLASS
+    {
+        public string CODE_TIERS { get; set; }
+        public string NUM_BOURDEREAU { get; set; }
+        public string CREATED_BY { get; set; }
+        public string ETAT_FACT { get; set; }
+        public string ID_CAISSE { get; set; }
+        public string NUM_FACTURE { get; set; }
+        public DateTime DATE_FACTURE { get; set; }
+        public decimal MONT_OFFICINE { get; set; }
+        public decimal MONT_ASSURE { get; set; }
+        public decimal MONT_FACTURE { get; set; }
+        public string CODE_CLIENT { get; set; }
+    }
+
+    public partial class View_CFA_MOBILE_FACTURE : FACTURE_CHIFA
+    {
+        public string NOMC_TIERS { get; set; }
+        public string NUM_ASSURE { get; set; }
+        public decimal MONT_ACHAT { get; set; }
+        public decimal MONT_TOTAL { get; set; }
+        public string DESIGN_ETAT { get; set; }
+    }
 }

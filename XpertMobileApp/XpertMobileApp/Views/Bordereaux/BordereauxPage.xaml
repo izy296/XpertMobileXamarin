@@ -105,6 +105,8 @@
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                     CachingStrategy="RecycleElement"
                     BackgroundColor="{StaticResource DefaultLisViewBackColor}"
+                    SelectionMode="Single"
+                    SelectedItem="{Binding SelectedItem}"
                     ItemSelected="OnItemSelected">
 
                 <ListView.Behaviors>

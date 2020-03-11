@@ -132,7 +132,7 @@ namespace XpertMobileApp.Api.ViewModels
                         {
                             Summaries.Add(new SAMMUARY()
                             {
-                                key = item.Key,
+                                key = TranslateExtension.GetTranslation(item.Key),
                                 Value = Convert.ToDecimal(item.Value)
                             });
                         }

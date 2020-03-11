@@ -772,6 +772,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Montant Bordereau.
+        /// </summary>
+        internal static string MONT_BORD {
+            get {
+                return ResourceManager.GetString("MONT_BORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à L&apos;activation de votre licence s&apos;est éffectué avec succes, vous pouvez désormais utiliser votre application..
         /// </summary>
         internal static string msg_ActivationSucces {
@@ -849,6 +858,15 @@ namespace XpertMobileApp {
         internal static string msg_Licence_NotActivated {
             get {
                 return ResourceManager.GetString("msg_Licence_NotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nbr factures.
+        /// </summary>
+        internal static string NBR_FACTS {
+            get {
+                return ResourceManager.GetString("NBR_FACTS", resourceCulture);
             }
         }
         
@@ -1258,11 +1276,74 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total ajustement.
+        /// </summary>
+        internal static string TOTAL_AJUSTEMENT {
+            get {
+                return ResourceManager.GetString("TOTAL_AJUSTEMENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total boites : .
+        /// </summary>
+        internal static string TOTAL_BTE {
+            get {
+                return ResourceManager.GetString("TOTAL_BTE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Total encaissé.
         /// </summary>
         internal static string TOTAL_ENCAISS {
             get {
                 return ResourceManager.GetString("TOTAL_ENCAISS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total rejets.
+        /// </summary>
+        internal static string TOTAL_EXCLUDED {
+            get {
+                return ResourceManager.GetString("TOTAL_EXCLUDED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total officine payé.
+        /// </summary>
+        internal static string TOTAL_OFFICINE_PAYE {
+            get {
+                return ResourceManager.GetString("TOTAL_OFFICINE_PAYE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total produits : .
+        /// </summary>
+        internal static string TOTAL_PROD {
+            get {
+                return ResourceManager.GetString("TOTAL_PROD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total à payer.
+        /// </summary>
+        internal static string TOTAL_TO_PAY {
+            get {
+                return ResourceManager.GetString("TOTAL_TO_PAY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Total ventes :.
+        /// </summary>
+        internal static string TOTAL_TTC {
+            get {
+                return ResourceManager.GetString("TOTAL_TTC", resourceCulture);
             }
         }
         

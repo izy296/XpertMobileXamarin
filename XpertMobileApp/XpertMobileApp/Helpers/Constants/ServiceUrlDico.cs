@@ -115,6 +115,10 @@ namespace XpertMobileApp.Helpers
         public static string BORDEREAUX_CENTRES_URL = "GetBordereauxCentres";
         public static string BORDEREAUX_ETAT_URL = "GetBordereauxStatus";
 
+        // Centres bordereaux         
+        public static string CFA_FACTURE_CHIFA_URL = "FACTURE_CHIFA";
+        public static string CFA_FACTURE_ETAT_URL = "GetCFAFactsStatus";
+
         // RFID
         public static string RFID_URL = "RFID";
         public static string RFID_AddRFIDs_URL = "AddRfids";

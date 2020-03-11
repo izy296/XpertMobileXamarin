@@ -104,6 +104,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Views\Bordereaux\Details\BordereauFactsPage.xaml.cs">
+      <DependentUpon>BordereauFactsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\Details\BordereauFactTemplate.xaml.cs">
+      <DependentUpon>BordereauFactTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Home\HomePage.xaml.cs">
       <DependentUpon>%(Filename)</DependentUpon>
     </Compile>

@@ -793,4 +793,31 @@
   <data name="vte_TotalProd" xml:space="preserve">
     <value>Total produits</value>
   </data>
+  <data name="TOTAL_BTE" xml:space="preserve">
+    <value>Total boites : </value>
+  </data>
+  <data name="TOTAL_PROD" xml:space="preserve">
+    <value>Total produits : </value>
+  </data>
+  <data name="TOTAL_TTC" xml:space="preserve">
+    <value>Total ventes :</value>
+  </data>
+  <data name="MONT_BORD" xml:space="preserve">
+    <value>Montant Bordereau</value>
+  </data>
+  <data name="NBR_FACTS" xml:space="preserve">
+    <value>Nbr factures</value>
+  </data>
+  <data name="TOTAL_AJUSTEMENT" xml:space="preserve">
+    <value>Total ajustement</value>
+  </data>
+  <data name="TOTAL_EXCLUDED" xml:space="preserve">
+    <value>Total rejets</value>
+  </data>
+  <data name="TOTAL_OFFICINE_PAYE" xml:space="preserve">
+    <value>Total officine payé</value>
+  </data>
+  <data name="TOTAL_TO_PAY" xml:space="preserve">
+    <value>Total à payer</value>
+  </data>
 </root>
