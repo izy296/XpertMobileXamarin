@@ -1043,12 +1043,8 @@ namespace XpertMobileApp.Views
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
-                result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
-                /*
-                if (result)
-                {
-                    await UserDialogs.Instance.AlertAsync("La quantité produite a bien été enregistré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                }*/
+                //result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
+                result = await XpertHelper.PrintQrCode(codeDocRecept, 1);
             }
             catch (Exception ex)
             {
