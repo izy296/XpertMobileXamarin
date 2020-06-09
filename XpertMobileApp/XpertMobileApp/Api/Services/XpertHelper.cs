@@ -1,14 +1,45 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Services;
+using XpertWebApi.Models;
 
 namespace XpertMobileApp.Api.Services
 {
     public static class XpertHelper
     {
+        public static async Task<bool> PrintQrCode(string codeDoc, int qte)
+        {
+            return await PrintQrCode(codeDoc, qte, App.Settings.PrinterName, App.Settings.PrinterType);
+        }
+        
+        public static async Task<bool> PrintQrCode(string codeDoc,int qte, string printerName, string printerType) 
+        {
+            bool result = false;
+            if (printerType == Printer_Type.Bluetooth)
+            {
+                IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
+                await _blueToothService.Print(printerName, printerName);
+                result = true;
+            }
+            else if (printerType == Printer_Type.Wifi)
+            {
+                await UserDialogs.Instance.AlertAsync("L'impression pour les impémantes wifi n'est pas encor imlémenté", AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+                return false;
+            }
+            else
+            {
+                result = await WebServiceClient.PrintQRProduit(codeDoc, 1, printerName);
+            }
+            return result;
+        }
 
         public static void UpdateItemIndex<T>(List<T> items)
         {
