@@ -24,7 +24,8 @@ namespace XpertMobileApp.DAL
         public bool IS_IMPORTED { get; set; }
 
         //-------------------------
-
+        public decimal MONT_ASSURE { get; set; }
+        public decimal SUM_MAJORATION { get; set; } 
         public decimal TOTAL_FACTURES { get; set; }
 
         public decimal TOTAL_TO_PAY { get; set; }

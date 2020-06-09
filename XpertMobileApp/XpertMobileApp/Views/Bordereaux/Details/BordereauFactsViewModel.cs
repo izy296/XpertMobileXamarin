@@ -74,37 +74,57 @@ namespace XpertMobileApp.ViewModels
             Summaries.Add(new Models.SAMMUARY()
             {
                 key = TranslateExtension.GetTranslation("NBR_FACTS"),
-                Value = item.NBR_FACTS
-            });
-
-            Summaries.Add(new Models.SAMMUARY()
-            {
-                key = TranslateExtension.GetTranslation("MONT_BORD"),
-                Value = item.TOTAL_FACTURES
-            });
-
-            Summaries.Add(new Models.SAMMUARY()
-            {
-                key = TranslateExtension.GetTranslation("TOTAL_AJUSTEMENT"),
-                Value = item.TOTAL_AJUSTEMENT
-            });
-
-            Summaries.Add(new Models.SAMMUARY()
-            {
-                key = TranslateExtension.GetTranslation("TOTAL_EXCLUDED"),
-                Value = item.TOTAL_EXCLUDED
+                Unit = "Factures",
+                Value = item.NBR_FACTS.ToString("N0")
             });
 
             Summaries.Add(new Models.SAMMUARY()
             {
                 key = TranslateExtension.GetTranslation("TOTAL_TO_PAY"),
-                Value = item.TOTAL_TO_PAY
+                Value = item.TOTAL_TO_PAY.ToString("N0")
+            });
+
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("MONT_ASSURE"),
+                Value = item.MONT_ASSURE.ToString("N0")
+            });
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("TOTAL_AJUSTEMENT"),
+                Value = item.TOTAL_AJUSTEMENT.ToString("N0")
+            });
+            
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("TOTAL_EXCLUDED"),
+                Value = item.TOTAL_EXCLUDED.ToString("N0")
+            });
+
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("SUM_MAJORATION"),
+                Value = item.SUM_MAJORATION.ToString("N0")
+            });
+
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("MONT_BORD"),
+                NewBloc = true,
+                Value = item.TOTAL_FACTURES.ToString("N0")
             });
 
             Summaries.Add(new Models.SAMMUARY()
             {
                 key = TranslateExtension.GetTranslation("TOTAL_OFFICINE_PAYE"),
-                Value = item.TOTAL_OFFICINE_PAYE
+                Value = item.TOTAL_OFFICINE_PAYE.ToString("N0")
+            });
+
+            Summaries.Add(new Models.SAMMUARY()
+            {
+                key = TranslateExtension.GetTranslation("txt_etat"),
+                Unit = "",
+                Value = item.DESIGN_ETAT
             });
         }
 
