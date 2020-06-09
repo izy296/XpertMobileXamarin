@@ -11,6 +11,10 @@ using Acr.UserDialogs;
 using XpertMobileApp.Helpers;
 using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Helpers;
+using Xamarin.Forms;
+using XpertMobileApp.Api.Services;
+using System.Windows.Input;
+using XpertWebApi.Models;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -50,7 +54,8 @@ namespace XpertMobileApp.ViewModels
                 new Language { DisplayName =  "中文 - Chinese (simplified)", ShortName = "zh-Hans" }
             };
 
-            LoadSettings();
+            _blueToothService = DependencyService.Get<IBlueToothService>();
+
         }
 
         public Language GetLanguageElem(string language)
@@ -63,6 +68,7 @@ namespace XpertMobileApp.ViewModels
             return result;
         }
 
+        
 
         public void LoadSettings()
         {
@@ -133,6 +139,129 @@ namespace XpertMobileApp.ViewModels
                 IsBusy = false;
             }
         }
+
+
+        #region Impression BlueTooth
+
+        private readonly IBlueToothService _blueToothService;
+
+        private IList<XPrinter> _deviceList;
+        public IList<XPrinter> DeviceList
+        {
+            get
+            {
+                if (_deviceList == null)
+                    _deviceList = new ObservableCollection<XPrinter>();
+                return _deviceList;
+            }
+            set
+            {
+                _deviceList = value;
+            }
+        }
+
+        private XPrinter _selectedDevice;
+        public XPrinter SelectedDevice
+        {
+            get
+            {
+                return _selectedDevice;
+            }
+            set
+            {
+                _selectedDevice = value;
+                this.Settings.PrinterName = value != null ? value.Name : "";
+                this.Settings.PrinterType = value != null ? value.Type : "";
+                OnPropertyChanged("SelectedDevice");
+            }
+        }
+
+        /// <summary>
+        /// Print text-message
+        /// </summary>
+        public ICommand PrintCommand => new Command(async () =>
+        {
+            try
+            {
+                if (SelectedDevice != null) 
+                { 
+                    string printMessage = " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
+                    
+                    if(SelectedDevice.Type == Printer_Type.Bluetooth) 
+                    { 
+                        await _blueToothService.Print(SelectedDevice.Name, printMessage);
+                    } 
+                    else if(SelectedDevice.Type == Printer_Type.Wifi)
+                    {
+                        await UserDialogs.Instance.AlertAsync("L'impression pour les impémantes wifi n'est pas encor imlémenté", AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+                    }
+                    else 
+                    { 
+                    
+                    }
+                }
+                else 
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoPrinterSelected, AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception e)
+            {
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+            }
+        });
+
+
+
+        /// <summary>
+        /// Get printers list
+        /// </summary>
+        public async Task BindDeviceList()
+        {
+            try 
+            { 
+                DeviceList.Clear();
+
+                // Blue tooth printer
+                var list = _blueToothService.GetDeviceList();
+                foreach (var item in list) 
+                {
+                    XPrinter itm = new XPrinter()
+                    {
+                        Name = item,
+                        Type = Printer_Type.Bluetooth
+                    };
+                    DeviceList.Add(itm);
+
+                    if (item == Settings.PrinterName && Printer_Type.Bluetooth == Settings.PrinterType)
+                    {
+                        SelectedDevice = itm;
+                    }
+                }
+
+                // Netwirk Printer
+                var ntworkProinters = await WebServiceClient.GetPrintersList();
+                foreach (var item in ntworkProinters)
+                {
+                    DeviceList.Add(item);
+                    if(item.Name == Settings.PrinterName && item.Type == Settings.PrinterType) 
+                    {
+                        SelectedDevice = item;
+                    }
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+            }
+        }
+        #endregion
     }
 }
 

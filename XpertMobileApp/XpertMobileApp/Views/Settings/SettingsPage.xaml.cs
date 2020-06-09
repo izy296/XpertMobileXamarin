@@ -38,7 +38,7 @@ namespace XpertMobileApp.Views
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
 
@@ -51,6 +51,13 @@ namespace XpertMobileApp.Views
                 lbl_ExperationDate.Text = string.Format("{0} : {1}", TranslateExtension.GetTranslation("msg_ExpireOn"),
                     expirationDate.ToString("dd/MM/yyyy"));
             }
+
+            if(viewModel.IsConnected) 
+            {
+                await viewModel.BindDeviceList();
+            }
+
+            viewModel.LoadSettings();
         }
 
         private void LanguagesPicker_SelectedIndexChanged(object sender, EventArgs e)

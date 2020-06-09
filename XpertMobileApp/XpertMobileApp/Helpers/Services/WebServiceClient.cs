@@ -10,6 +10,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertWebApi.Models;
 
 namespace XpertMobileApp.Services
 {
@@ -238,6 +239,13 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACHATS_PESEE_URL);
             decimal result = await RetrievValAauthorizedData<decimal>(url);
+            return result;
+        }
+
+        public static async Task<List<XPrinter>> GetPrintersList()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRINTERS_LIST_URL);
+            List<XPrinter> result = await RetrievAauthorizedData<XPrinter>(url);
             return result;
         }
 

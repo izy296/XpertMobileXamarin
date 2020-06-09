@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using XpertWebApi.Models;
 
 namespace XpertMobileApp.Models
 {
@@ -16,7 +17,6 @@ namespace XpertMobileApp.Models
         public int Id { get; set; }
 
         private string language = "fr";
-
 
         private string serviceUrl;
         public string ServiceUrl
@@ -33,6 +33,26 @@ namespace XpertMobileApp.Models
             get
             {
                 return serviceUrl;
+            }
+        }
+
+        public string PrinterType { get; set; }
+
+        private string printerName;
+        public string PrinterName
+        {
+            set
+            {
+                if (printerName != value)
+                {
+                    printerName = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("PrinterName"));
+                    isModified = true;
+                }
+            }
+            get
+            {
+                return printerName;
             }
         }
 
@@ -59,8 +79,7 @@ namespace XpertMobileApp.Models
         public int Mobile_Edition { get; set; }
         public bool ShouldUpdate { get; set; }
         public string DestinationVersion { get; set; }
-
-        public string ClientName { get; set; } = "Pharmacie Ben Mohamed";
+        public string ClientName { get; set; } = "Nom du client ...";
 
         public Settings() { }
     }
