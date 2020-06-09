@@ -24,7 +24,7 @@ namespace XpertMobileApp.ViewModels
         public ActivationViewModel()
         {
             Client = new Client();
-            Client.DeviceId = DInfos.GetDeviceId();
+            Client.DeviceId = DInfos.GetSecureOsId();
         }
 
         internal async Task<Client> ActivateClient()
@@ -36,7 +36,13 @@ namespace XpertMobileApp.ViewModels
 
                 IsBusy = true;
 
-                Client.DeviceId = DInfos.GetDeviceId();
+                Client.DeviceId = DInfos.GetSecureOsId();
+                /*
+                string val = DInfos.GetSecureOsId();
+                val = DInfos.GetSerial();
+                val = DInfos.GetImei();
+                val = DInfos.GetSimSerialNumber();
+                */
                 Client.AppName = Constants.AppName;                
                 LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
 

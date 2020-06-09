@@ -46,7 +46,7 @@ namespace XpertMobileApp.Api.Services
 
                 //System.Environment.Exit(1);
                 var DInfos = DependencyService.Get<IDeviceInfos>();
-                string serial = DInfos?.GetDeviceId();
+                string serial = DInfos?.GetSecureOsId();
                 if (licenceInfos.DeviceId != serial)
                 {
                     return LicState.InvalidDevice;
@@ -114,7 +114,7 @@ namespace XpertMobileApp.Api.Services
 
         internal static LicenceInfos DecryptLicence(string licenceTxt)
         {
-            StringEncryptMobile decriptor = new StringEncryptMobile("XpEMobrtile@2019", DInfos.GetDeviceId());
+            StringEncryptMobile decriptor = new StringEncryptMobile("XpEMobrtile@2019", DInfos.GetSecureOsId());
             string result = decriptor.Decrypt(licenceTxt);
             LicenceInfos lInfos = JsonConvert.DeserializeObject<LicenceInfos>(result);
             return lInfos;
