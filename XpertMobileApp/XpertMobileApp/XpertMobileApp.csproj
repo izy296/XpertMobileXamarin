@@ -39,6 +39,9 @@
     <None Remove="beep07.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Printer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Styles\mainstyles.css" />
   </ItemGroup>
   <ItemGroup>
@@ -47,34 +50,34 @@
     <EmbeddedResource Include="beep07.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
-    <PackageReference Include="Forms.Controls.FlexButton" Version="0.9.1" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
+    <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
     <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.6" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.180" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.2.0.34" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.2.0.34" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.55" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
-    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.3.0" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.0.0" />
-    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.5.922" />
-    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.5.922" />
-    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.5.922" />
-    <PackageReference Include="Xamarin.Forms" Version="3.6.0.709228" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
     <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />

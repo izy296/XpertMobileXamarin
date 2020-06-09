@@ -196,6 +196,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Aucune imprimante selectionnée!.
+        /// </summary>
+        internal static string alrt_msg_NoPrinterSelected {
+            get {
+                return ResourceManager.GetString("alrt_msg_NoPrinterSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Pas de lot correspondants a ce code à barre !.
         /// </summary>
         internal static string alrt_msg_NotFondLotFromCodeBarre {
@@ -399,6 +408,15 @@ namespace XpertMobileApp {
         internal static string cmd_SelectElement {
             get {
                 return ResourceManager.GetString("cmd_SelectElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Choisir une imprimante.
+        /// </summary>
+        internal static string cmd_selectPrinter {
+            get {
+                return ResourceManager.GetString("cmd_selectPrinter", resourceCulture);
             }
         }
         
@@ -768,6 +786,15 @@ namespace XpertMobileApp {
         internal static string lp_ph_UserPhone {
             get {
                 return ResourceManager.GetString("lp_ph_UserPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Montant assurés.
+        /// </summary>
+        internal static string MONT_ASSURE {
+            get {
+                return ResourceManager.GetString("MONT_ASSURE", resourceCulture);
             }
         }
         
@@ -1195,6 +1222,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Tester.
+        /// </summary>
+        internal static string sp_btn_TestPrint {
+            get {
+                return ResourceManager.GetString("sp_btn_TestPrint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Activé.
         /// </summary>
         internal static string sp_lbl_Activate {
@@ -1240,6 +1276,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Imprémante.
+        /// </summary>
+        internal static string sp_lbl_rinter {
+            get {
+                return ResourceManager.GetString("sp_lbl_rinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Langage.
         /// </summary>
         internal static string sp_lbl_SelectLanguage {
@@ -1267,6 +1312,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Montant majoration.
+        /// </summary>
+        internal static string SUM_MAJORATION {
+            get {
+                return ResourceManager.GetString("SUM_MAJORATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Type.
         /// </summary>
         internal static string tct_Type {
@@ -1276,7 +1330,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Total ajustement.
+        ///   Recherche une chaîne localisée semblable à Montant ajustement.
         /// </summary>
         internal static string TOTAL_AJUSTEMENT {
             get {
@@ -1303,7 +1357,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Total rejets.
+        ///   Recherche une chaîne localisée semblable à Montant rejets.
         /// </summary>
         internal static string TOTAL_EXCLUDED {
             get {
@@ -1330,7 +1384,7 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Total à payer.
+        ///   Recherche une chaîne localisée semblable à Montant Officine.
         /// </summary>
         internal static string TOTAL_TO_PAY {
             get {
@@ -1642,6 +1696,15 @@ namespace XpertMobileApp {
         internal static string txt_EndDate {
             get {
                 return ResourceManager.GetString("txt_EndDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à État.
+        /// </summary>
+        internal static string txt_etat {
+            get {
+                return ResourceManager.GetString("txt_etat", resourceCulture);
             }
         }
         

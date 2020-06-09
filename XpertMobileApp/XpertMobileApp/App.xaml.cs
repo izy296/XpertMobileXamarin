@@ -113,7 +113,7 @@ namespace XpertMobileApp
 
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MTMwNTQwQDMxMzcyZTMyMmUzME1qSm5EcGZXbTdnQys4Q1Z6S1VubVRMZk9GWFFMbkxXNWdKTW9iUEtOUDg9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MjY3MDM0QDMxMzcyZTM0MmUzMFI2TFJxdVBFZGZCVGhtQmZjT2Q4WTBkTUZXd1FET2FRU21vdmlSYW9xYms9");
 
             InitializeComponent();
 
@@ -155,6 +155,7 @@ namespace XpertMobileApp
             }
             else
             {
+                // MainPage = new LoginPage();
                 MainPage = new ActivationPage(licState); 
             }
         

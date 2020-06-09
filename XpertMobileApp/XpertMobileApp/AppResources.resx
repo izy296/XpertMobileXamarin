@@ -809,15 +809,36 @@
     <value>Nbr factures</value>
   </data>
   <data name="TOTAL_AJUSTEMENT" xml:space="preserve">
-    <value>Total ajustement</value>
+    <value>Montant ajustement</value>
   </data>
   <data name="TOTAL_EXCLUDED" xml:space="preserve">
-    <value>Total rejets</value>
+    <value>Montant rejets</value>
   </data>
   <data name="TOTAL_OFFICINE_PAYE" xml:space="preserve">
     <value>Total officine payé</value>
   </data>
   <data name="TOTAL_TO_PAY" xml:space="preserve">
-    <value>Total à payer</value>
+    <value>Montant Officine</value>
+  </data>
+  <data name="MONT_ASSURE" xml:space="preserve">
+    <value>Montant assurés</value>
+  </data>
+  <data name="SUM_MAJORATION" xml:space="preserve">
+    <value>Montant majoration</value>
+  </data>
+  <data name="txt_etat" xml:space="preserve">
+    <value>État</value>
+  </data>
+  <data name="sp_lbl_rinter" xml:space="preserve">
+    <value>Imprémante</value>
+  </data>
+  <data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
+    <value>Aucune imprimante selectionnée!</value>
+  </data>
+  <data name="sp_btn_TestPrint" xml:space="preserve">
+    <value>Tester</value>
+  </data>
+  <data name="cmd_selectPrinter" xml:space="preserve">
+    <value>Choisir une imprimante</value>
   </data>
 </root>
