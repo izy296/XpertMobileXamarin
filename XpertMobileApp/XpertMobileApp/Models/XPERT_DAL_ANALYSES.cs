@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Text;
 
 namespace XpertMobileApp.Models
@@ -24,7 +25,17 @@ namespace XpertMobileApp.Models
     public class SAMMUARY
     {
         public string key { get; set; } // varchar(50)
-        public string Title { get; set; } // varchar(50)
-        public decimal Value { get; set; } // char(3000)
+        public string Title 
+        {
+            get 
+            {
+                return Value + " " + Unit;
+            } 
+        
+        } // varchar(50)
+        public string Value { get; set; } 
+        public string Unit { get; set; } = "DA";
+        public bool NewBloc { get; set; } = false;
+        public Color ValueColor { get; set; } = Color.FromArgb(167, 116, 108);
     }
 }

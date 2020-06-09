@@ -237,23 +237,6 @@ namespace XpertMobileApp.Models
         public bool IS_PRINCIPAL { get; set; }
         public bool IS_INTERNE { get; set; }
     }
-
-    public partial class BSE_EMBALLAGE11
-    {
-
-        public string CODE { get; set; }
-        public string DESIGNATION { get; set; }
-        public string CODE_PRODUIT { get; set; }
-        public decimal QUANTITE_UNITE { get; set; }
-        public string CODE_UNITE { get; set; }
-        public bool IS_INTERNE { get; set; }
-    }
-
-    public partial class View_BSE_EMBALLAGE11 : BSE_EMBALLAGE11
-    {
-        public string DESIGNATION_PRODUIT { get; set; }
-        public string DESIGNATION_UNITE { get; set; }
-    }
     #endregion
 
     public partial class BSE_EMBALLAGE : BASE_CLASS
@@ -302,7 +285,6 @@ namespace XpertMobileApp.Models
                 OnPropertyChanged("QUANTITE_SORTIE");
             }
         }
-
 
         private decimal qUANTITE_VIDE { get; set; }
         public decimal QUANTITE_VIDE

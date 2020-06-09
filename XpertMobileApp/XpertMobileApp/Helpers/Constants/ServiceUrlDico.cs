@@ -52,9 +52,9 @@ namespace XpertMobileApp.Helpers
 
         // Activation
 
-        public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
+        public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
-        public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.biz/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
+        public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
 
 
         // Ventes
@@ -76,6 +76,7 @@ namespace XpertMobileApp.Helpers
 
         public static string ACHATS_DETAILS_URL = "GetAchatsDetails";
         public static string ACHATS_PESEE_URL = "GetPesee";
+        public static string PRINTERS_LIST_URL = "GetPrintersList";
         public static string ACHATS_IMMATRICULATIONS_URL = "GetImmatriculations";
 
         // Production

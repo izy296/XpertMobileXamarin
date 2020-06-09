@@ -943,20 +943,48 @@
           <target state="new">Nbr factures</target>
         </trans-unit>
         <trans-unit id="TOTAL_AJUSTEMENT" translate="yes" xml:space="preserve">
-          <source>Total ajustement</source>
-          <target state="new">Total ajustement</target>
+          <source>Montant ajustement</source>
+          <target state="new">Montant ajustement</target>
         </trans-unit>
         <trans-unit id="TOTAL_EXCLUDED" translate="yes" xml:space="preserve">
-          <source>Total rejets</source>
-          <target state="new">Total rejets</target>
+          <source>Montant rejets</source>
+          <target state="new">Montant rejets</target>
         </trans-unit>
         <trans-unit id="TOTAL_OFFICINE_PAYE" translate="yes" xml:space="preserve">
           <source>Total officine payé</source>
           <target state="new">Total officine payé</target>
         </trans-unit>
         <trans-unit id="TOTAL_TO_PAY" translate="yes" xml:space="preserve">
-          <source>Total à payer</source>
-          <target state="new">Total à payer</target>
+          <source>Montant Officine</source>
+          <target state="new">Montant Officine</target>
+        </trans-unit>
+        <trans-unit id="MONT_ASSURE" translate="yes" xml:space="preserve">
+          <source>Montant assurés</source>
+          <target state="new">Montant assurés</target>
+        </trans-unit>
+        <trans-unit id="SUM_MAJORATION" translate="yes" xml:space="preserve">
+          <source>Montant majoration</source>
+          <target state="new">Montant majoration</target>
+        </trans-unit>
+        <trans-unit id="txt_etat" translate="yes" xml:space="preserve">
+          <source>État</source>
+          <target state="new">État</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_rinter" translate="yes" xml:space="preserve">
+          <source>Imprémante</source>
+          <target state="Translated">الطابعة</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_TestPrint" translate="yes" xml:space="preserve">
+          <source>Tester</source>
+          <target state="Translated">تجريب</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NoPrinterSelected" translate="yes" xml:space="preserve">
+          <source>Aucune imprimante selectionnée!</source>
+          <target state="Translated">يرجى اختيار الطابعة</target>
+        </trans-unit>
+        <trans-unit id="cmd_selectPrinter" translate="yes" xml:space="preserve">
+          <source>Choisir une imprimante</source>
+          <target state="new">اختيار الطابعة</target>
         </trans-unit>
       </group>
     </body>

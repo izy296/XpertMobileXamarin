@@ -84,15 +84,15 @@
                     <syncfusion:SfListView.ItemTemplate>
                         <DataTemplate>
                             <!--
-                            {Binding Color} OutlineColor="LightGray" 
-                            -->
-                        <yummy:PancakeView BackgroundColor="White" CornerRadius="8"
+                             {Binding Color} OutlineColor="LightGray"
+                              -->
+                        <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="8"
                                    Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                                 <Grid Padding="0" ColumnSpacing="0" Margin="0" >
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="50" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="50" />
+                                        <RowDefinition Height= "50" />
+                                        <RowDefinition Height= "*"  />
+                                        <RowDefinition Height= "50" />
                                     </Grid.RowDefinitions>
 
                                 <Label Grid.Row="0" Text="Aujourd'hui"  FontSize="Default" Margin="0,8,0,0"

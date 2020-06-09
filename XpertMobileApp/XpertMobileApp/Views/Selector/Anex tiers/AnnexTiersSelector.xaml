@@ -40,7 +40,7 @@
 
                             <Label Grid.Column="0" Grid.Row="2" x:Name="lbl_TotalQte" Text="" FontAttributes="Bold" FontSize="Default" 
                                    HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Margin="15,0,0,0"
-                               HorizontalTextAlignment="end" TextColor="Black"/>
+                               HorizontalTextAlignment="End" TextColor="Black"/>
                             
                             <StackLayout Grid.Column="1" Grid.Row="2"  Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                              HorizontalOptions="End">

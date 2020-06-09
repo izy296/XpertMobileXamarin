@@ -22,7 +22,9 @@ namespace XpertMobileApp.Api
         {
             string url = GetActionUrl("GetParams");
 
-            return await WSApi2.RetrievAauthorizedValue<SYS_MOBILE_PARAMETRE>(url, this.Token.access_token);
+            var res = await WSApi2.RetrievAauthorizedValue<SYS_MOBILE_PARAMETRE>(url, this.Token.access_token);
+
+            return res;
         }
     }
 }
