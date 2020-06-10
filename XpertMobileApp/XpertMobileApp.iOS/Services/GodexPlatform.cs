@@ -35,7 +35,12 @@ namespace XpertMobileApp.Droid.Services
             throw new NotImplementedException();
         }
 
-        public string GetMX30HardWareName()
+        public string GetPrinterAdress()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetPrinterAdress(string printerName)
         {
             throw new NotImplementedException();
         }

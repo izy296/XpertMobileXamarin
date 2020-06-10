@@ -12,9 +12,9 @@ namespace XpertMobileApp.Api
         static private IGodexPlatform Godex = DependencyService.Get<IGodexPlatform>();
         
         
-        public string GetMX30HardWareName()
+        public static string GetPrinterAdress(string printerName)
         {
-            return Godex.GetMX30HardWareName();
+            return Godex.GetPrinterAdress(printerName);
         }
 
         /// <summary>
@@ -35,8 +35,8 @@ namespace XpertMobileApp.Api
         /// <param name="codeTiers"></param>
         /// <param name="DateDoc"></param>
 
-        public void PrintQrCode_Agrecelteur(string Adress,int typeConnection
-            ,string nomTiers,string codeDocs,string codeTiers,DateTime? DateDoc)
+        public static void PrintQrCode(string Adress,int typeConnection
+            , string codeTiers, string nomTiers,string codeDoc,DateTime? DateDoc)
         {
             if(Adress!=null && !Adress.Equals(""))
             {
@@ -54,10 +54,10 @@ namespace XpertMobileApp.Api
                     Godex.SendCommand("AD,5,50,1,1,0,0," + nomTiers.Substring(0, 21));
                     Godex.SendCommand("AD,5,80,1,1,0,0," + nomTiers.Substring(21, nomTiers.Length - 21));
                 }
-                Godex.Bar_QRCode(5, 130, 2, 2, "M", 8, 8, 0, codeDocs
+                Godex.Bar_QRCode(5, 130, 2, 2, "M", 8, 8, 0, codeDoc
                     + "-" + codeTiers + "-" +
                     DateDoc.Value.ToString("dd/MM/yyyy"));
-                Godex.SendCommand("AD,210,160,1,1,0,0," + codeDocs);
+                Godex.SendCommand("AD,210,160,1,1,0,0," + codeDoc);
                 Godex.SendCommand("AD,210,210,1,1,0,0," + codeTiers);
                 Godex.SendCommand("AD,210,260,1,1,0,0," + DateDoc.Value.ToString("dd/MM/yyyy"));
                 Godex.SendCommand("E");

@@ -679,4 +679,13 @@
   <data name="txt_Solde" xml:space="preserve">
     <value>الرصيد</value>
   </data>
+  <data name="sp_lbl_rinter" xml:space="preserve">
+    <value>الطابعة</value>
+  </data>
+  <data name="sp_btn_TestPrint" xml:space="preserve">
+    <value>تجريب</value>
+  </data>
+  <data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
+    <value>يرجى اختيار الطابعة</value>
+  </data>
 </root>

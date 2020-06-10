@@ -70,6 +70,9 @@
     <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EZioAD">
+      <HintPath>..\..\Xpert.Dll\Godex\Android\EZioAD.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -191,6 +194,7 @@
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AndroidBlueToothService.cs" />
+    <Compile Include="Services\CODE_BARRE\GodexPlatform.cs" />
     <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\CloseApplication.cs" />
     <Compile Include="SplashActivity.cs" />

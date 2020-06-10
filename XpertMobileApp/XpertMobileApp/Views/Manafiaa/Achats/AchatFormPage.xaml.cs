@@ -1044,7 +1044,7 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 //result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
-                result = await XpertHelper.PrintQrCode(codeDocRecept, 1);
+                result = await XpertHelper.PrintQrCode(viewModel.Item, 1);
             }
             catch (Exception ex)
             {

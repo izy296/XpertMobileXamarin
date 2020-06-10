@@ -14,23 +14,34 @@ namespace XpertMobileApp.Api.Services
 {
     public static class XpertHelper
     {
-        public static async Task<bool> PrintQrCode(string codeDoc, int qte)
+
+        public static async Task<bool> PrintQrCode(View_PRD_AGRICULTURE doc, int qte)
         {
-            return await PrintQrCode(codeDoc, qte, App.Settings.PrinterName, App.Settings.PrinterType);
+            return await PrintQrCode(doc.CODE_TIERS, doc.NOM_TIERS, doc.CODE_DOC, doc.DATE_DOC, qte, App.Settings.PrinterName, App.Settings.PrinterType);
         }
-        
-        public static async Task<bool> PrintQrCode(string codeDoc,int qte, string printerName, string printerType) 
+
+        public static async Task<bool> PrintQrCode(View_ACH_DOCUMENT doc, int qte)
+        {
+            return await PrintQrCode(doc.CODE_TIERS, doc.TIERS_NomC, doc.CODE_DOC, doc.DATE_DOC, qte, App.Settings.PrinterName, App.Settings.PrinterType);
+        }
+
+        public static async Task<bool> PrintQrCode(string codeTiers, string NomTiers, string codeDoc, DateTime? dateDoc,
+            int qte, string printerName, string printerType)
         {
             bool result = false;
             if (printerType == Printer_Type.Bluetooth)
             {
-                IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
-                await _blueToothService.Print(printerName, printerName);
+                //IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
+                //await _blueToothService.Print(printerName, printerName);
+
+                string adr = GodexManager.GetPrinterAdress(printerName);
+                GodexManager.PrintQrCode(adr, 1, codeTiers, NomTiers, codeDoc, dateDoc);
+
                 result = true;
             }
             else if (printerType == Printer_Type.Wifi)
             {
-                await UserDialogs.Instance.AlertAsync("L'impression pour les impémantes wifi n'est pas encor imlémenté", AppResources.alrt_msg_Alert,
+                await UserDialogs.Instance.AlertAsync("L'impression pour les impémantes wifi n'est pas encor imlémentée", AppResources.alrt_msg_Alert,
 AppResources.alrt_msg_Ok);
                 return false;
             }

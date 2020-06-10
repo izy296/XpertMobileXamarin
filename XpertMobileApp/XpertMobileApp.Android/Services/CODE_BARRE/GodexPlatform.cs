@@ -12,7 +12,7 @@ namespace XpertMobileApp.Droid.Services
 {
     public class GodexPlatform : IGodexPlatform
     {
-        public string GetMX30HardWareName() {
+        public string GetPrinterAdress(string printerName) {
             BluetoothAdapter btAdapter = BluetoothAdapter.DefaultAdapter;
             if (btAdapter != null)
             {

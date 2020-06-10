@@ -972,15 +972,15 @@
         </trans-unit>
         <trans-unit id="sp_lbl_rinter" translate="yes" xml:space="preserve">
           <source>Imprémante</source>
-          <target state="Translated">الطابعة</target>
+          <target state="translated">الطابعة</target>
         </trans-unit>
         <trans-unit id="sp_btn_TestPrint" translate="yes" xml:space="preserve">
           <source>Tester</source>
-          <target state="Translated">تجريب</target>
+          <target state="translated">تجريب</target>
         </trans-unit>
         <trans-unit id="alrt_msg_NoPrinterSelected" translate="yes" xml:space="preserve">
           <source>Aucune imprimante selectionnée!</source>
-          <target state="Translated">يرجى اختيار الطابعة</target>
+          <target state="translated">يرجى اختيار الطابعة</target>
         </trans-unit>
         <trans-unit id="cmd_selectPrinter" translate="yes" xml:space="preserve">
           <source>Choisir une imprimante</source>
