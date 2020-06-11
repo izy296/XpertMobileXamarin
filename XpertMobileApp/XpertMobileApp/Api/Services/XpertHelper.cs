@@ -1,7 +1,10 @@
 ﻿using Acr.UserDialogs;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -220,6 +223,181 @@ AppResources.alrt_msg_Ok);
                         throw ex;
                     }
             }
+        }
+
+        public static bool IsNullOrEmpty(object value)
+        {
+            if (value is System.DBNull) return true;
+            else if (value == null) return true;
+            else if (value is IList)
+            {
+                return (value as IList).Count == 0;
+            }
+            else if (string.IsNullOrEmpty(value.ToString())) return true;
+            else if (value.Equals("<Tous>")) return true;
+            else if (value.Equals("<Auto>")) return true;
+            return false;
+        }
+        public static bool IsNotNullAndNotEmpty(object value)
+        {
+            return !IsNullOrEmpty(value);
+        }
+        public static bool IsNullOrWhiteSpace(object value)
+        {
+            if (value is System.DBNull) return true;
+            else if (value == null) return true;
+            else if (string.IsNullOrWhiteSpace(value.ToString())) return true;
+            return false;
+        }
+
+        public static string GetSQLDate(object value)
+        {
+            return GetSQLDate(value, "yyyyMMdd");
+        }
+        public static string GetSQLDate(object value, string format)
+        {
+            if (XpertHelper.IsNullOrWhiteSpace(value)) return null;
+
+            if (value is string) return XpertHelper.GetDateTime(value.ToString()).Value.ToString(format);
+            else if (value is DateTime)
+            {
+                return ((DateTime)value).ToString(format, CultureInfo.InvariantCulture);
+            }
+            return null;
+        }
+        public static string GetSQLDateTime(object value, string format)
+        {
+            if (XpertHelper.IsNullOrEmpty(value)) return null;
+            return ((DateTime)value).ToString(format);
+        }
+        public static object GetSqlValue(object value)
+        {
+            if (value is DateTime) return GetSQLDate(value);
+            if (value == null) return "";
+            if ((value is decimal) || (value is float) || (value is double))
+            {
+                decimal val = Math.Round(Convert.ToDecimal(value), 2);
+                return val.ToString("0.00").Replace(",", ".");
+            }
+            return value;
+        }
+
+        public static bool IsNull(object value)
+        {
+            if (value is System.DBNull) return true;
+            else if (value == null) return true;
+            return false;
+        }
+
+        public static bool IsNotNull(object value)
+        {
+            return !IsNull(value);
+        }
+
+        public static bool IsEmptyCode(object code)
+        {
+            return XpertHelper.IsNullOrEmpty(code) || "<Auto>".Equals(code);
+        }
+
+        public static string GetPropertyName<TModel, TProperty>(Expression<Func<TModel, TProperty>> property)
+        {
+            MemberExpression memberExpression = (MemberExpression)property.Body;
+            return memberExpression.Member.Name;
+        }
+
+        public static DateTime? GetDateTime(object date)
+        {
+            return GetDateTime(date, "yyyyMMdd");
+        }
+        public static DateTime? GetDateTime(object date, string format)
+        {
+            try
+            {
+                if (date == null) return null;
+
+                if ((date is DateTime?) || (date is DateTime)) return Convert.ToDateTime(date);
+                if (date is string)
+                {
+                    string ff = date.ToString().Trim();
+                    if (string.IsNullOrWhiteSpace(ff)) return null;
+                    try
+                    {
+                        return Convert.ToDateTime(date);
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            return DateTime.ParseExact(ff, format, CultureInfo.InvariantCulture);
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    }
+
+
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                return null;
+            }
+        }
+
+        public static string GetValues(object valueField, char separator)
+        {
+            return GetValues(valueField, separator, true);
+        }
+        public static string GetValues(object valueField, char separator, bool quote)
+        {
+            string res = "";
+            bool first = true;
+            if (valueField is IEnumerable<string>)
+            {
+                var enumerator = ((IEnumerable<string>)valueField).GetEnumerator();
+                while (enumerator.MoveNext())
+                {
+                    string value = enumerator.Current;
+                    if (!XpertHelper.IsNullOrEmpty(value))
+                    {
+                        if (first)
+                        {
+                            if (quote) res = "'" + value + "'";
+                            else res = value;
+                            first = false;
+                        }
+                        else
+                        {
+                            if (quote) res += separator + "'" + value + "'";
+                            else res += separator + value;
+
+                        }
+                    }
+                }
+            }
+            else if (valueField is string)
+            {
+                res = XpertHelper.GetString(valueField);
+            }
+            return res;
+        }
+        public static string GetString(object value)
+        {
+            if (value == null) return "";
+            if ((value is decimal) || (value is float) || (value is double))
+            {
+                decimal val = Math.Round(Convert.ToDecimal(value), 2);
+                return val.ToString("n2");
+            }
+            return Convert.ToString(value);
+        }
+
+        public static string GetTableName<T>()
+        {
+            return typeof(T).Name;
         }
     }
 }

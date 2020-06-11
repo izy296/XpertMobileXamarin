@@ -39,7 +39,7 @@
     <None Remove="beep07.mp3" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Printer.cs" />
+    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Styles\mainstyles.css" />
