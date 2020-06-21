@@ -66,7 +66,216 @@ namespace XpertMobileApp.Api.ViewModels
             InitConstructor();
             qb = new XpertSqlBuilder();
         }
-        #region query
+
+
+        protected virtual QueryInfos GetFilterParams()
+        {
+            qb.InitQuery();
+            return qb.QueryInfos;
+        }
+
+        protected virtual void OnAfterLoadItems(IEnumerable<TView> list)
+        {
+
+        }
+
+        protected virtual string ContoleurName
+        {
+            get
+            {
+                return typeof(T1).Name;
+            }
+        }
+
+        protected virtual void InitConstructor()
+        {
+            string ctrlName = ContoleurName;
+            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
+            Summaries = new ObservableCollection<SAMMUARY>();
+
+            // Listing
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            // Ajout
+            AddItemCommand = new Command<TView>(async (TView item) => await ExecuteAddItemCommand(item));
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.ADD_ITEM, async (obj, item) =>
+            {
+                AddItemCommand.Execute(item);
+            });
+
+            // Supression
+            DeleteItemCommand = new Command<string>(async (string idElem) => await ExecuteDeleteItemCommand(idElem));
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.DELETE_ITEM, async (obj, item) =>
+            {
+                DeleteItemCommand.Execute(item);
+            });
+
+            // Modification
+            UpdateItemCommand = new Command<TView>(async (TView item) => await ExecuteUpdateItemCommand(item));
+            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
+            {
+                UpdateItemCommand.Execute(item);
+            });
+
+            // chargement infini
+            Items = new InfiniteScrollCollection<TView>
+            {
+                OnLoadMore = async () =>
+                {
+                    IsBusy = true;
+
+                    elementsCount = await service.ItemsCount(GetFilterParams());
+
+                    // load the next page
+                    var page = (Items.Count / PageSize) + 1;
+
+                    var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
+
+                    if (LoadSummaries && elementsCount > 0)
+                    {
+                        var res = await service.ItemsSums(GetFilterParams());
+                        foreach (var item in res)
+                        {
+                            Summaries.Add(new SAMMUARY()
+                            {
+                                key = TranslateExtension.GetTranslation(item.Key),
+                                Value = item.Value.ToString("N2")
+                            });
+                        }
+                    }
+
+                    OnAfterLoadItems(items);
+
+                    IsBusy = false;
+
+                    // return the items that need to be added
+                    return items;
+                },
+                OnCanLoadMore = () =>
+                {
+                    return Items.Count < elementsCount;
+                }
+            };
+        }
+
+        internal async Task GetItemsSum()
+        {
+            ElementsSum = await service.ItemsSum(GetFilterParams());
+        }
+
+        internal async Task<SortedDictionary<string, decimal>> GetItemsSums()
+        {
+            var result = await service.ItemsSums(GetFilterParams());
+            return result;
+        }
+        async Task ExecuteLoadItemsCommand()
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                Items.Clear();
+                await Items.LoadMoreAsync();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+        public async Task ExecuteUpdateItemCommand(TView item)
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                if (App.IsConected)
+                {
+                    IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await service.UpdateItemAsync(item);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        public async Task ExecuteDeleteItemCommand(string codeItem)
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                if (App.IsConected)
+                {
+                    IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await service.DeleteItemAsync(codeItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+        }
+
+        public async Task ExecuteAddItemCommand(TView item)
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                if (App.IsConected)
+                {
+                    IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await service.AddItemAsync(item);
+                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        public virtual void ClearFilters()
+        {
+            qb.InitQuery();
+        }
+
+        #region QUERY BUILDER METHDOES
         public string TableView { get; set; }
         public string GetPropertyFullName<T1, P>(Expression<Func<T1, P>> field)
         {
@@ -211,6 +420,11 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        public void AddCondition<P>(Expression<Func<TView, P>> field, Operator oper,
+        object valueField)
+        {
+            this.AddCondition<TView, P>(field, oper, valueField);
+        }
         public void AddCondition<T1, P>(Expression<Func<T1, P>> field, object fieldValue)
         {
             string fieldName1 = this.GetPropertyFullName(field);
@@ -529,213 +743,5 @@ namespace XpertMobileApp.Api.ViewModels
         }
 
         #endregion  Query builder
-
-        protected virtual QueryInfos GetFilterParams()
-        {            
-
-            return qb.QueryInfos;
-        }
-
-        protected virtual void OnAfterLoadItems(IEnumerable<TView> list)
-        {
-
-        }
-
-        protected virtual string ContoleurName
-        {
-            get
-            {
-                return typeof(T1).Name;
-            }
-        }
-
-        protected virtual void InitConstructor()
-        {
-            string ctrlName = ContoleurName;
-            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
-            Summaries = new ObservableCollection<SAMMUARY>();
-
-            // Listing
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-
-            // Ajout
-            AddItemCommand = new Command<TView>(async (TView item) => await ExecuteAddItemCommand(item));
-            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.ADD_ITEM, async (obj, item) =>
-            {
-                AddItemCommand.Execute(item);
-            });
-
-            // Supression
-            DeleteItemCommand = new Command<string>(async (string idElem) => await ExecuteDeleteItemCommand(idElem));
-            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.DELETE_ITEM, async (obj, item) =>
-            {
-                DeleteItemCommand.Execute(item);
-            });
-
-            // Modification
-            UpdateItemCommand = new Command<TView>(async (TView item) => await ExecuteUpdateItemCommand(item));
-            MessagingCenter.Subscribe<MsgCenter, TView>(this, MCDico.UPDATE_ITEM, async (obj, item) =>
-            {
-                UpdateItemCommand.Execute(item);
-            });
-
-            // chargement infini
-            Items = new InfiniteScrollCollection<TView>
-            {
-                OnLoadMore = async () =>
-                {
-                    IsBusy = true;
-
-                    elementsCount = await service.ItemsCount(GetFilterParams());
-
-                    // load the next page
-                    var page = (Items.Count / PageSize) + 1;
-
-                    var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
-
-                    if (LoadSummaries && elementsCount > 0)
-                    {
-                        var res = await service.ItemsSums(GetFilterParams());
-                        foreach (var item in res)
-                        {
-                            Summaries.Add(new SAMMUARY()
-                            {
-                                key = TranslateExtension.GetTranslation(item.Key),
-                                Value = item.Value.ToString("N2")
-                            });
-                        }
-                    }
-
-                    OnAfterLoadItems(items);
-
-                    IsBusy = false;
-
-                    // return the items that need to be added
-                    return items;
-                },
-                OnCanLoadMore = () =>
-                {
-                    return Items.Count < elementsCount;
-                }
-            };
-        }
-
-        internal async Task GetItemsSum()
-        {
-            ElementsSum = await service.ItemsSum(GetFilterParams());
-        }
-
-        internal async Task<SortedDictionary<string, decimal>> GetItemsSums()
-        {
-            var result = await service.ItemsSums(GetFilterParams());
-            return result;
-        }
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                IsBusy = true;
-                Items.Clear();
-                await Items.LoadMoreAsync();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-
-        public async Task ExecuteUpdateItemCommand(TView item)
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                if (App.IsConected)
-                {
-                    IsBusy = true;
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    await service.UpdateItemAsync(item);
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-                IsBusy = false;
-            }
-        }
-
-        public async Task ExecuteDeleteItemCommand(string codeItem)
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                if (App.IsConected)
-                {
-                    IsBusy = true;
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    await service.DeleteItemAsync(codeItem);
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-                IsBusy = false;
-            }
-        }
-
-        public async Task ExecuteAddItemCommand(TView item)
-        {
-            if (IsBusy)
-                return;
-
-            try
-            {
-                if (App.IsConected)
-                {
-                    IsBusy = true;
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    await service.AddItemAsync(item);
-                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-                UserDialogs.Instance.HideLoading();
-            }
-        }
-
-        public virtual void ClearFilters()
-        {
-
-        }
-
     }
 }
