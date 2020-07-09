@@ -12,6 +12,8 @@ namespace XpertMobileApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+        public string CurrentStream = Guid.NewGuid().ToString();
+
         bool isBusy = false;
         public bool IsBusy
         {

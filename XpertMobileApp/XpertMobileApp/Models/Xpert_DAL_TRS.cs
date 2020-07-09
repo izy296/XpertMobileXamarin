@@ -297,7 +297,7 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_PAIEMENT { get; set; } // money(19,4)
         public decimal RESTE_CREDIT { get; set; } // money(19,4)
         public decimal RESTE_PAIEMENT { get; set; } // money(19,4)       
-        public decimal SOLDE { get; set; } // money(19,4)   
+        // public decimal SOLDE { get; set; } // money(19,4)    Ancienne colonne
         public bool INCLUDE_UG { get; set; }
         public bool PPA_BY_PRIXVENTE { get; set; }
 

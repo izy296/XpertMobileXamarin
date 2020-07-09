@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
+using Plugin.SimpleAudioPlayer;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -17,7 +19,41 @@ namespace XpertMobileApp.Api.Services
 {
     public static class XpertHelper
     {
+        public static void PeepScan() 
+        {
+            try
+            {
+                ISimpleAudioPlayer player = Plugin.SimpleAudioPlayer.CrossSimpleAudioPlayer.Current;
+                player.Load(GetStreamFromFile("beep07.mp3"));
+                player.Play();
+            }
+            catch { }
+        }
 
+        static Stream GetStreamFromFile(string filename)
+        {
+            var assembly = typeof(App).GetTypeInfo().Assembly;
+            var stream = assembly.GetManifestResourceStream("XpertMobileApp." + filename);
+            return stream;
+        }
+
+        public static void SendAction(object sender, string stream, string prefix, string defaultMsg, object obj)
+        {
+            string msg = defaultMsg;
+            if (!string.IsNullOrEmpty(stream))
+            {
+                msg = prefix + stream;
+                MessagingCenter.Send(sender, msg, obj);
+            }
+        }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         public static async Task<bool> PrintQrCode(View_PRD_AGRICULTURE doc, int qte)
         {
             return await PrintQrCode(doc.CODE_TIERS, doc.NOM_TIERS, doc.CODE_DOC, doc.DATE_DOC, qte, App.Settings.PrinterName, App.Settings.PrinterType);

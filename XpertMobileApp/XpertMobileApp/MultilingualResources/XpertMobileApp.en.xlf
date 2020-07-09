@@ -986,6 +986,14 @@
           <source>Choisir une imprimante</source>
           <target state="new">Choisir une imprimante</target>
         </trans-unit>
+        <trans-unit id="pn_NewSales" translate="yes" xml:space="preserve">
+          <source>Nouvelle vente</source>
+          <target state="new">Nouvelle vente</target>
+        </trans-unit>
+        <trans-unit id="cmd_Validate" translate="yes" xml:space="preserve">
+          <source>Validé</source>
+          <target state="new">Validé</target>
+        </trans-unit>
       </group>
     </body>
   </file>

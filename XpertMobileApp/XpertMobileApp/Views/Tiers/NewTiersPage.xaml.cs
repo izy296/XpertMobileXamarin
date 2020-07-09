@@ -24,14 +24,14 @@ namespace XpertMobileApp.Views
 
         public Command LoadFamilleCommand { get; set; }
         public Command LoadTypesCommand { get; set; }
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         public View_TRS_TIERS Item { get; set; }
 
         public NewTiersPage(View_TRS_TIERS item = null)
 		{
 			InitializeComponent ();
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             Familles  = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
             Types = new ObservableCollection<BSE_TABLE_TYPE>();

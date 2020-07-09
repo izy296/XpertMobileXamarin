@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -12,7 +13,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class SessionsViewModel : CrudBaseViewModel<TRS_JOURNEES, TRS_JOURNEES>
+    public class SessionsViewModel : CrudBaseViewModel2<TRS_JOURNEES, TRS_JOURNEES>
     {
 
         EncaissDisplayType encaissDisplayType;
@@ -60,25 +61,22 @@ namespace XpertMobileApp.ViewModels
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
+            base.GetFilterParams();
 
-            Dictionary<string, string> result = base.GetFilterParams();
-            string type = GetCurrentType();
+            this.AddCondition<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
 
-            result.Add("type", type);            
-            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
-            result.Add("onlyOpned", "");
-            
+            this.AddCondition<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
+
+            this.AddCondition<TRS_JOURNEES, bool>(e => e.JOURNEE_CLOTUREE, true);
+
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("compte", SelectedCompte?.CODE_COMPTE);
+                this.AddCondition<TRS_JOURNEES, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
-            // result.Add("id_caisse", "all");
-            // result.Add("codeMotif", "all");
-            // result.Add("codeTiers", "all");
+            this.AddOrderBy<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE);
 
-            return result;
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<TRS_JOURNEES> list)

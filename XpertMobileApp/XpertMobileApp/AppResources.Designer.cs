@@ -430,6 +430,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Validé.
+        /// </summary>
+        internal static string cmd_Validate {
+            get {
+                return ResourceManager.GetString("cmd_Validate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Vérification.
         /// </summary>
         internal static string cmd_Verif {
@@ -1074,6 +1083,15 @@ namespace XpertMobileApp {
         internal static string pn_NewReception {
             get {
                 return ResourceManager.GetString("pn_NewReception", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouvelle vente.
+        /// </summary>
+        internal static string pn_NewSales {
+            get {
+                return ResourceManager.GetString("pn_NewSales", resourceCulture);
             }
         }
         

@@ -192,6 +192,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_VTE_JOURNAL_DETAIL>(url);
         }
 
+        public static async Task<List<View_VTE_VENTE_LOT>> GetVenteLotDetails(string codeVente)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_DETAILS_URL);
+            url += WSApi2.AddParam(url, "codeVente", codeVente);
+
+            return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
+        }
+        
         public static async Task<List<BSE_DOCUMENTS_TYPE>> GetVenteTypes()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_TYPES_URL);
@@ -202,12 +210,12 @@ namespace XpertMobileApp.Services
 
 
         #region 
-        public static async Task<List<View_VTE_VENTE_PRODUIT>> GetCommandeDetails(string codeCommande)
+        public static async Task<List<View_VTE_VENTE_LOT>> GetCommandeDetails(string codeCommande)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.COMMANDE_DETAILS_URL);
             url += WSApi2.AddParam(url, "codeCommande", codeCommande);
 
-            return await RetrievAauthorizedData<View_VTE_VENTE_PRODUIT>(url);
+            return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
         #endregion
 

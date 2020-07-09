@@ -10,14 +10,8 @@
              x:Name="Ventes">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="filter.png"/>
-                    <On Platform="Android" Value="filter.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
+        <ToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked"/>
+        <ToolbarItem x:Name="btn_Filter" IconImageSource="filter.png" Text="{i18n:Translate cmd_Add}" Clicked="Filter_Clicked"/>
     </ContentPage.ToolbarItems>
 
     <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
@@ -57,15 +51,25 @@
                         Date="{Binding EndDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
-            <!-- Type de ventes -->
-            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0"/>
-            <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
-                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                                SelectedItem="{Binding SelectedType , Mode=TwoWay}"
-                                TextColor="Black"
-                                Margin="30, 0, 30, 10"                 
-                                x:Name="TypesPicker"/>
-                
+                <!-- Type de ventes   SelectedItem="{Binding SelectedType}" -->
+                <!-- Types -->
+                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Types}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedType}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesPicker"/>
+
+                <!--
+                    <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
+                                    ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                               
+                                    TextColor="Black"
+                                    Margin="30, 0, 30, 10"                 
+                                    x:Name="TypesPicker"/>
+                -->
             <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
                 <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
                     <Grid.ColumnDefinitions>

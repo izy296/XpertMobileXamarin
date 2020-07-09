@@ -230,6 +230,9 @@
     <Compile Update="Views\Selector\Emballages\EmballageSelector.xaml.cs">
       <DependentUpon>EmballageSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Selector\Lot\LotSelector.xaml.cs">
+      <DependentUpon>LotSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Sessions\SessionDetailPage.xaml.cs">
       <DependentUpon>SessionDetailPage.xaml</DependentUpon>
     </Compile>
@@ -238,6 +241,9 @@
     </Compile>
     <Compile Update="Views\Sessions\SessionsPage.xaml.cs">
       <DependentUpon>SessionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\LotSelectorTemplate.xaml.cs">
+      <DependentUpon>LotSelectorTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Templates\ProduitTemplate.xaml.cs">
       <DependentUpon>ProduitTemplate.xaml</DependentUpon>
@@ -278,6 +284,12 @@
     <Compile Update="Views\Trésorerie\TresoreriePage.xaml.cs">
       <DependentUpon>TresoreriePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Ventes\Form\VenteFormPage.xaml.cs">
+      <DependentUpon>VenteFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\Validate\VteValidationPage.xaml.cs">
+      <DependentUpon>VteValidationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Ventes\VenteDetailPage.xaml.cs">
       <DependentUpon>VenteDetailPage.xaml</DependentUpon>
     </Compile>
@@ -313,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Encaissement\NewEncaissementPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Lot\LotSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Trésorerie\TresoreriePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
@@ -355,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UpdatePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Ventes\Validate\VteValidationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

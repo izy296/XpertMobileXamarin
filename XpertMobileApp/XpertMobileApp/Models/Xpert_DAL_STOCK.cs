@@ -1,4 +1,5 @@
 ﻿using System;
+using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Models
@@ -60,6 +61,13 @@ namespace XpertMobileApp.Models
         public decimal MARGE { get; set; } // money(19,4)
         public string CODE_BARRE { get; set; } // nvarchar(250)
         public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public string TRUNCATED_DESIGNATION
+        {
+            get
+            {
+                return DESIGNATION_PRODUIT.Truncate(40);
+            }
+        }
         public string DESIGN_MAGASIN { get; set; } // varchar(100)
         public string DESIGN_DCI { get; set; } // varchar(500)
         public string DOSAGE { get; set; } // varchar(50)
@@ -149,8 +157,30 @@ namespace XpertMobileApp.Models
                 this.IS_STOCKABLE = !value;
             }
         }
-        
-    
+
+        private decimal selectedQUANTITE;
+        public decimal SelectedQUANTITE
+        {
+            get
+            {
+                return selectedQUANTITE;
+            }
+            set
+            {
+                selectedQUANTITE = value;
+                OnPropertyChanged("SelectedQUANTITE");
+                OnPropertyChanged("HasSelectedQUANTITE");
+            }
+        }
+
+        private bool hasSelectedQUANTITE;
+        public bool HasSelectedQUANTITE
+        {
+            get
+            {
+                return SelectedQUANTITE > 0;
+            }
+        }
     }
     public partial class STK_STOCK_RFID
     {

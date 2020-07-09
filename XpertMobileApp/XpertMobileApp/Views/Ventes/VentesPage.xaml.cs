@@ -15,20 +15,23 @@ namespace XpertMobileApp.Views
 	public partial class VentesPage : ContentPage
 	{
         VentesViewModel viewModel;
-
+        private string typeDoc = "VC";
+        public string CurrentStream = Guid.NewGuid().ToString();
         public VentesPage(string typeVente)
 		{
-			InitializeComponent ();
+            typeDoc = typeVente;
+
+            InitializeComponent ();
 
             vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente;
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
 
             viewModel.LoadSummaries = typeVente == VentesTypes.Vente;
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
@@ -50,7 +53,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
         }
 
         protected override void OnAppearing()

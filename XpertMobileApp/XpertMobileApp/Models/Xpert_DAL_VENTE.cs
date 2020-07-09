@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace XpertMobileApp.DAL
@@ -67,8 +68,10 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                tOTAL_TTC = value;
-                OnPropertyChanged("TOTAL_TTC");
+                if(tOTAL_TTC != value) 
+                {
+                    SetProperty(ref tOTAL_TTC, value);
+                }
             }
         }
 
@@ -117,27 +120,89 @@ namespace XpertMobileApp.DAL
 
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
         public decimal TOTAL_RESTE { get; set; } // money(19,4)
-        public string NOM_TIERS { get; set; } // varchar(501)
 
+        private string nOM_TIERS;
+        public string NOM_TIERS
+        {
+            get
+            {
+                return nOM_TIERS;
+            }
+            set
+            {
+                nOM_TIERS = value;
+                OnPropertyChanged("NOM_TIERS");
+            }
+        }
         public string TITRE_VENTE { get; set; } // varchar(300)
         public string TYPE_DOC { get; set; }
 
         public override string ToString()
         {
             return "N° " + NUM_VENTE;
+            
         }
 
-        public List<View_VTE_VENTE_PRODUIT> Details { get; set; }
+        public List<View_VTE_VENTE_LOT> Details { get; set; }
+        public string ID { get; internal set; }
+
+        #region Validation vente
+
+        private string _MBL_NUM_CARTE_FEDILITE;
+        public string MBL_NUM_CARTE_FEDILITE
+        {
+            get { return _MBL_NUM_CARTE_FEDILITE; }
+            set { SetProperty(ref _MBL_NUM_CARTE_FEDILITE, value); }
+        }
+
+        private decimal _MBL_MT_VERCEMENT;
+        public decimal MBL_MT_VERCEMENT
+        {
+            get { return _MBL_MT_VERCEMENT; }
+            set 
+            {               
+                if(SetProperty(ref _MBL_MT_VERCEMENT, value))
+                {
+                    if(_MBL_MT_VERCEMENT > this.TOTAL_TTC) 
+                    {
+                        MBL_MT_RENDU = this.TOTAL_TTC - _MBL_MT_VERCEMENT;
+                    }
+                }
+            }
+        }
+
+        private decimal _MBL_MT_RENDU;
+        public decimal MBL_MT_RENDU
+        {
+            get { return _MBL_MT_RENDU; }
+            set 
+            { 
+                SetProperty(ref _MBL_MT_RENDU, value); 
+            }
+        }
+
+        //string codeMode, 
+        // , string codeCardFidelite
+        
+        #endregion
     }
 
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
+        [JsonIgnore]
+        public View_VTE_VENTE Parent_Doc { get; set; }
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)
         public int? ID_STOCK { get; set; } // int(10)
         public string CODE_PRODUIT { get; set; } // varchar(32)
         public string CODE_BARRE_PRODUIT { get; set; } // varchar(32)
-        
+        public string CLEANED_CODE_DOC
+        {
+            get
+            {
+                return CODE_VENTE?.Replace("/", "").Replace(" ","");
+            }
+        }
 
         public decimal PRIX_VTE_TTC { get; set; } // money(19,4)
         public decimal MT_TTC { get; set; } // money(19,4)
@@ -180,24 +245,82 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                qUANTITE = value;
+               // qUANTITE = value;
+               if(qUANTITE != value) 
+                {
+                    MT_TTC = value * PRIX_VTE_TTC;
+                    MT_HT = value * PRIX_VTE_HT;
 
-                MT_TTC = qUANTITE * PRIX_VTE_TTC;
-                MT_HT = qUANTITE * PRIX_VTE_HT;
-
-                OnPropertyChanged("QUANTITE");
-                OnPropertyChanged("MT_TTC");
-                OnPropertyChanged("MT_HT");
+                    SetProperty(ref qUANTITE, value);
+                    OnPropertyChanged("MT_TTC");
+                    OnPropertyChanged("MT_HT");
+                }
             }
         }
     }
 
-    public partial class View_VTE_VENTE_PRODUIT : VTE_VENTE_DETAIL
+    public partial class View_VTE_VENTE_LOT : VTE_VENTE_DETAIL
     {
-        public string DESIGNATION_PRODUIT { get; set; } 
-        public string IMAGE_URL { get; set; }  
-    }
+        public string IMAGE_URL { get; set; }
+        public string NUM_VENTE { get; set; } // varchar(32)
+        public DateTime? DATE_VENTE { get; set; } // datetime(3)
+        public string NOM_TIERS { get; set; } // varchar(501)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string TYPE_VENTE { get; set; } // char(2)
+        public decimal QTE_RETOUR { get; set; }
+        public decimal QTE_RESTE_RETOUR { get; set; }
+        public string CODE_ORIGINE { get; set; } // varchar(32)
+        public decimal TAUX_MARGE { get; set; } // money(19,4)
+        public string OWNER { get; set; } // varchar(200)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(754)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public DateTime? DATE_PEREMPTION { get; set; }
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_BARRE_LOT { get; set; } // nvarchar(1500)
+        public int TYPE_VALIDATION { get; set; } // int(10)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
+        public string DESIGN_EMPLACEMENT { get; set; } // varchar(10)
+        public string LOT { get; set; } // varchar(50)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)
+        public string REF_PRODUIT { get; set; } // nvarchar(250)
+        public decimal PRIX_ACH_HT { get; set; } // money(19,4)
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // smallint(5)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string DESIGN_LABO { get; set; } // varchar(2500)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public string CODE_CNAS { get; set; }
+        public bool PENDING { get; set; }
+        public decimal PENDING_QUANTITY { get; set; }
+        public bool EXON_TVA { get; set; }
+        public decimal QTE_STOCK_PRODUIT { get; set; } // numeric(18,2)
+        public string DESIGNATION_UNITE { get; set; }
+        public string DESIGNATION_UNITE2 { get; set; }
+        public string UNITE_AFFICHER { get; set; }
+        public decimal QTE_AFFICHER { get; set; }
+        public decimal PU_AFFICHER { get; set; }
 
+        // pour que le detail facture chifa indique esque la ligne destocké ou  non 
+        // elle a la valeur inverse de la valeur ignoree destockage dans la fenaitre improtation chifa
+        public bool DESTOCKER { get; set; }
+        public string DESIGNATION_CVM { get; set; }
+        public string CODE_MEDIC { get; set; }
+        public string N_ORDRE_PSYCHO_ENTET { get; set; }
+        public DateTime? DATE_SOINS { get; set; }
+        public string CODE_MEDECIN { get; set; }
+
+        public string TYPE_DOC { get; set; }
+        public string ID { get; internal set; }
+        public string VenteID { get; internal set; }
+    }
     public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL
     {
 

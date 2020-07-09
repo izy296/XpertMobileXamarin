@@ -841,4 +841,10 @@
   <data name="cmd_selectPrinter" xml:space="preserve">
     <value>Choisir une imprimante</value>
   </data>
+  <data name="pn_NewSales" xml:space="preserve">
+    <value>Nouvelle vente</value>
+  </data>
+  <data name="cmd_Validate" xml:space="preserve">
+    <value>Validé</value>
+  </data>
 </root>
