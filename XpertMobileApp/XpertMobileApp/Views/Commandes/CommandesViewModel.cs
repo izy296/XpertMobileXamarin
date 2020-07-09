@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -13,7 +14,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class CommandesViewModel : CrudBaseViewModel<VTE_VENTE, View_VTE_VENTE>
+    public class CommandesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_VENTE>
     {
 
         decimal totalTurnover;
@@ -61,22 +62,21 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            // result.Add("type", "all");
-            // result.Add("idCaisse", "all");
-            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                result.Add("codeClient", SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("codeUser", SelectedCompte?.CODE_COMPTE);
+                this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, SelectedCompte?.CODE_COMPTE);
 
-            return result;
+            this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_VTE_VENTE> list)

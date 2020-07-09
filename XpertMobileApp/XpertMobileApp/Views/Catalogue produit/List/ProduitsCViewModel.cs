@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -12,7 +13,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class ProduitsCViewModel : CrudBaseViewModel<STK_PRODUITS, View_STK_PRODUITS>
+    public class ProduitsCViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
         public ProduitsCViewModel()
         {
@@ -24,19 +25,22 @@ namespace XpertMobileApp.ViewModels
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
+            // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
+
+            this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
 
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
-                result.Add("famille", SelectedFamille?.CODE);
+                this.AddCondition<View_STK_PRODUITS, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE);
 
             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
-                result.Add("type", SelectedType?.CODE_TYPE);
+                this.AddCondition<View_STK_PRODUITS, string>(e => e.TYPE_PRODUIT, SelectedType?.CODE_TYPE);
 
-            return result;
+            this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)

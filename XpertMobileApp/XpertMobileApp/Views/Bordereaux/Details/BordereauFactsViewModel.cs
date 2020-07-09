@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -14,7 +15,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class BordereauFactsViewModel : CrudBaseViewModel<FACTURE_CHIFA, View_CFA_MOBILE_FACTURE>
+    public class BordereauFactsViewModel : CrudBaseViewModel2<FACTURE_CHIFA, View_CFA_MOBILE_FACTURE>
     {
         public string TypeVente = VentesTypes.Vente;
 
@@ -128,26 +129,20 @@ namespace XpertMobileApp.ViewModels
             });
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
-
-            // result.Add("type", "all");
-            // result.Add("idCaisse", "all");
-            
-            // result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            // result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            base.GetFilterParams();
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                result.Add("codeClient", SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(CURRENT_BORDEREAU?.NUM_BORDEREAU))
-                result.Add("numBordereau", CURRENT_BORDEREAU?.NUM_BORDEREAU);            
+                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.NUM_BOURDEREAU, CURRENT_BORDEREAU?.NUM_BORDEREAU);
 
             if (!string.IsNullOrEmpty(SelectedSTATUS?.CODE_ETAT))
-                result.Add("etat", SelectedSTATUS?.CODE_ETAT);
+                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.ETAT_FACT, SelectedSTATUS?.CODE_ETAT);
 
-            return result;
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_CFA_MOBILE_FACTURE> list)

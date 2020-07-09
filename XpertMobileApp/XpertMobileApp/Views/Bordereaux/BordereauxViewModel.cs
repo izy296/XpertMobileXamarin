@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
@@ -13,7 +14,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class BordereauxViewModel : CrudBaseViewModel<CFA_BORDEREAU, View_CFA_BORDEREAU>
+    public class BordereauxViewModel : CrudBaseViewModel2<CFA_BORDEREAU, View_CFA_BORDEREAU>
     {
 
         public BordereauxViewModel()
@@ -27,19 +28,21 @@ namespace XpertMobileApp.ViewModels
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
             // result.Add("searchText", SearchedText);
 
             if (!string.IsNullOrEmpty(SelectedCentre?.CODE))
-                     result.Add("idCentre", SelectedCentre?.CODE);
+                this.AddCondition<View_CFA_BORDEREAU, string>(e => e.ID_CENTRE, SelectedCentre?.CODE); 
 
             if (!string.IsNullOrEmpty(SelectedSTATUS?.CODE_ETAT))
-                result.Add("etat", SelectedSTATUS?.CODE_ETAT);
+                this.AddCondition<View_CFA_BORDEREAU, string>(e => e.CODE_ETAT, SelectedSTATUS?.CODE_ETAT);
 
-            return result;
+            this.AddOrderBy<View_CFA_BORDEREAU, string>(e => e.CODE_ETAT);
+
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_CFA_BORDEREAU> list)

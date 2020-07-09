@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -11,7 +12,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class ProductSelectorViewModel : CrudBaseViewModel<STK_PRODUITS, View_STK_PRODUITS>
+    public class ProductSelectorViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
         public string SearchedText { get; set; } = "";
@@ -38,14 +39,13 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
-            
-            result.Add("codeTiers", CodeTiers);
-            result.Add("searchText", SearchedText);
-            result.Add("autoriserReception", AutoriserReception);
-            return result;
-        }
+            base.GetFilterParams();
+            this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
+            this.AddCondition<View_STK_PRODUITS, bool>(e => e.AUTORISER_RECEPTIONS, 1);
+            this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
+            return qb.QueryInfos;
+        }           
     }
 }

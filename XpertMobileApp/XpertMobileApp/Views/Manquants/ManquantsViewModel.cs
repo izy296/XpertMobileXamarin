@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
@@ -13,7 +14,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class ManquantsViewModel : CrudBaseViewModel<ACH_MANQUANTS, View_ACH_MANQUANTS>
+    public class ManquantsViewModel : CrudBaseViewModel2<ACH_MANQUANTS, View_ACH_MANQUANTS>
     {
 
         public ManquantsViewModel()
@@ -27,19 +28,22 @@ namespace XpertMobileApp.ViewModels
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
+            this.AddCondition<View_ACH_MANQUANTS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
 
             if (!string.IsNullOrEmpty(SelectedTypesProduit?.CODE_TYPE))
-                result.Add("typeProduit", SelectedTypesProduit?.CODE_TYPE);
+                this.AddCondition<View_ACH_MANQUANTS, short>(e => e.TYPE_PRODUIT, SelectedTypesProduit?.CODE_TYPE); 
+
 
             if (!string.IsNullOrEmpty(SelectedType?.CODE_STATUS))
-                result.Add("type", SelectedType?.CODE_STATUS);
+                this.AddCondition<View_ACH_MANQUANTS, string>(e => e.CODE_TYPE, SelectedType?.CODE_STATUS);
 
-            return result;
+            qb.AddOrderBy<View_ACH_MANQUANTS, string>(e => e.DESIGNATION_PRODUIT);
+
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_ACH_MANQUANTS> list)
@@ -101,7 +105,7 @@ namespace XpertMobileApp.ViewModels
                 BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
                 allElem.CODE_TYPE = "";
                 allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                itemsC.Add(allElem);
+                TypesProduit.Add(allElem);
 
                 foreach (var itemC in itemsC)
                 {

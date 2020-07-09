@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -12,7 +13,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class TiersSelectorViewModel : CrudBaseViewModel<TRS_TIERS, View_TRS_TIERS>
+    public class TiersSelectorViewModel : CrudBaseViewModel2<TRS_TIERS, View_TRS_TIERS>
     {
 
         public string SearchedText { get; set; } = "";
@@ -39,13 +40,19 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("type", SearchedType);
-            result.Add("searchText", SearchedText);
-            return result;
+            this.AddCondition<View_TRS_TIERS, short>(e => e.ACTIF_TIERS, 1);
+
+            this.AddCondition<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Operator.LIKE_ANY, SearchedText);
+
+            this.AddCondition<View_TRS_TIERS, string>(e => e.CODE_TYPE, SearchedType);
+
+            qb.AddOrderBy<View_TRS_TIERS, string>(e => e.NOM_TIERS1);
+
+            return qb.QueryInfos;
         }
     }
 }

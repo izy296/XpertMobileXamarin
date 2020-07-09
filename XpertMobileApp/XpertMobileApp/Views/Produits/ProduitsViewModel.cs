@@ -33,7 +33,7 @@ namespace XpertMobileApp.ViewModels
 
            // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
 
-            this.AddCondition<View_STK_PRODUITS, string>(e=> e.DESIGNATION_PRODUIT, SearchedText);
+            this.AddCondition<View_STK_PRODUITS, string>(e=> e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
             
             if (!string.IsNullOrEmpty(SearchedRef))
                 this.AddCondition<View_STK_PRODUITS, string>(e => e.REFERENCE, SearchedRef);
@@ -134,7 +134,7 @@ namespace XpertMobileApp.ViewModels
                 BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
                 allElem.CODE_TYPE = "";
                 allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                itemsC.Add(allElem);
+                Types.Add(allElem);
 
                 foreach (var itemC in itemsC)
                 {

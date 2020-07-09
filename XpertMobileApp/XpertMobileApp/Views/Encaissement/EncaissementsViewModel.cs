@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
@@ -18,7 +19,7 @@ namespace XpertMobileApp.ViewModels
 {
     public enum EncaissDisplayType { None, All, ENC, DEC };
 
-    public class EncaissementsViewModel : CrudBaseViewModel<TRS_ENCAISS, View_TRS_ENCAISS>
+    public class EncaissementsViewModel : CrudBaseViewModel2<TRS_ENCAISS, View_TRS_ENCAISS>
     {
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
@@ -64,26 +65,26 @@ namespace XpertMobileApp.ViewModels
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
 
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
             string type = GetCurrentType();
 
-            result.Add("type", type);            
-            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            this.AddCondition<View_TRS_ENCAISS, DateTime?>(e => e.DATE_ENCAISS, Operator.BETWEEN_DATE, StartDate, EndDate);
+
+            if (!string.IsNullOrEmpty(type))
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
+
             if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                result.Add("codeCompte", SelectedCompte?.CODE_COMPTE);
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
             if (!string.IsNullOrEmpty(SelectedMotif?.CODE_MOTIF))
-                result.Add("codeMotif", SelectedMotif?.CODE_MOTIF);
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF, SelectedMotif?.CODE_MOTIF);
 
-            // result.Add("id_caisse", "all");
-            // result.Add("codeMotif", "all");
-            // result.Add("codeTiers", "all");
+            this.AddOrderBy<View_TRS_ENCAISS, DateTime?>(e => e.DATE_ENCAISS, Sort.DESC);
 
-            return result;
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_TRS_ENCAISS> list)
@@ -104,7 +105,7 @@ namespace XpertMobileApp.ViewModels
             switch (EncaissDisplayType)
             {
                 case EncaissDisplayType.All:
-                    type = "all";
+                    type = "";
                     break;
                 case EncaissDisplayType.ENC:
                     type = "ENC";
@@ -128,8 +129,20 @@ namespace XpertMobileApp.ViewModels
                 IsLoadExtrasBusy = true;
                 Comptes.Clear();
                 var itemsC = await WebServiceClient.getComptes();
+                itemsC.Insert(0, new View_BSE_COMPTE()
+                {
+                    DESIGNATION_TYPE = AppResources.txt_All,
+                    DESIGN_COMPTE = AppResources.txt_All,
+                    CODE_TYPE = ""
+                });
+
                 var itemsM = await WebServiceClient.GetMotifs();
-                
+                itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
+                {
+                    DESIGN_MOTIF = AppResources.txt_All,
+                    CODE_MOTIF = ""
+                });
+
                 foreach (var itemC in itemsC)
                 {
                     Comptes.Add(itemC);

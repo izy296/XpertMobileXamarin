@@ -130,10 +130,11 @@ namespace XpertMobileApp.Api.ViewModels
                     var page = (Items.Count / PageSize) + 1;
 
                     var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
-
+                    Summaries.Clear();
                     if (LoadSummaries && elementsCount > 0)
                     {
                         var res = await service.ItemsSums(GetFilterParams());
+
                         foreach (var item in res)
                         {
                             Summaries.Add(new SAMMUARY()
@@ -455,6 +456,15 @@ namespace XpertMobileApp.Api.ViewModels
             this.AddCondition(fieldName1, oper, value, quote);
         }
 
+        public void AddCondition<P>(Expression<Func<TView, P>> field, Operator oper, object value1, object value2)
+        {
+            this.AddCondition<TView, P>(field, oper, value1, value2);
+        }
+        public void AddCondition<T1, P>(Expression<Func<T1, P>> field, Operator oper, object value1, object value2)
+        {
+            string fieldName = this.GetPropertyFullName(field);
+            this.AddCondition(fieldName, oper, value1, value2);
+        }
         public void AddCondition(string fieldName, Operator oper, object value1, object value2)
         {
             if (XpertHelper.IsNullOrEmpty(fieldName)) return;

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class AnnexTiersSelectorViewModel : CrudBaseViewModel<ACH_INFO_ANEX, VIEW_ACH_INFO_ANEX>
+    public class AnnexTiersSelectorViewModel : CrudBaseViewModel2<ACH_INFO_ANEX, VIEW_ACH_INFO_ANEX>
     {
 
         private bool iS_ACHAT;
@@ -57,12 +58,15 @@ namespace XpertMobileApp.ViewModels
             base.OnAfterLoadItems(list);
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
-            return result;
+            this.AddCondition<VIEW_ACH_INFO_ANEX, string>(e => e.NOM_TIERS, SearchedText);
+
+            this.AddOrderBy<VIEW_ACH_INFO_ANEX, string>(e => e.NOM_TIERS);
+
+            return qb.QueryInfos;
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -14,7 +15,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class AchatsOHViewModel : CrudBaseViewModel<ACH_DOCUMENT, View_ACH_DOCUMENT>
+    public class AchatsOHViewModel : CrudBaseViewModel2<ACH_DOCUMENT, View_ACH_DOCUMENT>
     {
 
         public ObservableCollection<View_ACH_DOCUMENT> SelectedDocs { get; set; }
@@ -129,23 +130,25 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("typeDoc", TypeDoc);
-            result.Add("motifDoc", MotifDoc);
-            // result.Add("idCaisse", "all");
-            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            this.AddCondition<View_ACH_DOCUMENT, DateTime?>(e => e.DATE_DOC, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                result.Add("codeClient", SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
-                result.Add("statusDoc", SelectedStatus?.CODE_STATUS);
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.STATUS_DOC, SelectedStatus?.CODE_STATUS);
 
-            return result;
+            this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, MotifDoc);
+
+            this.AddCondition<View_ACH_DOCUMENT, string>(e => e.TYPE_DOC, TypeDoc);
+
+            this.AddOrderBy<View_ACH_DOCUMENT, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_ACH_DOCUMENT> list)

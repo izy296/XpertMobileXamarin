@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class ChauffeurSelectorViewModel : CrudBaseViewModel<BSE_CHAUFFEUR, BSE_CHAUFFEUR>
+    public class ChauffeurSelectorViewModel : CrudBaseViewModel2<BSE_CHAUFFEUR, BSE_CHAUFFEUR>
     {
         public string SearchedText { get; set; } = "";
 
@@ -23,12 +24,15 @@ namespace XpertMobileApp.ViewModels
             Items.Insert(0, fElem);
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
-            return result;
+            this.AddCondition<BSE_CHAUFFEUR, string>(e => e.NOM_CHAUFFEUR, SearchedText);
+
+            this.AddOrderBy<BSE_CHAUFFEUR, string>(e => e.NOM_CHAUFFEUR);
+
+            return qb.QueryInfos;
         }
     }
 }

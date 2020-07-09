@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.Models;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class EmballageSelectorViewModel : CrudBaseViewModel<BSE_EMBALLAGE, View_BSE_EMBALLAGE>
+    public class EmballageSelectorViewModel : CrudBaseViewModel2<BSE_EMBALLAGE, View_BSE_EMBALLAGE>
     {
 
         bool iS_PRINCIPAL = false;
@@ -79,12 +80,15 @@ namespace XpertMobileApp.ViewModels
             base.OnAfterLoadItems(list);
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
-            return result;
+            this.AddCondition<View_BSE_EMBALLAGE, string>(e => e.DESIGNATION, SearchedText);
+
+            this.AddOrderBy<View_BSE_EMBALLAGE, string>(e => e.DESIGNATION);
+
+            return qb.QueryInfos;
         }
     }
 }
