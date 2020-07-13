@@ -21,8 +21,8 @@ namespace XpertMobileApp.Views.Encaissement
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CommandeSummaryPage : ContentPage
 	{
-        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT> viewModel;
-
+        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT> viewModel;
+        public string CurrentStream = Guid.NewGuid().ToString();
         public Command AddItemCommand { get; set; }
 
 
@@ -32,13 +32,13 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             itemSelector = new ProductSelector();
-            TiersSelector = new TiersSelector();
+            TiersSelector = new TiersSelector(CurrentStream);
 
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             vte.TYPE_VENTE = "CC";
             vte.DATE_VENTE = DateTime.Now;
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT>(vte, vte?.CODE_VENTE);
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(vte, vte?.CODE_VENTE);
 
             foreach (var item in vente.Details)
             {
@@ -58,7 +58,7 @@ namespace XpertMobileApp.Views.Encaissement
                 });
             });
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -103,7 +103,7 @@ namespace XpertMobileApp.Views.Encaissement
 
             if (row == null)
             {
-                row = new View_VTE_VENTE_PRODUIT();
+                row = new View_VTE_VENTE_LOT();
                 row.CODE_VENTE = viewModel.Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.IMAGE_URL = product.IMAGE_URL;

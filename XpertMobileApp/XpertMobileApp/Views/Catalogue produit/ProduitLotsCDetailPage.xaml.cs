@@ -61,13 +61,13 @@ namespace XpertMobileApp.Views
         private void AddNewRow(View_STK_PRODUITS product)
         {
             if (App.CurrentSales.Details == null)
-                App.CurrentSales.Details = new List<View_VTE_VENTE_PRODUIT>();
+                App.CurrentSales.Details = new List<View_VTE_VENTE_LOT>();
 
             var row = App.CurrentSales.Details.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
 
             if (row == null)
             {
-                row = new View_VTE_VENTE_PRODUIT();
+                row = new View_VTE_VENTE_LOT();
                 //row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.IMAGE_URL = product.IMAGE_URL;
@@ -93,13 +93,13 @@ namespace XpertMobileApp.Views
            // View_STK_STOCK lot = this.BindingContext as View_STK_STOCK;
 
             if (App.CurrentSales.Details == null)
-                App.CurrentSales.Details = new List<View_VTE_VENTE_PRODUIT>();
+                App.CurrentSales.Details = new List<View_VTE_VENTE_LOT>();
 
             var row = App.CurrentSales.Details.Where(x => x.ID_STOCK == lot.ID_STOCK).FirstOrDefault();
 
             if (row == null)
             {
-                row = new View_VTE_VENTE_PRODUIT();
+                row = new View_VTE_VENTE_LOT();
                 //row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = lot.CODE_PRODUIT;
                 row.IMAGE_URL = lot.IMAGE_URL;

@@ -52,13 +52,13 @@ namespace XpertMobileApp.Views
         private void AddNewRow(View_STK_PRODUITS product)
         {
             if (App.CurrentSales.Details == null)
-                App.CurrentSales.Details = new List<View_VTE_VENTE_PRODUIT>();
+                App.CurrentSales.Details = new List<View_VTE_VENTE_LOT>();
 
             var row = App.CurrentSales.Details.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
 
             if (row == null)
             {
-                row = new View_VTE_VENTE_PRODUIT();
+                row = new View_VTE_VENTE_LOT();
                 //row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.IMAGE_URL = product.IMAGE_URL;
