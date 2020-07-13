@@ -15,18 +15,18 @@ namespace XpertMobileApp.Views
 	public partial class BordereauFactsPage : ContentPage
 	{
         BordereauFactsViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         public BordereauFactsPage(View_CFA_BORDEREAU item)
 		{
 			InitializeComponent ();
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new BordereauFactsViewModel(item);
 
             viewModel.LoadSummaries = false;
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;

@@ -61,7 +61,7 @@
             <!-- Types manquants -->
             <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
             <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Types}"
-                     ItemDisplayBinding="{Binding NAME}"
+                     ItemDisplayBinding="{Binding NAME}"  FontSize="Small"
                      SelectedItem="{Binding SelectedType}"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
@@ -71,7 +71,7 @@
             <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Typesproduct}" Margin="5, 0, 0, 0"/>
             <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding TypesProduit}"
                      ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                     SelectedItem="{Binding SelectedTypesProduit}"
+                     SelectedItem="{Binding SelectedTypesProduit}" FontSize="Small"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TypesProduitPicker"/>

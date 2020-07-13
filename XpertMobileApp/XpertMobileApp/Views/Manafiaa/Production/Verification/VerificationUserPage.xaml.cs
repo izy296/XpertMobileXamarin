@@ -22,14 +22,14 @@ namespace XpertMobileApp.Views
 	public partial class VerificationUserPage : ContentPage
 	{
         VerifTiersViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         public VerificationUserPage(string codeTiers)
         {
             InitializeComponent();
-            TiersSelector = new TiersSelector();
+            TiersSelector = new TiersSelector(CurrentStream);
             BindingContext = this.viewModel = new VerifTiersViewModel();
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {

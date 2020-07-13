@@ -22,7 +22,7 @@ namespace XpertMobileApp.Views
 	{
         private string typeDoc = "LF";
         public string MotifDoc { get; set; }
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         AchatsOHViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views
 
             MotifDoc = motifDoc;
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new AchatsOHViewModel(typeDoc, motifDoc);
 
@@ -43,7 +43,7 @@ namespace XpertMobileApp.Views
                 StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
             }
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;

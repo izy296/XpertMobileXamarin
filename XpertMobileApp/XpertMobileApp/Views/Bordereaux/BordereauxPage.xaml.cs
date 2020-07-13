@@ -14,17 +14,17 @@ namespace XpertMobileApp.Views
 	public partial class BordereauxPage : ContentPage
 	{
         BordereauxViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
+        private TiersSelector itemSelector;
         public BordereauxPage()
 		{
 			InitializeComponent ();
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new BordereauxViewModel();
 
-
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                // viewModel.SelectedTiers = selectedItem;
                // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
@@ -77,7 +77,7 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);            
         }
 
-        private TiersSelector itemSelector;
+
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);

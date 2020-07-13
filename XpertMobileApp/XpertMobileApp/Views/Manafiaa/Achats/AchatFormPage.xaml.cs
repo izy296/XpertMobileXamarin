@@ -23,7 +23,7 @@ namespace XpertMobileApp.Views
 	public partial class AchatFormPage : ContentPage
 	{
         AchatsFormViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
 
@@ -41,7 +41,7 @@ namespace XpertMobileApp.Views
             lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
 
             itemSelector = new ProductSelector();
-            TiersSelector = new TiersSelector();
+            TiersSelector = new TiersSelector(CurrentStream);
             EmballageSelector = new EmballageSelector();
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
@@ -70,7 +70,7 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -543,7 +543,7 @@ namespace XpertMobileApp.Views
 
         private EmballageSelector EmballageSelector;
         public static View_ACH_DOCUMENT_DETAIL currentRow;
-        public string CurrentStream = Guid.NewGuid().ToString();
+
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {
             currentRow = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;

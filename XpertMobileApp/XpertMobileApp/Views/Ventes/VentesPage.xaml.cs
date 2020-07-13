@@ -53,6 +53,11 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
+            var session = App.GetCurrentSession();
+            if(session == null) 
+            {
+                
+            }
             await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
         }
 
