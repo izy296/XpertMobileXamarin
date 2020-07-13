@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using XpertMobileApp.Models;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Api.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -17,11 +18,13 @@ namespace XpertMobileApp.Views
         public ContentPage pargentPage;
 
         TiersSelectorViewModel viewModel;
+        public string CurrentStream { get; set; }
 
         public string SearchedType { get; set; } = "";
 
-        public TiersSelector()
+        public TiersSelector(string stream)
         {
+            CurrentStream = stream;
             InitializeComponent();
 
             BindingContext = viewModel = new TiersSelectorViewModel();
@@ -45,14 +48,7 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            string msg = MCDico.ITEM_SELECTED;
-            if (pargentPage != null)
-            {
-                msg = pargentPage.GetType().Name;
-            }
-
-            MessagingCenter.Send(this, msg, viewModel.SelectedItem);
-
+            XpertHelper.SendAction(this, CurrentStream, "", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
             await PopupNavigation.Instance.PopAsync();
         }
 

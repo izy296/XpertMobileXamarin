@@ -387,10 +387,8 @@ namespace XpertMobileApp.DAL
                 if (Math.Round(qTE_BRUTE, 2) != Math.Round(value,2))
                 {
                     qTE_BRUTE = value;
-
                     OnPropertyChanged("QTE_BRUTE");
                     OnPropertyChanged("MT_TTC");
-
                     // ParentDoc.PSEE_UPDATED = true;
                 }
             }
@@ -579,7 +577,7 @@ namespace XpertMobileApp.DAL
         public string DESIGN_TYPE { get; set; }
         public string DESIGN_FAMILLE { get; set; } // nvarchar(50)
         public decimal TAUX_DECHET { get; set; } // numeric(18,2)
-        
+        public bool AUTORISER_RECEPTIONS { get; set; } // bit
 
         private decimal selectedQUANTITE;
         public decimal SelectedQUANTITE
