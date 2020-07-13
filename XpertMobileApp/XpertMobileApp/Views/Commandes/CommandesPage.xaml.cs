@@ -15,17 +15,17 @@ namespace XpertMobileApp.Views
 	public partial class CommandesPage : ContentPage
 	{
         CommandesViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         public CommandesPage()
 		{
 			InitializeComponent ();
 
-            itemSelector = new TiersSelector();
+            itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new CommandesViewModel();
 
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, this.GetType().Name, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                  viewModel.SelectedTiers = selectedItem;
                  ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;

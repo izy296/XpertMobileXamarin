@@ -15,7 +15,7 @@ namespace XpertMobileApp.Views.Encaissement
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CommandeDetailPage : ContentPage
 	{
-        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT> viewModel;
+        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT> viewModel;
 
         private View_VTE_VENTE item;
         public View_VTE_VENTE Item
@@ -30,7 +30,7 @@ namespace XpertMobileApp.Views.Encaissement
 
             this.Item = vente;
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT>(vente, vente.CODE_VENTE);
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(vente, vente.CODE_VENTE);
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 

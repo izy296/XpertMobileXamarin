@@ -20,8 +20,8 @@ namespace XpertMobileApp.Views.Encaissement
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewCommandePage : ContentPage
 	{
-        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT> viewModel;
-
+        ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT> viewModel;
+        public string CurrentStream = Guid.NewGuid().ToString();
         private View_VTE_VENTE item;
         public View_VTE_VENTE Item
         {
@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             itemSelector = new ProductSelector();
-            TiersSelector = new TiersSelector();
+            TiersSelector = new TiersSelector(CurrentStream);
 
             this.Item = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null) // new item init object
@@ -44,7 +44,7 @@ namespace XpertMobileApp.Views.Encaissement
                 this.Item.DATE_ECHEANCE = DateTime.Now;
             }
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_PRODUIT>(this.Item, this.Item?.CODE_VENTE);
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(this.Item, this.Item?.CODE_VENTE);
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
@@ -56,7 +56,7 @@ namespace XpertMobileApp.Views.Encaissement
                 });
             });
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, this.GetType().Name, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -96,7 +96,7 @@ namespace XpertMobileApp.Views.Encaissement
 
             if (row == null)
             {
-                row = new View_VTE_VENTE_PRODUIT();
+                row = new View_VTE_VENTE_LOT();
                 row.CODE_VENTE = Item.CODE_VENTE;
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE_PRODUIT = product.CODE_BARRE;
