@@ -847,4 +847,10 @@
   <data name="cmd_Validate" xml:space="preserve">
     <value>Validé</value>
   </data>
+  <data name="alrt_msg_NoConnexion" xml:space="preserve">
+    <value>Vous n'êtes pas connecté au serveur</value>
+  </data>
+  <data name="msg_ShouldPrepaireSession" xml:space="preserve">
+    <value>Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</value>
+  </data>
 </root>

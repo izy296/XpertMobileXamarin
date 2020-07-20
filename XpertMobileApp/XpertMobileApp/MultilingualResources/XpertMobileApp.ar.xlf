@@ -994,6 +994,14 @@
           <source>Validé</source>
           <target state="new">Validé</target>
         </trans-unit>
+        <trans-unit id="msg_ShouldPrepaireSession" translate="yes" xml:space="preserve">
+          <source>Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</source>
+          <target state="new">Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NoConnexion" translate="yes" xml:space="preserve">
+          <source>Vous n'êtes pas connecté au serveur</source>
+          <target state="new">Vous n'êtes pas connecté au serveur</target>
+        </trans-unit>
       </group>
     </body>
   </file>

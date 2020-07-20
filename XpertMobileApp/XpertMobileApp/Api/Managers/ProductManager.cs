@@ -17,10 +17,10 @@ namespace XpertMobileApp.Api
 
         }
 
-        public async Task<List<View_STK_PRODUITS>> SelectByCodeBarre(string codeBarre)
+        public async Task<List<View_STK_PRODUITS>> SelectByCodeBarre(string vparam1)
         {
-            string url = GetActionUrl("GetByCodeBarre");
-            url += WSApi2.AddParam(url, "codeBarre", codeBarre);
+            string url = GetActionUrl("ValidateVente");
+            url += WSApi2.AddParam(url, "vparam1", vparam1);
 
             return await WSApi2.RetrievAauthorizedData<View_STK_PRODUITS>(url, this.Token.access_token);
         }

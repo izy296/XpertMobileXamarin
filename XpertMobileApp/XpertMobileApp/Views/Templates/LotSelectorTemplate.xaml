@@ -41,7 +41,7 @@
                         </ffimageloading:CachedImage>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="5" Padding="0">
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" Padding="0">
                         <Label Text="{Binding TRUNCATED_DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" FontSize="Default"/>
                         <Label Text="{Binding DESIGN_MAGASIN, StringFormat='Magasin : {0}'}" 
@@ -51,16 +51,18 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0"  Orientation="Horizontal" 
-                                 HorizontalOptions="Fill">
-                        <Label Text="{Binding PRIX_VENTE, StringFormat='Prix : {0:N2}'}" 
-                               FontAttributes="Bold" FontSize="Default" TextColor="Red" HorizontalOptions="FillAndExpand"/>
+                                 HorizontalOptions="Fill" Margin="0">
+
+                        <StackLayout Padding="0" Margin="0" Spacing="0" HorizontalOptions="FillAndExpand" >
+                            <Label Text="{Binding PRIX_VENTE, StringFormat='Prix : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Red" />
+                            <Label Text="{Binding QUANTITE, StringFormat='Qte : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Green" />
+                        </StackLayout>
                         <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" HorizontalOptions="End" Margin="0,0,10,0"/>
                         <!--
                         <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
                                FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>
                         -->
                     </StackLayout>
-
                 </Grid>
             </Frame>
         </StackLayout>

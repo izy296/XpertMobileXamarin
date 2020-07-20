@@ -136,6 +136,7 @@ namespace XpertMobileApp.Views.Achats
             try
             {
                 Item.TOTAL_TTC = ItemRows.Sum(e => e.MT_TTC);
+                Item.TOTAL_RESTE = Item.TOTAL_TTC - Item.TOTAL_PAYE;
             }
             catch (Exception ex)
             {

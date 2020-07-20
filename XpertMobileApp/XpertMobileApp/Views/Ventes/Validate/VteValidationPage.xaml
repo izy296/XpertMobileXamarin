@@ -8,48 +8,62 @@
              xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
                  x:Class="XpertMobileApp.Views.VteValidationPage">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
-    <StackLayout BackgroundColor="White">
 
+        <Frame Padding="10" CornerRadius="8" >
+            <StackLayout BackgroundColor="White" >
+                <Frame Margin="0" Padding="15" CornerRadius="8" BackgroundColor="{StaticResource Primary}" HasShadow="True">
+                    <Label Text="Paiment vente" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                </Frame>
+                <Label Text="Client " FontSize="Default" Margin="5" />
+                    <StackLayout Orientation="Horizontal" Margin="30,0,30,20">
 
-    </StackLayout >
-        <StackLayout>
-            <StackLayout Orientation="Horizontal">
-            <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
-                   IsEnabled="False" HorizontalOptions="FillAndExpand"/>
-            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
-                    WidthRequest="50" HeightRequest="50"
-                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
-                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
-                    Clicked="btn_Select_Clicked"/>
-            </StackLayout>
-            <Label Text="Montant. total" FontSize="Default" Margin="5" />
-            <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand"
-                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                             SelectAllOnFocus="True" Value="{Binding Item.TOTAL_TTC, Mode=TwoWay}"
-                             VerticalOptions="Center" Margin="3" />
+                        <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
+                       IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                        
+                            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                        WidthRequest="50" HeightRequest="50"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_Select_Clicked"/>
+                        
+                    </StackLayout>
 
-            <Label Text="Montant. Reçu" FontSize="Default" Margin="5" />
-            <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand"
-                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                             SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_VERCEMENT, Mode=TwoWay}"
-                              VerticalOptions="Center" Margin="3"  />
+                <Label Text="Montant. total" FontSize="Default" Margin="5" />
+                <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
+                                     ParserMode="Double" MaximumNumberDecimalDigits="2"  IsEnabled="False"
+                                     SelectAllOnFocus="True" Value="{Binding Item.TOTAL_TTC, Mode=TwoWay}"
+                                     VerticalOptions="Center" Margin="30,0,30,0" />
+                
+                <Label Text="Reste à payer" FontSize="Default" Margin="5" />
+                    <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
+                                     ParserMode="Double" MaximumNumberDecimalDigits="2"  IsEnabled="False"
+                                     SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RESTE, Mode=TwoWay}"
+                                     VerticalOptions="Center" Margin="30,0,30,0" />
 
-            <Label Text="Montant. rendu" FontSize="Default" Margin="5" />
-            <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand"
-                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                             SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_RENDU, Mode=TwoWay}"
-                              VerticalOptions="Center" Margin="3" />
-            
-        </StackLayout>
+                    <Label Text="Montant. Reçu" FontSize="Default" Margin="5" />
+                    <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                                     ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                     SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RECU, Mode=TwoWay}"
+                                     VerticalOptions="Center" Margin="30,0,30,0" ValueChanged="TOTAL_RECU_ValueChanged" />
 
-        <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Label Text="Montant. rendu" FontSize="Default" Margin="5" />
+                    <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                                     ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                     SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_RENDU, Mode=TwoWay}"
+                                      VerticalOptions="Center" Margin="30,0,30,0" />
 
-            <Button x:Name="btnSelect" Text="{i18n:Translate cmd_Cancel}" IsEnabled="False" 
+                <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+
+                    <Button x:Name="btnSelect" Text="{i18n:Translate cmd_Cancel}" CornerRadius="8"
             TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnCancel_Clicked" HorizontalOptions="FillAndExpand"></Button>
 
-            <Button x:Name="btnColse" Text="{i18n:Translate cmd_Validate}" 
+                    <Button x:Name="btnColse" Text="{i18n:Translate cmd_Validate}" CornerRadius="8"
             TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnValidate_Clicked" HorizontalOptions="FillAndExpand"></Button>
 
-        </StackLayout>
-    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+      
+
+  </StackLayout>
 </pages:PopupPage>

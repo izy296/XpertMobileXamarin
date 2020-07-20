@@ -233,6 +233,9 @@
     <Compile Update="Views\Selector\Lot\LotSelector.xaml.cs">
       <DependentUpon>LotSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Sessions\Open session\OpenSessionPage.xaml.cs">
+      <DependentUpon>OpenSessionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Sessions\SessionDetailPage.xaml.cs">
       <DependentUpon>SessionDetailPage.xaml</DependentUpon>
     </Compile>
@@ -327,6 +330,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Selector\Lot\LotSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sessions\Open session\OpenSessionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Trésorerie\TresoreriePage.xaml">

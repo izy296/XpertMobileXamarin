@@ -48,8 +48,21 @@ namespace XpertMobileApp.Views
 
         private async void OnClose(object sender, EventArgs e)
         {
-            XpertHelper.SendAction(this, CurrentStream, "", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+            SendResponse();
+
             await PopupNavigation.Instance.PopAsync();
+        }
+
+        private void SendResponse() 
+        {
+            // App.MsgCenter.SendAction(this, CurrentStream, "", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+            if (string.IsNullOrEmpty(CurrentStream))
+                MessagingCenter.Send(this, MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+            else
+            {
+               // MessagingCenter.Send(App.MsgCenter, CurrentStream, viewModel.SelectedItem);
+                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+            }
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

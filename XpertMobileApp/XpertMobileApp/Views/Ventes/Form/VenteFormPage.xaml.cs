@@ -38,10 +38,6 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
-            itemSelector = new LotSelector(viewModel.CurrentStream);
-            TiersSelector = new TiersSelector(viewModel.CurrentStream);
-            VteValidationPage = new VteValidationPage(viewModel.CurrentStream);
-
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             if(vente == null)
             {
@@ -53,9 +49,11 @@ namespace XpertMobileApp.Views
 
             }
 
-
-
             BindingContext = this.viewModel = new VenteFormViewModel(vte, vte?.CODE_VENTE);
+
+            itemSelector = new LotSelector(viewModel.CurrentStream);
+            TiersSelector = new TiersSelector(viewModel.CurrentStream);
+            VteValidationPage = new VteValidationPage(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
 
@@ -65,7 +63,7 @@ namespace XpertMobileApp.Views
 
            // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
-            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -258,6 +256,8 @@ namespace XpertMobileApp.Views
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
+            VteValidationPage = new VteValidationPage(viewModel.CurrentStream);
+            VteValidationPage.Item = viewModel.Item;
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 

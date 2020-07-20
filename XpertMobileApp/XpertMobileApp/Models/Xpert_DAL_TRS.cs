@@ -133,7 +133,16 @@ namespace XpertMobileApp.DAL
         }
     }
 
-    public partial class TRS_JOURNEES : BASE_CLASS
+    public class SESSION_INFO : BASE_CLASS
+    {
+        public DateTime DATE_JOURNEE { get; set; } // datetime(3)
+        public string POSTE_DEBUT { get; set; } // nvarchar(250)
+        public decimal MONT_DEPART { get; set; } // money(19,4)
+        public decimal MONT_CLOTURE_PH { get; set; } // money(19,4)
+        public bool TRANS_MONTANT { get; set; } // bit
+        public string POSTE_CLOTURE { get; set; } // nvarchar(250)
+    }
+    public partial class TRS_JOURNEES : SESSION_INFO
     {
 
         public override string ToString()
@@ -147,11 +156,10 @@ namespace XpertMobileApp.DAL
         public string DESIGN_COMPTE { get; set; } // varchar(20)
 
         public string USER_SESSION { get; set; } // varchar(20)
-        public DateTime? DATE_JOURNEE { get; set; } // datetime(3)
+
         public DateTime? DATE_DEBUT { get; set; } // datetime(3)
         public string DEBUTEE_PAR { get; set; } // varchar(100)
-        public string POSTE_DEBUT { get; set; } // nvarchar(250)
-        public decimal MONT_DEPART { get; set; } // money(19,4)
+
         public decimal MONT_VENTE { get; set; } // money(19,4)
         public decimal MONT_CREDIT { get; set; } // money(19,4)
         public decimal MONT_CREDIT_PHARM { get; set; } // money(19,4)
@@ -162,7 +170,7 @@ namespace XpertMobileApp.DAL
         public decimal MONT_REG_FOURNISSEUR { get; set; } // money(19,4)
         public decimal MONT_REG_CLIENT { get; set; } // money(19,4)
         public decimal MONT_CLOTURE_TH { get; set; } // money(19,4)
-        public decimal MONT_CLOTURE_PH { get; set; } // money(19,4)
+
         public decimal MONT_CLOTURE_TH_ARRODI { get; set; } // money(19,4)
         public decimal MONT_ECART { get; set; } // money(19,4)
         public decimal MONT_CREDIT_CASNOS { get; set; } // money(19,4)
@@ -176,9 +184,9 @@ namespace XpertMobileApp.DAL
         public decimal MONT_REMBOURSE { get; set; } // money(19,4)
         public DateTime? DATE_CLOTURE { get; set; } // datetime(3)
         public string CLOTUREE_PAR { get; set; } // varchar(100)
-        public string POSTE_CLOTURE { get; set; } // nvarchar(250)
+
         public bool JOURNEE_CLOTUREE { get; set; } // bit
-        public bool TRANS_MONTANT { get; set; } // bit
+
         public string TRANS_COMPTE { get; set; } // varchar(200)
         public string EXERCICE { get; set; } // char(4)
         public DateTime? MODIFIED_ON { get; set; } // datetime(3)
@@ -381,4 +389,6 @@ namespace XpertMobileApp.DAL
         public string CODE_TYPE { get; set; }
         public string DESIGNATION_TYPE { get; set; }
     }
+
+
 }

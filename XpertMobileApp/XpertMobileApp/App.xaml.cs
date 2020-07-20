@@ -31,6 +31,7 @@ namespace XpertMobileApp
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
+
         public static MsgCenter MsgCenter = new MsgCenter();
 
 
@@ -51,6 +52,25 @@ namespace XpertMobileApp
                 return result;
             }
             return sysParams;
+        }
+
+        internal static TRS_JOURNEES session;
+        public static async Task<TRS_JOURNEES> GetCurrentSession()
+        {
+            try
+            {
+                if (session == null)
+                {
+                    session = await CrudManager.Sessions.GetCurrentSession();
+                }
+                return session;
+            }
+            catch (Exception e)
+            {
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                return null;
+            }
         }
 
         internal static List<SYS_OBJET_PERMISSION> permissions;

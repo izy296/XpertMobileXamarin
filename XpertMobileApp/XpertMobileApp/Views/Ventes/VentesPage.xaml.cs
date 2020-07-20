@@ -1,9 +1,11 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
@@ -53,12 +55,22 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            var session = App.GetCurrentSession();
+           
+            var session = await App.GetCurrentSession();
             if(session == null) 
             {
-                
+                var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                if (res)
+                {
+                    OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                    await PopupNavigation.Instance.PushAsync(openPage);
+                }
             }
-            await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+            else 
+            {
+                await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+            }
+
         }
 
         protected override void OnAppearing()

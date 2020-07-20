@@ -44,6 +44,8 @@ namespace XpertMobileApp.ViewModels
             base.GetFilterParams();
             this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
             this.AddCondition<View_STK_STOCK, bool>(e => e.IS_BLOCKED, 0);
+            this.AddCondition<View_STK_STOCK, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
+            
            // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
 
             this.AddOrderBy<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT);

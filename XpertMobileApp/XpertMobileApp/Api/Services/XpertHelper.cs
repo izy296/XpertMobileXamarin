@@ -37,16 +37,6 @@ namespace XpertMobileApp.Api.Services
             return stream;
         }
 
-        public static void SendAction(object sender, string stream, string prefix, string defaultMsg, object obj)
-        {
-            string msg = defaultMsg;
-            if (!string.IsNullOrEmpty(stream))
-            {
-                msg = prefix + stream;
-                MessagingCenter.Send(sender, msg, obj);
-            }
-        }
-
         private static Random random = new Random();
         public static string RandomString(int length)
         {

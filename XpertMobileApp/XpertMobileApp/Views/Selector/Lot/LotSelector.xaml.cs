@@ -82,8 +82,8 @@ namespace XpertMobileApp.Views
             {
                 viewModel.SelectedItem.SelectedQUANTITE = 1; // +=
                 btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
-
-               XpertHelper.SendAction(this, CurrentStream,"", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                // XpertHelper.SendAction(this, CurrentStream,"", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
             }
         }
 
@@ -94,7 +94,7 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedItem.SelectedQUANTITE = 0; // -=
                 btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
 
-                XpertHelper.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
+                App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             }
         }
 

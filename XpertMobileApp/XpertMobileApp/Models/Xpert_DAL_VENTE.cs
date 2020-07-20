@@ -143,11 +143,12 @@ namespace XpertMobileApp.DAL
             
         }
 
-        public List<View_VTE_VENTE_LOT> Details { get; set; }
-        public string ID { get; internal set; }
+
 
         #region Validation vente
-
+        public List<View_VTE_VENTE_LOT> Details { get; set; }
+        public string ID { get; internal set; }
+        public string MBL_MODE_PAIMENT { get; internal set; }
         private string _MBL_NUM_CARTE_FEDILITE;
         public string MBL_NUM_CARTE_FEDILITE
         {
@@ -180,10 +181,7 @@ namespace XpertMobileApp.DAL
                 SetProperty(ref _MBL_MT_RENDU, value); 
             }
         }
-
-        //string codeMode, 
-        // , string codeCardFidelite
-        
+       
         #endregion
     }
 

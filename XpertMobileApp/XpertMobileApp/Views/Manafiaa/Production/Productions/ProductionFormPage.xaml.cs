@@ -26,7 +26,7 @@ namespace XpertMobileApp.Views
 	public partial class ProductionFormPage : ContentPage
 	{
         ProductionFormViewModel viewModel;
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
 
@@ -50,7 +50,7 @@ namespace XpertMobileApp.Views
                 cmd_Terminate.IsVisible = false;
 
             itemSelector = new ProductSelector();
-            TiersSelector = new TiersSelector();
+            TiersSelector = new TiersSelector(CurrentStream);
             EmballageSelector = new EmballageSelector();
             AnnexTiersSelector = new AnnexTiersSelector();
 
@@ -80,7 +80,7 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -387,7 +387,7 @@ namespace XpertMobileApp.Views
         }
 
         private EmballageSelector EmballageSelector;
-        public string CurrentStream = Guid.NewGuid().ToString();
+
         public static View_PRD_AGRICULTURE_DETAIL currentRow;
         private async void Btn_SelectCaiss_Clicked(object sender, EventArgs e)
         {

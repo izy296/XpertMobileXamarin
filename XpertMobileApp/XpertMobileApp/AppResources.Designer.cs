@@ -196,6 +196,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous n&apos;êtes pas connecté au serveur.
+        /// </summary>
+        internal static string alrt_msg_NoConnexion {
+            get {
+                return ResourceManager.GetString("alrt_msg_NoConnexion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Aucune imprimante selectionnée!.
         /// </summary>
         internal static string alrt_msg_NoPrinterSelected {
@@ -894,6 +903,15 @@ namespace XpertMobileApp {
         internal static string msg_Licence_NotActivated {
             get {
                 return ResourceManager.GetString("msg_Licence_NotActivated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Vous n&apos;avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions..
+        /// </summary>
+        internal static string msg_ShouldPrepaireSession {
+            get {
+                return ResourceManager.GetString("msg_ShouldPrepaireSession", resourceCulture);
             }
         }
         
