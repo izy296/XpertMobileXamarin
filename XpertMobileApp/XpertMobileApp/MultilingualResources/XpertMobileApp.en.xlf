@@ -1014,6 +1014,14 @@
           <source>Opération terminée avec succès</source>
           <target state="new">Opération terminée avec succès</target>
         </trans-unit>
+        <trans-unit id="pn_NewVente" translate="yes" xml:space="preserve">
+          <source>Nouvelle vente</source>
+          <target state="new">Nouvelle vente</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_SalesMagasin" translate="yes" xml:space="preserve">
+          <source>Magasin de vente</source>
+          <target state="new">Magasin de vente</target>
+        </trans-unit>
       </group>
     </body>
   </file>

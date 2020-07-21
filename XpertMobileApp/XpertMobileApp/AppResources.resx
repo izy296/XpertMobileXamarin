@@ -862,4 +862,10 @@
   <data name="txt_actionsSucces" xml:space="preserve">
     <value>Opération terminée avec succès</value>
   </data>
+  <data name="pn_NewVente" xml:space="preserve">
+    <value>Nouvelle vente</value>
+  </data>
+  <data name="sp_lbl_SalesMagasin" xml:space="preserve">
+    <value>Magasin de vente</value>
+  </data>
 </root>

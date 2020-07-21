@@ -62,10 +62,10 @@
                         <StackLayout Padding="10" >
                             <Label Text="{i18n:Translate pn_Ventes}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
 
-                            <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_Activate}"/>
+                            <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_SalesMagasin}"/>
                             <Picker ItemsSource="{Binding MagasinsList}"
                                 Title="{i18n:Translate cmd_SelectElement}"
-                                ItemDisplayBinding="{Binding Name}"
+                                ItemDisplayBinding="{Binding DESIGNATION}"
                                 SelectedItem="{Binding SelectedMagasin}" />
                         </StackLayout>
                     </Frame>

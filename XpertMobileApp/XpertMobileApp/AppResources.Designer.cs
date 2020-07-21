@@ -1123,6 +1123,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Nouvelle vente.
+        /// </summary>
+        internal static string pn_NewVente {
+            get {
+                return ResourceManager.GetString("pn_NewVente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Ordres de production.
         /// </summary>
         internal static string pn_OrdresProduction {
@@ -1326,6 +1335,15 @@ namespace XpertMobileApp {
         internal static string sp_lbl_rinter {
             get {
                 return ResourceManager.GetString("sp_lbl_rinter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Magasin de vente.
+        /// </summary>
+        internal static string sp_lbl_SalesMagasin {
+            get {
+                return ResourceManager.GetString("sp_lbl_SalesMagasin", resourceCulture);
             }
         }
         

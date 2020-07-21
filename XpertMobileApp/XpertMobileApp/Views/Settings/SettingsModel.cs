@@ -131,6 +131,10 @@ namespace XpertMobileApp.ViewModels
                 foreach (var itemC in itemsC)
                 {
                     MagasinsList.Add(itemC);
+                    if(itemC.CODE == Settings.DefaultMagasinVente) 
+                    {
+                        SelectedMagasin = itemC;
+                    }
                 }
             }
             catch (Exception ex)

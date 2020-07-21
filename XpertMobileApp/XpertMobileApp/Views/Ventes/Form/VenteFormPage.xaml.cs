@@ -47,6 +47,7 @@ namespace XpertMobileApp.Views
             {
                 vte.ID = XpertHelper.RandomString(7);
                 vte.TYPE_DOC = typeDoc;
+                vte.TYPE_VENTE = typeDoc;
                 vte.DATE_VENTE = DateTime.Now.Date;
 
                 vte.PropertyChanged += Vte_PropertyChanged;
