@@ -52,11 +52,24 @@
                         <StackLayout x:Name="GeneralNotifications"  Padding="10" >
                             <Label x:Name="lbl_Notifications" Text="{i18n:Translate sp_lbl_Notifications}" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
                                    Margin="0,0,0,15" />
-                            <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_Activate}"/>
+                            <Label Text="{i18n:Translate sp_lbl_Activate}"/>
                             <Switch x:Name="sw_ActivateNotif" IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
                         </StackLayout>
                     </Frame>
 
+                    <!-- Magasin -->
+                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
+                        <StackLayout Padding="10" >
+                            <Label Text="{i18n:Translate pn_Ventes}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
+
+                            <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_Activate}"/>
+                            <Picker ItemsSource="{Binding MagasinsList}"
+                                Title="{i18n:Translate cmd_SelectElement}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedMagasin}" />
+                        </StackLayout>
+                    </Frame>
+                    
                     <!-- Imprimante  -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >

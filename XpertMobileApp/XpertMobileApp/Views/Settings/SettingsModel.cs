@@ -15,6 +15,7 @@ using Xamarin.Forms;
 using XpertMobileApp.Api.Services;
 using System.Windows.Input;
 using XpertWebApi.Models;
+using XpertMobileApp.Api.Managers;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -24,6 +25,22 @@ namespace XpertMobileApp.ViewModels
         public Settings Settings { get => App.Settings; set => App.Settings = value; }
 
         public ObservableCollection<Language> Languages { get; }
+        public ObservableCollection<View_BSE_MAGASIN> MagasinsList { get; }
+         
+        private View_BSE_MAGASIN _SelectedMagasin;
+        public View_BSE_MAGASIN SelectedMagasin
+        {
+            get
+            {
+                return _SelectedMagasin;
+            }
+            set
+            {
+                _SelectedMagasin = value;
+                this.Settings.DefaultMagasinVente = _SelectedMagasin.CODE;               
+                OnPropertyChanged("SelectedMagasin");
+            }
+        }
 
         public bool IsConnected
         {
@@ -53,6 +70,8 @@ namespace XpertMobileApp.ViewModels
                 new Language { DisplayName =  "Français - French", ShortName = "fr" },
                 new Language { DisplayName =  "中文 - Chinese (simplified)", ShortName = "zh-Hans" }
             };
+
+            MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
 
             _blueToothService = DependencyService.Get<IBlueToothService>();
 
@@ -95,6 +114,32 @@ namespace XpertMobileApp.ViewModels
             App.SettingsDatabase.SaveItemAsync(Settings);
             this.Settings.isModified = false;
         }
+
+        #region Magasins
+        public async Task LoadMagasins ()
+        {
+            try
+            {
+                MagasinsList.Clear();
+                var itemsC = await CrudManager.BSE_MAGASINS.GetItemsAsync();
+
+                View_BSE_MAGASIN allElem = new View_BSE_MAGASIN();
+                allElem.CODE = "";
+                allElem.DESIGNATION = "Aucun";
+                MagasinsList.Add(allElem);
+
+                foreach (var itemC in itemsC)
+                {
+                    MagasinsList.Add(itemC);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+        }
+        #endregion
 
         internal async Task<bool> DeactivateClient()
         {

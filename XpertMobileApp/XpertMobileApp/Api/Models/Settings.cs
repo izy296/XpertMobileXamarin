@@ -81,6 +81,23 @@ namespace XpertMobileApp.Models
         public string DestinationVersion { get; set; }
         public string ClientName { get; set; } = "Nom du client ...";
 
+        private string defaultMagasinVente;
+        public string DefaultMagasinVente
+        {
+            set
+            {
+                if (defaultMagasinVente != value)
+                {
+                    defaultMagasinVente = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DefaultMagasinVente"));
+                    isModified = true;
+                }
+            }
+            get
+            {
+                return defaultMagasinVente;
+            }
+        }
         public Settings() { }
     }
 

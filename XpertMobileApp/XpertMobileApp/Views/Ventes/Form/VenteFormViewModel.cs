@@ -11,7 +11,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 
-namespace XpertMobileApp.Views.Achats
+namespace XpertMobileApp.Views
 {
     public class VenteFormViewModel : ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>
     {
@@ -20,6 +20,8 @@ namespace XpertMobileApp.Views.Achats
             get { return immatriculationList; }
             set { SetProperty(ref immatriculationList, value); }
         }
+
+        internal string TypeDoc { get; set; }
 
         public bool hasEditDetails
         {
@@ -64,6 +66,19 @@ namespace XpertMobileApp.Views.Achats
                 }
                 return result;
             }
+        }
+
+        internal void InitNewVentes()
+        {
+            ItemRows.Clear();
+            Title = AppResources.pn_NewCommande;
+
+            var vte = new View_VTE_VENTE();
+            vte.ID = XpertHelper.RandomString(7);
+            vte.TYPE_DOC = this.TypeDoc;
+            vte.DATE_VENTE = DateTime.Now.Date;
+
+            Item = vte;
         }
 
         private BSE_CHAUFFEUR selectedChauffeur;

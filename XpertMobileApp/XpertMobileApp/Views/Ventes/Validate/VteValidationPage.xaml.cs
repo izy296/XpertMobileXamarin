@@ -14,6 +14,8 @@ namespace XpertMobileApp.Views
     public partial class VteValidationPage : PopupPage
     {
         VteValidationViewModel viewModel;
+
+        public VenteFormViewModel ParentviewModel { get; set; }
         public string ParentStream { get; set; }
         public View_VTE_VENTE Item 
         { 
@@ -27,17 +29,16 @@ namespace XpertMobileApp.Views
             } 
         }
 
-        public VteValidationPage(string stream)
+        public VteValidationPage(string stream, View_VTE_VENTE item)
         {
             InitializeComponent();
+ 
             ParentStream = stream;
-            BindingContext = viewModel = new VteValidationViewModel();
+            BindingContext = viewModel = new VteValidationViewModel(item);
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 viewModel.SelectedTiers = selectedItem;
-                viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
-                viewModel.Item.NOM_TIERS = selectedItem.NOM_TIERS1;
             });
            
         }
@@ -60,7 +61,9 @@ namespace XpertMobileApp.Views
                 bool res = await viewModel.ValidateVte(viewModel.Item);
 
                 if (res)
-                { 
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                    ParentviewModel.InitNewVentes();
                     await PopupNavigation.Instance.PopAsync(); 
                 }
             }

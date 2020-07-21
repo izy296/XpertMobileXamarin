@@ -34,8 +34,12 @@ namespace XpertMobileApp.Views
 
         public Command AddItemCommand { get; set; }
 
+
+
         public VenteFormPage(View_VTE_VENTE vente, string typeDoc)
         {
+
+
             InitializeComponent();
 
             var vte = vente == null ? new View_VTE_VENTE() : vente;
@@ -46,14 +50,13 @@ namespace XpertMobileApp.Views
                 vte.DATE_VENTE = DateTime.Now.Date;
 
                 vte.PropertyChanged += Vte_PropertyChanged;
-
             }
 
             BindingContext = this.viewModel = new VenteFormViewModel(vte, vte?.CODE_VENTE);
+            viewModel.TypeDoc = typeDoc;
 
             itemSelector = new LotSelector(viewModel.CurrentStream);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
-            VteValidationPage = new VteValidationPage(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
 
@@ -256,8 +259,8 @@ namespace XpertMobileApp.Views
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
-            VteValidationPage = new VteValidationPage(viewModel.CurrentStream);
-            VteValidationPage.Item = viewModel.Item;
+            VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item);
+            VteValidationPage.ParentviewModel = viewModel;
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 

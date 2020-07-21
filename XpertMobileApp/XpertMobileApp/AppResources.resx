@@ -853,4 +853,13 @@
   <data name="msg_ShouldPrepaireSession" xml:space="preserve">
     <value>Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</value>
   </data>
+  <data name="cmd_selectMagasin" xml:space="preserve">
+    <value />
+  </data>
+  <data name="sp_lbl_VteMagasin" xml:space="preserve">
+    <value>Magasin de vente</value>
+  </data>
+  <data name="txt_actionsSucces" xml:space="preserve">
+    <value>Opération terminée avec succès</value>
+  </data>
 </root>

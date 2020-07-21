@@ -421,6 +421,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à .
+        /// </summary>
+        internal static string cmd_selectMagasin {
+            get {
+                return ResourceManager.GetString("cmd_selectMagasin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Choisir une imprimante.
         /// </summary>
         internal static string cmd_selectPrinter {
@@ -1348,6 +1357,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Magasin de vente.
+        /// </summary>
+        internal static string sp_lbl_VteMagasin {
+            get {
+                return ResourceManager.GetString("sp_lbl_VteMagasin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Montant majoration.
         /// </summary>
         internal static string SUM_MAJORATION {
@@ -1443,6 +1461,15 @@ namespace XpertMobileApp {
         internal static string txt_Acommande {
             get {
                 return ResourceManager.GetString("txt_Acommande", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Opération terminée avec succès.
+        /// </summary>
+        internal static string txt_actionsSucces {
+            get {
+                return ResourceManager.GetString("txt_actionsSucces", resourceCulture);
             }
         }
         

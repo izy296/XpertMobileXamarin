@@ -1002,6 +1002,18 @@
           <source>Vous n'êtes pas connecté au serveur</source>
           <target state="new">Vous n'êtes pas connecté au serveur</target>
         </trans-unit>
+        <trans-unit id="cmd_selectMagasin" translate="yes" xml:space="preserve">
+          <source></source>
+          <target state="new"></target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_VteMagasin" translate="yes" xml:space="preserve">
+          <source>Magasin de vente</source>
+          <target state="new">Magasin de vente</target>
+        </trans-unit>
+        <trans-unit id="txt_actionsSucces" translate="yes" xml:space="preserve">
+          <source>Opération terminée avec succès</source>
+          <target state="new">Opération terminée avec succès</target>
+        </trans-unit>
       </group>
     </body>
   </file>

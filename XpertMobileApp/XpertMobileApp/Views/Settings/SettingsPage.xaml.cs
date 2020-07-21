@@ -55,7 +55,12 @@ namespace XpertMobileApp.Views
             if(viewModel.IsConnected) 
             {
                 await viewModel.BindDeviceList();
+
+                await viewModel.LoadMagasins();
             }
+
+
+
 
             viewModel.LoadSettings();
         }

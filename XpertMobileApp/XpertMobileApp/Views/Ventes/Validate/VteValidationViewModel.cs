@@ -21,7 +21,15 @@ namespace XpertMobileApp.ViewModels
         public View_TRS_TIERS SelectedTiers
         {
             get { return selectedTiers; }
-            set { SetProperty(ref selectedTiers, value); }
+            set 
+            { 
+                if(SelectedTiers != value) 
+                { 
+                    SetProperty(ref selectedTiers, value);
+                    Item.CODE_TIERS = value?.CODE_TIERS;
+                    Item.NOM_TIERS = value?.NOM_TIERS1;
+                }
+            }
         }
 
         private View_VTE_VENTE item;
@@ -31,9 +39,15 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref item, value); }
         }
 
-        public VteValidationViewModel(string title= "" )
+        public VteValidationViewModel(View_VTE_VENTE item, string title= "")
         {
             Title = title;
+            Item = item;
+            SelectedTiers = new View_TRS_TIERS()
+            {
+                CODE_TIERS = "CXPERTCOMPTOIR",
+                NOM_TIERS1 = "COMPTOIR"
+            };
         }
 
         internal async Task<bool> ValidateVte(View_VTE_VENTE item)
