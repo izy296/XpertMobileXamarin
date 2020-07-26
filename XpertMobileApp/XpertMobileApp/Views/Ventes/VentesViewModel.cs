@@ -91,16 +91,24 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
-
-            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
-
-            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
-                this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
-
-            this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
-
+            if (TypeVente == VentesTypes.Vente)
+            {
+                this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
+                if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                    this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+                if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                    this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
+                this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+            }
+            else if (TypeVente == VentesTypes.VentePSYCO)
+            {
+                this.AddCondition<View_VTE_PSYCHOTROP, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
+                if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                    this.AddCondition<View_VTE_PSYCHOTROP, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+                if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                    this.AddCondition<View_VTE_PSYCHOTROP, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
+                this.AddOrderBy<View_VTE_PSYCHOTROP, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+            }
             return qb.QueryInfos;
         }
 

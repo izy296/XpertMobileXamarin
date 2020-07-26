@@ -14,7 +14,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class CommandesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_VENTE>
+    public class CommandesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_COMMANDE>
     {
 
         decimal totalTurnover;
@@ -66,20 +66,20 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
+            this.AddCondition<View_VTE_COMMANDE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_VTE_COMMANDE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
-                this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, SelectedCompte?.CODE_COMPTE);
+                this.AddCondition<View_VTE_COMMANDE, string>(e => e.CREATED_BY, SelectedCompte?.CODE_COMPTE);
 
-            this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+            this.AddOrderBy<View_VTE_COMMANDE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
 
             return qb.QueryInfos;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_VTE_VENTE> list)
+        protected override void OnAfterLoadItems(IEnumerable<View_VTE_COMMANDE> list)
         {
             base.OnAfterLoadItems(list);
 

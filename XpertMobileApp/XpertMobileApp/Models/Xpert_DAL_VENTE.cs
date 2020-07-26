@@ -185,6 +185,14 @@ namespace XpertMobileApp.DAL
         #endregion
     }
 
+    public partial class View_VTE_COMMANDE : View_VTE_VENTE 
+    { 
+    }
+
+    public partial class View_VTE_PSYCHOTROP : View_VTE_VENTE 
+    { 
+    }
+
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
         [JsonIgnore]
