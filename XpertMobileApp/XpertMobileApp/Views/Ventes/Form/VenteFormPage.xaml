@@ -87,13 +87,17 @@
             <ScrollView Padding="0" Margin="0" BackgroundColor="Transparent"></ScrollView>
             -->
             <Frame CornerRadius="10" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
-                    <syncfusion:SfListView x:Name="ItemsListView" 
+                 <syncfusion:SfListView x:Name="listView" 
                             ItemsSource="{Binding ItemRows}"
                             SelectionBackgroundColor="Transparent"
                             SelectionMode="None"
-                            SwipeOffset="360" SwipeThreshold="30"
+                            
+                            SwipeOffset="120" 
+                            SwipeThreshold="30"
                             AllowSwiping="True" 
                             SwipeEnded="ListView_SwipeEnded" 
+                            SwipeStarted="ListView_SwipeStarted" 
+
                             Padding="4"
                             BackgroundColor="Transparent"
                             AutoFitMode="Height">
@@ -165,9 +169,8 @@
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
                                     </Grid.ColumnDefinitions>
-                                    
+                                    <!--
                                     <Grid BackgroundColor="#009EDA" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                             <Image Grid.Column="0"
@@ -175,19 +178,19 @@
                                                BackgroundColor="Transparent"
                                                HeightRequest="35"
                                                WidthRequest="35"
-                                               BindingContextChanged="edit_BindingContextChanged"
-                                               Source="Favorites.png" />
+                                               BindingContextChanged="edit_Vte"
+                                               Source="SelectionEdit.png" />
                                         </Grid>
                                      </Grid>
-                                    
-                                     <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="1">
+                                    -->
+                                     <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                                          <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                              <Image Grid.Column="0"
                                                Grid.Row="0"
                                                HeightRequest="35"
                                                WidthRequest="35"
                                                BackgroundColor="Transparent"
-                                               BindingContextChanged="delete_BindingContextChanged"
+                                               BindingContextChanged="delete_Vte"
                                                Source="Delete.png" />
                                         </Grid>
                                     </Grid>

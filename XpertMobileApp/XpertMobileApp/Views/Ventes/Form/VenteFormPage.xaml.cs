@@ -311,23 +311,60 @@ namespace XpertMobileApp.Views
 
         }
 
-        private void delete_BindingContextChanged(object sender, EventArgs e)
-        {
+        #region Swip listview
 
+        Image leftImage;
+        Image rightImage;
+        int itemIndex = -1;
+
+        private void OpenVte()
+        {
+            if (itemIndex >= 0)
+            {
+                var item = viewModel.ItemRows[itemIndex];
+               // item.IsFavorite = !item.IsFavorite;
+            }
+            this.listView.ResetSwipe();
         }
 
-        private void edit_BindingContextChanged(object sender, EventArgs e)
+        private void Delete()
         {
-
+            if (itemIndex >= 0)
+                viewModel.ItemRows.RemoveAt(itemIndex);
+            this.listView.ResetSwipe();
         }
 
+        private void ListView_SwipeStarted(object sender, Syncfusion.ListView.XForms.SwipeStartedEventArgs e)
+        {
+            itemIndex = -1;
+        }
         private void ListView_SwipeEnded(object sender, Syncfusion.ListView.XForms.SwipeEndedEventArgs e)
         {
-            if (e.SwipeOffset >= 360)
+            itemIndex = e.ItemIndex;
+        }
+
+        private void edit_Vte(object sender, EventArgs e)
+        {
+            if (leftImage == null)
             {
-                viewModel.ItemRows.RemoveAt(e.ItemIndex);
-                ItemsListView.ResetSwipe();
+                leftImage = sender as Image;
+                (leftImage.Parent as View).GestureRecognizers.Add(new TapGestureRecognizer() { Command = new Command(OpenVte) });
+                // leftImage.Source = ImageSource.FromResource("Swiping.Images.Favorites.png");
             }
         }
+
+        private void delete_Vte(object sender, EventArgs e)
+        {
+            if (rightImage == null)
+            {
+                rightImage = sender as Image;
+                (rightImage.Parent as View).GestureRecognizers.Add(new TapGestureRecognizer() { Command = new Command(Delete) });
+                // rightImage.Source = ImageSource.FromResource("Swiping.Images.Delete.png");
+            }
+        }
+
+        #endregion Swip listview
+
+
     }
 }
