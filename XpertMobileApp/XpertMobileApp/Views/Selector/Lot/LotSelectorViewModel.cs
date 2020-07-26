@@ -43,6 +43,10 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
+            if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente)) 
+            { 
+                this.AddCondition<View_STK_STOCK, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
+            }
             this.AddCondition<View_STK_STOCK, bool>(e => e.IS_BLOCKED, 0);
             this.AddCondition<View_STK_STOCK, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
             
