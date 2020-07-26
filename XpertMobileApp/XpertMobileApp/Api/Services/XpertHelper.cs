@@ -10,6 +10,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -28,6 +29,18 @@ namespace XpertMobileApp.Api.Services
                 player.Play();
             }
             catch { }
+        }
+
+        public static string GetMachineName() 
+        {
+            string machineName = DeviceInfo.Name;
+            if (DeviceInfo.Idiom != null)
+            {
+                machineName += "-" + DeviceInfo.Idiom.ToString();
+            }
+            machineName += "-" + DeviceInfo.Manufacturer;
+
+            return machineName;
         }
 
         static Stream GetStreamFromFile(string filename)

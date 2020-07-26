@@ -16,31 +16,16 @@ using XpertMobileApp.Api.Services;
 using System.Windows.Input;
 using XpertWebApi.Models;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.ViewModels
 {
     public class SettingsModel : BaseViewModel
     {
-
+        private string oldCaisseDedier;
         public Settings Settings { get => App.Settings; set => App.Settings = value; }
 
         public ObservableCollection<Language> Languages { get; }
-        public ObservableCollection<View_BSE_MAGASIN> MagasinsList { get; }
-         
-        private View_BSE_MAGASIN _SelectedMagasin;
-        public View_BSE_MAGASIN SelectedMagasin
-        {
-            get
-            {
-                return _SelectedMagasin;
-            }
-            set
-            {
-                _SelectedMagasin = value;
-                this.Settings.DefaultMagasinVente = _SelectedMagasin.CODE;               
-                OnPropertyChanged("SelectedMagasin");
-            }
-        }
 
         public bool IsConnected
         {
@@ -72,7 +57,7 @@ namespace XpertMobileApp.ViewModels
             };
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
-
+            ComptesList = new ObservableCollection<View_BSE_COMPTE>();
             _blueToothService = DependencyService.Get<IBlueToothService>();
 
         }
@@ -92,6 +77,7 @@ namespace XpertMobileApp.ViewModels
         public void LoadSettings()
         {
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
+            oldCaisseDedier = this.Settings.CaisseDedier;
             if (this.Settings == null)
             {
                 this.Settings = new Settings();
@@ -100,7 +86,7 @@ namespace XpertMobileApp.ViewModels
             this.Settings.isModified = false;           
         }
 
-        public void SaveSettings()
+        public async Task SaveSettings()
         {
             if (Settings.SubscribedToFBNotifications)
             {
@@ -111,15 +97,95 @@ namespace XpertMobileApp.ViewModels
                 FireBaseHelper.UnsubscribeFromAllTopics();
             }
 
-            App.SettingsDatabase.SaveItemAsync(Settings);
+            if(this.Settings.CaisseDedier != oldCaisseDedier) 
+            { 
+                var res = await SaveSettingsToServer();
+            }
+
+            await App.SettingsDatabase.SaveItemAsync(Settings);
+            
+            
             this.Settings.isModified = false;
         }
 
+        internal async Task<bool?> SaveSettingsToServer()
+        {
+            if (IsBusy)
+                return null;
+
+            bool? result = false;
+            try
+            {
+                if (App.IsConected)
+                {
+                    IsBusy = true;
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    this.Settings.MachineName = XpertHelper.GetMachineName();
+                    await CrudManager.MobileSettings.AddItemAsync(this.Settings);
+                    result = true;
+                    UserDialogs.Instance.HideLoading();
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+                IsBusy = false;
+            }
+
+            return result;
+        }
+
+        #region Comptes 
+        public ObservableCollection<View_BSE_COMPTE> ComptesList { get; }
+        private BSE_COMPTE _SelectedCompte;
+        public BSE_COMPTE SelectedCompte
+        {
+            get
+            {
+                return _SelectedCompte;
+            }
+            set
+            {
+                _SelectedCompte = value;
+                this.Settings.CaisseDedier = _SelectedCompte.CODE_COMPTE;
+                OnPropertyChanged("SelectedCompte");
+            }
+        }
+        #endregion
+
         #region Magasins
+        public ObservableCollection<View_BSE_MAGASIN> MagasinsList { get; }
+
+        private View_BSE_MAGASIN _SelectedMagasin;
+        public View_BSE_MAGASIN SelectedMagasin
+        {
+            get
+            {
+                return _SelectedMagasin;
+            }
+            set
+            {
+                _SelectedMagasin = value;
+                this.Settings.DefaultMagasinVente = _SelectedMagasin.CODE;
+                OnPropertyChanged("SelectedMagasin");
+            }
+        }
         public async Task LoadMagasins ()
         {
             try
             {
+
+                // Load Magasins
                 MagasinsList.Clear();
                 var itemsC = await CrudManager.BSE_MAGASINS.GetItemsAsync();
 
@@ -136,6 +202,26 @@ namespace XpertMobileApp.ViewModels
                         SelectedMagasin = itemC;
                     }
                 }
+
+
+                // Load Comptes
+                ComptesList.Clear();
+                var itemsCmt = await CrudManager.BSE_COMPTE.GetItemsAsync();
+
+                View_BSE_COMPTE allcomptes = new View_BSE_COMPTE();
+                allcomptes.CODE_COMPTE = "";
+                allcomptes.DESIGN_COMPTE = "Aucun";
+                ComptesList.Add(allcomptes);
+
+                foreach (var itemC in itemsCmt)
+                {
+                    ComptesList.Add(itemC);
+                    if (itemC.CODE_COMPTE == Settings.CaisseDedier)
+                    {
+                        SelectedCompte = itemC;
+                    }
+                }
+
             }
             catch (Exception ex)
             {

@@ -1339,6 +1339,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Caisse dédier.
+        /// </summary>
+        internal static string sp_lbl_SalesCaisseDedier {
+            get {
+                return ResourceManager.GetString("sp_lbl_SalesCaisseDedier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Magasin de vente.
         /// </summary>
         internal static string sp_lbl_SalesMagasin {

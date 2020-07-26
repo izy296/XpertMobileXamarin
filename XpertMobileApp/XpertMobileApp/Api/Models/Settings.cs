@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using XpertMobileApp.Api.Services;
 using XpertWebApi.Models;
 
 namespace XpertMobileApp.Models
@@ -79,6 +80,7 @@ namespace XpertMobileApp.Models
         public int Mobile_Edition { get; set; }
         public bool ShouldUpdate { get; set; }
         public string DestinationVersion { get; set; }
+        public string MachineName { get; set; } = XpertHelper.GetMachineName();
         public string ClientName { get; set; } = "Nom du client ...";
 
         private string defaultMagasinVente;
@@ -96,6 +98,24 @@ namespace XpertMobileApp.Models
             get
             {
                 return defaultMagasinVente;
+            }
+        }
+
+        private string caisseDedier;
+        public string CaisseDedier
+        {
+            set
+            {
+                if (caisseDedier != value)
+                {
+                    caisseDedier = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CaisseDedier"));
+                    isModified = true;
+                }
+            }
+            get
+            {
+                return caisseDedier;
             }
         }
         public Settings() { }

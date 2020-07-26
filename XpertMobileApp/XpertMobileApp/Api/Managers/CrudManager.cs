@@ -19,6 +19,10 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_BSE_MAGASIN> BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
 
+        internal static CrudService<Settings> MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
+
+        internal static CrudService<View_BSE_COMPTE> BSE_COMPTE = new CrudService<View_BSE_COMPTE>(App.RestServiceUrl, "BSE_COMPTE", App.User.Token);
+
         internal static CrudService<View_VTE_VENTE> Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);
 
         internal static CrudService<View_PRD_AGRICULTURE> Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
@@ -45,6 +49,7 @@ namespace XpertMobileApp.Api.Managers
 
             Products = new ProductManager();
             BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
+            BSE_COMPTE = new CrudService<View_BSE_COMPTE>(App.RestServiceUrl, "BSE_COMPTE", App.User.Token);
             Stock = new StockManager();
             Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
             Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
@@ -53,6 +58,8 @@ namespace XpertMobileApp.Api.Managers
 
             ProductionInfosManager = new ProductionInfosManager();
             TiersManager = new TiersManager();
+
+            MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }
 
         public static VTE_VENTE_BLL GetVteBll(string typeVte) 

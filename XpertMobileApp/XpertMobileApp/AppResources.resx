@@ -868,4 +868,7 @@
   <data name="sp_lbl_SalesMagasin" xml:space="preserve">
     <value>Magasin de vente</value>
   </data>
+  <data name="sp_lbl_SalesCaisseDedier" xml:space="preserve">
+    <value>Caisse dédier</value>
+  </data>
 </root>

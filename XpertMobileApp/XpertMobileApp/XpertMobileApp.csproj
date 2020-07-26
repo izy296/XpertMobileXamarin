@@ -417,6 +417,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Views\Ventes Psychotrop\" />
     <Folder Include="Views\Selector\Immariculation\" />
     <Folder Include="WebView\" />

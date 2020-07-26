@@ -28,4 +28,23 @@ namespace XpertMobileApp.DAL
         public string EXERCICE { get; set; }
         public string CONFIG_LIST_GRID { get; set; }
     }
+
+    public partial class SYS_CONFIG_TIROIRS
+    {
+        public string MACHINE_NAME { get; set; }
+        public string CODE_COMPTE { get; set; }
+        public int TIROIR_LOCAL { get; set; }
+        public string TIROIR_PORT { get; set; }
+        public string TITROIR_SERVER { get; set; }
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(32)
+        public string CREATED_BY { get; set; } // varchar(32)
+        public bool DISPLAY_LOT_STOCK { get; set; } // varchar(32)
+        public bool USE_TIROIR_CAISSE { get; set; }
+        public string REPORT_FOLDER { get; set; }
+
+        public string DESIGN_COMPTE { get; set; } // varchar(32)
+        public bool IMPORT_CONFIG { get; set; } // varchar(32)
+    }
 }

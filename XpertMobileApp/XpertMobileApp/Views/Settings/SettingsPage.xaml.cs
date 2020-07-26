@@ -59,9 +59,6 @@ namespace XpertMobileApp.Views
                 await viewModel.LoadMagasins();
             }
 
-
-
-
             viewModel.LoadSettings();
         }
 
@@ -101,10 +98,10 @@ namespace XpertMobileApp.Views
             this.Navigation.PopModalAsync(true);
         }
 
-        protected void SaveSettings_Clicked(object sender, EventArgs e)
+        protected async void SaveSettings_Clicked(object sender, EventArgs e)
         {
-            viewModel.SaveSettings();
-            DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_SettingsSaved, AppResources.alrt_msg_Ok);
+            await viewModel.SaveSettings();
+            await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_SettingsSaved, AppResources.alrt_msg_Ok);
         }
 
         protected async void TestConnexion_Clicked(object sender, EventArgs e)

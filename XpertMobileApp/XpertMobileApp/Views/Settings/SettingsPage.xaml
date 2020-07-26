@@ -57,16 +57,23 @@
                         </StackLayout>
                     </Frame>
 
-                    <!-- Magasin -->
+                    <!-- Config Ventes -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout Padding="10" >
                             <Label Text="{i18n:Translate pn_Ventes}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
-
-                            <Label x:Name="lbl_ActivateNotif" Text="{i18n:Translate sp_lbl_SalesMagasin}"/>
+                            <!-- Magasin -->
+                            <Label Text="{i18n:Translate sp_lbl_SalesMagasin}"/>
                             <Picker ItemsSource="{Binding MagasinsList}"
                                 Title="{i18n:Translate cmd_SelectElement}"
                                 ItemDisplayBinding="{Binding DESIGNATION}"
                                 SelectedItem="{Binding SelectedMagasin}" />
+
+                            <!-- Caisse dédier -->
+                            <Label Text="{i18n:Translate sp_lbl_SalesCaisseDedier}"/>
+                            <Picker ItemsSource="{Binding ComptesList}"
+                                Title="{i18n:Translate cmd_SelectElement}"
+                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                                SelectedItem="{Binding SelectedCompte}" />
                         </StackLayout>
                     </Frame>
                     

@@ -1022,6 +1022,10 @@
           <source>Magasin de vente</source>
           <target state="new">Magasin de vente</target>
         </trans-unit>
+        <trans-unit id="sp_lbl_SalesCaisseDedier" translate="yes" xml:space="preserve">
+          <source>Caisse dédier</source>
+          <target state="new">Caisse dédier</target>
+        </trans-unit>
       </group>
     </body>
   </file>

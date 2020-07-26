@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.ViewModels
@@ -17,12 +18,7 @@ namespace XpertMobileApp.ViewModels
             Title = title;
             Item = new SESSION_INFO();
             Item.DATE_JOURNEE = DateTime.Now;
-            Item.POSTE_DEBUT = DeviceInfo.Name;
-            if (DeviceInfo.Idiom != null) 
-            { 
-                Item.POSTE_DEBUT += "-" + DeviceInfo.Idiom.ToString();
-            }
-            Item.POSTE_DEBUT += "-" + DeviceInfo.Manufacturer;
+            Item.POSTE_DEBUT = XpertHelper.GetMachineName();
         }
 
         internal async Task<bool?> OpenSession()
