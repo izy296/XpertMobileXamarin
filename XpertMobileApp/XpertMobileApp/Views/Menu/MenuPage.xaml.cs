@@ -29,6 +29,8 @@ namespace XpertMobileApp.Views
 
                 if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
                 {
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.VenteComptoir, Image = "", Title = AppResources.pn_VteComptoir });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Image = "", Title = AppResources.pn_session });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Image = "", Title = AppResources.pn_Commandes });

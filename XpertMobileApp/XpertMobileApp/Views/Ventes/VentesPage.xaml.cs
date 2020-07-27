@@ -17,7 +17,7 @@ namespace XpertMobileApp.Views
 	public partial class VentesPage : ContentPage
 	{
         VentesViewModel viewModel;
-        private string typeDoc = "VC";
+        private string typeDoc = VentesTypes.Vente;
         public string CurrentStream = Guid.NewGuid().ToString();
         public VentesPage(string typeVente)
 		{
@@ -31,7 +31,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
 
-            viewModel.LoadSummaries = typeVente == VentesTypes.Vente;
+            viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {

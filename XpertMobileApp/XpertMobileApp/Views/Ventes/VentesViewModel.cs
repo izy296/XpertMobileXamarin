@@ -15,14 +15,18 @@ namespace XpertMobileApp.ViewModels
 {
     public static class VentesTypes
     {
-        public static string Vente { get { return "VTE"; } }
+        public static string Vente { get { return ""; } }
         public static string VentePSYCO { get { return "PSYCO"; } }
-        public static string Livraison { get { return "Liv"; } }
+
+        public static string VenteComptoir { get { return "VC"; } }
+        public static string Livraison { get { return "BL"; } }
     }
 
     public class VentesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_VENTE>
     {
         public string TypeVente = VentesTypes.Vente;
+
+        public bool IsVtesList { get; set; } = false;
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -59,6 +63,15 @@ namespace XpertMobileApp.ViewModels
                 {
                     return "VTE_PSYCHOTROP";
                 }
+                /*
+                else if (TypeVente == VentesTypes.VenteComptoir)
+                {
+                    return "XCOM_VTE_COMPTOIR";
+                }
+                else if (TypeVente == VentesTypes.Livraison)
+                {
+                    return "XCOM_VTE_LIVRAISON";
+                }*/
                 else
                 {
                     return "VTE_VENTE";
@@ -69,16 +82,25 @@ namespace XpertMobileApp.ViewModels
         public VentesViewModel( string typeVente)
         {
             TypeVente = typeVente;
+
             Types = new ObservableCollection<BSE_DOCUMENTS_TYPE>();
             if (typeVente == VentesTypes.Vente)
             {
                 Title = AppResources.pn_Ventes;
+                IsVtesList = true;
             }
             else if(typeVente == VentesTypes.VentePSYCO)
             {
                 Title = AppResources.pn_VtePsychotrop;
             }
-
+            else if (typeVente == VentesTypes.Livraison)
+            {
+                Title = AppResources.pn_Livraison;
+            }
+            else if (typeVente == VentesTypes.VenteComptoir)
+            {
+                Title = AppResources.pn_VteComptoir;
+            }
             base.InitConstructor();
 
             if (typeVente == VentesTypes.Vente)
@@ -91,16 +113,7 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            if (TypeVente == VentesTypes.Vente)
-            {
-                this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
-                if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                    this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
-                if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
-                    this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
-                this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
-            }
-            else if (TypeVente == VentesTypes.VentePSYCO)
+            if (TypeVente == VentesTypes.VentePSYCO)
             {
                 this.AddCondition<View_VTE_PSYCHOTROP, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
                 if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
@@ -108,6 +121,21 @@ namespace XpertMobileApp.ViewModels
                 if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                     this.AddCondition<View_VTE_PSYCHOTROP, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
                 this.AddOrderBy<View_VTE_PSYCHOTROP, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+            } 
+            else
+            {
+                this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
+                if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                    this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+
+                if (!string.IsNullOrEmpty(TypeVente)) 
+                {
+                    this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_VENTE, TypeVente);
+                }
+
+                if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                    this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
+                this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
             }
             return qb.QueryInfos;
         }

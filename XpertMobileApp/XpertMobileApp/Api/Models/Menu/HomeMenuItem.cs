@@ -10,6 +10,8 @@ namespace XpertMobileApp.Models
         Encaissements,
         Tresorerie,
         Ventes,
+        Livraison,
+        VenteComptoir,
         Psychotrop,
         Achats,
         AchatsProduction,

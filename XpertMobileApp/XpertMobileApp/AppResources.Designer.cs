@@ -1060,6 +1060,15 @@ namespace XpertMobileApp {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Livraison.
+        /// </summary>
+        internal static string pn_Livraison {
+            get {
+                return ResourceManager.GetString("pn_Livraison", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Authentification.
         /// </summary>
         internal static string pn_Login {
@@ -1209,6 +1218,15 @@ namespace XpertMobileApp {
         internal static string pn_Ventes {
             get {
                 return ResourceManager.GetString("pn_Ventes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes comptoir.
+        /// </summary>
+        internal static string pn_VteComptoir {
+            get {
+                return ResourceManager.GetString("pn_VteComptoir", resourceCulture);
             }
         }
         

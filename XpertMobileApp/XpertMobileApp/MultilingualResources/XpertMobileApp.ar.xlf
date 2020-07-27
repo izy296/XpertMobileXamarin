@@ -1026,6 +1026,14 @@
           <source>Caisse dédier</source>
           <target state="new">Caisse dédier</target>
         </trans-unit>
+        <trans-unit id="pn_Livraison" translate="yes" xml:space="preserve">
+          <source>Livraison</source>
+          <target state="new">Livraison</target>
+        </trans-unit>
+        <trans-unit id="pn_VteComptoir" translate="yes" xml:space="preserve">
+          <source>Ventes comptoir</source>
+          <target state="new">Ventes comptoir</target>
+        </trans-unit>
       </group>
     </body>
   </file>

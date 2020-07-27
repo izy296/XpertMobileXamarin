@@ -5,6 +5,7 @@ using System.Text;
 using Xpert.Common.WSClient.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Api.Managers
 {
@@ -65,9 +66,14 @@ namespace XpertMobileApp.Api.Managers
         public static VTE_VENTE_BLL GetVteBll(string typeVte) 
         {
             string controlerName = "VTE_VENTE";
-            if (Constants.AppName == Apps.XPH_Mob)
+            
+            if (typeVte == VentesTypes.Livraison) 
             {
-                controlerName = "XPH_"+controlerName;
+                controlerName = "XCOM_VTE_LIVRAISON";
+            }
+            else if (typeVte == VentesTypes.VenteComptoir)
+            { 
+                controlerName = "XCOM_VTE_COMPTOIR";
             }
 
             var bll = new VTE_VENTE_BLL(controlerName);

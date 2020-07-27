@@ -53,8 +53,8 @@
 
                 <!-- Type de ventes   SelectedItem="{Binding SelectedType}" -->
                 <!-- Types -->
-                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Types}"
+                <Label  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0" IsVisible="{Binding IsVtesList}"/>
+                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Types}" IsVisible="{Binding IsVtesList}"
                      ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
                      SelectedItem="{Binding SelectedType}"
                      TextColor="Black"

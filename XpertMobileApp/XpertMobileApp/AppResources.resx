@@ -871,4 +871,10 @@
   <data name="sp_lbl_SalesCaisseDedier" xml:space="preserve">
     <value>Caisse dédier</value>
   </data>
+  <data name="pn_Livraison" xml:space="preserve">
+    <value>Livraison</value>
+  </data>
+  <data name="pn_VteComptoir" xml:space="preserve">
+    <value>Ventes comptoir</value>
+  </data>
 </root>
