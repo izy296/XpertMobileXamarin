@@ -76,10 +76,7 @@ namespace XpertMobileApp.Views
             var vte = new View_VTE_VENTE();
             vte.ID = XpertHelper.RandomString(7);
             // vte.TYPE_DOC = this.TypeDoc;
-            if (this.TypeDoc == VentesTypes.Livraison)
-            {
-                vte.TYPE_VENTE = this.TypeDoc;
-            }
+            vte.TYPE_VENTE = this.TypeDoc;
             vte.DATE_VENTE = DateTime.Now.Date;
 
             Item = vte;

@@ -65,16 +65,14 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            this.AddCondition<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
-
-            this.AddCondition<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
+            this.AddCondition<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             this.AddCondition<TRS_JOURNEES, bool>(e => e.JOURNEE_CLOTUREE, true);
 
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<TRS_JOURNEES, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
-            this.AddOrderBy<TRS_JOURNEES, DateTime?>(e => e.DATE_JOURNEE);
+            this.AddOrderBy<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE);
 
             return qb.QueryInfos;
         }

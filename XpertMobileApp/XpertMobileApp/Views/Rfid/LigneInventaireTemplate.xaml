@@ -10,7 +10,7 @@
                 <StackLayout Orientation="Vertical" Spacing="5" Padding="0">
                     <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
                         <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                        <Label Text="{Binding QTE_INVENTAIRE ,StringFormat='Qte: {0}' ,Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
+                        <Label Text="{Binding QTE_INVENTAIRE, StringFormat='Qte: {0}',Mode=TwoWay}"  TextColor="{StaticResource Accent}"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" Spacing="5" Padding="0">
                         <Label Text="{Binding LOT ,StringFormat='Lot :{0}',Mode=TwoWay}" TextColor="{StaticResource DefaultTextColor}" />
