@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             x:Class="XpertMobileApp.Views.MyCommandesPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="{Binding Title}"
+             x:Name="Ventes">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Filter" Icon="filter.png" Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout  Spacing="10" Padding="0" >
+        <!-- Filter -->
+        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                
+            <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
+            <DatePicker Grid.Column="0" Grid.Row="1" 
+                        x:Name="dp_StartDate"                        
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding StartDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
+            <DatePicker Grid.Column="1" Grid.Row="1"
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding EndDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+            <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+            <Grid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" IsEnabled="False"
+                 Clicked="btn_Select_Clicked"  HeightRequest="35"/>
+            </Grid>
+
+
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                    Clicked="btn_ApplyFilter_Clicked"/>
+
+                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                    Clicked="btn_CancelFilter_Clicked"/>
+            </StackLayout>
+            </Grid>
+        </StackLayout>
+
+        <!-- Items listing  -->
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,5"  HasShadow="True"
+                   VerticalOptions="FillAndExpand" OutlineColor="White" >
+                <ListView x:Name="ItemsListView"
+                    VerticalOptions="Fill"
+                    ItemsSource="{Binding Items}"
+                    HasUnevenRows="true" 
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement"
+                    ItemSelected="OnItemSelected">
+
+                <ListView.Behaviors>
+                    <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                </ListView.Behaviors>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                           <template:CommandesTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+                <ListView.Footer>
+                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                        <!-- set the footer to have a zero height when invisible -->
+                        <Grid.Triggers>
+                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                <Setter Property="HeightRequest" Value="0" />
+                            </Trigger>
+                        </Grid.Triggers>
+                        <!-- the loading content -->
+                        <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                    </Grid>
+                </ListView.Footer>
+
+            </ListView>
+            </Frame>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

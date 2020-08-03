@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="lp_btn_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_btn_Settings" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="lp_lbl_PassWord" xml:space="preserve">
+    <value>كلمة المرور</value>
+  </data>
+  <data name="lp_lbl_UserName" xml:space="preserve">
+    <value>إسم المستخدم</value>
+  </data>
+  <data name="lp_ph_PassWord" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="lp_ph_UserName" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="sp_btn_SaveSettings" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
+    <value>معلومات السرفر المركزي</value>
+  </data>
+  <data name="sp_lbl_PortNumber" xml:space="preserve">
+    <value>رفم المنفذ</value>
+  </data>
+  <data name="sp_lbl_SelectLanguage" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
+  <data name="sp_lbl_ServerName" xml:space="preserve">
+    <value>عنوان السرفر</value>
+  </data>
+  <data name="sp_btn_TestConnection" xml:space="preserve">
+    <value>اختبار الاتصال</value>
+  </data>
+  <data name="pn_About" xml:space="preserve">
+    <value>حول التطبيق</value>
+  </data>
+  <data name="pn_Analyses" xml:space="preserve">
+    <value>تحاليل</value>
+  </data>
+  <data name="pn_encaissement" xml:space="preserve">
+    <value>الخزينة</value>
+  </data>
+  <data name="pn_home" xml:space="preserve">
+    <value>الرئيسية</value>
+  </data>
+  <data name="alrt_msg_Cancel" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="alrt_msg_ConnectionError" xml:space="preserve">
+    <value>تعذر الوصول للخدمة</value>
+  </data>
+  <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
+    <value>تم الاتصال بنجاح</value>
+  </data>
+  <data name="alrt_msg_Info" xml:space="preserve">
+    <value>Infos</value>
+  </data>
+  <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
+    <value>يرجى ملء معلومات الخادم</value>
+  </data>
+  <data name="alrt_msg_Ok" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="alrt_msg_SaveSettings" xml:space="preserve">
+    <value>هل تريد حفظ الإعدادات</value>
+  </data>
+  <data name="alrt_msg_SettingsSaved" xml:space="preserve">
+    <value>تم حفظ الإعدادات  بنجاح</value>
+  </data>
+  <data name="alrt_msg_title_Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="abtp_lbl_AppDescription" xml:space="preserve">
+    <value>يتيح لك الوصول إلى معلوماتك بسرعة أينما كنت</value>
+  </data>
+  <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
+    <value>تم تطوير التطبيق من قبل</value>
+  </data>
+  <data name="abtp_lbl_LearnMore" xml:space="preserve">
+    <value>اقرأ المزيد ..</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>XpertSoft</value>
+  </data>
+  <data name="alrt_msg_Alert" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="app_speech_Hello" xml:space="preserve">
+    <value>مرحبا</value>
+  </data>
+  <data name="lp_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_login_WrongAcces" xml:space="preserve">
+    <value>إسم المستخدم أو كلمة المرور خاطئة!</value>
+  </data>
+  <data name="btn_Close" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="DESIGN_COMPTE" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="DATE_ENCAISS" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="DESIGN_MOTIF" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="NOM_TIERS" xml:space="preserve">
+    <value>المتعامل</value>
+  </data>
+  <data name="TOTAL_ENCAISS" xml:space="preserve">
+    <value>المبلغ الإجمالي</value>
+  </data>
+  <data name="msg_EnterTheAmount" xml:space="preserve">
+    <value>يرجى إدخال المبلغ</value>
+  </data>
+  <data name="CODE_COMPTE" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="CODE_MOTIF" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="CODE_TIERS" xml:space="preserve">
+    <value>المتعامل</value>
+  </data>
+  <data name="SOLDE_TIERS" xml:space="preserve">
+    <value>ميزان المتعامل</value>
+  </data>
+  <data name="cmd_Add" xml:space="preserve">
+    <value>إضافة</value>
+  </data>
+  <data name="cmd_Cancel" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="cmd_Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="cmd_Save" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="cmd_Update" xml:space="preserve">
+    <value>تعديل</value>
+  </data>
+  <data name="txt_Compte" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="txt_Decaiss" xml:space="preserve">
+    <value>إنفاق</value>
+  </data>
+  <data name="txt_Encaiss" xml:space="preserve">
+    <value>صرف</value>
+  </data>
+  <data name="txt_Today" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="txt_User" xml:space="preserve">
+    <value>المستخدم</value>
+  </data>
+  <data name="txt_UserSession" xml:space="preserve">
+    <value>الدورة</value>
+  </data>
+  <data name="txt_Day" xml:space="preserve">
+    <value>اليوم</value>
+  </data>
+  <data name="txt_Month" xml:space="preserve">
+    <value>الشهر</value>
+  </data>
+  <data name="txt_Week" xml:space="preserve">
+    <value>الأسبوع</value>
+  </data>
+  <data name="txt_Year" xml:space="preserve">
+    <value>السنة</value>
+  </data>
+  <data name="txt_All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="msg_Confirmation" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+  <data name="msg_DeleteConfirmation" xml:space="preserve">
+    <value>متأكد من حذف هذا العنصر؟</value>
+  </data>
+  <data name="cmd_Filter" xml:space="preserve">
+    <value>تصفية</value>
+  </data>
+  <data name="txt_Filter" xml:space="preserve">
+    <value>تصفية</value>
+  </data>
+  <data name="txt_EndDate" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="txt_StartDate" xml:space="preserve">
+    <value>تاريخ البداية</value>
+  </data>
+  <data name="txt_MarginsByseller" xml:space="preserve">
+    <value>إجمالي الهوامش لكل البائع</value>
+  </data>
+  <data name="txt_SalesBySeller" xml:space="preserve">
+    <value>إجمالي المبيعات لكل البائع</value>
+  </data>
+  <data name="ph_seachedtxt" xml:space="preserve">
+    <value>بحث ...</value>
+  </data>
+  <data name="cmd_SelectElement" xml:space="preserve">
+    <value>اختيار</value>
+  </data>
+  <data name="cmd_seach" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="cmd_Disconnect" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="txt_TotalMarginBySeler" xml:space="preserve">
+    <value>إجمالي الهوامش لكل البائع</value>
+  </data>
+  <data name="txt_TotalSalesBySeler" xml:space="preserve">
+    <value>إجمالي المبيعات لكل البائع</value>
+  </data>
+  <data name="txt_Margin" xml:space="preserve">
+    <value>هوامش الربح</value>
+  </data>
+  <data name="txt_Sales" xml:space="preserve">
+    <value>مبيعات</value>
+  </data>
+  <data name="txt_Seler" xml:space="preserve">
+    <value>بائع</value>
+  </data>
+  <data name="error_ThirdNotEmpty" xml:space="preserve">
+    <value>يرجى اختيار المتعامل</value>
+  </data>
+  <data name="error_AccountNotEmpty" xml:space="preserve">
+    <value>يرجى اختيار الحساب</value>
+  </data>
+  <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
+    <value>خطأ أثناء محاولة الاتصال</value>
+  </data>
+  <data name="err_msg_badConnexionUrl" xml:space="preserve">
+    <value>عنوان الخدمة المستعمل لتسجيل الدخول غير صحيح</value>
+  </data>
+  <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
+    <value>يرجى التحقق من معلومات المصادقة</value>
+  </data>
+  <data name="err_msg_loadingDataError" xml:space="preserve">
+    <value>خطأ في تحميل البيانات</value>
+  </data>
+  <data name="txt_Comptes" xml:space="preserve">
+    <value>الحساب</value>
+  </data>
+  <data name="txt_Encaissments" xml:space="preserve">
+    <value>صرف</value>
+  </data>
+  <data name="txt_ShouldUpdateVersion" xml:space="preserve">
+    <value>يرجى تثبيت النسخة الجديدة للتطبيق </value>
+  </data>
+  <data name="txt_UpdateVersion" xml:space="preserve">
+    <value>تحديث</value>
+  </data>
+  <data name="sp_lbl_ServiceName" xml:space="preserve">
+    <value>رابط الخدمة</value>
+  </data>
+  <data name="txt_Loading" xml:space="preserve">
+    <value>تحميل ...</value>
+  </data>
+  <data name="pn_Activation" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+  <data name="pn_Login" xml:space="preserve">
+    <value>تسجيل الدخول</value>
+  </data>
+  <data name="lp_btn_Activate" xml:space="preserve">
+    <value>تفعيل</value>
+  </data>
+  <data name="lp_lbl_ClientId" xml:space="preserve">
+    <value>معرف العميل</value>
+  </data>
+  <data name="lp_lbl_UserEemail" xml:space="preserve">
+    <value>بريد</value>
+  </data>
+  <data name="lp_ph_ClientId" xml:space="preserve">
+    <value>معرف العميل</value>
+  </data>
+  <data name="lp_ph_UserEemail" xml:space="preserve">
+    <value>بريد</value>
+  </data>
+  <data name="msg_ActivationSucces" xml:space="preserve">
+    <value>اكتمل تنشيط الترخيص الخاص بك بنجاح ، يمكنك الآن استخدام التطبيق الخاص بك.</value>
+  </data>
+  <data name="InvalidDevice" xml:space="preserve">
+    <value>تم إنشاء هذا الترخيص لجهاز آخر</value>
+  </data>
+  <data name="msg_Licence_Cracked" xml:space="preserve">
+    <value>أنت تستخدم ترخيصًا غير مرخص به</value>
+  </data>
+  <data name="msg_Licence_Expired" xml:space="preserve">
+    <value>انتهت صلاحية الترخيص الخاص بك ، يجب إعادة تنشيط طلبك</value>
+  </data>
+  <data name="msg_Licence_NotActivated" xml:space="preserve">
+    <value>التطبيق غير مفعل, يرجى ملأ الاستمارة لتفعيله.</value>
+  </data>
+  <data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
+    <value>يجب عليك السماح للتطبيق بالوصول إلى معلومات جهازك لتحديد هويتك والسماح لك بتفعيل الترخيص الخاص بك.</value>
+  </data>
+  <data name="lp_lbl_UserPhone" xml:space="preserve">
+    <value>هاتف</value>
+  </data>
+  <data name="lp_ph_UserPhone" xml:space="preserve">
+    <value>هاتف</value>
+  </data>
+  <data name="Exception_errMsg_20" xml:space="preserve">
+    <value>الخيار المطلوب غير متوفر في الترخيص الخاص بك</value>
+  </data>
+  <data name="Exception_errMsg_21" xml:space="preserve">
+    <value>زالزبون أن المنتوج المطلوب غير متوفر في حسابكم</value>
+  </data>
+  <data name="Exception_errMsg_22" xml:space="preserve">
+    <value>عدد تراخيص التطبيق نفذت في حسابكم</value>
+  </data>
+  <data name="Exception_errMsg_23" xml:space="preserve">
+    <value>تم تسجيلك من قبل</value>
+  </data>
+  <data name="msg_ExpireOn" xml:space="preserve">
+    <value>تنتهي في</value>
+  </data>
+  <data name="sp_lbl_LicenceInfos" xml:space="preserve">
+    <value>معلومات الترخيص</value>
+  </data>
+  <data name="sp_btn_RemoveLicence" xml:space="preserve">
+    <value>تعطيل الترخيص</value>
+  </data>
+  <data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
+    <value>إذا قمت بإلغاء الترخيص الخاص بك ، فلن تتمكن من استخدامه حتى إعادة تنشيطه ، فهل تريد المتابعة؟</value>
+  </data>
+  <data name="Exception_errMsg_31" xml:space="preserve">
+    <value>تم تعطيل الترخيص الخاص بك!</value>
+  </data>
+  <data name="Exception_errMsg_32" xml:space="preserve">
+    <value>لم نتمكن من العثور على ترخيصك!</value>
+  </data>
+  <data name="msg_DeactivationSucces" xml:space="preserve">
+    <value>لقد تم إلغاء تنشيط الترخيص الخاص بك بنجاح.</value>
+  </data>
+  <data name="pn_Ventes" xml:space="preserve">
+    <value>مبيعات</value>
+  </data>
+  <data name="txt_Details" xml:space="preserve">
+    <value>تفاصيل</value>
+  </data>
+  <data name="txt_header" xml:space="preserve">
+    <value>معلومات المستند</value>
+  </data>
+  <data name="txt_Client" xml:space="preserve">
+    <value>الزبون</value>
+  </data>
+  <data name="pn_Tiers" xml:space="preserve">
+    <value>المتعاملين</value>
+  </data>
+  <data name="txt_Famille" xml:space="preserve">
+    <value>الفئة</value>
+  </data>
+  <data name="txt_Types" xml:space="preserve">
+    <value>النوع</value>
+  </data>
+  <data name="pn_Produits" xml:space="preserve">
+    <value>المنتوجات</value>
+  </data>
+  <data name="txt_Arrivage" xml:space="preserve">
+    <value>الوارد</value>
+  </data>
+  <data name="txt_Qte" xml:space="preserve">
+    <value>الكمية</value>
+  </data>
+  <data name="txt_QteMin" xml:space="preserve">
+    <value>أقل كمية</value>
+  </data>
+  <data name="txt_Rotation" xml:space="preserve">
+    <value>الدوران</value>
+  </data>
+  <data name="txt_Lots" xml:space="preserve">
+    <value>الدفعة</value>
+  </data>
+  <data name="txt_Product" xml:space="preserve">
+    <value>المنتوج</value>
+  </data>
+  <data name="txt_Prix" xml:space="preserve">
+    <value>ثمن</value>
+  </data>
+  <data name="txt_Ref" xml:space="preserve">
+    <value>المرجع</value>
+  </data>
+  <data name="txt_Acommande" xml:space="preserve">
+    <value>شراء</value>
+  </data>
+  <data name="txt_CovredDays" xml:space="preserve">
+    <value>التغطية</value>
+  </data>
+  <data name="pn_RfidScan" xml:space="preserve">
+    <value>المسح الآرفيلد</value>
+  </data>
+  <data name="txt_MANQUANTS" xml:space="preserve">
+    <value>الناقصة</value>
+  </data>
+  <data name="sp_btn_SaveRfid" xml:space="preserve">
+    <value>حفظ</value>
+  </data>
+  <data name="txt_QTE_VENTE" xml:space="preserve">
+    <value>المباعة</value>
+  </data>
+  <data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
+    <value>المعلومات تم جمعها في آخر 30 يومًا</value>
+  </data>
+  <data name="pn_rfid_inventaire" xml:space="preserve">
+    <value>جرد RFID</value>
+  </data>
+  <data name="pn_Manquants" xml:space="preserve">
+    <value>المفقودة</value>
+  </data>
+  <data name="txt_Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
+    <value>هناك الكثير من الحزم لهذا الباركود!</value>
+  </data>
+  <data name="txt_Typesproduct" xml:space="preserve">
+    <value>نوع المنتوج</value>
+  </data>
+  <data name="txt_CA" xml:space="preserve">
+    <value>حجم الأعمال</value>
+  </data>
+  <data name="Alrt_failInitRFID_Reader" xml:space="preserve">
+    <value>فشلت تهيئة قارئ RFID!</value>
+  </data>
+  <data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
+    <value>أحد العلامات الممسوحة ينتمي إلى حزمة موجودة!</value>
+  </data>
+  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+    <value>هذا الرمز الشريطي لا يرمز إلى أي حزمة!</value>
+  </data>
+  <data name="btn_Clear_Text" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="btn_Filter_RFID_Text" xml:space="preserve">
+    <value>اعدادات</value>
+  </data>
+  <data name="btn_scanCodeBarre" xml:space="preserve">
+    <value>مسح الرمز الشريطى</value>
+  </data>
+  <data name="btn_scan_Rfid_Text" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="btn_Stop_Scan_Rfid" xml:space="preserve">
+    <value>توقف</value>
+  </data>
+  <data name="btn_Trait_Rfids_text" xml:space="preserve">
+    <value>معالجة</value>
+  </data>
+  <data name="lbl_Continues_scan_RFID" xml:space="preserve">
+    <value>استمرار</value>
+  </data>
+  <data name="lbl_DateInventqire_Text" xml:space="preserve">
+    <value>التاريخ :</value>
+  </data>
+  <data name="lbl_lot_txt" xml:space="preserve">
+    <value>الحزمة.</value>
+  </data>
+  <data name="lbl_NumInventaire" xml:space="preserve">
+    <value>رقم المخزون :</value>
+  </data>
+  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+    <value>لا توجد عملية جرد مفتوحة !</value>
+  </data>
+  <data name="pn_Commandes" xml:space="preserve">
+    <value>طلبات الزبائن</value>
+  </data>
+  <data name="txt_EcheanceDate" xml:space="preserve">
+    <value>الاستحقاق</value>
+  </data>
+  <data name="txt_ScanRow" xml:space="preserve">
+    <value>مسح</value>
+  </data>
+  <data name="txt_SelectRow" xml:space="preserve">
+    <value>اختيار</value>
+  </data>
+  <data name="pn_NewCommande" xml:space="preserve">
+    <value>طلب جديد</value>
+  </data>
+  <data name="cmd_remove" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
+    <value>يرجى تصحيح تاريخ الاستحقاق</value>
+  </data>
+  <data name="pn_Catalogues" xml:space="preserve">
+    <value>الفهرس</value>
+  </data>
+  <data name="txt_NewProduct" xml:space="preserve">
+    <value>جديد</value>
+  </data>
+  <data name="txt_Buy" xml:space="preserve">
+    <value>إضافة إلى سلة</value>
+  </data>
+  <data name="txt_ConfimDelProductCmd" xml:space="preserve">
+    <value>هل أنت متأكد أنك تريد إزالة هذا المنتج من السلة؟</value>
+  </data>
+  <data name="txt_Cat_CommandesSaved" xml:space="preserve">
+    <value>تم ارسال طلبك!</value>
+  </data>
+  <data name="txt_Cat_CommandesUpdated" xml:space="preserve">
+    <value>تم تعديل طلبك!</value>
+  </data>
+  <data name="pn_Achats" xml:space="preserve">
+    <value>قائمة الأوزان</value>
+  </data>
+  <data name="PESEE_ENTREE" xml:space="preserve">
+    <value>وزن الدخول</value>
+  </data>
+  <data name="PESEE_SORTIE" xml:space="preserve">
+    <value>وزن الخروج</value>
+  </data>
+  <data name="pn_NewPurchase" xml:space="preserve">
+    <value>وزنة جديدة</value>
+  </data>
+  <data name="txt_Chauffeur" xml:space="preserve">
+    <value>السائق</value>
+  </data>
+  <data name="txt_Immatriculation" xml:space="preserve">
+    <value>رقم اللوحة</value>
+  </data>
+  <data name="txt_Date" xml:space="preserve">
+    <value>التاريخ</value>
+  </data>
+  <data name="txt_Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="pn_NewReception" xml:space="preserve">
+    <value>وزنة جديدة</value>
+  </data>
+  <data name="txt_EmballageEntree" xml:space="preserve">
+    <value>الواردات</value>
+  </data>
+  <data name="txt_EmballageSortie" xml:space="preserve">
+    <value>الخروج</value>
+  </data>
+  <data name="txt_EmballageVides" xml:space="preserve">
+    <value>(فراغات)</value>
+  </data>
+  <data name="txt_agri_Prix" xml:space="preserve">
+    <value>السعر:</value>
+  </data>
+  <data name="txt_agri_QBrute" xml:space="preserve">
+    <value>الوزن الإجمالي :</value>
+  </data>
+  <data name="txt_agri_QDechet" xml:space="preserve">
+    <value>وزن النفايات :</value>
+  </data>
+  <data name="txt_agri_QNet" xml:space="preserve">
+    <value>الوزن الصافي :</value>
+  </data>
+  <data name="txt_agri_TauxDechet" xml:space="preserve">
+    <value>النفايات % :</value>
+  </data>
+  <data name="pn_MyCommandes" xml:space="preserve">
+    <value>طلباتي</value>
+  </data>
+  <data name="txt_Waiting" xml:space="preserve">
+    <value>معالجة...</value>
+  </data>
+  <data name="pn_Bordereaux" xml:space="preserve">
+    <value>ملفات الفواتير</value>
+  </data>
+  <data name="pn_VtePsychotrop" xml:space="preserve">
+    <value>مبيعات المؤثرات العقلية</value>
+  </data>
+  <data name="txt_InfosPsyco" xml:space="preserve">
+    <value>الوصفات الطبية</value>
+  </data>
+  <data name="txt_Centre" xml:space="preserve">
+    <value>المركز</value>
+  </data>
+  <data name="txt_Mnt_Cloture" xml:space="preserve">
+    <value>المبلغ الإغلاق</value>
+  </data>
+  <data name="txt_Mnt_Credits" xml:space="preserve">
+    <value>الرصيد</value>
+  </data>
+  <data name="txt_Mnt_Ecart" xml:space="preserve">
+    <value>الفارق</value>
+  </data>
+  <data name="txt_Mnt_Retour" xml:space="preserve">
+    <value>عودة</value>
+  </data>
+  <data name="txt_Mnt_TarifCHIFA" xml:space="preserve">
+    <value>أسعار الشفا</value>
+  </data>
+  <data name="txt_Mnt_VenteCash" xml:space="preserve">
+    <value>المبيعات النقدية</value>
+  </data>
+  <data name="pn_session" xml:space="preserve">
+    <value>جلسات العمل</value>
+  </data>
+  <data name="txt_Cat_DocumentSaved" xml:space="preserve">
+    <value>تم حفظ المستند بنجاح!
+          </value>
+  </data>
+  <data name="txt_Cat_DocumentUpdated" xml:space="preserve">
+    <value>التعدل تم بنجاح!</value>
+  </data>
+  <data name="tct_Type" xml:space="preserve">
+    <value>نوع</value>
+  </data>
+  <data name="txt_Categorie" xml:space="preserve">
+    <value>العائلة</value>
+  </data>
+  <data name="txt_LastName" xml:space="preserve">
+    <value>الاسم</value>
+  </data>
+  <data name="txt_Name" xml:space="preserve">
+    <value>اللقب</value>
+  </data>
+  <data name="txt_TotalAchatsByProduct" xml:space="preserve">
+    <value>الشراء حسب المنتج</value>
+  </data>
+  <data name="txt_phone" xml:space="preserve">
+    <value>الهاتف</value>
+  </data>
+  <data name="pn_AchatsProduction" xml:space="preserve">
+    <value>استقبال للإنتاج</value>
+  </data>
+  <data name="pn_OrdresProduction" xml:space="preserve">
+    <value>أوامر الإنتاج</value>
+  </data>
+  <data name="QTE_PRODUITE" xml:space="preserve">
+    <value>الكمية المنتجة</value>
+  </data>
+  <data name="txt_QteProduite" xml:space="preserve">
+    <value>الكمية المنتجة</value>
+  </data>
+  <data name="txt_QteApport" xml:space="preserve">
+    <value>الإسهام</value>
+  </data>
+  <data name="txt_Productivite" xml:space="preserve">
+    <value>الإنتاجية</value>
+  </data>
+  <data name="cmd_Verif" xml:space="preserve">
+    <value>يتم التحقق…</value>
+  </data>
+  <data name="pn_Tresorerie" xml:space="preserve">
+    <value>المالية</value>
+  </data>
+  <data name="txt_ProductRef" xml:space="preserve">
+    <value>الإسم او المرجع</value>
+  </data>
+  <data name="sp_lbl_Notifications" xml:space="preserve">
+    <value>الإشعارات</value>
+  </data>
+  <data name="sp_lbl_Activate" xml:space="preserve">
+    <value>‏‏تم التنشيط</value>
+  </data>
+  <data name="pn_Settings" xml:space="preserve">
+    <value>الإعدادات</value>
+  </data>
+  <data name="txt_Solde" xml:space="preserve">
+    <value>الرصيد</value>
+  </data>
+  <data name="sp_lbl_rinter" xml:space="preserve">
+    <value>الطابعة</value>
+  </data>
+  <data name="sp_btn_TestPrint" xml:space="preserve">
+    <value>تجريب</value>
+  </data>
+  <data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
+    <value>يرجى اختيار الطابعة</value>
+  </data>
+</root>

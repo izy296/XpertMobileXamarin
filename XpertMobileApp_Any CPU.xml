@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<iasettings>
+  <projectproperties>
+    <manufacturer>XpertSoft</manufacturer>
+    <productname>XpertMobileApp</productname>
+    <productversion>1.0.0.0</productversion>
+    <productcode>{868089b9-c0f9-4721-8021-809ad8d5db1a}</productcode>
+    <upgradecode>{871323c7-a27a-4ae1-b3fd-47c2dd4364ec}</upgradecode>
+    <language>0</language>
+    <languagename>English</languagename>
+  </projectproperties>
+  <summary>
+    <title>XpertMobileApp</title>
+    <subject>XpertMobileApp</subject>
+    <author>XpertSoft</author>
+    <summarycomments>XpertMobileApp</summarycomments>
+    <revisioncode>{b2aaaf06-6cc0-439d-bcf2-f91b61f7e5c7}</revisioncode>
+    <uacelevation>highestAvailable</uacelevation>
+  </summary>
+  <addremove>
+    <publishername>XpertSoft</publishername>
+    <contactname>XpertSoft</contactname>
+    <helplink>http://www.mywebsite.com</helplink>
+    <productupdatelink>http://www.mywebsite.com</productupdatelink>
+    <addremovecomments>All Rights Reserved</addremovecomments>
+    <iconfile />
+  </addremove>
+  <codegen>
+    <generateincludefiles>0</generateincludefiles>
+    <generatefeatures>1</generatefeatures>
+    <refreshscript>0</refreshscript>
+  </codegen>
+  <compilervariables>
+    <variables />
+  </compilervariables>
+  <build>
+    <buildtype>0</buildtype>
+    <buildasmsi>False</buildasmsi>
+    <cachesources>1</cachesources>
+  </build>
+  <targetfolders />
+  <files>
+    <filedetails filename="C:\00 - Projets\XpertSoftMobile\XpertMobileApp\XpertMobileApp.Android\bin\Debug\XpertMobileApp.Android.dll" targetlocation="$TARGETDIR_X86$" type="3" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\00 - Projets\XpertSoftMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhoneSimulator\Debug\XpertMobileApp.iOS.exe" targetlocation="$TARGETDIR$" type="2" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\00 - Projets\XpertSoftMobile\XpertMobileApp\XpertMobileApp.UWP\bin\x86\Debug\XpertMobileApp.UWP.exe" targetlocation="$TARGETDIR$" type="2" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\00 - Projets\XpertSoftMobile\XpertMobileApp\XpertMobileApp\bin\Debug\netstandard2.0\XpertMobileApp.dll" targetlocation="$TARGETDIR_X86$" type="3" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\00 - Projets\XpertSoft\Xpert.Common.WSClient\bin\Debug\netstandard2.0\Xpert.Common.WSClient.dll" targetlocation="$TARGETDIR_X86$" type="3" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+  </files>
+  <dependencies />
+  <registry />
+  <dialogtheme>
+    <themename>Official</themename>
+  </dialogtheme>
+  <authenticode>
+    <sign>0</sign>
+    <mode>0</mode>
+    <certificatefile />
+    <keyfile />
+    <pfxfile />
+    <productinfourl />
+    <authpassword />
+    <timestampurl />
+    <signall>0</signall>
+  </authenticode>
+  <compression>
+    <compressiontype>8</compressiontype>
+    <encrypt>0</encrypt>
+    <compressionpassword />
+  </compression>
+  <output>
+    <outputtype>0</outputtype>
+    <location />
+    <filename />
+    <calculatefilehash>0</calculatefilehash>
+    <refreshrevisioncode>1</refreshrevisioncode>
+  </output>
+</iasettings>

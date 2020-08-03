@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup Label="MultilingualAppToolkit">
+    <MultilingualAppToolkitVersion>4.0</MultilingualAppToolkitVersion>
+    <MultilingualFallbackLanguage>fr</MultilingualFallbackLanguage>
+    <TranslationReport Condition="'$(Configuration)' == 'Release'">true</TranslationReport>
+    <SuppressPseudoWarning Condition="'$(Configuration)' == 'Debug'">true</SuppressPseudoWarning>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <NeutralLanguage>fr</NeutralLanguage>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets" Label="MultilingualAppToolkit" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\v$(MultilingualAppToolkitVersion)\Microsoft.Multilingual.ResxResources.targets')" />
+  <Target Name="MATPrerequisite" BeforeTargets="PrepareForBuild" Condition="!Exists('$(MSBuildExtensionsPath)\Microsoft\Multilingual App Toolkit\Microsoft.Multilingual.ResxResources.targets')" Label="MultilingualAppToolkit">
+    <Warning Text="$(MSBuildProjectFile) is Multilingual build enabled, but the Multilingual App Toolkit is unavailable during the build. If building with Visual Studio, please check to ensure that toolkit is properly installed." />
+  </Target>
+  <ItemGroup>
+    <Compile Remove="Api\INetworkConnection.cs" />
+    <Compile Remove="Api\Models\Token.cs" />
+    <Compile Remove="Api\Models\XpertException.cs" />
+    <Compile Remove="Api\Services\WSApi2.cs" />
+    <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
+    <Compile Remove="Views\Items\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\Items\ItemsViewModel.cs" />
+    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\AchatsViewModel.cs" />
+    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="mainstyles.css" />
+    <EmbeddedResource Remove="Views\Items\ItemsPage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="beep.wav" />
+    <None Remove="beep03.mp3" />
+    <None Remove="beep07.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\mainstyles.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="beep.wav" />
+    <EmbeddedResource Include="beep03.mp3" />
+    <EmbeddedResource Include="beep07.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.442" />
+    <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
+    <PackageReference Include="Microcharts.Forms" Version="0.8.3-pre" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="2.3.6" />
+    <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.6.292" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.DataSource" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.GridCommon" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="17.4.0.55" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="17.4.0.55" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="4.0.0.190-beta" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.2" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.5.0.495" />
+    <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.3.7" />
+    <PackageReference Include="ZXing.Net.Mobile" Version="2.4.1" />
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="2.4.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <XliffResource Include="MultilingualResources\XpertMobileApp.ar.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
+    <XliffResource Include="MultilingualResources\XpertMobileApp.en.xlf">
+      <SubType>Designer</SubType>
+    </XliffResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="AppResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\Details\BordereauFactsPage.xaml.cs">
+      <DependentUpon>BordereauFactsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\Details\BordereauFactTemplate.xaml.cs">
+      <DependentUpon>BordereauFactTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Home\HomePage.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Achats\AchatsPage.xaml.cs">
+      <DependentUpon>AchatsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Achats\AchatFormPage.xaml.cs">
+      <DependentUpon>AchatFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Achats\PeseeTemplate.xaml.cs">
+      <DependentUpon>PeseeTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Achats\AchatsTemplate.xaml.cs">
+      <DependentUpon>AchatsTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Analyses\AchatsAnalysesPage.xaml.cs">
+      <DependentUpon>AchatsAnalysesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Analyses\sf_EncAnalysesPage.xaml.cs">
+      <DependentUpon>sf_EncAnalysesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\BordereauxPage.xaml.cs">
+      <DependentUpon>BordereauxPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Bordereaux\BordereauxTemplate.xaml.cs">
+      <DependentUpon>BordereauxTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Mes commandes\MyCommandesPage.xaml.cs">
+      <DependentUpon>MyCommandesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Mes commandes\MyCommandesTemplate.xaml.cs">
+      <DependentUpon>MyCommandesTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Paging\CommandeSummaryPage.xaml.cs">
+      <DependentUpon>CommandeSummaryPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Paging\Paging.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\ProduitLotsCDetailPage.xaml.cs">
+      <DependentUpon>ProduitLotsCDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\ProduitCDetailPage.xaml.cs">
+      <DependentUpon>ProduitCDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\List\ProduitsCPage.xaml.cs">
+      <DependentUpon>ProduitsCPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\List\Stk_RowElementCTemplate.xaml.cs">
+      <DependentUpon>Stk_RowElementCTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Catalogue produit\Stk_C_RowElementTemplate.xaml.cs">
+      <DependentUpon>Stk_C_RowElementTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\NewCommandePage.xaml.cs">
+      <DependentUpon>NewCommandePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\CommandesPage.xaml.cs">
+      <DependentUpon>CommandesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\CommandesTemplate.xaml.cs">
+      <DependentUpon>CommandesTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\CommandeDetailPage.xaml.cs">
+      <DependentUpon>CommandeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Commandes\RowCmdTemplate.xaml.cs">
+      <DependentUpon>RowCmdTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Encaissement\EncaissementDetailPage.xaml.cs">
+      <DependentUpon>EncaissementDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Licence\ActivationPage.xaml.cs">
+      <DependentUpon>ActivationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Productions\ProductionFormPage.xaml.cs">
+      <DependentUpon>ProductionFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Productions\ProductionsPage.xaml.cs">
+      <DependentUpon>ProductionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\AchatsOHPage.xaml.cs">
+      <DependentUpon>AchatsOHPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\AchatsOHTemplate.xaml.cs">
+      <DependentUpon>AchatsOHTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Reception olive huile\PeseeOHTemplate.xaml.cs">
+      <DependentUpon>PeseeOHTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manafiaa\Production\Verification\VerificationUserPage.xaml.cs">
+      <DependentUpon>VerificationUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manquants\ManquantsPage.xaml.cs">
+      <DependentUpon>ManquantsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Manquants\ManquantsTemplate.xaml.cs">
+      <DependentUpon>ManquantsTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\ProduitRefDetailPage.xaml.cs">
+      <DependentUpon>ProduitRefDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\ProduitDetailPage.xaml.cs">
+      <DependentUpon>ProduitDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Anex tiers\AnnexTiersSelector.xaml.cs">
+      <DependentUpon>AnnexTiersSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Centre\CentresSelector.xaml.cs">
+      <DependentUpon>CentresSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Chauffeur\ChauffeurSelector.xaml.cs">
+      <DependentUpon>ChauffeurSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Emballages\EmballageSelector.xaml.cs">
+      <DependentUpon>EmballageSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Lot\LotSelector.xaml.cs">
+      <DependentUpon>LotSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sessions\Open session\OpenSessionPage.xaml.cs">
+      <DependentUpon>OpenSessionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sessions\SessionDetailPage.xaml.cs">
+      <DependentUpon>SessionDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sessions\SessionTemplate.xaml.cs">
+      <DependentUpon>SessionTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Sessions\SessionsPage.xaml.cs">
+      <DependentUpon>SessionsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\LotSelectorTemplate.xaml.cs">
+      <DependentUpon>LotSelectorTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\ProduitTemplate.xaml.cs">
+      <DependentUpon>ProduitTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\ProduitsPage.xaml.cs">
+      <DependentUpon>ProduitsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\Stk_RefRowElementTemplate.xaml.cs">
+      <DependentUpon>Stk_RefRowElementTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Produits\Stk_RowElementTemplate.xaml.cs">
+      <DependentUpon>Stk_RowElementTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\RfidScanInvnetairePage.xaml.cs">
+      <DependentUpon>RfidScanInvnetairePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\RfidScanPage.xaml.cs">
+      <DependentUpon>RfidScanPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\RfidTemplate.xaml.cs">
+      <DependentUpon>RfidTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Rfid\LigneInventaireTemplate.xaml.cs">
+      <DependentUpon>LigneInventaireTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Products\ProductSelector.xaml.cs">
+      <DependentUpon>ProductSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Tiers\TiersSelector.xaml.cs">
+      <DependentUpon>TiersSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Templates\ProductSelectorTemplate.xaml.cs">
+      <DependentUpon>ProductSelectorTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Tiers\NewTiersPopupPage.xaml.cs">
+      <DependentUpon>NewTiersPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Trésorerie\TresoreriePage.xaml.cs">
+      <DependentUpon>TresoreriePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\Form\VenteFormPage.xaml.cs">
+      <DependentUpon>VenteFormPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\Validate\VteValidationPage.xaml.cs">
+      <DependentUpon>VteValidationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\VenteDetailPage.xaml.cs">
+      <DependentUpon>VenteDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\RowElementTemplate.xaml.cs">
+      <DependentUpon>RowElementTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\VenteTemplate.xaml.cs">
+      <DependentUpon>VenteTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Ventes\VentesPage.xaml.cs">
+      <DependentUpon>VentesPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Analyses\EncAnalysesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BaseElements\BasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\BaseElements\BaseView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Encaissement\EncaissementDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Encaissement\EncaissementsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Encaissement\NewEncaissementPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Lot\LotSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Sessions\Open session\OpenSessionPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Trésorerie\TresoreriePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Login\LoginPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Anex tiers\AnnexTiersSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Centre\CentresSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Chauffeur\ChauffeurSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Emballages\EmballageSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Products\ProductSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\Tiers\TiersSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoadingPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoginPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Selector\LoginSuccessPopupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Encaissement\EncaissementTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UpdatePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Ventes\Validate\VteValidationPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\AboutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Analyses\EncAnalysesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Encaissement\ItemDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Encaissement\ItemsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Encaissement\NewItemPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\HomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\Menu\MenuPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Views\Ventes Psychotrop\" />
+    <Folder Include="Views\Selector\Immariculation\" />
+    <Folder Include="WebView\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\002 - XpertSoft V5\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+  </ItemGroup>
+</Project>

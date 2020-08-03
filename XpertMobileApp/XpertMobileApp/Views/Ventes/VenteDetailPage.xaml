@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Encaissement.VenteDetailPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             Title="{Binding Title}">
+
+    <StackLayout x:Name="sl_content" Padding="5" >
+
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Grid  BackgroundColor="White" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{ Binding Item.TOTAL_PAYE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{ Binding Item.TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame x:Name="InfosPsyco" IsVisible="False" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Grid  BackgroundColor="White" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_InfosPsyco}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{Binding Item.NOM_MEDECIN, StringFormat='Medecin : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.N_CARTE, StringFormat='N.Carte : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{Binding Item.DATE_DELIVRE_CARTE_TITLE, StringFormat='Délivré le : {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
+                    <Label Text="{Binding Item.DESIGNATION_WILAYA_DELIVRE, StringFormat='Willaya : {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+        
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <ListView x:Name="ItemsListView"
+                    ItemsSource="{Binding ItemRows}"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadRowsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:RowElementTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>    

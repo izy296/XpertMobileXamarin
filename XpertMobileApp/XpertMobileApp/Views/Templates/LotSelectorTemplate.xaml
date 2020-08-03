@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Class="XpertMobileApp.Views.Templates.LotSelectorTemplate">
+    <ContentView.Content>
+
+        <StackLayout>
+            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent"
+                   HeightRequest="100">
+                <Grid  BackgroundColor="Transparent" RowSpacing="0" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" WidthRequest="115" Grid.RowSpan="2">
+                        <!--
+                        <Image Aspect="AspectFill"   >
+
+                        <Image.Source>
+                                <UriImageSource Uri="{Binding IMAGE_URL}" 
+			                    CacheValidity="14" 
+			                    CachingEnabled="False"/>
+                        </Image.Source>
+                        </Image>
+                        -->
+
+                        <ffimageloading:CachedImage 
+                                                    Aspect="AspectFit"
+			                             DownsampleToViewSize="True"                                            
+			                             Source = "{Binding IMAGE_URL}"
+                                         CacheType="None">
+                        </ffimageloading:CachedImage>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" Padding="0">
+                        <Label Text="{Binding TRUNCATED_DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding DESIGN_MAGASIN, StringFormat='Magasin : {0}'}" 
+                               FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
+                        <Label Text="{Binding LOT, StringFormat='Lot : {0}'}" 
+                               FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0"  Orientation="Horizontal" 
+                                 HorizontalOptions="Fill" Margin="0">
+
+                        <StackLayout Padding="0" Margin="0" Spacing="0" HorizontalOptions="FillAndExpand" >
+                            <Label Text="{Binding PRIX_VENTE, StringFormat='Prix : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Red" />
+                            <Label Text="{Binding QUANTITE, StringFormat='Qte : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Green" />
+                        </StackLayout>
+                        <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" HorizontalOptions="End" Margin="0,0,10,0"/>
+                        <!--
+                        <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
+                               FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>
+                        -->
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

@@ -1,0 +1,1040 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 xliff-core-1.2-transitional.xsd">
+  <file datatype="xml" source-language="fr" target-language="en" original="XPERTMOBILEAPP/APPRESOURCES.RESX" tool-id="MultilingualAppToolkit" product-name="n/a" product-version="n/a" build-num="n/a">
+    <header>
+      <tool tool-id="MultilingualAppToolkit" tool-name="Multilingual App Toolkit" tool-version="4.0.6900.0" tool-company="Microsoft" />
+    </header>
+    <body>
+      <group id="XPERTMOBILEAPP/APPRESOURCES.RESX" datatype="resx">
+        <trans-unit id="lp_btn_Login" translate="yes" xml:space="preserve">
+          <source>Connexion</source>
+          <target state="translated">Login</target>
+        </trans-unit>
+        <trans-unit id="lp_btn_Settings" translate="yes" xml:space="preserve">
+          <source></source>
+          <target state="translated"></target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_PassWord" translate="yes" xml:space="preserve">
+          <source>Mot de passe</source>
+          <target state="translated">Password</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserName" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur</source>
+          <target state="translated">UserName</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_PassWord" translate="yes" xml:space="preserve">
+          <source>Mot de passe</source>
+          <target state="translated">Password</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserName" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur</source>
+          <target state="translated">UserName</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_SaveSettings" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="translated">Save</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ConnexionInfos" translate="yes" xml:space="preserve">
+          <source>Informations de connexion</source>
+          <target state="translated">Connection informations</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_PortNumber" translate="yes" xml:space="preserve">
+          <source>Port</source>
+          <target state="translated">Port</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_SelectLanguage" translate="yes" xml:space="preserve">
+          <source>Langage</source>
+          <target state="translated">Language</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ServerName" translate="yes" xml:space="preserve">
+          <source>Serveur</source>
+          <target state="translated">Server</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_TestConnection" translate="yes" xml:space="preserve">
+          <source>Tester la connexion</source>
+          <target state="translated">Test the connection</target>
+        </trans-unit>
+        <trans-unit id="pn_About" translate="yes" xml:space="preserve">
+          <source>À propos</source>
+          <target state="translated">About</target>
+        </trans-unit>
+        <trans-unit id="pn_Analyses" translate="yes" xml:space="preserve">
+          <source>Analyses</source>
+          <target state="translated">Analyzes</target>
+        </trans-unit>
+        <trans-unit id="pn_encaissement" translate="yes" xml:space="preserve">
+          <source>Encaiss &amp; Décaiss</source>
+          <target state="needs-review-translation">Treasury</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="pn_home" translate="yes" xml:space="preserve">
+          <source>Accueil</source>
+          <target state="translated">Home</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Cancel" translate="yes" xml:space="preserve">
+          <source>Cancel</source>
+          <target state="translated">Cancel</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionError" translate="yes" xml:space="preserve">
+          <source>Connexion échoué veullez vérifier les informations du serveur</source>
+          <target state="translated">Service not reachable</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_ConnectionSucces" translate="yes" xml:space="preserve">
+          <source>Connexion établie avec succes</source>
+          <target state="translated">Connection successfully established</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Info" translate="yes" xml:space="preserve">
+          <source>Infos</source>
+          <target state="translated">Infos</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_MissingServerInfos" translate="yes" xml:space="preserve">
+          <source>Veuillez renseigner les informations du serveur</source>
+          <target state="needs-review-translation">Please fill in the server informations</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Ok" translate="yes" xml:space="preserve">
+          <source>Ok</source>
+          <target state="translated">Ok</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SaveSettings" translate="yes" xml:space="preserve">
+          <source>Voulez-vous enregistrer la configuration</source>
+          <target state="needs-review-translation">Do you ant to save the settings</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_SettingsSaved" translate="yes" xml:space="preserve">
+          <source>La configuration a été enregistrées avec succès</source>
+          <target state="needs-review-translation">Settings saved with succes</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="alrt_msg_title_Settings" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="needs-review-translation">Settings</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_AppDescription" translate="yes" xml:space="preserve">
+          <source>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</source>
+          <target state="translated">, it allows you to access your informations quickly where you are</target>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_DevelopedBy" translate="yes" xml:space="preserve">
+          <source>Application développé  par </source>
+          <target state="needs-review-translation">Application developed by</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="abtp_lbl_LearnMore" translate="yes" xml:space="preserve">
+          <source>En savoir plus ..</source>
+          <target state="translated">Learn more ..</target>
+        </trans-unit>
+        <trans-unit id="CompanyName" translate="yes" xml:space="preserve">
+          <source>XpertSoft</source>
+          <target state="translated">XpertSoft</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_Alert" translate="yes" xml:space="preserve">
+          <source>Alerte</source>
+          <target state="translated">Alert</target>
+        </trans-unit>
+        <trans-unit id="app_speech_Hello" translate="yes" xml:space="preserve">
+          <source>Bonjour</source>
+          <target state="translated">Hello</target>
+        </trans-unit>
+        <trans-unit id="lp_Login" translate="yes" xml:space="preserve">
+          <source>Login</source>
+          <target state="translated">Login</target>
+        </trans-unit>
+        <trans-unit id="lp_login_WrongAcces" translate="yes" xml:space="preserve">
+          <source>Nom d'utilisateur ou mot de passe incorrect!</source>
+          <target state="translated">Username or password incorrect!</target>
+        </trans-unit>
+        <trans-unit id="btn_Close" translate="yes" xml:space="preserve">
+          <source>Fermer</source>
+          <target state="translated">Close</target>
+        </trans-unit>
+        <trans-unit id="DESIGN_COMPTE" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="translated">Account</target>
+        </trans-unit>
+        <trans-unit id="DATE_ENCAISS" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target state="translated">Date</target>
+        </trans-unit>
+        <trans-unit id="DESIGN_MOTIF" translate="yes" xml:space="preserve">
+          <source>Motif</source>
+          <target state="translated">Reason</target>
+        </trans-unit>
+        <trans-unit id="NOM_TIERS" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="translated">Third</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_ENCAISS" translate="yes" xml:space="preserve">
+          <source>Total encaissé</source>
+          <target state="translated">Total cashed</target>
+        </trans-unit>
+        <trans-unit id="msg_EnterTheAmount" translate="yes" xml:space="preserve">
+          <source>Entrer le montant s'il vous plaît </source>
+          <target state="needs-review-translation">Please enter the amount</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="CODE_COMPTE" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="translated">Account</target>
+        </trans-unit>
+        <trans-unit id="CODE_MOTIF" translate="yes" xml:space="preserve">
+          <source>Motif</source>
+          <target state="translated">Reason</target>
+        </trans-unit>
+        <trans-unit id="CODE_TIERS" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="translated">Third</target>
+        </trans-unit>
+        <trans-unit id="SOLDE_TIERS" translate="yes" xml:space="preserve">
+          <source>Solde tiers</source>
+          <target state="translated">Balance third</target>
+        </trans-unit>
+        <trans-unit id="cmd_Add" translate="yes" xml:space="preserve">
+          <source>Ajouter</source>
+          <target state="translated">Add</target>
+        </trans-unit>
+        <trans-unit id="cmd_Cancel" translate="yes" xml:space="preserve">
+          <source>Annuler</source>
+          <target state="translated">Cancel</target>
+        </trans-unit>
+        <trans-unit id="cmd_Delete" translate="yes" xml:space="preserve">
+          <source>Supprimer</source>
+          <target state="translated">Delete</target>
+        </trans-unit>
+        <trans-unit id="cmd_Save" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="translated">Save</target>
+        </trans-unit>
+        <trans-unit id="cmd_Update" translate="yes" xml:space="preserve">
+          <source>Modifier</source>
+          <target state="translated">Update</target>
+        </trans-unit>
+        <trans-unit id="txt_Compte" translate="yes" xml:space="preserve">
+          <source>Compte</source>
+          <target state="translated">Account</target>
+        </trans-unit>
+        <trans-unit id="txt_Decaiss" translate="yes" xml:space="preserve">
+          <source>Décaissement</source>
+          <target state="translated">Disbursement</target>
+        </trans-unit>
+        <trans-unit id="txt_Encaiss" translate="yes" xml:space="preserve">
+          <source>Encaissement</source>
+          <target state="translated">Receipt</target>
+        </trans-unit>
+        <trans-unit id="txt_Today" translate="yes" xml:space="preserve">
+          <source>Aujourd'hui</source>
+          <target state="translated">Today</target>
+        </trans-unit>
+        <trans-unit id="txt_User" translate="yes" xml:space="preserve">
+          <source>Utilisateur</source>
+          <target state="translated">User</target>
+        </trans-unit>
+        <trans-unit id="txt_UserSession" translate="yes" xml:space="preserve">
+          <source>Session</source>
+          <target state="translated">Session</target>
+        </trans-unit>
+        <trans-unit id="txt_Day" translate="yes" xml:space="preserve">
+          <source>Jour</source>
+          <target state="translated">Day</target>
+        </trans-unit>
+        <trans-unit id="txt_Month" translate="yes" xml:space="preserve">
+          <source>Mois</source>
+          <target state="translated">Month</target>
+        </trans-unit>
+        <trans-unit id="txt_Week" translate="yes" xml:space="preserve">
+          <source>Semaine</source>
+          <target state="translated">Week</target>
+        </trans-unit>
+        <trans-unit id="txt_Year" translate="yes" xml:space="preserve">
+          <source>Année</source>
+          <target state="translated">Year</target>
+        </trans-unit>
+        <trans-unit id="txt_All" translate="yes" xml:space="preserve">
+          <source>Tous</source>
+          <target state="translated">All</target>
+        </trans-unit>
+        <trans-unit id="msg_Confirmation" translate="yes" xml:space="preserve">
+          <source>Confirmation</source>
+          <target state="translated">Confirmation</target>
+        </trans-unit>
+        <trans-unit id="msg_DeleteConfirmation" translate="yes" xml:space="preserve">
+          <source>Voulez-vous vraiment supprimer cet élément ?</source>
+          <target state="translated">Are you sure you want to delete this item?</target>
+        </trans-unit>
+        <trans-unit id="cmd_Filter" translate="yes" xml:space="preserve">
+          <source>Filtre</source>
+          <target state="needs-review-translation">Filter</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_Filter" translate="yes" xml:space="preserve">
+          <source>Filtrer</source>
+          <target state="translated">Filtrer</target>
+        </trans-unit>
+        <trans-unit id="txt_EndDate" translate="yes" xml:space="preserve">
+          <source>Date fin</source>
+          <target state="translated">End date</target>
+        </trans-unit>
+        <trans-unit id="txt_StartDate" translate="yes" xml:space="preserve">
+          <source>Date début</source>
+          <target state="translated">Start date</target>
+        </trans-unit>
+        <trans-unit id="txt_MarginsByseller" translate="yes" xml:space="preserve">
+          <source>Marges par vendeur</source>
+          <target state="translated">Margins by seller</target>
+        </trans-unit>
+        <trans-unit id="txt_SalesBySeller" translate="yes" xml:space="preserve">
+          <source>Ventes par vendeur</source>
+          <target state="translated">Sales by seller</target>
+        </trans-unit>
+        <trans-unit id="ph_seachedtxt" translate="yes" xml:space="preserve">
+          <source>Rechercher ....</source>
+          <target state="translated">Search ...</target>
+        </trans-unit>
+        <trans-unit id="cmd_SelectElement" translate="yes" xml:space="preserve">
+          <source>Sélectionner</source>
+          <target state="translated">Select</target>
+        </trans-unit>
+        <trans-unit id="cmd_seach" translate="yes" xml:space="preserve">
+          <source>Chercher</source>
+          <target state="translated">Search</target>
+        </trans-unit>
+        <trans-unit id="cmd_Disconnect" translate="yes" xml:space="preserve">
+          <source>Déconnexion</source>
+          <target state="translated">Sign Out</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalMarginBySeler" translate="yes" xml:space="preserve">
+          <source>Total marges par vendeur</source>
+          <target state="translated">Total margins by seller</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalSalesBySeler" translate="yes" xml:space="preserve">
+          <source>Total ventes par vendeur</source>
+          <target state="translated">Total sales by seller</target>
+        </trans-unit>
+        <trans-unit id="txt_Margin" translate="yes" xml:space="preserve">
+          <source>Marges</source>
+          <target state="translated">Margins</target>
+        </trans-unit>
+        <trans-unit id="txt_Sales" translate="yes" xml:space="preserve">
+          <source>Ventes</source>
+          <target state="translated">Sales</target>
+        </trans-unit>
+        <trans-unit id="txt_Seler" translate="yes" xml:space="preserve">
+          <source>Vendeur</source>
+          <target state="translated">Seller</target>
+        </trans-unit>
+        <trans-unit id="error_ThirdNotEmpty" translate="yes" xml:space="preserve">
+          <source>Veuillez sélectionner un tiers</source>
+          <target state="translated">Please select a third</target>
+        </trans-unit>
+        <trans-unit id="error_AccountNotEmpty" translate="yes" xml:space="preserve">
+          <source>Veuillez sélectionner un compte</source>
+          <target state="translated">Please select an account</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_CantTestConnexionSettings" translate="yes" xml:space="preserve">
+          <source>Erreur lors de la tentative de connexion</source>
+          <target state="translated">Error while trying to connect</target>
+        </trans-unit>
+        <trans-unit id="err_msg_badConnexionUrl" translate="yes" xml:space="preserve">
+          <source>L'url de connexion est incorrecte</source>
+          <target state="translated">The login URL is incorrect</target>
+        </trans-unit>
+        <trans-unit id="err_msg_IncorrectLoginInfos" translate="yes" xml:space="preserve">
+          <source>Veuillez vérifier les informations d'authentification</source>
+          <target state="translated">Please check your credentials</target>
+        </trans-unit>
+        <trans-unit id="err_msg_loadingDataError" translate="yes" xml:space="preserve">
+          <source>Erreur de chargement de données</source>
+          <target state="translated">Error loading data</target>
+        </trans-unit>
+        <trans-unit id="txt_Comptes" translate="yes" xml:space="preserve">
+          <source>Comptes</source>
+          <target state="translated">Accounts</target>
+        </trans-unit>
+        <trans-unit id="txt_Encaissments" translate="yes" xml:space="preserve">
+          <source>Encaissements</source>
+          <target state="translated">Receipts</target>
+        </trans-unit>
+        <trans-unit id="txt_ShouldUpdateVersion" translate="yes" xml:space="preserve">
+          <source>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</source>
+          <target state="translated">Please update your application to continue using it</target>
+        </trans-unit>
+        <trans-unit id="txt_UpdateVersion" translate="yes" xml:space="preserve">
+          <source>Mettre à jour</source>
+          <target state="translated">Update</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_ServiceName" translate="yes" xml:space="preserve">
+          <source>Url du service</source>
+          <target state="translated">Service url</target>
+        </trans-unit>
+        <trans-unit id="txt_Loading" translate="yes" xml:space="preserve">
+          <source>Chargement ...</source>
+          <target state="translated">Loading ...</target>
+        </trans-unit>
+        <trans-unit id="pn_Activation" translate="yes" xml:space="preserve">
+          <source>Activation</source>
+          <target state="translated">Activation</target>
+        </trans-unit>
+        <trans-unit id="pn_Login" translate="yes" xml:space="preserve">
+          <source>Authentification</source>
+          <target state="translated">Authentication</target>
+        </trans-unit>
+        <trans-unit id="lp_btn_Activate" translate="yes" xml:space="preserve">
+          <source>Activer</source>
+          <target state="translated">Activate</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_ClientId" translate="yes" xml:space="preserve">
+          <source>Identifiant client</source>
+          <target state="translated">Customer ID</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserEemail" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="translated">Email</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_ClientId" translate="yes" xml:space="preserve">
+          <source>Identifiant client</source>
+          <target state="translated">Customer ID</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserEemail" translate="yes" xml:space="preserve">
+          <source>Email</source>
+          <target state="translated">Email</target>
+        </trans-unit>
+        <trans-unit id="msg_ActivationSucces" translate="yes" xml:space="preserve">
+          <source>L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</source>
+          <target state="translated">Activation of your license has been successfully completed, you can now use your application.</target>
+        </trans-unit>
+        <trans-unit id="InvalidDevice" translate="yes" xml:space="preserve">
+          <source>Cette licence est généré pour un autre appareil</source>
+          <target state="translated">This license is generated for another device</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_Cracked" translate="yes" xml:space="preserve">
+          <source>Vous utilisez une licence crackée</source>
+          <target state="translated">You are using a cracked license</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_Expired" translate="yes" xml:space="preserve">
+          <source>Votre licence a expiré, vous devez réactiver votre application</source>
+          <target state="translated">Your license has expired, you must reactivate your application</target>
+        </trans-unit>
+        <trans-unit id="msg_Licence_NotActivated" translate="yes" xml:space="preserve">
+          <source>Votre application n'est pas encore activée, veuillez procéder a son activation.</source>
+          <target state="translated">Your application is not yet activated, please fill in the following form to activate your application.</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_MissingDeviceInfos" translate="yes" xml:space="preserve">
+          <source>Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</source>
+          <target state="translated">You must allow the app to access your device information to identify you and allow you to activate your license.</target>
+        </trans-unit>
+        <trans-unit id="lp_lbl_UserPhone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="translated">Phone</target>
+        </trans-unit>
+        <trans-unit id="lp_ph_UserPhone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="translated">Phone</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_20" translate="yes" xml:space="preserve">
+          <source>L'option demandé n'est pas disponible dans votre licence</source>
+          <target state="translated">The requested option is not available in your license</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_21" translate="yes" xml:space="preserve">
+          <source>Client avec produit concerné non existant</source>
+          <target state="translated">Customer or relevant product does not exist</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_22" translate="yes" xml:space="preserve">
+          <source>Nombre de licences expiré</source>
+          <target state="translated">Number of licenses expired</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_23" translate="yes" xml:space="preserve">
+          <source>Vous êtes déjà enregistré</source>
+          <target state="translated">You are already registered</target>
+        </trans-unit>
+        <trans-unit id="msg_ExpireOn" translate="yes" xml:space="preserve">
+          <source>Expire le</source>
+          <target state="translated">Expires on</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_LicenceInfos" translate="yes" xml:space="preserve">
+          <source>Information sur la licence</source>
+          <target state="translated">License Information</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_RemoveLicence" translate="yes" xml:space="preserve">
+          <source>Désactiver la licence</source>
+          <target state="translated">Disable license</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_CondifirmDesactivateLicence" translate="yes" xml:space="preserve">
+          <source>Si vous désactivé votre licence vous ne pourrez plus l'utiliser jusqu'a sa reactivation, voulez vous continuer ?</source>
+          <target state="translated">If you deactivate your license you will not be able to use it until its reactivation, do you want to continue?</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_31" translate="yes" xml:space="preserve">
+          <source>Votre licence a déjà été désactivé!</source>
+          <target state="translated">Your license has already been disabled!</target>
+        </trans-unit>
+        <trans-unit id="Exception_errMsg_32" translate="yes" xml:space="preserve">
+          <source>Nous n'avons pas pu trouver votre licence!</source>
+          <target state="translated">We could not find your license!</target>
+        </trans-unit>
+        <trans-unit id="msg_DeactivationSucces" translate="yes" xml:space="preserve">
+          <source>La désactivation de votre licence s'est déroulé avec succes.</source>
+          <target state="translated">The deactivation of your license has been successful.</target>
+        </trans-unit>
+        <trans-unit id="pn_Ventes" translate="yes" xml:space="preserve">
+          <source>Ventes</source>
+          <target state="translated">Sales</target>
+        </trans-unit>
+        <trans-unit id="txt_Details" translate="yes" xml:space="preserve">
+          <source>Détails</source>
+          <target state="translated">Details</target>
+        </trans-unit>
+        <trans-unit id="txt_header" translate="yes" xml:space="preserve">
+          <source>Entête</source>
+          <target state="translated">Heading</target>
+        </trans-unit>
+        <trans-unit id="txt_Client" translate="yes" xml:space="preserve">
+          <source>Client</source>
+          <target state="translated">Customer</target>
+        </trans-unit>
+        <trans-unit id="pn_Tiers" translate="yes" xml:space="preserve">
+          <source>Tiers</source>
+          <target state="translated">Thrid</target>
+        </trans-unit>
+        <trans-unit id="txt_Famille" translate="yes" xml:space="preserve">
+          <source>Famille</source>
+          <target state="translated">Category</target>
+        </trans-unit>
+        <trans-unit id="txt_Types" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target state="translated">Type</target>
+        </trans-unit>
+        <trans-unit id="pn_Produits" translate="yes" xml:space="preserve">
+          <source>Produits</source>
+          <target state="translated">Products</target>
+        </trans-unit>
+        <trans-unit id="txt_Arrivage" translate="yes" xml:space="preserve">
+          <source>Arrivage</source>
+          <target state="needs-review-translation">Arrival</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_Qte" translate="yes" xml:space="preserve">
+          <source>Qté</source>
+          <target state="needs-review-translation">Qte</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_QteMin" translate="yes" xml:space="preserve">
+          <source>Qté Min</source>
+          <target state="needs-review-translation">QMin</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_Rotation" translate="yes" xml:space="preserve">
+          <source>Rotation</source>
+          <target state="translated">Rotation</target>
+        </trans-unit>
+        <trans-unit id="txt_Lots" translate="yes" xml:space="preserve">
+          <source>Lots</source>
+          <target state="translated">Lots</target>
+        </trans-unit>
+        <trans-unit id="txt_Product" translate="yes" xml:space="preserve">
+          <source>Produit</source>
+          <target state="translated">Product</target>
+        </trans-unit>
+        <trans-unit id="txt_Prix" translate="yes" xml:space="preserve">
+          <source>Prix</source>
+          <target state="translated">Price</target>
+        </trans-unit>
+        <trans-unit id="txt_Ref" translate="yes" xml:space="preserve">
+          <source>Réf</source>
+          <target state="translated">Ref</target>
+        </trans-unit>
+        <trans-unit id="txt_Acommande" translate="yes" xml:space="preserve">
+          <source>A Cmdé</source>
+          <target state="translated">To order</target>
+        </trans-unit>
+        <trans-unit id="txt_CovredDays" translate="yes" xml:space="preserve">
+          <source>Couverts</source>
+          <target state="translated">Covered</target>
+        </trans-unit>
+        <trans-unit id="pn_RfidScan" translate="yes" xml:space="preserve">
+          <source>Rfid scan</source>
+          <target state="translated">Rfid scan</target>
+        </trans-unit>
+        <trans-unit id="txt_MANQUANTS" translate="yes" xml:space="preserve">
+          <source>Manquants</source>
+          <target state="translated">Missing</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_SaveRfid" translate="yes" xml:space="preserve">
+          <source>Enregistrer</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Save</target>
+        </trans-unit>
+        <trans-unit id="txt_QTE_VENTE" translate="yes" xml:space="preserve">
+          <source>Vendu</source>
+          <target state="translated">Sold</target>
+        </trans-unit>
+        <trans-unit id="txt_InfosProdNbrDaysAnalysed" translate="yes" xml:space="preserve">
+          <source>Infos collectées au cours des 30 derniers jours</source>
+          <target state="translated">Informations collected during the last 30 days</target>
+        </trans-unit>
+        <trans-unit id="pn_rfid_inventaire" translate="yes" xml:space="preserve">
+          <source>Inventaire RFID</source>
+          <target state="translated">RFID inventory</target>
+        </trans-unit>
+        <trans-unit id="pn_Manquants" translate="yes" xml:space="preserve">
+          <source>Manquants</source>
+          <target state="translated">Missing</target>
+        </trans-unit>
+        <trans-unit id="txt_Search" translate="yes" xml:space="preserve">
+          <source>Recherche</source>
+          <target state="translated">Search</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_multiLotForCodeBarre" translate="yes" xml:space="preserve">
+          <source>Il y a plusieurs lots pour ce code à barres !</source>
+          <target state="needs-review-translation">there are several lots for this barcode!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_Typesproduct" translate="yes" xml:space="preserve">
+          <source>Type de produit</source>
+          <target state="translated">Type of product</target>
+        </trans-unit>
+        <trans-unit id="txt_CA" translate="yes" xml:space="preserve">
+          <source>Chiffre d'affaires</source>
+          <target state="translated">Turnover</target>
+        </trans-unit>
+        <trans-unit id="Alrt_failInitRFID_Reader" translate="yes" xml:space="preserve">
+          <source>L'initialisation du lecteur RFID a échoué!</source>
+          <target state="translated">Initialization of the RFID reader failed!</target>
+        </trans-unit>
+        <trans-unit id="Alert_Deplicatrd_Rfid_Tages" translate="yes" xml:space="preserve">
+          <source>L'une des Tags scannée est déjà affectées a un lots !</source>
+          <target state="translated">One of the scanned tags is already assigned to a batch!</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NotFondLotFromCodeBarre" translate="yes" xml:space="preserve">
+          <source>Pas de lot correspondants a ce code à barre !</source>
+          <target state="needs-review-translation">No batch matches this bar code!</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="btn_Clear_Text" translate="yes" xml:space="preserve">
+          <source>Effacer</source>
+          <target state="translated">Delete</target>
+        </trans-unit>
+        <trans-unit id="btn_Filter_RFID_Text" translate="yes" xml:space="preserve">
+          <source>Config</source>
+          <target state="translated">Config</target>
+        </trans-unit>
+        <trans-unit id="btn_scanCodeBarre" translate="yes" xml:space="preserve">
+          <source>Scanner Code à barre</source>
+          <target state="translated">Scan Bar Code</target>
+        </trans-unit>
+        <trans-unit id="btn_scan_Rfid_Text" translate="yes" xml:space="preserve">
+          <source>Balayage</source>
+          <target state="translated">Scanning</target>
+        </trans-unit>
+        <trans-unit id="btn_Stop_Scan_Rfid" translate="yes" xml:space="preserve">
+          <source>Arréter</source>
+          <target state="translated">Stop</target>
+        </trans-unit>
+        <trans-unit id="btn_Trait_Rfids_text" translate="yes" xml:space="preserve">
+          <source>Traitement</source>
+          <target state="translated">Processing</target>
+        </trans-unit>
+        <trans-unit id="lbl_Continues_scan_RFID" translate="yes" xml:space="preserve">
+          <source>Continue</source>
+          <target state="translated">Continue</target>
+        </trans-unit>
+        <trans-unit id="lbl_DateInventqire_Text" translate="yes" xml:space="preserve">
+          <source>Date :</source>
+          <target state="translated">Date :</target>
+        </trans-unit>
+        <trans-unit id="lbl_lot_txt" translate="yes" xml:space="preserve">
+          <source>Lot.</source>
+          <target state="translated">Batch.</target>
+        </trans-unit>
+        <trans-unit id="lbl_NumInventaire" translate="yes" xml:space="preserve">
+          <source>Num inventaire :</source>
+          <target state="translated">Num inventory :</target>
+        </trans-unit>
+        <trans-unit id="alrt_notOpenInventary_Text" translate="yes" xml:space="preserve">
+          <source>Pas d'inventaire ouvert !</source>
+          <target state="translated">No inventory open!</target>
+        </trans-unit>
+        <trans-unit id="pn_Commandes" translate="yes" xml:space="preserve">
+          <source>Commandes clients</source>
+          <target state="needs-review-translation">Orders</target>
+          <note from="MultilingualUpdate" annotates="source" priority="2">Please verify the translation’s accuracy as the source string was updated after it was translated.</note>
+        </trans-unit>
+        <trans-unit id="txt_EcheanceDate" translate="yes" xml:space="preserve">
+          <source>Échéance</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Due</target>
+        </trans-unit>
+        <trans-unit id="txt_ScanRow" translate="yes" xml:space="preserve">
+          <source>Scanner</source>
+          <target state="new">Scanner</target>
+        </trans-unit>
+        <trans-unit id="txt_SelectRow" translate="yes" xml:space="preserve">
+          <source>Sélectionner</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Select</target>
+        </trans-unit>
+        <trans-unit id="pn_NewCommande" translate="yes" xml:space="preserve">
+          <source>Nouvelle commande</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">New Order</target>
+        </trans-unit>
+        <trans-unit id="cmd_remove" translate="yes" xml:space="preserve">
+          <source>Enlever</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Remove</target>
+        </trans-unit>
+        <trans-unit id="error_DateShouldBeGreaterThanToday" translate="yes" xml:space="preserve">
+          <source>Veuillez corriger la date d'échéance</source>
+          <target state="new">Veuillez corriger la date d'échéance</target>
+        </trans-unit>
+        <trans-unit id="pn_Catalogues" translate="yes" xml:space="preserve">
+          <source>Catalogue</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Catalog</target>
+        </trans-unit>
+        <trans-unit id="txt_NewProduct" translate="yes" xml:space="preserve">
+          <source>Nouveaux</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">New</target>
+        </trans-unit>
+        <trans-unit id="txt_Buy" translate="yes" xml:space="preserve">
+          <source>Ajouter au panier</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Add to Cart</target>
+        </trans-unit>
+        <trans-unit id="txt_ConfimDelProductCmd" translate="yes" xml:space="preserve">
+          <source>Voulez vous vraiment supprimer ce produit du panier ?</source>
+          <target state="new">Voulez vous vraiment supprimer ce produit du panier ?</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_CommandesSaved" translate="yes" xml:space="preserve">
+          <source>Votre commande a bien été envoyée!</source>
+          <target state="new">Votre commande a bien été envoyée!</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_CommandesUpdated" translate="yes" xml:space="preserve">
+          <source>Votre commande a bien été modifiée!</source>
+          <target state="new">Votre commande a bien été modifiée!</target>
+        </trans-unit>
+        <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
+          <source>Liste des pesées</source>
+          <target state="new">Liste des pesées</target>
+        </trans-unit>
+        <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
+          <source>Pesée d'entrée</source>
+          <target state="new">Pesée d'entrée</target>
+        </trans-unit>
+        <trans-unit id="PESEE_SORTIE" translate="yes" xml:space="preserve">
+          <source>Pesée de sortie</source>
+          <target state="new">Pesée de sortie</target>
+        </trans-unit>
+        <trans-unit id="pn_NewPurchase" translate="yes" xml:space="preserve">
+          <source>Nouvelle pesée</source>
+          <target state="new">Nouvelle pesée</target>
+        </trans-unit>
+        <trans-unit id="txt_Chauffeur" translate="yes" xml:space="preserve">
+          <source>Chauffeur</source>
+          <target state="new">Chauffeur</target>
+        </trans-unit>
+        <trans-unit id="txt_Immatriculation" translate="yes" xml:space="preserve">
+          <source>Matricule</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Personnel Number</target>
+        </trans-unit>
+        <trans-unit id="txt_Date" translate="yes" xml:space="preserve">
+          <source>Date</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">What's the date today?</target>
+        </trans-unit>
+        <trans-unit id="txt_Status" translate="yes" xml:space="preserve">
+          <source>État</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Status</target>
+        </trans-unit>
+        <trans-unit id="pn_NewReception" translate="yes" xml:space="preserve">
+          <source>Nouvelle pesée</source>
+          <target state="new">Nouvelle pesée</target>
+        </trans-unit>
+        <trans-unit id="txt_EmballageEntree" translate="yes" xml:space="preserve">
+          <source>Entrées</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Inputs</target>
+        </trans-unit>
+        <trans-unit id="txt_EmballageSortie" translate="yes" xml:space="preserve">
+          <source>Sortie</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Output</target>
+        </trans-unit>
+        <trans-unit id="txt_EmballageVides" translate="yes" xml:space="preserve">
+          <source>Vides</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Blank</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_Prix" translate="yes" xml:space="preserve">
+          <source>Prix :</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Price</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QBrute" translate="yes" xml:space="preserve">
+          <source>Q.Brute :</source>
+          <target state="new">Q.Brute :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QDechet" translate="yes" xml:space="preserve">
+          <source>Q.Déchet :</source>
+          <target state="new">Q.Déchet :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_QNet" translate="yes" xml:space="preserve">
+          <source>Q.Net :</source>
+          <target state="new">Q.Net :</target>
+        </trans-unit>
+        <trans-unit id="txt_agri_TauxDechet" translate="yes" xml:space="preserve">
+          <source>Déchet % :</source>
+          <target state="new">Déchet % :</target>
+        </trans-unit>
+        <trans-unit id="pn_MyCommandes" translate="yes" xml:space="preserve">
+          <source>Mes commandes</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">My orders</target>
+        </trans-unit>
+        <trans-unit id="txt_Waiting" translate="yes" xml:space="preserve">
+          <source>Traitement ...</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Processing</target>
+        </trans-unit>
+        <trans-unit id="pn_Bordereaux" translate="yes" xml:space="preserve">
+          <source>Bordereaux</source>
+          <target state="new">Bordereaux</target>
+        </trans-unit>
+        <trans-unit id="pn_VtePsychotrop" translate="yes" xml:space="preserve">
+          <source>Ventes psychotropes</source>
+          <target state="new">Ventes psychotropes</target>
+        </trans-unit>
+        <trans-unit id="txt_InfosPsyco" translate="yes" xml:space="preserve">
+          <source>Ordonnancier</source>
+          <target state="new">Ordonnancier</target>
+        </trans-unit>
+        <trans-unit id="txt_Centre" translate="yes" xml:space="preserve">
+          <source>Centre</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Center</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Cloture" translate="yes" xml:space="preserve">
+          <source>Montant clôture</source>
+          <target state="new">Montant clôture</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Credits" translate="yes" xml:space="preserve">
+          <source>Crédits</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Credits</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Ecart" translate="yes" xml:space="preserve">
+          <source>ÉCART</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">VARIANCE</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_Retour" translate="yes" xml:space="preserve">
+          <source>Retour</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Back</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_TarifCHIFA" translate="yes" xml:space="preserve">
+          <source>Tarif Chifa</source>
+          <target state="new">Tarif Chifa</target>
+        </trans-unit>
+        <trans-unit id="txt_Mnt_VenteCash" translate="yes" xml:space="preserve">
+          <source>Vente cash</source>
+          <target state="new">Vente cash</target>
+        </trans-unit>
+        <trans-unit id="pn_session" translate="yes" xml:space="preserve">
+          <source>Sessions</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Rounds</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_DocumentSaved" translate="yes" xml:space="preserve">
+          <source>Document enregistré avec succès !
+</source>
+          <target state="new">Document enregistré avec succès !
+</target>
+        </trans-unit>
+        <trans-unit id="txt_Cat_DocumentUpdated" translate="yes" xml:space="preserve">
+          <source>Document modifié avec succès !</source>
+          <target state="new">Document modifié avec succès !</target>
+        </trans-unit>
+        <trans-unit id="tct_Type" translate="yes" xml:space="preserve">
+          <source>Type</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Type name</target>
+        </trans-unit>
+        <trans-unit id="txt_Categorie" translate="yes" xml:space="preserve">
+          <source>Famille</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Family</target>
+        </trans-unit>
+        <trans-unit id="txt_LastName" translate="yes" xml:space="preserve">
+          <source>Prénom</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">First Name</target>
+        </trans-unit>
+        <trans-unit id="txt_Name" translate="yes" xml:space="preserve">
+          <source>Nom</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Last Name</target>
+        </trans-unit>
+        <trans-unit id="txt_TotalAchatsByProduct" translate="yes" xml:space="preserve">
+          <source>Achat par produit</source>
+          <target state="new">Achat par produit</target>
+        </trans-unit>
+        <trans-unit id="txt_phone" translate="yes" xml:space="preserve">
+          <source>Téléphone</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Phone</target>
+        </trans-unit>
+        <trans-unit id="pn_AchatsProduction" translate="yes" xml:space="preserve">
+          <source>Réception pour production</source>
+          <target state="new">Réception pour production</target>
+        </trans-unit>
+        <trans-unit id="pn_OrdresProduction" translate="yes" xml:space="preserve">
+          <source>Ordres de production</source>
+          <target state="new">Ordres de production</target>
+        </trans-unit>
+        <trans-unit id="QTE_PRODUITE" translate="yes" xml:space="preserve">
+          <source>Qte Produite</source>
+          <target state="new">Qte Produite</target>
+        </trans-unit>
+        <trans-unit id="txt_QteProduite" translate="yes" xml:space="preserve">
+          <source>Qte Produite</source>
+          <target state="new">Qte Produite</target>
+        </trans-unit>
+        <trans-unit id="txt_QteApport" translate="yes" xml:space="preserve">
+          <source>Apport</source>
+          <target state="new">Apport</target>
+        </trans-unit>
+        <trans-unit id="txt_Productivite" translate="yes" xml:space="preserve">
+          <source>Productivité</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Productivity</target>
+        </trans-unit>
+        <trans-unit id="cmd_Verif" translate="yes" xml:space="preserve">
+          <source>Vérification</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Checking</target>
+        </trans-unit>
+        <trans-unit id="pn_Tresorerie" translate="yes" xml:space="preserve">
+          <source>Trésorerie</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Cash Flow</target>
+        </trans-unit>
+        <trans-unit id="txt_ProductRef" translate="yes" xml:space="preserve">
+          <source>Nom/Réf</source>
+          <target state="new">Nom/Réf</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_Notifications" translate="yes" xml:space="preserve">
+          <source>Notifications</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Notifications</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_Activate" translate="yes" xml:space="preserve">
+          <source>Activé</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Enabled</target>
+        </trans-unit>
+        <trans-unit id="pn_Settings" translate="yes" xml:space="preserve">
+          <source>Configuration</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Setup</target>
+        </trans-unit>
+        <trans-unit id="txt_Solde" translate="yes" xml:space="preserve">
+          <source>Solde</source>
+          <target state="needs-review-translation" state-qualifier="tm-suggestion">Balance</target>
+        </trans-unit>
+        <trans-unit id="vteTotalVente" translate="yes" xml:space="preserve">
+          <source>Total ventes</source>
+          <target state="new">Total ventes</target>
+        </trans-unit>
+        <trans-unit id="vte_TotalBoite" translate="yes" xml:space="preserve">
+          <source>Total boite</source>
+          <target state="new">Total boite</target>
+        </trans-unit>
+        <trans-unit id="vte_TotalProd" translate="yes" xml:space="preserve">
+          <source>Total produits</source>
+          <target state="new">Total produits</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_BTE" translate="yes" xml:space="preserve">
+          <source>Total boites : </source>
+          <target state="new">Total boites : </target>
+        </trans-unit>
+        <trans-unit id="TOTAL_PROD" translate="yes" xml:space="preserve">
+          <source>Total produits : </source>
+          <target state="new">Total produits : </target>
+        </trans-unit>
+        <trans-unit id="TOTAL_TTC" translate="yes" xml:space="preserve">
+          <source>Total ventes :</source>
+          <target state="new">Total ventes :</target>
+        </trans-unit>
+        <trans-unit id="MONT_BORD" translate="yes" xml:space="preserve">
+          <source>Montant Bordereau</source>
+          <target state="new">Montant Bordereau</target>
+        </trans-unit>
+        <trans-unit id="NBR_FACTS" translate="yes" xml:space="preserve">
+          <source>Nbr factures</source>
+          <target state="new">Nbr factures</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_AJUSTEMENT" translate="yes" xml:space="preserve">
+          <source>Montant ajustement</source>
+          <target state="new">Montant ajustement</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_EXCLUDED" translate="yes" xml:space="preserve">
+          <source>Montant rejets</source>
+          <target state="new">Montant rejets</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_OFFICINE_PAYE" translate="yes" xml:space="preserve">
+          <source>Total officine payé</source>
+          <target state="new">Total officine payé</target>
+        </trans-unit>
+        <trans-unit id="TOTAL_TO_PAY" translate="yes" xml:space="preserve">
+          <source>Montant Officine</source>
+          <target state="new">Montant Officine</target>
+        </trans-unit>
+        <trans-unit id="MONT_ASSURE" translate="yes" xml:space="preserve">
+          <source>Montant assurés</source>
+          <target state="new">Montant assurés</target>
+        </trans-unit>
+        <trans-unit id="SUM_MAJORATION" translate="yes" xml:space="preserve">
+          <source>Montant majoration</source>
+          <target state="new">Montant majoration</target>
+        </trans-unit>
+        <trans-unit id="txt_etat" translate="yes" xml:space="preserve">
+          <source>État</source>
+          <target state="new">État</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_rinter" translate="yes" xml:space="preserve">
+          <source>Imprémante</source>
+          <target state="new">Imprémante</target>
+        </trans-unit>
+        <trans-unit id="sp_btn_TestPrint" translate="yes" xml:space="preserve">
+          <source>Tester</source>
+          <target state="new">Tester</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NoPrinterSelected" translate="yes" xml:space="preserve">
+          <source>Aucune imprimante selectionnée!</source>
+          <target state="new">Aucune imprimante selectionnée!</target>
+        </trans-unit>
+        <trans-unit id="cmd_selectPrinter" translate="yes" xml:space="preserve">
+          <source>Choisir une imprimante</source>
+          <target state="new">Choisir une imprimante</target>
+        </trans-unit>
+        <trans-unit id="pn_NewSales" translate="yes" xml:space="preserve">
+          <source>Nouvelle vente</source>
+          <target state="new">Nouvelle vente</target>
+        </trans-unit>
+        <trans-unit id="cmd_Validate" translate="yes" xml:space="preserve">
+          <source>Validé</source>
+          <target state="new">Validé</target>
+        </trans-unit>
+        <trans-unit id="msg_ShouldPrepaireSession" translate="yes" xml:space="preserve">
+          <source>Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</source>
+          <target state="new">Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</target>
+        </trans-unit>
+        <trans-unit id="alrt_msg_NoConnexion" translate="yes" xml:space="preserve">
+          <source>Vous n'êtes pas connecté au serveur</source>
+          <target state="new">Vous n'êtes pas connecté au serveur</target>
+        </trans-unit>
+        <trans-unit id="cmd_selectMagasin" translate="yes" xml:space="preserve">
+          <source></source>
+          <target state="new"></target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_VteMagasin" translate="yes" xml:space="preserve">
+          <source>Magasin de vente</source>
+          <target state="new">Magasin de vente</target>
+        </trans-unit>
+        <trans-unit id="txt_actionsSucces" translate="yes" xml:space="preserve">
+          <source>Opération terminée avec succès</source>
+          <target state="new">Opération terminée avec succès</target>
+        </trans-unit>
+        <trans-unit id="pn_NewVente" translate="yes" xml:space="preserve">
+          <source>Nouvelle vente</source>
+          <target state="new">Nouvelle vente</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_SalesMagasin" translate="yes" xml:space="preserve">
+          <source>Magasin de vente</source>
+          <target state="new">Magasin de vente</target>
+        </trans-unit>
+        <trans-unit id="sp_lbl_SalesCaisseDedier" translate="yes" xml:space="preserve">
+          <source>Caisse dédier</source>
+          <target state="new">Caisse dédier</target>
+        </trans-unit>
+        <trans-unit id="pn_Livraison" translate="yes" xml:space="preserve">
+          <source>Livraison</source>
+          <target state="new">Livraison</target>
+        </trans-unit>
+        <trans-unit id="pn_VteComptoir" translate="yes" xml:space="preserve">
+          <source>Ventes comptoir</source>
+          <target state="new">Ventes comptoir</target>
+        </trans-unit>
+      </group>
+    </body>
+  </file>
+</xliff>

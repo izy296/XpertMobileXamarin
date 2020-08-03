@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             x:Name="AnnexTiers"
+             x:Class="XpertMobileApp.Views.AnnexTiersSelector">
+    
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <Frame CornerRadius="15" Padding="10">
+
+            <ScrollView Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="White"
+                     x:Name="EmbSelector">
+
+                    <!-- form -->
+                    <StackLayout IsVisible="{Binding IS_ACHAT}" x:Name="FilterPanel" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Column="0" Grid.Row="0"  Text="Tiers" Margin="5, 0, 0, 0" />
+                            <Entry Grid.Column="0" Grid.Row="1" x:Name="TiersName" Text=""  FontSize="Small" TextColor="Black" Margin="30, 0, 30, 10"/>
+
+                            <Label Grid.Column="1" Grid.Row="0" Text="Apport" Margin="5, 0, 0, 0" />
+                            <Entry Grid.Column="1" Grid.Row="1" x:Name="TiersQte" Keyboard="Numeric"  Text=""  FontSize="Small" TextColor="Black" Margin="30, 0, 30, 10"/>
+
+                            <Label Grid.Column="0" Grid.Row="2" x:Name="lbl_TotalQte" Text="" FontAttributes="Bold" FontSize="Default" 
+                                   HorizontalOptions="StartAndExpand" VerticalTextAlignment="Center" Margin="15,0,0,0"
+                               HorizontalTextAlignment="End" TextColor="Black"/>
+                            
+                            <StackLayout Grid.Column="1" Grid.Row="2"  Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                             HorizontalOptions="End">
+                                <Button x:Name="btn_ApplyFilter" CornerRadius="8" Margin="5" HorizontalOptions="End" Text="Ajouter" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_ApplyFilter_Clicked"/>
+                            </StackLayout>
+                        </Grid>
+
+                    </StackLayout>
+
+                    <!-- Listing -->
+                    <syncfusion:SfListView x:Name="ItemsListView" 
+                           VerticalOptions="FillAndExpand"
+                           ItemsSource="{Binding Items}"
+                           SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                           SelectionChanged="ItemsListView_SelectionChanged"
+                           SelectionBackgroundColor="Transparent"
+                           SelectionMode="None"
+                           Padding="4"
+                           BackgroundColor="#f0f2f5"
+                           AutoFitMode="Height">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                                        <StackLayout Spacing="20" Padding="15" >
+                                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                                                <Label Text="{Binding NOM_TIERS, Mode=TwoWay, StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                                                <!--
+                                                <Label Text="{x:Static fontawesome:FontAwesomeIcons.InfoCircle}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                                                -->
+
+                                                <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
+                                                            WidthRequest="50" HeightRequest="50" 
+                                                            HorizontalOptions="EndAndExpand"  Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
+                                                            Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="Transparent"
+                                                            Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                                                <Label Text="Apport" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                                                <Label Text="{Binding QUANTITE_APPORT, Mode=TwoWay,  StringFormat='{0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                                                <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                                                <Label Text="{Binding MT_ANNEX, Mode=TwoWay,  StringFormat='{0:N2} Da'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                                            </StackLayout>
+
+                                            <StackLayout Orientation="Horizontal" Padding="0" Margin="0"
+                                             IsVisible="{Binding Source={x:Reference AnnexTiers}, Path=BindingContext.IS_ACHAT, Converter={StaticResource inverseBoolVisibilityConverter}}">
+                                                <Label Text="Quantité produite " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                                                <Label Text="{Binding QUANTITE_PRODUITE, Mode=TwoWay,  StringFormat='{0:N2} Litres'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                                            </StackLayout>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </StackLayout >
+            </ScrollView>
+        </Frame>
+        <Button IsVisible="{Binding IS_ACHAT}" x:Name="btnSelect" CornerRadius="8" Text="Valider" TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose"></Button>
+    
+      </StackLayout>
+
+</pages:PopupPage>
