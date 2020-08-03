@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XpertMobileApp.Converters"
+             x:Class="XpertMobileApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <!-- Font Gilroy --> 
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
+                <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
+                <On Platform="iOS" Value="Gilroy-Light" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Light.ttf#Font Gilroy Light" />
+              </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyMedium">
+            <On Platform="Android" Value="Gilroy-Medium.ttf#GilroyMedium" />
+            <On Platform="iOS" Value="Gilroy-Medium" />
+            <On Platform="UWP" Value="/Assets/Gilroy-Medium.ttf#Font Gilroy Medium" />
+          </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyRegular">
+            <On Platform="Android" Value="Gilroy-Regular.ttf#GilroyRegular" />
+            <On Platform="iOS" Value="Gilroy-Regular" />
+            <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
+          </OnPlatform>
+          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroySemiBold">
+            <On Platform="Android" Value="Gilroy-SemiBold.ttf#GilroySemiBold" />
+            <On Platform="iOS" Value="Gilroy-SemiBold" />
+            <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+          </OnPlatform>
+          
+          
+          
+          <!-- Font awesomone -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
+                <On Platform="Android" Value="FABrandsRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
+                <On Platform="UWP" Value="/Assets/FABrandsRegular400.otf#Font Awesome 5 Brands" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeSolid">
+                <On Platform="Android" Value="FA5FreeSolid900.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="UWP" Value="/Assets/FA5FreeSolid900.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeRegular">
+                <On Platform="Android" Value="FA5FreeRegular400.otf#Regular" />
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="UWP" Value="/Assets/FA5FreeRegular400.otf#Font Awesome 5 Free" />
+            </OnPlatform>
+            
+            <!--Global Coverters -->
+            <local:OddEvenColorConverter x:Key="oddEvenInvert"/>
+            <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
+            <local:StatusToBoolForPriceConverter x:Key="statusForPriceConverter"/>
+            <local:StatusToBoolPeseeBruteConverter x:Key="statusForPeseeBruteConverter"/>
+            <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
+            <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
+            <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
+            <local:BordereauStatusToTextColor x:Key="brdStatusToTextColor"/>
+            <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
+            <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
+            <local:SelectionModeToVisbileConverter x:Key="selectionModeToVisbileConverter"/>
+            <local:DecimalToColorConverter x:Key="decimalToColor"/>
+            <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
+            <!--Global Styles-->
+
+            <Color x:Key="Primary">#2196F3</Color>
+            <Color x:Key="Accent">#96d1ff</Color>
+            <Color x:Key="LightTextColor">#999999</Color>
+            <Color x:Key="DefaultTextColor">#000</Color>
+            <Color x:Key="DefaultGrayColor">#808080</Color>
+            <Color x:Key="DefaultLisViewBackColor">#F4F3F2</Color>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="DefaultTextStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="#3897f0"/>
+            </Style>
+
+            <Style x:Key="BlackDefaultLblStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
+            </Style>
+            
+            <Style x:Key="DefaultBtnStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
+            <Style x:Key="FrameForListing" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="OutlineColor" Value="Transparent"/>
+            </Style>
+
+            <!-- Style frame for list-->
+            <Style x:Key="StackLOddEven" TargetType="StackLayout">
+                <Setter Property="Spacing" Value="5" />
+                <Setter Property="Padding" Value="0" />
+                <Setter Property="Margin" Value="0,3,0,3" />
+                <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="{Binding Index, Converter={StaticResource oddEvenInvert}}"/>
+            </Style>
+            
+            <Style x:Key="FrameForList" TargetType="Frame">
+                <Setter Property="CornerRadius" Value="8" />
+                <Setter Property="Padding" Value="5" />
+                <Setter Property="Margin" Value="8,3,8,3" />
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="HasShadow" Value="True"/>
+                <Setter Property="OutlineColor" Value="#F2F1EF"/> 
+            </Style>
+
+            <!-- Style font awesomone Button -->
+            <Style x:Key="FAwesome-B-Solid" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+            </Style>
+            
+            <Style x:Key="FAwesome-B-Brands" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+            </Style>
+
+            <Style x:Key="FAwesome-B-Regular" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
+                <Setter Property="FontSize" Value="25" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BackgroundColor" Value="{StaticResource Accent}"/>
+            </Style>
+
+            <!-- Style font awesomone Label -->
+            
+            <Style x:Key="FAwesome-Brands" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
+            </Style>
+
+            <Style x:Key="FAwesome-Regular" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

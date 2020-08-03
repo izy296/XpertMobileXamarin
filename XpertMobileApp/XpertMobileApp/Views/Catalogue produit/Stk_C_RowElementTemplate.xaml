@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class=" XpertMobileApp.Views.Templates.Stk_C_RowElementTemplate">
+    <ContentView.Content>
+        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+                <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
+                    </StackLayout>
+
+                    <StackLayout  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Spacing="5" Padding="0" >
+                        <Label Text="{Binding LOT}"  TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding Expiration}" TextColor="{StaticResource DefaultTextColor}" 
+                              FontAttributes="Bold" FontSize="Default"/>
+                        <Label  Text="{ Binding PRIX_VENTE, StringFormat='Prix : {0:N2} DA'}" FontSize="Default" TextColor="Red"/>
+                    </StackLayout>
+
+                    <Label Grid.Column="2" Grid.Row="0" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
+                          Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Center" />
+
+                    <StackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                        <Button CornerRadius="38" Text="Achter" VerticalOptions="Center" ContentLayout="Left,10" 
+                               BackgroundColor="#6279B8" TextColor="White"
+                               Image="shopping_cart_24.png" Clicked="AddToCart_Clicked"></Button>
+
+                        <!--
+
+                    <flex:FlexButton
+                            HorizontalOptions="FillAndExpand"
+                            IconOrientation="Left" 
+                            IconPadding="0,0,5,0"
+                            HeightRequest="50"
+                            Padding="5"
+                            Margin="0"
+                            Text="Ajouter"
+                            CornerRadius="38"
+                            Icon="shopping_cart_24.png"
+                            ForegroundColor="#ffffff"
+                            HighlightForegroundColor="#49516F"
+                            BackgroundColor="#6279B8"
+                            HighlightBackgroundColor="#8EA4D2"
+                            BorderColor="#8EA4D2"
+                            HighlightBorderColor="#8EA4D2"
+                            BorderThickness="3" 
+                            Clicked="AddToCart_Clicked"
+
+                            />
+-->
+
+                    </StackLayout>
+                    
+                </Grid>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

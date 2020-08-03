@@ -1,0 +1,95 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api\Managers\GodexManager.cs" />
+    <Compile Remove="Api\Services\CODE_BARRE\ICODE_BARRE_Reder.cs" />
+    <Compile Remove="Api\Services\CODE_BARRE\IGodexPlatform.cs" />
+    <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
+    <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
+    <Compile Remove="Models\HomeMenuItem.cs" />
+    <Compile Remove="Services\IDataStore.cs" />
+    <Compile Remove="Services\MockDataStore.cs" />
+    <Compile Remove="ViewModels\AboutViewModel.cs" />
+    <Compile Remove="ViewModels\BaseViewModel.cs" />
+    <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
+    <Compile Remove="ViewModels\ItemsViewModel.cs" />
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
+    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
+    <Compile Remove="Views\MenuPage.xaml.cs" />
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+    <Compile Remove="Views\Rfid\RfidScanInvnetairePage.xaml.cs" />
+    <Compile Remove="Views\Rfid\RfidScanPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemsPage.xaml" />
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MenuPage.xaml" />
+    <EmbeddedResource Remove="Views\NewItemPage.xaml" />
+    <EmbeddedResource Remove="Views\Rfid\RfidScanInvnetairePage.xaml" />
+    <EmbeddedResource Remove="Views\Rfid\RfidScanPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
+    <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
+    <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.707-beta" />  
+    <PackageReference Include="ZXing.Net.Mobile" Version="3.0.0-beta5" />  
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.0.0-beta5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\Services\RFID\" />
+    <Folder Include="Images\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\Selector\Immariculation\" />
+    <Folder Include="Views\Ventes Psychotrop\" />
+    <Folder Include="WebView\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\002 - XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+  </ItemGroup>
+</Project>
