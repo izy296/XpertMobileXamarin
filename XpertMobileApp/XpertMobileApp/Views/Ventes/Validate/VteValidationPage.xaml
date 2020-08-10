@@ -41,7 +41,7 @@
                                      VerticalOptions="Center" Margin="30,0,30,0" />
 
                     <Label Text="Montant. Reçu" FontSize="Default" Margin="5" />
-                    <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                <numeric1:SfNumericTextBox x:Name="SfNE_MTRecu" Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                      SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RECU, Mode=TwoWay}"
                                      VerticalOptions="Center" Margin="30,0,30,0" ValueChanged="TOTAL_RECU_ValueChanged" />

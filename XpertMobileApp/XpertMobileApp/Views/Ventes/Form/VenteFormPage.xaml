@@ -104,7 +104,8 @@
                         <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
-                                    <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent" ClassId="{Binding ID, StringFormat='fr_{0}'}">
+                                    <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
+                                           OutlineColor="Transparent" ClassId="{Binding ID, StringFormat='fr_{0}'}">
                                         <StackLayout Spacing="20" Padding="15" BackgroundColor="Transparent" >
                                             <Grid Margin="0" Padding="0">
                                             <Grid.ColumnDefinitions>

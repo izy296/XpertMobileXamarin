@@ -22,7 +22,7 @@ namespace XpertMobileApp.Views
             FlowDirection = App.PageFlowDirection;
 
             MasterBehavior = MasterBehavior.Popover;
-            if (Constants.AppName == Apps.XCOM_Mob)
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XCOM_Livraison)
             {
                 this.Detail = new NavigationPage(new HomePage());
                 MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);

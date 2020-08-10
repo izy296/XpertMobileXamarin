@@ -36,6 +36,11 @@ namespace XpertMobileApp.Views
             ParentStream = stream;
             BindingContext = viewModel = new VteValidationViewModel(item);
 
+            // Initialisation du montant reçu au reste a payer
+            viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
+            // this.SfNE_MTRecu.Value = item.TOTAL_RESTE;
+            UpdateMontants(viewModel.Item.TOTAL_RECU);
+
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 viewModel.SelectedTiers = selectedItem;
@@ -88,17 +93,22 @@ namespace XpertMobileApp.Views
         private void TOTAL_RECU_ValueChanged(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
         {
             decimal Mt_Recu = Convert.ToDecimal(e.Value);
-            if(Mt_Recu >= viewModel.Item.TOTAL_RESTE) 
-            { 
-                viewModel.Item.MBL_MT_RENDU = Mt_Recu - viewModel.Item.TOTAL_RESTE;
+            UpdateMontants(Mt_Recu);
+        }
+
+        private void UpdateMontants(decimal mt_Recu) 
+        {
+
+            if (mt_Recu >= viewModel.Item.TOTAL_RESTE)
+            {
+                viewModel.Item.MBL_MT_RENDU = mt_Recu - viewModel.Item.TOTAL_RESTE;
                 viewModel.Item.MBL_MT_VERCEMENT = viewModel.Item.TOTAL_RESTE;
-            } 
-            else 
+            }
+            else
             {
                 viewModel.Item.MBL_MT_RENDU = 0;
-                viewModel.Item.MBL_MT_VERCEMENT = Mt_Recu;
+                viewModel.Item.MBL_MT_VERCEMENT = mt_Recu;
             }
-
         }
     }
 }

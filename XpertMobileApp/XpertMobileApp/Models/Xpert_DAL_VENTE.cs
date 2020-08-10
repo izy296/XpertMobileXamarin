@@ -87,7 +87,24 @@ namespace XpertMobileApp.DAL
         public string CODE_FACTURE { get; set; } // varchar(32)
         //public decimal   TOTAL_PAYE      { get; set; } // money(19,4)
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
-        public decimal TOTAL_RECU { get; set; } // money(19,4)
+
+        private decimal tOTAL_RECU;
+        public decimal TOTAL_RECU
+        {
+            get
+            {
+                return tOTAL_RECU;
+            }
+            set
+            {
+                if (tOTAL_RECU != value)
+                {
+                    SetProperty(ref tOTAL_RECU, value);
+                }
+            }
+        }
+
+
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_ORIGINE { get; set; } // varchar(32)
         public int TYPE_VALIDATION { get; set; } // int(10)

@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -131,6 +132,11 @@ namespace XpertMobileApp.ViewModels
                 if (!string.IsNullOrEmpty(TypeVente)) 
                 {
                     this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_VENTE, TypeVente);
+
+                    if(Constants.AppName == Apps.XCOM_Livraison) 
+                    {
+                        this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, App.User.UserName);
+                    }
                 }
 
                 if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))

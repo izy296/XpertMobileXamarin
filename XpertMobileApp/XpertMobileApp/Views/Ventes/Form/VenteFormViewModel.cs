@@ -118,6 +118,7 @@ namespace XpertMobileApp.Views
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
+                row.PRIX_VTE_HT = product.PRIX_VENTE;
                 row.PRIX_VTE_TTC = product.PRIX_VENTE;
                 row.QUANTITE = 1;
 
@@ -131,6 +132,7 @@ namespace XpertMobileApp.Views
             }
 
             row.MT_TTC = row.PRIX_VTE_TTC * row.QUANTITE;
+            row.MT_HT = row.PRIX_VTE_TTC * row.QUANTITE;
             Item.TOTAL_TTC = ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
             row.Index = ItemRows.Count();
 
