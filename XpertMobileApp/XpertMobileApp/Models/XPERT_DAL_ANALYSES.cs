@@ -15,10 +15,10 @@ namespace XpertMobileApp.Models
         public string Color { get; set; } // char(50)
         public byte[] Icon { get; set; } // varchar(50)
         public int ORDRE { get; set; }
-
-
+        public string AppNames { get; set; }
+        public string SubTitle { get; set; }
+        public string Query2 { get; set; }
         public bool IsCustom { get; set; }
-
         public decimal CustomValue { get; set; }
     }
 

@@ -486,4 +486,102 @@ namespace XpertMobileApp.DAL
         public decimal MONT_TOTAL { get; set; }
         public string DESIGN_ETAT { get; set; }
     }
+
+
+    #region Livraison
+    public partial class LIV_SECTEUR : BASE_CLASS
+    {
+        public string CODE_SECTEUR { get; set; }
+        public string NUM_SECTEUR { get; set; }
+        public string TYPE_DOC { get; set; }
+        public string NOM { get; set; }
+        public string DESCRIPTION { get; set; }
+        public string COMMUNE { get; set; }
+        public string WILAYA { get; set; }
+
+        public string CREATED_BY { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public DateTime? MODIFIED_ON { get; set; }
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+    public partial class LIV_SECTEUR_DETAIL
+    {
+        public string CODE_DETAIL { get; set; }
+        public string CODE_TIERS { get; set; }
+        public string CODE_SECTEUR { get; set; }
+
+        public string CREATED_BY { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public DateTime? MODIFIED_ON { get; set; }
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+    public partial class View_LIV_SECTEUR_DETAIL : LIV_SECTEUR_DETAIL
+    {
+        public string NOM_TIERS { get; set; }
+        public decimal SOLDE { get; set; }
+
+    }
+    public partial class LIV_TOURNEE : BASE_CLASS
+    {
+        public string CODE_TOURNEE { get; set; }
+        public string NUM_TOURNEE { get; set; }
+        public DateTime DATE_TOURNEE { get; set; }
+        public string NOTE { get; set; }
+        public string CODE_SECTEUR { get; set; }
+        public string CODE_MAGASIN { get; set; }
+        public string CODE_VENDEUR { get; set; }
+        public string CREATED_BY { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public DateTime? MODIFIED_ON { get; set; }
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+    public partial class View_LIV_TOURNEE : LIV_TOURNEE
+    {
+        public string NUM_SECTEUR { get; set; }
+        public string NOM_SECTEUR { get; set; }
+        public string DESIGNATION_MAGASIN { get; set; }
+        public string NOM_VENDEUR { get; set; }
+
+        public string ACOMPILCHEMENT_PERCENT 
+        {
+            get 
+            {
+                if (NBR_CIENTS == 0) return "0 %";
+
+                decimal res = ((NBR_EN_VISITED + NBR_EN_DELEVRED) * 100) / NBR_CIENTS;
+
+                return  "Accompli : " +  res.ToString("N2") + " %";
+            }
+        }
+        public int NBR_CIENTS { get; set; }
+        public int NBR_EN_WAITING { get; set; }
+        public int NBR_EN_VISITED { get; set; }
+        public int NBR_EN_DELEVRED { get; set; }
+    }
+
+    public partial class LIV_TOURNEE_DETAIL : BASE_CLASS
+    {
+        public string CODE_DETAIL { get; set; }
+        public string CODE_TOURNEE { get; set; }
+        public string CODE_TIERS { get; set; }
+        public string CODE_VENTE { get; set; }
+        public string CODE_ETAT { get; set; }
+        public string CREATED_BY { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public DateTime? MODIFIED_ON { get; set; }
+        public string MODIFIED_BY { get; set; }
+    }
+    public static class TourneeStatus
+    {
+        public static string EnAttente { get { return "15"; } }
+        public static string Visited { get { return "16"; } }
+        public static string Delevred { get { return "17"; } }
+    }
+    public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
+    {
+        public string NOM_TIERS { get; set; }
+        public decimal SOLDE { get; set; }
+        public string DESIGNATION_ETAT { get; set; }
+    }
+    #endregion
 }

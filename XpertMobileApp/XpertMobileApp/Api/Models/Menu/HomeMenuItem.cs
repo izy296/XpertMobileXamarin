@@ -11,6 +11,7 @@ namespace XpertMobileApp.Models
         Tresorerie,
         Ventes,
         Livraison,
+        Tournee,
         VenteComptoir,
         Psychotrop,
         Achats,
