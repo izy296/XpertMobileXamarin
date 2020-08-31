@@ -8,6 +8,8 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.Models;
 using Xpert.Common.WSClient.Helpers;
 using Acr.UserDialogs;
+using ZXing.Net.Mobile.Forms;
+using Rg.Plugins.Popup.Extensions;
 
 namespace XpertMobileApp.Views
 {
@@ -85,6 +87,27 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
+        private void btn_Scan_Clicked(object sender, EventArgs e)
+        {
+            _scanView.IsVisible = !_scanView.IsVisible;
+            _scanView.IsScanning = !_scanView.IsScanning;
+
+
+            /*
+            var scaner = new ZXingScannerPage();
+            Navigation.PushModalAsync(scaner);
+            scaner.OnScanResult += (result) =>
+            {
+                scaner.IsScanning = false;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PopModalAsync();
+                    await viewModel.SelectScanedTiers(result.Text);
+                });
+            };
+            */
+        }
+
         private void SfNumericTextBox_ValueChanged(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
         {
 
@@ -108,6 +131,24 @@ namespace XpertMobileApp.Views
             {
                 viewModel.Item.MBL_MT_RENDU = 0;
                 viewModel.Item.MBL_MT_VERCEMENT = mt_Recu;
+            }
+        }
+
+        private async void Handle_OnScanResult(ZXing.Result result)
+        {
+            try
+            {
+                string cb = result.Text;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    _scanView.IsVisible = false;
+                    _scanView.IsScanning = false;
+                    await viewModel.SelectScanedTiers(cb);
+                });
+            }
+            catch (Exception ex) 
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
     }

@@ -1,12 +1,14 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -66,6 +68,40 @@ namespace XpertMobileApp.ViewModels
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return false;
+            }
+        }
+
+        internal async Task SelectScanedTiers(string cb_tiers)
+        {
+            try
+            {
+                // Récupérer le lot depuis le serveur
+                XpertSqlBuilder qb = new XpertSqlBuilder();
+                qb.AddCondition<View_TRS_TIERS, string>(x => x.NUM_CARTE_FIDELITE, cb_tiers);
+                qb.AddOrderBy<View_TRS_TIERS, string>(x => x.CODE_TIERS);
+                var tiers = await CrudManager.TiersManager.SelectByPage(qb.QueryInfos,1,1);
+                if (tiers == null)
+                    return;
+
+                XpertHelper.PeepScan();
+
+                if (tiers.Count() > 1)
+                {
+                    await UserDialogs.Instance.AlertAsync("Plusieurs tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else if (tiers.Count() == 0)
+                {
+                    await UserDialogs.Instance.AlertAsync("Aucun tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else 
+                { 
+                    SelectedTiers = tiers.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
         }
     }

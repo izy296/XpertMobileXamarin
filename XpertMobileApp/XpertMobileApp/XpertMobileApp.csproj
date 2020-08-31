@@ -16,6 +16,8 @@
     <Compile Remove="Api\Services\CODE_BARRE\IGodexPlatform.cs" />
     <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
+    <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
+    <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\HomeMenuItem.cs" />
     <Compile Remove="Services\IDataStore.cs" />
     <Compile Remove="Services\MockDataStore.cs" />
@@ -47,7 +49,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="beep.wav" />
+    <None Remove="beep03.mp3" />
+    <None Remove="beep07.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="beep.wav" />
+    <EmbeddedResource Include="beep03.mp3" />
+    <EmbeddedResource Include="beep07.mp3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -91,5 +105,20 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\002 - XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
+      <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Livraison\TourneeDetails\TourneeDetailTemplate.xaml.cs">
+      <DependentUpon>TourneeDetailTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Livraison\Tournee\TourneeTemplate.xaml.cs">
+      <DependentUpon>TourneeTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Livraison\Tournee\TourneesPage.xaml.cs">
+      <DependentUpon>TourneesPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

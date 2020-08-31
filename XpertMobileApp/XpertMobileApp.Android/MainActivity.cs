@@ -39,7 +39,11 @@ namespace XpertMobileApp.Droid
             // Init popup plugin
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
+
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             UserDialogs.Init(this);
 
@@ -93,7 +97,9 @@ namespace XpertMobileApp.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            //Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnNewIntent(Intent intent)

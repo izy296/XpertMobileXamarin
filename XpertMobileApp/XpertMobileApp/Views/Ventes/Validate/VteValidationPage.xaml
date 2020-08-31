@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
                  x:Class="XpertMobileApp.Views.VteValidationPage">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
 
@@ -14,19 +14,31 @@
                 <Frame Margin="0" Padding="15" CornerRadius="8" BackgroundColor="{StaticResource Primary}" HasShadow="True">
                     <Label Text="Paiment vente" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                 </Frame>
-                <Label Text="Client " FontSize="Default" Margin="5" />
-                    <StackLayout Orientation="Horizontal" Margin="30,0,30,20">
 
-                        <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
-                       IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="False" IsVisible="False"
+                                WidthRequest="200" HeightRequest="120" />
+
+
+                <Label Text="Client " FontSize="Default" Margin="5" />
+                <StackLayout Orientation="Horizontal" Margin="30,0,30,20">
+
+
+                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
+                            IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="Black"/>
                         
-                            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                        <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
                         WidthRequest="50" HeightRequest="50"
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
                         Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
                         Clicked="btn_Select_Clicked"/>
-                        
-                    </StackLayout>
+
+                        <Button x:Name="btn_Scan" Margin="0" Grid.Column="1"
+                        WidthRequest="50" HeightRequest="50"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"  BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_Scan_Clicked"/>
+                    
+                </StackLayout>
 
                 <Label Text="Montant. total" FontSize="Default" Margin="5" />
                 <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"

@@ -16,7 +16,7 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Api.ViewModels
 {
-    public class CrudBaseViewModel<TTable, TView> : BaseViewModel
+    public class CrudBaseViewModel333<TTable, TView> : BaseViewModel
     where TTable : new()
     where TView : new()
     {
@@ -57,7 +57,7 @@ namespace XpertMobileApp.Api.ViewModels
 
         public Command UpdateItemCommand { get; set; }
 
-        public CrudBaseViewModel()
+        public CrudBaseViewModel333()
         {
             InitConstructor();
         }

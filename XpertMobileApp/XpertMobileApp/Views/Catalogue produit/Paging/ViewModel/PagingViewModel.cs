@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp;
 using XpertMobileApp.Api.Managers;
@@ -16,7 +17,7 @@ using XpertMobileApp.Services;
 namespace SampleBrowser.SfListView
 {
     [Preserve(AllMembers = true)]
-    public class PagingViewModel : BasePagerViewModel<STK_PRODUITS, View_STK_PRODUITS>
+    public class PagingViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {    
     
         public bool OnlyNew { get; set; }
@@ -31,24 +32,25 @@ namespace SampleBrowser.SfListView
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("searchText", SearchedText);
+            if (!string.IsNullOrEmpty(SearchedText))
+                this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION, Operator.LIKE, SearchedText);
 
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
-                result.Add("famille", SelectedFamille?.CODE);
+                this.AddCondition<View_STK_PRODUITS, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE);
 
             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
-                result.Add("type", SelectedType?.CODE_TYPE);
+                this.AddCondition<View_STK_PRODUITS, string>(e => e.TYPE_PRODUIT, SelectedType?.CODE_TYPE);
 
-            if(OnlyNew)
-                result.Add("onlyNew", "1");
+            if (OnlyNew)
+                this.AddCondition<View_STK_PRODUITS, bool>(e => e.IS_NEW, "1");
 
-            result.Add("onlyCatalogue", "1");
+            this.AddCondition<View_STK_PRODUITS, bool>(e => e.SHOW_CATALOG, "1");
 
-            return result;
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)

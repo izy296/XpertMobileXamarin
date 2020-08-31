@@ -1,15 +1,8 @@
-﻿using Acr.UserDialogs;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.Extended;
+﻿using System.Collections.Generic;
 using Xpert.Common.DAO;
-using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
-using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -43,7 +36,8 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
-            if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente)) 
+
+            if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente))
             { 
                 this.AddCondition<View_STK_STOCK, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
             }

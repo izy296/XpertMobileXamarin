@@ -4,10 +4,6 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Helpers;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Globalization;
-using XpertMobileApp.Api.Services;
 
 namespace XpertMobileApp.Views
 {

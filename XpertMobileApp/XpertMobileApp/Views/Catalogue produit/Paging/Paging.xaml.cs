@@ -50,7 +50,8 @@ namespace SampleBrowser.SfListView
 
         private void dataPager_OnDemandLoading(object sender, OnDemandLoadingEventArgs e)
         {
-            viewModel.PageIndex = e.StartIndex;
+            // TODO : Permettre l'affectation du numéro de page dans le nouveau curdviewmodel (présent dans BasePagerViewModel)
+            // viewModel.PageIndex = e.StartIndex;
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -74,8 +75,9 @@ namespace SampleBrowser.SfListView
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            dataPager.PageIndex = 0;
-            viewModel.PageIndex = dataPager.PageIndex;
+          // TODO : Permettre l'affectation du numéro de page dans le nouveau curdviewmodel
+          //  dataPager.PageIndex = 0;
+          //  viewModel.PageIndex = dataPager.PageIndex;
             viewModel.LoadItemsCommand.Execute(null);
         }
 

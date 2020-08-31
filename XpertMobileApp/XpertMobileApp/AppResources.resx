@@ -877,4 +877,10 @@
   <data name="pn_VteComptoir" xml:space="preserve">
     <value>Ventes comptoir</value>
   </data>
+  <data name="pn_Mytournees" xml:space="preserve">
+    <value>Mes tournées</value>
+  </data>
+  <data name="pn_dsdsdsds" xml:space="preserve">
+    <value>sdsdsdsds</value>
+  </data>
 </root>

@@ -78,6 +78,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Psychotrop:
                         MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.VentePSYCO)));
                         break;
+                    case (int)MenuItemType.Tournee:
+                        MenuPages.Add(id, new NavigationPage(new TourneesPage()));
+                        break;
                     case (int)MenuItemType.Bordereaux:
                         MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
                         break;

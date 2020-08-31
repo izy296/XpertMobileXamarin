@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -14,7 +15,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class ProductionsViewModel : CrudBaseViewModel<PRD_AGRICULTURE, View_PRD_AGRICULTURE>
+    public class ProductionsViewModel : CrudBaseViewModel2<PRD_AGRICULTURE, View_PRD_AGRICULTURE>
     {
 
         public ObservableCollection<View_PRD_AGRICULTURE> SelectedDocs { get; set; }
@@ -111,23 +112,24 @@ namespace XpertMobileApp.ViewModels
             });
         }
 
-        protected override Dictionary<string, string> GetFilterParams()
+        protected override QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = base.GetFilterParams();
+            base.GetFilterParams();
 
-            result.Add("typeDoc", TypeDoc);
-            result.Add("motifDoc", MotifDoc);
-            // result.Add("idCaisse", "all");
-            result.Add("startDate", WSApi2.GetStartDateQuery(StartDate));
-            result.Add("endDate", WSApi2.GetEndDateQuery(EndDate));
+            this.AddCondition<View_PRD_AGRICULTURE, DateTime?>(e => e.DATE_DOC, Operator.BETWEEN_DATE, StartDate, EndDate);
+
+            // this.AddCondition<View_PRD_AGRICULTURE, string>(e => e., "ES10");
+            // this.AddCondition<View_PRD_AGRICULTURE, string>(e => e.CODE_MOTIF, MotifDoc);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                result.Add("codeClient", SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_PRD_AGRICULTURE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
-                result.Add("statusDoc", SelectedStatus?.CODE_STATUS);
+                this.AddCondition<View_PRD_AGRICULTURE, string>(e => e.STATUS_DOC, SelectedStatus?.CODE_STATUS);
 
-            return result;
+            this.AddOrderBy<View_PRD_AGRICULTURE, DateTime?>(e => e.CREATED_ON);
+
+            return qb.QueryInfos;
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_PRD_AGRICULTURE> list)

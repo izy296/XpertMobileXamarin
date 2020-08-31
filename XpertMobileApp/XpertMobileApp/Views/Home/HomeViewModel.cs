@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert.Common.DAO;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
@@ -95,7 +96,7 @@ namespace XpertMobileApp.ViewModels
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 Items.Clear();
-                var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,10);
+                var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)
                 {
                     Items.Add(item);
@@ -114,14 +115,18 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        protected  Dictionary<string, string> GetFilterParams()
+        protected QueryInfos GetFilterParams()
         {
-            Dictionary<string, string> result = new Dictionary<string, string>();
+            XpertSqlBuilder qb = new XpertSqlBuilder();
+            qb.InitQuery();
 
-            result.Add("profile", App.User.UserGroup);
-            result.Add("appName", Constants.AppName);
+            qb.AddCondition<TDB_SIMPLE_INDICATORS, string>(e => e.Profils, Operator.LIKE_ANY, App.User.UserGroup);
 
-            return result;
+            qb.AddCondition<TDB_SIMPLE_INDICATORS, string>(e => e.AppNames, Operator.LIKE_ANY, Constants.AppName);
+
+            qb.AddOrderBy<TDB_SIMPLE_INDICATORS, int>(e => e.ORDRE);
+
+            return qb.QueryInfos;
         }
     }
 }
