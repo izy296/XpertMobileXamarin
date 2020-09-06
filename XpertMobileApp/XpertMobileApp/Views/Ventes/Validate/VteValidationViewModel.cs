@@ -56,16 +56,19 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var bll = CrudManager.GetVteBll(item.TYPE_DOC);
 
                 item.MBL_NUM_CARTE_FEDILITE = "";
                 item.CODE_MODE = "";
 
                 var res = await bll.ValidateVente(item, "1");
+                UserDialogs.Instance.HideLoading();
                 return res;
             }
             catch (Exception ex) 
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return false;
             }

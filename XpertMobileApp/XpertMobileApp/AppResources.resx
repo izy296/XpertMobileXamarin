@@ -830,7 +830,7 @@
     <value>État</value>
   </data>
   <data name="sp_lbl_rinter" xml:space="preserve">
-    <value>Imprémante</value>
+    <value>Imprimante</value>
   </data>
   <data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
     <value>Aucune imprimante selectionnée!</value>

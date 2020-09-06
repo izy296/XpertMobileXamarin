@@ -541,7 +541,7 @@ namespace XpertMobileApp.DAL
         public string NOM_SECTEUR { get; set; }
         public string DESIGNATION_MAGASIN { get; set; }
         public string NOM_VENDEUR { get; set; }
-
+        public string ETAT_COLOR { get; set; }
         public string ACOMPILCHEMENT_PERCENT 
         {
             get 
@@ -582,6 +582,8 @@ namespace XpertMobileApp.DAL
         public string NOM_TIERS { get; set; }
         public decimal SOLDE { get; set; }
         public string DESIGNATION_ETAT { get; set; }
+
+        public string ETAT_COLOR { get; set; }
     }
     #endregion
 }

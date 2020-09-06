@@ -27,7 +27,7 @@ namespace XpertMobileApp.Views
             //await Navigation.PushAsync(new TourneesDetailsPage(item.CODE_TOURNEE));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            listView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -76,6 +76,18 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void OnFavoriteSwipeItemInvoked(object sender, EventArgs e)
+        {
+            var item = viewModel.SelectedItem;
+            var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
+        }
+
+        private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
+        {
+            var item = viewModel.SelectedItem;
+            var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
         }
     }
 }

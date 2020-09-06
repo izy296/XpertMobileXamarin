@@ -40,7 +40,7 @@ namespace XpertMobileApp.Droid
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
 
-
+            Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

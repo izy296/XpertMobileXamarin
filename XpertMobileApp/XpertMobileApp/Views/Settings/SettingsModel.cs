@@ -52,8 +52,9 @@ namespace XpertMobileApp.ViewModels
                 new Language { DisplayName =  "Device language", ShortName = "" },
                 new Language { DisplayName =  "عربي", ShortName = "ar" },
                 new Language { DisplayName =  "English", ShortName = "en" },
-                new Language { DisplayName =  "Français - French", ShortName = "fr" },
-                new Language { DisplayName =  "中文 - Chinese (simplified)", ShortName = "zh-Hans" }
+                new Language { DisplayName =  "Français - French", ShortName = "fr" }
+                //,
+               // new Language { DisplayName =  "中文 - Chinese (simplified)", ShortName = "zh-Hans" }
             };
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
@@ -83,6 +84,15 @@ namespace XpertMobileApp.ViewModels
                 this.Settings = new Settings();
                 // App.Settings = this.Settings;
             }
+
+            foreach (var item in DeviceList)
+            {
+                if (item.Name == Settings.PrinterName && item.Type == Settings.PrinterType)
+                {
+                    SelectedDevice = item;
+                }
+            }
+
             this.Settings.isModified = false;           
         }
 
@@ -357,9 +367,13 @@ AppResources.alrt_msg_Ok);
         public async Task BindDeviceList()
         {
             try 
-            { 
+            {
                 DeviceList.Clear();
-
+                DeviceList.Add(new XPrinter()
+                {
+                    Name = "",
+                    Type =""
+                });
                 // Blue tooth printer
                 var list = _blueToothService.GetDeviceList();
                 foreach (var item in list) 

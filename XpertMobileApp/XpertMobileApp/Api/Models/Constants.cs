@@ -32,7 +32,6 @@ namespace XpertMobileApp.Api
             else 
                 return "Edition LITE ";
         }
-
     }
 
     public static class Constants

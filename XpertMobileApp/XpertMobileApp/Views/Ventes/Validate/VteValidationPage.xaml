@@ -12,7 +12,7 @@
         <Frame Padding="10" CornerRadius="8" >
             <StackLayout BackgroundColor="White" >
                 <Frame Margin="0" Padding="15" CornerRadius="8" BackgroundColor="{StaticResource Primary}" HasShadow="True">
-                    <Label Text="Paiment vente" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                    <Label Text="Paiement vente" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
                 </Frame>
 
                 <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="False" IsVisible="False"

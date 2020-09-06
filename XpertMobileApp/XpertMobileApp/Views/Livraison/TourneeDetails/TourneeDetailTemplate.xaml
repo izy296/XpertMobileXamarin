@@ -28,12 +28,16 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding NOM_VENDEUR}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{Binding SOLDE, StringFormat='Solde, {0:N2}'}" TextColor="{StaticResource DefaultTextColor}"/>
                         <Label Text="{Binding DESIGNATION_MAGASIN}" TextColor="{StaticResource DefaultTextColor}"/>
                     </StackLayout>
                     
-                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGNATION_ETAT}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="{StaticResource DefaultTextColor}"/>
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" >
+                        
+                        <Frame HorizontalOptions="EndAndExpand"  VerticalOptions="Start" CornerRadius="8" WidthRequest="90" Padding="3" Margin="0" BackgroundColor="{Binding ETAT_COLOR}">
+                            <Label Text="{Binding DESIGNATION_ETAT}" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                   TextColor="White"/>
+                        </Frame>
                         <!--
                             <Label Text="{Binding ACOMPILCHEMENT_PERCENT}" FontAttributes="Bold"  TextColor="Green" HorizontalOptions="End"/> 
                             <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>

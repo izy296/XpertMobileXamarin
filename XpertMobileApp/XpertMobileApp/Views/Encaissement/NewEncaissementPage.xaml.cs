@@ -92,12 +92,13 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void Save_Clicked(object sender, EventArgs e)
         {
+            /*
             if (SelectedTiers == null && Constants.AppName == Apps.XPH_Mob)
             {
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_ThirdNotEmpty, AppResources.alrt_msg_Ok);
                 return;
             }
-
+            */
             if (SelectedCompte == null)
             {
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
