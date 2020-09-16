@@ -40,7 +40,7 @@ namespace XpertMobileApp.ViewModels
             get { return item; }
             set { SetProperty(ref item, value); }
         }
-
+        public bool imprimerTecketCaiss { get; set; } = true;
         public VteValidationViewModel(View_VTE_VENTE item, string title= "")
         {
             Title = title;
@@ -52,7 +52,7 @@ namespace XpertMobileApp.ViewModels
             };
         }
 
-        internal async Task<bool> ValidateVte(View_VTE_VENTE item)
+        internal async Task<string> ValidateVte(View_VTE_VENTE item)
         {
             try
             {
@@ -70,7 +70,7 @@ namespace XpertMobileApp.ViewModels
             {
                 UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                return false;
+                return "";
             }
         }
 

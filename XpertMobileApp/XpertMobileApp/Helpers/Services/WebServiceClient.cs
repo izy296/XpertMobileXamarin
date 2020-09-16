@@ -134,11 +134,25 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
+        internal static async Task<List<Get_Print_ds_ViewTrsEncaiss>> GetDataTecketCaisseEncaisse(string cODE_ENCAISS)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.TIKET_CAISS_PRINT_ENCAISSE_URL);
+            url += "?codeEncaiss=" + cODE_ENCAISS;
+            return await RetrievAauthorizedData<Get_Print_ds_ViewTrsEncaiss>(url);
+        }
+
         internal static async Task<List<CFA_ETAT>> get_CFA_Fact_STATUS()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_ETAT_URL);
 
             return await RetrievAauthorizedData<CFA_ETAT>(url);
+        }
+
+        internal static async Task<List<Get_Print_VTE_TiketCaisse>> GetDataTecketCaisseVente(string res)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.TIKET_CAISS_PRINT_VENTE_URL);
+            url += "?codeVente=" + res;
+            return await RetrievAauthorizedData<Get_Print_VTE_TiketCaisse>(url);
         }
 
         #endregion

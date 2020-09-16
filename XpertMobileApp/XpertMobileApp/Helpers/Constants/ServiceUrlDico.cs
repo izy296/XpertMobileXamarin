@@ -15,7 +15,9 @@ namespace XpertMobileApp.Helpers
         public static string SESSION_INFO_URL = "session";
 
         public static string ENCAISSEMENT_URL = "Encaissements";
-
+        
+        public static string ENCAISSEMENT_GET_PRINT_ENCAISSE = "GetPrintTiketCaisseEncaisse";
+        
         public static string ENCAISSEMENT_PER_PAGE_URL = "GetEncaissements";
 
         public static string ADD_ENCAISSEMENT_URL = "addEncaissement";
@@ -64,7 +66,9 @@ namespace XpertMobileApp.Helpers
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
         public static string VENTES_TYPES_URL = "GetVenteTypes";
-
+        public static string TIKET_CAISS_PRINT_ENCAISSE_URL = "GetPrintTiketCaisseEncaisse";
+        
+        public static string TIKET_CAISS_PRINT_VENTE_URL = "getPrintTiketCaisseVente";
         // Commandes
 
         public static string VTE_COMMANDE = "VTE_COMMANDE";

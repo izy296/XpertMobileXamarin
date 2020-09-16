@@ -75,8 +75,12 @@
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                 SelectedItem="{Binding SelectedCompte}" />
                         </StackLayout>
+
+
+                        
                     </Frame>
-                    
+      
+                
                     <!-- Imprimante  -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >
@@ -86,8 +90,13 @@
                                 Title="{i18n:Translate cmd_selectPrinter}"
                                 ItemDisplayBinding="{Binding Name}"
                                 SelectedItem="{Binding SelectedDevice}" />
-                            <Button Text="{i18n:Translate sp_btn_TestPrint}" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
-                                Command="{Binding PrintCommand}"/>
+                            <Button x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
+                                Text="Connexion" Clicked="ConnectPrinterAsync"/>
+                            <Button x:Name="Btn_desconnectPrinter" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+                                Text="Déconnexion" Clicked="DesconnectPrinterAsync"/>
+                            <Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+                                Text="Imprimer un test" Clicked="PrintExempleAsync"/>
+                           
                         </StackLayout>
                     </Frame>
                    

@@ -95,6 +95,8 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
+                <Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+                                Text="Imprimer" Clicked="PrintAsync"/>
             </StackLayout>
         </Frame>
     </StackLayout>

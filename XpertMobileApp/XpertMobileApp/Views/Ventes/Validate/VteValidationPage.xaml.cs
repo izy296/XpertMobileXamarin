@@ -10,6 +10,10 @@ using Xpert.Common.WSClient.Helpers;
 using Acr.UserDialogs;
 using ZXing.Net.Mobile.Forms;
 using Rg.Plugins.Popup.Extensions;
+using XpertWebApi.Models;
+using System.Collections.Generic;
+using XpertMobileApp.Services;
+using XpertMobileApp.Helpers.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -60,16 +64,29 @@ namespace XpertMobileApp.Views
         {
             await PopupNavigation.Instance.PopAsync();
         }
-
+      
         private async void btnValidate_Clicked(object sender, EventArgs e)
         {
             try
             {
-                bool res = await viewModel.ValidateVte(viewModel.Item);
+                string res = await viewModel.ValidateVte(viewModel.Item);
 
-                if (res)
+                if (!XpertHelper.IsNullOrEmpty(res) )
                 {
                     await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                    if (viewModel.imprimerTecketCaiss)
+                    {
+                        var tecketData = await WebServiceClient.GetDataTecketCaisseVente(res);
+                        if (tecketData == null) return;
+                        if (tecketData.Count == 0)
+                        {
+                            await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+                        }
+                        else
+                        {
+                            PrinterHelper.PrintBL(tecketData);
+                        }
+                    }
                     ParentviewModel.InitNewVentes();
                     await PopupNavigation.Instance.PopAsync(); 
                 }

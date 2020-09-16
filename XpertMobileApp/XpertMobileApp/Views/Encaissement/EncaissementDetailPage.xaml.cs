@@ -7,7 +7,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Helpers.Services;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views.Encaissement
@@ -140,6 +142,17 @@ namespace XpertMobileApp.Views.Encaissement
             }
         }
 
+        async void btnImprimer_Clicked(object sender, EventArgs e)
+        {
+            var tecketData = await WebServiceClient.GetDataTecketCaisseEncaisse(this.viewModel.Item.CODE_ENCAISS);
+            if (tecketData == null) { 
+                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+            }
+            else
+            {
+                PrinterHelper.PrintEncaisse(tecketData);
+            }
+        }
         async void Cancel_Clicked(object sender, EventArgs e)
         {
             await Navigation.PopAsync();

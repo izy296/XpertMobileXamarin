@@ -16,11 +16,11 @@ namespace XpertMobileApp.Api.Managers
         {
         }
 
-        public async Task<bool> ValidateVente(View_VTE_VENTE vte, string vparam1)
+        public async Task<string> ValidateVente(View_VTE_VENTE vte, string vparam1)
         {
             string url = GetActionUrl("ValidateVente");
             url += WSApi2.AddParam(url, "vparam1", vparam1);
-            return await WSApi2.PostAauthorizedValue<bool, View_VTE_VENTE>(url, vte, this.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<string, View_VTE_VENTE>(url, vte, this.Token.access_token);
         }
     }
 }

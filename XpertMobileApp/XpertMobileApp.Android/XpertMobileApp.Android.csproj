@@ -57,6 +57,9 @@
     <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="bindigJarPrinterSPRT">
+      <HintPath>..\..\Xpert.Dll\SPRTPrinter\Android\bindigJarPrinterSPRT.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -151,6 +154,7 @@
     <Compile Include="Services\AndroidBlueToothService.cs" />
     <Compile Include="Services\CloseApplication.cs" />
     <Compile Include="Services\DeviceInfos.cs" />
+    <Compile Include="Services\PrinterSPRT.cs" />
     <Compile Include="SplashActivity.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -34,7 +34,7 @@ namespace XpertMobileApp
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
-
+        public static IPrinterSPRT printerLocal;
         public static bool HasAdmin
         {
             get
@@ -130,7 +130,7 @@ namespace XpertMobileApp
                 }
             }
         }
-
+        
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mjk3ODAxQDMxMzgyZTMyMmUzMFdHQ3FLK0tXSmRMUnFiUm5CelZnQ3kxRTV3Q2ZXWXEraExTemNSVjJwQ2M9");
@@ -138,11 +138,11 @@ namespace XpertMobileApp
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
-
+            printerLocal = DependencyService.Get<IPrinterSPRT>();
             // Vérification de la licence
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
-            LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
-
+           /* LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
+            
             if (licState == LicState.Valid)
             {
                Settings.Mobile_Edition = licenceInfos.Mobile_Edition;
@@ -168,9 +168,9 @@ namespace XpertMobileApp
                        MainPage = new MainPage();
                    }
                    else
-                   {
+                   {*/
                        MainPage = new LoginPage();
-                   }                    
+                   /*}                    
                }
             }
             else
@@ -178,7 +178,7 @@ namespace XpertMobileApp
                 // MainPage = new LoginPage();
                 MainPage = new ActivationPage(licState); 
             }
-        
+            MainPage = new SettingsPage();  */
         }
 
         protected override void OnStart()

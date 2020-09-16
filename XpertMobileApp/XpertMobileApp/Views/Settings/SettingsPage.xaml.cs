@@ -10,6 +10,8 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.Models;
 using XpertMobileApp.Helpers;
 using System.Text.RegularExpressions;
+using XpertWebApi.Models;
+using System.Collections.Generic;
 
 namespace XpertMobileApp.Views
 {
@@ -25,7 +27,7 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new SettingsModel();
-
+            
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
         }
 
@@ -42,7 +44,14 @@ namespace XpertMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            if (App.printerLocal == null)
+            {
+                App.printerLocal = DependencyService.Get<IPrinterSPRT>();
+            }
+            else
+            {
+                updateUI();
+            }
             LanguagesPicker.SelectedIndexChanged += LanguagesPicker_SelectedIndexChanged;
 
             Client client = App.ClientDatabase.GetFirstItemAsync().Result;
@@ -195,6 +204,108 @@ namespace XpertMobileApp.Views
 
                 }
             }
+        }
+        
+        private void updateUI()
+        {
+            if (App.printerLocal != null)
+            {
+                if (App.printerLocal.isConnected())
+                {
+                    this.Btn_desconnectPrinter.IsEnabled = true;
+                    this.Btn_ConnectPrinter.IsEnabled = false;
+                    this.Btn_Print.IsEnabled = true;
+                }
+                else
+                {
+                    this.Btn_desconnectPrinter.IsEnabled = false;
+                    this.Btn_ConnectPrinter.IsEnabled = true;
+                    this.Btn_Print.IsEnabled = false;
+                }
+            }
+            else
+            {
+                this.Btn_desconnectPrinter.IsEnabled = false;
+                this.Btn_ConnectPrinter.IsEnabled = true;
+                this.Btn_Print.IsEnabled = false;
+            }
+        }
+        async void eventUpdateUI(object sender, EventArgs e)
+        {
+            this.updateUI();
+        }
+        async void ConnectPrinterAsync(object sender, EventArgs e)
+        {
+            App.printerLocal.GetPrinterInstance(eventUpdateUI, viewModel.SelectedDevice?.Name);
+            App.printerLocal.openConnection();
+        }
+
+        async void DesconnectPrinterAsync(object sender, EventArgs e)
+        {
+            App.printerLocal.closeConnection();
+            updateUI();
+        }
+        async void PrintExempleAsync(object sender, EventArgs e)
+        {
+            List<Get_Print_VTE_TiketCaisse> data = new List<Get_Print_VTE_TiketCaisse>();
+            data.Add(new Get_Print_VTE_TiketCaisse
+            {
+                ADRESSE_PHARM = "ANNABA",
+                CREATED_BY = "Administrateur",
+                DATE_VENTE = DateTime.Now,
+                DESIGNATION_PRODUIT = "JAVEL",
+                NOM_PHARM = "LEMLOUM MOURAD",
+                NOM_TIERS = "comptoire",
+                MT_TTC = 12000.56m,
+                DESIGNATION_VTE = "Bon livraison",
+                TOTAL_ENCAISS_REAL = 500,
+                TOTAL_TTC = 500,
+                MT_RECU = 500,
+                QUANTITE = 2,
+                PRIX_VTE_TTC = 6000
+
+            });
+            data.Add(new Get_Print_VTE_TiketCaisse
+            {
+                ADRESSE_PHARM = "ANNABA",
+                CREATED_BY = "Administrateur",
+                DATE_VENTE = DateTime.Now,
+                DESIGNATION_PRODUIT = "Grizil",
+                NOM_PHARM = "LEMLOUM MOURAD",
+                NOM_TIERS = "comptoire",
+                MT_TTC = 300.25m,
+                DESIGNATION_VTE = "Bon livraison",
+                TOTAL_ENCAISS_REAL = 500,
+                TOTAL_TTC = 12500,
+                MT_RECU = 500,
+                QUANTITE = 100,
+                PRIX_VTE_TTC = 30
+            });
+            App.printerLocal.setPrinter(13, 0);
+            App.printerLocal.setPrinter(13, 0);
+            App.printerLocal.setFont(0, 0, 1, 1, 0);
+            App.printerLocal.PrintText(data[0].NOM_PHARM + Environment.NewLine);
+            App.printerLocal.PrintText(data[0].ADRESSE_PHARM + Environment.NewLine);
+            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            App.printerLocal.setFont(0, 0, 0, 1, 0);
+            string date = String.Format($"Date :{data[0].DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
+            App.printerLocal.PrintText(date);
+            App.printerLocal.PrintText("Etablie par : " + data[0].CREATED_BY + Environment.NewLine);
+            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            App.printerLocal.setFont(0, 0, 0, 1, 0);
+            App.printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
+            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            string datvalue = "";
+            foreach (Get_Print_VTE_TiketCaisse item in data)
+            {
+                datvalue = string.Format($"{item.DESIGNATION_PRODUIT,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                App.printerLocal.PrintText(datvalue);
+            }
+            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            App.printerLocal.PrintText(string.Format($"                      Total : {data[0].TOTAL_TTC:0.00}") + Environment.NewLine);
+            App.printerLocal.PrintText("Mt.recue :" + data[0].MT_RECU + Environment.NewLine);
+            App.printerLocal.PrintText("Mt.Rendue :" + (data[0].MT_RECU - data[0].TOTAL_TTC) + Environment.NewLine);
+
         }
     }
 }

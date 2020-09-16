@@ -7,8 +7,10 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Helpers.Services;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertWebApi.Models;
 
 namespace XpertMobileApp.Views.Encaissement
 {
@@ -89,6 +91,20 @@ namespace XpertMobileApp.Views.Encaissement
             }
         }
 
+        private async void PrintAsync(object sender, EventArgs e)
+        {
+            var tecketData = await WebServiceClient.GetDataTecketCaisseVente(item.CODE_VENTE);
+            if (tecketData == null) return;
+            if (tecketData.Count==0)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+            }
+            else
+            {
+                PrinterHelper.PrintBL(tecketData);
+            }
+        }
+    
         private void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;
