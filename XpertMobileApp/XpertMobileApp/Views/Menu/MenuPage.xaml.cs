@@ -24,27 +24,39 @@ namespace XpertMobileApp.Views
                 menuItems = new List<HomeMenuItem>();
 
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = AppResources.pn_home });
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Ventes, Image = "", Title = AppResources.pn_Ventes });
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
-
+                if (App.HasAdmin) 
+                { 
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Ventes, Image = "", Title = AppResources.pn_Ventes });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
+                }
                 if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
                 {
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
+                    //menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.VenteComptoir, Image = "", Title = AppResources.pn_VteComptoir });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Image = "", Title = AppResources.pn_session });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Image = "", Title = AppResources.pn_Commandes });
-                    if (Constants.AppName == Apps.XPH_Mob)
+                    if (App.HasAdmin)
                     {
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Image = "", Title = AppResources.pn_session });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Image = "", Title = AppResources.pn_Commandes });
+                        if (Constants.AppName == Apps.XPH_Mob)
+                        {
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
+                        }
                     }
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, Image = "", Title = AppResources.pn_Produits });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Manquants, Image = "", Title = AppResources.pn_Manquants });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Image = "", Title = AppResources.pn_Analyses });
+                    if (App.HasAdmin)
+                    {
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Manquants, Image = "", Title = AppResources.pn_Manquants });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.SimpleIndicators, Image = "", Title = "Indicteurs" }); // AppResources.pn_Simpleindicator
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Image = "", Title = AppResources.pn_Analyses });
+                    }
                 }
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
+                if (App.HasAdmin)
+                {
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
+                }
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
 
                 // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },

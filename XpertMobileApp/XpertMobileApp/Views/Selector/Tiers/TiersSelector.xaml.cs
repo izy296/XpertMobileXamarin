@@ -78,10 +78,7 @@ namespace XpertMobileApp.Views
         NewTiersPopupPage form;
         private async void btn_Add_Clicked(object sender, EventArgs e)
         {
-            if (form == null)
-            { 
-                form = new NewTiersPopupPage(null);
-            }
+            form = new NewTiersPopupPage(null);
             await PopupNavigation.Instance.PushAsync(form);
          //   await Navigation.PushModalAsync(new NavigationPage(form));
         }
@@ -89,6 +86,21 @@ namespace XpertMobileApp.Views
         private void Ent_Filter_TextChanged(object sender, TextChangedEventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private async void OnUpdateSwipeItemInvoked(object sender, EventArgs e)
+        {
+            var item = viewModel.SelectedItem;
+            var tr = (sender as SwipeItem)?.Parent?.Parent?.Parent?.BindingContext as View_TRS_TIERS;
+
+            form = new NewTiersPopupPage(tr);
+            await PopupNavigation.Instance.PushAsync(form);
+        }
+
+        private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
+        {
+            var item = viewModel.SelectedItem;
+            var tr = (sender as SwipeItem)?.Parent?.Parent?.Parent?.BindingContext as View_TRS_TIERS;
         }
     }
 }

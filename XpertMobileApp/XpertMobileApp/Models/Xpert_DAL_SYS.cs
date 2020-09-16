@@ -46,5 +46,10 @@ namespace XpertMobileApp.DAL
 
         public string DESIGN_COMPTE { get; set; } // varchar(32)
         public bool IMPORT_CONFIG { get; set; } // varchar(32)
+
+        public class CBScanedEventArgs : EventArgs
+        {
+            public string CodeBarre { get; set; }
+        }
     }
 }

@@ -120,5 +120,11 @@
     <Compile Update="Views\Livraison\Tournee\TourneesPage.xaml.cs">
       <DependentUpon>TourneesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Simple Indicators\SimpleIndicators.xaml.cs">
+      <DependentUpon>SimpleIndicators.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
+      <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

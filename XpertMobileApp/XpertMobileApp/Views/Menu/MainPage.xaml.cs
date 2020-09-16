@@ -39,6 +39,67 @@ namespace XpertMobileApp.Views
             }
         }
 
+        public ContentPage GetMenuPage(int idPage) 
+        {
+                switch (idPage)
+                {
+                    case (int)MenuItemType.Home:
+                        return new HomePage();
+                    case (int)MenuItemType.Sessions:
+                        return new SessionsPage();
+                    case (int)MenuItemType.Tresorerie:
+                        return new TresoreriePage();
+                    case (int)MenuItemType.Encaissements:
+                        return new EncaissementsPage();
+                    case (int)MenuItemType.Achats:
+                        return new AchatsPage();
+                    case (int)MenuItemType.AchatsProduction:
+                        return new AchatsOHPage(AchRecMotifs.PesageForProduction);
+                    case (int)MenuItemType.OrdresProduction:
+                        return new ProductionsPage(AchRecMotifs.PesageForProduction);
+                    case (int)MenuItemType.Ventes:
+                        return new VentesPage(VentesTypes.Vente);
+                    case (int)MenuItemType.Livraison:
+                        return new VentesPage(VentesTypes.Livraison);
+                    case (int)MenuItemType.VenteComptoir:
+                        return new VentesPage(VentesTypes.VenteComptoir);
+                    case (int)MenuItemType.SimpleIndicators:
+                        return new SimpleIndicators();
+                    case (int)MenuItemType.Psychotrop:
+                        return new VentesPage(VentesTypes.VentePSYCO);
+                    case (int)MenuItemType.Tournee:
+                        return new TourneesPage();
+                    case (int)MenuItemType.Bordereaux:
+                        return new BordereauxPage();
+                    case (int)MenuItemType.Catalogues:
+                        return new Paging();
+                    case (int)MenuItemType.MyCommandes:
+                        return new Paging();
+                    case (int)MenuItemType.Commandes:
+                        return new CommandesPage();
+                    case (int)MenuItemType.Produits:
+                        return new ProduitsPage();
+                    case (int)MenuItemType.Manquants:
+                        return new ManquantsPage();
+                    case (int)MenuItemType.rfid:
+                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
+                    case (int)MenuItemType.invrfid:
+                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
+                    case (int)MenuItemType.Tiers:
+                        return new TiersPage();
+                    case (int)MenuItemType.EncAnalyses:
+                        return new sf_EncAnalysesPage();
+                    case (int)MenuItemType.AchatAgroAnalyses:
+                        return new AchatsAnalysesPage();
+                    case (int)MenuItemType.Settings:
+                        return new SettingsPage();
+                    case (int)MenuItemType.About:
+                        return new AboutPage();
+                    default:
+                        return new HomePage();
+            }
+        }
+
         public async Task NavigateFromMenu(int id)
         {
             if (!MenuPages.ContainsKey(id))
@@ -74,6 +135,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.VenteComptoir:
                         MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.VenteComptoir)));
+                        break;
+                    case (int)MenuItemType.SimpleIndicators:
+                        MenuPages.Add(id, new NavigationPage(new SimpleIndicators()));
                         break;
                     case (int)MenuItemType.Psychotrop:
                         MenuPages.Add(id, new NavigationPage(new VentesPage(VentesTypes.VentePSYCO)));

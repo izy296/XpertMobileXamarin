@@ -883,4 +883,10 @@
   <data name="pn_dsdsdsds" xml:space="preserve">
     <value>sdsdsdsds</value>
   </data>
+  <data name="pn_Simpleindicator" xml:space="preserve">
+    <value>Indicateurs</value>
+  </data>
+  <data name="txt_DateNaissance" xml:space="preserve">
+    <value>Date naissance</value>
+  </data>
 </root>

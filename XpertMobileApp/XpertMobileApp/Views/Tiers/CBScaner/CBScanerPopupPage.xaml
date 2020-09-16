@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                 x:Class="XpertMobileApp.Views.CBScanerPopupPage"
+                 >
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="10">
+            <Frame CornerRadius="15" Padding="10" BackgroundColor="LightGray">
+                <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="True" IsVisible="True"
+                                HeightRequest="220" />
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

@@ -3,8 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.Templates.TiersTemplate">
     <ContentView.Content>
-
-        <StackLayout>
+        <SwipeView>
+            <SwipeView.RightItems>
+            <SwipeItems>
+                <SwipeItem Text="Modifier"
+                                IconImageSource="SelectionEdit.png"
+                                BackgroundColor="LightGreen"
+                                Invoked="OnUpdateSwipeItemInvoked" />
+                <SwipeItem Text="Supprimer" IsVisible="False"
+                                IconImageSource="Delete1.png"
+                                BackgroundColor="LightPink"
+                                Invoked="OnDeleteSwipeItemInvoked" />
+            </SwipeItems>
+        </SwipeView.RightItems>
+        <Grid >
+            <StackLayout>
             <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 
@@ -43,5 +56,8 @@
                 </Grid>
             </Frame>
         </StackLayout>
-  </ContentView.Content>
+        </Grid>
+        </SwipeView>
+
+    </ContentView.Content>
 </ContentView>

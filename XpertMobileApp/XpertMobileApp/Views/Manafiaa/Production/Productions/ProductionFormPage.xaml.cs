@@ -673,7 +673,11 @@ namespace XpertMobileApp.Views
                 else if (viewModel.Item.STATUS_DOC == DocProdStatus.PrdTermine)
                     nextSatus = DocProdStatus.PrdLivre;
                 */
-                bool result = await WebServiceClient.UpdateStatus(viewModel.Item.CODE_DOC, nextSatus);
+
+                // Modified
+                viewModel.Item.STATUS_DOC = nextSatus;
+                bool result = await CrudManager.Productions.UpdateItemAsync(viewModel.Item);
+                // bool result = await WebServiceClient.UpdateStatus(viewModel.Item.CODE_DOC, nextSatus);
 
                 if (result)
                 {

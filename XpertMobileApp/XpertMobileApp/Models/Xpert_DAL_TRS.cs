@@ -320,7 +320,9 @@ namespace XpertMobileApp.DAL
         public string NUM_KAFALA_AY_DROIT { get; set; }//varchar(50)
         public string ID_CVM_CENTRE { get; set; }//
         public string AGE { get; set; }//
+        public string EMAIL { get; set; }
 
+        public string CODE_LIEUX { get; set; }
     }
 
     public partial class View_TRS_TIERS : TRS_TIERS

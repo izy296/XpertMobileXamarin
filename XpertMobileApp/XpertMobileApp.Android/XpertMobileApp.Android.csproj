@@ -58,7 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="bindigJarPrinterSPRT">
-      <HintPath>..\..\Xpert.Dll\SPRTPrinter\Android\bindigJarPrinterSPRT.dll</HintPath>
+      <HintPath>..\..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />

@@ -6,6 +6,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
@@ -22,8 +23,11 @@ namespace XpertMobileApp.Views
         public VentesPage(string typeVente)
 		{
             typeDoc = typeVente;
-
+            
             InitializeComponent ();
+            
+            if (string.IsNullOrEmpty(typeVente))
+                btn_Additem.IsEnabled = false;
 
             vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente;
 
@@ -56,7 +60,7 @@ namespace XpertMobileApp.Views
         async void AddItem_Clicked(object sender, EventArgs e)
         {
            
-            var session = await App.GetCurrentSession();
+            var session = await CrudManager.Sessions.GetCurrentSession();
             if(session == null) 
             {
                 var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);

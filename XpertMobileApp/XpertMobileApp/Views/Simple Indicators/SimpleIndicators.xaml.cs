@@ -3,25 +3,24 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class SimpleIndicators : ContentPage
     {
-        HomeViewModel viewModel;
+        SimpleIndicatorsModel viewModel;
 
-        public HomePage()
+        public SimpleIndicators()
         {
             
             InitializeComponent();
 
-           // Title = AppResources.pn_home;
-            lblUser.Text = App.User?.UserName;
-            lblClientName.Text = App.Settings.ClientName;
-            BindingContext = viewModel = new HomeViewModel();
+            // Title = AppResources.pn_home;
+            // lblUser.Text = App.User?.UserName;
+            // lblClientName.Text = App.Settings.ClientName;
+            BindingContext = viewModel = new SimpleIndicatorsModel();
         }
 
         protected override void OnAppearing()
@@ -48,15 +47,6 @@ namespace XpertMobileApp.Views
         private void btn_Refresh_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private async void Btn_Menu_Clicked(object sender, EventArgs e)
-        {
-            MainPage RootPage = Application.Current.MainPage as MainPage;
-            string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            var page = RootPage.GetMenuPage(Convert.ToInt32(id));
-            await Navigation.PushAsync(page);
-            // await RootPage.NavigateFromMenu(Convert.ToInt32(id));
         }
     }
 }

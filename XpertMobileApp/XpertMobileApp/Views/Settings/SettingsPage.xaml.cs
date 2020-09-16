@@ -155,9 +155,15 @@ namespace XpertMobileApp.Views
                 int port = 80;
                 Regex r = new Regex(@"^(?<proto>\w+)://[^/]+?(?<port>:\d+)?/",RegexOptions.None, TimeSpan.FromMilliseconds(150));
                 Match m = r.Match(url);
+                /*
+                foreach (var item in m.Groups)
+                {
+                    var l = item.get;
+                }
+                */
                 if (m.Success && ! string.IsNullOrEmpty(m.Groups["port"]?.Value))
                 {
-                    port = Convert.ToInt32(m.Groups["port"].Value);
+                    port = Convert.ToInt32(m.Groups["port"].Value.Replace(":",""));
                     // Console.WriteLine(m.Result("${proto}${port}"));
                 }
 

@@ -17,7 +17,7 @@ using XpertMobileApp.Services;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class HomeViewModel : BaseViewModel
+    public class SimpleIndicatorsModel : BaseViewModel
     {
         public ObservableCollection<TDB_SIMPLE_INDICATORS> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
@@ -46,9 +46,9 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref totalDecaiss, value); }
         }
 
-        public HomeViewModel()
+        public SimpleIndicatorsModel()
         {
-            Title = AppResources.pn_home;
+            Title = "Indicateurs";
 
             Items = new ObservableCollection<TDB_SIMPLE_INDICATORS>();
             Sessions = new ObservableCollection<TRS_JOURNEES>();
@@ -96,56 +96,11 @@ namespace XpertMobileApp.ViewModels
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 Items.Clear();
-
-                Items.Add(new TDB_SIMPLE_INDICATORS()
-                {   
-                    CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
-                    Title = "Ventes comptoir",
-                    Color = "#FFC000"
-                });
-                if (App.HasAdmin)
-                {
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
-                        Title = "Ventes",
-                        Color = "#BDD6EE"
-                    });
- 
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
-                        Title = "Sessions",
-                        Color = "#ff6b81"
-                    });
-
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
-                        Title = "Encaiss / Decaiss",
-                        Color = "#A8D08D"
-                    });
-                }
-                Items.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
-                    Title = "Produits",
-                    Color = "#B4C6E7"
-                });
-
-                Items.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
-                    Title = "Tiers",
-                    Color = "#FEF2CC"
-                });
-                /*
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)
                 {
                     Items.Add(item);
                 }
-                */
                 IsBusy = false;
             }
             catch (Exception ex)

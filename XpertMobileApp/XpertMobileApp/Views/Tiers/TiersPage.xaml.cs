@@ -44,15 +44,11 @@ namespace XpertMobileApp.Views
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        
-    */    
-    }
-        NewTiersPage form;
+           */    
+        }
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            if (form == null)
-            {
-                form = new NewTiersPage(null);
-            }
+            NewTiersPage form = new NewTiersPage(null);
             await Navigation.PushModalAsync(new NavigationPage(form));
         }
 

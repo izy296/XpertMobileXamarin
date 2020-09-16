@@ -26,6 +26,46 @@
                        Text="{Binding Item.PRENOM_TIERS, Mode=TwoWay}"
                        TextColor="{StaticResource Primary}"/>
 
+                <Label Text="{i18n:Translate txt_phone}" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder=""
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.TEL1_TIERS, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="Email" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder=""
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.EMAIL, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="{i18n:Translate txt_DateNaissance}" Margin="5, 0, 0, 0"/>
+                <DatePicker 
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding Item.DATE_NAISSANCE, Mode=TwoWay}"
+                        Margin="30, 0, 30, 30"/>
+
+
+                <Label Text="Code barre" Margin="5, 0, 0, 0"/>
+                <StackLayout Orientation="Horizontal" Margin="0" Padding="0" Spacing="0">
+                <Entry x:Name="CBCarte" HorizontalOptions="FillAndExpand"
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.NUM_CARTE_FIDELITE, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+                    <Button x:Name="ScnanCB" WidthRequest="50" HeightRequest="50" BackgroundColor="#6279B8" ImageSource="scan_qr_24.png" 
+                            Clicked="ScnanCB_Clicked" VerticalOptions="Start" Margin="0,-10,0,0" HorizontalOptions="End" CornerRadius="8" />
+                </StackLayout>
+                
+                <Label Text="Secteurs" Margin="5, 0, 0, 0" />
+                <Picker ItemsSource="{Binding Secteurs}"
+                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                SelectedItem="{Binding SelectedSecteur}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="SecteursPicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30" 
+                                x:Name="SecteursPicker"/>
+                
                 <Label Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0" />
                 <Picker ItemsSource="{Binding Types}"
                                 ItemDisplayBinding="{Binding DESIGNATION_TYPE}"

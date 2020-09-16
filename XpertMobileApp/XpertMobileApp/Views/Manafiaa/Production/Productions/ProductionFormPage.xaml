@@ -134,7 +134,7 @@
                 <Button IsVisible="False" x:Name="btn_RowScan" BackgroundColor="Transparent" IsEnabled="True" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
             </StackLayout>
 
-            <ScrollView Padding="0" Margin="0">
+
                 <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
                     <syncfusion:SfListView x:Name="ItemsListView" 
                             ItemsSource="{Binding ItemRows}"
@@ -282,7 +282,7 @@
                         </syncfusion:SfListView.ItemTemplate>
                     </syncfusion:SfListView>
                 </Frame>
-            </ScrollView>
+
 
             <StackLayout IsVisible="True" BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
                 <Label x:Name="lbl_vteTTC" IsVisible="False" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,20,10"

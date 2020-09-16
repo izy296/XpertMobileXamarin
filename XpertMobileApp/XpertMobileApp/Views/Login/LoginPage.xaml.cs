@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -60,64 +61,78 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
                 return;
             }
+            try 
+            { 
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-            User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
-
-            if (viewModel.CheckUser(user))
-            {
-                // Authentification via le WebService
-                Token token = await viewModel.Login(user);
-
-                // Cas d'un souci avec le web service 
-                if (token == null) return;
-
-                if (token.access_token != null)
+                if (viewModel.CheckUser(user))
                 {
-                    user.Id = token.userID;
-                    user.CODE_TIERS = token.CODE_TIERS;
-                    user.UserGroup = token.UserGroup;
-                    user.GroupName = token.GroupName;
-                    user.ClientId = App.Settings.ClientId;
-                    user.Token = token;
-                    App.User = user;
+                    // Authentification via le WebService
+                    Token token = await viewModel.Login(user);
 
-                    CrudManager.InitServices();
-
-
-
-                    // Alerte apres la connexion
-                    // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
-
-                    // suavegrade du user et du token en cours dans la bdd local
-
-                    try
+                    // Cas d'un souci avec le web service 
+                    if (token == null)
                     {
-                        List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
-                        // await App.UserDatabase.SaveItemAsync(user);
-                        await App.TokenDatabase.SaveItemAsync(token);
+                        UserDialogs.Instance.HideLoading();
+                        return;
                     }
-                    catch(Exception ex)
+
+                    if (token.access_token != null)
                     {
-                        await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
-                    }
-                    
-                    if (Device.RuntimePlatform == Device.Android)
-                    {
-                        Application.Current.MainPage = new MainPage();
-                    }
-                    else if (Device.RuntimePlatform == Device.iOS)
-                    {
-                        await Navigation.PushModalAsync(new MainPage(), false);
-                    }
-                    else
-                    {
-                        Application.Current.MainPage = new MainPage();
+                        user.Id = token.userID;
+                        user.CODE_TIERS = token.CODE_TIERS;
+                        user.UserGroup = token.UserGroup;
+                        user.GroupName = token.GroupName;
+                        user.ClientId = App.Settings.ClientId;
+                        user.Token = token;
+                        App.User = user;
+
+                        CrudManager.InitServices();
+
+
+
+                        // Alerte apres la connexion
+                        // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+
+                        // suavegrade du user et du token en cours dans la bdd local
+
+                        try
+                        {
+                            List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
+                            // await App.UserDatabase.SaveItemAsync(user);
+                            await App.TokenDatabase.SaveItemAsync(token);
+                        }
+                        catch(Exception ex)
+                        {
+                            await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                        }
+
+                        UserDialogs.Instance.HideLoading();
+
+                        if (Device.RuntimePlatform == Device.Android)
+                        {
+                            Application.Current.MainPage = new MainPage();
+                        }
+                        else if (Device.RuntimePlatform == Device.iOS)
+                        {
+                            await Navigation.PushModalAsync(new MainPage(), false);
+                        }
+                        else
+                        {
+                            Application.Current.MainPage = new MainPage();
+                        }
                     }
                 }
+                else
+                {
+                    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                UserDialogs.Instance.HideLoading();
+                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
             }
         }
 

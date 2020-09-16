@@ -30,6 +30,7 @@ namespace XpertMobileApp.Models
         rfid,
         invrfid,
         EncAnalyses,
+        SimpleIndicators,
         AchatAgroAnalyses,
         Settings,
         About

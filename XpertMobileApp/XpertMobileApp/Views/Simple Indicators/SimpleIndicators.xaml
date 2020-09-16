@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.HomePage"
+             x:Class="XpertMobileApp.Views.SimpleIndicators"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
@@ -9,21 +9,22 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              BackgroundColor="White"
              FlowDirection="MatchParent"
+             Title="{Binding Title}"
              >
-    <!--
+
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btn_Refresh" Text="{i18n:Translate cmd_Filter}" 
                      Icon="refresh_w24.png" Clicked="btn_Refresh_Clicked">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     
-
+    <!--
     #ecf0f1
     -->
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
 
-            <!-- Liste des comptes -->
+            <!-- Liste des comptes 
             <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
                    Margin="0" IsClippedToBounds="true"
                    BorderColor="{StaticResource NavigationPrimary}"
@@ -51,8 +52,8 @@
                     </StackLayout>
                 </StackLayout>
             </yummy:PancakeView>
-            
-            <syncfusion:SfListView Margin="10,-60,10,0"
+            -->
+            <syncfusion:SfListView Margin="10,10,10,0"
                 x:Name="listView"
                 SelectionMode="None"
                 SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -90,10 +91,12 @@
                                    Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                                 <Grid Padding="0" ColumnSpacing="0" Margin="0" >
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height= "*" />
+                                        <RowDefinition Height= "50" />
+                                        <RowDefinition Height= "*"  />
+                                        <RowDefinition Height= "50" />
                                     </Grid.RowDefinitions>
-<!--
-                                <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"
+
+                                <Label Grid.Row="0" Text="Aujourd'hui"  FontSize="Default" Margin="0,8,0,0"
                      VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
                                 <Label Grid.Row="1" Text="{Binding CustomValue, StringFormat='{0:N2} DA'}"  
@@ -101,17 +104,11 @@
                                        FontSize="Default"  TextColor="Black"
                                        VerticalOptions="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
-                                <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Subtitle" 
-                                       VerticalOptions="Center" HorizontalOptions="FillAndExpand"
+                                <Label Grid.Row="2" Text="{Binding Title}"  FontSize="Default" VerticalOptions="End" HorizontalOptions="FillAndExpand"
                                        FontFamily="{StaticResource FontGilroySemiBold}" 
                                        HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
--->
-                                <Button Text="{Binding Title}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontGilroySemiBold}" FontSize="Subtitle" Clicked="Btn_Menu_Clicked" />
-
-
-
-                            </Grid>
+                                          
+                                </Grid>
                             </yummy:PancakeView>
                         </DataTemplate>
                     </syncfusion:SfListView.ItemTemplate>
