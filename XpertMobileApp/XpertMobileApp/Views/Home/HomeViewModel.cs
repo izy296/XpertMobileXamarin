@@ -96,13 +96,25 @@ namespace XpertMobileApp.ViewModels
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 Items.Clear();
-
-                Items.Add(new TDB_SIMPLE_INDICATORS()
-                {   
-                    CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
-                    Title = "Ventes comptoir",
-                    Color = "#FFC000"
-                });
+                if(Constants.AppName == Apps.XCOM_Livraison) 
+                { 
+                    Items.Add(new TDB_SIMPLE_INDICATORS()
+                    {   
+                        CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
+                        Title = "Livraisons",
+                        Color = "#FFC000"
+                    });
+                }
+                else 
+                {
+                    Items.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
+                        Title = "Ventes comptoir",
+                        Color = "#FFC000"
+                    });
+                }
+                
                 if (App.HasAdmin)
                 {
                     Items.Add(new TDB_SIMPLE_INDICATORS()

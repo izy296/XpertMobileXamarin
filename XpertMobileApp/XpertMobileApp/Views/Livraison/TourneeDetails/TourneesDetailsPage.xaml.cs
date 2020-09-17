@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
 
@@ -78,10 +80,27 @@ namespace XpertMobileApp.Views
 
         }
 
-        private void OnFavoriteSwipeItemInvoked(object sender, EventArgs e)
+        private async void OnFavoriteSwipeItemInvoked(object sender, EventArgs e)
         {
             var item = viewModel.SelectedItem;
             var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
+
+            var session = await CrudManager.Sessions.GetCurrentSession();
+            if (session == null)
+            {
+                var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                if (res)
+                {
+                    OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                    await PopupNavigation.Instance.PushAsync(openPage);
+                }
+            }
+            else
+            {
+                VenteFormPage form = new VenteFormPage(null, VentesTypes.Livraison);
+                // form.selec
+                // await Navigation.PushAsync(new VenteFormPage(null, VentesTypes.Livraison));
+            }
         }
 
         private void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
