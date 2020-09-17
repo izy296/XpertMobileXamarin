@@ -7,9 +7,9 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Helpers.Services;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertMobileSettingsPage.Helpers.Services;
 using XpertWebApi.Models;
 
 namespace XpertMobileApp.Views.Encaissement

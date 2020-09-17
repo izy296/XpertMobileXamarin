@@ -23,11 +23,12 @@ namespace XpertMobileApp.Views
 
         public SettingsModel viewModel;
 
+        public static IPrinterSPRT printerLocal;
         public SettingsPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new SettingsModel();
-            
+            printerLocal = DependencyService.Get<IPrinterSPRT>();
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
         }
 
@@ -44,9 +45,9 @@ namespace XpertMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            if (App.printerLocal == null)
+            if (printerLocal == null)
             {
-                App.printerLocal = DependencyService.Get<IPrinterSPRT>();
+                printerLocal = DependencyService.Get<IPrinterSPRT>();
             }
             else
             {
@@ -214,9 +215,9 @@ namespace XpertMobileApp.Views
         
         private void updateUI()
         {
-            if (App.printerLocal != null)
+            if (printerLocal != null)
             {
-                if (App.printerLocal.isConnected())
+                if (printerLocal.isConnected())
                 {
                     this.Btn_desconnectPrinter.IsEnabled = true;
                     this.Btn_ConnectPrinter.IsEnabled = false;
@@ -242,13 +243,13 @@ namespace XpertMobileApp.Views
         }
         async void ConnectPrinterAsync(object sender, EventArgs e)
         {
-            App.printerLocal.GetPrinterInstance(eventUpdateUI, viewModel.SelectedDevice?.Name);
-            App.printerLocal.openConnection();
+            printerLocal.GetPrinterInstance(eventUpdateUI, viewModel.SelectedDevice?.Name);
+            printerLocal.openConnection();
         }
 
         async void DesconnectPrinterAsync(object sender, EventArgs e)
         {
-            App.printerLocal.closeConnection();
+            printerLocal.closeConnection();
             updateUI();
         }
         async void PrintExempleAsync(object sender, EventArgs e)
@@ -287,30 +288,30 @@ namespace XpertMobileApp.Views
                 QUANTITE = 100,
                 PRIX_VTE_TTC = 30
             });
-            App.printerLocal.setPrinter(13, 0);
-            App.printerLocal.setPrinter(13, 0);
-            App.printerLocal.setFont(0, 0, 1, 1, 0);
-            App.printerLocal.PrintText(data[0].NOM_PHARM + Environment.NewLine);
-            App.printerLocal.PrintText(data[0].ADRESSE_PHARM + Environment.NewLine);
-            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-            App.printerLocal.setFont(0, 0, 0, 1, 0);
+            printerLocal.setPrinter(13, 0);
+            printerLocal.setPrinter(13, 0);
+            printerLocal.setFont(0, 0, 1, 1, 0);
+            printerLocal.PrintText(data[0].NOM_PHARM + Environment.NewLine);
+            printerLocal.PrintText(data[0].ADRESSE_PHARM + Environment.NewLine);
+            printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            printerLocal.setFont(0, 0, 0, 1, 0);
             string date = String.Format($"Date :{data[0].DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
-            App.printerLocal.PrintText(date);
-            App.printerLocal.PrintText("Etablie par : " + data[0].CREATED_BY + Environment.NewLine);
-            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-            App.printerLocal.setFont(0, 0, 0, 1, 0);
-            App.printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
-            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            printerLocal.PrintText(date);
+            printerLocal.PrintText("Etablie par : " + data[0].CREATED_BY + Environment.NewLine);
+            printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            printerLocal.setFont(0, 0, 0, 1, 0);
+            printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
+            printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
             string datvalue = "";
             foreach (Get_Print_VTE_TiketCaisse item in data)
             {
                 datvalue = string.Format($"{item.DESIGNATION_PRODUIT,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
-                App.printerLocal.PrintText(datvalue);
+                printerLocal.PrintText(datvalue);
             }
-            App.printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-            App.printerLocal.PrintText(string.Format($"                      Total : {data[0].TOTAL_TTC:0.00}") + Environment.NewLine);
-            App.printerLocal.PrintText("Mt.recue :" + data[0].MT_RECU + Environment.NewLine);
-            App.printerLocal.PrintText("Mt.Rendue :" + (data[0].MT_RECU - data[0].TOTAL_TTC) + Environment.NewLine);
+            printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+            printerLocal.PrintText(string.Format($"                      Total : {data[0].TOTAL_TTC:0.00}") + Environment.NewLine);
+            printerLocal.PrintText("Mt.recue :" + data[0].MT_RECU + Environment.NewLine);
+            printerLocal.PrintText("Mt.Rendue :" + (data[0].MT_RECU - data[0].TOTAL_TTC) + Environment.NewLine);
 
         }
     }

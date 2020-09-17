@@ -13,7 +13,7 @@ using Rg.Plugins.Popup.Extensions;
 using XpertWebApi.Models;
 using System.Collections.Generic;
 using XpertMobileApp.Services;
-using XpertMobileApp.Helpers.Services;
+using XpertMobileSettingsPage.Helpers.Services;
 
 namespace XpertMobileApp.Views
 {

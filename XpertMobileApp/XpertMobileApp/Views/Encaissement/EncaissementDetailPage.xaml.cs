@@ -7,10 +7,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Helpers.Services;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertMobileSettingsPage.Helpers.Services;
 
 namespace XpertMobileApp.Views.Encaissement
 {

@@ -34,7 +34,7 @@ namespace XpertMobileApp
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
-        public static IPrinterSPRT printerLocal;
+        
         public static bool HasAdmin
         {
             get
@@ -138,7 +138,7 @@ namespace XpertMobileApp
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
-            printerLocal = DependencyService.Get<IPrinterSPRT>();
+            
             // Vérification de la licence
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
            /* LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
