@@ -144,13 +144,17 @@ namespace XpertMobileApp.Views.Encaissement
 
         async void btnImprimer_Clicked(object sender, EventArgs e)
         {
-            var tecketData = await WebServiceClient.GetDataTecketCaisseEncaisse(this.viewModel.Item.CODE_ENCAISS);
-            if (tecketData == null) { 
-                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
-            }
-            else
+            if (SettingsPage.printerLocal != null && SettingsPage.printerLocal.isConnected())
             {
-                PrinterHelper.PrintEncaisse(tecketData);
+                var tecketData = await WebServiceClient.GetDataTecketCaisseEncaisse(this.viewModel.Item.CODE_ENCAISS);
+                if (tecketData == null)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    PrinterHelper.PrintEncaisse(tecketData);
+                }
             }
         }
         async void Cancel_Clicked(object sender, EventArgs e)
