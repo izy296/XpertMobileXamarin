@@ -753,5 +753,33 @@ namespace XpertMobileApp.Api.ViewModels
         }
 
         #endregion  Query builder
+
+
+        internal async Task<bool> UpdateItem(TView item) 
+        {
+            if (IsBusy)
+                return false;
+
+            try
+            {
+                IsBusy = true;
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var res = await service.UpdateItemAsync(item);
+                UserDialogs.Instance.HideLoading();
+
+                return res;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+                return false;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
     }
 }

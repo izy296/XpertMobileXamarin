@@ -33,15 +33,22 @@ namespace XpertMobileApp.Views
         List<SYS_OBJET_PERMISSION> permissions;
 
         public Command AddItemCommand { get; set; }
-
-
-
-        public VenteFormPage(View_VTE_VENTE vente, string typeDoc)
+        public View_TRS_TIERS SelectedTiers
         {
+            get 
+            {
+                return viewModel.SelectedTiers;
+            }
+            set 
+            {
+                viewModel.SelectedTiers = value;
+            }
+        }
 
-
+        public VenteFormPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails ="")
+        {
             InitializeComponent();
-
+            
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             if(vente == null)
             {
@@ -49,12 +56,25 @@ namespace XpertMobileApp.Views
                 vte.TYPE_DOC = typeDoc;
                 vte.TYPE_VENTE = typeDoc;
                 vte.DATE_VENTE = DateTime.Now.Date;
-
+                vte.MBL_CODE_TOURNEE_DETAIL = codeTourneeDetails;
                 vte.PropertyChanged += Vte_PropertyChanged;
             }
 
             BindingContext = this.viewModel = new VenteFormViewModel(vte, vte?.CODE_VENTE);
             viewModel.TypeDoc = typeDoc;
+
+            if (tiers == null)
+            {
+                SelectedTiers = new View_TRS_TIERS()
+                {
+                    CODE_TIERS = "CXPERTCOMPTOIR",
+                    NOM_TIERS1 = "COMPTOIR"
+                };
+            }
+            else
+            {
+                SelectedTiers = tiers;
+            }
 
             itemSelector = new LotSelector(viewModel.CurrentStream);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
@@ -260,7 +280,7 @@ namespace XpertMobileApp.Views
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
-            VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item);
+            VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
             VteValidationPage.ParentviewModel = viewModel;
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
@@ -363,8 +383,29 @@ namespace XpertMobileApp.Views
             }
         }
 
+
         #endregion Swip listview
 
+        private async void btn_SelectTiers_Clicked(object sender, EventArgs e)
+        {
+            TiersSelector = new TiersSelector(viewModel.CurrentStream);
+            await PopupNavigation.Instance.PushAsync(TiersSelector);
+        }
 
+        private void btn_ScanTiers_Clicked(object sender, EventArgs e)
+        {
+            var scaner = new ZXingScannerPage();
+            Navigation.PushAsync(scaner);
+            scaner.OnScanResult += (result) =>
+            {
+                scaner.IsScanning = false;
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PopAsync();
+
+                    await viewModel.SelectScanedTiers(result.Text);
+                });
+            };
+        }
     }
 }

@@ -26,7 +26,7 @@ namespace XpertMobileApp.ViewModels
             set 
             { 
                 if(SelectedTiers != value) 
-                { 
+                {  
                     SetProperty(ref selectedTiers, value);
                     Item.CODE_TIERS = value?.CODE_TIERS;
                     Item.NOM_TIERS = value?.NOM_TIERS1;
@@ -41,15 +41,22 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref item, value); }
         }
         public bool imprimerTecketCaiss { get; set; } = true;
-        public VteValidationViewModel(View_VTE_VENTE item, string title= "")
+        public VteValidationViewModel(View_VTE_VENTE item, string title= "", View_TRS_TIERS tiers = null)
         {
             Title = title;
             Item = item;
-            SelectedTiers = new View_TRS_TIERS()
+            if(tiers == null) 
+            { 
+                SelectedTiers = new View_TRS_TIERS()
+                {
+                    CODE_TIERS = "CXPERTCOMPTOIR",
+                    NOM_TIERS1 = "COMPTOIR"
+                };
+            }
+            else 
             {
-                CODE_TIERS = "CXPERTCOMPTOIR",
-                NOM_TIERS1 = "COMPTOIR"
-            };
+                SelectedTiers = tiers;
+            }
         }
 
         internal async Task<string> ValidateVte(View_VTE_VENTE item)

@@ -35,12 +35,12 @@ namespace XpertMobileApp.Views
             } 
         }
 
-        public VteValidationPage(string stream, View_VTE_VENTE item)
+        public VteValidationPage(string stream, View_VTE_VENTE item, View_TRS_TIERS tiers = null)
         {
             InitializeComponent();
  
             ParentStream = stream;
-            BindingContext = viewModel = new VteValidationViewModel(item);
+            BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
 
             // Initialisation du montant reçu au reste a payer
             viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;

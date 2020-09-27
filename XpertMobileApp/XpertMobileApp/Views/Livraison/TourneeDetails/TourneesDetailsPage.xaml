@@ -103,11 +103,11 @@
                                         <SwipeItem Text="Visite"
                                                IconImageSource="scan_qr_24.png"
                                                BackgroundColor="LightPink"
-                                               Invoked="OnFavoriteSwipeItemInvoked" />
+                                               Invoked="OnVisiteSwipeItemInvoked" />
                                         <SwipeItem Text="Livraison"
                                                IconImageSource="addToCart24.png"
                                                BackgroundColor="LightGreen"
-                                               Invoked="OnDeleteSwipeItemInvoked" />
+                                               Invoked="OnDelevrySwipeItemInvoked" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
                                 <Grid >

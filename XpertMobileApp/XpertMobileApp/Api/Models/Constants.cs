@@ -13,8 +13,8 @@ namespace XpertMobileApp.Api
         public static string XPH_Mob = "XCPH_Mob";
         public static string XAGRI_Mob = "XAGRI_Mob";
         public static string XACATALOG_Mob = "XACATALOG_Mob";
-        public static string XCOM_Vente = "XACATALOG_Mob";
-        public static string XCOM_Livraison = "XACATALOG_Mob";
+        public static string XCOM_Vente = "XCOM_Vente";
+        public static string XCOM_Livraison = "XCOM_Livraison";
     }
 
     public static class Mobile_Edition

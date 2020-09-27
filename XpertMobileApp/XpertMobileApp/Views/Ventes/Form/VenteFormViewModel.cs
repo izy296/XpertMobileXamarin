@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
@@ -79,6 +80,13 @@ namespace XpertMobileApp.Views
             vte.TYPE_VENTE = TypeDoc;
             vte.DATE_VENTE = DateTime.Now.Date;
             Item = vte;
+
+            SelectedTiers = new View_TRS_TIERS()
+            {
+                CODE_TIERS = "CXPERTCOMPTOIR",
+                NOM_TIERS1 = "COMPTOIR"
+            };
+
         }
 
         private BSE_CHAUFFEUR selectedChauffeur;
@@ -191,7 +199,8 @@ namespace XpertMobileApp.Views
                 }
 
                 // Récupérer le lot depuis le serveur
-                List<View_STK_STOCK> prods = await CrudManager.Stock.SelectByCodeBarreLot(cb_prod);
+                string codeTiers = SelectedTiers!= null ? SelectedTiers.CODE_TIERS : "";
+                List<View_STK_STOCK> prods = await CrudManager.Stock.SelectByCodeBarreLot(cb_prod, codeTiers);
 
                 XpertHelper.PeepScan();
 
@@ -214,6 +223,40 @@ namespace XpertMobileApp.Views
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
                 return null;
+            }
+        }
+
+        internal async Task SelectScanedTiers(string cb_tiers)
+        {
+            try
+            {
+                // Récupérer le lot depuis le serveur
+                XpertSqlBuilder qb = new XpertSqlBuilder();
+                qb.AddCondition<View_TRS_TIERS, string>(x => x.NUM_CARTE_FIDELITE, cb_tiers);
+                qb.AddOrderBy<View_TRS_TIERS, string>(x => x.CODE_TIERS);
+                var tiers = await CrudManager.TiersManager.SelectByPage(qb.QueryInfos, 1, 1);
+                if (tiers == null)
+                    return;
+
+                XpertHelper.PeepScan();
+
+                if (tiers.Count() > 1)
+                {
+                    await UserDialogs.Instance.AlertAsync("Plusieurs tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else if (tiers.Count() == 0)
+                {
+                    await UserDialogs.Instance.AlertAsync("Aucun tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    SelectedTiers = tiers.FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
             }
         }
     }

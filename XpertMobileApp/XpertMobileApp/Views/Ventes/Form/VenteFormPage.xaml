@@ -28,7 +28,32 @@
     
     <ContentPage.Content>
         <StackLayout  Padding="0" BackgroundColor="#f0f2f5">
-            
+            <StackLayout BackgroundColor="#d7e4f7" Spacing="0" HeightRequest="50" Orientation="Horizontal"
+                         >
+                <Label Text="Client : " FontSize="Medium" 
+                       Margin="5" VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />
+                <StackLayout Orientation="Horizontal" 
+                             Margin="0" HorizontalOptions="FillAndExpand">
+
+                    <Entry x:Name="ent_SelectedTiers" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
+                            IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="White"/>
+
+                    <Button x:Name="btn_Search" Margin="0" 
+                        WidthRequest="40" HeightRequest="40" FontSize="Small"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}" 
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_SelectTiers_Clicked"/>
+
+                    <Button x:Name="btn_Scan" Margin="0" 
+                        WidthRequest="40" HeightRequest="40" FontSize="Small"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"  
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_ScanTiers_Clicked"/>
+
+                </StackLayout>
+            </StackLayout>
             <!-- Header 
             <Frame x:Name="pnl_Header" IsVisible="False" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
                 <Grid  BackgroundColor="White" ColumnSpacing="0"  RowSpacing="0">

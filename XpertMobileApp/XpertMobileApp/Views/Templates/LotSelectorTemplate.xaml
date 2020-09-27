@@ -6,7 +6,7 @@
              x:Class="XpertMobileApp.Views.Templates.LotSelectorTemplate">
     <ContentView.Content>
 
-        <StackLayout>
+        <StackLayout Padding="5" Margin="5">
             <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent"
                    HeightRequest="100">
                 <Grid  BackgroundColor="Transparent" RowSpacing="0" >

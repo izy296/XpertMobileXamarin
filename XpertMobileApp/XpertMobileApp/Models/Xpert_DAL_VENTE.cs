@@ -198,7 +198,7 @@ namespace XpertMobileApp.DAL
                 SetProperty(ref _MBL_MT_RENDU, value); 
             }
         }
-       
+        public string MBL_CODE_TOURNEE_DETAIL { get; set; }
         #endregion
     }
 
