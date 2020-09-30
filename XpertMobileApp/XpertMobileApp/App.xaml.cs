@@ -34,7 +34,7 @@ namespace XpertMobileApp
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
-        
+
         public static bool HasAdmin
         {
             get
@@ -48,8 +48,9 @@ namespace XpertMobileApp
         {
             if (sysParams == null)
             {
-                var result =  await CrudManager.SysParams.GetParams();
-                return result;
+                var result = await CrudManager.SysParams.GetParams();
+                sysParams = result;
+                return sysParams;
             }
             return sysParams;
         }
@@ -76,15 +77,15 @@ namespace XpertMobileApp
         internal static List<SYS_OBJET_PERMISSION> permissions;
         public static async Task<List<SYS_OBJET_PERMISSION>> GetPermissions()
         {
-            try 
-            { 
+            try
+            {
                 if (permissions == null)
                 {
                     permissions = await CrudManager.Permissions.GetPermissions(User.UserGroup);
                 }
                 return permissions;
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
                 await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
     AppResources.alrt_msg_Ok);
@@ -94,7 +95,7 @@ namespace XpertMobileApp
 
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
-        static ClientDatabaseControler clientDatabase;        
+        static ClientDatabaseControler clientDatabase;
         static SettingsDatabaseControler settingsDatabase;
         static WebServiceClient resteService;
         private static Settings settings;
@@ -130,7 +131,50 @@ namespace XpertMobileApp
                 }
             }
         }
-        
+
+        private void InitApp()
+        {
+            // Vérification de la licence
+            LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
+            LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
+
+            if (licState == LicState.Valid)
+            {
+                Settings.Mobile_Edition = licenceInfos.Mobile_Edition;
+
+                string currentVersion = AppInfo.Version.ToString();
+                if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
+                {
+                    MainPage = new UpdatePage();
+                }
+                else
+                {
+                    Token token = App.TokenDatabase.GetFirstItemAsync().Result;
+                    if (token != null && DateTime.Now <= token.expire_Date)
+                    {
+                        App.User = new User(token.userName, "");
+                        App.User.UserName = token.userID;
+                        App.User.CODE_TIERS = token.CODE_TIERS;
+                        App.User.UserGroup = token.UserGroup;
+                        App.User.GroupName = token.GroupName;
+                        App.User.ClientId = licenceInfos.ClientId;
+                        App.User.Token = token;
+
+                        MainPage = new MainPage();
+                    }
+                    else
+                    {
+                        MainPage = new LoginPage();
+                    }
+                }
+            }
+            else
+            {
+                // MainPage = new LoginPage();
+                MainPage = new ActivationPage(licState);
+            }
+        }
+
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mjk3ODAxQDMxMzgyZTMyMmUzMFdHQ3FLK0tXSmRMUnFiUm5CelZnQ3kxRTV3Q2ZXWXEraExTemNSVjJwQ2M9");
@@ -138,53 +182,15 @@ namespace XpertMobileApp
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
-            
-            // Vérification de la licence
-            LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
-           /* LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
-            
-            if (licState == LicState.Valid)
-            {
-               Settings.Mobile_Edition = licenceInfos.Mobile_Edition;
 
-               string currentVersion = AppInfo.Version.ToString();
-               if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
-               {
-                   MainPage = new UpdatePage();
-               }
-               else
-               {
-                   Token token = App.TokenDatabase.GetFirstItemAsync().Result;
-                   if(token != null && DateTime.Now <= token.expire_Date)
-                   {
-                       App.User = new User(token.userName, "");
-                       App.User.UserName = token.userID;
-                       App.User.CODE_TIERS = token.CODE_TIERS;
-                       App.User.UserGroup = token.UserGroup;
-                       App.User.GroupName = token.GroupName;
-                       App.User.ClientId = licenceInfos.ClientId;
-                       App.User.Token = token;
+            this.InitApp();
 
-                       MainPage = new MainPage();
-                   }
-                   else
-                   {*/
-                       MainPage = new LoginPage();
-                   /*}                    
-               }
-            }
-            else
-            {
-                // MainPage = new LoginPage();
-                MainPage = new ActivationPage(licState); 
-            }
-            MainPage = new SettingsPage();  */
         }
 
         protected override void OnStart()
         {
             // Handle when your app starts
-            
+
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 bool saveSettings = false;
@@ -266,7 +272,7 @@ namespace XpertMobileApp
                 var culture = new CultureInfo(val);
                 AppResources.Culture = culture;
                 CrossMultilingual.Current.CurrentCultureInfo = culture;
-  
+
             }
             catch (Exception)
             {
@@ -402,12 +408,12 @@ namespace XpertMobileApp
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                       labelInfo.IsVisible = true;
-                       if (!alertDisplayed)
-                       {
-                            alertDisplayed = true;
-                            await ShowDisplayAlert();
-                       }
+                    labelInfo.IsVisible = true;
+                    if (!alertDisplayed)
+                    {
+                        alertDisplayed = true;
+                        await ShowDisplayAlert();
+                    }
                 });
             }
             else
