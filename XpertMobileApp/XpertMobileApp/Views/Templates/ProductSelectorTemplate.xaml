@@ -41,15 +41,23 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="0" Spacing="5" Padding="0">
-                        <Label Text="{Binding TRUNCATED_DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" 
+                        <Label Text="{Binding TRUNCATED_DESIGNATION0}" TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" FontSize="Default"/>
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0"  Orientation="Horizontal" 
                                  HorizontalOptions="Fill">
+                        
                         <Label Text="{Binding PRIX_VENTE_HT, StringFormat='Prix : {0:N2}'}" 
                                FontAttributes="Bold" FontSize="Default" TextColor="Red" HorizontalOptions="FillAndExpand"/>
-                        <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" HorizontalOptions="End" Margin="0,0,10,0"/>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding SelectedQUANTITE, Mode=TwoWay, StringFormat='{0:N2}'}" 
+                                   FontAttributes="Bold" FontSize="Default" TextColor="Red" 
+                                   HorizontalOptions="FillAndExpand"/>
+
+                            <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" 
+                                   HorizontalOptions="End" Margin="0,0,10,0"/>
+                        </StackLayout>
                         <!--
                         <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
                                FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>

@@ -332,7 +332,7 @@ namespace XpertMobileApp.Views
             */
         }
 
-        private void CBScanedHandler(object sender, SYS_CONFIG_TIROIRS.CBScanedEventArgs e)
+        private void CBScanedHandler(object sender, CBScanedEventArgs e)
         {
             CBCarte.Text = e.CodeBarre;
         }

@@ -65,9 +65,11 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            btnSelect.IsEnabled = true;
+            //btnSelect.IsEnabled = true;
+            SendResponse();
+            await PopupNavigation.Instance.PopAsync();
         }
 
         async void btn_Search_Clicked(object sender, EventArgs e)

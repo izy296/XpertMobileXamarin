@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -14,7 +15,30 @@ namespace XpertMobileApp.ViewModels
         public string CodeTiers { get; set; } = "";
 
         public string AutoriserReception { get; set; } = "";
-        
+
+        private decimal totalSelected;
+        public decimal TotalSelected
+        {
+            get
+            {
+                return totalSelected;
+            }
+            set
+            {
+                totalSelected = value;
+                OnPropertyChanged("TotalSelected");
+                OnPropertyChanged("SelectionsInfos");
+            }
+        }
+
+        public string SelectionsInfos
+        {
+            get
+            {
+                return "Total : " + TotalSelected.ToString("N2") + "\r\n" + "Total Qte : " + Items.Sum(e => e.SelectedQUANTITE);
+            }
+        }
+
         public LotSelectorViewModel(string title= "" )
         {
             Title = title;

@@ -11,6 +11,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Api\LocalStorage\IQueryableExtensions.cs" />
+    <Compile Remove="Api\LocalStorage\RLMDataManager.cs" />
     <Compile Remove="Api\Managers\GodexManager.cs" />
     <Compile Remove="Api\Services\CODE_BARRE\ICODE_BARRE_Reder.cs" />
     <Compile Remove="Api\Services\CODE_BARRE\IGodexPlatform.cs" />
@@ -104,6 +106,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="FodyWeavers.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\002 - XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
@@ -119,6 +125,9 @@
     </Compile>
     <Compile Update="Views\Livraison\Tournee\TourneesPage.xaml.cs">
       <DependentUpon>TourneesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Selector\Lot\QteUpdater\QteUpdater.xaml.cs">
+      <DependentUpon>QteUpdater.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Simple Indicators\SimpleIndicators.xaml.cs">
       <DependentUpon>SimpleIndicators.xaml</DependentUpon>

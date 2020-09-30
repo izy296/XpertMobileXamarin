@@ -99,7 +99,7 @@
             </ListView>        
     </StackLayout >
         </Frame>
-        <Button x:Name="btnSelect" Text="{i18n:Translate cmd_SelectElement}" IsEnabled="False"
+        <Button x:Name="btnSelect" IsVisible="False" Text="{i18n:Translate cmd_SelectElement}" IsEnabled="False"
             TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose"></Button>
   </StackLayout>
 </pages:PopupPage>

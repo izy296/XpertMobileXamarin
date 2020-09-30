@@ -60,8 +60,12 @@ namespace XpertMobileApp.Views
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            btnSelect.IsEnabled = true;
-            btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
+           //  btnSelect.IsEnabled = true;
+           //  btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
+           if(viewModel.SelectedItem != null) 
+           {
+             viewModel.SelectedItem.SelectedQUANTITE += 1;
+           }
         }
 
         private async void btn_Search_Clicked(object sender, EventArgs e)

@@ -173,6 +173,22 @@ namespace XpertMobileApp.Models
             }
         }
 
+        private decimal selectedPrice = -1;
+        public decimal SelectedPrice
+        {
+            get
+            {
+                if (selectedPrice == -1)
+                    return PRIX_VENTE;
+                else 
+                    return selectedPrice;
+            }
+            set
+            {
+                selectedPrice = value;
+            }
+        }
+
         private bool hasSelectedQUANTITE;
         public bool HasSelectedQUANTITE
         {

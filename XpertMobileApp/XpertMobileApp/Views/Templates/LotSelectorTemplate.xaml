@@ -6,10 +6,10 @@
              x:Class="XpertMobileApp.Views.Templates.LotSelectorTemplate">
     <ContentView.Content>
 
-        <StackLayout Padding="5" Margin="5">
-            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent"
-                   HeightRequest="100">
-                <Grid  BackgroundColor="Transparent" RowSpacing="0" >
+        <StackLayout Padding="0" Margin="0" >
+            <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
+                   OutlineColor="Transparent">
+                <Grid RowSpacing="0" Padding="0" Margin="0" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -21,7 +21,9 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="0" WidthRequest="115" Grid.RowSpan="2">
+                    <StackLayout Grid.Column="0" Grid.Row="0" 
+                                HorizontalOptions="StartAndExpand" 
+                                 WidthRequest="100" Grid.RowSpan="2">
                         <!--
                         <Image Aspect="AspectFill"   >
 
@@ -57,8 +59,19 @@
                             <Label Text="{Binding PRIX_VENTE, StringFormat='Prix : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Red" />
                             <Label Text="{Binding QUANTITE, StringFormat='Qte : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Green" />
                         </StackLayout>
-                        <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="addToCart24.png" HorizontalOptions="End" Margin="0,0,10,0"/>
-                        <!--
+
+                        <StackLayout Padding="0,-10,15,0" Margin="0,0,0,0" Spacing="0" Orientation="Vertical" 
+                                     IsVisible="{Binding HasSelectedQUANTITE}" >
+                            <Label Text="{Binding SelectedQUANTITE, StringFormat='{0:N0}'}" FontSize="Medium" 
+                                   HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" />
+                            <Button ImageSource="remove.png" Clicked="DelQte_Clicked" CornerRadius="15" 
+                                    BackgroundColor="Transparent" WidthRequest="27" HeightRequest="27"/>
+                            <!--
+                            <Image IsVisible="{Binding HasSelectedQUANTITE}" Source="remove.png" 
+                                   HorizontalOptions="Center" Margin="0"/>
+                            -->
+                        </StackLayout>
+                            <!--
                         <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
                                FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>
                         -->

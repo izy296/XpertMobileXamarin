@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views.Templates
 {
@@ -16,5 +17,12 @@ namespace XpertMobileApp.Views.Templates
 		{
 			InitializeComponent ();
 		}
-	}
+
+        private void DelQte_Clicked(object sender, EventArgs e)
+        {
+			var lot = ((sender as Button).BindingContext as View_STK_STOCK);
+			lot.SelectedQUANTITE = 0;
+
+		}
+    }
 }

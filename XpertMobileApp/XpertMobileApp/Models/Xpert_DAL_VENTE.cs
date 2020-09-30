@@ -227,7 +227,31 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public decimal PRIX_VTE_TTC { get; set; } // money(19,4)
+        
+        // public decimal PRIX_VTE_TTC { get; set; } // money(19,4)
+
+        private decimal _PRIX_VTE_TTC;
+        public decimal PRIX_VTE_TTC
+        {
+            get
+            {
+                return _PRIX_VTE_TTC;
+            }
+            set
+            {
+                // qUANTITE = value;
+                if (_PRIX_VTE_TTC != value)
+                {
+                    MT_TTC = value * QUANTITE;
+                    MT_HT = value * QUANTITE;
+
+                    SetProperty(ref _PRIX_VTE_TTC, value);
+                    OnPropertyChanged("MT_TTC");
+                    OnPropertyChanged("MT_HT");
+                }
+            }
+        }
+
         public decimal MT_TTC { get; set; } // money(19,4)
 
         public decimal QTE_LIVREE { get; set; } // numeric(19,2)

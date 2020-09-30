@@ -4,6 +4,9 @@ using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
+using System.Linq;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views
 {
@@ -47,7 +50,7 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
+           // if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
 
             foreach (var item in viewModel.Items)
@@ -63,8 +66,13 @@ namespace XpertMobileApp.Views
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            btnSelect.IsEnabled = true;
-            btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
+            // btnSelect.IsEnabled = true;
+            // btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
+
+           // if (viewModel.SelectedItem != null)
+          //  {
+          //      viewModel.SelectedItem.SelectedQUANTITE += 1;
+          //  }
         }
 
         private async void btn_Search_Clicked(object sender, EventArgs e)
@@ -72,14 +80,16 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void btnSelect_Clicked(object sender, EventArgs e)
+        private async void btnSelect_Clicked(object sender, EventArgs e)
         {
-            if(viewModel.SelectedItem != null)
+            await PopupNavigation.Instance.PopAsync();
+            if (viewModel.SelectedItem != null)
             {
-                viewModel.SelectedItem.SelectedQUANTITE = 1; // +=
-                btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
+                //viewModel.SelectedItem.SelectedQUANTITE = 1; // +=
+                // btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
                 MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
                 // XpertHelper.SendAction(this, CurrentStream,"", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
+
             }
         }
 
@@ -87,12 +97,54 @@ namespace XpertMobileApp.Views
         {
             if (viewModel.SelectedItem != null)
             {
-                viewModel.SelectedItem.SelectedQUANTITE = 0; // -=
-                btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
+                // viewModel.SelectedItem.SelectedQUANTITE = 0; // -=
+                // btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
 
-                App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
+                // MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                // App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             }
         }
 
+        private void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            if (viewModel.SelectedItem != null)
+            {
+                viewModel.SelectedItem.SelectedQUANTITE += 1;
+                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                UpdateTotaux();
+            }
+        }
+
+        private void DelQte_Clicked(object sender, EventArgs e)
+        {
+            var lot = ((sender as Button).BindingContext as View_STK_STOCK);
+            lot.SelectedQUANTITE = 0;
+            App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
+            UpdateTotaux();
+        }
+
+        private QteUpdater QteUpdater;
+        private async void DelUpdate_Clicked(object sender, EventArgs e)
+        {
+            var lot = ((sender as Button).BindingContext as View_STK_STOCK);
+            QteUpdater = new QteUpdater(lot);
+            QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
+            await PopupNavigation.Instance.PushAsync(QteUpdater);
+        }
+
+        private void OnLotInfosUpdated(object sender, LotInfosEventArgs e)
+        {
+            var item = sender as View_STK_STOCK;
+            item.SelectedPrice = e.Price;
+            item.SelectedQUANTITE = e.Quantity;
+
+            UpdateTotaux();
+            MessagingCenter.Send(this, CurrentStream, item);
+        }
+
+        private void UpdateTotaux() 
+        {
+            viewModel.TotalSelected = viewModel.Items.Where(e=>e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
+        }
     }
 }

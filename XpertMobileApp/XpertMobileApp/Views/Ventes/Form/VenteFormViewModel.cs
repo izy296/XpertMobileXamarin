@@ -125,9 +125,9 @@ namespace XpertMobileApp.Views
                 row.CODE_PRODUIT = product.CODE_PRODUIT;
                 row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-                row.PRIX_VTE_HT = product.PRIX_VENTE;
-                row.PRIX_VTE_TTC = product.PRIX_VENTE;
-                row.QUANTITE = 1;
+                row.PRIX_VTE_HT = product.SelectedPrice;
+                row.PRIX_VTE_TTC = product.SelectedPrice;
+                row.QUANTITE = product.SelectedQUANTITE;
 
                 ItemRows.Add(row);
 
@@ -135,7 +135,9 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                row.QUANTITE += 1;
+                row.PRIX_VTE_HT = product.SelectedPrice;
+                row.PRIX_VTE_TTC = product.SelectedPrice;
+                row.QUANTITE = product.SelectedQUANTITE;
             }
 
             row.MT_TTC = row.PRIX_VTE_TTC * row.QUANTITE;

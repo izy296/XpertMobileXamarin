@@ -61,7 +61,7 @@
                     <Label Text="Montant. rendu" FontSize="Default" Margin="5" />
                     <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                     SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_RENDU, Mode=TwoWay}"
+                                     SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_RENDU, Mode=TwoWay}" IsEnabled="False"
                                       VerticalOptions="Center" Margin="30,0,30,0" />
 
                 <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
