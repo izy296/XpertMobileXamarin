@@ -171,8 +171,8 @@
                                     <DataTemplate>
                                         <ViewCell>
 
-                                            <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
-                                                <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                                            <StackLayout Spacing="0" Padding="0" BackgroundColor="Transparent" Margin="0">
+                                                <Frame CornerRadius="3" Padding="5" Margin="0,5,0,5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
                                                     <Grid  BackgroundColor="Transparent" >
 
                                                         <Grid.ColumnDefinitions>
@@ -200,12 +200,12 @@
                                                             <Label  Text="{ Binding PRIX_VENTE, StringFormat='Prix : {0:N2} DA'}" FontSize="Default" TextColor="Red"/>
                                                         </StackLayout>
 
-                                                        <Label Grid.Column="2" Grid.Row="0" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
+                                                        <Label Grid.Column="3" Grid.Row="0" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
                                                             Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Center" />
 
-                                                        <StackLayout Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">
+                                                        <StackLayout Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="2" VerticalOptions="EndAndExpand">
                                                             <Button CornerRadius="38" Text="Achter" VerticalOptions="Center" ContentLayout="Left,10" 
-                                                                BackgroundColor="#6279B8" TextColor="White" WidthRequest="130" HorizontalOptions="End"
+                                                                BackgroundColor="#6279B8" TextColor="White" WidthRequest="140" HorizontalOptions="End"
                                                                 Image="shopping_cart_24.png" 
                                                                 Clicked="AddLotToCart_Clicked"
                                                             ></Button>

@@ -29,7 +29,7 @@ namespace XpertMobileApp.ViewModels
             bool? result = false;
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);

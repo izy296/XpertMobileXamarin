@@ -66,14 +66,14 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
+            this.AddCondition<View_VTE_COMMANDE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_VTE_COMMANDE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
-            this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, App.User.UserName);
+            this.AddCondition<View_VTE_COMMANDE, string>(e => e.CREATED_BY, App.User.UserName);
 
-            this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
+            this.AddOrderBy<View_VTE_COMMANDE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
 
             return qb.QueryInfos;
         }

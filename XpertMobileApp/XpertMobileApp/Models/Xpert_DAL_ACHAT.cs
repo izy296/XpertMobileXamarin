@@ -45,7 +45,6 @@ namespace XpertMobileApp.DAL
         public string CODE_MAGASIN { get; set; } // varchar(10)
         public string MODE_REGLEMENT { get; set; } // varchar(1)
         public string REF_TIERS { get; set; } // varchar(50)
-        public decimal TOTAL_HT { get; set; } // money(19,4)
         public decimal TOTAL_TVA { get; set; } // money(19,4)
         public decimal TOTAL_PPA { get; set; } // money(19,4)
         public decimal TOTAL_SHP { get; set; } // money(19,4)
@@ -90,6 +89,8 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_PESEE_SORTIE { get; set; }
         public string CODE_CHAUFFEUR { get; set; }
         public string CODE_UNITE { get; set; }
+        
+        public decimal TOTAL_HT { get; set; } // money(19,4)
 
         private decimal tOTAL_TTC { get; set; }
         public decimal TOTAL_TTC {
@@ -118,9 +119,17 @@ namespace XpertMobileApp.DAL
             {
                 tIERS_NomC = value;
                 OnPropertyChanged("TIERS_NomC");
+                OnPropertyChanged("TIERS_TITLE");
             }
         }
 
+        public string TIERS_TITLE
+        {
+            get
+            {
+               return TIERS_NomC + " ( " + CODE_TIERS + " )";
+            }
+        } // varchar(32)
         public string DESIGN_MODE_REG { get; set; } // varchar(300)
         public string DESIGNATION_MAGASIN { get; set; } // varchar(100)
         public decimal TOTAL_RESTE { get; set; }

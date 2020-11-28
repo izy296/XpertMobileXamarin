@@ -129,7 +129,10 @@ namespace XpertMobileApp.Views
 
         private async void Btn_HeaderCart_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CommandeSummaryPage(App.CurrentSales));
+            if(App.CurrentSales != null && App.CurrentSales.Details != null && App.CurrentSales.Details.Count > 0 ) 
+            { 
+                await Navigation.PushAsync(new CommandeSummaryPage(App.CurrentSales));
+            }
         }
 
         private async void Btn_NavigateBack_Clicked(object sender, EventArgs e)

@@ -41,16 +41,16 @@
             </Grid>
 
        <!-- Listing -->
-       <ListView x:Name="ItemsListView"
-               ItemsSource="{Binding Items}"
+       <ListView x:Name="ItemsListView" 
+               ItemsSource="{Binding Items}" 
                VerticalOptions="FillAndExpand"
                HasUnevenRows="true"
                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                RefreshCommand="{Binding LoadItemsCommand}"
-               
+               SeparatorVisibility="None"
                IsPullToRefreshEnabled="true"
                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-               CachingStrategy="RecycleElement"
+               CachingStrategy="RecycleElement" 
                ItemSelected="OnItemSelected">
            
           <ListView.Behaviors>
@@ -66,18 +66,21 @@
                              <SwipeItem Text="Modifier"
                                 IconImageSource="SelectionEdit.png"
                                 BackgroundColor="LightGreen"
-                                Invoked="OnUpdateSwipeItemInvoked" />
+                                Invoked="OnUpdateSwipeItemInvoked"/>
                              <SwipeItem Text="Supprimer" IsVisible="False"
                                 IconImageSource="Delete1.png"
                                 BackgroundColor="LightPink"
                                 Invoked="OnDeleteSwipeItemInvoked" />
                          </SwipeItems>
                      </SwipeView.RightItems>
-                     <Grid >
-                         <StackLayout>
-                    <Label TextColor="Black" Text="{Binding NOM_TIERS1}" FontAttributes="Bold"/>
-                    <Label TextColor="Black" Text="{Binding CODE_TIERS}"/>
-                </StackLayout>
+                        <Grid  Padding="5" >
+                           <StackLayout Spacing="0" BackgroundColor="White">
+                            <Label TextColor="Black" Text="{Binding NOM_TIERS1}" FontAttributes="Bold"/>
+                            <Label TextColor="Orange" Text="{Binding CODE_TIERS}" FontAttributes="Bold"/>
+                            <Label Text="{Binding TEL1_TIERS, StringFormat='Tél. {0}'}" TextColor="Black"
+                                   IsVisible="{Binding TEL1_TIERS, Converter={StaticResource stringToVisibilityConverter}}"
+                                    FontSize="Default" HorizontalOptions="Start" />
+                         </StackLayout>
                      </Grid>
                  </SwipeView>
             </ViewCell>

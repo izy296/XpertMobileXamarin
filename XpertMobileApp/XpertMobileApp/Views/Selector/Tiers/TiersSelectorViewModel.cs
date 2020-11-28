@@ -46,8 +46,14 @@ namespace XpertMobileApp.ViewModels
 
             this.AddCondition<View_TRS_TIERS, short>(e => e.ACTIF_TIERS, 1);
 
-            this.AddCondition<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Operator.LIKE_ANY, SearchedText);
-
+            if (!string.IsNullOrEmpty(SearchedText)) 
+            {
+                this.AddConditionOperator(TypeConnector.AND, TypeParenthese.LEFT);
+                this.AddCondition<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Operator.LIKE_ANY, SearchedText);
+                this.AddConditionOperator(TypeConnector.OR);
+                this.AddCondition<View_TRS_TIERS, string>(e => e.NUM_TIERS, Operator.EQUAL, SearchedText);
+                this.AddConditionOperator(TypeParenthese.RIGHT);
+            }
             this.AddCondition<View_TRS_TIERS, string>(e => e.CODE_TYPE, SearchedType);
 
             qb.AddOrderBy<View_TRS_TIERS, string>(e => e.NOM_TIERS1);

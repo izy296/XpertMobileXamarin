@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
@@ -122,35 +123,50 @@ namespace XpertMobileApp.Api.ViewModels
             {
                 OnLoadMore = async () =>
                 {
-                    IsBusy = true;
-
-                    elementsCount = await service.ItemsCount(GetFilterParams());
-
-                    // load the next page
-                    var page = (Items.Count / PageSize) + 1;
-
-                    var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
-                    Summaries.Clear();
-                    if (LoadSummaries && elementsCount > 0)
+                    try 
                     {
-                        var res = await service.ItemsSums(GetFilterParams());
-
-                        foreach (var item in res)
+                        bool isconnected = await App.IsConected();
+                        if (!isconnected) 
                         {
-                            Summaries.Add(new SAMMUARY()
-                            {
-                                key = TranslateExtension.GetTranslation(item.Key),
-                                Value = item.Value.ToString("N2")
-                            });
+                            await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            return new List<TView>();
                         }
+                        
+                        IsBusy = true;
+
+                        elementsCount = await service.ItemsCount(GetFilterParams());
+
+                        // load the next page
+                        var page = (Items.Count / PageSize) + 1;
+
+                        var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
+                        Summaries.Clear();
+                        if (LoadSummaries && elementsCount > 0)
+                        {
+                            var res = await service.ItemsSums(GetFilterParams());
+
+                            foreach (var item in res)
+                            {
+                                Summaries.Add(new SAMMUARY()
+                                {
+                                    key = TranslateExtension.GetTranslation(item.Key),
+                                    Value = item.Value.ToString("N2")
+                                });
+                            }
+                        }
+
+                        OnAfterLoadItems(items);
+
+                        IsBusy = false;
+
+                        // return the items that need to be added
+                        return items;
+                    } 
+                    catch(Exception ex)
+                    {
+                        await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        return new List<TView>();
                     }
-
-                    OnAfterLoadItems(items);
-
-                    IsBusy = false;
-
-                    // return the items that need to be added
-                    return items;
                 },
                 OnCanLoadMore = () =>
                 {
@@ -198,7 +214,7 @@ namespace XpertMobileApp.Api.ViewModels
 
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -224,7 +240,7 @@ namespace XpertMobileApp.Api.ViewModels
 
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -250,7 +266,7 @@ namespace XpertMobileApp.Api.ViewModels
 
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -320,6 +336,16 @@ namespace XpertMobileApp.Api.ViewModels
             string fullName = this.GetPropertyFullName(field);
             string name = XpertHelper.GetPropertyName(field);
             this.AddSelect(string.Format("RIGHT('{0}'+RTRIM(ISNULL({1},'')),{2}) {3}", valAdded, fullName, length, name));
+        }
+
+        public void AddConditionOperator(TypeParenthese _typeParenthese)
+        {
+            this.AddConditionOperator(TypeConnector.NONE, _typeParenthese);
+        }
+
+        public void AddConditionOperator(TypeConnector _typeConnector)
+        {
+            this.AddConditionOperator(_typeConnector, TypeParenthese.NONE);
         }
 
         public void AddConditionOperator(TypeConnector _connector, TypeParenthese _parentese)

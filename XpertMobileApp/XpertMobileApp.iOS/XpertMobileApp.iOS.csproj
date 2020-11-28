@@ -141,6 +141,9 @@
     <PackageReference Include="Microcharts.Forms">
       <Version>0.9.5</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.FirebasePushNotification">
+      <Version>3.1.6</Version>
+    </PackageReference>
     <PackageReference Include="Plugin.Multilingual">
       <Version>1.0.2</Version>
     </PackageReference>

@@ -49,12 +49,13 @@ namespace XpertMobileApp.Api.Managers
             SysParams = new SYS_PARAMS_Manager();
             Sessions = new SessionsManager();
             Permissions = new SYS_PERMISSIONS_Manager();
+            Stock = new StockManager();
 
             Products = new ProductManager();
             BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
             BSE_COMPTE = new CrudService<View_BSE_COMPTE>(App.RestServiceUrl, "BSE_COMPTE", App.User.Token);
             BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
-            Stock = new StockManager();
+
             Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
             Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
             Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);

@@ -32,13 +32,13 @@ namespace XpertMobileApp.Api
             else 
                 return "Edition LITE ";
         }
-    }
+    } 
 
     public static class Constants
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
-        public static string AppName = Apps.XCOM_Livraison;
+        public static string AppName = Apps.XPH_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 

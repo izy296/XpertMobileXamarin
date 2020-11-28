@@ -58,7 +58,7 @@
                     </Frame>
 
                     <!-- Config Ventes -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
+                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding HasVenteConfig}">
                         <StackLayout Padding="10" >
                             <Label Text="{i18n:Translate pn_Ventes}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
                             <!-- Magasin -->
@@ -77,10 +77,9 @@
                         </StackLayout>
 
 
-                        
+
                     </Frame>
-      
-                
+
                     <!-- Imprimante  -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >

@@ -13,14 +13,15 @@
   <ItemGroup>
     <Compile Remove="Api\LocalStorage\IQueryableExtensions.cs" />
     <Compile Remove="Api\LocalStorage\RLMDataManager.cs" />
-    <Compile Remove="Api\Managers\GodexManager.cs" />
     <Compile Remove="Api\Services\CODE_BARRE\ICODE_BARRE_Reder.cs" />
-    <Compile Remove="Api\Services\CODE_BARRE\IGodexPlatform.cs" />
+    <Compile Remove="Api\Services\MockDataStore.cs" />
     <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
+    <Compile Remove="Models\BaseContentPage.cs" />
     <Compile Remove="Models\HomeMenuItem.cs" />
+    <Compile Remove="Models\Item.cs" />
     <Compile Remove="Services\IDataStore.cs" />
     <Compile Remove="Services\MockDataStore.cs" />
     <Compile Remove="ViewModels\AboutViewModel.cs" />
@@ -31,6 +32,8 @@
     <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
     <Compile Remove="Views\ItemDetailPage.xaml.cs" />
     <Compile Remove="Views\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\Items\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\Items\NewItemPage.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
     <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
     <Compile Remove="Views\MenuPage.xaml.cs" />
@@ -43,6 +46,8 @@
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
     <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
     <EmbeddedResource Remove="Views\ItemsPage.xaml" />
+    <EmbeddedResource Remove="Views\Items\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\Items\NewItemPage.xaml" />
     <EmbeddedResource Remove="Views\MainPage.xaml" />
     <EmbeddedResource Remove="Views\MenuPage.xaml" />
     <EmbeddedResource Remove="Views\NewItemPage.xaml" />
@@ -57,6 +62,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\DAL\Mobile\HomeMenuItem.cs" Link="Api\Models\Menu\HomeMenuItem.cs" />
     <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
@@ -70,6 +77,7 @@
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
     <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.47" />
@@ -96,6 +104,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Api\Models\Menu\" />
     <Folder Include="Api\Services\RFID\" />
     <Folder Include="Images\" />
     <Folder Include="Services\" />
@@ -135,5 +144,11 @@
     <Compile Update="Views\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
       <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Base\Pages\XBasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

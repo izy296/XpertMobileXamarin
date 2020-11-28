@@ -24,7 +24,7 @@ namespace XpertMobileApp.Droid.Services
                     {
                         String deviceName = device.Name;
                         String deviceHardwareAddress = device.Address;
-                        if (deviceName.Equals("MX30"))
+                        if (deviceName.Equals(printerName)) // "MX30"
                         {
                             return deviceHardwareAddress;
                         }
@@ -34,11 +34,17 @@ namespace XpertMobileApp.Droid.Services
             return "";
         }
 
-        public void Bar_QRCode(int PosX, int PosY, int Mode, int Type, string ErrLevel, int Mask, int Mul,  int Rotation, string Data)
+        public void Bar_QRCode(int PosX, int PosY, int Mode, int Type, string ErrLevel, int Mask, int Mul, int Rotation, string Data)
         {
-            Godex.Bar_QRCode(PosX, PosY, Mode, Type,  ErrLevel, Mask, Mul,   Rotation,  Data);
+            try
+            {
+                Godex.Bar_QRCode(PosX, PosY, Mode, Type, ErrLevel, Mask, Mul, Rotation, Data);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-
         public void Close()
         {
             Godex.Close();

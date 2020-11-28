@@ -87,7 +87,10 @@ namespace XpertMobileApp.Views
 
         private void Ent_Filter_TextChanged(object sender, TextChangedEventArgs e)
         {
-            viewModel.LoadItemsCommand.Execute(null);
+            if (viewModel.SearchedText.Length >= 3) 
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
         }
 
         private async void OnUpdateSwipeItemInvoked(object sender, EventArgs e)

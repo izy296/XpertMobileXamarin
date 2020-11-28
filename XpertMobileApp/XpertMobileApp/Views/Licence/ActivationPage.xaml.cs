@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views
 
         private void Init()
         {
-            App.StatrtCheckIfInternet(Lbl_NoInternet, this);
+           // App.StatrtCheckIfInternet(Lbl_NoInternet, this);
 
             Ent_UserEemail.Text = "";
             Ent_ClientId.Text = "";

@@ -64,6 +64,21 @@ namespace XpertMobileApp.Converters
     }
 
     [Preserve(AllMembers = true)]
+    public class StringToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string val = (string)value;
+            return !string.IsNullOrEmpty(val);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    [Preserve(AllMembers = true)]
     public class ZeroVisibilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

@@ -335,6 +335,7 @@ namespace XpertMobileApp.DAL
         public string SOLDE_TIERS_TXT { get; set; } // money(19,4)         
         public string NUM_CARTE_FIDELITE { get; set; } // varchar(20)
         public string CODE_CARTE_FIDELITE { get; set; } // varchar(20)
+        public decimal TOTAL_POINT_FIDELITE { get; set; } // varchar(20)
         public short STATUT_TIERS { get; set; } // 
         public DateTime? LAST_CREANCE { get; set; } // datetime(3)
         public DateTime? LAST_ENCAISS { get; set; } // datetime(3)

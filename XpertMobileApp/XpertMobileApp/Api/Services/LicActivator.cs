@@ -24,15 +24,22 @@ namespace XpertMobileApp.Api.Services
 
         public static LicenceInfos GetLicenceInfos()
         {
-            Client client = App.ClientDatabase.GetFirstItemAsync().Result;
-            if (client == null || string.IsNullOrEmpty(client.LicenceTxt))
+            try 
+            { 
+                Client client = App.ClientDatabase.GetFirstItemAsync().Result;
+                if (client == null || string.IsNullOrEmpty(client.LicenceTxt))
+                {
+                    return null;
+                }
+
+                var LicenceInfos = DecryptLicence(client.LicenceTxt);
+
+                return LicenceInfos;
+            }
+            catch (Exception ex)
             {
                 return null;
             }
-
-            var LicenceInfos = DecryptLicence(client.LicenceTxt);
-
-            return LicenceInfos;
         }
 
         public async static Task<LicState> CheckLicence(LicenceInfos licenceInfos)

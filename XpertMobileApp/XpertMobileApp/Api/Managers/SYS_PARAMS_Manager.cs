@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,11 +21,19 @@ namespace XpertMobileApp.Api
 
         public async Task<SYS_MOBILE_PARAMETRE> GetParams()
         {
-            string url = GetActionUrl("GetParams");
+            try
+            {
+                string url = GetActionUrl("GetParams");
+                var res = await WSApi2.RetrievAauthorizedValue<SYS_MOBILE_PARAMETRE>(url, this.Token.access_token);
+                return res;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
 
-            var res = await WSApi2.RetrievAauthorizedValue<SYS_MOBILE_PARAMETRE>(url, this.Token.access_token);
-
-            return res;
+                return null;
+            }
         }
     }
 }

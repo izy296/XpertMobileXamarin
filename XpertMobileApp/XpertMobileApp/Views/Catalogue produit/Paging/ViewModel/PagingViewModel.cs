@@ -50,6 +50,9 @@ namespace SampleBrowser.SfListView
 
             this.AddCondition<View_STK_PRODUITS, bool>(e => e.SHOW_CATALOG, "1");
 
+
+            this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION);
+
             return qb.QueryInfos;
         }
 

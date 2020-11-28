@@ -14,10 +14,11 @@ using Android.Support.V4.App;
 using Android.Util;
 using Android.Support.Design.Widget;
 using FFImageLoading.Forms.Platform;
+using Firebase;
 
 namespace XpertMobileApp.Droid
 {
-    [Activity(Label = "XpertMobileApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "XpertMobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -50,6 +51,8 @@ namespace XpertMobileApp.Droid
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(true);
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
+
+           // FirebaseApp.InitializeApp(Application.Context);
 
             LoadApplication(new App());
 

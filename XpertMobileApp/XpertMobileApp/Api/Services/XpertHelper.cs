@@ -57,9 +57,9 @@ namespace XpertMobileApp.Api.Services
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public static async Task<bool> PrintQrCode(View_PRD_AGRICULTURE doc, int qte)
+        public static async Task<bool> PrintPrdDetailQrCode(View_PRD_AGRICULTURE_DETAIL doc, int qte)
         {
-            return await PrintQrCode(doc.CODE_TIERS, doc.NOM_TIERS, doc.CODE_DOC, doc.DATE_DOC, qte, App.Settings.PrinterName, App.Settings.PrinterType);
+            return await PrintQrCode(doc.CODE_TIERS, doc.NOM_TIERS, doc.CODE_DOC, doc.CREATED_ON, qte, App.Settings.PrinterName, App.Settings.PrinterType);
         }
 
         public static async Task<bool> PrintQrCode(View_ACH_DOCUMENT doc, int qte)
@@ -73,13 +73,13 @@ namespace XpertMobileApp.Api.Services
             bool result = false;
             if (printerType == Printer_Type.Bluetooth)
             {
-                //IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
-                //await _blueToothService.Print(printerName, printerName);
+                IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
+                await _blueToothService.Print(printerName, printerName);
 
-                /* TODO
+                /* TODO*/
                 string adr = GodexManager.GetPrinterAdress(printerName);
                 GodexManager.PrintQrCode(adr, 1, codeTiers, NomTiers, codeDoc, dateDoc);
-                */
+                
                 result = true;
             }
             else if (printerType == Printer_Type.Wifi)

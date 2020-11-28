@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Converters
@@ -10,7 +11,7 @@ namespace XpertMobileApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (App.HasAdmin) return true;
+            if (AppManager.HasAdmin) return true;
 
             View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;
 
@@ -31,9 +32,9 @@ namespace XpertMobileApp.Converters
             get
             {
                 bool result = false;
-                if (App.permissions != null)
+                if (AppManager.permissions != null)
                 {
-                    var obj = App.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_PRIX_HT").FirstOrDefault();
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_PRIX_HT").FirstOrDefault();
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;

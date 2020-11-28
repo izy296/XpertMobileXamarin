@@ -17,6 +17,7 @@ using System.Windows.Input;
 using XpertWebApi.Models;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Api;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -26,6 +27,15 @@ namespace XpertMobileApp.ViewModels
         public Settings Settings { get => App.Settings; set => App.Settings = value; }
 
         public ObservableCollection<Language> Languages { get; }
+
+        public bool HasVenteConfig
+        {
+            get
+            {
+                return IsConnected && Constants.AppName != Apps.XAGRI_Mob;
+            }
+        }
+        
 
         public bool IsConnected
         {
@@ -98,16 +108,19 @@ namespace XpertMobileApp.ViewModels
 
         public async Task SaveSettings()
         {
-            if (Settings.SubscribedToFBNotifications)
-            {
-                FireBaseHelper.RegisterUserForDefaultTopics(App.User, App.User.ClientId);
-            }
-            else
-            {
-                FireBaseHelper.UnsubscribeFromAllTopics();
+            if(App.User?.ClientId != null) 
+            { 
+                if (Settings.SubscribedToFBNotifications)
+                {
+                    FireBaseHelper.RegisterUserForDefaultTopics(App.User, App.User.ClientId);
+                }
+                else
+                {
+                    FireBaseHelper.UnsubscribeFromAllTopics();
+                }
             }
 
-            if(this.Settings.CaisseDedier != oldCaisseDedier) 
+            if (this.Settings.CaisseDedier != oldCaisseDedier) 
             { 
                 var res = await SaveSettingsToServer();
             }
@@ -126,7 +139,7 @@ namespace XpertMobileApp.ViewModels
             bool? result = false;
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
