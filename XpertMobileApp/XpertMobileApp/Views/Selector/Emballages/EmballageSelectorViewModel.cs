@@ -86,8 +86,8 @@ namespace XpertMobileApp.ViewModels
 
             this.AddCondition<View_BSE_EMBALLAGE, string>(e => e.DESIGNATION, SearchedText);
 
+            this.AddOrderBy<View_BSE_EMBALLAGE, bool>(e => e.IS_INTERNE, Sort.DESC);
             this.AddOrderBy<View_BSE_EMBALLAGE, string>(e => e.DESIGNATION);
-
             return qb.QueryInfos;
         }
     }

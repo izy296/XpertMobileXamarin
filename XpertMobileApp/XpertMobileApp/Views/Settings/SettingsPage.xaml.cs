@@ -23,12 +23,12 @@ namespace XpertMobileApp.Views
 
         public SettingsModel viewModel;
 
-        public static IPrinterSPRT printerLocal;
+        // public static IPrinterSPRT printerLocal;
         public SettingsPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new SettingsModel();
-            printerLocal = DependencyService.Get<IPrinterSPRT>();
+            // printerLocal = DependencyService.Get<IPrinterSPRT>();
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
         }
 
@@ -45,6 +45,7 @@ namespace XpertMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
+            /*
             if (printerLocal == null)
             {
                 printerLocal = DependencyService.Get<IPrinterSPRT>();
@@ -53,6 +54,7 @@ namespace XpertMobileApp.Views
             {
                 updateUI();
             }
+            */
             LanguagesPicker.SelectedIndexChanged += LanguagesPicker_SelectedIndexChanged;
 
             Client client = App.ClientDatabase.GetFirstItemAsync().Result;
@@ -212,7 +214,9 @@ namespace XpertMobileApp.Views
                 }
             }
         }
-        
+
+        #region Test de l'imprémante par Sofiane
+        /*
         private void updateUI()
         {
             if (printerLocal != null)
@@ -314,5 +318,7 @@ namespace XpertMobileApp.Views
             printerLocal.PrintText("Mt.Rendue :" + (data[0].MT_RECU - data[0].TOTAL_TTC) + Environment.NewLine);
 
         }
+        */
+        #endregion
     }
 }

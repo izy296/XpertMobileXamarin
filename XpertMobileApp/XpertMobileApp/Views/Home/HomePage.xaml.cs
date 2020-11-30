@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 
@@ -24,13 +27,27 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new HomeViewModel();
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                var param = await AppManager.GetSysParams();
+                var permissions = await AppManager.GetPermissions();
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
 
-            if (viewModel.Items.Count == 0)
+            if (viewModel.Items.Count == 0) 
+            {
                 viewModel.LoadItemsCommand.Execute(null);
-
+            }
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
         }

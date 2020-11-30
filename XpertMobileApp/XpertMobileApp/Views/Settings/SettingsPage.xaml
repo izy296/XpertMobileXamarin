@@ -89,13 +89,14 @@
                                 Title="{i18n:Translate cmd_selectPrinter}"
                                 ItemDisplayBinding="{Binding Name}"
                                 SelectedItem="{Binding SelectedDevice}" />
+                            <!--
                             <Button x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
                                 Text="Connexion" Clicked="ConnectPrinterAsync"/>
                             <Button x:Name="Btn_desconnectPrinter" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Déconnexion" Clicked="DesconnectPrinterAsync"/>
                             <Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Imprimer un test" Clicked="PrintExempleAsync"/>
-                           
+                            -->
                         </StackLayout>
                     </Frame>
                    

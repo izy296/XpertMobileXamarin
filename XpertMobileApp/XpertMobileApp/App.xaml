@@ -54,6 +54,7 @@
             <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
             <local:StatusToBoolForPriceConverter x:Key="statusForPriceConverter"/>
             <local:StatusToBoolPeseeBruteConverter x:Key="statusForPeseeBruteConverter"/>
+            <local:StringToVisibilityConverter x:Key="stringToVisibilityConverter"/>
             <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
             <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
             <local:BordereauStatusToColor x:Key="brdStatusToColor"/>

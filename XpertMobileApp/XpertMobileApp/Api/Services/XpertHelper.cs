@@ -95,6 +95,21 @@ AppResources.alrt_msg_Ok);
             return result;
         }
 
+        public static object GetValue(object obj, string field)
+        {
+            if (obj == null) return null;
+            PropertyInfo[] properties = obj.GetType().GetProperties();
+            foreach (PropertyInfo pi in properties)
+            {
+                if (pi.Name.Equals(field))
+                {
+                    object V = pi.GetValue(obj, null);
+                    return V;
+                }
+            }
+            return null;
+        }
+
         public static void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;

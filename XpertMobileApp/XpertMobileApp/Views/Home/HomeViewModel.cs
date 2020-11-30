@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xpert;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
@@ -95,62 +96,77 @@ namespace XpertMobileApp.ViewModels
                 IsBusy = true;
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                Items.Clear();
-                if(Constants.AppName == Apps.XCOM_Livraison) 
-                { 
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
+
+                ObservableCollection<TDB_SIMPLE_INDICATORS> res = new ObservableCollection<TDB_SIMPLE_INDICATORS>();
+                if (Constants.AppName == Apps.XCOM_Livraison) 
+                {
+                    res.Add(new TDB_SIMPLE_INDICATORS()
                     {   
                         CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
                         Title = "Livraisons",
-                        Color = "#FFC000"
+                        Color = "#FFC000",
+                        CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
+                        Action = Xpert.XpertActions.AcSelect
                     });
                 }
                 else 
                 {
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
+                    res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
                         Title = "Ventes comptoir",
-                        Color = "#FFC000"
+                        Color = "#FFC000",
+                        CodeObjet = Xpert.XpertObjets.VTE_COMPTOIR,
+                        Action = Xpert.XpertActions.AcSelect
                     });
                 }
-                
-                if (App.HasAdmin)
+                /*
+                if (AppManager.HasAdmin)
                 {
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
-                        Title = "Ventes",
-                        Color = "#BDD6EE"
-                    });
- 
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
-                        Title = "Sessions",
-                        Color = "#ff6b81"
-                    });
 
-                    Items.Add(new TDB_SIMPLE_INDICATORS()
-                    {
-                        CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
-                        Title = "Encaiss / Decaiss",
-                        Color = "#A8D08D"
-                    });
                 }
-                Items.Add(new TDB_SIMPLE_INDICATORS()
+                */
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
+                    Title = "Ventes",
+                    Color = "#BDD6EE",
+                    CodeObjet = Xpert.XpertObjets.VTE_VENTE,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
+                    Title = "Sessions",
+                    Color = "#ff6b81",
+                    CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
+                    Title = "Encaiss / Decaiss",
+                    Color = "#A8D08D",
+                    CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
                     Title = "Produits",
                     Color = "#B4C6E7"
                 });
 
-                Items.Add(new TDB_SIMPLE_INDICATORS()
+                res.Add(new TDB_SIMPLE_INDICATORS()
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
                     Title = "Tiers",
                     Color = "#FEF2CC"
                 });
+
                 /*
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)
@@ -158,6 +174,14 @@ namespace XpertMobileApp.ViewModels
                     Items.Add(item);
                 }
                 */
+
+                Items.Clear();
+                foreach (var item in res)
+                {
+                    if(item.HasPermission)
+                        Items.Add(item);
+                }
+
                 IsBusy = false;
             }
             catch (Exception ex)

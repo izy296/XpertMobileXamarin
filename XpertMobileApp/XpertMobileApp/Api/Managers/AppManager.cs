@@ -1,9 +1,12 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xpert;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 
@@ -72,6 +75,20 @@ namespace XpertMobileApp.Api
             }
         }
 
+        public static bool HasPermission(XpertObjets codeObject, XpertActions action)
+        {
+            if (AppManager.HasAdmin) return true;
+            if (codeObject == XpertObjets.None || action == XpertActions.None) return true;
+
+            bool result = false;
+            if (AppManager.permissions != null)
+            {
+                var obj = AppManager.permissions.Where(x => x.CodeObjet == codeObject.ToString()).FirstOrDefault();
+                var res = XpertHelper.GetValue(obj, action.ToString());
+                result = obj != null && Convert.ToInt16(res) > 0;
+            }
+            return result;
+        }
 
         public static bool HasAdmin
         {

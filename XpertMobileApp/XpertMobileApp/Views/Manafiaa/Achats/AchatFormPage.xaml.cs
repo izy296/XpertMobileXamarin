@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -149,12 +150,12 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await App.GetSysParams();
-            permissions = await App.GetPermissions();
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
 
             viewModel.ImmatriculationList = await GetImmatriculations("");
 
-            if (!App.HasAdmin)
+            if (!AppManager.HasAdmin)
             { 
                 ApplyVisibility();
             }
@@ -207,7 +208,7 @@ namespace XpertMobileApp.Views
                 btn_TeirsSearch.IsEnabled = false;
                 jobFieldAutoComplete.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
-                ne_PESEE_SORTIE.IsEnabled = false;
+                //ne_PESEE_SORTIE.IsEnabled = false;
                 btn_Get_PESEE_ENTREE.IsEnabled = false;
                 btn_Get_PESEE_SORTIE.IsEnabled = false;
                 if (viewModel.Item.PESEE_ENTREE == 0 && viewModel.hasEditDetails)
@@ -333,8 +334,8 @@ namespace XpertMobileApp.Views
 
                 row.PRIX_VENTE    = product.PRIX_VENTE_HT;
 
-                row.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
-                row.LOT = parames.DEFAULT_COMPAGNE_LOT;
+                row.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
+                row.LOT = parames?.DEFAULT_COMPAGNE_LOT;
                 row.UNITE = viewModel.Item.CODE_UNITE;
                 row.CODE_UNITE_ENTETE = viewModel.Item.CODE_UNITE;
 
@@ -358,6 +359,7 @@ namespace XpertMobileApp.Views
             }
 
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
+            viewModel.Item.TOTAL_HT = viewModel.Item.TOTAL_TTC;
             row.Index = viewModel.ItemRows.Count();
 
             UpdatePeseeInfos();
@@ -368,8 +370,10 @@ namespace XpertMobileApp.Views
             foreach (var item in viewModel.ItemRows.ToList())
             {                    
                 item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                item.MT_HT = item.MT_TTC;
             }
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+            viewModel.Item.TOTAL_HT = viewModel.Item.TOTAL_TTC;
         }
 
         async Task<bool> AddScanedProduct(string cb_prod)
@@ -469,6 +473,7 @@ namespace XpertMobileApp.Views
                             // item.SetQteNet(item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS);
                             item.QTE_RECUE = item.QUANTITE;
                             item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                            item.MT_HT = item.MT_TTC;
                         }
                         else
                         {
@@ -478,6 +483,7 @@ namespace XpertMobileApp.Views
                             item.QTE_BRUTE = item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballagePlein;
                             //item.SetPeseeBrute(item.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
                             item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
+                            item.MT_HT = item.MT_TTC;
                         }
 
                         totalQteExeption += item.QUANTITE_NET_PRIMAIRE;
@@ -508,6 +514,7 @@ namespace XpertMobileApp.Views
 
                 // calcul du total du document
                 viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(x => x.MT_TTC);
+                viewModel.Item.TOTAL_HT = viewModel.Item.TOTAL_TTC;
             }
             catch (Exception ex)
             {
@@ -530,7 +537,7 @@ namespace XpertMobileApp.Views
                 return;
             }
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
-            itemSelector.AutoriserReception = "1";
+            itemSelector.AutoriserReception = true;
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
@@ -805,8 +812,8 @@ namespace XpertMobileApp.Views
 
                  this.viewModel.Item.Details = viewModel.ItemRows.ToList();
                  // this.viewModel.Item.CODE_MOTIF = "ES10";
-                 this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
-                 this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
+                 this.viewModel.Item.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
+                 this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
 
                  viewModel.IsBusy = true;
                  viewModel.Item.STATUS_DOC = DocStatus.Termine;
@@ -873,8 +880,8 @@ namespace XpertMobileApp.Views
 
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
                 // this.viewModel.Item.CODE_MOTIF = "ES10";
-                this.viewModel.Item.CODE_MAGASIN = parames.DEFAULT_ACHATS_MAGASIN;
-                this.viewModel.Item.CODE_UNITE = parames.DEFAULT_UNITE_ACHATS;
+                this.viewModel.Item.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
+                this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
 
                 if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC)) // Ajout d'une reception
                 {
@@ -906,7 +913,7 @@ namespace XpertMobileApp.Views
                     try
                     {
                         UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
-
+                        
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 

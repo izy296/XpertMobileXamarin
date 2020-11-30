@@ -8,6 +8,7 @@ using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -162,10 +163,10 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await App.GetSysParams();
-            permissions = await App.GetPermissions();
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
 
-            if (!App.HasAdmin)
+            if (!AppManager.HasAdmin)
             {
                 ApplyVisibility();
             }

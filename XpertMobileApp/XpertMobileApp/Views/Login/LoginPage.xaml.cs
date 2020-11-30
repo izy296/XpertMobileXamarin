@@ -34,7 +34,7 @@ namespace XpertMobileApp.Views
 
         private void Init()
         {
-            App.StatrtCheckIfInternet(Lbl_NoInternet, this);
+          //  App.StatrtCheckIfInternet(Lbl_NoInternet, this);
 
             Ent_UserName.Text = "";
             Ent_PassWord.Text = "";
@@ -99,7 +99,7 @@ namespace XpertMobileApp.Views
 
                         try
                         {
-                            List<SYS_OBJET_PERMISSION> permissions = await App.GetPermissions();
+                            List<SYS_OBJET_PERMISSION> permissions = await AppManager.GetPermissions();
                             // await App.UserDatabase.SaveItemAsync(user);
                             await App.TokenDatabase.SaveItemAsync(token);
                         }

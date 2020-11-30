@@ -1,22 +1,26 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Base;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VentesPage : ContentPage
-	{
+	public partial class VentesPage : XBasePage
+    {
         VentesViewModel viewModel;
         private string typeDoc = VentesTypes.Vente;
         public string CurrentStream = Guid.NewGuid().ToString();
@@ -25,9 +29,15 @@ namespace XpertMobileApp.Views
             typeDoc = typeVente;
             
             InitializeComponent ();
-            
+
+            foreach (var item in this.ToolbarItems)
+            {
+
+            } 
+
+
             if (string.IsNullOrEmpty(typeVente))
-                btn_Additem.IsEnabled = false;
+                btn_Additem.IsVisible = false;
 
             vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente;
 
@@ -77,9 +87,14 @@ namespace XpertMobileApp.Views
 
         }
 
-        protected override void OnAppearing()
+        SYS_MOBILE_PARAMETRE parames;
+        List<SYS_OBJET_PERMISSION> permissions;
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
 
             if (viewModel.Items.Count == 0)
                 LoadStats();

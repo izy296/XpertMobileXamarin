@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -118,6 +119,18 @@ namespace XpertMobileApp.Views
                 viewModel.LoadRowsCommand.Execute(null);
             }
         }
+
+        protected override  bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Yes", "No");
+                if (result) await this.Navigation.PopAsync(); // or anything else
+            });
+
+            return true;
+
+        }
+
         private void Vte_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
 
@@ -127,12 +140,12 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await App.GetSysParams();
-            permissions = await App.GetPermissions();
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
 
             // viewModel.ImmatriculationList = await GetImmatriculations("");
 
-            if (!App.HasAdmin)
+            if (!AppManager.HasAdmin)
             { 
                 ApplyVisibility();
             }

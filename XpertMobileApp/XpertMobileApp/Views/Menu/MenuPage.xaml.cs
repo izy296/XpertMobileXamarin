@@ -6,6 +6,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Services;
 using XpertMobileApp.Api;
+using Acr.UserDialogs;
+using Xpert.Common.WSClient.Helpers;
+using System.Linq;
+using Xpert;
 
 namespace XpertMobileApp.Views
 {
@@ -24,36 +28,93 @@ namespace XpertMobileApp.Views
                 menuItems = new List<HomeMenuItem>();
 
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = AppResources.pn_home });
-                if (App.HasAdmin) 
+                /*
+                if (AppManager.HasAdmin) 
                 { 
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Ventes, Image = "", Title = AppResources.pn_Ventes });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
-                }
+
+                }*/
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Ventes,
+                    Title = AppResources.pn_Ventes,
+                    CodeObjet = XpertObjets.VTE_VENTE,
+                    Action = XpertActions.AcSelect
+                });
+
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Encaissements,
+                    Title = AppResources.pn_encaissement,
+                    CodeObjet = XpertObjets.TRS_DECAISS,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+
                 if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
                 {
                     //menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.VenteComptoir, Image = "", Title = AppResources.pn_VteComptoir });
-                    if (App.HasAdmin)
+                    menuItems.Add(new HomeMenuItem { 
+                                        Id = MenuItemType.VenteComptoir, 
+                                        Title = AppResources.pn_VteComptoir, 
+                                        CodeObjet = XpertObjets.VTE_COMPTOIR, 
+                                        Action = XpertActions.AcSelect });
+
+                    if (AppManager.HasAdmin)
                     {
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Image = "", Title = AppResources.pn_session });
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Image = "", Title = AppResources.pn_Commandes });
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Title = AppResources.pn_session,
+                            CodeObjet = XpertObjets.TRS_RESUME_SESSION,
+                            Action = XpertActions.AcSelect
+                        });
+
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Title = AppResources.pn_Tresorerie,
+                            CodeObjet = XpertObjets.BSE_COMPTE,
+                            Action = XpertActions.AcSelect
+                        });
+
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Title =   AppResources.pn_Commandes,
+                            CodeObjet = XpertObjets.VTE_COMMANDE,
+                            Action = XpertActions.AcSelect
+                        });
+
                         if (Constants.AppName == Apps.XPH_Mob)
                         {
-                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop, Image = "", Title = AppResources.pn_VtePsychotrop });
-                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Image = "", Title = AppResources.pn_Bordereaux });
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop,Title =    AppResources.pn_VtePsychotrop,
+                              CodeObjet = XpertObjets.VTE_PSYCHOTROP,
+                              Action = XpertActions.AcSelect
+                            });
+
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Title = AppResources.pn_Bordereaux,
+                                CodeObjet = XpertObjets.CFA_BORDEREAU,
+                                Action = XpertActions.AcSelect
+                            });
                         }
                     }
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, Image = "", Title = AppResources.pn_Produits });
-                    if (App.HasAdmin)
+
+                    menuItems.Add(new HomeMenuItem
                     {
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Manquants, Image = "", Title = AppResources.pn_Manquants });
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.SimpleIndicators, Image = "", Title = "Indicteurs" }); // AppResources.pn_Simpleindicator
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Image = "", Title = AppResources.pn_Analyses });
+                        Id = MenuItemType.Manquants,
+                        Title = AppResources.pn_Manquants,
+                        CodeObjet = XpertObjets.ACH_MANQUANTS,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    if (AppManager.HasAdmin)
+                    {
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.SimpleIndicators, Image = "", Title = "Indicteurs",
+                            CodeObjet = XpertObjets.TDB_ANALYSES,
+                            Action = XpertActions.AcSelect
+                        }); // AppResources.pn_Simpleindicator
+                        
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Title = AppResources.pn_Analyses,
+                            CodeObjet = XpertObjets.TDB_ANALYSES,
+                            Action = XpertActions.AcSelect
+                            
+                        });
                     }
                 }
-                if (App.HasAdmin)
+                if (AppManager.HasAdmin)
                 {
                     menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
                 }
@@ -85,16 +146,26 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
 
-                if (App.HasAdmin)
+                if (AppManager.HasAdmin)
                 {
                     menuItems.Insert(4,
                         new HomeMenuItem { Id = MenuItemType.AchatAgroAnalyses, Image = "", Title = AppResources.pn_Analyses });
 
-                    menuItems.Insert(3,
-                         new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
+                    menuItems.Insert(3, new HomeMenuItem
+                    {
+                        Id = MenuItemType.Encaissements,
+                        Title = AppResources.pn_encaissement,
+                        CodeObjet = XpertObjets.TRS_DECAISS,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
 
-                    menuItems.Insert(3,
-                        new HomeMenuItem { Id = MenuItemType.Tresorerie, Image = "", Title = AppResources.pn_Tresorerie });
+                    menuItems.Insert(3, new HomeMenuItem
+                    {
+                        Id = MenuItemType.Tresorerie,
+                        Title = AppResources.pn_Tresorerie,
+                        CodeObjet = XpertObjets.BSE_COMPTE,
+                        Action = XpertActions.AcSelect
+                    });
                 }
             }
             else if (Constants.AppName == Apps.XACATALOG_Mob)
@@ -106,11 +177,6 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
             }
-
-
-            ListViewMenu.ItemsSource = menuItems;
-
-            ListViewMenu.SelectedItem = menuItems[0];
 
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
@@ -129,8 +195,36 @@ namespace XpertMobileApp.Views
                 App.TokenDatabase.DeleteItemAsync(App.User.Token);
 
             App.User = null;
-            App.permissions = null;
+            AppManager.permissions = null;
             Application.Current.MainPage = new LoginPage();
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                var param = await AppManager.GetSysParams();
+                var permissions = await AppManager.GetPermissions();
+
+                var menus = menuItems.Where(x => x.HasPermission == true).ToList();
+
+                ListViewMenu.ItemsSource = menus;
+
+                ListViewMenu.SelectedItem = menus[0];
+
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+
         }
     }
 }

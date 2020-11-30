@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
@@ -20,11 +21,11 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
-                if (App.HasAdmin) return true;
+                if (AppManager.HasAdmin) return true;
                 bool result = false;
-                if (App.permissions != null)
+                if (AppManager.permissions != null)
                 {
-                    var obj = App.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_DETAIL").FirstOrDefault();
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_DETAIL").FirstOrDefault();
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;
@@ -35,11 +36,11 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
-                if (App.HasAdmin) return true;
+                if (AppManager.HasAdmin) return true;
                 bool result = false;
-                if (App.permissions != null)
+                if (AppManager.permissions != null)
                 {
-                    var obj = App.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_PRIX_HT").FirstOrDefault();
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_PRIX_HT").FirstOrDefault();
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;
@@ -50,11 +51,11 @@ namespace XpertMobileApp.Views.Achats
         {
             get
             {
-                if (App.HasAdmin) return true;
+                if (AppManager.HasAdmin) return true;
                 bool result = false;
-                if (App.permissions != null)
+                if (AppManager.permissions != null)
                 {
-                    var obj = App.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_ENTETE").FirstOrDefault();
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_ENTETE").FirstOrDefault();
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;

@@ -27,71 +27,10 @@ namespace XpertMobileApp
 {
     public partial class App : Application
     {
-
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
-
         public static MsgCenter MsgCenter = new MsgCenter();
-
-
-        public static bool HasAdmin
-        {
-            get
-            {
-                return User.UserGroup == "AD";
-            }
-        }
-
-        private static SYS_MOBILE_PARAMETRE sysParams;
-        public static async Task<SYS_MOBILE_PARAMETRE> GetSysParams()
-        {
-            if (sysParams == null)
-            {
-                var result = await CrudManager.SysParams.GetParams();
-                sysParams = result;
-                return sysParams;
-            }
-            return sysParams;
-        }
-
-        internal static TRS_JOURNEES session;
-        public static async Task<TRS_JOURNEES> GetCurrentSession()
-        {
-            try
-            {
-                if (session == null)
-                {
-                    session = await CrudManager.Sessions.GetCurrentSession();
-                }
-                return session;
-            }
-            catch (Exception e)
-            {
-                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
-                return null;
-            }
-        }
-
-        internal static List<SYS_OBJET_PERMISSION> permissions;
-        public static async Task<List<SYS_OBJET_PERMISSION>> GetPermissions()
-        {
-            try
-            {
-                if (permissions == null)
-                {
-                    permissions = await CrudManager.Permissions.GetPermissions(User.UserGroup);
-                }
-                return permissions;
-            }
-            catch (Exception e)
-            {
-                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
-                return new List<SYS_OBJET_PERMISSION>();
-            }
-        }
 
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
@@ -189,8 +128,31 @@ namespace XpertMobileApp
 
         protected override void OnStart()
         {
-            // Handle when your app starts
+            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            {
+                object moduleName;
+                if (p.Data.TryGetValue("moduleName", out moduleName) && !string.IsNullOrEmpty(Convert.ToString(moduleName)))
+                {
+                    string module = Convert.ToString(moduleName);
 
+                    MainPage RootPage = Application.Current.MainPage as MainPage;
+                    var page = RootPage.GetMenuPage(Convert.ToInt32(module));
+                    RootPage.NavigateFromMenu(Convert.ToInt32(module));
+
+                    // Get menu from moduleName
+                    // Open menu
+
+                    /*
+                    object idDoc;
+                    if (p.Data.TryGetValue("idDoc", out idDoc) && !string.IsNullOrEmpty(Convert.ToString(idDoc)))
+                    {
+                        string codeDoc = Convert.ToString(idDoc);
+                    }
+                    */
+                }
+            };
+
+            // Handle when your app starts
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
             {
                 bool saveSettings = false;
@@ -205,7 +167,6 @@ namespace XpertMobileApp
                         App.Settings.ShouldUpdate = true;
                         App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
                         saveSettings = true;
-
                     }
                 }
 
@@ -279,12 +240,12 @@ namespace XpertMobileApp
             }
         }
 
-        public static bool IsConected
+        public async static Task<bool> IsConected()
         {
-            get
-            {
-                return CrossConnectivity.Current.IsConnected;
-            }
+             // return CrossConnectivity.Current.IsConnected;
+             string url = App.Settings.ServiceUrl;
+             //var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
+             return true;
         }
 
         public static string RestServiceUrl
@@ -402,9 +363,9 @@ namespace XpertMobileApp
             }
         }
 
-        private static void CheckIfInternetOverTimeAsync()
+        private async static void CheckIfInternetOverTimeAsync()
         {
-            if (!App.IsConected)
+            if (! await App.IsConected())
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {

@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -140,10 +141,10 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await App.GetSysParams();
-            permissions = await App.GetPermissions();
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
 
-            if (!App.HasAdmin)
+            if (!AppManager.HasAdmin)
             { 
                 ApplyVisibility();
             }
@@ -861,7 +862,7 @@ namespace XpertMobileApp.Views
         {
             bool result = false;
 
-            string codeDocRecept = ((sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_RECEPTION; 
+            View_PRD_AGRICULTURE_DETAIL item = ((sender as Button).BindingContext as View_PRD_AGRICULTURE_DETAIL); 
 
             if (IsBusy)
                 return;
@@ -873,7 +874,7 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 //result = await WebServiceClient.PrintQRProduit(codeDocRecept, 1, "Godex DT2x");
-                result = await XpertHelper.PrintQrCode(viewModel.Item,1);
+                result = await XpertHelper.PrintPrdDetailQrCode(item, 1);
             }
             catch (Exception ex)
             {

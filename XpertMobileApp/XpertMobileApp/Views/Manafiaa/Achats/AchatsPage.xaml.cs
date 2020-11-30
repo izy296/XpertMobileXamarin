@@ -6,6 +6,7 @@ using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -68,13 +69,13 @@ namespace XpertMobileApp.Views
             var connectivity = CrossConnectivity.Current;
             if (connectivity.IsConnected)
             { 
-                parames = await App.GetSysParams();
-                permissions = await App.GetPermissions();
+                parames = await AppManager.GetSysParams();
+                permissions = await AppManager.GetPermissions();
 
                 LoadStats();
             }
 
-            if (!App.HasAdmin)
+            if (!AppManager.HasAdmin)
             {
                 ApplyVisibility();
             }

@@ -20,7 +20,6 @@
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
-    <Compile Remove="Models\HomeMenuItem.cs" />
     <Compile Remove="Models\Item.cs" />
     <Compile Remove="Services\IDataStore.cs" />
     <Compile Remove="Services\MockDataStore.cs" />
@@ -64,6 +63,7 @@
   <ItemGroup>
     <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
     <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\DAL\Mobile\HomeMenuItem.cs" Link="Api\Models\Menu\HomeMenuItem.cs" />
+    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
     <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
