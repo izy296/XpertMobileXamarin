@@ -70,30 +70,13 @@ namespace XpertMobileApp.Views
             try
             {
                 string res = await viewModel.ValidateVte(viewModel.Item);
-
+                viewModel.Item.NUM_VENTE = res;
                 if (!XpertHelper.IsNullOrEmpty(res) )
                 {
                     await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                     if (viewModel.imprimerTecketCaiss)
                     {
-                        if(SettingsPage.printerLocal!=null && SettingsPage.printerLocal.isConnected())
-                        {
-                            var tecketData = await WebServiceClient.GetDataTecketCaisseVente(res);
-                            if (tecketData == null) return;
-                            if (tecketData.Count == 0)
-                            {
-                                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de données à imprimer !", AppResources.alrt_msg_Ok);
-                            }
-                            else
-                            {
-                                PrinterHelper.PrintBL(tecketData);
-                            }
-                        }
-                        else
-                        {
-                            await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "Imprimante mobile non connectée !", AppResources.alrt_msg_Ok);
-                        }
-
+                        PrinterHelper.PrintBL(viewModel.Item);
                     }
                     ParentviewModel.InitNewVentes();
                     await PopupNavigation.Instance.PopAsync(); 

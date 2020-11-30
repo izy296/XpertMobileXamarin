@@ -93,16 +93,7 @@ namespace XpertMobileApp.Views.Encaissement
 
         private async void PrintAsync(object sender, EventArgs e)
         {
-            var tecketData = await WebServiceClient.GetDataTecketCaisseVente(item.CODE_VENTE);
-            if (tecketData == null) return;
-            if (tecketData.Count==0)
-            {
-                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
-            }
-            else
-            {
-                PrinterHelper.PrintBL(tecketData);
-            }
+             PrinterHelper.PrintBL(item);
         }
     
         private void UpdateItemIndex<T>(List<T> items)

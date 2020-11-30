@@ -125,6 +125,15 @@ namespace XpertMobileApp.Models
     {
         public string DEFAULT_COMPAGNE_LOT { get; set; }
         public string DEFAULT_ACHATS_MAGASIN { get; set; }
+        public string DEFAULT_VENTE_MAGASIN { get; set; }
         public string DEFAULT_UNITE_ACHATS { get; set; }
+
+        public string NOM_PHARM { get; set; }
+        public string ADRESSE_PHARM { get; set; }
+        public string TEL_PHARM { get; set; }
+        public string PIED_TICKET { get; set; }
+        public short INCLUDE_NAME_VENDEUR { get; set; }
+        public short AFFICHE_MONNAIE { get; set; }
+        public short AFFICHER_NUM_VENTE_TICKET { get; set; }
     }
 }
