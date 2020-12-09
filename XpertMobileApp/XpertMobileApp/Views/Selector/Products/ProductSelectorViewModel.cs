@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -14,12 +15,11 @@ namespace XpertMobileApp.ViewModels
 {
     public class ProductSelectorViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
-
         public string SearchedText { get; set; } = "";
 
         public string CodeTiers { get; set; } = "";
 
-        public string AutoriserReception { get; set; } = "";
+        public bool AutoriserReception { get; set; }
         
         public ProductSelectorViewModel(string title= "" )
         {
@@ -43,7 +43,10 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
-            this.AddCondition<View_STK_PRODUITS, bool>(e => e.AUTORISER_RECEPTIONS, 1);
+            if(AutoriserReception) 
+            { 
+               this.AddCondition<View_STK_PRODUITS, bool>(e => e.AUTORISER_RECEPTIONS, 1);
+            }
             this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
             return qb.QueryInfos;
         }           

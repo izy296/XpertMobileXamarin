@@ -22,5 +22,17 @@ namespace XpertMobileApp.Api.Managers
             url += WSApi2.AddParam(url, "vparam1", vparam1);
             return await WSApi2.PostAauthorizedValue<string, View_VTE_VENTE>(url, vte, this.Token.access_token);
         }
+
+        public async Task<VIEW_FIDELITE_INFOS> GetFideliteInfos(string CodeCard, decimal PointUsed)
+        {
+            string url = GetActionUrl("GetFideliteInfos");
+            url += WSApi2.AddParam(url, "paramv", "1");
+            VIEW_FIDELITE_INFOS obj = new VIEW_FIDELITE_INFOS();
+            obj.CODE_CARD = CodeCard;
+            obj.POINTS_USED = PointUsed;
+            obj = await WSApi2.PostAauthorizedValue<VIEW_FIDELITE_INFOS, VIEW_FIDELITE_INFOS>(url, obj, this.Token.access_token);
+
+            return obj;
+        }
     }
 }

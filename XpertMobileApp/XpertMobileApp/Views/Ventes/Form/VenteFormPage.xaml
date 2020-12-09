@@ -27,7 +27,7 @@
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout  Padding="0" BackgroundColor="#f0f2f5">
+        <StackLayout  Padding="0" BackgroundColor="#f0f2f5" Spacing="0">
             <StackLayout BackgroundColor="#d7e4f7" Spacing="0" HeightRequest="50" Orientation="Horizontal"
                          >
                 <Label Text="Client : " FontSize="Medium" 
@@ -52,6 +52,21 @@
                         BackgroundColor="{StaticResource Primary}"
                         Clicked="btn_ScanTiers_Clicked"/>
 
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" Margin="0" HorizontalOptions="FillAndExpand" BackgroundColor="#d7e4f7">
+                <StackLayout Margin="0,0,15,0" Padding="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
+                    <Label Margin="5,0,0,5" Text="Solde : " FontSize="Small" 
+                           VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />
+                    <Label Text="{Binding SelectedTiers.SOLDE_TIERS, Mode=TwoWay, StringFormat='{0:N1}'}" FontSize="Small" 
+                            FontAttributes="Bold" VerticalOptions="Center" TextColor="Gray" />
+                </StackLayout>
+
+                <StackLayout Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                    <Label Margin="5,0,0,5" Text="Points : " FontSize="Small" 
+                           VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />
+                    <Label Text="{Binding SelectedTiers.TOTAL_POINT_FIDELITE, Mode=TwoWay, StringFormat='{0:N0}'}" FontSize="Small" 
+                            FontAttributes="Bold" VerticalOptions="Center" TextColor="Gray" />
                 </StackLayout>
             </StackLayout>
             <!-- Header 

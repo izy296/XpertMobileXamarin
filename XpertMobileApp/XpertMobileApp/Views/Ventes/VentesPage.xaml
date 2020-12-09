@@ -1,41 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<base:XBasePage  xmlns:base="clr-namespace:XpertMobileApp.Base" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              x:Class="XpertMobileApp.Views.VentesPage"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             xmlns:cmp="clr-namespace:XpertMobileApp.Components"
              Title="{Binding Title}"
              x:Name="Ventes">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked"/>
-        <ToolbarItem x:Name="btn_Filter" IconImageSource="filter.png" Text="{i18n:Translate cmd_Add}" Clicked="Filter_Clicked"/>
+        <cmp:XToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked"/>
+        <cmp:XToolbarItem x:Name="btn_Filter" IconImageSource="filter.png" Text="{i18n:Translate cmd_Add}" Clicked="Filter_Clicked"/>
     </ContentPage.ToolbarItems>
-
-    <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
-        <!-- Filter -->
-        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+    <base:XBasePage.Content>
+        <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
+            <!-- Filter -->
+            <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
 
-            <Grid Margin="0,5,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-            <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="0" Grid.Row="1" 
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="0" Grid.Row="1" 
                         x:Name="dp_StartDate"                        
                         Format="dd/MM/yyyy"
                         
@@ -43,25 +44,25 @@
                         Date="{Binding StartDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
-            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="1" Grid.Row="1"
+                    <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="1" Grid.Row="1"
                         x:Name="dp_EndDate"
                         Format="dd/MM/yyyy"
                         TextColor="Black"
                         Date="{Binding EndDate, Mode=TwoWay}"
                         Margin="30, 0, 30, 10"/>
 
-                <!-- Type de ventes   SelectedItem="{Binding SelectedType}" -->
-                <!-- Types -->
-                <Label  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0" IsVisible="{Binding IsVtesList}"/>
-                <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Types}" IsVisible="{Binding IsVtesList}"
+                    <!-- Type de ventes   SelectedItem="{Binding SelectedType}" -->
+                    <!-- Types -->
+                    <Label  Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0" IsVisible="{Binding IsVtesList}"/>
+                    <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2"  ItemsSource="{Binding Types}" IsVisible="{Binding IsVtesList}"
                      ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
                      SelectedItem="{Binding SelectedType}"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TypesPicker"/>
 
-                <!--
+                    <!--
                     <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0"/>
                     <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Types}"
                                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
@@ -70,78 +71,78 @@
                                     Margin="30, 0, 30, 10"                 
                                     x:Name="TypesPicker"/>
                 -->
-            <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
-                <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="50"/>
-                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Client}" Margin="5, 0, 0, 0"/>
+                    <Grid Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="30, 0, 30, 10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <!-- Tiers -->
-                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
-                    <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!-- Tiers -->
+                        <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                        <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
                     WidthRequest="50" HeightRequest="50"
                     HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
                     Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
                     Clicked="btn_Select_Clicked"/>
-                </Grid>
+                    </Grid>
 
-                <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                    <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
-                    <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                        <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_ApplyFilter_Clicked"/>
 
-                    <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                        <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
                         Clicked="btn_CancelFilter_Clicked"/>
-                </StackLayout>
-            </Grid>
-        </StackLayout>
-
-        <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand">
-            
-            <!-- Today infos  -->
-            <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
-                <Grid  BackgroundColor="White" >
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-
-                    <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                        <Label Text="{i18n:Translate txt_Today}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                        <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                    </StackLayout>
-
-                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{i18n:Translate txt_CA}" TextColor="{StaticResource Primary}"/>
-                        <Label Text="{i18n:Translate txt_Margin}" TextColor="Red"/>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
-                        <Label Text="{Binding TotalTurnover, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
-                        <Label Text="{Binding TotalMargin, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                     </StackLayout>
                 </Grid>
-            </Frame>
+            </StackLayout>
 
-            <!-- Summaries Infos -->
-            <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="#1E47BD"
+            <!-- Items listing  -->
+            <StackLayout VerticalOptions="FillAndExpand">
+
+                <!-- Today infos  -->
+                <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
+                    <Grid  BackgroundColor="White" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                            <Label Text="{i18n:Translate txt_Today}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                            <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                        </StackLayout>
+
+                        <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
+                            <Label Text="{i18n:Translate txt_CA}" TextColor="{StaticResource Primary}"/>
+                            <Label Text="{i18n:Translate txt_Margin}" TextColor="Red"/>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
+                            <Label Text="{Binding TotalTurnover, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                            <Label Text="{Binding TotalMargin, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame>
+
+                <!-- Summaries Infos -->
+                <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="#1E47BD"
                    BorderColor="{StaticResource Accent}">
-                <Grid >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="75"/>
-                    </Grid.RowDefinitions>
-                    <ListView x:Name="SummariesListView"
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="SummariesListView"
                             VerticalOptions="Fill"
                             ItemsSource="{Binding Summaries}"
                               
@@ -149,24 +150,24 @@
                             SelectionMode="None"                        
                             SeparatorVisibility="None">
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" >
-                                        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                            <Label Grid.Column="0" Text="{Binding key}" TextColor="White" FontAttributes="Bold"/>
-                                            <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2}'}" TextColor="White" 
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" >
+                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                                <Label Grid.Column="0" Text="{Binding key}" TextColor="White" FontAttributes="Bold"/>
+                                                <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2}'}" TextColor="White" 
                                                    HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
-                                        </Grid>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </Frame>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Frame>
 
-            <ListView x:Name="ItemsListView"
+                <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
@@ -177,33 +178,35 @@
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
 
-                <ListView.Behaviors>
-                    <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                </ListView.Behaviors>
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <template:VenteTemplate />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:VenteTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                <ListView.Footer>
-                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                        <!-- set the footer to have a zero height when invisible -->
-                        <Grid.Triggers>
-                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                <Setter Property="HeightRequest" Value="0" />
-                            </Trigger>
-                        </Grid.Triggers>
-                        <!-- the loading content -->
-                        <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                    </Grid>
-                </ListView.Footer>
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
 
-            </ListView>
+                </ListView>
 
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
-</ContentPage>
+    </base:XBasePage.Content>
+
+</base:XBasePage>

@@ -17,49 +17,65 @@
 
                 <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="False" IsVisible="False"
                                 WidthRequest="200" HeightRequest="120" />
-
-
-                <Label Text="Client " FontSize="Default" Margin="5" />
-                <StackLayout Orientation="Horizontal" Margin="30,0,30,20">
-
-
-                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
-                            IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                <Frame CornerRadius="8" BackgroundColor="#87CEFA" Padding="0">
+                    <StackLayout Padding="0" Margin="5" Spacing="0" >
+                    <Label Text="Client " FontSize="Default" Margin="5,0,0,-15" />
+                    <StackLayout Orientation="Horizontal" Margin="30,0,30,0">
+                        <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
+                                IsReadOnly="True" HorizontalOptions="FillAndExpand" TextColor="Black"/>
                         
-                        <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
-                        WidthRequest="50" HeightRequest="50"
-                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
-                        Clicked="btn_Select_Clicked"/>
+                            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                            WidthRequest="45" HeightRequest="45" FontSize="Medium"
+                            HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                            Clicked="btn_Select_Clicked"/>
 
-                        <Button x:Name="btn_Scan" Margin="0" Grid.Column="1"
-                        WidthRequest="50" HeightRequest="50"
-                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"  BackgroundColor="{StaticResource Primary}"
-                        Clicked="btn_Scan_Clicked"/>
+                            <Button x:Name="btn_Scan" Margin="0" Grid.Column="1"
+                            WidthRequest="45" HeightRequest="45" FontSize="Medium"
+                            HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"  BackgroundColor="{StaticResource Primary}"
+                            Clicked="btn_Scan_Clicked"/>
                     
-                </StackLayout>
+                    </StackLayout>
+                
+                    <Label Text="Points fidélité à utiliser " FontSize="Default" Margin="5,5,5,-10" />
+                    <StackLayout Orientation="Horizontal">
+                        <numeric1:SfNumericTextBox x:Name="pts_Consumed" Minimum="0"  FontAttributes="Bold" TextColor="Black"
+                                             ParserMode="Double" MaximumNumberDecimalDigits="0"   WidthRequest="60"
+                                             SelectAllOnFocus="True" Value="{Binding Item.POINTS_CONSUMED, Mode=TwoWay}" 
+                                             HorizontalOptions="Start"   ValueChangeMode="OnKeyFocus"
+                                             VerticalOptions="Center" Margin="30,0,0,0" ValueChanged="POINTS_CONSUMED_Changed" />
+                        <Label Text="/" FontSize="Large" TextColor="Black" Margin="0" VerticalOptions="Center" />
+                        <Label Text="{Binding SelectedTiers.TOTAL_POINT_FIDELITE, Mode=TwoWay, StringFormat='{0:N0}'}" 
+                               FontSize="Medium" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold" Margin="0" />
 
-                <Label Text="Montant. total" FontSize="Default" Margin="5" />
+                        <Label x:Name="mt_PointsUsed" Text="" VerticalOptions="Center" FontSize="Medium" Margin="5"  
+                               TextColor="Black" FontAttributes="Bold"/>
+                    </StackLayout>
+                </StackLayout>
+                </Frame>
+                <Label Text="Montant. total" FontSize="Default" Margin="5,5,5,-10" />
                 <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2"  IsEnabled="False"
                                      SelectAllOnFocus="True" Value="{Binding Item.TOTAL_TTC, Mode=TwoWay}"
                                      VerticalOptions="Center" Margin="30,0,30,0" />
-                
-                <Label Text="Reste à payer" FontSize="Default" Margin="5" />
-                    <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
+
+
+
+                <Label Text="Reste à payer" FontSize="Default" Margin="5,5,5,-10"  />
+                <numeric1:SfNumericTextBox x:Name="mt_Reste" Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2"  IsEnabled="False"
                                      SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RESTE, Mode=TwoWay}"
                                      VerticalOptions="Center" Margin="30,0,30,0" />
 
-                    <Label Text="Montant. Reçu" FontSize="Default" Margin="5" />
+                <Label Text="Montant. Reçu" FontSize="Default" Margin="5,5,5,-10"  />
                 <numeric1:SfNumericTextBox x:Name="SfNE_MTRecu" Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                      SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RECU, Mode=TwoWay}"
                                      VerticalOptions="Center" Margin="30,0,30,0" ValueChanged="TOTAL_RECU_ValueChanged" />
 
-                    <Label Text="Montant. rendu" FontSize="Default" Margin="5" />
-                    <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                <Label Text="Montant. rendu" FontSize="Default" Margin="5,5,5,-10"  />
+                <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                      SelectAllOnFocus="True" Value="{Binding Item.MBL_MT_RENDU, Mode=TwoWay}" IsEnabled="False"
                                       VerticalOptions="Center" Margin="30,0,30,0" />

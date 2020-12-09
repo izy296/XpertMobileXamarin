@@ -160,7 +160,19 @@ namespace XpertMobileApp.DAL
             
         }
 
-
+        private decimal pOINTS_CONSUMED;
+        public decimal POINTS_CONSUMED
+        {
+            get
+            {
+                return pOINTS_CONSUMED;
+            }
+            set
+            {
+                pOINTS_CONSUMED = value;
+                OnPropertyChanged("POINTS_CONSUMED");
+            }
+        }
 
         #region Validation vente
         public List<View_VTE_VENTE_LOT> Details { get; set; }
@@ -200,6 +212,14 @@ namespace XpertMobileApp.DAL
         }
         public string MBL_CODE_TOURNEE_DETAIL { get; set; }
         #endregion
+    }
+
+    public class VIEW_FIDELITE_INFOS
+    {
+        public string CODE_CARD { get; set; } 
+        public decimal POINTS_USED { get; set; } 
+        public decimal MT_POINTS_USED { get; set; } 
+        public decimal MAX_MT_POINTS { get; set; } 
     }
 
     public partial class View_VTE_COMMANDE : View_VTE_VENTE 

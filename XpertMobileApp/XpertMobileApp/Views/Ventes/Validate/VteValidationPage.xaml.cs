@@ -14,6 +14,7 @@ using XpertWebApi.Models;
 using System.Collections.Generic;
 using XpertMobileApp.Services;
 using XpertMobileSettingsPage.Helpers.Services;
+using XpertMobileApp.Api.Managers;
 
 namespace XpertMobileApp.Views
 {
@@ -157,6 +158,27 @@ namespace XpertMobileApp.Views
             catch (Exception ex) 
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
+        private async void POINTS_CONSUMED_Changed(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
+        {
+            if (Convert.ToDecimal(pts_Consumed.Value) > 0) 
+            {
+                if (Convert.ToDecimal(pts_Consumed.Value) > viewModel.SelectedTiers.TOTAL_POINT_FIDELITE) 
+                {
+                    pts_Consumed.Value = viewModel.SelectedTiers.TOTAL_POINT_FIDELITE;
+                    return;
+                }
+                    
+                var vteBll = CrudManager.GetVteBll(null);
+                var res = await vteBll.GetFideliteInfos(viewModel.SelectedTiers.CODE_CARTE_FIDELITE, Convert.ToDecimal(pts_Consumed.Value));
+
+                mt_PointsUsed.Text = "(" + res.MT_POINTS_USED.ToString("N2") +"Da)";
+            }
+            else 
+            {
+                mt_PointsUsed.Text = "";
             }
         }
     }

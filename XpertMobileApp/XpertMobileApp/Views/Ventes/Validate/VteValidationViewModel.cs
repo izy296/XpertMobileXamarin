@@ -45,7 +45,7 @@ namespace XpertMobileApp.ViewModels
         {
             Title = title;
             Item = item;
-            if(tiers == null) 
+            if (tiers == null) 
             { 
                 SelectedTiers = new View_TRS_TIERS()
                 {

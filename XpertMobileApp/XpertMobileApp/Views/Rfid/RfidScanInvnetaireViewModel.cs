@@ -68,7 +68,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                 
                     var CurentInventaire = await WebServiceClient.getCurentInventaire();
@@ -93,7 +93,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                if (App.IsConected)
+                if (await App.IsConected())
                 {
                     if (CurrentInv == null) {
                          await UserDialogs.Instance.AlertAsync(AppResources.alrt_notOpenInventary_Text, AppResources.alrt_msg_Alert,
