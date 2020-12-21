@@ -20,6 +20,10 @@ namespace XpertMobileApp.Droid.Services
 {
 	public class MyHandler : Handler
 	{
+        public MyHandler()
+        {
+            
+        }
         public bool isConnected { get; set; } = false;
         public event EventHandler<EventArgs> eventHandelsConnected;
         public override void HandleMessage(Message msg)
@@ -28,38 +32,44 @@ namespace XpertMobileApp.Droid.Services
 			{
 				case 101:
                     isConnected = true;
-                    eventHandelsConnected.Invoke(this, null);
+
                     break;
 				case 102:
 					isConnected = false;
 
-					break;
+                    break;
 				case 103:
 					isConnected = false;
-				
-					break;
+
+                    break;
 				case 104:
 					isConnected = false;
-				
-					break;
+                    
+                    break;
 				
 				default:
-					break;
+                    isConnected = false;
+
+                    break;
 			}
-		}
+            eventHandelsConnected.Invoke(this, null);
+        }
     }
 	
 	public class PrinterSPRT : IPrinterSPRT
     {
 		public Handler mHandler = new MyHandler();
-        public static PrinterInstance myPrinter;
+        private static PrinterInstance myPrinter;
 
         public void closeConnection()
         {
             if(myPrinter!=null)
             myPrinter.CloseConnection();
         }
-
+        public bool IsInstanceReady()
+        {
+            return myPrinter != null;
+        }
         public int getCurrentStatus()
         {
             if (myPrinter != null)

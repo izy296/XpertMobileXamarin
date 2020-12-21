@@ -7,6 +7,7 @@ namespace XpertMobileApp.Api.Services
 {
     public interface IPrinterSPRT
     {
+        bool IsInstanceReady();
         bool isConnected();
         bool GetPrinterInstance(EventHandler<EventArgs> ev,string printerName);
         void InitPrinter();

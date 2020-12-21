@@ -25,7 +25,7 @@ namespace XpertMobileApp.Views.Encaissement
             get { return item; }
             set { item = value; }
         }
-
+        public List<View_VTE_VENTE_LOT> Printerdetails { get; set; }
         public VenteDetailPage(View_VTE_VENTE vente)
         {
             InitializeComponent();
@@ -63,10 +63,18 @@ namespace XpertMobileApp.Views.Encaissement
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 viewModel.ItemRows.Clear();
+
                 var itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
 
                 UpdateItemIndex(itemsC);
-
+                if (this.Printerdetails == null)
+                { 
+                    this.Printerdetails = new List<View_VTE_VENTE_LOT>();
+                }
+                else
+                {
+                    this.Printerdetails.Clear();
+                }
                 foreach (var itemC in itemsC)
                 {
                     if (itemC.PSYCHOTHROPE)
@@ -74,6 +82,14 @@ namespace XpertMobileApp.Views.Encaissement
                         InfosPsyco.IsVisible = true;
                     }
                     viewModel.ItemRows.Add(itemC);
+
+                    Printerdetails.Add(new View_VTE_VENTE_LOT
+                    {   
+                        DESIGNATION_PRODUIT = itemC.DESIGNATION,
+                        QUANTITE            = itemC.QUANTITE,
+                        PRIX_VTE_TTC        = itemC.PRIX_VENTE,
+                        MT_TTC              = itemC.MT_VENTE
+                    });
                 }
 
                 UserDialogs.Instance.HideLoading();
@@ -93,7 +109,12 @@ namespace XpertMobileApp.Views.Encaissement
 
         private async void PrintAsync(object sender, EventArgs e)
         {
-             PrinterHelper.PrintBL(item);
+            View_VTE_VENTE vente = viewModel.Item;
+            if (vente != null)
+            {
+                vente.Details = Printerdetails;
+                PrinterHelper.PrintBL(vente);
+            }
         }
     
         private void UpdateItemIndex<T>(List<T> items)

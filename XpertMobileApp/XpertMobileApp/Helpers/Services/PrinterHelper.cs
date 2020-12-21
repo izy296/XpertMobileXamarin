@@ -15,23 +15,60 @@ namespace XpertMobileSettingsPage.Helpers.Services
 {
     public class PrinterHelper
     {
+        public static bool printerReady = false;
+        private static IPrinterSPRT printerLocal = DependencyService.Get<IPrinterSPRT>();
+        
+        private static void updateConnected()
+        {
+            printerReady = printerLocal != null;
+        }
+        async static void eventConnecedUpdate(object sender, EventArgs e)
+        {
+            updateConnected();
+        }
+
+        public static void GetPrinterInstance()
+        {
+            if (!printerLocal.IsInstanceReady())
+            {
+                bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, App.Settings.PrinterName);
+                
+                if (!succes)
+                {
+                    throw new Exception("Échec de la connexion à l'imprimante !");
+                }
+                else
+                {
+                    if (!printerLocal.isConnected())
+                    {
+                        printerLocal.openConnection();
+                    }
+                }
+            }
+        }
         public async static void PrintBL(View_VTE_VENTE data)
         {
             if (data == null) return;
-
-            bool printerReady = false;
-            IPrinterSPRT printerLocal = DependencyService.Get<IPrinterSPRT>();
             try 
             {
                 var sysParams = await AppManager.GetSysParams();
-                printerReady = printerLocal.isConnected();
-                if (!printerReady) 
-                {
-                    printerLocal.openConnection();
-                }
+                //  if (printerReady)
+                //  {
+                //  int stat=printerLocal.getCurrentStatus();
 
-                if (printerReady) 
-                { 
+                //  if (stat == -5 && !printerLocal.isConnected())
+                //  {
+                //      printerLocal.openConnection();
+                //   }
+                //   else if(stat == -1)
+                //   {
+                //       GetPrinterInstance();
+                //   }
+
+ 
+                    GetPrinterInstance();
+     
+                  
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setFont(0, 0, 1, 1, 0);
@@ -64,11 +101,12 @@ namespace XpertMobileSettingsPage.Helpers.Services
                     printerLocal.PrintText(monyWord + Environment.NewLine);
                     printerLocal.PrintText(" " + Environment.NewLine);
                     printerLocal.PrintText(" " + Environment.NewLine);
-                }
-                else 
-                {
-                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu être connectée!", AppResources.alrt_msg_Ok);
-                }
+   //             }
+   //             else
+   //             {
+   //                 await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
+   //             }
+
             } 
             catch (Exception ex)
             {
@@ -76,7 +114,10 @@ namespace XpertMobileSettingsPage.Helpers.Services
             }
             finally
             {
-                printerLocal.closeConnection();
+                //if (printerLocal.isConnected())
+                //{
+                //    printerLocal.closeConnection();
+                //}
             }
         }
 
@@ -85,21 +126,18 @@ namespace XpertMobileSettingsPage.Helpers.Services
         {
             if (data == null) return;
 
-            bool printerReady;
-            IPrinterSPRT printerLocal = DependencyService.Get<IPrinterSPRT>();
             try
             {
                 var sysParams = await AppManager.GetSysParams();
-                
-                printerReady = printerLocal.isConnected();
 
-                if (!printerReady)
-                {
-                    printerLocal.openConnection();
-                }
+                //if (printerReady)
+                //{
+                //    if (!printerLocal.isConnected())
+                //    {
+                //        printerLocal.openConnection();
+                //    }
+                    GetPrinterInstance();
 
-                if (printerReady)
-                {
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setFont(0, 0, 1, 1, 0);
@@ -138,11 +176,11 @@ namespace XpertMobileSettingsPage.Helpers.Services
                     }
                     printerLocal.PrintText(" " + Environment.NewLine);
                     printerLocal.PrintText(" " + Environment.NewLine);
-                }
-                else
-                {
-                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
-                }
+                //}
+                //else
+                //{
+                //    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
+                //}
             }
             catch (Exception ex)
             {
@@ -150,7 +188,10 @@ namespace XpertMobileSettingsPage.Helpers.Services
             }
             finally 
             {
-                printerLocal.closeConnection();
+                //if (printerLocal.isConnected())
+                //{
+                //    printerLocal.closeConnection();
+                //}
             }
         }
     }
