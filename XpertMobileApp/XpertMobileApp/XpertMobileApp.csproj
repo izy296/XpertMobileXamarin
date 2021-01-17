@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -39,6 +39,8 @@
     <Compile Remove="Views\NewItemPage.xaml.cs" />
     <Compile Remove="Views\Rfid\RfidScanInvnetairePage.xaml.cs" />
     <Compile Remove="Views\Rfid\RfidScanPage.xaml.cs" />
+    <Compile Remove="Views\XBoutiques\BtqProductDetailViewModel.cs" />
+    <Compile Remove="Views\XBoutiques\LoadMore\Model\ProductRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -62,7 +64,7 @@
 
   <ItemGroup>
     <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
-    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\DAL\Mobile\HomeMenuItem.cs" Link="Api\Models\Menu\HomeMenuItem.cs" />
+    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\DAL\Mobile\MenuItemType.cs" Link="Models\Imported\MenuItemType.cs" />
     <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
     <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
@@ -90,6 +92,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.2.0.47" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
@@ -123,6 +126,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\XBoutiques\BtqProductList.xaml.cs">
+      <DependentUpon>BtqProductList.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
       <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -143,6 +149,24 @@
     </Compile>
     <Compile Update="Views\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
       <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\CommandeDetails\BtqCommandeDetailPage.xaml.cs">
+      <DependentUpon>BtqCommandeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\DetailProd\BtqProductDetailPage.xaml.cs">
+      <DependentUpon>BtqProductDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\BtqPanierPage.xaml.cs">
+      <DependentUpon>BtqPanierPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\Commandes\XMyCommandesPage.xaml.cs">
+      <DependentUpon>XMyCommandesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
+      <DependentUpon>XMyCommandesTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
+      <DependentUpon>WishListPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
