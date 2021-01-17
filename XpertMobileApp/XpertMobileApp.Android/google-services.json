@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1095684699977:android:2ac41d10f99fb6b7",
+        "mobilesdk_app_id": "1:1095684699977:android:1a418640711215a02a4c98",
         "android_client_info": {
           "package_name": "com.xpertsoft.ComMobileApp"
         }
@@ -25,15 +25,42 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095684699977-nq0m4m9uu4m8psc8ckgfl1tceo0p5b0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095684699977:android:36dd282cf73fe30a2a4c98",
+        "android_client_info": {
+          "package_name": "com.xpertsoft.mobileApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095684699977-nq0m4m9uu4m8psc8ckgfl1tceo0p5b0q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSAql0zMy5F0UIU2ZHX1iR6aEVlkvq5QI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095684699977-nq0m4m9uu4m8psc8ckgfl1tceo0p5b0q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

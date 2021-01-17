@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>Émulateur Android</SelectedDevice>
     <ProjectView>ShowAllFiles</ProjectView>
+    <AndroidDesignerPreferredTheme>Theme.AppCompat.Light.NoActionBar</AndroidDesignerPreferredTheme>
   </PropertyGroup>
 </Project>
