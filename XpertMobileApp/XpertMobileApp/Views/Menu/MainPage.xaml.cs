@@ -37,6 +37,11 @@ namespace XpertMobileApp.Views
                 this.Detail = new NavigationPage(new MyCommandesPage());
                 MenuPages.Add((int)MenuItemType.MyCommandes, (NavigationPage)Detail);
             }
+            else if (Constants.AppName == Apps.X_BOUTIQUE)
+            {
+                this.Detail = new NavigationPage(new LoadMore());
+                MenuPages.Add((int)MenuItemType.XBoutique, (NavigationPage)Detail);
+            }
         }
 
         public ContentPage GetMenuPage(int idPage) 
@@ -73,7 +78,15 @@ namespace XpertMobileApp.Views
                         return new BordereauxPage();
                     case (int)MenuItemType.Catalogues:
                         return new Paging();
-                    case (int)MenuItemType.MyCommandes:
+                    
+                    case (int)MenuItemType.XBoutique:
+                        return new LoadMore(); 
+                    case (int)MenuItemType.XMyCommandes:
+                        return new XMyCommandesPage();
+                    case (int)MenuItemType.XWishList:
+                        return new WishListPage();
+
+                case (int)MenuItemType.MyCommandes:
                         return new Paging();
                     case (int)MenuItemType.Commandes:
                         return new CommandesPage();
@@ -157,6 +170,17 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Commandes:
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));
                         break;
+
+                    case (int)MenuItemType.XBoutique:
+                        MenuPages.Add(id, new NavigationPage(new LoadMore()));
+                        break;
+                    case (int)MenuItemType.XMyCommandes:
+                        MenuPages.Add(id, new NavigationPage(new XMyCommandesPage()));
+                        break;
+                    case (int)MenuItemType.XWishList:
+                        MenuPages.Add(id, new NavigationPage(new WishListPage()));
+                        break;
+
                     case (int)MenuItemType.Produits:
                         MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
                         break;

@@ -23,14 +23,14 @@ namespace XpertMobileApp.Api.ViewModels
     where T1 : new()
     where TView : new()
     {
-        ICurdService<TView> service;
+        internal ICurdService<TView> service;
 
         internal XpertSqlBuilder qb = new XpertSqlBuilder();
 
         public bool LoadSummaries { get; set; } = false;
         public ObservableCollection<SAMMUARY> Summaries { get; set; }
 
-        public const int PageSize = 10;
+        public int PageSize = 10;
 
         private int elementsCount;
 
@@ -185,7 +185,8 @@ namespace XpertMobileApp.Api.ViewModels
             var result = await service.ItemsSums(GetFilterParams());
             return result;
         }
-        async Task ExecuteLoadItemsCommand()
+
+        internal virtual async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;

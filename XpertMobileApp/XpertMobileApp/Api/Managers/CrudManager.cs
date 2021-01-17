@@ -28,6 +28,8 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_VTE_VENTE> Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);
 
+        internal static CrudService<View_WishList> WishList = new CrudService<View_WishList>(App.RestServiceUrl, "WishList", App.User.Token);
+
         internal static CrudService<View_PRD_AGRICULTURE> Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
 
         internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();
@@ -44,8 +46,13 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<TDB_SIMPLE_INDICATORS> SimpleIndicatorsService = new CrudService<TDB_SIMPLE_INDICATORS>(App.RestServiceUrl, "TDB_SIMPLE_INDICATORS", App.User.Token);
 
+        internal static PanierManager PanierManager = new PanierManager();
+
         public static void InitServices()
         {
+            PanierManager = new PanierManager();
+            WishList = new CrudService<View_WishList>(App.RestServiceUrl, "WishList", App.User.Token);
+
             SysParams = new SYS_PARAMS_Manager();
             Sessions = new SessionsManager();
             Permissions = new SYS_PERMISSIONS_Manager();

@@ -83,7 +83,7 @@ namespace XpertMobileApp.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is int && (int)value <= 0)
+            if (value is decimal && (decimal)value <= 0)
                 return true;
             return false;
         }

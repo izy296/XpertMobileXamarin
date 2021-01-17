@@ -15,6 +15,7 @@ namespace XpertMobileApp.Api
         public static string XACATALOG_Mob = "XACATALOG_Mob";
         public static string XCOM_Vente = "XCOM_Vente";
         public static string XCOM_Livraison = "XCOM_Livraison";
+        public static string X_BOUTIQUE = "X_BOUTIQUE";
     }
 
     public static class Mobile_Edition
@@ -38,7 +39,7 @@ namespace XpertMobileApp.Api
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
-        public static string AppName = Apps.XACATALOG_Mob;
+        public static string AppName = Apps.X_BOUTIQUE;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 

@@ -177,6 +177,16 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
             }
+            else if (Constants.AppName == Apps.X_BOUTIQUE) 
+            {
+                menuItems = new List<HomeMenuItem>
+                {
+                    new HomeMenuItem {Id = MenuItemType.XBoutique, Image = "", Title=AppResources.pn_Catalogues },
+                    new HomeMenuItem {Id = MenuItemType.XMyCommandes, Image = "", Title=AppResources.pn_MyCommandes },
+                    new HomeMenuItem {Id = MenuItemType.XWishList, Image = "", Title="Wish List" },
+                    new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
+                };
+            }
 
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
@@ -205,12 +215,14 @@ namespace XpertMobileApp.Views
 
             try
             {
+                var menus = menuItems;
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-
-                var param = await AppManager.GetSysParams();
-                var permissions = await AppManager.GetPermissions();
-
-                var menus = menuItems.Where(x => x.HasPermission == true).ToList();
+                if (Constants.AppName != Apps.X_BOUTIQUE)
+                {
+                    var param = await AppManager.GetSysParams();
+                    var permissions = await AppManager.GetPermissions();
+                    menus = menuItems.Where(x => x.HasPermission == true).ToList();
+                }
 
                 ListViewMenu.ItemsSource = menus;
 

@@ -33,8 +33,11 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                var param = await AppManager.GetSysParams();
-                var permissions = await AppManager.GetPermissions();
+                if(Constants.AppName != Apps.X_BOUTIQUE) 
+                { 
+                    var param = await AppManager.GetSysParams();
+                    var permissions = await AppManager.GetPermissions();
+                }
                 UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)

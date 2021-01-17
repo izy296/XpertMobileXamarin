@@ -140,8 +140,11 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            parames = await AppManager.GetSysParams();
-            permissions = await AppManager.GetPermissions();
+            if (Constants.AppName != Apps.X_BOUTIQUE)
+            {
+                parames = await AppManager.GetSysParams();
+                permissions = await AppManager.GetPermissions();
+            }
 
             // viewModel.ImmatriculationList = await GetImmatriculations("");
 

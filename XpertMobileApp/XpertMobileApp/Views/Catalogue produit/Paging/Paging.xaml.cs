@@ -19,13 +19,13 @@ namespace SampleBrowser.SfListView
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Paging : BaseView
     {
-        PagingViewModel viewModel;
+        BtqProductViewModel viewModel;
 
         public Paging()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new PagingViewModel();
+            BindingContext = viewModel = new BtqProductViewModel();
         }
 
         protected override void OnAppearing()
