@@ -125,24 +125,17 @@ namespace SampleBrowser.SfListView
                         customer = cust,
                         date = DateTime.Now,
                         total = totalPrice,
-                        items = new List<ITEMS_CARD>()
+                        items = new List<addToCard>()
                     };
 
                     foreach (var item in Orders)
                     {
-                        var prodD = new PRODUITS()
-                        {
-                            CODE_PRODUIT = item.Id,
-                            PRIX_VENTE = item.Price,
-                        };
-
-                        var itemCard = new ITEMS_CARD()
+                        var itemCard = new addToCard()
                         {
                             CODE_PRODUIT = item.Id,
                             QUANTITE = item.Quantity,
                             ID_USER = App.User.Token.userID,
                             ID_PANIER = BoutiqueManager.PanierElem[0].ID_PANIER,
-                            PRODUITS = prodD
                         };
 
                         order.items.Add(itemCard);

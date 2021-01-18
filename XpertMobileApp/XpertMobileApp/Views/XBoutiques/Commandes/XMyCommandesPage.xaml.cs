@@ -31,7 +31,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-         //   await Navigation.PushAsync(new CommandeDetailPage(item));
+           await Navigation.PushAsync(new BtqCommandeDetailPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;                        

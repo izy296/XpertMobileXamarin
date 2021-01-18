@@ -45,6 +45,7 @@ namespace SampleBrowser.SfListView
                 viewModel.LoadExtrasDataCommand.Execute(listView);
         }
 
+        #region Actions de l'interface
         private void Filter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = !FilterPanel.IsVisible;
@@ -58,39 +59,14 @@ namespace SampleBrowser.SfListView
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            // TODO : Permettre l'affectation du numéro de page dans le nouveau curdviewmodel
-            //  dataPager.PageIndex = 0;
-            //  viewModel.PageIndex = dataPager.PageIndex;
-             viewModel.Items.Clear();
-             viewModel.AddProducts(1, viewModel.PageSize);
-            //viewModel.LoadMoreItemsCommand.Execute(listView);
-            //viewModel.LoadItemsCommand.Execute(null);
+             viewModel.Reload();
         }
 
-        private async void WishlistIcon_Tapped(object sender, EventArgs e)
+        private async void pullToRefresh_Refreshing(object sender, EventArgs e)
         {
-            var img = sender as Image;
-            Product p = img.BindingContext as Product;
-
-            View_WishList wl = new View_WishList();
-            wl.ID_USER       = App.User.Token.userID;
-            wl.CODE_PRODUIT  = p.Id;
-            
-            if (p.Wished) 
-            {
-                p.Wished = false;
-                bool res = await CrudManager.WishList.DeleteItemAsync(p.Id);
-            }
-            else 
-            {
-                p.Wished = true;
-                string res = await CrudManager.WishList.AddItemAsync(wl);
-            }
-        }
-
-        private void WishlistImg_Tapped(object sender, EventArgs e)
-        {
-
+            pullToRefresh.IsRefreshing = true;
+            await viewModel.Reload();
+            pullToRefresh.IsRefreshing = false;
         }
 
         private void brn_Wished_Clicked(object sender, EventArgs e)
@@ -126,5 +102,8 @@ namespace SampleBrowser.SfListView
             // Manually deselect item.
             listView.SelectedItem = null;
         }
+        #endregion
+
+
     }
 }

@@ -7,7 +7,7 @@
                    xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                    xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
                    Title="{Binding Title}">
     
     <ContentPage.ToolbarItems>
@@ -87,7 +87,7 @@
             </Grid>
         </StackLayout>
 
-        <Grid x:Name="sampleLayout" RowSpacing="0">
+        <Grid x:Name="sampleLayout" RowSpacing="0" VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -127,7 +127,13 @@
                 </Grid>
             </Frame>
             <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA" HeightRequest="{OnPlatform Default=0, UWP=1}" />
-            <sync:SfListView x:Name="listView" Grid.Row="2"
+            <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh"  VerticalOptions="FillAndExpand"
+                           ProgressBackgroundColor="#428BCA" Refreshing="pullToRefresh_Refreshing"
+                           TransitionMode="SlideOnTop" 
+                           IsRefreshing="False">
+                <pulltoRefresh:SfPullToRefresh.PullableContent >
+
+                    <sync:SfListView x:Name="listView" Grid.Row="2" 
                             
                              SelectionBackgroundColor="AliceBlue"
                              BackgroundColor="White"
@@ -297,7 +303,11 @@
                     </DataTemplate>                    
                 </sync:SfListView.ItemTemplate>
             </sync:SfListView>
-        </Grid>
+
+                </pulltoRefresh:SfPullToRefresh.PullableContent>
+            </pulltoRefresh:SfPullToRefresh>
+
+            </Grid>
         </StackLayout>
     </sample1:BaseView.Content>
 </sample1:BaseView>

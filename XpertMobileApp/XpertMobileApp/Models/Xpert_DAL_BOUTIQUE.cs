@@ -182,7 +182,7 @@ namespace XpertMobileApp.DAL
         public decimal PRIX_VENTE { get; set; } // money(19,4)
         public byte[] IMAGES { get; set; } // varchar(50)
         public List<string> ImageList { get; set; }
-        public int NOTE { get; set; }
+        public decimal NOTE { get; set; }
         public decimal Quantity { get; set; } // numeric(18,2)
         public bool Wished { get; set; }
     }
@@ -248,12 +248,11 @@ namespace XpertMobileApp.DAL
         public string DESCRIPTION { get; set; } 
         public decimal QUANTITE { get; set; }
         public byte[] IMAGES { get; set; } 
-        public int NOTE { get; set; } 
+        public decimal NOTE { get; set; } 
         public string CODE_FAMILLE { get; set; } 
         public string DESIGNATION_FAMILLE { get; set; }
         public string CODE_TYPE { get; set; }
         public string DESIGNATION_TYPE { get; set; }
-
     }
 
     public partial class COMMANDES : BASE_CLASS
@@ -273,15 +272,15 @@ namespace XpertMobileApp.DAL
 
     #region envoi de commande
 
-    public partial class ITEMS_CARD
+    public partial class addToCard
     {
-        public string ID_PANIER { get; set; }
-        public string ID_USER { get; set; }
-        public PRODUITS PRODUITS { get; set; }
-        public decimal QUANTITE { get; set; }
         public string CODE_PRODUIT { get; set; }
+        public decimal QUANTITE { get; set; }
+        public string ID_USER { get; set; }
+        public string ID_PANIER { get; set; }
+        public decimal PRIX_VENTE { get; set; }
     }
-    
+
     public partial class customer
     {
         public string address1 { get; set; }
@@ -295,7 +294,7 @@ namespace XpertMobileApp.DAL
     {
         public customer customer { get; set; }
         public DateTime? date { get; set; }
-        public List<ITEMS_CARD> items { get; set; }
+        public List<addToCard> items { get; set; }
         public decimal number { get; set; }
         public string paymentMethod { get; set; }
         public string shippingMethod { get; set; }
