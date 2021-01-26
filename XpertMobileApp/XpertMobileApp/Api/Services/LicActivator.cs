@@ -87,7 +87,22 @@ namespace XpertMobileApp.Api.Services
             }
             else
             {
-                throw new XpertWebException("Invlide licence", XpertWebException.ERROR_XPERT_INVALIDELICENCE);
+                string msg = "";
+                if (Constants.DebugMode) 
+                { 
+                    msg = string.Format("now : {0}; ExpirationDate:{1}; activationDate : {2}; ProductId : {3}; Mobile_Edition : {4}; erreur msg : {5}",
+                                            DateTime.Now,
+                                            licenceInfos.ExpirationDate,
+                                            licenceInfos.ActivationDate,
+                                            licenceInfos.ProductId,
+                                            licenceInfos.Mobile_Edition,
+                                            GetLicenceMsgFromState(state));
+                } 
+                else
+                {
+                    msg = GetLicenceMsgFromState(state);
+                }
+                throw new XpertWebException(msg, XpertWebException.ERROR_XPERT_INVALIDELICENCE);
             }
         }
 

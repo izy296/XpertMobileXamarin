@@ -15,7 +15,7 @@ namespace XpertMobileApp.Api
             get { return App.User.Token.access_token; }
         }
 
-        public static List<View_PANIER> PanierElem { get; set; }
+        public static List<View_PANIER> PanierElem { get; set; } = new List<View_PANIER>();
 
         public static async Task<List<BSE_TABLE_TYPE>> GetProduitTypes()
         {
@@ -44,18 +44,20 @@ namespace XpertMobileApp.Api
             return await WSApi2.RetrievAauthorizedData<View_PANIER>(url, Token);
         }
 
-        internal static async Task<string> AddCartItem(CartItem item)
+        internal static async Task<string> AddCartItem(addToCard item)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, "PANIER", "Ajout_Produit");
-            var result = await WSApi2.PostAauthorizedValue<string, CartItem>(url, item, Token);
+            url += WSApi2.AddParam(url, "operation", "0");
+            var result = await WSApi2.PostAauthorizedValue<string, addToCard>(url, item, Token);
             return result;
         }
 
-        internal static async Task<string> RemoveCartItem(string codeProd)
+        internal static async Task<string> RemoveCartItem(string codeProduit)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, "PANIER", "REMOVE_Produit");
-            url += WSApi2.AddParam(url, "codeDoc", codeProd);
-            return await WSApi2.PostAauthorizedValue<string, string>(url, codeProd, Token);
+            url += WSApi2.AddParam(url, "codeUser", App.User.Token.userID);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+            return await WSApi2.PostAauthorizedValue<string, string>(url, codeProduit, Token);
         }
 
         internal static async Task<string> AddOrder(Order order)
@@ -71,11 +73,11 @@ namespace XpertMobileApp.Api
             return await WSApi2.PostAauthorizedValue<string, string>(url, codeOrder, Token);
         }
 
-        internal static async Task<List<COMMANDES_DETAILS>> GetCommandeDetails(string codeOrder)
+        internal static async Task<List<View_COMMANDES_DETAILS>> GetCommandeDetails(string codeOrder)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, "COMMANDES", "COMMANDE_DETAIL");
+            string url = WSApi2.CreateLink(App.RestServiceUrl, "COMMANDES", "GetCmdDetails");
             url += WSApi2.AddParam(url, "codeDoc", codeOrder);
-            return await WSApi2.RetrievAauthorizedData<COMMANDES_DETAILS>(url, Token);
+            return await WSApi2.RetrievAauthorizedData<View_COMMANDES_DETAILS>(url, Token);
         }
 
     }

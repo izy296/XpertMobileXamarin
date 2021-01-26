@@ -43,5 +43,7 @@ namespace XpertMobileApp.Api
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 
+        public static bool DebugMode = false;
+
     }
 }

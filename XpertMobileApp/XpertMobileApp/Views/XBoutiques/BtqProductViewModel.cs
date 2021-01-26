@@ -48,7 +48,8 @@ namespace XpertMobileApp.Views
 
         internal async Task LoadItems(int page, int count)
         {
-            try { 
+            try 
+            { 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var service = new CrudService<View_PRODUITS>(App.RestServiceUrl, ContoleurName, App.User.Token);
                 var items = await service.SelectByPage(GetFilterParams(), page, count);

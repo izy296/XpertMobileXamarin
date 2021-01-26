@@ -71,6 +71,8 @@ namespace XpertMobileApp.Views
                     // Authentification via le WebService
                     Token token = await viewModel.Login(user);
 
+
+
                     // Cas d'un souci avec le web service 
                     if (token == null)
                     {

@@ -21,7 +21,7 @@ namespace XpertMobileApp.Views
         public MenuPage()
         {
             InitializeComponent();
-            lbl_MenuUser.Text = App.User.UserName;
+            lbl_MenuUser.Text = App.User.Token.fullName;
 
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
             {

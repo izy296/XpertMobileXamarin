@@ -26,7 +26,7 @@ namespace XpertMobileApp.Views
 	{
         ItemRowsDetailViewModel<Product, Product> viewModel;
 
-        public BtqProductDetailPage(Product prod)
+        public BtqProductDetailPage(Product prod, bool extraOptions = false)
         {
             InitializeComponent();
 
@@ -45,12 +45,12 @@ namespace XpertMobileApp.Views
             this.UpdateSalesInfos();
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
-            var itm = await BoutiqueManager.GetProduitDetail(viewModel.Item.Id);
-            viewModel.Item.Description = itm.DESCRIPTION;
+            // var itm = await BoutiqueManager.GetProduitDetail(viewModel.Item.Id);
+            // viewModel.Item.Description = itm.DESCRIPTION;
         }
 
         public void UpdateSalesInfos()
@@ -94,10 +94,10 @@ namespace XpertMobileApp.Views
             // 1 - Mise à jours du panier sur le serveur
             try
             {
-                CartItem itm = new CartItem()
+                addToCard itm = new addToCard()
                 {
                     CODE_PRODUIT = product.Id,
-                    ID_PANIER = BoutiqueManager.PanierElem[0]?.ID_PANIER,
+                    //ID_PANIER = BoutiqueManager.PanierElem[0]?.ID_PANIER,
                     ID_USER = App.User.Id,
                     QUANTITE = 1
                 };

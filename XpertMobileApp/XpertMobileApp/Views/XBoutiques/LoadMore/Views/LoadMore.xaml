@@ -4,6 +4,7 @@
                    xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:local="clr-namespace:SampleBrowser.SfListView"
+                   xmlns:fontawesome="clr-namespace:FontAwesome"
                    xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                    xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
@@ -87,7 +88,7 @@
             </Grid>
         </StackLayout>
 
-        <Grid x:Name="sampleLayout" RowSpacing="0" VerticalOptions="FillAndExpand">
+            <Grid x:Name="sampleLayout" RowSpacing="0" VerticalOptions="FillAndExpand" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -98,12 +99,24 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+
                     </Grid.ColumnDefinitions>
-                    <Grid x:Name="grid" Grid.Column="0" Margin="16,0,8,0">
-                        <Label Text="Produits" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
-                               TextColor="{OnPlatform Default=#333333, Android=#000000}"
+                    <Grid x:Name="grid" Grid.Column="0" Margin="0,0,8,0">
+                        <StackLayout Orientation="Horizontal">
+
+                                <Button x:Name="Btn_menu" Margin="0" 
+                                        WidthRequest="50" HeightRequest="50"
+                                        Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                        TextColor="White" Command="{Binding OpenMenuCommand}" 
+                                        Text="{x:Static fontawesome:FontAwesomeIcons.faBars}" BackgroundColor="MediumVioletRed" 
+                                        />
+
+                                <Label Text="Catalogue" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
+                               TextColor="{OnPlatform Default=#333333, Android=#ffffff}"
                                Opacity="{OnPlatform Default=1, Android=0.87}" />
+                        </StackLayout>
                     </Grid>
+                    
                     <Grid Grid.Column="1" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
                           HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="20, 0, 0, 0" >
                         <Grid.GestureRecognizers>
@@ -127,13 +140,13 @@
                 </Grid>
             </Frame>
             <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA" HeightRequest="{OnPlatform Default=0, UWP=1}" />
-            <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh"  VerticalOptions="FillAndExpand"
+                <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh" Grid.Row="2" 
                            ProgressBackgroundColor="#428BCA" Refreshing="pullToRefresh_Refreshing"
                            TransitionMode="SlideOnTop" 
                            IsRefreshing="False">
                 <pulltoRefresh:SfPullToRefresh.PullableContent >
 
-                    <sync:SfListView x:Name="listView" Grid.Row="2" 
+                        <sync:SfListView x:Name="listView" 
                             
                              SelectionBackgroundColor="AliceBlue"
                              BackgroundColor="White"
@@ -175,7 +188,7 @@
                                              VerticalOptions="FillAndExpand"
 			                                 DownsampleToViewSize="False"                                            
 			                                 Source = "{Binding Image}" 
-                                             CacheType="None">
+                                             CacheType="Disk">
                                         </ffimageloading:CachedImage>
 
                                         <StackLayout Opacity="0.7"   >

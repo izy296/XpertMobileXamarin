@@ -48,7 +48,8 @@ namespace SampleBrowser.SfListView
 
         public Command<object> RemoveOrderCommand { get; set; }
 
-
+        public Command<object> OpenMenuCommand { get; set; }
+        
         public Command CheckoutCommand { get; set; }
 
         public int TotalOrderedItems
@@ -94,6 +95,7 @@ namespace SampleBrowser.SfListView
             */
             AddCommand = new Command<object>(AddQuantity);
             OrderListCommand = new Command<object>(NavigateOrdersPage);
+            OpenMenuCommand = new Command<object>(OpenMenu);
             CheckoutCommand = new Command(CheckOut);
             RemoveOrderCommand = new Command<object>(RemoveOrder);
 
@@ -131,9 +133,10 @@ namespace SampleBrowser.SfListView
                         var itemCard = new addToCard()
                         {
                             CODE_PRODUIT = item.Id,
-                            QUANTITE = item.Quantity,
-                            ID_USER = App.User.Token.userID,
-                            ID_PANIER = BoutiqueManager.PanierElem[0].ID_PANIER,
+                            QUANTITE     = item.Quantity,
+                            PRIX_VENTE   = item.Price,
+                            ID_USER      = App.User.Token.userID,
+                            ID_PANIER    = BoutiqueManager.PanierElem[0].ID_PANIER,
                         };
 
                         order.items.Add(itemCard);
@@ -180,6 +183,12 @@ namespace SampleBrowser.SfListView
             sampleView.Navigation.PushAsync(ordersPage);
         }
 
+        private void OpenMenu(object obj)
+        {
+            MasterDetailPage RootPage = Application.Current.MainPage as MasterDetailPage;
+            RootPage.IsPresented = true;
+        }
+
         private void AddQuantity(object obj)
         {
             var p = obj as Product;
@@ -206,6 +215,7 @@ namespace SampleBrowser.SfListView
                 Name = item.DESIGNATION,
                 Image = item.IMAGE_URL,
                 IMAGE_URL = item.IMAGE_URL,
+                CODE_DEFAULT_IMAGE = item.CODE_DEFAULT_IMAGE,
                 ImageList = listImgurl,
                 Price = item.PRIX_VENTE,
                 Wished = item.Wished
@@ -220,7 +230,7 @@ namespace SampleBrowser.SfListView
                     { 
                         Orders.Remove(product);
                         BoutiqueManager.PanierElem.RemoveAll(x => x.CODE_PRODUIT == product.Id);
-                        // BoutiqueManager.RemoveCartItem(item.CODE_PRODUIT);
+                        BoutiqueManager.RemoveCartItem(item.CODE_PRODUIT);
                     }
                     else if (!Orders.Contains(product) && product.Quantity > 0) 
                     {
@@ -229,19 +239,18 @@ namespace SampleBrowser.SfListView
                             CODE_PRODUIT = product.Id,
                             DESIGNATION  = product.Name,
                             ID_USER      = App.User.Token.userID,
-                            IMAGE_URL    = product.IMAGE_URL,
+                            CODE_DEFAULT_IMAGE    = product.CODE_DEFAULT_IMAGE,
                             QUANTITE     = product.Quantity
                         });
                         Orders.Add(product);
-                        /*
-                        CartItem ci = new CartItem()
+
+                        addToCard ci = new addToCard()
                         {
                             CODE_PRODUIT = item.CODE_PRODUIT,
-                            ID_USER = App.User.Id,
+                            ID_USER = App.User.Token.userID,
                             QUANTITE = product.Quantity,
                         };
                         BoutiqueManager.AddCartItem(ci);
-                        */
                     }
 
                     TotalOrderedItems = Orders.Count;
@@ -321,7 +330,7 @@ namespace SampleBrowser.SfListView
                 IsLoadExtrasBusy = true;
                 await ExecuteLoadFamillesCommand();
                 await ExecuteLoadTypesCommand();
-                await ExecuteLoadPanierCommand();
+                //await ExecuteLoadPanierCommand();
             }
             catch (Exception ex)
             {
@@ -388,7 +397,7 @@ namespace SampleBrowser.SfListView
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+               // UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                 Orders.Clear();
                 BoutiqueManager.PanierElem = await BoutiqueManager.GetPanier();
@@ -398,23 +407,65 @@ namespace SampleBrowser.SfListView
                     Product p = new Product()
                     {
                         Id = item.CODE_PRODUIT,
-                        Name = item.PRODUITS.DESIGNATION,
-                        Image = item.PRODUITS.IMAGE_URL,
-                        IMAGE_URL = item.PRODUITS.IMAGE_URL,
-                        Price = item.PRODUITS.PRIX_VENTE,
-                        TotalPrice = item.PRODUITS.PRIX_VENTE * item.QUANTITE,
+                        Name = item.DESIGNATION,
+                        Image = item.IMAGE_URL,
+                        IMAGE_URL = item.IMAGE_URL,
+                        Price = item.PRIX_VENTE,
+                        TotalPrice = item.PRIX_VENTE * item.QUANTITE,
                         Quantity = item.QUANTITE
+                    };
+
+                    p.PropertyChanged += (s, e) =>
+                    {
+                        var product = s as Product;
+                        if (e.PropertyName == "Quantity")
+                        {
+                            if (Orders.Contains(product) && product.Quantity <= 0)
+                            {
+                                Orders.Remove(product);
+                                BoutiqueManager.PanierElem.RemoveAll(x => x.CODE_PRODUIT == product.Id);
+                                BoutiqueManager.RemoveCartItem(item.CODE_PRODUIT);
+                            }
+                            else if (!Orders.Contains(product) && product.Quantity > 0)
+                            {
+                                BoutiqueManager.PanierElem.Add(new View_PANIER()
+                                {
+                                    CODE_PRODUIT = product.Id,
+                                    DESIGNATION = product.Name,
+                                    ID_USER = App.User.Token.userID,
+                                    CODE_DEFAULT_IMAGE = product.CODE_DEFAULT_IMAGE,
+                                    QUANTITE = product.Quantity
+                                });
+                                Orders.Add(product);
+
+                                addToCard ci = new addToCard()
+                                {
+                                    CODE_PRODUIT = item.CODE_PRODUIT,
+                                    ID_USER = App.User.Token.userID,
+                                    QUANTITE = product.Quantity,
+                                };
+                                BoutiqueManager.AddCartItem(ci);
+                            }
+
+                            TotalOrderedItems = Orders.Count;
+                            TotalPrice = 0;
+                            for (int j = 0; j < Orders.Count; j++)
+                            {
+                                var order = Orders[j];
+                                TotalPrice = TotalPrice + order.TotalPrice;
+                            }
+                        }
                     };
 
                     Orders.Add(p);
                     TotalPrice = TotalPrice + p.TotalPrice;
                     TotalOrderedItems = Orders.Count;
-                    UserDialogs.Instance.HideLoading();
+                   // UserDialogs.Instance.HideLoading();
                 }
             }
             catch (Exception ex)
             {
-                UserDialogs.Instance.HideLoading();
+               // UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

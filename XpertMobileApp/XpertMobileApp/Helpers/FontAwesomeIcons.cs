@@ -219,7 +219,7 @@ namespace FontAwesome
         public const string print = "\uf02f";
         public const string usercircle = "\uf2bd";
         public const string users = "\uf0c0";
-
+        public const string faBars = "\uf0c9";
 
     }
 }

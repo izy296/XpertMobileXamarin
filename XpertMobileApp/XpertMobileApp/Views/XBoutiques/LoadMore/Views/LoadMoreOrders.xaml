@@ -24,7 +24,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="48"/>
         </Grid.RowDefinitions>
-        <Frame BackgroundColor="White" HasShadow="True" Padding="0" Margin="0">
+        <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
             <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -35,18 +35,18 @@
                            TextColor="{OnPlatform Default=#333333, Android=#000000}"
                            Opacity="{OnPlatform Default=1, Android=0.87}" />
                 </Grid>
-                <Grid Grid.Column="1" BackgroundColor="White" HorizontalOptions="End" VerticalOptions="Center" Padding="0">
+                <Grid Grid.Column="1" BackgroundColor="Transparent" HorizontalOptions="End" VerticalOptions="Center" Padding="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
-                  <Label FontAttributes="Bold" Margin="0" Text="{Binding TotalOrderedItems, Converter={StaticResource totalItemsCountConverter}}"
-                         VerticalOptions="Center" HorizontalOptions="End" FontSize="16"
-                         TextColor="{OnPlatform Android=#009688, iOS=#1C73F2, UWP=#0078D7}" />
-                    <Label Grid.Column="1" FontAttributes="Bold"
-                           Text="{Binding TotalPrice, StringFormat='{0:c}'}" 
-                           VerticalOptions="Center" HorizontalOptions="End" Margin="16,0,8,0" FontSize="16"
-                         TextColor="{OnPlatform Android=#009688, iOS=#1C73F2, UWP=#0078D7}" />
+                        <Label FontAttributes="Bold" Margin="0" Text="{Binding TotalOrderedItems, Converter={StaticResource totalItemsCountConverter}}"
+                             VerticalOptions="Center" HorizontalOptions="End" FontSize="16"
+                             TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
+                        <Label Grid.Column="1" FontAttributes="Bold"
+                               Text="{Binding TotalPrice, StringFormat='{0:N2} DA'}" 
+                               VerticalOptions="Center" HorizontalOptions="End" Margin="16,0,8,0" FontSize="16"
+                             TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
                 </Grid>
             </Grid>
         </Frame>
@@ -137,7 +137,7 @@
                 Command="{Binding CheckoutCommand}" CommandParameter="{Binding Source={x:Reference Name=orderPage}}" BorderRadius="0"
                 IsVisible="{Binding TotalOrderedItems, Converter={StaticResource inverseZeroVisibilityConverter}}"
                 FontSize="{OnPlatform Default=12, Android=16}"
-                BackgroundColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#0078D7}" />
+                BackgroundColor="{OnPlatform Default=#1C73F2, Android=MediumVioletRed, UWP=#0078D7}" />
     </Grid>
 
 </ContentPage>

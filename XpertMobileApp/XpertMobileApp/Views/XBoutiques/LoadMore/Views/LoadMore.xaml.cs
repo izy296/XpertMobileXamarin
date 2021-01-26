@@ -32,6 +32,8 @@ namespace SampleBrowser.SfListView
             viewModel = new LoadMoreViewModel();
             this.BindingContext = viewModel;
             InitializeComponent();
+
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         protected override void OnAppearing()
@@ -43,6 +45,8 @@ namespace SampleBrowser.SfListView
 
             if(viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
+
+            viewModel.ExecuteLoadPanierCommand();
         }
 
         #region Actions de l'interface
@@ -92,7 +96,6 @@ namespace SampleBrowser.SfListView
 
         private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            
             var item = e.ItemData as Product;
             if (item == null)
                 return;

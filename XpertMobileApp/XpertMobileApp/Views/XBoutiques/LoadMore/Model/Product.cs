@@ -81,6 +81,8 @@ namespace SampleBrowser.SfListView
         public int Reduction { get; set; } = 15;
         public decimal ReviewValue { get; set; } = (decimal)4.5;
 
+        public decimal UserReviewValue { get; set; }
+
         public decimal Quantity
         {
             get { return quantity; }
@@ -107,7 +109,7 @@ namespace SampleBrowser.SfListView
                 }
             }
         }
-
+        public string CODE_DEFAULT_IMAGE { get; set; }
         private void RaisePropertyChanged(string name)
         {
             if (PropertyChanged != null)

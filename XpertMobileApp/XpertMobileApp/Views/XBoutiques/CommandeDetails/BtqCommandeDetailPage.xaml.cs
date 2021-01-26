@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using SampleBrowser.SfListView;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,22 +19,15 @@ namespace XpertMobileApp.Views.Encaissement
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BtqCommandeDetailPage : ContentPage
 	{
-        ItemRowsDetailViewModel<COMMANDES, COMMANDES_DETAILS> viewModel;
-
-        private COMMANDES item;
-        public COMMANDES Item
-        {
-            get { return item; }
-            set { item = value; }
-        }
+        ItemRowsDetailViewModel<COMMANDES, View_COMMANDES_DETAILS> viewModel;
 
         public BtqCommandeDetailPage(COMMANDES vente)
         {
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<COMMANDES, View_COMMANDES_DETAILS>(vente, vente.ID);
+            viewModel.Title = "";
+
             InitializeComponent();
-
-            this.Item = vente;
-
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<COMMANDES, COMMANDES_DETAILS>(vente, vente.ID);
+            // this.Item = vente;
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
@@ -64,7 +58,7 @@ namespace XpertMobileApp.Views.Encaissement
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 viewModel.ItemRows.Clear();
-                var itemsC = await BoutiqueManager.GetCommandeDetails(this.Item.ID);
+                var itemsC = await BoutiqueManager.GetCommandeDetails(this.viewModel.Item.ID);
 
                 UpdateItemIndex(itemsC);
 
@@ -95,12 +89,46 @@ namespace XpertMobileApp.Views.Encaissement
     
         private void UpdateItemIndex<T>(List<T> items)
         {
-            int i = 0;
-            foreach (var item in items)
+         
+        }
+
+        private async void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var item = e.Item as View_COMMANDES_DETAILS;
+            if (item == null)
+                return;
+
+            var pDetails = await BoutiqueManager.GetProduitDetail(item.CODE_PRODUIT);
+
+            Product p = new Product()
             {
-                i += 1;
-                (item as BASE_CLASS).Index = i;
+                Id        = item.CODE_PRODUIT,
+                Name      = item.DESIGNATION_PRODUIT,
+                Category  = pDetails.DESIGNATION_FAMILLE,
+                Price     = pDetails.PRIX_VENTE,
+                Description     = pDetails.DESCRIPTION,
+                ReviewValue     = pDetails.NOTE,
+                UserReviewValue = pDetails.NOTE_USER,
+                IMAGE_URL       = pDetails.IMAGE_URL                
+            };
+
+            List<string> listImgurl = new List<string>();
+
+            // Création des urls des images du produit
+            if (pDetails.ImageList != null)
+            {
+                foreach (var str in pDetails.ImageList)
+                {
+                    string val = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", str);
+                    listImgurl.Add(val);
+                }
             }
+            p.ImageList = listImgurl;
+
+            await Navigation.PushAsync(new BtqProductDetailPage(p));
+
+            // Manually deselect item.
+            ItemsListView.SelectedItem = null;
         }
     }
 }

@@ -58,6 +58,20 @@ namespace XpertMobileApp.DAL
                 return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_PRODUIT);
             }
         }
+
+        public List<string> ImageList { get; set; }
+    }
+
+    public partial class View_PANIER
+    {
+        public string CODE_DEFAULT_IMAGE { get; set; }
+        public string IMAGE_URL
+        {
+            get
+            {
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
+            }
+        }
     }
 
     public partial class View_PRODUITS 
@@ -193,10 +207,14 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION { get; set; } // varchar(150)
         public decimal QTE_STOCK { get; set; } // numeric(18,2)
         public decimal PRIX_VENTE { get; set; } // money(19,4)
-        public byte[] IMAGES { get; set; } // varchar(50)
-
+        public byte[] IMAGES { get; set; } //[varbinary](max) NULL,
+        public decimal NOTE { get; set; } // decimal
+        public string DESIGNATION_FAMILLE { get; set; }
         public string DESCRIPTION { get; set; } // varchar(2000)
- 
+        public string ID_USER { get; set; }
+        public decimal NOTE_USER { get; set; }
+        public bool DEFAULT_IMAGE { get; set; } //NOT NULL,
+
     }
 
     public partial class PANIER
@@ -211,24 +229,17 @@ namespace XpertMobileApp.DAL
 
     public partial class View_PANIER //: PANIER
     {
-        public string ID_PANIER { get; set; }
-        public string ID_USER { get; set; }
-        public DateTime? CREATED_ON { get; set; }
-        public View_PRODUITS_DETAILS PRODUITS { get; set; }
-        public string CODE_PRODUIT { get; set; }
-        public string DESIGNATION { get; set; }
-        public decimal QUANTITE { get; set; }
-        public string IMAGE_URL { get; set; }
-        //public PRODUITS PRODUITS { get; set; }
-    }
-
-    public partial class CartItem
-    {
         public string ID_PANIER { get; set; } // varchar(11)
         public string ID_USER { get; set; } // varchar(32)
-        public PRODUITS PRODUITS { get; set; }
+        public DateTime? CREATED_ON { get; set; }
+        public string DESIGNATION { get; set; } // varchar(2000)
+        public string DESCRIPTION { get; set; } // varchar(2000)
         public decimal QUANTITE { get; set; }
         public string CODE_PRODUIT { get; set; } // varchar(11)
+        public decimal PRIX_VENTE { get; set; }//[money] NULL,
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public byte[] IMAGES { get; set; } // [varbinary](max) NULL,
+        public decimal NOTE { get; set; } // 
     }
 
     public partial class Wish_List
@@ -257,6 +268,7 @@ namespace XpertMobileApp.DAL
 
     public partial class COMMANDES : BASE_CLASS
     {
+
         public string ID { get; set; }
         public DateTime? DATE_LIVRAISON { get; set; }
         public decimal TOTAL_HT { get; set; }
@@ -265,8 +277,9 @@ namespace XpertMobileApp.DAL
         public int ETAT_COMMANDE { get; set; } 
         public string ID_USER { get; set; } 
         public DateTime? CREATED_ON { get; set; }
-        public string ADRESSE_LIVRAISON { get; set; } 
+        public string ADRESSE_LIVRAISON { get; set; }
 
+        public string DESIGNATION_COMMANDE { get; set; }
         public List<COMMANDES_DETAILS> details { get; set; }
     }
 
@@ -314,6 +327,11 @@ namespace XpertMobileApp.DAL
         public string CODE_PRODUIT { get; set; }
         public string PHONE_NUMBER { get; set; } 
         public string NAME { get; set; }
+    }
+
+    public partial class View_COMMANDES_DETAILS : COMMANDES_DETAILS
+    {
+        public string DESIGNATION_PRODUIT { get; set; }
     }
 
     public class ComandesStates
