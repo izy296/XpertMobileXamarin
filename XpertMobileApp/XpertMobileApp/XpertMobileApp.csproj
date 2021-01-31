@@ -39,8 +39,10 @@
     <Compile Remove="Views\NewItemPage.xaml.cs" />
     <Compile Remove="Views\Rfid\RfidScanInvnetairePage.xaml.cs" />
     <Compile Remove="Views\Rfid\RfidScanPage.xaml.cs" />
+    <Compile Remove="Views\XBoutiques\BtqPanierPage.xaml.cs" />
     <Compile Remove="Views\XBoutiques\BtqProductDetailViewModel.cs" />
-    <Compile Remove="Views\XBoutiques\LoadMore\Model\ProductRepository.cs" />
+    <Compile Remove="Views\XBoutiques\BtqProductList.xaml.cs" />
+    <Compile Remove="Views\XBoutiques\Catalogue\Model\ProductRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,6 +56,8 @@
     <EmbeddedResource Remove="Views\NewItemPage.xaml" />
     <EmbeddedResource Remove="Views\Rfid\RfidScanInvnetairePage.xaml" />
     <EmbeddedResource Remove="Views\Rfid\RfidScanPage.xaml" />
+    <EmbeddedResource Remove="Views\XBoutiques\BtqPanierPage.xaml" />
+    <EmbeddedResource Remove="Views\XBoutiques\BtqProductList.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -115,7 +119,6 @@
     <Folder Include="ViewModels\Feedback\" />
     <Folder Include="Views\Selector\Immariculation\" />
     <Folder Include="Views\Ventes Psychotrop\" />
-    <Folder Include="Views\XBoutiques\Catalogue\" />
     <Folder Include="WebView\" />
   </ItemGroup>
 
@@ -130,9 +133,6 @@
   <ItemGroup>
     <Compile Update="Views\XBoutiques\Feedback\StylesFB.xaml.cs">
       <DependentUpon>StylesFB.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\XBoutiques\BtqProductList.xaml.cs">
-      <DependentUpon>BtqProductList.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
       <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
@@ -161,19 +161,16 @@
     <Compile Update="Views\XBoutiques\DetailProd\BtqProductDetailPage.xaml.cs">
       <DependentUpon>BtqProductDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\BtqPanierPage.xaml.cs">
-      <DependentUpon>BtqPanierPage.xaml</DependentUpon>
-    </Compile>
     <Compile Update="Views\XBoutiques\Commandes\XMyCommandesPage.xaml.cs">
       <DependentUpon>XMyCommandesPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
       <DependentUpon>XMyCommandesTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\LoadMore\Views\CataloguePage.xaml.cs">
+    <Compile Update="Views\XBoutiques\Catalogue\Views\CataloguePage.xaml.cs">
       <DependentUpon>CataloguePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\LoadMore\Views\CartPage.xaml.cs">
+    <Compile Update="Views\XBoutiques\Catalogue\Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
