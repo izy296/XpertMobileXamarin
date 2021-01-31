@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
-namespace SampleBrowser.SfListView
+namespace XpertMobileApp.Models
 {
     [Preserve(AllMembers = true)]
 

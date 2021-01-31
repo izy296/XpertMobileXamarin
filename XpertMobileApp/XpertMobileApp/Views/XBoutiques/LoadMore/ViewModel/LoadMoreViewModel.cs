@@ -24,10 +24,11 @@ using XpertMobileApp;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views;
 
-namespace SampleBrowser.SfListView
+namespace XpertMobileApp.ViewModels
 {
     [Preserve(AllMembers = true)]
     public class LoadMoreViewModel : CrudBaseViewModel3<PRODUITS, View_PRODUITS>
@@ -178,7 +179,7 @@ namespace SampleBrowser.SfListView
         private void NavigateOrdersPage(object obj)
         {
             var sampleView = obj as BaseView;
-            var ordersPage = new LoadMoreOrders();
+            var ordersPage = new CartPage();
             ordersPage.BindingContext = this;
             sampleView.Navigation.PushAsync(ordersPage);
         }
@@ -393,7 +394,7 @@ namespace SampleBrowser.SfListView
             }
         }
 
-        async Task ExecuteLoadPanierCommand()
+        public async Task ExecuteLoadPanierCommand()
         {
             try
             {

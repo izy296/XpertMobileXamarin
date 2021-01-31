@@ -92,6 +92,7 @@
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.2.0.47" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
@@ -111,9 +112,10 @@
     <Folder Include="Api\Services\RFID\" />
     <Folder Include="Images\" />
     <Folder Include="Services\" />
-    <Folder Include="ViewModels\" />
+    <Folder Include="ViewModels\Feedback\" />
     <Folder Include="Views\Selector\Immariculation\" />
     <Folder Include="Views\Ventes Psychotrop\" />
+    <Folder Include="Views\XBoutiques\Catalogue\" />
     <Folder Include="WebView\" />
   </ItemGroup>
 
@@ -126,6 +128,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\XBoutiques\Feedback\StylesFB.xaml.cs">
+      <DependentUpon>StylesFB.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\XBoutiques\BtqProductList.xaml.cs">
       <DependentUpon>BtqProductList.xaml</DependentUpon>
     </Compile>
@@ -165,6 +170,12 @@
     <Compile Update="Views\XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
       <DependentUpon>XMyCommandesTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\XBoutiques\LoadMore\Views\CataloguePage.xaml.cs">
+      <DependentUpon>CataloguePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\XBoutiques\LoadMore\Views\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
       <DependentUpon>WishListPage.xaml</DependentUpon>
     </Compile>
@@ -173,6 +184,21 @@
   <ItemGroup>
     <EmbeddedResource Update="Base\Pages\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Feedback\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Feedback\ReviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Feedback\StylesFB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\ReviewTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Templates\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -13,7 +13,7 @@
     <StackLayout Padding="0" Margin="0" Spacing="0">
         <!-- Bar de d'outil -->
         <StackLayout HeightRequest="45" Padding="0" Margin="0">
-            <Grid BackgroundColor="Black" ColumnSpacing="0" Padding="0" Margin="0">
+            <Grid BackgroundColor="MediumVioletRed" ColumnSpacing="0" Padding="0" Margin="0">
             
                     <Button Grid.Column="0" x:Name="Btn_NavigateBack" Margin="0"
                         FontFamily="{StaticResource FontAwesomeSolid}"
@@ -21,7 +21,7 @@
                         Text="{x:Static fontawesome:FontAwesomeIcons.ArrowLeft}" BackgroundColor="Transparent" FontSize="Large"
                             Clicked="Btn_NavigateBack_Clicked"/>
 
-                      <Button Grid.Column="1" x:Name="Btn_HeaderCart" Margin="0" 
+                      <Button Grid.Column="1" x:Name="Btn_HeaderCart" Margin="0" IsVisible="False"
                         HorizontalOptions="End" TextColor="White" FontSize="Medium" ContentLayout="Left,0"
                         Image="shopping_cart_24.png"
                         Text="(0)" BackgroundColor="Transparent" 
@@ -67,7 +67,7 @@
                         </rotate:SfRotator>
                     </Grid>
 
-                    <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="Start" Margin="5,0,0,0" >
+                    <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="FillAndExpand" Margin="5,0,0,0" >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
@@ -91,10 +91,12 @@
                         </Label>
             
                         <!-- Votes -->
-                        <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="Start">
+                        <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand" >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
+
+  
                             </Grid.ColumnDefinitions>
                             <Grid Grid.Column="0">
                                 <Frame BackgroundColor="Gray" Padding="2" HeightRequest="20" 
@@ -113,14 +115,21 @@
                                     </Grid>
                                 </Frame>
                             </Grid>
-                            <Label Grid.Column="1" Text="{Binding Item.Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Bold" TextColor="Gray" 
+
+                            <StackLayout  Grid.Column="1" Orientation="Horizontal" Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Item.Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontFamily="Bold" TextColor="Gray" 
                                    FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
+
+                                <Button  x:Name="allReviews" Text="Tous voir.." HorizontalOptions="End" HeightRequest="15" FontSize="11"
+                                    BackgroundColor="White" TextColor="Gray" CornerRadius="8" Padding="0" BorderWidth="0" Clicked="allReviews_Clicked"/>
+                            </StackLayout>
+
                         </Grid>
                         
                         <!-- Prix -->
                         <Grid Grid.Row="3" Padding="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
@@ -135,7 +144,7 @@
                                                        TextColor="LightGray" TextDecorations="Strikethrough"/>
                             </StackLayout>
 
-                            <Grid Grid.Column="1" VerticalOptions="Start" HorizontalOptions="End" >
+                            <Grid Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start" >
                                 <Frame CornerRadius="4" BackgroundColor="#f7e7e4" Margin="3" Padding="3">
 
                                     <Label Text="{Binding Item.Reduction, StringFormat='-{0}%'}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" 
@@ -239,7 +248,7 @@
                      Margin="3,0,3,3" Spacing="0" VerticalOptions="End" >
 
             <flex:FlexButton
-                x:Name="cmd_Buy"
+                x:Name="cmd_Buy" IsVisible="False"
                 HorizontalOptions="FillAndExpand"
                 IconOrientation="Left" 
                 IconPadding="0,0,5,0"
@@ -258,6 +267,28 @@
                 BorderThickness="3"
                 Clicked="cmd_Buy_Clicked"
                 />
+
+
+            <flex:FlexButton
+                x:Name="cmd_Rate"
+                HorizontalOptions="FillAndExpand"
+                IconOrientation="Left" 
+                IconPadding="0,0,5,0"
+                HeightRequest="55"
+                Padding="0"
+                Margin="0"
+                Text="Évaluer le produit"
+                CornerRadius="38"
+                ForegroundColor="#ffffff"
+                HighlightForegroundColor="MediumVioletRed"
+                BackgroundColor="MediumVioletRed"
+                HighlightBackgroundColor="#D963AD"
+                BorderColor="#D963AD"
+                HighlightBorderColor="#D963AD"
+                BorderThickness="3"
+                Clicked="cmd_Rate_Clicked"
+                />
+            
         </StackLayout>
     </StackLayout>
 </ContentPage>    

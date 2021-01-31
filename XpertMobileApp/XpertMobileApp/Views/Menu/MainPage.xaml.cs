@@ -39,7 +39,7 @@ namespace XpertMobileApp.Views
             }
             else if (Constants.AppName == Apps.X_BOUTIQUE)
             {
-                this.Detail = new NavigationPage(new LoadMore());
+                this.Detail = new NavigationPage(new CataloguePage());
                 MenuPages.Add((int)MenuItemType.XBoutique, (NavigationPage)Detail);
             }
         }
@@ -80,7 +80,7 @@ namespace XpertMobileApp.Views
                         return new Paging();
                     
                     case (int)MenuItemType.XBoutique:
-                        return new LoadMore(); 
+                        return new CataloguePage(); 
                     case (int)MenuItemType.XMyCommandes:
                         return new XMyCommandesPage();
                     case (int)MenuItemType.XWishList:
@@ -172,7 +172,7 @@ namespace XpertMobileApp.Views
                         break;
 
                     case (int)MenuItemType.XBoutique:
-                        MenuPages.Add(id, new NavigationPage(new LoadMore()));
+                        MenuPages.Add(id, new NavigationPage(new CataloguePage()));
                         break;
                     case (int)MenuItemType.XMyCommandes:
                         MenuPages.Add(id, new NavigationPage(new XMyCommandesPage()));

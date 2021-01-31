@@ -16,8 +16,7 @@ using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
-
-
+using XpertMobileApp.Views.Feedback;
 
 namespace XpertMobileApp.Views
 {
@@ -210,6 +209,16 @@ namespace XpertMobileApp.Views
             {
                 IsBusy = false;
             }
+        }
+
+        private async void cmd_Rate_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ReviewPage(viewModel.Item));
+        }
+
+        private async void allReviews_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FeedbackPage());
         }
     }
 }

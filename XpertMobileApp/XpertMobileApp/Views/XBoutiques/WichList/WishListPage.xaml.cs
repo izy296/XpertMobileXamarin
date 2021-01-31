@@ -15,9 +15,10 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
 
-namespace SampleBrowser.SfListView
+namespace XpertMobileApp.Views
 {
     [Preserve(AllMembers = true)]
     public partial class WishListPage : BaseView

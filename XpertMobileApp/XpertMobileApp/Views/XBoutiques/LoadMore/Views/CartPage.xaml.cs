@@ -16,12 +16,12 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 
-namespace SampleBrowser.SfListView
+namespace XpertMobileApp.Views
 {
     [Preserve(AllMembers = true)]
-    public partial class LoadMoreOrders : ContentPage
+    public partial class CartPage : ContentPage
     {
-        public LoadMoreOrders()
+        public CartPage()
         {
             InitializeComponent();
         }

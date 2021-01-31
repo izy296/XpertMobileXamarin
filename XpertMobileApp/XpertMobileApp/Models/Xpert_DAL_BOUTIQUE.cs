@@ -214,7 +214,45 @@ namespace XpertMobileApp.DAL
         public string ID_USER { get; set; }
         public decimal NOTE_USER { get; set; }
         public bool DEFAULT_IMAGE { get; set; } //NOT NULL,
+    }
+    
+    public partial class INFOS_NOTE
+    {
+        public string ID_USER { get; set; } // varchar(32)
+        public string CODE_PRODUIT { get; set; } // varchar(11)
+        public decimal NOTE { get; set; } // INT
+    }
 
+    public partial class Evaluation
+    {
+        public string CODE_PRODUIT { get; set; }
+        public string ID_USER { get; set; }
+        public decimal NOTE { get; set; }
+        public string TITRE { get; set; }
+        public string PRENOM { get; set; }
+        public string AVIS_USER { get; set; }
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+    }
+
+
+    public partial class AVIS
+    {
+
+        public string ID_AVIS { get; set; } // varchar(32)
+        public string ID_USER { get; set; } // varchar(32)
+        public DateTime? CREATED_ON { get; set; }
+        public string AVIS_USER { get; set; }
+        public string CODE_PRODUIT { get; set; } // varchar(11)
+        public string TITRE_AVIS { get; set; } // varchar(11)
+        public string PRENOM_USER { get; set; } // varchar(11)
+
+    }
+
+    public partial class View_AVIS : AVIS
+    {
+        public string PRENOM_USER { get; set; } 
+        public string ID_NOTES { get; set; }
+        public string NOTE { get; set; }
     }
 
     public partial class PANIER

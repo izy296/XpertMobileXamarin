@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:XpertMobileApp.Converters"
              x:Class="XpertMobileApp.App">
     <Application.Resources>
+        <ResourceDictionary Source="Themes/LightTheme.xaml" />
         <ResourceDictionary>
             <!-- Font Gilroy --> 
           <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">

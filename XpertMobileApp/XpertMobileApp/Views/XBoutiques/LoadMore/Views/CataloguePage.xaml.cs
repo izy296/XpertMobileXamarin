@@ -19,15 +19,17 @@ using XpertMobileApp;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
+using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
 
-namespace SampleBrowser.SfListView
+namespace XpertMobileApp.Views
 {
     [Preserve(AllMembers = true)]
-    public partial class LoadMore : BaseView
+    public partial class CataloguePage : BaseView
     {
         LoadMoreViewModel viewModel;
-        public LoadMore()
+        public CataloguePage()
         {
             viewModel = new LoadMoreViewModel();
             this.BindingContext = viewModel;
