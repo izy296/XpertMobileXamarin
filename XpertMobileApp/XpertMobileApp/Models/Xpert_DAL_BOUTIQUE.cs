@@ -234,6 +234,12 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; } // datetime(3)
     }
 
+    public partial class HOME_INFOS
+    {
+        public List<View_PRODUITS> NewProducts { get; set; }
+        public List<View_PRODUITS> OfferProduts { get; set; }
+        public List<View_PRODUITS> RecommendedProduts { get; set; }
+    }
 
     public partial class AVIS
     {

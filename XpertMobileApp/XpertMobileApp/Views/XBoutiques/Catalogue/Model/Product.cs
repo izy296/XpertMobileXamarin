@@ -33,7 +33,7 @@ namespace XpertMobileApp.Models
         public string Category { get; set; }
 
 
-        private string description;
+        private string description = "Le lorem ipsum est, en impri.";
         public string Description
         {
             get { return description; }

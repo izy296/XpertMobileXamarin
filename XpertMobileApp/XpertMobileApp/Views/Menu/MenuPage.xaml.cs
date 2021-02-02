@@ -181,6 +181,7 @@ namespace XpertMobileApp.Views
             {
                 menuItems = new List<HomeMenuItem>
                 {
+                    new HomeMenuItem {Id = MenuItemType.XBoutiqueHome, Image = "", Title=AppResources.pn_Catalogues },
                     new HomeMenuItem {Id = MenuItemType.XBoutique, Image = "", Title=AppResources.pn_Catalogues },
                     new HomeMenuItem {Id = MenuItemType.XMyCommandes, Image = "", Title=AppResources.pn_MyCommandes },
                     new HomeMenuItem {Id = MenuItemType.XWishList, Image = "", Title="Wish List" },

@@ -86,5 +86,13 @@ namespace XpertMobileApp.Api
             //url += WSApi2.AddParam(url, "codeDoc", codeOrder);
             return await WSApi2.PostAauthorizedValue<decimal, Evaluation>(url, note, Token);
         }
+
+        internal static async Task<HOME_INFOS> GetHomeProducts()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, "Produits", "GetHomeProducts");
+            url += WSApi2.AddParam(url, "codeUser", App.User?.Token?.userID);
+            return await WSApi2.RetrievAauthorizedValue<HOME_INFOS>(url, Token);
+        }
+
     }
 }

@@ -223,7 +223,7 @@
                                            Opacity="{OnPlatform Default=1, Android=0.87}"
                                            TextColor="{OnPlatform Default=#333333, Android=#000000}">
                                     </Label>
-                                    <Label Text="Votes Category" FontSize="10" Grid.Row="1" HorizontalOptions="Start"
+                                        <Label Text="{Binding Category}" FontSize="10" Grid.Row="1" HorizontalOptions="Start"
                                              Opacity="{OnPlatform Default=1, Android=0.54}"
                                            TextColor="{OnPlatform Default=#333333, Android=#000000,UWP=#4C4C4C}">
                                     </Label>
