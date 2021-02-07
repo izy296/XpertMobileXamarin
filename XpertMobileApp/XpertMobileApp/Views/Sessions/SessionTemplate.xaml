@@ -37,7 +37,7 @@
                     <StackLayout Grid.Column="2" Grid.Row="0" Spacing="5" Padding="0">
                         <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
                           <Label Text="Montant : " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
-                          <Label Text="{ Binding MONT_CLOTURE_PH, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                          <Label Text="{ Binding MONT_CLOTURE_PH_virtual, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
                         </StackLayout>
                         <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
                             <Label Text="Écart : " HorizontalOptions="Start" FontSize="11" TextColor="{StaticResource DefaultGrayColor}"/>

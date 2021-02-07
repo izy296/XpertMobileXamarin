@@ -172,6 +172,25 @@ namespace XpertMobileApp.DAL
         public decimal MONT_CLOTURE_TH { get; set; } // money(19,4)
 
         public decimal MONT_CLOTURE_TH_ARRODI { get; set; } // money(19,4)
+        public decimal MONT_CLOTURE_PH_ESPECE { get; set; } // money(19,4)
+        public decimal MONT_CLOTURE_PH_TPE { get; set; } // money(19,4)
+ 
+        public decimal MONT_CLOTURE_PH_virtual
+        {
+            get
+            {
+                if (MONT_CLOTURE_PH == 0)
+                {
+                    return MONT_CLOTURE_PH_ESPECE + MONT_CLOTURE_PH_TPE;
+                }
+                else
+                {
+                    return MONT_CLOTURE_PH;
+                }
+            }
+        }
+
+
         public decimal MONT_ECART { get; set; } // money(19,4)
         public decimal MONT_CREDIT_CASNOS { get; set; } // money(19,4)
         public decimal TR_PHARM_PAYE { get; set; } // money(19,4)
