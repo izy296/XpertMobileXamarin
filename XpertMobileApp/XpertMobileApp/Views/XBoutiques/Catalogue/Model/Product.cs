@@ -116,6 +116,20 @@ namespace XpertMobileApp.Models
                 PropertyChanged(this, new PropertyChangedEventArgs(name));
         }
 
+        private decimal purchasedQte = 0;
+        public decimal PurchasedQte
+        {
+            get { return purchasedQte; }
+            set
+            {
+                if (purchasedQte != value)
+                {
+                    purchasedQte = value;
+                }
+            }
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

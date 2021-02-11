@@ -21,6 +21,7 @@ namespace XpertMobileApp.Views
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as STK_PRODUITS;
+            
             if (item == null)
                 return;
 

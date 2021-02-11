@@ -7,11 +7,13 @@
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:control="clr-namespace:XpertMobileApp.Controls"
     xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    xmlns:fontawesome="clr-namespace:FontAwesome"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:rotator="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    x:Name="homePage"
     BackgroundColor="{DynamicResource Gray-White}"
-    NavigationPage.HasNavigationBar="True"
+    NavigationPage.HasNavigationBar="False"
     Shell.NavBarIsVisible="False"
     Title="{Binding Title}"
     mc:Ignorable="d">
@@ -28,11 +30,58 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="0" BackgroundColor="#F0F2F5">
+                <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
+                    <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
 
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="grid" Grid.Column="0" Margin="0,0,8,0">
+                            <StackLayout Orientation="Horizontal">
+
+                                <Button x:Name="Btn_menu" Margin="0" 
+                                        WidthRequest="50" HeightRequest="50"
+                                        Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                        TextColor="White" Command="{Binding OpenMenuCommand}" 
+                                        Text="{x:Static fontawesome:FontAwesomeIcons.faBars}" BackgroundColor="MediumVioletRed" 
+                                        />
+
+                                <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
+                               TextColor="{OnPlatform Default=#333333, Android=#ffffff}"
+                               Opacity="{OnPlatform Default=1, Android=0.87}" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid Grid.Column="1" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+                          HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="20, 0, 0, 0" >
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrderListCommand}"
+                                                  CommandParameter="{Binding Source={x:Reference Name=homePage}}"/>
+                            </Grid.GestureRecognizers>
+                            <Image InputTransparent="True" Source="shopping_cart_24.png"
+                               Aspect="AspectFill" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Margin="0,0,16,0"/>
+                            <Frame InputTransparent="True" Margin="0,12,6,0" Padding="2" HasShadow="False"
+                               VerticalOptions="Start" HorizontalOptions="End" CornerRadius="8"
+                               HeightRequest="14" WidthRequest="20" OutlineColor="Transparent"
+                               
+                               BackgroundColor="Black">
+                                <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems}" FontSize="11"
+                                   VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Frame>
+                            <!--
+                            IsVisible="{Binding TotalOrderedItems, Mode=OneWay, Converter={StaticResource inverseZeroVisibilityConverter}}"
+                            -->
+                        </Grid>
+                    </Grid>
+                </Frame>
                 <!--  Rotator -->
+                <BoxView x:Name="boxView" BackgroundColor="Gray" 
+                         HeightRequest="{OnPlatform Default=1, UWP=1}" />
+
                 <StackLayout Spacing="8" Margin="0,0,0,10" >
                     <!--  Label for featured stories  -->
-                    <Label IsVisible="True"
+                    <Label IsVisible="False"
                         Margin="8,8,8,0"
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
@@ -46,12 +95,16 @@
                         BackgroundColor="#FFFFFF}"
                         DotPlacement="Default"
                         DotsBorderColor="Transparent"
-                        EnableLooping="False"
-                        HeightRequest="210"
+                        EnableAutoPlay="True"
+                        EnableLooping="True"
+                        HeightRequest="190"
+                        NavigationDelay="2000" 
+                        NavigationDirection="Horizontal"
+                        NavigationStripMode="Dots" 
+    
                         HorizontalOptions="Center"
                         ItemsSource="{Binding NewArrivalProducts}"
-                        NavigationStripMode="Dots"
-                        SelectedDotColor="{DynamicResource PrimaryColor}"
+                            SelectedDotColor="{DynamicResource PrimaryColor}"
                         UnselectedDotColor="DimGray"
                         VerticalOptions="Start">
                         <rotator:SfRotator.ItemTemplate>
@@ -93,7 +146,7 @@
                 </StackLayout>
 
                 <StackLayout
-                    Margin="16,25,16,0"
+                    Margin="16,0,16,0"
                     Orientation="Horizontal"
                     Spacing="0">
 
@@ -108,7 +161,7 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton
+                    <buttons:SfButton IsVisible="False"
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"
@@ -125,8 +178,10 @@
                     Margin="8,0"
                     Padding="0"
                     AutoFitMode="Height"
+                    Orientation="Horizontal"
                     ColumnSpacing="0"
                     FocusBorderColor="Transparent"
+                    HeightRequest="190"
                     HorizontalOptions="FillAndExpand"
                     IsStickyHeader="True"
                     ItemsSource="{Binding NewArrivalProducts}"
@@ -147,7 +202,8 @@
                                 CornerRadius="4"
                                 HasShadow="true"
                                 HeightRequest="189"
-                                WidthRequest="165">
+                                WidthRequest="165"
+                                >
 
                                 <StackLayout
                                     Margin="0"
@@ -162,7 +218,7 @@
                                         Margin="0,0,0,8"
                                         Aspect="AspectFill"
                                         BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="140"
+                                        HeightRequest="120"
                                         HorizontalOptions="Center"
                                         Source="{Binding IMAGE_URL}"
                                         VerticalOptions="Center"
@@ -181,19 +237,19 @@
                             </control:CustomShadowFrame>
                         </DataTemplate>
                     </listView:SfListView.ItemTemplate>
-
+<!--
                     <listView:SfListView.Behaviors>
                         <behavior:SfListViewExtendHeightBehavior />
                     </listView:SfListView.Behaviors>
-
-                    <!--  Layout to customize number of columns in SfListView  -->
+-->
+                    <!--  Layout to customize number of columns in SfListView  
                     <listView:SfListView.LayoutManager>
                         <listView:GridLayout SpanCount="{core:OnPlatformOrientationIntValue Desktop=4, PhonePortrait=2, PhoneLandscape=4, TabletPortrait=4, TabletLandscape=5}" />
-                    </listView:SfListView.LayoutManager>
+                    </listView:SfListView.LayoutManager>-->
                 </listView:SfListView>
 
                 <StackLayout
-                    Margin="16,25,16,0"
+                    Margin="16,5,16,0"
                     Orientation="Horizontal"
                     Spacing="0">
 
@@ -207,7 +263,7 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton
+                    <buttons:SfButton IsVisible="False"
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"
@@ -240,7 +296,10 @@
 
                         <DataTemplate>
 
-                            <!--  Frame to have rounded corners  -->
+                            <!--  Frame to have rounded corners  
+                                HeightRequest="181"
+                                WidthRequest="200"
+                            -->
                             <control:CustomShadowFrame
                                 Margin="8"
                                 Padding="0"
@@ -248,8 +307,9 @@
                                 BorderColor="White"
                                 CornerRadius="4"
                                 HasShadow="true"
-                                HeightRequest="181"
-                                WidthRequest="200">
+                                HeightRequest="189"
+                                WidthRequest="165"
+                                >
 
                                 <StackLayout
                                     Margin="0"
@@ -312,7 +372,7 @@
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton
+                    <buttons:SfButton IsVisible="False"
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"

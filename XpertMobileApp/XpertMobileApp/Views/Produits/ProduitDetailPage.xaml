@@ -7,6 +7,9 @@
              Title="{Binding Title}">
 
     <StackLayout x:Name="sl_content" Padding="5" >
+
+
+        
         <Frame CornerRadius="10" Padding="5" Margin="5"  HasShadow="True"  OutlineColor="White">
             <Grid Padding="0,0,0,0" Margin="0">
 
@@ -37,7 +40,7 @@
 
                         <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Ref}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
                         <Button x:Name="RefBtn" Grid.Column="0" Grid.Row="1" Margin="0,-10,0,0" Text="{ Binding Item.REFERENCE, StringFormat='{0:N2}'}" HorizontalOptions="Center"
-                                Style="{DynamicResource DefaultBtnStyle}" Clicked="RefBtn_Clicked"/>
+                                Style="{DynamicResource DefaultBtnStyle}" Padding="0" Clicked="RefBtn_Clicked"/>
 
                         <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Prix}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
                         <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.PRIX_UNITAIRE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center"/>
@@ -73,7 +76,7 @@
                 </StackLayout>
             </Grid>
         </Frame>
-
+        
         <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 

@@ -540,6 +540,7 @@ namespace XpertMobileApp.DAL
         public int QTE_REAPPRO { get; set; } // int(10)
         public string TYPE_PRODUIT { get; set; } // smallint(5)
         public decimal SHP { get; set; } // money(19,4)
+        public decimal PPA { get; set; } // money(19,4)
         public decimal TARIF { get; set; } // money(19,4)
         public string CODE_CNAS { get; set; } // varchar(11)
         public string REMB { get; set; } // char(1)

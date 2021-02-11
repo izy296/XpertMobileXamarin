@@ -15,11 +15,12 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Spacing="5" Padding="0" VerticalOptions="Fill" 
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
                     </StackLayout>
                     
@@ -33,10 +34,17 @@
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
                     -->
                     <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
-                          Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
-                    <Label Grid.Column="2" Grid.Row="1" Text="{ Binding VAL_STK, StringFormat='Val. : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />
-                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='PV. {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                    
+                          Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
+                    <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Text="{ Binding VAL_STK, StringFormat='Val. : {0:N2}'}" 
+                           FontSize="Default" FontAttributes="Bold" HorizontalOptions="EndAndExpand" />
+
+
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding SHP, StringFormat='SHP : {0:N2}'}" TextColor="Orange"
+                          Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
+                    <Label Grid.Column="2" Grid.Row="2"  Text="{Binding PPA, StringFormat='PPA : {0:N2}'}" TextColor="Chocolate"
+                          Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
+                    <Label Grid.Column="3" Grid.Row="2" Text="{ Binding PRIX_VENTE, StringFormat='PV. {0:N2}'}" FontSize="Default" HorizontalOptions="EndAndExpand"
+                         FontAttributes="Bold" TextColor="Red"/>
                 </Grid>
             </Frame>
         </StackLayout>

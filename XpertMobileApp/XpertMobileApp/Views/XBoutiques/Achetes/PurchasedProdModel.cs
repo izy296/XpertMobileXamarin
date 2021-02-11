@@ -16,24 +16,25 @@ using XpertMobileApp.Views;
 namespace XpertMobileApp.ViewModels
 {
     [Preserve(AllMembers = true)]
-    public class WishListViewModel : BaseProdViewModel<Wish_List, View_WishList>
+    public class PurchasedProdModel : BaseProdViewModel<View_PURCHASED_PROD, View_PURCHASED_PROD>
     {
-        protected override string ContoleurName => "WishList";
+        protected override string ContoleurName => "PURCHASED_PROD";
 
-        public WishListViewModel() : base()
+        public PurchasedProdModel() : base()
         {
-            Title = "Wishlist";
+            Title = "Produits achetés";
         }
 
-        private void addProduct(View_WishList item)
+        private void addProduct(View_PURCHASED_PROD item)
         {
             Product p = new Product()
             {
                 Id = item?.CODE_PRODUIT,
-                Name = item?.DESIGNATION,
+                Name = item?.DESIGNATION_PRODUIT,
                 Image = item?.IMAGE_URL,
-                Price = item.PRIX_VENTE
-            };
+                Price = item.PRIX_VENTE,
+                PurchasedQte = item.QTE
+             };
 
             p.PropertyChanged += (s, e) =>
             {
@@ -83,7 +84,7 @@ namespace XpertMobileApp.ViewModels
             Products.Add(p);
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_WishList> list)
+        protected override void OnAfterLoadItems(IEnumerable<View_PURCHASED_PROD> list)
         {
             base.OnAfterLoadItems(list);
 
@@ -96,24 +97,25 @@ namespace XpertMobileApp.ViewModels
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
+            /*
+           if (!string.IsNullOrEmpty(SearchedText))
+               this.AddCondition<View_WishList, string>(e => e.DESIGNATION, Operator.LIKE, SearchedText);
 
-            if (!string.IsNullOrEmpty(SearchedText))
-                this.AddCondition<View_WishList, string>(e => e.DESIGNATION, Operator.LIKE_ANY, SearchedText);
 
+           if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
+               this.AddCondition<View_STK_PRODUITS, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE);
 
-            if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
-                this.AddCondition<View_WishList, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE);
+           if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+               this.AddCondition<View_STK_PRODUITS, string>(e => e.TYPE_PRODUIT, SelectedType?.CODE_TYPE);
 
-            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
-                this.AddCondition<View_WishList, string>(e => e.CODE_TYPE, SelectedType?.CODE_TYPE);
+           if (OnlyNew)
+               this.AddCondition<View_STK_PRODUITS, bool>(e => e.IS_NEW, "1");
 
-            if (OnlyNew)
-                this.AddCondition<View_WishList, bool>(e => e.IS_NEW, "1");
+           this.AddCondition<View_STK_PRODUITS, bool>(e => e.SHOW_CATALOG, "1");
+           */
+            this.AddCondition<View_PURCHASED_PROD, string>(e => e.ID_USER, App.User.Token.userID);
 
-            this.AddCondition<View_WishList, string>(e => e.ID_USER, App.User.Token.userID);
-
-            this.AddOrderBy<View_WishList, string>(e => e.DESIGNATION);
-
+            this.AddOrderBy<View_PURCHASED_PROD, decimal>(e => e.QTE, Sort.DESC);
             return qb.QueryInfos;
         }
 

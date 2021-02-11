@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using XpertMobileApp.DAL;
 using System.Collections.Generic;
+using XpertMobileApp.Api.ViewModels;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -13,12 +14,27 @@ namespace XpertMobileApp.ViewModels
     /// </summary>
     [Preserve(AllMembers = true)]
     [DataContract]
-    public class ProductHomePageViewModel : BaseViewModel
+    public class ProductHomePageViewModel : BaseProdViewModel<PRODUITS, View_PRODUITS>
     {
+        private int totalOrderedItems = 0;
+        public Command<object> OpenMenuCommand { get; set; }
 
         public ProductHomePageViewModel() 
         {
             Title = AppResources.pn_home;
+            OpenMenuCommand = new Command<object>(OpenMenu);
+        }
+
+        public int TotalOrderedItems
+        {
+            get { return totalOrderedItems; }
+            set
+            {
+                if (totalOrderedItems != value)
+                {
+                    SetProperty(ref totalOrderedItems, value);
+                }
+            }
         }
 
         #region Fields
@@ -178,6 +194,11 @@ namespace XpertMobileApp.ViewModels
             return res;
         }
 
+        private void OpenMenu(object obj)
+        {
+            MasterDetailPage RootPage = Application.Current.MainPage as MasterDetailPage;
+            RootPage.IsPresented = true;
+        }
         #endregion
     }
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sample1:BaseView  xmlns:sample1="clr-namespace:XpertMobileApp.Views" 
-                   x:Class="XpertMobileApp.Views.WishListPage"
-                   x:Name="sampleView"
+                   x:Class="XpertMobileApp.Views.PurchasedProdPage"
+                   x:Name="purchasedProdView"
                    xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:local="clr-namespace:SampleBrowser.SfListView"
@@ -10,7 +10,6 @@
                    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                    xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
                    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
-                   
                    Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
@@ -82,10 +81,10 @@
                     <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                         <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_ApplyFilter_Clicked"/>
+                            CornerRadius="8" Clicked="btn_ApplyFilter_Clicked"/>
 
                         <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_CancelFilter_Clicked"/>
+                           CornerRadius="8" Clicked="btn_CancelFilter_Clicked"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>
@@ -123,21 +122,22 @@
                           HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OrderListCommand}"
-                                                  CommandParameter="{Binding Source={x:Reference Name=sampleView}}"/>
+                                                  CommandParameter="{Binding Source={x:Reference Name=purchasedProdView}}"/>
                             </Grid.GestureRecognizers>
-                            <Image InputTransparent="True" Source="shopping_cart_24.png"
-                               Aspect="AspectFill" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Margin="0,0,16,0"/>
-                            <Frame InputTransparent="True" Margin="0,12,6,0" Padding="2" HasShadow="False"
-                               VerticalOptions="Start" HorizontalOptions="End" CornerRadius="8"
-                               HeightRequest="14" WidthRequest="20" OutlineColor="Transparent"
-                               
-                               BackgroundColor="Black">
+                                <Image InputTransparent="True" Source="shopping_cart_24.png"
+                                   Aspect="AspectFill" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Margin="0,0,16,0"/>
+                            
+                                <Frame InputTransparent="True" Margin="0,12,6,0" Padding="2" HasShadow="False"
+                                   VerticalOptions="Start" HorizontalOptions="End" CornerRadius="8"
+                                   HeightRequest="14" WidthRequest="20" OutlineColor="Transparent" BackgroundColor="Black">
+                                
                                 <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems}" FontSize="11"
-                                   VerticalOptions="Center" HorizontalOptions="Center"/>
+                                       VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Frame>
                             <!--
-                        IsVisible="{Binding TotalOrderedItems, Mode=OneWay, Converter={StaticResource inverseZeroVisibilityConverter}}"
-                        -->
+                                IsVisible="{Binding TotalOrderedItems, Mode=OneWay, 
+                                            Converter={StaticResource inverseZeroVisibilityConverter}}"
+                            -->
                         </Grid>
 
                         <Grid x:Name="gridBtnFilter" Grid.Column="1" Margin="0" >
@@ -151,7 +151,6 @@
                                             />
                             </StackLayout>
                         </Grid>
-
                     </Grid>
                 </Frame>
 
@@ -208,10 +207,16 @@
                                                 </ffimageloading:CachedImage>
 
                                                 <StackLayout Opacity="0.7"   >
+                                                    <Frame Margin="0" Padding="5" WidthRequest="20" BackgroundColor="#B6DB19" 
+                                                           HorizontalOptions="EndAndExpand" CornerRadius="15" >
+                                                        <Label Text="{Binding PurchasedQte, StringFormat='{0:N0}'}" HorizontalOptions="Center"
+                                                               FontSize="Default" TextColor="Black"/>
+                                                    </Frame>
+                                                    <!--
                                                     <Button Text="" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" IsVisible="False"
                                                                 HorizontalOptions="Start" ContentLayout="Top,0" Clicked="brn_Wished_Clicked" BackgroundColor="Transparent"
                                                            ImageSource="{Binding Wished, Converter={StaticResource boolToWishedIconConverter}}"></Button>
-
+                                                    -->
                                                     <Image  Source="new_128.png" IsVisible="{Binding IS_NEW, Mode=TwoWay}" HeightRequest="50" 
                                                                HorizontalOptions="End" VerticalOptions="Start" Margin="-30,-30,0,0"/>
                                                 </StackLayout>

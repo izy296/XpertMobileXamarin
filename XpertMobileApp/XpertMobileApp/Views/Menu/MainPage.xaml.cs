@@ -78,16 +78,17 @@ namespace XpertMobileApp.Views
                         return new BordereauxPage();
                     case (int)MenuItemType.Catalogues:
                         return new Paging();
-                case (int)MenuItemType.XBoutiqueHome:
-                    return new ProductHomePage();
-                case (int)MenuItemType.XBoutique:
+                    case (int)MenuItemType.XBoutiqueHome:
+                        return new ProductHomePage();
+                    case (int)MenuItemType.XBoutique:
                         return new CataloguePage(); 
                     case (int)MenuItemType.XMyCommandes:
                         return new XMyCommandesPage();
                     case (int)MenuItemType.XWishList:
                         return new WishListPage();
-
-                case (int)MenuItemType.MyCommandes:
+                    case (int)MenuItemType.XPurchased:
+                        return new PurchasedProdPage();
+                    case (int)MenuItemType.MyCommandes:
                         return new Paging();
                     case (int)MenuItemType.Commandes:
                         return new CommandesPage();
@@ -184,7 +185,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.XWishList:
                         MenuPages.Add(id, new NavigationPage(new WishListPage()));
                         break;
-
+                    case (int)MenuItemType.XPurchased:
+                        MenuPages.Add(id, new NavigationPage(new PurchasedProdPage()));
+                        break;
                     case (int)MenuItemType.Produits:
                         MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
                         break;

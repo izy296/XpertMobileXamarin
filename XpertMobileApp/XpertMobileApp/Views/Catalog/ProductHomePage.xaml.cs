@@ -17,7 +17,7 @@ namespace XpertMobileApp.Views
         ProductHomePageViewModel viewModel;
         public ProductHomePage()
         {
-
+            Title = "Accueil";
             viewModel = new ProductHomePageViewModel();
 
             InitializeComponent();
@@ -37,6 +37,8 @@ namespace XpertMobileApp.Views
                 viewModel.RecommendedProducts = viewModel.GenerateData(homeInfos.RecommendedProduts);
                 UserDialogs.Instance.HideLoading();
                 this.BindingContext = viewModel;
+
+                viewModel.ExecuteLoadPanierCommand();
             }
             catch (Exception ex)
             {

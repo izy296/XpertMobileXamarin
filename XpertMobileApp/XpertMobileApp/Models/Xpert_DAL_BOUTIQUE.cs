@@ -108,19 +108,6 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public decimal OLD_PRICE
-        {
-            get
-            {
-                decimal red = (PRIX_VENTE * Reduction) / 100;
-                return PRIX_VENTE + red;
-            }
-        }
-
-        public string Ratings { get; set; } = "1500 Votes";
-        public int Reduction { get; set; } = 15;
-        public decimal ReviewValue { get; set; } = (decimal)4.5;
-
         public string CODE_DEFAULT_IMAGE { get; set; }
         public string IMAGE_URL
         {
@@ -135,20 +122,11 @@ namespace XpertMobileApp.DAL
     {
         public bool IS_NEW { get; set; } = false;
 
-        public decimal OLD_PRICE
-        {
-            get
-            {
-                decimal red = (PRIX_VENTE * Reduction) / 100;
-                return PRIX_VENTE + red;
-            }
-        }
-
-        public string Ratings { get; set; } = "1500 Votes";
-        public int Reduction { get; set; } = 15;
-        public decimal ReviewValue { get; set; } = (decimal)4.5;
-
         public string CODE_DEFAULT_IMAGE { get; set; }
+        public int NBR_VOTES { get; set; }
+        public decimal NOTE { get; set; } // int
+
+
         public string IMAGE_URL
         {
             get
@@ -194,11 +172,19 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION { get; set; } // varchar(150)
         public decimal QTE_STOCK { get; set; } // numeric(18,2)
         public decimal PRIX_VENTE { get; set; } // money(19,4)
-        public byte[] IMAGES { get; set; } // varchar(50)
+        public byte[] IMAGES { get; set; } // [varbinary](max) NULL,
+        public decimal NOTE { get; set; } // int
+        public string CODE_FAMILLE { get; set; }
+        public string DESIGNATION_FAMILLE { get; set; }
+        public string CODE_TYPE { get; set; }
+        public string DESIGNATION_TYPE { get; set; }
+        public int NbrUsersVotes { get; set; }
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+
         public List<string> ImageList { get; set; }
-        public decimal NOTE { get; set; }
         public decimal Quantity { get; set; } // numeric(18,2)
         public bool Wished { get; set; }
+        public int NBR_VOTES { get; set; }
     }
 
     public partial class View_PRODUITS_DETAILS //: View_PRODUITS
@@ -303,7 +289,7 @@ namespace XpertMobileApp.DAL
         public string DESCRIPTION { get; set; } 
         public decimal QUANTITE { get; set; }
         public byte[] IMAGES { get; set; } 
-        public decimal NOTE { get; set; } 
+
         public string CODE_FAMILLE { get; set; } 
         public string DESIGNATION_FAMILLE { get; set; }
         public string CODE_TYPE { get; set; }
@@ -385,5 +371,23 @@ namespace XpertMobileApp.DAL
         public static int In_progress = 2;
         public static int Delivered = 3;
         public static int Finished = 4;
+    }
+
+    public class View_PURCHASED_PROD
+    {
+        public string ID_USER { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string CODE_DEFAULT_IMAGE { get; set; }
+        public decimal QTE { get; set; }
+        public decimal PRIX_VENTE { get; set; }
+
+        public string IMAGE_URL
+        {
+            get
+            {
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
+            }
+        }
     }
 }

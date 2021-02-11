@@ -24,13 +24,13 @@ using XpertMobileApp.Views;
 namespace XpertMobileApp.Views
 {
     [Preserve(AllMembers = true)]
-    public partial class WishListPage : BaseView
+    public partial class PurchasedProdPage : BaseView
     {
-        WishListViewModel viewModel;
+        PurchasedProdModel viewModel;
         private GridLayout gridLayout;
-        public WishListPage()
+        public PurchasedProdPage()
         {
-            viewModel = new WishListViewModel();
+            viewModel = new PurchasedProdModel();
             this.BindingContext = viewModel;
 
             InitializeComponent();
