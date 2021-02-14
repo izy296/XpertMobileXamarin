@@ -221,5 +221,7 @@ namespace FontAwesome
         public const string users = "\uf0c0";
         public const string faBars = "\uf0c9";
 
+        public const string sortAlphaDown = "\uf15d";
+
     }
 }

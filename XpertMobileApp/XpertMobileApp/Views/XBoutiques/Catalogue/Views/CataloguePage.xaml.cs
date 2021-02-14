@@ -1,27 +1,11 @@
-#region Copyright Syncfusion Inc. 2001-2019.
-// Copyright Syncfusion Inc. 2001-2019. All rights reserved.
-// Use of this code is subject to the terms of our license.
-// A copy of the current license can be obtained at any time by e-mailing
-// licensing@syncfusion.com. Any infringement will be prosecuted under
-// applicable laws. 
-#endregion
-
-using FFImageLoading.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
-using XpertMobileApp;
-using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
-using XpertMobileApp.Views;
+using XpertMobileApp.Views.XLogin;
 
 namespace XpertMobileApp.Views
 {
@@ -31,7 +15,7 @@ namespace XpertMobileApp.Views
         LoadMoreViewModel viewModel;
         public CataloguePage()
         {
-            viewModel = new LoadMoreViewModel();
+            viewModel = new LoadMoreViewModel(this);
             this.BindingContext = viewModel;
             InitializeComponent();
 
@@ -45,10 +29,14 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadMoreItemsCommand.Execute(listView);
 
+            /*
             if(viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
-
-            viewModel.ExecuteLoadPanierCommand();
+            */
+            if (App.User?.Token != null) 
+            { 
+                viewModel.ExecuteLoadPanierCommand(this);
+            }
         }
 
         #region Actions de l'interface
@@ -65,13 +53,18 @@ namespace XpertMobileApp.Views
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-             viewModel.Reload();
+             viewModel.Reload(this);
+        }
+
+        private void Sort_Clicked(object sender, EventArgs e)
+        {
+            sortPicker.IsOpen = true;
         }
 
         private async void pullToRefresh_Refreshing(object sender, EventArgs e)
         {
             pullToRefresh.IsRefreshing = true;
-            await viewModel.Reload();
+            await viewModel.Reload(this);
             pullToRefresh.IsRefreshing = false;
         }
 
@@ -80,19 +73,27 @@ namespace XpertMobileApp.Views
             var btn = sender as Button;
             Product p = btn.BindingContext as Product;
 
-            View_WishList wl = new View_WishList();
-            wl.ID_USER = App.User.Token.userID;
-            wl.CODE_PRODUIT = p.Id;
+            if (App.User?.Token != null) 
+            { 
+                View_WishList wl = new View_WishList();
+                wl.ID_USER = App.User.Token.userID;
+                wl.CODE_PRODUIT = p.Id;
 
-            if (p.Wished)
-            {
-                p.Wished = false;
-                CrudManager.WishList.DeleteItemAsync(p.Id);
+                if (p.Wished)
+                {
+                    p.Wished = false;
+                    CrudManager.WishList.DeleteItemAsync(p.Id);
+                }
+                else
+                {
+                    p.Wished = true;
+                    CrudManager.WishList.AddItemAsync(wl);
+                }
             }
-            else
+            else 
             {
-                p.Wished = true;
-                CrudManager.WishList.AddItemAsync(wl);
+                TabbedForm identificationPage = new TabbedForm();
+                Navigation.PushAsync(identificationPage);
             }
         }
 
@@ -106,6 +107,11 @@ namespace XpertMobileApp.Views
 
             // Manually deselect item.
             listView.SelectedItem = null;
+        }
+
+        private void sortPicker_SelectionChanged(object sender, Syncfusion.SfPicker.XForms.SelectionChangedEventArgs e)
+        {
+            viewModel.Reload(this);
         }
         #endregion
 

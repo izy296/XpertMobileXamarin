@@ -93,7 +93,7 @@ namespace XpertMobileApp.Api.ViewModels
         protected virtual void InitConstructor()
         {
             string ctrlName = ContoleurName;
-            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
+            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User?.Token);
             Summaries = new ObservableCollection<SAMMUARY>();
             Items = new ObservableCollection<TView>();
 
@@ -215,10 +215,10 @@ namespace XpertMobileApp.Api.ViewModels
             ElementsSum = await service.ItemsSum(GetFilterParams());
         }
 
-        internal async virtual Task Reload()
+        internal async virtual Task Reload(object page)
         {
-            Items.Clear();
-            await AddProducts(1, PageSize);
+            //Items.Clear();
+            //await AddProducts(1, PageSize);
         }
 
         internal async Task<SortedDictionary<string, decimal>> GetItemsSums()

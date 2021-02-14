@@ -107,7 +107,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <Label Text="{Binding Item.ReviewValue}" Grid.Column="0" FontFamily="Bold"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
+                                        <Label Text="{Binding Item.ReviewValue, StringFormat='{0:N1}'}" Grid.Column="0" FontFamily="Bold"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
                                                                Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
                                                                FontSize="{OnIdiom Default=15, Phone=12}">
                                         </Label>
@@ -120,7 +120,7 @@
                                 <Label Text="{Binding Item.Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontFamily="Bold" TextColor="Gray" 
                                    FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
 
-                                <Button  x:Name="allReviews" Text="Tous voir.." HorizontalOptions="End" HeightRequest="15" FontSize="11"
+                                <Button  x:Name="allReviews" Text="Tous voir.." HorizontalOptions="End" HeightRequest="15" FontSize="11" FontAttributes="Bold"
                                     BackgroundColor="White" TextColor="Gray" CornerRadius="8" Padding="0" BorderWidth="0" Clicked="allReviews_Clicked"/>
                             </StackLayout>
 

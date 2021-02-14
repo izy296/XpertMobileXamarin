@@ -12,7 +12,7 @@ namespace XpertMobileApp.Api
     {
         public static string Token
         {
-            get { return App.User.Token.access_token; }
+            get { return App.User?.Token?.access_token; }
         }
 
         public static List<View_PANIER> PanierElem { get; set; } = new List<View_PANIER>();
@@ -92,6 +92,14 @@ namespace XpertMobileApp.Api
             string url = WSApi2.CreateLink(App.RestServiceUrl, "Produits", "GetHomeProducts");
             url += WSApi2.AddParam(url, "codeUser", App.User?.Token?.userID);
             return await WSApi2.RetrievAauthorizedValue<HOME_INFOS>(url, Token);
+        }
+
+        internal static async Task<object> Subscribe(RegisterBindingModel registerInfos)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, "Account", "Register");
+            //url += WSApi2.AddParam(url, "codeDoc", codeOrder);
+            object res =  await WSApi2.PostAauthorizedValue<object, RegisterBindingModel>(url, registerInfos, null);
+            return res;
         }
 
     }

@@ -12,13 +12,13 @@ namespace XpertMobileApp.Views
 {
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductHomePage : ContentPage
+    public partial class ProductHomePage : BaseView
     {
         ProductHomePageViewModel viewModel;
         public ProductHomePage()
         {
             Title = "Accueil";
-            viewModel = new ProductHomePageViewModel();
+            viewModel = new ProductHomePageViewModel(this);
 
             InitializeComponent();
 
@@ -28,7 +28,17 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            try 
+            LoadData();
+        }
+
+        private void Refresh_Clicked(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private async void LoadData()
+        {
+            try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var homeInfos = await BoutiqueManager.GetHomeProducts();
@@ -38,7 +48,10 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.HideLoading();
                 this.BindingContext = viewModel;
 
-                viewModel.ExecuteLoadPanierCommand();
+                if(App.User?.Token != null) 
+                {
+                    viewModel.ExecuteLoadPanierCommand(this);
+                }
             }
             catch (Exception ex)
             {
@@ -46,6 +59,7 @@ namespace XpertMobileApp.Views
                 await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
                         AppResources.alrt_msg_Ok);
             }
+
         }
     }
 }

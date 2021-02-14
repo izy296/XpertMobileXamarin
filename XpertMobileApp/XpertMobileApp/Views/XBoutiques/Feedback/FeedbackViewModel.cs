@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using XpertMobileApp.Models.Feedback;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using XpertMobileApp.DAL;

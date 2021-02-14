@@ -21,7 +21,7 @@ namespace XpertMobileApp.Views
         public MenuPage()
         {
             InitializeComponent();
-            lbl_MenuUser.Text = App.User.Token.fullName;
+            lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
             {
@@ -183,9 +183,9 @@ namespace XpertMobileApp.Views
                 {
                     new HomeMenuItem {Id = MenuItemType.XBoutiqueHome, Image = "", Title=AppResources.pn_home },
                     new HomeMenuItem {Id = MenuItemType.XBoutique, Image = "", Title=AppResources.pn_Catalogues },
-                    new HomeMenuItem {Id = MenuItemType.XMyCommandes, Image = "", Title=AppResources.pn_MyCommandes },
-                    new HomeMenuItem {Id = MenuItemType.XWishList, Image = "", Title="Wish List" },
-                    new HomeMenuItem {Id = MenuItemType.XPurchased, Image = "", Title="Produits achetés" },
+                    new HomeMenuItem {Id = MenuItemType.XMyCommandes, Image = "", Title=AppResources.pn_MyCommandes, VisibleToGuest=false },
+                    new HomeMenuItem {Id = MenuItemType.XWishList, Image = "", Title="Wish List", VisibleToGuest=false },
+                    new HomeMenuItem {Id = MenuItemType.XPurchased, Image = "", Title="Produits achetés", VisibleToGuest=false },
                     
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
@@ -209,7 +209,15 @@ namespace XpertMobileApp.Views
 
             App.User = null;
             AppManager.permissions = null;
-            Application.Current.MainPage = new LoginPage();
+            // Application.Current.MainPage = new LoginPage();
+            if (Constants.AppName == Apps.X_BOUTIQUE)
+            {
+                Application.Current.MainPage = new MainPage();
+            }
+            else
+            {
+                Application.Current.MainPage = new LoginPage();
+            }
         }
 
         protected async override void OnAppearing()
@@ -225,6 +233,14 @@ namespace XpertMobileApp.Views
                     var param = await AppManager.GetSysParams();
                     var permissions = await AppManager.GetPermissions();
                     menus = menuItems.Where(x => x.HasPermission == true).ToList();
+                }
+                else 
+                {
+                    if(App.User?.Token == null)
+                    foreach (var item in menuItems)
+                    {
+                        menus  = menuItems.Where(x => x.VisibleToGuest == true).ToList();
+                    }
                 }
 
                 ListViewMenu.ItemsSource = menus;

@@ -30,7 +30,7 @@ namespace XpertMobileApp.Views.Feedback
         private async void pullToRefresh_Refreshing(object sender, System.EventArgs e)
         {
             pullToRefresh.IsRefreshing = true;
-            await viewModel.Reload();
+            await viewModel.Reload(this);
             pullToRefresh.IsRefreshing = false;
         }
     }

@@ -2,21 +2,15 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
-using Xpert.Common.WSClient.Model;
-using Xpert.Common.WSClient.Services;
-using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
-using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
+using XpertMobileApp.Views.XLogin;
 
 namespace XpertMobileApp.Api.ViewModels
 {
@@ -70,8 +64,28 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        public BaseProdViewModel() : base()
+        private ProdSortType selectedProdSortType;
+        public ProdSortType SelectedProdSortType
         {
+            get { return selectedProdSortType; }
+            set
+            {
+                if (selectedProdSortType != value)
+                {
+                    selectedProdSortType = value;
+                    SetProperty(ref selectedProdSortType, value);
+                }
+            }
+        }
+
+        public ObservableCollection<ProdSortType> SortTypes { get; set; }
+
+        internal object Page { get; set; }
+
+        public BaseProdViewModel(object page) : base()
+        {
+            Page = page;
+
             Title = AppResources.pn_Catalogues;
             Products = new ObservableCollection<Product>();
             Products1 = new ObservableCollection<Product>();
@@ -86,20 +100,52 @@ namespace XpertMobileApp.Api.ViewModels
             OpenMenuCommand = new Command<object>(OpenMenu);
             CheckoutCommand = new Command(CheckOut);
             RemoveOrderCommand = new Command<object>(RemoveOrder);
+
+            SortTypes = new ObservableCollection<ProdSortType>()
+                  {
+                    new ProdSortType
+                    {
+                        Id = "1",
+                        Title = "Designation",
+                        Field="DESIGNATION",
+                        Direction = Sort.ASC
+                    },
+                    new ProdSortType
+                    {
+                        Id = "2",
+                        Title = "Prix",
+                        Field="PRIX_VENTE",
+                        Direction = Sort.ASC
+                    },
+                    new ProdSortType
+                    {
+                        Id = "3",
+                        Title = "Note",
+                        Field="NOTE",
+                        Direction = Sort.DESC
+                    },
+                    new ProdSortType
+                    {
+                        Id = "4",
+                        Title = "Votes",
+                        Field="NBR_VOTES",
+                        Direction = Sort.DESC
+                    },
+                };
         }
 
         #endregion
 
         #region Méthodes
 
-        internal override Task Reload()
+        internal override Task Reload(object page)
         {
+            Items.Clear();
             Products.Clear();
-
             // Rechargement de la liste des produit dans le panier
-            ExecuteLoadPanierCommand();
+            ExecuteLoadPanierCommand(page);
 
-            return base.Reload();
+            return base.Reload(page);
         }
 
         private async void CheckOut(object obj)
@@ -170,13 +216,27 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        private void NavigateLoginPage(object obj)
+        {
+            if (obj is BaseView)
+            {
+                var sampleView = obj as BaseView;
+                TabbedForm identificationPage = new TabbedForm();
+                sampleView.Navigation.PushAsync(identificationPage);
+            }
+        }
+
         private void NavigateOrdersPage(object obj)
         {
-            var sampleView = obj as BaseView;
-            var ordersPage = new CartPage();
-            ordersPage.BindingContext = this;
-            sampleView.Navigation.PushAsync(ordersPage);
+            if(obj is BaseView) 
+            { 
+                var sampleView = obj as BaseView;
+                var ordersPage = new CartPage();
+                ordersPage.BindingContext = this;
+                sampleView.Navigation.PushAsync(ordersPage);
+            }
         }
+
 
         private void RemoveOrder(object obj)
         {
@@ -284,8 +344,10 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        public async Task ExecuteLoadPanierCommand()
+        public async Task ExecuteLoadPanierCommand(object page)
         {
+            if (App.User?.Token == null)
+                return;
             try
             {
                 // UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -309,43 +371,7 @@ namespace XpertMobileApp.Api.ViewModels
                     p.PropertyChanged += (s, e) =>
                     {
                         var product = s as Product;
-                        if (e.PropertyName == "Quantity")
-                        {
-                            if (Orders.Contains(product) && product.Quantity <= 0)
-                            {
-                                Orders.Remove(product);
-                                BoutiqueManager.PanierElem.RemoveAll(x => x.CODE_PRODUIT == product.Id);
-                                BoutiqueManager.RemoveCartItem(item.CODE_PRODUIT);
-                            }
-                            else if (!Orders.Contains(product) && product.Quantity > 0)
-                            {
-                                BoutiqueManager.PanierElem.Add(new View_PANIER()
-                                {
-                                    CODE_PRODUIT = product.Id,
-                                    DESIGNATION = product.Name,
-                                    ID_USER = App.User.Token.userID,
-                                    CODE_DEFAULT_IMAGE = product.CODE_DEFAULT_IMAGE,
-                                    QUANTITE = product.Quantity
-                                });
-                                Orders.Add(product);
-
-                                addToCard ci = new addToCard()
-                                {
-                                    CODE_PRODUIT = item.CODE_PRODUIT,
-                                    ID_USER = App.User.Token.userID,
-                                    QUANTITE = product.Quantity,
-                                };
-                                BoutiqueManager.AddCartItem(ci);
-                            }
-
-                            TotalOrderedItems = Orders.Count;
-                            TotalPrice = 0;
-                            for (int j = 0; j < Orders.Count; j++)
-                            {
-                                var order = Orders[j];
-                                TotalPrice = TotalPrice + order.TotalPrice;
-                            }
-                        }
+                        ManagProdPropertyChang(product, e, page);
                     };
 
                     Orders.Add(p);
@@ -362,6 +388,88 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        private decimal totalPrice2 = 0;
+        public decimal TotalPrice2
+        {
+            get { return totalPrice2; }
+            set
+            {
+                if (totalPrice2 != value)
+                {
+                    totalPrice2 = value;
+                    SetProperty(ref totalPrice2, value);
+                }
+            }
+        }
+
+        public void ManagProdPropertyChang(Product product, System.ComponentModel.PropertyChangedEventArgs e, object page) 
+        {
+            if (e.PropertyName == "Quantity")
+            {
+                if (Orders.Contains(product) && product.Quantity <= 0)
+                {
+                    Orders.Remove(product);
+                    BoutiqueManager.PanierElem.RemoveAll(x => x.CODE_PRODUIT == product.Id);
+                    BoutiqueManager.RemoveCartItem(product.Id);
+                }
+                else if (Orders.Contains(product) && product.Quantity <= 0)
+                {
+                    View_PANIER pan = BoutiqueManager.PanierElem.Where(y => y.CODE_PRODUIT == product.Id).FirstOrDefault();
+                    if (pan != null)
+                    {
+                        pan.QUANTITE = product.Quantity;
+
+                        addToCard ci = new addToCard()
+                        {
+                            CODE_PRODUIT = product.Id,
+                            ID_USER = App.User.Token.userID,
+                            QUANTITE = product.Quantity,
+                        };
+                        BoutiqueManager.AddCartItem(ci);
+                    }
+                }
+                else if (!Orders.Contains(product) && product.Quantity > 0)
+                {
+                    if (string.IsNullOrEmpty(App.User?.Token?.userID)) 
+                    {
+                        BoutiqueManager.PanierElem.Add(new View_PANIER()
+                        {
+                            CODE_PRODUIT = product.Id,
+                            DESIGNATION = product.Name,
+                            ID_USER = App.User.Token.userID,
+                            CODE_DEFAULT_IMAGE = product.CODE_DEFAULT_IMAGE,
+                            QUANTITE = product.Quantity
+                        });
+                        Orders.Add(product);
+
+                        addToCard ci = new addToCard()
+                        {
+                            CODE_PRODUIT = product.Id,
+                            ID_USER = App.User.Token.userID,
+                            QUANTITE = product.Quantity,
+                        };
+                        BoutiqueManager.AddCartItem(ci);
+                    }
+                    else
+                    {
+                        product.Quantity = 0;
+                        NavigateLoginPage(page);
+                    }
+                }
+
+                decimal total = 0;
+                for (int j = 0; j < Orders.Count; j++)
+                {
+                    var order = Orders[j];
+                    total = total + order.TotalPrice;
+                }
+
+                TotalOrderedItems = Orders.Count;
+                TotalPrice = total;
+            }
+
+
+        }
         #endregion
     }
 }

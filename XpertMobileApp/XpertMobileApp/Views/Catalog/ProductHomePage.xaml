@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<basePage:BaseView xmlns:basePage="clr-namespace:XpertMobileApp.Views" 
     x:Class="XpertMobileApp.Views.ProductHomePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -18,16 +18,16 @@
     Title="{Binding Title}"
     mc:Ignorable="d">
 
-    <ContentPage.Resources>
+    <basePage:BaseView.Resources>
         <ResourceDictionary>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </basePage:BaseView.Resources>
 
-    <ContentPage.Content>
+    <basePage:BaseView.Content>
         <ScrollView>
             <StackLayout Spacing="0" BackgroundColor="#F0F2F5">
                 <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
@@ -35,7 +35,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
-
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <Grid x:Name="grid" Grid.Column="0" Margin="0,0,8,0">
                             <StackLayout Orientation="Horizontal">
@@ -53,8 +53,8 @@
                             </StackLayout>
                         </Grid>
 
-                        <Grid Grid.Column="1" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
-                          HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="20, 0, 0, 0" >
+                        <Grid Grid.Column="2" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+                          HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OrderListCommand}"
                                                   CommandParameter="{Binding Source={x:Reference Name=homePage}}"/>
@@ -66,12 +66,24 @@
                                HeightRequest="14" WidthRequest="20" OutlineColor="Transparent"
                                
                                BackgroundColor="Black">
-                                <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems}" FontSize="11"
+                                <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems, Mode=TwoWay}" FontSize="11"
                                    VerticalOptions="Center" HorizontalOptions="Center"/>
                             </Frame>
                             <!--
                             IsVisible="{Binding TotalOrderedItems, Mode=OneWay, Converter={StaticResource inverseZeroVisibilityConverter}}"
                             -->
+                        </Grid>
+
+                        <Grid x:Name="gridBtnFilter" Grid.Column="1" Margin="0" >
+                            <StackLayout Orientation="Horizontal">
+
+                                <Button x:Name="Btn_Refresh" Margin="0" 
+                                            WidthRequest="50" HeightRequest="50" Clicked="Refresh_Clicked"
+                                            Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                            TextColor="White"
+                                            Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" BackgroundColor="MediumVioletRed" 
+                                            />
+                            </StackLayout>
                         </Grid>
                     </Grid>
                 </Frame>
@@ -497,5 +509,5 @@
 
             </StackLayout>
         </ScrollView>
-    </ContentPage.Content>
-</ContentPage>
+    </basePage:BaseView.Content>
+</basePage:BaseView>

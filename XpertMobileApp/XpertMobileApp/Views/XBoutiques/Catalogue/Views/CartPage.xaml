@@ -44,13 +44,15 @@
                              VerticalOptions="Center" HorizontalOptions="End" FontSize="16"
                              TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
                         <Label Grid.Column="1" FontAttributes="Bold"
-                               Text="{Binding TotalPrice, StringFormat='{0:N2} DA'}" 
+                               Text="{Binding TotalPrice2,Mode=TwoWay, StringFormat='{0:N2} DA'}" 
                                VerticalOptions="Center" HorizontalOptions="End" Margin="16,0,8,0" FontSize="16"
                              TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
                 </Grid>
             </Grid>
         </Frame>
-      <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA"  HeightRequest="{OnPlatform Default=0, UWP=1}" />
+        
+        <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA"  HeightRequest="{OnPlatform Default=0, UWP=1}" />
+        
         <sync:SfListView x:Name="listView" Grid.Row="2"
                             ItemSize="120"
                             SelectionMode="None"
@@ -67,10 +69,6 @@
                                 <ColumnDefinition Width="0.4*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            <!--
-                            <Image Source="{Binding Image}" Aspect="AspectFit" VerticalOptions="Center" 
-                                   HorizontalOptions="Center" />
-                            -->
                             <ffimageloading:CachedImage 
                                          Aspect="AspectFill" HorizontalOptions="FillAndExpand" 
                                          VerticalOptions="FillAndExpand"
@@ -127,7 +125,8 @@
                 </DataTemplate>
             </sync:SfListView.ItemTemplate>
         </sync:SfListView>
-      <Label Grid.Row="2" LineBreakMode="WordWrap" FontAttributes="Bold"
+        
+        <Label Grid.Row="2" LineBreakMode="WordWrap" FontAttributes="Bold"
              Text="Votre panier est vide!" VerticalOptions="Center" HorizontalOptions="Center"
              IsVisible="{Binding TotalOrderedItems, Converter={StaticResource zeroVisibilityConverter}}" FontSize="16"
              TextColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#0078D7}" />
@@ -138,6 +137,8 @@
                 IsVisible="{Binding TotalOrderedItems, Converter={StaticResource inverseZeroVisibilityConverter}}"
                 FontSize="{OnPlatform Default=12, Android=16}"
                 BackgroundColor="{OnPlatform Default=#1C73F2, Android=MediumVioletRed, UWP=#0078D7}" />
+        
+        
     </Grid>
 
 </ContentPage>

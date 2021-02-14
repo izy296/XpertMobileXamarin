@@ -29,5 +29,7 @@ namespace XpertMobileApp.Models
         public int Mobile_Edition { get; set; }
 
         public Type TargetType { get; set; }
+
+        public bool VisibleToGuest { get; set; } = true;
     }
 }

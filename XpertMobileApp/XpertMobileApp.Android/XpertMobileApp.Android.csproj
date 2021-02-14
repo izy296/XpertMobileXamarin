@@ -118,6 +118,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown">
       <Version>18.2.0.47</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
+      <Version>18.2.0.47</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
       <Version>18.2.0.47</Version>
     </PackageReference>
@@ -125,6 +128,9 @@
       <Version>18.2.0.47</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRotator">
+      <Version>18.2.0.47</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView">
       <Version>18.2.0.47</Version>
     </PackageReference>
     <PackageReference Include="Xam.Plugin.Connectivity">
@@ -399,4 +405,9 @@
     <AndroidResource Include="Resources\drawable\user32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties TriggeredFromHotReload="False" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

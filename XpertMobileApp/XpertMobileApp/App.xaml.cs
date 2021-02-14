@@ -103,7 +103,14 @@ namespace XpertMobileApp
                     }
                     else
                     {
-                        MainPage = new LoginPage();
+                        if(Constants.AppName == Apps.X_BOUTIQUE)
+                        { 
+                            MainPage = new MainPage();
+                        }
+                        else 
+                        { 
+                            MainPage = new LoginPage();
+                        }
                     }
                 }
             }

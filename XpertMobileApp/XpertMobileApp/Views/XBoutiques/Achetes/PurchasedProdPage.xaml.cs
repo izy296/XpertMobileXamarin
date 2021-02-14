@@ -30,7 +30,7 @@ namespace XpertMobileApp.Views
         private GridLayout gridLayout;
         public PurchasedProdPage()
         {
-            viewModel = new PurchasedProdModel();
+            viewModel = new PurchasedProdModel(this);
             this.BindingContext = viewModel;
 
             InitializeComponent();
@@ -58,7 +58,7 @@ namespace XpertMobileApp.Views
             if (viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
 
-            viewModel.ExecuteLoadPanierCommand();
+            viewModel.ExecuteLoadPanierCommand(this);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -68,7 +68,7 @@ namespace XpertMobileApp.Views
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            viewModel.Reload();
+            viewModel.Reload(this);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace XpertMobileApp.Views
         private async void pullToRefresh_Refreshing(object sender, EventArgs e)
         {
             pullToRefresh.IsRefreshing = true;
-            await viewModel.Reload();
+            await viewModel.Reload(this);
             pullToRefresh.IsRefreshing = false;
         }
 

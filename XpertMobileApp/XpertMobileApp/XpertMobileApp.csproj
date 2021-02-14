@@ -20,6 +20,7 @@
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
+    <Compile Remove="Models\Feedback\Review.cs" />
     <Compile Remove="Models\Item.cs" />
     <Compile Remove="Models\Product.cs" />
     <Compile Remove="Models\Review.cs" />
@@ -102,9 +103,11 @@
     <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.2.0.47" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
@@ -122,6 +125,7 @@
     <Folder Include="Api\Models\Menu\" />
     <Folder Include="Api\Services\RFID\" />
     <Folder Include="Images\" />
+    <Folder Include="Models\Feedback\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\Feedback\" />
     <Folder Include="Views\Selector\Immariculation\" />
@@ -183,6 +187,9 @@
     <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
       <DependentUpon>WishListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\XBoutiques\Login\StylesLogin.xaml.cs">
+      <DependentUpon>StylesLogin.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -208,6 +215,15 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Templates\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Login\SimpleEmailEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Login\StylesLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Login\TabbedForm.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

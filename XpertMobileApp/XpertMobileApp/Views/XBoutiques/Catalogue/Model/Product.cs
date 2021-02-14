@@ -13,11 +13,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xpert.Common.DAO;
 
 namespace XpertMobileApp.Models
 {
     [Preserve(AllMembers = true)]
-
     public class Product : INotifyPropertyChanged
     {
         public string Id { get; set; }
@@ -131,5 +131,13 @@ namespace XpertMobileApp.Models
 
 
         public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public class ProdSortType 
+    { 
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public string Field { get; set; }
+        public Sort Direction { get; set; }
     }
 }

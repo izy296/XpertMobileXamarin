@@ -16,26 +16,15 @@ namespace XpertMobileApp.ViewModels
     [DataContract]
     public class ProductHomePageViewModel : BaseProdViewModel<PRODUITS, View_PRODUITS>
     {
-        private int totalOrderedItems = 0;
-        public Command<object> OpenMenuCommand { get; set; }
 
-        public ProductHomePageViewModel() 
+
+        public ProductHomePageViewModel(object page) : base(page)
         {
             Title = AppResources.pn_home;
-            OpenMenuCommand = new Command<object>(OpenMenu);
+
         }
 
-        public int TotalOrderedItems
-        {
-            get { return totalOrderedItems; }
-            set
-            {
-                if (totalOrderedItems != value)
-                {
-                    SetProperty(ref totalOrderedItems, value);
-                }
-            }
-        }
+
 
         #region Fields
 

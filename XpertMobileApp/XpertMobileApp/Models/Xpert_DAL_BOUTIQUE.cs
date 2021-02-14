@@ -121,12 +121,10 @@ namespace XpertMobileApp.DAL
     public partial class View_WishList
     {
         public bool IS_NEW { get; set; } = false;
-
-        public string CODE_DEFAULT_IMAGE { get; set; }
         public int NBR_VOTES { get; set; }
         public decimal NOTE { get; set; } // int
 
-
+        public string CODE_DEFAULT_IMAGE { get; set; }
         public string IMAGE_URL
         {
             get
@@ -134,6 +132,8 @@ namespace XpertMobileApp.DAL
                 return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
             }
         }
+        public List<string> ImageList { get; set; }
+        public bool Wished { get; set; }
     }
     
     #endregion
@@ -389,5 +389,10 @@ namespace XpertMobileApp.DAL
                 return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
             }
         }
+
+        public List<string> ImageList { get; set; }
+        public bool Wished { get; set; }
+        public decimal NOTE { get; set; }
+        public int NBR_VOTES { get; set; }
     }
 }

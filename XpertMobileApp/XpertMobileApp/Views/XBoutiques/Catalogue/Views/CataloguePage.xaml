@@ -9,7 +9,7 @@
                    xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
                    xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
-                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
                    Title="{Binding Title}">
     
     <ContentPage.ToolbarItems>
@@ -95,13 +95,18 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+            
+            <!-- Menu -->
             <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
                 <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
+
+                        <!-- Menu -->
                         <Grid x:Name="grid" Grid.Column="0" Margin="0,0,8,0">
                             <StackLayout Orientation="Horizontal">
 
@@ -117,8 +122,9 @@
                                    Opacity="{OnPlatform Default=1, Android=0.87}" />
                             </StackLayout>
                         </Grid>
-                    
-                        <Grid Grid.Column="2" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+
+                        <!-- Cart -->
+                        <Grid Grid.Column="3" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
                               HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OrderListCommand}"
@@ -140,7 +146,8 @@
                         
                         </Grid>
 
-                         <Grid x:Name="gridBtnFilter" Grid.Column="1" Margin="0" >
+                        <!-- Filter -->
+                        <Grid x:Name="gridBtnFilter" Grid.Column="2" Margin="0" >
                                 <StackLayout Orientation="Horizontal">
 
                                     <Button x:Name="Btn_filter" Margin="0" 
@@ -151,10 +158,27 @@
                                             />
                                 </StackLayout>
                          </Grid>
+
+                        <!-- Sort -->
+                        <Grid x:Name="gridBtnSort" Grid.Column="1" Margin="0" >
+                            <StackLayout Orientation="Horizontal">
+                                <Button x:Name="Btn_Sort" Margin="0" 
+                                            WidthRequest="50" HeightRequest="50" Clicked="Sort_Clicked"
+                                            Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                            TextColor="White"
+                                            Text="{x:Static fontawesome:FontAwesomeIcons.sortAlphaDown}" 
+                                            BackgroundColor="MediumVioletRed" 
+                                            />
+                            </StackLayout>
+                        </Grid>
                     </Grid>
             </Frame>
                 
             <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA" HeightRequest="{OnPlatform Default=0, UWP=1}" />
+
+
+                
+            <!-- Liste d'elements -->
             <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh" Grid.Row="2" 
                            ProgressBackgroundColor="#428BCA" Refreshing="pullToRefresh_Refreshing"
                            TransitionMode="SlideOnTop" 
@@ -336,6 +360,10 @@
             </pulltoRefresh:SfPullToRefresh>
 
             </Grid>
+
+            <syncfusion:SfPicker x:Name="sortPicker"  Margin="25,0,25,0" HeaderText="Trié par" ShowFooter="True" PickerMode="Dialog"
+                                     ItemsSource="{Binding SortTypes}" DisplayMemberPath="Title"
+                                  SelectionChanged="sortPicker_SelectionChanged" SelectedItem="{Binding SelectedProdSortType}"/>
         </StackLayout>
     </sample1:BaseView.Content>
 </sample1:BaseView>

@@ -20,65 +20,45 @@ namespace XpertMobileApp.ViewModels
     {
         protected override string ContoleurName => "PURCHASED_PROD";
 
-        public PurchasedProdModel() : base()
+        public PurchasedProdModel(object page) : base(page)
         {
             Title = "Produits achetés";
         }
 
         private void addProduct(View_PURCHASED_PROD item)
         {
+            List<string> listImgurl = new List<string>();
+
+            // Création des urls des images du produit
+            if (item.ImageList != null)
+            {
+                foreach (var str in item.ImageList)
+                {
+                    string val = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", str);
+                    listImgurl.Add(val);
+                }
+            }
+
             Product p = new Product()
             {
                 Id = item?.CODE_PRODUIT,
                 Name = item?.DESIGNATION_PRODUIT,
                 Image = item?.IMAGE_URL,
+                IMAGE_URL = item.IMAGE_URL,
+                CODE_DEFAULT_IMAGE = item.CODE_DEFAULT_IMAGE,
+                ImageList = listImgurl,
                 Price = item.PRIX_VENTE,
-                PurchasedQte = item.QTE
-             };
+                PurchasedQte = item.QTE,
+
+                ReviewValue = item.NOTE,
+                Ratings = item.NBR_VOTES.ToString() + " Votes",
+                Wished = item.Wished
+            };
 
             p.PropertyChanged += (s, e) =>
             {
                 var product = s as Product;
-                if (e.PropertyName == "Quantity")
-                {
-                    if (Orders.Contains(product) && product.Quantity <= 0)
-                    {
-                        Orders.Remove(product);
-
-                        BoutiqueManager.PanierElem.RemoveAll(x => x.CODE_PRODUIT == product.Id);
-                        // BoutiqueManager.RemoveCartItem(item.CODE_PRODUIT);
-
-                    }
-                    else if (!Orders.Contains(product) && product.Quantity > 0)
-                    {
-                        BoutiqueManager.PanierElem.Add(new View_PANIER()
-                        {
-                            CODE_PRODUIT = product.Id,
-                            DESIGNATION = product.Name,
-                            ID_USER = App.User.Token.userID,
-                            CODE_DEFAULT_IMAGE = product.CODE_DEFAULT_IMAGE,
-                            QUANTITE = product.Quantity
-                        });
-                        Orders.Add(product);
-                        /*
-                        CartItem ci = new CartItem()
-                        {
-                            CODE_PRODUIT = item.CODE_PRODUIT,
-                            ID_USER = App.User.Id,
-                            QUANTITE = product.Quantity,
-                        };
-                        BoutiqueManager.AddCartItem(ci);
-                        */
-                    }
-
-                    TotalOrderedItems = Orders.Count;
-                    TotalPrice = 0;
-                    for (int j = 0; j < Orders.Count; j++)
-                    {
-                        var order = Orders[j];
-                        TotalPrice = TotalPrice + order.TotalPrice;
-                    }
-                }
+                ManagProdPropertyChang(product, e, Page);
             };
 
             Products.Add(p);
