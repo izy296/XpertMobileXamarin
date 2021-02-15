@@ -186,7 +186,8 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.XMyCommandes, Image = "", Title=AppResources.pn_MyCommandes, VisibleToGuest=false },
                     new HomeMenuItem {Id = MenuItemType.XWishList, Image = "", Title="Wish List", VisibleToGuest=false },
                     new HomeMenuItem {Id = MenuItemType.XPurchased, Image = "", Title="Produits achetés", VisibleToGuest=false },
-                    
+
+                    new HomeMenuItem {Id = MenuItemType.XProfile, Image = "", Title="Profile", VisibleToGuest=false },
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
             }

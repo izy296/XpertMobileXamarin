@@ -125,7 +125,21 @@
                                         Text="{Binding Name}"
                                         TextColor="{DynamicResource Gray-900}" />
                                     </border:SfBorder>
-
+                                    
+                                    <!--  Entry to get phone from user  -->
+                                    <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                        <control:BorderlessEntry
+                                        x:Name="PhoneEntry"
+                                        Placeholder="téléphone"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Phone}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                    </border:SfBorder>
+                                    
                                     <!--  Entry to get email ID from user  -->
                                     <local:SimpleEmailEntry />
 

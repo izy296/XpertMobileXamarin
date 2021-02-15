@@ -12,7 +12,7 @@ namespace XpertMobileApp.Api
     internal class ProductManager : CrudService<View_STK_PRODUITS>
     {
         public ProductManager() : 
-            base(App.RestServiceUrl, "STK_PRODUITS", App.User.Token)
+            base(App.RestServiceUrl, "STK_PRODUITS", App.User?.Token)
         {
 
         }

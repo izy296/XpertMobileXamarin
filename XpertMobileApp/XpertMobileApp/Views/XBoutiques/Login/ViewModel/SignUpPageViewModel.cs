@@ -22,6 +22,8 @@ namespace XpertMobileApp.ViewModels.XLogin
         #region Fields
 
         private string name;
+        
+        private string phone;
 
         private string password;
 
@@ -64,6 +66,27 @@ namespace XpertMobileApp.ViewModels.XLogin
                 }
 
                 SetProperty(ref name, value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the name from user in the Sign Up page.
+        /// </summary>
+        public string Phone
+        {
+            get
+            {
+                return this.phone;
+            }
+
+            set
+            {
+                if (this.phone == value)
+                {
+                    return;
+                }
+
+                SetProperty(ref phone, value);
             }
         }
 
@@ -133,15 +156,15 @@ namespace XpertMobileApp.ViewModels.XLogin
         /// <param name="obj">The Object</param>
         private async Task LoginClicked(object obj)
         {
-            RegisterBindingModel l = new RegisterBindingModel()
+            try
             {
-                USER_NAME = Name,
-                Password = Password,
-                ConfirmPassword = ConfirmPassword,
-                Email = Email,
-            };
-
-            var res = await BoutiqueManager.Subscribe(l);
+                bool connected = await ConnectUserAsync(Email, Password);
+                popup(obj);
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+            }
         }
 
         /// <summary>
@@ -155,6 +178,7 @@ namespace XpertMobileApp.ViewModels.XLogin
                 RegisterBindingModel l = new RegisterBindingModel()
                 {
                     USER_NAME = Name,
+                    PhoneNumber = Phone,
                     Password = Password,
                     ConfirmPassword = ConfirmPassword,
                     Email = Email,
@@ -241,11 +265,14 @@ namespace XpertMobileApp.ViewModels.XLogin
                             return false;
                         }
                     }
+
+                    UserDialogs.Instance.HideLoading();
                     return true;
                 }
                 else
                 {
                     await UserDialogs.Instance.AlertAsync(AppResources.lp_login_WrongAcces, AppResources.lp_Login, AppResources.alrt_msg_Ok);
+                    UserDialogs.Instance.HideLoading();
                     return false;
                 }
             }

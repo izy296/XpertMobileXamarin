@@ -1,6 +1,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xpert.Common.WSClient.Services;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -13,6 +14,7 @@ namespace XpertMobileApp.Views
     public partial class CataloguePage : BaseView
     {
         LoadMoreViewModel viewModel;
+        internal CrudService<View_WishList> WishList;
         public CataloguePage()
         {
             viewModel = new LoadMoreViewModel(this);
@@ -22,6 +24,16 @@ namespace XpertMobileApp.Views
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
+        private CrudService<View_WishList> GetWListBll() 
+        {
+            if(WishList == null) 
+            { 
+                WishList = new CrudService<View_WishList>(App.RestServiceUrl, "WishList", App.User.Token);
+            }
+
+            return WishList;
+        }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -29,10 +41,10 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadMoreItemsCommand.Execute(listView);
 
-            /*
+           
             if(viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
-            */
+            /* */
             if (App.User?.Token != null) 
             { 
                 viewModel.ExecuteLoadPanierCommand(this);
@@ -82,12 +94,12 @@ namespace XpertMobileApp.Views
                 if (p.Wished)
                 {
                     p.Wished = false;
-                    CrudManager.WishList.DeleteItemAsync(p.Id);
+                    GetWListBll().DeleteItemAsync(p.Id);
                 }
                 else
                 {
                     p.Wished = true;
-                    CrudManager.WishList.AddItemAsync(wl);
+                    GetWListBll().AddItemAsync(wl);
                 }
             }
             else 

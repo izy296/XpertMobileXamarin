@@ -88,6 +88,8 @@ namespace XpertMobileApp.Views
                         return new WishListPage();
                     case (int)MenuItemType.XPurchased:
                         return new PurchasedProdPage();
+                    case (int)MenuItemType.XProfile:
+                        return new ProfilPage();
                     case (int)MenuItemType.MyCommandes:
                         return new Paging();
                     case (int)MenuItemType.Commandes:
@@ -187,6 +189,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.XPurchased:
                         MenuPages.Add(id, new NavigationPage(new PurchasedProdPage()));
+                        break;
+                    case (int)MenuItemType.XProfile:
+                        MenuPages.Add(id, new NavigationPage(new ProfilPage()));
                         break;
                     case (int)MenuItemType.Produits:
                         MenuPages.Add(id, new NavigationPage(new ProduitsPage()));

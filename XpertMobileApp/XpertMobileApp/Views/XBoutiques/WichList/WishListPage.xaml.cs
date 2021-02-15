@@ -1,25 +1,11 @@
-#region Copyright Syncfusion Inc. 2001-2019.
-// Copyright Syncfusion Inc. 2001-2019. All rights reserved.
-// Use of this code is subject to the terms of our license.
-// A copy of the current license can be obtained at any time by e-mailing
-// licensing@syncfusion.com. Any infringement will be prosecuted under
-// applicable laws. 
-#endregion
-
 using Syncfusion.ListView.XForms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
-using XpertMobileApp.Views;
 
 namespace XpertMobileApp.Views
 {
@@ -52,8 +38,8 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadMoreItemsCommand.Execute(listView);
+           // if (viewModel.Items.Count == 0)
+            viewModel.LoadMoreItemsCommand.Execute(listView);
 
             if (viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
@@ -79,7 +65,9 @@ namespace XpertMobileApp.Views
         private async void pullToRefresh_Refreshing(object sender, EventArgs e)
         {
             pullToRefresh.IsRefreshing = true;
+            // listview stop autoload
             await viewModel.Reload(this);
+            await viewModel.AddProducts(1, 10);
             pullToRefresh.IsRefreshing = false;
         }
 

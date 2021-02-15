@@ -184,6 +184,9 @@
     <Compile Update="Views\XBoutiques\Catalogue\Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\XBoutiques\Login\ProfilPage.xaml.cs">
+      <DependentUpon>ProfilPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
       <DependentUpon>WishListPage.xaml</DependentUpon>
     </Compile>

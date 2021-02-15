@@ -395,4 +395,58 @@ namespace XpertMobileApp.DAL
         public decimal NOTE { get; set; }
         public int NBR_VOTES { get; set; }
     }
+
+    public partial class AspNetUsers : BASE_CLASS
+    {
+        public string Id { get; set; } //[nvarchar] (128) NOT NULL,
+
+        public string Google_id { get; set; } // [nvarchar](max) NULL,
+        public string Email { get; set; } //[nvarchar] (256) NULL,
+        public string EmailConfirmed { get; set; }// [bit] NOT NULL,
+        public string PasswordHash { get; set; }// [nvarchar] (max) NULL,
+        public string SecurityStamp { get; set; }// [nvarchar](max) NULL,
+        public string PhoneNumberConfirmed { get; set; }// [bit] NOT NULL,
+        public string TwoFactorEnabled { get; set; }//[bit]    NOT NULL,
+        public string LockoutEndDateUtc { get; set; }// [datetime] NULL,
+        public string LockoutEnabled { get; set; }//][bit]NOT NULL,
+        public string AccessFailedCount { get; set; }// [int] NOT NULL,
+        public string UserName { get; set; } // [nvarchar](max) NULL,
+
+        private string firstName;
+        private string lastName;
+        private string adress;
+        private string vILLE;
+        private string phoneNumber;
+
+        public string FirstName
+        {
+            get { return firstName; }
+            set { SetProperty(ref firstName, value); }
+        }
+
+        public string LastName
+        {
+            get { return lastName; }
+            set { SetProperty(ref lastName, value); }
+        }
+
+        public string Adress
+        {
+            get { return adress; }
+            set { SetProperty(ref adress, value); }
+        }
+
+        public string VILLE
+        {
+            get { return vILLE; }
+            set { SetProperty(ref vILLE, value); }
+        }
+
+        public string PhoneNumber
+        {
+            get { return phoneNumber; }
+            set { SetProperty(ref phoneNumber, value); }
+        }
+
+    }
 }

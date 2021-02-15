@@ -430,7 +430,7 @@ namespace XpertMobileApp.Api.ViewModels
                 }
                 else if (!Orders.Contains(product) && product.Quantity > 0)
                 {
-                    if (string.IsNullOrEmpty(App.User?.Token?.userID)) 
+                    if (!string.IsNullOrEmpty(App.User?.Token?.userID)) 
                     {
                         BoutiqueManager.PanierElem.Add(new View_PANIER()
                         {

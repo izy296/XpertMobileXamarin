@@ -76,7 +76,7 @@ namespace XpertMobileApp.Views
                   {
                       CODE_PRODUIT = product.Id,
                       DESIGNATION = product.Name,
-                      ID_USER = App.User.Id,
+                      ID_USER = App.User.Token.userID,
                       //IMAGE_URL = product.Image,
                       QUANTITE = 1
                   };
@@ -97,7 +97,7 @@ namespace XpertMobileApp.Views
                 {
                     CODE_PRODUIT = product.Id,
                     //ID_PANIER = BoutiqueManager.PanierElem[0]?.ID_PANIER,
-                    ID_USER = App.User.Id,
+                    ID_USER = App.User.Token.userID,
                     QUANTITE = 1
                 };
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);

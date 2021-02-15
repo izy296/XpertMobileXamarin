@@ -69,7 +69,7 @@ namespace XpertMobileApp.ViewModels
             this.AddCondition<COMMANDES, DateTime?>(e => e.CREATED_ON, Operator.BETWEEN_DATE, StartDate, EndDate);
 
 
-            this.AddCondition<COMMANDES, string>(e => e.ID_USER, App.User.Id);
+            this.AddCondition<COMMANDES, string>(e => e.ID_USER, App.User.Token.userID);
 
             this.AddOrderBy<COMMANDES, DateTime?>(e => e.CREATED_ON, Sort.DESC);
 

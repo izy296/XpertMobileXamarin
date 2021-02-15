@@ -5,6 +5,7 @@ namespace XpertMobileApp.DAL
 {
     public class RegisterBindingModel
     {
+        public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string USER_NAME { get; set; }
         public string Password { get; set; }

@@ -27,7 +27,7 @@ namespace XpertMobileApp.Api
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, "Produits", "GetProductDetails");
             url += WSApi2.AddParam(url, "CODE_PRODUCT", codeprod);
-            url += WSApi2.AddParam(url, "ID_USER", App.User.Id);
+            url += WSApi2.AddParam(url, "ID_USER", App.User.Token.userID);
             return await WSApi2.RetrievAauthorizedValue<View_PRODUITS_DETAILS>(url, Token);
         }
 
@@ -40,7 +40,7 @@ namespace XpertMobileApp.Api
         internal static async Task<List<View_PANIER>> GetPanier()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, "PANIER", "Afficher_Panier");
-            url += WSApi2.AddParam(url, "codeUser", App.User.Id);
+            url += WSApi2.AddParam(url, "codeUser", App.User.Token.userID);
             return await WSApi2.RetrievAauthorizedData<View_PANIER>(url, Token);
         }
 
