@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Api
 {
@@ -102,5 +103,36 @@ namespace XpertMobileApp.Api
             return res;
         }
 
+        internal static async Task<Product> LoadProdDetails (string codeProd) 
+        {
+            var pDetails = await GetProduitDetail(codeProd);
+
+            Product p = new Product()
+            {
+                Id = pDetails.CODE_PRODUIT,
+                Name = pDetails.DESIGNATION,
+                Category = pDetails.DESIGNATION_FAMILLE,
+                Price = pDetails.PRIX_VENTE,
+                Description = pDetails.DESCRIPTION,
+                ReviewValue = pDetails.NOTE,
+                UserReviewValue = pDetails.NOTE_USER,
+                IMAGE_URL = pDetails.IMAGE_URL
+            };
+
+            List<string> listImgurl = new List<string>();
+
+            // Création des urls des images du produit
+            if (pDetails.ImageList != null)
+            {
+                foreach (var str in pDetails.ImageList)
+                {
+                    string val = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", str);
+                    listImgurl.Add(val);
+                }
+            }
+            p.ImageList = listImgurl;
+
+            return p;
+        }
     }
 }

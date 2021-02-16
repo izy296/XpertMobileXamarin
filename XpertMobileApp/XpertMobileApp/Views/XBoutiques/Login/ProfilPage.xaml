@@ -7,7 +7,7 @@
              xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
              xmlns:local="clr-namespace:XpertMobileApp.Views.XLogin"
              x:Name="profilePage"
-             Title="{Binding title}"
+             Title="{Binding Title}"
              x:Class="XpertMobileApp.Views.ProfilPage">
     
     <ContentPage.Resources>
@@ -25,33 +25,33 @@
     
     <ContentPage.Content>
 
-        <StackLayout Padding="16,30,16,36" Spacing="24" HorizontalOptions="Center">
+        <StackLayout Padding="16,60,16,36" Spacing="24" HorizontalOptions="Center">
             <!--  Entry to get Nom from user  -->
             <border:SfBorder
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                                    Style="{StaticResource SfBorderStyle}">
-                                     <control:BorderlessEntry
-                                        x:Name="NameEntry"
-                                        Placeholder="Nom"
-                                        PlaceholderColor="{DynamicResource Gray-700}"
-                                        Style="{StaticResource EntryStyle}"
-                                        Text="{Binding Item.FirstName}"
-                                        TextColor="{DynamicResource Gray-900}" />
+                       BackgroundColor="{DynamicResource Gray-White}"
+                       BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                       Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                           x:Name="NameEntry"
+                           Placeholder="Nom"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           Text="{Binding Item.FirstName}"
+                           TextColor="{DynamicResource Gray-900}" />
             </border:SfBorder>
 
             <!--  Entry to get LastName from user  -->
             <border:SfBorder
-                                    BackgroundColor="{DynamicResource Gray-White}"
-                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
-                                    Style="{StaticResource SfBorderStyle}">
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource SfBorderStyle}">
                 <control:BorderlessEntry
-                                        x:Name="PrenomEntry"
-                                        Placeholder="Prénom"
-                                        PlaceholderColor="{DynamicResource Gray-700}"
-                                        Style="{StaticResource EntryStyle}"
-                                        Text="{Binding Item.LastName}"
-                                        TextColor="{DynamicResource Gray-900}" />
+                       x:Name="PrenomEntry"
+                       Placeholder="Prénom"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Item.LastName}"
+                       TextColor="{DynamicResource Gray-900}" />
             </border:SfBorder>
 
             <!--  Entry to get email ID from user  -->

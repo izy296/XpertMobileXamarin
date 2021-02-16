@@ -1,22 +1,13 @@
 ﻿using Acr.UserDialogs;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
-using XpertMobileApp.Api;
-using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Models;
-using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels.XLogin
 {
-    /// <summary>
-    /// ViewModel for sign-up page.
-    /// </summary>
     [Preserve(AllMembers = true)]
     public class ProfilePageViewModel : LoginViewModel
     {
@@ -51,13 +42,20 @@ namespace XpertMobileApp.ViewModels.XLogin
         {
             try 
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                
                 Item.Email = Email;
+                
                 bool res = await GetBll().UpdateItemAsync(Item);
+                
                 if(res)
                     await UserDialogs.Instance.AlertAsync("Profile mis à jour!", AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+                
+                UserDialogs.Instance.HideLoading();
             } 
             catch(Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
             }
         }

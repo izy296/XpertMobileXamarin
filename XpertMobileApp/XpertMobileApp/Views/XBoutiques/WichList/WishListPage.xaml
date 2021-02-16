@@ -177,6 +177,7 @@
                                   Tablet="300"
                                   Desktop="300"/>
                             </sync:SfListView.ItemSize>
+                            
                             <sync:SfListView.LayoutManager>
                                 <sync:GridLayout>
                                     <sync:GridLayout.SpanCount>
@@ -187,6 +188,7 @@
                                     </sync:GridLayout.SpanCount>
                                 </sync:GridLayout>
                             </sync:SfListView.LayoutManager>
+                           <!-- -->
                             <sync:SfListView.ItemTemplate>
                                 <DataTemplate>
                                     <Frame OutlineColor="#b3b3b3" Margin="5" 

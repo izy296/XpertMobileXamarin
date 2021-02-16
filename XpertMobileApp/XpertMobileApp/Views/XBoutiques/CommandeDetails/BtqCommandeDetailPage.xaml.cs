@@ -95,41 +95,23 @@ namespace XpertMobileApp.Views
 
         private async void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var item = e.Item as View_COMMANDES_DETAILS;
-            if (item == null)
-                return;
-
-            var pDetails = await BoutiqueManager.GetProduitDetail(item.CODE_PRODUIT);
-
-            Product p = new Product()
+            try
             {
-                Id        = item.CODE_PRODUIT,
-                Name      = item.DESIGNATION_PRODUIT,
-                Category  = pDetails.DESIGNATION_FAMILLE,
-                Price     = pDetails.PRIX_VENTE,
-                Description     = pDetails.DESCRIPTION,
-                ReviewValue     = pDetails.NOTE,
-                UserReviewValue = pDetails.NOTE_USER,
-                IMAGE_URL       = pDetails.IMAGE_URL                
-            };
+                var item = e.Item as View_COMMANDES_DETAILS;
+                if (item == null)
+                    return;
 
-            List<string> listImgurl = new List<string>();
+                Product p = await BoutiqueManager.LoadProdDetails(item.CODE_PRODUIT);
 
-            // Création des urls des images du produit
-            if (pDetails.ImageList != null)
-            {
-                foreach (var str in pDetails.ImageList)
-                {
-                    string val = App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", str);
-                    listImgurl.Add(val);
-                }
+                await Navigation.PushAsync(new BtqProductDetailPage(p, false, true));
+
+                ItemsListView.SelectedItem = null;
             }
-            p.ImageList = listImgurl;
-
-            await Navigation.PushAsync(new BtqProductDetailPage(p));
-
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
     }
 }

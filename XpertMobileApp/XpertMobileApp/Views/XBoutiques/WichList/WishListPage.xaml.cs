@@ -1,7 +1,10 @@
+using Acr.UserDialogs;
 using Syncfusion.ListView.XForms;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -20,6 +23,7 @@ namespace XpertMobileApp.Views
             this.BindingContext = viewModel;
 
             InitializeComponent();
+            /*
             gridLayout = new GridLayout();
 
             if (Device.RuntimePlatform == Device.Android || Device.RuntimePlatform == Device.iOS)
@@ -31,20 +35,26 @@ namespace XpertMobileApp.Views
             }
 
             listView.LayoutManager = gridLayout;
+            */
+
             NavigationPage.SetHasNavigationBar(this, false);
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
-           // if (viewModel.Items.Count == 0)
-            viewModel.LoadMoreItemsCommand.Execute(listView);
+            if (viewModel.Items.Count == 0)
+                viewModel.LoadMoreItemsCommand.Execute(listView);
+
 
             if (viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
-
-            viewModel.ExecuteLoadPanierCommand(this);
+            /* */
+            if (App.User?.Token != null)
+            {
+                viewModel.ExecuteLoadPanierCommand(this);
+            }
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -94,14 +104,23 @@ namespace XpertMobileApp.Views
 
         private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Product;
-            if (item == null)
-                return;
+            try 
+            { 
+                var item = e.ItemData as Product;
+                if (item == null)
+                    return;
 
-            await Navigation.PushAsync(new BtqProductDetailPage(item));
+                Product p = await BoutiqueManager.LoadProdDetails(item.Id);
+                await Navigation.PushAsync(new BtqProductDetailPage(p, false, false));
 
-            // Manually deselect item.
-            listView.SelectedItem = null;
+                // Manually deselect item.
+                listView.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
     }
 }

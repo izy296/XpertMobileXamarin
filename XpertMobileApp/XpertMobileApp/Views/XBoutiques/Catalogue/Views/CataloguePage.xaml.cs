@@ -1,7 +1,10 @@
+using Acr.UserDialogs;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
+using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -111,14 +114,23 @@ namespace XpertMobileApp.Views
 
         private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
-            var item = e.ItemData as Product;
-            if (item == null)
-                return;
+            try 
+            { 
+                var item = e.ItemData as Product;
+                if (item == null)
+                    return;
 
-            await Navigation.PushAsync(new BtqProductDetailPage(item));
+                Product p = await BoutiqueManager.LoadProdDetails(item.Id);
+                await Navigation.PushAsync(new BtqProductDetailPage(p,false,false));
 
-            // Manually deselect item.
-            listView.SelectedItem = null;
+                // Manually deselect item.
+                listView.SelectedItem = null;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
 
         private void sortPicker_SelectionChanged(object sender, Syncfusion.SfPicker.XForms.SelectionChangedEventArgs e)

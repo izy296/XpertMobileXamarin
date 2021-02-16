@@ -254,6 +254,13 @@ namespace XpertMobileApp.Api.ViewModels
         {
             var p = obj as Product;
             p.Quantity += 1;
+
+            /*
+            Product orderedP = Orders.Where(x => x.Id == p.Id).FirstOrDefault();
+            
+            if(orderedP != null)
+                orderedP.Quantity += 1;
+            */
         }
         
         #endregion
@@ -376,9 +383,9 @@ namespace XpertMobileApp.Api.ViewModels
 
                     Orders.Add(p);
                     TotalPrice = TotalPrice + p.TotalPrice;
-                    TotalOrderedItems = Orders.Count;
                     // UserDialogs.Instance.HideLoading();
                 }
+                TotalOrderedItems = Orders.Count;
             }
             catch (Exception ex)
             {
