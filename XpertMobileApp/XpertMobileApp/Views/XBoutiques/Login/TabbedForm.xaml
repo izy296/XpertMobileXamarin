@@ -58,8 +58,23 @@
                                 <Grid VerticalOptions="Center">
                                     <StackLayout Padding="16" HorizontalOptions="Center" 
                                              VerticalOptions="Center">
-                                        <local:SimpleEmailEntry Padding="0,24" />
 
+                                        <!--  Entry to get username from user  -->
+                                        <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntryL}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                                            <control:BorderlessEntry
+                                        x:Name="NameEntryL"
+                                        Placeholder="Nom"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Name}"
+                                        TextColor="{DynamicResource Gray-900}" />
+                                        </border:SfBorder>
+                                        <!--
+                                        <local:SimpleEmailEntry Padding="0,24" />
+                                        -->
                                         <!--  Entry to get password from user  -->
                                         <border:SfBorder
                                     BackgroundColor="{DynamicResource Gray-White}"

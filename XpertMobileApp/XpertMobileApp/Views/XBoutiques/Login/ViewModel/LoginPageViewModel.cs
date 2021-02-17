@@ -21,7 +21,7 @@ namespace XpertMobileApp.ViewModels.XLogin
     public class LoginPageViewModel : LoginViewModel
     {
         #region Fields
-
+        private string name;
         private string password;
 
         #endregion
@@ -43,6 +43,27 @@ namespace XpertMobileApp.ViewModels.XLogin
         #endregion
 
         #region property
+
+        /// <summary>
+        /// Gets or sets the property that bounds with an entry that gets the name from user in the Sign Up page.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            set
+            {
+                if (this.name == value)
+                {
+                    return;
+                }
+
+                SetProperty(ref name, value);
+            }
+        }
 
         /// <summary>
         /// Gets or sets the property that is bound with an entry that gets the password from user in the login page.
@@ -100,7 +121,8 @@ namespace XpertMobileApp.ViewModels.XLogin
         {
             try
             {
-                bool connected = await ConnectUserAsync(Email, Password);
+                bool connected = await ConnectUserAsync(Name, Password);
+                MessagingCenter.Send(this, "RELOAD_MENU", "");
                 popup(obj);
             }
             catch (Exception ex)

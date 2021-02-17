@@ -10,6 +10,7 @@ using Acr.UserDialogs;
 using Xpert.Common.WSClient.Helpers;
 using System.Linq;
 using Xpert;
+using XpertMobileApp.ViewModels.XLogin;
 
 namespace XpertMobileApp.Views
 {
@@ -21,6 +22,7 @@ namespace XpertMobileApp.Views
         public MenuPage()
         {
             InitializeComponent();
+
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
@@ -200,6 +202,33 @@ namespace XpertMobileApp.Views
                 var id = (int)((HomeMenuItem)e.SelectedItem).Id;
                 await RootPage.NavigateFromMenu(id);
             };
+
+            MessagingCenter.Subscribe<SignUpPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
+            {
+                ReloadMenu();
+            });
+
+            MessagingCenter.Subscribe<LoginPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
+            {
+                ReloadMenu();
+            });
+        }
+
+        private void ReloadMenu() 
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                var menus = menuItems;
+                if (Constants.AppName == Apps.X_BOUTIQUE)
+                {
+                    if (App.User?.Token == null)
+                        foreach (var item in menuItems)
+                        {
+                            menus = menuItems.Where(x => x.VisibleToGuest == true).ToList();
+                        }
+                }
+                ListViewMenu.ItemsSource = menus;
+            });
         }
 
         private void btn_Disconnect_Clicked(object sender, EventArgs e)

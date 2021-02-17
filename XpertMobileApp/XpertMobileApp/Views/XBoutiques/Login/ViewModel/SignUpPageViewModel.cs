@@ -10,6 +10,7 @@ using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels.XLogin
 {
@@ -158,7 +159,8 @@ namespace XpertMobileApp.ViewModels.XLogin
         {
             try
             {
-                bool connected = await ConnectUserAsync(Email, Password);
+                bool connected = await ConnectUserAsync(Name, Password);
+                MessagingCenter.Send(this, "RELOAD_MENU", "");
                 popup(obj);
             }
             catch (Exception ex)
@@ -186,6 +188,7 @@ namespace XpertMobileApp.ViewModels.XLogin
 
                 var res = await BoutiqueManager.Subscribe(l);
                 bool connected = await ConnectUserAsync(Email, Password);
+                MessagingCenter.Send(this, "RELOAD_MENU", "");
 
                 await UserDialogs.Instance.AlertAsync("Vous êtes maintenant inscrit(e), Vous pouvez désormais passer vos commandes!", AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
 

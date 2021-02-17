@@ -90,10 +90,15 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        protected CrudService<TView> GetService() 
+        { 
+           return new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User?.Token);
+        }
+
         protected virtual void InitConstructor()
         {
             string ctrlName = ContoleurName;
-            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User?.Token);
+            service = GetService();
             Summaries = new ObservableCollection<SAMMUARY>();
             Items = new ObservableCollection<TView>();
 
@@ -140,6 +145,7 @@ namespace XpertMobileApp.Api.ViewModels
                     await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
                 }
+                service = GetService();
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 elementsCount = await service.ItemsCount(GetFilterParams());
 
@@ -212,6 +218,7 @@ namespace XpertMobileApp.Api.ViewModels
 
         internal async Task GetItemsSum()
         {
+            service = GetService();
             ElementsSum = await service.ItemsSum(GetFilterParams());
         }
 
@@ -223,6 +230,7 @@ namespace XpertMobileApp.Api.ViewModels
 
         internal async Task<SortedDictionary<string, decimal>> GetItemsSums()
         {
+            service = GetService();
             var result = await service.ItemsSums(GetFilterParams());
             return result;
         }
@@ -260,6 +268,7 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    service = GetService();
                     await service.UpdateItemAsync(item);
                 }
             }
@@ -286,6 +295,7 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    service = GetService();
                     await service.DeleteItemAsync(codeItem);
                 }
             }
@@ -312,6 +322,7 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    service = GetService();
                     await service.AddItemAsync(item);
                     await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
     AppResources.alrt_msg_Ok);
@@ -832,6 +843,7 @@ namespace XpertMobileApp.Api.ViewModels
             {
                 IsBusy = true;
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                service = GetService();
                 var res = await service.UpdateItemAsync(item);
                 UserDialogs.Instance.HideLoading();
 

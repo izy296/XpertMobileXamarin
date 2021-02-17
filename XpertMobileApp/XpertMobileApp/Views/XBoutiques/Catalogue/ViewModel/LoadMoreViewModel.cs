@@ -76,7 +76,6 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SearchedText))
                 this.AddCondition<View_PRODUITS, string>(e => e.DESIGNATION, Operator.LIKE_ANY, SearchedText);
 
-            
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE))
                 this.AddCondition<View_PRODUITS, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE);
            
