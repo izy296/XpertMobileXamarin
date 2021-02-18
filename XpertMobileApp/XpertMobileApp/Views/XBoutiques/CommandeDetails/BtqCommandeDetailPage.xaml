@@ -8,7 +8,7 @@
 
     <StackLayout x:Name="sl_content" Padding="5" >
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="15" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <Grid  BackgroundColor="White" >
 
                 <Grid.ColumnDefinitions>
@@ -27,7 +27,7 @@
                 </StackLayout>
 
                 <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="{Binding Item.Title}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    <Label Text="{Binding Item.Title}" TextColor="#3d3d3d" FontAttributes="Bold" FontSize="Default"/>
                     <!--
                     <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
                     <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
@@ -42,7 +42,7 @@
             </Grid>
         </Frame>
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="10" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
@@ -62,9 +62,9 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
+                                <Frame CornerRadius="8" Padding="0" Margin="0" BackgroundColor="White" HasShadow="True"  
                                            OutlineColor="Transparent" ClassId="{Binding ID, StringFormat='fr_{0}'}">
-                                    <StackLayout Spacing="20" Padding="15" BackgroundColor="Transparent" >
+                                    <StackLayout Spacing="20" Padding="5" >
                                         <Grid Margin="0" Padding="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
@@ -80,7 +80,7 @@
                                             <StackLayout HorizontalOptions="FillAndExpand">
 
                                                 <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
-                                                           TextColor="{StaticResource DefaultTextColor}" 
+                                                           TextColor="#3d3d3d"  
                                                            FontSize="Default"/>
                                             </StackLayout>
 

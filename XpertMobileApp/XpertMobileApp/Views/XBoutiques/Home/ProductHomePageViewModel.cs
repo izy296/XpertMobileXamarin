@@ -6,6 +6,12 @@ using Xamarin.Forms.Internals;
 using XpertMobileApp.DAL;
 using System.Collections.Generic;
 using XpertMobileApp.Api.ViewModels;
+using System.Threading.Tasks;
+using XpertMobileApp.Api;
+using XpertMobileApp.Views;
+using System;
+using Acr.UserDialogs;
+using Xpert.Common.WSClient.Helpers;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -16,15 +22,10 @@ namespace XpertMobileApp.ViewModels
     [DataContract]
     public class ProductHomePageViewModel : BaseProdViewModel<PRODUITS, View_PRODUITS>
     {
-
-
         public ProductHomePageViewModel(object page) : base(page)
         {
             Title = AppResources.pn_home;
-
         }
-
-
 
         #region Fields
 
@@ -33,6 +34,10 @@ namespace XpertMobileApp.ViewModels
         private ObservableCollection<Product> offerProduts;
 
         private ObservableCollection<Product> recommendedProduts;
+
+        private ObservableCollection<Product> bestEvaluated;
+
+        private ObservableCollection<Product> buestSelled;
 
         private Command itemSelectedCommand;
 
@@ -55,6 +60,47 @@ namespace XpertMobileApp.ViewModels
         /// <summary>
         /// Gets or sets the property that has been bound with list view, which displays the collection of products from json.
         /// </summary>
+
+        [DataMember(Name = "bestEvaluated")]
+        public ObservableCollection<Product> BestEvaluated
+        {
+            get
+            {
+                return this.bestEvaluated;
+            }
+
+            set
+            {
+                if (this.bestEvaluated == value)
+                {
+                    return;
+                }
+
+                this.bestEvaluated = value;
+                SetProperty(ref bestEvaluated, value);
+            }
+        }
+
+        [DataMember(Name = "buestSelled")]
+        public ObservableCollection<Product> BuestSelled
+        {
+            get
+            {
+                return this.buestSelled;
+            }
+
+            set
+            {
+                if (this.buestSelled == value)
+                {
+                    return;
+                }
+
+                this.buestSelled = value;
+                SetProperty(ref buestSelled, value);
+            }
+        }
+
         [DataMember(Name = "newarrivalproducts")]
         public ObservableCollection<Product> NewArrivalProducts
         {
@@ -132,7 +178,9 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected));
+                return this.itemSelectedCommand = new Command(async (object obj) => await this.ItemSelected(obj));
+
+              //  return this.itemSelectedCommand ?? (this.itemSelectedCommand = new Command(this.ItemSelected));
             }
         }
 
@@ -144,9 +192,9 @@ namespace XpertMobileApp.ViewModels
         /// Invoked when an item is selected.
         /// </summary>
         /// <param name="attachedObject">The Object</param>
-        private void ItemSelected(object attachedObject)
+        private async Task ItemSelected(object attachedObject)
         {
-            // Do something
+
         }
 
 
@@ -176,7 +224,10 @@ namespace XpertMobileApp.ViewModels
                     CODE_DEFAULT_IMAGE = item.CODE_DEFAULT_IMAGE,
                     ImageList = listImgurl,
                     Price = item.PRIX_VENTE,
-                    Wished = item.Wished
+                    ReviewValue = item.NOTE,
+                    Ratings = item.NBR_VOTES.ToString("") + " Votes",
+                    Wished = item.Wished,
+                    PurchasedQte = item.QTE_VENDU
                 });
             }
 

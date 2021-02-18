@@ -282,7 +282,7 @@
                                                                     <ColumnDefinition Width="Auto"/>
                                                                 </Grid.ColumnDefinitions>
                                                                 <Label Text="{Binding ReviewValue}" Grid.Column="0" FontFamily="Bold"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
-                                                                       Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
+                                                                       Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}' FontAttributes="Bold"
                                                                        FontSize="{OnIdiom Default=15, Phone=12}">
                                                                 </Label>
                                                                 <Image Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />

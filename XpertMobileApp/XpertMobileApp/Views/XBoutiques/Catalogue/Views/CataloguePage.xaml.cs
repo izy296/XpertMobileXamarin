@@ -44,7 +44,6 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 viewModel.LoadMoreItemsCommand.Execute(listView);
 
-           
             if(viewModel.Familles.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(listView);
             /* */

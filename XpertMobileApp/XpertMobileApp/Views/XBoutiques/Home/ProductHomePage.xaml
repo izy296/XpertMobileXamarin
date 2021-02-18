@@ -20,7 +20,6 @@
 
     <basePage:BaseView.Resources>
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -30,7 +29,7 @@
     <basePage:BaseView.Content>
         <ScrollView>
             <StackLayout Spacing="0" BackgroundColor="#F0F2F5">
-                <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
+                <Frame BackgroundColor="{StaticResource BoutiquePrimary}" HasShadow="True" Padding="0" Margin="0">
                     <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
@@ -44,7 +43,7 @@
                                         WidthRequest="50" HeightRequest="50"
                                         Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
                                         TextColor="White" Command="{Binding OpenMenuCommand}" 
-                                        Text="{x:Static fontawesome:FontAwesomeIcons.faBars}" BackgroundColor="MediumVioletRed" 
+                                        Text="{x:Static fontawesome:FontAwesomeIcons.faBars}" BackgroundColor="{StaticResource BoutiquePrimary}"
                                         />
 
                                 <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
@@ -53,7 +52,7 @@
                             </StackLayout>
                         </Grid>
 
-                        <Grid Grid.Column="2" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+                        <Grid Grid.Column="2" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="{StaticResource BoutiquePrimary}" 
                           HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding OrderListCommand}"
@@ -81,7 +80,7 @@
                                             WidthRequest="50" HeightRequest="50" Clicked="Refresh_Clicked"
                                             Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
                                             TextColor="White"
-                                            Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" BackgroundColor="MediumVioletRed" 
+                                            Text="{x:Static fontawesome:FontAwesomeIcons.Sync}" BackgroundColor="{StaticResource BoutiquePrimary}" 
                                             />
                             </StackLayout>
                         </Grid>
@@ -167,13 +166,12 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
-                        LineHeight="{OnPlatform Android=1.25,
-                                                Default=-1}"
-                        Text="Nouveau produits"
+                        LineHeight="{OnPlatform Android=1.25, Default=-1}"
+                        Text="Les mieux notés"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton IsVisible="False"
+                    <buttons:SfButton 
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"
@@ -196,9 +194,10 @@
                     HeightRequest="190"
                     HorizontalOptions="FillAndExpand"
                     IsStickyHeader="True"
-                    ItemsSource="{Binding NewArrivalProducts}"
+                    ItemsSource="{Binding BestEvaluated}"
                     RowSpacing="0"
                     SelectionBackgroundColor="Transparent"
+                    ItemTapped="listView_ItemTapped"
                     TapCommand="{Binding ItemSelectedCommand}">
 
                     <listView:SfListView.ItemTemplate>
@@ -230,7 +229,7 @@
                                         Margin="0,0,0,8"
                                         Aspect="AspectFill"
                                         BackgroundColor="{DynamicResource Gray-200}"
-                                        HeightRequest="120"
+                                        HeightRequest="90"
                                         HorizontalOptions="Center"
                                         Source="{Binding IMAGE_URL}"
                                         VerticalOptions="Center"
@@ -244,6 +243,35 @@
                                         HorizontalOptions="Center"
                                         Text="{Binding Name}"
                                         TextColor="{DynamicResource Gray-900}" />
+
+                                    <Grid VerticalOptions="Center" HorizontalOptions="Center" MinimumHeightRequest="40">
+                                        <Grid.ColumnDefinitions>
+                                            <!-- <ColumnDefinition Width="Auto"/>-->
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0" HorizontalOptions="Center">
+                                            <Frame BackgroundColor="Transparent" Padding="2" HeightRequest="20" 
+                                                               HasShadow="{OnPlatform Default=true, iOS=false, macOS=false}"
+                                                               WidthRequest="{OnIdiom Default=40, Phone=35}">
+                                                <Grid ColumnSpacing="0">
+                                                    <Grid.ColumnDefinitions >
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label Text="{Binding ReviewValue, StringFormat='{0:N1}'}" Grid.Column="0" FontFamily="Bold"  
+                                                           VerticalOptions="Center" HorizontalOptions="Center" TextColor="{DynamicResource Green}"
+                                                                       Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
+                                                                       FontSize="{OnIdiom Default=15, Phone=12}">
+                                                    </Label>
+                                                    <Image Source="RatingY.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
+                                                </Grid>
+                                            </Frame>
+                                        </Grid>
+                                        
+                                        <Label Grid.Column="1" Text="{Binding Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Bold" TextColor="Gray" 
+                                           FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
+                                        <!-- -->
+                                    </Grid>
 
                                 </StackLayout>
                             </control:CustomShadowFrame>
@@ -271,11 +299,11 @@
                         FontSize="12"
                         HorizontalOptions="StartAndExpand"
                         LineHeight="{OnPlatform Android=1.25, Default=-1}"
-                        Text="Offres"
+                        Text="Les plus achetés"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton IsVisible="False"
+                    <buttons:SfButton 
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"
@@ -298,10 +326,11 @@
                     HorizontalOptions="FillAndExpand"
                     IsScrollBarVisible="False"
                     IsStickyHeader="True"
-                    ItemsSource="{Binding OfferProducts}"
+                    ItemsSource="{Binding BuestSelled}"
                     Orientation="Horizontal"
                     RowSpacing="0"
                     SelectionBackgroundColor="Transparent"
+                    ItemTapped="listView_ItemTapped"
                     TapCommand="{Binding ItemSelectedCommand}">
 
                     <listView:SfListView.ItemTemplate>
@@ -358,8 +387,8 @@
                                         FontSize="12"
                                         HorizontalOptions="Center"
                                         LineHeight="{OnPlatform Android=1.25,Default=-1}"
-                                        Text="{Binding Reduction, StringFormat='{0}% OFF'}"
-                                        TextColor="{DynamicResource PrimaryColor}" />
+                                        Text="{Binding PurchasedQte, StringFormat='({0:n0}) vendus'}"
+                                        TextColor="{DynamicResource Green}" />
 
                                 </StackLayout>
                             </control:CustomShadowFrame>
@@ -380,11 +409,11 @@
                         HorizontalOptions="StartAndExpand"
                         LineHeight="{OnPlatform Android=1.25,
                                                 Default=-1}"
-                        Text="Produits recommandés"
+                        Text="Nouveau produits"
                         TextColor="{DynamicResource Gray-800}"
                         VerticalOptions="Center" />
 
-                    <buttons:SfButton IsVisible="False"
+                    <buttons:SfButton 
                         Margin="0"
                         Padding="0"
                         BackgroundColor="#F0F2F5"
@@ -407,10 +436,11 @@
                     HorizontalOptions="FillAndExpand"
                     IsScrollBarVisible="False"
                     IsStickyHeader="True"
-                    ItemsSource="{Binding RecommendedProducts}"
+                    ItemsSource="{Binding NewArrivalProducts}"
                     Orientation="Horizontal"
                     RowSpacing="0"
                     SelectionBackgroundColor="Transparent"
+                    ItemTapped="listView_ItemTapped"
                     TapCommand="{Binding ItemSelectedCommand}">
 
                     <listView:SfListView.ItemTemplate>

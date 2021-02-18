@@ -81,11 +81,11 @@ namespace XpertMobileApp.Api
             return await WSApi2.RetrievAauthorizedData<View_COMMANDES_DETAILS>(url, Token);
         }
 
-        internal static async Task<decimal> SetProducEval(Evaluation note)
+        internal static async Task<bool> SetProducEval(Evaluation note)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, "EVALUATION", "ADD_COMMENT_NOTE");
             //url += WSApi2.AddParam(url, "codeDoc", codeOrder);
-            return await WSApi2.PostAauthorizedValue<decimal, Evaluation>(url, note, Token);
+            return await WSApi2.PostAauthorizedValue<bool, Evaluation>(url, note, Token);
         }
 
         internal static async Task<HOME_INFOS> GetHomeProducts()

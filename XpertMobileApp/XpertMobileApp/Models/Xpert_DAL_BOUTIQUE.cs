@@ -50,12 +50,12 @@ namespace XpertMobileApp.DAL
         public string Ratings { get; set; } = "1500 Votes";
         public int Reduction { get; set; } = 15;
         public decimal ReviewValue { get; set; } = (decimal)4.5;
-
+        public string CODE_DEFAULT_IMAGE { get; set; }
         public string IMAGE_URL
         {
             get
             {
-                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_PRODUIT);
+                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
             }
         }
 
@@ -116,6 +116,9 @@ namespace XpertMobileApp.DAL
                 return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeImage={0}", CODE_DEFAULT_IMAGE);
             }
         }
+
+
+        public decimal QTE_VENDU { get; set; }
     }
 
     public partial class View_WishList
@@ -222,6 +225,9 @@ namespace XpertMobileApp.DAL
 
     public partial class HOME_INFOS
     {
+        public List<View_PRODUITS> BestEvaluated { get; set; }
+        public List<View_PRODUITS> BuestSelled { get; set; }
+
         public List<View_PRODUITS> NewProducts { get; set; }
         public List<View_PRODUITS> OfferProduts { get; set; }
         public List<View_PRODUITS> RecommendedProduts { get; set; }

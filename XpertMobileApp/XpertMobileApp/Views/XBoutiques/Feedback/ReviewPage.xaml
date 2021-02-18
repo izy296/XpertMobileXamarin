@@ -8,6 +8,7 @@
     xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
     xmlns:viewModel="clr-namespace:XpertMobileApp.ViewModels.Feedback"
     BackgroundColor="{DynamicResource Gray-100}"
+    x:Name="reviewPage"
     NavigationPage.HasNavigationBar="False">
    
     <ContentPage.Resources>
@@ -171,7 +172,7 @@
                     Margin="0,8,0,24"
                     BorderWidth="0"
                     Command="{Binding SubmitCommand}"
-                    CommandParameter="{x:Reference SubmitButton}"
+                    CommandParameter="{Binding Source={x:Reference Name=reviewPage}}"
                     CornerRadius="20"
                     FontFamily="{StaticResource Montserrat-SemiBold}"
                     FontSize="16"

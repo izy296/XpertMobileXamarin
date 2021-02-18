@@ -5,9 +5,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:behavior="clr-namespace:XpertMobileApp.Behaviors"
     xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-    xmlns:local="clr-namespace:XpertMobileApp.Views.Feedback"
     xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-    xmlns:viewmodel="clr-namespace:XpertMobileApp.ViewModels.Feedback" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+    xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
     BackgroundColor="{DynamicResource Gray-White}"
     NavigationPage.HasNavigationBar="False">
 
@@ -20,17 +19,18 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout Spacing="0" >
+        <StackLayout Spacing="0" BackgroundColor="{StaticResource BoutiquePrimary}">
 
             <!--  Title  -->
-            <Label
+            
+            <Label 
                 Margin="0,16"
                 FontFamily="{StaticResource Montserrat-Medium}"
-                FontSize="16"
+                FontSize="16" TextColor="White"
                 HorizontalOptions="CenterAndExpand"
                 Style="{StaticResource LabelStyle}"
                 Text="Evaluations"
-                TextColor="{DynamicResource Gray-900}" />
+                 />
 
             <BoxView Style="{StaticResource BoxViewStyle}" />
 

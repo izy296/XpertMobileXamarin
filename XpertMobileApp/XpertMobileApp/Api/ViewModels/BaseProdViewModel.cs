@@ -351,14 +351,18 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
+        bool LoadCartBusy;
         public async Task ExecuteLoadPanierCommand(object page)
         {
+            if (LoadCartBusy)
+                return;
+
             if (App.User?.Token == null)
                 return;
             try
             {
                 // UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-
+                LoadCartBusy = true;
                 Orders.Clear();
                 BoutiqueManager.PanierElem = await BoutiqueManager.GetPanier();
                 TotalPrice = 0;
@@ -366,13 +370,13 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     Product p = new Product()
                     {
-                        Id = item.CODE_PRODUIT,
-                        Name = item.DESIGNATION,
-                        Image = item.IMAGE_URL,
-                        IMAGE_URL = item.IMAGE_URL,
-                        Price = item.PRIX_VENTE,
+                        Id         = item.CODE_PRODUIT,
+                        Name       = item.DESIGNATION,
+                        Image      = item.IMAGE_URL,
+                        IMAGE_URL  = item.IMAGE_URL,
+                        Price      = item.PRIX_VENTE,
                         TotalPrice = item.PRIX_VENTE * item.QUANTITE,
-                        Quantity = item.QUANTITE
+                        Quantity   = item.QUANTITE
                     };
 
                     p.PropertyChanged += (s, e) =>
@@ -386,9 +390,11 @@ namespace XpertMobileApp.Api.ViewModels
                     // UserDialogs.Instance.HideLoading();
                 }
                 TotalOrderedItems = Orders.Count;
+                LoadCartBusy = false;
             }
             catch (Exception ex)
             {
+                LoadCartBusy = false;
                 // UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);

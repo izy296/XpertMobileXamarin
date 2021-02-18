@@ -100,6 +100,8 @@ namespace XpertMobileApp.ViewModels.Feedback
                 var res = await BoutiqueManager.SetProducEval(eval);
                 UserDialogs.Instance.HideLoading();
 
+                await UserDialogs.Instance.AlertAsync("Merci pour votre évaluation!", AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+                await (obj as ContentPage).Navigation.PopAsync();
                 return;
             }
             catch (Exception ex)

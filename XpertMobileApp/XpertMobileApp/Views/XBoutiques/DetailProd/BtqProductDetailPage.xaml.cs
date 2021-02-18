@@ -1,15 +1,7 @@
-﻿using Acr.UserDialogs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xpert.Common.WSClient.Helpers;
-using XpertMobileApp.Api;
-using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
-using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Feedback;
 
@@ -24,13 +16,12 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
-            viewModel = new XprodDetailViewModel(prod, this);
+            viewModel         = new XprodDetailViewModel(prod, this);
             viewModel.CanEval = canEval;
-            BindingContext = viewModel;
+            BindingContext    = viewModel;
 
             // Hide the menu
             NavigationPage.SetHasNavigationBar(this, false);
-
         }
 
         protected override void OnAppearing()

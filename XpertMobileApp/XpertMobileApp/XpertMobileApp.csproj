@@ -138,6 +138,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\XBoutiques\Commandes\StylesCT.xaml.cs">
+      <DependentUpon>StylesCT.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\XBoutiques\Feedback\StylesFB.xaml.cs">
       <DependentUpon>StylesFB.xaml</DependentUpon>
     </Compile>
@@ -194,6 +197,9 @@
   <ItemGroup>
     <EmbeddedResource Update="Base\Pages\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\XBoutiques\Commandes\StylesCT.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\XBoutiques\Home\ProductHomePage.xaml">
       <Generator>MSBuild:Compile</Generator>

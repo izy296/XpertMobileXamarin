@@ -44,7 +44,7 @@
                              VerticalOptions="Center" HorizontalOptions="End" FontSize="16"
                              TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
                         <Label Grid.Column="1" FontAttributes="Bold"
-                               Text="{Binding TotalPrice2,Mode=TwoWay, StringFormat='{0:N2} DA'}" 
+                               Text="{Binding TotalPrice,Mode=TwoWay, StringFormat='{0:N2} DA'}" 
                                VerticalOptions="Center" HorizontalOptions="End" Margin="16,0,8,0" FontSize="16"
                              TextColor="{OnPlatform Android=#ffffff, iOS=#1C73F2, UWP=#0078D7}" />
                 </Grid>

@@ -1,12 +1,12 @@
-﻿using XpertMobileApp.DataService;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+﻿using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Api;
-using System.Collections.Generic;
 using Acr.UserDialogs;
 using System;
+using XpertMobileApp.Models;
+using Syncfusion.ListView.XForms;
+using Xpert.Common.WSClient.Helpers;
 
 namespace XpertMobileApp.Views
 {
@@ -21,7 +21,6 @@ namespace XpertMobileApp.Views
             viewModel = new ProductHomePageViewModel(this);
 
             InitializeComponent();
-
         }
 
         protected async override void OnAppearing()
@@ -41,12 +40,15 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var homeInfos = await BoutiqueManager.GetHomeProducts();
-                viewModel.NewArrivalProducts = viewModel.GenerateData(homeInfos.NewProducts);
-                viewModel.OfferProducts = viewModel.GenerateData(homeInfos.OfferProduts);
-                viewModel.RecommendedProducts = viewModel.GenerateData(homeInfos.RecommendedProduts);
+                
+                var homeInfos                 = await BoutiqueManager.GetHomeProducts();
+                viewModel.NewArrivalProducts  = viewModel.GenerateData(homeInfos.NewProducts);
+                viewModel.BestEvaluated       = viewModel.GenerateData(homeInfos.BestEvaluated);
+                viewModel.BuestSelled = viewModel.GenerateData(homeInfos.BuestSelled);
+
                 UserDialogs.Instance.HideLoading();
-                this.BindingContext = viewModel;
+                
+                this.BindingContext           = viewModel;
 
                 if(App.User?.Token != null) 
                 {
@@ -56,10 +58,33 @@ namespace XpertMobileApp.Views
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
+        }
 
+        private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var item = e.ItemData as Product;
+                if (item == null)
+                    return;
+
+                Product p = await BoutiqueManager.LoadProdDetails(item.Id);
+                await Navigation.PushAsync(new BtqProductDetailPage(p, false, false));
+
+                // Manually deselect item.
+                (sender as SfListView).SelectedItem = null;
+
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
     }
 }

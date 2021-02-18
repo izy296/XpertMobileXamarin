@@ -12,7 +12,7 @@
         <ToolbarItem x:Name="btn_Filter" Icon="filter.png" Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout  Spacing="10" Padding="0" >
+    <StackLayout  VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource DefaultLisViewBackColor}" >
         <!-- Filter -->
         <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
@@ -48,23 +48,23 @@
 
                 <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
-                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_ApplyFilter_Clicked"/>
+                    <Button x:Name="btn_ApplyFilter" Margin="5" CornerRadius="10" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_ApplyFilter_Clicked"/>
 
-                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_CancelFilter_Clicked"/>
+                    <Button x:Name="btn_CancelFilter" Margin="5" CornerRadius="10" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_CancelFilter_Clicked"/>
             </StackLayout>
             </Grid>
         </StackLayout>
 
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand">
-            <Frame CornerRadius="10" Padding="5,5,5,0" Margin="5,5,5,5"  HasShadow="True"
-                   VerticalOptions="FillAndExpand" OutlineColor="White" >
+
                 <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
                     HasUnevenRows="true" 
+                    SeparatorVisibility="None"
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"
@@ -97,7 +97,7 @@
                 </ListView.Footer>
 
             </ListView>
-            </Frame>
+
         </StackLayout>
     </StackLayout>
 </ContentPage>

@@ -8,7 +8,9 @@
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:sample1="clr-namespace:XpertMobileApp.Views"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" xmlns:rotate="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
+             xmlns:rotate="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" 
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              x:Name="prodDetails"
              Title="{Binding Title}">
     <ContentPage.Resources>
@@ -236,34 +238,7 @@
                 BorderThickness="3"
                 Clicked="cmd_Buy_Clicked"
                 />
-
-            <Grid Grid.Row="2" Padding="0" ColumnSpacing="0" Margin="0,10,0,0" BackgroundColor="White" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <numeric:SfNumericUpDown Grid.Column="0"  x:Name="numericUpDown" MaximumDecimalDigits="0"
-                                                                           IsEditable="False" Minimum="0" Maximum="9" HorizontalOptions="End" VerticalOptions="Center"
-                                                                           AllowNull="false" FormatString="n" Watermark="Units" TextAlignment="Center"
-                                                                           SpinButtonAlignment="Both" UpDownButtonColor="Gray"
-                                                                           Value="{Binding Item.Quantity, Mode=TwoWay}"
-                                                                           IsVisible="{Binding Item.Quantity, Converter={StaticResource inverseZeroVisibilityConverter}}"
-                                                                             TextColor="Gray"
-                                                                             BackgroundColor="White"
-                                                                              />
-                                            <Button Grid.Column="0" x:Name="addButton" CornerRadius="8" FontSize="16" Text="Ajouter" BorderWidth="1" 
-                                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" 
-                                                            Command="{Binding Path=BindingContext.AddCommand, Source={x:Reference Name=prodDetails}}"
-                                                            CommandParameter="{Binding Item}"
-                                                            IsVisible="{Binding Item.Quantity, Converter={StaticResource zeroVisibilityConverter}}"
-                                                            BackgroundColor="MediumVioletRed"
-                                                            BorderColor="MediumVioletRed"
-                                                            TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
-                <!--
-                                                {OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}
-                                                BackgroundColor="{OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}"
-                                                -->
-            </Grid>
-
+<!--
             <flex:FlexButton
                 x:Name="cmd_Rate"
                 IsVisible="{Binding CanEval}"
@@ -272,18 +247,57 @@
                 IconPadding="0,0,5,0"
                 HeightRequest="55"
                 Padding="0"
-                Margin="0"
+                Margin="0,5,0,2"
                 Text="Évaluer le produit"
                 CornerRadius="38"
                 ForegroundColor="#ffffff"
-                HighlightForegroundColor="MediumVioletRed"
-                BackgroundColor="MediumVioletRed"
-                HighlightBackgroundColor="#D963AD"
-                BorderColor="#D963AD"
-                HighlightBorderColor="#D963AD"
+                HighlightForegroundColor="#2E8B57"
+                BackgroundColor="#2E8B57"
+                HighlightBackgroundColor="#3CB371"
+                BorderColor="#3CB371"
+                HighlightBorderColor="#3CB371"
                 BorderThickness="3"
                 Clicked="cmd_Rate_Clicked"
                 />
+-->
+            <Button Grid.Column="0"  x:Name="cmd_Rate"  CornerRadius="38" FontSize="16" Text="Évaluer le produit"
+                    BorderWidth="1"  IsVisible="{Binding CanEval}"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"                 
+                    CommandParameter="{Binding Item}" 
+                    Clicked="cmd_Rate_Clicked"
+                    BackgroundColor="#2E8B57"
+                    BorderColor="#2E8B57" 
+                    TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
+
+            <Grid Grid.Row="2" Padding="0" ColumnSpacing="0" Margin="0,5,0,5" BackgroundColor="White" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <numeric:SfNumericUpDown Grid.Column="0"  x:Name="numericUpDown" MaximumDecimalDigits="0"
+                                      IsEditable="False" Minimum="0" Maximum="9" HorizontalOptions="End" VerticalOptions="Center"
+                                      AllowNull="false" FormatString="n" Watermark="Units" TextAlignment="Center"
+                                      SpinButtonAlignment="Both" UpDownButtonColor="Gray"
+                                      Value="{Binding Item.Quantity, Mode=TwoWay}"
+                                      IsVisible="{Binding Item.Quantity, Converter={StaticResource inverseZeroVisibilityConverter}}"
+                                      TextColor="Gray"
+                                      BackgroundColor="White"
+                                      />
+                
+                                      <Button Grid.Column="0" x:Name="addButton"  CornerRadius="38" FontSize="16" Text="Ajouter au panier" BorderWidth="1" 
+                                      VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" 
+                                      Command="{Binding Path=BindingContext.AddCommand, Source={x:Reference Name=prodDetails}}"
+                                      CommandParameter="{Binding Item}"
+                                      IsVisible="{Binding Item.Quantity, Converter={StaticResource zeroVisibilityConverter}}"
+                                      BackgroundColor="MediumVioletRed"
+                                      BorderColor="MediumVioletRed" 
+                                      TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
+                          <!--
+                          {OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}
+                          BackgroundColor="{OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}"
+                          -->
+            </Grid>
+
+
             
         </StackLayout>
     </StackLayout>

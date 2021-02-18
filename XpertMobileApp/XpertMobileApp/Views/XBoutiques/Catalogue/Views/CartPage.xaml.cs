@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.ViewModels;
 
 namespace XpertMobileApp.Views
 {
@@ -24,6 +25,12 @@ namespace XpertMobileApp.Views
         public CartPage()
         {
             InitializeComponent();
+        }
+
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
     }
 }
