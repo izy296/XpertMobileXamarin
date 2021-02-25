@@ -5,6 +5,9 @@ using Xamarin.Forms;
 
 namespace XpertMobileApp.Components
 {
+    /// <summary>
+    /// Extension qui permet l'ajout de la proprieté Visibile a la class ToolbarItem
+    /// </summary>
     public class XToolbarItem : ToolbarItem
     {
         public static readonly BindableProperty IsVisibleProperty = BindableProperty.Create(nameof(IsVisible), typeof(bool), typeof(XToolbarItem), true, BindingMode.TwoWay, propertyChanged: OnIsVisibleChanged);

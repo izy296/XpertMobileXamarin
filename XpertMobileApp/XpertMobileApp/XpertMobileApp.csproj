@@ -11,16 +11,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Api\LocalStorage\IQueryableExtensions.cs" />
-    <Compile Remove="Api\LocalStorage\RLMDataManager.cs" />
-    <Compile Remove="Api\Services\CODE_BARRE\ICODE_BARRE_Reder.cs" />
+    <Compile Remove="DataService\**" />
+    <EmbeddedResource Remove="DataService\**" />
+    <None Remove="DataService\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api\Storage\IQueryableExtensions.cs" />
+    <Compile Remove="Api\Storage\RLMDataManager.cs" />
+    <Compile Remove="Api\Models\CODE_BARRE\ICODE_BARRE_Reder.cs" />
     <Compile Remove="Api\Services\MockDataStore.cs" />
     <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
-    <Compile Remove="Models\Feedback\Review.cs" />
     <Compile Remove="Models\Item.cs" />
     <Compile Remove="Models\Product.cs" />
     <Compile Remove="Models\Review.cs" />
@@ -31,17 +36,15 @@
     <Compile Remove="ViewModels\ItemDetailViewModel.cs" />
     <Compile Remove="ViewModels\ItemsViewModel.cs" />
     <Compile Remove="Views\AboutPage.xaml.cs" />
-    <Compile Remove="Views\Catalogue produit\Paging\Behaviors.cs" />
+    <Compile Remove="Views\Catalogue-old\Paging\Behaviors.cs" />
     <Compile Remove="Views\ItemDetailPage.xaml.cs" />
     <Compile Remove="Views\ItemsPage.xaml.cs" />
-    <Compile Remove="Views\Items\ItemDetailPage.xaml.cs" />
-    <Compile Remove="Views\Items\NewItemPage.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
     <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
     <Compile Remove="Views\MenuPage.xaml.cs" />
     <Compile Remove="Views\NewItemPage.xaml.cs" />
-    <Compile Remove="Views\Rfid\RfidScanInvnetairePage.xaml.cs" />
-    <Compile Remove="Views\Rfid\RfidScanPage.xaml.cs" />
+    <Compile Remove="Views\Comercial\Rfid\RfidScanInvnetairePage.xaml.cs" />
+    <Compile Remove="Views\Comercial\Rfid\RfidScanPage.xaml.cs" />
     <Compile Remove="Views\XBoutiques\BtqPanierPage.xaml.cs" />
     <Compile Remove="Views\XBoutiques\BtqProductDetailViewModel.cs" />
     <Compile Remove="Views\XBoutiques\BtqProductList.xaml.cs" />
@@ -52,13 +55,11 @@
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
     <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
     <EmbeddedResource Remove="Views\ItemsPage.xaml" />
-    <EmbeddedResource Remove="Views\Items\ItemDetailPage.xaml" />
-    <EmbeddedResource Remove="Views\Items\NewItemPage.xaml" />
     <EmbeddedResource Remove="Views\MainPage.xaml" />
     <EmbeddedResource Remove="Views\MenuPage.xaml" />
     <EmbeddedResource Remove="Views\NewItemPage.xaml" />
-    <EmbeddedResource Remove="Views\Rfid\RfidScanInvnetairePage.xaml" />
-    <EmbeddedResource Remove="Views\Rfid\RfidScanPage.xaml" />
+    <EmbeddedResource Remove="Views\Comercial\Rfid\RfidScanInvnetairePage.xaml" />
+    <EmbeddedResource Remove="Views\Comercial\Rfid\RfidScanPage.xaml" />
     <EmbeddedResource Remove="Views\XBoutiques\BtqPanierPage.xaml" />
     <EmbeddedResource Remove="Views\XBoutiques\BtqProductList.xaml" />
   </ItemGroup>
@@ -67,7 +68,6 @@
     <None Remove="beep.wav" />
     <None Remove="beep03.mp3" />
     <None Remove="beep07.mp3" />
-    <None Remove="Data\ecommerce.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -81,7 +81,6 @@
     <EmbeddedResource Include="beep.wav" />
     <EmbeddedResource Include="beep03.mp3" />
     <EmbeddedResource Include="beep07.mp3" />
-    <EmbeddedResource Include="Data\ecommerce.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -119,14 +118,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Api\Models\Menu\" />
     <Folder Include="Api\Services\RFID\" />
-    <Folder Include="Images\" />
-    <Folder Include="Models\Feedback\" />
     <Folder Include="Services\" />
     <Folder Include="ViewModels\Feedback\" />
-    <Folder Include="Views\Selector\Immariculation\" />
-    <Folder Include="WebView\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -144,25 +138,25 @@
     <Compile Update="Views\XBoutiques\Feedback\StylesFB.xaml.cs">
       <DependentUpon>StylesFB.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
+    <Compile Update="Views\Comercial\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
       <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Livraison\TourneeDetails\TourneeDetailTemplate.xaml.cs">
+    <Compile Update="Views\Comercial\Livraison\TourneeDetails\TourneeDetailTemplate.xaml.cs">
       <DependentUpon>TourneeDetailTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Livraison\Tournee\TourneeTemplate.xaml.cs">
+    <Compile Update="Views\Comercial\Livraison\Tournee\TourneeTemplate.xaml.cs">
       <DependentUpon>TourneeTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Livraison\Tournee\TourneesPage.xaml.cs">
+    <Compile Update="Views\Comercial\Livraison\Tournee\TourneesPage.xaml.cs">
       <DependentUpon>TourneesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Selector\Lot\QteUpdater\QteUpdater.xaml.cs">
+    <Compile Update="Views\Comercial\Selectors\Lot\QteUpdater\QteUpdater.xaml.cs">
       <DependentUpon>QteUpdater.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Simple Indicators\SimpleIndicators.xaml.cs">
+    <Compile Update="Views\Comercial\Simple Indicators\SimpleIndicators.xaml.cs">
       <DependentUpon>SimpleIndicators.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
+    <Compile Update="Views\Comercial\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
       <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\XBoutiques\CommandeDetails\BtqCommandeDetailPage.xaml.cs">
@@ -195,7 +189,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Base\Pages\XBasePage.xaml">
+    <EmbeddedResource Update="BaseView\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\XBoutiques\Commandes\StylesCT.xaml">
@@ -216,10 +210,10 @@
     <EmbeddedResource Update="Views\XBoutiques\Feedback\StylesFB.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\ReviewTemplate.xaml">
+    <EmbeddedResource Update="Views\Comercial\Templates\ReviewTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Templates\Styles.xaml">
+    <EmbeddedResource Update="Views\Comercial\Templates\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\XBoutiques\Login\SimpleEmailEntry.xaml">

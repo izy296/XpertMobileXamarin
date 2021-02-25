@@ -9,9 +9,9 @@ using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api.Managers
 {
-    public class VTE_VENTE_BLL : CrudService<View_VTE_VENTE>
+    public class VentesManager : CrudService<View_VTE_VENTE>
     {
-        public VTE_VENTE_BLL(string controleurName) 
+        public VentesManager(string controleurName) 
             : base(App.RestServiceUrl, controleurName, App.User.Token)
         {
         }

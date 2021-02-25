@@ -74,7 +74,7 @@ namespace XpertMobileApp.Api.Managers
             MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }
 
-        public static VTE_VENTE_BLL GetVteBll(string typeVte) 
+        public static VentesManager GetVteBll(string typeVte) 
         {
             string controlerName = "VTE_VENTE";
             
@@ -87,7 +87,7 @@ namespace XpertMobileApp.Api.Managers
                 controlerName = "XCOM_VTE_COMPTOIR";
             }
 
-            var bll = new VTE_VENTE_BLL(controlerName);
+            var bll = new VentesManager(controlerName);
             return bll;
         }
     }

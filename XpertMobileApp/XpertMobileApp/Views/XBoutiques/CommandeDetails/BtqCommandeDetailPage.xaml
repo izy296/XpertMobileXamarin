@@ -32,7 +32,7 @@
                     <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
                     <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
                     -->
-                    </StackLayout>
+                </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
                     <Label Text="{ Binding Item.DESIGNATION_COMMANDE}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>

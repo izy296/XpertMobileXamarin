@@ -14,6 +14,9 @@ using XpertMobileApp.Views.XLogin;
 
 namespace XpertMobileApp.Api.ViewModels
 {
+    /// <summary>
+    /// Base controleur pour le listing des produits pour le projets XpertBoutique
+    /// </summary>
     public class BaseProdViewModel<T1, TView> : CrudBaseViewModel3<T1, TView>
     where T1 : new()
     where TView : new()

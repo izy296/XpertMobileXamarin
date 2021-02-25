@@ -8,6 +8,10 @@ using XpertMobileApp.Data;
 
 namespace XpertMobileApp.Api
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class RLMDataManager<T> 
         where T : new()
     {
