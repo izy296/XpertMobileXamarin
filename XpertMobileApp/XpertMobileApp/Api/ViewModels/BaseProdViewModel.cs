@@ -453,7 +453,6 @@ namespace XpertMobileApp.Api.ViewModels
                             CODE_PRODUIT = product.Id,
                             DESIGNATION = product.Name,
                             ID_USER = App.User.Token.userID,
-                            CODE_DEFAULT_IMAGE = product.CODE_DEFAULT_IMAGE,
                             QUANTITE = product.Quantity
                         });
                         Orders.Add(product);

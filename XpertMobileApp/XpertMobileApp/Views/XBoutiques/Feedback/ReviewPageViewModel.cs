@@ -1,6 +1,5 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Internals;
-using SampleBrowser.SfListView;
 using XpertMobileApp.Api;
 using Acr.UserDialogs;
 using System;

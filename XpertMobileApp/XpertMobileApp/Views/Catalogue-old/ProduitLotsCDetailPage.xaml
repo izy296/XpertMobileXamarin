@@ -101,7 +101,7 @@
                                                                Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
                                                                FontSize="{OnIdiom Default=15, Phone=12}">
                                         </Label>
-                                        <sample1:SfImage Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
+                                        <Image Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
                                     </Grid>
                                 </Frame>
                             </Grid>

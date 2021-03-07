@@ -1,17 +1,9 @@
-using Acr.UserDialogs;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 using Xpert.Common.DAO;
-using Xpert.Common.WSClient.Helpers;
-using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
-using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {

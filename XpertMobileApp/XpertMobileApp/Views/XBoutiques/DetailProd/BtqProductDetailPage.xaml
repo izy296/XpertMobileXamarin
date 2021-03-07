@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.BtqProductDetailPage"
-             xmlns:local="clr-namespace:SampleBrowser.SfListView"
+             xmlns:local="clr-namespace:XpertMobileApp.XConverters"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
@@ -149,7 +149,7 @@
                                                                Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
                                                                FontSize="{OnIdiom Default=15, Phone=12}">
                                         </Label>
-                                        <sample1:SfImage Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
+                                        <Image Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
                                     </Grid>
                                 </Frame>
                             </Grid>

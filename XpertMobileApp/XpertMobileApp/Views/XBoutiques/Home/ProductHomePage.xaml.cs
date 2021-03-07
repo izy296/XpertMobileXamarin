@@ -17,13 +17,14 @@ namespace XpertMobileApp.Views
         ProductHomePageViewModel viewModel;
         public ProductHomePage()
         {
-            Title = "Accueil";
-            viewModel = new ProductHomePageViewModel(this);
 
             InitializeComponent();
+
+            Title = "Accueil";
+            viewModel = new ProductHomePageViewModel(this);
         }
 
-        protected async override void OnAppearing()
+        protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -42,9 +43,10 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 
                 var homeInfos                 = await BoutiqueManager.GetHomeProducts();
+                viewModel.RecommendedProducts = viewModel.GenerateData(homeInfos.RecommendedProduts);
                 viewModel.NewArrivalProducts  = viewModel.GenerateData(homeInfos.NewProducts);
                 viewModel.BestEvaluated       = viewModel.GenerateData(homeInfos.BestEvaluated);
-                viewModel.BuestSelled = viewModel.GenerateData(homeInfos.BuestSelled);
+                viewModel.BuestSelled         = viewModel.GenerateData(homeInfos.BuestSelled);
 
                 UserDialogs.Instance.HideLoading();
                 
@@ -85,6 +87,11 @@ namespace XpertMobileApp.Views
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
+        }
+
+        private void SeeAll_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CataloguePage());
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using SampleBrowser.SfListView;
 using XpertMobileApp.Api;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.DAL;
@@ -78,7 +77,7 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Bordereaux:
                         return new BordereauxPage();
                     case (int)MenuItemType.Catalogues:
-                        return new Paging();
+                     //   return new Paging();
                     case (int)MenuItemType.XBoutiqueHome:
                         return new ProductHomePage();
                     case (int)MenuItemType.XBoutique:
@@ -92,7 +91,7 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.XProfile:
                         return new ProfilPage();
                     case (int)MenuItemType.MyCommandes:
-                        return new Paging();
+                     //   return new Paging();
                     case (int)MenuItemType.Commandes:
                         return new CommandesPage();
                     case (int)MenuItemType.Produits:
@@ -167,10 +166,10 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
                         break;
                     case (int)MenuItemType.Catalogues:
-                        MenuPages.Add(id, new NavigationPage(new Paging()));
+                       // MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
                     case (int)MenuItemType.MyCommandes:
-                        MenuPages.Add(id, new NavigationPage(new Paging()));
+                       // MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
                     case (int)MenuItemType.Commandes:
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));

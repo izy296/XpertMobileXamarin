@@ -47,7 +47,6 @@ namespace XpertMobileApp.ViewModels
                 Price = item.PRIX_VENTE,
 
                 IMAGE_URL = item.IMAGE_URL,
-                CODE_DEFAULT_IMAGE = item.CODE_DEFAULT_IMAGE,
                 ImageList = listImgurl,
 
                 ReviewValue = item.NOTE,

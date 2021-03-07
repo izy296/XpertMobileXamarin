@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using SampleBrowser.SfListView;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

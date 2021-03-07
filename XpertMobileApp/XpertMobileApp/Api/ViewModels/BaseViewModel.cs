@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
-
+using XpertMobileApp.Api;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
@@ -13,6 +13,11 @@ namespace XpertMobileApp.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public string CurrentStream = Guid.NewGuid().ToString();
+
+        public bool HasAdmin
+        {
+            get { return App.User.UserGroup == "AD"; }
+        }
 
         bool isBusy = false;
         public bool IsBusy

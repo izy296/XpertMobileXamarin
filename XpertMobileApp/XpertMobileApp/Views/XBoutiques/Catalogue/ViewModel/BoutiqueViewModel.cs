@@ -8,10 +8,10 @@ using XpertMobileApp.Models;
 namespace XpertMobileApp.ViewModels
 {
     [Preserve(AllMembers = true)]
-    public class LoadMoreViewModel : BaseProdViewModel<PRODUITS, View_PRODUITS>
+    public class BoutiqueViewModel : BaseProdViewModel<PRODUITS, View_PRODUITS>
     {
 
-        public LoadMoreViewModel(object page) : base(page)
+        public BoutiqueViewModel(object page) : base(page)
         {
             /*
             if (Device.Idiom == TargetIdiom.Tablet)
@@ -42,7 +42,6 @@ namespace XpertMobileApp.ViewModels
                 Category = item.DESIGNATION_FAMILLE,
                 Image = item.IMAGE_URL,
                 IMAGE_URL = item.IMAGE_URL,
-                CODE_DEFAULT_IMAGE = item.CODE_DEFAULT_IMAGE,
                 ImageList = listImgurl,
                 Price = item.PRIX_VENTE,
                 ReviewValue = item.NOTE,

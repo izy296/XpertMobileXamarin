@@ -4,7 +4,7 @@
                    x:Name="purchasedProdView"
                    xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                   xmlns:local="clr-namespace:SampleBrowser.SfListView"
+                   xmlns:local="clr-namespace:XpertMobileApp.XConverters"
                    xmlns:fontawesome="clr-namespace:FontAwesome"
                    xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                    xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"

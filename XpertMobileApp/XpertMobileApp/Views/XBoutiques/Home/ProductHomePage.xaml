@@ -114,7 +114,7 @@
                         NavigationStripMode="Dots" 
     
                         HorizontalOptions="Center"
-                        ItemsSource="{Binding NewArrivalProducts}"
+                        ItemsSource="{Binding RecommendedProducts}"
                             SelectedDotColor="{DynamicResource PrimaryColor}"
                         UnselectedDotColor="DimGray"
                         VerticalOptions="Start">
@@ -179,6 +179,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
+                        Clicked="SeeAll_Clicked"
                         Text="Tous voir"
                         TextColor="{DynamicResource HyperLink}" />
 
@@ -311,6 +312,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
+                        Clicked="SeeAll_Clicked"
                         Text="Tout voir"
                         TextColor="{DynamicResource HyperLink}" />
 
@@ -421,6 +423,7 @@
                         FontFamily="{StaticResource Montserrat-SemiBold}"
                         FontSize="12"
                         HorizontalOptions="End"
+                        Clicked="SeeAll_Clicked"
                         Text="Tout voir"
                         TextColor="{DynamicResource HyperLink}" />
 

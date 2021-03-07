@@ -117,6 +117,8 @@ namespace XpertMobileApp.Views
             {
                 row = new View_VTE_VENTE_LOT();
 
+                decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
+
                 row.Parent_Doc = Item;
                 row.VenteID = row.ID;
                 row.ID = row.ID + "_" +XpertHelper.RandomString(7);
@@ -128,7 +130,7 @@ namespace XpertMobileApp.Views
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 row.PRIX_VTE_HT = product.SelectedPrice;
                 row.PRIX_VTE_TTC = product.SelectedPrice;
-                row.QUANTITE = product.SelectedQUANTITE;
+                row.QUANTITE = qte;
 
                 ItemRows.Add(row);
 

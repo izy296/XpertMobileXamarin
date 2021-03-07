@@ -16,11 +16,11 @@ namespace XpertMobileApp.Views
     [Preserve(AllMembers = true)]
     public partial class CataloguePage : BaseView
     {
-        LoadMoreViewModel viewModel;
+        BoutiqueViewModel viewModel;
         internal CrudService<View_WishList> WishList;
         public CataloguePage()
         {
-            viewModel = new LoadMoreViewModel(this);
+            viewModel = new BoutiqueViewModel(this);
             this.BindingContext = viewModel;
             InitializeComponent();
 

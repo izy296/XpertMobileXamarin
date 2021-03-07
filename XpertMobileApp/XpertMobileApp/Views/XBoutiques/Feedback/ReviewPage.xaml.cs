@@ -1,4 +1,4 @@
-﻿using SampleBrowser.SfListView;
+﻿
 using Xamarin.Forms.Internals;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Models;

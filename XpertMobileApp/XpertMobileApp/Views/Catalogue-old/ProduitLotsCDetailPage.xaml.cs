@@ -131,7 +131,7 @@ namespace XpertMobileApp.Views
         {
             if(App.CurrentSales != null && App.CurrentSales.Details != null && App.CurrentSales.Details.Count > 0 ) 
             { 
-                await Navigation.PushAsync(new CommandeSummaryPage(App.CurrentSales));
+               // await Navigation.PushAsync(new CommandeSummaryPage(App.CurrentSales));
             }
         }
 

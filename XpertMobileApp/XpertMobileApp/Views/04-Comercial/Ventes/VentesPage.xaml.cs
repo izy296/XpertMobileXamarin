@@ -30,21 +30,13 @@ namespace XpertMobileApp.Views
             
             InitializeComponent ();
 
-            foreach (var item in this.ToolbarItems)
-            {
-
-            } 
-
-
             if (string.IsNullOrEmpty(typeVente))
                 btn_Additem.IsVisible = false;
-
-            vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente;
 
             itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
-
+            vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
             viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>

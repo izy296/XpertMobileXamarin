@@ -73,7 +73,7 @@
             <Color x:Key="DefaultTextColor">#000</Color>
             <Color x:Key="DefaultGrayColor">#808080</Color>
             <Color x:Key="DefaultLisViewBackColor">#F4F3F2</Color>
-            <Color x:Key="NavigationPrimary">MediumVioletRed</Color>
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
 
 
             <Color x:Key="BoutiquePrimary">MediumVioletRed</Color>
