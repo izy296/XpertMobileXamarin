@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
@@ -12,7 +10,7 @@ using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileSettingsPage.Helpers.Services;
 
-namespace XpertMobileApp.Views.Encaissement
+namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EncaissementDetailPage : ContentPage

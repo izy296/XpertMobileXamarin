@@ -10,12 +10,11 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
-using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
-namespace XpertMobileApp.Views.Encaissement
+namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewCommandePage : ContentPage

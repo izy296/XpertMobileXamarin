@@ -12,14 +12,14 @@
 
   <ItemGroup>
     <Compile Remove="DataService\**" />
-    <Compile Remove="Views\Catalogue-old\List\**" />
-    <Compile Remove="Views\Catalogue-old\Paging\**" />
+    <Compile Remove="Views\08-Catalogue-old\List\**" />
+    <Compile Remove="Views\08-Catalogue-old\Paging\**" />
     <EmbeddedResource Remove="DataService\**" />
-    <EmbeddedResource Remove="Views\Catalogue-old\List\**" />
-    <EmbeddedResource Remove="Views\Catalogue-old\Paging\**" />
+    <EmbeddedResource Remove="Views\08-Catalogue-old\List\**" />
+    <EmbeddedResource Remove="Views\08-Catalogue-old\Paging\**" />
     <None Remove="DataService\**" />
-    <None Remove="Views\Catalogue-old\List\**" />
-    <None Remove="Views\Catalogue-old\Paging\**" />
+    <None Remove="Views\08-Catalogue-old\List\**" />
+    <None Remove="Views\08-Catalogue-old\Paging\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,16 +39,16 @@
     <Compile Remove="Views\ItemDetailPage.xaml.cs" />
     <Compile Remove="Views\ItemsPage.xaml.cs" />
     <Compile Remove="Views\MainPage.xaml.cs" />
-    <Compile Remove="Views\Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
+    <Compile Remove="Views\06-Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
     <Compile Remove="Views\MenuPage.xaml.cs" />
     <Compile Remove="Views\NewItemPage.xaml.cs" />
     <Compile Remove="Views\04-Comercial\Rfid\RfidScanInvnetairePage.xaml.cs" />
     <Compile Remove="Views\04-Comercial\Rfid\RfidScanPage.xaml.cs" />
-    <Compile Remove="Views\XBoutiques\BtqPanierPage.xaml.cs" />
-    <Compile Remove="Views\XBoutiques\BtqProductDetailViewModel.cs" />
-    <Compile Remove="Views\XBoutiques\BtqProductList.xaml.cs" />
-    <Compile Remove="Views\XBoutiques\BtqProductViewModel.cs" />
-    <Compile Remove="Views\XBoutiques\Catalogue\Model\ProductRepository.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqPanierPage.xaml.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductDetailViewModel.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductList.xaml.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductViewModel.cs" />
+    <Compile Remove="Views\07-XBoutiques\Catalogue\Model\ProductRepository.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,8 +60,8 @@
     <EmbeddedResource Remove="Views\NewItemPage.xaml" />
     <EmbeddedResource Remove="Views\04-Comercial\Rfid\RfidScanInvnetairePage.xaml" />
     <EmbeddedResource Remove="Views\04-Comercial\Rfid\RfidScanPage.xaml" />
-    <EmbeddedResource Remove="Views\XBoutiques\BtqPanierPage.xaml" />
-    <EmbeddedResource Remove="Views\XBoutiques\BtqProductList.xaml" />
+    <EmbeddedResource Remove="Views\07-XBoutiques\BtqPanierPage.xaml" />
+    <EmbeddedResource Remove="Views\07-XBoutiques\BtqProductList.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -130,10 +130,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\XBoutiques\Commandes\StylesCT.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Commandes\StylesCT.xaml.cs">
       <DependentUpon>StylesCT.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Feedback\StylesFB.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Feedback\StylesFB.xaml.cs">
       <DependentUpon>StylesFB.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\04-Comercial\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
@@ -157,31 +157,31 @@
     <Compile Update="Views\04-Comercial\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
       <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\CommandeDetails\BtqCommandeDetailPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\CommandeDetails\BtqCommandeDetailPage.xaml.cs">
       <DependentUpon>BtqCommandeDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\DetailProd\BtqProductDetailPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\DetailProd\BtqProductDetailPage.xaml.cs">
       <DependentUpon>BtqProductDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Commandes\XMyCommandesPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Commandes\XMyCommandesPage.xaml.cs">
       <DependentUpon>XMyCommandesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
       <DependentUpon>XMyCommandesTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Catalogue\Views\CataloguePage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Catalogue\Views\CataloguePage.xaml.cs">
       <DependentUpon>CataloguePage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Catalogue\Views\CartPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Catalogue\Views\CartPage.xaml.cs">
       <DependentUpon>CartPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Login\ProfilPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Login\ProfilPage.xaml.cs">
       <DependentUpon>ProfilPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\WichList\WishListPage.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\WichList\WishListPage.xaml.cs">
       <DependentUpon>WishListPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\XBoutiques\Login\StylesLogin.xaml.cs">
+    <Compile Update="Views\07-XBoutiques\Login\StylesLogin.xaml.cs">
       <DependentUpon>StylesLogin.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -190,22 +190,22 @@
     <EmbeddedResource Update="BaseView\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Commandes\StylesCT.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Commandes\StylesCT.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Home\ProductHomePage.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Home\ProductHomePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Home\Styles.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Home\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Feedback\FeedbackPage.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\FeedbackPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Feedback\ReviewPage.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\ReviewPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Feedback\StylesFB.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\StylesFB.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\04-Comercial\Templates\ReviewTemplate.xaml">
@@ -214,13 +214,13 @@
     <EmbeddedResource Update="Views\04-Comercial\Templates\Styles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Login\SimpleEmailEntry.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\SimpleEmailEntry.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Login\StylesLogin.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\StylesLogin.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\XBoutiques\Login\TabbedForm.xaml">
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\TabbedForm.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

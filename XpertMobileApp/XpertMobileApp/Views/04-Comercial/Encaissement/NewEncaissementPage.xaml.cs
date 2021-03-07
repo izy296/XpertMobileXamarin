@@ -5,13 +5,12 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 
-namespace XpertMobileApp.Views.Encaissement
+namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NewEncaissementPage : ContentPage

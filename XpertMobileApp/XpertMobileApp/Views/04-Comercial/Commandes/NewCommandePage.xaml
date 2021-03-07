@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.Encaissement.NewCommandePage"
+             x:Class="XpertMobileApp.Views.NewCommandePage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              Title="{Binding Title}">
-
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" >

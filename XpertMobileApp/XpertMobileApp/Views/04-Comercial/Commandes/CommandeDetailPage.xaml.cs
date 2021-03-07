@@ -10,7 +10,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 
-namespace XpertMobileApp.Views.Encaissement
+namespace XpertMobileApp.Views
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CommandeDetailPage : ContentPage
