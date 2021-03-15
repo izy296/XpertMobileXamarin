@@ -1,12 +1,7 @@
 ﻿using Acr.UserDialogs;
-using Plugin.SimpleAudioPlayer;
 using Rg.Plugins.Popup.Services;
-using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,10 +10,8 @@ using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
-using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
@@ -90,13 +83,44 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                try 
+                { 
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                    // Test meilleur lot
+                    string betterLotMsg = await CrudManager.Stock.TestBetterLot(selectedItem.ID_STOCK);
+                    if (!string.IsNullOrEmpty(betterLotMsg))
+                    {
+                        var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
+                        if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
+                        {
+                            selectedItem.QUANTITE = 0;
+                            selectedItem.SelectedQUANTITE = 0;
+                        }
+                        else 
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                viewModel.AddNewRow(selectedItem);
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            viewModel.AddNewRow(selectedItem);
+                        });
+                    }
+                    UserDialogs.Instance.HideLoading();
+                }
+                catch (Exception ex)
                 {
-                    viewModel.AddNewRow(selectedItem);
-                });
+                    UserDialogs.Instance.HideLoading();
+                    throw ex;
+                }
             });
             
-            MessagingCenter.Subscribe<LotSelector, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {

@@ -353,6 +353,23 @@ namespace XpertMobileApp.DAL
 
         public string SOLDE_TIERS_TXT { get; set; } // money(19,4)         
         public string NUM_CARTE_FIDELITE { get; set; } // varchar(20)
+
+        private decimal tOTAL_TTC;
+        public decimal TOTAL_TTC
+        {
+            get
+            {
+                return tOTAL_TTC;
+            }
+            set
+            {
+                if (tOTAL_TTC != value)
+                {
+                    SetProperty(ref tOTAL_TTC, value);
+                }
+            }
+        }
+
         public string CODE_CARTE_FIDELITE { get; set; } // varchar(20)
         public decimal TOTAL_POINT_FIDELITE { get; set; } // varchar(20)
         public short STATUT_TIERS { get; set; } // 

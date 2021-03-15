@@ -175,19 +175,11 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public void RemoveNewRow(View_STK_PRODUITS product)
+        public void RemoveNewRow(View_STK_STOCK product)
         {
             var row = ItemRows.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
             if (row == null) return;
-
-            if (row.QUANTITE > 0)
-            {
-                row.QUANTITE -= 1;
-            }
-            else
-            {
-                ItemRows.Remove(row);
-            }
+            ItemRows.Remove(row);
         }
 
         public async Task<View_VTE_VENTE_LOT> AddScanedProduct(string cb_prod)
@@ -219,6 +211,14 @@ namespace XpertMobileApp.Views
                     await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return null;
                 }
+
+                // Test meilleur lot
+                string betterLotMsg = await CrudManager.Stock.TestBetterLot(prods[0].ID_STOCK);
+                if (!string.IsNullOrEmpty(betterLotMsg)) 
+                {
+                    await UserDialogs.Instance.AlertAsync(betterLotMsg, AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                } 
 
                 var res = AddNewRow(prods[0]);
                 return res;

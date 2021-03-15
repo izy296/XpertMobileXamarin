@@ -4,8 +4,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
-             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                  x:Class="XpertMobileApp.Views.LotSelector">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
     <StackLayout BackgroundColor="White">
@@ -36,28 +35,28 @@
             </Grid>
 
        <!-- Listing -->
-       <ListView x:Name="ItemsListView"
-               ItemsSource="{Binding Items}"
-               VerticalOptions="FillAndExpand"
-               HasUnevenRows="true"
-               SelectedItem="{Binding SelectedItem}"
-               RefreshCommand="{Binding LoadItemsCommand}"
-               IsPullToRefreshEnabled="true"
-               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-               
-               CachingStrategy="RecycleElement"
-               ItemTapped="ItemsListView_ItemTapped"
-               ItemSelected="OnItemSelected" 
-                 >
-           
-          <ListView.Behaviors>
-              <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-          </ListView.Behaviors>
+            <sync:SfListView x:Name="listView"
+                      SelectionBackgroundColor="AliceBlue"
+                      BackgroundColor="White"
+                      LoadMoreOption="Auto"
 
-          <ListView.ItemTemplate>
-              <DataTemplate>
-                  <ViewCell >
-                      <StackLayout Padding="0" Margin="0" >
+                      LoadMoreCommand="{Binding LoadMoreItemsCommand}"
+                      LoadMoreCommandParameter="{Binding Source={x:Reference Name=listView}}"
+                      ItemsSource="{Binding Items}"
+                      ItemTapped="ItemsListView_ItemTapped"
+                      SelectionChanged="listView_SelectionChanged"       
+                      ItemHolding="listView_ItemHolding"
+                      VerticalOptions="FillAndExpand"
+                      SelectedItem="{Binding SelectedItem}">
+                <sync:SfListView.ItemSize>
+                    <OnIdiom x:TypeArguments="x:Double"
+                                  Phone="110"
+                                  Tablet="100"
+                                  Desktop="100"/>
+                </sync:SfListView.ItemSize>
+                <sync:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="0" Margin="0" >
                           <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
                                   OutlineColor="Transparent">
                               <Grid RowSpacing="0" Padding="0" Margin="0" >
@@ -120,23 +119,10 @@
                               </Grid>
                           </Frame>
                       </StackLayout>
-                  </ViewCell>
-              </DataTemplate>
-          </ListView.ItemTemplate>
-
-          <ListView.Footer>
-             <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                 <!-- set the footer to have a zero height when invisible -->
-                 <Grid.Triggers>
-                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                         <Setter Property="HeightRequest" Value="0" />
-                     </Trigger>
-                 </Grid.Triggers>
-                 <!-- the loading content -->
-                 <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-             </Grid>
-         </ListView.Footer>
-            </ListView>        
+                    </DataTemplate>
+                </sync:SfListView.ItemTemplate>
+            
+        </sync:SfListView>        
     </StackLayout >
       
         <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">

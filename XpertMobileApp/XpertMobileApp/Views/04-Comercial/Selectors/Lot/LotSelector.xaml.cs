@@ -7,6 +7,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using System.Linq;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Api.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -14,7 +15,13 @@ namespace XpertMobileApp.Views
     {
 
         LotSelectorViewModel viewModel;
+        
+        ProduitDetailPage prodViwer;
+
+        private QteUpdater QteUpdater;
+
         public string CurrentStream { get; set; }
+
         public string CodeTiers
         {
             get
@@ -51,7 +58,9 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
            // if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            //viewModel.LoadItemsCommand.Execute(null);
+
+            viewModel.LoadMoreItemsCommand.Execute(listView);
 
             foreach (var item in viewModel.Items)
             {
@@ -64,17 +73,6 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
         }
 
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            // btnSelect.IsEnabled = true;
-            // btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
-
-           // if (viewModel.SelectedItem != null)
-          //  {
-          //      viewModel.SelectedItem.SelectedQUANTITE += 1;
-          //  }
-        }
-
         private async void btn_Search_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
@@ -85,33 +83,7 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
             if (viewModel.SelectedItem != null)
             {
-                //viewModel.SelectedItem.SelectedQUANTITE = 1; // +=
-                // btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
                 MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                // XpertHelper.SendAction(this, CurrentStream,"", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
-
-            }
-        }
-
-        private void btnRemove_Clicked(object sender, EventArgs e)
-        {
-            if (viewModel.SelectedItem != null)
-            {
-                // viewModel.SelectedItem.SelectedQUANTITE = 0; // -=
-                // btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
-
-                // MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                // App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
-            }
-        }
-
-        private void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            if (viewModel.SelectedItem != null)
-            {
-                viewModel.SelectedItem.SelectedQUANTITE += 1;
-                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                UpdateTotaux();
             }
         }
 
@@ -119,11 +91,10 @@ namespace XpertMobileApp.Views
         {
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
             lot.SelectedQUANTITE = 0;
-            App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
+            MessagingCenter.Send(this, "REMOVE" + CurrentStream, viewModel.SelectedItem);
             UpdateTotaux();
         }
 
-        private QteUpdater QteUpdater;
         private async void DelUpdate_Clicked(object sender, EventArgs e)
         {
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
@@ -145,6 +116,34 @@ namespace XpertMobileApp.Views
         private void UpdateTotaux() 
         {
             viewModel.TotalSelected = viewModel.Items.Where(e=>e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
+        }
+
+        private void ItemsListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            View_STK_STOCK selected = e.ItemData as View_STK_STOCK;
+            if(selected != null) 
+            {
+                selected.SelectedQUANTITE += 1;
+                MessagingCenter.Send(this, CurrentStream, selected);
+                UpdateTotaux();
+            }
+        }
+
+        // Long click sur un element
+
+        private async void listView_ItemHolding(object sender, Syncfusion.ListView.XForms.ItemHoldingEventArgs e)
+        {
+            View_STK_STOCK selected = e.ItemData as View_STK_STOCK;
+            STK_PRODUITS prod = XpertHelper.CloneObject<STK_PRODUITS>(selected);
+
+            if (prod == null)
+                return;
+
+            prodViwer = new ProduitDetailPage(prod);
+
+            await Navigation.PushModalAsync(prodViwer);
+
+            await PopupNavigation.Instance.PopAsync();
         }
     }
 }

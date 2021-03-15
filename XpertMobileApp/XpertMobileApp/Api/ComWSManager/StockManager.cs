@@ -26,5 +26,12 @@ namespace XpertMobileApp.Api
 
             return await WSApi2.RetrievAauthorizedData<View_STK_STOCK>(url, this.Token.access_token);
         }
+
+        public async Task<string> TestBetterLot(int? idStock)
+        {
+            string url = GetActionUrl("TestBetterLot");
+            url += WSApi2.AddParam(url, "idStock", idStock.ToString());
+            return await WSApi2.RetrievAauthorizedValue<string>(url, this.Token.access_token);
+        }
     }
 }

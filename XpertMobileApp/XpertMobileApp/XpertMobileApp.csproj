@@ -126,7 +126,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\002 - XpertSoft\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+    <ProjectReference Include="..\..\..\..\NewSVN\XpertAll\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
