@@ -130,6 +130,17 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        public override void ClearFilters()
+        {
+            base.ClearFilters();
+            SelectedTiers = null;
+            SelectedStatus = null;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now;
+            SelectedClient = null;
+            SelectedUser = null;
+        }
+
         #region Filter
 
         public View_TRS_TIERS SelectedTiers { get; set; }
