@@ -14,11 +14,16 @@ namespace XpertMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AchatsPage : ContentPage
 	{
-        private string typeDoc = "LF";
-        private string motifDoc = AchRecMotifs.PesageReception;
-        AchatsViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
+
+        private string typeDoc = "LF";
+        
+        private string motifDoc = AchRecMotifs.PesageReception;
+        
+        AchatsViewModel viewModel;
+
         SYS_MOBILE_PARAMETRE parames;
+
         List<SYS_OBJET_PERMISSION> permissions;
 
         public AchatsPage()
@@ -41,23 +46,6 @@ namespace XpertMobileApp.Views
             });
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as View_ACH_DOCUMENT;
-            if (item == null)
-                return;
-
-            await Navigation.PushAsync(new AchatFormPage(item, typeDoc, motifDoc));
-
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
-        }
-
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -68,7 +56,7 @@ namespace XpertMobileApp.Views
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
 
-                LoadStats();
+                LoadData();
             }
 
             if (!AppManager.HasAdmin)
@@ -77,12 +65,31 @@ namespace XpertMobileApp.Views
             }
         }
 
+        #region Interface actions
+
+        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var item = args.SelectedItem as View_ACH_DOCUMENT;
+            if (item == null)
+                return;
+
+            await Navigation.PushAsync(new AchatFormPage(item, typeDoc, motifDoc));
+
+            // Manually deselect item.
+            ItemsListView.SelectedItem = null;
+        }
+
+        async void AddItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
+        }
+
         private void ApplyVisibility()
         {
             btn_Additem.IsEnabled = viewModel.hasEditHeader;
         }
 
-        private async void LoadStats()
+        private async void LoadData()
         {
              viewModel.LoadItemsCommand.Execute(null);
         }
@@ -114,5 +121,7 @@ namespace XpertMobileApp.Views
             itemSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
+
+        #endregion
     }
 }

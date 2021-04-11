@@ -19,28 +19,8 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<View_PRD_AGRICULTURE> SelectedDocs { get; set; }
 
         public string TypeDoc { get; set; } = "LF";
+
         public string MotifDoc { get; set; } = AchRecMotifs.PesageForProduction;
-
-        private bool selectionMode;
-        public bool SelectionMode
-        {
-            get { return selectionMode; }
-            set { SetProperty(ref selectionMode, value); }
-        }
-
-        decimal totalTurnover;
-        public decimal TotalTurnover
-        {
-            get { return totalTurnover; }
-            set { SetProperty(ref totalTurnover, value); }
-        }
-
-        decimal totalMargin;
-        public decimal TotalMargin
-        {
-            get { return totalMargin; }
-            set { SetProperty(ref totalMargin, value); }
-        }
 
         public bool hasEditHeader
         {
@@ -58,23 +38,12 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public View_TRS_TIERS SelectedTiers { get; set; }
-
-        public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
-        public DateTime EndDate { get; set; } = DateTime.Now;
-
-        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
-        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
-        
-
-        public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
-        public View_BSE_COMPTE SelectedClient { get; set; }
-        public Command LoadClientsCommand { get; set; }
-
-        public ObservableCollection<View_BSE_COMPTE> User { get; set; }
-        public View_BSE_COMPTE SelectedUser { get; set; }
-        public Command LoadUsersCommand { get; set; }
+        private bool selectionMode;
+        public bool SelectionMode
+        {
+            get { return selectionMode; }
+            set { SetProperty(ref selectionMode, value); }
+        }
 
         public ProductionsViewModel(string typeDoc, string motifDoc)
         {
@@ -141,31 +110,29 @@ namespace XpertMobileApp.ViewModels
                 (item as BASE_CLASS).Index = i;
             }
 
-            GetItemsSum();
+            // GetItemsSum();
         }
 
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
+        #region Filter
 
-            try
-            {
-                Items.Clear();
+        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime EndDate { get; set; } = DateTime.Now;
 
-                // liste des ventes
-                await Items.LoadMoreAsync();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
+        public View_TRS_TIERS SelectedTiers { get; set; }
+
+        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
+        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
+
+
+        public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
+        public View_BSE_COMPTE SelectedClient { get; set; }
+        public Command LoadClientsCommand { get; set; }
+
+        public ObservableCollection<View_BSE_COMPTE> User { get; set; }
+        public View_BSE_COMPTE SelectedUser { get; set; }
+        public Command LoadUsersCommand { get; set; }
+
+        #endregion
     }
 
 }
