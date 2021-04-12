@@ -45,18 +45,6 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_CFA_BORDEREAU> list)
-        {
-            base.OnAfterLoadItems(list);
-
-            int i = 0;
-            foreach (var item in list)
-            {
-                i += 1;
-                (item as BASE_CLASS).Index = i;
-            }
-        }
-
         #region filters data
 
         public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
