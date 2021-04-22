@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="XpertMobileApp.Views.AchatsAnalysesPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
+             BackgroundColor="White"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Icon="filter.png"
+                     Clicked="Filter_Clicked" />
+
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout x:Name="stack" BackgroundColor="LightGray">
+            <!-- Filter -->
+            <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="0" Grid.Row="1" 
+                        x:Name="dp_StartDate"                        
+                        Format="dd/MM/yyyy"
+                        
+                        TextColor="Black"
+                        Date="{Binding StartDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+                    <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
+                    <DatePicker Grid.Column="1" Grid.Row="1"
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding EndDate, Mode=TwoWay}"
+                        Margin="30, 0, 30, 10"/>
+
+                    <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                        <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_ApplyFilter_Clicked"/>
+
+                        <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                        Clicked="btn_CancelFilter_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+
+            <ScrollView VerticalOptions="FillAndExpand" BackgroundColor="Transparent" Margin="0,5,0,0" Padding="0">
+                <StackLayout Margin="0,0,0,0" Padding="0">
+                    <StackLayout.Resources>
+                        <ResourceDictionary>
+                            <DataTemplate x:Key="toolTipTemplate1">
+                                <StackLayout BackgroundColor="#404041">
+                                    <StackLayout.Padding>
+                                        <OnPlatform x:TypeArguments="Thickness" WinPhone="3,3,3,3" />
+                                    </StackLayout.Padding>
+                                    <Label Text="Total achats" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
+                                    <BoxView Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                                    <StackLayout Orientation="Horizontal"  VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
+                                        <Label Text="{Binding Value,StringFormat=' :  {0:N2} DA'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                            <DataTemplate x:Key="toolTipTemplate2">
+                                <StackLayout BackgroundColor="#404041">
+                                    <StackLayout.Padding>
+                                        <OnPlatform x:TypeArguments="Thickness" WinPhone="3,3,3,3" />
+                                    </StackLayout.Padding>
+                                    <Label Text="Quantité" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" Grid.Row="0" />
+                                    <BoxView Grid.Row="1" Color="White" HeightRequest="0.75" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand" BackgroundColor="#404041" Spacing="0" Padding="3" Margin="0">
+                                        <Label Text="{Binding Name}" VerticalTextAlignment="Center" HorizontalOptions="StartAndExpand" TextColor="#CCCCCC" FontAttributes="Bold" FontFamily="Helvetica" FontSize="12" />
+                                        <Label Text="{Binding Value,StringFormat=' : {0:N2} Kg'}" VerticalTextAlignment="Center" HorizontalOptions="EndAndExpand" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0" FontSize="12" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </DataTemplate>
+                        </ResourceDictionary>
+                    </StackLayout.Resources>
+
+                    <StackLayout HeightRequest="220" BackgroundColor="Transparent">
+                        <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,1,8,1" BackgroundColor="White"
+                             VerticalOptions="FillAndExpand"  HasShadow="True" OutlineColor="#edeceb">
+                            <chart:SfChart x:Name="Chart_Ventes" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+                                       MinimumHeightRequest="1000">
+
+                            <chart:SfChart.Title>
+                                <chart:ChartTitle Text="Total achats par produit" FontSize="20" TextColor="{StaticResource Accent}" />
+                            </chart:SfChart.Title>
+
+                            <chart:SfChart.ChartBehaviors>
+                                <chart:ChartTooltipBehavior BackgroundColor="#404041" />
+                            </chart:SfChart.ChartBehaviors>
+                
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
+                                    <chart:CategoryAxis.Title>
+                                        <chart:ChartAxisTitle Text="Total achats"/>
+                                    </chart:CategoryAxis.Title>
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+                
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis IsVisible="false" EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="true" ShowMinorGridLines="False">
+                                    <chart:NumericalAxis.MajorTickStyle>
+                                        <chart:ChartAxisTickStyle TickSize="8" >
+                                        </chart:ChartAxisTickStyle>
+                                    </chart:NumericalAxis.MajorTickStyle>
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+                
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend ToggleSeriesVisibility="True" DockPosition="Bottom" IconWidth="14" IconHeight="14" />
+                            </chart:SfChart.Legend>
+                
+                            <chart:SfChart.ColorModel>
+                                <chart:ChartColorModel Palette="Natural" />
+                            </chart:SfChart.ColorModel>
+                
+                            <chart:SfChart.Series>
+
+                                <chart:ColumnSeries x:Name="barSeries1" ItemsSource="{Binding Entries1}" XBindingPath="Name" 
+                                                 YBindingPath="Value" LegendIcon="SeriesType" Label="Achats" 
+                                                 EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate1}">
+                                    <chart:ColumnSeries.DataMarker>
+                                        <chart:ChartDataMarker ShowLabel="true">
+                                            <chart:ChartDataMarker.LabelStyle>
+                                                <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#,###.00 'DA'"  Font="12" BackgroundColor="Transparent">
+                                                </chart:DataMarkerLabelStyle>
+                                            </chart:ChartDataMarker.LabelStyle>
+                                        </chart:ChartDataMarker>
+                                    </chart:ColumnSeries.DataMarker>
+                                </chart:ColumnSeries>
+
+                            </chart:SfChart.Series>
+                        </chart:SfChart>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout HeightRequest="220" BackgroundColor="Transparent">
+                        <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,1,8,1" BackgroundColor="White" 
+                               VerticalOptions="FillAndExpand" HasShadow="True" OutlineColor="#edeceb">
+                            <chart:SfChart x:Name="Chart_Marges" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                            <chart:SfChart.Title>
+                                <chart:ChartTitle Text="Quantité acheté par produit" FontSize="20" TextColor="{StaticResource Accent}" />
+                            </chart:SfChart.Title>
+
+                            <chart:SfChart.ChartBehaviors>
+                                <chart:ChartTooltipBehavior BackgroundColor="#404041" />
+                            </chart:SfChart.ChartBehaviors>
+
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
+                                    <chart:CategoryAxis.Title>
+                                        <chart:ChartAxisTitle Text="Quantité" />
+                                    </chart:CategoryAxis.Title>
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis IsVisible="false" EdgeLabelsDrawingMode="Shift" 
+                                                     ShowMajorGridLines="false" ShowMinorGridLines="false">
+                                    <chart:NumericalAxis.MajorTickStyle>
+                                        <chart:ChartAxisTickStyle TickSize="8">
+                                        </chart:ChartAxisTickStyle>
+                                    </chart:NumericalAxis.MajorTickStyle>
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend ToggleSeriesVisibility="True" DockPosition="Bottom" IconWidth="14" IconHeight="14" />
+                            </chart:SfChart.Legend>
+
+                            <chart:SfChart.ColorModel>
+                                <chart:ChartColorModel Palette="Natural" />
+                            </chart:SfChart.ColorModel>
+
+                            <chart:SfChart.Series>
+                                <chart:ColumnSeries x:Name="barSeries2" ItemsSource="{Binding Entries2}" XBindingPath="Name" 
+                                                 YBindingPath="Value" LegendIcon="SeriesType" Label="Quantité" 
+                                                 EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate2}">
+                                    <chart:ColumnSeries.DataMarker>
+                                        <chart:ChartDataMarker ShowLabel="true">
+                                            <chart:ChartDataMarker.LabelStyle>
+                                                <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#,###.00 'Kg'"  Font="12" BackgroundColor="Transparent">
+                                                </chart:DataMarkerLabelStyle>
+                                            </chart:ChartDataMarker.LabelStyle>
+                                        </chart:ChartDataMarker>
+                                    </chart:ColumnSeries.DataMarker>
+                                </chart:ColumnSeries>
+                            </chart:SfChart.Series>
+                
+                        </chart:SfChart>
+                        </Frame>
+                    </StackLayout>
+
+                    <StackLayout HeightRequest="600" BackgroundColor="Transparent">
+                        <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" 
+                               VerticalOptions="FillAndExpand" HasShadow="True" OutlineColor="#edeceb">
+                            <chart:SfChart x:Name="Chart_AchatDetails" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                                       >
+
+                            <chart:SfChart.Title>
+                                <chart:ChartTitle Text="Quantité Net par jour" FontSize="20" TextColor="{StaticResource Accent}" />
+                            </chart:SfChart.Title>
+
+                            <chart:SfChart.ChartBehaviors>
+                                <chart:ChartTooltipBehavior BackgroundColor="#404041" />
+                            </chart:SfChart.ChartBehaviors>
+
+                            <chart:SfChart.PrimaryAxis>
+                                <chart:CategoryAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="false">
+                                    <chart:CategoryAxis.Title>
+                                        <chart:ChartAxisTitle Text="Quantité" />
+                                    </chart:CategoryAxis.Title>
+                                </chart:CategoryAxis>
+                            </chart:SfChart.PrimaryAxis>
+
+                            <chart:SfChart.SecondaryAxis>
+                                <chart:NumericalAxis IsVisible="false" EdgeLabelsDrawingMode="Shift" 
+                                                     ShowMajorGridLines="false" ShowMinorGridLines="false">
+                                    <chart:NumericalAxis.MajorTickStyle>
+                                        <chart:ChartAxisTickStyle TickSize="8">
+                                        </chart:ChartAxisTickStyle>
+                                    </chart:NumericalAxis.MajorTickStyle>
+                                </chart:NumericalAxis>
+                            </chart:SfChart.SecondaryAxis>
+
+                            <chart:SfChart.Legend>
+                                <chart:ChartLegend ToggleSeriesVisibility="True" DockPosition="Bottom" IconWidth="14" IconHeight="14" />
+                            </chart:SfChart.Legend>
+
+                            <chart:SfChart.ColorModel>
+                                <chart:ChartColorModel Palette="Natural" />
+                            </chart:SfChart.ColorModel>
+
+                            <chart:SfChart.Series>
+                                <chart:StackingBarSeries x:Name="barSeries3" ItemsSource="{Binding Entries3}" XBindingPath="Name" 
+                                                 YBindingPath="Value" LegendIcon="SeriesType" Label="Quantité" 
+                                                 EnableTooltip="true" EnableAnimation="True" TooltipTemplate="{StaticResource toolTipTemplate2}">
+                                    <chart:StackingBarSeries.DataMarker>
+                                        <chart:ChartDataMarker ShowLabel="true">
+                                            <chart:ChartDataMarker.LabelStyle>
+                                                <chart:DataMarkerLabelStyle LabelPosition="Inner" LabelFormat="#,###.00 'Kg'"  Font="11" BackgroundColor="Transparent">
+                                                </chart:DataMarkerLabelStyle>
+                                            </chart:ChartDataMarker.LabelStyle>
+                                        </chart:ChartDataMarker>
+                                    </chart:StackingBarSeries.DataMarker>
+                                </chart:StackingBarSeries>
+                            </chart:SfChart.Series>
+
+                        </chart:SfChart>
+                        </Frame>
+                    </StackLayout>
+                    
+                </StackLayout>
+            </ScrollView>
+            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" 
+                         HorizontalOptions="Fill" BackgroundColor="Transparent" VerticalOptions="End">
+                <Button x:Name="btn_Day" ClassId="btn_Day" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Day}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Week" ClassId="btn_Week" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Week}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Month" ClassId="btn_Month" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Month}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+                <Button x:Name="btn_Year" ClassId="btn_Year" HorizontalOptions="FillAndExpand" Text="{i18n:Translate txt_Year}" Style="{DynamicResource DefaultBtnStyle}" Clicked="StatFilter_Clicked"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

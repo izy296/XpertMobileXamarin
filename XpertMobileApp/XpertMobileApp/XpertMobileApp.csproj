@@ -1,0 +1,232 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataService\**" />
+    <Compile Remove="Views\08-Catalogue-old\List\**" />
+    <Compile Remove="Views\08-Catalogue-old\Paging\**" />
+    <EmbeddedResource Remove="DataService\**" />
+    <EmbeddedResource Remove="Views\08-Catalogue-old\List\**" />
+    <EmbeddedResource Remove="Views\08-Catalogue-old\Paging\**" />
+    <None Remove="DataService\**" />
+    <None Remove="Views\08-Catalogue-old\List\**" />
+    <None Remove="Views\08-Catalogue-old\Paging\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Api\Storage\IQueryableExtensions.cs" />
+    <Compile Remove="Api\Storage\RLMDataManager.cs" />
+    <Compile Remove="Api\Models\CODE_BARRE\ICODE_BARRE_Reder.cs" />
+    <Compile Remove="Api\Services\MockDataStore.cs" />
+    <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
+    <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
+    <Compile Remove="Api\Storage\Ventes\SL_VENTE_BLL.cs" />
+    <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
+    <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
+    <Compile Remove="Models\BaseContentPage.cs" />
+    <Compile Remove="Models\Item.cs" />
+    <Compile Remove="Models\Product.cs" />
+    <Compile Remove="Models\Review.cs" />
+    <Compile Remove="Views\AboutPage.xaml.cs" />
+    <Compile Remove="Views\ItemDetailPage.xaml.cs" />
+    <Compile Remove="Views\ItemsPage.xaml.cs" />
+    <Compile Remove="Views\MainPage.xaml.cs" />
+    <Compile Remove="Views\06-Manafiaa\Production\Reception olive huile\SfListViewSelectionBehavior.cs" />
+    <Compile Remove="Views\MenuPage.xaml.cs" />
+    <Compile Remove="Views\NewItemPage.xaml.cs" />
+    <Compile Remove="Views\04-Comercial\Rfid\RfidScanInvnetairePage.xaml.cs" />
+    <Compile Remove="Views\04-Comercial\Rfid\RfidScanPage.xaml.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqPanierPage.xaml.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductDetailViewModel.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductList.xaml.cs" />
+    <Compile Remove="Views\07-XBoutiques\BtqProductViewModel.cs" />
+    <Compile Remove="Views\07-XBoutiques\Catalogue\Model\ProductRepository.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\AboutPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
+    <EmbeddedResource Remove="Views\ItemsPage.xaml" />
+    <EmbeddedResource Remove="Views\MainPage.xaml" />
+    <EmbeddedResource Remove="Views\MenuPage.xaml" />
+    <EmbeddedResource Remove="Views\NewItemPage.xaml" />
+    <EmbeddedResource Remove="Views\04-Comercial\Rfid\RfidScanInvnetairePage.xaml" />
+    <EmbeddedResource Remove="Views\04-Comercial\Rfid\RfidScanPage.xaml" />
+    <EmbeddedResource Remove="Views\07-XBoutiques\BtqPanierPage.xaml" />
+    <EmbeddedResource Remove="Views\07-XBoutiques\BtqProductList.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="beep.wav" />
+    <None Remove="beep03.mp3" />
+    <None Remove="beep07.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\..\Xpert\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\Xpert\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
+    <Compile Include="..\..\..\Xpert\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="beep.wav" />
+    <EmbeddedResource Include="beep03.mp3" />
+    <EmbeddedResource Include="beep07.mp3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
+    <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
+    <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
+    <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.2.0.47" />
+    <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.707-beta" />  
+    <PackageReference Include="ZXing.Net.Mobile" Version="3.0.0-beta5" />  
+    <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.0.0-beta5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Api\Services\RFID\" />
+    <Folder Include="Api\Storage\Ventes\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="FodyWeavers.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Xpert\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\07-XBoutiques\Commandes\StylesCT.xaml.cs">
+      <DependentUpon>StylesCT.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Feedback\StylesFB.xaml.cs">
+      <DependentUpon>StylesFB.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
+      <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Livraison\TourneeDetails\TourneeDetailTemplate.xaml.cs">
+      <DependentUpon>TourneeDetailTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Livraison\Tournee\TourneeTemplate.xaml.cs">
+      <DependentUpon>TourneeTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Livraison\Tournee\TourneesPage.xaml.cs">
+      <DependentUpon>TourneesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Selectors\Lot\QteUpdater\QteUpdater.xaml.cs">
+      <DependentUpon>QteUpdater.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Simple Indicators\SimpleIndicators.xaml.cs">
+      <DependentUpon>SimpleIndicators.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
+      <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\CommandeDetails\BtqCommandeDetailPage.xaml.cs">
+      <DependentUpon>BtqCommandeDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\DetailProd\BtqProductDetailPage.xaml.cs">
+      <DependentUpon>BtqProductDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Commandes\XMyCommandesPage.xaml.cs">
+      <DependentUpon>XMyCommandesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Commandes\XMyCommandesTemplate.xaml.cs">
+      <DependentUpon>XMyCommandesTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Catalogue\Views\CataloguePage.xaml.cs">
+      <DependentUpon>CataloguePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Catalogue\Views\CartPage.xaml.cs">
+      <DependentUpon>CartPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Login\ProfilPage.xaml.cs">
+      <DependentUpon>ProfilPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\WichList\WishListPage.xaml.cs">
+      <DependentUpon>WishListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\07-XBoutiques\Login\StylesLogin.xaml.cs">
+      <DependentUpon>StylesLogin.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="BaseView\XBasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Commandes\StylesCT.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Home\ProductHomePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Home\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\FeedbackPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\ReviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Feedback\StylesFB.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Templates\ReviewTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Templates\Styles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\SimpleEmailEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\StylesLogin.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\07-XBoutiques\Login\TabbedForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

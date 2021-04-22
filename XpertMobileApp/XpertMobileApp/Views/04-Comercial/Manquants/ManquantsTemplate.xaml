@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.ManquantsTemplate">
+    <ContentView.Content>
+
+        <StackLayout>
+            <Frame Style="{StaticResource FrameForList}">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    </StackLayout>
+                    
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGNATION_TYPE_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" />
+                        <Label Text="{Binding CREATED_ON, StringFormat='Le : {0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" />
+                        <Label Text="{Binding PRODUIT_REFERENCE, StringFormat='Réf : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Frame BackgroundColor="LightGray" CornerRadius="10" HorizontalOptions="Start" Margin="0" Padding="4,2,4,2" HeightRequest="15">
+                            <Label Text="{Binding TYPE_NAME}" TextColor="{StaticResource DefaultTextColor}" FontSize="10" />
+                        </Frame>
+                    </StackLayout>
+                    
+                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
+                        <Label Text="{ Binding QUANTITE, StringFormat='Qté. {0:N2}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
+                        <Label Text="{ Binding QTE_STOCK, StringFormat='Qté Stock. {0:N2}'}" FontSize="Default" HorizontalOptions="End" TextColor="Gray"/>
+                        <Label Text="{ Binding STOCK_MIN, StringFormat='Qté Min. {0:N2}'}" FontSize="Default" HorizontalOptions="End" TextColor="Gray"/>
+                        <Label Text="{ Binding QTE_REFERENCE, StringFormat='Qté Réf. {0:N2}'}" FontSize="Default" HorizontalOptions="End" TextColor="Gray"/>
+
+                        <!--
+                        <Label Text="{ Binding TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="End"/>
+                        -->
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.EncaissementDetailPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{Binding Title}">
+    
+    <ContentPage.ToolbarItems>
+        
+        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        
+        <ToolbarItem Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        
+        <ToolbarItem Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        
+    </ContentPage.ToolbarItems>
+
+
+
+    <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Vertical" VerticalOptions="End"
+                         HorizontalOptions="Fill">
+        <ScrollView Orientation="Vertical" VerticalOptions="Fill" >
+            <StackLayout x:Name="sl_content" Spacing="20" Padding="15" >
+
+            </StackLayout>
+        </ScrollView>
+        <Button x:Name="btnPrint" Text="Imprimer" CornerRadius="8"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnImprimer_Clicked" HorizontalOptions="FillAndExpand"></Button>
+    </StackLayout>
+</ContentPage>

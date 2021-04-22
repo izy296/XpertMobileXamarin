@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views.NewTiersPage">
+    
+    <ContentPage.ToolbarItems>
+
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <ScrollView Orientation="Vertical" Padding="15" VerticalOptions="Fill" >
+            <StackLayout VerticalOptions="FillAndExpand">
+
+                <Label Text="{i18n:Translate txt_Name}" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder="Nom"
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.NOM_TIERS, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="{i18n:Translate txt_LastName}" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder="Prénom"
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.PRENOM_TIERS, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="{i18n:Translate txt_phone}" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder=""
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.TEL1_TIERS, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="Email" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder=""
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.EMAIL, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="{i18n:Translate txt_DateNaissance}" Margin="5, 0, 0, 0"/>
+                <DatePicker 
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding Item.DATE_NAISSANCE, Mode=TwoWay}"
+                        Margin="30, 0, 30, 30"/>
+
+
+                <Label Text="Code barre" Margin="5, 0, 0, 0"/>
+                <StackLayout Orientation="Horizontal" Margin="0" Padding="0" Spacing="0">
+                <Entry x:Name="CBCarte" HorizontalOptions="FillAndExpand"
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.NUM_CARTE_FIDELITE, Mode=TwoWay}"
+                       TextColor="{StaticResource Primary}"/>
+                    <Button x:Name="ScnanCB" WidthRequest="50" HeightRequest="50" BackgroundColor="#6279B8" ImageSource="scan_qr_24.png" 
+                            Clicked="ScnanCB_Clicked" VerticalOptions="Start" Margin="0,-10,0,0" HorizontalOptions="End" CornerRadius="8" />
+                </StackLayout>
+                
+                <Label Text="Secteurs" Margin="5, 0, 0, 0" />
+                <Picker ItemsSource="{Binding Secteurs}"
+                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                SelectedItem="{Binding SelectedSecteur}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="SecteursPicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30" 
+                                x:Name="SecteursPicker"/>
+                
+                <Label Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0" />
+                <Picker ItemsSource="{Binding Types}"
+                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                                SelectedItem="{Binding SelectedType}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="TypesPicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30" 
+                                x:Name="TypesPicker"/>
+
+                <Label Text="{i18n:Translate txt_Categorie}" Margin="5, 0, 0, 0"/>
+                <Picker ItemsSource="{Binding Familles}"
+                         ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
+                         SelectedItem="{Binding SelectedFamille}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="FamillesPicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30" 
+                                x:Name="FamillesPicker"/>
+
+                <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="EndAndExpand">
+
+                    <flex:FlexButton
+                    x:Name="cmd_Terminate"
+                    HorizontalOptions="FillAndExpand"
+                    IconOrientation="Left" 
+                    IconPadding="0,0,5,0"
+                    MinimumHeightRequest="50"
+                    HeightRequest="55"
+                    Padding="0"
+                    Margin="0"
+                    Text="Annulé"
+                    CornerRadius="38"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#49516F"
+                    BackgroundColor="#6279B8"
+                    HighlightBackgroundColor="#8EA4D2"
+                    BorderColor="#8EA4D2"
+                    HighlightBorderColor="#8EA4D2"
+                    BorderThickness="3"
+                    Clicked="btn_Cancel_Clicked"
+                    />
+                    
+                    <flex:FlexButton
+                    x:Name="cmd_Buy"
+                    HorizontalOptions="FillAndExpand"
+                    IconOrientation="Left" 
+                    WidthRequest="120"
+                    IconPadding="0,0,5,0"
+                    HeightRequest="55"
+                    Padding="0"
+                    Margin="0"
+                    Text="Valider"
+                    CornerRadius="38"
+                    ForegroundColor="#ffffff"
+                    HighlightForegroundColor="#496f4f"
+                    BackgroundColor="#62b869"
+                    HighlightBackgroundColor="#8ed293"
+                    BorderColor="#8ed293"
+                    HighlightBorderColor="#8ed293"
+                    BorderThickness="3"
+
+                    Clicked="btn_Save_Clicked"
+                    />
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

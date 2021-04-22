@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             x:Class=" XpertMobileApp.Views.Templates.RowCmdTemplate">
+    <ContentView.Content>
+        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    </StackLayout>
+                    <!--
+                        <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
+                    -->
+                    <!--
+                    <numeric:SfNumericUpDown  Grid.Column="1" Grid.Row="1" 
+                              Minimum="0" Margin="0,10,0,0"
+                              WidthRequest="130" HorizontalOptions="End"
+                              ParsingMode="Decimal" MaximumDecimalDigits="2" Watermark="Units"
+                              FontSize="13" IsEnabled="True"
+                              TextColor="Black" AllowNull="false" VerticalOptions="Center"
+							  Value="{Binding QUANTITE, Mode=TwoWay}"
+                              SpinButtonAlignment="Both" />
+                     -->
+                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
+                          Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
+                    
+                    <Label Grid.Column="2" Grid.Row="1" Text="{ Binding PRIX_VTE_HT, StringFormat='P : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />
+                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_HT, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+        <!--
+        <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+            <Grid  BackgroundColor="Transparent"  RowSpacing="5">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="1"  Grid.Row="0" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                    <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                </StackLayout>
+
+            </Grid>
+        </Frame>
+        -->
+    </ContentView.Content>
+</ContentView>

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views.NewEncaissementPage">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="cancel.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="{i18n:Translate cmd_Save}" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="save.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <ScrollView Orientation="Vertical" Padding="15">
+            <StackLayout>
+                <Label Text="{i18n:Translate DATE_ENCAISS}" Margin="5, 0, 0, 0" />
+                <DatePicker x:Name="dp_DateEncaiss"                        
+                        Format="dd/MM/yyyy"
+                        TextColor="{StaticResource Primary}"
+                        Margin="30, 0, 30, 30" 
+                        Date="{Binding Item.DATE_ENCAISS}"/>
+
+                <Label Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
+                <Picker ItemsSource="{Binding Motifs}"
+                                ItemDisplayBinding="{Binding DESIGN_MOTIF}"
+                                SelectedItem="{Binding SelectedMotif}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30" 
+                                x:Name="MotifsPicker"/>
+
+                <Label Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
+                <Picker ItemsSource="{Binding Comptes}"
+                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                                SelectedItem="{Binding SelectedCompte}"
+                                TextColor="{StaticResource Primary}"
+                                SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
+                                Margin="30, 0, 30, 30"                 
+                                x:Name="ComptesPicker"/>
+
+
+                <Label Text="{i18n:Translate CODE_TIERS}" Margin="5, 0, 0, 0"/>
+                <Grid Margin="30, 0, 30, 30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
+                    <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
+                        Clicked="btn_Select_Clicked"  HeightRequest="35"/>
+                </Grid>
+
+                <Label Text="{i18n:Translate TOTAL_ENCAISS}" Margin="5, 0, 0, 0"/>
+                <Entry Placeholder="{i18n:Translate msg_EnterTheAmount}"
+                       Margin="30, 0, 30, 30"
+                       Text="{Binding Item.TOTAL_ENCAISS, Mode=TwoWay , StringFormat='{0:F2}'}"
+                       TextColor="{StaticResource Primary}"/>
+
+                <Label Text="{i18n:Translate SOLDE_TIERS}" Margin="5, 0, 0, 0"/>
+                <Label x:Name="TierSolde" Text="" TextColor="{StaticResource Primary}" Margin="30, 0, 30, 30" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

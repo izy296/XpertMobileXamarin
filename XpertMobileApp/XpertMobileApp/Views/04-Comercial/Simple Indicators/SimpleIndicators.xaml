@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.SimpleIndicators"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             BackgroundColor="White"
+             FlowDirection="MatchParent"
+             Title="{Binding Title}"
+             >
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Refresh" Text="{i18n:Translate cmd_Filter}" 
+                     Icon="refresh_w24.png" Clicked="btn_Refresh_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <!--
+    #ecf0f1
+    -->
+    <ContentPage.Content>
+        <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
+
+            <!-- Liste des comptes 
+            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
+                   Margin="0" IsClippedToBounds="true"
+                   BorderColor="{StaticResource NavigationPrimary}"
+                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
+                
+                <StackLayout Spacing="10" Padding="15,0,15,15" >
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
+                        <Label x:Name="lblClientName" Text="Pharmacie Ben Mohamed " FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
+                               HorizontalTextAlignment="Center" TextColor="White"/>
+                    </StackLayout>
+
+                    <Label 
+                        HorizontalOptions="Center" Style="{StaticResource FAwesome-B-Solid}" 
+                        TextColor="White" FontSize="90"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
+                        BackgroundColor="Transparent" 
+                        />
+                    
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
+                        <Label Text="Bienvenue" TextColor="White" FontAttributes="Bold" 
+                                    FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+
+                        <Label x:Name="lblUser" Text="Mohamed" FontSize="Default" FontFamily="{StaticResource FontGilroyRegular}"
+                               HorizontalTextAlignment="Center" TextColor="White"/>
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+            -->
+            <syncfusion:SfListView Margin="10,10,10,0"
+                x:Name="listView"
+                SelectionMode="None"
+                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                SelectionChanged="listView_SelectionChanged"
+                ItemsSource="{Binding Items}"
+                AutoFitMode="None"
+                SelectionBackgroundColor="AliceBlue"
+                BackgroundColor="Transparent"
+                >
+                    
+                    <syncfusion:SfListView.ItemSize>
+                        <OnIdiom x:TypeArguments="x:Double"
+                      Phone="150"
+                      Tablet="200"
+                      Desktop="200"/>
+                    </syncfusion:SfListView.ItemSize>
+                    
+                    <syncfusion:SfListView.LayoutManager>
+                        <syncfusion:GridLayout>
+                            <syncfusion:GridLayout.SpanCount>
+                                <OnIdiom x:TypeArguments="x:Int32"
+                                Phone="2"
+                                Tablet="3"
+                                Desktop="3"/>
+                            </syncfusion:GridLayout.SpanCount>
+                        </syncfusion:GridLayout>
+                    </syncfusion:SfListView.LayoutManager>
+                    
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <!--
+                             {Binding Color} OutlineColor="LightGray"
+                              -->
+                        <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="8"
+                                   Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
+                                <Grid Padding="0" ColumnSpacing="0" Margin="0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height= "50" />
+                                        <RowDefinition Height= "*"  />
+                                        <RowDefinition Height= "50" />
+                                    </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0" Text="Aujourd'hui"  FontSize="Default" Margin="0,8,0,0"
+                     VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+
+                                <Label Grid.Row="1" Text="{Binding CustomValue, StringFormat='{0:N2} DA'}"  
+                                       FontFamily="{StaticResource FontGilroySemiBold}"
+                                       FontSize="Default"  TextColor="Black"
+                                       VerticalOptions="Center" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+
+                                <Label Grid.Row="2" Text="{Binding Title}"  FontSize="Default" VerticalOptions="End" HorizontalOptions="FillAndExpand"
+                                       FontFamily="{StaticResource FontGilroySemiBold}" 
+                                       HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
+                                          
+                                </Grid>
+                            </yummy:PancakeView>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

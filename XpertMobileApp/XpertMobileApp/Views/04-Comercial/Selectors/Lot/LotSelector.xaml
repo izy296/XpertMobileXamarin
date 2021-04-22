@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+                 x:Class="XpertMobileApp.Views.LotSelector">
+  <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+    <StackLayout BackgroundColor="White">
+
+       <!-- Filter -->
+       <Grid Margin="5,10,5,5">
+           <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*"/>
+               <ColumnDefinition Width="100"/>
+           </Grid.ColumnDefinitions>
+           <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
+                   Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}"/>
+           
+           <!--
+            <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
+                        Clicked="btn_Search_Clicked" />
+            -->
+
+             <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Search_Clicked"/>
+            </Grid>
+
+       <!-- Listing -->
+       <ListView x:Name="ItemsListView"
+               ItemsSource="{Binding Items}"
+               VerticalOptions="FillAndExpand"
+               HasUnevenRows="true"
+               SelectedItem="{Binding SelectedItem}"
+               RefreshCommand="{Binding LoadItemsCommand}"
+               IsPullToRefreshEnabled="true"
+               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+               
+               CachingStrategy="RecycleElement"
+               ItemTapped="ItemsListView_ItemTapped"
+               ItemSelected="OnItemSelected" 
+                 >
+           
+          <ListView.Behaviors>
+              <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+          </ListView.Behaviors>
+
+          <ListView.ItemTemplate>
+              <DataTemplate>
+                  <ViewCell >
+                      <StackLayout Padding="0" Margin="0" >
+                          <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
+                                  OutlineColor="Transparent">
+                              <Grid RowSpacing="0" Padding="0" Margin="0" >
+
+                                  <Grid.ColumnDefinitions>
+                                      <ColumnDefinition Width="Auto"/>
+                                      <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+
+                                  <Grid.RowDefinitions>
+                                      <RowDefinition Height="Auto"/>
+                                      <RowDefinition Height="Auto"/>
+                                  </Grid.RowDefinitions>
+
+                                  <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" 
+                                           WidthRequest="100" Grid.RowSpan="2">
+                                          <ffimageloading:CachedImage 
+                                                  Aspect="AspectFit"
+			                                   DownsampleToViewSize="True"                                            
+			                                   Source = "{Binding IMAGE_URL}"
+                                               CacheType="None">
+                                          </ffimageloading:CachedImage>
+                                  </StackLayout>
+
+                                  <StackLayout Grid.Column="1" Grid.Row="0" Spacing="0" Padding="0">
+                                      <Label Text="{Binding TRUNCATED_DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" 
+                                         FontAttributes="Bold" FontSize="Default"/>
+                                                      <Label Text="{Binding DESIGN_MAGASIN, StringFormat='Magasin : {0}'}" 
+                                         FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
+                                                      <Label Text="{Binding LOT, StringFormat='Lot : {0}'}" 
+                                         FontSize="Micro"  HorizontalOptions="FillAndExpand"/>
+                                  </StackLayout>
+
+                                  <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0"  Orientation="Horizontal" 
+                                    HorizontalOptions="Fill" Margin="0">
+
+                                      <StackLayout Padding="0" Margin="0" Spacing="0" HorizontalOptions="FillAndExpand" >
+                                          <Label Text="{Binding PRIX_VENTE, StringFormat='Prix : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Red" />
+                                          <Label Text="{Binding QUANTITE, StringFormat='Qte : {0:N2}'}" FontSize="13" FontAttributes="Bold" TextColor="Green" />
+                                      </StackLayout>
+
+                                      <StackLayout Padding="0,-10,15,0" Margin="0,0,0,0" Spacing="0" Orientation="Vertical" 
+                                           IsVisible="{Binding HasSelectedQUANTITE}" >
+                                          
+                                             <Label Text="{Binding SelectedQUANTITE, StringFormat='{0:N0}'}" FontSize="Medium" 
+                                         HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" />
+                                             <StackLayout Padding="0" Margin="0" Orientation="Horizontal">
+                                                    <Button ImageSource="pencil.png" Clicked="DelUpdate_Clicked" CornerRadius="15" 
+                                          BackgroundColor="Transparent" WidthRequest="27" HeightRequest="27"/>
+                                                    <Button ImageSource="remove.png" Clicked="DelQte_Clicked" CornerRadius="15" 
+                                          BackgroundColor="Transparent" WidthRequest="27" HeightRequest="27"/>
+                                             </StackLayout>
+
+                                      </StackLayout>
+                                      <!--
+                                      <Label IsVisible="{Binding HasSelectedQUANTITE}"  Text="{Binding SelectedQUANTITE}" Margin="0,15,20,0"
+                                             FontAttributes="Bold" FontSize="Medium" TextColor="Blue" HorizontalOptions="End"/>
+                                      -->
+                                  </StackLayout>
+                              </Grid>
+                          </Frame>
+                      </StackLayout>
+                  </ViewCell>
+              </DataTemplate>
+          </ListView.ItemTemplate>
+
+          <ListView.Footer>
+             <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                 <!-- set the footer to have a zero height when invisible -->
+                 <Grid.Triggers>
+                     <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                         <Setter Property="HeightRequest" Value="0" />
+                     </Trigger>
+                 </Grid.Triggers>
+                 <!-- the loading content -->
+                 <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+             </Grid>
+         </ListView.Footer>
+            </ListView>        
+    </StackLayout >
+      
+        <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+
+            <Button x:Name="btnSelect" Text="{Binding SelectionsInfos, StringFormat='{0:N0}'}"  
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" 
+                    Clicked="btnSelect_Clicked" HorizontalOptions="FillAndExpand"></Button>
+           <!--
+            <Button x:Name="btnRemove" Text="{i18n:Translate cmd_remove}" IsEnabled="False" 
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnRemove_Clicked" HorizontalOptions="FillAndExpand"></Button>
+           -->
+            <Button x:Name="btnColse" Text="{i18n:Translate btn_Close}" IsVisible="False"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose" HorizontalOptions="FillAndExpand"></Button>
+
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

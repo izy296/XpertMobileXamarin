@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:XpertMobileApp.Converters"
+             xmlns:control="clr-namespace:XpertMobileApp.Controls" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:local="clr-namespace:XpertMobileApp.Views.XLogin"
+             x:Name="profilePage"
+             Title="{Binding Title}"
+             x:Class="XpertMobileApp.Views.ProfilPage">
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:BooleanToColorConverter x:Key="ColorConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StylesLogin.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+
+        <StackLayout Padding="16,60,16,36" Spacing="24" HorizontalOptions="Center">
+            <!--  Entry to get Nom from user  -->
+            <border:SfBorder
+                       BackgroundColor="{DynamicResource Gray-White}"
+                       BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                       Style="{StaticResource SfBorderStyle}">
+                        <control:BorderlessEntry
+                           x:Name="NameEntry"
+                           Placeholder="Nom"
+                           PlaceholderColor="{DynamicResource Gray-700}"
+                           Style="{StaticResource EntryStyle}"
+                           Text="{Binding Item.FirstName}"
+                           TextColor="{DynamicResource Gray-900}" />
+            </border:SfBorder>
+
+            <!--  Entry to get LastName from user  -->
+            <border:SfBorder
+                        BackgroundColor="{DynamicResource Gray-White}"
+                        BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                        Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                       x:Name="PrenomEntry"
+                       Placeholder="Prénom"
+                       PlaceholderColor="{DynamicResource Gray-700}"
+                       Style="{StaticResource EntryStyle}"
+                       Text="{Binding Item.LastName}"
+                       TextColor="{DynamicResource Gray-900}" />
+            </border:SfBorder>
+
+            <!--  Entry to get email ID from user  -->
+            <local:SimpleEmailEntry />
+
+            <!--  Entry to get téléphone from user  -->
+            <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                                        x:Name="PhoneEntry"
+                                        Placeholder="téléphone"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Item.PhoneNumber}"
+                                        TextColor="{DynamicResource Gray-900}" />
+            </border:SfBorder>
+
+            <!--  Entry to get the confirm Adresse from user  -->
+            <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                                        x:Name="AdresseEntry"
+                                        Placeholder="Adresse"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Item.Adress}"
+                                        TextColor="{DynamicResource Gray-900}" />
+            </border:SfBorder>
+
+            <border:SfBorder
+                                    BackgroundColor="{DynamicResource Gray-White}"
+                                    BorderColor="{Binding Source={x:Reference NameEntry}, Path=IsFocused, Converter={StaticResource ColorConverter}, ConverterParameter=3}"
+                                    Style="{StaticResource SfBorderStyle}">
+                <control:BorderlessEntry
+                                        x:Name="VilleEntry"
+                                        Placeholder="Ville"
+                                        PlaceholderColor="{DynamicResource Gray-700}"
+                                        Style="{StaticResource EntryStyle}"
+                                        Text="{Binding Item.VILLE}"
+                                        TextColor="{DynamicResource Gray-900}" />
+            </border:SfBorder>
+            
+            <!--  Sign-up button  -->
+            <buttons:SfButton
+                  HorizontalOptions="Center"
+                  Command="{Binding SaveCommand}"
+                  CommandParameter="{Binding Source={x:Reference Name=profilePage}}"
+                  CornerRadius="20"
+                  WidthRequest="245"
+                  FontFamily="{StaticResource Montserrat-SemiBold}"
+                  Style="{StaticResource SfButtonStyle}"
+                  Text="Mettre à jour" />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

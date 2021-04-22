@@ -1,0 +1,304 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.BtqProductDetailPage"
+             xmlns:local="clr-namespace:XpertMobileApp.XConverters"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:sample1="clr-namespace:XpertMobileApp.Views"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
+             xmlns:rotate="clr-namespace:Syncfusion.SfRotator.XForms;assembly=Syncfusion.SfRotator.XForms" 
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             x:Name="prodDetails"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <local:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <local:BoolToWishedIconConverter x:Key="boolToWishedIconConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Padding="0" Margin="0" Spacing="0">
+        <!-- Menu -->
+        <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
+            <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Menu -->
+                <Grid x:Name="grid" Grid.Column="0" Margin="10,0,8,0">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
+                                   TextColor="{OnPlatform Default=#333333, Android=#ffffff}"
+                                   Opacity="{OnPlatform Default=1, Android=0.87}" />
+                    </StackLayout>
+                </Grid>
+
+                <!-- Cart -->
+                <Grid Grid.Column="1" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+                              HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding OrderListCommand}"
+                                                      CommandParameter="{Binding Source={x:Reference Name=prodDetails}}"/>
+                    </Grid.GestureRecognizers>
+                    <Image InputTransparent="True" Source="shopping_cart_24.png"
+                                   Aspect="AspectFill" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Margin="0,0,16,0"/>
+                    <Frame InputTransparent="True" Margin="0,12,6,0" Padding="2" HasShadow="False"
+                                   VerticalOptions="Start" HorizontalOptions="End" CornerRadius="8"
+                                   HeightRequest="14" WidthRequest="20" OutlineColor="Transparent"
+                               
+                                   BackgroundColor="Black">
+                        <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems}" FontSize="11"
+                                       VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Frame>
+                    <!--
+                            IsVisible="{Binding TotalOrderedItems, Mode=OneWay, Converter={StaticResource inverseZeroVisibilityConverter}}"
+                            -->
+
+                </Grid>
+
+
+            </Grid>
+        </Frame>
+
+        <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA" HeightRequest="{OnPlatform Default=0, UWP=1}" />
+        <ScrollView x:Name="sl_content" Padding="0,0,0,5" Margin="0" VerticalOptions="FillAndExpand"
+                    >
+
+            <Frame  Margin="0" HasShadow="{OnPlatform Android=false, iOS=false, macOS=false, UWP=false}" 
+                     Padding="0" BackgroundColor="Transparent">
+                <Grid Padding="0" ColumnSpacing="0" Margin="2" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <!-- Image -->
+                    <Grid HorizontalOptions="Fill" Padding="0,0,0,3" BackgroundColor="Transparent"
+                          HeightRequest="{OnIdiom Phone=240, Tablet=400, Desktop=500}" >
+
+                        <rotate:SfRotator x:Name="sfRotator" 
+                            Grid.Row="0" 
+                            HeightRequest="240"  
+                            WidthRequest="300"
+                            NavigationDelay="3000"  
+                            EnableAutoPlay="true"
+                            ItemsSource="{Binding Item.ImageList}"
+                            SelectedIndex="2" 
+                            NavigationDirection="Horizontal"
+                            NavigationStripMode="Dots" 
+                            BackgroundColor="White" 
+                            NavigationStripPosition="Bottom">
+                            <rotate:SfRotator.ItemTemplate>
+                                <DataTemplate>
+                                    <Image  Source="{Binding .}" Aspect="AspectFit" HorizontalOptions="Center" VerticalOptions="Center">
+
+                                    </Image>
+                                </DataTemplate>
+                            </rotate:SfRotator.ItemTemplate>
+                        </rotate:SfRotator>
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" Padding="0,10,0,0" RowSpacing="4" HorizontalOptions="FillAndExpand" Margin="5,0,0,0"
+                         BackgroundColor="White" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        
+                        <!-- Designation produit -->
+                        <Label Grid.Row="0" Text="{Binding Item.Name}" LineBreakMode="NoWrap" FontAttributes="Bold" 
+                                               HorizontalOptions="Start" FontFamily="Bold" 
+                                               FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                               Opacity="{OnPlatform Default=1, Android=0.87}"
+                                               TextColor="{OnPlatform Default=#333333, Android=#000000}">
+                        </Label>
+
+                        <!-- Catégorie produit -->
+                        <Label Grid.Row="1" Text="{Binding Item.Category}" FontSize="10"  HorizontalOptions="Start"
+                                                 Opacity="{OnPlatform Default=1, Android=0.54}"
+                                               TextColor="{OnPlatform Default=#333333, Android=#000000,UWP=#4C4C4C}">
+                        </Label>
+            
+                        <!-- Votes -->
+                        <Grid Grid.Row="2" VerticalOptions="Center" HorizontalOptions="FillAndExpand" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+
+  
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Frame BackgroundColor="Gray" Padding="2" HeightRequest="20" 
+                                                       HasShadow="{OnPlatform Default=true, iOS=false, macOS=false}"
+                                                       WidthRequest="{OnIdiom Default=35, Phone=35}">
+                                    <Grid ColumnSpacing="0">
+                                        <Grid.ColumnDefinitions >
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Text="{Binding Item.ReviewValue, StringFormat='{0:N1}'}" Grid.Column="0" FontFamily="Bold"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
+                                                               Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
+                                                               FontSize="{OnIdiom Default=15, Phone=12}">
+                                        </Label>
+                                        <Image Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
+                                    </Grid>
+                                </Frame>
+                            </Grid>
+
+                            <StackLayout  Grid.Column="1" Orientation="Horizontal" Padding="0" Margin="0" HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Item.Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="StartAndExpand" FontFamily="Bold" TextColor="Gray" 
+                                   FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
+
+                                <Button  x:Name="allReviews" Text="Tous voir.." HorizontalOptions="End" HeightRequest="15" FontSize="11" FontAttributes="Bold"
+                                    BackgroundColor="White" TextColor="Gray" CornerRadius="8" Padding="0" BorderWidth="0" Clicked="allReviews_Clicked"/>
+                            </StackLayout>
+
+                        </Grid>
+                        
+                        <!-- Prix -->
+                        <Grid Grid.Row="3" Padding="0" VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout Grid.Column="0" Padding="0" Margin="0" >
+                                <Label Text="{Binding Item.Price, Converter={StaticResource currencyFormatConverter}}" VerticalOptions="Center" FontAttributes="Bold" HorizontalOptions="Start"
+                                                       FontSize="{OnIdiom Phone=18, Tablet=20, Desktop=22}"
+                                             TextColor="{OnPlatform Default=#1C73F2, Android=#009688, UWP=#009688}" />
+
+                                <Label Text="{Binding Item.OLD_PRICE, Converter={StaticResource currencyFormatConverter}}" 
+                                                       VerticalOptions="Center" HorizontalOptions="Start"
+                                                       FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                                       TextColor="LightGray" TextDecorations="Strikethrough"/>
+                            </StackLayout>
+
+                            <Grid Grid.Column="1" VerticalOptions="Start" HorizontalOptions="Start" >
+                                <Frame CornerRadius="4" BackgroundColor="#f7e7e4" Margin="3" Padding="3">
+
+                                    <Label Text="{Binding Item.Reduction, StringFormat='-{0}%'}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" 
+                                                            VerticalTextAlignment="Center" FontFamily="Bold" TextColor="#ed5353"
+                                                            FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=11, Tablet=14},macOS=14, UWP={OnIdiom Phone=11,Tablet=14, Desktop=14}}"/>
+                                </Frame>
+                            </Grid>
+                        </Grid>
+
+                        <!-- Description -->
+                        <Grid Grid.Row="4" Padding="0" RowSpacing="0" HorizontalOptions="Start">
+                            <StackLayout Spacing="0" Padding="0,10,0,0">
+                                <Label Grid.Row="0" Text="Description" FontFamily="Bold" FontAttributes="Bold" Margin="0,0,0,10"
+                                                   FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                                   TextColor="{StaticResource DefaultTextColor}">
+                                </Label>
+                                <Label Grid.Row="0" Text="{Binding Item.Description}" HorizontalOptions="Start" 
+                                                   FontSize="{OnIdiom Phone=14, Tablet=16, Desktop=18}"
+                                                   TextColor="{StaticResource DefaultTextColor}">
+                                </Label>
+                            </StackLayout>
+                        </Grid>
+
+                    </Grid>
+                </Grid>
+            </Frame>
+        </ScrollView>
+
+        <!-- Actions -->
+        <StackLayout BackgroundColor="White" Padding="0" IsVisible="True"
+                     Margin="3,0,3,3" Spacing="0" VerticalOptions="End" >
+
+            <flex:FlexButton
+                x:Name="cmd_Buy" IsVisible="False"
+                
+                HorizontalOptions="FillAndExpand"
+                IconOrientation="Left" 
+                IconPadding="0,0,5,0"
+                HeightRequest="55"
+                Padding="0"
+                Margin="0"
+                Text="Ajouter au panier"
+                CornerRadius="38"
+                Icon="shopping_cart_24.png"
+                
+                ForegroundColor="#ffffff"
+                HighlightForegroundColor="#49516F"
+                BackgroundColor="#6279B8"
+                HighlightBackgroundColor="#8EA4D2"
+                BorderColor="#8EA4D2"
+                HighlightBorderColor="#8EA4D2"
+                
+                BorderThickness="3"
+                Clicked="cmd_Buy_Clicked"
+                />
+<!--
+            <flex:FlexButton
+                x:Name="cmd_Rate"
+                IsVisible="{Binding CanEval}"
+                HorizontalOptions="FillAndExpand"
+                IconOrientation="Left" 
+                IconPadding="0,0,5,0"
+                HeightRequest="55"
+                Padding="0"
+                Margin="0,5,0,2"
+                Text="Évaluer le produit"
+                CornerRadius="38"
+                ForegroundColor="#ffffff"
+                HighlightForegroundColor="#2E8B57"
+                BackgroundColor="#2E8B57"
+                HighlightBackgroundColor="#3CB371"
+                BorderColor="#3CB371"
+                HighlightBorderColor="#3CB371"
+                BorderThickness="3"
+                Clicked="cmd_Rate_Clicked"
+                />
+-->
+            <Button Grid.Column="0"  x:Name="cmd_Rate"  CornerRadius="38" FontSize="16" Text="Évaluer le produit"
+                    BorderWidth="1"  IsVisible="{Binding CanEval}"
+                    VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand"                 
+                    CommandParameter="{Binding Item}" 
+                    Clicked="cmd_Rate_Clicked"
+                    BackgroundColor="#2E8B57"
+                    BorderColor="#2E8B57" 
+                    TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
+
+            <Grid Grid.Row="2" Padding="0" ColumnSpacing="0" Margin="0,5,0,5" BackgroundColor="White" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <numeric:SfNumericUpDown Grid.Column="0"  x:Name="numericUpDown" MaximumDecimalDigits="0"
+                                      IsEditable="False" Minimum="0" Maximum="9" HorizontalOptions="End" VerticalOptions="Center"
+                                      AllowNull="false" FormatString="n" Watermark="Units" TextAlignment="Center"
+                                      SpinButtonAlignment="Both" UpDownButtonColor="Gray"
+                                      Value="{Binding Item.Quantity, Mode=TwoWay}"
+                                      IsVisible="{Binding Item.Quantity, Converter={StaticResource inverseZeroVisibilityConverter}}"
+                                      TextColor="Gray"
+                                      BackgroundColor="White"
+                                      />
+                
+                                      <Button Grid.Column="0" x:Name="addButton"  CornerRadius="38" FontSize="16" Text="Ajouter au panier" BorderWidth="1" 
+                                      VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" 
+                                      Command="{Binding Path=BindingContext.AddCommand, Source={x:Reference Name=prodDetails}}"
+                                      CommandParameter="{Binding Item}"
+                                      IsVisible="{Binding Item.Quantity, Converter={StaticResource zeroVisibilityConverter}}"
+                                      BackgroundColor="MediumVioletRed"
+                                      BorderColor="MediumVioletRed" 
+                                      TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
+                          <!--
+                          {OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}
+                          BackgroundColor="{OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}"
+                          -->
+            </Grid>
+
+
+            
+        </StackLayout>
+    </StackLayout>
+</ContentPage>    

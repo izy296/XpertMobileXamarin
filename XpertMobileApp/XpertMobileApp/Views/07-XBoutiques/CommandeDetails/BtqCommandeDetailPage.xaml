@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.BtqCommandeDetailPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             Title="{Binding Title}">
+
+    <StackLayout x:Name="sl_content" Padding="5" >
+
+        <Frame CornerRadius="10" Padding="15" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <Grid  BackgroundColor="White" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{Binding Item.Title}" TextColor="#3d3d3d" FontAttributes="Bold" FontSize="Default"/>
+                    <!--
+                    <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
+                    -->
+                </StackLayout>
+
+                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
+                    <Label Text="{ Binding Item.DESIGNATION_COMMANDE}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{ Binding Item.TOTAL_TTC, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{Binding Item.CREATED_ON, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="10" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <ListView x:Name="ItemsListView"
+                    ItemsSource="{Binding ItemRows}"
+                    HasUnevenRows="true"
+                    RefreshCommand="{Binding LoadRowsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    ItemTapped="ItemsListView_ItemTapped"      
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="8" Padding="0" Margin="0" BackgroundColor="White" HasShadow="True"  
+                                           OutlineColor="Transparent" ClassId="{Binding ID, StringFormat='fr_{0}'}">
+                                    <StackLayout Spacing="20" Padding="5" >
+                                        <Grid Margin="0" Padding="0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="30"/>
+                                            </Grid.RowDefinitions>
+
+
+                                            <!-- Designation -->
+                                            <StackLayout HorizontalOptions="FillAndExpand">
+
+                                                <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
+                                                           TextColor="#3d3d3d"  
+                                                           FontSize="Default"/>
+                                            </StackLayout>
+
+                                            <!-- Infos row -->
+                                            <Grid Grid.Column="0" Grid.Row="1"  Padding="0" HorizontalOptions="FillAndExpand"
+                                                  ColumnSpacing="0" Margin="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40" />
+                                                </Grid.RowDefinitions>
+
+                                                <StackLayout Margin="0" Padding="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
+                                                    <Label  Text="Qte" Margin="0" HorizontalOptions="Start" TextColor="Gray" FontSize="Micro"/>
+                                                    <Label  WidthRequest="60"
+                                                         FontSize="14" VerticalOptions="Start"
+                                                         FontAttributes="Bold"
+                                                         Text="{Binding QTE, StringFormat='{0:N1}'}"
+                                                         ClassId="{Binding ID, StringFormat='pb_{0}'}"/>
+                                                </StackLayout>
+                                                <StackLayout Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                                                    <Label  Text="Prix" Margin="0" HorizontalOptions="Start" TextColor="Gray" FontSize="Micro"/>
+                                                    <Label  Text="{Binding PRIX_HT, StringFormat='{0:N1}'}" Margin="5" HorizontalOptions="Center" 
+                                                           TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold"
+                                                           FontSize="Default"/>
+                                                </StackLayout>
+                                                <StackLayout Margin="0" Padding="0" Grid.Column="2" Orientation="Horizontal" HorizontalOptions="End">
+                                                    <Label  Text="MT" Margin="0"  TextColor="Gray" FontSize="Micro"/>
+                                                    <Label  Text="{Binding MONTANT_HT, StringFormat='{0:N1}'}" Margin="5" HorizontalOptions="End" FontAttributes="Bold"
+                                                           TextColor="{StaticResource DefaultTextColor}" 
+                                                           FontSize="Default"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>    

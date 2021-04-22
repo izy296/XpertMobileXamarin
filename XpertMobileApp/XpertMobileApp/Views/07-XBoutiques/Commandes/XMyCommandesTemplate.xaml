@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.XMyCommandesTemplate">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StylesCT.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    
+    <ContentView.Content>
+
+        <StackLayout >
+            <Frame Style="{StaticResource FrameForList}">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Style="{StaticResource StackLOddEven}">
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="0" Spacing="5" Padding="0">
+                        <Label Text="{Binding Title, StringFormat='{0}'}" 
+                              FontFamily="{StaticResource Montserrat-SemiBold}" 
+                              Style="{StaticResource LabelStyle}"
+                              TextColor="{DynamicResource Gray-900}"
+                              />
+                        <Label Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy HH:mm}'}"  TextColor="{StaticResource DefaultTextColor}"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2" Grid.Row="0" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGN_ETAT_COMMANDE}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="{ Binding TOTAL_TTC, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Gray"/>
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

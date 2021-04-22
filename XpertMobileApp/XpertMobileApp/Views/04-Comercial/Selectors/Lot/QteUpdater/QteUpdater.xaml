@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+                 xmlns:fontawesome="clr-namespace:FontAwesome"
+                 xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+                 xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+                 xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+                 x:Class="XpertMobileApp.Views.QteUpdater">
+
+      <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="30, 20, 30, 20">
+        <Frame CornerRadius="8">
+         <StackLayout BackgroundColor="White"
+                     x:Name="EmbSelector">
+            <Grid Margin="15">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="Quantité" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+                <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                                     SelectAllOnFocus="True"            
+                                     MaximumDecimalDigits="2"
+                                     ParsingMode="Double"
+                                     FontSize="Large" TextAlignment="Center"
+                                     SpinButtonAlignment="Both"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     ValueChangeMode="OnKeyFocus"
+                                     x:Name="NUD_Qte">
+                </numeric:SfNumericUpDown>
+
+                    <Label Text="{i18n:Translate txt_agri_Prix}" FontSize="Medium"  Grid.Column="0"  Grid.Row="2" />
+                    <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"
+                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                                     MaximumDecimalDigits="2"
+                                     SpinButtonAlignment="Both"
+                                     ParsingMode="Double"
+                                     ValueChangeMode="OnKeyFocus"
+                                     FontSize="Large" TextAlignment="Center"
+                                     SelectAllOnFocus="True"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     x:Name="NUD_Price"/>
+            </Grid>
+                <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+                    <Button x:Name="btnColse" Text="{i18n:Translate btn_Close}" 
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose" ></Button>
+                    <Button x:Name="btnSelect" Text="Valider" TextColor="White" Style="{StaticResource DefaultBtnStyle}"
+                Clicked="OnValidate" HorizontalOptions="FillAndExpand"></Button>
+                </StackLayout>
+
+            </StackLayout >
+        </Frame>
+          
+    </StackLayout>
+
+</pages:PopupPage>

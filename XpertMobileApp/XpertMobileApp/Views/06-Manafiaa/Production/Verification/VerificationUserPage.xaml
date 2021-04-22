@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.VerificationUserPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{Binding Title}">
+    <!--
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Select"  Text="Select Tiers" Clicked="btn_Select_Clicked">
+        </ToolbarItem>
+
+        <ToolbarItem x:Name="btn_Scan" Icon="scan_qr_24.png" Text="Scan BL" Clicked="btn_Scan_Clicked">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    -->
+    <ScrollView Orientation="Vertical" VerticalOptions="Fill" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
+        <StackLayout Spacing="0" BackgroundColor="Transparent" Padding="5">
+            
+            <Frame x:Name="Header_BlScan" CornerRadius="8" Padding="5" Margin="5" 
+                   BackgroundColor="Gray" HasShadow="True"  OutlineColor="Transparent" >
+                <StackLayout  Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Transparent">
+                    <Button x:Name="btn_RowScanTiers" Image="scan_qr_24.png" CornerRadius="8"
+                            ClassId="Select" HorizontalOptions="EndAndExpand" Text="Scan BL"
+                            FontSize="Small" Margin="2" Style="{StaticResource DefaultBtnStyle}" Clicked="btn_RowScanTiers_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="{Binding Tiers.NOM_TIERS1, Mode=TwoWay, StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.InfoCircle}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding Tiers.LAST_CREANCE, Mode=TwoWay,  StringFormat='{0:dd/MM/yyyy HH:mm}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Solde" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.MoneyBillWave}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Tiers.SOLDE_TIERS, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="OrangeRed"/>
+
+        
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Details Bar -->
+            <Frame x:Name="Header_RowScan" CornerRadius="8" Padding="5" Margin="5" 
+                   BackgroundColor="Gray" HasShadow="True"  OutlineColor="Transparent" >
+                <StackLayout  Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Transparent">
+                    <Button x:Name="btn_RowScan" Image="scan_qr_24.png" CornerRadius="8"
+                            ClassId="Select" HorizontalOptions="EndAndExpand" Text="Scan produit"
+                            FontSize="Small" Margin="2" Style="{StaticResource DefaultBtnStyle}" Clicked="BidonScan_Clicked"></Button>
+                </StackLayout>
+            </Frame>
+            
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="{Binding ProductionInfos.NOM_TIERS, Mode=TwoWay,  StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.CalendarAlt}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <!--
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Date reception " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding ProductionInfos.NOM_TIERS, Mode=TwoWay,  StringFormat='{0}'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                    -->
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Date production " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding ProductionInfos.DATE_DOC, Mode=TwoWay,  StringFormat='{0:dd/MM/yyyy}'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+        
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Apport " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding ProductionInfos.QTE_APPORT, StringFormat='{0:N2} Kg'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Huile produite " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding ProductionInfos.QTE_DETAIL_PRODUITE, StringFormat='{0:N2} Litres'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant emballage " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding ProductionInfos.MT_BIDONS, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Reste à payer " FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding ProductionInfos.TOTAL_RESTE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                     
+                </StackLayout>
+            </Frame>
+
+            <!-- -->
+            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Transparent">
+                <Button x:Name="btn_Livrer"  CornerRadius="8" ClassId="Select" HorizontalOptions="EndAndExpand"
+                                                 Text="Livrer" FontSize="Small" Margin="2" Style="{StaticResource DefaultBtnStyle}" 
+                                                            IsVisible="{Binding Delevred, Mode=TwoWay}"
+                                                            Clicked="btn_Livrer_Clicked"></Button>
+
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>    

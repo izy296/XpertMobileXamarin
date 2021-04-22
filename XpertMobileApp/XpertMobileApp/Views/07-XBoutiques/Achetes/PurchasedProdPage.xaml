@@ -1,0 +1,347 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sample1:BaseView  xmlns:sample1="clr-namespace:XpertMobileApp.Views" 
+                   x:Class="XpertMobileApp.Views.PurchasedProdPage"
+                   x:Name="purchasedProdView"
+                   xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:local="clr-namespace:XpertMobileApp.XConverters"
+                   xmlns:fontawesome="clr-namespace:FontAwesome"
+                   xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+                   xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+                   xmlns:sync="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+                   xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms"
+                   Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="UWP" Value="filter.png"/>
+                    <On Platform="Android" Value="filter.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <sample1:BaseView.Resources>
+        <ResourceDictionary>
+            <local:InverseZeroVisibilityConverter x:Key="inverseZeroVisibilityConverter"/>
+            <local:ZeroVisibilityConverter x:Key="zeroVisibilityConverter"/>
+            <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
+            <local:BoolToWishedIconConverter x:Key="boolToWishedIconConverter"/>
+        </ResourceDictionary>
+    </sample1:BaseView.Resources>
+
+
+    <sample1:BaseView.Content>
+        <StackLayout VerticalOptions="FillAndExpand" Spacing="0">
+
+            <!-- Filter -->
+            <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
+                         ItemDisplayBinding="{Binding DESIGNATION}"
+                         SelectedItem="{Binding SelectedFamille}"
+                         TextColor="Black"
+                         Margin="15, 0, 15, 10" 
+                         x:Name="FamillesPicker"/>
+
+                    <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding Types}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedType}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesPicker"/>
+
+                    <!-- Filtre par nom du produit -->
+                    <Label Grid.Column="0" Grid.Row="2"  Text="{i18n:Translate txt_Product}" Margin="5, 0, 0, 0"/>
+                    <Entry Grid.Column="0" Grid.Row="3"  Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
+
+                    <!-- Nouveau produit -->
+                    <Label Grid.Column="1" Grid.Row="2"  Text="{i18n:Translate txt_NewProduct}" Margin="5, 0, 0, 0"/>
+                    <Switch Grid.Column="1" Grid.Row="3" Margin="15, 0, 15, 15"  x:Name="ent_onlyNew"  IsToggled="{Binding OnlyNew, Mode=TwoWay}"/>
+
+                    <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                        <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                            CornerRadius="8" Clicked="btn_ApplyFilter_Clicked"/>
+
+                        <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                           CornerRadius="8" Clicked="btn_CancelFilter_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+
+            <Grid x:Name="sampleLayout" RowSpacing="0" VerticalOptions="FillAndExpand" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Frame BackgroundColor="MediumVioletRed" HasShadow="True" Padding="0" Margin="0">
+                    <Grid Padding="0" HeightRequest="{OnPlatform Default=48, Android=56}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid x:Name="grid" Grid.Column="0" Margin="0,0,8,0">
+                            <StackLayout Orientation="Horizontal">
+
+                                <Button x:Name="Btn_menu" Margin="0" 
+                                        WidthRequest="50" HeightRequest="50"
+                                        Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                        TextColor="White" Command="{Binding OpenMenuCommand}" 
+                                        Text="{x:Static fontawesome:FontAwesomeIcons.faBars}" BackgroundColor="MediumVioletRed" 
+                                        />
+
+                                <Label Text="{Binding Title}" FontAttributes="Bold" VerticalOptions="Center" FontSize="16" 
+                               TextColor="{OnPlatform Default=#333333, Android=#ffffff}"
+                               Opacity="{OnPlatform Default=1, Android=0.87}" />
+                            </StackLayout>
+                        </Grid>
+
+                        <Grid Grid.Column="2" Margin="0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="MediumVioletRed" 
+                          HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" Padding="0, 0, 0, 0" >
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding OrderListCommand}"
+                                                  CommandParameter="{Binding Source={x:Reference Name=purchasedProdView}}"/>
+                            </Grid.GestureRecognizers>
+                                <Image InputTransparent="True" Source="shopping_cart_24.png"
+                                   Aspect="AspectFill" VerticalOptions="Center" HeightRequest="20" WidthRequest="20" Margin="0,0,16,0"/>
+                            
+                                <Frame InputTransparent="True" Margin="0,12,6,0" Padding="2" HasShadow="False"
+                                   VerticalOptions="Start" HorizontalOptions="End" CornerRadius="8"
+                                   HeightRequest="14" WidthRequest="20" OutlineColor="Transparent" BackgroundColor="Black">
+                                
+                                <Label InputTransparent="True" Margin="0" TextColor="White" Text="{Binding TotalOrderedItems}" FontSize="11"
+                                       VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Frame>
+                            <!--
+                                IsVisible="{Binding TotalOrderedItems, Mode=OneWay, 
+                                            Converter={StaticResource inverseZeroVisibilityConverter}}"
+                            -->
+                        </Grid>
+
+                        <Grid x:Name="gridBtnFilter" Grid.Column="1" Margin="0" >
+                            <StackLayout Orientation="Horizontal">
+
+                                <Button x:Name="Btn_filter" Margin="0" 
+                                            WidthRequest="50" HeightRequest="50" Clicked="Filter_Clicked"
+                                            Style="{StaticResource FAwesome-B-Solid}" FontSize="Medium"
+                                            TextColor="White"
+                                            Text="{x:Static fontawesome:FontAwesomeIcons.Filter}" BackgroundColor="MediumVioletRed" 
+                                            />
+                            </StackLayout>
+                        </Grid>
+                    </Grid>
+                </Frame>
+
+                <BoxView x:Name="boxView" Grid.Row="1" BackgroundColor="#EAEAEA" HeightRequest="{OnPlatform Default=0, UWP=1}" />
+                <pulltoRefresh:SfPullToRefresh x:Name="pullToRefresh" Grid.Row="2" 
+                           ProgressBackgroundColor="#428BCA" Refreshing="pullToRefresh_Refreshing"
+                           TransitionMode="SlideOnTop" 
+                           IsRefreshing="False">
+                    <pulltoRefresh:SfPullToRefresh.PullableContent >
+
+                        <sync:SfListView x:Name="listView" 
+                            SelectionBackgroundColor="AliceBlue"
+                            BackgroundColor="White"
+                            LoadMoreOption="Auto"
+                            LoadMoreCommand="{Binding LoadMoreItemsCommand}"
+                            ItemTapped="listView_ItemTapped"
+                            LoadMoreCommandParameter="{Binding Source={x:Reference Name=listView}}"
+                            ItemsSource="{Binding Products, Mode=TwoWay}">
+
+                            <sync:SfListView.ItemSize>
+                                <OnIdiom x:TypeArguments="x:Double"
+                                  Phone="300"
+                                  Tablet="300"
+                                  Desktop="300"/>
+                            </sync:SfListView.ItemSize>
+                            <sync:SfListView.LayoutManager>
+                                <sync:GridLayout>
+                                    <sync:GridLayout.SpanCount>
+                                        <OnIdiom x:TypeArguments="x:Int32"
+                                            Phone="2"
+                                            Tablet="3"
+                                            Desktop="3"/>
+                                    </sync:GridLayout.SpanCount>
+                                </sync:GridLayout>
+                            </sync:SfListView.LayoutManager>
+                            <sync:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame OutlineColor="#b3b3b3" Margin="5" 
+                                           HasShadow="{OnPlatform Android=true, iOS=false, macOS=false, UWP=true}">
+                                        <Grid Padding="0" ColumnSpacing="0" Margin="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid HorizontalOptions="Fill" VerticalOptions="Fill"  >
+                                                <ffimageloading:CachedImage 
+                                                         Aspect="AspectFill" HorizontalOptions="FillAndExpand" 
+                                                         VerticalOptions="FillAndExpand"
+			                                             DownsampleToViewSize="False"                                            
+			                                             Source = "{Binding Image}" 
+                                                         CacheType="Disk">
+                                                </ffimageloading:CachedImage>
+
+                                                <StackLayout Opacity="0.7"   >
+                                                    <Frame Margin="0" Padding="5" WidthRequest="20" BackgroundColor="#B6DB19" 
+                                                           HorizontalOptions="EndAndExpand" CornerRadius="15" >
+                                                        <Label Text="{Binding PurchasedQte, StringFormat='{0:N0}'}" HorizontalOptions="Center"
+                                                               FontSize="Default" TextColor="Black"/>
+                                                    </Frame>
+                                                    <!--
+                                                    <Button Text="" VerticalOptions="Start" HeightRequest="40" WidthRequest="30" IsVisible="False"
+                                                                HorizontalOptions="Start" ContentLayout="Top,0" Clicked="brn_Wished_Clicked" BackgroundColor="Transparent"
+                                                           ImageSource="{Binding Wished, Converter={StaticResource boolToWishedIconConverter}}"></Button>
+                                                    -->
+                                                    <Image  Source="new_128.png" IsVisible="{Binding IS_NEW, Mode=TwoWay}" HeightRequest="50" 
+                                                               HorizontalOptions="End" VerticalOptions="Start" Margin="-30,-30,0,0"/>
+                                                </StackLayout>
+
+                                            </Grid>
+
+                                            <!--
+                                            <sample1:SfImage Source="{Binding IMAGE_URL}" Aspect="AspectFit" BackgroundColor="White" VerticalOptions="Center" 
+                                                             HorizontalOptions="Center" />
+                                            -->
+
+                                            <Grid Grid.Row="1" Padding="0" RowSpacing="4" HorizontalOptions="Start" Margin="5,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30" />
+                                                    <RowDefinition Height="15" />
+                                                    <RowDefinition Height="20" />
+                                                    <RowDefinition Height="20" />
+                                                    <RowDefinition Height="35" />
+                                                </Grid.RowDefinitions>
+
+                                                <!-- Designation & catégorie -->
+                                                <Label Text="{Binding Name}" LineBreakMode="WordWrap" Grid.Row="0" HorizontalOptions="Start" FontFamily="Bold" 
+                                                       FontSize="{OnIdiom Phone=12, Tablet=14, Desktop=16}"
+                                                       Opacity="{OnPlatform Default=1, Android=0.87}"
+                                                       TextColor="{OnPlatform Default=#333333, Android=#000000}">
+                                                </Label>
+                                                <Label Text="{Binding Category}" FontSize="10" Grid.Row="1" HorizontalOptions="Start"
+                                                         Opacity="{OnPlatform Default=1, Android=0.54}"
+                                                       TextColor="{OnPlatform Default=#333333, Android=#000000,UWP=#4C4C4C}">
+                                                </Label>
+
+                                                <!-- Votes {Binding Category} -->
+                                                <Grid Grid.Row="3" VerticalOptions="Center" HorizontalOptions="Start" MinimumHeightRequest="40">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid Grid.Column="0">
+                                                        <Frame BackgroundColor="Gray" Padding="2" HeightRequest="20" 
+                                                               HasShadow="{OnPlatform Default=true, iOS=false, macOS=false}"
+                                                               WidthRequest="{OnIdiom Default=40, Phone=35}">
+                                                            <Grid ColumnSpacing="0">
+                                                                <Grid.ColumnDefinitions >
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Text="{Binding ReviewValue}" Grid.Column="0" FontFamily="Bold"  VerticalOptions="Center" HorizontalOptions="Center" TextColor="White"
+                                                                       Margin='{OnIdiom Default="5,0,0,0", Phone="3,0,0,0"}'
+                                                                       FontSize="{OnIdiom Default=15, Phone=12}">
+                                                                </Label>
+                                                                <Image Source="Rating.png" Grid.Column="1" HeightRequest="10" WidthRequest="15" />
+                                                            </Grid>
+                                                        </Frame>
+                                                    </Grid>
+                                                    <Label Grid.Column="1" Text="{Binding Ratings}" VerticalTextAlignment="Center" LineBreakMode="NoWrap" VerticalOptions="Center" HorizontalOptions="Center" FontFamily="Bold" TextColor="Gray" 
+                                           FontSize="{OnPlatform Android={OnIdiom Phone=12, Tablet=14}, iOS={OnIdiom Phone=10, Tablet=14}, macOS=14, UWP={OnIdiom Phone=11, Tablet=14, Desktop=14}}" />
+                                                </Grid>
+
+                                                <!-- Prix -->
+                                                <Grid Grid.Row="2" Padding="0" VerticalOptions="Center" HorizontalOptions="Start" Margin="0,0,-15,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackLayout Grid.Column="0" Padding="0" Margin="0" Spacing="0">
+                                                        <Label Text="{Binding Price, StringFormat='{0:N2}'}" 
+                                                                   HorizontalOptions="Start" FontAttributes="Bold" Margin="0"
+                                                                   FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                                         TextColor="MediumVioletRed" />
+
+                                                        <Label Text="{Binding OLD_PRICE, StringFormat='{0:N2}'}" IsVisible="False"
+                                                                   HorizontalOptions="Start" Margin="0"
+                                                                   FontSize="{OnIdiom Phone=16, Tablet=18, Desktop=20}"
+                                                                   TextColor="LightGray" TextDecorations="Strikethrough"/>
+                                                    </StackLayout>
+                                                    <Grid Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" IsVisible="False"
+                                                                     BackgroundColor="Transparent" Margin="0" Padding="0">
+                                                        <Frame CornerRadius="4" BackgroundColor="#f7e7e4" Margin="0" Padding="3" >
+                                                            <Label Text="{Binding Reduction, StringFormat='-{0}%'}" HorizontalTextAlignment="End" LineBreakMode="NoWrap" 
+                                                                VerticalTextAlignment="Center" FontFamily="Bold" TextColor="#ed5353"
+                                                                FontSize="{OnPlatform Android={OnIdiom Phone=11, Tablet=14}, iOS={OnIdiom Phone=11, Tablet=14},macOS=14, UWP={OnIdiom Phone=11,Tablet=14, Desktop=14}}"/>
+                                                        </Frame>
+                                                    </Grid>
+                                                </Grid>
+
+                                            </Grid>
+                                            <!---->
+                                            <Grid Grid.Row="2" Padding="0" ColumnSpacing="0" Margin="0,10,0,0" >
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <numeric:SfNumericUpDown Grid.Column="0"  x:Name="numericUpDown" MaximumDecimalDigits="0"
+                                                                           IsEditable="False" Minimum="0" Maximum="9" HorizontalOptions="End" VerticalOptions="Center"
+                                                                           AllowNull="false" FormatString="n" Watermark="Units" TextAlignment="Center"
+                                                                           SpinButtonAlignment="Both" UpDownButtonColor="Gray"
+                                                                           Value="{Binding Quantity, Mode=TwoWay}"
+                                                                           IsVisible="{Binding Quantity, Converter={StaticResource inverseZeroVisibilityConverter}}"
+                                                                             TextColor="Gray"
+                                                                             BackgroundColor="White"
+                                                                             WidthRequest="{OnPlatform Default=150}" />
+                                                <Button Grid.Column="0" x:Name="addButton" CornerRadius="8" FontSize="16" Text="Ajouter" BorderWidth="1" 
+                                                            VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" 
+                                                            Command="{Binding Path=BindingContext.AddCommand, Source={x:Reference Name=listView}}"
+                                                            CommandParameter="{Binding .}"
+                                                            IsVisible="{Binding Quantity, Converter={StaticResource zeroVisibilityConverter}}"
+                                                            BackgroundColor="MediumVioletRed"
+                                                            BorderColor="MediumVioletRed"
+                                                            TextColor="{OnPlatform Default=#1C73F2, Android=#FFFFFF, UWP=#000000}" />
+                                                <!--
+                                                {OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}
+                                                BackgroundColor="{OnPlatform Default=#FFFFFF, Android=#009688, UWP=#C9C9C9}"
+                                                -->
+                                            </Grid>
+
+                                        </Grid>
+
+                                    </Frame>
+                                </DataTemplate>
+                            </sync:SfListView.ItemTemplate>
+                        </sync:SfListView>
+
+                    </pulltoRefresh:SfPullToRefresh.PullableContent>
+                </pulltoRefresh:SfPullToRefresh>
+
+            </Grid>
+        </StackLayout>
+    </sample1:BaseView.Content>
+</sample1:BaseView>
