@@ -153,10 +153,8 @@ D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\asset
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SkiaSharp.Views.Android.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SkiaSharp.Views.Forms.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLite-net.dll
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.batteries_green.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.batteries_v2.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.core.dll
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.lib.e_sqlite3.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\Syncfusion.Buttons.XForms.Android.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\Syncfusion.Buttons.XForms.dll
@@ -1006,5 +1004,8 @@ D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\bin\Debug\com.xpertsoft.Com
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\bin\com.xpertsoft.ComMobileApp.apk
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\bin\com.xpertsoft.ComMobileApp.aab
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\bin\com.xpertsoft.ComMobileApp.apks
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\androidx\proguard\23a5f2cb-5fc6-4e45-ad2d-96eb678f51c8.txt
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\androidx\proguard\7ae4bbf3-2c16-4255-8cd2-0dd1774db0d9.cfg
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\SQLitePCLRaw.lib.e_sqlite3.android.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\System.Buffers.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\android\assets\System.Runtime.CompilerServices.Unsafe.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\androidx\proguard\39ac0bd4-391d-4e24-a2fa-9f81de141837.cfg
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.Android\obj\Debug\110\androidx\proguard\628efb70-aacd-466e-995d-bb7813e97dcc.txt

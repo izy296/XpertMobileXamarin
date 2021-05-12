@@ -54,7 +54,7 @@ namespace XpertMobileApp.Views
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null)
             {
-                vte.ID = XpertHelper.RandomString(7);
+                vte.ID_Random = XpertHelper.RandomString(7);
                 vte.TYPE_DOC = typeDoc;
                 vte.TYPE_VENTE = typeDoc;
                 vte.DATE_VENTE = DateTime.Now.Date;
@@ -95,7 +95,7 @@ namespace XpertMobileApp.Views
 
             // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
-            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelector, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -131,7 +131,7 @@ namespace XpertMobileApp.Views
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Yes", "No");
+                var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Oui", "Non");
                 if (result) await this.Navigation.PopAsync(); // or anything else
             });
 
@@ -199,7 +199,7 @@ namespace XpertMobileApp.Views
 
                 foreach (var itemC in itemsC)
                 {
-                    itemC.Parent_Doc = viewModel.Item;
+                 //   itemC.Parent_Doc = viewModel.Item;
                     viewModel.ItemRows.Add(itemC);
                 }
 

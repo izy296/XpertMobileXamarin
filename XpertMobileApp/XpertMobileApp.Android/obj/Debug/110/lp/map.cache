@@ -18,11 +18,7 @@ Rg.Plugins.Popup.dll
 SkiaSharp.dll
 SkiaSharp.Views.Android.dll
 SkiaSharp.Views.Forms.dll
-SQLitePCLRaw.batteries_green.dll
-SQLitePCLRaw.batteries_v2.dll
-SQLitePCLRaw.core.dll
-SQLitePCLRaw.lib.e_sqlite3.dll
-SQLitePCLRaw.provider.e_sqlite3.dll
+SQLitePCLRaw.lib.e_sqlite3.android.dll
 Syncfusion.Buttons.XForms.Android.dll
 Syncfusion.Core.XForms.Android.dll
 Syncfusion.SfAutoComplete.Android.dll

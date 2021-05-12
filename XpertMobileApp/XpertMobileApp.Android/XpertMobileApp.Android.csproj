@@ -91,6 +91,9 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.3</Version>
     </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Licensing">
       <Version>18.2.0.47</Version>
     </PackageReference>

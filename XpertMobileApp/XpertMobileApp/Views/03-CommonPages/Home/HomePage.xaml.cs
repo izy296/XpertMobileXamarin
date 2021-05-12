@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -74,9 +75,21 @@ namespace XpertMobileApp.Views
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            var page = RootPage.GetMenuPage(Convert.ToInt32(id));
-            await Navigation.PushAsync(page);
-            // await RootPage.NavigateFromMenu(Convert.ToInt32(id));
+            if (id=="34")
+            {
+                Sync();
+            }
+            else
+            {
+                var page = RootPage.GetMenuPage(Convert.ToInt32(id));
+                await Navigation.PushAsync(page);
+                // await RootPage.NavigateFromMenu(Convert.ToInt32(id));
+            }
+        }
+
+        public async Task Sync()
+        {
+            await UpdateDatabase.synchronise();
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-
+using SQLite;
 namespace XpertMobileApp.DAL
 {
     public class View_VTE_Vente_Td22
@@ -33,6 +33,8 @@ namespace XpertMobileApp.DAL
 
     public partial class VTE_VENTE : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_VENTE { get; set; } // varchar(32)
         public string NUM_VENTE { get; set; } // varchar(32)
         public string REF_CLIENT { get; set; } // varchar(32)
@@ -175,8 +177,9 @@ namespace XpertMobileApp.DAL
         }
 
         #region Validation vente
+        [Ignore]  
         public List<View_VTE_VENTE_LOT> Details { get; set; }
-        public string ID { get; internal set; }
+        public string ID_Random { get; internal set; }
         public string MBL_MODE_PAIMENT { get; internal set; }
         private string _MBL_NUM_CARTE_FEDILITE;
         public string MBL_NUM_CARTE_FEDILITE
@@ -233,7 +236,10 @@ namespace XpertMobileApp.DAL
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
         [JsonIgnore]
-        public View_VTE_VENTE Parent_Doc { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        //[Ignore] 
+       // public View_VTE_VENTE Parent_Doc { get; set; }
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)
         public int? ID_STOCK { get; set; } // int(10)
@@ -567,6 +573,8 @@ namespace XpertMobileApp.DAL
     }
     public partial class LIV_TOURNEE : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string NUM_TOURNEE { get; set; }
         public DateTime DATE_TOURNEE { get; set; }
@@ -605,6 +613,8 @@ namespace XpertMobileApp.DAL
 
     public partial class LIV_TOURNEE_DETAIL : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_DETAIL { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string CODE_TIERS { get; set; }

@@ -39,6 +39,7 @@ namespace XpertMobileApp.Api.Models
         XMyCommandes,
         XWishList,
         XPurchased,
-        XProfile
+        XProfile,
+        synchronisation
     }
 }

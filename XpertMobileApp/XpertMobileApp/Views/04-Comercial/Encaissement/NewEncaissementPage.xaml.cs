@@ -84,7 +84,7 @@ namespace XpertMobileApp.Views
                 SelectedTiers = selectedItem;
 
                 Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
-                TierSolde.Text = string.Format("{0:F2} DA", SelectedTiers.SOLDE_TIERS);
+                TierSolde.Text = string.Format("{0:N02} DA", SelectedTiers.SOLDE_TIERS);
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
         }

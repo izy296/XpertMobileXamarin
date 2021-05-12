@@ -7,6 +7,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using System.Linq;
 using XpertMobileApp.DAL;
+using System.Collections.Generic;
 
 namespace XpertMobileApp.Views
 {
@@ -14,6 +15,7 @@ namespace XpertMobileApp.Views
     {
 
         LotSelectorViewModel viewModel;
+        List<View_STK_STOCK> SelectedlistLot;
         public string CurrentStream { get; set; }
         public string CodeTiers
         {
@@ -85,11 +87,8 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
             if (viewModel.SelectedItem != null)
             {
-                //viewModel.SelectedItem.SelectedQUANTITE = 1; // +=
-                // btnRemove.IsEnabled = viewModel.SelectedItem.SelectedQUANTITE > 0;
-                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                // XpertHelper.SendAction(this, CurrentStream,"", MCDico.ITEM_SELECTED, viewModel.SelectedItem);
-
+                MessagingCenter.Send(this, CurrentStream, SelectedlistLot);
+                SelectedlistLot = null;
             }
         }
 
@@ -109,8 +108,26 @@ namespace XpertMobileApp.Views
         {
             if (viewModel.SelectedItem != null)
             {
-                viewModel.SelectedItem.SelectedQUANTITE += 1;
-                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                if (SelectedlistLot == null)
+                {
+                    SelectedlistLot = new List<View_STK_STOCK>();
+                }
+                if (SelectedlistLot.Contains(viewModel.SelectedItem))
+                {
+                    try
+                    {
+                        SelectedlistLot.Where(x => x.ID_STOCK == viewModel.SelectedItem.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
+                    }
+                    catch
+                    {
+                    }
+                }
+                else
+                {
+                    viewModel.SelectedItem.SelectedQUANTITE += 1;
+                    SelectedlistLot.Add(viewModel.SelectedItem);
+                }
+                //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
                 UpdateTotaux();
             }
         }

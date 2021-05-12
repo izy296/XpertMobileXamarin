@@ -90,7 +90,7 @@ namespace XpertMobileApp.Views
             Title = AppResources.pn_NewVente;
 
             var vte = new View_VTE_VENTE();
-            vte.ID = XpertHelper.RandomString(7);
+            vte.ID_Random = XpertHelper.RandomString(7);
             vte.TYPE_DOC = TypeDoc;
             vte.TYPE_VENTE = TypeDoc;
             vte.DATE_VENTE = DateTime.Now.Date;
@@ -123,48 +123,44 @@ namespace XpertMobileApp.Views
 
         }
 
-        public View_VTE_VENTE_LOT AddNewRow(View_STK_STOCK product)
+        public View_VTE_VENTE_LOT AddNewRow(List<View_STK_STOCK> products)
         {
-            var row = ItemRows.Where(e => e.ID_STOCK == product.ID_STOCK).FirstOrDefault();
-
-            if (row == null)
+            foreach (var product in products)
             {
-                row = new View_VTE_VENTE_LOT();
-
-                decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
-
-                row.Parent_Doc = Item;
-                row.VenteID = row.ID;
-                row.ID = row.ID + "_" +XpertHelper.RandomString(7);
-                row.CODE_VENTE = Item.CODE_VENTE;
-
-                row.ID_STOCK = product.ID_STOCK;
-                row.CODE_PRODUIT = product.CODE_PRODUIT;
-                row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
-                row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-                row.PRIX_VTE_HT = product.SelectedPrice;
-                row.PRIX_VTE_TTC = product.SelectedPrice;
-                row.QUANTITE = qte;
-
-                ItemRows.Add(row);
-
-                this.Item.Details = ItemRows.ToList();
+                var row = ItemRows.Where(e => e.ID_STOCK == product.ID_STOCK).FirstOrDefault();
+                if (row == null)
+                {
+                    row = new View_VTE_VENTE_LOT();
+                    decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
+                   // row.Parent_Doc = Item;
+                    row.VenteID = row.ID;
+                    row.ID = row.ID + "_" + XpertHelper.RandomString(7);
+                    row.CODE_VENTE = Item.CODE_VENTE;
+                    row.ID_STOCK = product.ID_STOCK;
+                    row.CODE_PRODUIT = product.CODE_PRODUIT;
+                    row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
+                    row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
+                    row.PRIX_VTE_HT = product.SelectedPrice;
+                    row.PRIX_VTE_TTC = product.SelectedPrice;
+                    row.QUANTITE = qte;
+                    ItemRows.Add(row);
+                    this.Item.Details = ItemRows.ToList();
+                }
+                else
+                {
+                    row.PRIX_VTE_HT = product.SelectedPrice;
+                    row.PRIX_VTE_TTC = product.SelectedPrice;
+                    row.QUANTITE += product.SelectedQUANTITE;
+                }
+                row.MT_TTC = row.PRIX_VTE_TTC * row.QUANTITE;
+                row.MT_HT = row.PRIX_VTE_TTC * row.QUANTITE;
+                Item.TOTAL_TTC = ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
+                row.Index = ItemRows.Count();
+                UpdateMontants();
+                row.PropertyChanged += Row_PropertyChanged;
+                //return row;
             }
-            else
-            {
-                row.PRIX_VTE_HT = product.SelectedPrice;
-                row.PRIX_VTE_TTC = product.SelectedPrice;
-                row.QUANTITE = product.SelectedQUANTITE;
-            }
-
-            row.MT_TTC = row.PRIX_VTE_TTC * row.QUANTITE;
-            row.MT_HT = row.PRIX_VTE_TTC * row.QUANTITE;
-            Item.TOTAL_TTC = ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
-            row.Index = ItemRows.Count();
-
-            UpdateMontants();
-            row.PropertyChanged += Row_PropertyChanged;
-            return row;
+            return null;
         }
 
         private void Row_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -234,7 +230,7 @@ namespace XpertMobileApp.Views
                     return null;
                 }
 
-                var res = AddNewRow(prods[0]);
+                var res = AddNewRow(prods);
                 return res;
             }
             catch (Exception ex)

@@ -1,2 +1,3 @@
-Layout/ScrollViewer.axml;layout/scrollviewer.xml
 values/Strings.xml;values/strings.xml
+drawable/DownButton.png;drawable/downbutton.png
+drawable/UpButton.png;drawable/upbutton.png

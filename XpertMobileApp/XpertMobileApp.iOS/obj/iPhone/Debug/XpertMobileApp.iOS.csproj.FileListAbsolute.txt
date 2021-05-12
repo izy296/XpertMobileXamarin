@@ -30,10 +30,8 @@ D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SkiaSharp.Harf
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SkiaSharp.Views.iOS.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SkiaSharp.Views.Forms.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLite-net.dll
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.batteries_green.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.batteries_v2.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.core.dll
-D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.provider.sqlite3.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\Syncfusion.Licensing.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\Syncfusion.Buttons.XForms.dll
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\Syncfusion.Buttons.XForms.iOS.dll
@@ -158,3 +156,8 @@ D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\obj\iPhone\Debug\XamlC.stamp
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\obj\iPhone\Debug\XpertMobileApp.iOS.csproj.CopyComplete
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\obj\iPhone\Debug\XpertMobileApp.iOS.exe
 D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\obj\iPhone\Debug\XpertMobileApp.iOS.pdb
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.nativelibrary.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\SQLitePCLRaw.provider.dynamic_cdecl.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\System.Buffers.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\System.Memory.dll
+D:\XpertMobile\XpertMobileApp\XpertMobileApp.iOS\bin\iPhone\Debug\System.Runtime.CompilerServices.Unsafe.dll

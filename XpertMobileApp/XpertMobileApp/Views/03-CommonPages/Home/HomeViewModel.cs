@@ -168,6 +168,12 @@ namespace XpertMobileApp.ViewModels
                     Color = "#FEF2CC"
                 });
 
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.synchronisation).ToString(),
+                    Title = "synchronisation",
+                    Color = "#FEF2CD"
+                });
                 /*
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)

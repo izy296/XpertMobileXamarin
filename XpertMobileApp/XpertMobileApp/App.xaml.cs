@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -26,7 +28,24 @@ using XpertMobileApp.Views;
 namespace XpertMobileApp
 {
     public partial class App : Application
+
+
     {
+        static VTE_VENTE_Database vteVentedatabase;
+
+        // Create the database connection as a singleton.
+        public static VTE_VENTE_Database VteVentedatabase
+        {
+            get
+            {
+                if (vteVentedatabase == null)
+                {
+                    vteVentedatabase = new VTE_VENTE_Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
+                }
+                return vteVentedatabase;
+            }
+        }
+
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
@@ -249,10 +268,28 @@ namespace XpertMobileApp
 
         public async static Task<bool> IsConected()
         {
-             // return CrossConnectivity.Current.IsConnected;
-             string url = App.Settings.ServiceUrl;
-             //var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
-             return true;
+            // // return CrossConnectivity.Current.IsConnected;
+            // string url = App.Settings.ServiceUrl;
+            ////var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
+
+            //return true;
+
+            string url = App.Settings.ServiceUrl;
+            int port = 80;
+            Regex r = new Regex(@"^(?<proto>\w+)://[^/]+?(?<port>:\d+)?/", RegexOptions.None, TimeSpan.FromMilliseconds(50));
+            Match m = r.Match(url);
+
+            if (m.Success && !string.IsNullOrEmpty(m.Groups["port"]?.Value))
+            {
+                port = Convert.ToInt32(m.Groups["port"].Value.Replace(":", ""));
+            }
+
+            var uri = new System.Uri(url);
+            TimeSpan ts = new TimeSpan(0, 0, 0, 50);
+
+            string furl = url.Replace(":" + port.ToString(), "");
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+            return isReachable;
         }
 
         public static string RestServiceUrl

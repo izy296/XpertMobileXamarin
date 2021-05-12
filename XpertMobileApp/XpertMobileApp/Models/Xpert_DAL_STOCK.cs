@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
 
@@ -6,6 +7,8 @@ namespace XpertMobileApp.Models
 {
     public partial class STK_STOCK : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public int? ID_STOCK { get; set; } // int(10)
         public string CODE_PRODUIT { get; set; } // varchar(50)
         public string CODE_MAGASIN { get; set; } // varchar(50)
