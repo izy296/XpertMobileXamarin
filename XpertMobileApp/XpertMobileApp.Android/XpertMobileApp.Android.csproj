@@ -16,7 +16,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -53,7 +52,6 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidSupportedAbis />
     <AndroidCreatePackagePerAbi>true</AndroidCreatePackagePerAbi>
     <AndroidUseAapt2>true</AndroidUseAapt2>
   </PropertyGroup>
@@ -239,7 +237,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XpertMobileApp\XpertMobileApp.csproj">
-      <Project>{B59F9075-D39F-4F2A-BC42-35253EB259B4}</Project>
+      <Project>{4E4FDBD1-C206-44BA-99EE-00367FA80C7E}</Project>
       <Name>XpertMobileApp</Name>
     </ProjectReference>
   </ItemGroup>

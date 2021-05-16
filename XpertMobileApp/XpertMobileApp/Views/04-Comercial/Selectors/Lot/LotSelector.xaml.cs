@@ -145,5 +145,9 @@ namespace XpertMobileApp.Views
 
             await PopupNavigation.Instance.PopAsync();
         }
+
+        void listView_SelectionChanged(System.Object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
+        {
+        }
     }
 }

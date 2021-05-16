@@ -71,10 +71,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
-    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\DAL\Mobile\MenuItemType.cs" Link="Models\Imported\MenuItemType.cs" />
-    <Compile Include="..\..\..\002 - XpertSoft\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
-    <Compile Include="..\..\..\002 - XpertSoft\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs">
+      <Link>Models\Imported\XpertEnumeration.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\DAL\Mobile\MenuItemType.cs">
+      <Link>Models\Imported\MenuItemType.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs">
+      <Link>Models\Imported\ChiffresLettres.cs</Link>
+    </Compile>
+    <Compile Include="..\..\..\..\Platforme\trunk\X-WebApis\XpertWebApi\Models\Printer.cs">
+      <Link>Models\Imported\Printer.cs</Link>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -123,10 +131,6 @@
 
   <ItemGroup>
     <None Include="FodyWeavers.xsd" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\NewSVN\XpertAll\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -223,5 +227,8 @@
     <EmbeddedResource Update="Views\07-XBoutiques\Login\TabbedForm.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 </Project>

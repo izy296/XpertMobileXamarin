@@ -10,7 +10,7 @@
     xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms">
 
     <Color x:Key="EntryPlaceholderColor">#A0FFFFFF</Color>
-    <Color x:Key="BorderBackgroundColor">#20FFFFFF</Color>
+    <Color x:Key="BordrBackgroundColor">#20FFFFFF</Color>
     <Color x:Key="GradientStartColor">#012E8B</Color>
     <Color x:Key="GradientEndColor">#3F0041</Color>
     <Color x:Key="GradientStart">#713d74</Color>

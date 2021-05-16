@@ -17,13 +17,14 @@ namespace XpertMobileApp.ViewModels
 {
     public class ActivationViewModel : BaseViewModel
     {
-        public IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
+        
 
         public Client Client { get; set; }
 
         public ActivationViewModel()
         {
             Client = new Client();
+            IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
             Client.DeviceId = DInfos.GetSecureOsId();
         }
 
@@ -35,7 +36,7 @@ namespace XpertMobileApp.ViewModels
                     return null;
 
                 IsBusy = true;
-
+                IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>(); 
                 Client.DeviceId = DInfos.GetSecureOsId();
                 /*
                 string val = DInfos.GetSecureOsId();

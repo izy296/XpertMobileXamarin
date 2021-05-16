@@ -16,11 +16,11 @@ namespace XpertMobileApp.Api.Services
 {
     public enum LicState { NotActivated, Valid, Expired, Cracked, InvalidDevice };
 
-    public class LicActivator
+    public static class LicActivator
     {
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
 
-        public static IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
+      //  public static IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
 
         public static LicenceInfos GetLicenceInfos()
         {
@@ -136,6 +136,7 @@ namespace XpertMobileApp.Api.Services
 
         internal static LicenceInfos DecryptLicence(string licenceTxt)
         {
+            IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
             StringEncryptMobile decriptor = new StringEncryptMobile("XpEMobrtile@2019", DInfos.GetSecureOsId());
             string result = decriptor.Decrypt(licenceTxt);
             LicenceInfos lInfos = JsonConvert.DeserializeObject<LicenceInfos>(result);
