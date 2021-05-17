@@ -62,14 +62,14 @@ namespace XpertMobileApp.ViewModels
                 return "VTE_COMMANDE";
             }
         }
-        public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter, int page, int count)
+        public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             if (true)
             {
                 //asyncTableQuery = UpdateDatabase.getInstance().Table<View_VTE_COMMANDE>()
                  //   .Where(e => e.CODE_TIERS=="").ToListAsync();
             }
-            return base.SelectByPageFromSqlLite(filter, page, count);
+            return base.SelectByPageFromSqlLite(filter);
 
         }
         protected override QueryInfos GetFilterParams()
