@@ -49,6 +49,8 @@ namespace XpertMobileApp
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
+        public static bool Online = false;
+
         public static MsgCenter MsgCenter = new MsgCenter();
 
         static TokenDatabaseControler tokenDatabase;
@@ -289,6 +291,7 @@ namespace XpertMobileApp
 
             string furl = url.Replace(":" + port.ToString(), "");
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+            Online = isReachable;
             return isReachable;
         }
 
