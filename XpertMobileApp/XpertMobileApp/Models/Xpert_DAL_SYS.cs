@@ -1,5 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Text;
+using SQLite;
+using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.DAL
 {
@@ -14,6 +17,8 @@ namespace XpertMobileApp.DAL
 
     public class SYS_OBJET_PERMISSION
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_PERMISSION { get; set; }
         public string CodeObjet { get; set; }
         public string CODE_GROUPE { get; set; } 
