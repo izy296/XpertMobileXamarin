@@ -11,6 +11,7 @@ using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -63,75 +64,156 @@ namespace XpertMobileApp.Views
             }
             try 
             { 
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
-
-                if (viewModel.CheckUser(user))
+                bool isconnected = await App.IsConected();
+                if (App.Online)
                 {
-                    // Authentification via le WebService
-                    Token token = await viewModel.Login(user);
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-
-
-                    // Cas d'un souci avec le web service 
-                    if (token == null)
+                    if (viewModel.CheckUser(user))
                     {
-                        UserDialogs.Instance.HideLoading();
-                        await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
-                        return;
-                    }
-
-                    if (token.access_token != null)
-                    {
-                        user.Id = token.userID;
-                        user.CODE_TIERS = token.CODE_TIERS;
-                        user.UserGroup = token.UserGroup;
-                        user.GroupName = token.GroupName;
-                        user.ClientId = App.Settings.ClientId;
-                        user.Token = token;
-                        App.User = user;
-
-                        CrudManager.InitServices();
+                        // Authentification via le WebService
+                        Token token = await viewModel.Login(user);
 
 
-                        // Alerte apres la connexion
-                        // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
-                        // suavegrade du user et du token en cours dans la bdd local
-
-                        try
+                        // Cas d'un souci avec le web service 
+                        if (token == null)
                         {
-                            if (Constants.AppName != Apps.X_BOUTIQUE)
+                            UserDialogs.Instance.HideLoading();
+                            await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
+                            return;
+                        }
+
+                        if (token.access_token != null)
+                        {
+                            user.Id = token.userID;
+                            user.CODE_TIERS = token.CODE_TIERS;
+                            user.UserGroup = token.UserGroup;
+                            user.GroupName = token.GroupName;
+                            user.ClientId = App.Settings.ClientId;
+                            user.Token = token;
+                            App.User = user;
+
+                            CrudManager.InitServices();
+
+                            await UpdateDatabase.initialisationDbLocal();
+                            await UpdateDatabase.AjoutToken(token);
+                            // Alerte apres la connexion
+                            // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+
+                            // suavegrade du user et du token en cours dans la bdd local
+
+                            try
                             {
-                                 await AppManager.GetPermissions();
+                                if (Constants.AppName != Apps.X_BOUTIQUE)
+                                {
+                                    await AppManager.GetPermissions();
+                                }
+                                // await App.UserDatabase.SaveItemAsync(user);
+                                await App.TokenDatabase.SaveItemAsync(token);
                             }
-                            // await App.UserDatabase.SaveItemAsync(user);
-                            await App.TokenDatabase.SaveItemAsync(token);
-                        }
-                        catch(Exception ex)
-                        {
-                            await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
-                        }
+                            catch (Exception ex)
+                            {
+                                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                            }
 
-                        UserDialogs.Instance.HideLoading();
+                            UserDialogs.Instance.HideLoading();
 
-                        if (Device.RuntimePlatform == Device.Android)
-                        {
-                            Application.Current.MainPage = new MainPage();
+                            if (Device.RuntimePlatform == Device.Android)
+                            {
+                                Application.Current.MainPage = new MainPage();
+                            }
+                            else if (Device.RuntimePlatform == Device.iOS)
+                            {
+                                await Navigation.PushModalAsync(new MainPage(), false);
+                            }
+                            else
+                            {
+                                Application.Current.MainPage = new MainPage();
+                            }
                         }
-                        else if (Device.RuntimePlatform == Device.iOS)
-                        {
-                            await Navigation.PushModalAsync(new MainPage(), false);
-                        }
-                        else
-                        {
-                            Application.Current.MainPage = new MainPage();
-                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
                     }
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
+
+                    if (viewModel.CheckUser(user))
+                    {
+                        // Authentification via SQLite
+                        bool validInfo = await UpdateDatabase.AuthUser(user);
+                        if (validInfo)
+                        {
+                            Token token = await UpdateDatabase.getToken(user);
+                            if (token == null)
+                            {
+                                UserDialogs.Instance.HideLoading();
+                                await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
+                                return;
+                            }
+                            if (token.access_token != null)
+                            {
+                                user.Id = token.userID;
+                                user.CODE_TIERS = token.CODE_TIERS;
+                                user.UserGroup = token.UserGroup;
+                                user.GroupName = token.GroupName;
+                                user.ClientId = App.Settings.ClientId;
+                                user.Token = token;
+                                App.User = user;
+
+                                CrudManager.InitServices();
+
+                                // Alerte apres la connexion
+                                // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+
+                                // suavegrade du user et du token en cours dans la bdd local
+
+                                try
+                                {
+                                    if (Constants.AppName != Apps.X_BOUTIQUE)
+                                    {
+                                        AppManager.permissions = await UpdateDatabase.getPermission();
+                                    }
+                                    // await App.UserDatabase.SaveItemAsync(user);
+                                    await App.TokenDatabase.SaveItemAsync(token);
+                                }
+                                catch (Exception ex)
+                                {
+                                    await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                                }
+
+                                UserDialogs.Instance.HideLoading();
+
+                                if (Device.RuntimePlatform == Device.Android)
+                                {
+                                    Application.Current.MainPage = new MainPage();
+                                }
+                                else if (Device.RuntimePlatform == Device.iOS)
+                                {
+                                    await Navigation.PushModalAsync(new MainPage(), false);
+                                }
+                                else
+                                {
+                                    Application.Current.MainPage = new MainPage();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.HideLoading();
+                            await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                        }
+                    }
+                    else
+                    {
+                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                    }
                 }
             }
             catch(Exception ex)
