@@ -10,6 +10,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
@@ -157,26 +158,51 @@ namespace XpertMobileApp.Views
         {
             var item = viewModel.SelectedItem;
             var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
-
-            var session = await CrudManager.Sessions.GetCurrentSession();
-            if (session == null)
+            if (App.Online == true)
             {
-                var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
-                if (res)
+                var session = await CrudManager.Sessions.GetCurrentSession();
+                if (session == null)
                 {
-                    OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
-                    await PopupNavigation.Instance.PushAsync(openPage);
+                    var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                    if (res)
+                    {
+                        OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                        await PopupNavigation.Instance.PushAsync(openPage);
+                    }
+                }
+                else
+                {
+                    var trs = new View_TRS_TIERS();
+                    trs.CODE_TIERS = tr.CODE_TIERS;
+                    trs.NOM_TIERS1 = tr.NOM_TIERS;
+                    VenteFormPage form = new VenteFormPage(null, VentesTypes.Livraison, trs, tr.CODE_DETAIL);
+
+                    await Navigation.PushAsync(form);
                 }
             }
             else
             {
-                var trs = new View_TRS_TIERS();
-                trs.CODE_TIERS = tr.CODE_TIERS;
-                trs.NOM_TIERS1 = tr.NOM_TIERS;
-                VenteFormPage form = new VenteFormPage(null, VentesTypes.Livraison, trs, tr.CODE_DETAIL);
-                
-                await Navigation.PushAsync(form);
+                var session = await UpdateDatabase.getInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
+                if (session == null)
+                {
+                    var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                    if (res)
+                    {
+                        OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                        await PopupNavigation.Instance.PushAsync(openPage);
+                    }
+                }
+                else
+                {
+                    var trs = new View_TRS_TIERS();
+                    trs.CODE_TIERS = tr.CODE_TIERS;
+                    trs.NOM_TIERS1 = tr.NOM_TIERS;
+                    VenteFormPage form = new VenteFormPage(null, VentesTypes.Livraison, trs, tr.CODE_DETAIL);
+
+                    await Navigation.PushAsync(form);
+                }
             }
+            
         }
     }
 }
