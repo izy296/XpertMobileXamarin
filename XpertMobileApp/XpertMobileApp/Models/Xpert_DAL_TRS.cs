@@ -144,12 +144,12 @@ namespace XpertMobileApp.DAL
     }
     public partial class TRS_JOURNEES : SESSION_INFO
     {
-
         public override string ToString()
         {
             return  string.Format("{0} ({1})", DEBUTEE_PAR, POSTE_DEBUT);
         }
-
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_COMPTE { get; set; } // varchar(20)
 
