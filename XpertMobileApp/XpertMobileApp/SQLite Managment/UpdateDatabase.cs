@@ -1,16 +1,16 @@
-﻿using SQLite;
+﻿using Acr.UserDialogs;
+using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
-using XpertMobileApp.ViewModels;
 
 
 namespace XpertMobileApp.SQLite_Managment
@@ -28,10 +28,12 @@ namespace XpertMobileApp.SQLite_Managment
         static string PermissionMethodName;
         static string paramPermission;
         static string idGroup;
-        
+        static string SessionMethodName;
+
         public static SQLiteAsyncConnection getInstance()
         {
-            if (db == null) {
+            if (db == null)
+            {
                 // Get an absolute path to the database file
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
                 db = new SQLiteAsyncConnection(databasePath);
@@ -46,23 +48,24 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-            //await getInstance().DropTableAsync<View_VTE_VENTE>();
+                //await getInstance().DropTableAsync<View_VTE_VENTE>();
 
-            //if (!TableExists(db))
-            //{
-            await getInstance().CreateTableAsync<View_STK_PRODUITS>();
-            await getInstance().CreateTableAsync<View_TRS_TIERS>();
-            await getInstance().CreateTableAsync<View_LIV_TOURNEE>();
-            await getInstance().CreateTableAsync<View_LIV_TOURNEE_DETAIL>();
-            await getInstance().CreateTableAsync<View_STK_STOCK>();
-            await getInstance().CreateTableAsync<View_VTE_VENTE_LOT>();
-            await getInstance().CreateTableAsync<View_VTE_VENTE>();
-            await getInstance().CreateTableAsync<SYS_USER>();
-            await getInstance().CreateTableAsync<SYS_OBJET_PERMISSION>();
-
+                //if (!TableExists(db))
+                //{
+                await getInstance().CreateTableAsync<View_STK_PRODUITS>();
+                await getInstance().CreateTableAsync<View_TRS_TIERS>();
+                await getInstance().CreateTableAsync<View_LIV_TOURNEE>();
+                await getInstance().CreateTableAsync<View_LIV_TOURNEE_DETAIL>();
+                await getInstance().CreateTableAsync<View_STK_STOCK>();
+                await getInstance().CreateTableAsync<View_VTE_VENTE_LOT>();
+                await getInstance().CreateTableAsync<View_VTE_VENTE>();
+                await getInstance().CreateTableAsync<SYS_USER>();
+                await getInstance().CreateTableAsync<SYS_OBJET_PERMISSION>();
+                await getInstance().CreateTableAsync<TRS_JOURNEES>();
+                await getInstance().CreateTableAsync<Token>();
 
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
@@ -82,21 +85,21 @@ namespace XpertMobileApp.SQLite_Managment
             else
             {
                 //return await service.SelectByPage(,);
-                return await service.GetItemsAsyncWithUrl(methodName , param);
+                return await service.GetItemsAsyncWithUrl(methodName, param);
             }
-            
+
         }
 
-        public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param="" , string methodName = "")
+        public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
         {
             var ListItems = new List<TView>();
 
-            var items = await getItemsUnsyncronised<TView, TTabel>(_selectAll, param , methodName);
+            var items = await getItemsUnsyncronised<TView, TTabel>(_selectAll, param, methodName);
             await getInstance().DeleteAllAsync<TView>();
 
             try
             {
-                if (items != null )//&& items.IsCompleted && items.Status == TaskStatus.RanToCompletion)
+                if (items != null)//&& items.IsCompleted && items.Status == TaskStatus.RanToCompletion)
                 {
                     ListItems.AddRange(items);
                 }
@@ -113,15 +116,27 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task synchronise()
         {
-            await initialisationDbLocal();
-            await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
-            await SyncData<View_TRS_TIERS, TRS_TIERS>();
-            await SyncLivTournee();
-            await SyncLivTourneeDetail();
-            await SyncData<View_STK_STOCK, STK_STOCK>();
-            //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-            await SyncUsers();
-            await syncPermission();
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+            bool isconnected =  await App.IsConected();
+            if (isconnected)
+            {
+                await initialisationDbLocal();
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+                await SyncData<View_TRS_TIERS, TRS_TIERS>();
+                await SyncLivTournee();
+                await SyncLivTourneeDetail();
+                await SyncData<View_STK_STOCK, STK_STOCK>();
+                //await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                await SyncUsers();
+                await syncPermission();
+                await syncSession();
+                UserDialogs.Instance.HideLoading();
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
         }
 
         public static async Task SyncLivTournee()
@@ -153,7 +168,7 @@ namespace XpertMobileApp.SQLite_Managment
             UsersMethodName = "SyncUsers";
             await SyncData<SYS_USER, SYS_USER>(false, "", UsersMethodName);
         }
-        
+
         public static async Task syncPermission()
         {
             idGroup = App.User.UserGroup;
@@ -162,27 +177,122 @@ namespace XpertMobileApp.SQLite_Managment
             await SyncData<SYS_OBJET_PERMISSION, SYS_OBJET_PERMISSION>(false, paramPermission, PermissionMethodName);
         }
 
+        public static async Task syncSession()
+        {
+            var session = await CrudManager.Sessions.GetCurrentSession();
+            await getInstance().DeleteAllAsync<TRS_JOURNEES>();
+            var id = await getInstance().InsertAsync(session);
+            //SessionMethodName = "GetCurrentSession";
+            //await SyncData<TRS_JOURNEES, TRS_JOURNEES>(false, "", SessionMethodName);
+        }
 
-        //public static Boolean TableExistss(String tableName, SQLiteAsyncConnection connection)
-        //{
-        //    SQLite.TableMapping map = new TableMapping(typeof(SqlDbType)); // Instead of mapping to a specific table just map the whole database type
-        //    object[] ps = new object[0]; // An empty parameters object since I never worked out how to use it properly! (At least I'm honest)
 
-        //    Int32 tableCount = connection.QueryAsync(map, "SELECT * FROM sqlite_master WHERE type = 'table' AND name = '" + tableName + "'", ps).Count; // Executes the query from which we can count the results
-        //    if (tableCount == 0)
-        //    {
-        //        return false;
-        //    }
-        //    else if (tableCount == 1)
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        throw new Exception("More than one table by the name of " + tableName + " exists in the database.", null);
-        //    }
+        public static async Task<string> AjoutVente(View_VTE_VENTE vente)
+        {
+            if ((vente.TOTAL_PAYE + vente.MBL_MT_VERCEMENT) > vente.TOTAL_TTC)
+            {
+                await UserDialogs.Instance.AlertAsync("Montant versé suppérieur au montant à payer!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return vente.MBL_MT_VERCEMENT.ToString();
+            }
+            else
+            {
+                //var obj = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
+                vente.CODE_VENTE = vente.ID + "/" + App.PrefixCodification;
+                var id = await getInstance().InsertAsync(vente);
+                await UpdateTourneeDetail(vente);
+                await UpdateTournee();
+                return vente.CODE_VENTE;
+            }
+        }
 
-        //}
+        public static async Task AjoutToken(Token token)
+        {
+            bool added = false;
+            var OldTokens = await getInstance().Table<Token>().ToListAsync();
+            foreach (var item in OldTokens)
+            {
+                if (item.Id == token.Id)
+                {
+                    item.access_token = token.access_token;
+                    item.Id = token.Id;
+                    item.expires_in = token.expires_in;
+                    item.expire_Date = token.expire_Date;
+                    await getInstance().UpdateAsync(item);
+                    added = true;
+                }
+            }
+            if (!added)
+            {
+                var id = await getInstance().InsertAsync(token);
+            }
+        }
+
+        public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
+        {
+            string codeTourneeDetail = vente.MBL_CODE_TOURNEE_DETAIL;
+
+
+            var tournees = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+
+            foreach (var item in tournees)
+            {
+                if (item.CODE_DETAIL == codeTourneeDetail)
+                {
+                    item.CODE_VENTE = vente.CODE_VENTE;
+                    item.CODE_ETAT = TourneeStatus.Delevred;
+                    item.ETAT_COLOR = "#008000";
+                    await getInstance().UpdateAsync(item);
+                }
+            }
+        }
+
+        public static async Task UpdateTournee()
+        {
+            var tournee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+            foreach (var item in tournee)
+            {
+                item.NBR_EN_DELEVRED = item.NBR_EN_DELEVRED + 1;
+                await getInstance().UpdateAsync(item);
+            }
+        }
+
+        public static async Task<bool> AuthUser(User user)
+        {
+            bool validInformations = false;
+            var Users = await getInstance().Table<SYS_USER>().ToListAsync();
+            foreach (var item in Users)
+            {
+                var password = XpertHelper.GetMD5Hash(user.PassWord);
+                if (item.ID_USER.ToLower() == user.UserName.ToLower() && item.PASS_USER == password)
+                {
+                    validInformations = true;
+                    return validInformations;
+                }
+            }
+            return validInformations;
+        }
+
+
+        public static async Task<Token> getToken(User user)
+        {
+            Token validToken = new Token();
+            var Tokens = await getInstance().Table<Token>().ToListAsync();
+            foreach (var item in Tokens)
+            {
+                if (item.userID.ToLower() == user.UserName.ToLower())
+                {
+                    validToken = item;
+                    return validToken;
+                }
+            }
+            return null;
+        }
+
+        public static async Task<List<SYS_OBJET_PERMISSION>> getPermission()
+        {
+            var permission = await getInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
+            return permission;
+        }
 
         public static bool TableExists(SQLiteAsyncConnection connection)
         {
@@ -198,34 +308,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
             //return string.IsNullOrEmpty(cmd) ? false : true;
         }
-
-        //public static bool TableExistssss(String tableName, SQLiteConnection connection)
-        //{
-        //    SQLiteCommand cmd = connection.CreateCommand();
-        //    cmd.CommandText = "SELECT * FROM sqlite_master WHERE type = 'table' AND name = @name";
-        //    cmd.Parameters.Add("@name", DbType.String).Value = tableName;
-        //    return (cmd.ExecuteScalar() != null);
-        //}
-
-
-        //public static bool TableExistssss(String tableName, SQLiteAsyncConnection connection)
-        //{
-        //    using (SQLiteCommand cmd = new SQLiteCommand())
-        //    {
-        //        cmd.CommandType = CommandType.Text;
-        //        cmd.Connection = connection;
-        //        cmd.CommandText = "SELECT * FROM sqlite_master WHERE type = 'table' AND name = @name";
-        //        cmd.Parameters.AddWithValue("@name", tableName);
-
-        //        using (SqliteDataReader sqlDataReader = cmd.ExecuteReader())
-        //        {
-        //            if (sqlDataReader.Read())
-        //                return true;
-        //            else
-        //                return false;
-        //        }
-        //    }
-        //}
 
     }
 }
