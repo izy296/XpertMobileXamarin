@@ -29,6 +29,9 @@ namespace XpertMobileApp.SQLite_Managment
         static string paramPermission;
         static string idGroup;
         static string SessionMethodName;
+        static string paramStock;
+        static string StockMethodName;
+        static string CodeMagasin;
 
         public static SQLiteAsyncConnection getInstance()
         {
@@ -125,7 +128,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncData<View_TRS_TIERS, TRS_TIERS>();
                 await SyncLivTournee();
                 await SyncLivTourneeDetail();
-                await SyncData<View_STK_STOCK, STK_STOCK>();
+                await SyncStock();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                 await SyncUsers();
                 await syncPermission();
@@ -160,6 +163,18 @@ namespace XpertMobileApp.SQLite_Managment
                 TourneeDetailMethodName = "GetDetailTournee";
                 await SyncData<View_LIV_TOURNEE_DETAIL, LIV_TOURNEE_DETAIL>(false, paramLivTourneeDetail, TourneeDetailMethodName);
 
+            }
+        }
+
+        public static async Task SyncStock()
+        {
+            var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+            if (obj != null && obj.Count > 0)
+            {
+                CodeMagasin = obj[0].CODE_MAGASIN;
+                paramStock = "CodeMagasin=" + CodeMagasin;
+                StockMethodName = "GetStockByMagsin";
+                await SyncData<View_STK_STOCK, STK_STOCK>(false, paramStock, StockMethodName);
             }
         }
 
