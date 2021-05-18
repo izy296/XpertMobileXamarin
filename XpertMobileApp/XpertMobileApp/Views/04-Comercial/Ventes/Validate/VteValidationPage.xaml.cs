@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using XpertMobileApp.Services;
 using XpertMobileSettingsPage.Helpers.Services;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.Views
 {
@@ -70,18 +71,36 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                string res = await viewModel.ValidateVte(viewModel.Item);
-                viewModel.Item.NUM_VENTE = res;
-                if (!XpertHelper.IsNullOrEmpty(res) )
+                if (App.Online)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                    if (viewModel.imprimerTecketCaiss)
+                    string res = await viewModel.ValidateVte(viewModel.Item);
+                    viewModel.Item.NUM_VENTE = res;
+                    if (!XpertHelper.IsNullOrEmpty(res))
                     {
-                        PrinterHelper.PrintBL(viewModel.Item);
+                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                        if (viewModel.imprimerTecketCaiss)
+                        {
+                            PrinterHelper.PrintBL(viewModel.Item);
+                        }
+                        ParentviewModel.InitNewVentes();
+                        await PopupNavigation.Instance.PopAsync();
                     }
-                    ParentviewModel.InitNewVentes();
-                    await PopupNavigation.Instance.PopAsync(); 
                 }
+                else
+                {
+                    string res = await UpdateDatabase.AjoutVente(viewModel.Item);
+                    if (!XpertHelper.IsNullOrEmpty(res))
+                    {
+                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                        if (viewModel.imprimerTecketCaiss)
+                        {
+                            PrinterHelper.PrintBL(viewModel.Item);
+                        }
+                        ParentviewModel.InitNewVentes();
+                        await PopupNavigation.Instance.PopAsync();
+                    }
+                }
+               
             }
             catch (Exception ex) 
             {
