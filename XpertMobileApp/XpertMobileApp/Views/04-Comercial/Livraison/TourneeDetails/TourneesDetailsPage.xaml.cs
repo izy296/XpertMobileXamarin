@@ -7,12 +7,17 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
+using Xamarin.Essentials;
+using System.Threading;
+using XpertMobileApp.SQLite_Managment;
+using System.Collections.Generic;
 
 namespace XpertMobileApp.Views
 {
@@ -20,14 +25,15 @@ namespace XpertMobileApp.Views
 	public partial class TourneesDetailsPage : ContentPage
 	{
         TourneesDetailsViewModel viewModel;
-
+        CancellationTokenSource cts;
+        bool autoLodData = true;
         public TourneesDetailsPage(string codeTournee)
 		{
 			InitializeComponent();
 
             BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
         }
-
+      
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as View_LIV_TOURNEE_DETAIL;
@@ -49,8 +55,11 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-           // if (viewModel.Items.Count == 0)
+            // if (viewModel.Items.Count == 0)
+            if (autoLodData)
+            {
                 LoadData();
+            }    
 
          //   if (viewModel.Familles.Count == 0)
          //       viewModel.LoadExtrasDataCommand.Execute(null);
@@ -87,27 +96,49 @@ namespace XpertMobileApp.Views
         {
 
         }
-
+        
         private async void OnVisiteSwipeItemInvoked(object sender, EventArgs e)
         {
-            var item = viewModel.SelectedItem;
-            var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
-
             var scaner = new ZXingScannerPage();
             Navigation.PushAsync(scaner);
+            autoLodData = false;
             scaner.OnScanResult += (result) =>
             {
                 scaner.IsScanning = false;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await Navigation.PopAsync();
-
-                    var tiers = await SelectScanedTiers(result.Text);
-                    if(tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS) 
+                    try
                     {
-                        viewModel.SelectedItem.CODE_ETAT = TourneeStatus.Visited;
-                        var res = await viewModel.UpdateItem(viewModel.SelectedItem);
+                        await Navigation.PopAsync();
+                        var tr = (sender as SwipeItem).Parent.Parent.Parent.BindingContext as View_LIV_TOURNEE_DETAIL;
+                        View_TRS_TIERS tiers = null;
+                        if (App.Online)
+                        {
+                            tiers = await SelectScanedTiers(result.Text);
+                            if (tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS)
+                            {
+                                tr.CODE_ETAT = TourneeStatus.Visited;
+                                tr.ETAT_COLOR = "#FFA500";
+                                var res = await viewModel.UpdateItem(tr);
+                                await SaveGPsLocationToTiers(tiers);
+                            }
+                        }
+                        else
+                        {
+                            tiers = await UpdateDatabase.SelectScanedTiers(result.Text);
+                            if (tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS)
+                            {
+                                var res = await UpdateDatabase.UpdateTourneeItemVisited(tr);
+                                await SaveGPsLocationToTiers(tiers);
+                            }
+                        }
+                        LoadData();
                     }
+                    catch (Exception ex)
+                    {
+                        await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    autoLodData = true;
                     /*
                     ClassId = string.Format("pb_{0}", vteLot.ID);
                     var pbruteElem2 = ItemsListView.Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
@@ -117,14 +148,102 @@ namespace XpertMobileApp.Views
             };
         }
 
+
+        async Task SaveGPsLocationToTiers(View_TRS_TIERS tiers)
+        {
+            bool getGPsSucces = false;
+            try
+            {
+                
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                cts = new CancellationTokenSource();
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                if (location != null)
+                {
+                    tiers.GPS_LATITUDE = location.Latitude;
+                    tiers.GPS_LONGITUDE = location.Longitude;
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    getGPsSucces = true;
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation non pris en charge sur le périphérique!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation non activé sur le périphérique!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation Problème d'autorisation!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync("Impossible d'obtenir l'emplacement!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Unable to get location
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+            if (getGPsSucces)
+            {
+                await SaveGpsToTiers(tiers);
+            }
+        }
+
+        private static async Task SaveGpsToTiers(View_TRS_TIERS tiers)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                bool seucces = false;
+                //await App.IsConected();
+                if (App.Online)
+                {
+                    seucces = await CrudManager.TiersManager.saveGPSToTiers(tiers);
+                }
+                else
+                {
+                    seucces = await UpdateDatabase.saveGPSToTiers(tiers);
+                }
+                if (seucces)
+                {
+                    await UserDialogs.Instance.AlertAsync("Sauvgarde des localisation GPS echouées !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Sauvgarde des localisation GPS avec succes !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            if (cts != null && !cts.IsCancellationRequested)
+                cts.Cancel();
+            base.OnDisappearing();
+        }
         internal async Task<View_TRS_TIERS> SelectScanedTiers(string cb_tiers)
         {
             try
             {
                 // Récupérer le lot depuis le serveur
                 XpertSqlBuilder qb = new XpertSqlBuilder();
-                qb.AddCondition<View_TRS_TIERS, string>(x => x.NUM_CARTE_FIDELITE, cb_tiers);
-                qb.AddOrderBy<View_TRS_TIERS, string>(x => x.CODE_TIERS);
+                qb.AddCondition<View_TRS_TIERS, string>(x => x.CODE_TIERS, cb_tiers);
                 var tiers = await CrudManager.TiersManager.SelectByPage(qb.QueryInfos, 1, 2);
                 if (tiers == null)
                     return null;
@@ -149,7 +268,7 @@ namespace XpertMobileApp.Views
             catch (Exception ex)
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok); 
+                    AppResources.alrt_msg_Ok);
                 return null;
             }
         }

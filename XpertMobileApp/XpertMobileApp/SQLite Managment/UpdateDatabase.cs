@@ -116,6 +116,18 @@ namespace XpertMobileApp.SQLite_Managment
             ListItems = null;
         }
 
+        internal static async Task<View_TRS_TIERS> SelectScanedTiers(string text)
+        {
+            var tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+            return tiers?.Find(e=>e.CODE_TIERS.Equals(text));
+        }
+
+        internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
+        {
+            selectedItem.CODE_ETAT = TourneeStatus.Visited;
+            selectedItem.ETAT_COLOR = "#FFA500";
+            return await getInstance().UpdateAsync(selectedItem);
+        }
 
         public static async Task synchronise()
         {
@@ -222,24 +234,10 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task AjoutToken(Token token)
         {
-            bool added = false;
-            var OldTokens = await getInstance().Table<Token>().ToListAsync();
-            foreach (var item in OldTokens)
-            {
-                if (item.Id == token.Id)
-                {
-                    item.access_token = token.access_token;
-                    item.Id = token.Id;
-                    item.expires_in = token.expires_in;
-                    item.expire_Date = token.expire_Date;
-                    await getInstance().UpdateAsync(item);
-                    added = true;
-                }
-            }
-            if (!added)
-            {
-                var id = await getInstance().InsertAsync(token);
-            }
+            await getInstance().DeleteAllAsync<Token>();
+
+            var id = await getInstance().InsertAsync(token);
+
         }
 
         public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
@@ -256,9 +254,29 @@ namespace XpertMobileApp.SQLite_Managment
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT = TourneeStatus.Delevred;
                     item.ETAT_COLOR = "#008000";
+                    item.GPS_LATITUDE = vente.GPS_LATITUDE;
+                    item.GPS_LONGITUDE = vente.GPS_LATITUDE;
                     await getInstance().UpdateAsync(item);
                 }
             }
+        }
+
+        public static async Task<bool> saveGPSToTiers(View_TRS_TIERS tiers)
+        {
+
+            var tournees = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+
+            foreach (var item in tournees)
+            {
+                if (item.CODE_TIERS == tiers.CODE_TIERS)
+                {
+                    item.GPS_LATITUDE = tiers.GPS_LATITUDE;
+                    item.GPS_LONGITUDE = tiers.GPS_LONGITUDE;
+                    await getInstance().UpdateAsync(item);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static async Task UpdateTournee()

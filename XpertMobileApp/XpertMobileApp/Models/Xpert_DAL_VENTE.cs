@@ -214,6 +214,8 @@ namespace XpertMobileApp.DAL
             }
         }
         public string MBL_CODE_TOURNEE_DETAIL { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
         #endregion
     }
 
@@ -624,6 +626,9 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
+
     }
     public static class TourneeStatus
     {

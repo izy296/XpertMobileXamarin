@@ -1,4 +1,6 @@
-﻿using Xpert.Common.WSClient.Services;
+﻿using System.Threading.Tasks;
+using Xpert.Common.WSClient.Helpers;
+using Xpert.Common.WSClient.Services;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api
@@ -10,6 +12,11 @@ namespace XpertMobileApp.Api
         {
 
         }
-
+        public async Task<bool> saveGPSToTiers(View_TRS_TIERS Tiers)
+        {
+            string url = GetActionUrl("UpdateGPSTiers");
+            return await WSApi2.PostAauthorizedValue<bool, View_TRS_TIERS>(url, Tiers, this.Token.access_token);
+        }
+         
     }
 }

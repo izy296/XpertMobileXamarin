@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
-using XpertMobileApp.Views._04_Comercial.Livraison.Tournee;
 
 namespace XpertMobileApp.Views
 {
@@ -38,11 +37,6 @@ namespace XpertMobileApp.Views
             // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
-        void Addd()
-        {
-            TourneeServices.AddTournee();
-
-        }
         // protected override void OnAppearing()
 
         protected override void OnAppearing()

@@ -31,20 +31,6 @@ namespace XpertMobileApp
 
 
     {
-        static VTE_VENTE_Database vteVentedatabase;
-
-        // Create the database connection as a singleton.
-        public static VTE_VENTE_Database VteVentedatabase
-        {
-            get
-            {
-                if (vteVentedatabase == null)
-                {
-                    vteVentedatabase = new VTE_VENTE_Database(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Notes.db3"));
-                }
-                return vteVentedatabase;
-            }
-        }
 
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }

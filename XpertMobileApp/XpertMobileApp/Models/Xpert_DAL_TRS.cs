@@ -342,8 +342,9 @@ namespace XpertMobileApp.DAL
         public string ID_CVM_CENTRE { get; set; }//
         public string AGE { get; set; }//
         public string EMAIL { get; set; }
-
         public string CODE_LIEUX { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
     }
 
     public partial class View_TRS_TIERS : TRS_TIERS
@@ -386,6 +387,8 @@ namespace XpertMobileApp.DAL
                 return DLP;
             }
         }
+
+
     }
 
     public partial class BSE_ENCAISS_MOTIFS
