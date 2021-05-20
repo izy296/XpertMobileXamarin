@@ -263,17 +263,19 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task<bool> saveGPSToTiers(View_TRS_TIERS tiers)
         {
-
-            var tournees = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-
-            foreach (var item in tournees)
+            if (!XpertHelper.IsNullOrEmpty(tiers) && !XpertHelper.IsNullOrEmpty(tiers.CODE_TIERS))
             {
-                if (item.CODE_TIERS == tiers.CODE_TIERS)
+                var tournees = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+
+                foreach (var item in tournees)
                 {
-                    item.GPS_LATITUDE = tiers.GPS_LATITUDE;
-                    item.GPS_LONGITUDE = tiers.GPS_LONGITUDE;
-                    await getInstance().UpdateAsync(item);
-                    return true;
+                    if (item.CODE_TIERS == tiers.CODE_TIERS)
+                    {
+                        item.GPS_LATITUDE = tiers.GPS_LATITUDE;
+                        item.GPS_LONGITUDE = tiers.GPS_LONGITUDE;
+                        await getInstance().UpdateAsync(item);
+                        return true;
+                    }
                 }
             }
             return false;

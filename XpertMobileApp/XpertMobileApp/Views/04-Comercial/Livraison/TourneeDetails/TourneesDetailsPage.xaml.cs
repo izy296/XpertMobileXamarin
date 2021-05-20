@@ -244,6 +244,7 @@ namespace XpertMobileApp.Views
                 // Récupérer le lot depuis le serveur
                 XpertSqlBuilder qb = new XpertSqlBuilder();
                 qb.AddCondition<View_TRS_TIERS, string>(x => x.CODE_TIERS, cb_tiers);
+                qb.AddOrderBy<View_TRS_TIERS, string>(x => x.CODE_TIERS);
                 var tiers = await CrudManager.TiersManager.SelectByPage(qb.QueryInfos, 1, 2);
                 if (tiers == null)
                     return null;
