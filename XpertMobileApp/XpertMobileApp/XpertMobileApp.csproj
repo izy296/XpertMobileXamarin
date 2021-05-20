@@ -76,9 +76,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\Xpert\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
-    <Compile Include="..\..\..\Xpert\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
-    <Compile Include="..\..\..\Xpert\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -132,7 +132,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Xpert\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+    <ProjectReference Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>

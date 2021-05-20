@@ -1,2 +1,0 @@
-Values/Strings.xml;values/strings.xml
-Drawable/shadow_effect.xml;drawable/shadow_effect.xml
