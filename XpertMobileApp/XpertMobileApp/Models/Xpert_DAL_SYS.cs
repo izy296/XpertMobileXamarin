@@ -63,6 +63,18 @@ namespace XpertMobileApp.DAL
 
 
     }
+    public partial class SYS_CONFIGURATION_MACHINE
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CODE { get; set; } // 
+        public string MACHINE { get; set; } // 
+        public string IP { get; set; } // 
+        public string INSTANCE_SQL { get; set; } //  just desktop
+        public string USER_SQL { get; set; }// just desktop
+        public string PASSWORD_SQL { get; set; } //  desktop
+        public string PREFIX { get; set; }// 
+    }
 
     public class CBScanedEventArgs : EventArgs
     {
