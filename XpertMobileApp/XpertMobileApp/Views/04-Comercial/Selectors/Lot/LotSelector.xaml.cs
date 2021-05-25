@@ -8,6 +8,7 @@ using XpertMobileApp.Models;
 using System.Linq;
 using XpertMobileApp.DAL;
 using System.Collections.Generic;
+using Acr.UserDialogs;
 
 namespace XpertMobileApp.Views
 {
@@ -52,8 +53,8 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-           // if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            // if (viewModel.Items.Count == 0)
+            viewModel.LoadItemsCommand.Execute(null);
 
             foreach (var item in viewModel.Items)
             {
@@ -71,10 +72,10 @@ namespace XpertMobileApp.Views
             // btnSelect.IsEnabled = true;
             // btnRemove.IsEnabled = viewModel.SelectedItem != null && viewModel.SelectedItem.SelectedQUANTITE > 0;
 
-           // if (viewModel.SelectedItem != null)
-          //  {
-          //      viewModel.SelectedItem.SelectedQUANTITE += 1;
-          //  }
+            // if (viewModel.SelectedItem != null)
+            //  {
+            //      viewModel.SelectedItem.SelectedQUANTITE += 1;
+            //  }
         }
 
         private async void btn_Search_Clicked(object sender, EventArgs e)
@@ -104,7 +105,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (viewModel.SelectedItem != null)
             {
@@ -112,29 +113,44 @@ namespace XpertMobileApp.Views
                 {
                     SelectedlistLot = new List<View_STK_STOCK>();
                 }
-                if (SelectedlistLot.Contains(viewModel.SelectedItem))
+                if (viewModel.SelectedItem.OLD_QUANTITE > 0)
                 {
-                    try
+                    if (viewModel.SelectedItem.SelectedQUANTITE < viewModel.SelectedItem.OLD_QUANTITE)
                     {
-                        SelectedlistLot.Where(x => x.ID_STOCK == viewModel.SelectedItem.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
+                        if (SelectedlistLot.Contains(viewModel.SelectedItem))
+                        {
+                            try
+                            {
+                                SelectedlistLot.Where(x => x.ID_STOCK == viewModel.SelectedItem.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
+                            }
+                            catch
+                            {
+                            }
+                        }
+                        else
+                        {
+                            viewModel.SelectedItem.SelectedQUANTITE += 1;
+                            SelectedlistLot.Add(viewModel.SelectedItem);
+                        }
+                        //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                        UpdateTotaux();
                     }
-                    catch
+                    else
                     {
+                        await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
                 else
                 {
-                    viewModel.SelectedItem.SelectedQUANTITE += 1;
-                    SelectedlistLot.Add(viewModel.SelectedItem);
+                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
-                //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                UpdateTotaux();
             }
         }
 
         private void DelQte_Clicked(object sender, EventArgs e)
         {
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
+            SelectedlistLot.Remove(lot);
             lot.SelectedQUANTITE = 0;
             App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             UpdateTotaux();
@@ -159,9 +175,9 @@ namespace XpertMobileApp.Views
             MessagingCenter.Send(this, CurrentStream, item);
         }
 
-        private void UpdateTotaux() 
+        private void UpdateTotaux()
         {
-            viewModel.TotalSelected = viewModel.Items.Where(e=>e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
+            viewModel.TotalSelected = viewModel.Items.Where(e => e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
         }
     }
 }

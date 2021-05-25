@@ -19,7 +19,7 @@ namespace XpertMobileApp.Views
         public string CurrentStream;
 
         QteUpdaterViewModel viewModel;
-        
+
         public event EventHandler<LotInfosEventArgs> LotInfosUpdated;
 
         protected virtual void OnCBScaned(LotInfosEventArgs e)
@@ -51,15 +51,21 @@ namespace XpertMobileApp.Views
             {
 
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
-                eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
-                OnCBScaned(eventArgs);
-                await PopupNavigation.Instance.PopAsync();
+                if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.OLD_QUANTITE)
+                {
+                    eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
+                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
+                    OnCBScaned(eventArgs);
+                    await PopupNavigation.Instance.PopAsync();
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.Item.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
             }
         }
     }

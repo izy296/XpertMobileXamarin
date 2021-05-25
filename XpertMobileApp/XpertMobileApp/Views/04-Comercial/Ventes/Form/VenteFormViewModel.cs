@@ -11,14 +11,16 @@ using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
     public class VenteFormViewModel : ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>
     {
-        private List<String> immatriculationList;        
-        public List<String> ImmatriculationList {
+        private List<String> immatriculationList;
+        public List<String> ImmatriculationList
+        {
             get { return immatriculationList; }
             set { SetProperty(ref immatriculationList, value); }
         }
@@ -37,7 +39,7 @@ namespace XpertMobileApp.Views
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;
-            }            
+            }
         }
 
         public bool hasEditPrice
@@ -132,7 +134,7 @@ namespace XpertMobileApp.Views
                 {
                     row = new View_VTE_VENTE_LOT();
                     decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
-                   // row.Parent_Doc = Item;
+                    // row.Parent_Doc = Item;
                     row.VenteID = row.ID;
                     row.ID = row.ID + "_" + XpertHelper.RandomString(7);
                     row.CODE_VENTE = Item.CODE_VENTE;
@@ -163,11 +165,37 @@ namespace XpertMobileApp.Views
             return null;
         }
 
-        private void Row_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        private async void Row_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if(e.PropertyName == "QUANTITE") 
+            if (App.Online)
             {
-                UpdateMontants();
+                if (e.PropertyName == "QUANTITE")
+                {
+                    UpdateMontants();
+                }
+            }
+            else
+            {
+                if (e.PropertyName == "QUANTITE")
+                {
+                    var stock = await UpdateDatabase.getInstance().Table<View_STK_STOCK>().ToListAsync();
+                    foreach (var item in stock)
+                    {
+                        var row = ItemRows.Where(x => x.ID_STOCK == item.ID_STOCK).FirstOrDefault();
+                        if (row != null)
+                        {
+                            if (row.QUANTITE <= item.OLD_QUANTITE)
+                            {
+                                UpdateMontants();
+                            }
+                            else
+                            {
+                                row.QUANTITE = item.OLD_QUANTITE;
+                                await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + item.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -214,7 +242,7 @@ namespace XpertMobileApp.Views
                 }
 
                 // Récupérer le lot depuis le serveur
-                string codeTiers = SelectedTiers!= null ? SelectedTiers.CODE_TIERS : "";
+                string codeTiers = SelectedTiers != null ? SelectedTiers.CODE_TIERS : "";
                 List<View_STK_STOCK> prods = await CrudManager.Stock.SelectByCodeBarreLot(cb_prod, codeTiers);
 
                 XpertHelper.PeepScan();

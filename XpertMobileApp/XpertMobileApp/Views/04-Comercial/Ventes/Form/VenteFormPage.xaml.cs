@@ -376,6 +376,7 @@ namespace XpertMobileApp.Views
             if (itemIndex >= 0)
                 viewModel.ItemRows.RemoveAt(itemIndex);
             this.listView.ResetSwipe();
+            viewModel.UpdateMontants();
         }
 
         private void ListView_SwipeStarted(object sender, Syncfusion.ListView.XForms.SwipeStartedEventArgs e)

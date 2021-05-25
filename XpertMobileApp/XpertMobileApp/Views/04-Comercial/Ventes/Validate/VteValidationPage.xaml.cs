@@ -159,7 +159,7 @@ namespace XpertMobileApp.Views
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-        }
+          }
 
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
