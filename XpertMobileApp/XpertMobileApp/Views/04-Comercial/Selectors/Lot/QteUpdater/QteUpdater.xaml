@@ -41,7 +41,8 @@
                                      FontSize="Large" TextAlignment="Center"
                                      SelectAllOnFocus="True"
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
-                                     x:Name="NUD_Price"/>
+                                     x:Name="NUD_Price"
+                                     IsEnabled="False"/>
             </Grid>
                 <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
                     <Button x:Name="btnColse" Text="{i18n:Translate btn_Close}" 
