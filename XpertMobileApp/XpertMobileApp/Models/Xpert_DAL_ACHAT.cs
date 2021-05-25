@@ -514,6 +514,8 @@ namespace XpertMobileApp.DAL
 
     public partial class BSE_TABLE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE { get; set; } // varchar(32)
         public string DESIGNATION { get; set; } // char(8) 
         public bool? REINTEGRER_STOCK { get; set; }

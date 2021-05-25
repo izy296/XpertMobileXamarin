@@ -387,10 +387,14 @@ namespace XpertMobileApp.DAL
                 return DLP;
             }
         }
-
-
+        public STAT_TIERS_MOBILE ETAT_TIERS { get; set; }
     }
-
+    public  enum STAT_TIERS_MOBILE
+    {
+        UNTOUCHED,
+        ADDED,
+        UPDATED
+    }
     public partial class BSE_ENCAISS_MOTIFS
     {
         public string CODE_MOTIF { get; set; } // varchar(20)
@@ -401,6 +405,8 @@ namespace XpertMobileApp.DAL
 
     public partial class BSE_TIERS_FAMILLE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_FAMILLE { get; set; } // varchar(10)
         public string DESIGN_FAMILLE { get; set; } // varchar(50)
         public string CODE_TYPE { get; set; } // varchar(4)
@@ -414,6 +420,8 @@ namespace XpertMobileApp.DAL
 
     public class BSE_TABLE_TYPE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_TYPE { get; set; }
         public string DESIGNATION_TYPE { get; set; }
     }

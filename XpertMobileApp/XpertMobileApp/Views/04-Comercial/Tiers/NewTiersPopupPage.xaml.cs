@@ -15,13 +15,14 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewTiersPopupPage : PopupPage, INotifyPropertyChanged
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewTiersPopupPage : PopupPage, INotifyPropertyChanged
     {
 
         public View_TRS_TIERS SelectedTiers { get; set; }
@@ -32,10 +33,10 @@ namespace XpertMobileApp.Views
         public View_TRS_TIERS Item { get; set; }
 
         public NewTiersPopupPage(View_TRS_TIERS item = null)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
-            Familles  = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
+            Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Secteurs = new ObservableCollection<BSE_TABLE>();
 
@@ -46,7 +47,7 @@ namespace XpertMobileApp.Views
             if (item != null)
             {
                 Item = item;
-            } 
+            }
             else
             {
                 Item = new View_TRS_TIERS
@@ -77,7 +78,7 @@ namespace XpertMobileApp.Views
                 LoadTypesCommand.Execute(null);
 
             if (Familles.Count == 0)
-               LoadFamilleCommand.Execute(null);
+                LoadFamilleCommand.Execute(null);
 
             if (Secteurs.Count == 0)
                 LoadSecteursCommand.Execute(null);
@@ -99,7 +100,7 @@ namespace XpertMobileApp.Views
         {
             for (int i = 0; i < Familles.Count; i++)
             {
-                if(Familles[i].CODE_FAMILLE == codeElem)
+                if (Familles[i].CODE_FAMILLE == codeElem)
                 {
                     FamillesPicker.SelectedIndex = i;
                     return;
@@ -166,23 +167,44 @@ namespace XpertMobileApp.Views
             }
             finally
             {
-     
+
             }
         }
 
         async Task ExecuteLoadTypesCommand()
         {
+            if (App.Online)
+            {
+                try
+                {
+                    Types.Clear();
+                    var itemsC = await WebServiceClient.getTiersTypes();
 
-            try
+                    BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                    allElem.CODE_TYPE = "";
+                    allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                    Types.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Types.Add(itemC);
+                        if (itemC.CODE_TYPE == Item?.CODE_TYPE)
+                        {
+                            SelectedType = itemC;
+                            TypesPicker.SelectedIndex = Types.IndexOf(itemC);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
             {
                 Types.Clear();
-                var itemsC = await WebServiceClient.getTiersTypes();
-
-                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                Types.Add(allElem);
-
+                var itemsC = await UpdateDatabase.getTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -193,56 +215,90 @@ namespace XpertMobileApp.Views
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+
         }
 
         async Task ExecuteLoadFamillesCommand()
         {
+            if (App.Online)
+            {
+                try
+                {
+                    Familles.Clear();
+                    var itemsC = await WebServiceClient.getTiersFamilles();
 
-            try
+                    View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
+                    allElem.CODE_FAMILLE = "";
+                    allElem.DESIGN_FAMILLE = AppResources.txt_All;
+                    Familles.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Familles.Add(itemC);
+                        if (itemC.CODE_FAMILLE == Item?.CODE_FAMILLE)
+                        {
+                            SelectedFamille = itemC;
+                            FamillesPicker.SelectedIndex = Familles.IndexOf(itemC);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
             {
                 Familles.Clear();
-                var itemsC = await WebServiceClient.getTiersFamilles();
-
-                View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
-                allElem.CODE_FAMILLE = "";
-                allElem.DESIGN_FAMILLE = AppResources.txt_All;
-                Familles.Add(allElem);
-
+                var itemsC = await UpdateDatabase.getFamille();
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);
-                    if(itemC.CODE_FAMILLE == Item?.CODE_FAMILLE) 
+                    if (itemC.CODE_FAMILLE == Item?.CODE_FAMILLE)
                     {
                         SelectedFamille = itemC;
                         FamillesPicker.SelectedIndex = Familles.IndexOf(itemC);
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+
         }
 
         async Task ExecuteLoadSecteursCommand()
         {
-
-            try
+            if (App.Online)
             {
-                Familles.Clear();
-                var itemsC = await CrudManager.BSE_LIEUX.GetItemsAsync();
+                try
+                {
+                    Secteurs.Clear();
+                    var itemsC = await CrudManager.BSE_LIEUX.GetItemsAsync();
 
-                BSE_TABLE allElem = new BSE_TABLE();
-                allElem.CODE = "";
-                allElem.DESIGNATION = "";
-                Secteurs.Add(allElem);
+                    BSE_TABLE allElem = new BSE_TABLE();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = "";
+                    Secteurs.Add(allElem);
 
+                    foreach (var itemC in itemsC)
+                    {
+                        Secteurs.Add(itemC);
+                        if (itemC.CODE == Item?.CODE_LIEUX)
+                        {
+                            SelectedSecteur = itemC;
+                            SecteursPicker.SelectedIndex = Secteurs.IndexOf(itemC);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
+            {
+                Secteurs.Clear();
+                var itemsC = await UpdateDatabase.getSecteurs();
                 foreach (var itemC in itemsC)
                 {
                     Secteurs.Add(itemC);
@@ -253,11 +309,7 @@ namespace XpertMobileApp.Views
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+
         }
 
         #endregion
@@ -265,7 +317,7 @@ namespace XpertMobileApp.Views
         private async void btn_Save_Clicked(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 /*
                 if (SelectedTiers == null && Constants.AppName == Apps.XPH_Mob)
                 {
@@ -279,26 +331,45 @@ namespace XpertMobileApp.Views
                     return;
                 }
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                if (string.IsNullOrEmpty(Item.CODE_TIERS))
+                if (App.Online)
                 {
-                    Item.ACTIF_TIERS = 1;
-                    string codeTiers = await CrudManager.TiersService.AddItemAsync(Item);
-                    Item.CODE_TIERS = codeTiers;
-                    Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
-                    MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    if (string.IsNullOrEmpty(Item.CODE_TIERS))
+                    {
+                        Item.ACTIF_TIERS = 1;
+                        string codeTiers = await CrudManager.TiersService.AddItemAsync(Item);
+                        Item.CODE_TIERS = codeTiers;
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
+                    else
+                    {
+                        await CrudManager.TiersService.UpdateItemAsync(Item);
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
                 }
                 else
                 {
-                    await CrudManager.TiersService.UpdateItemAsync(Item);
-
-                    MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    if (Item.ID == 0)
+                    {
+                        Item.ACTIF_TIERS = 1;
+                        await UpdateDatabase.AjoutTiers(Item);
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
+                    else
+                    {
+                        await UpdateDatabase.UpdateTiers(Item);
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
                 }
+
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PopAsync();
-               // await Navigation.PopModalAsync();
+                // await Navigation.PopModalAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.alrt_msg_Alert, "Erreur lors de traitement de la requête ! " + ex.Message, AppResources.alrt_msg_Ok);
@@ -339,4 +410,3 @@ namespace XpertMobileApp.Views
 
     }
 }
- 
