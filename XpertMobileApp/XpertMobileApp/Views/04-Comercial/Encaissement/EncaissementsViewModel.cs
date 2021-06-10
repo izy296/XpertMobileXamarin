@@ -13,6 +13,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.ViewModels
@@ -123,44 +124,75 @@ namespace XpertMobileApp.ViewModels
             
             if (IsLoadExtrasBusy)
                 return;
-            
-            try
+            if (App.Online)
             {
-                IsLoadExtrasBusy = true;
-                Comptes.Clear();
-                var itemsC = await WebServiceClient.getComptes();
-                itemsC.Insert(0, new View_BSE_COMPTE()
+                try
                 {
-                    DESIGNATION_TYPE = AppResources.txt_All,
-                    DESIGN_COMPTE = AppResources.txt_All,
-                    CODE_TYPE = ""
-                });
+                    IsLoadExtrasBusy = true;
+                    Comptes.Clear();
+                    var itemsC = await WebServiceClient.getComptes();
+                    itemsC.Insert(0, new View_BSE_COMPTE()
+                    {
+                        DESIGNATION_TYPE = AppResources.txt_All,
+                        DESIGN_COMPTE = AppResources.txt_All,
+                        CODE_TYPE = ""
+                    });
 
-                var itemsM = await WebServiceClient.GetMotifs();
-                itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
-                {
-                    DESIGN_MOTIF = AppResources.txt_All,
-                    CODE_MOTIF = ""
-                });
+                    var itemsM = await WebServiceClient.GetMotifs();
+                    itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
+                    {
+                        DESIGN_MOTIF = AppResources.txt_All,
+                        CODE_MOTIF = ""
+                    });
 
-                foreach (var itemC in itemsC)
-                {
-                    Comptes.Add(itemC);
+                    foreach (var itemC in itemsC)
+                    {
+                        Comptes.Add(itemC);
+                    }
+
+                    foreach (var itemM in itemsM)
+                    {
+                        Motifs.Add(itemM);
+                    }
                 }
-
-                foreach (var itemM in itemsM)
+                catch (Exception ex)
                 {
-                    Motifs.Add(itemM);
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+                finally
+                {
+                    IsLoadExtrasBusy = false;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-            finally
-            {
-                IsLoadExtrasBusy = false;
+                try
+                {
+                    IsLoadExtrasBusy = true;
+                    Comptes.Clear();
+                    var itemsC = await UpdateDatabase.getComptes();
+
+                    var itemsM = await UpdateDatabase.getMotifs();
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Comptes.Add(itemC);
+                    }
+
+                    foreach (var itemM in itemsM)
+                    {
+                        Motifs.Add(itemM);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                }
+                finally
+                {
+                    IsLoadExtrasBusy = false;
+                }
             }
         }
 
