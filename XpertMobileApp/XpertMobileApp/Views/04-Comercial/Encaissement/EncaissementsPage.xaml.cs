@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
@@ -34,14 +35,29 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as View_TRS_ENCAISS;
-            if (item == null)
-                return;
+            if (App.Online)
+            {
+                var item = args.SelectedItem as View_TRS_ENCAISS;
+                if (item == null)
+                    return;
 
-            await Navigation.PushAsync(new EncaissementDetailPage(item));
+                await Navigation.PushAsync(new EncaissementDetailPage(item));
 
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+                // Manually deselect item.
+                ItemsListView.SelectedItem = null;
+            }
+            else
+            {
+                var item = args.SelectedItem as View_TRS_ENCAISS;
+                var itemfromDB = await UpdateDatabase.getselectedItemEncaiss(item);
+                if (itemfromDB == null || item ==null)
+                    return;
+
+                await Navigation.PushAsync(new EncaissementDetailPage(itemfromDB));
+
+                // Manually deselect item.
+                ItemsListView.SelectedItem = null;
+            }
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -84,7 +100,7 @@ namespace XpertMobileApp.Views
             LoadStats(GetSelectedType(btn));
         }
 
-        private void LoadStats(EncaissDisplayType type)
+        private async void LoadStats(EncaissDisplayType type)
         {
             switch (type)
             {
@@ -105,7 +121,19 @@ namespace XpertMobileApp.Views
             if (viewModel.EncaissDisplayType != type)
             {
                 viewModel.EncaissDisplayType = type;
-                viewModel.LoadItemsCommand.Execute(null);
+                if (App.Online)
+                {
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+                else
+                {
+                    var items = await UpdateDatabase.LoadEncDec(viewModel.EncaissDisplayType.ToString());
+                    viewModel.Items.Clear();
+                    foreach (var item in items)
+                    {
+                        viewModel.Items.Add(item);
+                    }
+                }
             }
         }
 
