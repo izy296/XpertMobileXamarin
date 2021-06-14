@@ -31,10 +31,10 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-           // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
+            // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
 
-            this.AddCondition<View_STK_PRODUITS, string>(e=> e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
-            
+            this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
+
             if (!string.IsNullOrEmpty(SearchedRef))
                 this.AddCondition<View_STK_PRODUITS, string>(e => e.REFERENCE, SearchedRef);
 
@@ -74,7 +74,7 @@ namespace XpertMobileApp.ViewModels
             get { return searchedRef; }
             set { SetProperty(ref searchedRef, value); }
         }
-        
+
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
         private BSE_TABLE_TYPE selectedType;
@@ -125,50 +125,55 @@ namespace XpertMobileApp.ViewModels
 
         async Task ExecuteLoadTypesCommand()
         {
-
-            try
+            if (App.Online)
             {
-                Types.Clear();
-                var itemsC = await WebServiceClient.GetProduitTypes();
-
-                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                Types.Add(allElem);
-
-                foreach (var itemC in itemsC)
+                try
                 {
-                    Types.Add(itemC);
+                    Types.Clear();
+                    var itemsC = await WebServiceClient.GetProduitTypes();
+
+                    BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                    allElem.CODE_TYPE = "";
+                    allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                    Types.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Types.Add(itemC);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
             }
         }
 
         async Task ExecuteLoadFamillesCommand()
         {
-            try
+            if (App.Online)
             {
-                Familles.Clear();
-                var itemsC = await WebServiceClient.GetProduitFamilles();
-
-                BSE_TABLE allElem = new BSE_TABLE();
-                allElem.CODE = "";
-                allElem.DESIGNATION = AppResources.txt_All;
-                Familles.Add(allElem);
-
-                foreach (var itemC in itemsC)
+                try
                 {
-                    Familles.Add(itemC);
+                    Familles.Clear();
+                    var itemsC = await WebServiceClient.GetProduitFamilles();
+
+                    BSE_TABLE allElem = new BSE_TABLE();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = AppResources.txt_All;
+                    Familles.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Familles.Add(itemC);
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
             }
         }
 
