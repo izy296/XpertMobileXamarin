@@ -11,6 +11,7 @@ using XpertMobileApp.Models;
 using Acr.UserDialogs;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
+using System.Collections.ObjectModel;
 
 namespace XpertMobileApp.Views
 {
@@ -21,6 +22,8 @@ namespace XpertMobileApp.Views
         QteUpdaterViewModel viewModel;
 
         public event EventHandler<LotInfosEventArgs> LotInfosUpdated;
+        public ObservableCollection<BSE_TABLE> Prices { get; set; }
+        public View_TRS_TIERS Item { get; set; }
 
         protected virtual void OnCBScaned(LotInfosEventArgs e)
         {
@@ -44,6 +47,12 @@ namespace XpertMobileApp.Views
         {
             await PopupNavigation.Instance.PopAsync();
         }
+
+        //private void PricePicker_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    var itm = Prices[PricePicker.SelectedIndex];
+        //    Item.CODE_LIEUX = itm.CODE;
+        //}
 
         private async void OnValidate(object sender, EventArgs e)
         {
