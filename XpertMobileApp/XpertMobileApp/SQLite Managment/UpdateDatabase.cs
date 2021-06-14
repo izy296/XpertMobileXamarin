@@ -362,6 +362,149 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static async Task SyncMotifs()
+        {
+            try
+            {
+                var itemsM = await WebServiceClient.GetAllMotifs();
+                itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
+                {
+                    DESIGN_MOTIF = AppResources.txt_All,
+                    CODE_MOTIF = ""
+                });
+                await getInstance().DeleteAllAsync<BSE_ENCAISS_MOTIFS>();
+                var id = await getInstance().InsertAllAsync(itemsM);
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+        }
+
+        public static async Task SyncProductPriceByQuantity()
+        {
+            try
+            {
+                var bll = new ProductManager();
+                var items = await bll.SelectListePrix();
+                await getInstance().DeleteAllAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
+                var id = await getInstance().InsertAllAsync(items);
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+        }
+
+        public static async Task<decimal> getPrixByQuantity(string codeProduit, decimal qteVendu)
+        {
+            List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
+            var prixProduct = AllPrices.Where(x => x.CODE_PRODUIT == codeProduit).FirstOrDefault();
+            if (qteVendu >= prixProduct.QTE_VENTE)
+            {
+                return prixProduct.PRIX_GROS;
+            }
+            else
+            {
+                return prixProduct.PRIX_DETAIL;
+            }
+        }
+        public static async Task<List<View_TRS_TIERS>> FilterTiers(string search)
+        {
+            List<View_TRS_TIERS> allTiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+            if (search == "")
+            {
+                return allTiers;
+            }
+            else
+            {
+                var tiersFiltred = allTiers.Where(x => x.FULL_NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
+                return tiersFiltred;
+            }
+        }
+
+        public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search)
+        {
+            List<View_LIV_TOURNEE_DETAIL> allTiers = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+            if (search == "")
+            {
+                return allTiers;
+            }
+            else
+            {
+                var tiersFiltred = allTiers.Where(x => x.NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
+                return tiersFiltred;
+            }
+        }
+
+        public static async Task<List<BSE_ENCAISS_MOTIFS>> getMotifs(string typeMotif = "ENC")
+        {
+            List<BSE_ENCAISS_MOTIFS> AllMotifs = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+            List<BSE_ENCAISS_MOTIFS> Motifs;
+            Motifs = AllMotifs.Where(e => e.TYPE_MOTIF == typeMotif).ToList();
+            return Motifs;
+        }
+
+        public static async Task<List<View_TRS_ENCAISS>> LoadEncDec(string typeMotif = "")
+        {
+            List<View_TRS_ENCAISS> AllEncDec = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+            List<View_TRS_ENCAISS> Data;
+            if (typeMotif == "" || typeMotif == "All")
+            {
+                return AllEncDec;
+            }
+            Data = AllEncDec.Where(e => e.CODE_TYPE == typeMotif).ToList();
+            return Data;
+        }
+        public static async Task<bool> DeleteEncaiss(View_TRS_ENCAISS encaiss)
+        {
+            await getInstance().DeleteAsync(encaiss);
+            return true;
+        }
+
+        public static async Task<View_TRS_ENCAISS> getselectedItemEncaiss(View_TRS_ENCAISS encaiss)
+        {
+            if (encaiss != null)
+            {
+                List<View_TRS_ENCAISS> AllEncDec = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+                var item = AllEncDec.Where(x => x.CODE_ENCAISS == encaiss.CODE_ENCAISS).FirstOrDefault();
+                if (item != null)
+                {
+                    return item;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static async Task<bool> UpdateEncaiss(View_TRS_ENCAISS encaiss)
+        {
+            await getInstance().UpdateAsync(encaiss);
+            return true;
+        }
+
+        public static async Task SyncSysParams()
+        {
+            var Params = await CrudManager.SysParams.GetParams();
+            await getInstance().DeleteAllAsync<SYS_MOBILE_PARAMETRE>();
+            var id = await getInstance().InsertAsync(Params);
+        }
+
+        public static async Task<SYS_MOBILE_PARAMETRE> getParams()
+        {
+            SYS_MOBILE_PARAMETRE Params = await getInstance().Table<SYS_MOBILE_PARAMETRE>().FirstOrDefaultAsync();
+            return Params;
+        }
+
+
         public static async Task<string> AjoutVente(View_VTE_VENTE vente)
         {
             if ((vente.TOTAL_PAYE + vente.MBL_MT_VERCEMENT) > vente.TOTAL_TTC)
