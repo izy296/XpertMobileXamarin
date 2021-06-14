@@ -48,7 +48,7 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
 
             // Initialisation du montant reçu au reste a payer
-            viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
+            //viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
             // this.SfNE_MTRecu.Value = item.TOTAL_RESTE;
             UpdateMontants(viewModel.Item.TOTAL_RECU);
 
@@ -141,17 +141,25 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    string res = await UpdateDatabase.AjoutVente(viewModel.Item);
-                    if (!XpertHelper.IsNullOrEmpty(res))
+                    if (viewModel.Item.Details != null)
                     {
-                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                        if (viewModel.imprimerTecketCaiss)
+                        string res = await UpdateDatabase.AjoutVente(viewModel.Item);
+                        if (!XpertHelper.IsNullOrEmpty(res))
                         {
-                            PrinterHelper.PrintBL(viewModel.Item);
+                            await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                            if (viewModel.imprimerTecketCaiss)
+                            {
+                                PrinterHelper.PrintBL(viewModel.Item);
+                            }
+                            ParentviewModel.InitNewVentes();
+                            await PopupNavigation.Instance.PopAsync();
                         }
-                        ParentviewModel.InitNewVentes();
-                        await PopupNavigation.Instance.PopAsync();
                     }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez selectionner au moins un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+
                 }
                
             }
@@ -159,7 +167,7 @@ namespace XpertMobileApp.Views
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-          }
+        }
 
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
@@ -252,6 +260,14 @@ namespace XpertMobileApp.Views
             {
                 mt_PointsUsed.Text = "";
             }
+        }
+
+        private void CashbtnClicked(object sender, EventArgs e)
+        {
+            Item.TOTAL_RECU = Item.TOTAL_TTC;
+
+            decimal Mt_Recu = Convert.ToDecimal(Item.TOTAL_RECU);
+            UpdateMontants(Mt_Recu);
         }
     }
 }

@@ -38,7 +38,7 @@
                     <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
                           Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
                     <Label Grid.Column="2" Grid.Row="1" Text="{ Binding PRIX_VENTE, StringFormat='P : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" />
-                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_VENTE, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Grid.Column="3" Grid.Row="1" Text="{ Binding MT_VENTE, StringFormat='{0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Green"/>
                     
                 </Grid>
             </Frame>

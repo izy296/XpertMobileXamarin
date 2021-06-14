@@ -69,11 +69,15 @@
                                      VerticalOptions="Center" Margin="30,0,30,0" />
 
                 <Label Text="Montant. Reçu" FontSize="Default" Margin="5,5,5,-10"  />
-                <numeric1:SfNumericTextBox x:Name="SfNE_MTRecu" Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
-                                     ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                     SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RECU, Mode=TwoWay}"
-                                     VerticalOptions="Center" Margin="30,0,30,0" ValueChanged="TOTAL_RECU_ValueChanged" />
-
+                <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+                    <numeric1:SfNumericTextBox x:Name="SfNE_MTRecu" Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                                         ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                                         SelectAllOnFocus="True" Value="{Binding Item.TOTAL_RECU, Mode=TwoWay}"
+                                         VerticalOptions="Center" Margin="30,0,30,0" ValueChanged="TOTAL_RECU_ValueChanged" />
+                    <Button x:Name="btncash" Text="Cash" CornerRadius="8"
+                            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="CashbtnClicked" HorizontalOptions="End"></Button>
+                </StackLayout>
+                
                 <Label Text="Montant. rendu" FontSize="Default" Margin="5,5,5,-10"  />
                 <numeric1:SfNumericTextBox  Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
                                      ParserMode="Double" MaximumNumberDecimalDigits="2" 
