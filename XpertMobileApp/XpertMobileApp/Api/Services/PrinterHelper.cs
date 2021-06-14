@@ -8,6 +8,8 @@ using XpertMobileApp;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 using XpertWebApi.Models;
 
@@ -52,6 +54,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
             try 
             {
                 var sysParams = await AppManager.GetSysParams();
+                SYS_USER user = await UpdateDatabase.getUserInfo(App.User.UserName);
                 //  if (printerReady)
                 //  {
                 //  int stat=printerLocal.getCurrentStatus();
@@ -65,14 +68,15 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 //       GetPrinterInstance();
                 //   }
 
- 
-                    GetPrinterInstance();
+
+                GetPrinterInstance();
      
                   
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setPrinter(13, 0);
                     printerLocal.setFont(0, 0, 1, 1, 0);
                     printerLocal.PrintText(sysParams.NOM_PHARM + Environment.NewLine);
+                    printerLocal.setFont(0, 0, 0, 1, 0);
                     printerLocal.PrintText(sysParams.ADRESSE_PHARM + Environment.NewLine);
                     printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
                     printerLocal.setFont(0, 0, 0, 1, 0);
@@ -81,6 +85,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
                     string date = String.Format($"Date :{data.DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
                     printerLocal.PrintText(date);
                     printerLocal.PrintText("Etablie par : " + data.CREATED_BY + Environment.NewLine);
+                    printerLocal.PrintText("Tel : " + user.TEL_USER + Environment.NewLine);
                     printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
                     printerLocal.setFont(0, 0, 0, 1, 0);
                     printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
@@ -94,7 +99,8 @@ namespace XpertMobileSettingsPage.Helpers.Services
                         printerLocal.PrintText(datvalue);
                     }
                     printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-                    printerLocal.PrintText(string.Format($"                      Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
+                    printerLocal.PrintText(string.Format($"Versement : {data.TOTAL_RECU:0.00}" +$"        Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
+                    printerLocal.PrintText(string.Format($"Reste : {data.TOTAL_TTC - data.TOTAL_RECU:0.00}") + Environment.NewLine);
 
                     var MoneyWords = ChiffresLettres.MoneyToLetter(data.TOTAL_TTC);
                     string monyWord = XpertHelper.IsNullOrEmpty(MoneyWords) ? "" : MoneyWords.Replace('é', 'e');
@@ -187,6 +193,76 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, ex.Message,AppResources.alrt_msg_Ok);
             }
             finally 
+            {
+                //if (printerLocal.isConnected())
+                //{
+                //    printerLocal.closeConnection();
+                //}
+            }
+        }
+
+        public async static void PrintEncaisseOffline(View_TRS_ENCAISS data)
+        {
+            if (data == null) return;
+
+            try
+            {
+                var sysParams = await AppManager.GetSysParams();
+
+                //if (printerReady)
+                //{
+                //    if (!printerLocal.isConnected())
+                //    {
+                //        printerLocal.openConnection();
+                //    }
+                GetPrinterInstance();
+
+                printerLocal.setPrinter(13, 0);
+                printerLocal.setPrinter(13, 0);
+                printerLocal.setFont(0, 0, 1, 1, 0);
+                printerLocal.PrintText(sysParams.NOM_PHARM + Environment.NewLine);
+                printerLocal.PrintText(sysParams.ADRESSE_PHARM + Environment.NewLine);
+                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                if ("ENC".Equals(data.CODE_TYPE))
+                {
+                    printerLocal.PrintText("Recu de versement" + Environment.NewLine);
+                }
+                else
+                {
+                    printerLocal.PrintText("Recu de reglement" + Environment.NewLine);
+                }
+                printerLocal.setFont(0, 0, 0, 1, 0);
+                printerLocal.PrintText("N : " + data.NUM_ENCAISS + Environment.NewLine);
+                printerLocal.PrintText("Client : " + data.NOM_TIERS + Environment.NewLine);
+                string date = String.Format($"Date :{data.DATE_ENCAISS:dd/MM/yyyy}") + Environment.NewLine;
+                printerLocal.PrintText(date);
+                printerLocal.PrintText("Etablie par : " + data.CREATED_BY + Environment.NewLine);
+                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                if ("ENC".Equals(data.CODE_TYPE))
+                {
+                    printerLocal.PrintText($"Montant verse : {data.TOTAL_ENCAISS,-10:0.00}" + Environment.NewLine);
+                }
+                else
+                {
+                    printerLocal.PrintText($"Montant regle : {data.TOTAL_ENCAISS,-10:0.00}" + Environment.NewLine);
+                }
+                var MoneyWords = ChiffresLettres.MoneyToLetter(data.TOTAL_ENCAISS);
+                string monyWord = XpertHelper.IsNullOrEmpty(MoneyWords) ? "" : MoneyWords.Replace('é', 'e');
+                printerLocal.PrintText(monyWord + Environment.NewLine);
+               
+                printerLocal.PrintText(" " + Environment.NewLine);
+                printerLocal.PrintText(" " + Environment.NewLine);
+                //}
+                //else
+                //{
+                //    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
+                //}
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, ex.Message, AppResources.alrt_msg_Ok);
+            }
+            finally
             {
                 //if (printerLocal.isConnected())
                 //{
