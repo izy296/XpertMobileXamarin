@@ -127,7 +127,7 @@ namespace XpertMobileApp.SQLite_Managment
         internal static async Task<View_TRS_TIERS> SelectScanedTiers(string text)
         {
             var tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            return tiers?.Find(e=>e.CODE_TIERS.Equals(text));
+            return tiers?.Find(e => e.CODE_TIERS.Equals(text));
         }
 
         internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
