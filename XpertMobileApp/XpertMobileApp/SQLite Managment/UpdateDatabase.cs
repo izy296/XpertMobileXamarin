@@ -137,37 +137,52 @@ namespace XpertMobileApp.SQLite_Managment
             return await getInstance().UpdateAsync(selectedItem);
         }
 
-        public static async Task synchronise()
+        public static async Task synchroniseDownload()
         {
-            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-            bool isconnected =  await App.IsConected();
+            bool isconnected = await App.IsConected();
             if (isconnected)
             {
-                await getPrefix();
-                await AjoutPrefix();
                 await initialisationDbLocal();
 
-
-                await SyncTiersToServer();
-
-
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
                 await SyncData<View_TRS_TIERS, TRS_TIERS>();
                 await SyncLivTournee();
                 await SyncLivTourneeDetail();
                 await SyncStock();
+                //await SyncData<View_STK_STOCK, STK_STOCK>();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                 await SyncUsers();
                 await syncPermission();
+                await SyncSysParams();
                 await syncSession();
                 await SyncFamille();
                 await SyncTypeTiers();
                 await SyncSecteurs();
+                await SyncBseCompte();
+                await SyncMotifs();
+                await SyncProductPriceByQuantity();
                 UserDialogs.Instance.HideLoading();
-                await getInstance().DeleteAllAsync<View_VTE_VENTE>();
-                await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                await SyncVenteToServer();
+                //await getInstance().DeleteAllAsync<View_VTE_VENTE>();
+                //await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            else
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
 
+
+        public static async Task synchroniseUpload()
+        {
+            bool isconnected = await App.IsConected();
+            if (isconnected)
+            {
+                await SyncTiersToServer();
+                await SyncEncaissToServer();
+                await SyncVenteToServer();
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else
