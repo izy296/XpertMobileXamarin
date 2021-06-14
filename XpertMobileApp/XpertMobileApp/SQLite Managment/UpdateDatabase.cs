@@ -446,6 +446,20 @@ namespace XpertMobileApp.SQLite_Managment
             return validInformations;
         }
 
+        public static async Task<SYS_USER> getUserInfo(string userid)
+        {
+            if (userid != null)
+            {
+                var Users = await getInstance().Table<SYS_USER>().ToListAsync();
+                var user = Users.Where(x => x.ID_USER.ToLower() == userid.ToLower()).FirstOrDefault();
+                if (user != null)
+                {
+                    return user;
+                }
+            }
+            return null;
+        }
+
 
         public static async Task<Token> getToken(User user)
         {
