@@ -12,6 +12,10 @@ using XpertMobileApp.Helpers;
 using System.Text.RegularExpressions;
 using XpertWebApi.Models;
 using System.Collections.Generic;
+using XpertMobileApp.SQLite_Managment;
+using Xpert.Common.WSClient.Helpers;
+using Acr.UserDialogs;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views
 {
@@ -115,6 +119,46 @@ namespace XpertMobileApp.Views
         {
             await viewModel.SaveSettings();
             await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_SettingsSaved, AppResources.alrt_msg_Ok);
+        }
+
+        protected async void ConfigurerAppareil_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await UpdateDatabase.AjoutPrefix();
+                if (res != null)
+                {
+                    await DisplayAlert("Succes", AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                    await UpdateDatabase.getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
+                    var id = await UpdateDatabase.getInstance().InsertAsync(res);
+                    //RecupererPrefix_Clicked(sender,e);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
+        protected async void RecupererPrefix_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var res = await UpdateDatabase.getPrefix();
+                if (res != null && !(string.IsNullOrEmpty(res.PREFIX)))
+                {
+                    App.PrefixCodification = res.PREFIX;
+                    await DisplayAlert("Succes", AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
         }
 
         protected async void TestConnexion_Clicked(object sender, EventArgs e)

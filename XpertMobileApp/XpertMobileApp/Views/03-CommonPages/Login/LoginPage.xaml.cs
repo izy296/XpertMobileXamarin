@@ -16,17 +16,17 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class LoginPage : ContentPage
+    {
         LoginViewModel viewModel;
 
-        public LoginPage ()
-		{
-			InitializeComponent ();
+        public LoginPage()
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new LoginViewModel();
-            
+
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
 
             NavigationPage.SetHasNavigationBar(this, false);
@@ -35,7 +35,7 @@ namespace XpertMobileApp.Views
 
         private void Init()
         {
-          //  App.StatrtCheckIfInternet(Lbl_NoInternet, this);
+            //  App.StatrtCheckIfInternet(Lbl_NoInternet, this);
 
             Ent_UserName.Text = "";
             Ent_PassWord.Text = "";
@@ -62,8 +62,8 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
                 return;
             }
-            try 
-            { 
+            try
+            {
                 bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
@@ -103,6 +103,9 @@ namespace XpertMobileApp.Views
                             // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                             // suavegrade du user et du token en cours dans la bdd local
+
+                            //Récuperation prefix
+                            await RecupererPrefix();
 
                             try
                             {
@@ -173,7 +176,6 @@ namespace XpertMobileApp.Views
                                 // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                                 // suavegrade du user et du token en cours dans la bdd local
-
                                 try
                                 {
                                     if (Constants.AppName != Apps.X_BOUTIQUE)
@@ -215,18 +217,39 @@ namespace XpertMobileApp.Views
                         await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
                     }
                 }
+                try
+                {
+                    await UpdateDatabase.AssignPrefix();
+                    await UpdateDatabase.AssignMagasin();
+                }
+                catch
+                {
+                }
+                if (string.IsNullOrEmpty(App.PrefixCodification))
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
             }
         }
 
+        protected async Task RecupererPrefix()
+        {
+            var res = await UpdateDatabase.getPrefix();
+            if (res != null && !(string.IsNullOrEmpty(res.PREFIX)))
+            {
+                App.PrefixCodification = res.PREFIX;
+            }
+        }
+
         protected void Settings_Clicked(object sender, EventArgs e)
         {
-             SettingsPage sp = new SettingsPage(true);
-             this.Navigation.PushModalAsync(new NavigationPage(sp));
+            SettingsPage sp = new SettingsPage(true);
+            this.Navigation.PushModalAsync(new NavigationPage(sp));
         }
 
         private void Exit_Clicked(object sender, EventArgs e)

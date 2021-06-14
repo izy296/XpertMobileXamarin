@@ -205,52 +205,53 @@ namespace XpertMobileApp.ViewModels
         }
         public async Task LoadMagasins ()
         {
-            try
+            if (App.Online)
             {
-
-                // Load Magasins
-                MagasinsList.Clear();
-                var itemsC = await CrudManager.BSE_MAGASINS.GetItemsAsync();
-
-                View_BSE_MAGASIN allElem = new View_BSE_MAGASIN();
-                allElem.CODE = "";
-                allElem.DESIGNATION = "Aucun";
-                MagasinsList.Add(allElem);
-
-                foreach (var itemC in itemsC)
+                try
                 {
-                    MagasinsList.Add(itemC);
-                    if(itemC.CODE == Settings.DefaultMagasinVente) 
+                    // Load Magasins
+                    MagasinsList.Clear();
+                    var itemsC = await CrudManager.BSE_MAGASINS.GetItemsAsync();
+
+                    View_BSE_MAGASIN allElem = new View_BSE_MAGASIN();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = "Aucun";
+                    MagasinsList.Add(allElem);
+
+                    foreach (var itemC in itemsC)
                     {
-                        SelectedMagasin = itemC;
+                        MagasinsList.Add(itemC);
+                        if (itemC.CODE == Settings.DefaultMagasinVente)
+                        {
+                            SelectedMagasin = itemC;
+                        }
+                    }
+
+                    // Load Comptes
+                    ComptesList.Clear();
+                    var itemsCmt = await CrudManager.BSE_COMPTE.GetItemsAsync();
+
+                    View_BSE_COMPTE allcomptes = new View_BSE_COMPTE();
+                    allcomptes.CODE_COMPTE = "";
+                    allcomptes.DESIGN_COMPTE = "Aucun";
+                    ComptesList.Add(allcomptes);
+
+                    foreach (var itemC in itemsCmt)
+                    {
+                        ComptesList.Add(itemC);
+                        if (itemC.CODE_COMPTE == Settings.CaisseDedier)
+                        {
+                            SelectedCompte = itemC;
+                        }
                     }
                 }
-
-
-                // Load Comptes
-                ComptesList.Clear();
-                var itemsCmt = await CrudManager.BSE_COMPTE.GetItemsAsync();
-
-                View_BSE_COMPTE allcomptes = new View_BSE_COMPTE();
-                allcomptes.CODE_COMPTE = "";
-                allcomptes.DESIGN_COMPTE = "Aucun";
-                ComptesList.Add(allcomptes);
-
-                foreach (var itemC in itemsCmt)
+                catch (Exception ex)
                 {
-                    ComptesList.Add(itemC);
-                    if (itemC.CODE_COMPTE == Settings.CaisseDedier)
-                    {
-                        SelectedCompte = itemC;
-                    }
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
                 }
-
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+           
         }
         #endregion
 
@@ -405,22 +406,22 @@ AppResources.alrt_msg_Ok);
                 }
 
                 // Netwirk Printer
-                var ntworkProinters = await WebServiceClient.GetPrintersList();
-                foreach (var item in ntworkProinters)
+                if (App.Online)
                 {
-                    DeviceList.Add(item);
-                    if(item.Name == Settings.PrinterName && item.Type == Settings.PrinterType) 
+                    var ntworkProinters = await WebServiceClient.GetPrintersList();
+                    foreach (var item in ntworkProinters)
                     {
-                        SelectedDevice = item;
+                        DeviceList.Add(item);
+                        if (item.Name == Settings.PrinterName && item.Type == Settings.PrinterType)
+                        {
+                            SelectedDevice = item;
+                        }
                     }
                 }
-
-
             }
             catch (Exception e)
             {
-                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,
-AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
             }
         }
         #endregion

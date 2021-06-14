@@ -14,7 +14,7 @@ namespace XpertMobileApp.Api
     internal class SYS_MACHINE_CONFIG_Manager : CrudService<SYS_CONFIGURATION_MACHINE>
     {
         public SYS_MACHINE_CONFIG_Manager() :
-            base(App.RestServiceUrl, "SYS_MachineOffLine", App.User.Token)
+            base(App.RestServiceUrl, "SYS_MachineOffLine")
         {
 
         }
@@ -24,7 +24,7 @@ namespace XpertMobileApp.Api
             try
             {
                 string url = GetActionUrl("AddMachine");
-                return await WSApi2.PostAauthorizedValue<bool, SYS_CONFIGURATION_MACHINE>(url, Machine, this.Token.access_token);
+                return await WSApi2.PostAauthorizedValueWithoutToken<bool, SYS_CONFIGURATION_MACHINE>(url, Machine);
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace XpertMobileApp.Api
         {
             string url = GetActionUrl("GetPrefixe");
             url += WSApi2.AddParam(url, "Machine", Machine);
-            return await WSApi2.RetrievAauthorizedValue<SYS_CONFIGURATION_MACHINE>(url, this.Token.access_token);
+            return await WSApi2.RetrievAauthorizedValueWithoutToken<SYS_CONFIGURATION_MACHINE>(url);
         }
     }
 }
