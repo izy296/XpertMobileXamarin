@@ -371,9 +371,12 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     if (item.ID_STOCK == items.ID_STOCK)
                     {
-                        item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
-                        item.QUANTITE = item.QUANTITE - items.QUANTITE;
-                        await getInstance().UpdateAsync(item);
+                        if (items.QUANTITE > 0)
+                        {
+                            item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
+                            item.QUANTITE = item.QUANTITE - items.QUANTITE;
+                            await getInstance().UpdateAsync(item);
+                        }
                     }
                 }
             }
