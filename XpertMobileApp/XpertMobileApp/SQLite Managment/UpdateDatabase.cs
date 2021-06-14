@@ -360,6 +360,42 @@ namespace XpertMobileApp.SQLite_Managment
             var id = await getInstance().InsertAsync(token);
 
         }
+        public static async Task AjoutEnciassement(View_TRS_ENCAISS item)
+        {
+            if (string.IsNullOrEmpty(item.CODE_ENCAISS))
+            {
+                List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+                var nom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS;
+                var prenom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.PRENOM_TIERS;
+                item.NOM_TIERS = nom + " " + prenom;
+
+                List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
+                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
+
+                item.CREATED_BY = App.User.UserName;
+
+                List<BSE_ENCAISS_MOTIFS> motif = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+
+                var id = await getInstance().InsertAsync(item);
+                item.CODE_ENCAISS = await generateCode(item.CODE_TYPE, item.ID.ToString());
+                item.NUM_ENCAISS = await generateNum(item.CODE_TYPE, item.ID.ToString());
+                await getInstance().UpdateAsync(item);
+            }
+            else
+            {
+                List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
+                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
+
+                item.CREATED_BY = App.User.UserName;
+
+                List<BSE_ENCAISS_MOTIFS> motif = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+
+                var id = await getInstance().UpdateAsync(item);
+            }
+            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS , item.CODE_TYPE);
+        }
 
         public static async Task UpdateStock(View_VTE_VENTE vente)
         {
