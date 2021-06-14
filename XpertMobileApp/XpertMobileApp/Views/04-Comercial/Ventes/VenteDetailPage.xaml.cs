@@ -8,6 +8,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileSettingsPage.Helpers.Services;
 using XpertWebApi.Models;
@@ -63,34 +64,53 @@ namespace XpertMobileApp.Views.Encaissement
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 viewModel.ItemRows.Clear();
+                List<View_VTE_JOURNAL_DETAIL> itemsC = new List<View_VTE_JOURNAL_DETAIL>();
+                List<View_VTE_VENTE_LOT> itemsFromOffline = new List<View_VTE_VENTE_LOT>();
+                if (App.Online)
+                {
+                    itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
 
-                var itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
-
-                UpdateItemIndex(itemsC);
-                if (this.Printerdetails == null)
-                { 
-                    this.Printerdetails = new List<View_VTE_VENTE_LOT>();
                 }
                 else
                 {
-                    this.Printerdetails.Clear();
+                    itemsFromOffline = await UpdateDatabase.getVenteDetails(this.Item.CODE_VENTE);
                 }
-                foreach (var itemC in itemsC)
-                {
-                    if (itemC.PSYCHOTHROPE)
-                    {
-                        InfosPsyco.IsVisible = true;
-                    }
-                    viewModel.ItemRows.Add(itemC);
 
-                    Printerdetails.Add(new View_VTE_VENTE_LOT
-                    {   
-                        DESIGNATION_PRODUIT = itemC.DESIGNATION,
-                        QUANTITE            = itemC.QUANTITE,
-                        PRIX_VTE_TTC        = itemC.PRIX_VENTE,
-                        MT_TTC              = itemC.MT_VENTE
-                    });
+
+
+                UpdateItemIndex(itemsC);
+                ClearPrinterDetails();
+                if (App.Online)
+                {
+                    foreach (var itemC in itemsC)
+                    {
+                        if (itemC.PSYCHOTHROPE)
+                        {
+                            InfosPsyco.IsVisible = true;
+                        }
+                        viewModel.ItemRows.Add(itemC);
+                        AddItemPrinterDetails(itemC);
+                    }
                 }
+                else
+                {
+                    foreach (var itemC in itemsFromOffline)
+                    {
+                        if (itemC.PSYCHOTHROPE)
+                        {
+                            InfosPsyco.IsVisible = true;
+                        }
+                        viewModel.ItemRows.Add(new View_VTE_JOURNAL_DETAIL
+                        {
+                            DESIGNATION = itemC.DESIGNATION_PRODUIT,
+                            QUANTITE = itemC.QUANTITE,
+                            PRIX_VENTE = itemC.PRIX_VTE_TTC,
+                            MT_VENTE = itemC.MT_TTC,
+                        });
+                        AddItemPrinterDetails(itemC);
+                    }
+                }
+               
 
                 UserDialogs.Instance.HideLoading();
             }
@@ -104,6 +124,34 @@ namespace XpertMobileApp.Views.Encaissement
             {
 
                 IsBusy = false;
+            }
+        }
+
+        private void AddItemPrinterDetails(View_VTE_JOURNAL_DETAIL itemC)
+        {
+            Printerdetails.Add(new View_VTE_VENTE_LOT
+            {
+                DESIGNATION_PRODUIT = itemC.DESIGNATION,
+                QUANTITE = itemC.QUANTITE,
+                PRIX_VTE_TTC = itemC.PRIX_VENTE,
+                MT_TTC = itemC.MT_VENTE
+            });
+        }
+
+        private void AddItemPrinterDetails(View_VTE_VENTE_LOT itemC)
+        {
+            Printerdetails.Add(itemC);
+        }
+
+        private void ClearPrinterDetails()
+        {
+            if (this.Printerdetails == null)
+            {
+                this.Printerdetails = new List<View_VTE_VENTE_LOT>();
+            }
+            else
+            {
+                this.Printerdetails.Clear();
             }
         }
 

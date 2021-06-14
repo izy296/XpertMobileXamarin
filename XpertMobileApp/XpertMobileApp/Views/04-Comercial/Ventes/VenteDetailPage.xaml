@@ -28,13 +28,13 @@
 
                 <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
                     <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                    <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
-                    <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.CREATED_BY , StringFormat= 'Vendeur : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <Label Text="{Binding Item.NOM_TIERS , StringFormat= 'Client : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="{ Binding Item.TOTAL_PAYE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                    <Label Text="{ Binding Item.TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                    <Label Text="{ Binding Item.TOTAL_PAYE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Green"/>
+                    <Label Text="{ Binding Item.TOTAL_RESTE, StringFormat='Reste : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                     <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                 </StackLayout>
             </Grid>
