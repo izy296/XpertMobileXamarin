@@ -13,7 +13,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
-
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -149,52 +149,75 @@ namespace XpertMobileApp.ViewModels
 
          async Task ExecuteLoadTypesCommand()
          {
+            if (App.Online)
+            {
+                try
+                {
+                    Types.Clear();
+                    var itemsC = await WebServiceClient.getTiersTypes();
 
-             try
-             {
-                 Types.Clear();
-                 var itemsC = await WebServiceClient.getTiersTypes();
+                    BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                    allElem.CODE_TYPE = "";
+                    allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                    Types.Add(allElem);
 
-                 BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                 allElem.CODE_TYPE = "";
-                 allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                 Types.Add(allElem);
-
-                 foreach (var itemC in itemsC)
-                 {
-                     Types.Add(itemC);
-                 }
-             }
-             catch (Exception ex)
-             {
-                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                     AppResources.alrt_msg_Ok);
-             }
+                    foreach (var itemC in itemsC)
+                    {
+                        Types.Add(itemC);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
+            {
+                Types.Clear();
+                var itemsC = await UpdateDatabase.getTypeTiers();
+                foreach (var itemC in itemsC)
+                {
+                    Types.Add(itemC);
+                }
+            }
+             
          }
 
          async Task ExecuteLoadFamillesCommand()
          {
+            if (App.Online)
+            {
+                try
+                {
+                    Familles.Clear();
+                    var itemsC = await WebServiceClient.getTiersFamilles();
 
-             try
-             {
-                 Familles.Clear();
-                 var itemsC = await WebServiceClient.getTiersFamilles();
+                    View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
+                    allElem.CODE_FAMILLE = "";
+                    allElem.DESIGN_FAMILLE = AppResources.txt_All;
+                    Familles.Add(allElem);
 
-                 View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
-                 allElem.CODE_FAMILLE = "";
-                 allElem.DESIGN_FAMILLE = AppResources.txt_All;
-                 Familles.Add(allElem);
-
-                 foreach (var itemC in itemsC)
-                 {
-                     Familles.Add(itemC);
-                 }
-             }
-             catch (Exception ex)
-             {
-                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                     AppResources.alrt_msg_Ok);
-             }
+                    foreach (var itemC in itemsC)
+                    {
+                        Familles.Add(itemC);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
+            {
+                Familles.Clear();
+                var itemsC = await UpdateDatabase.getFamille();
+                foreach (var itemC in itemsC)
+                {
+                    Familles.Add(itemC);
+                }
+            }
          }
 
         public override void ClearFilters()

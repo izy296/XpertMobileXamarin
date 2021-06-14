@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using XpertMobileApp.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.Views
 {
@@ -19,7 +20,7 @@ namespace XpertMobileApp.Views
 
         TiersSelectorViewModel viewModel;
         public string CurrentStream { get; set; }
-
+        public bool searchEmpty { get; set; } =  false;
         public string SearchedType { get; set; } = "";
 
         public TiersSelector(string stream)
@@ -85,14 +86,30 @@ namespace XpertMobileApp.Views
          //   await Navigation.PushModalAsync(new NavigationPage(form));
         }
 
-        private void Ent_Filter_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Ent_Filter_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (viewModel.SearchedText.Length >= 3) 
             {
-                viewModel.LoadItemsCommand.Execute(null);
+                if (App.Online)
+                {
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+                else
+                {
+                    var res = await UpdateDatabase.FilterTiers(viewModel.SearchedText);
+                    viewModel.Items.Clear();
+                    viewModel.Items.AddRange(res);
+                    searchEmpty = true;
+                }
+            }
+            else if (viewModel.SearchedText.Length == 0 && App.Online==false && searchEmpty == true)
+            {
+                var res = await UpdateDatabase.FilterTiers(viewModel.SearchedText);
+                viewModel.Items.Clear();
+                viewModel.Items.AddRange(res);
+                searchEmpty = false;
             }
         }
-
         private async void OnUpdateSwipeItemInvoked(object sender, EventArgs e)
         {
             var item = viewModel.SelectedItem;
