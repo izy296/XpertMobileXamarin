@@ -55,10 +55,9 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                //await getInstance().DropTableAsync<BSE_TABLE_TYPE>();
+                //await getInstance().DropTableAsync<View_TRS_TIERS>();
+                //await getInstance().DeleteAllAsync<View_VTE_VENTE>();
 
-                //if (!TableExists(db))
-                //{
                 await getInstance().CreateTableAsync<View_STK_PRODUITS>();
                 await getInstance().CreateTableAsync<View_TRS_TIERS>();
                 await getInstance().CreateTableAsync<View_LIV_TOURNEE>();
@@ -74,16 +73,17 @@ namespace XpertMobileApp.SQLite_Managment
                 await getInstance().CreateTableAsync<BSE_TABLE_TYPE>();
                 await getInstance().CreateTableAsync<BSE_TABLE>();
                 await getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
+                await getInstance().CreateTableAsync<SYS_MOBILE_PARAMETRE>();
+                await getInstance().CreateTableAsync<View_TRS_ENCAISS>();
+                await getInstance().CreateTableAsync<View_BSE_COMPTE>();
+                await getInstance().CreateTableAsync<BSE_ENCAISS_MOTIFS>();
+                await getInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
-            //await synchronise();
-            //await db.CreateTableAsync<View_LIV_TOURNEE>();
-            //}
-
         }
 
         public static async Task<IEnumerable<TView>> getItemsUnsyncronised<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
