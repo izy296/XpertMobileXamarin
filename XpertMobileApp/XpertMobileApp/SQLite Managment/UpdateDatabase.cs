@@ -326,6 +326,41 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static async Task SyncBseCompte()
+        {
+            try
+            {
+                var itemsC = await WebServiceClient.getComptes();
+                itemsC.Insert(0, new View_BSE_COMPTE()
+                {
+                    DESIGNATION_TYPE = AppResources.txt_All,
+                    DESIGN_COMPTE = AppResources.txt_All,
+                    CODE_TYPE = ""
+                });
+                await getInstance().DeleteAllAsync<View_BSE_COMPTE>();
+                var id = await getInstance().InsertAllAsync(itemsC);
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+        }
+        public static async Task<List<View_BSE_COMPTE>> getComptes()
+        {
+            List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
+            List<SYS_USER> users = await getInstance().Table<SYS_USER>().ToListAsync();
+            var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
+            if (string.IsNullOrEmpty(code_compte))
+            {
+                return comptes;
+            }
+            else
+            {
+                List<View_BSE_COMPTE> cpt = comptes.Where(x => x.CODE_COMPTE == code_compte).ToList();
+                return cpt;
+            }
+        }
 
         public static async Task<string> AjoutVente(View_VTE_VENTE vente)
         {
