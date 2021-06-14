@@ -562,8 +562,10 @@ namespace XpertMobileApp.SQLite_Managment
             return VenteDetail;
         }
 
-        public static async Task AjoutPrefix()
+        public static async Task<SYS_CONFIGURATION_MACHINE> AjoutPrefix()
         {
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
             //Nom de la machine
             var userHost = Dns.GetHostName();
             //Adresse IP
@@ -577,23 +579,56 @@ namespace XpertMobileApp.SQLite_Managment
             // Device Name (Motz's iPhone)
             var deviceName = DeviceInfo.Name;
 
+            var deviceNameRandom = XpertHelper.RandomString(2);
+
+            deviceName = deviceName + "/" + deviceNameRandom;
+
             SYS_CONFIGURATION_MACHINE prefix = new SYS_CONFIGURATION_MACHINE();
             prefix.IP = userIp;
             prefix.MACHINE = deviceName;
 
             var bll = new SYS_MACHINE_CONFIG_Manager();
             var res = await bll.AddMachine(prefix);
+            UserDialogs.Instance.HideLoading();
+            if (res)
+            {
+                return prefix;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static async Task<SYS_CONFIGURATION_MACHINE> getPrefix()
         {
-            string deviceName = DeviceInfo.Name;
-            var bll = new SYS_MACHINE_CONFIG_Manager();
+            var prefix = await getInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
+            string deviceName = prefix.MACHINE;
+            SYS_MACHINE_CONFIG_Manager bll = new SYS_MACHINE_CONFIG_Manager();
             var res = await bll.GetPrefix(deviceName);
             await getInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
             var id = await getInstance().InsertAsync(res);
-            var ventes = await getInstance().Table<SYS_CONFIGURATION_MACHINE>().ToListAsync();
             return res;
+        }
+        public static async Task AssignPrefix()
+        {
+            var prefix = await getInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
+            if (!(string.IsNullOrEmpty(prefix.PREFIX)))
+            {
+                App.PrefixCodification = prefix.PREFIX;
+            }
+            else
+            {
+                //await DisplayAlert(AppResources.alrt_msg_Alert, "Veuillez configurer votre prefixe", AppResources.alrt_msg_Ok);
+            }
+        }
+        public static async Task AssignMagasin()
+        {
+            var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+            if (obj != null && obj.Count > 0)
+            {
+                App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
+            }
         }
 
 
