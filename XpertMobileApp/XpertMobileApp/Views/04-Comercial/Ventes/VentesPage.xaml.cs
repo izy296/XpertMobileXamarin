@@ -13,6 +13,7 @@ using XpertMobileApp.Base;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
@@ -61,22 +62,40 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           
-            var session = await CrudManager.Sessions.GetCurrentSession();
-            if(session == null) 
+            if (App.Online)
             {
-                var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
-                if (res)
+                var session = await CrudManager.Sessions.GetCurrentSession();
+                if (session == null)
                 {
-                    OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
-                    await PopupNavigation.Instance.PushAsync(openPage);
+                    var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                    if (res)
+                    {
+                        OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                        await PopupNavigation.Instance.PushAsync(openPage);
+                    }
+                }
+                else
+                {
+                    await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
                 }
             }
-            else 
+            else
             {
-                await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+                var session = await UpdateDatabase.getCurrenetSession();
+                if (session == null)
+                {
+                    var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                    if (res)
+                    {
+                        OpenSessionPage openPage = new OpenSessionPage(viewModel.CurrentStream);
+                        await PopupNavigation.Instance.PushAsync(openPage);
+                    }
+                }
+                else
+                {
+                    await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+                }
             }
-
         }
 
         SYS_MOBILE_PARAMETRE parames;
@@ -129,6 +148,11 @@ namespace XpertMobileApp.Views
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);
+        }
+
+        private async void deleteAllVente(object sender, EventArgs e)
+        {
+            await UpdateDatabase.getInstance().DeleteAllAsync<View_VTE_VENTE>();
         }
     }
 }
