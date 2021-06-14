@@ -28,7 +28,7 @@
                     </StackLayout>
 
                     <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding SOLDE, StringFormat='Solde, {0:N2}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{Binding SOLDE_TIERS, StringFormat='Solde, {0:N2}'}" TextColor="{StaticResource DefaultTextColor}"/>
                         <Label Text="{Binding DESIGNATION_MAGASIN}" TextColor="{StaticResource DefaultTextColor}"/>
                     </StackLayout>
                     

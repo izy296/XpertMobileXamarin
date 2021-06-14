@@ -21,19 +21,19 @@ using System.Collections.Generic;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TourneesDetailsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TourneesDetailsPage : ContentPage
+    {
         TourneesDetailsViewModel viewModel;
         CancellationTokenSource cts;
         bool autoLodData = true;
         public TourneesDetailsPage(string codeTournee)
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
         }
-      
+
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as View_LIV_TOURNEE_DETAIL;
@@ -48,9 +48,9 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
-         
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -59,10 +59,10 @@ namespace XpertMobileApp.Views
             if (autoLodData)
             {
                 LoadData();
-            }    
+            }
 
-         //   if (viewModel.Familles.Count == 0)
-         //       viewModel.LoadExtrasDataCommand.Execute(null);
+            //   if (viewModel.Familles.Count == 0)
+            //       viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
@@ -80,9 +80,18 @@ namespace XpertMobileApp.Views
             FilterPanel.IsVisible = !FilterPanel.IsVisible;
         }
 
-        private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {         
-            viewModel.LoadItemsCommand.Execute(null);
+        private async void btn_ApplyFilter_Clicked(object sender, EventArgs e)
+        {
+            if (App.Online)
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            else
+            {
+                var res = await UpdateDatabase.FilterTournee(viewModel.SearchedText);
+                viewModel.Items.Clear();
+                viewModel.Items.AddRange(res);
+            }
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
@@ -96,7 +105,7 @@ namespace XpertMobileApp.Views
         {
 
         }
-        
+
         private async void OnVisiteSwipeItemInvoked(object sender, EventArgs e)
         {
             var scaner = new ZXingScannerPage();
@@ -154,7 +163,7 @@ namespace XpertMobileApp.Views
             bool getGPsSucces = false;
             try
             {
-                
+
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
                 cts = new CancellationTokenSource();
@@ -322,7 +331,7 @@ namespace XpertMobileApp.Views
                     await Navigation.PushAsync(form);
                 }
             }
-            
+
         }
     }
 }
