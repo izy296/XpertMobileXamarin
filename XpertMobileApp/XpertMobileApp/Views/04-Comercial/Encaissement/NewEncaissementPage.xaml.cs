@@ -1,13 +1,16 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
@@ -187,7 +190,10 @@ namespace XpertMobileApp.Views
                     }
 
                     if (Item != null)
-                        SelectMotif(Item.CODE_MOTIF);
+                    {
+                        SelectMotif(Motifs[0].CODE_MOTIF);
+                        //SelectMotif(Item.CODE_MOTIF);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -244,8 +250,15 @@ namespace XpertMobileApp.Views
                     }
 
                     if (Item != null)
-                        SelectCompte(Item.CODE_COMPTE);
-
+                    {
+                        //SelectCompte(Item.CODE_COMPTE);
+                        List<SYS_USER> users = await UpdateDatabase.getInstance().Table<SYS_USER>().ToListAsync();
+                        var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
+                        if (!(string.IsNullOrEmpty(code_compte)))
+                        {
+                            SelectCompte(code_compte);
+                        }
+                    }
                 }
                 catch (Exception e)
                 {
