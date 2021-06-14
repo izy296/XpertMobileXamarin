@@ -18,6 +18,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views._04_Comercial.Selectors.Lot;
 using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
 
@@ -27,7 +28,6 @@ namespace XpertMobileApp.Views
     public partial class VenteFormPage : ContentPage
     {
         private VenteFormViewModel viewModel;
-
 
         SYS_MOBILE_PARAMETRE parames;
 
@@ -85,6 +85,7 @@ namespace XpertMobileApp.Views
             btn_Search.IsVisible = disable;
             btn_Scan.IsVisible = disable;
             itemSelector = new LotSelector(viewModel.CurrentStream);
+            retourSelector = new RetourProducts(viewModel.CurrentStream);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
@@ -99,11 +100,26 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    viewModel.AddNewRow(selectedItem);
+                    viewModel.AddNewRow(selectedItem , false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+            MessagingCenter.Subscribe<RetourProducts, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.AddNewRow(selectedItem , true); // true veut dire le type de produit ajouter est un retour
                 });
             });
 
             MessagingCenter.Subscribe<LotSelector, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.RemoveNewRow(selectedItem);
+                });
+            });
+
+            MessagingCenter.Subscribe<RetourProducts, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -236,6 +252,22 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
+        private RetourProducts retourSelector;
+        private async void RetourProduct_Clicked(object sender, EventArgs e)
+        {
+            /*
+            if (string.IsNullOrEmpty(viewModel?.Item?.CODE_VENTE))
+            {
+                await UserDialogs.Instance.AlertAsync("Vous devez valider l'en-têtes avant de pouvoir ajouter des produits !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                return;
+            }
+            */
+            retourSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
+            //itemSelector.AutoriserReception = "1";
+            await PopupNavigation.Instance.PushAsync(retourSelector);
+        }
+
 
 
         public static View_ACH_DOCUMENT_DETAIL currentRow;
@@ -304,9 +336,16 @@ namespace XpertMobileApp.Views
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
-            VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
-            VteValidationPage.ParentviewModel = viewModel;
-            await PopupNavigation.Instance.PushAsync(VteValidationPage);
+            if (viewModel.ItemRows.Count > 0)
+            {
+                VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
+                VteValidationPage.ParentviewModel = viewModel;
+                await PopupNavigation.Instance.PushAsync(VteValidationPage);
+            }
+            else
+            {
+                await UserDialogs.Instance.AlertAsync("Veuillez entrer des produits avant de valider", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
         }
 
         private void initVteInterface()
@@ -374,7 +413,11 @@ namespace XpertMobileApp.Views
         private void Delete()
         {
             if (itemIndex >= 0)
+            {
+                var obj = viewModel.ItemRows[itemIndex];
                 viewModel.ItemRows.RemoveAt(itemIndex);
+                viewModel.Item.Details.Remove(obj);
+            }
             this.listView.ResetSwipe();
             viewModel.UpdateMontants();
         }
@@ -432,5 +475,6 @@ namespace XpertMobileApp.Views
                 });
             };
         }
+       
     }
 }
