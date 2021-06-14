@@ -403,6 +403,77 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        private static async Task UpdateSoldTiers(decimal sold, string codeTiers)
+        {
+            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+            if (UpdatedTiers.SOLDE_TIERS > 0 )
+            {
+                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
+            }
+            else
+            {
+                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
+            }
+            await getInstance().UpdateAsync(UpdatedTiers);
+        }
+
+        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers , string type = "ENC")
+        {
+            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+            if (type == "ENC")
+            {
+                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
+            }
+            else
+            {
+                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
+            }
+            await getInstance().UpdateAsync(UpdatedTiers);
+        }
+
+
+        private static async Task<decimal> getSoldTiers(string codeTiers)
+        {
+            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+            return UpdatedTiers.SOLDE_TIERS;
+        }
+
+
+        public static async Task<string> generateCode(string TypeDoc, string ID)
+        {
+            var date = DateTime.Now.Year.ToString();
+            var date2 = "";
+            if (date.Length == 2)
+            {
+                date2 = "/" + date.Substring(0, 2);
+            }
+            else if (date.Length == 4)
+            {
+                date2 = "/" + date.Substring(2, 2);
+            }
+            var code = date + TypeDoc + ID + date2 + "/" + App.PrefixCodification;
+            return code;
+        }
+
+        public static async Task<string> generateNum(string TypeDoc, string ID)
+        {
+            var date = DateTime.Now.Year.ToString();
+            var date2 = "";
+            if (date.Length == 2)
+            {
+                date2 = "/" + date.Substring(0, 2);
+            }
+            else if (date.Length == 4)
+            {
+                date2 = "/" + date.Substring(2, 2);
+            }
+            var num = ID + date2 + "/" + App.PrefixCodification;
+            return num;
+        }
+
         public static async Task AjoutTiers(View_TRS_TIERS tiers)
         {
             tiers.NOM_TIERS1 = tiers.NOM_TIERS + " " + tiers.PRENOM_TIERS;
