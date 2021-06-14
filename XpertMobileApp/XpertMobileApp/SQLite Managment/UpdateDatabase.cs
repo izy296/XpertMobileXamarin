@@ -310,17 +310,33 @@ namespace XpertMobileApp.SQLite_Managment
             else
             {
                 //var obj = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
-                vente.CODE_VENTE = vente.ID + "/" + App.PrefixCodification;
-                vente.NUM_VENTE = vente.CODE_VENTE;
+                vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
+                vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
+                vente.CREATED_BY = App.User.UserName;
                 var id = await getInstance().InsertAsync(vente);
+                //vente.CODE_VENTE = vente.ID.ToString() + "/" + App.PrefixCodification;
+                //vente.NUM_VENTE = vente.CODE_VENTE;
+
+                vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
+                vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
+
+
+                await getInstance().UpdateAsync(vente);
                 foreach (var item in vente.Details)
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
                 }
                 var id2 = await getInstance().InsertAllAsync(vente.Details);
                 await UpdateStock(vente);
+                if (vente.TOTAL_TTC != vente.MT_VERSEMENT)
+                {
+                    decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
+                    await UpdateSoldTiers(sold, vente.CODE_TIERS);
+                }
+
                 await UpdateTourneeDetail(vente);
                 await UpdateTournee();
+                
                 return vente.CODE_VENTE;
             }
         }
