@@ -36,7 +36,8 @@ namespace XpertMobileApp
         public static User User { get; internal set; }
 
         public static bool Online = false;
-        public static string PrefixCodification { get; internal set; } = "RM";
+        public static string PrefixCodification { get; internal set; }
+        public static string CODE_MAGASIN { get; internal set; }
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
