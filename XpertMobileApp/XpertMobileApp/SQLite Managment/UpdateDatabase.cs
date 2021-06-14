@@ -555,6 +555,28 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static async Task SyncEncaissToServer()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var encaiss = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+                if (encaiss.Count > 0 && encaiss != null)
+                {
+                    var bll = new EncaissManager();
+                    var res = await bll.SyncEncaiss(encaiss);
+                    await getInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+                }
+                //UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
         public static async Task<List<View_VTE_VENTE_LOT>> getVenteDetails(string CodeVente)
         {
             List<View_VTE_VENTE_LOT> ventes = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
