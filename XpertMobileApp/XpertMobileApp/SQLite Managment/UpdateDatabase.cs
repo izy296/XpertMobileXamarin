@@ -494,35 +494,42 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                var vtes = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
+                var ListVentes = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
                 var vteDetails = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
-                List<View_VTE_VENTE_LOT> VenteDetails = new List<View_VTE_VENTE_LOT>();
-                foreach (var item in vtes)
+
+                if (ListVentes.Count > 0 && ListVentes != null)
                 {
-                    foreach (var lot in vteDetails)
+                    foreach (var iVente in ListVentes)
                     {
-                        if (item.CODE_VENTE == lot.CODE_VENTE)
+                        List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
+                        try
                         {
-                            //lot.CODE_DETAIL = XpertHelper.Concat(lot, this.ConcatKey);
-                            VenteDetails.Add(lot);
+                            objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                        }
+                        catch
+                        {
+                            objdetail = null;
+                        }
+                        finally
+                        {
+                            iVente.Details = objdetail;
                         }
                     }
-                    item.Details = VenteDetails;
+                    var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
+                    var res = await bll.SyncVentes(ListVentes);
+
+                    await getInstance().DeleteAllAsync<View_VTE_VENTE>();
+                    await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+
+                    UserDialogs.Instance.HideLoading();
+                    return res;
                 }
-                
-                var bll = CrudManager.GetVteBll(vtes[0].TYPE_DOC);
-                var res = await bll.SyncVentes(vtes);
-
-                await getInstance().DeleteAllAsync<View_VTE_VENTE>();
-                await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-
-                UserDialogs.Instance.HideLoading();
-                return res;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("erreur de synchronisation !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             return "";
         }
