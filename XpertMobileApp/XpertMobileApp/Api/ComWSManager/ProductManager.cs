@@ -24,5 +24,11 @@ namespace XpertMobileApp.Api
 
             return await WSApi2.RetrievAauthorizedData<View_STK_PRODUITS>(url, this.Token.access_token);
         }
+
+        public async Task<List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>> SelectListePrix()
+        {
+            string url = GetActionUrl("GeListPriceByQuantity");
+            return await WSApi2.RetrievAauthorizedData<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>(url, this.Token.access_token);
+        }
     }
 }
