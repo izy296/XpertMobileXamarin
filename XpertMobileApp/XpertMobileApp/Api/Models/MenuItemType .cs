@@ -40,6 +40,7 @@ namespace XpertMobileApp.Api.Models
         XWishList,
         XPurchased,
         XProfile,
-        synchronisation
+        Export,
+        Import
     }
 }

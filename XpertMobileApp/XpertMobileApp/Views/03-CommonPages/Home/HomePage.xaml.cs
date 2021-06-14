@@ -77,7 +77,11 @@ namespace XpertMobileApp.Views
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
             if (id=="34")
             {
-                Sync();
+                await Upload();
+            }
+            else if (id == "35")
+            {
+                await Download();
             }
             else
             {
@@ -87,9 +91,14 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public async Task Sync()
+        public async Task Download()
         {
-            await UpdateDatabase.synchronise();
+            await UpdateDatabase.synchroniseDownload();
+        }
+
+        public async Task Upload()
+        {
+            await UpdateDatabase.synchroniseUpload();
         }
     }
 }
