@@ -531,7 +531,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
                 List<View_TRS_TIERS> listNewTiers = new List<View_TRS_TIERS>();
                 foreach (var item in Tiers)
@@ -551,7 +551,8 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("erreur de synchronisation !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Tiers!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
 
