@@ -16,6 +16,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.SQLite_Managment
 {
@@ -95,7 +96,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                //return await service.SelectByPage(,);
                 return await service.GetItemsAsyncWithUrl(methodName, param);
             }
 
@@ -736,6 +736,7 @@ namespace XpertMobileApp.SQLite_Managment
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT = TourneeStatus.Delevred;
                     item.ETAT_COLOR = "#008000";
+                    item.SOLDE_TIERS = await getSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
                     item.GPS_LONGITUDE = vente.GPS_LATITUDE;
                     await getInstance().UpdateAsync(item);
@@ -824,7 +825,7 @@ namespace XpertMobileApp.SQLite_Managment
             var permission = await getInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
             return permission;
         }
-        
+
         public static async Task<List<View_BSE_TIERS_FAMILLE>> getFamille()
         {
             var Famille = await getInstance().Table<View_BSE_TIERS_FAMILLE>().ToListAsync();
@@ -1017,7 +1018,6 @@ namespace XpertMobileApp.SQLite_Managment
                 App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
             }
         }
-
 
         public static bool TableExists(SQLiteAsyncConnection connection)
         {
