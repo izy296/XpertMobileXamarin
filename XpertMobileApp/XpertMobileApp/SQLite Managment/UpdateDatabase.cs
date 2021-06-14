@@ -336,7 +336,12 @@ namespace XpertMobileApp.SQLite_Managment
             tiers.DESIGN_FAMILLE = familles.Where(e => e.CODE_FAMILLE == tiers.CODE_FAMILLE).FirstOrDefault()?.DESIGN_FAMILLE;
 
             tiers.ETAT_TIERS = STAT_TIERS_MOBILE.ADDED;
+
             var id = await getInstance().InsertAsync(tiers);
+
+            tiers.CODE_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
+            tiers.NUM_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
+            await getInstance().UpdateAsync(tiers);
         }
 
         public static async Task UpdateTiers(View_TRS_TIERS tiers)
