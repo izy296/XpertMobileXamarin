@@ -344,6 +344,13 @@ namespace XpertMobileApp.SQLite_Managment
             await getInstance().UpdateAsync(tiers);
         }
 
+        public static async Task<List<View_STK_STOCK>> SelectByCodeBarreLot(string cb_prod, string codeMagasin)
+        {
+            List<View_STK_STOCK> Products = await getInstance().Table<View_STK_STOCK>().ToListAsync();
+            List<View_STK_STOCK> Produit = Products.Where(e => e.CODE_BARRE == cb_prod).Where(e => e.CODE_MAGASIN == codeMagasin).ToList();
+            return Produit;
+        }
+
         public static async Task UpdateTiers(View_TRS_TIERS tiers)
         {
             tiers.NOM_TIERS1 = tiers.NOM_TIERS + " " + tiers.PRENOM_TIERS;
