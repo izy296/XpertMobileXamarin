@@ -236,6 +236,12 @@ namespace XpertMobileApp.SQLite_Managment
             //await SyncData<TRS_JOURNEES, TRS_JOURNEES>(false, "", SessionMethodName);
         }
 
+        public static async Task<TRS_JOURNEES> getCurrenetSession()
+        {
+            TRS_JOURNEES session = await getInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
+            return session;
+        }
+
         public static async Task SyncFamille()
         {
             try
