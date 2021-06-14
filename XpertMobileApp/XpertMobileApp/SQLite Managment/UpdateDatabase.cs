@@ -185,8 +185,14 @@ namespace XpertMobileApp.SQLite_Managment
                 paramLivTournee = "CodeVendeur=" + codeVendeur;
                 TourneeMethodName = "GetTourneeParVendeur";
                 await SyncData<View_LIV_TOURNEE, LIV_TOURNEE>(false, paramLivTournee, TourneeMethodName);
+                var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                if (obj != null && obj.Count > 0)
+                {
+                    App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
+                }
             }
         }
+
         public static async Task SyncLivTourneeDetail()
         {
             //View_LIV_TOURNEE obj = await getInstance().Table<View_LIV_TOURNEE>().OrderByDescending(x=>x.DATE_TOURNEE == DateTime.Now).FirstOrDefaultAsync();
