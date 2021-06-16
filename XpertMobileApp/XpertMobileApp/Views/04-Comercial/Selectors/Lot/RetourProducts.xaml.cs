@@ -1,21 +1,33 @@
-﻿using System;
+﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
-using Xamarin.Forms;
 using Rg.Plugins.Popup.Services;
-using XpertMobileApp.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
-using System.Linq;
-using XpertMobileApp.DAL;
-using System.Collections.Generic;
-using Acr.UserDialogs;
 
-namespace XpertMobileApp.Views
+namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 {
-    public partial class LotSelector : PopupPage
+    //    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //    public partial class RetourProducts : ContentPage
+    //    {
+    //        public RetourProducts()
+    //        {
+    //            InitializeComponent();
+    //        }
+    //    }
+    //}
+    public partial class RetourProducts : PopupPage
     {
 
-        LotSelectorViewModel viewModel;
+        RetourProductViewModel viewModel;
         List<View_STK_STOCK> SelectedlistLot;
         public string CurrentStream { get; set; }
         public string CodeTiers
@@ -42,11 +54,11 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public LotSelector(string stream)
+        public RetourProducts(string stream)
         {
             InitializeComponent();
             CurrentStream = stream;
-            BindingContext = viewModel = new LotSelectorViewModel();
+            BindingContext = viewModel = new RetourProductViewModel();
         }
 
         protected override void OnAppearing()

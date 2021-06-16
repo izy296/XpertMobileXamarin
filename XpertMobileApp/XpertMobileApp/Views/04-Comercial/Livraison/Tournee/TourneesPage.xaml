@@ -59,7 +59,7 @@
                 <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedRef" 
                TextColor="Black" Text="{Binding SearchedRef, Mode=TwoWay}"/>
 
-                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Product}" Margin="5, 0, 0, 0"/>
+                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Name}" Margin="5, 0, 0, 0"/>
                 <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
                 

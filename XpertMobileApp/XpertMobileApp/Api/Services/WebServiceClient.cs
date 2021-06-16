@@ -165,12 +165,19 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
         }
 
+        internal static async Task<List<BSE_ENCAISS_MOTIFS>> GetAllMotifs()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.MOTIFS_URL);
+            return await RetrievAauthorizedData<BSE_ENCAISS_MOTIFS>(url);
+        }
+
         internal static async Task<List<View_BSE_COMPTE>> getComptes()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ENCAISSEMENT_URL, ServiceUrlDico.COMPTES_URL);
 
             return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
+
 
         #endregion
 

@@ -1,20 +1,25 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewEncaissementPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewEncaissementPage : ContentPage
+    {
 
         public View_TRS_TIERS SelectedTiers { get; set; }
         public string CurrentStream = Guid.NewGuid().ToString();
@@ -52,22 +57,22 @@ namespace XpertMobileApp.Views
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage (View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC)
-		{
-			InitializeComponent ();
+        public NewEncaissementPage(View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC)
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
-            Motifs  = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
+            Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
 
             LoadIMotifsCommand = new Command(async () => await ExecuteLoadMotifsCommand(type));
             LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
 
-            if(item != null)
+            if (item != null)
             {
                 Item = item;
-            } 
+            }
             else
             {
                 Item = new View_TRS_ENCAISS
@@ -103,16 +108,23 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
                 return;
             }
-
-            if(string.IsNullOrEmpty(Item.CODE_ENCAISS))
-            { 
-                MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+            if (App.Online)
+            {
+                if (string.IsNullOrEmpty(Item.CODE_ENCAISS))
+                {
+                    MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+                }
+                else
+                {
+                    MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                }
             }
             else
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                await UpdateDatabase.AjoutEnciassement(Item);
+                await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-
             await Navigation.PopModalAsync();
         }
 
@@ -129,7 +141,7 @@ namespace XpertMobileApp.Views
                 LoadIMotifsCommand.Execute(null);
 
             if (Comptes.Count == 0)
-               LoadComptesCommand.Execute(null);
+                LoadComptesCommand.Execute(null);
 
         }
 
@@ -141,27 +153,56 @@ namespace XpertMobileApp.Views
             */
 
             IsBusy = true;
-
-            try
+            if (App.Online)
             {
-                Motifs.Clear();
-
-                var itemsM = await WebServiceClient.GetMotifs(type.ToString());
-                foreach (var item in itemsM)
+                try
                 {
-                    Motifs.Add(item);
-                }
+                    Motifs.Clear();
 
-                if(Item != null)
-                    SelectMotif(Item.CODE_MOTIF);
+                    var itemsM = await WebServiceClient.GetMotifs(type.ToString());
+                    foreach (var item in itemsM)
+                    {
+                        Motifs.Add(item);
+                    }
+
+                    if (Item != null)
+                        SelectMotif(Item.CODE_MOTIF);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                try
+                {
+                    Motifs.Clear();
+
+                    var itemsM = await UpdateDatabase.getMotifs(type.ToString());
+                    foreach (var item in itemsM)
+                    {
+                        Motifs.Add(item);
+                    }
+
+                    if (Item != null)
+                    {
+                        SelectMotif(Motifs[0].CODE_MOTIF);
+                        //SelectMotif(Item.CODE_MOTIF);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
         }
 
@@ -173,27 +214,60 @@ namespace XpertMobileApp.Views
             */
 
             IsBusy = true;
-
-            try
+            if (App.Online)
             {
-                Comptes.Clear();
-                var itemsC = await WebServiceClient.getComptes();
-                foreach (var itemC in itemsC)
+                try
                 {
-                    Comptes.Add(itemC);
+                    Comptes.Clear();
+                    var itemsC = await WebServiceClient.getComptes();
+                    foreach (var itemC in itemsC)
+                    {
+                        Comptes.Add(itemC);
+                    }
+
+                    if (Item != null)
+                        SelectCompte(Item.CODE_COMPTE);
+
                 }
-
-                if(Item != null)
-                    SelectCompte(Item.CODE_COMPTE);
-
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
+                try
+                {
+                    Comptes.Clear();
+                    var itemsC = await UpdateDatabase.getComptes();
+                    foreach (var itemC in itemsC)
+                    {
+                        Comptes.Add(itemC);
+                    }
+
+                    if (Item != null)
+                    {
+                        //SelectCompte(Item.CODE_COMPTE);
+                        List<SYS_USER> users = await UpdateDatabase.getInstance().Table<SYS_USER>().ToListAsync();
+                        var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
+                        if (!(string.IsNullOrEmpty(code_compte)))
+                        {
+                            SelectCompte(code_compte);
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                finally
+                {
+                    IsBusy = false;
+                }
             }
         }
 
@@ -201,7 +275,7 @@ namespace XpertMobileApp.Views
         {
             for (int i = 0; i < Motifs.Count; i++)
             {
-                if(Motifs[i].CODE_MOTIF == codeElem)
+                if (Motifs[i].CODE_MOTIF == codeElem)
                 {
                     MotifsPicker.SelectedIndex = i;
                     return;
@@ -230,7 +304,7 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var compte = Comptes[ComptesPicker.SelectedIndex];
-            Item.CODE_COMPTE = compte.CODE_COMPTE;            
+            Item.CODE_COMPTE = compte.CODE_COMPTE;
         }
 
         private TiersSelector itemSelector;
@@ -241,4 +315,3 @@ namespace XpertMobileApp.Views
         }
     }
 }
- 

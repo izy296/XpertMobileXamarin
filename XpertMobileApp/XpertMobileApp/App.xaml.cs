@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -26,9 +28,16 @@ using XpertMobileApp.Views;
 namespace XpertMobileApp
 {
     public partial class App : Application
+
+
     {
+
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
+
+        public static bool Online = false;
+        public static string PrefixCodification { get; internal set; }
+        public static string CODE_MAGASIN { get; internal set; }
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
@@ -103,12 +112,12 @@ namespace XpertMobileApp
                     }
                     else
                     {
-                        if(Constants.AppName == Apps.X_BOUTIQUE)
-                        { 
+                        if (Constants.AppName == Apps.X_BOUTIQUE)
+                        {
                             MainPage = new MainPage();
                         }
-                        else 
-                        { 
+                        else
+                        {
                             MainPage = new LoginPage();
                         }
                     }
@@ -116,8 +125,8 @@ namespace XpertMobileApp
             }
             else
             {
-                // MainPage = new LoginPage();
-                MainPage = new ActivationPage(licState);
+                 MainPage = new LoginPage();
+                //MainPage = new ActivationPage(licState);
             }
         }
 
@@ -249,10 +258,29 @@ namespace XpertMobileApp
 
         public async static Task<bool> IsConected()
         {
-             // return CrossConnectivity.Current.IsConnected;
-             string url = App.Settings.ServiceUrl;
-             //var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
-             return true;
+            // // return CrossConnectivity.Current.IsConnected;
+            // string url = App.Settings.ServiceUrl;
+            ////var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
+
+            //return true;
+
+            string url = App.Settings.ServiceUrl;
+            int port = 80;
+            Regex r = new Regex(@"^(?<proto>\w+)://[^/]+?(?<port>:\d+)?/", RegexOptions.None, TimeSpan.FromMilliseconds(50));
+            Match m = r.Match(url);
+
+            if (m.Success && !string.IsNullOrEmpty(m.Groups["port"]?.Value))
+            {
+                port = Convert.ToInt32(m.Groups["port"].Value.Replace(":", ""));
+            }
+
+            var uri = new System.Uri(url);
+            TimeSpan ts = new TimeSpan(0, 0, 0, 50);
+
+            string furl = url.Replace(":" + port.ToString(), "");
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+            Online = isReachable;
+            return isReachable;
         }
 
         public static string RestServiceUrl

@@ -32,7 +32,7 @@
                                 x:Name="LanguagesPicker"/>
                         </StackLayout>
                     </Frame>
-                    
+
                     <!-- Service url -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
                         <StackLayout x:Name="GeneralSettingsZone"  Padding="10"  >
@@ -46,7 +46,32 @@
                                      Clicked="TestConnexion_Clicked"/>
                         </StackLayout>
                     </Frame>
-                    
+
+                    <!-- Authentification d'appareil -->
+                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
+                        <StackLayout x:Name="PrefixSettingZone"  Padding="10"  >
+                            <Label x:Name="lbl_configuration" Text="Configuration" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
+                                   Margin="0,0,0,15" />
+                            <Button  x:Name="Btn_AddPrefix" Text="{i18n:Translate sys_prefix_add}" 
+                                     WidthRequest="300" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
+                                     Clicked="ConfigurerAppareil_Clicked"/>
+                            <Button  x:Name="Btn_GetPrefix" Text="{i18n:Translate sys_prefix_get}" 
+                                     WidthRequest="300" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
+                                     Clicked="RecupererPrefix_Clicked"/>
+                            <!--<Entry x:Name="PrefixValue" Text="" />-->
+                        </StackLayout>
+                    </Frame>
+                    <!-- Mode offline -->
+                    <!--<Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
+                        <StackLayout x:Name="ModeOffline"  Padding="10" >
+                            <Label x:Name="lbl_ModeOffline" Text="Mode offline" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
+                                   Margin="0,0,0,15" />
+                            <Label Text="Activer mode offline"/>
+                            <Switch x:Name="offlinemoe" IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
+                        </StackLayout>
+                    </Frame>-->
+
+
                     <!-- Notifications -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="GeneralNotifications"  Padding="10" >

@@ -18,7 +18,7 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.DAL
 {
-   
+
     public class BASE_CLASS : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -26,17 +26,17 @@ namespace XpertMobileApp.DAL
         public int Index { get; set; }
 
         protected bool SetProperty<T>(ref T backingStore, T value,
-        [CallerMemberName]string propertyName = "",
+        [CallerMemberName] string propertyName = "",
         Action onChanged = null)
-            {
-                if (EqualityComparer<T>.Default.Equals(backingStore, value))
-                    return false;
+        {
+            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+                return false;
 
-                backingStore = value;
-                onChanged?.Invoke();
-                OnPropertyChanged(propertyName);
-                return true;
-            }
+            backingStore = value;
+            onChanged?.Invoke();
+            OnPropertyChanged(propertyName);
+            return true;
+        }
 
         protected void OnPropertyChanged(string propertyName)
         {
@@ -48,7 +48,8 @@ namespace XpertMobileApp.DAL
 
     public partial class TRS_ENCAISS : BASE_CLASS
     {
-        [PrimaryKey()]
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_ENCAISS { get; set; } // varchar(32)
 
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
@@ -120,7 +121,7 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                return CODE_TYPE == "ENC" ? Color.Black : Color.Red; 
+                return CODE_TYPE == "ENC" ? Color.Black : Color.Red;
             }
         }
 
@@ -144,12 +145,12 @@ namespace XpertMobileApp.DAL
     }
     public partial class TRS_JOURNEES : SESSION_INFO
     {
-
         public override string ToString()
         {
-            return  string.Format("{0} ({1})", DEBUTEE_PAR, POSTE_DEBUT);
+            return string.Format("{0} ({1})", DEBUTEE_PAR, POSTE_DEBUT);
         }
-
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_COMPTE { get; set; } // varchar(20)
 
@@ -174,7 +175,7 @@ namespace XpertMobileApp.DAL
         public decimal MONT_CLOTURE_TH_ARRODI { get; set; } // money(19,4)
         public decimal MONT_CLOTURE_PH_ESPECE { get; set; } // money(19,4)
         public decimal MONT_CLOTURE_PH_TPE { get; set; } // money(19,4)
- 
+
         public decimal MONT_CLOTURE_PH_virtual
         {
             get
@@ -220,25 +221,25 @@ namespace XpertMobileApp.DAL
             return (val * 100) / total;
         }
 
-        public List<ChartDataModel> Data1 
+        public List<ChartDataModel> Data1
         {
             get
             {
                 decimal total = MONT_ENCAISSEMENT + MONT_VENTE + MONT_PAIEMENT_CREDIT + TR_CHIFA_PAYE + TR_CASNOS_PAYE + MONT_DECAISSEMENT + MONT_RETOUR + MONT_REMBOURSE;
 
-                  var data = new List<ChartDataModel>();
-                   data.Add(new ChartDataModel("Enc.Libre", Convert.ToDouble(GetPercent(MONT_ENCAISSEMENT, total))));
-                   data.Add(new ChartDataModel("Ventes Cash", Convert.ToDouble(GetPercent(MONT_VENTE, total))));
-                   data.Add(new ChartDataModel("Paiement crédit", Convert.ToDouble(GetPercent(MONT_PAIEMENT_CREDIT,total))));
-                   data.Add(new ChartDataModel("Tarif CHIFA", Convert.ToDouble(GetPercent(TR_CHIFA_PAYE, total))));
-                   data.Add(new ChartDataModel("Tarif Pharmnos", Convert.ToDouble(GetPercent(TR_CASNOS_PAYE, total))));
+                var data = new List<ChartDataModel>();
+                data.Add(new ChartDataModel("Enc.Libre", Convert.ToDouble(GetPercent(MONT_ENCAISSEMENT, total))));
+                data.Add(new ChartDataModel("Ventes Cash", Convert.ToDouble(GetPercent(MONT_VENTE, total))));
+                data.Add(new ChartDataModel("Paiement crédit", Convert.ToDouble(GetPercent(MONT_PAIEMENT_CREDIT, total))));
+                data.Add(new ChartDataModel("Tarif CHIFA", Convert.ToDouble(GetPercent(TR_CHIFA_PAYE, total))));
+                data.Add(new ChartDataModel("Tarif Pharmnos", Convert.ToDouble(GetPercent(TR_CASNOS_PAYE, total))));
 
-                   data.Add(new ChartDataModel("Déc.libre", Convert.ToDouble(GetPercent(MONT_DECAISSEMENT,total))));
-                   data.Add(new ChartDataModel("Retour", Convert.ToDouble(GetPercent(MONT_RETOUR, total))));
-                   data.Add(new ChartDataModel("Remboursement", Convert.ToDouble(GetPercent(MONT_REMBOURSE, total))));
+                data.Add(new ChartDataModel("Déc.libre", Convert.ToDouble(GetPercent(MONT_DECAISSEMENT, total))));
+                data.Add(new ChartDataModel("Retour", Convert.ToDouble(GetPercent(MONT_RETOUR, total))));
+                data.Add(new ChartDataModel("Remboursement", Convert.ToDouble(GetPercent(MONT_REMBOURSE, total))));
                 // Total vente CVM(militaire) si le module CVM activé.
                 return data;
-                }
+            }
         }
 
         public List<ChartDataModel> Data2
@@ -340,12 +341,21 @@ namespace XpertMobileApp.DAL
         public string ID_CVM_CENTRE { get; set; }//
         public string AGE { get; set; }//
         public string EMAIL { get; set; }
-
         public string CODE_LIEUX { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
     }
 
     public partial class View_TRS_TIERS : TRS_TIERS
     {
+        [Ignore]
+        public string FULL_NOM_TIERS
+        {
+            get
+            {
+                return (string.IsNullOrEmpty(NOM_TIERS) ? "" : NOM_TIERS) + (string.IsNullOrEmpty(PRENOM_TIERS) ? "" : PRENOM_TIERS);
+            }
+        } // varchar(501)
         public string NOM_TIERS1 { get; set; } // varchar(501)
         public string DESIGN_FAMILLE { get; set; } // varchar(50)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
@@ -401,8 +411,14 @@ namespace XpertMobileApp.DAL
                 return DLP;
             }
         }
+        public STAT_TIERS_MOBILE ETAT_TIERS { get; set; }
     }
-
+    public enum STAT_TIERS_MOBILE
+    {
+        UNTOUCHED,
+        ADDED,
+        UPDATED
+    }
     public partial class BSE_ENCAISS_MOTIFS
     {
         public string CODE_MOTIF { get; set; } // varchar(20)
@@ -413,6 +429,8 @@ namespace XpertMobileApp.DAL
 
     public partial class BSE_TIERS_FAMILLE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_FAMILLE { get; set; } // varchar(10)
         public string DESIGN_FAMILLE { get; set; } // varchar(50)
         public string CODE_TYPE { get; set; } // varchar(4)
@@ -426,6 +444,8 @@ namespace XpertMobileApp.DAL
 
     public class BSE_TABLE_TYPE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_TYPE { get; set; }
         public string DESIGNATION_TYPE { get; set; }
     }

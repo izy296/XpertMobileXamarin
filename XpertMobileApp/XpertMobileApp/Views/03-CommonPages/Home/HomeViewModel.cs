@@ -11,6 +11,7 @@ using Xpert;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
@@ -137,6 +138,14 @@ namespace XpertMobileApp.ViewModels
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {
+                    CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
+                    Title = "Tournée",
+                    Color = "#d4bab8",
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
                     CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
                     Title = "Sessions",
                     Color = "#ff6b81",
@@ -167,6 +176,21 @@ namespace XpertMobileApp.ViewModels
                     Color = "#FEF2CC"
                 });
 
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Import).ToString(),
+                    Title ="Import Donnée",
+                    Color = "#8fc779"
+                });
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Export).ToString(),
+                    Title = "Export Donnée",
+                    Color = "#87CEEB"
+                });
+
+                
                 /*
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)

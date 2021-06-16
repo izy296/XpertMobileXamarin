@@ -9,6 +9,7 @@ using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.Api
 {
@@ -26,8 +27,14 @@ namespace XpertMobileApp.Api
         {
             if (sysParams == null)
             {
-                var result = await CrudManager.SysParams.GetParams();
-                sysParams = result;
+                if (App.Online)
+                {
+                    sysParams = await CrudManager.SysParams.GetParams();
+                }
+                else
+                {
+                    sysParams = await UpdateDatabase.getParams();
+                }
                 return sysParams;
             }
             return sysParams;
@@ -64,7 +71,14 @@ namespace XpertMobileApp.Api
             {
                 if (permissions == null)
                 {
-                    permissions = await CrudManager.Permissions.GetPermissions(App.User.UserGroup);
+                    if (App.Online)
+                    {
+                        permissions = await CrudManager.Permissions.GetPermissions(App.User.UserGroup);
+                    }
+                    else
+                    {
+                        permissions = await UpdateDatabase.getPermission();
+                    }
                 }
                 return permissions;
             }

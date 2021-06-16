@@ -194,15 +194,14 @@ namespace XpertMobileApp.ViewModels
                 // Infos de la journée
                 DateTime endDate = DateTime.Now;
                 DateTime startDate = DateTime.Now;
-                STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
-
-                await ExecuteLoadTypesCommand();
-
-                TotalTurnover = stat.MONTANT_VENTE;
-                TotalMargin = stat.MONTANT_MARGE;
-
+                if (App.Online)
+                {
+                    STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
+                    await ExecuteLoadTypesCommand();
+                    TotalTurnover = stat.MONTANT_VENTE;
+                    TotalMargin = stat.MONTANT_MARGE;
+                }
                 // await ExecuteLoadFamillesCommand();
-
             }
             catch (Exception ex)
             {

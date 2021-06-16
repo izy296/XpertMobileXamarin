@@ -1,5 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Text;
+using SQLite;
+using Xpert.Common.WSClient.Model;
 
 namespace XpertMobileApp.DAL
 {
@@ -14,6 +17,8 @@ namespace XpertMobileApp.DAL
 
     public class SYS_OBJET_PERMISSION
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_PERMISSION { get; set; }
         public string CodeObjet { get; set; }
         public string CODE_GROUPE { get; set; } 
@@ -57,6 +62,18 @@ namespace XpertMobileApp.DAL
         public bool IMPORT_CONFIG { get; set; } // varchar(32)
 
 
+    }
+    public partial class SYS_CONFIGURATION_MACHINE
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CODE { get; set; } // 
+        public string MACHINE { get; set; } // 
+        public string IP { get; set; } // 
+        public string INSTANCE_SQL { get; set; } //  just desktop
+        public string USER_SQL { get; set; }// just desktop
+        public string PASSWORD_SQL { get; set; } //  desktop
+        public string PREFIX { get; set; }// 
     }
 
     public class CBScanedEventArgs : EventArgs

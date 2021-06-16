@@ -10,6 +10,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -61,7 +62,16 @@ namespace XpertMobileApp.ViewModels
                 return "VTE_COMMANDE";
             }
         }
+        public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            if (true)
+            {
+                //asyncTableQuery = UpdateDatabase.getInstance().Table<View_VTE_COMMANDE>()
+                 //   .Where(e => e.CODE_TIERS=="").ToListAsync();
+            }
+            return base.SelectByPageFromSqlLite(filter);
 
+        }
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();

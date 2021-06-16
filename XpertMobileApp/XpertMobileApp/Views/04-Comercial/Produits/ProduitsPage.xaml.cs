@@ -20,15 +20,18 @@ namespace XpertMobileApp.Views
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            var item = args.SelectedItem as STK_PRODUITS;
-            
-            if (item == null)
-                return;
+            if (App.Online)
+            {
+                var item = args.SelectedItem as STK_PRODUITS;
 
-          await Navigation.PushAsync(new ProduitDetailPage(item));
+                if (item == null)
+                    return;
 
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
+                await Navigation.PushAsync(new ProduitDetailPage(item));
+
+                // Manually deselect item.
+                ItemsListView.SelectedItem = null;
+            }
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

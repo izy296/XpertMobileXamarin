@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
@@ -6,14 +8,14 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TourneesPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TourneesPage : ContentPage
+    {
         TourneesViewModel viewModel;
 
         public TourneesPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new TourneesViewModel();
         }
@@ -32,50 +34,60 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
-         
+
+        // protected override void OnAppearing()
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //Addd();
+            //List<View_LIV_TOURNEE> tournee = TourneeServices.getTrounee();
 
+
+            //viewModel.Items = new Xamarin.Forms.Extended.InfiniteScrollCollection<View_LIV_TOURNEE>();
+            //viewModel.Items.AddRange(tournee);
+
+
+            //viewModel.Items.LoadMoreAsync();
             if (viewModel.Items.Count == 0)
                 LoadData();
 
-         //   if (viewModel.Familles.Count == 0)
-         //       viewModel.LoadExtrasDataCommand.Execute(null);
+            //if (viewModel.Familles.Count == 0)
+            //    viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
-        private void TypeFilter_Clicked(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void LoadData()
-        {
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
-        }
-
-        private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {         
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = false;
-            viewModel.ClearFilters();
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    private void TypeFilter_Clicked(object sender, EventArgs e)
+    {
+        LoadData();
     }
+
+    private void LoadData()
+    {
+        viewModel.LoadItemsCommand.Execute(null);
+    }
+
+    private void Filter_Clicked(object sender, EventArgs e)
+    {
+        FilterPanel.IsVisible = !FilterPanel.IsVisible;
+    }
+
+    private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
+    {
+        viewModel.LoadItemsCommand.Execute(null);
+    }
+
+    private void btn_CancelFilter_Clicked(object sender, EventArgs e)
+    {
+        FilterPanel.IsVisible = false;
+        viewModel.ClearFilters();
+        viewModel.LoadItemsCommand.Execute(null);
+    }
+
+    private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+}
 }

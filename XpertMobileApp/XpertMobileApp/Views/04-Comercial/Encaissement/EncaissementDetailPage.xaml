@@ -15,13 +15,13 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
         
-        <ToolbarItem Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked">
+        <!--<ToolbarItem Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>
+        </ToolbarItem>-->
         
         <ToolbarItem Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked">
             <ToolbarItem.Icon>

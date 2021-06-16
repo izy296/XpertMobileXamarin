@@ -33,7 +33,15 @@ namespace XpertMobileApp.Models
             }
             get
             {
-                return serviceUrl;
+                if (string.IsNullOrEmpty(serviceUrl))
+                {
+                    serviceUrl = "http://192.168.1.1:8080/";
+                    return serviceUrl;
+                }
+                else
+                {
+                    return serviceUrl;
+                }
             }
         }
 
@@ -123,6 +131,8 @@ namespace XpertMobileApp.Models
 
     public class SYS_MOBILE_PARAMETRE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string DEFAULT_COMPAGNE_LOT { get; set; }
         public string DEFAULT_ACHATS_MAGASIN { get; set; }
         public string DEFAULT_VENTE_MAGASIN { get; set; }

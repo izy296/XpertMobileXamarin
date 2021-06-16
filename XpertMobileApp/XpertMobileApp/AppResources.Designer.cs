@@ -2337,5 +2337,20 @@ namespace XpertMobileApp {
                 return ResourceManager.GetString("vteTotalVente", resourceCulture);
             }
         }
+
+        internal static string sys_prefix_add
+        {
+            get
+            {
+                return ResourceManager.GetString("sys_prefix_add", resourceCulture);
+            }
+        }
+        internal static string sys_prefix_get
+        {
+            get
+            {
+                return ResourceManager.GetString("sys_prefix_get", resourceCulture);
+            }
+        }
     }
 }

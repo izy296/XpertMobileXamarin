@@ -10,6 +10,10 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="DataService\**" />
     <Compile Remove="Views\08-Catalogue-old\List\**" />
@@ -29,6 +33,7 @@
     <Compile Remove="Api\Services\MockDataStore.cs" />
     <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
+    <Compile Remove="Api\Storage\Ventes\SL_VENTE_BLL.cs" />
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
@@ -71,18 +76,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs">
-      <Link>Models\Imported\XpertEnumeration.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\DAL\Mobile\MenuItemType.cs">
-      <Link>Models\Imported\MenuItemType.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs">
-      <Link>Models\Imported\ChiffresLettres.cs</Link>
-    </Compile>
-    <Compile Include="..\..\..\..\Platforme\trunk\X-WebApis\XpertWebApi\Models\Printer.cs">
-      <Link>Models\Imported\Printer.cs</Link>
-    </Compile>
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
+    <Compile Include="..\..\..\XpertComNouveauRepository\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,6 +94,7 @@
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.47" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.47" />
@@ -127,10 +124,15 @@
 
   <ItemGroup>
     <Folder Include="Api\Services\RFID\" />
+    <Folder Include="Api\Storage\Ventes\" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="FodyWeavers.xsd" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -227,8 +229,5 @@
     <EmbeddedResource Update="Views\07-XBoutiques\Login\TabbedForm.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Platforme\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 </Project>

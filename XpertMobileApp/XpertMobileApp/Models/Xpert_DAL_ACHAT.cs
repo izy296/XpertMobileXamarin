@@ -513,6 +513,8 @@ namespace XpertMobileApp.DAL
 
     public partial class BSE_TABLE
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE { get; set; } // varchar(32)
         public string DESIGNATION { get; set; } // char(8) 
         public bool? REINTEGRER_STOCK { get; set; }
@@ -802,6 +804,40 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION_ETAT { get; set; } // char(3)
         public decimal STOCK_MIN { get; set; }
         public string DESIGNATION_TYPE_PRODUIT { get; set; }
+    }
+
+    public partial class BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CODE_DETAIL { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public decimal QTE_VENTE { get; set; }
+        public decimal PRIX_GROS { get; set; }
+        public decimal PRIX_DETAIL { get; set; }
+
+    }
+
+    public partial class View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY : BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY
+    {
+        public string DESIGNATION_PRODUIT { get; set; }
+        public decimal PRIX_VENTE { get; set; }
+        public decimal PRIX_ACHAT { get; set; }
+        public decimal MARGE_PRODUIT { get; set; }
+        public decimal MARGE_PRODUIT_CALC
+        {
+            get
+            {
+                if (MARGE_PRODUIT == 0)
+                {
+                    return PRIX_VENTE - PRIX_ACHAT;
+                }
+                else
+                {
+                    return MARGE_PRODUIT;
+                }
+            }
+        }
     }
 
     #region production

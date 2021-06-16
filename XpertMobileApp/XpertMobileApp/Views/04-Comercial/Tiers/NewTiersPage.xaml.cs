@@ -13,6 +13,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
@@ -179,76 +180,113 @@ namespace XpertMobileApp.Views
 
         async Task ExecuteLoadTypesCommand()
         {
+            if (App.Online)
+            {
+                try
+                {
+                    Types.Clear();
+                    var itemsC = await WebServiceClient.getTiersTypes();
 
-            try
+                    BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                    allElem.CODE_TYPE = "";
+                    allElem.DESIGNATION_TYPE = "";
+                    Types.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Types.Add(itemC);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
             {
                 Types.Clear();
-                var itemsC = await WebServiceClient.getTiersTypes();
-
-                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = "";
-                Types.Add(allElem);
-
+                var itemsC = await UpdateDatabase.getTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+
         }
 
         async Task ExecuteLoadFamillesCommand()
         {
+            if (App.Online)
+            {
+                try
+                {
 
-            try
+                    Familles.Clear();
+                    var itemsC = await WebServiceClient.getTiersFamilles();
+
+                    View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
+                    allElem.CODE_FAMILLE = "";
+                    allElem.DESIGN_FAMILLE = "";
+                    Familles.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Familles.Add(itemC);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
             {
                 Familles.Clear();
-                var itemsC = await WebServiceClient.getTiersFamilles();
-
-                View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
-                allElem.CODE_FAMILLE = "";
-                allElem.DESIGN_FAMILLE = "";
-                Familles.Add(allElem);
-
+                var itemsC = await UpdateDatabase.getFamille();
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
         }
+
         async Task ExecuteLoadSecteursCommand()
         {
-
-            try
+            if (App.Online)
             {
-                Familles.Clear();
-                var itemsC = await CrudManager.BSE_LIEUX.GetItemsAsync();
+                try
+                {
+                    Secteurs.Clear();
+                    var itemsC = await CrudManager.BSE_LIEUX.GetItemsAsync();
 
-                BSE_TABLE allElem = new BSE_TABLE();
-                allElem.CODE = "";
-                allElem.DESIGNATION = "";
-                Secteurs.Add(allElem);
+                    BSE_TABLE allElem = new BSE_TABLE();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = "";
+                    Secteurs.Add(allElem);
 
+                    foreach (var itemC in itemsC)
+                    {
+                        Secteurs.Add(itemC);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                        AppResources.alrt_msg_Ok);
+                }
+            }
+            else
+            {
+                Secteurs.Clear();
+                var itemsC = await UpdateDatabase.getSecteurs(); 
                 foreach (var itemC in itemsC)
                 {
                     Secteurs.Add(itemC);
                 }
             }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
+
         }
         #endregion
 
@@ -270,20 +308,40 @@ namespace XpertMobileApp.Views
                 }
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                if (string.IsNullOrEmpty(Item.CODE_TIERS))
-                {
-                    Item.ACTIF_TIERS = 1;
-                    string codeTiers = await CrudManager.TiersService.AddItemAsync(Item);
-                    Item.CODE_TIERS = codeTiers;
 
-                    MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                if (App.Online)
+                {
+                    if (string.IsNullOrEmpty(Item.CODE_TIERS))
+                    {
+                        Item.ACTIF_TIERS = 1;
+                        string codeTiers = await CrudManager.TiersService.AddItemAsync(Item);
+                        Item.CODE_TIERS = codeTiers;
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
+                    else
+                    {
+                        await CrudManager.TiersService.UpdateItemAsync(Item);
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
                 }
                 else
                 {
-                    await CrudManager.TiersService.UpdateItemAsync(Item);
-
-                    MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    if (Item.ID == 0)
+                    {
+                        Item.ACTIF_TIERS = 1;
+                        await UpdateDatabase.AjoutTiers(Item);
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
+                    else
+                    {
+                        await UpdateDatabase.UpdateTiers(Item);
+                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                    }
                 }
+
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                 await Navigation.PopModalAsync();
@@ -293,7 +351,6 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.alrt_msg_Alert, "Erreur lors de traitement de la requête ! " + ex.Message, AppResources.alrt_msg_Ok);
             }
-
         }
 
         private async void btn_Cancel_Clicked(object sender, EventArgs e)

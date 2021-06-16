@@ -137,6 +137,7 @@ namespace XpertMobileApp.DAL
 
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
         public decimal TOTAL_RESTE { get; set; } // money(19,4)
+        public decimal MT_VERSEMENT { get; set; } // money(19,4)
 
         private string nOM_TIERS;
         public string NOM_TIERS
@@ -211,6 +212,8 @@ namespace XpertMobileApp.DAL
             }
         }
         public string MBL_CODE_TOURNEE_DETAIL { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
         #endregion
     }
 
@@ -232,7 +235,6 @@ namespace XpertMobileApp.DAL
 
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
-        [JsonIgnore]
         public View_VTE_VENTE Parent_Doc { get; set; }
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)
@@ -324,6 +326,8 @@ namespace XpertMobileApp.DAL
                 }
             }
         }
+        [Ignore]
+        public bool IsRetour { get; set; }
     }
 
     public partial class View_VTE_VENTE_LOT : VTE_VENTE_DETAIL
@@ -614,6 +618,9 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; }
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
+
     }
     public static class TourneeStatus
     {
@@ -624,7 +631,7 @@ namespace XpertMobileApp.DAL
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
         public string NOM_TIERS { get; set; }
-        public decimal SOLDE { get; set; }
+        public decimal SOLDE_TIERS { get; set; }
         public string DESIGNATION_ETAT { get; set; }
 
         public string ETAT_COLOR { get; set; }

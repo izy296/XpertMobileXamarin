@@ -16,7 +16,8 @@ namespace XpertMobileApp.Models
         public string CODE_TIERS { get; set; }
         public string UserGroup { get; set; }
         public string GroupName { get; set; }
-        
+        public string TEL_USER { get; set; } // varchar(32)
+
         public Token Token { get; set; }
 
 

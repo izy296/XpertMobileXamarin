@@ -1,7 +1,9 @@
 ﻿using Acr.UserDialogs;
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -15,6 +17,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Api.ViewModels
@@ -24,7 +27,7 @@ namespace XpertMobileApp.Api.ViewModels
     where TView : new()
     {
         internal ICurdService<TView> service;
-
+        public AsyncTableQuery<TView> asyncTableQuery;
         internal XpertSqlBuilder qb = new XpertSqlBuilder();
 
         public bool LoadSummaries { get; set; } = false;
@@ -123,46 +126,79 @@ namespace XpertMobileApp.Api.ViewModels
             {
                 OnLoadMore = async () =>
                 {
-                    try 
+                    try
                     {
                         bool isconnected = await App.IsConected();
-                        if (!isconnected) 
+                        bool isOnline = App.Online;
+                        if (isOnline)
                         {
-                            await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                            return new List<TView>();
-                        }
-                        
-                        IsBusy = true;
-
-                        elementsCount = await service.ItemsCount(GetFilterParams());
-
-                        // load the next page
-                        var page = (Items.Count / PageSize) + 1;
-
-                        var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
-                        Summaries.Clear();
-                        if (LoadSummaries && elementsCount > 0)
-                        {
-                            var res = await service.ItemsSums(GetFilterParams());
-
-                            foreach (var item in res)
+                            if (!isconnected)
                             {
-                                Summaries.Add(new SAMMUARY()
-                                {
-                                    key = TranslateExtension.GetTranslation(item.Key),
-                                    Value = item.Value.ToString("N2")
-                                });
+                                await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                return new List<TView>();
                             }
+
+                            IsBusy = true;
+
+                            elementsCount = await service.ItemsCount(GetFilterParams());
+
+                            // load the next page
+                            var page = (Items.Count / PageSize) + 1;
+
+                            //var items = await service.GetItemsAsync();
+                            var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
+                            //var items = await SelectByPageFromSqlLite(GetFilterParams(), page, PageSize);//server.getselectedpqs
+                            Summaries.Clear();
+                            if (LoadSummaries && elementsCount > 0)
+                            {
+                                var res = await service.ItemsSums(GetFilterParams());
+
+                                foreach (var item in res)
+                                {
+                                    Summaries.Add(new SAMMUARY()
+                                    {
+                                        key = TranslateExtension.GetTranslation(item.Key),
+                                        Value = item.Value.ToString("N2")
+                                    });
+                                }
+                            }
+
+                            OnAfterLoadItems(items);
+
+                            IsBusy = false;
+
+                            // return the items that need to be added
+                            return items;
+                        }
+                        else
+                        {
+                            IsBusy = true;
+
+                            var items = await SelectByPageFromSqlLite(GetFilterParams());//server.getselectedpqs
+                            //Summaries.Clear();
+                            //if (LoadSummaries && elementsCount > 0)
+                            //{
+                            //    var res = await service.ItemsSums(GetFilterParams());
+
+                            //    foreach (var item in res)
+                            //    {
+                            //        Summaries.Add(new SAMMUARY()
+                            //        {
+                            //            key = TranslateExtension.GetTranslation(item.Key),
+                            //            Value = item.Value.ToString("N2")
+                            //        });
+                            //    }
+                            //}
+                            OnAfterLoadItems(items);
+
+                            IsBusy = false;
+
+                            // return the items that need to be added
+                            return items;
                         }
 
-                        OnAfterLoadItems(items);
-
-                        IsBusy = false;
-
-                        // return the items that need to be added
-                        return items;
-                    } 
-                    catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         return new List<TView>();
@@ -174,6 +210,36 @@ namespace XpertMobileApp.Api.ViewModels
                 }
             };
         }
+
+        public virtual async Task<List<TView>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            //if (filter != null && filter.StringCondition != null)
+            //{
+            //    return await asyncTableQuery.ToListAsync();
+            //}
+            //else
+            {
+                var tt = await UpdateDatabase.getInstance().Table<TView>().ToListAsync();
+                return tt;
+            }
+            //await UpdateDatabase.initialisationDbLocal();
+            
+        }
+
+        //static async Task initialisationDbLocal()
+        //{
+
+        //    if (db != null)
+        //        return;
+
+        //    // Get an absolute path to the database file
+        //    var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
+
+        //    db = new SQLiteAsyncConnection(databasePath);
+
+        //    //await db.DropTableAsync<LIV_TOURNEE>();
+        //    await db.CreateTableAsync<View_LIV_TOURNEE>();
+        //}
 
         internal async Task GetItemsSum()
         {
@@ -271,9 +337,9 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     IsBusy = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
                     await service.AddItemAsync(item);
-                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
                 }
             }
             catch (Exception ex)
@@ -782,7 +848,7 @@ namespace XpertMobileApp.Api.ViewModels
         #endregion  Query builder
 
 
-        internal async Task<bool> UpdateItem(TView item) 
+        internal async Task<bool> UpdateItem(TView item)
         {
             if (IsBusy)
                 return false;

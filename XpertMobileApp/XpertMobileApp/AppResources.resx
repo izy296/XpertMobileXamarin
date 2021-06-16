@@ -169,7 +169,7 @@
     <value>Cancel</value>
   </data>
   <data name="alrt_msg_ConnectionError" xml:space="preserve">
-    <value>Connexion échoué veullez vérifier les informations du serveur</value>
+    <value>Connexion échoué veuillez vérifier les informations du serveur</value>
   </data>
   <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
     <value>Connexion établie avec succes</value>
@@ -888,5 +888,11 @@
   </data>
   <data name="txt_DateNaissance" xml:space="preserve">
     <value>Date naissance</value>
+  </data>
+  <data name="sys_prefix_add" xml:space="preserve">
+    <value>Configurer l'appareil</value>
+  </data>
+  <data name="sys_prefix_get" xml:space="preserve">
+    <value>Récupérer votre préfixe</value>
   </data>
 </root>

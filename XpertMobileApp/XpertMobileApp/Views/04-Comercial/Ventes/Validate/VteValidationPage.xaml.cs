@@ -15,6 +15,10 @@ using System.Collections.Generic;
 using XpertMobileApp.Services;
 using XpertMobileSettingsPage.Helpers.Services;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.SQLite_Managment;
+using Xamarin.Essentials;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace XpertMobileApp.Views
 {
@@ -35,7 +39,7 @@ namespace XpertMobileApp.Views
                 viewModel.Item = value; 
             } 
         }
-
+        CancellationTokenSource cts;
         public VteValidationPage(string stream, View_VTE_VENTE item, View_TRS_TIERS tiers = null)
         {
             InitializeComponent();
@@ -44,7 +48,7 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
 
             // Initialisation du montant reçu au reste a payer
-            viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
+            //viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
             // this.SfNE_MTRecu.Value = item.TOTAL_RESTE;
             UpdateMontants(viewModel.Item.TOTAL_RECU);
 
@@ -65,23 +69,99 @@ namespace XpertMobileApp.Views
         {
             await PopupNavigation.Instance.PopAsync();
         }
-      
+        async Task SaveGPsLocationToVente(View_VTE_VENTE vente)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
+                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                cts = new CancellationTokenSource();
+                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                if (location != null)
+                {
+                    vente.GPS_LATITUDE = location.Latitude;
+                    vente.GPS_LONGITUDE = location.Longitude;
+                    Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation non pris en charge sur le périphérique!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                // Handle not supported on device exception
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation non activé sur le périphérique!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Handle not enabled on device exception
+            }
+            catch (PermissionException pEx)
+            {
+                await UserDialogs.Instance.AlertAsync("Géolocalisation Problème d'autorisation!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Handle permission exception
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync("Impossible d'obtenir l'emplacement!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); // Handle not supported on device exception
+                // Unable to get location
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+        }
+
+        protected override void OnDisappearing()
+        {
+            if (cts != null && !cts.IsCancellationRequested)
+                cts.Cancel();
+            base.OnDisappearing();
+        }
         private async void btnValidate_Clicked(object sender, EventArgs e)
         {
             try
             {
-                string res = await viewModel.ValidateVte(viewModel.Item);
-                viewModel.Item.NUM_VENTE = res;
-                if (!XpertHelper.IsNullOrEmpty(res) )
+                viewModel.Item.GPS_LATITUDE = 0;
+                viewModel.Item.GPS_LONGITUDE = 0;
+                await SaveGPsLocationToVente(viewModel.Item);
+                if (App.Online)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                    if (viewModel.imprimerTecketCaiss)
+                    string res = await viewModel.ValidateVte(viewModel.Item);
+                    viewModel.Item.NUM_VENTE = res;
+                    if (!XpertHelper.IsNullOrEmpty(res))
                     {
-                        PrinterHelper.PrintBL(viewModel.Item);
+                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                        if (viewModel.imprimerTecketCaiss)
+                        {
+                            PrinterHelper.PrintBL(viewModel.Item);
+                        }
+                        ParentviewModel.InitNewVentes();
+                        await PopupNavigation.Instance.PopAsync();
                     }
-                    ParentviewModel.InitNewVentes();
-                    await PopupNavigation.Instance.PopAsync(); 
                 }
+                else
+                {
+                    if (viewModel.Item.Details != null)
+                    {
+                        string res = await UpdateDatabase.AjoutVente(viewModel.Item);
+                        if (!XpertHelper.IsNullOrEmpty(res))
+                        {
+                            await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                            if (viewModel.imprimerTecketCaiss)
+                            {
+                                PrinterHelper.PrintBL(viewModel.Item);
+                            }
+                            ParentviewModel.InitNewVentes();
+                            await PopupNavigation.Instance.PopAsync();
+                        }
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez selectionner au moins un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+
+                }
+               
             }
             catch (Exception ex) 
             {
@@ -180,6 +260,14 @@ namespace XpertMobileApp.Views
             {
                 mt_PointsUsed.Text = "";
             }
+        }
+
+        private void CashbtnClicked(object sender, EventArgs e)
+        {
+            Item.TOTAL_RECU = Item.TOTAL_TTC;
+
+            decimal Mt_Recu = Convert.ToDecimal(Item.TOTAL_RECU);
+            UpdateMontants(Mt_Recu);
         }
     }
 }

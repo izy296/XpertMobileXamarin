@@ -7,6 +7,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileSettingsPage.Helpers.Services;
 
@@ -135,22 +136,46 @@ namespace XpertMobileApp.Views
             var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_DeleteConfirmation, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
             if (res)
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.DELETE_ITEM, viewModel.Item);
-                await Navigation.PopAsync();
+                if (App.Online)
+                {
+                    MessagingCenter.Send(App.MsgCenter, MCDico.DELETE_ITEM, viewModel.Item);
+                    await Navigation.PopAsync();
+                }
+                else
+                {
+                    await UpdateDatabase.DeleteEncaiss(viewModel.Item);
+                    await Navigation.PopAsync();
+                }
+
             }
         }
 
         async void btnImprimer_Clicked(object sender, EventArgs e)
         {
-            var tecketData = await WebServiceClient.GetDataTecketCaisseEncaisse(this.viewModel.Item.CODE_ENCAISS);
-            if (tecketData == null)
+            if (App.Online)
             {
-                await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+                var tecketData = await WebServiceClient.GetDataTecketCaisseEncaisse(this.viewModel.Item.CODE_ENCAISS);
+                if (tecketData == null)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    PrinterHelper.PrintEncaisse(tecketData);
+                }
             }
             else
             {
-                PrinterHelper.PrintEncaisse(tecketData);
+                if (this.viewModel.Item == null)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Info, "Pas de donnees a imprimer !", AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    PrinterHelper.PrintEncaisseOffline(this.viewModel.Item);
+                }
             }
+           
         }
         async void Cancel_Clicked(object sender, EventArgs e)
         {
