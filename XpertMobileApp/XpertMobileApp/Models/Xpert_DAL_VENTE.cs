@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-
+using SQLite;
 namespace XpertMobileApp.DAL
 {
     public class View_VTE_Vente_Td22
@@ -33,6 +33,8 @@ namespace XpertMobileApp.DAL
 
     public partial class VTE_VENTE : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_VENTE { get; set; } // varchar(32)
         public string NUM_VENTE { get; set; } // varchar(32)
         public string REF_CLIENT { get; set; } // varchar(32)
@@ -571,6 +573,8 @@ namespace XpertMobileApp.DAL
     }
     public partial class LIV_TOURNEE : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string NUM_TOURNEE { get; set; }
         public DateTime DATE_TOURNEE { get; set; }
@@ -609,6 +613,8 @@ namespace XpertMobileApp.DAL
 
     public partial class LIV_TOURNEE_DETAIL : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_DETAIL { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string CODE_TIERS { get; set; }

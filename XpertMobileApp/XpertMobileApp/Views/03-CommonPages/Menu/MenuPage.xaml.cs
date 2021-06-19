@@ -11,6 +11,7 @@ using Xpert.Common.WSClient.Helpers;
 using System.Linq;
 using Xpert;
 using XpertMobileApp.ViewModels.XLogin;
+using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.Views
 {
@@ -266,10 +267,12 @@ namespace XpertMobileApp.Views
                 }
                 else 
                 {
-                    if(App.User?.Token == null)
-                    foreach (var item in menuItems)
-                    {
-                        menus  = menuItems.Where(x => x.VisibleToGuest == true).ToList();
+                    if(App.User?.Token == null) 
+                    { 
+                        foreach (var item in menuItems)
+                        {
+                            menus  = menuItems.Where(x => x.VisibleToGuest == true).ToList();
+                        }
                     }
                 }
 

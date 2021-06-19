@@ -10,6 +10,16 @@ namespace XpertMobileApp.Services
 
         void RequestPermissions();
 
+        string GetImei();
+
+        string GetSubscriberId();
+
+        string GetSerial();
+
+        string GetSimSerialNumber();
+
+        string GetDeviceId();
+
         string GetSecureOsId();
     }
 }

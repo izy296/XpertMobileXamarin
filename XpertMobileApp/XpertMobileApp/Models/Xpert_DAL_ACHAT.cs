@@ -5,6 +5,7 @@ using System.Linq;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using SQLite;
 
 namespace XpertMobileApp.DAL
 {
@@ -524,6 +525,8 @@ namespace XpertMobileApp.DAL
 
     public partial class STK_PRODUITS : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_PRODUIT { get; set; } // varchar(11)
         public string DESIGNATION { get; set; } // varchar(150)
         public string SHORT_DESIGNATION {

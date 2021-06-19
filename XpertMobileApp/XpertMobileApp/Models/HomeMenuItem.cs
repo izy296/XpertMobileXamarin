@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xpert;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.Models
 {

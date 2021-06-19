@@ -282,6 +282,8 @@ namespace XpertMobileApp.DAL
 
     public partial class TRS_TIERS : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_TIERS { get; set; } // varchar(32)
         public string NUM_TIERS { get; set; } // varchar(32)
         public string CODE_FAMILLE { get; set; } // varchar(10)

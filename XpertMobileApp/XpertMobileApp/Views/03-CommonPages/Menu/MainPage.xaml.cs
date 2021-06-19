@@ -7,6 +7,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.Views
 {

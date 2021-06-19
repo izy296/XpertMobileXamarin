@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
@@ -17,21 +16,41 @@ namespace XpertMobileApp.ViewModels
 
     public class TourneesViewModel : CrudBaseViewModel2<LIV_TOURNEE, View_LIV_TOURNEE>
     {
+
+        DateTime startDate = DateTime.Now;
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set { SetProperty(ref startDate, value); }
+        }
+
+        DateTime endDate = DateTime.Now;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set { SetProperty(ref endDate, value); }
+        }
+
         public TourneesViewModel()
         {
             Title = "Mes tournées";
 
-            Types = new ObservableCollection<BSE_TABLE_TYPE>();
-            Familles = new ObservableCollection<BSE_TABLE>();
+            //Types = new ObservableCollection<BSE_TABLE_TYPE>();
+            //Familles = new ObservableCollection<BSE_TABLE>();
 
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            //LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
-
-            this.AddOrderBy<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE , Sort.DESC);
+            this.AddCondition<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
+            if (!(App.User.UserName.ToString() == "Administrateur"))
+            {
+                this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
+            }
+            //this.AddCondition(e => e.CODE_VENDEUR, user);
+            this.AddOrderBy<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Sort.DESC);
             return qb.QueryInfos;
         }
 
