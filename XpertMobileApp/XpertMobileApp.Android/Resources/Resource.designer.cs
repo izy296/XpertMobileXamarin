@@ -4118,7 +4118,6 @@ namespace XpertMobileApp.Droid
 			global::Rg.Plugins.Popup.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::Rg.Plugins.Popup.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::Rg.Plugins.Popup.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::Rg.Plugins.Popup.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Rg.Plugins.Popup.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::Rg.Plugins.Popup.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
 			global::Rg.Plugins.Popup.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
@@ -6726,7 +6725,6 @@ namespace XpertMobileApp.Droid
 			global::SkiaSharp.Views.Forms.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::SkiaSharp.Views.Forms.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::SkiaSharp.Views.Forms.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::SkiaSharp.Views.Forms.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::SkiaSharp.Views.Forms.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::SkiaSharp.Views.Forms.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
 			global::SkiaSharp.Views.Forms.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
@@ -8234,43 +8232,43 @@ namespace XpertMobileApp.Droid
 			global::SkiaSharp.Views.Forms.Resource.Styleable.View_paddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingEnd;
 			global::SkiaSharp.Views.Forms.Resource.Styleable.View_paddingStart = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingStart;
 			global::SkiaSharp.Views.Forms.Resource.Styleable.View_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_theme;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_indeterminate_to_checked_icon_null_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_checked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_checked_icon_null_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_indeterminate_checked_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_indeterminate_checked_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_indeterminate_checked_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_indeterminate_checked_null;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_outer = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_outer;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_null;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_checked_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_checked_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_checked_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_checked_null;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_indeterminate_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_indeterminate_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_indeterminate_outer = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_indeterminate_outer;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_unchecked_indeterminate_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_unchecked_indeterminate_null;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_checked_unchecked_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_checked_unchecked_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_checked_unchecked_path = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_checked_unchecked_path;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_indeterminate_unchecked_inner = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_indeterminate_unchecked_inner;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_indeterminate_unchecked_path = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_indeterminate_unchecked_path;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_indeterminate_unchecked_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_indeterminate_unchecked_null;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Animation.sfcheckbox_checked_unchecked_null = global::XpertMobileApp.Droid.Resource.Animation.sfcheckbox_checked_unchecked_null;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Attribute.state_indeterminate = global::XpertMobileApp.Droid.Resource.Attribute.state_indeterminate;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Color.control_checkable_material = global::XpertMobileApp.Droid.Resource.Color.control_checkable_material;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Dimension.disabledAlpha = global::XpertMobileApp.Droid.Resource.Dimension.disabledAlpha;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked_to_indeterminate_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_to_indeterminate_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_checked_to_unchecked_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_indeterminate;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate_to_checked_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_indeterminate_to_checked_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_indeterminate_to_unchecked_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_indeterminate_to_unchecked_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked_to_checked_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_animation;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.btn_checkbox_unchecked_to_indeterminate_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_to_indeterminate_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_animation = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_animation;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_checked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_checked_indeterminate = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_checked_indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_checked_unchecked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_checked_unchecked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_indeterminate = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_indeterminate;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_indeterminate_checked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_indeterminate_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_indeterminate_unchecked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_indeterminate_unchecked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_unchecked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_unchecked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_unchecked_checked = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_unchecked_checked;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Drawable.sfcheckbox_unchecked_indeterminate = global::XpertMobileApp.Droid.Resource.Drawable.sfcheckbox_unchecked_indeterminate;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Id.@checked = global::XpertMobileApp.Droid.Resource.Id.@checked;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Id.indeterminate = global::XpertMobileApp.Droid.Resource.Id.indeterminate;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Id.@unchecked = global::XpertMobileApp.Droid.Resource.Id.@unchecked;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_0;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_animation_interpolator_1;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_indeterminate_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_indeterminate_animation_interpolator_1;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_0;
-			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_animation_interpolator_1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.sfcheckbox_checked_interpolator0 = global::XpertMobileApp.Droid.Resource.Interpolator.sfcheckbox_checked_interpolator0;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.sfcheckbox_checked_interpolator1 = global::XpertMobileApp.Droid.Resource.Interpolator.sfcheckbox_checked_interpolator1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.sfcheckbox_indeterminate_interpolator1 = global::XpertMobileApp.Droid.Resource.Interpolator.sfcheckbox_indeterminate_interpolator1;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.sfcheckbox_unchecked_interpolator0 = global::XpertMobileApp.Droid.Resource.Interpolator.sfcheckbox_unchecked_interpolator0;
+			global::Syncfusion.Buttons.XForms.Android.Resource.Interpolator.sfcheckbox_unchecked_interpolator1 = global::XpertMobileApp.Droid.Resource.Interpolator.sfcheckbox_unchecked_interpolator1;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox = global::XpertMobileApp.Droid.Resource.Styleable.SfCheckBox;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox_checked = global::XpertMobileApp.Droid.Resource.Styleable.SfCheckBox_checked;
 			global::Syncfusion.Buttons.XForms.Android.Resource.Styleable.SfCheckBox_cornerradius = global::XpertMobileApp.Droid.Resource.Styleable.SfCheckBox_cornerradius;
@@ -8322,132 +8320,2728 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
 			global::Syncfusion.XForms.Android.Core.Resource.Drawable.clear_button_icon = global::XpertMobileApp.Droid.Resource.Drawable.clear_button_icon;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteBorderColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteBorderColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteClearButtonColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteClearButtonColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDisplayMemberPath = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDisplayMemberPath;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownBackgroundColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownBackgroundColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownCornerRadius;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownFooterViewHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownFooterViewHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownHeaderViewHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownHeaderViewHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownItemHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownOpen = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownOpen;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteDropDownTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteDropDownTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteEnableSelectionIndicator = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteEnableSelectionIndicator;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteHighlightedTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteHighlightedTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIgnoreDiacritic = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIgnoreDiacritic;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteImageMemberPath = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteImageMemberPath;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorText;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIndicatorTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIndicatorTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIsFocused = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIsFocused;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteIsSelectedItemsVisibleInDropDown = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteIsSelectedItemsVisibleInDropDown;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteLoadMoreText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteLoadMoreText;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMaximumDropDownHeight = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMaximumDropDownHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMaximumSuggestion = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMaximumSuggestion;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMinimumPrefixCharacters = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMinimumPrefixCharacters;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteMultiSelectMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteMultiSelectMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteNoResultsFoundText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteNoResultsFoundText;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompletePopUpDelay = global::XpertMobileApp.Droid.Resource.Attribute.autocompletePopUpDelay;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSelectedIndex = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSelectedIndex;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowBorder = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowBorder;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowClearButton = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowClearButton;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowDropDownFooterView = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowDropDownFooterView;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowDropDownHeaderView = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowDropDownHeaderView;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteShowSuggestionsOnFocus = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteShowSuggestionsOnFocus;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSuggestionBoxPlacement = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSuggestionBoxPlacement;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteSuggestionMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteSuggestionMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteText = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteText;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteTokensWrapMode = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteTokensWrapMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermark = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteWatermark;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.autocompleteWatermarkColor = global::XpertMobileApp.Droid.Resource.Attribute.autocompleteWatermarkColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.layoutManager = global::XpertMobileApp.Droid.Resource.Attribute.layoutManager;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.reverseLayout = global::XpertMobileApp.Droid.Resource.Attribute.reverseLayout;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.spanCount = global::XpertMobileApp.Droid.Resource.Attribute.spanCount;
-			global::Com.Syncfusion.Autocomplete.Resource.Attribute.stackFromEnd = global::XpertMobileApp.Droid.Resource.Attribute.stackFromEnd;
-			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
-			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
-			global::Com.Syncfusion.Autocomplete.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
-			global::Com.Syncfusion.Autocomplete.Resource.Drawable.sfclosebutton = global::XpertMobileApp.Droid.Resource.Drawable.sfclosebutton;
-			global::Com.Syncfusion.Autocomplete.Resource.Drawable.styleinfo = global::XpertMobileApp.Droid.Resource.Drawable.styleinfo;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.append = global::XpertMobileApp.Droid.Resource.Id.append;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.bottom = global::XpertMobileApp.Droid.Resource.Id.bottom;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.contains = global::XpertMobileApp.Droid.Resource.Id.contains;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.containsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.containsWithCaseSensitive;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.custom = global::XpertMobileApp.Droid.Resource.Id.custom;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.delimiter = global::XpertMobileApp.Droid.Resource.Id.delimiter;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.endsWith = global::XpertMobileApp.Droid.Resource.Id.endsWith;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.endsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.endsWithCaseSensitive;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.equals = global::XpertMobileApp.Droid.Resource.Id.equals;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.equalsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.equalsWithCaseSensitive;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.icon = global::XpertMobileApp.Droid.Resource.Id.icon;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.item_touch_helper_previous_elevation = global::XpertMobileApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.none = global::XpertMobileApp.Droid.Resource.Id.none;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.startsWith = global::XpertMobileApp.Droid.Resource.Id.startsWith;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.startsWithCaseSensitive = global::XpertMobileApp.Droid.Resource.Id.startsWithCaseSensitive;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.suggest = global::XpertMobileApp.Droid.Resource.Id.suggest;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.suggestAppend = global::XpertMobileApp.Droid.Resource.Id.suggestAppend;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.token = global::XpertMobileApp.Droid.Resource.Id.token;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.top = global::XpertMobileApp.Droid.Resource.Id.top;
-			global::Com.Syncfusion.Autocomplete.Resource.Id.wrap = global::XpertMobileApp.Droid.Resource.Id.wrap;
-			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView;
-			global::Com.Syncfusion.Autocomplete.Resource.Layout.CustomizedView1 = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView1;
-			global::Com.Syncfusion.Autocomplete.Resource.Layout.sfautocomplete_layout = global::XpertMobileApp.Droid.Resource.Layout.sfautocomplete_layout;
-			global::Com.Syncfusion.Autocomplete.Resource.String.library_name = global::XpertMobileApp.Droid.Resource.String.library_name;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_descendantFocusability = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_android_orientation = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_orientation;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_layoutManager = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_layoutManager;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_reverseLayout = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_reverseLayout;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_spanCount = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_spanCount;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.RecyclerView_stackFromEnd = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteBorderColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteBorderColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteClearButtonColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteClearButtonColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDisplayMemberPath = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDisplayMemberPath;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownBackgroundColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownBackgroundColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownCornerRadius;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownFooterViewHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownFooterViewHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownHeaderViewHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownHeaderViewHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownItemHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownOpen = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownOpen;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteDropDownTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteEnableSelectionIndicator = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteEnableSelectionIndicator;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteHighlightedTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteHighlightedTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIgnoreDiacritic = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIgnoreDiacritic;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteImageMemberPath = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteImageMemberPath;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorText;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIndicatorTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIsFocused = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIsFocused;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteLoadMoreText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteLoadMoreText;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMaximumDropDownHeight = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMaximumDropDownHeight;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMaximumSuggestion = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMaximumSuggestion;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMinimumPrefixCharacters = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMinimumPrefixCharacters;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteMultiSelectMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteMultiSelectMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteNoResultsFoundText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteNoResultsFoundText;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompletePopUpDelay = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompletePopUpDelay;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSelectedIndex = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSelectedIndex;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowBorder = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowBorder;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowClearButton;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownFooterView = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownFooterView;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownHeaderView = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowDropDownHeaderView;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteShowSuggestionsOnFocus = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteShowSuggestionsOnFocus;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSuggestionBoxPlacement = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSuggestionBoxPlacement;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteSuggestionMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteSuggestionMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteText = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteText;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextColor;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTextSize = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTextSize;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteTokensWrapMode = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteTokensWrapMode;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermark = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermark;
-			global::Com.Syncfusion.Autocomplete.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor = global::XpertMobileApp.Droid.Resource.Styleable.SfAutoComplete_autocompleteWatermarkColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_fade_in = global::XpertMobileApp.Droid.Resource.Animation.abc_fade_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_fade_out = global::XpertMobileApp.Droid.Resource.Animation.abc_fade_out;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_grow_fade_in_from_bottom = global::XpertMobileApp.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_popup_enter = global::XpertMobileApp.Droid.Resource.Animation.abc_popup_enter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_popup_exit = global::XpertMobileApp.Droid.Resource.Animation.abc_popup_exit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom = global::XpertMobileApp.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_slide_in_bottom = global::XpertMobileApp.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_slide_in_top = global::XpertMobileApp.Droid.Resource.Animation.abc_slide_in_top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_slide_out_bottom = global::XpertMobileApp.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_slide_out_top = global::XpertMobileApp.Droid.Resource.Animation.abc_slide_out_top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_tooltip_enter = global::XpertMobileApp.Droid.Resource.Animation.abc_tooltip_enter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.abc_tooltip_exit = global::XpertMobileApp.Droid.Resource.Animation.abc_tooltip_exit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.design_bottom_sheet_slide_in = global::XpertMobileApp.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.design_bottom_sheet_slide_out = global::XpertMobileApp.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.design_snackbar_in = global::XpertMobileApp.Droid.Resource.Animation.design_snackbar_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.design_snackbar_out = global::XpertMobileApp.Droid.Resource.Animation.design_snackbar_out;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.EnterFromLeft = global::XpertMobileApp.Droid.Resource.Animation.EnterFromLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.EnterFromRight = global::XpertMobileApp.Droid.Resource.Animation.EnterFromRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.ExitToLeft = global::XpertMobileApp.Droid.Resource.Animation.ExitToLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animation.ExitToRight = global::XpertMobileApp.Droid.Resource.Animation.ExitToRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.design_appbar_state_list_animator = global::XpertMobileApp.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.design_fab_hide_motion_spec = global::XpertMobileApp.Droid.Resource.Animator.design_fab_hide_motion_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.design_fab_show_motion_spec = global::XpertMobileApp.Droid.Resource.Animator.design_fab_show_motion_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_btn_state_list_anim = global::XpertMobileApp.Droid.Resource.Animator.mtrl_btn_state_list_anim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim = global::XpertMobileApp.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_chip_state_list_anim = global::XpertMobileApp.Droid.Resource.Animator.mtrl_chip_state_list_anim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_fab_hide_motion_spec = global::XpertMobileApp.Droid.Resource.Animator.mtrl_fab_hide_motion_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_fab_show_motion_spec = global::XpertMobileApp.Droid.Resource.Animator.mtrl_fab_show_motion_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec = global::XpertMobileApp.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec = global::XpertMobileApp.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarDivider = global::XpertMobileApp.Droid.Resource.Attribute.actionBarDivider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarItemBackground = global::XpertMobileApp.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarPopupTheme = global::XpertMobileApp.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarSize = global::XpertMobileApp.Droid.Resource.Attribute.actionBarSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarSplitStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarTabBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarTabStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarTabTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarTheme = global::XpertMobileApp.Droid.Resource.Attribute.actionBarTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionBarWidgetTheme = global::XpertMobileApp.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionDropDownStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionLayout = global::XpertMobileApp.Droid.Resource.Attribute.actionLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionMenuTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionMenuTextColor = global::XpertMobileApp.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeBackground = global::XpertMobileApp.Droid.Resource.Attribute.actionModeBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeCloseButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeCloseDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeCopyDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeCutDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeFindDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModePasteDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModePopupWindowStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeSelectAllDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeShareDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeSplitBackground = global::XpertMobileApp.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionModeStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionModeWebSearchDrawable = global::XpertMobileApp.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionOverflowButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionOverflowMenuStyle = global::XpertMobileApp.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionProviderClass = global::XpertMobileApp.Droid.Resource.Attribute.actionProviderClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.actionViewClass = global::XpertMobileApp.Droid.Resource.Attribute.actionViewClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.activityChooserViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alertDialogButtonGroupStyle = global::XpertMobileApp.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alertDialogCenterButtons = global::XpertMobileApp.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alertDialogStyle = global::XpertMobileApp.Droid.Resource.Attribute.alertDialogStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alertDialogTheme = global::XpertMobileApp.Droid.Resource.Attribute.alertDialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.allowStacking = global::XpertMobileApp.Droid.Resource.Attribute.allowStacking;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alpha = global::XpertMobileApp.Droid.Resource.Attribute.alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.alphabeticModifiers = global::XpertMobileApp.Droid.Resource.Attribute.alphabeticModifiers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.arrowHeadLength = global::XpertMobileApp.Droid.Resource.Attribute.arrowHeadLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.arrowShaftLength = global::XpertMobileApp.Droid.Resource.Attribute.arrowShaftLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoCompleteTextViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoSizeMaxTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autoSizeMaxTextSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoSizeMinTextSize = global::XpertMobileApp.Droid.Resource.Attribute.autoSizeMinTextSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoSizePresetSizes = global::XpertMobileApp.Droid.Resource.Attribute.autoSizePresetSizes;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoSizeStepGranularity = global::XpertMobileApp.Droid.Resource.Attribute.autoSizeStepGranularity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.autoSizeTextType = global::XpertMobileApp.Droid.Resource.Attribute.autoSizeTextType;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.background = global::XpertMobileApp.Droid.Resource.Attribute.background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.backgroundSplit = global::XpertMobileApp.Droid.Resource.Attribute.backgroundSplit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.backgroundStacked = global::XpertMobileApp.Droid.Resource.Attribute.backgroundStacked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.backgroundTint = global::XpertMobileApp.Droid.Resource.Attribute.backgroundTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.backgroundTintMode = global::XpertMobileApp.Droid.Resource.Attribute.backgroundTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.barLength = global::XpertMobileApp.Droid.Resource.Attribute.barLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_autoHide = global::XpertMobileApp.Droid.Resource.Attribute.behavior_autoHide;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_fitToContents = global::XpertMobileApp.Droid.Resource.Attribute.behavior_fitToContents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_hideable = global::XpertMobileApp.Droid.Resource.Attribute.behavior_hideable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_overlapTop = global::XpertMobileApp.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_peekHeight = global::XpertMobileApp.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.behavior_skipCollapsed = global::XpertMobileApp.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.borderlessButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.borderWidth = global::XpertMobileApp.Droid.Resource.Attribute.borderWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.bottomAppBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.bottomAppBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.bottomNavigationStyle = global::XpertMobileApp.Droid.Resource.Attribute.bottomNavigationStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxBackgroundColor = global::XpertMobileApp.Droid.Resource.Attribute.boxBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxBackgroundMode = global::XpertMobileApp.Droid.Resource.Attribute.boxBackgroundMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxCollapsedPaddingTop = global::XpertMobileApp.Droid.Resource.Attribute.boxCollapsedPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxCornerRadiusBottomEnd = global::XpertMobileApp.Droid.Resource.Attribute.boxCornerRadiusBottomEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxCornerRadiusBottomStart = global::XpertMobileApp.Droid.Resource.Attribute.boxCornerRadiusBottomStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxCornerRadiusTopEnd = global::XpertMobileApp.Droid.Resource.Attribute.boxCornerRadiusTopEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxCornerRadiusTopStart = global::XpertMobileApp.Droid.Resource.Attribute.boxCornerRadiusTopStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxStrokeColor = global::XpertMobileApp.Droid.Resource.Attribute.boxStrokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.boxStrokeWidth = global::XpertMobileApp.Droid.Resource.Attribute.boxStrokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonBarButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonBarNegativeButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonBarNeutralButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonBarPositiveButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonCompat = global::XpertMobileApp.Droid.Resource.Attribute.buttonCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonGravity = global::XpertMobileApp.Droid.Resource.Attribute.buttonGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonIconDimen = global::XpertMobileApp.Droid.Resource.Attribute.buttonIconDimen;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonPanelSideLayout = global::XpertMobileApp.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonStyleSmall = global::XpertMobileApp.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonTint = global::XpertMobileApp.Droid.Resource.Attribute.buttonTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.buttonTintMode = global::XpertMobileApp.Droid.Resource.Attribute.buttonTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardBackgroundColor = global::XpertMobileApp.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.cardCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardElevation = global::XpertMobileApp.Droid.Resource.Attribute.cardElevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardMaxElevation = global::XpertMobileApp.Droid.Resource.Attribute.cardMaxElevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardPreventCornerOverlap = global::XpertMobileApp.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardUseCompatPadding = global::XpertMobileApp.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cardViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.cardViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkboxStyle = global::XpertMobileApp.Droid.Resource.Attribute.checkboxStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkedChip = global::XpertMobileApp.Droid.Resource.Attribute.checkedChip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkedIcon = global::XpertMobileApp.Droid.Resource.Attribute.checkedIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkedIconEnabled = global::XpertMobileApp.Droid.Resource.Attribute.checkedIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkedIconVisible = global::XpertMobileApp.Droid.Resource.Attribute.checkedIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.checkedTextViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipBackgroundColor = global::XpertMobileApp.Droid.Resource.Attribute.chipBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.chipCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.chipEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipGroupStyle = global::XpertMobileApp.Droid.Resource.Attribute.chipGroupStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipIcon = global::XpertMobileApp.Droid.Resource.Attribute.chipIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipIconEnabled = global::XpertMobileApp.Droid.Resource.Attribute.chipIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipIconSize = global::XpertMobileApp.Droid.Resource.Attribute.chipIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipIconTint = global::XpertMobileApp.Droid.Resource.Attribute.chipIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipIconVisible = global::XpertMobileApp.Droid.Resource.Attribute.chipIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipMinHeight = global::XpertMobileApp.Droid.Resource.Attribute.chipMinHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipSpacing = global::XpertMobileApp.Droid.Resource.Attribute.chipSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipSpacingHorizontal = global::XpertMobileApp.Droid.Resource.Attribute.chipSpacingHorizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipSpacingVertical = global::XpertMobileApp.Droid.Resource.Attribute.chipSpacingVertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipStandaloneStyle = global::XpertMobileApp.Droid.Resource.Attribute.chipStandaloneStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.chipStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipStrokeColor = global::XpertMobileApp.Droid.Resource.Attribute.chipStrokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipStrokeWidth = global::XpertMobileApp.Droid.Resource.Attribute.chipStrokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.chipStyle = global::XpertMobileApp.Droid.Resource.Attribute.chipStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIcon = global::XpertMobileApp.Droid.Resource.Attribute.closeIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconEnabled = global::XpertMobileApp.Droid.Resource.Attribute.closeIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.closeIconEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconSize = global::XpertMobileApp.Droid.Resource.Attribute.closeIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.closeIconStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconTint = global::XpertMobileApp.Droid.Resource.Attribute.closeIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeIconVisible = global::XpertMobileApp.Droid.Resource.Attribute.closeIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.closeItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.closeItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.collapseContentDescription = global::XpertMobileApp.Droid.Resource.Attribute.collapseContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.collapsedTitleGravity = global::XpertMobileApp.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.collapsedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.collapseIcon = global::XpertMobileApp.Droid.Resource.Attribute.collapseIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.color = global::XpertMobileApp.Droid.Resource.Attribute.color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorAccent = global::XpertMobileApp.Droid.Resource.Attribute.colorAccent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorButtonNormal = global::XpertMobileApp.Droid.Resource.Attribute.colorButtonNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorControlActivated = global::XpertMobileApp.Droid.Resource.Attribute.colorControlActivated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorControlHighlight = global::XpertMobileApp.Droid.Resource.Attribute.colorControlHighlight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorControlNormal = global::XpertMobileApp.Droid.Resource.Attribute.colorControlNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorError = global::XpertMobileApp.Droid.Resource.Attribute.colorError;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorPrimary = global::XpertMobileApp.Droid.Resource.Attribute.colorPrimary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorPrimaryDark = global::XpertMobileApp.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorSecondary = global::XpertMobileApp.Droid.Resource.Attribute.colorSecondary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.colorSwitchThumbNormal = global::XpertMobileApp.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.commitIcon = global::XpertMobileApp.Droid.Resource.Attribute.commitIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentDescription = global::XpertMobileApp.Droid.Resource.Attribute.contentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetEnd = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetEndWithActions = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetLeft = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetRight = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetStart = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentInsetStartWithNavigation = global::XpertMobileApp.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentPadding = global::XpertMobileApp.Droid.Resource.Attribute.contentPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentPaddingBottom = global::XpertMobileApp.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentPaddingLeft = global::XpertMobileApp.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentPaddingRight = global::XpertMobileApp.Droid.Resource.Attribute.contentPaddingRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentPaddingTop = global::XpertMobileApp.Droid.Resource.Attribute.contentPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.contentScrim = global::XpertMobileApp.Droid.Resource.Attribute.contentScrim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.controlBackground = global::XpertMobileApp.Droid.Resource.Attribute.controlBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.coordinatorLayoutStyle = global::XpertMobileApp.Droid.Resource.Attribute.coordinatorLayoutStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.cornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.cornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.counterEnabled = global::XpertMobileApp.Droid.Resource.Attribute.counterEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.counterMaxLength = global::XpertMobileApp.Droid.Resource.Attribute.counterMaxLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.counterOverflowTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.counterTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.counterTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.customNavigationLayout = global::XpertMobileApp.Droid.Resource.Attribute.customNavigationLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.defaultQueryHint = global::XpertMobileApp.Droid.Resource.Attribute.defaultQueryHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dialogCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.dialogCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dialogPreferredPadding = global::XpertMobileApp.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dialogTheme = global::XpertMobileApp.Droid.Resource.Attribute.dialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.displayOptions = global::XpertMobileApp.Droid.Resource.Attribute.displayOptions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.divider = global::XpertMobileApp.Droid.Resource.Attribute.divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dividerHorizontal = global::XpertMobileApp.Droid.Resource.Attribute.dividerHorizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dividerPadding = global::XpertMobileApp.Droid.Resource.Attribute.dividerPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dividerVertical = global::XpertMobileApp.Droid.Resource.Attribute.dividerVertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableBottomCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableBottomCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableEndCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableEndCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableLeftCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableLeftCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableRightCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableRightCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableSize = global::XpertMobileApp.Droid.Resource.Attribute.drawableSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableStartCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableStartCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableTint = global::XpertMobileApp.Droid.Resource.Attribute.drawableTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableTintMode = global::XpertMobileApp.Droid.Resource.Attribute.drawableTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawableTopCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableTopCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.drawerArrowStyle = global::XpertMobileApp.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dropdownListPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.editTextBackground = global::XpertMobileApp.Droid.Resource.Attribute.editTextBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.editTextColor = global::XpertMobileApp.Droid.Resource.Attribute.editTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.editTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.editTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.elevation = global::XpertMobileApp.Droid.Resource.Attribute.elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.enforceMaterialTheme = global::XpertMobileApp.Droid.Resource.Attribute.enforceMaterialTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.enforceTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.enforceTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.errorEnabled = global::XpertMobileApp.Droid.Resource.Attribute.errorEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.errorTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.errorTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable = global::XpertMobileApp.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expanded = global::XpertMobileApp.Droid.Resource.Attribute.expanded;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleGravity = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleMargin = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleMarginBottom = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleMarginEnd = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleMarginStart = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleMarginTop = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.expandedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabAlignmentMode = global::XpertMobileApp.Droid.Resource.Attribute.fabAlignmentMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabCradleMargin = global::XpertMobileApp.Droid.Resource.Attribute.fabCradleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabCradleRoundedCornerRadius = global::XpertMobileApp.Droid.Resource.Attribute.fabCradleRoundedCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabCradleVerticalOffset = global::XpertMobileApp.Droid.Resource.Attribute.fabCradleVerticalOffset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabCustomSize = global::XpertMobileApp.Droid.Resource.Attribute.fabCustomSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fabSize = global::XpertMobileApp.Droid.Resource.Attribute.fabSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fastScrollEnabled = global::XpertMobileApp.Droid.Resource.Attribute.fastScrollEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::XpertMobileApp.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::XpertMobileApp.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable = global::XpertMobileApp.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable = global::XpertMobileApp.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.firstBaselineToTopHeight = global::XpertMobileApp.Droid.Resource.Attribute.firstBaselineToTopHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.floatingActionButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.floatingActionButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.font = global::XpertMobileApp.Droid.Resource.Attribute.font;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontFamily = global::XpertMobileApp.Droid.Resource.Attribute.fontFamily;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderAuthority = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderCerts = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderCerts;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderFetchStrategy = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderFetchTimeout = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderPackage = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderPackage;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontProviderQuery = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderQuery;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontStyle = global::XpertMobileApp.Droid.Resource.Attribute.fontStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontVariationSettings = global::XpertMobileApp.Droid.Resource.Attribute.fontVariationSettings;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.fontWeight = global::XpertMobileApp.Droid.Resource.Attribute.fontWeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.foregroundInsidePadding = global::XpertMobileApp.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.gapBetweenBars = global::XpertMobileApp.Droid.Resource.Attribute.gapBetweenBars;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.goIcon = global::XpertMobileApp.Droid.Resource.Attribute.goIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.headerLayout = global::XpertMobileApp.Droid.Resource.Attribute.headerLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.height = global::XpertMobileApp.Droid.Resource.Attribute.height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.helperText = global::XpertMobileApp.Droid.Resource.Attribute.helperText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.helperTextEnabled = global::XpertMobileApp.Droid.Resource.Attribute.helperTextEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.helperTextTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.helperTextTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hideMotionSpec = global::XpertMobileApp.Droid.Resource.Attribute.hideMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hideOnContentScroll = global::XpertMobileApp.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hideOnScroll = global::XpertMobileApp.Droid.Resource.Attribute.hideOnScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hintAnimationEnabled = global::XpertMobileApp.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hintEnabled = global::XpertMobileApp.Droid.Resource.Attribute.hintEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hintTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.hintTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.homeAsUpIndicator = global::XpertMobileApp.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.homeLayout = global::XpertMobileApp.Droid.Resource.Attribute.homeLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.hoveredFocusedTranslationZ = global::XpertMobileApp.Droid.Resource.Attribute.hoveredFocusedTranslationZ;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.icon = global::XpertMobileApp.Droid.Resource.Attribute.icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconGravity = global::XpertMobileApp.Droid.Resource.Attribute.iconGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconifiedByDefault = global::XpertMobileApp.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconSize = global::XpertMobileApp.Droid.Resource.Attribute.iconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconTint = global::XpertMobileApp.Droid.Resource.Attribute.iconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.iconTintMode = global::XpertMobileApp.Droid.Resource.Attribute.iconTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.imageButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.imageButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.indeterminateProgressStyle = global::XpertMobileApp.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.initialActivityCount = global::XpertMobileApp.Droid.Resource.Attribute.initialActivityCount;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.insetForeground = global::XpertMobileApp.Droid.Resource.Attribute.insetForeground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.isLightTheme = global::XpertMobileApp.Droid.Resource.Attribute.isLightTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemBackground = global::XpertMobileApp.Droid.Resource.Attribute.itemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemHorizontalPadding = global::XpertMobileApp.Droid.Resource.Attribute.itemHorizontalPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemHorizontalTranslationEnabled = global::XpertMobileApp.Droid.Resource.Attribute.itemHorizontalTranslationEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemIconPadding = global::XpertMobileApp.Droid.Resource.Attribute.itemIconPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemIconSize = global::XpertMobileApp.Droid.Resource.Attribute.itemIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemIconTint = global::XpertMobileApp.Droid.Resource.Attribute.itemIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemPadding = global::XpertMobileApp.Droid.Resource.Attribute.itemPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemSpacing = global::XpertMobileApp.Droid.Resource.Attribute.itemSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.itemTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemTextAppearanceActive = global::XpertMobileApp.Droid.Resource.Attribute.itemTextAppearanceActive;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemTextAppearanceInactive = global::XpertMobileApp.Droid.Resource.Attribute.itemTextAppearanceInactive;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.itemTextColor = global::XpertMobileApp.Droid.Resource.Attribute.itemTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.keylines = global::XpertMobileApp.Droid.Resource.Attribute.keylines;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.labelVisibilityMode = global::XpertMobileApp.Droid.Resource.Attribute.labelVisibilityMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.lastBaselineToBottomHeight = global::XpertMobileApp.Droid.Resource.Attribute.lastBaselineToBottomHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout = global::XpertMobileApp.Droid.Resource.Attribute.layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layoutManager = global::XpertMobileApp.Droid.Resource.Attribute.layoutManager;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_anchor = global::XpertMobileApp.Droid.Resource.Attribute.layout_anchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_anchorGravity = global::XpertMobileApp.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_behavior = global::XpertMobileApp.Droid.Resource.Attribute.layout_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_collapseMode = global::XpertMobileApp.Droid.Resource.Attribute.layout_collapseMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_collapseParallaxMultiplier = global::XpertMobileApp.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_dodgeInsetEdges = global::XpertMobileApp.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_insetEdge = global::XpertMobileApp.Droid.Resource.Attribute.layout_insetEdge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_keyline = global::XpertMobileApp.Droid.Resource.Attribute.layout_keyline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_scrollFlags = global::XpertMobileApp.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.layout_scrollInterpolator = global::XpertMobileApp.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.liftOnScroll = global::XpertMobileApp.Droid.Resource.Attribute.liftOnScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.lineHeight = global::XpertMobileApp.Droid.Resource.Attribute.lineHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.lineSpacing = global::XpertMobileApp.Droid.Resource.Attribute.lineSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listChoiceBackgroundIndicator = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listChoiceIndicatorMultipleAnimated = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceIndicatorMultipleAnimated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listChoiceIndicatorSingleAnimated = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceIndicatorSingleAnimated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listDividerAlertDialog = global::XpertMobileApp.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.listItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listLayout = global::XpertMobileApp.Droid.Resource.Attribute.listLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listMenuViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPopupWindowStyle = global::XpertMobileApp.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemHeightLarge = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemHeightSmall = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemPaddingEnd = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemPaddingLeft = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemPaddingRight = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.listPreferredItemPaddingStart = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.logo = global::XpertMobileApp.Droid.Resource.Attribute.logo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.logoDescription = global::XpertMobileApp.Droid.Resource.Attribute.logoDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.materialButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.materialButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.materialCardViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.materialCardViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.maxActionInlineWidth = global::XpertMobileApp.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.maxButtonHeight = global::XpertMobileApp.Droid.Resource.Attribute.maxButtonHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.maxImageSize = global::XpertMobileApp.Droid.Resource.Attribute.maxImageSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.measureWithLargestChild = global::XpertMobileApp.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.menu = global::XpertMobileApp.Droid.Resource.Attribute.menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.multiChoiceItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.navigationContentDescription = global::XpertMobileApp.Droid.Resource.Attribute.navigationContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.navigationIcon = global::XpertMobileApp.Droid.Resource.Attribute.navigationIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.navigationMode = global::XpertMobileApp.Droid.Resource.Attribute.navigationMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.navigationViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.navigationViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.numericModifiers = global::XpertMobileApp.Droid.Resource.Attribute.numericModifiers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.overlapAnchor = global::XpertMobileApp.Droid.Resource.Attribute.overlapAnchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.paddingBottomNoButtons = global::XpertMobileApp.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.paddingEnd = global::XpertMobileApp.Droid.Resource.Attribute.paddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.paddingStart = global::XpertMobileApp.Droid.Resource.Attribute.paddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.paddingTopNoTitle = global::XpertMobileApp.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.panelBackground = global::XpertMobileApp.Droid.Resource.Attribute.panelBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.panelMenuListTheme = global::XpertMobileApp.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.panelMenuListWidth = global::XpertMobileApp.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.passwordToggleContentDescription = global::XpertMobileApp.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.passwordToggleDrawable = global::XpertMobileApp.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.passwordToggleEnabled = global::XpertMobileApp.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.passwordToggleTint = global::XpertMobileApp.Droid.Resource.Attribute.passwordToggleTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.passwordToggleTintMode = global::XpertMobileApp.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.popupMenuStyle = global::XpertMobileApp.Droid.Resource.Attribute.popupMenuStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.popupTheme = global::XpertMobileApp.Droid.Resource.Attribute.popupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.popupWindowStyle = global::XpertMobileApp.Droid.Resource.Attribute.popupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.preserveIconSpacing = global::XpertMobileApp.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.pressedTranslationZ = global::XpertMobileApp.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.progressBarPadding = global::XpertMobileApp.Droid.Resource.Attribute.progressBarPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.progressBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.progressBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.queryBackground = global::XpertMobileApp.Droid.Resource.Attribute.queryBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.queryHint = global::XpertMobileApp.Droid.Resource.Attribute.queryHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.radioButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.radioButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.ratingBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.ratingBarStyleIndicator = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.ratingBarStyleSmall = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.recyclerViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.recyclerViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.reverseLayout = global::XpertMobileApp.Droid.Resource.Attribute.reverseLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.rippleColor = global::XpertMobileApp.Droid.Resource.Attribute.rippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.scrimBackground = global::XpertMobileApp.Droid.Resource.Attribute.scrimBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.scrimVisibleHeightTrigger = global::XpertMobileApp.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.searchHintIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchHintIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.searchIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.searchViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.searchViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.seekBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.seekBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.selectableItemBackground = global::XpertMobileApp.Droid.Resource.Attribute.selectableItemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.selectableItemBackgroundBorderless = global::XpertMobileApp.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.showAsAction = global::XpertMobileApp.Droid.Resource.Attribute.showAsAction;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.showDividers = global::XpertMobileApp.Droid.Resource.Attribute.showDividers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.showMotionSpec = global::XpertMobileApp.Droid.Resource.Attribute.showMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.showText = global::XpertMobileApp.Droid.Resource.Attribute.showText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.showTitle = global::XpertMobileApp.Droid.Resource.Attribute.showTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.singleChoiceItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.singleLine = global::XpertMobileApp.Droid.Resource.Attribute.singleLine;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.singleSelection = global::XpertMobileApp.Droid.Resource.Attribute.singleSelection;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.snackbarButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.snackbarStyle = global::XpertMobileApp.Droid.Resource.Attribute.snackbarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.spanCount = global::XpertMobileApp.Droid.Resource.Attribute.spanCount;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.spinBars = global::XpertMobileApp.Droid.Resource.Attribute.spinBars;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.spinnerDropDownItemStyle = global::XpertMobileApp.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.spinnerStyle = global::XpertMobileApp.Droid.Resource.Attribute.spinnerStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.splitTrack = global::XpertMobileApp.Droid.Resource.Attribute.splitTrack;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.srcCompat = global::XpertMobileApp.Droid.Resource.Attribute.srcCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.stackFromEnd = global::XpertMobileApp.Droid.Resource.Attribute.stackFromEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.state_above_anchor = global::XpertMobileApp.Droid.Resource.Attribute.state_above_anchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.state_collapsed = global::XpertMobileApp.Droid.Resource.Attribute.state_collapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.state_collapsible = global::XpertMobileApp.Droid.Resource.Attribute.state_collapsible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.state_liftable = global::XpertMobileApp.Droid.Resource.Attribute.state_liftable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.state_lifted = global::XpertMobileApp.Droid.Resource.Attribute.state_lifted;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.statusBarBackground = global::XpertMobileApp.Droid.Resource.Attribute.statusBarBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.statusBarScrim = global::XpertMobileApp.Droid.Resource.Attribute.statusBarScrim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.strokeColor = global::XpertMobileApp.Droid.Resource.Attribute.strokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.strokeWidth = global::XpertMobileApp.Droid.Resource.Attribute.strokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.subMenuArrow = global::XpertMobileApp.Droid.Resource.Attribute.subMenuArrow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.submitBackground = global::XpertMobileApp.Droid.Resource.Attribute.submitBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.subtitle = global::XpertMobileApp.Droid.Resource.Attribute.subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.subtitleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.subtitleTextColor = global::XpertMobileApp.Droid.Resource.Attribute.subtitleTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.subtitleTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.suggestionRowLayout = global::XpertMobileApp.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.switchMinWidth = global::XpertMobileApp.Droid.Resource.Attribute.switchMinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.switchPadding = global::XpertMobileApp.Droid.Resource.Attribute.switchPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.switchStyle = global::XpertMobileApp.Droid.Resource.Attribute.switchStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.switchTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.switchTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabBackground = global::XpertMobileApp.Droid.Resource.Attribute.tabBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabContentStart = global::XpertMobileApp.Droid.Resource.Attribute.tabContentStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabGravity = global::XpertMobileApp.Droid.Resource.Attribute.tabGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIconTint = global::XpertMobileApp.Droid.Resource.Attribute.tabIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIconTintMode = global::XpertMobileApp.Droid.Resource.Attribute.tabIconTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicator = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicatorAnimationDuration = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicatorAnimationDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicatorColor = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicatorFullWidth = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicatorFullWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicatorGravity = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicatorGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabIndicatorHeight = global::XpertMobileApp.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabInlineLabel = global::XpertMobileApp.Droid.Resource.Attribute.tabInlineLabel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabMaxWidth = global::XpertMobileApp.Droid.Resource.Attribute.tabMaxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabMinWidth = global::XpertMobileApp.Droid.Resource.Attribute.tabMinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabMode = global::XpertMobileApp.Droid.Resource.Attribute.tabMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabPadding = global::XpertMobileApp.Droid.Resource.Attribute.tabPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabPaddingBottom = global::XpertMobileApp.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabPaddingEnd = global::XpertMobileApp.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabPaddingStart = global::XpertMobileApp.Droid.Resource.Attribute.tabPaddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabPaddingTop = global::XpertMobileApp.Droid.Resource.Attribute.tabPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabRippleColor = global::XpertMobileApp.Droid.Resource.Attribute.tabRippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabSelectedTextColor = global::XpertMobileApp.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabStyle = global::XpertMobileApp.Droid.Resource.Attribute.tabStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.tabTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabTextColor = global::XpertMobileApp.Droid.Resource.Attribute.tabTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tabUnboundedRipple = global::XpertMobileApp.Droid.Resource.Attribute.tabUnboundedRipple;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAllCaps = global::XpertMobileApp.Droid.Resource.Attribute.textAllCaps;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceBody1 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceBody1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceBody2 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceBody2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceButton = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceCaption = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceCaption;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline1 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline2 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline3 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline4 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline5 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline5;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceHeadline6 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceHeadline6;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceLargePopupMenu = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceListItem = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceListItemSecondary = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceListItemSmall = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceOverline = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceOverline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearancePopupMenuHeader = global::XpertMobileApp.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceSearchResultTitle = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceSmallPopupMenu = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceSubtitle1 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceSubtitle1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textAppearanceSubtitle2 = global::XpertMobileApp.Droid.Resource.Attribute.textAppearanceSubtitle2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textColorAlertDialogListItem = global::XpertMobileApp.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textColorSearchUrl = global::XpertMobileApp.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.textEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textInputStyle = global::XpertMobileApp.Droid.Resource.Attribute.textInputStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textLocale = global::XpertMobileApp.Droid.Resource.Attribute.textLocale;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.textStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.textStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.theme = global::XpertMobileApp.Droid.Resource.Attribute.theme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.thickness = global::XpertMobileApp.Droid.Resource.Attribute.thickness;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.thumbTextPadding = global::XpertMobileApp.Droid.Resource.Attribute.thumbTextPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.thumbTint = global::XpertMobileApp.Droid.Resource.Attribute.thumbTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.thumbTintMode = global::XpertMobileApp.Droid.Resource.Attribute.thumbTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tickMark = global::XpertMobileApp.Droid.Resource.Attribute.tickMark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tickMarkTint = global::XpertMobileApp.Droid.Resource.Attribute.tickMarkTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tickMarkTintMode = global::XpertMobileApp.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tint = global::XpertMobileApp.Droid.Resource.Attribute.tint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tintMode = global::XpertMobileApp.Droid.Resource.Attribute.tintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.title = global::XpertMobileApp.Droid.Resource.Attribute.title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleEnabled = global::XpertMobileApp.Droid.Resource.Attribute.titleEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMargin = global::XpertMobileApp.Droid.Resource.Attribute.titleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMarginBottom = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMarginEnd = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMargins = global::XpertMobileApp.Droid.Resource.Attribute.titleMargins;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMarginStart = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleMarginTop = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.titleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleTextColor = global::XpertMobileApp.Droid.Resource.Attribute.titleTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.titleTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.titleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.toolbarId = global::XpertMobileApp.Droid.Resource.Attribute.toolbarId;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.toolbarNavigationButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.toolbarStyle = global::XpertMobileApp.Droid.Resource.Attribute.toolbarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tooltipForegroundColor = global::XpertMobileApp.Droid.Resource.Attribute.tooltipForegroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tooltipFrameBackground = global::XpertMobileApp.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.tooltipText = global::XpertMobileApp.Droid.Resource.Attribute.tooltipText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.track = global::XpertMobileApp.Droid.Resource.Attribute.track;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.trackTint = global::XpertMobileApp.Droid.Resource.Attribute.trackTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.trackTintMode = global::XpertMobileApp.Droid.Resource.Attribute.trackTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.ttcIndex = global::XpertMobileApp.Droid.Resource.Attribute.ttcIndex;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.useCompatPadding = global::XpertMobileApp.Droid.Resource.Attribute.useCompatPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.viewInflaterClass = global::XpertMobileApp.Droid.Resource.Attribute.viewInflaterClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.voiceIcon = global::XpertMobileApp.Droid.Resource.Attribute.voiceIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowActionBar = global::XpertMobileApp.Droid.Resource.Attribute.windowActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowActionBarOverlay = global::XpertMobileApp.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowActionModeOverlay = global::XpertMobileApp.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowFixedHeightMajor = global::XpertMobileApp.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowFixedHeightMinor = global::XpertMobileApp.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowFixedWidthMajor = global::XpertMobileApp.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowFixedWidthMinor = global::XpertMobileApp.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowMinWidthMajor = global::XpertMobileApp.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowMinWidthMinor = global::XpertMobileApp.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Attribute.windowNoTitle = global::XpertMobileApp.Droid.Resource.Attribute.windowNoTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Boolean.abc_action_bar_embed_tabs = global::XpertMobileApp.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Boolean.abc_allow_stacked_button_bar = global::XpertMobileApp.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::XpertMobileApp.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps = global::XpertMobileApp.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_background_cache_hint_selector_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_btn_colored_borderless_text_material = global::XpertMobileApp.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_btn_colored_text_material = global::XpertMobileApp.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_color_highlight_material = global::XpertMobileApp.Droid.Resource.Color.abc_color_highlight_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_hint_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_hint_foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_input_method_navigation_guard = global::XpertMobileApp.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_primary_text_disable_only_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_primary_text_disable_only_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_primary_text_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_primary_text_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_search_url_text = global::XpertMobileApp.Droid.Resource.Color.abc_search_url_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_search_url_text_normal = global::XpertMobileApp.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_search_url_text_pressed = global::XpertMobileApp.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_search_url_text_selected = global::XpertMobileApp.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_secondary_text_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_secondary_text_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_btn_checkable = global::XpertMobileApp.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_default = global::XpertMobileApp.Droid.Resource.Color.abc_tint_default;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_edittext = global::XpertMobileApp.Droid.Resource.Color.abc_tint_edittext;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_seek_thumb = global::XpertMobileApp.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_spinner = global::XpertMobileApp.Droid.Resource.Color.abc_tint_spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.abc_tint_switch_track = global::XpertMobileApp.Droid.Resource.Color.abc_tint_switch_track;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.accent_material_dark = global::XpertMobileApp.Droid.Resource.Color.accent_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.accent_material_light = global::XpertMobileApp.Droid.Resource.Color.accent_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.background_floating_material_dark = global::XpertMobileApp.Droid.Resource.Color.background_floating_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.background_floating_material_light = global::XpertMobileApp.Droid.Resource.Color.background_floating_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.background_material_dark = global::XpertMobileApp.Droid.Resource.Color.background_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.background_material_light = global::XpertMobileApp.Droid.Resource.Color.background_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_inverse_material_dark = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_inverse_material_light = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.bright_foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.bright_foreground_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.browser_actions_bg_grey = global::XpertMobileApp.Droid.Resource.Color.browser_actions_bg_grey;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.browser_actions_divider_color = global::XpertMobileApp.Droid.Resource.Color.browser_actions_divider_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.browser_actions_text_color = global::XpertMobileApp.Droid.Resource.Color.browser_actions_text_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.browser_actions_title_color = global::XpertMobileApp.Droid.Resource.Color.browser_actions_title_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.button_material_dark = global::XpertMobileApp.Droid.Resource.Color.button_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.button_material_light = global::XpertMobileApp.Droid.Resource.Color.button_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.cardview_dark_background = global::XpertMobileApp.Droid.Resource.Color.cardview_dark_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.cardview_light_background = global::XpertMobileApp.Droid.Resource.Color.cardview_light_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.cardview_shadow_end_color = global::XpertMobileApp.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.cardview_shadow_start_color = global::XpertMobileApp.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_bottom_navigation_shadow_color = global::XpertMobileApp.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_default_color_primary = global::XpertMobileApp.Droid.Resource.Color.design_default_color_primary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_default_color_primary_dark = global::XpertMobileApp.Droid.Resource.Color.design_default_color_primary_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_error = global::XpertMobileApp.Droid.Resource.Color.design_error;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_shadow_end_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_shadow_mid_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_shadow_start_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_stroke_end_inner_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_stroke_end_outer_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_stroke_top_inner_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_fab_stroke_top_outer_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_snackbar_background_color = global::XpertMobileApp.Droid.Resource.Color.design_snackbar_background_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.design_tint_password_toggle = global::XpertMobileApp.Droid.Resource.Color.design_tint_password_toggle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.dim_foreground_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.dim_foreground_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.dim_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.dim_foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.error_color_material_dark = global::XpertMobileApp.Droid.Resource.Color.error_color_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.error_color_material_light = global::XpertMobileApp.Droid.Resource.Color.error_color_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.foreground_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.foreground_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.highlighted_text_material_dark = global::XpertMobileApp.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.highlighted_text_material_light = global::XpertMobileApp.Droid.Resource.Color.highlighted_text_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_blue_grey_800 = global::XpertMobileApp.Droid.Resource.Color.material_blue_grey_800;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_blue_grey_900 = global::XpertMobileApp.Droid.Resource.Color.material_blue_grey_900;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_blue_grey_950 = global::XpertMobileApp.Droid.Resource.Color.material_blue_grey_950;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_deep_teal_200 = global::XpertMobileApp.Droid.Resource.Color.material_deep_teal_200;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_deep_teal_500 = global::XpertMobileApp.Droid.Resource.Color.material_deep_teal_500;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_100 = global::XpertMobileApp.Droid.Resource.Color.material_grey_100;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_300 = global::XpertMobileApp.Droid.Resource.Color.material_grey_300;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_50 = global::XpertMobileApp.Droid.Resource.Color.material_grey_50;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_600 = global::XpertMobileApp.Droid.Resource.Color.material_grey_600;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_800 = global::XpertMobileApp.Droid.Resource.Color.material_grey_800;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_850 = global::XpertMobileApp.Droid.Resource.Color.material_grey_850;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.material_grey_900 = global::XpertMobileApp.Droid.Resource.Color.material_grey_900;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_bottom_nav_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_bg_color_disabled = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_bg_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_stroke_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_text_color_disabled = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_text_color_disabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_text_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_btn_transparent_bg_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_transparent_bg_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_chip_background_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_chip_background_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_chip_close_icon_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_chip_close_icon_tint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_chip_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_chip_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_chip_text_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_chip_text_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_fab_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_fab_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_scrim_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_scrim_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_tabs_colored_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_colored_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_tabs_icon_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_icon_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_tabs_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_ripple_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_textinput_disabled_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_disabled_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.mtrl_text_btn_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.notification_action_color_filter = global::XpertMobileApp.Droid.Resource.Color.notification_action_color_filter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.notification_icon_bg_color = global::XpertMobileApp.Droid.Resource.Color.notification_icon_bg_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.notification_material_background_media_default_color = global::XpertMobileApp.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_dark_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_dark_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_dark_material_light = global::XpertMobileApp.Droid.Resource.Color.primary_dark_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_material_light = global::XpertMobileApp.Droid.Resource.Color.primary_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_text_default_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_text_default_material_light = global::XpertMobileApp.Droid.Resource.Color.primary_text_default_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_text_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.primary_text_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.ripple_material_dark = global::XpertMobileApp.Droid.Resource.Color.ripple_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.ripple_material_light = global::XpertMobileApp.Droid.Resource.Color.ripple_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.secondary_text_default_material_dark = global::XpertMobileApp.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.secondary_text_default_material_light = global::XpertMobileApp.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.secondary_text_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.secondary_text_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_material_dark = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_material_light = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_normal_material_dark = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.switch_thumb_normal_material_light = global::XpertMobileApp.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.tooltip_background_dark = global::XpertMobileApp.Droid.Resource.Color.tooltip_background_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Color.tooltip_background_light = global::XpertMobileApp.Droid.Resource.Color.tooltip_background_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_content_inset_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_default_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_elevation_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_stacked_max_height = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_button_min_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_button_min_width_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height = global::XpertMobileApp.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_alert_dialog_button_dimen = global::XpertMobileApp.Droid.Resource.Dimension.abc_alert_dialog_button_dimen;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_button_inset_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_button_inset_vertical_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_button_padding_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_button_padding_vertical_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_config_prefDialogWidth = global::XpertMobileApp.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_control_corner_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_control_inset_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_control_padding_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_corner_radius_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_corner_radius_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_fixed_height_major = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_fixed_height_minor = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_fixed_width_major = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_fixed_width_minor = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_min_width_major = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_min_width_minor = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_padding_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_padding_top_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dialog_title_divider_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_disabled_alpha_material_dark = global::XpertMobileApp.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_disabled_alpha_material_light = global::XpertMobileApp.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dropdownitem_icon_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left = global::XpertMobileApp.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right = global::XpertMobileApp.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_edit_text_inset_top_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_floating_window_z = global::XpertMobileApp.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_list_item_height_large_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_large_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_list_item_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_list_item_height_small_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_small_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_panel_menu_list_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_progress_bar_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_search_view_preferred_height = global::XpertMobileApp.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_search_view_preferred_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_seekbar_track_background_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_select_dialog_padding_start_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_switch_padding = global::XpertMobileApp.Droid.Resource.Dimension.abc_switch_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_body_1_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_body_2_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_button_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_caption_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_display_1_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_display_2_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_display_3_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_display_4_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_headline_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_large_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_medium_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_menu_header_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_menu_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_small_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_subhead_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_title_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.abc_text_size_title_material_toolbar = global::XpertMobileApp.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.browser_actions_context_menu_max_width = global::XpertMobileApp.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.browser_actions_context_menu_min_padding = global::XpertMobileApp.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.cardview_compat_inset_shadow = global::XpertMobileApp.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.cardview_default_elevation = global::XpertMobileApp.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.cardview_default_radius = global::XpertMobileApp.Droid.Resource.Dimension.cardview_default_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_button_inset_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_button_inset_vertical_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_button_padding_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_button_padding_vertical_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_control_corner_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_notification_large_icon_max_height = global::XpertMobileApp.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.compat_notification_large_icon_max_width = global::XpertMobileApp.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_appbar_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_active_text_size = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_height = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_icon_size = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_icon_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_item_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_item_min_width = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_margin = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_shadow_height = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_navigation_text_size = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min = global::XpertMobileApp.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_border_width = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_border_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_image_size = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_image_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_size_mini = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_size_normal = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_fab_translation_z_pressed = global::XpertMobileApp.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_icon_size = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_item_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_item_horizontal_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_item_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_item_icon_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_padding_bottom = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_navigation_separator_vertical_padding = global::XpertMobileApp.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_action_inline_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_background_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_elevation = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_min_width = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_padding_horizontal = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_padding_vertical = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_snackbar_text_size = global::XpertMobileApp.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_tab_max_width = global::XpertMobileApp.Droid.Resource.Dimension.design_tab_max_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_tab_scrollable_min_width = global::XpertMobileApp.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_tab_text_size = global::XpertMobileApp.Droid.Resource.Dimension.design_tab_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_tab_text_size_2line = global::XpertMobileApp.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.design_textinput_caption_translate_y = global::XpertMobileApp.Droid.Resource.Dimension.design_textinput_caption_translate_y;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.disabled_alpha_material_dark = global::XpertMobileApp.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.disabled_alpha_material_light = global::XpertMobileApp.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.fastscroll_default_thickness = global::XpertMobileApp.Droid.Resource.Dimension.fastscroll_default_thickness;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.fastscroll_margin = global::XpertMobileApp.Droid.Resource.Dimension.fastscroll_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.fastscroll_minimum_range = global::XpertMobileApp.Droid.Resource.Dimension.fastscroll_minimum_range;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.highlight_alpha_material_colored = global::XpertMobileApp.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.highlight_alpha_material_dark = global::XpertMobileApp.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.highlight_alpha_material_light = global::XpertMobileApp.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.hint_alpha_material_dark = global::XpertMobileApp.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.hint_alpha_material_light = global::XpertMobileApp.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.hint_pressed_alpha_material_dark = global::XpertMobileApp.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.hint_pressed_alpha_material_light = global::XpertMobileApp.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::XpertMobileApp.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_bottomappbar_height = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_bottomappbar_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_disabled_elevation = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_disabled_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_disabled_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_disabled_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_elevation = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_focused_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_focused_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_hovered_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_hovered_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_icon_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_inset = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_inset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_letter_spacing = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_letter_spacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_padding_bottom = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_padding_bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_padding_left = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_padding_left;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_padding_right = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_padding_right;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_padding_top = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_padding_top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_pressed_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_pressed_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_stroke_size = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_stroke_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_text_size = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_btn_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_btn_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_card_elevation = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_card_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_card_spacing = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_card_spacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_chip_text_size = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_chip_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_fab_elevation = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_fab_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_navigation_elevation = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_navigation_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_snackbar_margin = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_padding_end = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.mtrl_toolbar_default_height = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_toolbar_default_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_action_icon_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_action_text_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_action_text_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_big_circle_margin = global::XpertMobileApp.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_content_margin_start = global::XpertMobileApp.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_large_icon_height = global::XpertMobileApp.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_large_icon_width = global::XpertMobileApp.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_main_column_padding_top = global::XpertMobileApp.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_media_narrow_margin = global::XpertMobileApp.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_right_icon_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_right_side_padding_top = global::XpertMobileApp.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_small_icon_background_padding = global::XpertMobileApp.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_small_icon_size_as_large = global::XpertMobileApp.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_subtext_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_subtext_size;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_top_pad = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.notification_top_pad_large_text = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.subtitle_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.subtitle_outline_width = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_outline_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.subtitle_shadow_offset = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.subtitle_shadow_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_corner_radius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_horizontal_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_margin = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_margin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_precise_anchor_threshold = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_precise_anchor_threshold;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_vertical_padding = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_vertical_padding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_y_offset_non_touch = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_y_offset_non_touch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Dimension.tooltip_y_offset_touch = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_y_offset_touch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_action_bar_item_background_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_borderless_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_check_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_check_material_anim = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_material_anim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_colored_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_default_mtrl_shape = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_radio_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_radio_material_anim = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_material_anim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_cab_background_internal_bg = global::XpertMobileApp.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_cab_background_top_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_control_background_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_control_background_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_dialog_material_background = global::XpertMobileApp.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_edit_text_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_ab_back_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_clear_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_go_search_api_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_overflow_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_search_api_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_black_16dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_black_36dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_black_48dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_half_black_16dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_half_black_36dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_star_half_black_48dp = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ic_voice_search_api_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_item_background_holo_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_item_background_holo_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_divider_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_divider_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_focused_holo = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_longpressed_holo = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_pressed_holo_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_pressed_holo_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_holo_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_list_selector_holo_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::XpertMobileApp.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_popup_background_mtrl_mult = global::XpertMobileApp.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ratingbar_indicator_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ratingbar_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_ratingbar_small_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::XpertMobileApp.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::XpertMobileApp.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_seekbar_thumb_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_seekbar_tick_mark_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_seekbar_track_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_spinner_textfield_background_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_switch_thumb_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_tab_indicator_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_textfield_search_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_cursor_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.abc_vector_test = global::XpertMobileApp.Droid.Resource.Drawable.abc_vector_test;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar1 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar10 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar10;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar11 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar11;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar12 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar12;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar13 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar13;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar14 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar14;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar15 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar15;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar16 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar16;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar17 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar17;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar18 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar18;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar19 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar19;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar2 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar20 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar20;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar21 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar21;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar22 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar22;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar23 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar23;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar24 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar24;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar25 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar25;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar26 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar26;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar27 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar27;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar28 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar28;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar29 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar29;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar3 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar30 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar30;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar4 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar5 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar5;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar6 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar6;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar7 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar7;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar8 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar8;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.Avatar9 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar9;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.avd_hide_password = global::XpertMobileApp.Droid.Resource.Drawable.avd_hide_password;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.avd_show_password = global::XpertMobileApp.Droid.Resource.Drawable.avd_show_password;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_checkbox_checked_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_mtrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_checkbox_unchecked_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_mtrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_radio_off_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_off_mtrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_radio_off_to_on_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_off_to_on_mtrl_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_radio_on_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_on_mtrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.btn_radio_on_to_off_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_on_to_off_mtrl_animation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.clear_button_icon = global::XpertMobileApp.Droid.Resource.Drawable.clear_button_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_bottom_navigation_item_background = global::XpertMobileApp.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_fab_background = global::XpertMobileApp.Droid.Resource.Drawable.design_fab_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_ic_visibility = global::XpertMobileApp.Droid.Resource.Drawable.design_ic_visibility;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_ic_visibility_off = global::XpertMobileApp.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_password_eye = global::XpertMobileApp.Droid.Resource.Drawable.design_password_eye;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.design_snackbar_background = global::XpertMobileApp.Droid.Resource.Drawable.design_snackbar_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.ic_mtrl_chip_checked_black = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.ic_mtrl_chip_close_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.mtrl_snackbar_background = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_snackbar_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.mtrl_tabs_default_indicator = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.navigation_empty_icon = global::XpertMobileApp.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_action_background = global::XpertMobileApp.Droid.Resource.Drawable.notification_action_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg_low = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg_low;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg_low_normal = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg_low_pressed = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg_normal = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg_normal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_bg_normal_pressed = global::XpertMobileApp.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_icon_background = global::XpertMobileApp.Droid.Resource.Drawable.notification_icon_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_template_icon_bg = global::XpertMobileApp.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_template_icon_low_bg = global::XpertMobileApp.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notification_tile_bg = global::XpertMobileApp.Droid.Resource.Drawable.notification_tile_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.notify_panel_notification_icon_bg = global::XpertMobileApp.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.sfclosebutton = global::XpertMobileApp.Droid.Resource.Drawable.sfclosebutton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.styleinfo = global::XpertMobileApp.Droid.Resource.Drawable.styleinfo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.tooltip_frame_dark = global::XpertMobileApp.Droid.Resource.Drawable.tooltip_frame_dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Drawable.tooltip_frame_light = global::XpertMobileApp.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_action_clickable_span = global::XpertMobileApp.Droid.Resource.Id.accessibility_action_clickable_span;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_0 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_1 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_10 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_10;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_11 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_11;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_12 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_12;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_13 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_13;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_14 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_14;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_15 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_15;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_16 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_16;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_17 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_17;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_18 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_18;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_19 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_19;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_2 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_20 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_20;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_21 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_21;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_22 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_22;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_23 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_23;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_24 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_24;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_25 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_25;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_26 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_26;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_27 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_27;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_28 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_28;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_29 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_29;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_3 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_30 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_30;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_31 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_31;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_4 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_5 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_5;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_6 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_6;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_7 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_7;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_8 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_8;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.accessibility_custom_action_9 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_9;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action0 = global::XpertMobileApp.Droid.Resource.Id.action0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.actions = global::XpertMobileApp.Droid.Resource.Id.actions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar = global::XpertMobileApp.Droid.Resource.Id.action_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_activity_content = global::XpertMobileApp.Droid.Resource.Id.action_bar_activity_content;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_container = global::XpertMobileApp.Droid.Resource.Id.action_bar_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_root = global::XpertMobileApp.Droid.Resource.Id.action_bar_root;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_spinner = global::XpertMobileApp.Droid.Resource.Id.action_bar_spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_subtitle = global::XpertMobileApp.Droid.Resource.Id.action_bar_subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_bar_title = global::XpertMobileApp.Droid.Resource.Id.action_bar_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_container = global::XpertMobileApp.Droid.Resource.Id.action_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_context_bar = global::XpertMobileApp.Droid.Resource.Id.action_context_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_divider = global::XpertMobileApp.Droid.Resource.Id.action_divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_image = global::XpertMobileApp.Droid.Resource.Id.action_image;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_menu_divider = global::XpertMobileApp.Droid.Resource.Id.action_menu_divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_menu_presenter = global::XpertMobileApp.Droid.Resource.Id.action_menu_presenter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_mode_bar = global::XpertMobileApp.Droid.Resource.Id.action_mode_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_mode_bar_stub = global::XpertMobileApp.Droid.Resource.Id.action_mode_bar_stub;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_mode_close_button = global::XpertMobileApp.Droid.Resource.Id.action_mode_close_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.action_text = global::XpertMobileApp.Droid.Resource.Id.action_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.activity_chooser_view_content = global::XpertMobileApp.Droid.Resource.Id.activity_chooser_view_content;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.add = global::XpertMobileApp.Droid.Resource.Id.add;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.alertTitle = global::XpertMobileApp.Droid.Resource.Id.alertTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.all = global::XpertMobileApp.Droid.Resource.Id.all;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.ALT = global::XpertMobileApp.Droid.Resource.Id.ALT;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.always = global::XpertMobileApp.Droid.Resource.Id.always;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.async = global::XpertMobileApp.Droid.Resource.Id.async;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.auto = global::XpertMobileApp.Droid.Resource.Id.auto;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.beginning = global::XpertMobileApp.Droid.Resource.Id.beginning;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.blocking = global::XpertMobileApp.Droid.Resource.Id.blocking;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.bottom = global::XpertMobileApp.Droid.Resource.Id.bottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.bottomtab_navarea = global::XpertMobileApp.Droid.Resource.Id.bottomtab_navarea;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.bottomtab_tabbar = global::XpertMobileApp.Droid.Resource.Id.bottomtab_tabbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.browser_actions_header_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_header_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.browser_actions_menu_items = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_items;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.browser_actions_menu_item_icon = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.browser_actions_menu_item_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.browser_actions_menu_view = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.buttonPanel = global::XpertMobileApp.Droid.Resource.Id.buttonPanel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.cancel_action = global::XpertMobileApp.Droid.Resource.Id.cancel_action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.center = global::XpertMobileApp.Droid.Resource.Id.center;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.center_horizontal = global::XpertMobileApp.Droid.Resource.Id.center_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.center_vertical = global::XpertMobileApp.Droid.Resource.Id.center_vertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.checkbox = global::XpertMobileApp.Droid.Resource.Id.checkbox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.@checked = global::XpertMobileApp.Droid.Resource.Id.@checked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.chronometer = global::XpertMobileApp.Droid.Resource.Id.chronometer;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.clip_horizontal = global::XpertMobileApp.Droid.Resource.Id.clip_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.clip_vertical = global::XpertMobileApp.Droid.Resource.Id.clip_vertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.collapseActionView = global::XpertMobileApp.Droid.Resource.Id.collapseActionView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.container = global::XpertMobileApp.Droid.Resource.Id.container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.content = global::XpertMobileApp.Droid.Resource.Id.content;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.contentPanel = global::XpertMobileApp.Droid.Resource.Id.contentPanel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.coordinator = global::XpertMobileApp.Droid.Resource.Id.coordinator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.CTRL = global::XpertMobileApp.Droid.Resource.Id.CTRL;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.custom = global::XpertMobileApp.Droid.Resource.Id.custom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.customPanel = global::XpertMobileApp.Droid.Resource.Id.customPanel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.decor_content_parent = global::XpertMobileApp.Droid.Resource.Id.decor_content_parent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.default_activity_button = global::XpertMobileApp.Droid.Resource.Id.default_activity_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.design_bottom_sheet = global::XpertMobileApp.Droid.Resource.Id.design_bottom_sheet;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.design_menu_item_action_area = global::XpertMobileApp.Droid.Resource.Id.design_menu_item_action_area;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.design_menu_item_action_area_stub = global::XpertMobileApp.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.design_menu_item_text = global::XpertMobileApp.Droid.Resource.Id.design_menu_item_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.design_navigation_view = global::XpertMobileApp.Droid.Resource.Id.design_navigation_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.dialog_button = global::XpertMobileApp.Droid.Resource.Id.dialog_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.disableHome = global::XpertMobileApp.Droid.Resource.Id.disableHome;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.edit_query = global::XpertMobileApp.Droid.Resource.Id.edit_query;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.end = global::XpertMobileApp.Droid.Resource.Id.end;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.end_padder = global::XpertMobileApp.Droid.Resource.Id.end_padder;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.enterAlways = global::XpertMobileApp.Droid.Resource.Id.enterAlways;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.enterAlwaysCollapsed = global::XpertMobileApp.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.exitUntilCollapsed = global::XpertMobileApp.Droid.Resource.Id.exitUntilCollapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.expanded_menu = global::XpertMobileApp.Droid.Resource.Id.expanded_menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.expand_activities_button = global::XpertMobileApp.Droid.Resource.Id.expand_activities_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.fill = global::XpertMobileApp.Droid.Resource.Id.fill;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.filled = global::XpertMobileApp.Droid.Resource.Id.filled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.fill_horizontal = global::XpertMobileApp.Droid.Resource.Id.fill_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.ghost_view_holder = global::XpertMobileApp.Droid.Resource.Id.ghost_view_holder;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.group_divider = global::XpertMobileApp.Droid.Resource.Id.group_divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.home = global::XpertMobileApp.Droid.Resource.Id.home;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.homeAsUp = global::XpertMobileApp.Droid.Resource.Id.homeAsUp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.icon = global::XpertMobileApp.Droid.Resource.Id.icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.icon_group = global::XpertMobileApp.Droid.Resource.Id.icon_group;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.ifRoom = global::XpertMobileApp.Droid.Resource.Id.ifRoom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.image = global::XpertMobileApp.Droid.Resource.Id.image;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.info = global::XpertMobileApp.Droid.Resource.Id.info;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.italic = global::XpertMobileApp.Droid.Resource.Id.italic;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.item_touch_helper_previous_elevation = global::XpertMobileApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.labeled = global::XpertMobileApp.Droid.Resource.Id.labeled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.largeLabel = global::XpertMobileApp.Droid.Resource.Id.largeLabel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.left = global::XpertMobileApp.Droid.Resource.Id.left;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.line1 = global::XpertMobileApp.Droid.Resource.Id.line1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.line3 = global::XpertMobileApp.Droid.Resource.Id.line3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.listMode = global::XpertMobileApp.Droid.Resource.Id.listMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.list_item = global::XpertMobileApp.Droid.Resource.Id.list_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.main_appbar = global::XpertMobileApp.Droid.Resource.Id.main_appbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.main_tablayout = global::XpertMobileApp.Droid.Resource.Id.main_tablayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.main_toolbar = global::XpertMobileApp.Droid.Resource.Id.main_toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.main_viewpager = global::XpertMobileApp.Droid.Resource.Id.main_viewpager;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.masked = global::XpertMobileApp.Droid.Resource.Id.masked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.media_actions = global::XpertMobileApp.Droid.Resource.Id.media_actions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.message = global::XpertMobileApp.Droid.Resource.Id.message;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.META = global::XpertMobileApp.Droid.Resource.Id.META;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.middle = global::XpertMobileApp.Droid.Resource.Id.middle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.mini = global::XpertMobileApp.Droid.Resource.Id.mini;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.mtrl_child_content_container = global::XpertMobileApp.Droid.Resource.Id.mtrl_child_content_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.mtrl_internal_children_alpha_tag = global::XpertMobileApp.Droid.Resource.Id.mtrl_internal_children_alpha_tag;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.multiply = global::XpertMobileApp.Droid.Resource.Id.multiply;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.navigation_header_container = global::XpertMobileApp.Droid.Resource.Id.navigation_header_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.never = global::XpertMobileApp.Droid.Resource.Id.never;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.none = global::XpertMobileApp.Droid.Resource.Id.none;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.normal = global::XpertMobileApp.Droid.Resource.Id.normal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.notification_background = global::XpertMobileApp.Droid.Resource.Id.notification_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.notification_main_column = global::XpertMobileApp.Droid.Resource.Id.notification_main_column;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.notification_main_column_container = global::XpertMobileApp.Droid.Resource.Id.notification_main_column_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.off = global::XpertMobileApp.Droid.Resource.Id.off;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.on = global::XpertMobileApp.Droid.Resource.Id.on;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.outline = global::XpertMobileApp.Droid.Resource.Id.outline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.parallax = global::XpertMobileApp.Droid.Resource.Id.parallax;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.parentPanel = global::XpertMobileApp.Droid.Resource.Id.parentPanel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.parent_matrix = global::XpertMobileApp.Droid.Resource.Id.parent_matrix;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.pin = global::XpertMobileApp.Droid.Resource.Id.pin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.progress_circular = global::XpertMobileApp.Droid.Resource.Id.progress_circular;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.progress_horizontal = global::XpertMobileApp.Droid.Resource.Id.progress_horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.radio = global::XpertMobileApp.Droid.Resource.Id.radio;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.right = global::XpertMobileApp.Droid.Resource.Id.right;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.right_icon = global::XpertMobileApp.Droid.Resource.Id.right_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.right_side = global::XpertMobileApp.Droid.Resource.Id.right_side;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.save_non_transition_alpha = global::XpertMobileApp.Droid.Resource.Id.save_non_transition_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.save_overlay_view = global::XpertMobileApp.Droid.Resource.Id.save_overlay_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.screen = global::XpertMobileApp.Droid.Resource.Id.screen;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.scroll = global::XpertMobileApp.Droid.Resource.Id.scroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.scrollable = global::XpertMobileApp.Droid.Resource.Id.scrollable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.scrollIndicatorDown = global::XpertMobileApp.Droid.Resource.Id.scrollIndicatorDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.scrollIndicatorUp = global::XpertMobileApp.Droid.Resource.Id.scrollIndicatorUp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.scrollView = global::XpertMobileApp.Droid.Resource.Id.scrollView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_badge = global::XpertMobileApp.Droid.Resource.Id.search_badge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_bar = global::XpertMobileApp.Droid.Resource.Id.search_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_button = global::XpertMobileApp.Droid.Resource.Id.search_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_close_btn = global::XpertMobileApp.Droid.Resource.Id.search_close_btn;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_edit_frame = global::XpertMobileApp.Droid.Resource.Id.search_edit_frame;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_go_btn = global::XpertMobileApp.Droid.Resource.Id.search_go_btn;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_mag_icon = global::XpertMobileApp.Droid.Resource.Id.search_mag_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_plate = global::XpertMobileApp.Droid.Resource.Id.search_plate;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_src_text = global::XpertMobileApp.Droid.Resource.Id.search_src_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.search_voice_btn = global::XpertMobileApp.Droid.Resource.Id.search_voice_btn;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.selected = global::XpertMobileApp.Droid.Resource.Id.selected;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.select_dialog_listview = global::XpertMobileApp.Droid.Resource.Id.select_dialog_listview;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.shellcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.shellcontent_appbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.shellcontent_toolbar = global::XpertMobileApp.Droid.Resource.Id.shellcontent_toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.SHIFT = global::XpertMobileApp.Droid.Resource.Id.SHIFT;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.shortcut = global::XpertMobileApp.Droid.Resource.Id.shortcut;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.showCustom = global::XpertMobileApp.Droid.Resource.Id.showCustom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.showHome = global::XpertMobileApp.Droid.Resource.Id.showHome;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.showTitle = global::XpertMobileApp.Droid.Resource.Id.showTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.sliding_tabs = global::XpertMobileApp.Droid.Resource.Id.sliding_tabs;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.smallLabel = global::XpertMobileApp.Droid.Resource.Id.smallLabel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.snackbar_action = global::XpertMobileApp.Droid.Resource.Id.snackbar_action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.snackbar_text = global::XpertMobileApp.Droid.Resource.Id.snackbar_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.snap = global::XpertMobileApp.Droid.Resource.Id.snap;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.snapMargins = global::XpertMobileApp.Droid.Resource.Id.snapMargins;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.spacer = global::XpertMobileApp.Droid.Resource.Id.spacer;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.split_action_bar = global::XpertMobileApp.Droid.Resource.Id.split_action_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.src_atop = global::XpertMobileApp.Droid.Resource.Id.src_atop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.src_in = global::XpertMobileApp.Droid.Resource.Id.src_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.src_over = global::XpertMobileApp.Droid.Resource.Id.src_over;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.start = global::XpertMobileApp.Droid.Resource.Id.start;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.status_bar_latest_event_content = global::XpertMobileApp.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.stretch = global::XpertMobileApp.Droid.Resource.Id.stretch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.submenuarrow = global::XpertMobileApp.Droid.Resource.Id.submenuarrow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.submit_area = global::XpertMobileApp.Droid.Resource.Id.submit_area;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.SYM = global::XpertMobileApp.Droid.Resource.Id.SYM;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tabMode = global::XpertMobileApp.Droid.Resource.Id.tabMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_accessibility_actions = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_actions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_accessibility_clickable_spans = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_clickable_spans;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_accessibility_heading = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_heading;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_accessibility_pane_title = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_pane_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_screen_reader_focusable = global::XpertMobileApp.Droid.Resource.Id.tag_screen_reader_focusable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_transition_group = global::XpertMobileApp.Droid.Resource.Id.tag_transition_group;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_unhandled_key_event_manager = global::XpertMobileApp.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.tag_unhandled_key_listeners = global::XpertMobileApp.Droid.Resource.Id.tag_unhandled_key_listeners;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.text = global::XpertMobileApp.Droid.Resource.Id.text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.text2 = global::XpertMobileApp.Droid.Resource.Id.text2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textinput_counter = global::XpertMobileApp.Droid.Resource.Id.textinput_counter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textinput_error = global::XpertMobileApp.Droid.Resource.Id.textinput_error;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textinput_helper_text = global::XpertMobileApp.Droid.Resource.Id.textinput_helper_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textSpacerNoButtons = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoButtons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textSpacerNoTitle = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.textStart = global::XpertMobileApp.Droid.Resource.Id.textStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.text_input_password_toggle = global::XpertMobileApp.Droid.Resource.Id.text_input_password_toggle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.time = global::XpertMobileApp.Droid.Resource.Id.time;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.title = global::XpertMobileApp.Droid.Resource.Id.title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.titleDividerNoCustom = global::XpertMobileApp.Droid.Resource.Id.titleDividerNoCustom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.title_template = global::XpertMobileApp.Droid.Resource.Id.title_template;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.toolbar = global::XpertMobileApp.Droid.Resource.Id.toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.top = global::XpertMobileApp.Droid.Resource.Id.top;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.topPanel = global::XpertMobileApp.Droid.Resource.Id.topPanel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.touch_outside = global::XpertMobileApp.Droid.Resource.Id.touch_outside;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.transition_current_scene = global::XpertMobileApp.Droid.Resource.Id.transition_current_scene;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.transition_layout_save = global::XpertMobileApp.Droid.Resource.Id.transition_layout_save;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.transition_position = global::XpertMobileApp.Droid.Resource.Id.transition_position;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.transition_scene_layoutid_cache = global::XpertMobileApp.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.transition_transform = global::XpertMobileApp.Droid.Resource.Id.transition_transform;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.@unchecked = global::XpertMobileApp.Droid.Resource.Id.@unchecked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.uniform = global::XpertMobileApp.Droid.Resource.Id.uniform;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.unlabeled = global::XpertMobileApp.Droid.Resource.Id.unlabeled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.up = global::XpertMobileApp.Droid.Resource.Id.up;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.useLogo = global::XpertMobileApp.Droid.Resource.Id.useLogo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.view_offset_helper = global::XpertMobileApp.Droid.Resource.Id.view_offset_helper;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.visible = global::XpertMobileApp.Droid.Resource.Id.visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.withText = global::XpertMobileApp.Droid.Resource.Id.withText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Id.wrap_content = global::XpertMobileApp.Droid.Resource.Id.wrap_content;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.abc_config_activityDefaultDur = global::XpertMobileApp.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.abc_config_activityShortDur = global::XpertMobileApp.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.app_bar_elevation_anim_duration = global::XpertMobileApp.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.bottom_sheet_slide_duration = global::XpertMobileApp.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.cancel_button_image_alpha = global::XpertMobileApp.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.config_tooltipAnimTime = global::XpertMobileApp.Droid.Resource.Integer.config_tooltipAnimTime;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.design_snackbar_text_max_lines = global::XpertMobileApp.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms = global::XpertMobileApp.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.hide_password_duration = global::XpertMobileApp.Droid.Resource.Integer.hide_password_duration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.mtrl_btn_anim_delay_ms = global::XpertMobileApp.Droid.Resource.Integer.mtrl_btn_anim_delay_ms;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.mtrl_btn_anim_duration_ms = global::XpertMobileApp.Droid.Resource.Integer.mtrl_btn_anim_duration_ms;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.mtrl_chip_anim_duration = global::XpertMobileApp.Droid.Resource.Integer.mtrl_chip_anim_duration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::XpertMobileApp.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.show_password_duration = global::XpertMobileApp.Droid.Resource.Integer.show_password_duration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Integer.status_bar_notification_info_maxnum = global::XpertMobileApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.fast_out_slow_in = global::XpertMobileApp.Droid.Resource.Interpolator.fast_out_slow_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.mtrl_fast_out_linear_in = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.mtrl_fast_out_slow_in = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.mtrl_linear = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_linear;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Interpolator.mtrl_linear_out_slow_in = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_linear_out_slow_in;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_bar_title_item = global::XpertMobileApp.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_bar_up_container = global::XpertMobileApp.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_menu_item_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_menu_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_mode_bar = global::XpertMobileApp.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_action_mode_close_item_material = global::XpertMobileApp.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_activity_chooser_view = global::XpertMobileApp.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_activity_chooser_view_list_item = global::XpertMobileApp.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_alert_dialog_button_bar_material = global::XpertMobileApp.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_alert_dialog_material = global::XpertMobileApp.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_alert_dialog_title_material = global::XpertMobileApp.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_cascading_menu_item_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_cascading_menu_item_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_dialog_title_material = global::XpertMobileApp.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_expanded_menu_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_list_menu_item_checkbox = global::XpertMobileApp.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_list_menu_item_icon = global::XpertMobileApp.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_list_menu_item_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_list_menu_item_radio = global::XpertMobileApp.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_popup_menu_header_item_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_popup_menu_item_layout = global::XpertMobileApp.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_screen_content_include = global::XpertMobileApp.Droid.Resource.Layout.abc_screen_content_include;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_screen_simple = global::XpertMobileApp.Droid.Resource.Layout.abc_screen_simple;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode = global::XpertMobileApp.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_screen_toolbar = global::XpertMobileApp.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line = global::XpertMobileApp.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_search_view = global::XpertMobileApp.Droid.Resource.Layout.abc_search_view;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_select_dialog_material = global::XpertMobileApp.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.abc_tooltip = global::XpertMobileApp.Droid.Resource.Layout.abc_tooltip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.BottomTabLayout = global::XpertMobileApp.Droid.Resource.Layout.BottomTabLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.browser_actions_context_menu_page = global::XpertMobileApp.Droid.Resource.Layout.browser_actions_context_menu_page;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.browser_actions_context_menu_row = global::XpertMobileApp.Droid.Resource.Layout.browser_actions_context_menu_row;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.CustomizedView = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.CustomizedView1 = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.custom_dialog = global::XpertMobileApp.Droid.Resource.Layout.custom_dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_bottom_navigation_item = global::XpertMobileApp.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_bottom_sheet_dialog = global::XpertMobileApp.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_layout_snackbar = global::XpertMobileApp.Droid.Resource.Layout.design_layout_snackbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_layout_snackbar_include = global::XpertMobileApp.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_layout_tab_icon = global::XpertMobileApp.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_layout_tab_text = global::XpertMobileApp.Droid.Resource.Layout.design_layout_tab_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_menu_item_action_area = global::XpertMobileApp.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_item = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_item_header = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item_header;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_item_separator = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_item_subheader = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_menu = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_navigation_menu_item = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.design_text_input_password_icon = global::XpertMobileApp.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.FallbackTabbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackTabbarDoNotUse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.FallbackToolbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackToolbarDoNotUse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.FlyoutContent = global::XpertMobileApp.Droid.Resource.Layout.FlyoutContent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.mtrl_layout_snackbar = global::XpertMobileApp.Droid.Resource.Layout.mtrl_layout_snackbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.mtrl_layout_snackbar_include = global::XpertMobileApp.Droid.Resource.Layout.mtrl_layout_snackbar_include;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_action = global::XpertMobileApp.Droid.Resource.Layout.notification_action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_action_tombstone = global::XpertMobileApp.Droid.Resource.Layout.notification_action_tombstone;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_media_action = global::XpertMobileApp.Droid.Resource.Layout.notification_media_action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_media_cancel_action = global::XpertMobileApp.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_big_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_big_media_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_big_media_narrow = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_big_media_narrow_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_custom_big = global::XpertMobileApp.Droid.Resource.Layout.notification_template_custom_big;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_icon_group = global::XpertMobileApp.Droid.Resource.Layout.notification_template_icon_group;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_lines_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_lines_media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_media_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_media_custom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_part_chronometer = global::XpertMobileApp.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.notification_template_part_time = global::XpertMobileApp.Droid.Resource.Layout.notification_template_part_time;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.RootLayout = global::XpertMobileApp.Droid.Resource.Layout.RootLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.select_dialog_item_material = global::XpertMobileApp.Droid.Resource.Layout.select_dialog_item_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.select_dialog_multichoice_material = global::XpertMobileApp.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.select_dialog_singlechoice_material = global::XpertMobileApp.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.sfautocomplete_layout = global::XpertMobileApp.Droid.Resource.Layout.sfautocomplete_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.ShellContent = global::XpertMobileApp.Droid.Resource.Layout.ShellContent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.support_simple_spinner_dropdown_item = global::XpertMobileApp.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.Tabbar = global::XpertMobileApp.Droid.Resource.Layout.Tabbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Layout.Toolbar = global::XpertMobileApp.Droid.Resource.Layout.Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_action_bar_home_description = global::XpertMobileApp.Droid.Resource.String.abc_action_bar_home_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_action_bar_up_description = global::XpertMobileApp.Droid.Resource.String.abc_action_bar_up_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_action_menu_overflow_description = global::XpertMobileApp.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_action_mode_done = global::XpertMobileApp.Droid.Resource.String.abc_action_mode_done;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_activitychooserview_choose_application = global::XpertMobileApp.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_activity_chooser_view_see_all = global::XpertMobileApp.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_capital_off = global::XpertMobileApp.Droid.Resource.String.abc_capital_off;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_capital_on = global::XpertMobileApp.Droid.Resource.String.abc_capital_on;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_alt_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_alt_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_ctrl_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_ctrl_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_delete_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_delete_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_enter_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_enter_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_function_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_function_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_meta_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_meta_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_shift_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_shift_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_space_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_space_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_menu_sym_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_sym_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_prepend_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_prepend_shortcut_label;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_searchview_description_clear = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_clear;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_searchview_description_query = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_query;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_searchview_description_search = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_search;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_searchview_description_submit = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_submit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_searchview_description_voice = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_voice;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_search_hint = global::XpertMobileApp.Droid.Resource.String.abc_search_hint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_shareactionprovider_share_with = global::XpertMobileApp.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_shareactionprovider_share_with_application = global::XpertMobileApp.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.abc_toolbar_collapse_description = global::XpertMobileApp.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.appbar_scrolling_view_behavior = global::XpertMobileApp.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.bottom_sheet_behavior = global::XpertMobileApp.Droid.Resource.String.bottom_sheet_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.character_counter_content_description = global::XpertMobileApp.Droid.Resource.String.character_counter_content_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.character_counter_pattern = global::XpertMobileApp.Droid.Resource.String.character_counter_pattern;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.fab_transformation_scrim_behavior = global::XpertMobileApp.Droid.Resource.String.fab_transformation_scrim_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.fab_transformation_sheet_behavior = global::XpertMobileApp.Droid.Resource.String.fab_transformation_sheet_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.hide_bottom_view_on_scroll_behavior = global::XpertMobileApp.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.mtrl_chip_close_icon_content_description = global::XpertMobileApp.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.password_toggle_content_description = global::XpertMobileApp.Droid.Resource.String.password_toggle_content_description;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.path_password_eye = global::XpertMobileApp.Droid.Resource.String.path_password_eye;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.path_password_eye_mask_strike_through = global::XpertMobileApp.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.path_password_eye_mask_visible = global::XpertMobileApp.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.path_password_strike_through = global::XpertMobileApp.Droid.Resource.String.path_password_strike_through;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.search_menu_title = global::XpertMobileApp.Droid.Resource.String.search_menu_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.String.status_bar_notification_info_overflow = global::XpertMobileApp.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.AlertDialog_AppCompat = global::XpertMobileApp.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.AlertDialog_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Animation_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Animation_AppCompat_DropDownUp = global::XpertMobileApp.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Animation_AppCompat_Tooltip = global::XpertMobileApp.Droid.Resource.Style.Animation_AppCompat_Tooltip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Animation_Design_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_AlertDialog_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Animation_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::XpertMobileApp.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip = global::XpertMobileApp.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_CardView = global::XpertMobileApp.Droid.Resource.Style.Base_CardView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V21_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V22_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V23_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V26_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V26_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V28_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V28_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_EditText = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ListView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_SearchView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Spinner = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_TextView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_TextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_Design_TabLayout = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.CardView = global::XpertMobileApp.Droid.Resource.Style.CardView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.CardView_Dark = global::XpertMobileApp.Droid.Resource.Style.CardView_Dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.CardView_Light = global::XpertMobileApp.Droid.Resource.Style.CardView_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Platform_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Platform_MaterialComponents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Platform_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Platform_MaterialComponents_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::XpertMobileApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_V21_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_V21_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_V25_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_V25_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner = global::XpertMobileApp.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Body1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Body2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Caption = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Display1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Display2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Display3 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Display4 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Headline = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Large = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Medium = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Menu = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Small = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Subhead = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Info = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Time = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Counter = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Error = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_HelperText = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_HelperText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Hint = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Design_Tab = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Button = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_AppCompat_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design = global::XpertMobileApp.Droid.Resource.Style.Theme_Design;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_Design_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActionMode = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button_Borderless = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Button_Small = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_EditText = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ImageButton = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_SearchView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ListMenuView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ListView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ListView_Menu = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_PopupMenu = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_PopupWindow = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ProgressBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_RatingBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_SearchView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_SeekBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Spinner = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_TextView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_TextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Compat_NotificationActionContainer = global::XpertMobileApp.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Compat_NotificationActionText = global::XpertMobileApp.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_AppBarLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_BottomNavigationView = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_BottomSheet_Modal = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_CollapsingToolbar = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_FloatingActionButton = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_NavigationView = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_Snackbar = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_TabLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Design_TextInputLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_CardView = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_CardView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_NavigationView = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Snackbar = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TabLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TabLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_MaterialComponents_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Style.Widget_Support_CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_background = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_backgroundSplit = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_backgroundStacked = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetEnd = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetLeft = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetRight = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetStart = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_customNavigationLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_displayOptions = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_divider = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_elevation = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_height = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_hideOnContentScroll = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_homeLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_icon = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_itemPadding = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_logo = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_logo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_navigationMode = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_popupTheme = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_progressBarPadding = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_progressBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_subtitle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_subtitleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_title = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionBar_titleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMenuItemView = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMenuView = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_background = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_backgroundSplit = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_closeItemLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_height = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_subtitleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActionMode_titleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActivityChooserView = global::XpertMobileApp.Droid.Resource.Styleable.ActivityChooserView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::XpertMobileApp.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount = global::XpertMobileApp.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_android_layout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_buttonIconDimen = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_buttonIconDimen;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_listItemLayout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_listLayout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_showTitle = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::XpertMobileApp.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableItem = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableTransition = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayoutStates = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_android_background = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_elevation = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_expanded = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppBarLayout_liftOnScroll = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatImageView = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatImageView_android_src = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatImageView_srcCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatImageView_tint = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatImageView_tintMode = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatSeekBar = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatSeekBar_tickMark = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableBottomCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableBottomCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableEndCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableEndCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableLeftCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableLeftCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableRightCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableRightCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableStartCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableStartCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableTint = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableTintMode = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_drawableTopCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTopCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_fontFamily = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_fontVariationSettings;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_lineHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_textAllCaps = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTextView_textLocale = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_textLocale;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarSize = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorAccent = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorError = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorError;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorPrimary = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_controlBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dividerVertical = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_editTextBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_editTextColor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_editTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_panelBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_switchStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowActionBar = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_backgroundTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomAppBar_hideOnScroll = global::XpertMobileApp.Droid.Resource.Styleable.BottomAppBar_hideOnScroll;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_elevation = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemBackground = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemIconSize = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemIconTint = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_itemTextColor = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomNavigationView_menu = global::XpertMobileApp.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomSheetBehavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents = global::XpertMobileApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::XpertMobileApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::XpertMobileApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::XpertMobileApp.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ButtonBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ButtonBarLayout_allowStacking = global::XpertMobileApp.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView = global::XpertMobileApp.Droid.Resource.Styleable.CardView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_android_minHeight = global::XpertMobileApp.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_android_minWidth = global::XpertMobileApp.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardBackgroundColor = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardElevation = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardMaxElevation = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_cardUseCompatPadding = global::XpertMobileApp.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_contentPadding = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_contentPaddingBottom = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_contentPaddingLeft = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_contentPaddingRight = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CardView_contentPaddingTop = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip = global::XpertMobileApp.Droid.Resource.Styleable.Chip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_checkedChip = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_checkedChip;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_chipSpacing = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_singleLine = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleLine;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ChipGroup_singleSelection = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleSelection;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_android_checkable = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_checkable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_android_ellipsize = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_ellipsize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_maxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_android_text = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_android_textAppearance = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_textAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_checkedIcon = global::XpertMobileApp.Droid.Resource.Styleable.Chip_checkedIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_checkedIconEnabled = global::XpertMobileApp.Droid.Resource.Styleable.Chip_checkedIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_checkedIconVisible = global::XpertMobileApp.Droid.Resource.Styleable.Chip_checkedIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipBackgroundColor = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipCornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipCornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipEndPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipIcon = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipIconEnabled = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipIconSize = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipIconTint = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipIconVisible = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipMinHeight = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipMinHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipStartPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipStrokeColor = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipStrokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_chipStrokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.Chip_chipStrokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIcon = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconEnabled = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconEndPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconSize = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconStartPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconTint = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_closeIconVisible = global::XpertMobileApp.Droid.Resource.Styleable.Chip_closeIconVisible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_hideMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.Chip_hideMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_iconEndPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_iconEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_iconStartPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_iconStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_rippleColor = global::XpertMobileApp.Droid.Resource.Styleable.Chip_rippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_showMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.Chip_showMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_textEndPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_textEndPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Chip_textStartPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_textStartPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_title = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ColorStateListItem = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ColorStateListItem_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ColorStateListItem_android_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ColorStateListItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CompoundButton = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CompoundButton_android_button = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CompoundButton_buttonCompat = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CompoundButton_buttonTint = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CompoundButton_buttonTintMode = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_keylines = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DesignTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_barLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_color = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_spinBars = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.DrawerArrowToggle_thickness = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_borderWidth = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_elevation = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_fabSize = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_maxImageSize = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_maxImageSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_rippleColor = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FlowLayout = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FlowLayout_itemSpacing = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout_itemSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FlowLayout_lineSpacing = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout_lineSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_android_font = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_font = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_fontStyle = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_fontWeight = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamilyFont_ttcIndex = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderAuthority = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderCerts = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderPackage = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.FontFamily_fontProviderQuery = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ForegroundLinearLayout = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColorItem = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColorItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColorItem_android_offset = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_offset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_centerColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_centerX = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_centerY = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_endColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_endX = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_endY = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_gradientRadius = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_startColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_startX = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_startY = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_tileMode = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.GradientColor_android_type = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_divider = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_Layout = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.LinearLayoutCompat_showDividers = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ListPopupWindow = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_android_insetBottom = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_android_insetBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_android_insetLeft = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_android_insetLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_android_insetRight = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_android_insetRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_android_insetTop = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_android_insetTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_backgroundTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_backgroundTintMode = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_backgroundTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_cornerRadius = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_cornerRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_icon = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_iconGravity = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_iconGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_iconPadding = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_iconPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_iconSize = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_iconSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_iconTint = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_iconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_iconTintMode = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_iconTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_rippleColor = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_rippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_strokeColor = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_strokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialButton_strokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.MaterialButton_strokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialCardView = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialCardView_strokeColor = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialCardView_strokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_enabled = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_id = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_menuCategory = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_orderInCategory = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuGroup_android_visible = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_actionLayout = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_actionProviderClass = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_actionViewClass = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_alphabeticModifiers = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_alphabeticModifiers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_checkable = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_checked = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_enabled = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_icon = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_id = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_menuCategory = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_numericShortcut = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_onClick = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_orderInCategory = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_title = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_titleCondensed = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_android_visible = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_contentDescription = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_contentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_iconTint = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_iconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_iconTintMode = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_iconTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_numericModifiers = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_numericModifiers;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_showAsAction = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuItem_tooltipText = global::XpertMobileApp.Droid.Resource.Styleable.MenuItem_tooltipText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView = global::XpertMobileApp.Droid.Resource.Styleable.MenuView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_headerBackground = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_horizontalDivider = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_itemBackground = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_itemTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_verticalDivider = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_preserveIconSpacing = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.MenuView_subMenuArrow = global::XpertMobileApp.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_android_background = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_elevation = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_headerLayout = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemBackground = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemIconPadding = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemIconPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemIconTint = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_itemTextColor = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.NavigationView_menu = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindow = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindowBackgroundState = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindow_android_popupBackground = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.PopupWindow_overlapAnchor = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecycleListView = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_android_clipToPadding = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_clipToPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_android_orientation = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_layoutManager = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_reverseLayout = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_spanCount = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.RecyclerView_stackFromEnd = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ScrimInsetsFrameLayout = global::XpertMobileApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::XpertMobileApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ScrollingViewBehavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView = global::XpertMobileApp.Droid.Resource.Styleable.SearchView;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_android_imeOptions = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_android_inputType = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_closeIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_commitIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_defaultQueryHint = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_goIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_iconifiedByDefault = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_layout = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_queryBackground = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_queryHint = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_searchHintIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_searchIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_submitBackground = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_suggestionRowLayout = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SearchView_voiceIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Snackbar = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SnackbarLayout = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SnackbarLayout_elevation = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Snackbar_snackbarStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner = global::XpertMobileApp.Droid.Resource.Styleable.Spinner;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner_android_dropDownWidth = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner_android_entries = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner_android_popupBackground = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner_android_prompt = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Spinner_popupTheme = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawableItem = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawableItem_android_drawable = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_constantSize = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_constantSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_dither = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_dither;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_variablePadding = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_variablePadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.StateListDrawable_android_visible = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_visible;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_android_textOff = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_android_textOn = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_android_thumb = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_showText = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_splitTrack = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_switchMinWidth = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_switchPadding = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_thumbTint = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_thumbTintMode = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_track = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_trackTint = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.SwitchCompat_trackTintMode = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabItem = global::XpertMobileApp.Droid.Resource.Styleable.TabItem;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabItem_android_icon = global::XpertMobileApp.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabItem_android_layout = global::XpertMobileApp.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabItem_android_text = global::XpertMobileApp.Droid.Resource.Styleable.TabItem_android_text;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabBackground = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabContentStart = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabGravity = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIconTint = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIconTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIconTintMode = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIconTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicator = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicator;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicatorColor = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabInlineLabel = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabInlineLabel;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabMaxWidth = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabMinWidth = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabMode = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabPadding = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabPaddingBottom = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabPaddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabPaddingStart = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabPaddingTop = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabRippleColor = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabRippleColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabTextColor = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple = global::XpertMobileApp.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_fontFamily = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_shadowColor = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_shadowDx = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_shadowDy = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_shadowRadius = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textColor = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textColorHint = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textColorLink = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textFontWeight = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textFontWeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textSize = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_textStyle = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_android_typeface = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_fontFamily = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_fontVariationSettings;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_textAllCaps = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextAppearance_textLocale = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_textLocale;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_android_hint = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_android_textColorHint = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_counterEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_counterMaxLength = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_errorEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_helperText = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_helperText;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_hintEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ThemeEnforcement = global::XpertMobileApp.Droid.Resource.Styleable.ThemeEnforcement;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance = global::XpertMobileApp.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme = global::XpertMobileApp.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_android_gravity = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_android_minHeight = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_buttonGravity = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_collapseContentDescription = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_collapseIcon = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetEnd = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetLeft = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetRight = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetStart = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_logo = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_logo;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_logoDescription = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_maxButtonHeight = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_menu = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_menu;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_navigationContentDescription = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_navigationIcon = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_popupTheme = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_subtitle = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_subtitleTextColor = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_title = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_title;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMargin = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMarginBottom = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMarginEnd = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMargins = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMarginStart = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleMarginTop = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.Toolbar_titleTextColor = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View = global::XpertMobileApp.Droid.Resource.Styleable.View;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewBackgroundHelper = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewBackgroundHelper_android_background = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewStubCompat = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewStubCompat_android_id = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.ViewStubCompat_android_layout = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.View_android_focusable;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View_android_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_android_theme;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View_paddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingEnd;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View_paddingStart = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingStart;
+			global::Syncfusion.SfAutoComplete.XForms.Droid.Resource.Styleable.View_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_theme;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_In = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Fade_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Scale_In = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Scale_In;
 			global::Syncfusion.SfChart.XForms.Droid.Resource.Animation.SfChart_Fade_Out = global::XpertMobileApp.Droid.Resource.Animation.SfChart_Fade_Out;
@@ -8508,6 +11102,18 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.abc_slide_out_top = global::XpertMobileApp.Droid.Resource.Animation.abc_slide_out_top;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.abc_tooltip_enter = global::XpertMobileApp.Droid.Resource.Animation.abc_tooltip_enter;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.abc_tooltip_exit = global::XpertMobileApp.Droid.Resource.Animation.abc_tooltip_exit;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_inner_merged_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_box_outer_merged_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_checked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_checked_icon_null_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_box_inner_merged_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_check_path_merged_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_checkbox_to_unchecked_icon_null_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_dot_group_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_off_mtrl_ring_outer_path_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_dot_group_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation = global::XpertMobileApp.Droid.Resource.Animation.btn_radio_to_on_mtrl_ring_outer_path_animation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.design_bottom_sheet_slide_in = global::XpertMobileApp.Droid.Resource.Animation.design_bottom_sheet_slide_in;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.design_bottom_sheet_slide_out = global::XpertMobileApp.Droid.Resource.Animation.design_bottom_sheet_slide_out;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Animation.design_snackbar_in = global::XpertMobileApp.Droid.Resource.Animation.design_snackbar_in;
@@ -8587,8 +11193,8 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.behavior_overlapTop = global::XpertMobileApp.Droid.Resource.Attribute.behavior_overlapTop;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.behavior_peekHeight = global::XpertMobileApp.Droid.Resource.Attribute.behavior_peekHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.behavior_skipCollapsed = global::XpertMobileApp.Droid.Resource.Attribute.behavior_skipCollapsed;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.borderWidth = global::XpertMobileApp.Droid.Resource.Attribute.borderWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.borderlessButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.borderWidth = global::XpertMobileApp.Droid.Resource.Attribute.borderWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.bottomAppBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.bottomAppBarStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.bottomNavigationStyle = global::XpertMobileApp.Droid.Resource.Attribute.bottomNavigationStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Attribute.bottomSheetDialogTheme;
@@ -8607,6 +11213,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonBarNeutralButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonBarPositiveButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.buttonBarStyle;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonCompat = global::XpertMobileApp.Droid.Resource.Attribute.buttonCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonGravity = global::XpertMobileApp.Droid.Resource.Attribute.buttonGravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonIconDimen = global::XpertMobileApp.Droid.Resource.Attribute.buttonIconDimen;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.buttonPanelSideLayout = global::XpertMobileApp.Droid.Resource.Attribute.buttonPanelSideLayout;
@@ -8654,9 +11261,9 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.closeIconVisible = global::XpertMobileApp.Droid.Resource.Attribute.closeIconVisible;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.closeItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.closeItemLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.collapseContentDescription = global::XpertMobileApp.Droid.Resource.Attribute.collapseContentDescription;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.collapseIcon = global::XpertMobileApp.Droid.Resource.Attribute.collapseIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.collapsedTitleGravity = global::XpertMobileApp.Droid.Resource.Attribute.collapsedTitleGravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.collapsedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.collapseIcon = global::XpertMobileApp.Droid.Resource.Attribute.collapseIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.color = global::XpertMobileApp.Droid.Resource.Attribute.color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.colorAccent = global::XpertMobileApp.Droid.Resource.Attribute.colorAccent;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Attribute.colorBackgroundFloating;
@@ -8700,10 +11307,18 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dividerHorizontal = global::XpertMobileApp.Droid.Resource.Attribute.dividerHorizontal;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dividerPadding = global::XpertMobileApp.Droid.Resource.Attribute.dividerPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dividerVertical = global::XpertMobileApp.Droid.Resource.Attribute.dividerVertical;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableBottomCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableBottomCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableEndCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableEndCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableLeftCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableLeftCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableRightCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableRightCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableSize = global::XpertMobileApp.Droid.Resource.Attribute.drawableSize;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableStartCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableStartCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableTint = global::XpertMobileApp.Droid.Resource.Attribute.drawableTint;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableTintMode = global::XpertMobileApp.Droid.Resource.Attribute.drawableTintMode;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawableTopCompat = global::XpertMobileApp.Droid.Resource.Attribute.drawableTopCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.drawerArrowStyle = global::XpertMobileApp.Droid.Resource.Attribute.drawerArrowStyle;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.dropDownListViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dropdownListPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.dropDownListViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.editTextBackground = global::XpertMobileApp.Droid.Resource.Attribute.editTextBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.editTextColor = global::XpertMobileApp.Droid.Resource.Attribute.editTextColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.editTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.editTextStyle;
@@ -8765,12 +11380,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.icon = global::XpertMobileApp.Droid.Resource.Attribute.icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconEndPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconGravity = global::XpertMobileApp.Droid.Resource.Attribute.iconGravity;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconifiedByDefault = global::XpertMobileApp.Droid.Resource.Attribute.iconifiedByDefault;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconSize = global::XpertMobileApp.Droid.Resource.Attribute.iconSize;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.iconStartPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconTint = global::XpertMobileApp.Droid.Resource.Attribute.iconTint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconTintMode = global::XpertMobileApp.Droid.Resource.Attribute.iconTintMode;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.iconifiedByDefault = global::XpertMobileApp.Droid.Resource.Attribute.iconifiedByDefault;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.imageButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.imageButtonStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.indeterminateProgressStyle = global::XpertMobileApp.Droid.Resource.Attribute.indeterminateProgressStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.initialActivityCount = global::XpertMobileApp.Droid.Resource.Attribute.initialActivityCount;
@@ -8807,6 +11422,8 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.lineHeight = global::XpertMobileApp.Droid.Resource.Attribute.lineHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.lineSpacing = global::XpertMobileApp.Droid.Resource.Attribute.lineSpacing;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listChoiceBackgroundIndicator = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listChoiceIndicatorMultipleAnimated = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceIndicatorMultipleAnimated;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listChoiceIndicatorSingleAnimated = global::XpertMobileApp.Droid.Resource.Attribute.listChoiceIndicatorSingleAnimated;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listDividerAlertDialog = global::XpertMobileApp.Droid.Resource.Attribute.listDividerAlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listItemLayout = global::XpertMobileApp.Droid.Resource.Attribute.listItemLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listLayout = global::XpertMobileApp.Droid.Resource.Attribute.listLayout;
@@ -8815,8 +11432,10 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemHeightLarge = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeightLarge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemHeightSmall = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemPaddingEnd = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingEnd;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemPaddingLeft = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemPaddingRight = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.listPreferredItemPaddingStart = global::XpertMobileApp.Droid.Resource.Attribute.listPreferredItemPaddingStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.logo = global::XpertMobileApp.Droid.Resource.Attribute.logo;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.logoDescription = global::XpertMobileApp.Droid.Resource.Attribute.logoDescription;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.materialButtonStyle = global::XpertMobileApp.Droid.Resource.Attribute.materialButtonStyle;
@@ -8858,6 +11477,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.ratingBarStyle = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.ratingBarStyleIndicator = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyleIndicator;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.ratingBarStyleSmall = global::XpertMobileApp.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.recyclerViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.recyclerViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.reverseLayout = global::XpertMobileApp.Droid.Resource.Attribute.reverseLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.rippleColor = global::XpertMobileApp.Droid.Resource.Attribute.rippleColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Attribute.scrimAnimationDuration;
@@ -8958,6 +11578,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.textColorSearchUrl = global::XpertMobileApp.Droid.Resource.Attribute.textColorSearchUrl;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.textEndPadding = global::XpertMobileApp.Droid.Resource.Attribute.textEndPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.textInputStyle = global::XpertMobileApp.Droid.Resource.Attribute.textInputStyle;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.textLocale = global::XpertMobileApp.Droid.Resource.Attribute.textLocale;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.textStartPadding = global::XpertMobileApp.Droid.Resource.Attribute.textStartPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.theme = global::XpertMobileApp.Droid.Resource.Attribute.theme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.thickness = global::XpertMobileApp.Droid.Resource.Attribute.thickness;
@@ -8974,9 +11595,9 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMargin = global::XpertMobileApp.Droid.Resource.Attribute.titleMargin;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMarginBottom = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginBottom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMarginEnd = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginEnd;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMargins = global::XpertMobileApp.Droid.Resource.Attribute.titleMargins;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMarginStart = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMarginTop = global::XpertMobileApp.Droid.Resource.Attribute.titleMarginTop;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleMargins = global::XpertMobileApp.Droid.Resource.Attribute.titleMargins;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleTextAppearance = global::XpertMobileApp.Droid.Resource.Attribute.titleTextAppearance;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleTextColor = global::XpertMobileApp.Droid.Resource.Attribute.titleTextColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Attribute.titleTextStyle = global::XpertMobileApp.Droid.Resource.Attribute.titleTextStyle;
@@ -9109,13 +11730,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_tabs_icon_color_selector_colored = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_tabs_legacy_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_tabs_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_tabs_ripple_color;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_text_btn_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_textinput_default_box_stroke_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_textinput_disabled_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_disabled_color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_textinput_filled_box_default_background_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_textinput_hovered_box_stroke_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.mtrl_text_btn_text_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.notification_action_color_filter = global::XpertMobileApp.Droid.Resource.Color.notification_action_color_filter;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.notification_icon_bg_color = global::XpertMobileApp.Droid.Resource.Color.notification_icon_bg_color;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.notification_material_background_media_default_color = global::XpertMobileApp.Droid.Resource.Color.notification_material_background_media_default_color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.primary_dark_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_dark_material_dark;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.primary_dark_material_light = global::XpertMobileApp.Droid.Resource.Color.primary_dark_material_light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Color.primary_material_dark = global::XpertMobileApp.Droid.Resource.Color.primary_material_dark;
@@ -9186,6 +11808,9 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_edit_text_inset_top_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_floating_window_z = global::XpertMobileApp.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_list_item_height_large_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_large_material;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_list_item_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_material;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_list_item_height_small_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_height_small_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_list_item_padding_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_panel_menu_list_width = global::XpertMobileApp.Droid.Resource.Dimension.abc_panel_menu_list_width;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.abc_progress_bar_height_material = global::XpertMobileApp.Droid.Resource.Dimension.abc_progress_bar_height_material;
@@ -9347,6 +11972,10 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.notification_subtext_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_subtext_size;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.notification_top_pad = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.notification_top_pad_large_text = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.subtitle_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.subtitle_outline_width = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_outline_width;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.subtitle_shadow_offset = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.subtitle_shadow_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_radius;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.tooltip_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_corner_radius;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.tooltip_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_horizontal_padding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Dimension.tooltip_margin = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_margin;
@@ -9359,11 +11988,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_action_bar_item_background_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_action_bar_item_background_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_borderless_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_borderless_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_check_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_check_material_anim = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_material_anim;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_colored_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_colored_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_default_mtrl_shape = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_radio_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_radio_material_anim = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_material_anim;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::XpertMobileApp.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
@@ -9426,6 +12057,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_switch_track_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_tab_indicator_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_tab_indicator_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_cursor_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_cursor_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
@@ -9433,11 +12069,6 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::XpertMobileApp.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_textfield_search_material = global::XpertMobileApp.Droid.Resource.Drawable.abc_textfield_search_material;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.abc_vector_test = global::XpertMobileApp.Droid.Resource.Drawable.abc_vector_test;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.Avatar1 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar1;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.Avatar10 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar10;
@@ -9470,13 +12101,15 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.Avatar8 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar8;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.Avatar9 = global::XpertMobileApp.Droid.Resource.Drawable.Avatar9;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_hide_password = global::XpertMobileApp.Droid.Resource.Drawable.avd_hide_password;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_hide_password_1 = global::XpertMobileApp.Droid.Resource.Drawable.avd_hide_password_1;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_hide_password_2 = global::XpertMobileApp.Droid.Resource.Drawable.avd_hide_password_2;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_hide_password_3 = global::XpertMobileApp.Droid.Resource.Drawable.avd_hide_password_3;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_show_password = global::XpertMobileApp.Droid.Resource.Drawable.avd_show_password;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_show_password_1 = global::XpertMobileApp.Droid.Resource.Drawable.avd_show_password_1;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_show_password_2 = global::XpertMobileApp.Droid.Resource.Drawable.avd_show_password_2;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.avd_show_password_3 = global::XpertMobileApp.Droid.Resource.Drawable.avd_show_password_3;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_checkbox_checked_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_mtrl;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_checked_to_unchecked_mtrl_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_checkbox_unchecked_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_mtrl;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_checkbox_unchecked_to_checked_mtrl_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_radio_off_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_off_mtrl;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_radio_off_to_on_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_off_to_on_mtrl_animation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_radio_on_mtrl = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_on_mtrl;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.btn_radio_on_to_off_mtrl_animation = global::XpertMobileApp.Droid.Resource.Drawable.btn_radio_on_to_off_mtrl_animation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.clear_button_icon = global::XpertMobileApp.Droid.Resource.Drawable.clear_button_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.design_bottom_navigation_item_background = global::XpertMobileApp.Droid.Resource.Drawable.design_bottom_navigation_item_background;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.design_fab_background = global::XpertMobileApp.Droid.Resource.Drawable.design_fab_background;
@@ -9488,9 +12121,9 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.ic_mtrl_chip_checked_black = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.ic_mtrl_chip_checked_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.ic_mtrl_chip_close_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.inputlayout_togglecollapseicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglecollapseicon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.inputlayout_togglevisibleicon = global::XpertMobileApp.Droid.Resource.Drawable.inputlayout_togglevisibleicon;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.input_layout_drop_down_icon = global::XpertMobileApp.Droid.Resource.Drawable.input_layout_drop_down_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.mtrl_snackbar_background = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_snackbar_background;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.mtrl_tabs_default_indicator = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.navigation_empty_icon = global::XpertMobileApp.Droid.Resource.Drawable.navigation_empty_icon;
@@ -9508,13 +12141,41 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.notify_panel_notification_icon_bg = global::XpertMobileApp.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.tooltip_frame_dark = global::XpertMobileApp.Droid.Resource.Drawable.tooltip_frame_dark;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Drawable.tooltip_frame_light = global::XpertMobileApp.Droid.Resource.Drawable.tooltip_frame_light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.ALT = global::XpertMobileApp.Droid.Resource.Id.ALT;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.CTRL = global::XpertMobileApp.Droid.Resource.Id.CTRL;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.META = global::XpertMobileApp.Droid.Resource.Id.META;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.SHIFT = global::XpertMobileApp.Droid.Resource.Id.SHIFT;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.SYM = global::XpertMobileApp.Droid.Resource.Id.SYM;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_action_clickable_span = global::XpertMobileApp.Droid.Resource.Id.accessibility_action_clickable_span;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_0 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_1 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_1;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_10 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_10;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_11 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_11;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_12 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_12;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_13 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_13;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_14 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_14;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_15 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_15;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_16 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_16;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_17 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_17;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_18 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_18;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_19 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_19;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_2 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_2;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_20 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_20;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_21 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_21;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_22 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_22;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_23 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_23;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_24 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_24;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_25 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_25;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_26 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_26;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_27 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_27;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_28 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_28;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_29 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_29;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_3 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_3;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_30 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_30;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_31 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_31;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_4 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_4;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_5 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_5;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_6 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_6;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_7 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_7;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_8 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_8;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.accessibility_custom_action_9 = global::XpertMobileApp.Droid.Resource.Id.accessibility_custom_action_9;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action0 = global::XpertMobileApp.Droid.Resource.Id.action0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.actions = global::XpertMobileApp.Droid.Resource.Id.actions;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_bar = global::XpertMobileApp.Droid.Resource.Id.action_bar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_bar_activity_content = global::XpertMobileApp.Droid.Resource.Id.action_bar_activity_content;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_bar_container = global::XpertMobileApp.Droid.Resource.Id.action_bar_container;
@@ -9532,11 +12193,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_mode_bar_stub = global::XpertMobileApp.Droid.Resource.Id.action_mode_bar_stub;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_mode_close_button = global::XpertMobileApp.Droid.Resource.Id.action_mode_close_button;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.action_text = global::XpertMobileApp.Droid.Resource.Id.action_text;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.actions = global::XpertMobileApp.Droid.Resource.Id.actions;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.activity_chooser_view_content = global::XpertMobileApp.Droid.Resource.Id.activity_chooser_view_content;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.add = global::XpertMobileApp.Droid.Resource.Id.add;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.alertTitle = global::XpertMobileApp.Droid.Resource.Id.alertTitle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.all = global::XpertMobileApp.Droid.Resource.Id.all;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.ALT = global::XpertMobileApp.Droid.Resource.Id.ALT;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.always = global::XpertMobileApp.Droid.Resource.Id.always;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.async = global::XpertMobileApp.Droid.Resource.Id.async;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.auto = global::XpertMobileApp.Droid.Resource.Id.auto;
@@ -9546,15 +12207,17 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.bottomtab_navarea = global::XpertMobileApp.Droid.Resource.Id.bottomtab_navarea;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.bottomtab_tabbar = global::XpertMobileApp.Droid.Resource.Id.bottomtab_tabbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_header_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_header_text;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_menu_items = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_items;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_menu_item_icon = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_menu_item_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_text;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_menu_items = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_items;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.browser_actions_menu_view = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_view;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.buttonPanel = global::XpertMobileApp.Droid.Resource.Id.buttonPanel;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.cancel_action = global::XpertMobileApp.Droid.Resource.Id.cancel_action;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.center = global::XpertMobileApp.Droid.Resource.Id.center;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.center_horizontal = global::XpertMobileApp.Droid.Resource.Id.center_horizontal;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.center_vertical = global::XpertMobileApp.Droid.Resource.Id.center_vertical;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.checkbox = global::XpertMobileApp.Droid.Resource.Id.checkbox;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.@checked = global::XpertMobileApp.Droid.Resource.Id.@checked;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.chronometer = global::XpertMobileApp.Droid.Resource.Id.chronometer;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.clip_horizontal = global::XpertMobileApp.Droid.Resource.Id.clip_horizontal;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.clip_vertical = global::XpertMobileApp.Droid.Resource.Id.clip_vertical;
@@ -9563,6 +12226,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.content = global::XpertMobileApp.Droid.Resource.Id.content;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.contentPanel = global::XpertMobileApp.Droid.Resource.Id.contentPanel;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.coordinator = global::XpertMobileApp.Droid.Resource.Id.coordinator;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.CTRL = global::XpertMobileApp.Droid.Resource.Id.CTRL;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.custom = global::XpertMobileApp.Droid.Resource.Id.custom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.customPanel = global::XpertMobileApp.Droid.Resource.Id.customPanel;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.decor_content_parent = global::XpertMobileApp.Droid.Resource.Id.decor_content_parent;
@@ -9572,22 +12236,26 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.design_menu_item_action_area_stub = global::XpertMobileApp.Droid.Resource.Id.design_menu_item_action_area_stub;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.design_menu_item_text = global::XpertMobileApp.Droid.Resource.Id.design_menu_item_text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.design_navigation_view = global::XpertMobileApp.Droid.Resource.Id.design_navigation_view;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.dialog_button = global::XpertMobileApp.Droid.Resource.Id.dialog_button;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.disableHome = global::XpertMobileApp.Droid.Resource.Id.disableHome;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.edit_query = global::XpertMobileApp.Droid.Resource.Id.edit_query;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.end = global::XpertMobileApp.Droid.Resource.Id.end;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.end_padder = global::XpertMobileApp.Droid.Resource.Id.end_padder;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.enterAlways = global::XpertMobileApp.Droid.Resource.Id.enterAlways;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.enterAlwaysCollapsed = global::XpertMobileApp.Droid.Resource.Id.enterAlwaysCollapsed;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.exitUntilCollapsed = global::XpertMobileApp.Droid.Resource.Id.exitUntilCollapsed;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.expand_activities_button = global::XpertMobileApp.Droid.Resource.Id.expand_activities_button;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.expanded_menu = global::XpertMobileApp.Droid.Resource.Id.expanded_menu;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.expand_activities_button = global::XpertMobileApp.Droid.Resource.Id.expand_activities_button;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.fill = global::XpertMobileApp.Droid.Resource.Id.fill;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.filled = global::XpertMobileApp.Droid.Resource.Id.filled;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.fill_horizontal = global::XpertMobileApp.Droid.Resource.Id.fill_horizontal;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.filled = global::XpertMobileApp.Droid.Resource.Id.filled;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.ghost_view_holder = global::XpertMobileApp.Droid.Resource.Id.ghost_view_holder;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.group_divider = global::XpertMobileApp.Droid.Resource.Id.group_divider;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.home = global::XpertMobileApp.Droid.Resource.Id.home;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.homeAsUp = global::XpertMobileApp.Droid.Resource.Id.homeAsUp;
@@ -9597,6 +12265,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.image = global::XpertMobileApp.Droid.Resource.Id.image;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.info = global::XpertMobileApp.Droid.Resource.Id.info;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.italic = global::XpertMobileApp.Droid.Resource.Id.italic;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.Itemname = global::XpertMobileApp.Droid.Resource.Id.Itemname;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.item_touch_helper_previous_elevation = global::XpertMobileApp.Droid.Resource.Id.item_touch_helper_previous_elevation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.labeled = global::XpertMobileApp.Droid.Resource.Id.labeled;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.largeLabel = global::XpertMobileApp.Droid.Resource.Id.largeLabel;
@@ -9608,8 +12277,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.main_appbar = global::XpertMobileApp.Droid.Resource.Id.main_appbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.main_tablayout = global::XpertMobileApp.Droid.Resource.Id.main_tablayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.main_toolbar = global::XpertMobileApp.Droid.Resource.Id.main_toolbar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.main_viewpager = global::XpertMobileApp.Droid.Resource.Id.main_viewpager;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.masked = global::XpertMobileApp.Droid.Resource.Id.masked;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.media_actions = global::XpertMobileApp.Droid.Resource.Id.media_actions;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.message = global::XpertMobileApp.Droid.Resource.Id.message;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.META = global::XpertMobileApp.Droid.Resource.Id.META;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.middle = global::XpertMobileApp.Droid.Resource.Id.middle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.mini = global::XpertMobileApp.Droid.Resource.Id.mini;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.mtrl_child_content_container = global::XpertMobileApp.Droid.Resource.Id.mtrl_child_content_container;
@@ -9622,9 +12294,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.notification_background = global::XpertMobileApp.Droid.Resource.Id.notification_background;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.notification_main_column = global::XpertMobileApp.Droid.Resource.Id.notification_main_column;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.notification_main_column_container = global::XpertMobileApp.Droid.Resource.Id.notification_main_column_container;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.off = global::XpertMobileApp.Droid.Resource.Id.off;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.on = global::XpertMobileApp.Droid.Resource.Id.on;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.outline = global::XpertMobileApp.Droid.Resource.Id.outline;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.parallax = global::XpertMobileApp.Droid.Resource.Id.parallax;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.parentPanel = global::XpertMobileApp.Droid.Resource.Id.parentPanel;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.parent_matrix = global::XpertMobileApp.Droid.Resource.Id.parent_matrix;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.pin = global::XpertMobileApp.Droid.Resource.Id.pin;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.progress_circular = global::XpertMobileApp.Droid.Resource.Id.progress_circular;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.progress_horizontal = global::XpertMobileApp.Droid.Resource.Id.progress_horizontal;
@@ -9632,12 +12307,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.right = global::XpertMobileApp.Droid.Resource.Id.right;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.right_icon = global::XpertMobileApp.Droid.Resource.Id.right_icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.right_side = global::XpertMobileApp.Droid.Resource.Id.right_side;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.save_non_transition_alpha = global::XpertMobileApp.Droid.Resource.Id.save_non_transition_alpha;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.save_overlay_view = global::XpertMobileApp.Droid.Resource.Id.save_overlay_view;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.screen = global::XpertMobileApp.Droid.Resource.Id.screen;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scroll = global::XpertMobileApp.Droid.Resource.Id.scroll;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scrollable = global::XpertMobileApp.Droid.Resource.Id.scrollable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scrollIndicatorDown = global::XpertMobileApp.Droid.Resource.Id.scrollIndicatorDown;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scrollIndicatorUp = global::XpertMobileApp.Droid.Resource.Id.scrollIndicatorUp;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scrollView = global::XpertMobileApp.Droid.Resource.Id.scrollView;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.scrollable = global::XpertMobileApp.Droid.Resource.Id.scrollable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_badge = global::XpertMobileApp.Droid.Resource.Id.search_badge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_bar = global::XpertMobileApp.Droid.Resource.Id.search_bar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_button = global::XpertMobileApp.Droid.Resource.Id.search_button;
@@ -9648,14 +12325,16 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_plate = global::XpertMobileApp.Droid.Resource.Id.search_plate;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_src_text = global::XpertMobileApp.Droid.Resource.Id.search_src_text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.search_voice_btn = global::XpertMobileApp.Droid.Resource.Id.search_voice_btn;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.select_dialog_listview = global::XpertMobileApp.Droid.Resource.Id.select_dialog_listview;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.selected = global::XpertMobileApp.Droid.Resource.Id.selected;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.select_dialog_listview = global::XpertMobileApp.Droid.Resource.Id.select_dialog_listview;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.shellcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.shellcontent_appbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.shellcontent_toolbar = global::XpertMobileApp.Droid.Resource.Id.shellcontent_toolbar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.SHIFT = global::XpertMobileApp.Droid.Resource.Id.SHIFT;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.shortcut = global::XpertMobileApp.Droid.Resource.Id.shortcut;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.showCustom = global::XpertMobileApp.Droid.Resource.Id.showCustom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.showHome = global::XpertMobileApp.Droid.Resource.Id.showHome;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.showTitle = global::XpertMobileApp.Droid.Resource.Id.showTitle;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.sliding_tabs = global::XpertMobileApp.Droid.Resource.Id.sliding_tabs;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.smallLabel = global::XpertMobileApp.Droid.Resource.Id.smallLabel;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.snackbar_action = global::XpertMobileApp.Droid.Resource.Id.snackbar_action;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.snackbar_text = global::XpertMobileApp.Droid.Resource.Id.snackbar_text;
@@ -9667,29 +12346,43 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.src_in = global::XpertMobileApp.Droid.Resource.Id.src_in;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.src_over = global::XpertMobileApp.Droid.Resource.Id.src_over;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.start = global::XpertMobileApp.Droid.Resource.Id.start;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.status_bar_latest_event_content = global::XpertMobileApp.Droid.Resource.Id.status_bar_latest_event_content;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.stretch = global::XpertMobileApp.Droid.Resource.Id.stretch;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.submenuarrow = global::XpertMobileApp.Droid.Resource.Id.submenuarrow;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.submit_area = global::XpertMobileApp.Droid.Resource.Id.submit_area;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.SYM = global::XpertMobileApp.Droid.Resource.Id.SYM;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tabMode = global::XpertMobileApp.Droid.Resource.Id.tabMode;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_accessibility_actions = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_actions;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_accessibility_clickable_spans = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_clickable_spans;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_accessibility_heading = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_heading;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_accessibility_pane_title = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_pane_title;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_screen_reader_focusable = global::XpertMobileApp.Droid.Resource.Id.tag_screen_reader_focusable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_transition_group = global::XpertMobileApp.Droid.Resource.Id.tag_transition_group;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_unhandled_key_event_manager = global::XpertMobileApp.Droid.Resource.Id.tag_unhandled_key_event_manager;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.tag_unhandled_key_listeners = global::XpertMobileApp.Droid.Resource.Id.tag_unhandled_key_listeners;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.text = global::XpertMobileApp.Droid.Resource.Id.text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.text2 = global::XpertMobileApp.Droid.Resource.Id.text2;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_counter = global::XpertMobileApp.Droid.Resource.Id.textinput_counter;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_error = global::XpertMobileApp.Droid.Resource.Id.textinput_error;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_helper_text = global::XpertMobileApp.Droid.Resource.Id.textinput_helper_text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textSpacerNoButtons = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoButtons;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textSpacerNoTitle = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoTitle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textStart = global::XpertMobileApp.Droid.Resource.Id.textStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.text_input_password_toggle = global::XpertMobileApp.Droid.Resource.Id.text_input_password_toggle;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_counter = global::XpertMobileApp.Droid.Resource.Id.textinput_counter;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_error = global::XpertMobileApp.Droid.Resource.Id.textinput_error;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.textinput_helper_text = global::XpertMobileApp.Droid.Resource.Id.textinput_helper_text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.time = global::XpertMobileApp.Droid.Resource.Id.time;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.title = global::XpertMobileApp.Droid.Resource.Id.title;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.titleDividerNoCustom = global::XpertMobileApp.Droid.Resource.Id.titleDividerNoCustom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.title_template = global::XpertMobileApp.Droid.Resource.Id.title_template;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.toolbar = global::XpertMobileApp.Droid.Resource.Id.toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.top = global::XpertMobileApp.Droid.Resource.Id.top;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.topPanel = global::XpertMobileApp.Droid.Resource.Id.topPanel;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.touch_outside = global::XpertMobileApp.Droid.Resource.Id.touch_outside;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.transition_current_scene = global::XpertMobileApp.Droid.Resource.Id.transition_current_scene;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.transition_layout_save = global::XpertMobileApp.Droid.Resource.Id.transition_layout_save;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.transition_position = global::XpertMobileApp.Droid.Resource.Id.transition_position;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.transition_scene_layoutid_cache = global::XpertMobileApp.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.transition_transform = global::XpertMobileApp.Droid.Resource.Id.transition_transform;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.@unchecked = global::XpertMobileApp.Droid.Resource.Id.@unchecked;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.uniform = global::XpertMobileApp.Droid.Resource.Id.uniform;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.unlabeled = global::XpertMobileApp.Droid.Resource.Id.unlabeled;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Id.up = global::XpertMobileApp.Droid.Resource.Id.up;
@@ -9713,6 +12406,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::XpertMobileApp.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Integer.show_password_duration = global::XpertMobileApp.Droid.Resource.Integer.show_password_duration;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Integer.status_bar_notification_info_maxnum = global::XpertMobileApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_checked_mtrl_animation_interpolator_1;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_checkbox_unchecked_mtrl_animation_interpolator_1;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_radio_to_off_mtrl_animation_interpolator_0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0 = global::XpertMobileApp.Droid.Resource.Interpolator.btn_radio_to_on_mtrl_animation_interpolator_0;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.fast_out_slow_in = global::XpertMobileApp.Droid.Resource.Interpolator.fast_out_slow_in;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.mtrl_fast_out_linear_in = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.mtrl_fast_out_slow_in = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Interpolator.mtrl_linear = global::XpertMobileApp.Droid.Resource.Interpolator.mtrl_linear;
@@ -9750,6 +12450,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.browser_actions_context_menu_row = global::XpertMobileApp.Droid.Resource.Layout.browser_actions_context_menu_row;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.CustomizedImageView = global::XpertMobileApp.Droid.Resource.Layout.CustomizedImageView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.CustomizedView = global::XpertMobileApp.Droid.Resource.Layout.CustomizedView;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.custom_dialog = global::XpertMobileApp.Droid.Resource.Layout.custom_dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_bottom_navigation_item = global::XpertMobileApp.Droid.Resource.Layout.design_bottom_navigation_item;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_bottom_sheet_dialog = global::XpertMobileApp.Droid.Resource.Layout.design_bottom_sheet_dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_layout_snackbar = global::XpertMobileApp.Droid.Resource.Layout.design_layout_snackbar;
@@ -9764,13 +12465,24 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_navigation_menu = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_navigation_menu_item = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu_item;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.design_text_input_password_icon = global::XpertMobileApp.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.FallbackTabbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackTabbarDoNotUse;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.FallbackToolbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackToolbarDoNotUse;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.FlyoutContent = global::XpertMobileApp.Droid.Resource.Layout.FlyoutContent;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.mtrl_layout_snackbar = global::XpertMobileApp.Droid.Resource.Layout.mtrl_layout_snackbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.mtrl_layout_snackbar_include = global::XpertMobileApp.Droid.Resource.Layout.mtrl_layout_snackbar_include;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_action = global::XpertMobileApp.Droid.Resource.Layout.notification_action;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_action_tombstone = global::XpertMobileApp.Droid.Resource.Layout.notification_action_tombstone;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_media_action = global::XpertMobileApp.Droid.Resource.Layout.notification_media_action;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_media_cancel_action = global::XpertMobileApp.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_big_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_big_media_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_big_media_narrow = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_big_media_narrow_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_custom_big = global::XpertMobileApp.Droid.Resource.Layout.notification_template_custom_big;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_icon_group = global::XpertMobileApp.Droid.Resource.Layout.notification_template_icon_group;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_lines_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_lines_media;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_media = global::XpertMobileApp.Droid.Resource.Layout.notification_template_media;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_media_custom = global::XpertMobileApp.Droid.Resource.Layout.notification_template_media_custom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_part_chronometer = global::XpertMobileApp.Droid.Resource.Layout.notification_template_part_chronometer;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.notification_template_part_time = global::XpertMobileApp.Droid.Resource.Layout.notification_template_part_time;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.RootLayout = global::XpertMobileApp.Droid.Resource.Layout.RootLayout;
@@ -9780,12 +12492,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.sfcomboBox_layout = global::XpertMobileApp.Droid.Resource.Layout.sfcomboBox_layout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.ShellContent = global::XpertMobileApp.Droid.Resource.Layout.ShellContent;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.support_simple_spinner_dropdown_item = global::XpertMobileApp.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.Tabbar = global::XpertMobileApp.Droid.Resource.Layout.Tabbar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Layout.Toolbar = global::XpertMobileApp.Droid.Resource.Layout.Toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_action_bar_home_description = global::XpertMobileApp.Droid.Resource.String.abc_action_bar_home_description;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_action_bar_up_description = global::XpertMobileApp.Droid.Resource.String.abc_action_bar_up_description;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_action_menu_overflow_description = global::XpertMobileApp.Droid.Resource.String.abc_action_menu_overflow_description;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_action_mode_done = global::XpertMobileApp.Droid.Resource.String.abc_action_mode_done;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_activity_chooser_view_see_all = global::XpertMobileApp.Droid.Resource.String.abc_activity_chooser_view_see_all;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_activitychooserview_choose_application = global::XpertMobileApp.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_activity_chooser_view_see_all = global::XpertMobileApp.Droid.Resource.String.abc_activity_chooser_view_see_all;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_capital_off = global::XpertMobileApp.Droid.Resource.String.abc_capital_off;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_capital_on = global::XpertMobileApp.Droid.Resource.String.abc_capital_on;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_menu_alt_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_alt_shortcut_label;
@@ -9798,12 +12512,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_menu_space_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_space_shortcut_label;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_menu_sym_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_menu_sym_shortcut_label;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_prepend_shortcut_label = global::XpertMobileApp.Droid.Resource.String.abc_prepend_shortcut_label;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_search_hint = global::XpertMobileApp.Droid.Resource.String.abc_search_hint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_searchview_description_clear = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_clear;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_searchview_description_query = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_query;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_searchview_description_search = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_search;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_searchview_description_submit = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_submit;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_searchview_description_voice = global::XpertMobileApp.Droid.Resource.String.abc_searchview_description_voice;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_search_hint = global::XpertMobileApp.Droid.Resource.String.abc_search_hint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_shareactionprovider_share_with = global::XpertMobileApp.Droid.Resource.String.abc_shareactionprovider_share_with;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_shareactionprovider_share_with_application = global::XpertMobileApp.Droid.Resource.String.abc_shareactionprovider_share_with_application;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.String.abc_toolbar_collapse_description = global::XpertMobileApp.Droid.Resource.String.abc_toolbar_collapse_description;
@@ -9834,8 +12548,8 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::XpertMobileApp.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Animation_AppCompat_Tooltip = global::XpertMobileApp.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_CardView = global::XpertMobileApp.Droid.Resource.Style.Base_CardView;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_DialogWindowTitle_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_DialogWindowTitle_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
@@ -9884,37 +12598,6 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
@@ -9924,6 +12607,39 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog;
@@ -9931,13 +12647,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V22_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V22_Theme_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V22_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V23_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V23_Theme_AppCompat;
@@ -9947,11 +12661,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V28_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V28_Theme_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V28_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
@@ -9967,13 +12681,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Button_Small = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
@@ -10009,6 +12723,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Spinner = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_TextView = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_TextView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::XpertMobileApp.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
@@ -10042,12 +12757,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat;
@@ -10100,9 +12815,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Info = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Time = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Design_Counter = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Counter;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Design_Counter_Overflow = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
@@ -10129,58 +12849,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design = global::XpertMobileApp.Droid.Resource.Style.Theme_Design;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_Dark = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_DayNight = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_DayNight_ActionBar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
@@ -10196,6 +12870,54 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::XpertMobileApp.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_AppCompat_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design = global::XpertMobileApp.Droid.Resource.Style.Theme_Design;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_Design_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_CompactMenu = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_NoActionBar = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::XpertMobileApp.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
@@ -10208,13 +12930,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ActivityChooserView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button_Borderless = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button_Colored = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Button_Small = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Button_Small;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ButtonBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
@@ -10265,6 +12987,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_TextView = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_TextView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::XpertMobileApp.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
@@ -10296,11 +13019,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_CardView = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_CardView;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_ChipGroup = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Chip_Action = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Chip_Choice = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_ChipGroup = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_NavigationView = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Snackbar = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
@@ -10318,6 +13041,8 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_MaterialComponents_Toolbar = global::XpertMobileApp.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Style.Widget_Support_CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_background = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_background;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_backgroundSplit = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_backgroundSplit;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_backgroundStacked = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_backgroundStacked;
@@ -10347,8 +13072,6 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_subtitleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_title = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_title;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBar_titleTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.ActionBar_titleTextStyle;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionMenuItemView = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuItemView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionMenuItemView_android_minWidth = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ActionMenuView = global::XpertMobileApp.Droid.Resource.Styleable.ActionMenuView;
@@ -10387,20 +13110,20 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId = global::XpertMobileApp.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_background = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_background;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_elevation = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_elevation;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_expanded = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_expanded;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_liftOnScroll = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayoutStates = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayoutStates_state_liftable = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayoutStates_state_lifted = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_background = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_elevation = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_expanded = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_expanded;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppBarLayout_liftOnScroll = global::XpertMobileApp.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatImageView = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatImageView_android_src = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_android_src;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatImageView_srcCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
@@ -10426,11 +13149,21 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableBottomCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableBottomCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableEndCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableEndCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableLeftCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableLeftCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableRightCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableRightCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableStartCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableStartCompat;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableTint = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTint;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableTintMode = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTintMode;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_drawableTopCompat = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_drawableTopCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_fontFamily = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_fontVariationSettings;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_lineHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_textAllCaps = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTextView_textLocale = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTextView_textLocale;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_actionBarDivider = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
@@ -10496,22 +13229,26 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dividerVertical = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_editTextBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_editTextColor = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_editTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorMultipleAnimated;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listChoiceIndicatorSingleAnimated;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingEnd;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_panelBackground = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::XpertMobileApp.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
@@ -10593,6 +13330,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CardView_contentPaddingRight = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingRight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CardView_contentPaddingTop = global::XpertMobileApp.Droid.Resource.Styleable.CardView_contentPaddingTop;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip = global::XpertMobileApp.Droid.Resource.Styleable.Chip;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_checkedChip = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_checkedChip;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacing = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacing;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacingVertical = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_singleLine = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleLine;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_singleSelection = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleSelection;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_android_checkable = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_checkable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_android_ellipsize = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_ellipsize;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.Chip_android_maxWidth;
@@ -10627,13 +13371,6 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_showMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.Chip_showMotionSpec;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_textEndPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_textEndPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Chip_textStartPadding = global::XpertMobileApp.Droid.Resource.Styleable.Chip_textStartPadding;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_checkedChip = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_checkedChip;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacing = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacing;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_chipSpacingVertical = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_singleLine = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleLine;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ChipGroup_singleSelection = global::XpertMobileApp.Droid.Resource.Styleable.ChipGroup_singleSelection;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
@@ -10645,26 +13382,26 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_title = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::XpertMobileApp.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ColorStateListItem = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ColorStateListItem_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_alpha;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ColorStateListItem_android_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ColorStateListItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_color;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CompoundButton = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CompoundButton_android_button = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CompoundButton_buttonCompat = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CompoundButton_buttonTint = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonTint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CompoundButton_buttonTintMode = global::XpertMobileApp.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_keylines = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
@@ -10673,6 +13410,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.DesignTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.DesignTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
@@ -10688,6 +13426,8 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_borderWidth = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_elevation = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_elevation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_fabCustomSize = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize;
@@ -10699,18 +13439,10 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_rippleColor = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_showMotionSpec = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_useCompatPadding = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::XpertMobileApp.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FlowLayout = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FlowLayout_itemSpacing = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout_itemSpacing;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FlowLayout_lineSpacing = global::XpertMobileApp.Droid.Resource.Styleable.FlowLayout_lineSpacing;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderAuthority = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderCerts = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderPackage = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderQuery = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont_android_font = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_font;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont_android_fontStyle = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
@@ -10722,11 +13454,20 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont_fontWeight = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamilyFont_ttcIndex = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderAuthority = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderCerts = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderPackage = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.FontFamily_fontProviderQuery = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ForegroundLinearLayout = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::XpertMobileApp.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem_android_offset = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_offset;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_centerColor = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_centerX = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerX;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_centerY = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_centerY;
@@ -10739,9 +13480,6 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_startY = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_tileMode = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColor_android_type = global::XpertMobileApp.Droid.Resource.Styleable.GradientColor_android_type;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_color;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.GradientColorItem_android_offset = global::XpertMobileApp.Droid.Resource.Styleable.GradientColorItem_android_offset;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
@@ -10750,13 +13488,13 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_divider = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_divider;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_showDividers = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_Layout = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.LinearLayoutCompat_showDividers = global::XpertMobileApp.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ListPopupWindow = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::XpertMobileApp.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
@@ -10868,15 +13606,16 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.NavigationView_itemTextColor = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_itemTextColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.NavigationView_menu = global::XpertMobileApp.Droid.Resource.Styleable.NavigationView_menu;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindow = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindowBackgroundState = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindow_android_popupBackground = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindow_overlapAnchor = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindowBackgroundState = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::XpertMobileApp.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecycleListView = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::XpertMobileApp.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecyclerView = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecyclerView_android_clipToPadding = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_clipToPadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecyclerView_android_descendantFocusability = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecyclerView_android_orientation = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_android_orientation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.RecyclerView_fastScrollEnabled = global::XpertMobileApp.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
@@ -10911,12 +13650,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SearchView_suggestionRowLayout = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SearchView_voiceIcon = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_voiceIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Snackbar = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Snackbar_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Snackbar_snackbarStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SnackbarLayout = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SnackbarLayout_android_maxWidth = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SnackbarLayout_elevation = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_elevation;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::XpertMobileApp.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Snackbar_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Snackbar_snackbarStyle = global::XpertMobileApp.Droid.Resource.Styleable.Snackbar_snackbarStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Spinner = global::XpertMobileApp.Droid.Resource.Styleable.Spinner;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Spinner_android_dropDownWidth = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Spinner_android_entries = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_entries;
@@ -10924,14 +13663,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Spinner_android_prompt = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_android_prompt;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Spinner_popupTheme = global::XpertMobileApp.Droid.Resource.Styleable.Spinner_popupTheme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawableItem = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawableItem_android_drawable = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_constantSize = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_constantSize;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_dither = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_dither;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_enterFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_exitFadeDuration = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_variablePadding = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_variablePadding;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawable_android_visible = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawable_android_visible;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawableItem = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.StateListDrawableItem_android_drawable = global::XpertMobileApp.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SwitchCompat = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SwitchCompat_android_textOff = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_android_textOff;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.SwitchCompat_android_textOn = global::XpertMobileApp.Droid.Resource.Styleable.SwitchCompat_android_textOn;
@@ -10986,11 +13725,14 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textColor = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textColorHint = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textColorLink = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textFontWeight = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textFontWeight;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textSize = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textSize;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_textStyle = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_textStyle;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_android_typeface = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_android_typeface;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_fontFamily = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_fontVariationSettings = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_fontVariationSettings;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_textAllCaps = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextAppearance_textLocale = global::XpertMobileApp.Droid.Resource.Styleable.TextAppearance_textLocale;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextInputLayout = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextInputLayout_android_hint = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_android_hint;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.TextInputLayout_android_textColorHint = global::XpertMobileApp.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
@@ -11039,6 +13781,7 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_logo = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_logo;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_logoDescription = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_logoDescription;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_maxButtonHeight = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_menu = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_menu;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_navigationContentDescription = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_navigationIcon = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_navigationIcon;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_popupTheme = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_popupTheme;
@@ -11049,17 +13792,12 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMargin = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMargin;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMarginBottom = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMarginEnd = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMargins = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMargins;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMarginStart = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginStart;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMarginTop = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMarginTop;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleMargins = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleMargins;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleTextAppearance = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.Toolbar_titleTextColor = global::XpertMobileApp.Droid.Resource.Styleable.Toolbar_titleTextColor;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View = global::XpertMobileApp.Droid.Resource.Styleable.View;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.View_android_focusable;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_android_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_android_theme;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_paddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingEnd;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_paddingStart = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingStart;
-			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_theme;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewBackgroundHelper = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewBackgroundHelper_android_background = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::XpertMobileApp.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
@@ -11068,6 +13806,11 @@ namespace XpertMobileApp.Droid
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewStubCompat_android_id = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewStubCompat_android_inflatedId = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.ViewStubCompat_android_layout = global::XpertMobileApp.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.View_android_focusable;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_android_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_android_theme;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_paddingEnd = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingEnd;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_paddingStart = global::XpertMobileApp.Droid.Resource.Styleable.View_paddingStart;
+			global::Syncfusion.XForms.Android.ComboBox.Resource.Styleable.View_theme = global::XpertMobileApp.Droid.Resource.Styleable.View_theme;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.Layout.ScrollViewer = global::XpertMobileApp.Droid.Resource.Layout.ScrollViewer;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.String.library_name = global::XpertMobileApp.Droid.Resource.String.library_name;
 			global::Syncfusion.SfDataGrid.XForms.Droid.Resource.String.load_more_items = global::XpertMobileApp.Droid.Resource.String.load_more_items;
@@ -11252,7 +13995,6 @@ namespace XpertMobileApp.Droid
 			global::Com.Syncfusion.Rotator.Resource.Styleable.SfRotator_rotatorTextVisible = global::XpertMobileApp.Droid.Resource.Styleable.SfRotator_rotatorTextVisible;
 			global::Com.Syncfusion.Rotator.Resource.Styleable.SfRotator_rotatorUnselectedDotsColor = global::XpertMobileApp.Droid.Resource.Styleable.SfRotator_rotatorUnselectedDotsColor;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::XpertMobileApp.Droid.Resource.Attribute.alpha;
-			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::XpertMobileApp.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::XpertMobileApp.Droid.Resource.Attribute.font;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderAuthority = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderAuthority;
 			global::Xamarin.Essentials.Resource.Attribute.fontProviderCerts = global::XpertMobileApp.Droid.Resource.Attribute.fontProviderCerts;
@@ -11263,14 +14005,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Essentials.Resource.Attribute.fontStyle = global::XpertMobileApp.Droid.Resource.Attribute.fontStyle;
 			global::Xamarin.Essentials.Resource.Attribute.fontVariationSettings = global::XpertMobileApp.Droid.Resource.Attribute.fontVariationSettings;
 			global::Xamarin.Essentials.Resource.Attribute.fontWeight = global::XpertMobileApp.Droid.Resource.Attribute.fontWeight;
-			global::Xamarin.Essentials.Resource.Attribute.keylines = global::XpertMobileApp.Droid.Resource.Attribute.keylines;
-			global::Xamarin.Essentials.Resource.Attribute.layout_anchor = global::XpertMobileApp.Droid.Resource.Attribute.layout_anchor;
-			global::Xamarin.Essentials.Resource.Attribute.layout_anchorGravity = global::XpertMobileApp.Droid.Resource.Attribute.layout_anchorGravity;
-			global::Xamarin.Essentials.Resource.Attribute.layout_behavior = global::XpertMobileApp.Droid.Resource.Attribute.layout_behavior;
-			global::Xamarin.Essentials.Resource.Attribute.layout_dodgeInsetEdges = global::XpertMobileApp.Droid.Resource.Attribute.layout_dodgeInsetEdges;
-			global::Xamarin.Essentials.Resource.Attribute.layout_insetEdge = global::XpertMobileApp.Droid.Resource.Attribute.layout_insetEdge;
-			global::Xamarin.Essentials.Resource.Attribute.layout_keyline = global::XpertMobileApp.Droid.Resource.Attribute.layout_keyline;
-			global::Xamarin.Essentials.Resource.Attribute.statusBarBackground = global::XpertMobileApp.Droid.Resource.Attribute.statusBarBackground;
 			global::Xamarin.Essentials.Resource.Attribute.ttcIndex = global::XpertMobileApp.Droid.Resource.Attribute.ttcIndex;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_bg_grey = global::XpertMobileApp.Droid.Resource.Color.browser_actions_bg_grey;
 			global::Xamarin.Essentials.Resource.Color.browser_actions_divider_color = global::XpertMobileApp.Droid.Resource.Color.browser_actions_divider_color;
@@ -11278,8 +14012,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Essentials.Resource.Color.browser_actions_title_color = global::XpertMobileApp.Droid.Resource.Color.browser_actions_title_color;
 			global::Xamarin.Essentials.Resource.Color.notification_action_color_filter = global::XpertMobileApp.Droid.Resource.Color.notification_action_color_filter;
 			global::Xamarin.Essentials.Resource.Color.notification_icon_bg_color = global::XpertMobileApp.Droid.Resource.Color.notification_icon_bg_color;
-			global::Xamarin.Essentials.Resource.Color.ripple_material_light = global::XpertMobileApp.Droid.Resource.Color.ripple_material_light;
-			global::Xamarin.Essentials.Resource.Color.secondary_text_default_material_light = global::XpertMobileApp.Droid.Resource.Color.secondary_text_default_material_light;
 			global::Xamarin.Essentials.Resource.Dimension.browser_actions_context_menu_max_width = global::XpertMobileApp.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
 			global::Xamarin.Essentials.Resource.Dimension.browser_actions_context_menu_min_padding = global::XpertMobileApp.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
 			global::Xamarin.Essentials.Resource.Dimension.compat_button_inset_horizontal_material = global::XpertMobileApp.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
@@ -11354,43 +14086,28 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Essentials.Resource.Id.action_divider = global::XpertMobileApp.Droid.Resource.Id.action_divider;
 			global::Xamarin.Essentials.Resource.Id.action_image = global::XpertMobileApp.Droid.Resource.Id.action_image;
 			global::Xamarin.Essentials.Resource.Id.action_text = global::XpertMobileApp.Droid.Resource.Id.action_text;
-			global::Xamarin.Essentials.Resource.Id.all = global::XpertMobileApp.Droid.Resource.Id.all;
 			global::Xamarin.Essentials.Resource.Id.async = global::XpertMobileApp.Droid.Resource.Id.async;
 			global::Xamarin.Essentials.Resource.Id.blocking = global::XpertMobileApp.Droid.Resource.Id.blocking;
-			global::Xamarin.Essentials.Resource.Id.bottom = global::XpertMobileApp.Droid.Resource.Id.bottom;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_header_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_header_text;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_items = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_items;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_item_icon = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_icon;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_item_text = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_item_text;
 			global::Xamarin.Essentials.Resource.Id.browser_actions_menu_view = global::XpertMobileApp.Droid.Resource.Id.browser_actions_menu_view;
-			global::Xamarin.Essentials.Resource.Id.center = global::XpertMobileApp.Droid.Resource.Id.center;
-			global::Xamarin.Essentials.Resource.Id.center_horizontal = global::XpertMobileApp.Droid.Resource.Id.center_horizontal;
-			global::Xamarin.Essentials.Resource.Id.center_vertical = global::XpertMobileApp.Droid.Resource.Id.center_vertical;
 			global::Xamarin.Essentials.Resource.Id.chronometer = global::XpertMobileApp.Droid.Resource.Id.chronometer;
-			global::Xamarin.Essentials.Resource.Id.clip_horizontal = global::XpertMobileApp.Droid.Resource.Id.clip_horizontal;
-			global::Xamarin.Essentials.Resource.Id.clip_vertical = global::XpertMobileApp.Droid.Resource.Id.clip_vertical;
 			global::Xamarin.Essentials.Resource.Id.dialog_button = global::XpertMobileApp.Droid.Resource.Id.dialog_button;
-			global::Xamarin.Essentials.Resource.Id.end = global::XpertMobileApp.Droid.Resource.Id.end;
-			global::Xamarin.Essentials.Resource.Id.fill = global::XpertMobileApp.Droid.Resource.Id.fill;
-			global::Xamarin.Essentials.Resource.Id.fill_horizontal = global::XpertMobileApp.Droid.Resource.Id.fill_horizontal;
-			global::Xamarin.Essentials.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Essentials.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::Xamarin.Essentials.Resource.Id.icon = global::XpertMobileApp.Droid.Resource.Id.icon;
 			global::Xamarin.Essentials.Resource.Id.icon_group = global::XpertMobileApp.Droid.Resource.Id.icon_group;
 			global::Xamarin.Essentials.Resource.Id.info = global::XpertMobileApp.Droid.Resource.Id.info;
 			global::Xamarin.Essentials.Resource.Id.italic = global::XpertMobileApp.Droid.Resource.Id.italic;
-			global::Xamarin.Essentials.Resource.Id.left = global::XpertMobileApp.Droid.Resource.Id.left;
 			global::Xamarin.Essentials.Resource.Id.line1 = global::XpertMobileApp.Droid.Resource.Id.line1;
 			global::Xamarin.Essentials.Resource.Id.line3 = global::XpertMobileApp.Droid.Resource.Id.line3;
-			global::Xamarin.Essentials.Resource.Id.none = global::XpertMobileApp.Droid.Resource.Id.none;
 			global::Xamarin.Essentials.Resource.Id.normal = global::XpertMobileApp.Droid.Resource.Id.normal;
 			global::Xamarin.Essentials.Resource.Id.notification_background = global::XpertMobileApp.Droid.Resource.Id.notification_background;
 			global::Xamarin.Essentials.Resource.Id.notification_main_column = global::XpertMobileApp.Droid.Resource.Id.notification_main_column;
 			global::Xamarin.Essentials.Resource.Id.notification_main_column_container = global::XpertMobileApp.Droid.Resource.Id.notification_main_column_container;
-			global::Xamarin.Essentials.Resource.Id.right = global::XpertMobileApp.Droid.Resource.Id.right;
 			global::Xamarin.Essentials.Resource.Id.right_icon = global::XpertMobileApp.Droid.Resource.Id.right_icon;
 			global::Xamarin.Essentials.Resource.Id.right_side = global::XpertMobileApp.Droid.Resource.Id.right_side;
-			global::Xamarin.Essentials.Resource.Id.start = global::XpertMobileApp.Droid.Resource.Id.start;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_actions = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_actions;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_clickable_spans = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_clickable_spans;
 			global::Xamarin.Essentials.Resource.Id.tag_accessibility_heading = global::XpertMobileApp.Droid.Resource.Id.tag_accessibility_heading;
@@ -11403,7 +14120,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Essentials.Resource.Id.text2 = global::XpertMobileApp.Droid.Resource.Id.text2;
 			global::Xamarin.Essentials.Resource.Id.time = global::XpertMobileApp.Droid.Resource.Id.time;
 			global::Xamarin.Essentials.Resource.Id.title = global::XpertMobileApp.Droid.Resource.Id.title;
-			global::Xamarin.Essentials.Resource.Id.top = global::XpertMobileApp.Droid.Resource.Id.top;
 			global::Xamarin.Essentials.Resource.Integer.status_bar_notification_info_maxnum = global::XpertMobileApp.Droid.Resource.Integer.status_bar_notification_info_maxnum;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_page = global::XpertMobileApp.Droid.Resource.Layout.browser_actions_context_menu_page;
 			global::Xamarin.Essentials.Resource.Layout.browser_actions_context_menu_row = global::XpertMobileApp.Droid.Resource.Layout.browser_actions_context_menu_row;
@@ -11422,22 +14138,10 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Essentials.Resource.Style.TextAppearance_Compat_Notification_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
 			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionContainer = global::XpertMobileApp.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
 			global::Xamarin.Essentials.Resource.Style.Widget_Compat_NotificationActionText = global::XpertMobileApp.Droid.Resource.Style.Widget_Compat_NotificationActionText;
-			global::Xamarin.Essentials.Resource.Style.Widget_Support_CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_alpha;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_android_alpha = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
 			global::Xamarin.Essentials.Resource.Styleable.ColorStateListItem_android_color = global::XpertMobileApp.Droid.Resource.Styleable.ColorStateListItem_android_color;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_keylines = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_keylines;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
-			global::Xamarin.Essentials.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamily = global::XpertMobileApp.Droid.Resource.Styleable.FontFamily;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont;
 			global::Xamarin.Essentials.Resource.Styleable.FontFamilyFont_android_font = global::XpertMobileApp.Droid.Resource.Styleable.FontFamilyFont_android_font;
@@ -11867,6 +14571,7 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Attribute.scrimAnimationDuration;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimBackground = global::XpertMobileApp.Droid.Resource.Attribute.scrimBackground;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrimVisibleHeightTrigger = global::XpertMobileApp.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.scrollViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.scrollViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchHintIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchHintIcon;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchIcon;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.searchViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.searchViewStyle;
@@ -12019,7 +14724,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_color_highlight_material = global::XpertMobileApp.Droid.Resource.Color.abc_color_highlight_material;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_hint_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_hint_foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_light;
-			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_input_method_navigation_guard = global::XpertMobileApp.Droid.Resource.Color.abc_input_method_navigation_guard;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_primary_text_disable_only_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_primary_text_disable_only_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.abc_primary_text_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_material_dark;
@@ -12066,7 +14770,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Color.design_fab_stroke_top_inner_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_inner_color;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.design_fab_stroke_top_outer_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_outer_color;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.design_snackbar_background_color = global::XpertMobileApp.Droid.Resource.Color.design_snackbar_background_color;
-			global::Xamarin.Forms.Platform.Android.Resource.Color.design_tint_password_toggle = global::XpertMobileApp.Droid.Resource.Color.design_tint_password_toggle;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.dim_foreground_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.dim_foreground_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_light;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.dim_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_material_dark;
@@ -12091,7 +14794,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Color.material_grey_900 = global::XpertMobileApp.Droid.Resource.Color.material_grey_900;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_bottom_nav_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
-			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_btn_bg_color_disabled = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_btn_bg_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_selector;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_btn_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_ripple_color;
 			global::Xamarin.Forms.Platform.Android.Resource.Color.mtrl_btn_stroke_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
@@ -12326,11 +15028,9 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_navigation_item_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_snackbar_margin = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_margin;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_padding_end = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
@@ -12350,10 +15050,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.notification_subtext_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_subtext_size;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.notification_top_pad = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.notification_top_pad_large_text = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad_large_text;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.subtitle_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_corner_radius;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.subtitle_outline_width = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_outline_width;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.subtitle_shadow_offset = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_offset;
-			global::Xamarin.Forms.Platform.Android.Resource.Dimension.subtitle_shadow_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_radius;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.tooltip_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_corner_radius;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.tooltip_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_horizontal_padding;
 			global::Xamarin.Forms.Platform.Android.Resource.Dimension.tooltip_margin = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_margin;
@@ -12467,7 +15163,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.ic_mtrl_chip_checked_black = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.ic_mtrl_chip_checked_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.ic_mtrl_chip_close_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
-			global::Xamarin.Forms.Platform.Android.Resource.Drawable.mtrl_snackbar_background = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_snackbar_background;
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.mtrl_tabs_default_indicator = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.navigation_empty_icon = global::XpertMobileApp.Droid.Resource.Drawable.navigation_empty_icon;
 			global::Xamarin.Forms.Platform.Android.Resource.Drawable.notification_action_background = global::XpertMobileApp.Droid.Resource.Drawable.notification_action_background;
@@ -12590,7 +15285,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
@@ -12706,7 +15400,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Id.textSpacerNoButtons = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoButtons;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.textSpacerNoTitle = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoTitle;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.textStart = global::XpertMobileApp.Droid.Resource.Id.textStart;
-			global::Xamarin.Forms.Platform.Android.Resource.Id.text_input_password_toggle = global::XpertMobileApp.Droid.Resource.Id.text_input_password_toggle;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.time = global::XpertMobileApp.Droid.Resource.Id.time;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.title = global::XpertMobileApp.Droid.Resource.Id.title;
 			global::Xamarin.Forms.Platform.Android.Resource.Id.titleDividerNoCustom = global::XpertMobileApp.Droid.Resource.Id.titleDividerNoCustom;
@@ -12798,7 +15491,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.design_navigation_item_subheader = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item_subheader;
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.design_navigation_menu = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu;
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.design_navigation_menu_item = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu_item;
-			global::Xamarin.Forms.Platform.Android.Resource.Layout.design_text_input_password_icon = global::XpertMobileApp.Droid.Resource.Layout.design_text_input_password_icon;
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.FallbackTabbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackTabbarDoNotUse;
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.FallbackToolbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackToolbarDoNotUse;
 			global::Xamarin.Forms.Platform.Android.Resource.Layout.FlyoutContent = global::XpertMobileApp.Droid.Resource.Layout.FlyoutContent;
@@ -12862,6 +15554,7 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.String.fab_transformation_sheet_behavior = global::XpertMobileApp.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.hide_bottom_view_on_scroll_behavior = global::XpertMobileApp.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Android.Resource.String.mtrl_chip_close_icon_content_description = global::XpertMobileApp.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Android.Resource.String.overflow_tab_title = global::XpertMobileApp.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Android.Resource.String.password_toggle_content_description = global::XpertMobileApp.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye = global::XpertMobileApp.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Android.Resource.String.path_password_eye_mask_strike_through = global::XpertMobileApp.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -13068,7 +15761,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView = global::XpertMobileApp.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Dark = global::XpertMobileApp.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Light = global::XpertMobileApp.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewScrollBars = global::XpertMobileApp.Droid.Resource.Style.collectionViewScrollBars;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewTheme = global::XpertMobileApp.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme = global::XpertMobileApp.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme_Base = global::XpertMobileApp.Droid.Resource.Style.MainTheme_Base;
@@ -13103,6 +15795,8 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.scrollViewScrollBars = global::XpertMobileApp.Droid.Resource.Style.scrollViewScrollBars;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.scrollViewTheme = global::XpertMobileApp.Droid.Resource.Style.scrollViewTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat_Body1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_AppCompat_Body2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
@@ -13183,7 +15877,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_MaterialComponents_Overline = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
-			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_MaterialComponents_Tab = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
@@ -13749,9 +16442,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DesignTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DesignTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DrawerArrowToggle = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
@@ -13858,39 +16548,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialCardView = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialCardView_strokeColor = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeColor;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialCardView_strokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
-			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MenuGroup = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MenuGroup_android_checkableBehavior = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.MenuGroup_android_enabled = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_enabled;
@@ -13971,6 +16628,8 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::XpertMobileApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollingViewBehavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollViewRendererTheme = global::XpertMobileApp.Droid.Resource.Styleable.ScrollViewRendererTheme;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView = global::XpertMobileApp.Droid.Resource.Styleable.SearchView;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_focusable;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.SearchView_android_imeOptions = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_imeOptions;
@@ -14545,6 +17204,7 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimAnimationDuration = global::XpertMobileApp.Droid.Resource.Attribute.scrimAnimationDuration;
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimBackground = global::XpertMobileApp.Droid.Resource.Attribute.scrimBackground;
 			global::Xamarin.Forms.Platform.Resource.Attribute.scrimVisibleHeightTrigger = global::XpertMobileApp.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Xamarin.Forms.Platform.Resource.Attribute.scrollViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.scrollViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchHintIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchHintIcon;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchIcon = global::XpertMobileApp.Droid.Resource.Attribute.searchIcon;
 			global::Xamarin.Forms.Platform.Resource.Attribute.searchViewStyle = global::XpertMobileApp.Droid.Resource.Attribute.searchViewStyle;
@@ -14697,7 +17357,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Color.abc_color_highlight_material = global::XpertMobileApp.Droid.Resource.Color.abc_color_highlight_material;
 			global::Xamarin.Forms.Platform.Resource.Color.abc_hint_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_dark;
 			global::Xamarin.Forms.Platform.Resource.Color.abc_hint_foreground_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_hint_foreground_material_light;
-			global::Xamarin.Forms.Platform.Resource.Color.abc_input_method_navigation_guard = global::XpertMobileApp.Droid.Resource.Color.abc_input_method_navigation_guard;
 			global::Xamarin.Forms.Platform.Resource.Color.abc_primary_text_disable_only_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
 			global::Xamarin.Forms.Platform.Resource.Color.abc_primary_text_disable_only_material_light = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
 			global::Xamarin.Forms.Platform.Resource.Color.abc_primary_text_material_dark = global::XpertMobileApp.Droid.Resource.Color.abc_primary_text_material_dark;
@@ -14744,7 +17403,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Color.design_fab_stroke_top_inner_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_inner_color;
 			global::Xamarin.Forms.Platform.Resource.Color.design_fab_stroke_top_outer_color = global::XpertMobileApp.Droid.Resource.Color.design_fab_stroke_top_outer_color;
 			global::Xamarin.Forms.Platform.Resource.Color.design_snackbar_background_color = global::XpertMobileApp.Droid.Resource.Color.design_snackbar_background_color;
-			global::Xamarin.Forms.Platform.Resource.Color.design_tint_password_toggle = global::XpertMobileApp.Droid.Resource.Color.design_tint_password_toggle;
 			global::Xamarin.Forms.Platform.Resource.Color.dim_foreground_disabled_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_dark;
 			global::Xamarin.Forms.Platform.Resource.Color.dim_foreground_disabled_material_light = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_disabled_material_light;
 			global::Xamarin.Forms.Platform.Resource.Color.dim_foreground_material_dark = global::XpertMobileApp.Droid.Resource.Color.dim_foreground_material_dark;
@@ -14769,7 +17427,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Color.material_grey_900 = global::XpertMobileApp.Droid.Resource.Color.material_grey_900;
 			global::Xamarin.Forms.Platform.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
 			global::Xamarin.Forms.Platform.Resource.Color.mtrl_bottom_nav_item_tint = global::XpertMobileApp.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
-			global::Xamarin.Forms.Platform.Resource.Color.mtrl_btn_bg_color_disabled = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
 			global::Xamarin.Forms.Platform.Resource.Color.mtrl_btn_bg_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_bg_color_selector;
 			global::Xamarin.Forms.Platform.Resource.Color.mtrl_btn_ripple_color = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_ripple_color;
 			global::Xamarin.Forms.Platform.Resource.Color.mtrl_btn_stroke_color_selector = global::XpertMobileApp.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
@@ -15004,11 +17661,9 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_navigation_item_icon_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_snackbar_margin = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_snackbar_margin;
-			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
-			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_padding_end = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
 			global::Xamarin.Forms.Platform.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::XpertMobileApp.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
@@ -15028,10 +17683,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Dimension.notification_subtext_size = global::XpertMobileApp.Droid.Resource.Dimension.notification_subtext_size;
 			global::Xamarin.Forms.Platform.Resource.Dimension.notification_top_pad = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad;
 			global::Xamarin.Forms.Platform.Resource.Dimension.notification_top_pad_large_text = global::XpertMobileApp.Droid.Resource.Dimension.notification_top_pad_large_text;
-			global::Xamarin.Forms.Platform.Resource.Dimension.subtitle_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_corner_radius;
-			global::Xamarin.Forms.Platform.Resource.Dimension.subtitle_outline_width = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_outline_width;
-			global::Xamarin.Forms.Platform.Resource.Dimension.subtitle_shadow_offset = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_offset;
-			global::Xamarin.Forms.Platform.Resource.Dimension.subtitle_shadow_radius = global::XpertMobileApp.Droid.Resource.Dimension.subtitle_shadow_radius;
 			global::Xamarin.Forms.Platform.Resource.Dimension.tooltip_corner_radius = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_corner_radius;
 			global::Xamarin.Forms.Platform.Resource.Dimension.tooltip_horizontal_padding = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_horizontal_padding;
 			global::Xamarin.Forms.Platform.Resource.Dimension.tooltip_margin = global::XpertMobileApp.Droid.Resource.Dimension.tooltip_margin;
@@ -15145,7 +17796,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Drawable.ic_mtrl_chip_checked_black = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
 			global::Xamarin.Forms.Platform.Resource.Drawable.ic_mtrl_chip_checked_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
 			global::Xamarin.Forms.Platform.Resource.Drawable.ic_mtrl_chip_close_circle = global::XpertMobileApp.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
-			global::Xamarin.Forms.Platform.Resource.Drawable.mtrl_snackbar_background = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_snackbar_background;
 			global::Xamarin.Forms.Platform.Resource.Drawable.mtrl_tabs_default_indicator = global::XpertMobileApp.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
 			global::Xamarin.Forms.Platform.Resource.Drawable.navigation_empty_icon = global::XpertMobileApp.Droid.Resource.Drawable.navigation_empty_icon;
 			global::Xamarin.Forms.Platform.Resource.Drawable.notification_action_background = global::XpertMobileApp.Droid.Resource.Drawable.notification_action_background;
@@ -15268,7 +17918,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::Xamarin.Forms.Platform.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::Xamarin.Forms.Platform.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::Xamarin.Forms.Platform.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::Xamarin.Forms.Platform.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::Xamarin.Forms.Platform.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
 			global::Xamarin.Forms.Platform.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
@@ -15384,7 +18033,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Id.textSpacerNoButtons = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoButtons;
 			global::Xamarin.Forms.Platform.Resource.Id.textSpacerNoTitle = global::XpertMobileApp.Droid.Resource.Id.textSpacerNoTitle;
 			global::Xamarin.Forms.Platform.Resource.Id.textStart = global::XpertMobileApp.Droid.Resource.Id.textStart;
-			global::Xamarin.Forms.Platform.Resource.Id.text_input_password_toggle = global::XpertMobileApp.Droid.Resource.Id.text_input_password_toggle;
 			global::Xamarin.Forms.Platform.Resource.Id.time = global::XpertMobileApp.Droid.Resource.Id.time;
 			global::Xamarin.Forms.Platform.Resource.Id.title = global::XpertMobileApp.Droid.Resource.Id.title;
 			global::Xamarin.Forms.Platform.Resource.Id.titleDividerNoCustom = global::XpertMobileApp.Droid.Resource.Id.titleDividerNoCustom;
@@ -15476,7 +18124,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Layout.design_navigation_item_subheader = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_item_subheader;
 			global::Xamarin.Forms.Platform.Resource.Layout.design_navigation_menu = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu;
 			global::Xamarin.Forms.Platform.Resource.Layout.design_navigation_menu_item = global::XpertMobileApp.Droid.Resource.Layout.design_navigation_menu_item;
-			global::Xamarin.Forms.Platform.Resource.Layout.design_text_input_password_icon = global::XpertMobileApp.Droid.Resource.Layout.design_text_input_password_icon;
 			global::Xamarin.Forms.Platform.Resource.Layout.FallbackTabbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackTabbarDoNotUse;
 			global::Xamarin.Forms.Platform.Resource.Layout.FallbackToolbarDoNotUse = global::XpertMobileApp.Droid.Resource.Layout.FallbackToolbarDoNotUse;
 			global::Xamarin.Forms.Platform.Resource.Layout.FlyoutContent = global::XpertMobileApp.Droid.Resource.Layout.FlyoutContent;
@@ -15540,6 +18187,7 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.String.fab_transformation_sheet_behavior = global::XpertMobileApp.Droid.Resource.String.fab_transformation_sheet_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.hide_bottom_view_on_scroll_behavior = global::XpertMobileApp.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
 			global::Xamarin.Forms.Platform.Resource.String.mtrl_chip_close_icon_content_description = global::XpertMobileApp.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Xamarin.Forms.Platform.Resource.String.overflow_tab_title = global::XpertMobileApp.Droid.Resource.String.overflow_tab_title;
 			global::Xamarin.Forms.Platform.Resource.String.password_toggle_content_description = global::XpertMobileApp.Droid.Resource.String.password_toggle_content_description;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye = global::XpertMobileApp.Droid.Resource.String.path_password_eye;
 			global::Xamarin.Forms.Platform.Resource.String.path_password_eye_mask_strike_through = global::XpertMobileApp.Droid.Resource.String.path_password_eye_mask_strike_through;
@@ -15746,7 +18394,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.CardView = global::XpertMobileApp.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Dark = global::XpertMobileApp.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Light = global::XpertMobileApp.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Resource.Style.collectionViewScrollBars = global::XpertMobileApp.Droid.Resource.Style.collectionViewScrollBars;
 			global::Xamarin.Forms.Platform.Resource.Style.collectionViewTheme = global::XpertMobileApp.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme = global::XpertMobileApp.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme_Base = global::XpertMobileApp.Droid.Resource.Style.MainTheme_Base;
@@ -15781,6 +18428,8 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::XpertMobileApp.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
 			global::Xamarin.Forms.Platform.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
 			global::Xamarin.Forms.Platform.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::XpertMobileApp.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Xamarin.Forms.Platform.Resource.Style.scrollViewScrollBars = global::XpertMobileApp.Droid.Resource.Style.scrollViewScrollBars;
+			global::Xamarin.Forms.Platform.Resource.Style.scrollViewTheme = global::XpertMobileApp.Droid.Resource.Style.scrollViewTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat_Body1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_AppCompat_Body2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
@@ -15861,7 +18510,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_MaterialComponents_Overline = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
-			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_MaterialComponents_Tab = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
 			global::Xamarin.Forms.Platform.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::XpertMobileApp.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
@@ -16427,9 +19075,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
 			global::Xamarin.Forms.Platform.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
 			global::Xamarin.Forms.Platform.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::XpertMobileApp.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
-			global::Xamarin.Forms.Platform.Resource.Styleable.DesignTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme;
-			global::Xamarin.Forms.Platform.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
-			global::Xamarin.Forms.Platform.Resource.Styleable.DesignTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.DrawerArrowToggle = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
 			global::Xamarin.Forms.Platform.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::XpertMobileApp.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
@@ -16536,39 +19181,6 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialCardView = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView;
 			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialCardView_strokeColor = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeColor;
 			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialCardView_strokeWidth = global::XpertMobileApp.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
-			global::Xamarin.Forms.Platform.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::XpertMobileApp.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.MenuGroup = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup;
 			global::Xamarin.Forms.Platform.Resource.Styleable.MenuGroup_android_checkableBehavior = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
 			global::Xamarin.Forms.Platform.Resource.Styleable.MenuGroup_android_enabled = global::XpertMobileApp.Droid.Resource.Styleable.MenuGroup_android_enabled;
@@ -16649,6 +19261,8 @@ namespace XpertMobileApp.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::XpertMobileApp.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollingViewBehavior_Layout = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
 			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::XpertMobileApp.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollViewRendererTheme = global::XpertMobileApp.Droid.Resource.Styleable.ScrollViewRendererTheme;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle = global::XpertMobileApp.Droid.Resource.Styleable.ScrollViewRendererTheme_scrollViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView = global::XpertMobileApp.Droid.Resource.Styleable.SearchView;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView_android_focusable = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_focusable;
 			global::Xamarin.Forms.Platform.Resource.Styleable.SearchView_android_imeOptions = global::XpertMobileApp.Droid.Resource.Styleable.SearchView_android_imeOptions;
@@ -17957,7 +20571,6 @@ namespace XpertMobileApp.Droid
 			global::ZXing.Net.Mobile.Forms.Resource.Id.fill_vertical = global::XpertMobileApp.Droid.Resource.Id.fill_vertical;
 			global::ZXing.Net.Mobile.Forms.Resource.Id.@fixed = global::XpertMobileApp.Droid.Resource.Id.@fixed;
 			global::ZXing.Net.Mobile.Forms.Resource.Id.flyoutcontent_appbar = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_appbar;
-			global::ZXing.Net.Mobile.Forms.Resource.Id.flyoutcontent_recycler = global::XpertMobileApp.Droid.Resource.Id.flyoutcontent_recycler;
 			global::ZXing.Net.Mobile.Forms.Resource.Id.forever = global::XpertMobileApp.Droid.Resource.Id.forever;
 			global::ZXing.Net.Mobile.Forms.Resource.Id.FUNCTION = global::XpertMobileApp.Droid.Resource.Id.FUNCTION;
 			global::ZXing.Net.Mobile.Forms.Resource.Id.ghost_view = global::XpertMobileApp.Droid.Resource.Id.ghost_view;
@@ -21282,109 +23895,127 @@ namespace XpertMobileApp.Droid
 			public const int abc_tooltip_exit = 2131034123;
 			
 			// aapt resource value: 0x7f05000c
-			public const int btn_checkbox_indeterminate_to_checked_box_inner_merged_animation = 2131034124;
+			public const int btn_checkbox_to_checked_box_inner_merged_animation = 2131034124;
 			
 			// aapt resource value: 0x7f05000d
-			public const int btn_checkbox_indeterminate_to_checked_box_outer_merged_animation = 2131034125;
+			public const int btn_checkbox_to_checked_box_outer_merged_animation = 2131034125;
 			
 			// aapt resource value: 0x7f05000e
-			public const int btn_checkbox_indeterminate_to_checked_icon_null_animation = 2131034126;
+			public const int btn_checkbox_to_checked_icon_null_animation = 2131034126;
 			
 			// aapt resource value: 0x7f05000f
-			public const int btn_checkbox_to_checked_box_inner_merged_animation = 2131034127;
+			public const int btn_checkbox_to_unchecked_box_inner_merged_animation = 2131034127;
 			
 			// aapt resource value: 0x7f050010
-			public const int btn_checkbox_to_checked_box_outer_merged_animation = 2131034128;
+			public const int btn_checkbox_to_unchecked_check_path_merged_animation = 2131034128;
 			
 			// aapt resource value: 0x7f050011
-			public const int btn_checkbox_to_checked_icon_null_animation = 2131034129;
+			public const int btn_checkbox_to_unchecked_icon_null_animation = 2131034129;
 			
 			// aapt resource value: 0x7f050012
-			public const int btn_checkbox_to_indeterminate_from_checked_box_inner_merged_animation = 2131034130;
+			public const int btn_radio_to_off_mtrl_dot_group_animation = 2131034130;
 			
 			// aapt resource value: 0x7f050013
-			public const int btn_checkbox_to_indeterminate_from_checked_icon_null_animation = 2131034131;
+			public const int btn_radio_to_off_mtrl_ring_outer_animation = 2131034131;
 			
 			// aapt resource value: 0x7f050014
-			public const int btn_checkbox_to_indeterminate_from_unchecked_box_inner_merged_animation = 2131034132;
+			public const int btn_radio_to_off_mtrl_ring_outer_path_animation = 2131034132;
 			
 			// aapt resource value: 0x7f050015
-			public const int btn_checkbox_to_indeterminate_from_unchecked_box_outer_merged_animation = 2131034133;
+			public const int btn_radio_to_on_mtrl_dot_group_animation = 2131034133;
 			
 			// aapt resource value: 0x7f050016
-			public const int btn_checkbox_to_indeterminate_from_unchecked_icon_null_animation = 2131034134;
+			public const int btn_radio_to_on_mtrl_ring_outer_animation = 2131034134;
 			
 			// aapt resource value: 0x7f050017
-			public const int btn_checkbox_to_unchecked_box_inner_merged_animation = 2131034135;
+			public const int btn_radio_to_on_mtrl_ring_outer_path_animation = 2131034135;
 			
 			// aapt resource value: 0x7f050018
-			public const int btn_checkbox_to_unchecked_check_path_merged_animation = 2131034136;
+			public const int design_bottom_sheet_slide_in = 2131034136;
 			
 			// aapt resource value: 0x7f050019
-			public const int btn_checkbox_to_unchecked_from_indeterminate_box_inner_merged_animation = 2131034137;
+			public const int design_bottom_sheet_slide_out = 2131034137;
 			
 			// aapt resource value: 0x7f05001a
-			public const int btn_checkbox_to_unchecked_from_indeterminate_check_path_merged_animation = 2131034138;
+			public const int design_snackbar_in = 2131034138;
 			
 			// aapt resource value: 0x7f05001b
-			public const int btn_checkbox_to_unchecked_from_indeterminate_icon_null_animation = 2131034139;
+			public const int design_snackbar_out = 2131034139;
 			
 			// aapt resource value: 0x7f05001c
-			public const int btn_checkbox_to_unchecked_icon_null_animation = 2131034140;
+			public const int EnterFromLeft = 2131034140;
 			
 			// aapt resource value: 0x7f05001d
-			public const int btn_radio_to_off_mtrl_dot_group_animation = 2131034141;
+			public const int EnterFromRight = 2131034141;
 			
 			// aapt resource value: 0x7f05001e
-			public const int btn_radio_to_off_mtrl_ring_outer_animation = 2131034142;
+			public const int ExitToLeft = 2131034142;
 			
 			// aapt resource value: 0x7f05001f
-			public const int btn_radio_to_off_mtrl_ring_outer_path_animation = 2131034143;
+			public const int ExitToRight = 2131034143;
 			
 			// aapt resource value: 0x7f050020
-			public const int btn_radio_to_on_mtrl_dot_group_animation = 2131034144;
+			public const int SfChart_Fade_In = 2131034144;
 			
 			// aapt resource value: 0x7f050021
-			public const int btn_radio_to_on_mtrl_ring_outer_animation = 2131034145;
+			public const int SfChart_Fade_Out = 2131034145;
 			
 			// aapt resource value: 0x7f050022
-			public const int btn_radio_to_on_mtrl_ring_outer_path_animation = 2131034146;
+			public const int SfChart_Scale_In = 2131034146;
 			
 			// aapt resource value: 0x7f050023
-			public const int design_bottom_sheet_slide_in = 2131034147;
+			public const int SfChart_Scale_Out = 2131034147;
 			
 			// aapt resource value: 0x7f050024
-			public const int design_bottom_sheet_slide_out = 2131034148;
+			public const int sfcheckbox_checked_inner = 2131034148;
 			
 			// aapt resource value: 0x7f050025
-			public const int design_snackbar_in = 2131034149;
+			public const int sfcheckbox_checked_null = 2131034149;
 			
 			// aapt resource value: 0x7f050026
-			public const int design_snackbar_out = 2131034150;
+			public const int sfcheckbox_checked_unchecked_inner = 2131034150;
 			
 			// aapt resource value: 0x7f050027
-			public const int EnterFromLeft = 2131034151;
+			public const int sfcheckbox_checked_unchecked_null = 2131034151;
 			
 			// aapt resource value: 0x7f050028
-			public const int EnterFromRight = 2131034152;
+			public const int sfcheckbox_checked_unchecked_path = 2131034152;
 			
 			// aapt resource value: 0x7f050029
-			public const int ExitToLeft = 2131034153;
+			public const int sfcheckbox_indeterminate_checked_inner = 2131034153;
 			
 			// aapt resource value: 0x7f05002a
-			public const int ExitToRight = 2131034154;
+			public const int sfcheckbox_indeterminate_checked_null = 2131034154;
 			
 			// aapt resource value: 0x7f05002b
-			public const int SfChart_Fade_In = 2131034155;
+			public const int sfcheckbox_indeterminate_checked_outer = 2131034155;
 			
 			// aapt resource value: 0x7f05002c
-			public const int SfChart_Fade_Out = 2131034156;
+			public const int sfcheckbox_indeterminate_unchecked_inner = 2131034156;
 			
 			// aapt resource value: 0x7f05002d
-			public const int SfChart_Scale_In = 2131034157;
+			public const int sfcheckbox_indeterminate_unchecked_null = 2131034157;
 			
 			// aapt resource value: 0x7f05002e
-			public const int SfChart_Scale_Out = 2131034158;
+			public const int sfcheckbox_indeterminate_unchecked_path = 2131034158;
+			
+			// aapt resource value: 0x7f05002f
+			public const int sfcheckbox_unchecked_indeterminate_inner = 2131034159;
+			
+			// aapt resource value: 0x7f050030
+			public const int sfcheckbox_unchecked_indeterminate_null = 2131034160;
+			
+			// aapt resource value: 0x7f050031
+			public const int sfcheckbox_unchecked_indeterminate_outer = 2131034161;
+			
+			// aapt resource value: 0x7f050032
+			public const int sfcheckbox_unchecked_inner = 2131034162;
+			
+			// aapt resource value: 0x7f050033
+			public const int sfcheckbox_unchecked_null = 2131034163;
+			
+			// aapt resource value: 0x7f050034
+			public const int sfcheckbox_unchecked_outer = 2131034164;
 			
 			static Animation()
 			{
@@ -21544,41 +24175,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01014b
 			public const int activityChooserViewStyle = 2130772299;
 			
-			// aapt resource value: 0x7f010272
-			public const int ahBarColor = 2130772594;
+			// aapt resource value: 0x7f010249
+			public const int ahBarColor = 2130772553;
 			
-			// aapt resource value: 0x7f01027a
-			public const int ahBarLength = 2130772602;
+			// aapt resource value: 0x7f010251
+			public const int ahBarLength = 2130772561;
 			
-			// aapt resource value: 0x7f010279
-			public const int ahBarWidth = 2130772601;
+			// aapt resource value: 0x7f010250
+			public const int ahBarWidth = 2130772560;
 			
-			// aapt resource value: 0x7f010277
-			public const int ahCircleColor = 2130772599;
+			// aapt resource value: 0x7f01024e
+			public const int ahCircleColor = 2130772558;
 			
-			// aapt resource value: 0x7f010276
-			public const int ahDelayMillis = 2130772598;
+			// aapt resource value: 0x7f01024d
+			public const int ahDelayMillis = 2130772557;
 			
-			// aapt resource value: 0x7f010278
-			public const int ahRadius = 2130772600;
+			// aapt resource value: 0x7f01024f
+			public const int ahRadius = 2130772559;
 			
-			// aapt resource value: 0x7f010273
-			public const int ahRimColor = 2130772595;
+			// aapt resource value: 0x7f01024a
+			public const int ahRimColor = 2130772554;
 			
-			// aapt resource value: 0x7f010274
-			public const int ahRimWidth = 2130772596;
+			// aapt resource value: 0x7f01024b
+			public const int ahRimWidth = 2130772555;
 			
-			// aapt resource value: 0x7f010275
-			public const int ahSpinSpeed = 2130772597;
+			// aapt resource value: 0x7f01024c
+			public const int ahSpinSpeed = 2130772556;
 			
-			// aapt resource value: 0x7f01026f
-			public const int ahText = 2130772591;
+			// aapt resource value: 0x7f010246
+			public const int ahText = 2130772550;
 			
-			// aapt resource value: 0x7f010270
-			public const int ahTextColor = 2130772592;
+			// aapt resource value: 0x7f010247
+			public const int ahTextColor = 2130772551;
 			
-			// aapt resource value: 0x7f010271
-			public const int ahTextSize = 2130772593;
+			// aapt resource value: 0x7f010248
+			public const int ahTextSize = 2130772552;
 			
 			// aapt resource value: 0x7f010172
 			public const int alertDialogButtonGroupStyle = 2130772338;
@@ -21592,8 +24223,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010174
 			public const int alertDialogTheme = 2130772340;
 			
-			// aapt resource value: 0x7f010230
-			public const int allowNull = 2130772528;
+			// aapt resource value: 0x7f010231
+			public const int allowNull = 2130772529;
 			
 			// aapt resource value: 0x7f01018d
 			public const int allowStacking = 2130772365;
@@ -21627,132 +24258,6 @@ namespace XpertMobileApp.Droid
 			
 			// aapt resource value: 0x7f010100
 			public const int autoSizeTextType = 2130772224;
-			
-			// aapt resource value: 0x7f010239
-			public const int autocompleteBorderColor = 2130772537;
-			
-			// aapt resource value: 0x7f01024e
-			public const int autocompleteClearButtonColor = 2130772558;
-			
-			// aapt resource value: 0x7f010242
-			public const int autocompleteDisplayMemberPath = 2130772546;
-			
-			// aapt resource value: 0x7f010247
-			public const int autocompleteDropDownBackgroundColor = 2130772551;
-			
-			// aapt resource value: 0x7f010257
-			public const int autocompleteDropDownCornerRadius = 2130772567;
-			
-			// aapt resource value: 0x7f010259
-			public const int autocompleteDropDownFooterViewHeight = 2130772569;
-			
-			// aapt resource value: 0x7f010258
-			public const int autocompleteDropDownHeaderViewHeight = 2130772568;
-			
-			// aapt resource value: 0x7f010256
-			public const int autocompleteDropDownItemHeight = 2130772566;
-			
-			// aapt resource value: 0x7f01023d
-			public const int autocompleteDropDownOpen = 2130772541;
-			
-			// aapt resource value: 0x7f010248
-			public const int autocompleteDropDownTextColor = 2130772552;
-			
-			// aapt resource value: 0x7f01024a
-			public const int autocompleteDropDownTextSize = 2130772554;
-			
-			// aapt resource value: 0x7f010243
-			public const int autocompleteEnableSelectionIndicator = 2130772547;
-			
-			// aapt resource value: 0x7f010254
-			public const int autocompleteHighlightedTextColor = 2130772564;
-			
-			// aapt resource value: 0x7f01024f
-			public const int autocompleteIgnoreDiacritic = 2130772559;
-			
-			// aapt resource value: 0x7f01024b
-			public const int autocompleteImageMemberPath = 2130772555;
-			
-			// aapt resource value: 0x7f010244
-			public const int autocompleteIndicatorText = 2130772548;
-			
-			// aapt resource value: 0x7f010245
-			public const int autocompleteIndicatorTextColor = 2130772549;
-			
-			// aapt resource value: 0x7f010255
-			public const int autocompleteIndicatorTextSize = 2130772565;
-			
-			// aapt resource value: 0x7f010250
-			public const int autocompleteIsFocused = 2130772560;
-			
-			// aapt resource value: 0x7f010253
-			public const int autocompleteIsSelectedItemsVisibleInDropDown = 2130772563;
-			
-			// aapt resource value: 0x7f010251
-			public const int autocompleteLoadMoreText = 2130772561;
-			
-			// aapt resource value: 0x7f010249
-			public const int autocompleteMaximumDropDownHeight = 2130772553;
-			
-			// aapt resource value: 0x7f01023e
-			public const int autocompleteMaximumSuggestion = 2130772542;
-			
-			// aapt resource value: 0x7f010246
-			public const int autocompleteMinimumPrefixCharacters = 2130772550;
-			
-			// aapt resource value: 0x7f01025e
-			public const int autocompleteMode = 2130772574;
-			
-			// aapt resource value: 0x7f01025d
-			public const int autocompleteMultiSelectMode = 2130772573;
-			
-			// aapt resource value: 0x7f010252
-			public const int autocompleteNoResultsFoundText = 2130772562;
-			
-			// aapt resource value: 0x7f010241
-			public const int autocompletePopUpDelay = 2130772545;
-			
-			// aapt resource value: 0x7f01023f
-			public const int autocompleteSelectedIndex = 2130772543;
-			
-			// aapt resource value: 0x7f010235
-			public const int autocompleteShowBorder = 2130772533;
-			
-			// aapt resource value: 0x7f010236
-			public const int autocompleteShowClearButton = 2130772534;
-			
-			// aapt resource value: 0x7f01024d
-			public const int autocompleteShowDropDownFooterView = 2130772557;
-			
-			// aapt resource value: 0x7f01024c
-			public const int autocompleteShowDropDownHeaderView = 2130772556;
-			
-			// aapt resource value: 0x7f010240
-			public const int autocompleteShowSuggestionsOnFocus = 2130772544;
-			
-			// aapt resource value: 0x7f01025b
-			public const int autocompleteSuggestionBoxPlacement = 2130772571;
-			
-			// aapt resource value: 0x7f01025a
-			public const int autocompleteSuggestionMode = 2130772570;
-			
-			// aapt resource value: 0x7f01023b
-			public const int autocompleteText = 2130772539;
-			
-			// aapt resource value: 0x7f010238
-			public const int autocompleteTextColor = 2130772536;
-			
-			// aapt resource value: 0x7f01023c
-			public const int autocompleteTextSize = 2130772540;
-			
-			// aapt resource value: 0x7f01025c
-			public const int autocompleteTokensWrapMode = 2130772572;
-			
-			// aapt resource value: 0x7f01023a
-			public const int autocompleteWatermark = 2130772538;
-			
-			// aapt resource value: 0x7f010237
-			public const int autocompleteWatermarkColor = 2130772535;
 			
 			// aapt resource value: 0x7f0100dc
 			public const int background = 2130772188;
@@ -21790,8 +24295,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010035
 			public const int behavior_skipCollapsed = 2130772021;
 			
-			// aapt resource value: 0x7f010231
-			public const int borderColor = 2130772529;
+			// aapt resource value: 0x7f010232
+			public const int borderColor = 2130772530;
 			
 			// aapt resource value: 0x7f01006c
 			public const int borderWidth = 2130772076;
@@ -21904,8 +24409,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01017c
 			public const int checkboxStyle = 2130772348;
 			
-			// aapt resource value: 0x7f010262
-			public const int @checked = 2130772578;
+			// aapt resource value: 0x7f010239
+			public const int @checked = 2130772537;
 			
 			// aapt resource value: 0x7f010056
 			public const int checkedChip = 2130772054;
@@ -22108,8 +24613,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010078
 			public const int cornerRadius = 2130772088;
 			
-			// aapt resource value: 0x7f010261
-			public const int cornerradius = 2130772577;
+			// aapt resource value: 0x7f010238
+			public const int cornerradius = 2130772536;
 			
 			// aapt resource value: 0x7f0100a7
 			public const int counterEnabled = 2130772135;
@@ -22123,8 +24628,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100a9
 			public const int counterTextAppearance = 2130772137;
 			
-			// aapt resource value: 0x7f010233
-			public const int culture = 2130772531;
+			// aapt resource value: 0x7f010234
+			public const int culture = 2130772532;
 			
 			// aapt resource value: 0x7f0100df
 			public const int customNavigationLayout = 2130772191;
@@ -22204,8 +24709,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100ec
 			public const int elevation = 2130772204;
 			
-			// aapt resource value: 0x7f01022a
-			public const int enableGroupSeparator = 2130772522;
+			// aapt resource value: 0x7f01022b
+			public const int enableGroupSeparator = 2130772523;
 			
 			// aapt resource value: 0x7f0100b9
 			public const int enforceMaterialTheme = 2130772153;
@@ -22309,8 +24814,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0101e4
 			public const int fontProviderQuery = 2130772452;
 			
-			// aapt resource value: 0x7f01022f
-			public const int fontSize = 2130772527;
+			// aapt resource value: 0x7f010230
+			public const int fontSize = 2130772528;
 			
 			// aapt resource value: 0x7f0101e8
 			public const int fontStyle = 2130772456;
@@ -22420,8 +24925,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100d3
 			public const int isLightTheme = 2130772179;
 			
-			// aapt resource value: 0x7f010260
-			public const int isthreestate = 2130772576;
+			// aapt resource value: 0x7f010237
+			public const int isthreestate = 2130772535;
 			
 			// aapt resource value: 0x7f01007c
 			public const int itemBackground = 2130772092;
@@ -22579,8 +25084,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01006e
 			public const int maxImageSize = 2130772078;
 			
-			// aapt resource value: 0x7f01022d
-			public const int maximumDecimalDigits = 2130772525;
+			// aapt resource value: 0x7f01022e
+			public const int maximumDecimalDigits = 2130772526;
 			
 			// aapt resource value: 0x7f010199
 			public const int measureWithLargestChild = 2130772377;
@@ -22603,14 +25108,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01000c
 			public const int navigationViewStyle = 2130771980;
 			
-			// aapt resource value: 0x7f01022b
-			public const int numberFormat = 2130772523;
+			// aapt resource value: 0x7f01022c
+			public const int numberFormat = 2130772524;
 			
 			// aapt resource value: 0x7f01019d
 			public const int numericModifiers = 2130772381;
 			
-			// aapt resource value: 0x7f010234
-			public const int numericTextBoxValue = 2130772532;
+			// aapt resource value: 0x7f010235
+			public const int numericTextBoxValue = 2130772533;
 			
 			// aapt resource value: 0x7f0101a7
 			public const int overlapAnchor = 2130772391;
@@ -22636,8 +25141,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010164
 			public const int panelMenuListWidth = 2130772324;
 			
-			// aapt resource value: 0x7f010227
-			public const int parsingMode = 2130772519;
+			// aapt resource value: 0x7f010228
+			public const int parsingMode = 2130772520;
 			
 			// aapt resource value: 0x7f0100ad
 			public const int passwordToggleContentDescription = 2130772141;
@@ -22654,86 +25159,86 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0100af
 			public const int passwordToggleTintMode = 2130772143;
 			
-			// aapt resource value: 0x7f010228
-			public const int percentDisplayMode = 2130772520;
-			
-			// aapt resource value: 0x7f01020e
-			public const int pickerBackgroundColor = 2130772494;
-			
-			// aapt resource value: 0x7f01021e
-			public const int pickerBorderColor = 2130772510;
-			
-			// aapt resource value: 0x7f01021b
-			public const int pickerColumnHeaderBackgroundColor = 2130772507;
-			
-			// aapt resource value: 0x7f010217
-			public const int pickerColumnHeaderHeight = 2130772503;
-			
-			// aapt resource value: 0x7f010226
-			public const int pickerColumnHeaderTextColor = 2130772518;
-			
-			// aapt resource value: 0x7f010222
-			public const int pickerColumnHeaderTextSize = 2130772514;
-			
-			// aapt resource value: 0x7f010213
-			public const int pickerEnableLooping = 2130772499;
-			
-			// aapt resource value: 0x7f010210
-			public const int pickerFooterHeight = 2130772496;
-			
-			// aapt resource value: 0x7f01021a
-			public const int pickerHeaderBackgroundColor = 2130772506;
+			// aapt resource value: 0x7f010229
+			public const int percentDisplayMode = 2130772521;
 			
 			// aapt resource value: 0x7f01020f
-			public const int pickerHeaderHeight = 2130772495;
+			public const int pickerBackgroundColor = 2130772495;
 			
 			// aapt resource value: 0x7f01021f
-			public const int pickerHeaderText = 2130772511;
-			
-			// aapt resource value: 0x7f010225
-			public const int pickerHeaderTextColor = 2130772517;
-			
-			// aapt resource value: 0x7f010221
-			public const int pickerHeaderTextSize = 2130772513;
-			
-			// aapt resource value: 0x7f010211
-			public const int pickerHeight = 2130772497;
-			
-			// aapt resource value: 0x7f010212
-			public const int pickerIsOpen = 2130772498;
-			
-			// aapt resource value: 0x7f010218
-			public const int pickerItemHeight = 2130772504;
-			
-			// aapt resource value: 0x7f01020d
-			public const int pickerMode = 2130772493;
-			
-			// aapt resource value: 0x7f010224
-			public const int pickerSelectedItemTextSize = 2130772516;
-			
-			// aapt resource value: 0x7f010219
-			public const int pickerSelectedItemTextcolor = 2130772505;
-			
-			// aapt resource value: 0x7f01021d
-			public const int pickerSelectionBorderColor = 2130772509;
-			
-			// aapt resource value: 0x7f010216
-			public const int pickerShowColumnHeader = 2130772502;
-			
-			// aapt resource value: 0x7f010215
-			public const int pickerShowFooter = 2130772501;
-			
-			// aapt resource value: 0x7f010214
-			public const int pickerShowHeader = 2130772500;
+			public const int pickerBorderColor = 2130772511;
 			
 			// aapt resource value: 0x7f01021c
-			public const int pickerUnselectedItemTextColor = 2130772508;
+			public const int pickerColumnHeaderBackgroundColor = 2130772508;
+			
+			// aapt resource value: 0x7f010218
+			public const int pickerColumnHeaderHeight = 2130772504;
+			
+			// aapt resource value: 0x7f010227
+			public const int pickerColumnHeaderTextColor = 2130772519;
 			
 			// aapt resource value: 0x7f010223
-			public const int pickerUnselectedItemTextSize = 2130772515;
+			public const int pickerColumnHeaderTextSize = 2130772515;
+			
+			// aapt resource value: 0x7f010214
+			public const int pickerEnableLooping = 2130772500;
+			
+			// aapt resource value: 0x7f010211
+			public const int pickerFooterHeight = 2130772497;
+			
+			// aapt resource value: 0x7f01021b
+			public const int pickerHeaderBackgroundColor = 2130772507;
+			
+			// aapt resource value: 0x7f010210
+			public const int pickerHeaderHeight = 2130772496;
 			
 			// aapt resource value: 0x7f010220
-			public const int pickerWidth = 2130772512;
+			public const int pickerHeaderText = 2130772512;
+			
+			// aapt resource value: 0x7f010226
+			public const int pickerHeaderTextColor = 2130772518;
+			
+			// aapt resource value: 0x7f010222
+			public const int pickerHeaderTextSize = 2130772514;
+			
+			// aapt resource value: 0x7f010212
+			public const int pickerHeight = 2130772498;
+			
+			// aapt resource value: 0x7f010213
+			public const int pickerIsOpen = 2130772499;
+			
+			// aapt resource value: 0x7f010219
+			public const int pickerItemHeight = 2130772505;
+			
+			// aapt resource value: 0x7f01020e
+			public const int pickerMode = 2130772494;
+			
+			// aapt resource value: 0x7f010225
+			public const int pickerSelectedItemTextSize = 2130772517;
+			
+			// aapt resource value: 0x7f01021a
+			public const int pickerSelectedItemTextcolor = 2130772506;
+			
+			// aapt resource value: 0x7f01021e
+			public const int pickerSelectionBorderColor = 2130772510;
+			
+			// aapt resource value: 0x7f010217
+			public const int pickerShowColumnHeader = 2130772503;
+			
+			// aapt resource value: 0x7f010216
+			public const int pickerShowFooter = 2130772502;
+			
+			// aapt resource value: 0x7f010215
+			public const int pickerShowHeader = 2130772501;
+			
+			// aapt resource value: 0x7f01021d
+			public const int pickerUnselectedItemTextColor = 2130772509;
+			
+			// aapt resource value: 0x7f010224
+			public const int pickerUnselectedItemTextSize = 2130772516;
+			
+			// aapt resource value: 0x7f010221
+			public const int pickerWidth = 2130772513;
 			
 			// aapt resource value: 0x7f01014e
 			public const int popupMenuStyle = 2130772302;
@@ -22774,41 +25279,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010182
 			public const int ratingBarStyleSmall = 2130772354;
 			
-			// aapt resource value: 0x7f01020a
-			public const int ratingControlValue = 2130772490;
-			
-			// aapt resource value: 0x7f01020c
-			public const int ratingEnableAutoSize = 2130772492;
-			
-			// aapt resource value: 0x7f010203
-			public const int ratingItemCount = 2130772483;
-			
-			// aapt resource value: 0x7f010202
-			public const int ratingItemSize = 2130772482;
-			
-			// aapt resource value: 0x7f010201
-			public const int ratingItemSpacing = 2130772481;
-			
 			// aapt resource value: 0x7f01020b
-			public const int ratingPrecision = 2130772491;
+			public const int ratingControlValue = 2130772491;
+			
+			// aapt resource value: 0x7f01020d
+			public const int ratingEnableAutoSize = 2130772493;
 			
 			// aapt resource value: 0x7f010204
-			public const int ratingRatedFill = 2130772484;
+			public const int ratingItemCount = 2130772484;
+			
+			// aapt resource value: 0x7f010203
+			public const int ratingItemSize = 2130772483;
+			
+			// aapt resource value: 0x7f010202
+			public const int ratingItemSpacing = 2130772482;
+			
+			// aapt resource value: 0x7f01020c
+			public const int ratingPrecision = 2130772492;
 			
 			// aapt resource value: 0x7f010205
-			public const int ratingRatedStroke = 2130772485;
+			public const int ratingRatedFill = 2130772485;
 			
 			// aapt resource value: 0x7f010206
-			public const int ratingRatedStrokeWidth = 2130772486;
+			public const int ratingRatedStroke = 2130772486;
 			
 			// aapt resource value: 0x7f010207
-			public const int ratingUnratedFill = 2130772487;
+			public const int ratingRatedStrokeWidth = 2130772487;
 			
 			// aapt resource value: 0x7f010208
-			public const int ratingUnratedStroke = 2130772488;
+			public const int ratingUnratedFill = 2130772488;
 			
 			// aapt resource value: 0x7f010209
-			public const int ratingUnratedStrokeWidth = 2130772489;
+			public const int ratingUnratedStroke = 2130772489;
+			
+			// aapt resource value: 0x7f01020a
+			public const int ratingUnratedStrokeWidth = 2130772490;
 			
 			// aapt resource value: 0x7f0100c7
 			public const int recyclerViewStyle = 2130772167;
@@ -22819,47 +25324,47 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01000d
 			public const int rippleColor = 2130771981;
 			
-			// aapt resource value: 0x7f0101f5
-			public const int rotatorDotsBorderColor = 2130772469;
-			
-			// aapt resource value: 0x7f0101fc
-			public const int rotatorDotsPlacement = 2130772476;
-			
 			// aapt resource value: 0x7f0101f6
-			public const int rotatorEnableAutoPlay = 2130772470;
-			
-			// aapt resource value: 0x7f0101f8
-			public const int rotatorEnableLooping = 2130772472;
-			
-			// aapt resource value: 0x7f0101f9
-			public const int rotatorEnableSwiping = 2130772473;
-			
-			// aapt resource value: 0x7f0101fb
-			public const int rotatorNavigationDelay = 2130772475;
+			public const int rotatorDotsBorderColor = 2130772470;
 			
 			// aapt resource value: 0x7f0101fd
-			public const int rotatorNavigationDirection = 2130772477;
-			
-			// aapt resource value: 0x7f0101fe
-			public const int rotatorNavigationStripMode = 2130772478;
-			
-			// aapt resource value: 0x7f0101ff
-			public const int rotatorNavigationStripPosition = 2130772479;
-			
-			// aapt resource value: 0x7f010200
-			public const int rotatorPlayDirection = 2130772480;
-			
-			// aapt resource value: 0x7f0101f3
-			public const int rotatorSelectedDotsColor = 2130772467;
-			
-			// aapt resource value: 0x7f0101fa
-			public const int rotatorSelectedIndex = 2130772474;
+			public const int rotatorDotsPlacement = 2130772477;
 			
 			// aapt resource value: 0x7f0101f7
-			public const int rotatorTextVisible = 2130772471;
+			public const int rotatorEnableAutoPlay = 2130772471;
+			
+			// aapt resource value: 0x7f0101f9
+			public const int rotatorEnableLooping = 2130772473;
+			
+			// aapt resource value: 0x7f0101fa
+			public const int rotatorEnableSwiping = 2130772474;
+			
+			// aapt resource value: 0x7f0101fc
+			public const int rotatorNavigationDelay = 2130772476;
+			
+			// aapt resource value: 0x7f0101fe
+			public const int rotatorNavigationDirection = 2130772478;
+			
+			// aapt resource value: 0x7f0101ff
+			public const int rotatorNavigationStripMode = 2130772479;
+			
+			// aapt resource value: 0x7f010200
+			public const int rotatorNavigationStripPosition = 2130772480;
+			
+			// aapt resource value: 0x7f010201
+			public const int rotatorPlayDirection = 2130772481;
 			
 			// aapt resource value: 0x7f0101f4
-			public const int rotatorUnselectedDotsColor = 2130772468;
+			public const int rotatorSelectedDotsColor = 2130772468;
+			
+			// aapt resource value: 0x7f0101fb
+			public const int rotatorSelectedIndex = 2130772475;
+			
+			// aapt resource value: 0x7f0101f8
+			public const int rotatorTextVisible = 2130772472;
+			
+			// aapt resource value: 0x7f0101f5
+			public const int rotatorUnselectedDotsColor = 2130772469;
 			
 			// aapt resource value: 0x7f0101f1
 			public const int scopeUris = 2130772465;
@@ -22873,6 +25378,9 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010061
 			public const int scrimVisibleHeightTrigger = 2130772065;
 			
+			// aapt resource value: 0x7f0101f3
+			public const int scrollViewStyle = 2130772467;
+			
 			// aapt resource value: 0x7f0101b1
 			public const int searchHintIcon = 2130772401;
 			
@@ -22885,44 +25393,44 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010183
 			public const int seekBarStyle = 2130772355;
 			
-			// aapt resource value: 0x7f010264
-			public const int segmentBackColor = 2130772580;
+			// aapt resource value: 0x7f01023b
+			public const int segmentBackColor = 2130772539;
 			
-			// aapt resource value: 0x7f010265
-			public const int segmentBorderColor = 2130772581;
+			// aapt resource value: 0x7f01023c
+			public const int segmentBorderColor = 2130772540;
 			
-			// aapt resource value: 0x7f010266
-			public const int segmentBorderThickness = 2130772582;
+			// aapt resource value: 0x7f01023d
+			public const int segmentBorderThickness = 2130772541;
 			
-			// aapt resource value: 0x7f010267
-			public const int segmentColor = 2130772583;
+			// aapt resource value: 0x7f01023e
+			public const int segmentColor = 2130772542;
 			
-			// aapt resource value: 0x7f01026c
-			public const int segmentCornerRadius = 2130772588;
+			// aapt resource value: 0x7f010243
+			public const int segmentCornerRadius = 2130772547;
 			
-			// aapt resource value: 0x7f01026e
-			public const int segmentDisplayMode = 2130772590;
+			// aapt resource value: 0x7f010245
+			public const int segmentDisplayMode = 2130772549;
 			
-			// aapt resource value: 0x7f01026d
-			public const int segmentPosition = 2130772589;
+			// aapt resource value: 0x7f010244
+			public const int segmentPosition = 2130772548;
 			
-			// aapt resource value: 0x7f010263
-			public const int segmentSelectedIndex = 2130772579;
+			// aapt resource value: 0x7f01023a
+			public const int segmentSelectedIndex = 2130772538;
 			
-			// aapt resource value: 0x7f01026b
-			public const int segmentStrokeThickness = 2130772587;
+			// aapt resource value: 0x7f010242
+			public const int segmentStrokeThickness = 2130772546;
 			
-			// aapt resource value: 0x7f010269
-			public const int segmentedHeight = 2130772585;
+			// aapt resource value: 0x7f010240
+			public const int segmentedHeight = 2130772544;
 			
-			// aapt resource value: 0x7f010268
-			public const int segmentedPadding = 2130772584;
+			// aapt resource value: 0x7f01023f
+			public const int segmentedPadding = 2130772543;
 			
-			// aapt resource value: 0x7f01026a
-			public const int segmentedWidth = 2130772586;
+			// aapt resource value: 0x7f010241
+			public const int segmentedWidth = 2130772545;
 			
-			// aapt resource value: 0x7f01022e
-			public const int selectAllOnFocus = 2130772526;
+			// aapt resource value: 0x7f01022f
+			public const int selectAllOnFocus = 2130772527;
 			
 			// aapt resource value: 0x7f010146
 			public const int selectableItemBackground = 2130772294;
@@ -22990,8 +25498,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f010024
 			public const int state_collapsible = 2130772004;
 			
-			// aapt resource value: 0x7f01025f
-			public const int state_indeterminate = 2130772575;
+			// aapt resource value: 0x7f010236
+			public const int state_indeterminate = 2130772534;
 			
 			// aapt resource value: 0x7f010026
 			public const int state_liftable = 2130772006;
@@ -23302,8 +25810,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f01006d
 			public const int useCompatPadding = 2130772077;
 			
-			// aapt resource value: 0x7f010229
-			public const int valueChangeMode = 2130772521;
+			// aapt resource value: 0x7f01022a
+			public const int valueChangeMode = 2130772522;
 			
 			// aapt resource value: 0x7f01018a
 			public const int viewInflaterClass = 2130772362;
@@ -23311,11 +25819,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0101b2
 			public const int voiceIcon = 2130772402;
 			
-			// aapt resource value: 0x7f01022c
-			public const int watermark = 2130772524;
+			// aapt resource value: 0x7f01022d
+			public const int watermark = 2130772525;
 			
-			// aapt resource value: 0x7f010232
-			public const int watermarkColor = 2130772530;
+			// aapt resource value: 0x7f010233
+			public const int watermarkColor = 2130772531;
 			
 			// aapt resource value: 0x7f010112
 			public const int windowActionBar = 2130772242;
@@ -24948,268 +27456,238 @@ namespace XpertMobileApp.Droid
 			public const int br_Scaner_32 = 2130837629;
 			
 			// aapt resource value: 0x7f02007e
-			public const int btn_checkbox = 2130837630;
+			public const int btn_checkbox_checked_mtrl = 2130837630;
 			
 			// aapt resource value: 0x7f02007f
-			public const int btn_checkbox_checked = 2130837631;
+			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2130837631;
 			
 			// aapt resource value: 0x7f020080
-			public const int btn_checkbox_checked_mtrl = 2130837632;
+			public const int btn_checkbox_unchecked_mtrl = 2130837632;
 			
 			// aapt resource value: 0x7f020081
-			public const int btn_checkbox_checked_to_indeterminate_animation = 2130837633;
+			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2130837633;
 			
 			// aapt resource value: 0x7f020082
-			public const int btn_checkbox_checked_to_unchecked_animation = 2130837634;
+			public const int btn_radio_off_mtrl = 2130837634;
 			
 			// aapt resource value: 0x7f020083
-			public const int btn_checkbox_checked_to_unchecked_mtrl_animation = 2130837635;
+			public const int btn_radio_off_to_on_mtrl_animation = 2130837635;
 			
 			// aapt resource value: 0x7f020084
-			public const int btn_checkbox_indeterminate = 2130837636;
+			public const int btn_radio_on_mtrl = 2130837636;
 			
 			// aapt resource value: 0x7f020085
-			public const int btn_checkbox_indeterminate_to_checked_animation = 2130837637;
+			public const int btn_radio_on_to_off_mtrl_animation = 2130837637;
 			
 			// aapt resource value: 0x7f020086
-			public const int btn_checkbox_indeterminate_to_unchecked_animation = 2130837638;
+			public const int clear_button_icon = 2130837638;
 			
 			// aapt resource value: 0x7f020087
-			public const int btn_checkbox_unchecked = 2130837639;
+			public const int common_full_open_on_phone = 2130837639;
 			
 			// aapt resource value: 0x7f020088
-			public const int btn_checkbox_unchecked_mtrl = 2130837640;
+			public const int common_google_signin_btn_icon_dark = 2130837640;
 			
 			// aapt resource value: 0x7f020089
-			public const int btn_checkbox_unchecked_to_checked_animation = 2130837641;
+			public const int common_google_signin_btn_icon_dark_focused = 2130837641;
 			
 			// aapt resource value: 0x7f02008a
-			public const int btn_checkbox_unchecked_to_checked_mtrl_animation = 2130837642;
+			public const int common_google_signin_btn_icon_dark_normal = 2130837642;
 			
 			// aapt resource value: 0x7f02008b
-			public const int btn_checkbox_unchecked_to_indeterminate_animation = 2130837643;
+			public const int common_google_signin_btn_icon_dark_normal_background = 2130837643;
 			
 			// aapt resource value: 0x7f02008c
-			public const int btn_radio_off_mtrl = 2130837644;
+			public const int common_google_signin_btn_icon_disabled = 2130837644;
 			
 			// aapt resource value: 0x7f02008d
-			public const int btn_radio_off_to_on_mtrl_animation = 2130837645;
+			public const int common_google_signin_btn_icon_light = 2130837645;
 			
 			// aapt resource value: 0x7f02008e
-			public const int btn_radio_on_mtrl = 2130837646;
+			public const int common_google_signin_btn_icon_light_focused = 2130837646;
 			
 			// aapt resource value: 0x7f02008f
-			public const int btn_radio_on_to_off_mtrl_animation = 2130837647;
+			public const int common_google_signin_btn_icon_light_normal = 2130837647;
 			
 			// aapt resource value: 0x7f020090
-			public const int clear_button_icon = 2130837648;
+			public const int common_google_signin_btn_icon_light_normal_background = 2130837648;
 			
 			// aapt resource value: 0x7f020091
-			public const int common_full_open_on_phone = 2130837649;
+			public const int common_google_signin_btn_text_dark = 2130837649;
 			
 			// aapt resource value: 0x7f020092
-			public const int common_google_signin_btn_icon_dark = 2130837650;
+			public const int common_google_signin_btn_text_dark_focused = 2130837650;
 			
 			// aapt resource value: 0x7f020093
-			public const int common_google_signin_btn_icon_dark_focused = 2130837651;
+			public const int common_google_signin_btn_text_dark_normal = 2130837651;
 			
 			// aapt resource value: 0x7f020094
-			public const int common_google_signin_btn_icon_dark_normal = 2130837652;
+			public const int common_google_signin_btn_text_dark_normal_background = 2130837652;
 			
 			// aapt resource value: 0x7f020095
-			public const int common_google_signin_btn_icon_dark_normal_background = 2130837653;
+			public const int common_google_signin_btn_text_disabled = 2130837653;
 			
 			// aapt resource value: 0x7f020096
-			public const int common_google_signin_btn_icon_disabled = 2130837654;
+			public const int common_google_signin_btn_text_light = 2130837654;
 			
 			// aapt resource value: 0x7f020097
-			public const int common_google_signin_btn_icon_light = 2130837655;
+			public const int common_google_signin_btn_text_light_focused = 2130837655;
 			
 			// aapt resource value: 0x7f020098
-			public const int common_google_signin_btn_icon_light_focused = 2130837656;
+			public const int common_google_signin_btn_text_light_normal = 2130837656;
 			
 			// aapt resource value: 0x7f020099
-			public const int common_google_signin_btn_icon_light_normal = 2130837657;
+			public const int common_google_signin_btn_text_light_normal_background = 2130837657;
 			
 			// aapt resource value: 0x7f02009a
-			public const int common_google_signin_btn_icon_light_normal_background = 2130837658;
+			public const int contact = 2130837658;
 			
 			// aapt resource value: 0x7f02009b
-			public const int common_google_signin_btn_text_dark = 2130837659;
+			public const int defaultProdImg = 2130837659;
 			
 			// aapt resource value: 0x7f02009c
-			public const int common_google_signin_btn_text_dark_focused = 2130837660;
+			public const int Delete = 2130837660;
 			
 			// aapt resource value: 0x7f02009d
-			public const int common_google_signin_btn_text_dark_normal = 2130837661;
+			public const int Delete1 = 2130837661;
 			
 			// aapt resource value: 0x7f02009e
-			public const int common_google_signin_btn_text_dark_normal_background = 2130837662;
+			public const int design_bottom_navigation_item_background = 2130837662;
 			
 			// aapt resource value: 0x7f02009f
-			public const int common_google_signin_btn_text_disabled = 2130837663;
+			public const int design_fab_background = 2130837663;
 			
 			// aapt resource value: 0x7f0200a0
-			public const int common_google_signin_btn_text_light = 2130837664;
+			public const int design_ic_visibility = 2130837664;
 			
 			// aapt resource value: 0x7f0200a1
-			public const int common_google_signin_btn_text_light_focused = 2130837665;
+			public const int design_ic_visibility_off = 2130837665;
 			
 			// aapt resource value: 0x7f0200a2
-			public const int common_google_signin_btn_text_light_normal = 2130837666;
+			public const int design_password_eye = 2130837666;
 			
 			// aapt resource value: 0x7f0200a3
-			public const int common_google_signin_btn_text_light_normal_background = 2130837667;
+			public const int design_snackbar_background = 2130837667;
 			
 			// aapt resource value: 0x7f0200a4
-			public const int contact = 2130837668;
+			public const int DownButton = 2130837668;
 			
 			// aapt resource value: 0x7f0200a5
-			public const int defaultProdImg = 2130837669;
+			public const int dropdownbuttonimage = 2130837669;
 			
 			// aapt resource value: 0x7f0200a6
-			public const int Delete = 2130837670;
+			public const int Favorites = 2130837670;
 			
 			// aapt resource value: 0x7f0200a7
-			public const int Delete1 = 2130837671;
+			public const int Favorites1 = 2130837671;
 			
 			// aapt resource value: 0x7f0200a8
-			public const int design_bottom_navigation_item_background = 2130837672;
+			public const int filter = 2130837672;
 			
 			// aapt resource value: 0x7f0200a9
-			public const int design_fab_background = 2130837673;
+			public const int gi_Logout_24 = 2130837673;
 			
 			// aapt resource value: 0x7f0200aa
-			public const int design_ic_visibility = 2130837674;
+			public const int googleg_disabled_color_18 = 2130837674;
 			
 			// aapt resource value: 0x7f0200ab
-			public const int design_ic_visibility_off = 2130837675;
+			public const int googleg_standard_color_18 = 2130837675;
 			
 			// aapt resource value: 0x7f0200ac
-			public const int design_password_eye = 2130837676;
+			public const int ic_errorstatus = 2130837676;
 			
 			// aapt resource value: 0x7f0200ad
-			public const int design_snackbar_background = 2130837677;
+			public const int ic_mtrl_chip_checked_black = 2130837677;
 			
 			// aapt resource value: 0x7f0200ae
-			public const int DownButton = 2130837678;
+			public const int ic_mtrl_chip_checked_circle = 2130837678;
 			
 			// aapt resource value: 0x7f0200af
-			public const int dropdownbuttonimage = 2130837679;
+			public const int ic_mtrl_chip_close_circle = 2130837679;
 			
 			// aapt resource value: 0x7f0200b0
-			public const int Favorites = 2130837680;
+			public const int ic_successstatus = 2130837680;
 			
 			// aapt resource value: 0x7f0200b1
-			public const int Favorites1 = 2130837681;
+			public const int Icon = 2130837681;
 			
 			// aapt resource value: 0x7f0200b2
-			public const int filter = 2130837682;
+			public const int input_layout_drop_down_icon = 2130837682;
 			
 			// aapt resource value: 0x7f0200b3
-			public const int gi_Logout_24 = 2130837683;
+			public const int inputlayout_togglecollapseicon = 2130837683;
 			
 			// aapt resource value: 0x7f0200b4
-			public const int googleg_disabled_color_18 = 2130837684;
+			public const int inputlayout_togglevisibleicon = 2130837684;
 			
 			// aapt resource value: 0x7f0200b5
-			public const int googleg_standard_color_18 = 2130837685;
+			public const int ionic3 = 2130837685;
 			
 			// aapt resource value: 0x7f0200b6
-			public const int ic_errorstatus = 2130837686;
+			public const int list_w24 = 2130837686;
 			
 			// aapt resource value: 0x7f0200b7
-			public const int ic_mtrl_chip_checked_black = 2130837687;
+			public const int logo_h = 2130837687;
 			
 			// aapt resource value: 0x7f0200b8
-			public const int ic_mtrl_chip_checked_circle = 2130837688;
+			public const int logo_h_tl = 2130837688;
 			
 			// aapt resource value: 0x7f0200b9
-			public const int ic_mtrl_chip_close_circle = 2130837689;
+			public const int logo_v = 2130837689;
 			
 			// aapt resource value: 0x7f0200ba
-			public const int ic_successstatus = 2130837690;
+			public const int logo_v280 = 2130837690;
 			
 			// aapt resource value: 0x7f0200bb
-			public const int Icon = 2130837691;
+			public const int logo_v400 = 2130837691;
 			
 			// aapt resource value: 0x7f0200bc
-			public const int input_layout_drop_down_icon = 2130837692;
+			public const int logo_v_tl = 2130837692;
 			
 			// aapt resource value: 0x7f0200bd
-			public const int inputlayout_togglecollapseicon = 2130837693;
+			public const int logout = 2130837693;
 			
 			// aapt resource value: 0x7f0200be
-			public const int inputlayout_togglevisibleicon = 2130837694;
+			public const int mtrl_snackbar_background = 2130837694;
 			
 			// aapt resource value: 0x7f0200bf
-			public const int ionic3 = 2130837695;
+			public const int mtrl_tabs_default_indicator = 2130837695;
 			
 			// aapt resource value: 0x7f0200c0
-			public const int list_w24 = 2130837696;
+			public const int navigation_empty_icon = 2130837696;
 			
 			// aapt resource value: 0x7f0200c1
-			public const int logo_h = 2130837697;
+			public const int new_128 = 2130837697;
 			
 			// aapt resource value: 0x7f0200c2
-			public const int logo_h_tl = 2130837698;
+			public const int new_24 = 2130837698;
 			
 			// aapt resource value: 0x7f0200c3
-			public const int logo_v = 2130837699;
+			public const int new_64 = 2130837699;
 			
 			// aapt resource value: 0x7f0200c4
-			public const int logo_v280 = 2130837700;
+			public const int notification_action_background = 2130837700;
 			
 			// aapt resource value: 0x7f0200c5
-			public const int logo_v400 = 2130837701;
+			public const int notification_bg = 2130837701;
 			
 			// aapt resource value: 0x7f0200c6
-			public const int logo_v_tl = 2130837702;
+			public const int notification_bg_low = 2130837702;
 			
 			// aapt resource value: 0x7f0200c7
-			public const int logout = 2130837703;
+			public const int notification_bg_low_normal = 2130837703;
 			
 			// aapt resource value: 0x7f0200c8
-			public const int mtrl_snackbar_background = 2130837704;
+			public const int notification_bg_low_pressed = 2130837704;
 			
 			// aapt resource value: 0x7f0200c9
-			public const int mtrl_tabs_default_indicator = 2130837705;
+			public const int notification_bg_normal = 2130837705;
 			
 			// aapt resource value: 0x7f0200ca
-			public const int navigation_empty_icon = 2130837706;
+			public const int notification_bg_normal_pressed = 2130837706;
 			
 			// aapt resource value: 0x7f0200cb
-			public const int new_128 = 2130837707;
-			
-			// aapt resource value: 0x7f0200cc
-			public const int new_24 = 2130837708;
-			
-			// aapt resource value: 0x7f0200cd
-			public const int new_64 = 2130837709;
-			
-			// aapt resource value: 0x7f0200ce
-			public const int notification_action_background = 2130837710;
-			
-			// aapt resource value: 0x7f0200cf
-			public const int notification_bg = 2130837711;
-			
-			// aapt resource value: 0x7f0200d0
-			public const int notification_bg_low = 2130837712;
-			
-			// aapt resource value: 0x7f0200d1
-			public const int notification_bg_low_normal = 2130837713;
-			
-			// aapt resource value: 0x7f0200d2
-			public const int notification_bg_low_pressed = 2130837714;
-			
-			// aapt resource value: 0x7f0200d3
-			public const int notification_bg_normal = 2130837715;
-			
-			// aapt resource value: 0x7f0200d4
-			public const int notification_bg_normal_pressed = 2130837716;
-			
-			// aapt resource value: 0x7f0200d5
-			public const int notification_icon_background = 2130837717;
+			public const int notification_icon_background = 2130837707;
 			
 			// aapt resource value: 0x7f0200fa
 			public const int notification_template_icon_bg = 2130837754;
@@ -25217,65 +27695,95 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0200fb
 			public const int notification_template_icon_low_bg = 2130837755;
 			
+			// aapt resource value: 0x7f0200cc
+			public const int notification_tile_bg = 2130837708;
+			
+			// aapt resource value: 0x7f0200cd
+			public const int notify_panel_notification_icon_bg = 2130837709;
+			
+			// aapt resource value: 0x7f0200ce
+			public const int NotSelected = 2130837710;
+			
+			// aapt resource value: 0x7f0200cf
+			public const int NotSelected1 = 2130837711;
+			
+			// aapt resource value: 0x7f0200d0
+			public const int param_32 = 2130837712;
+			
+			// aapt resource value: 0x7f0200d1
+			public const int pencil = 2130837713;
+			
+			// aapt resource value: 0x7f0200d2
+			public const int prevLogo = 2130837714;
+			
+			// aapt resource value: 0x7f0200d3
+			public const int printer_24 = 2130837715;
+			
+			// aapt resource value: 0x7f0200d4
+			public const int Rating = 2130837716;
+			
+			// aapt resource value: 0x7f0200d5
+			public const int RatingY = 2130837717;
+			
 			// aapt resource value: 0x7f0200d6
-			public const int notification_tile_bg = 2130837718;
+			public const int refresh_w24 = 2130837718;
 			
 			// aapt resource value: 0x7f0200d7
-			public const int notify_panel_notification_icon_bg = 2130837719;
+			public const int remove = 2130837719;
 			
 			// aapt resource value: 0x7f0200d8
-			public const int NotSelected = 2130837720;
+			public const int roundedbg = 2130837720;
 			
 			// aapt resource value: 0x7f0200d9
-			public const int NotSelected1 = 2130837721;
+			public const int roundedbgdark = 2130837721;
 			
 			// aapt resource value: 0x7f0200da
-			public const int param_32 = 2130837722;
+			public const int scan_qr_24 = 2130837722;
 			
 			// aapt resource value: 0x7f0200db
-			public const int pencil = 2130837723;
+			public const int Selected = 2130837723;
 			
 			// aapt resource value: 0x7f0200dc
-			public const int prevLogo = 2130837724;
+			public const int Selected1 = 2130837724;
 			
 			// aapt resource value: 0x7f0200dd
-			public const int printer_24 = 2130837725;
+			public const int SelectionCancel = 2130837725;
 			
 			// aapt resource value: 0x7f0200de
-			public const int Rating = 2130837726;
+			public const int SelectionEdit = 2130837726;
 			
 			// aapt resource value: 0x7f0200df
-			public const int RatingY = 2130837727;
+			public const int settings_32 = 2130837727;
 			
 			// aapt resource value: 0x7f0200e0
-			public const int refresh_w24 = 2130837728;
+			public const int sfcheckbox_animation = 2130837728;
 			
 			// aapt resource value: 0x7f0200e1
-			public const int remove = 2130837729;
+			public const int sfcheckbox_checked = 2130837729;
 			
 			// aapt resource value: 0x7f0200e2
-			public const int roundedbg = 2130837730;
+			public const int sfcheckbox_checked_indeterminate = 2130837730;
 			
 			// aapt resource value: 0x7f0200e3
-			public const int roundedbgdark = 2130837731;
+			public const int sfcheckbox_checked_unchecked = 2130837731;
 			
 			// aapt resource value: 0x7f0200e4
-			public const int scan_qr_24 = 2130837732;
+			public const int sfcheckbox_indeterminate = 2130837732;
 			
 			// aapt resource value: 0x7f0200e5
-			public const int Selected = 2130837733;
+			public const int sfcheckbox_indeterminate_checked = 2130837733;
 			
 			// aapt resource value: 0x7f0200e6
-			public const int Selected1 = 2130837734;
+			public const int sfcheckbox_indeterminate_unchecked = 2130837734;
 			
 			// aapt resource value: 0x7f0200e7
-			public const int SelectionCancel = 2130837735;
+			public const int sfcheckbox_unchecked = 2130837735;
 			
 			// aapt resource value: 0x7f0200e8
-			public const int SelectionEdit = 2130837736;
+			public const int sfcheckbox_unchecked_checked = 2130837736;
 			
 			// aapt resource value: 0x7f0200e9
-			public const int settings_32 = 2130837737;
+			public const int sfcheckbox_unchecked_indeterminate = 2130837737;
 			
 			// aapt resource value: 0x7f0200ea
 			public const int sfclosebutton = 2130837738;
@@ -25362,8 +27870,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0099
 			public const int Horizontal = 2131624089;
 			
-			// aapt resource value: 0x7f0e010d
-			public const int Itemname = 2131624205;
+			// aapt resource value: 0x7f0e00ff
+			public const int Itemname = 2131624191;
 			
 			// aapt resource value: 0x7f0e009e
 			public const int Left = 2131624094;
@@ -25392,8 +27900,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0081
 			public const int SYM = 2131624065;
 			
-			// aapt resource value: 0x7f0e0144
-			public const int ShadowEffectShape = 2131624260;
+			// aapt resource value: 0x7f0e0135
+			public const int ShadowEffectShape = 2131624245;
 			
 			// aapt resource value: 0x7f0e009c
 			public const int Thumbnail = 2131624092;
@@ -25503,41 +28011,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e003c
 			public const int accessibility_custom_action_9 = 2131623996;
 			
-			// aapt resource value: 0x7f0e0125
-			public const int action0 = 2131624229;
+			// aapt resource value: 0x7f0e0116
+			public const int action0 = 2131624214;
 			
-			// aapt resource value: 0x7f0e00e3
-			public const int action_bar = 2131624163;
+			// aapt resource value: 0x7f0e00d5
+			public const int action_bar = 2131624149;
 			
 			// aapt resource value: 0x7f0e0013
 			public const int action_bar_activity_content = 2131623955;
 			
-			// aapt resource value: 0x7f0e00e2
-			public const int action_bar_container = 2131624162;
+			// aapt resource value: 0x7f0e00d4
+			public const int action_bar_container = 2131624148;
 			
-			// aapt resource value: 0x7f0e00de
-			public const int action_bar_root = 2131624158;
+			// aapt resource value: 0x7f0e00d0
+			public const int action_bar_root = 2131624144;
 			
 			// aapt resource value: 0x7f0e0014
 			public const int action_bar_spinner = 2131623956;
 			
-			// aapt resource value: 0x7f0e00c2
-			public const int action_bar_subtitle = 2131624130;
+			// aapt resource value: 0x7f0e00b3
+			public const int action_bar_subtitle = 2131624115;
 			
-			// aapt resource value: 0x7f0e00c1
-			public const int action_bar_title = 2131624129;
+			// aapt resource value: 0x7f0e00b2
+			public const int action_bar_title = 2131624114;
 			
-			// aapt resource value: 0x7f0e0122
-			public const int action_container = 2131624226;
+			// aapt resource value: 0x7f0e0113
+			public const int action_container = 2131624211;
 			
-			// aapt resource value: 0x7f0e00e4
-			public const int action_context_bar = 2131624164;
+			// aapt resource value: 0x7f0e00d6
+			public const int action_context_bar = 2131624150;
 			
-			// aapt resource value: 0x7f0e0129
-			public const int action_divider = 2131624233;
+			// aapt resource value: 0x7f0e011a
+			public const int action_divider = 2131624218;
 			
-			// aapt resource value: 0x7f0e0123
-			public const int action_image = 2131624227;
+			// aapt resource value: 0x7f0e0114
+			public const int action_image = 2131624212;
 			
 			// aapt resource value: 0x7f0e0015
 			public const int action_menu_divider = 2131623957;
@@ -25545,23 +28053,23 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0016
 			public const int action_menu_presenter = 2131623958;
 			
-			// aapt resource value: 0x7f0e00e0
-			public const int action_mode_bar = 2131624160;
+			// aapt resource value: 0x7f0e00d2
+			public const int action_mode_bar = 2131624146;
 			
-			// aapt resource value: 0x7f0e00df
-			public const int action_mode_bar_stub = 2131624159;
+			// aapt resource value: 0x7f0e00d1
+			public const int action_mode_bar_stub = 2131624145;
 			
-			// aapt resource value: 0x7f0e00c3
-			public const int action_mode_close_button = 2131624131;
+			// aapt resource value: 0x7f0e00b4
+			public const int action_mode_close_button = 2131624116;
 			
-			// aapt resource value: 0x7f0e0124
-			public const int action_text = 2131624228;
+			// aapt resource value: 0x7f0e0115
+			public const int action_text = 2131624213;
 			
-			// aapt resource value: 0x7f0e0132
-			public const int actions = 2131624242;
+			// aapt resource value: 0x7f0e0123
+			public const int actions = 2131624227;
 			
-			// aapt resource value: 0x7f0e00c4
-			public const int activity_chooser_view_content = 2131624132;
+			// aapt resource value: 0x7f0e00b5
+			public const int activity_chooser_view_content = 2131624117;
 			
 			// aapt resource value: 0x7f0e0068
 			public const int add = 2131624040;
@@ -25572,8 +28080,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0090
 			public const int adjust_width = 2131624080;
 			
-			// aapt resource value: 0x7f0e00d5
-			public const int alertTitle = 2131624149;
+			// aapt resource value: 0x7f0e00c7
+			public const int alertTitle = 2131624135;
 			
 			// aapt resource value: 0x7f0e008a
 			public const int all = 2131624074;
@@ -25581,11 +28089,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0082
 			public const int always = 2131624066;
 			
-			// aapt resource value: 0x7f0e0104
-			public const int annotationLayout = 2131624196;
-			
-			// aapt resource value: 0x7f0e00b8
-			public const int append = 2131624120;
+			// aapt resource value: 0x7f0e00f6
+			public const int annotationLayout = 2131624182;
 			
 			// aapt resource value: 0x7f0e008b
 			public const int async = 2131624075;
@@ -25593,8 +28098,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0052
 			public const int auto = 2131624018;
 			
-			// aapt resource value: 0x7f0e0101
-			public const int axisLayout = 2131624193;
+			// aapt resource value: 0x7f0e00f3
+			public const int axisLayout = 2131624179;
 			
 			// aapt resource value: 0x7f0e007a
 			public const int beginning = 2131624058;
@@ -25602,41 +28107,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e008c
 			public const int blocking = 2131624076;
 			
-			// aapt resource value: 0x7f0e00be
-			public const int border = 2131624126;
+			// aapt resource value: 0x7f0e00af
+			public const int border = 2131624111;
 			
 			// aapt resource value: 0x7f0e0056
 			public const int bottom = 2131624022;
 			
-			// aapt resource value: 0x7f0e0136
-			public const int bottom_labels = 2131624246;
+			// aapt resource value: 0x7f0e0127
+			public const int bottom_labels = 2131624231;
 			
-			// aapt resource value: 0x7f0e00f3
-			public const int bottomtab_navarea = 2131624179;
+			// aapt resource value: 0x7f0e00e5
+			public const int bottomtab_navarea = 2131624165;
 			
-			// aapt resource value: 0x7f0e00f4
-			public const int bottomtab_tabbar = 2131624180;
+			// aapt resource value: 0x7f0e00e6
+			public const int bottomtab_tabbar = 2131624166;
 			
-			// aapt resource value: 0x7f0e00f6
-			public const int browser_actions_header_text = 2131624182;
+			// aapt resource value: 0x7f0e00e8
+			public const int browser_actions_header_text = 2131624168;
 			
-			// aapt resource value: 0x7f0e00f8
-			public const int browser_actions_menu_item_icon = 2131624184;
+			// aapt resource value: 0x7f0e00ea
+			public const int browser_actions_menu_item_icon = 2131624170;
 			
-			// aapt resource value: 0x7f0e00f9
-			public const int browser_actions_menu_item_text = 2131624185;
+			// aapt resource value: 0x7f0e00eb
+			public const int browser_actions_menu_item_text = 2131624171;
 			
-			// aapt resource value: 0x7f0e00f7
-			public const int browser_actions_menu_items = 2131624183;
+			// aapt resource value: 0x7f0e00e9
+			public const int browser_actions_menu_items = 2131624169;
 			
-			// aapt resource value: 0x7f0e00f5
-			public const int browser_actions_menu_view = 2131624181;
+			// aapt resource value: 0x7f0e00e7
+			public const int browser_actions_menu_view = 2131624167;
 			
-			// aapt resource value: 0x7f0e00c9
-			public const int buttonPanel = 2131624137;
+			// aapt resource value: 0x7f0e00ba
+			public const int buttonPanel = 2131624122;
 			
-			// aapt resource value: 0x7f0e0126
-			public const int cancel_action = 2131624230;
+			// aapt resource value: 0x7f0e0117
+			public const int cancel_action = 2131624215;
 			
 			// aapt resource value: 0x7f0e0050
 			public const int center = 2131624016;
@@ -25647,20 +28152,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0058
 			public const int center_vertical = 2131624024;
 			
-			// aapt resource value: 0x7f0e0103
-			public const int chartBehaviorLayout = 2131624195;
+			// aapt resource value: 0x7f0e00f5
+			public const int chartBehaviorLayout = 2131624181;
 			
-			// aapt resource value: 0x7f0e0107
-			public const int chartLegendScrollView = 2131624199;
+			// aapt resource value: 0x7f0e00f9
+			public const int chartLegendScrollView = 2131624185;
 			
-			// aapt resource value: 0x7f0e00dc
-			public const int checkbox = 2131624156;
+			// aapt resource value: 0x7f0e00ce
+			public const int checkbox = 2131624142;
 			
-			// aapt resource value: 0x7f0e00bb
-			public const int @checked = 2131624123;
+			// aapt resource value: 0x7f0e00ac
+			public const int @checked = 2131624108;
 			
-			// aapt resource value: 0x7f0e012e
-			public const int chronometer = 2131624238;
+			// aapt resource value: 0x7f0e011f
+			public const int chronometer = 2131624223;
 			
 			// aapt resource value: 0x7f0e0087
 			public const int clip_horizontal = 2131624071;
@@ -25674,68 +28179,59 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e00a8
 			public const int compute = 2131624104;
 			
-			// aapt resource value: 0x7f0e0110
-			public const int container = 2131624208;
+			// aapt resource value: 0x7f0e0102
+			public const int container = 2131624194;
 			
-			// aapt resource value: 0x7f0e00ac
-			public const int contains = 2131624108;
+			// aapt resource value: 0x7f0e00ca
+			public const int content = 2131624138;
 			
-			// aapt resource value: 0x7f0e00ad
-			public const int containsWithCaseSensitive = 2131624109;
+			// aapt resource value: 0x7f0e0130
+			public const int contentFrame = 2131624240;
 			
-			// aapt resource value: 0x7f0e00d8
-			public const int content = 2131624152;
+			// aapt resource value: 0x7f0e00bd
+			public const int contentPanel = 2131624125;
 			
-			// aapt resource value: 0x7f0e013f
-			public const int contentFrame = 2131624255;
+			// aapt resource value: 0x7f0e0103
+			public const int coordinator = 2131624195;
 			
-			// aapt resource value: 0x7f0e00cc
-			public const int contentPanel = 2131624140;
+			// aapt resource value: 0x7f0e00c4
+			public const int custom = 2131624132;
 			
-			// aapt resource value: 0x7f0e0111
-			public const int coordinator = 2131624209;
-			
-			// aapt resource value: 0x7f0e00ae
-			public const int custom = 2131624110;
-			
-			// aapt resource value: 0x7f0e00d2
-			public const int customPanel = 2131624146;
+			// aapt resource value: 0x7f0e00c3
+			public const int customPanel = 2131624131;
 			
 			// aapt resource value: 0x7f0e0094
 			public const int dark = 2131624084;
 			
-			// aapt resource value: 0x7f0e00ff
-			public const int dataMarkerLayout = 2131624191;
+			// aapt resource value: 0x7f0e00f1
+			public const int dataMarkerLayout = 2131624177;
 			
 			// aapt resource value: 0x7f0e00a6
 			public const int decimalMode = 2131624102;
 			
-			// aapt resource value: 0x7f0e00e1
-			public const int decor_content_parent = 2131624161;
+			// aapt resource value: 0x7f0e00d3
+			public const int decor_content_parent = 2131624147;
 			
-			// aapt resource value: 0x7f0e00c6
-			public const int default_activity_button = 2131624134;
+			// aapt resource value: 0x7f0e00b7
+			public const int default_activity_button = 2131624119;
 			
-			// aapt resource value: 0x7f0e00b6
-			public const int delimiter = 2131624118;
+			// aapt resource value: 0x7f0e0105
+			public const int design_bottom_sheet = 2131624197;
 			
-			// aapt resource value: 0x7f0e0113
-			public const int design_bottom_sheet = 2131624211;
+			// aapt resource value: 0x7f0e010a
+			public const int design_menu_item_action_area = 2131624202;
 			
-			// aapt resource value: 0x7f0e0118
-			public const int design_menu_item_action_area = 2131624216;
+			// aapt resource value: 0x7f0e0109
+			public const int design_menu_item_action_area_stub = 2131624201;
 			
-			// aapt resource value: 0x7f0e0117
-			public const int design_menu_item_action_area_stub = 2131624215;
+			// aapt resource value: 0x7f0e0108
+			public const int design_menu_item_text = 2131624200;
 			
-			// aapt resource value: 0x7f0e0116
-			public const int design_menu_item_text = 2131624214;
+			// aapt resource value: 0x7f0e0107
+			public const int design_navigation_view = 2131624199;
 			
-			// aapt resource value: 0x7f0e0115
-			public const int design_navigation_view = 2131624213;
-			
-			// aapt resource value: 0x7f0e010c
-			public const int dialog_button = 2131624204;
+			// aapt resource value: 0x7f0e00fe
+			public const int dialog_button = 2131624190;
 			
 			// aapt resource value: 0x7f0e0072
 			public const int disableHome = 2131624050;
@@ -25743,20 +28239,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e00a7
 			public const int doubleMode = 2131624103;
 			
-			// aapt resource value: 0x7f0e00e5
-			public const int edit_query = 2131624165;
+			// aapt resource value: 0x7f0e00d7
+			public const int edit_query = 2131624151;
 			
 			// aapt resource value: 0x7f0e0051
 			public const int end = 2131624017;
 			
-			// aapt resource value: 0x7f0e0134
-			public const int end_padder = 2131624244;
-			
-			// aapt resource value: 0x7f0e00af
-			public const int endsWith = 2131624111;
-			
-			// aapt resource value: 0x7f0e00b0
-			public const int endsWithCaseSensitive = 2131624112;
+			// aapt resource value: 0x7f0e0125
+			public const int end_padder = 2131624229;
 			
 			// aapt resource value: 0x7f0e004a
 			public const int enterAlways = 2131624010;
@@ -25764,23 +28254,17 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e004b
 			public const int enterAlwaysCollapsed = 2131624011;
 			
-			// aapt resource value: 0x7f0e00b1
-			public const int equals = 2131624113;
-			
-			// aapt resource value: 0x7f0e00b2
-			public const int equalsWithCaseSensitive = 2131624114;
-			
 			// aapt resource value: 0x7f0e00a3
 			public const int exact = 2131624099;
 			
 			// aapt resource value: 0x7f0e004c
 			public const int exitUntilCollapsed = 2131624012;
 			
-			// aapt resource value: 0x7f0e00c5
-			public const int expand_activities_button = 2131624133;
+			// aapt resource value: 0x7f0e00b6
+			public const int expand_activities_button = 2131624118;
 			
-			// aapt resource value: 0x7f0e00db
-			public const int expanded_menu = 2131624155;
+			// aapt resource value: 0x7f0e00cd
+			public const int expanded_menu = 2131624141;
 			
 			// aapt resource value: 0x7f0e0067
 			public const int fill = 2131624039;
@@ -25797,11 +28281,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0065
 			public const int @fixed = 2131624037;
 			
-			// aapt resource value: 0x7f0e011c
-			public const int flyoutcontent_appbar = 2131624220;
-			
-			// aapt resource value: 0x7f0e011d
-			public const int flyoutcontent_recycler = 2131624221;
+			// aapt resource value: 0x7f0e010e
+			public const int flyoutcontent_appbar = 2131624206;
 			
 			// aapt resource value: 0x7f0e008d
 			public const int forever = 2131624077;
@@ -25812,14 +28293,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e000a
 			public const int ghost_view_holder = 2131623946;
 			
-			// aapt resource value: 0x7f0e00fc
-			public const int gridLineLayout = 2131624188;
+			// aapt resource value: 0x7f0e00ee
+			public const int gridLineLayout = 2131624174;
 			
-			// aapt resource value: 0x7f0e0137
-			public const int gridLinesLayout = 2131624247;
+			// aapt resource value: 0x7f0e0128
+			public const int gridLinesLayout = 2131624232;
 			
-			// aapt resource value: 0x7f0e00d7
-			public const int group_divider = 2131624151;
+			// aapt resource value: 0x7f0e00c9
+			public const int group_divider = 2131624137;
 			
 			// aapt resource value: 0x7f0e00a4
 			public const int half = 2131624100;
@@ -25830,14 +28311,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0073
 			public const int homeAsUp = 2131624051;
 			
-			// aapt resource value: 0x7f0e00c8
-			public const int icon = 2131624136;
+			// aapt resource value: 0x7f0e00b9
+			public const int icon = 2131624121;
 			
-			// aapt resource value: 0x7f0e010a
-			public const int iconView = 2131624202;
+			// aapt resource value: 0x7f0e00fc
+			public const int iconView = 2131624188;
 			
-			// aapt resource value: 0x7f0e0133
-			public const int icon_group = 2131624243;
+			// aapt resource value: 0x7f0e0124
+			public const int icon_group = 2131624228;
 			
 			// aapt resource value: 0x7f0e0091
 			public const int icon_only = 2131624081;
@@ -25845,17 +28326,17 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0084
 			public const int ifRoom = 2131624068;
 			
-			// aapt resource value: 0x7f0e00bf
-			public const int image = 2131624127;
+			// aapt resource value: 0x7f0e00b0
+			public const int image = 2131624112;
 			
-			// aapt resource value: 0x7f0e00c0
-			public const int imagewithtext = 2131624128;
+			// aapt resource value: 0x7f0e00b1
+			public const int imagewithtext = 2131624113;
 			
-			// aapt resource value: 0x7f0e00bc
-			public const int indeterminate = 2131624124;
+			// aapt resource value: 0x7f0e00ad
+			public const int indeterminate = 2131624109;
 			
-			// aapt resource value: 0x7f0e012f
-			public const int info = 2131624239;
+			// aapt resource value: 0x7f0e0120
+			public const int info = 2131624224;
 			
 			// aapt resource value: 0x7f0e008e
 			public const int italic = 2131624078;
@@ -25863,32 +28344,32 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0008
 			public const int item_touch_helper_previous_elevation = 2131623944;
 			
-			// aapt resource value: 0x7f0e010b
-			public const int label = 2131624203;
+			// aapt resource value: 0x7f0e00fd
+			public const int label = 2131624189;
 			
 			// aapt resource value: 0x7f0e0053
 			public const int labeled = 2131624019;
 			
-			// aapt resource value: 0x7f0e010f
-			public const int largeLabel = 2131624207;
+			// aapt resource value: 0x7f0e0101
+			public const int largeLabel = 2131624193;
 			
 			// aapt resource value: 0x7f0e005a
 			public const int left = 2131624026;
 			
-			// aapt resource value: 0x7f0e0106
-			public const int legendHeader = 2131624198;
+			// aapt resource value: 0x7f0e00f8
+			public const int legendHeader = 2131624184;
 			
-			// aapt resource value: 0x7f0e0109
-			public const int legendItemsLayout = 2131624201;
+			// aapt resource value: 0x7f0e00fb
+			public const int legendItemsLayout = 2131624187;
 			
-			// aapt resource value: 0x7f0e0102
-			public const int legendLayout = 2131624194;
+			// aapt resource value: 0x7f0e00f4
+			public const int legendLayout = 2131624180;
 			
-			// aapt resource value: 0x7f0e0108
-			public const int legendScrollView = 2131624200;
+			// aapt resource value: 0x7f0e00fa
+			public const int legendScrollView = 2131624186;
 			
-			// aapt resource value: 0x7f0e0105
-			public const int legendViewGroup = 2131624197;
+			// aapt resource value: 0x7f0e00f7
+			public const int legendViewGroup = 2131624183;
 			
 			// aapt resource value: 0x7f0e0095
 			public const int light = 2131624085;
@@ -25902,38 +28383,38 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0070
 			public const int listMode = 2131624048;
 			
-			// aapt resource value: 0x7f0e00c7
-			public const int list_item = 2131624135;
+			// aapt resource value: 0x7f0e00b8
+			public const int list_item = 2131624120;
 			
-			// aapt resource value: 0x7f0e0120
-			public const int loadingImage = 2131624224;
+			// aapt resource value: 0x7f0e0111
+			public const int loadingImage = 2131624209;
 			
-			// aapt resource value: 0x7f0e011e
-			public const int loadingProgressBar = 2131624222;
+			// aapt resource value: 0x7f0e010f
+			public const int loadingProgressBar = 2131624207;
 			
-			// aapt resource value: 0x7f0e0121
-			public const int loadingProgressWheel = 2131624225;
+			// aapt resource value: 0x7f0e0112
+			public const int loadingProgressWheel = 2131624210;
 			
-			// aapt resource value: 0x7f0e0139
-			public const int main_appbar = 2131624249;
+			// aapt resource value: 0x7f0e012a
+			public const int main_appbar = 2131624234;
 			
-			// aapt resource value: 0x7f0e013b
-			public const int main_tablayout = 2131624251;
+			// aapt resource value: 0x7f0e012c
+			public const int main_tablayout = 2131624236;
 			
-			// aapt resource value: 0x7f0e013a
-			public const int main_toolbar = 2131624250;
+			// aapt resource value: 0x7f0e012b
+			public const int main_toolbar = 2131624235;
 			
-			// aapt resource value: 0x7f0e013c
-			public const int main_viewpager = 2131624252;
+			// aapt resource value: 0x7f0e012d
+			public const int main_viewpager = 2131624237;
 			
-			// aapt resource value: 0x7f0e0143
-			public const int masked = 2131624259;
+			// aapt resource value: 0x7f0e0134
+			public const int masked = 2131624244;
 			
-			// aapt resource value: 0x7f0e0128
-			public const int media_actions = 2131624232;
+			// aapt resource value: 0x7f0e0119
+			public const int media_actions = 2131624217;
 			
-			// aapt resource value: 0x7f0e00f2
-			public const int message = 2131624178;
+			// aapt resource value: 0x7f0e00e4
+			public const int message = 2131624164;
 			
 			// aapt resource value: 0x7f0e007b
 			public const int middle = 2131624059;
@@ -25950,8 +28431,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0069
 			public const int multiply = 2131624041;
 			
-			// aapt resource value: 0x7f0e0114
-			public const int navigation_header_container = 2131624212;
+			// aapt resource value: 0x7f0e0106
+			public const int navigation_header_container = 2131624198;
 			
 			// aapt resource value: 0x7f0e0085
 			public const int never = 2131624069;
@@ -25962,20 +28443,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0062
 			public const int normal = 2131624034;
 			
+			// aapt resource value: 0x7f0e0122
+			public const int notification_background = 2131624226;
+			
+			// aapt resource value: 0x7f0e011c
+			public const int notification_main_column = 2131624220;
+			
+			// aapt resource value: 0x7f0e011b
+			public const int notification_main_column_container = 2131624219;
+			
+			// aapt resource value: 0x7f0e0132
+			public const int off = 2131624242;
+			
 			// aapt resource value: 0x7f0e0131
-			public const int notification_background = 2131624241;
-			
-			// aapt resource value: 0x7f0e012b
-			public const int notification_main_column = 2131624235;
-			
-			// aapt resource value: 0x7f0e012a
-			public const int notification_main_column_container = 2131624234;
-			
-			// aapt resource value: 0x7f0e0141
-			public const int off = 2131624257;
-			
-			// aapt resource value: 0x7f0e0140
-			public const int on = 2131624256;
+			public const int on = 2131624241;
 			
 			// aapt resource value: 0x7f0e00aa
 			public const int onKeyFocus = 2131624106;
@@ -25989,8 +28470,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e005f
 			public const int parallax = 2131624031;
 			
-			// aapt resource value: 0x7f0e00cb
-			public const int parentPanel = 2131624139;
+			// aapt resource value: 0x7f0e00bc
+			public const int parentPanel = 2131624124;
 			
 			// aapt resource value: 0x7f0e000b
 			public const int parent_matrix = 2131623947;
@@ -26004,20 +28485,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0019
 			public const int progress_horizontal = 2131623961;
 			
-			// aapt resource value: 0x7f0e00dd
-			public const int radio = 2131624157;
+			// aapt resource value: 0x7f0e00cf
+			public const int radio = 2131624143;
 			
 			// aapt resource value: 0x7f0e005b
 			public const int right = 2131624027;
 			
-			// aapt resource value: 0x7f0e0130
-			public const int right_icon = 2131624240;
+			// aapt resource value: 0x7f0e0121
+			public const int right_icon = 2131624225;
 			
-			// aapt resource value: 0x7f0e012c
-			public const int right_side = 2131624236;
+			// aapt resource value: 0x7f0e011d
+			public const int right_side = 2131624221;
 			
-			// aapt resource value: 0x7f0e00fa
-			public const int rootLayout = 2131624186;
+			// aapt resource value: 0x7f0e00ec
+			public const int rootLayout = 2131624172;
 			
 			// aapt resource value: 0x7f0e000c
 			public const int save_non_transition_alpha = 2131623948;
@@ -26031,65 +28512,65 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e004d
 			public const int scroll = 2131624013;
 			
-			// aapt resource value: 0x7f0e00d1
-			public const int scrollIndicatorDown = 2131624145;
+			// aapt resource value: 0x7f0e00c2
+			public const int scrollIndicatorDown = 2131624130;
 			
-			// aapt resource value: 0x7f0e00cd
-			public const int scrollIndicatorUp = 2131624141;
+			// aapt resource value: 0x7f0e00be
+			public const int scrollIndicatorUp = 2131624126;
 			
-			// aapt resource value: 0x7f0e00ce
-			public const int scrollView = 2131624142;
+			// aapt resource value: 0x7f0e00bf
+			public const int scrollView = 2131624127;
 			
 			// aapt resource value: 0x7f0e0066
 			public const int scrollable = 2131624038;
 			
-			// aapt resource value: 0x7f0e00e7
-			public const int search_badge = 2131624167;
+			// aapt resource value: 0x7f0e00d9
+			public const int search_badge = 2131624153;
 			
-			// aapt resource value: 0x7f0e00e6
-			public const int search_bar = 2131624166;
+			// aapt resource value: 0x7f0e00d8
+			public const int search_bar = 2131624152;
 			
-			// aapt resource value: 0x7f0e00e8
-			public const int search_button = 2131624168;
+			// aapt resource value: 0x7f0e00da
+			public const int search_button = 2131624154;
 			
-			// aapt resource value: 0x7f0e00ed
-			public const int search_close_btn = 2131624173;
+			// aapt resource value: 0x7f0e00df
+			public const int search_close_btn = 2131624159;
 			
-			// aapt resource value: 0x7f0e00e9
-			public const int search_edit_frame = 2131624169;
+			// aapt resource value: 0x7f0e00db
+			public const int search_edit_frame = 2131624155;
 			
-			// aapt resource value: 0x7f0e00ef
-			public const int search_go_btn = 2131624175;
+			// aapt resource value: 0x7f0e00e1
+			public const int search_go_btn = 2131624161;
 			
-			// aapt resource value: 0x7f0e00ea
-			public const int search_mag_icon = 2131624170;
+			// aapt resource value: 0x7f0e00dc
+			public const int search_mag_icon = 2131624156;
 			
-			// aapt resource value: 0x7f0e00eb
-			public const int search_plate = 2131624171;
+			// aapt resource value: 0x7f0e00dd
+			public const int search_plate = 2131624157;
 			
-			// aapt resource value: 0x7f0e00ec
-			public const int search_src_text = 2131624172;
+			// aapt resource value: 0x7f0e00de
+			public const int search_src_text = 2131624158;
 			
-			// aapt resource value: 0x7f0e00f0
-			public const int search_voice_btn = 2131624176;
+			// aapt resource value: 0x7f0e00e2
+			public const int search_voice_btn = 2131624162;
 			
-			// aapt resource value: 0x7f0e00f1
-			public const int select_dialog_listview = 2131624177;
+			// aapt resource value: 0x7f0e00e3
+			public const int select_dialog_listview = 2131624163;
 			
 			// aapt resource value: 0x7f0e0054
 			public const int selected = 2131624020;
 			
-			// aapt resource value: 0x7f0e00fe
-			public const int seriesLayout = 2131624190;
+			// aapt resource value: 0x7f0e00f0
+			public const int seriesLayout = 2131624176;
 			
-			// aapt resource value: 0x7f0e013d
-			public const int shellcontent_appbar = 2131624253;
+			// aapt resource value: 0x7f0e012e
+			public const int shellcontent_appbar = 2131624238;
 			
-			// aapt resource value: 0x7f0e013e
-			public const int shellcontent_toolbar = 2131624254;
+			// aapt resource value: 0x7f0e012f
+			public const int shellcontent_toolbar = 2131624239;
 			
-			// aapt resource value: 0x7f0e00d9
-			public const int shortcut = 2131624153;
+			// aapt resource value: 0x7f0e00cb
+			public const int shortcut = 2131624139;
 			
 			// aapt resource value: 0x7f0e0074
 			public const int showCustom = 2131624052;
@@ -26100,11 +28581,11 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0076
 			public const int showTitle = 2131624054;
 			
-			// aapt resource value: 0x7f0e011a
-			public const int sliding_tabs = 2131624218;
+			// aapt resource value: 0x7f0e010c
+			public const int sliding_tabs = 2131624204;
 			
-			// aapt resource value: 0x7f0e010e
-			public const int smallLabel = 2131624206;
+			// aapt resource value: 0x7f0e0100
+			public const int smallLabel = 2131624192;
 			
 			// aapt resource value: 0x7f0e0002
 			public const int snackbar_action = 2131623938;
@@ -26118,8 +28599,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e004f
 			public const int snapMargins = 2131624015;
 			
-			// aapt resource value: 0x7f0e00ca
-			public const int spacer = 2131624138;
+			// aapt resource value: 0x7f0e00bb
+			public const int spacer = 2131624123;
 			
 			// aapt resource value: 0x7f0e001a
 			public const int split_action_bar = 2131623962;
@@ -26139,32 +28620,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e005c
 			public const int start = 2131624028;
 			
-			// aapt resource value: 0x7f0e00b3
-			public const int startsWith = 2131624115;
-			
-			// aapt resource value: 0x7f0e00b4
-			public const int startsWithCaseSensitive = 2131624116;
-			
-			// aapt resource value: 0x7f0e0127
-			public const int status_bar_latest_event_content = 2131624231;
+			// aapt resource value: 0x7f0e0118
+			public const int status_bar_latest_event_content = 2131624216;
 			
 			// aapt resource value: 0x7f0e0064
 			public const int stretch = 2131624036;
 			
-			// aapt resource value: 0x7f0e00fd
-			public const int stripLinesLayout = 2131624189;
+			// aapt resource value: 0x7f0e00ef
+			public const int stripLinesLayout = 2131624175;
 			
-			// aapt resource value: 0x7f0e00da
-			public const int submenuarrow = 2131624154;
+			// aapt resource value: 0x7f0e00cc
+			public const int submenuarrow = 2131624140;
 			
-			// aapt resource value: 0x7f0e00ee
-			public const int submit_area = 2131624174;
-			
-			// aapt resource value: 0x7f0e00b9
-			public const int suggest = 2131624121;
-			
-			// aapt resource value: 0x7f0e00ba
-			public const int suggestAppend = 2131624122;
+			// aapt resource value: 0x7f0e00e0
+			public const int submit_area = 2131624160;
 			
 			// aapt resource value: 0x7f0e0071
 			public const int tabMode = 2131624049;
@@ -26193,8 +28662,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0046
 			public const int tag_unhandled_key_listeners = 2131624006;
 			
-			// aapt resource value: 0x7f0e0100
-			public const int technicalIndicatorLayout = 2131624192;
+			// aapt resource value: 0x7f0e00f2
+			public const int technicalIndicatorLayout = 2131624178;
 			
 			// aapt resource value: 0x7f0e0047
 			public const int text = 2131624007;
@@ -26202,20 +28671,20 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0048
 			public const int text2 = 2131624008;
 			
-			// aapt resource value: 0x7f0e00d0
-			public const int textSpacerNoButtons = 2131624144;
+			// aapt resource value: 0x7f0e00c1
+			public const int textSpacerNoButtons = 2131624129;
 			
-			// aapt resource value: 0x7f0e00cf
-			public const int textSpacerNoTitle = 2131624143;
+			// aapt resource value: 0x7f0e00c0
+			public const int textSpacerNoTitle = 2131624128;
 			
 			// aapt resource value: 0x7f0e0063
 			public const int textStart = 2131624035;
 			
-			// aapt resource value: 0x7f0e011f
-			public const int textViewStatus = 2131624223;
+			// aapt resource value: 0x7f0e0110
+			public const int textViewStatus = 2131624208;
 			
-			// aapt resource value: 0x7f0e0119
-			public const int text_input_password_toggle = 2131624217;
+			// aapt resource value: 0x7f0e010b
+			public const int text_input_password_toggle = 2131624203;
 			
 			// aapt resource value: 0x7f0e0004
 			public const int textinput_counter = 2131623940;
@@ -26226,41 +28695,38 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0006
 			public const int textinput_helper_text = 2131623942;
 			
-			// aapt resource value: 0x7f0e0138
-			public const int thumbLayout = 2131624248;
+			// aapt resource value: 0x7f0e0129
+			public const int thumbLayout = 2131624233;
 			
-			// aapt resource value: 0x7f0e012d
-			public const int time = 2131624237;
+			// aapt resource value: 0x7f0e011e
+			public const int time = 2131624222;
 			
 			// aapt resource value: 0x7f0e0049
 			public const int title = 2131624009;
 			
-			// aapt resource value: 0x7f0e00d6
-			public const int titleDividerNoCustom = 2131624150;
+			// aapt resource value: 0x7f0e00c8
+			public const int titleDividerNoCustom = 2131624136;
 			
-			// aapt resource value: 0x7f0e00fb
-			public const int titleLayout = 2131624187;
+			// aapt resource value: 0x7f0e00ed
+			public const int titleLayout = 2131624173;
 			
-			// aapt resource value: 0x7f0e00d4
-			public const int title_template = 2131624148;
+			// aapt resource value: 0x7f0e00c6
+			public const int title_template = 2131624134;
 			
-			// aapt resource value: 0x7f0e00b7
-			public const int token = 2131624119;
-			
-			// aapt resource value: 0x7f0e011b
-			public const int toolbar = 2131624219;
+			// aapt resource value: 0x7f0e010d
+			public const int toolbar = 2131624205;
 			
 			// aapt resource value: 0x7f0e005d
 			public const int top = 2131624029;
 			
-			// aapt resource value: 0x7f0e00d3
-			public const int topPanel = 2131624147;
+			// aapt resource value: 0x7f0e00c5
+			public const int topPanel = 2131624133;
 			
-			// aapt resource value: 0x7f0e0135
-			public const int top_labels = 2131624245;
+			// aapt resource value: 0x7f0e0126
+			public const int top_labels = 2131624230;
 			
-			// aapt resource value: 0x7f0e0112
-			public const int touch_outside = 2131624210;
+			// aapt resource value: 0x7f0e0104
+			public const int touch_outside = 2131624196;
 			
 			// aapt resource value: 0x7f0e000e
 			public const int transition_current_scene = 2131623950;
@@ -26277,8 +28743,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0012
 			public const int transition_transform = 2131623954;
 			
-			// aapt resource value: 0x7f0e00bd
-			public const int @unchecked = 2131624125;
+			// aapt resource value: 0x7f0e00ae
+			public const int @unchecked = 2131624110;
 			
 			// aapt resource value: 0x7f0e0078
 			public const int uniform = 2131624056;
@@ -26298,17 +28764,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0e0007
 			public const int view_offset_helper = 2131623943;
 			
-			// aapt resource value: 0x7f0e0142
-			public const int visible = 2131624258;
+			// aapt resource value: 0x7f0e0133
+			public const int visible = 2131624243;
 			
 			// aapt resource value: 0x7f0e0093
 			public const int wide = 2131624083;
 			
 			// aapt resource value: 0x7f0e0086
 			public const int withText = 2131624070;
-			
-			// aapt resource value: 0x7f0e00b5
-			public const int wrap = 2131624117;
 			
 			// aapt resource value: 0x7f0e0079
 			public const int wrap_content = 2131624057;
@@ -26388,52 +28851,52 @@ namespace XpertMobileApp.Droid
 		{
 			
 			// aapt resource value: 0x7f070000
-			public const int btn_checkbox_checked_animation_interpolator_0 = 2131165184;
+			public const int btn_checkbox_checked_mtrl_animation_interpolator_0 = 2131165184;
 			
 			// aapt resource value: 0x7f070001
-			public const int btn_checkbox_checked_animation_interpolator_1 = 2131165185;
+			public const int btn_checkbox_checked_mtrl_animation_interpolator_1 = 2131165185;
 			
 			// aapt resource value: 0x7f070002
-			public const int btn_checkbox_checked_mtrl_animation_interpolator_0 = 2131165186;
+			public const int btn_checkbox_unchecked_mtrl_animation_interpolator_0 = 2131165186;
 			
 			// aapt resource value: 0x7f070003
-			public const int btn_checkbox_checked_mtrl_animation_interpolator_1 = 2131165187;
+			public const int btn_checkbox_unchecked_mtrl_animation_interpolator_1 = 2131165187;
 			
 			// aapt resource value: 0x7f070004
-			public const int btn_checkbox_indeterminate_animation_interpolator_1 = 2131165188;
+			public const int btn_radio_to_off_mtrl_animation_interpolator_0 = 2131165188;
 			
 			// aapt resource value: 0x7f070005
-			public const int btn_checkbox_unchecked_animation_interpolator_0 = 2131165189;
+			public const int btn_radio_to_on_mtrl_animation_interpolator_0 = 2131165189;
 			
 			// aapt resource value: 0x7f070006
-			public const int btn_checkbox_unchecked_animation_interpolator_1 = 2131165190;
+			public const int fast_out_slow_in = 2131165190;
 			
 			// aapt resource value: 0x7f070007
-			public const int btn_checkbox_unchecked_mtrl_animation_interpolator_0 = 2131165191;
+			public const int mtrl_fast_out_linear_in = 2131165191;
 			
 			// aapt resource value: 0x7f070008
-			public const int btn_checkbox_unchecked_mtrl_animation_interpolator_1 = 2131165192;
+			public const int mtrl_fast_out_slow_in = 2131165192;
 			
 			// aapt resource value: 0x7f070009
-			public const int btn_radio_to_off_mtrl_animation_interpolator_0 = 2131165193;
+			public const int mtrl_linear = 2131165193;
 			
 			// aapt resource value: 0x7f07000a
-			public const int btn_radio_to_on_mtrl_animation_interpolator_0 = 2131165194;
+			public const int mtrl_linear_out_slow_in = 2131165194;
 			
 			// aapt resource value: 0x7f07000b
-			public const int fast_out_slow_in = 2131165195;
+			public const int sfcheckbox_checked_interpolator0 = 2131165195;
 			
 			// aapt resource value: 0x7f07000c
-			public const int mtrl_fast_out_linear_in = 2131165196;
+			public const int sfcheckbox_checked_interpolator1 = 2131165196;
 			
 			// aapt resource value: 0x7f07000d
-			public const int mtrl_fast_out_slow_in = 2131165197;
+			public const int sfcheckbox_indeterminate_interpolator1 = 2131165197;
 			
 			// aapt resource value: 0x7f07000e
-			public const int mtrl_linear = 2131165198;
+			public const int sfcheckbox_unchecked_interpolator0 = 2131165198;
 			
 			// aapt resource value: 0x7f07000f
-			public const int mtrl_linear_out_slow_in = 2131165199;
+			public const int sfcheckbox_unchecked_interpolator1 = 2131165199;
 			
 			static Interpolator()
 			{
@@ -26750,14 +29213,14 @@ namespace XpertMobileApp.Droid
 		public partial class String
 		{
 			
+			// aapt resource value: 0x7f0f0040
+			public const int ApplicationName = 2131689536;
+			
 			// aapt resource value: 0x7f0f003f
-			public const int ApplicationName = 2131689535;
+			public const int Hello = 2131689535;
 			
-			// aapt resource value: 0x7f0f003e
-			public const int Hello = 2131689534;
-			
-			// aapt resource value: 0x7f0f0042
-			public const int Load_More = 2131689538;
+			// aapt resource value: 0x7f0f0043
+			public const int Load_More = 2131689539;
 			
 			// aapt resource value: 0x7f0f000d
 			public const int abc_action_bar_home_description = 2131689485;
@@ -26846,8 +29309,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0f0001
 			public const int bottom_sheet_behavior = 2131689473;
 			
-			// aapt resource value: 0x7f0f0044
-			public const int cancel_drop = 2131689540;
+			// aapt resource value: 0x7f0f0045
+			public const int cancel_drop = 2131689541;
 			
 			// aapt resource value: 0x7f0f0002
 			public const int character_counter_content_description = 2131689474;
@@ -26909,14 +29372,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0f003b
 			public const int common_signin_button_text_long = 2131689531;
 			
-			// aapt resource value: 0x7f0f005a
-			public const int default_web_client_id = 2131689562;
-			
-			// aapt resource value: 0x7f0f0045
-			public const int drop_above = 2131689541;
+			// aapt resource value: 0x7f0f005b
+			public const int default_web_client_id = 2131689563;
 			
 			// aapt resource value: 0x7f0f0046
-			public const int drop_below = 2131689542;
+			public const int drop_above = 2131689542;
+			
+			// aapt resource value: 0x7f0f0047
+			public const int drop_below = 2131689543;
 			
 			// aapt resource value: 0x7f0f0004
 			public const int fab_transformation_scrim_behavior = 2131689476;
@@ -26924,38 +29387,41 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0f0005
 			public const int fab_transformation_sheet_behavior = 2131689477;
 			
-			// aapt resource value: 0x7f0f003c
-			public const int fcm_fallback_notification_channel_label = 2131689532;
-			
-			// aapt resource value: 0x7f0f005b
-			public const int firebase_database_url = 2131689563;
-			
-			// aapt resource value: 0x7f0f0058
-			public const int gcm_defaultSenderId = 2131689560;
+			// aapt resource value: 0x7f0f003d
+			public const int fcm_fallback_notification_channel_label = 2131689533;
 			
 			// aapt resource value: 0x7f0f005c
-			public const int google_api_key = 2131689564;
+			public const int firebase_database_url = 2131689564;
 			
 			// aapt resource value: 0x7f0f0059
-			public const int google_app_id = 2131689561;
+			public const int gcm_defaultSenderId = 2131689561;
 			
 			// aapt resource value: 0x7f0f005d
-			public const int google_crash_reporting_api_key = 2131689565;
+			public const int google_api_key = 2131689565;
+			
+			// aapt resource value: 0x7f0f005a
+			public const int google_app_id = 2131689562;
 			
 			// aapt resource value: 0x7f0f005e
-			public const int google_storage_bucket = 2131689566;
+			public const int google_crash_reporting_api_key = 2131689566;
+			
+			// aapt resource value: 0x7f0f005f
+			public const int google_storage_bucket = 2131689567;
 			
 			// aapt resource value: 0x7f0f0006
 			public const int hide_bottom_view_on_scroll_behavior = 2131689478;
 			
-			// aapt resource value: 0x7f0f003d
-			public const int library_name = 2131689533;
+			// aapt resource value: 0x7f0f003e
+			public const int library_name = 2131689534;
 			
-			// aapt resource value: 0x7f0f0043
-			public const int load_more_items = 2131689539;
+			// aapt resource value: 0x7f0f0044
+			public const int load_more_items = 2131689540;
 			
 			// aapt resource value: 0x7f0f0007
 			public const int mtrl_chip_close_icon_content_description = 2131689479;
+			
+			// aapt resource value: 0x7f0f003c
+			public const int overflow_tab_title = 2131689532;
 			
 			// aapt resource value: 0x7f0f0008
 			public const int password_toggle_content_description = 2131689480;
@@ -26972,71 +29438,71 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0f000c
 			public const int path_password_strike_through = 2131689484;
 			
-			// aapt resource value: 0x7f0f005f
-			public const int project_id = 2131689567;
+			// aapt resource value: 0x7f0f0060
+			public const int project_id = 2131689568;
+			
+			// aapt resource value: 0x7f0f0049
+			public const int q = 2131689545;
 			
 			// aapt resource value: 0x7f0f0048
-			public const int q = 2131689544;
-			
-			// aapt resource value: 0x7f0f0047
-			public const int quarter = 2131689543;
+			public const int quarter = 2131689544;
 			
 			// aapt resource value: 0x7f0f0028
 			public const int search_menu_title = 2131689512;
 			
-			// aapt resource value: 0x7f0f004f
-			public const int sfchart_Median_label = 2131689551;
-			
-			// aapt resource value: 0x7f0f004d
-			public const int sfchart_Q1_label = 2131689549;
+			// aapt resource value: 0x7f0f0050
+			public const int sfchart_Median_label = 2131689552;
 			
 			// aapt resource value: 0x7f0f004e
-			public const int sfchart_Q3_label = 2131689550;
+			public const int sfchart_Q1_label = 2131689550;
 			
-			// aapt resource value: 0x7f0f0053
-			public const int sfchart_close_label = 2131689555;
-			
-			// aapt resource value: 0x7f0f0056
-			public const int sfchart_decrease_label = 2131689558;
-			
-			// aapt resource value: 0x7f0f0050
-			public const int sfchart_high_label = 2131689552;
-			
-			// aapt resource value: 0x7f0f0055
-			public const int sfchart_increase_label = 2131689557;
-			
-			// aapt resource value: 0x7f0f0051
-			public const int sfchart_low_label = 2131689553;
-			
-			// aapt resource value: 0x7f0f004b
-			public const int sfchart_maximum_label = 2131689547;
-			
-			// aapt resource value: 0x7f0f004c
-			public const int sfchart_minimum_label = 2131689548;
-			
-			// aapt resource value: 0x7f0f0052
-			public const int sfchart_open_label = 2131689554;
+			// aapt resource value: 0x7f0f004f
+			public const int sfchart_Q3_label = 2131689551;
 			
 			// aapt resource value: 0x7f0f0054
-			public const int sfchart_others_label = 2131689556;
+			public const int sfchart_close_label = 2131689556;
 			
 			// aapt resource value: 0x7f0f0057
-			public const int sfchart_total_label = 2131689559;
+			public const int sfchart_decrease_label = 2131689559;
 			
-			// aapt resource value: 0x7f0f0040
-			public const int sfnumericupdown_decrement_button_accessibility_label = 2131689536;
+			// aapt resource value: 0x7f0f0051
+			public const int sfchart_high_label = 2131689553;
+			
+			// aapt resource value: 0x7f0f0056
+			public const int sfchart_increase_label = 2131689558;
+			
+			// aapt resource value: 0x7f0f0052
+			public const int sfchart_low_label = 2131689554;
+			
+			// aapt resource value: 0x7f0f004c
+			public const int sfchart_maximum_label = 2131689548;
+			
+			// aapt resource value: 0x7f0f004d
+			public const int sfchart_minimum_label = 2131689549;
+			
+			// aapt resource value: 0x7f0f0053
+			public const int sfchart_open_label = 2131689555;
+			
+			// aapt resource value: 0x7f0f0055
+			public const int sfchart_others_label = 2131689557;
+			
+			// aapt resource value: 0x7f0f0058
+			public const int sfchart_total_label = 2131689560;
 			
 			// aapt resource value: 0x7f0f0041
-			public const int sfnumericupdown_increment_button_accessibility_label = 2131689537;
+			public const int sfnumericupdown_decrement_button_accessibility_label = 2131689537;
+			
+			// aapt resource value: 0x7f0f0042
+			public const int sfnumericupdown_increment_button_accessibility_label = 2131689538;
 			
 			// aapt resource value: 0x7f0f0029
 			public const int status_bar_notification_info_overflow = 2131689513;
 			
-			// aapt resource value: 0x7f0f004a
-			public const int w = 2131689546;
+			// aapt resource value: 0x7f0f004b
+			public const int w = 2131689547;
 			
-			// aapt resource value: 0x7f0f0049
-			public const int week = 2131689545;
+			// aapt resource value: 0x7f0f004a
+			public const int week = 2131689546;
 			
 			static String()
 			{
@@ -27069,8 +29535,8 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f09000c
 			public const int Animation_Design_BottomSheetDialog = 2131296268;
 			
-			// aapt resource value: 0x7f0901fc
-			public const int AppCompatDialogStyle = 2131296764;
+			// aapt resource value: 0x7f0901fd
+			public const int AppCompatDialogStyle = 2131296765;
 			
 			// aapt resource value: 0x7f09012a
 			public const int Base_AlertDialog_AppCompat = 2131296554;
@@ -27648,14 +30114,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f090099
 			public const int CardView_Light = 2131296409;
 			
-			// aapt resource value: 0x7f0901fa
-			public const int MainTheme = 2131296762;
-			
 			// aapt resource value: 0x7f0901fb
-			public const int MainTheme_Base = 2131296763;
+			public const int MainTheme = 2131296763;
 			
-			// aapt resource value: 0x7f0901fd
-			public const int MyTheme_Splash = 2131296765;
+			// aapt resource value: 0x7f0901fc
+			public const int MainTheme_Base = 2131296764;
+			
+			// aapt resource value: 0x7f0901fe
+			public const int MyTheme_Splash = 2131296766;
 			
 			// aapt resource value: 0x7f09010b
 			public const int Platform_AppCompat = 2131296523;
@@ -28575,11 +31041,14 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0x7f0901f0
 			public const int Widget_Support_CoordinatorLayout = 2131296752;
 			
-			// aapt resource value: 0x7f0901f8
-			public const int collectionViewScrollBars = 2131296760;
-			
 			// aapt resource value: 0x7f0901f9
 			public const int collectionViewTheme = 2131296761;
+			
+			// aapt resource value: 0x7f0901f8
+			public const int scrollViewScrollBars = 2131296760;
+			
+			// aapt resource value: 0x7f0901fa
+			public const int scrollViewTheme = 2131296762;
 			
 			static Style()
 			{
@@ -30043,7 +32512,7 @@ namespace XpertMobileApp.Droid
 			public const int DesignTheme_bottomSheetStyle = 1;
 			
 			public static int[] DrawableStates = new int[] {
-					2130772575};
+					2130772534};
 			
 			// aapt resource value: 0
 			public const int DrawableStates_state_indeterminate = 0;
@@ -30815,18 +33284,18 @@ namespace XpertMobileApp.Droid
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
 			
 			public static int[] ProgressWheel = new int[] {
-					2130772591,
-					2130772592,
-					2130772593,
-					2130772594,
-					2130772595,
-					2130772596,
-					2130772597,
-					2130772598,
-					2130772599,
-					2130772600,
-					2130772601,
-					2130772602};
+					2130772550,
+					2130772551,
+					2130772552,
+					2130772553,
+					2130772554,
+					2130772555,
+					2130772556,
+					2130772557,
+					2130772558,
+					2130772559,
+					2130772560,
+					2130772561};
 			
 			// aapt resource value: 3
 			public const int ProgressWheel_ahBarColor = 3;
@@ -30930,6 +33399,12 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 0
 			public const int ScrimInsetsFrameLayout_insetForeground = 0;
 			
+			public static int[] ScrollViewRendererTheme = new int[] {
+					2130772467};
+			
+			// aapt resource value: 0
+			public const int ScrollViewRendererTheme_scrollViewStyle = 0;
+			
 			public static int[] ScrollingViewBehavior_Layout = new int[] {
 					2130772098};
 			
@@ -31006,180 +33481,10 @@ namespace XpertMobileApp.Droid
 			// aapt resource value: 12
 			public const int SearchView_voiceIcon = 12;
 			
-			public static int[] SfAutoComplete = new int[] {
-					2130772533,
-					2130772534,
+			public static int[] SfCheckBox = new int[] {
 					2130772535,
 					2130772536,
-					2130772537,
-					2130772538,
-					2130772539,
-					2130772540,
-					2130772541,
-					2130772542,
-					2130772543,
-					2130772544,
-					2130772545,
-					2130772546,
-					2130772547,
-					2130772548,
-					2130772549,
-					2130772550,
-					2130772551,
-					2130772552,
-					2130772553,
-					2130772554,
-					2130772555,
-					2130772556,
-					2130772557,
-					2130772558,
-					2130772559,
-					2130772560,
-					2130772561,
-					2130772562,
-					2130772563,
-					2130772564,
-					2130772565,
-					2130772566,
-					2130772567,
-					2130772568,
-					2130772569,
-					2130772570,
-					2130772571,
-					2130772572,
-					2130772573,
-					2130772574};
-			
-			// aapt resource value: 4
-			public const int SfAutoComplete_autocompleteBorderColor = 4;
-			
-			// aapt resource value: 25
-			public const int SfAutoComplete_autocompleteClearButtonColor = 25;
-			
-			// aapt resource value: 13
-			public const int SfAutoComplete_autocompleteDisplayMemberPath = 13;
-			
-			// aapt resource value: 18
-			public const int SfAutoComplete_autocompleteDropDownBackgroundColor = 18;
-			
-			// aapt resource value: 34
-			public const int SfAutoComplete_autocompleteDropDownCornerRadius = 34;
-			
-			// aapt resource value: 36
-			public const int SfAutoComplete_autocompleteDropDownFooterViewHeight = 36;
-			
-			// aapt resource value: 35
-			public const int SfAutoComplete_autocompleteDropDownHeaderViewHeight = 35;
-			
-			// aapt resource value: 33
-			public const int SfAutoComplete_autocompleteDropDownItemHeight = 33;
-			
-			// aapt resource value: 8
-			public const int SfAutoComplete_autocompleteDropDownOpen = 8;
-			
-			// aapt resource value: 19
-			public const int SfAutoComplete_autocompleteDropDownTextColor = 19;
-			
-			// aapt resource value: 21
-			public const int SfAutoComplete_autocompleteDropDownTextSize = 21;
-			
-			// aapt resource value: 14
-			public const int SfAutoComplete_autocompleteEnableSelectionIndicator = 14;
-			
-			// aapt resource value: 31
-			public const int SfAutoComplete_autocompleteHighlightedTextColor = 31;
-			
-			// aapt resource value: 26
-			public const int SfAutoComplete_autocompleteIgnoreDiacritic = 26;
-			
-			// aapt resource value: 22
-			public const int SfAutoComplete_autocompleteImageMemberPath = 22;
-			
-			// aapt resource value: 15
-			public const int SfAutoComplete_autocompleteIndicatorText = 15;
-			
-			// aapt resource value: 16
-			public const int SfAutoComplete_autocompleteIndicatorTextColor = 16;
-			
-			// aapt resource value: 32
-			public const int SfAutoComplete_autocompleteIndicatorTextSize = 32;
-			
-			// aapt resource value: 27
-			public const int SfAutoComplete_autocompleteIsFocused = 27;
-			
-			// aapt resource value: 30
-			public const int SfAutoComplete_autocompleteIsSelectedItemsVisibleInDropDown = 30;
-			
-			// aapt resource value: 28
-			public const int SfAutoComplete_autocompleteLoadMoreText = 28;
-			
-			// aapt resource value: 20
-			public const int SfAutoComplete_autocompleteMaximumDropDownHeight = 20;
-			
-			// aapt resource value: 9
-			public const int SfAutoComplete_autocompleteMaximumSuggestion = 9;
-			
-			// aapt resource value: 17
-			public const int SfAutoComplete_autocompleteMinimumPrefixCharacters = 17;
-			
-			// aapt resource value: 41
-			public const int SfAutoComplete_autocompleteMode = 41;
-			
-			// aapt resource value: 40
-			public const int SfAutoComplete_autocompleteMultiSelectMode = 40;
-			
-			// aapt resource value: 29
-			public const int SfAutoComplete_autocompleteNoResultsFoundText = 29;
-			
-			// aapt resource value: 12
-			public const int SfAutoComplete_autocompletePopUpDelay = 12;
-			
-			// aapt resource value: 10
-			public const int SfAutoComplete_autocompleteSelectedIndex = 10;
-			
-			// aapt resource value: 0
-			public const int SfAutoComplete_autocompleteShowBorder = 0;
-			
-			// aapt resource value: 1
-			public const int SfAutoComplete_autocompleteShowClearButton = 1;
-			
-			// aapt resource value: 24
-			public const int SfAutoComplete_autocompleteShowDropDownFooterView = 24;
-			
-			// aapt resource value: 23
-			public const int SfAutoComplete_autocompleteShowDropDownHeaderView = 23;
-			
-			// aapt resource value: 11
-			public const int SfAutoComplete_autocompleteShowSuggestionsOnFocus = 11;
-			
-			// aapt resource value: 38
-			public const int SfAutoComplete_autocompleteSuggestionBoxPlacement = 38;
-			
-			// aapt resource value: 37
-			public const int SfAutoComplete_autocompleteSuggestionMode = 37;
-			
-			// aapt resource value: 6
-			public const int SfAutoComplete_autocompleteText = 6;
-			
-			// aapt resource value: 3
-			public const int SfAutoComplete_autocompleteTextColor = 3;
-			
-			// aapt resource value: 7
-			public const int SfAutoComplete_autocompleteTextSize = 7;
-			
-			// aapt resource value: 39
-			public const int SfAutoComplete_autocompleteTokensWrapMode = 39;
-			
-			// aapt resource value: 5
-			public const int SfAutoComplete_autocompleteWatermark = 5;
-			
-			// aapt resource value: 2
-			public const int SfAutoComplete_autocompleteWatermarkColor = 2;
-			
-			public static int[] SfCheckBox = new int[] {
-					2130772576,
-					2130772577,
-					2130772578};
+					2130772537};
 			
 			// aapt resource value: 2
 			public const int SfCheckBox_checked = 2;
@@ -31191,7 +33496,6 @@ namespace XpertMobileApp.Droid
 			public const int SfCheckBox_isthreestate = 0;
 			
 			public static int[] SfNumericTextBox = new int[] {
-					2130772519,
 					2130772520,
 					2130772521,
 					2130772522,
@@ -31204,7 +33508,8 @@ namespace XpertMobileApp.Droid
 					2130772529,
 					2130772530,
 					2130772531,
-					2130772532};
+					2130772532,
+					2130772533};
 			
 			// aapt resource value: 9
 			public const int SfNumericTextBox_allowNull = 9;
@@ -31249,7 +33554,6 @@ namespace XpertMobileApp.Droid
 			public const int SfNumericTextBox_watermarkColor = 11;
 			
 			public static int[] SfPicker = new int[] {
-					2130772493,
 					2130772494,
 					2130772495,
 					2130772496,
@@ -31274,7 +33578,8 @@ namespace XpertMobileApp.Droid
 					2130772515,
 					2130772516,
 					2130772517,
-					2130772518};
+					2130772518,
+					2130772519};
 			
 			// aapt resource value: 1
 			public const int SfPicker_pickerBackgroundColor = 1;
@@ -31355,7 +33660,6 @@ namespace XpertMobileApp.Droid
 			public const int SfPicker_pickerWidth = 19;
 			
 			public static int[] SfRating = new int[] {
-					2130772481,
 					2130772482,
 					2130772483,
 					2130772484,
@@ -31366,7 +33670,8 @@ namespace XpertMobileApp.Droid
 					2130772489,
 					2130772490,
 					2130772491,
-					2130772492};
+					2130772492,
+					2130772493};
 			
 			// aapt resource value: 9
 			public const int SfRating_ratingControlValue = 9;
@@ -31405,7 +33710,6 @@ namespace XpertMobileApp.Droid
 			public const int SfRating_ratingUnratedStrokeWidth = 8;
 			
 			public static int[] SfRotator = new int[] {
-					2130772467,
 					2130772468,
 					2130772469,
 					2130772470,
@@ -31418,7 +33722,8 @@ namespace XpertMobileApp.Droid
 					2130772477,
 					2130772478,
 					2130772479,
-					2130772480};
+					2130772480,
+					2130772481};
 			
 			// aapt resource value: 2
 			public const int SfRotator_rotatorDotsBorderColor = 2;
@@ -31463,18 +33768,18 @@ namespace XpertMobileApp.Droid
 			public const int SfRotator_rotatorUnselectedDotsColor = 1;
 			
 			public static int[] SfSegmentedControl = new int[] {
-					2130772579,
-					2130772580,
-					2130772581,
-					2130772582,
-					2130772583,
-					2130772584,
-					2130772585,
-					2130772586,
-					2130772587,
-					2130772588,
-					2130772589,
-					2130772590};
+					2130772538,
+					2130772539,
+					2130772540,
+					2130772541,
+					2130772542,
+					2130772543,
+					2130772544,
+					2130772545,
+					2130772546,
+					2130772547,
+					2130772548,
+					2130772549};
 			
 			// aapt resource value: 1
 			public const int SfSegmentedControl_segmentBackColor = 1;
