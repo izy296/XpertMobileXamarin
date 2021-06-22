@@ -66,7 +66,8 @@ namespace XpertMobileApp.ViewModels
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var bll = CrudManager.GetVteBll(item.TYPE_DOC);
 
-                item.MBL_NUM_CARTE_FEDILITE = "";
+                item.MBL_NUM_CARTE_FEDILITE = SelectedTiers.NUM_CARTE_FIDELITE;
+                item.CODE_CARTE_FIDELITE = SelectedTiers.CODE_CARTE_FIDELITE;
                 item.CODE_MODE = "";
 
                 var res = await bll.ValidateVente(item, "1");

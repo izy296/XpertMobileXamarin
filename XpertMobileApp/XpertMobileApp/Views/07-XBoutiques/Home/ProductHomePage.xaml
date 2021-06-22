@@ -156,6 +156,7 @@
                     </rotator:SfRotator>
                 </StackLayout>
 
+                <!-- Les mieux notés-->
                 <StackLayout
                     Margin="16,0,16,0"
                     Orientation="Horizontal"
@@ -289,6 +290,7 @@
                     </listView:SfListView.LayoutManager>-->
                 </listView:SfListView>
 
+                <!-- Les plus achetés -->
                 <StackLayout
                     Margin="16,5,16,0"
                     Orientation="Horizontal"
@@ -399,6 +401,7 @@
 
                 </listView:SfListView>
 
+                <!-- Les nouveaux produits-->
                 <StackLayout
                     Margin="16,25,16,0"
                     Orientation="Horizontal"

@@ -1,12 +1,7 @@
 ﻿using Acr.UserDialogs;
-using Plugin.SimpleAudioPlayer;
 using Rg.Plugins.Popup.Services;
-using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -15,19 +10,17 @@ using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
-using XpertMobileApp.Views._04_Comercial.Selectors.Lot;
-using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class VenteFormPage : ContentPage
-    {
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class VenteFormPage : ContentPage
+	{
         private VenteFormViewModel viewModel;
+
 
         SYS_MOBILE_PARAMETRE parames;
 
@@ -36,23 +29,22 @@ namespace XpertMobileApp.Views
         public Command AddItemCommand { get; set; }
         public View_TRS_TIERS SelectedTiers
         {
-            get
+            get 
             {
                 return viewModel.SelectedTiers;
             }
-            set
+            set 
             {
                 viewModel.SelectedTiers = value;
             }
         }
 
-        public VenteFormPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails = "")
+        public VenteFormPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails ="")
         {
             InitializeComponent();
-
-            bool disable = true;
+            
             var vte = vente == null ? new View_VTE_VENTE() : vente;
-            if (vente == null)
+            if(vente == null)
             {
                 vte.ID_Random = XpertHelper.RandomString(7);
                 vte.TYPE_DOC = typeDoc;
@@ -65,9 +57,6 @@ namespace XpertMobileApp.Views
             BindingContext = this.viewModel = new VenteFormViewModel(vte, vte?.CODE_VENTE);
             viewModel.TypeDoc = typeDoc;
 
-            //viewModel.IsEnabled = disable;
-
-
             if (tiers == null)
             {
                 SelectedTiers = new View_TRS_TIERS()
@@ -79,13 +68,9 @@ namespace XpertMobileApp.Views
             else
             {
                 SelectedTiers = tiers;
-                disable = false;
             }
 
-            btn_Search.IsVisible = disable;
-            btn_Scan.IsVisible = disable;
             itemSelector = new LotSelector(viewModel.CurrentStream);
-            retourSelector = new RetourProducts(viewModel.CurrentStream);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
@@ -94,32 +79,48 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
-            // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
+           // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
-            MessagingCenter.Subscribe<LotSelector, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
-                Device.BeginInvokeOnMainThread(() =>
+                try 
+                { 
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                    // Test meilleur lot
+                    string betterLotMsg = await CrudManager.Stock.TestBetterLot(selectedItem.ID_STOCK);
+                    if (!string.IsNullOrEmpty(betterLotMsg))
+                    {
+                        var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
+                        if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
+                        {
+                            selectedItem.QUANTITE = 0;
+                            selectedItem.SelectedQUANTITE = 0;
+                        }
+                        else 
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                viewModel.AddNewRow(selectedItem);
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            viewModel.AddNewRow(selectedItem);
+                        });
+                    }
+                    UserDialogs.Instance.HideLoading();
+                }
+                catch (Exception ex)
                 {
-                    viewModel.AddNewRow(selectedItem , false); // false veut dire le type de produit ajouter est une vente (pas retour)
-                });
+                    UserDialogs.Instance.HideLoading();
+                    throw ex;
+                }
             });
-            MessagingCenter.Subscribe<RetourProducts, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    viewModel.AddNewRow(selectedItem , true); // true veut dire le type de produit ajouter est un retour
-                });
-            });
-
-            MessagingCenter.Subscribe<LotSelector, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    viewModel.RemoveNewRow(selectedItem);
-                });
-            });
-
-            MessagingCenter.Subscribe<RetourProducts, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            
+            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -143,11 +144,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        protected override bool OnBackButtonPressed()
+        protected override  bool OnBackButtonPressed()
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Oui", "Non");
+            Device.BeginInvokeOnMainThread(async () => {
+                var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Yes", "No");
                 if (result) await this.Navigation.PopAsync(); // or anything else
             });
 
@@ -173,7 +173,7 @@ namespace XpertMobileApp.Views
             // viewModel.ImmatriculationList = await GetImmatriculations("");
 
             if (!AppManager.HasAdmin)
-            {
+            { 
                 ApplyVisibility();
             }
         }
@@ -181,7 +181,7 @@ namespace XpertMobileApp.Views
         private void ApplyVisibility()
         {
             //btn_Immatriculation.IsEnabled = false;
-
+            
             string userGroup = App.User.GroupName;
 
             // Par défaut le header est caché s'il n'a pas le droit d'éditer le header
@@ -215,11 +215,11 @@ namespace XpertMobileApp.Views
 
                 foreach (var itemC in itemsC)
                 {
-                 //   itemC.Parent_Doc = viewModel.Item;
+                    //itemC.Parent_Doc = viewModel.Item;
                     viewModel.ItemRows.Add(itemC);
                 }
 
-                viewModel.UpdateMontants();
+               viewModel.UpdateMontants();
             }
             catch (Exception ex)
             {
@@ -250,22 +250,6 @@ namespace XpertMobileApp.Views
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
             //itemSelector.AutoriserReception = "1";
             await PopupNavigation.Instance.PushAsync(itemSelector);
-        }
-
-        private RetourProducts retourSelector;
-        private async void RetourProduct_Clicked(object sender, EventArgs e)
-        {
-            /*
-            if (string.IsNullOrEmpty(viewModel?.Item?.CODE_VENTE))
-            {
-                await UserDialogs.Instance.AlertAsync("Vous devez valider l'en-têtes avant de pouvoir ajouter des produits !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-
-                return;
-            }
-            */
-            retourSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
-            //itemSelector.AutoriserReception = "1";
-            await PopupNavigation.Instance.PushAsync(retourSelector);
         }
 
 
@@ -305,7 +289,7 @@ namespace XpertMobileApp.Views
 
         private void HeaderSettings_Clicked(object sender, EventArgs e)
         {
-            // pnl_Header.IsVisible = !pnl_Header.IsVisible;
+           // pnl_Header.IsVisible = !pnl_Header.IsVisible;
         }
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)
@@ -318,8 +302,8 @@ namespace XpertMobileApp.Views
                 {
                     int index = viewModel.ItemRows.IndexOf(vteD);
                     viewModel.ItemRows.Remove(vteD);
-                    if (viewModel.Item?.Details?.Count - 1 >= index)
-                    {
+                    if(viewModel.Item?.Details?.Count - 1 >= index)
+                    { 
                         viewModel.Item.Details.RemoveAt(index);
                     }
                 }
@@ -336,16 +320,9 @@ namespace XpertMobileApp.Views
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
-            if (viewModel.ItemRows.Count > 0)
-            {
-                VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
-                VteValidationPage.ParentviewModel = viewModel;
-                await PopupNavigation.Instance.PushAsync(VteValidationPage);
-            }
-            else
-            {
-                await UserDialogs.Instance.AlertAsync("Veuillez entrer des produits avant de valider", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
+            VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
+            VteValidationPage.ParentviewModel = viewModel;
+            await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 
         private void initVteInterface()
@@ -360,7 +337,7 @@ namespace XpertMobileApp.Views
         {
             List<string> result = null;
 
-            //   if (string.IsNullOrEmpty(str)) return result;
+         //   if (string.IsNullOrEmpty(str)) return result;
 
             if (IsBusy)
                 return result;
@@ -405,7 +382,7 @@ namespace XpertMobileApp.Views
             if (itemIndex >= 0)
             {
                 var item = viewModel.ItemRows[itemIndex];
-                // item.IsFavorite = !item.IsFavorite;
+               // item.IsFavorite = !item.IsFavorite;
             }
             this.listView.ResetSwipe();
         }
@@ -413,13 +390,8 @@ namespace XpertMobileApp.Views
         private void Delete()
         {
             if (itemIndex >= 0)
-            {
-                var obj = viewModel.ItemRows[itemIndex];
                 viewModel.ItemRows.RemoveAt(itemIndex);
-                viewModel.Item.Details.Remove(obj);
-            }
             this.listView.ResetSwipe();
-            viewModel.UpdateMontants();
         }
 
         private void ListView_SwipeStarted(object sender, Syncfusion.ListView.XForms.SwipeStartedEventArgs e)
@@ -475,6 +447,5 @@ namespace XpertMobileApp.Views
                 });
             };
         }
-       
     }
 }

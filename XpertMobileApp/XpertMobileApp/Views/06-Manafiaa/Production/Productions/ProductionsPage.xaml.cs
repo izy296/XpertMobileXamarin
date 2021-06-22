@@ -19,16 +19,12 @@ namespace XpertMobileApp.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ProductionsPage : ContentPage
 	{
-        public string CurrentStream = Guid.NewGuid().ToString();
-
         private string typeDoc = "LF";
-        
         public string MotifDoc { get; set; }
-
+        public string CurrentStream = Guid.NewGuid().ToString();
         ProductionsViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
-        
         List<SYS_OBJET_PERMISSION> permissions;
 
         public ProductionsPage(string motifDoc)
@@ -55,33 +51,6 @@ namespace XpertMobileApp.Views
             viewModel.SelectedDocs.CollectionChanged += SlectedItempsChanged;
         }
 
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            parames = await AppManager.GetSysParams();
-            permissions = await AppManager.GetPermissions();
-
-            if (!AppManager.HasAdmin)
-            {
-                ApplyVisibility();
-            }
-
-            //if (viewModel.Items.Count == 0)
-            LoadData();
-        }
-
-        private void ApplyVisibility()
-        {
-            //btn_Additem.IsEnabled = viewModel.hasEditHeader;
-        }
-
-        private async void LoadData()
-        {
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        #region Interface actions
 
         private void SlectedItempsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -102,6 +71,32 @@ namespace XpertMobileApp.Views
         async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new ProductionFormPage(null, typeDoc, MotifDoc));
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
+
+            if (!AppManager.HasAdmin)
+            {
+                ApplyVisibility();
+            }
+
+            //if (viewModel.Items.Count == 0)
+            LoadStats();
+        }
+
+        private void ApplyVisibility()
+        {
+            //btn_Additem.IsEnabled = viewModel.hasEditHeader;
+        }
+
+        private async void LoadStats()
+        {
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -126,7 +121,6 @@ namespace XpertMobileApp.Views
         }
 
         private TiersSelector itemSelector;
-
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             itemSelector.SearchedType = "CF";
@@ -184,7 +178,5 @@ namespace XpertMobileApp.Views
     AppResources.alrt_msg_Ok);
             }
         }
-
-        #endregion
     }
 }

@@ -18,7 +18,25 @@ namespace XpertMobileApp.ViewModels
 
     public class AchatsViewModel : CrudBaseViewModel2<ACH_DOCUMENT, View_ACH_DOCUMENT>
     {
-        // Le droit d'éditer l'entête du document
+
+
+        public string TypeDoc { get; set; } = "LF";
+
+
+        decimal totalTurnover;
+        public decimal TotalTurnover
+        {
+            get { return totalTurnover; }
+            set { SetProperty(ref totalTurnover, value); }
+        }
+
+        decimal totalMargin;
+        public decimal TotalMargin
+        {
+            get { return totalMargin; }
+            set { SetProperty(ref totalMargin, value); }
+        }
+
         public bool hasEditHeader
         {
             get
@@ -35,16 +53,23 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        // Type de document d'achat d'olive 
-        public string TypeDoc { get; set; } = "LF";
+        public View_TRS_TIERS SelectedTiers { get; set; }
 
-        protected override string ContoleurName
-        {
-            get
-            {
-                return "ACH_ACHATS";
-            }
-        }
+        public EncaissDisplayType EncaissDisplayType { get; set; }
+        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime EndDate { get; set; } = DateTime.Now;
+
+        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
+        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
+        
+
+        public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
+        public View_BSE_COMPTE SelectedClient { get; set; }
+        public Command LoadClientsCommand { get; set; }
+
+        public ObservableCollection<View_BSE_COMPTE> User { get; set; }
+        public View_BSE_COMPTE SelectedUser { get; set; }
+        public Command LoadUsersCommand { get; set; }
 
         public AchatsViewModel(string typeDoc)
         {
@@ -99,6 +124,14 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        protected override string ContoleurName
+        {
+            get
+            {
+                return "ACH_ACHATS";
+            }
+        }
+
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
@@ -130,39 +163,28 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public override void ClearFilters()
+        async Task ExecuteLoadItemsCommand()
         {
-            base.ClearFilters();
-            SelectedTiers = null;
-            SelectedStatus = null;
-            StartDate = DateTime.Now;
-            EndDate = DateTime.Now;
-            SelectedClient = null;
-            SelectedUser = null;
+            if (IsBusy)
+                return;
+
+            try
+            {
+                Items.Clear();
+
+                // liste des ventes
+                await Items.LoadMoreAsync();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
-
-        #region Filter
-
-        public View_TRS_TIERS SelectedTiers { get; set; }
-
-        public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
-        public DateTime EndDate { get; set; } = DateTime.Now;
-
-        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
-        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
-
-
-        public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
-        public View_BSE_COMPTE SelectedClient { get; set; }
-        public Command LoadClientsCommand { get; set; }
-
-        public ObservableCollection<View_BSE_COMPTE> User { get; set; }
-        public View_BSE_COMPTE SelectedUser { get; set; }
-        public Command LoadUsersCommand { get; set; }
-
-        #endregion
-
     }
 
 }

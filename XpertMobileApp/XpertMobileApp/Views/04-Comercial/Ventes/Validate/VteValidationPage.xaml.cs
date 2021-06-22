@@ -19,6 +19,7 @@ using XpertMobileApp.SQLite_Managment;
 using Xamarin.Essentials;
 using System.Threading.Tasks;
 using System.Threading;
+using XpertMobileApp.Api;
 
 namespace XpertMobileApp.Views
 {
@@ -27,6 +28,7 @@ namespace XpertMobileApp.Views
         VteValidationViewModel viewModel;
 
         public VenteFormViewModel ParentviewModel { get; set; }
+
         public string ParentStream { get; set; }
         public View_VTE_VENTE Item 
         { 
@@ -121,9 +123,13 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                viewModel.Item.GPS_LATITUDE = 0;
-                viewModel.Item.GPS_LONGITUDE = 0;
-                await SaveGPsLocationToVente(viewModel.Item);
+                if (Constants.AppName == Apps.XCOM_Livraison)
+                {
+                    viewModel.Item.GPS_LATITUDE = 0;
+                    viewModel.Item.GPS_LONGITUDE = 0;
+                    await SaveGPsLocationToVente(viewModel.Item);
+                }
+
                 if (App.Online)
                 {
                     string res = await viewModel.ValidateVte(viewModel.Item);
