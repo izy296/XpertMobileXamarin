@@ -13,16 +13,16 @@ using XpertMobileSettingsPage.Helpers.Services;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EncaissementDetailPage : ContentPage
-	{
-        ItemDetailViewModel<View_TRS_ENCAISS> viewModel;
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EncaissementDetailPage : ContentPage
+    {
+        EncaissementsDetailViewModel viewModel;
 
         public EncaissementDetailPage(View_TRS_ENCAISS encaiss)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = new ItemDetailViewModel<View_TRS_ENCAISS>(encaiss);
+            BindingContext = this.viewModel = new EncaissementsDetailViewModel(encaiss);
 
             displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
 
@@ -37,6 +37,9 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Cancel_Encaiss.IsVisible = this.viewModel.HasCancelEncaiss;
+            Update_Encaiss.IsVisible = this.viewModel.HasUpdateEncaiss;
+            Delete_Encaiss.IsVisible = this.viewModel.HasDeleteEncaiss;
         }
 
         private void displayObject(Type type, object obj)
@@ -103,14 +106,14 @@ namespace XpertMobileApp.Views
         private FieldInfos GetFieldInfosAttribue(Type type, string fieldName)
         {
             try
-            { 
+            {
                 var attrs = (FieldInfos[])type.GetProperty(fieldName).GetCustomAttributes(typeof(FieldInfos), false);
-                if(attrs.Count()> 0)
+                if (attrs.Count() > 0)
                 {
                     return attrs[0];
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -127,7 +130,7 @@ namespace XpertMobileApp.Views
                 DESIGN_COMPTE = "This is a compte.."
             };
 
-            viewModel = new ItemDetailViewModel<View_TRS_ENCAISS>(item);
+            viewModel = new EncaissementsDetailViewModel(item);
             BindingContext = viewModel;
         }
 
@@ -175,7 +178,7 @@ namespace XpertMobileApp.Views
                     PrinterHelper.PrintEncaisseOffline(this.viewModel.Item);
                 }
             }
-           
+
         }
         async void Cancel_Clicked(object sender, EventArgs e)
         {

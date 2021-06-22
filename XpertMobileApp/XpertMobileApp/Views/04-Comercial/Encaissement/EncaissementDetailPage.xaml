@@ -3,34 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.EncaissementDetailPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:cmp="clr-namespace:XpertMobileApp.Components"
              Title="{Binding Title}">
-    
+
     <ContentPage.ToolbarItems>
-        
-        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
+
+        <cmp:XToolbarItem x:Name="Cancel_Encaiss" Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="cancel.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>
-        
-        <!--<ToolbarItem Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked">
+        </cmp:XToolbarItem>
+
+        <cmp:XToolbarItem x:Name="Update_Encaiss" Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>-->
-        
-        <ToolbarItem Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked">
+        </cmp:XToolbarItem>
+
+        <cmp:XToolbarItem x:Name="Delete_Encaiss" Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>
-        
+        </cmp:XToolbarItem>
+
     </ContentPage.ToolbarItems>
 
 
