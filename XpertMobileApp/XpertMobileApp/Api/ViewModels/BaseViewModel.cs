@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
+using Xpert;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
@@ -33,6 +36,22 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref title, value); }
         }
 
+        public static bool HasPrivilege(XpertObjets codeObject, XpertActions action)
+        {
+            if (AppManager.HasAdmin) return true;
+            if (codeObject == XpertObjets.None || action == XpertActions.None) return true;
+
+            bool result = false;
+            if (AppManager.permissions != null)
+            {
+                var obj = AppManager.permissions.Where(x => x.CodeObjet == codeObject.ToString()).FirstOrDefault();
+                var res = XpertHelper.GetValue(obj, action.ToString());
+                result = obj != null && Convert.ToInt16(res) > 0;
+            }
+            return result;
+        }
+
+
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
@@ -56,6 +75,7 @@ namespace XpertMobileApp.ViewModels
 
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
         #endregion
     }
 }
