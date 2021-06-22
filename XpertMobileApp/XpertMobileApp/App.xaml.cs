@@ -28,10 +28,7 @@ using XpertMobileApp.Views;
 namespace XpertMobileApp
 {
     public partial class App : Application
-
-
     {
-
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
@@ -112,11 +109,11 @@ namespace XpertMobileApp
                     }
                     else
                     {
-                        if (Constants.AppName == Apps.X_BOUTIQUE)
+                        if(Constants.AppName == Apps.X_BOUTIQUE)
                         {
                             MainPage = new MainPage();
                         }
-                        else
+                        else 
                         {
                             MainPage = new LoginPage();
                         }
@@ -125,14 +122,19 @@ namespace XpertMobileApp
             }
             else
             {
-                 MainPage = new LoginPage();
-                //MainPage = new ActivationPage(licState);
+                if (Constants.AppName == Apps.XCOM_Livraison)
+                {
+                    MainPage = new LoginPage();
+
+                }
+                else
+                    MainPage = new ActivationPage(licState);
             }
         }
 
         public App()
         {
-            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("Mjk3ODAxQDMxMzgyZTMyMmUzMFdHQ3FLK0tXSmRMUnFiUm5CelZnQ3kxRTV3Q2ZXWXEraExTemNSVjJwQ2M9");
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDYxNTc2QDMxMzkyZTMxMmUzMER2U3c5d05XeFJzbm04aTJwVnB6ejgxRU1wNTNRYTBVOUt6SnhrWk1ZQm89");
 
             InitializeComponent();
 
@@ -258,13 +260,8 @@ namespace XpertMobileApp
 
         public async static Task<bool> IsConected()
         {
-            // // return CrossConnectivity.Current.IsConnected;
-            // string url = App.Settings.ServiceUrl;
-            ////var isReachable = await CrossConnectivity.Current.IsReachable(url, 5000);
-
-            //return true;
-
             string url = App.Settings.ServiceUrl;
+
             int port = 80;
             Regex r = new Regex(@"^(?<proto>\w+)://[^/]+?(?<port>:\d+)?/", RegexOptions.None, TimeSpan.FromMilliseconds(50));
             Match m = r.Match(url);
@@ -281,6 +278,7 @@ namespace XpertMobileApp
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
             Online = isReachable;
             return isReachable;
+
         }
 
         public static string RestServiceUrl
