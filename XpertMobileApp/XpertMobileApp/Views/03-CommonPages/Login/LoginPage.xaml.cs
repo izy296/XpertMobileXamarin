@@ -105,7 +105,8 @@ namespace XpertMobileApp.Views
                             // suavegrade du user et du token en cours dans la bdd local
 
                             //Récuperation prefix
-                            await RecupererPrefix();
+                            if (Constants.AppName != Apps.XCOM_Livraison)                            
+                                await RecupererPrefix();
 
                             try
                             {
