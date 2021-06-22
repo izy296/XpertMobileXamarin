@@ -136,13 +136,16 @@ namespace XpertMobileApp.ViewModels
                     Action = Xpert.XpertActions.AcSelect
                 });
 
-                res.Add(new TDB_SIMPLE_INDICATORS()
+                if (Constants.AppName == Apps.XCOM_Livraison)
                 {
-                    CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
-                    Title = "Tournée",
-                    Color = "#d4bab8",
-                    Action = Xpert.XpertActions.AcSelect
-                });
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
+                        Title = "Tournée",
+                        Color = "#d4bab8",
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+                }
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {
@@ -176,19 +179,22 @@ namespace XpertMobileApp.ViewModels
                     Color = "#FEF2CC"
                 });
 
-                res.Add(new TDB_SIMPLE_INDICATORS()
+                if (Constants.AppName == Apps.XCOM_Livraison)
                 {
-                    CODE_ANALYSE = ((int)MenuItemType.Import).ToString(),
-                    Title ="Import Donnée",
-                    Color = "#8fc779"
-                });
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Import).ToString(),
+                        Title = "Import Donnée",
+                        Color = "#8fc779"
+                    });
 
-                res.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Export).ToString(),
-                    Title = "Export Donnée",
-                    Color = "#87CEEB"
-                });
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Export).ToString(),
+                        Title = "Export Donnée",
+                        Color = "#87CEEB"
+                    });
+                }
 
                 
                 /*

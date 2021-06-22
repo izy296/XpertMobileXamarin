@@ -278,7 +278,8 @@ namespace XpertMobileApp.Views
 
                 ListViewMenu.ItemsSource = menus;
 
-                ListViewMenu.SelectedItem = menus[0];
+                if(menus.Count > 0 )
+                    ListViewMenu.SelectedItem = menus[0];
 
                 UserDialogs.Instance.HideLoading();
             }
