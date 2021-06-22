@@ -10,10 +10,6 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <WarningLevel>0</WarningLevel>
-  </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="DataService\**" />
     <Compile Remove="Views\08-Catalogue-old\List\**" />
@@ -33,13 +29,13 @@
     <Compile Remove="Api\Services\MockDataStore.cs" />
     <Compile Remove="Api\Services\RFID\IRfidScaner.cs" />
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
-    <Compile Remove="Api\Storage\Ventes\SL_VENTE_BLL.cs" />
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
     <Compile Remove="Models\Item.cs" />
     <Compile Remove="Models\Product.cs" />
     <Compile Remove="Models\Review.cs" />
+    <Compile Remove="Views\04-Comercial\Ventes\Form\VenteFormViewLivraisonModel.cs" />
     <Compile Remove="Views\AboutPage.xaml.cs" />
     <Compile Remove="Views\ItemDetailPage.xaml.cs" />
     <Compile Remove="Views\ItemsPage.xaml.cs" />
@@ -70,15 +66,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="App.xaml.cs.bak" />
+    <None Remove="AppResources.ar.resx.bak" />
+    <None Remove="AppResources.Designer.cs.bak" />
+    <None Remove="AppResources.en.resx.bak" />
     <None Remove="beep.wav" />
     <None Remove="beep03.mp3" />
     <None Remove="beep07.mp3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
-    <Compile Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
-    <Compile Include="..\..\..\XpertComNouveauRepository\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
+    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -88,43 +88,41 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.446" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
     <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Syncfusion.Licensing" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.Core" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="18.2.0.47" />
-    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="18.2.0.47" />
+    <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfAutoComplete" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfDataGrid" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericTextBox" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRating" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfRotator" Version="19.1.0.69" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.1.0.69" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />  
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.707-beta" />  
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.707" />  
     <PackageReference Include="ZXing.Net.Mobile" Version="3.0.0-beta5" />  
     <PackageReference Include="ZXing.Net.Mobile.Forms" Version="3.0.0-beta5" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Api\Services\RFID\" />
-    <Folder Include="Api\Storage\Ventes\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -132,10 +130,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\XpertComNouveauRepository\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+    <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
+    <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-WebApis\XpertWebApi\XpertWebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\04-Comercial\Ventes\Form\VenteFormLivraisonPage.xaml.cs">
+      <DependentUpon>VenteFormLivraisonPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\07-XBoutiques\Commandes\StylesCT.xaml.cs">
       <DependentUpon>StylesCT.xaml</DependentUpon>
     </Compile>
