@@ -163,6 +163,8 @@ namespace XpertMobileApp.DAL
             
         }
 
+        public string CODE_CARTE_FIDELITE { get; set; }
+
         private decimal pOINTS_CONSUMED;
         public decimal POINTS_CONSUMED
         {
@@ -178,8 +180,9 @@ namespace XpertMobileApp.DAL
         }
 
         #region Validation vente
+        [Ignore]  
         public List<View_VTE_VENTE_LOT> Details { get; set; }
-        public string ID { get; internal set; }
+        public string ID_Random { get; internal set; }
         public string MBL_MODE_PAIMENT { get; internal set; }
         private string _MBL_NUM_CARTE_FEDILITE;
         public string MBL_NUM_CARTE_FEDILITE
@@ -237,7 +240,10 @@ namespace XpertMobileApp.DAL
 
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
     {
-        public View_VTE_VENTE Parent_Doc { get; set; }
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        [Ignore] 
+        //public View_VTE_VENTE Parent_Doc { get; set; }
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)
         public int? ID_STOCK { get; set; } // int(10)
