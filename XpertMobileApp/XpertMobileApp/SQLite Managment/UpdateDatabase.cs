@@ -242,9 +242,16 @@ namespace XpertMobileApp.SQLite_Managment
         }
         public static async Task SyncProduct()
         {
-            var products = await CrudManager.Products.GetProduitFromMagasin(App.CODE_MAGASIN);
-            await getInstance().DeleteAllAsync<View_STK_PRODUITS>();
-            var id = await getInstance().InsertAllAsync(products);
+            if (string.IsNullOrEmpty(App.CODE_MAGASIN))
+            {
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+            }
+            else
+            {
+                var products = await CrudManager.Products.GetProduitFromMagasin(App.CODE_MAGASIN);
+                await getInstance().DeleteAllAsync<View_STK_PRODUITS>();
+                var id = await getInstance().InsertAllAsync(products);
+            }
         }
 
         public static async Task syncPermission()
