@@ -397,6 +397,7 @@ namespace XpertMobileApp.DAL
         public string TYPE_DOC { get; set; }
         public string ID { get; internal set; }
         public string VenteID { get; internal set; }
+        public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
     }
     public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL
     {
