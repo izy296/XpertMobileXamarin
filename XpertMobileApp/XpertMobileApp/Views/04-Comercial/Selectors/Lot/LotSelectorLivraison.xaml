@@ -9,7 +9,7 @@
                  x:Class="XpertMobileApp.Views.LotSelectorLivraison">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
     <StackLayout BackgroundColor="White">
-        
+
        <!-- Filter -->
        <Grid Margin="5,10,5,5">
            <Grid.ColumnDefinitions>
@@ -45,9 +45,9 @@
                RefreshCommand="{Binding LoadItemsCommand}"
                IsPullToRefreshEnabled="true"
                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-
+               
                CachingStrategy="RecycleElement"
-                      ItemTapped="ItemsListView_ItemTapped"
+               ItemTapped="ItemsListView_ItemTapped"
                ItemSelected="OnItemSelected" 
                  >
            
@@ -56,9 +56,9 @@
           </ListView.Behaviors>
 
           <ListView.ItemTemplate>
-                    <DataTemplate>
+              <DataTemplate>
                   <ViewCell >
-                        <StackLayout Padding="0" Margin="0" >
+                      <StackLayout Padding="0" Margin="0" >
                           <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
                                   OutlineColor="Transparent">
                               <Grid RowSpacing="0" Padding="0" Margin="0" >
@@ -122,9 +122,9 @@
                           </Frame>
                       </StackLayout>
                   </ViewCell>
-                    </DataTemplate>
+              </DataTemplate>
           </ListView.ItemTemplate>
-            
+
           <ListView.Footer>
              <Grid Padding="6" IsVisible="{Binding IsBusy}">
                  <!-- set the footer to have a zero height when invisible -->

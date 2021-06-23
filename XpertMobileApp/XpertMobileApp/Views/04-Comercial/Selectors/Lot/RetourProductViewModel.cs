@@ -9,7 +9,7 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 {
-    class RetourProductViewModel : CrudBaseViewModel2<STK_STOCK, View_STK_STOCK>
+    class RetourProductViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
         public string SearchedText { get; set; } = "";
@@ -46,7 +46,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
             Title = title;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
+        protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)
         {
             base.OnAfterLoadItems(list);
 
@@ -58,26 +58,26 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
             }
         }
 
-        protected override QueryInfos GetFilterParams()
-        {
-            base.GetFilterParams();
-            this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
+        //protected override QueryInfos GetFilterParams()
+        //{
+        //    base.GetFilterParams();
+        //    this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
 
-            if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente))
-            {
-                this.AddCondition<View_STK_STOCK, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
-            }
-            this.AddCondition<View_STK_STOCK, bool>(e => e.IS_BLOCKED, 0);
-            this.AddCondition<View_STK_STOCK, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
+        //    if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente))
+        //    {
+        //        this.AddCondition<View_STK_PRODUITS, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
+        //    }
+        //    this.AddCondition<View_STK_PRODUITS, bool>(e => e.IS_BLOCKED, 0);
+        //    this.AddCondition<View_STK_PRODUITS, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
 
-            // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
+        //    // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
 
-            this.AddOrderBy<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT);
+        //    this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
 
-            qb.QueryInfos.Param1 = CodeTiers;
+        //    qb.QueryInfos.Param1 = CodeTiers;
 
-            return qb.QueryInfos;
-        }
+        //    return qb.QueryInfos;
+        //}
     }
 }
 

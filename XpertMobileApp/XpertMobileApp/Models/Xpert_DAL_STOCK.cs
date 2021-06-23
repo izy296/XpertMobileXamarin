@@ -93,6 +93,7 @@ namespace XpertMobileApp.Models
         public string CODE_FAMILLE { get; set; } // varchar()
         public string DESIGN_FAMILLE { get; set; } // varchar()
         public decimal COUT_ACHAT { get; set; } // varchar(2500)
+        public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
     }
 
     public partial class View_STK_STOCK

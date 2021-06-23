@@ -145,12 +145,12 @@ namespace XpertMobileApp.SQLite_Managment
                 await initialisationDbLocal();
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                //await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
                 await SyncData<View_TRS_TIERS, TRS_TIERS>();
                 await SyncLivTournee();
                 await SyncLivTourneeDetail();
                 await SyncStock();
-                await SyncProduct();
+                //await SyncProduct();
                 //await SyncData<View_STK_STOCK, STK_STOCK>();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                 await SyncUsers();
@@ -242,9 +242,16 @@ namespace XpertMobileApp.SQLite_Managment
         }
         public static async Task SyncProduct()
         {
-            var products = await CrudManager.Products.GetProduitFromMagasin(App.CODE_MAGASIN);
-            await getInstance().DeleteAllAsync<View_STK_PRODUITS>();
-            var id = await getInstance().InsertAllAsync(products);
+            if (string.IsNullOrEmpty(App.CODE_MAGASIN))
+            {
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+            }
+            else
+            {
+                var products = await CrudManager.Products.GetProduitFromMagasin(App.CODE_MAGASIN);
+                await getInstance().DeleteAllAsync<View_STK_PRODUITS>();
+                var id = await getInstance().InsertAllAsync(products);
+            }
         }
 
         public static async Task syncPermission()
@@ -409,7 +416,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
             var prixProduct = AllPrices.Where(x => x.CODE_PRODUIT == codeProduit).FirstOrDefault();
-            if (qteVendu >= prixProduct.QTE_VENTE)
+            if (Math.Abs(qteVendu) >= prixProduct.QTE_VENTE)
             {
                 return prixProduct.PRIX_GROS;
             }
@@ -428,6 +435,20 @@ namespace XpertMobileApp.SQLite_Managment
             else
             {
                 var tiersFiltred = allTiers.Where(x => x.FULL_NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
+                return tiersFiltred;
+            }
+        }
+
+        public static async Task<List<View_STK_PRODUITS>> FilterProduits(string search)
+        {
+            List<View_STK_PRODUITS> allTiers = await getInstance().Table<View_STK_PRODUITS>().ToListAsync();
+            if (search == "")
+            {
+                return allTiers;
+            }
+            else
+            {
+                var tiersFiltred = allTiers.Where(x => x.TRUNCATED_DESIGNATION.ToUpper().Contains(search.ToUpper())).ToList();
                 return tiersFiltred;
             }
         }
@@ -531,8 +552,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                 vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
-
-
+                vente.DATE_VENTE = DateTime.Now;
                 await getInstance().UpdateAsync(vente);
                 foreach (var item in vente.Details)
                 {
@@ -641,6 +661,41 @@ namespace XpertMobileApp.SQLite_Managment
             tiers.CODE_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
             tiers.NUM_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
             await getInstance().UpdateAsync(tiers);
+        }
+
+        public static async Task<View_STK_STOCK> getProductfromStock(View_STK_PRODUITS product)
+        {
+            List<View_STK_STOCK> Stocks = await getInstance().Table<View_STK_STOCK>().ToListAsync();
+            var productInStock = Stocks.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
+            if (productInStock == null)
+            {
+                View_STK_STOCK newStockProduct = new View_STK_STOCK();
+                //newStockProduct.ID_STOCK = null;
+                newStockProduct.CODE_PRODUIT = product.CODE_PRODUIT;
+                newStockProduct.CODE_MAGASIN = App.CODE_MAGASIN;
+                newStockProduct.COUT_ACHAT = product.PRIX_ACHAT_TTC;
+                newStockProduct.PPA = product.PPA;
+                newStockProduct.SHP = product.SHP;
+                //newStockProduct.QUANTITE = product.QTE_STOCK;
+                newStockProduct.CODE_BARRE_LOT = product.CODE_BARRE;
+                newStockProduct.DESIGNATION_PRODUIT = product.DESIGNATION;
+                newStockProduct.PRIX_VENTE = product.PRIX_VENTE_HT;
+                newStockProduct.HAS_NEW_ID_STOCK = true;
+
+
+                var count = await getInstance().InsertAsync(newStockProduct);
+
+                newStockProduct.ID_STOCK = newStockProduct.ID;
+                await getInstance().UpdateAsync(newStockProduct);
+
+                return newStockProduct;
+            }
+            else
+            {
+                //productInStock.PRIX_VENTE = product.PRIX_VENTE_HT;
+                //await getInstance().UpdateAsync(productInStock);
+                return productInStock;
+            }
         }
 
         public static async Task<List<View_STK_STOCK>> SelectByCodeBarreLot(string cb_prod, string codeMagasin)
@@ -880,8 +935,11 @@ namespace XpertMobileApp.SQLite_Managment
                             iVente.Details = objdetail;
                         }
                     }
+
+                    var compte = await getComptes();
+                    
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes);
+                    var res = await bll.SyncVentes(ListVentes,App.PrefixCodification,App.CODE_MAGASIN,compte.FirstOrDefault().CODE_COMPTE);
 
                     await getInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
@@ -998,12 +1056,16 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<SYS_CONFIGURATION_MACHINE> getPrefix()
         {
             var prefix = await getInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
-            string deviceName = prefix.MACHINE;
-            SYS_MACHINE_CONFIG_Manager bll = new SYS_MACHINE_CONFIG_Manager();
-            var res = await bll.GetPrefix(deviceName);
-            await getInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
-            var id = await getInstance().InsertAsync(res);
-            return res;
+            if (prefix != null)
+            {
+                string deviceName = prefix.MACHINE;
+                SYS_MACHINE_CONFIG_Manager bll = new SYS_MACHINE_CONFIG_Manager();
+                var res = await bll.GetPrefix(deviceName);
+                await getInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
+                var id = await getInstance().InsertAsync(res);
+                return res;
+            }
+            return null;
         }
         public static async Task AssignPrefix()
         {

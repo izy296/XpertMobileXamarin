@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 {
@@ -92,7 +93,16 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 
         private async void btn_Search_Clicked(object sender, EventArgs e)
         {
-            viewModel.LoadItemsCommand.Execute(null);
+            if (App.Online)
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            else
+            {
+                var res = await UpdateDatabase.FilterProduits(viewModel.SearchedText);
+                viewModel.Items.Clear();
+                viewModel.Items.AddRange(res);
+            }
         }
 
         private async void btnSelect_Clicked(object sender, EventArgs e)
@@ -125,44 +135,43 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
                 {
                     SelectedlistLot = new List<View_STK_STOCK>();
                 }
-                if (viewModel.SelectedItem.OLD_QUANTITE > 0)
+                var res = await UpdateDatabase.getProductfromStock(viewModel.SelectedItem);
+                //if (SelectedlistLot.Contains(res))
+                if (checkIfExist(res))
                 {
-                    if (viewModel.SelectedItem.SelectedQUANTITE < viewModel.SelectedItem.OLD_QUANTITE)
+                    try
                     {
-                        if (SelectedlistLot.Contains(viewModel.SelectedItem))
-                        {
-                            try
-                            {
-                                SelectedlistLot.Where(x => x.ID_STOCK == viewModel.SelectedItem.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
-                            }
-                            catch
-                            {
-                            }
-                        }
-                        else
-                        {
-                            viewModel.SelectedItem.SelectedQUANTITE += 1;
-                            SelectedlistLot.Add(viewModel.SelectedItem);
-                        }
-                        //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                        UpdateTotaux();
+                        //var element = SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault();
+                        //element.SelectedQUANTITE += 1;
+                        viewModel.SelectedItem.SelectedQUANTITE += 1;
+                        SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
                     }
-                    else
+                    catch
                     {
-                        await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    viewModel.SelectedItem.SelectedQUANTITE += 1;
+                    res.SelectedQUANTITE += 1;
+                    SelectedlistLot.Add(res);
                 }
+                //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                UpdateTotaux();
             }
         }
 
-        private void DelQte_Clicked(object sender, EventArgs e)
+        private bool checkIfExist(View_STK_STOCK stockProduct)
         {
-            var lot = ((sender as Button).BindingContext as View_STK_STOCK);
-            SelectedlistLot.Remove(lot);
+            var res = SelectedlistLot.Where(e => e.ID_STOCK == stockProduct.ID_STOCK).FirstOrDefault();
+            return res != null;
+        }
+
+        private async void DelQte_Clicked(object sender, EventArgs e)
+        {
+            var lot = ((sender as Button).BindingContext as View_STK_PRODUITS);
+            var res = await UpdateDatabase.getProductfromStock(lot);
+            SelectedlistLot.Remove(SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault());
             lot.SelectedQUANTITE = 0;
             App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             UpdateTotaux();
@@ -171,17 +180,29 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
         private QteUpdater QteUpdater;
         private async void DelUpdate_Clicked(object sender, EventArgs e)
         {
-            var lot = ((sender as Button).BindingContext as View_STK_STOCK);
-            QteUpdater = new QteUpdater(lot);
+            var lot = ((sender as Button).BindingContext as View_STK_PRODUITS);
+            var res = await UpdateDatabase.getProductfromStock(lot);
+            res.SelectedQUANTITE = lot.SelectedQUANTITE;
+            res.OLD_QUANTITE = lot.QTE_STOCK;
+            QteUpdater = new QteUpdater(res);
             QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
             await PopupNavigation.Instance.PushAsync(QteUpdater);
         }
 
-        private void OnLotInfosUpdated(object sender, LotInfosEventArgs e)
+        private async void OnLotInfosUpdated(object sender, LotInfosEventArgs e)
         {
             var item = sender as View_STK_STOCK;
             item.SelectedPrice = e.Price;
             item.SelectedQUANTITE = e.Quantity;
+
+            var res = await UpdateDatabase.getProductfromStock(viewModel.SelectedItem);
+
+            if (checkIfExist(res))
+            {
+                viewModel.SelectedItem.SelectedQUANTITE = e.Quantity;
+                SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault().SelectedQUANTITE = e.Quantity;
+            }
+
 
             UpdateTotaux();
             MessagingCenter.Send(this, CurrentStream, item);
@@ -189,7 +210,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 
         private void UpdateTotaux()
         {
-            viewModel.TotalSelected = viewModel.Items.Where(e => e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
+            viewModel.TotalSelected = viewModel.Items.Where(e => e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.PRIX_VENTE_HT);
         }
     }
 }

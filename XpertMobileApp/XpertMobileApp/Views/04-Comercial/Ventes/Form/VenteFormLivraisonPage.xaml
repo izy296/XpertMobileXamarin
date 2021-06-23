@@ -18,6 +18,7 @@
 
         <ToolbarItem Icon="list_w24.png" ClassId="Select" Clicked="RowSelect_Clicked" />
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
+        <ToolbarItem Icon="deplacer.png" ClassId="Scan" Clicked="RetourProduct_Clicked" />
 
         <!--
         <ToolbarItem Text="Impr" Icon="Selection_32.png" Clicked="AchImpr_Clicked" />
@@ -36,7 +37,7 @@
                              Margin="0" HorizontalOptions="FillAndExpand">
 
                     <Entry x:Name="ent_SelectedTiers" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
-                            IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="White"/>
+                            IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="White" ClearButtonVisibility="WhileEditing" />
 
                     <Button x:Name="btn_Search" Margin="0" 
                         WidthRequest="40" HeightRequest="40" FontSize="Small"
@@ -160,14 +161,18 @@
 
                                                 <!-- Designation -->
                                             <StackLayout HorizontalOptions="FillAndExpand">
-
+                                                <Label Text="Retour" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
+                                                           TextColor="Red" 
+                                                           FontSize="Large"
+                                                            IsVisible="false"/>
+                                                
                                                 <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontSize="Default"/>
                                             </StackLayout>
 
                                                 <!-- Infos row -->
-                                                <Grid Grid.Column="0" Grid.Row="1"  Padding="0" HorizontalOptions="FillAndExpand"
+                                                <Grid Grid.Column="0" Grid.Row="1"  Padding="0" HorizontalOptions="FillAndExpand" 
                                                   ColumnSpacing="0" Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
@@ -181,7 +186,7 @@
                                                 <StackLayout Margin="0" Padding="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
                                                     <Label  Text="Qte" Margin="0" HorizontalOptions="Start" TextColor="Gray" FontSize="Micro"/>
                                                     <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0" WidthRequest="60"
-                                                         Minimum="1" FontSize="14" Margin="0,-5,0,0"  VerticalOptions="Start"
+                                                          FontSize="14" Margin="0,-5,0,0"  VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" FontAttributes="Bold"
                                                          SelectAllOnFocus="True" Value="{Binding QUANTITE}"
                                                          ClassId="{Binding ID, StringFormat='pb_{0}'}"/>
