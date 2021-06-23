@@ -663,6 +663,41 @@ namespace XpertMobileApp.SQLite_Managment
             await getInstance().UpdateAsync(tiers);
         }
 
+        public static async Task<View_STK_STOCK> getProductfromStock(View_STK_PRODUITS product)
+        {
+            List<View_STK_STOCK> Stocks = await getInstance().Table<View_STK_STOCK>().ToListAsync();
+            var productInStock = Stocks.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
+            if (productInStock == null)
+            {
+                View_STK_STOCK newStockProduct = new View_STK_STOCK();
+                //newStockProduct.ID_STOCK = null;
+                newStockProduct.CODE_PRODUIT = product.CODE_PRODUIT;
+                newStockProduct.CODE_MAGASIN = App.CODE_MAGASIN;
+                newStockProduct.COUT_ACHAT = product.PRIX_ACHAT_TTC;
+                newStockProduct.PPA = product.PPA;
+                newStockProduct.SHP = product.SHP;
+                //newStockProduct.QUANTITE = product.QTE_STOCK;
+                newStockProduct.CODE_BARRE_LOT = product.CODE_BARRE;
+                newStockProduct.DESIGNATION_PRODUIT = product.DESIGNATION;
+                newStockProduct.PRIX_VENTE = product.PRIX_VENTE_HT;
+                newStockProduct.HAS_NEW_ID_STOCK = true;
+
+
+                var count = await getInstance().InsertAsync(newStockProduct);
+
+                newStockProduct.ID_STOCK = newStockProduct.ID;
+                await getInstance().UpdateAsync(newStockProduct);
+
+                return newStockProduct;
+            }
+            else
+            {
+                //productInStock.PRIX_VENTE = product.PRIX_VENTE_HT;
+                //await getInstance().UpdateAsync(productInStock);
+                return productInStock;
+            }
+        }
+
         public static async Task<List<View_STK_STOCK>> SelectByCodeBarreLot(string cb_prod, string codeMagasin)
         {
             List<View_STK_STOCK> Products = await getInstance().Table<View_STK_STOCK>().ToListAsync();
