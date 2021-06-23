@@ -1056,12 +1056,16 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<SYS_CONFIGURATION_MACHINE> getPrefix()
         {
             var prefix = await getInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
-            string deviceName = prefix.MACHINE;
-            SYS_MACHINE_CONFIG_Manager bll = new SYS_MACHINE_CONFIG_Manager();
-            var res = await bll.GetPrefix(deviceName);
-            await getInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
-            var id = await getInstance().InsertAsync(res);
-            return res;
+            if (prefix != null)
+            {
+                string deviceName = prefix.MACHINE;
+                SYS_MACHINE_CONFIG_Manager bll = new SYS_MACHINE_CONFIG_Manager();
+                var res = await bll.GetPrefix(deviceName);
+                await getInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
+                var id = await getInstance().InsertAsync(res);
+                return res;
+            }
+            return null;
         }
         public static async Task AssignPrefix()
         {
