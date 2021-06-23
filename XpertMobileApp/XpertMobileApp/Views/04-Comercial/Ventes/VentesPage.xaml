@@ -13,7 +13,7 @@
     <ContentPage.ToolbarItems>
         <cmp:XToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked"/>
         <cmp:XToolbarItem x:Name="btn_Filter" IconImageSource="filter.png" Text="{i18n:Translate cmd_Add}" Clicked="Filter_Clicked"/>
-        <cmp:XToolbarItem x:Name="btn_delete" Text="Supprimer" Clicked="deleteAllVente"/>
+        <!--<cmp:XToolbarItem x:Name="btn_delete" Text="Supprimer" Clicked="deleteAllVente"/>-->
     </ContentPage.ToolbarItems>
     <base:XBasePage.Content>
         <StackLayout  Spacing="10" Padding="0" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
