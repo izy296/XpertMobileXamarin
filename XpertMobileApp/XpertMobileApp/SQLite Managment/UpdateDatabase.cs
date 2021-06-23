@@ -552,8 +552,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                 vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
-
-
+                vente.DATE_VENTE = DateTime.Now;
                 await getInstance().UpdateAsync(vente);
                 foreach (var item in vente.Details)
                 {
