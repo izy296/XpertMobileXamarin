@@ -432,6 +432,20 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static async Task<List<View_STK_PRODUITS>> FilterProduits(string search)
+        {
+            List<View_STK_PRODUITS> allTiers = await getInstance().Table<View_STK_PRODUITS>().ToListAsync();
+            if (search == "")
+            {
+                return allTiers;
+            }
+            else
+            {
+                var tiersFiltred = allTiers.Where(x => x.TRUNCATED_DESIGNATION.ToUpper().Contains(search.ToUpper())).ToList();
+                return tiersFiltred;
+            }
+        }
+
         public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search)
         {
             List<View_LIV_TOURNEE_DETAIL> allTiers = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
