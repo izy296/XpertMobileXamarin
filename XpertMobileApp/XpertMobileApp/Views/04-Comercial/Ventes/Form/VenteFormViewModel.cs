@@ -161,11 +161,29 @@ namespace XpertMobileApp.Views
                         row.CODE_BARRE = product.CODE_BARRE;
                         row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                         row.CODE_DETAIL_ORIGINE = XpertHelper.RandomString(5);
+                        row.HAS_NEW_ID_STOCK = product.HAS_NEW_ID_STOCK;
 
                         // prix ht et ttc
-
-                        row.PRIX_VTE_HT = product.SelectedPrice;
-                        row.PRIX_VTE_TTC = product.SelectedPrice;
+                        // get prix gros ou detail
+                        try
+                        {
+                            var prix = await UpdateDatabase.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                            if (prix > 0)
+                            {
+                                row.PRIX_VTE_HT = prix;
+                                row.PRIX_VTE_TTC = prix;
+                            }
+                            else
+                            {
+                                row.PRIX_VTE_HT = product.SelectedPrice;
+                                row.PRIX_VTE_TTC = product.SelectedPrice;
+                            }
+                        }
+                        catch
+                        {
+                            row.PRIX_VTE_HT = product.SelectedPrice;
+                            row.PRIX_VTE_TTC = product.SelectedPrice;
+                        }
 
                         qte = qte * -1;
                         row.QUANTITE = qte;
