@@ -23,9 +23,12 @@ namespace XpertMobileApp.Api.Managers
             return await WSApi2.PostAauthorizedValue<string, View_VTE_VENTE>(url, vte, this.Token.access_token);
         }
 
-        public async Task<string> SyncVentes(List<View_VTE_VENTE> vtes)
+        public async Task<string> SyncVentes(List<View_VTE_VENTE> vtes,string prefix,string CodeMagasin = "",string CodeCompte = "")
         {
             string url = GetActionUrl("SynchronisationVente");
+            url += WSApi2.AddParam(url, "prefix", prefix);
+            url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);
+            url += WSApi2.AddParam(url, "CodeCompte", CodeCompte);
             return await WSApi2.PostAauthorizedValue<string, List<View_VTE_VENTE>>(url, vtes , this.Token.access_token);
         }
 
