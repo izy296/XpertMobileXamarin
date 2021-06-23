@@ -935,8 +935,11 @@ namespace XpertMobileApp.SQLite_Managment
                             iVente.Details = objdetail;
                         }
                     }
+
+                    var compte = await getComptes();
+                    
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes);
+                    var res = await bll.SyncVentes(ListVentes,App.PrefixCodification,App.CODE_MAGASIN,compte.FirstOrDefault().CODE_COMPTE);
 
                     await getInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
