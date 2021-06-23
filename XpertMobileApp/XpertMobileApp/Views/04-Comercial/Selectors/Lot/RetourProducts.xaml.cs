@@ -92,7 +92,16 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
 
         private async void btn_Search_Clicked(object sender, EventArgs e)
         {
-            viewModel.LoadItemsCommand.Execute(null);
+            if (App.Online)
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            else
+            {
+                var res = await UpdateDatabase.FilterProduits(viewModel.SearchedText);
+                viewModel.Items.Clear();
+                viewModel.Items.AddRange(res);
+            }
         }
 
         private async void btnSelect_Clicked(object sender, EventArgs e)
