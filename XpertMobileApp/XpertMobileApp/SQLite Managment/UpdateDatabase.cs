@@ -416,7 +416,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
             var prixProduct = AllPrices.Where(x => x.CODE_PRODUIT == codeProduit).FirstOrDefault();
-            if (qteVendu >= prixProduct.QTE_VENTE)
+            if (Math.Abs(qteVendu) >= prixProduct.QTE_VENTE)
             {
                 return prixProduct.PRIX_GROS;
             }
