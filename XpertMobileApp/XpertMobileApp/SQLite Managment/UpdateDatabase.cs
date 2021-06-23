@@ -145,12 +145,12 @@ namespace XpertMobileApp.SQLite_Managment
                 await initialisationDbLocal();
 
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                //await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
                 await SyncData<View_TRS_TIERS, TRS_TIERS>();
                 await SyncLivTournee();
                 await SyncLivTourneeDetail();
                 await SyncStock();
-                await SyncProduct();
+                //await SyncProduct();
                 //await SyncData<View_STK_STOCK, STK_STOCK>();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                 await SyncUsers();
