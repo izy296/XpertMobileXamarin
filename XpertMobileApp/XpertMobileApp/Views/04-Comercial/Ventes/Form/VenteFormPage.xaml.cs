@@ -79,39 +79,55 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
-           // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
+            // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
-            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+
+            //Modification liste pour ajouter plusieurs produits une seule fois (l'ancien code fait l'ajout des lot un produits a la fois)
+            MessagingCenter.Subscribe<LotSelector, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 try 
                 { 
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                     // Test meilleur lot
-                    string betterLotMsg = await CrudManager.Stock.TestBetterLot(selectedItem.ID_STOCK);
-                    if (!string.IsNullOrEmpty(betterLotMsg))
+                    if (App.Online)
                     {
-                        var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
-                        if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
+                        foreach (var item in selectedItem)
                         {
-                            selectedItem.QUANTITE = 0;
-                            selectedItem.SelectedQUANTITE = 0;
-                        }
-                        else 
-                        {
-                            Device.BeginInvokeOnMainThread(() =>
+
+                            string betterLotMsg = await CrudManager.Stock.TestBetterLot(item.ID_STOCK);
+                            if (!string.IsNullOrEmpty(betterLotMsg))
                             {
-                                viewModel.AddNewRow(selectedItem);
-                            });
+                                var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
+                                if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
+                                {
+                                    item.QUANTITE = 0;
+                                    item.SelectedQUANTITE = 0;
+                                }
+                                else
+                                {
+                                    Device.BeginInvokeOnMainThread(() =>
+                                    {
+                                        viewModel.AddNewRows(selectedItem, false);
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                Device.BeginInvokeOnMainThread(() =>
+                                {
+                                    viewModel.AddNewRows(selectedItem, false);
+                                });
+                            }
+                            UserDialogs.Instance.HideLoading();
                         }
                     }
                     else
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
-                            viewModel.AddNewRow(selectedItem);
+                            viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
                         });
                     }
-                    UserDialogs.Instance.HideLoading();
                 }
                 catch (Exception ex)
                 {
@@ -120,7 +136,7 @@ namespace XpertMobileApp.Views
                 }
             });
             
-            MessagingCenter.Subscribe<LotSelector, View_STK_STOCK>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelector, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
