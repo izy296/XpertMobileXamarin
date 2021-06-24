@@ -125,12 +125,12 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                var res = await UpdateDatabase.AjoutPrefix();
+                var res = await SQLite_Manager.AjoutPrefix();
                 if (res != null)
                 {
                     await DisplayAlert("Succes", AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                    await UpdateDatabase.getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
-                    var id = await UpdateDatabase.getInstance().InsertAsync(res);
+                    await SQLite_Manager.getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
+                    var id = await SQLite_Manager.getInstance().InsertAsync(res);
                     //RecupererPrefix_Clicked(sender,e);
                 }
             }
@@ -144,7 +144,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                var res = await UpdateDatabase.getPrefix();
+                var res = await SQLite_Manager.getPrefix();
                 if (res != null && !(string.IsNullOrEmpty(res.PREFIX)))
                 {
                     App.PrefixCodification = res.PREFIX;

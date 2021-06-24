@@ -88,7 +88,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                var res = await UpdateDatabase.FilterTournee(viewModel.SearchedText);
+                var res = await SQLite_Manager.FilterTournee(viewModel.SearchedText);
                 viewModel.Items.Clear();
                 viewModel.Items.AddRange(res);
             }
@@ -134,10 +134,10 @@ namespace XpertMobileApp.Views
                         }
                         else
                         {
-                            tiers = await UpdateDatabase.SelectScanedTiers(result.Text);
+                            tiers = await SQLite_Manager.SelectScanedTiers(result.Text);
                             if (tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS)
                             {
-                                var res = await UpdateDatabase.UpdateTourneeItemVisited(tr);
+                                var res = await SQLite_Manager.UpdateTourneeItemVisited(tr);
                                 await SaveGPsLocationToTiers(tiers);
                             }
                         }
@@ -219,7 +219,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    seucces = await UpdateDatabase.saveGPSToTiers(tiers);
+                    seucces = await SQLite_Manager.saveGPSToTiers(tiers);
                 }
                 if (seucces)
                 {
@@ -311,7 +311,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                var session = await UpdateDatabase.getInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
+                var session = await SQLite_Manager.getInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
                 if (session == null)
                 {
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);

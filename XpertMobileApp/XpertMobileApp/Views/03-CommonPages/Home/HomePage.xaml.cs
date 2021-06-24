@@ -93,12 +93,12 @@ namespace XpertMobileApp.Views
 
         public async Task Download()
         {
-            await UpdateDatabase.synchroniseDownload();
+            await SQLite_Manager.synchroniseDownload();
         }
 
         public async Task Upload()
         {
-            await UpdateDatabase.synchroniseUpload();
+            await SQLite_Manager.synchroniseUpload();
         }
     }
 }

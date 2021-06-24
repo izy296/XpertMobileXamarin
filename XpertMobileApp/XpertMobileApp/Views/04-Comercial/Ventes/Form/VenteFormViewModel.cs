@@ -140,7 +140,7 @@ namespace XpertMobileApp.Views
 
         }
 
-        public async Task<View_VTE_VENTE_LOT> AddNewRow(List<View_STK_STOCK> products, bool retour)
+        public async Task<View_VTE_VENTE_LOT> AddNewRows(List<View_STK_STOCK> products, bool retour)
         {
             foreach (var product in products)
             {
@@ -167,7 +167,7 @@ namespace XpertMobileApp.Views
                         // get prix gros ou detail
                         try
                         {
-                            var prix = await UpdateDatabase.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                            var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
                             if (prix > 0)
                             {
                                 row.PRIX_VTE_HT = prix;
@@ -232,7 +232,7 @@ namespace XpertMobileApp.Views
                         // get prix gros ou detail
                         try
                         {
-                            var prix = await UpdateDatabase.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                            var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
                             if (prix > 0)
                             {
                                 row.PRIX_VTE_HT = prix;
@@ -289,7 +289,7 @@ namespace XpertMobileApp.Views
             {
                 if (e.PropertyName == "QUANTITE")
                 {
-                    var stock = await UpdateDatabase.getInstance().Table<View_STK_STOCK>().ToListAsync();
+                    var stock = await SQLite_Manager.getInstance().Table<View_STK_STOCK>().ToListAsync();
                     foreach (var item in stock)
                     {
                         var row = ItemRows.Where(x => x.ID_STOCK == item.ID_STOCK).FirstOrDefault();
@@ -299,7 +299,7 @@ namespace XpertMobileApp.Views
                             {
                                 try
                                 {
-                                    var prix = await UpdateDatabase.getPrixByQuantity(row.CODE_PRODUIT, row.QUANTITE);
+                                    var prix = await SQLite_Manager.getPrixByQuantity(row.CODE_PRODUIT, row.QUANTITE);
                                     if (prix > 0)
                                     {
                                         row.PRIX_VTE_TTC = prix;
@@ -373,7 +373,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    prods = await UpdateDatabase.SelectByCodeBarreLot(cb_prod, App.CODE_MAGASIN);
+                    prods = await SQLite_Manager.SelectByCodeBarreLot(cb_prod, App.CODE_MAGASIN);
                 }
                 XpertHelper.PeepScan();
 
@@ -388,7 +388,7 @@ namespace XpertMobileApp.Views
                     return null;
                 }
 
-                var res = await AddNewRow(prods, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                var res = await AddNewRows(prods, false); // false veut dire le type de produit ajouter est une vente (pas retour)
                 return res;
             }
             catch (Exception ex)

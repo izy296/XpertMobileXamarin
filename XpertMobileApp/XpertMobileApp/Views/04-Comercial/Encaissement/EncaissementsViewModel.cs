@@ -171,9 +171,9 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsLoadExtrasBusy = true;
                     Comptes.Clear();
-                    var itemsC = await UpdateDatabase.getComptes();
+                    var itemsC = await SQLite_Manager.getComptes();
 
-                    var itemsM = await UpdateDatabase.getMotifs();
+                    var itemsM = await SQLite_Manager.getMotifs();
 
                     foreach (var itemC in itemsC)
                     {

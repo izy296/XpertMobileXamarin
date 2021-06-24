@@ -54,7 +54,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
             try 
             {
                 var sysParams = await AppManager.GetSysParams();
-                SYS_USER user = await UpdateDatabase.getUserInfo(App.User.UserName);
+                SYS_USER user = await SQLite_Manager.getUserInfo(App.User.UserName);
                 //  if (printerReady)
                 //  {
                 //  int stat=printerLocal.getCurrentStatus();

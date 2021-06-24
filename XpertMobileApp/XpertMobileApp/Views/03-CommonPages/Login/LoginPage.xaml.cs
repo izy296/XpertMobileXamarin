@@ -97,8 +97,8 @@ namespace XpertMobileApp.Views
 
                             CrudManager.InitServices();
 
-                            await UpdateDatabase.initialisationDbLocal();
-                            await UpdateDatabase.AjoutToken(token);
+                            await SQLite_Manager.initialisationDbLocal();
+                            await SQLite_Manager.AjoutToken(token);
                             // Alerte apres la connexion
                             // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
@@ -151,10 +151,10 @@ namespace XpertMobileApp.Views
                     if (viewModel.CheckUser(user))
                     {
                         // Authentification via SQLite
-                        bool validInfo = await UpdateDatabase.AuthUser(user);
+                        bool validInfo = await SQLite_Manager.AuthUser(user);
                         if (validInfo)
                         {
-                            Token token = await UpdateDatabase.getToken(user);
+                            Token token = await SQLite_Manager.getToken(user);
                             if (token == null)
                             {
                                 UserDialogs.Instance.HideLoading();
@@ -181,7 +181,7 @@ namespace XpertMobileApp.Views
                                 {
                                     if (Constants.AppName != Apps.X_BOUTIQUE)
                                     {
-                                        AppManager.permissions = await UpdateDatabase.getPermission();
+                                        AppManager.permissions = await SQLite_Manager.getPermission();
                                     }
                                     // await App.UserDatabase.SaveItemAsync(user);
                                     await App.TokenDatabase.SaveItemAsync(token);
@@ -220,8 +220,8 @@ namespace XpertMobileApp.Views
                 }
                 try
                 {
-                    await UpdateDatabase.AssignPrefix();
-                    await UpdateDatabase.AssignMagasin();
+                    await SQLite_Manager.AssignPrefix();
+                    await SQLite_Manager.AssignMagasin();
                 }
                 catch
                 {
@@ -240,7 +240,7 @@ namespace XpertMobileApp.Views
 
         protected async Task RecupererPrefix()
         {
-            var res = await UpdateDatabase.getPrefix();
+            var res = await SQLite_Manager.getPrefix();
             if (res != null && !(string.IsNullOrEmpty(res.PREFIX)))
             {
                 App.PrefixCodification = res.PREFIX;

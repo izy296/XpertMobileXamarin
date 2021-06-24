@@ -206,7 +206,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Types.Clear();
-                var itemsC = await UpdateDatabase.getTypeTiers();
+                var itemsC = await SQLite_Manager.getTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -244,7 +244,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Familles.Clear();
-                var itemsC = await UpdateDatabase.getFamille();
+                var itemsC = await SQLite_Manager.getFamille();
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);
@@ -280,7 +280,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Secteurs.Clear();
-                var itemsC = await UpdateDatabase.getSecteurs(); 
+                var itemsC = await SQLite_Manager.getSecteurs(); 
                 foreach (var itemC in itemsC)
                 {
                     Secteurs.Add(itemC);
@@ -330,13 +330,13 @@ namespace XpertMobileApp.Views
                     if (Item.ID == 0)
                     {
                         Item.ACTIF_TIERS = 1;
-                        await UpdateDatabase.AjoutTiers(Item);
+                        await SQLite_Manager.AjoutTiers(Item);
                         Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
                         MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
                     }
                     else
                     {
-                        await UpdateDatabase.UpdateTiers(Item);
+                        await SQLite_Manager.UpdateTiers(Item);
                         Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
                         MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
                     }

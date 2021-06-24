@@ -96,7 +96,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    var res = await UpdateDatabase.FilterTiers(viewModel.SearchedText);
+                    var res = await SQLite_Manager.FilterTiers(viewModel.SearchedText);
                     viewModel.Items.Clear();
                     viewModel.Items.AddRange(res);
                     searchEmpty = true;
@@ -104,7 +104,7 @@ namespace XpertMobileApp.Views
             }
             else if (viewModel.SearchedText.Length == 0 && App.Online==false && searchEmpty == true)
             {
-                var res = await UpdateDatabase.FilterTiers(viewModel.SearchedText);
+                var res = await SQLite_Manager.FilterTiers(viewModel.SearchedText);
                 viewModel.Items.Clear();
                 viewModel.Items.AddRange(res);
                 searchEmpty = false;

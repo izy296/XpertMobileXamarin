@@ -219,7 +219,7 @@ namespace XpertMobileApp.Api.ViewModels
             //}
             //else
             {
-                var tt = await UpdateDatabase.getInstance().Table<TView>().ToListAsync();
+                var tt = await SQLite_Manager.getInstance().Table<TView>().ToListAsync();
                 return tt;
             }
             //await UpdateDatabase.initialisationDbLocal();

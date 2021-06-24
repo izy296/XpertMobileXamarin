@@ -146,7 +146,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    await UpdateDatabase.DeleteEncaiss(viewModel.Item);
+                    await SQLite_Manager.DeleteEncaiss(viewModel.Item);
                     await Navigation.PopAsync();
                 }
 

@@ -73,7 +73,7 @@ namespace XpertMobileApp.Views.Encaissement
                 }
                 else
                 {
-                    itemsFromOffline = await UpdateDatabase.getVenteDetails(this.Item.CODE_VENTE);
+                    itemsFromOffline = await SQLite_Manager.getVenteDetails(this.Item.CODE_VENTE);
                 }
 
 

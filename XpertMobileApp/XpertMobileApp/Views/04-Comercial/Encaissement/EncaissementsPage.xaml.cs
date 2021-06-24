@@ -49,7 +49,7 @@ namespace XpertMobileApp.Views
             else
             {
                 var item = args.SelectedItem as View_TRS_ENCAISS;
-                var itemfromDB = await UpdateDatabase.getselectedItemEncaiss(item);
+                var itemfromDB = await SQLite_Manager.getselectedItemEncaiss(item);
                 if (itemfromDB == null || item ==null)
                     return;
 
@@ -127,7 +127,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    var items = await UpdateDatabase.LoadEncDec(viewModel.EncaissDisplayType.ToString());
+                    var items = await SQLite_Manager.LoadEncDec(viewModel.EncaissDisplayType.ToString());
                     viewModel.Items.Clear();
                     foreach (var item in items)
                     {

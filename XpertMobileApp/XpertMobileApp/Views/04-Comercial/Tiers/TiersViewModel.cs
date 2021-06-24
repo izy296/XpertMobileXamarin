@@ -175,7 +175,7 @@ namespace XpertMobileApp.ViewModels
             else
             {
                 Types.Clear();
-                var itemsC = await UpdateDatabase.getTypeTiers();
+                var itemsC = await SQLite_Manager.getTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -212,7 +212,7 @@ namespace XpertMobileApp.ViewModels
             else
             {
                 Familles.Clear();
-                var itemsC = await UpdateDatabase.getFamille();
+                var itemsC = await SQLite_Manager.getFamille();
                 foreach (var itemC in itemsC)
                 {
                     Familles.Add(itemC);

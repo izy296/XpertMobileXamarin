@@ -100,14 +100,14 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    viewModel.AddNewRow(selectedItem , false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                    viewModel.AddNewRows(selectedItem , false); // false veut dire le type de produit ajouter est une vente (pas retour)
                 });
             });
             MessagingCenter.Subscribe<RetourProducts, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    viewModel.AddNewRow(selectedItem , true); // true veut dire le type de produit ajouter est un retour
+                    viewModel.AddNewRows(selectedItem , true); // true veut dire le type de produit ajouter est un retour
                 });
             });
 

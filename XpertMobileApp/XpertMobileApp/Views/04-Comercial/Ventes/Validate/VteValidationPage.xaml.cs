@@ -149,7 +149,7 @@ namespace XpertMobileApp.Views
                 {
                     if (viewModel.Item.Details != null)
                     {
-                        string res = await UpdateDatabase.AjoutVente(viewModel.Item);
+                        string res = await SQLite_Manager.AjoutVente(viewModel.Item);
                         if (!XpertHelper.IsNullOrEmpty(res))
                         {
                             await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);

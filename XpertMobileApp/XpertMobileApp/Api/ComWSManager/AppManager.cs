@@ -33,7 +33,7 @@ namespace XpertMobileApp.Api
                 }
                 else
                 {
-                    sysParams = await UpdateDatabase.getParams();
+                    sysParams = await SQLite_Manager.getParams();
                 }
                 return sysParams;
             }
@@ -77,7 +77,7 @@ namespace XpertMobileApp.Api
                     }
                     else
                     {
-                        permissions = await UpdateDatabase.getPermission();
+                        permissions = await SQLite_Manager.getPermission();
                     }
                 }
                 return permissions;

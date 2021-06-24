@@ -122,7 +122,7 @@ namespace XpertMobileApp.Views
             else
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await UpdateDatabase.AjoutEnciassement(Item);
+                await SQLite_Manager.AjoutEnciassement(Item);
                 await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             await Navigation.PopModalAsync();
@@ -183,7 +183,7 @@ namespace XpertMobileApp.Views
                 {
                     Motifs.Clear();
 
-                    var itemsM = await UpdateDatabase.getMotifs(type.ToString());
+                    var itemsM = await SQLite_Manager.getMotifs(type.ToString());
                     foreach (var item in itemsM)
                     {
                         Motifs.Add(item);
@@ -243,7 +243,7 @@ namespace XpertMobileApp.Views
                 try
                 {
                     Comptes.Clear();
-                    var itemsC = await UpdateDatabase.getComptes();
+                    var itemsC = await SQLite_Manager.getComptes();
                     foreach (var itemC in itemsC)
                     {
                         Comptes.Add(itemC);
@@ -252,7 +252,7 @@ namespace XpertMobileApp.Views
                     if (Item != null)
                     {
                         //SelectCompte(Item.CODE_COMPTE);
-                        List<SYS_USER> users = await UpdateDatabase.getInstance().Table<SYS_USER>().ToListAsync();
+                        List<SYS_USER> users = await SQLite_Manager.getInstance().Table<SYS_USER>().ToListAsync();
                         var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
                         if (!(string.IsNullOrEmpty(code_compte)))
                         {

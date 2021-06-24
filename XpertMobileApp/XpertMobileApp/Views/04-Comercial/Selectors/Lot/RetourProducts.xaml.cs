@@ -99,7 +99,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
             }
             else
             {
-                var res = await UpdateDatabase.FilterProduits(viewModel.SearchedText);
+                var res = await SQLite_Manager.FilterProduits(viewModel.SearchedText);
                 viewModel.Items.Clear();
                 viewModel.Items.AddRange(res);
             }
@@ -135,7 +135,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
                 {
                     SelectedlistLot = new List<View_STK_STOCK>();
                 }
-                var res = await UpdateDatabase.getProductfromStock(viewModel.SelectedItem);
+                var res = await SQLite_Manager.getProductfromStock(viewModel.SelectedItem);
                 //if (SelectedlistLot.Contains(res))
                 if (checkIfExist(res))
                 {
@@ -170,7 +170,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
         private async void DelQte_Clicked(object sender, EventArgs e)
         {
             var lot = ((sender as Button).BindingContext as View_STK_PRODUITS);
-            var res = await UpdateDatabase.getProductfromStock(lot);
+            var res = await SQLite_Manager.getProductfromStock(lot);
             SelectedlistLot.Remove(SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault());
             lot.SelectedQUANTITE = 0;
             App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
@@ -181,7 +181,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
         private async void DelUpdate_Clicked(object sender, EventArgs e)
         {
             var lot = ((sender as Button).BindingContext as View_STK_PRODUITS);
-            var res = await UpdateDatabase.getProductfromStock(lot);
+            var res = await SQLite_Manager.getProductfromStock(lot);
             res.SelectedQUANTITE = lot.SelectedQUANTITE;
             res.OLD_QUANTITE = lot.QTE_STOCK;
             QteUpdater = new QteUpdater(res);
@@ -195,7 +195,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
             item.SelectedPrice = e.Price;
             item.SelectedQUANTITE = e.Quantity;
 
-            var res = await UpdateDatabase.getProductfromStock(viewModel.SelectedItem);
+            var res = await SQLite_Manager.getProductfromStock(viewModel.SelectedItem);
 
             if (checkIfExist(res))
             {

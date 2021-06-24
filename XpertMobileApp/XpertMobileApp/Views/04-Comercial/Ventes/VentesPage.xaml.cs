@@ -84,7 +84,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                var session = await UpdateDatabase.getCurrenetSession();
+                var session = await SQLite_Manager.getCurrenetSession();
                 if (session == null)
                 {
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
@@ -158,7 +158,7 @@ namespace XpertMobileApp.Views
 
         private async void deleteAllVente(object sender, EventArgs e)
         {
-            await UpdateDatabase.getInstance().DeleteAllAsync<View_VTE_VENTE>();
+            await SQLite_Manager.getInstance().DeleteAllAsync<View_VTE_VENTE>();
         }
     }
 }
