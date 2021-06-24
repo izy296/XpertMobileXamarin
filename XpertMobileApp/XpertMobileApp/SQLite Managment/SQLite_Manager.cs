@@ -20,7 +20,7 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.SQLite_Managment
 {
-    class UpdateDatabase
+    class SQLite_Manager
     {
         static SQLiteAsyncConnection db;
         static string codeVendeur;
@@ -412,6 +412,12 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// methode utilisé seulement dans mode offline retourne pris gros ou pris details
+        /// </summary>
+        /// <param name="codeProduit"></param>
+        /// <param name="qteVendu"></param>
+        /// <returns></returns>
         public static async Task<decimal> getPrixByQuantity(string codeProduit, decimal qteVendu)
         {
             List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
