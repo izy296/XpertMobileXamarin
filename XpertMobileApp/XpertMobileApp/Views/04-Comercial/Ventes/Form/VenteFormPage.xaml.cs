@@ -83,59 +83,69 @@ namespace XpertMobileApp.Views
 
 
             //Modification liste pour ajouter plusieurs produits une seule fois (l'ancien code fait l'ajout des lot un produits a la fois)
+            //MessagingCenter.Subscribe<LotSelector, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            //{
+            //    try 
+            //    { 
+            //        UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+            //        // Test meilleur lot
+            //        if (App.Online)
+            //        {
+            //            foreach (var item in selectedItem)
+            //            {
+
+            //                string betterLotMsg = await CrudManager.Stock.TestBetterLot(item.ID_STOCK);
+            //                if (!string.IsNullOrEmpty(betterLotMsg))
+            //                {
+            //                    var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
+            //                    if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
+            //                    {
+            //                        item.QUANTITE = 0;
+            //                        item.SelectedQUANTITE = 0;
+            //                    }
+            //                    else
+            //                    {
+            //                        Device.BeginInvokeOnMainThread(() =>
+            //                        {
+            //                            viewModel.AddNewRows(selectedItem, false);
+            //                        });
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    Device.BeginInvokeOnMainThread(() =>
+            //                    {
+            //                        viewModel.AddNewRows(selectedItem, false);
+            //                    });
+            //                }
+            //                UserDialogs.Instance.HideLoading();
+            //            }
+            //        }
+            //        else
+            //        {
+            //            Device.BeginInvokeOnMainThread(() =>
+            //            {
+            //                viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+            //            });
+            //        }
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        UserDialogs.Instance.HideLoading();
+            //        throw ex;
+            //    }
+            //});
+
+            //Modification liste pour ajouter plusieurs produits une seule fois (l'ancien code fait l'ajout des lot un produits a la fois)
+            //cette methode remplace la methode meilleur lot pour probleme d'async on peut pas faire await qui cause l'éxecution de la méthode en double
             MessagingCenter.Subscribe<LotSelector, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
-                try 
-                { 
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                    // Test meilleur lot
-                    if (App.Online)
-                    {
-                        foreach (var item in selectedItem)
-                        {
-
-                            string betterLotMsg = await CrudManager.Stock.TestBetterLot(item.ID_STOCK);
-                            if (!string.IsNullOrEmpty(betterLotMsg))
-                            {
-                                var action = await DisplayAlert(AppResources.alrt_msg_Alert, betterLotMsg, AppResources.alrt_msg_Ok, "Non");
-                                if (action) // Si le user décide de ne pas remplacer le lot on ajoute celui selectionné
-                                {
-                                    item.QUANTITE = 0;
-                                    item.SelectedQUANTITE = 0;
-                                }
-                                else
-                                {
-                                    Device.BeginInvokeOnMainThread(() =>
-                                    {
-                                        viewModel.AddNewRows(selectedItem, false);
-                                    });
-                                }
-                            }
-                            else
-                            {
-                                Device.BeginInvokeOnMainThread(() =>
-                                {
-                                    viewModel.AddNewRows(selectedItem, false);
-                                });
-                            }
-                            UserDialogs.Instance.HideLoading();
-                        }
-                    }
-                    else
-                    {
-                        Device.BeginInvokeOnMainThread(() =>
-                        {
-                            viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
-                        });
-                    }
-                }
-                catch (Exception ex)
+                Device.BeginInvokeOnMainThread(() =>
                 {
-                    UserDialogs.Instance.HideLoading();
-                    throw ex;
-                }
+                    viewModel.AddNewRows(selectedItem, false); 
+                });
             });
-            
+
             MessagingCenter.Subscribe<LotSelector, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>

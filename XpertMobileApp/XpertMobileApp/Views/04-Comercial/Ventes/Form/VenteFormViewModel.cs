@@ -165,26 +165,33 @@ namespace XpertMobileApp.Views
 
                         // prix ht et ttc
                         // get prix gros ou detail
-                        try
+                        if (App.Online)
                         {
-                            var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
-                            if (prix > 0)
+                            row.PRIX_VTE_HT = product.SelectedPrice;
+                            row.PRIX_VTE_TTC = product.SelectedPrice;
+                        }
+                        else
+                        {
+                            try
                             {
-                                row.PRIX_VTE_HT = prix;
-                                row.PRIX_VTE_TTC = prix;
+                                var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                                if (prix > 0)
+                                {
+                                    row.PRIX_VTE_HT = prix;
+                                    row.PRIX_VTE_TTC = prix;
+                                }
+                                else
+                                {
+                                    row.PRIX_VTE_HT = product.SelectedPrice;
+                                    row.PRIX_VTE_TTC = product.SelectedPrice;
+                                }
                             }
-                            else
+                            catch
                             {
                                 row.PRIX_VTE_HT = product.SelectedPrice;
                                 row.PRIX_VTE_TTC = product.SelectedPrice;
                             }
                         }
-                        catch
-                        {
-                            row.PRIX_VTE_HT = product.SelectedPrice;
-                            row.PRIX_VTE_TTC = product.SelectedPrice;
-                        }
-
                         qte = qte * -1;
                         row.QUANTITE = qte;
                         ItemRows.Add(row);
@@ -230,26 +237,33 @@ namespace XpertMobileApp.Views
                         row.CODE_BARRE = product.CODE_BARRE;
                         row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                         // get prix gros ou detail
-                        try
+                        if (App.Online)
                         {
-                            var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
-                            if (prix > 0)
+                            row.PRIX_VTE_HT = product.SelectedPrice;
+                            row.PRIX_VTE_TTC = product.SelectedPrice;
+                        }
+                        else
+                        {
+                            try
                             {
-                                row.PRIX_VTE_HT = prix;
-                                row.PRIX_VTE_TTC = prix;
+                                var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                                if (prix > 0)
+                                {
+                                    row.PRIX_VTE_HT = prix;
+                                    row.PRIX_VTE_TTC = prix;
+                                }
+                                else
+                                {
+                                    row.PRIX_VTE_HT = product.SelectedPrice;
+                                    row.PRIX_VTE_TTC = product.SelectedPrice;
+                                }
                             }
-                            else
+                            catch
                             {
                                 row.PRIX_VTE_HT = product.SelectedPrice;
                                 row.PRIX_VTE_TTC = product.SelectedPrice;
                             }
                         }
-                        catch
-                        {
-                            row.PRIX_VTE_HT = product.SelectedPrice;
-                            row.PRIX_VTE_TTC = product.SelectedPrice;
-                        }
-
                         row.QUANTITE = qte;
                         ItemRows.Add(row);
                         this.Item.Details = ItemRows.ToList();

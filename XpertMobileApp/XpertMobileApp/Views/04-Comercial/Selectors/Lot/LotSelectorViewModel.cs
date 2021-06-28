@@ -7,7 +7,7 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class LotSelectorViewModel : CrudBaseViewModel3<STK_STOCK, View_STK_STOCK>
+    public class LotSelectorViewModel : CrudBaseViewModel2<STK_STOCK, View_STK_STOCK>
     {
 
         public string SearchedText { get; set; } = "";

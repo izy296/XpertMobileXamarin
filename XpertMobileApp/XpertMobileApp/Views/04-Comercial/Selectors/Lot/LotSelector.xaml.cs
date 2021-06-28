@@ -8,6 +8,8 @@ using XpertMobileApp.Models;
 using System.Linq;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Services;
+using System.Collections.Generic;
+using Acr.UserDialogs;
 
 namespace XpertMobileApp.Views
 {
@@ -15,7 +17,7 @@ namespace XpertMobileApp.Views
     {
 
         LotSelectorViewModel viewModel;
-        
+        List<View_STK_STOCK> SelectedlistLot;
         ProduitDetailPage prodViwer;
 
         private QteUpdater QteUpdater;
@@ -60,7 +62,8 @@ namespace XpertMobileApp.Views
            // if (viewModel.Items.Count == 0)
             //viewModel.LoadItemsCommand.Execute(null);
 
-            viewModel.LoadMoreItemsCommand.Execute(listView);
+            //viewModel.LoadMoreItemsCommand.Execute(listView);
+            viewModel.LoadItemsCommand.Execute(null);
 
             foreach (var item in viewModel.Items)
             {
@@ -83,7 +86,9 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
             if (viewModel.SelectedItem != null)
             {
-                MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                MessagingCenter.Send(this, CurrentStream, SelectedlistLot);
+                SelectedlistLot = null;
             }
         }
 
@@ -91,7 +96,10 @@ namespace XpertMobileApp.Views
         {
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
             lot.SelectedQUANTITE = 0;
-            MessagingCenter.Send(this, "REMOVE" + CurrentStream, viewModel.SelectedItem);
+            //MessagingCenter.Send(this, "REMOVE" + CurrentStream, viewModel.SelectedItem);
+            //UpdateTotaux();
+            SelectedlistLot.Remove(lot);
+            App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             UpdateTotaux();
         }
 
@@ -118,15 +126,57 @@ namespace XpertMobileApp.Views
             viewModel.TotalSelected = viewModel.Items.Where(e=>e.SelectedQUANTITE > 0).Sum(e => e.SelectedQUANTITE * e.SelectedPrice);
         }
 
-        private void ItemsListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        private async void ItemsListView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
+
             View_STK_STOCK selected = e.ItemData as View_STK_STOCK;
-            if(selected != null) 
+            if(selected != null)
             {
-                selected.SelectedQUANTITE += 1;
-                MessagingCenter.Send(this, CurrentStream, selected);
-                UpdateTotaux();
+                if (SelectedlistLot == null)
+                {
+                    SelectedlistLot = new List<View_STK_STOCK>();
+                }
+                if (selected.OLD_QUANTITE > 0)
+                {
+                    if (selected.SelectedQUANTITE < selected.OLD_QUANTITE)
+                    {
+                        if (SelectedlistLot.Contains(selected))
+                        {
+                            try
+                            {
+                                SelectedlistLot.Where(x => x.ID_STOCK == selected.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
+                            }
+                            catch
+                            {
+                            }
+                        }
+                        else
+                        {
+                            selected.SelectedQUANTITE += 1;
+                            SelectedlistLot.Add(selected);
+                        }
+                        //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
+                        UpdateTotaux();
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
+
+            //View_STK_STOCK selected = e.ItemData as View_STK_STOCK;
+            //if(selected != null) 
+            //{
+            //    selected.SelectedQUANTITE += 1;
+            //    SelectedlistLot.Add(selected);
+            //    //MessagingCenter.Send(this, CurrentStream, selected);
+            //    UpdateTotaux();
+            //}
         }
 
         // Long click sur un element
