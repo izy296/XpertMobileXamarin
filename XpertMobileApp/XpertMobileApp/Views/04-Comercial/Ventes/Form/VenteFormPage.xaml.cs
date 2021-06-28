@@ -161,6 +161,8 @@ namespace XpertMobileApp.Views
                     viewModel.SelectedTiers = selectedItem;
                     viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
                     viewModel.Item.NOM_TIERS = selectedItem.NOM_TIERS1;
+                    viewModel.Item.CODE_CARTE_FIDELITE = selectedItem.CODE_CARTE_FIDELITE;
+                    viewModel.Item.MBL_NUM_CARTE_FEDILITE = selectedItem.NUM_CARTE_FIDELITE;
                 });
             });
 
