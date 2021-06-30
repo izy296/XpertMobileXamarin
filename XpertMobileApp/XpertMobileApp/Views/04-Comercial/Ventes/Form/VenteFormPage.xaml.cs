@@ -350,9 +350,19 @@ namespace XpertMobileApp.Views
         {
             VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
             VteValidationPage.ParentviewModel = viewModel;
-            var blltrs = new TiersManager();
-            var res = await blltrs.getPointfidelite(SelectedTiers.NUM_CARTE_FIDELITE);
-            App.PARAM_FIDELITE_TIERS = res;
+            try
+            {
+                if (!(string.IsNullOrEmpty(SelectedTiers.NUM_CARTE_FIDELITE)))
+                {
+                    var blltrs = new TiersManager();
+                    var res = await blltrs.getPointfidelite(SelectedTiers.NUM_CARTE_FIDELITE);
+                    App.PARAM_FIDELITE_TIERS = res;
+                }
+            }
+            catch
+            {
+                await UserDialogs.Instance.AlertAsync("impossible d'utiliser les points de fidélité", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 
