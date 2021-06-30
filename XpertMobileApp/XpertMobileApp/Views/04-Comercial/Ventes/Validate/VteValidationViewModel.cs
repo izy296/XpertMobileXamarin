@@ -19,6 +19,8 @@ namespace XpertMobileApp.ViewModels
 {
     public class VteValidationViewModel : BaseViewModel
     {
+        public bool pointFideliteParam { get; set; } = false;
+
         private View_TRS_TIERS selectedTiers;
         public View_TRS_TIERS SelectedTiers
         {

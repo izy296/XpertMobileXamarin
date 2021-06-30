@@ -24,6 +24,13 @@ namespace XpertMobileApp.Api
             string url = GetActionUrl("UpdateGPSTiers");
             return await WSApi2.PostAauthorizedValue<bool, View_TRS_TIERS>(url, Tiers, this.Token.access_token);
         }
-         
+
+        public async Task<decimal> getPointfidelite(string NumCardFDtiers = "")
+        {
+            string url = GetActionUrl("GetFDParamPoints");
+            url += WSApi2.AddParam(url, "NumCardFDtiers", NumCardFDtiers);
+            return await WSApi2.RetrievAauthorizedValue<decimal>(url, this.Token.access_token);
+        }
+
     }
 }

@@ -350,6 +350,9 @@ namespace XpertMobileApp.Views
         {
             VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
             VteValidationPage.ParentviewModel = viewModel;
+            var blltrs = new TiersManager();
+            var res = await blltrs.getPointfidelite(SelectedTiers.NUM_CARTE_FIDELITE);
+            App.PARAM_FIDELITE_TIERS = res;
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 

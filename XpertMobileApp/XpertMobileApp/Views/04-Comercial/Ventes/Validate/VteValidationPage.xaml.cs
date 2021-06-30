@@ -58,7 +58,15 @@ namespace XpertMobileApp.Views
             {
                 viewModel.SelectedTiers = selectedItem;
             });
-           
+
+            if (App.PARAM_FIDELITE_TIERS >= viewModel.SelectedTiers.TOTAL_POINT_FIDELITE )
+            {
+                viewModel.pointFideliteParam = true;
+            }
+            else
+            {
+                viewModel.pointFideliteParam = false;
+            }
         }
 
         protected override void OnAppearing()

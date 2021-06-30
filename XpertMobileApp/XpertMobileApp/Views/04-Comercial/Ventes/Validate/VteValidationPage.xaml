@@ -44,7 +44,7 @@
                                              ParserMode="Double" MaximumNumberDecimalDigits="2"   WidthRequest="60"
                                              SelectAllOnFocus="True" Value="{Binding Item.POINTS_CONSUMED, Mode=TwoWay}" 
                                              HorizontalOptions="Start"   ValueChangeMode="OnKeyFocus"
-                                             VerticalOptions="Center" Margin="30,0,0,0" ValueChanged="POINTS_CONSUMED_Changed" />
+                                             VerticalOptions="Center" Margin="30,0,0,0" ValueChanged="POINTS_CONSUMED_Changed" IsEnabled="{Binding pointFideliteParam}" />
                         <Label Text="/" FontSize="Large" TextColor="Black" Margin="0" VerticalOptions="Center" />
                         <Label Text="{Binding SelectedTiers.TOTAL_POINT_FIDELITE, Mode=TwoWay, StringFormat='{0:N2}'}" 
                                FontSize="Medium" VerticalOptions="Center" TextColor="Black" FontAttributes="Bold" Margin="0" />
