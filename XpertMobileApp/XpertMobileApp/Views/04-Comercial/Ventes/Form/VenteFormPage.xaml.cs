@@ -418,8 +418,13 @@ namespace XpertMobileApp.Views
         private void Delete()
         {
             if (itemIndex >= 0)
+            {
+                var obj = viewModel.ItemRows[itemIndex];
                 viewModel.ItemRows.RemoveAt(itemIndex);
+                viewModel.Item.Details.Remove(obj);
+            }
             this.listView.ResetSwipe();
+            viewModel.UpdateMontants();
         }
 
         private void ListView_SwipeStarted(object sender, Syncfusion.ListView.XForms.SwipeStartedEventArgs e)
