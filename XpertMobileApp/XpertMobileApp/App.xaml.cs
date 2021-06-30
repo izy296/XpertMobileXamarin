@@ -35,7 +35,7 @@ namespace XpertMobileApp
         public static bool Online = false;
         public static string PrefixCodification { get; internal set; }
         public static string CODE_MAGASIN { get; internal set; }
-        public static decimal PARAM_FIDELITE_TIERS { get; internal set; }
+        public static decimal PARAM_FIDELITE_TIERS { get; internal set; } = 0;
 
         public static MsgCenter MsgCenter = new MsgCenter();
 
