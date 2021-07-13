@@ -118,14 +118,39 @@ namespace XpertMobileApp.Views
                 {
                     MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
                 }
+                await Navigation.PopModalAsync();
             }
             else
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await UpdateDatabase.AjoutEnciassement(Item);
-                await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                if (Item.CODE_TYPE == "ENC")
+                {
+                    if (Item.TOTAL_ENCAISS <= 0)
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                        await UpdateDatabase.AjoutEnciassement(Item);
+                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await Navigation.PopModalAsync();
+                    }
+                }
+                else
+                {
+                    if (Item.TOTAL_ENCAISS >= 0)
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                        await UpdateDatabase.AjoutEnciassement(Item);
+                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await Navigation.PopModalAsync();
+                    }
+                }
             }
-            await Navigation.PopModalAsync();
         }
 
         async void Cancel_Clicked(object sender, EventArgs e)
