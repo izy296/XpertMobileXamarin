@@ -845,7 +845,7 @@
     <value>Nouvelle vente</value>
   </data>
   <data name="cmd_Validate" xml:space="preserve">
-    <value>Validé</value>
+    <value>Valider</value>
   </data>
   <data name="alrt_msg_NoConnexion" xml:space="preserve">
     <value>Vous n'êtes pas connecté au serveur</value>
@@ -869,7 +869,7 @@
     <value>Magasin de vente</value>
   </data>
   <data name="sp_lbl_SalesCaisseDedier" xml:space="preserve">
-    <value>Caisse dédier</value>
+    <value>Caisse dédiée</value>
   </data>
   <data name="pn_Livraison" xml:space="preserve">
     <value>Livraisons</value>
