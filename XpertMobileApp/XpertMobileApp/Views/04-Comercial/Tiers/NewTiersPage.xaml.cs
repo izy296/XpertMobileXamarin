@@ -306,8 +306,12 @@ namespace XpertMobileApp.Views
                     await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir la famille du tiers.", AppResources.alrt_msg_Ok);
                     return;
                 }
+                if (Item.TEL1_TIERS == null)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir le numero de téléphone", AppResources.alrt_msg_Ok);
+                    return;
+                }
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-
 
                 if (App.Online)
                 {

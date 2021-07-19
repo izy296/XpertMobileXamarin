@@ -69,8 +69,23 @@ namespace XpertMobileApp.Views
         private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             //btnSelect.IsEnabled = true;
-            SendResponse();
-            await PopupNavigation.Instance.PopAsync();
+            if (!(string.IsNullOrEmpty(viewModel.SelectedItem.NUM_CARTE_FIDELITE)))
+            {
+                if (string.IsNullOrEmpty(viewModel.SelectedItem.TEL1_TIERS))
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir un numero de téléphone pour ce tiers avant de continuer", AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    SendResponse();
+                    await PopupNavigation.Instance.PopAsync();
+                }
+            }
+            else
+            {
+                SendResponse();
+                await PopupNavigation.Instance.PopAsync();
+            }
         }
 
         async void btn_Search_Clicked(object sender, EventArgs e)
