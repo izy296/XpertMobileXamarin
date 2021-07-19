@@ -105,7 +105,7 @@ namespace XpertMobileApp.Views
                             // suavegrade du user et du token en cours dans la bdd local
 
                             //Récuperation prefix
-                            if (Constants.AppName != Apps.XCOM_Livraison)                            
+                            if (Constants.AppName == Apps.XCOM_Livraison)                            
                                 await RecupererPrefix();
 
                             try
@@ -226,9 +226,13 @@ namespace XpertMobileApp.Views
                 catch
                 {
                 }
-                if (string.IsNullOrEmpty(App.PrefixCodification))
+
+                if (Constants.AppName == Apps.XCOM_Livraison)
                 {
-                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    if (string.IsNullOrEmpty(App.PrefixCodification))
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
                 }
             }
             catch (Exception ex)
