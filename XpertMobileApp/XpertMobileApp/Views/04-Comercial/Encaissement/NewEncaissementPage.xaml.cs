@@ -131,7 +131,7 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await UpdateDatabase.AjoutEnciassement(Item);
+                        await SQLite_Manager.AjoutEnciassement(Item);
                         await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         await Navigation.PopModalAsync();
                     }
@@ -145,7 +145,7 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await UpdateDatabase.AjoutEnciassement(Item);
+                        await SQLite_Manager.AjoutEnciassement(Item);
                         await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         await Navigation.PopModalAsync();
                     }
