@@ -19,7 +19,23 @@ namespace XpertMobileApp.ViewModels
 {
     public class VteValidationViewModel : BaseViewModel
     {
-        public bool pointFideliteParam { get; set; } = false;
+        private bool pointFideliteParam;
+        public bool PointFideliteParam
+        {
+            get
+            {
+                return this.pointFideliteParam;
+            }
+
+            set
+            {
+                if (PointFideliteParam != value)
+                {
+                    this.pointFideliteParam = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private View_TRS_TIERS selectedTiers;
         public View_TRS_TIERS SelectedTiers
@@ -65,12 +81,12 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var bll = CrudManager.GetVteBll(item.TYPE_DOC);
-
                 item.MBL_NUM_CARTE_FEDILITE = SelectedTiers.NUM_CARTE_FIDELITE;
                 item.CODE_CARTE_FIDELITE = SelectedTiers.CODE_CARTE_FIDELITE;
                 item.CODE_MODE = "";
+
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var bll = CrudManager.GetVteBll(item.TYPE_DOC);                
 
                 var res = await bll.ValidateVente(item, "1");
                 UserDialogs.Instance.HideLoading();

@@ -45,34 +45,54 @@ namespace XpertMobileApp.Views
         public VteValidationPage(string stream, View_VTE_VENTE item, View_TRS_TIERS tiers = null)
         {
             InitializeComponent();
- 
+
+            if (Constants.AppName == Apps.XCOM_Livraison)
+                PrintTicketZoneLayout.IsVisible = true;
+
+            if (Constants.AppName != Apps.XCOM_Livraison)
+                SfNE_MTRecu.IsEnabled = false;
+
             ParentStream = stream;
             BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
 
             // Initialisation du montant reçu au reste a payer
-            //viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
-            // this.SfNE_MTRecu.Value = item.TOTAL_RESTE;
+            if (Constants.AppName != Apps.XCOM_Livraison)
+            {
+                viewModel.Item.TOTAL_RECU = item.TOTAL_RESTE;
+                this.SfNE_MTRecu.Value = item.TOTAL_RESTE;
+            }
+
             UpdateMontants(viewModel.Item.TOTAL_RECU);
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
-                viewModel.SelectedTiers = selectedItem;
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.SelectedTiers = selectedItem;
+                    pts_Consumed.Value = 0;
+                    CheckPointFidelParam();
+                    //Trouver un moyen pour le bind le viewmodel apres modification                    
+                    pts_Consumed.IsEnabled = viewModel.PointFideliteParam;
+                });
             });
+           
+        }
 
+        public void CheckPointFidelParam()
+        {
             if (App.PARAM_FIDELITE_TIERS == 0)
             {
-                viewModel.pointFideliteParam = false;
+                viewModel.PointFideliteParam = false;
             }
-            else if (App.PARAM_FIDELITE_TIERS >= viewModel.SelectedTiers.TOTAL_POINT_FIDELITE )
+            else if (viewModel.SelectedTiers.TOTAL_POINT_FIDELITE >= App.PARAM_FIDELITE_TIERS)
             {
-                viewModel.pointFideliteParam = true;
+                viewModel.PointFideliteParam = true;
             }
             else
             {
-                viewModel.pointFideliteParam = false;
+                viewModel.PointFideliteParam = false;
             }
         }
-
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -149,10 +169,13 @@ namespace XpertMobileApp.Views
                     if (!XpertHelper.IsNullOrEmpty(res))
                     {
                         await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                        if (viewModel.imprimerTecketCaiss)
-                        {
-                            PrinterHelper.PrintBL(viewModel.Item);
-                        }
+
+                        //Impression ticket de caisse depuis l'appareil bluetooth
+                        if (Constants.AppName == Apps.XCOM_Livraison)
+                            if (viewModel.imprimerTecketCaiss)
+                            {
+                                PrinterHelper.PrintBL(viewModel.Item);
+                            }
                         ParentviewModel.InitNewVentes();
                         await PopupNavigation.Instance.PopAsync();
                     }
@@ -265,7 +288,7 @@ namespace XpertMobileApp.Views
             {
                 if (Convert.ToDecimal(pts_Consumed.Value) > viewModel.SelectedTiers.TOTAL_POINT_FIDELITE) 
                 {
-                    pts_Consumed.Value = viewModel.SelectedTiers.TOTAL_POINT_FIDELITE;
+                    pts_Consumed.Value = viewModel.SelectedTiers.TOTAL_POINT_FIDELITE;                    
                     return;
                 }
                     
@@ -273,6 +296,9 @@ namespace XpertMobileApp.Views
                 var res = await vteBll.GetFideliteInfos(viewModel.SelectedTiers.CODE_CARTE_FIDELITE, Convert.ToDecimal(pts_Consumed.Value));
 
                 mt_PointsUsed.Text = "(" + res.MT_POINTS_USED.ToString("N2") +"Da)";
+                viewModel.Item.REMISE_GLOBALE = res.MT_POINTS_USED;
+                mt_Reste.Value = viewModel.Item.TOTAL_TTC - viewModel.Item.REMISE_GLOBALE;
+                SfNE_MTRecu.Value = mt_Reste.Value;
             }
             else 
             {
