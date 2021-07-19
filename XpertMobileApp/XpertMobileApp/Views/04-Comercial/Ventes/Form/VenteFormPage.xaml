@@ -28,12 +28,12 @@
     
     <ContentPage.Content>
         <StackLayout  Padding="0" BackgroundColor="#f0f2f5" Spacing="0">
-            <StackLayout BackgroundColor="#d7e4f7" Spacing="0" HeightRequest="50" Orientation="Horizontal"
+            <StackLayout BackgroundColor="#d7e4f7" Spacing="0" HeightRequest="50" Orientation="Horizontal" IsVisible="False"
                          >
                 <Label Text="Client : " FontSize="Medium" 
                        Margin="5" VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />
                 <StackLayout Orientation="Horizontal" 
-                             Margin="0" HorizontalOptions="FillAndExpand">
+                             Margin="0" HorizontalOptions="FillAndExpand" >
 
                     <Entry x:Name="ent_SelectedTiers" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
                             IsEnabled="False" HorizontalOptions="FillAndExpand" TextColor="White"/>
@@ -54,7 +54,7 @@
 
                 </StackLayout>
             </StackLayout>
-            <StackLayout Orientation="Horizontal" Margin="0" HorizontalOptions="FillAndExpand" BackgroundColor="#d7e4f7">
+            <StackLayout Orientation="Horizontal" Margin="0" HorizontalOptions="FillAndExpand" BackgroundColor="#d7e4f7" IsVisible="False">
                 <StackLayout Margin="0,0,15,0" Padding="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
                     <Label Margin="5,0,0,5" Text="Solde : " FontSize="Small" 
                            VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />

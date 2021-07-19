@@ -370,7 +370,7 @@ namespace XpertMobileApp.Views
             try
             {
                 // Cas lot déjà ajouté
-                var row = ItemRows.Where(e => e.CODE_BARRE == cb_prod).FirstOrDefault();
+                var row = ItemRows.Where(e => e.CODE_BARRE == cb_prod || e.CODE_BARRE_LOT == cb_prod).FirstOrDefault();
                 if (row != null)
                 {
                     row.QUANTITE += 1;

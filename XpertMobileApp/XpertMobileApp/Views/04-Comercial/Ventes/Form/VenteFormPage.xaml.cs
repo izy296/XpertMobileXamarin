@@ -79,6 +79,7 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
+            #region comment
             // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
 
@@ -135,6 +136,7 @@ namespace XpertMobileApp.Views
             //        throw ex;
             //    }
             //});
+            #endregion
 
             //Modification liste pour ajouter plusieurs produits une seule fois (l'ancien code fait l'ajout des lot un produits a la fois)
             //cette methode remplace la methode meilleur lot pour probleme d'async on peut pas faire await qui cause l'éxecution de la méthode en double
@@ -170,9 +172,25 @@ namespace XpertMobileApp.Views
             {
                 viewModel.LoadRowsCommand.Execute(null);
             }
+
+            CheckPointFideliteSeuil();
         }
 
-        protected override  bool OnBackButtonPressed()
+        private async void CheckPointFideliteSeuil()
+        {
+            try
+            {
+                var blltrs = new TiersManager();
+                var res = await blltrs.getPointfidelite(SelectedTiers.NUM_CARTE_FIDELITE);
+                App.PARAM_FIDELITE_TIERS = res;
+            }
+            catch
+            {
+                UserDialogs.Instance.AlertAsync("Vérifier le seuil de consommation des points de fidélité", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
+        protected override bool OnBackButtonPressed()
         {
             Device.BeginInvokeOnMainThread(async () => {
                 var result = await this.DisplayAlert(AppResources.msg_Confirmation, "Voulez vous fermer la vente ?", "Yes", "No");
@@ -350,19 +368,7 @@ namespace XpertMobileApp.Views
         {
             VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
             VteValidationPage.ParentviewModel = viewModel;
-            try
-            {
-                if (!(string.IsNullOrEmpty(SelectedTiers.NUM_CARTE_FIDELITE)))
-                {
-                    var blltrs = new TiersManager();
-                    var res = await blltrs.getPointfidelite(SelectedTiers.NUM_CARTE_FIDELITE);
-                    App.PARAM_FIDELITE_TIERS = res;
-                }
-            }
-            catch
-            {
-                await UserDialogs.Instance.AlertAsync("impossible d'utiliser les points de fidélité", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
+
             await PopupNavigation.Instance.PushAsync(VteValidationPage);
         }
 
