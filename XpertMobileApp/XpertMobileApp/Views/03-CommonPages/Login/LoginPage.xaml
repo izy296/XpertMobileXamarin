@@ -4,96 +4,186 @@
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:xpert="clr-namespace:XpertMobileApp.CustomControls"
+             xmlns:views="clr-namespace:XpertMobileApp.Views._02_BaseElements"
              x:Class="XpertMobileApp.Views.LoginPage"
-             
              BackgroundColor="White"
-             >
+             x:Name="RootPage">
 
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
-    
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="50" />
-        </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <!--Affichage de l'alerte en cas de deconnexion -->
-            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
-                    <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
-                </ContentView>
-            </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
+    <xpert:XpertStackLayout Padding="0">
+        <xpert:XpertGrid>
+            <xpert:XpertStackLayout Padding="0"
+                                    Margin="0">
+                <xpert:XpertStackLayout Padding="40"
+                                        Margin="0,65,0,0">
+                    <!--<xpert:XpertImage Source="imag.jpg" Aspect="AspectFill"/>-->
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="5*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                    <xpert:XpertImage Source="bubbles.png"
+                                      Margin="0"
+                                      VerticalOptions="Center"
+                                      HeightRequest="180" />
+                </xpert:XpertStackLayout>
 
-                    <StackLayout Grid.Column="1">
+                <!--Affichage de l'alerte en cas de deconnexion -->
+                <xpert:XpertLabel x:Name="Lbl_NoInternet"
+                                  IsVisible="False"
+                                  HorizontalTextAlignment="Center"
+                                  TextColor="White" />
+            </xpert:XpertStackLayout>
+            <xpert:XpertStackLayout>
+                <xpert:XpertFrame BackgroundColor="Transparent"
+                                  HeightRequest="250"
+                                  HorizontalOptions="FillAndExpand">
+                    <xpert:XpertStackLayout HorizontalOptions="Center"
+                                            VerticalOptions="CenterAndExpand"
+                                            Padding="0,90,0,90">
 
-                        <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
+                        <xpert:XpertImage Source="logo_v.png"
+                                          VerticalOptions="Center"
+                                          HeightRequest="125" />
+                    </xpert:XpertStackLayout>
+                </xpert:XpertFrame>
+            </xpert:XpertStackLayout>
+            <xpert:XpertStackLayout Padding="0"
+                                    Margin="0,10,10,0">
+                <xpert:XpertButton x:Name="Btn_Config"
+                                   Margin="0"
+                                   WidthRequest="50"
+                                   HeightRequest="50"
+                                   HorizontalOptions="End"
+                                   Style="{StaticResource FAwesome-B-Solid}"
+                                   TextColor="#174574"
+                                   Text="{x:Static fontawesome:FontAwesomeIcons.Cog}"
+                                   BackgroundColor="Transparent"
+                                   Clicked="SettingButton_Clicked" />
+            </xpert:XpertStackLayout>
 
-                        <StackLayout>
-                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"  />
-                            <Entry x:Name="Ent_UserName" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
-                        </StackLayout>
 
-                        <StackLayout Padding="0,10,0,0">
-                            <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}"/>
-                            <Entry x:Name="Ent_PassWord" Text="" Placeholder="{i18n:Translate lp_ph_PassWord}" IsPassword="True"/>
-                        </StackLayout>
+            <xpert:XpertStackLayout Margin="15,260,15,0">
+                <xpert:XpertFrame BackgroundColor="Transparent"
+                                  HasShadow="False"
+                                  HeightRequest="540"
+                                  HorizontalOptions="FillAndExpand"
+                                  CornerRadius="5">
+                    <xpert:XpertStackLayout>
+                        <xpert:XpertStackLayout HorizontalOptions="CenterAndExpand"
+                                                Margin="0,35,0,0">
+                            <xpert:XpertLabel     x:Name="lbl_Welcome"
+                                                  Text="{i18n:Translate txt_welcome}"
+                                                  TextColor="#174574"
+                                                  FontSize="30"
+                                                  FontAttributes="Bold"></xpert:XpertLabel>
+                        </xpert:XpertStackLayout>
+                        <xpert:XpertStackLayout>
+                            <xpert:XpertStackLayout Margin="0,55,0,0">
+                                <xpert:XpertFrame Background="White"
+                                                  BorderColor="#174574"
+                                                  HasShadow="False"
+                                                  Padding="0"
+                                                  Margin="0"
+                                                  HeightRequest="50"
+                                                  CornerRadius="5"
+                                                  HorizontalOptions="FillAndExpand">
+                                    <xpert:XpertStackLayout Orientation="Horizontal">
 
-                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
+                                        <xpert:XpertTextField x:Name="Ent_UserName"
+                                                              Text=""
+                                                              Placeholder="{i18n:Translate lp_ph_UserName}"
+                                                              HorizontalOptions="FillAndExpand"
+                                                              Margin="0" />
+                                    </xpert:XpertStackLayout>
+                                </xpert:XpertFrame>
+                                <xpert:XpertFrame Background="White"
+                                                  BorderColor="#174574"
+                                                  HasShadow="False"
+                                                  Padding="0"
+                                                  Margin="0,25,0,0"
+                                                  HeightRequest="50"
+                                                  CornerRadius="5"
+                                                  HorizontalOptions="FillAndExpand">
+                                    <xpert:XpertStackLayout Orientation="Horizontal">
+                                        <xpert:XpertTextField x:Name="Ent_PassWord"
+                                                              Text=""
+                                                              Placeholder="{i18n:Translate lp_ph_PassWord}"
+                                                              IsPassword="True"
+                                                              HorizontalOptions="FillAndExpand"
+                                                              Margin="0" />
+                                    </xpert:XpertStackLayout>
+                                </xpert:XpertFrame>
+
+
+
+                            </xpert:XpertStackLayout>
+                            <xpert:XpertButton x:Name="Btn_LogIn"
+                                               Text="{i18n:Translate lp_btn_Login}"
+                                               BackgroundColor="#174574"
+                                               TextColor="White"
+                                               FontAttributes="Bold"
+                                               CornerRadius="5"
+                                               Margin="0,60,0,0"
+                                               Clicked="ConnectUserAsync"
+                                               HeightRequest="50" />
+                            <xpert:XpertLabel Grid.Column="0"
+                                              FontSize="Small"
+                                              HorizontalOptions="Center"
+                                              VerticalOptions="Center"
+                                              Margin="0,90,0,0">
+                                <xpert:XpertLabel.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <xpert:XpertSpan x:Name="XpertVersion"
+                                                             Text="1.0"
+                                                             ForegroundColor="#174574" />
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </xpert:XpertLabel.FormattedText>
+                            </xpert:XpertLabel>
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertStackLayout>
+                </xpert:XpertFrame>
+
+                <!--<xpert:XpertGrid>
+
+                    <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
+
+                    <xpert:XpertLabel x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"  />
+                    <Entry x:Name="Ent_UserName" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
+
+                    <xpert:XpertLabel x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}"/>
+                    <Entry x:Name="Ent_PassWord" Text="" Placeholder="{i18n:Translate lp_ph_PassWord}" IsPassword="True"/>
+
+                    <xpert:XpertButton x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
                                 Style="{DynamicResource DefaultBtnStyle}"
                                 Text="{i18n:Translate lp_btn_Login}" Clicked="ConnectUserAsync"/>
-                        
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                </xpert:XpertGrid>-->
+            </xpert:XpertStackLayout>
 
-        <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Fill" >
-            <Grid HorizontalOptions="FillAndExpand">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                
 
-            <Label Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10">
-                <Label.FormattedText>
+            <!--<xpert:XpertLabel Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10">
+                <xpert:XpertLabel.FormattedText>
                     <FormattedString>
                         <FormattedString.Spans>
-                            <Span x:Name="XpertVersion" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
+                            <xpert:XpertSpan x:Name="XpertVersion" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
                         </FormattedString.Spans>
                     </FormattedString>
-                </Label.FormattedText>
-            </Label>
+                </xpert:XpertLabel.FormattedText>
+            </xpert:XpertLabel>
                 
-            <StackLayout Grid.Column="1" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" HorizontalOptions="End" >
-                <Button x:Name="Btn_Config" Margin="0" 
+                <xpert:XpertButton x:Name="Btn_Config" Margin="0" 
                         WidthRequest="50" HeightRequest="50"
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
                         Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" BackgroundColor="White" 
                         Clicked="Settings_Clicked"/>
             
-                <Button x:Name="Btn_Exit" Margin="0" 
+                <xpert:XpertButton x:Name="Btn_Exit" Margin="0" 
                         WidthRequest="50" HeightRequest="50" 
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
                         Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" BackgroundColor="White" 
-                        Clicked="Exit_Clicked"/>
-            </StackLayout>
-            </Grid>
-        </StackLayout>
-    </Grid>
+                        Clicked="Exit_Clicked"/>-->
+        </xpert:XpertGrid>
+    </xpert:XpertStackLayout>
 </ContentPage>

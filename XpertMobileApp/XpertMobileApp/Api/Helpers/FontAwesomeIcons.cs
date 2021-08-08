@@ -28,11 +28,46 @@ namespace FontAwesome
         public static string Arrows_Alt_H = "\uf337";
         public static string Arrows_Alt_V = "\uf338";
         public static string Add_icon = "\uf067";
+        public static string Add_Sync_alt = "\uf2f1";
+        public static string link = "\uf0c1";
+        public static string unlink = "\uf127";
+        public static string chevron_right = "\uf054";
+        public static string chevron_left = "\uf053";
+        public static string user_clock = "\uf4fd";
+        public static string ellipsis_v = "\uf142";
+        public static string list_ul = "\uf0ca";
+
+
+
+
 
         // Used
         public static string Sign_Out_Alt = "\uf2f5";
         public static string Cog = "\uf013";
-        public const string Filter = "\uf0b0";
+        public static string Filter = "\uf0b0";
+        public static string Home = "\uf015";
+        public static string Sell = "\uf290";
+        public static string MoneyTransaction = "\uf3d1";
+        public static string About = "\uf05a";
+        public static string Session = "\uf0c0";
+        public static string Tresorerie = "\uf4c0";
+        public static string Shopping_basket = "\uf291";
+        public static string Pills = "\uf484";
+        public static string File_invoice_dollar = "\uf571";
+        public static string Box_alt = "\uf49a";
+        public static string Handshake = "\uf2b5";
+        public static string Poll = "\uf681";
+        public static string Poll_h = "\uf682";
+        public static string Shipping_timed = "\uf48b";
+        public static string Money_check_edit_alt = "\uf873";
+        public static string Sort_size_up_alt = "\uf88f";
+        public static string Hand_holding_box = "\uf47b";
+        public static string Newspaper = "\uf1ea";
+        public static string Store_alt = "\uf54f";
+        public static string Clipboard_list_check = "\uf737";
+        public static string box_check = "\uf467";
+        public static string chart_line = "\uf201";
+        public static string User_edit = "\uf4ff";
 
 
         /// <summary>

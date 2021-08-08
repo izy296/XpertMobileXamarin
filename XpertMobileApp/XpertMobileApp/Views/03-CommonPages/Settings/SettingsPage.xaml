@@ -2,134 +2,300 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Class="XpertMobileApp.Views.SettingsPage"
-             Title="{Binding Title}"
-             >
+             xmlns:xpert="clr-namespace:XpertMobileApp.CustomControls"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <ScrollView Orientation="Vertical">
-            <StackLayout Orientation="Vertical" BackgroundColor="#f0f2f5" VerticalOptions="FillAndExpand" Padding="5">
-                <StackLayout>
+        <xpert:XpertScrollView Orientation="Vertical">
+            <xpert:XpertStackLayout Orientation="Vertical"
+                                    BackgroundColor="White"
+                                    VerticalOptions="FillAndExpand"
+                                    Padding="5">
+                <xpert:XpertStackLayout>
                     <!--Affichage de l'alerte en cas de deconnexion -->
-                    <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White" BackgroundColor="Red"/>
-                </StackLayout>
-                <StackLayout x:Name="MainLayout" VerticalOptions="FillAndExpand">
+                    <xpert:XpertLabel x:Name="Lbl_NoInternet"
+                                      IsVisible="False"
+                                      HorizontalTextAlignment="Center"
+                                      TextColor="White" />
+                </xpert:XpertStackLayout>
+                <xpert:XpertStackLayout Margin="20,20,20,0"
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="FillAndExpand">
+                    <!--Affichage de l'alerte en cas de deconnexion -->
+                    <xpert:XpertStackLayout HorizontalOptions="Fill"
+                                            VerticalOptions="Center">
+                        <xpert:XpertButton HorizontalOptions="Start"
+                                           VerticalOptions="Center"
+                                           Margin="0"
+                                           WidthRequest="50"
+                                           HeightRequest="50"
+                                           Style="{StaticResource FAwesome-B-Solid}"
+                                           x:Name="Btn_CloseSettings"
+                                           IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}"
+                                           TextColor="#174574"
+                                           BackgroundColor="Transparent"
+                                           FontSize="30"
+                                           Clicked="SettingsClose_Clicked"
+                                           Text="{x:Static fontawesome:FontAwesomeIcons.chevron_left}" />
+                    </xpert:XpertStackLayout>
+                    <xpert:XpertStackLayout Orientation="Horizontal"
+                                            HorizontalOptions="CenterAndExpand">
+                        <xpert:XpertStackLayout  HorizontalOptions="Center">
+                            <xpert:XpertLabel x:Name="lbl_Settings"
+                                              Text="{i18n:Translate btn_Filter_RFID_Text}"
+                                              FontSize="28"
+                                              HorizontalOptions="End"
+                                              TextColor="#174574" />
+                        </xpert:XpertStackLayout>
 
-                    <StackLayout.Padding>
+                    </xpert:XpertStackLayout>
+                    <xpert:XpertStackLayout HorizontalOptions="Fill"
+                                            BackgroundColor="Transparent">
+                        <xpert:XpertButton HorizontalOptions="Start"
+                                           VerticalOptions="Center"
+                                           Margin="0"
+                                           WidthRequest="50"
+                                           HeightRequest="50"
+                                           Style="{StaticResource FAwesome-B-Solid}"
+                                           TextColor="Transparent"
+                                           BackgroundColor="Transparent"
+                                           FontSize="30"
+                                           Text="{x:Static fontawesome:FontAwesomeIcons.chevron_right}" />
+                    </xpert:XpertStackLayout>
+                </xpert:XpertStackLayout>
+                <xpert:XpertStackLayout x:Name="MainLayout"
+                                        VerticalOptions="FillAndExpand">
+
+                    <xpert:XpertStackLayout.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
-                            <On Platform="iOS" Value="10, 0, 10, 20" />
-                            <On Platform="Android" Value="5, 10, 5, 10" />
-                            <On Platform="UWP" Value="0, 0, 0, 0" />
+                            <On Platform="iOS"
+                                Value="10, 0, 10, 20" />
+                            <On Platform="Android"
+                                Value="5, 0, 5, 10" />
+                            <On Platform="UWP"
+                                Value="0, 0, 0, 0" />
                         </OnPlatform>
-                    </StackLayout.Padding>
-                    
+                    </xpert:XpertStackLayout.Padding>
                     <!-- language informations -->
-                    <Frame Style="{StaticResource FrameForListing}">
-                        <StackLayout x:Name="LanguageSettingsZone" Padding="10" Margin="0">
-                            <Label x:Name="lbl_LanguageSelector" Text="{i18n:Translate sp_lbl_SelectLanguage}" 
-                                   FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" />
-                            <Picker ItemsSource="{Binding Languages}"
-                                ItemDisplayBinding="{Binding DisplayName}"
-                                x:Name="LanguagesPicker"/>
-                        </StackLayout>
-                    </Frame>
-                    
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}">
+                        <xpert:XpertStackLayout x:Name="LanguageSettingsZone"
+                                                Padding="10"
+                                                Margin="0">
+                            <xpert:XpertLabel Margin="15,0,0,0"
+                                              x:Name="lbl_LanguageSelector"
+                                              Text="{i18n:Translate sp_lbl_SelectLanguage}"
+                                              FontSize="Medium"
+                                              TextColor="#174574" />
+                            <xpert:XpertPicker HeightRequest="0"
+                                               ItemsSource="{Binding Languages}"
+                                               ItemDisplayBinding="{Binding DisplayName}"
+                                               x:Name="LanguagesPicker" />
+                            <xpert:XpertFrame Background="#F5F5F5"
+                                              HasShadow="False"
+                                              Padding="20,0,15,0"
+                                              Margin="0"
+                                              HeightRequest="50"
+                                              CornerRadius="5"
+                                              HorizontalOptions="FillAndExpand">
+                                <xpert:XpertFrame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Handle_StopInClicked" />
+                                </xpert:XpertFrame.GestureRecognizers>
+                                <xpert:XpertStackLayout Orientation="Horizontal"
+                                                        HorizontalOptions="FillAndExpand">
+                                    <xpert:XpertStackLayout VerticalOptions="Center">
+                                        <xpert:XpertLabel Text="{Binding Source={x:Reference LanguagesPicker}, Path=SelectedItem.DisplayName}"
+                                                          TextColor="#40414F"
+                                                          FontSize="18"
+                                                          VerticalOptions="Center"></xpert:XpertLabel>
+                                    </xpert:XpertStackLayout>
+                                    <xpert:XpertStackLayout VerticalOptions="Center"
+                                                            HorizontalOptions="FillAndExpand">
+                                        <xpert:XpertLabel x:Name="Btn_Config"
+                                                          HorizontalOptions="End"
+                                                          VerticalOptions="Center"
+                                                          HorizontalTextAlignment="End"
+                                                          Style="{StaticResource FAwesome-B-Solid}"
+                                                          TextColor="#828282"
+                                                          FontSize="20"
+                                                          Text="{x:Static fontawesome:FontAwesomeIcons.chevron_right}"
+                                                          BackgroundColor="Transparent" />
+                                    </xpert:XpertStackLayout>
+                                </xpert:XpertStackLayout>
+                            </xpert:XpertFrame>
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertFrame>
+                    <xpert:XpertBoxView Margin="40,10,40,0"
+                                        BackgroundColor="#DFDFDF"
+                                        HeightRequest="2"
+                                        CornerRadius="3" />
                     <!-- Service url -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
-                        <StackLayout x:Name="GeneralSettingsZone"  Padding="10"  >
-                            <Label x:Name="lbl_ConnexionInfos" Text="{i18n:Translate sp_lbl_ConnexionInfos}" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
-                            <Label x:Name="lbl_ServiceName" Text="{i18n:Translate sp_lbl_ServiceName}"/>
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}"
+                                      IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
+                        <xpert:XpertStackLayout x:Name="GeneralSettingsZone"
+                                                Padding="10">
+                            <xpert:XpertLabel x:Name="lbl_ConnexionInfos"
+                                              Text="{i18n:Translate sp_lbl_ConnexionInfos}"
+                                              FontSize="Medium"
+                                              TextColor="#174574"
+                                              Margin="15,0,0,10" />
+                            <!--<xpert:XpertLabel x:Name="lbl_ServiceName" Text="{i18n:Translate sp_lbl_ServiceName}"/>
                             <Entry x:Name="et_ServiceName" Text="{Binding Settings.ServiceUrl, Mode=TwoWay}" />
 
-                            <Button  x:Name="Btn_TestCnx" Text="{i18n:Translate sp_btn_TestConnection}" 
+                            <xpert:XpertButton  x:Name="Btn_TestCnx" Text="{i18n:Translate sp_btn_TestConnection}" 
                                      WidthRequest="150" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
-                                     Clicked="TestConnexion_Clicked"/>
-                        </StackLayout>
-                    </Frame>
-                    
+                                     Clicked="TestConnexion_Clicked"/>-->
+                            <xpert:XpertStackLayout Orientation="Horizontal">
+                                <xpert:XpertTextField x:Name="et_ServiceName"
+                                                      Text="{Binding Settings.ServiceUrl, Mode=TwoWay}"
+                                                      Placeholder="Url du service "
+                                                      HorizontalOptions="FillAndExpand"
+                                                      Margin="0" />
+                                <xpert:XpertButton x:Name="Btn_TestCnx"
+                                                   Margin="0"
+                                                   WidthRequest="50"
+                                                   HeightRequest="50"
+                                                   HorizontalOptions="End"
+                                                   CornerRadius="5"
+                                                   IsEnabled="True"
+                                                   Clicked="TestConnexion_Clicked"
+                                                   Style="{StaticResource FAwesome-B-Solid}"
+                                                   TextColor="white"
+                                                   Text="{x:Static fontawesome:FontAwesomeIcons.link}"
+                                                   BackgroundColor="#3DB39E" />
+
+                            </xpert:XpertStackLayout>
+                        </xpert:XpertStackLayout>
+
+                    </xpert:XpertFrame>
+
+                    <xpert:XpertBoxView Margin="40,10,40,0"
+                                        BackgroundColor="#DFDFDF"
+                                        HeightRequest="2"
+                                        CornerRadius="3" />
+                    <!--<xpert:XpertStackLayout>
+                        <xpert:XpertLabel x:Name="lblAddConfiguaration"
+                            Text="{i18n:Translate lbl_Configuration}"
+                               FontSize="Medium"
+                               TextColor="#174574"
+                               Margin="15,0,0,10" />
+                    </xpert:XpertStackLayout>-->
+
+
                     <!-- Notifications -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
-                        <StackLayout x:Name="GeneralNotifications"  Padding="10" >
-                            <Label x:Name="lbl_Notifications" Text="{i18n:Translate sp_lbl_Notifications}" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
-                            <Label Text="{i18n:Translate sp_lbl_Activate}"/>
-                            <Switch x:Name="sw_ActivateNotif" IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
-                        </StackLayout>
-                    </Frame>
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}"
+                                      IsVisible="{Binding IsConnected}">
+                        <xpert:XpertStackLayout x:Name="GeneralNotifications"
+                                                Padding="10">
+                            <xpert:XpertLabel x:Name="lbl_Notifications"
+                                              Text="{i18n:Translate sp_lbl_Notifications}"
+                                              FontSize="Medium"
+                                              Style="{DynamicResource DefaultTextStyle}"
+                                              Margin="0,0,0,15" />
+                            <xpert:XpertLabel Text="{i18n:Translate sp_lbl_Activate}" />
+                            <xpert:XpertSwitch x:Name="sw_ActivateNotif"
+                                               IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}" />
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertFrame>
 
                     <!-- Config Ventes -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding HasVenteConfig}">
-                        <StackLayout Padding="10" >
-                            <Label Text="{i18n:Translate pn_Ventes}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}"
+                                      IsVisible="{Binding HasVenteConfig}">
+                        <xpert:XpertStackLayout Padding="10">
+                            <xpert:XpertLabel Text="{i18n:Translate pn_Ventes}"
+                                              FontSize="Medium"
+                                              Style="{DynamicResource DefaultTextStyle}"
+                                              Margin="0,0,0,15" />
                             <!-- Magasin -->
-                            <Label Text="{i18n:Translate sp_lbl_SalesMagasin}"/>
-                            <Picker ItemsSource="{Binding MagasinsList}"
-                                Title="{i18n:Translate cmd_SelectElement}"
-                                ItemDisplayBinding="{Binding DESIGNATION}"
-                                SelectedItem="{Binding SelectedMagasin,Mode=TwoWay}" />
+                            <xpert:XpertLabel Text="{i18n:Translate sp_lbl_SalesMagasin}" />
+                            <xpert:XpertPicker ItemsSource="{Binding MagasinsList}"
+                                               Title="{i18n:Translate cmd_SelectElement}"
+                                               ItemDisplayBinding="{Binding DESIGNATION}"
+                                               SelectedItem="{Binding SelectedMagasin,Mode=TwoWay}" />
 
                             <!-- Caisse dédier -->
-                            <Label Text="{i18n:Translate sp_lbl_SalesCaisseDedier}"/>
-                            <Picker ItemsSource="{Binding ComptesList}"
-                                Title="{i18n:Translate cmd_SelectElement}"
-                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                SelectedItem="{Binding SelectedCompte}" />
-                        </StackLayout>
+                            <xpert:XpertLabel Text="{i18n:Translate sp_lbl_SalesCaisseDedier}" />
+                            <xpert:XpertPicker ItemsSource="{Binding ComptesList}"
+                                               Title="{i18n:Translate cmd_SelectElement}"
+                                               ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                                               SelectedItem="{Binding SelectedCompte}" />
+                        </xpert:XpertStackLayout>
 
 
 
-                    </Frame>
+                    </xpert:XpertFrame>
 
                     <!-- Imprimante  -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
-                        <StackLayout x:Name="PrintSettingsZone"  Padding="10" >
-                            <Label x:Name="lbl_rinter" Text="{i18n:Translate sp_lbl_rinter}"  FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
-                            <Picker ItemsSource="{Binding DeviceList}"
-                                Title="{i18n:Translate cmd_selectPrinter}"
-                                ItemDisplayBinding="{Binding Name}"
-                                SelectedItem="{Binding SelectedDevice}" />
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}"
+                                      IsVisible="{Binding IsConnected}">
+                        <xpert:XpertStackLayout x:Name="PrintSettingsZone"
+                                                Padding="10">
+                            <xpert:XpertLabel x:Name="lbl_rinter"
+                                              Text="{i18n:Translate sp_lbl_rinter}"
+                                              FontSize="Medium"
+                                              Style="{DynamicResource DefaultTextStyle}"
+                                              Margin="0,0,0,15" />
+                            <xpert:XpertPicker ItemsSource="{Binding DeviceList}"
+                                               Title="{i18n:Translate cmd_selectPrinter}"
+                                               ItemDisplayBinding="{Binding Name}"
+                                               SelectedItem="{Binding SelectedDevice}" />
                             <!--
-                            <Button x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
+                            <xpert:XpertButton x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
                                 Text="Connexion" Clicked="ConnectPrinterAsync"/>
-                            <Button x:Name="Btn_desconnectPrinter" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+                            <xpert:XpertButton x:Name="Btn_desconnectPrinter" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Déconnexion" Clicked="DesconnectPrinterAsync"/>
-                            <Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+                            <xpert:XpertButton x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Imprimer un test" Clicked="PrintExempleAsync"/>
                             -->
-                        </StackLayout>
-                    </Frame>
-                   
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertFrame>
+
                     <!-- Licence informations -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
-                        <StackLayout x:Name="LicenceSettingsZone"  Padding="10" >
-                            <Label x:Name="lbl_LicenceInfos" Text="{i18n:Translate sp_lbl_LicenceInfos}" 
-                                   FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" Margin="0,0,0,15" />
-                            <Label x:Name="lbl_ExperationDate" Text="" Style="{DynamicResource DefaultTextStyle}" TextColor="Black" />
-                            <Button  x:Name="Btn_RemoveLicence" Text="{i18n:Translate sp_btn_RemoveLicence}" CornerRadius="8"
-                                      Style="{DynamicResource DefaultBtnStyle}"
-                                     Clicked="Btn_RemoveLicence_Clicked"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
+                    <xpert:XpertFrame Style="{StaticResource FrameForListing}"
+                                      IsVisible="{Binding IsConnected}">
+                        <xpert:XpertStackLayout x:Name="LicenceSettingsZone"
+                                                Padding="10">
+                            <xpert:XpertLabel x:Name="lbl_LicenceInfos"
+                                              Text="{i18n:Translate sp_lbl_LicenceInfos}"
+                                              FontSize="Medium"
+                                              Style="{DynamicResource DefaultTextStyle}"
+                                              Margin="0,0,0,15" />
+                            <xpert:XpertLabel x:Name="lbl_ExperationDate"
+                                              Text=""
+                                              Style="{DynamicResource DefaultTextStyle}"
+                                              TextColor="Black" />
+                            <xpert:XpertButton  x:Name="Btn_RemoveLicence"
+                                                Text="{i18n:Translate sp_btn_RemoveLicence}"
+                                                CornerRadius="8"
+                                                Style="{DynamicResource DefaultBtnStyle}"
+                                                Clicked="Btn_RemoveLicence_Clicked" />
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertFrame>
+                </xpert:XpertStackLayout>
 
-                <Grid Padding="0,0,0,10" x:Name="CommandeGrid" VerticalOptions="End">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="45"/>
-                    </Grid.RowDefinitions>
+                <xpert:XpertGrid Padding="0,0,0,15"
+                                 x:Name="CommandeGrid"
+                                 VerticalOptions="End">
 
-                    <StackLayout Grid.Column="1" x:Name="settings" Orientation="Horizontal" HorizontalOptions="End">
-                        <Button WidthRequest="150" CornerRadius="8" Text="{i18n:Translate btn_Close}" x:Name="Btn_CloseSettings" 
-                               IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SettingsClose_Clicked"/>
-                        <Button WidthRequest="150" CornerRadius="8" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                    <xpert:XpertStackLayout x:Name="settings"
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="FillAndExpand">
+                        <!--<xpert:XpertButton WidthRequest="150" CornerRadius="8" Text="{i18n:Translate btn_Close}" x:Name="Btn_CloseSettings" 
+                               IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SettingsClose_Clicked"/>-->
+                        <!--<xpert:XpertButton WidthRequest="150" CornerRadius="8" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>-->
+                        <xpert:XpertButton x:Name="Btn_SaveSettings"
+                                           Text="{i18n:Translate sp_btn_SaveSettings}"
+                                           BackgroundColor="#174574"
+                                           Clicked="SaveSettings_Clicked"
+                                           TextColor="White"
+                                           HorizontalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           CornerRadius="5"
+                                           WidthRequest="320"
+                                           HeightRequest="50" />
+                    </xpert:XpertStackLayout>
+                </xpert:XpertGrid>
+            </xpert:XpertStackLayout>
+        </xpert:XpertScrollView>
     </ContentPage.Content>
 </ContentPage>

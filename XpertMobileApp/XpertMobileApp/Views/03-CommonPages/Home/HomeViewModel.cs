@@ -106,6 +106,7 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
                         Title = "Livraisons",
                         Color = "#FFC000",
+                        Image = "pack_age.png",
                         CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
                         Action = Xpert.XpertActions.AcSelect
                     });
@@ -116,6 +117,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
                         Title = "Ventes comptoir",
+                        Image = "cash_register.png",
                         Color = "#FFC000",
                         CodeObjet = Xpert.XpertObjets.VTE_COMPTOIR,
                         Action = Xpert.XpertActions.AcSelect
@@ -132,6 +134,7 @@ namespace XpertMobileApp.ViewModels
                     CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
                     Title = "Ventes",
                     Color = "#BDD6EE",
+                    Image = "pos_terminal.png",
                     CodeObjet = Xpert.XpertObjets.VTE_VENTE,
                     Action = Xpert.XpertActions.AcSelect
                 });
@@ -143,6 +146,7 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
                         Title = "Tournée",
                         Color = "#d4bab8",
+                        Image = "placeholder.png",
                         Action = Xpert.XpertActions.AcSelect
                     });
                 }
@@ -151,6 +155,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
                     Title = "Sessions",
+                    Image = "user_session.png",
                     Color = "#ff6b81",
                     CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
                     Action = Xpert.XpertActions.AcSelect
@@ -160,6 +165,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
                     Title = "Encaiss / Decaiss",
+                    Image = "withdrawal.png",
                     Color = "#A8D08D",
                     CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
                     Action = Xpert.XpertActions.AcSelect
@@ -169,6 +175,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
                     Title = "Produits",
+                    Image = "product_boxes.png",
                     Color = "#B4C6E7"
                 });
 
@@ -176,6 +183,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
                     Title = "Tiers",
+                    Image = "volunteering.png",
                     Color = "#FEF2CC"
                 });
 
@@ -185,6 +193,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Import).ToString(),
                         Title = "Import Donnée",
+                        Image = "import_file.png",
                         Color = "#8fc779"
                     });
 
@@ -192,6 +201,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Export).ToString(),
                         Title = "Export Donnée",
+                        Image = "export_file.png",
                         Color = "#87CEEB"
                     });
                 }

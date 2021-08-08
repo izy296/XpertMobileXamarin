@@ -110,11 +110,11 @@ namespace XpertMobileApp
                     }
                     else
                     {
-                        if(Constants.AppName == Apps.X_BOUTIQUE)
+                        if (Constants.AppName == Apps.X_BOUTIQUE)
                         {
                             MainPage = new MainPage();
                         }
-                        else 
+                        else
                         {
                             MainPage = new LoginPage();
                         }
@@ -123,13 +123,13 @@ namespace XpertMobileApp
             }
             else
             {
-                if (Constants.AppName == Apps.XCOM_Livraison)
+                if ((Constants.AppName == Apps.XPH_Mob && System.Diagnostics.Debugger.IsAttached) || (Constants.AppName == Apps.XCOM_Livraison))
                 {
                     MainPage = new LoginPage();
-
                 }
                 else
                     MainPage = new ActivationPage(licState);
+
             }
         }
 

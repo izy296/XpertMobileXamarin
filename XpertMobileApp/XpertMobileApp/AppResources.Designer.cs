@@ -2352,5 +2352,28 @@ namespace XpertMobileApp {
                 return ResourceManager.GetString("sys_prefix_get", resourceCulture);
             }
         }
+        internal static string txt_welcome
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_welcome", resourceCulture);
+            }
+        }
+        
+        internal static string txt_slogan
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_slogan", resourceCulture);
+            }
+        }
+        
+        internal static string txt_button_start
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_button_start", resourceCulture);
+            }
+        }
     }
 }

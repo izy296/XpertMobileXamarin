@@ -208,7 +208,7 @@
     <value>Alerte</value>
   </data>
   <data name="app_speech_Hello" xml:space="preserve">
-    <value>Bonjour</value>
+    <value>Salut</value>
   </data>
   <data name="lp_Login" xml:space="preserve">
     <value>Login</value>
@@ -894,5 +894,17 @@
   </data>
   <data name="sys_prefix_get" xml:space="preserve">
     <value>Récupérer votre préfixe</value>
+  </data>
+  <data name="lbl_Configuration" xml:space="preserve">
+    <value>Configuration supplémentaire</value>
+  </data>
+  <data name="txt_button_start" xml:space="preserve">
+    <value>Commencer</value>
+  </data>
+  <data name="txt_slogan" xml:space="preserve">
+    <value>Prêt à travailler</value>
+  </data>
+  <data name="txt_welcome" xml:space="preserve">
+    <value>Bienvenue</value>
   </data>
 </root>

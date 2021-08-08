@@ -55,6 +55,7 @@ namespace XpertMobileApp.Droid
            // FirebaseApp.InitializeApp(Application.Context);
 
             LoadApplication(new App());
+            Window.SetStatusBarColor(Android.Graphics.Color.Argb(255, 11, 58, 106));
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
         // verifier les permission 

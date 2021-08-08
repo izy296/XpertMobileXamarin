@@ -7,92 +7,256 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             BackgroundColor="White"
-             FlowDirection="MatchParent"
-             >
-    <!--
+             xmlns:xpert="clr-namespace:XpertMobileApp.CustomControls"
+             BackgroundColor="#F6F4FC"
+             FlowDirection="MatchParent">
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Refresh" Text="{i18n:Translate cmd_Filter}" 
-                     Icon="refresh_w24.png" Clicked="btn_Refresh_Clicked">
+        <ToolbarItem x:Name="btn_Refresh"
+                     Icon="profileuser.png">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
 
-    #ecf0f1
-    -->
+
+
     <ContentPage.Content>
-        <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
+        <xpert:XpertStackLayout Spacing="0"
+                                Padding="0"
+                                Margin="0"
+                                BackgroundColor="Transparent">
 
             <!-- Liste des comptes -->
-            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
-                   Margin="0" IsClippedToBounds="true"
-                   BorderColor="{StaticResource NavigationPrimary}"
-                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
-                
-                <StackLayout Spacing="10" Padding="15,0,15,15" >
-                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label x:Name="lblClientName" Text="Pharmacie Ben Mohamed " FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
-                               HorizontalTextAlignment="Center" TextColor="White"/>
-                    </StackLayout>
+            <xpert:XpertPancakeView CornerRadius="0"
+                                    Padding="20,10,20,55"
+                                    Margin="0"
+                                    IsClippedToBounds="true"
+                                    BorderColor="{StaticResource NavigationPrimary}"
+                                    BackgroundColor="#0B3A6A"
+                                    HasShadow="False">
 
-                    <Label 
-                        HorizontalOptions="Center" Style="{StaticResource FAwesome-B-Solid}" 
-                        TextColor="White" FontSize="90"
-                        Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
-                        BackgroundColor="Transparent" 
-                        />
-                    
-                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label Text="Bienvenue" TextColor="White" FontAttributes="Bold" 
-                                    FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                <xpert:XpertStackLayout Spacing="10"
+                                        Padding="0,0,0,15"
+                                        Orientation="Vertical">
+                    <xpert:XpertStackLayout Orientation="Horizontal"
+                                            Padding="0"
+                                            Margin="10,0,0,0">
+                        <xpert:XpertLabel x:Name="lbl_hello"
+                                          Text="{i18n:Translate app_speech_Hello}"
+                                          FontSize="27"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          HorizontalTextAlignment="Start"
+                                          TextColor="White" />
+                        <xpert:XpertLabel Text=","
+                                          TextColor="White"
+                                          FontAttributes="Bold"
+                                          FontSize="27"
+                                          Padding="0"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          HorizontalTextAlignment="Start" />
+                        <xpert:XpertLabel x:Name="lblUser"
+                                          FontSize="27"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          HorizontalTextAlignment="Center"
+                                          TextColor="White" />
+                    </xpert:XpertStackLayout>
+                    <xpert:XpertStackLayout Orientation="Horizontal"
+                                            Padding="0"
+                                            Margin="10,0,0,0">
+                        <xpert:XpertLabel x:Name="lbl_today"
+                                          Text="{i18n:Translate txt_Today}"
+                                          TextColor="#EDFBFF"
+                                          FontAttributes="Bold"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          HorizontalTextAlignment="Start"
+                                          FontSize="Medium" />
+                        <xpert:XpertLabel Text=","
+                                          TextColor="#EDFBFF"
+                                          FontAttributes="Bold"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          HorizontalTextAlignment="Start"
+                                          FontSize="Medium" />
+                        <xpert:XpertLabel x:Name="lbl_todayDate"
+                                          TextColor="#EDFBFF"
+                                          FontAttributes="Bold"
+                                          FontFamily="{StaticResource FontDosisSemiBold}"
+                                          FontSize="Medium" />
+                    </xpert:XpertStackLayout>
 
-                        <Label x:Name="lblUser" Text="Mohamed" FontSize="Default" FontFamily="{StaticResource FontGilroyRegular}"
-                               HorizontalTextAlignment="Center" TextColor="White"/>
-                    </StackLayout>
-                </StackLayout>
-            </yummy:PancakeView>
-            
-            <syncfusion:SfListView Margin="10,-60,10,0"
-                x:Name="listView"
-                SelectionMode="None"
-                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                SelectionChanged="listView_SelectionChanged"
-                ItemsSource="{Binding Items}"
-                AutoFitMode="None"
-                SelectionBackgroundColor="AliceBlue"
-                BackgroundColor="Transparent"
-                >
-                    
-                    <syncfusion:SfListView.ItemSize>
-                        <OnIdiom x:TypeArguments="x:Double"
-                      Phone="150"
-                      Tablet="200"
-                      Desktop="200"/>
-                    </syncfusion:SfListView.ItemSize>
-                    
-                    <syncfusion:SfListView.LayoutManager>
-                        <syncfusion:GridLayout>
-                            <syncfusion:GridLayout.SpanCount>
-                                <OnIdiom x:TypeArguments="x:Int32"
-                                Phone="2"
-                                Tablet="3"
-                                Desktop="3"/>
-                            </syncfusion:GridLayout.SpanCount>
-                        </syncfusion:GridLayout>
-                    </syncfusion:SfListView.LayoutManager>
-                    
-                    <syncfusion:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <!--
+                    <xpert:XpertFrame BackgroundColor="White"
+                                      HeightRequest="150"
+                                      CornerRadius="5"
+                                      HorizontalOptions="FillAndExpand"
+                                      Padding="0">
+
+                        <xpert:XpertStackLayout Orientation="Horizontal">
+                            <xpert:XpertStackLayout Orientation="Vertical"
+                                                    BackgroundColor="White"
+                                                    HorizontalOptions="FillAndExpand">
+                                <xpert:XpertLabel x:Name="lbl_slogan"
+                                                  Text="{i18n:Translate txt_slogan}"
+                                                  Margin="10,25,0,0"
+                                                  FontSize="24"
+                                                  FontFamily="{StaticResource FontDosisSemiBold}"
+                                                  HorizontalTextAlignment="Start"
+                                                  TextColor="#174574" />
+                                <xpert:XpertButton x:Name="Btn_Start"
+                                                   Text="{i18n:Translate txt_button_start}"
+                                                   BackgroundColor="#174574"
+                                                   TextColor="White"
+                                                   FontAttributes="Bold"
+                                                   CornerRadius="5"
+                                                   HorizontalOptions="Start"
+                                                   HeightRequest="50"
+                                                   Margin="20,10,30,0"
+                                                   Padding="10,0,10,0" />
+                            </xpert:XpertStackLayout>
+                            <xpert:XpertStackLayout Orientation="Vertical"
+                                                    BackgroundColor="Red"
+                                                    Padding="0"
+                                                    Margin="0">
+                                <xpert:XpertImage Source="box.png"
+                                                  VerticalOptions="Center"
+                                                  HeightRequest="150" />
+
+                            </xpert:XpertStackLayout>
+
+                        </xpert:XpertStackLayout>
+                    </xpert:XpertFrame>
+
+                </xpert:XpertStackLayout>
+            </xpert:XpertPancakeView>
+
+            <xpert:XpertCollectionView Margin="20,-55,20,15"
+                                       x:Name="listView"
+                                       SelectionMode="None"
+                                       SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                       ItemsSource="{Binding Items}"
+                                       BackgroundColor="Transparent"
+                                       SelectionChanged="Btn_Menu_Clicked">
+                <xpert:XpertCollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </xpert:XpertCollectionView.ItemsLayout>
+                <xpert:XpertCollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--
                              {Binding Color} OutlineColor="LightGray"
                               -->
-                        <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="8"
-                                   Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
-                                <Grid Padding="0" ColumnSpacing="0" Margin="0" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height= "*" />
-                                    </Grid.RowDefinitions>
-<!--
+
+                        <xpert:XpertPancakeView CornerRadius="5"
+                                                HasShadow="True"
+                                                Margin="5"
+                                                Padding="0"
+                                                HeightRequest="100"
+                                                VerticalOptions="StartAndExpand"
+                                                HorizontalOptions="FillAndExpand"
+                                                BackgroundColor="Transparent">
+                            <xpert:XpertPancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Btn_Menu_Clicked" />
+                            </xpert:XpertPancakeView.GestureRecognizers>
+
+                            <xpert:XpertGrid HorizontalOptions="FillAndExpand"
+                                             BackgroundColor="Transparent"
+                                             ColumnSpacing="0"
+                                             Padding="0">
+                                <xpert:XpertGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="0.2*" />
+                                </xpert:XpertGrid.ColumnDefinitions>
+                                <xpert:XpertStackLayout Grid.Column="1"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        Orientation="Horizontal"
+                                                        VerticalOptions="Fill"
+                                                        Padding="0,2,2,2"
+                                                        BackgroundColor="Transparent">
+                                    <xpert:XpertFrame BackgroundColor="white"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="FillAndExpand"
+                                                      CornerRadius="5"
+                                                      Padding="0">
+                                        <xpert:XpertStackLayout HorizontalOptions="FillAndExpand"
+                                                                VerticalOptions="FillAndExpand"
+                                                                Padding="2,2,0,2"
+                                                                Orientation="Horizontal"
+                                                                BackgroundColor="Transparent">
+
+                                            <!--<Label Padding="20,0,0,0"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="FillAndExpand"
+                                                   VerticalTextAlignment="Center"
+                                                   Style="{StaticResource FAwesome-B-Solid}"
+                                                   TextColor="#174574"
+                                                   FontSize="40"
+                                                   Text="{x:Static fontawesome:FontAwesomeIcons.Cog}"
+                                                   BackgroundColor="Transparent" />-->
+                                            <xpert:XpertFrame HasShadow="False"
+                                                              Padding="28">
+                                                <xpert:XpertImage Source="{Binding Image}"
+                                                                  VerticalOptions="Center" />
+                                            </xpert:XpertFrame>
+                                            <xpert:XpertFrame BackgroundColor="Transparent"
+                                                              HorizontalOptions="FillAndExpand"
+                                                              VerticalOptions="FillAndExpand"
+                                                              CornerRadius="10"
+                                                              Padding="0">
+
+                                                <xpert:XpertLabel HorizontalOptions="Start"
+                                                                  VerticalOptions="FillAndExpand"
+                                                                  VerticalTextAlignment="Center"
+                                                                  Text="{Binding Title}"
+                                                                  FontSize="22"
+                                                                  Padding="5,0,0,0"
+                                                                  TextColor="#174574"
+                                                                  FontFamily="{StaticResource FontDosisSemiBold}" />
+                                            </xpert:XpertFrame>
+                                        </xpert:XpertStackLayout>
+
+                                        <!--<Image Source="{Binding Image}"
+                                                       HorizontalOptions="CenterAndExpand"
+                                                       VerticalOptions="CenterAndExpand" />-->
+
+                                        <!--<Grid>
+                                <Image Source="{Binding Image}" HeightRequest="60" WidthRequest="60" VerticalOptions="Center" HorizontalOptions="Center"/>
+                            </Grid>-->
+                                    </xpert:XpertFrame>
+
+                                </xpert:XpertStackLayout>
+                                <xpert:XpertBoxView Grid.Column="2"
+                                                    BackgroundColor="Transparent"
+                                                    WidthRequest="0"
+                                                    HorizontalOptions="Start"
+                                                    VerticalOptions="FillAndExpand"></xpert:XpertBoxView>
+                                <xpert:XpertStackLayout Grid.Column="3"
+                                                        Padding="2"
+                                                        BackgroundColor="Transparent"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        VerticalOptions="FillAndExpand">
+                                    <xpert:XpertFrame BackgroundColor="white"
+                                                      HorizontalOptions="FillAndExpand"
+                                                      VerticalOptions="FillAndExpand"
+                                                      CornerRadius="5"
+                                                      Padding="0">
+                                        <xpert:XpertLabel x:Name="Btn_Config"
+                                                          Padding="0"
+                                                          HorizontalOptions="FillAndExpand"
+                                                          VerticalOptions="FillAndExpand"
+                                                          HorizontalTextAlignment="Center"
+                                                          VerticalTextAlignment="Center"
+                                                          Style="{StaticResource FAwesome-B-Solid}"
+                                                          TextColor="#0590D5"
+                                                          FontSize="21"
+                                                          Text="{x:Static fontawesome:FontAwesomeIcons.list_ul}"
+                                                          BackgroundColor="Transparent" />
+                                    </xpert:XpertFrame>
+                                </xpert:XpertStackLayout>
+                            </xpert:XpertGrid>
+
+
+
+
+                            <!--
                                 <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"
                      VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
@@ -106,17 +270,17 @@
                                        FontFamily="{StaticResource FontGilroySemiBold}" 
                                        HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
 -->
-                                <Button Text="{Binding Title}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontGilroySemiBold}" FontSize="Subtitle" Clicked="Btn_Menu_Clicked" />
+                            <!--<Button Text="{Binding Title}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Color}"
+                                        FontFamily="{StaticResource FontGilroySemiBold}" FontSize="Subtitle" Clicked="Btn_Menu_Clicked" />-->
 
 
 
-                            </Grid>
-                            </yummy:PancakeView>
-                        </DataTemplate>
-                    </syncfusion:SfListView.ItemTemplate>
-                </syncfusion:SfListView>
 
-        </StackLayout>
+                        </xpert:XpertPancakeView>
+                    </DataTemplate>
+                </xpert:XpertCollectionView.ItemTemplate>
+            </xpert:XpertCollectionView>
+
+        </xpert:XpertStackLayout>
     </ContentPage.Content>
 </ContentPage>

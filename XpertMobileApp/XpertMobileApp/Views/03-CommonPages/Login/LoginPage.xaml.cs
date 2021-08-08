@@ -33,6 +33,10 @@ namespace XpertMobileApp.Views
             Init();
         }
 
+        const uint AnimationSpeed = 300;
+
+
+
         private void Init()
         {
             //  App.StatrtCheckIfInternet(Lbl_NoInternet, this);
@@ -47,11 +51,23 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            Lbl_UserName.Text = AppResources.lp_lbl_UserName;
-            Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
+            //Lbl_UserName.Text = AppResources.lp_lbl_UserName;
+            //Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
             Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
             Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
             Btn_LogIn.Text = AppResources.lp_btn_Login;
+            lbl_Welcome.Text = AppResources.txt_welcome;
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
+
+        private void SettingButton_Clicked(object sender, EventArgs e)
+        {
+            SettingsPage sp = new SettingsPage(true);
+            this.Navigation.PushModalAsync(new NavigationPage(sp));
         }
 
         async void ConnectUserAsync(object sender, EventArgs e)
@@ -250,13 +266,6 @@ namespace XpertMobileApp.Views
                 App.PrefixCodification = res.PREFIX;
             }
         }
-
-        protected void Settings_Clicked(object sender, EventArgs e)
-        {
-            SettingsPage sp = new SettingsPage(true);
-            this.Navigation.PushModalAsync(new NavigationPage(sp));
-        }
-
         private void Exit_Clicked(object sender, EventArgs e)
         {
             //System.Environment.Exit(1);

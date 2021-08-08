@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
@@ -24,13 +25,16 @@ namespace XpertMobileApp.Views
 
            // Title = AppResources.pn_home;
             lblUser.Text = App.User?.UserName;
-            lblClientName.Text = App.Settings.ClientName;
+            //lblClientName.Text = App.Settings.ClientName;
+
             BindingContext = viewModel = new HomeViewModel();
         }
 
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            DateTime now = DateTime.Now;
+            lbl_todayDate.Text = now.ToString("dd/MM/yyyy");
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
@@ -74,7 +78,7 @@ namespace XpertMobileApp.Views
         private async void Btn_Menu_Clicked(object sender, EventArgs e)
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
-            string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
+            string id = ((sender as PancakeView).BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
             if (id=="34")
             {
                 await Upload();

@@ -2,9 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:xpert="clr-namespace:XpertMobileApp.CustomControls"
              x:Class="XpertMobileApp.Views.MenuPage"
              Title="Menu">
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--Page Level Resources: Compatibile with Xamarin Live Player -->
@@ -13,43 +15,157 @@
             <Color x:Key="LightTextColor">#999999</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <StackLayout VerticalOptions="FillAndExpand">
-        <ListView x:Name="ListViewMenu"
-                  HasUnevenRows="True"        
-                  SeparatorVisibility="None"
-                  >
-            
-           <ListView.Header>
-                <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                        <ContentView Padding="0,20,0,5" VerticalOptions="FillAndExpand">
-                            <Image Source="logo_v_tl.png" VerticalOptions="Center" HeightRequest="80" />
-                        </ContentView>
-                    </StackLayout>
-                    <Label x:Name="lbl_MenuUser" Text="" TextColor="Black" FontSize="18" Margin="5,0,0,10"/>
-                </StackLayout>
-            </ListView.Header>
 
 
-            <ListView.ItemTemplate>
+    <xpert:XpertStackLayout VerticalOptions="FillAndExpand">
+        <xpert:XpertListView x:Name="ListViewMenu"
+                             HasUnevenRows="True"
+                             SeparatorVisibility="Default">
+
+            <xpert:XpertListView.Header>
+                <xpert:XpertStackLayout VerticalOptions="FillAndExpand"
+                                        HorizontalOptions="FillAndExpand"
+                                        BackgroundColor="#174574"
+                                        Padding="0"
+                                        Margin="0">
+                    <xpert:XpertGrid>
+                        <xpert:XpertStackLayout Padding="0,-15,0,-50"
+                                                Margin="0">
+                            <xpert:XpertStackLayout Padding="0"
+                                                    Margin="0">
+                                <!--<xpert:XpertImage Source="imag.jpg" Aspect="AspectFill"/>-->
+
+                                <xpert:XpertImage Source="CaptureX.png"
+                                                  Margin="0"
+                                                  Aspect="AspectFill"
+                                                  VerticalOptions="Fill"
+                                                  HeightRequest="180" />
+                            </xpert:XpertStackLayout>
+                        </xpert:XpertStackLayout>
+                        <xpert:XpertStackLayout Padding="0,0,0,-50"
+                                                Margin="0">
+                            <xpert:XpertFrame BackgroundColor="Transparent"
+                                              HorizontalOptions="FillAndExpand"
+                                              CornerRadius="50"
+                                              Margin="20,25,195,0"
+                                              HeightRequest="100"
+                                              WidthRequest="60"
+                                              Padding="0">
+                                <xpert:XpertStackLayout HorizontalOptions="Center"
+                                                        VerticalOptions="Center">
+                                    <ContentView Padding="0,0,0,0"
+                                                            VerticalOptions="FillAndExpand">
+                                        <xpert:XpertImage Source="user_circuler.png"
+                                                          HeightRequest="80"
+                                                          Aspect="AspectFit" />
+                                    </ContentView>
+                                </xpert:XpertStackLayout>
+                            </xpert:XpertFrame>
+                        </xpert:XpertStackLayout>
+                        <!--<xpert:XpertStackLayout>
+                            <ContentView Padding="0,20,0,-10"
+                                         VerticalOptions="FillAndExpand">
+                                <xpert:XpertImage Source="logo_h_tl.png"
+                                       VerticalOptions="Center"
+                                       HeightRequest="80" />
+                            </ContentView>
+                        </xpert:XpertStackLayout>
+                        <xpert:XpertStackLayout>
+                            <xpert:XpertImage Source="wallpaper.jpg"
+                                   VerticalOptions="Fill"
+                                   HeightRequest="80" />
+                        </xpert:XpertStackLayout>-->
+                    </xpert:XpertGrid>
+
+                    <xpert:XpertLabel x:Name="lbl_MenuUser"
+                                      Text=""
+                                      TextColor="White"
+                                      FontSize="20"
+                                      FontFamily="{StaticResource FontDosisSemiBold}"
+                                      Margin="35,8,0,10" />
+                </xpert:XpertStackLayout>
+            </xpert:XpertListView.Header>
+
+
+            <xpert:XpertListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Label Text="{Binding Title}" FontSize="Default" FontAttributes="Bold" 
-                                   FontFamily="{StaticResource FontGilroySemiBold}"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
+                    <xpert:XpertViewCell>
+                        <xpert:XpertGrid Padding="5,15,15,15">
+                            <xpert:XpertStackLayout Orientation="Horizontal"
+                                                    Spacing="10"
+                                                    Margin="15,0,0,0">
+                                <xpert:XpertStackLayout WidthRequest="45">
+                                    <xpert:XpertLabel Margin="0"
+                                                      VerticalOptions="CenterAndExpand"
+                                                      HorizontalOptions="CenterAndExpand"
+                                                      Style="{StaticResource FAwesome-B-Solid}"
+                                                      Text="{Binding Image}"
+                                                      FontSize="18"
+                                                      TextColor="#949498"
+                                                      BackgroundColor="Transparent" />
+                                </xpert:XpertStackLayout>
 
-        </ListView>
-        
-        <StackLayout BackgroundColor="Transparent" VerticalOptions="End" HorizontalOptions="Fill" Margin="5">
-            <Button x:Name="btn_Disconnect"   Image="gi_Logout_24.png" Text="{i18n:Translate cmd_Disconnect}" 
-                    HeightRequest="40" HorizontalOptions="Fill" 
-                    BackgroundColor="{StaticResource Accent}" 
-                    BorderRadius="5" BorderWidth="1" Clicked="btn_Disconnect_Clicked"/>
-        </StackLayout>
-    </StackLayout>
+                                <xpert:XpertStackLayout>
+                                    <xpert:XpertLabel HorizontalOptions="CenterAndExpand"
+                                                      VerticalOptions="CenterAndExpand"
+                                                      Text="{Binding Title}"
+                                                      FontSize="16"
+                                                      TextColor="#174574"
+                                                      FontFamily="{StaticResource FontDosisSemiBold}" />
+                                </xpert:XpertStackLayout>
+
+                            </xpert:XpertStackLayout>
+
+                        </xpert:XpertGrid>
+                    </xpert:XpertViewCell>
+                </DataTemplate>
+            </xpert:XpertListView.ItemTemplate>
+
+            <xpert:XpertListView.Footer>
+                <xpert:XpertStackLayout>
+                    <xpert:XpertStackLayout Orientation="Horizontal"
+                                            Spacing="10"
+                                            Margin="20,15,0,15">
+                        <xpert:XpertStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Logout_Tapped" />
+                        </xpert:XpertStackLayout.GestureRecognizers>
+                        <xpert:XpertStackLayout WidthRequest="45">
+
+                            <Label Margin="0"
+                                   VerticalOptions="CenterAndExpand"
+                                   HorizontalOptions="CenterAndExpand"
+                                   Style="{StaticResource FAwesome-B-Solid}"
+                                   Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}"
+                                   TextColor="#FF5A0D"
+                                   FontSize="18"
+                                   BackgroundColor="Transparent" />
+                        </xpert:XpertStackLayout>
+
+                        <xpert:XpertStackLayout>
+                            <xpert:XpertLabel HorizontalOptions="CenterAndExpand"
+                                              VerticalOptions="CenterAndExpand"
+                                              Text="{i18n:Translate cmd_Disconnect}"
+                                              FontSize="16"
+                                              TextColor="#174574"
+                                              FontFamily="{StaticResource FontGilroySemiBold}" />
+                        </xpert:XpertStackLayout>
+
+                    </xpert:XpertStackLayout>
+                    <xpert:XpertBoxView HeightRequest="0.5"
+                                        Color="#E0E0E0"
+                                        IsVisible="True" />
+                </xpert:XpertStackLayout>
+
+            </xpert:XpertListView.Footer>
+        </xpert:XpertListView>
+        <xpert:XpertStackLayout Margin="0,0,0,20">
+            <xpert:XpertImage Source="logo_v.png"
+                              VerticalOptions="Center"
+                              HeightRequest="60" />
+        </xpert:XpertStackLayout>
+
+
+    </xpert:XpertStackLayout>
+
+
 </ContentPage>

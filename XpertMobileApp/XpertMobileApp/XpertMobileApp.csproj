@@ -76,9 +76,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
-    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
-    <Compile Include="..\..\..\..\XpertDesktopSolution\trunk\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
+    <Compile Include="..\..\..\XpertSolutions\trunk\X-Common\Xpert.Common.BLL\Business\data\XpertEnumeration.cs" Link="Models\Imported\XpertEnumeration.cs" />
+    <Compile Include="..\..\..\XpertSolutions\trunk\X-Common\Xpert.Common.BLL\Helper\ChiffresLettres.cs" Link="Models\Imported\ChiffresLettres.cs" />
+    <Compile Include="..\..\..\XpertSolutions\trunk\X-WebApis\XpertWebApi\Models\Printer.cs" Link="Models\Imported\Printer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -130,8 +130,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
-    <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-WebApis\XpertWebApi\XpertWebApi.csproj" />
+    <ProjectReference Include="..\..\..\XpertSolutions\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -196,6 +195,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="BaseView\XBasePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\02-BaseElements\SettingPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\07-XBoutiques\Commandes\StylesCT.xaml">

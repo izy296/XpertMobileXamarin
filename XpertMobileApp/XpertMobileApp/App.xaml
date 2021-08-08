@@ -27,10 +27,77 @@
             <On Platform="iOS" Value="Gilroy-SemiBold" />
             <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
           </OnPlatform>
-          
-          
-          
-          <!-- Font awesomone -->
+
+            <!-- Font Dosis -->
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontDosisLight">
+                <On Platform="Android"
+                    Value="dosis-light.ttf#DosisLight" />
+                <On Platform="iOS"
+                    Value="dosis-light" />
+                <On Platform="UWP"
+                    Value="/Assets/dosis-light.ttf#Font Gilroy Light" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontDosisMedium">
+                <On Platform="Android"
+                    Value="dosis-medium.ttf#DosisMedium" />
+                <On Platform="iOS"
+                    Value="dosis-medium" />
+                <On Platform="UWP"
+                    Value="/Assets/dosis-medium.ttf#Font Dosis Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontDosisRegular">
+                <On Platform="Android"
+                    Value="dosis-book.ttf#DosisRegular" />
+                <On Platform="iOS"
+                    Value="dosis-book" />
+                <On Platform="UWP"
+                    Value="/Assets/dosis-book.ttf#Font Dosis Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontDosisSemiBold">
+                <On Platform="Android"
+                    Value="dosis-semibold.ttf#DosisSemiBold" />
+                <On Platform="iOS"
+                    Value="dosis-semibold" />
+                <On Platform="UWP"
+                    Value="/Assets/dosis-semibold.ttf#Font DosisSemiBold" />
+            </OnPlatform>
+
+            <!-- Font Monterrat -->
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontMontserratMedium">
+                <On Platform="Android"
+                    Value="Montserrat-Medium.ttf#MontserratMedium" />
+                <On Platform="iOS"
+                    Value="Montserrat-Medium" />
+                <On Platform="UWP"
+                    Value="/Assets/Montserrat-Medium.ttf#Font Montserrat Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontMontserratRegular">
+                <On Platform="Android"
+                    Value="Montserrat-Regular.ttf#MontserratRegular" />
+                <On Platform="iOS"
+                    Value="Montserrat-Regular" />
+                <On Platform="UWP"
+                    Value="/Assets/Montserrat-Regular.ttf#Font Montserrat Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String"
+                        x:Key="FontMontserratSemiBold">
+                <On Platform="Android"
+                    Value="Montserrat-SemiBold.ttf#MontserratSemiBold" />
+                <On Platform="iOS"
+                    Value="Montserrat-SemiBold" />
+                <On Platform="UWP"
+                    Value="/Assets/Montserrat-SemiBold.ttf#Font Montserrat SemiBold" />
+            </OnPlatform>
+
+
+
+            <!-- Font awesomone -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
                 <On Platform="Android" Value="FABrandsRegular400.otf#Regular" />
                 <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
@@ -80,7 +147,8 @@
             <!--#2196F3-->
             
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarBackgroundColor"
+                        Value="#0B3A6A" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
 

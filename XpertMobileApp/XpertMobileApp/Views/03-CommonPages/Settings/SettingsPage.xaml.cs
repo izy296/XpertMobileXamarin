@@ -46,6 +46,11 @@ namespace XpertMobileApp.Views
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
         }
 
+        void Handle_StopInClicked(object sender, EventArgs e)
+        {
+            LanguagesPicker.Focus();
+        }
+
         protected override async void OnAppearing()
         {
             base.OnAppearing();
@@ -86,13 +91,14 @@ namespace XpertMobileApp.Views
             App.SetAppLanguage(language.ShortName);
 
             lbl_LanguageSelector.Text = AppResources.sp_lbl_SelectLanguage;
-            lbl_ServiceName.Text      = AppResources.sp_lbl_ServiceName;
-            Btn_CloseSettings.Text    = AppResources.btn_Close;
+            //lbl_ServiceName.Text      = AppResources.sp_lbl_ServiceName;
+            //Btn_CloseSettings.Text    = AppResources.btn_Close;
             Btn_SaveSettings.Text     = AppResources.sp_btn_SaveSettings;
-            Btn_TestCnx.Text          = AppResources.sp_btn_TestConnection;
+            //Btn_TestCnx.Text          = AppResources.sp_btn_TestConnection;
             lbl_ConnexionInfos.Text   = AppResources.sp_lbl_ConnexionInfos;
             Btn_RemoveLicence.Text    = AppResources.sp_btn_RemoveLicence;
             lbl_LicenceInfos.Text     = AppResources.sp_lbl_LicenceInfos;
+            lbl_Settings.Text = AppResources.btn_Filter_RFID_Text;
         }
 
         protected override async void OnDisappearing()
@@ -100,12 +106,12 @@ namespace XpertMobileApp.Views
             base.OnDisappearing();
 
             if (viewModel.Settings.isModified)
-            { 
+            {
                 var action = await DisplayAlert(AppResources.alrt_msg_title_Settings, AppResources.alrt_msg_SaveSettings,
                     AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
                 if (action)
                 {
-                    viewModel.SaveSettings();
+                    await viewModel.SaveSettings();
                 }
             }
         }
