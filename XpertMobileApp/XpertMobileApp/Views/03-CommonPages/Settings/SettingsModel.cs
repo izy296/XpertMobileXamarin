@@ -45,6 +45,16 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        public bool IsNotConnected
+        {
+            get
+            {
+                return App.User == null;
+            }
+        }
+
+
+
         public bool IsAdminUser
         {
             get

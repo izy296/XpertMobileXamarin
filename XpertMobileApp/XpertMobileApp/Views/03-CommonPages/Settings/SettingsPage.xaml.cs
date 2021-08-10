@@ -77,6 +77,7 @@ namespace XpertMobileApp.Views
             if(viewModel.IsConnected) 
             {
                 await viewModel.BindDeviceList();
+                lbl_Settings.IsVisible = false;
 
                 await viewModel.LoadMagasins();
             }
@@ -87,7 +88,7 @@ namespace XpertMobileApp.Views
         private void LanguagesPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var language = viewModel.Languages[LanguagesPicker.SelectedIndex];
-
+            
             App.SetAppLanguage(language.ShortName);
 
             lbl_LanguageSelector.Text = AppResources.sp_lbl_SelectLanguage;
@@ -116,7 +117,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        protected void SettingsClose_Clicked(object sender, EventArgs e)
+        protected void BackButton_Clicked(object sender, EventArgs e)
         {
             this.Navigation.PopModalAsync(true);
         }

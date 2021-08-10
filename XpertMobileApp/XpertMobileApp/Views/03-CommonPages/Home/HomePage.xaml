@@ -12,9 +12,9 @@
              FlowDirection="MatchParent">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Refresh"
+        <!--<ToolbarItem x:Name="btn_Refresh"
                      Icon="profileuser.png">
-        </ToolbarItem>
+        </ToolbarItem>-->
     </ContentPage.ToolbarItems>
 
 

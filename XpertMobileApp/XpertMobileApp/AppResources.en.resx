@@ -562,7 +562,7 @@
     <value>Delete</value>
   </data>
   <data name="btn_Filter_RFID_Text" xml:space="preserve">
-    <value>Config</value>
+    <value>Settings</value>
   </data>
   <data name="btn_scanCodeBarre" xml:space="preserve">
     <value>Scan Bar Code</value>

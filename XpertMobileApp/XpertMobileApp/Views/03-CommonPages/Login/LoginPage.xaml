@@ -72,11 +72,12 @@
                     <xpert:XpertStackLayout>
                         <xpert:XpertStackLayout HorizontalOptions="CenterAndExpand"
                                                 Margin="0,35,0,0">
-                            <xpert:XpertLabel     x:Name="lbl_Welcome"
-                                                  Text="{i18n:Translate txt_welcome}"
+                            <xpert:XpertLabel     x:Name="lbl_AppName"
                                                   TextColor="#174574"
                                                   FontSize="30"
-                                                  FontAttributes="Bold"></xpert:XpertLabel>
+                                                  FontAttributes="Bold">
+                            
+                            </xpert:XpertLabel>
                         </xpert:XpertStackLayout>
                         <xpert:XpertStackLayout>
                             <xpert:XpertStackLayout Margin="0,55,0,0">

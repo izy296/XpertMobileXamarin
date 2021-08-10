@@ -5,7 +5,8 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Class="XpertMobileApp.Views.SettingsPage"
              xmlns:xpert="clr-namespace:XpertMobileApp.CustomControls"
-             NavigationPage.HasNavigationBar="False">
+             Title="{i18n:Translate btn_Filter_RFID_Text}"
+             NavigationPage.HasNavigationBar="{Binding IsConnected}">
     <ContentPage.Content>
         <xpert:XpertScrollView Orientation="Vertical">
             <xpert:XpertStackLayout Orientation="Vertical"
@@ -21,22 +22,23 @@
                 </xpert:XpertStackLayout>
                 <xpert:XpertStackLayout Margin="20,20,20,0"
                                         Orientation="Horizontal"
-                                        HorizontalOptions="FillAndExpand">
+                                        HorizontalOptions="FillAndExpand"
+                                        IsVisible="{Binding IsNotConnected}">
                     <!--Affichage de l'alerte en cas de deconnexion -->
                     <xpert:XpertStackLayout HorizontalOptions="Fill"
                                             VerticalOptions="Center">
                         <xpert:XpertButton HorizontalOptions="Start"
                                            VerticalOptions="Center"
+                                           IsVisible="{Binding IsNotConnected}"
                                            Margin="0"
                                            WidthRequest="50"
                                            HeightRequest="50"
                                            Style="{StaticResource FAwesome-B-Solid}"
                                            x:Name="Btn_CloseSettings"
-                                           IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}"
                                            TextColor="#174574"
                                            BackgroundColor="Transparent"
                                            FontSize="30"
-                                           Clicked="SettingsClose_Clicked"
+                                           Clicked="BackButton_Clicked"
                                            Text="{x:Static fontawesome:FontAwesomeIcons.chevron_left}" />
                     </xpert:XpertStackLayout>
                     <xpert:XpertStackLayout Orientation="Horizontal"
@@ -45,6 +47,7 @@
                             <xpert:XpertLabel x:Name="lbl_Settings"
                                               Text="{i18n:Translate btn_Filter_RFID_Text}"
                                               FontSize="28"
+                                              IsVisible="{Binding isNotConnected}"
                                               HorizontalOptions="End"
                                               TextColor="#174574" />
                         </xpert:XpertStackLayout>
@@ -163,16 +166,17 @@
                                                    TextColor="white"
                                                    Text="{x:Static fontawesome:FontAwesomeIcons.link}"
                                                    BackgroundColor="#3DB39E" />
-
                             </xpert:XpertStackLayout>
+                            <!--<xpert:XpertBoxView Margin="40,30,40,0"
+                                                BackgroundColor="#DFDFDF"
+                                                HeightRequest="2"
+                                                CornerRadius="3" />-->
                         </xpert:XpertStackLayout>
+                        
 
                     </xpert:XpertFrame>
 
-                    <xpert:XpertBoxView Margin="40,10,40,0"
-                                        BackgroundColor="#DFDFDF"
-                                        HeightRequest="2"
-                                        CornerRadius="3" />
+                    
                     <!--<xpert:XpertStackLayout>
                         <xpert:XpertLabel x:Name="lblAddConfiguaration"
                             Text="{i18n:Translate lbl_Configuration}"

@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -56,7 +57,27 @@ namespace XpertMobileApp.Views
             Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
             Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
             Btn_LogIn.Text = AppResources.lp_btn_Login;
-            lbl_Welcome.Text = AppResources.txt_welcome;
+            //lbl_Welcome.Text = AppResources.txt_welcome;
+            if (Constants.AppName == Apps.XCOM_Mob)
+            {
+                lbl_AppName.Text = "XpertCom";
+            }
+            else if (Constants.AppName == Apps.XAGRI_Mob)
+            {
+                lbl_AppName.Text = "XpertAgriculture";
+            }
+            else if (Constants.AppName == Apps.X_BOUTIQUE)
+            {
+                lbl_AppName.Text = "XpertBoutique";
+            }
+            else if (Constants.AppName == Apps.XCOM_Livraison)
+            {
+                lbl_AppName.Text = "XpertLivraison";
+            }
+            else if (Constants.AppName == Apps.XPH_Mob)
+            {
+                lbl_AppName.Text = "XpertPharm";
+            }
         }
 
         protected override void OnDisappearing()
@@ -64,10 +85,21 @@ namespace XpertMobileApp.Views
             base.OnDisappearing();
         }
 
-        private void SettingButton_Clicked(object sender, EventArgs e)
+        
+
+
+        private async void SettingButton_Clicked(object sender, EventArgs e)
         {
-            SettingsPage sp = new SettingsPage(true);
-            this.Navigation.PushModalAsync(new NavigationPage(sp));
+            SettingsPage settingsPage = new SettingsPage(true);
+            await Navigation.PushModalAsync(new NavigationPage(settingsPage));
+
+            Btn_Config.Clicked += async delegate
+            {
+                this.IsEnabled = false;
+                await Task.Yield();
+                await Task.Delay(500);
+                this.IsEnabled = true;
+            };
         }
 
         async void ConnectUserAsync(object sender, EventArgs e)
