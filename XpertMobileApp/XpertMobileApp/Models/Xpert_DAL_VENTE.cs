@@ -306,7 +306,7 @@ namespace XpertMobileApp.DAL
         public decimal MT_ACHAT { get; set; } // money(19,4)
         public string NUM_SERIE { get; set; } // varchar(500) - numero de serie 
         public string ID_ARRIVAGE_INSTANCE { get; set; }
-        public bool PSYCHOTHROPE { get; set; }
+        public short PSYCHOTHROPE { get; set; }
         // CVM
         public decimal TARIF_CVM { get; set; } // money(19,4)
 
