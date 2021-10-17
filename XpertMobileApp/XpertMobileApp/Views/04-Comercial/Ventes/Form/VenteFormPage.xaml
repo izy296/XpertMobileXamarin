@@ -18,7 +18,7 @@
 
         <ToolbarItem Icon="list_w24.png" ClassId="Select" Clicked="RowSelect_Clicked" />
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
-        <ToolbarItem Icon="deplacer.png" ClassId="Scan" Clicked="RetourProduct_Clicked" />
+        <ToolbarItem Icon="logout.png" ClassId="Scan"   Clicked="RetourProduct_Clicked" />
 
         <!--
         <ToolbarItem Text="Impr" Icon="Selection_32.png" Clicked="AchImpr_Clicked" />
