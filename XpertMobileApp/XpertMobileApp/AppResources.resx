@@ -895,4 +895,7 @@
   <data name="sys_prefix_get" xml:space="preserve">
     <value>Récupérer votre préfixe</value>
   </data>
+  <data name="txt_agri_PrixLast" xml:space="preserve">
+    <value>Dernier Prix :</value>
+  </data>
 </root>

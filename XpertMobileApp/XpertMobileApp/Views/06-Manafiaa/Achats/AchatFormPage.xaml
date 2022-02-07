@@ -21,7 +21,7 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            
+
             <!-- Header -->
             <Frame x:Name="pnl_Header" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
                 <Grid  BackgroundColor="White" >
@@ -58,13 +58,13 @@
                             TextColor="Black" FontSize="Medium"
                             Date="{Binding Item.DATE_DOC, Mode=TwoWay}"
                             Margin="3"/>
-                   
+
                     <Label  Grid.Column="0" Grid.Row="2" Text="{i18n:Translate pn_Tiers}" FontSize="Medium" Margin="5" />
                     <StackLayout  Grid.Column="1" Grid.Row="2" Orientation="Horizontal" >
 
                         <Entry x:Name="ent_SelectedTiers" Text="{Binding Item.TIERS_NomC, Mode=TwoWay}" 
                                TextColor="Black" IsEnabled="False"  HorizontalOptions="FillAndExpand" />
-                        
+
                         <Button x:Name="btn_TeirsSearch" Margin="0" 
                         WidthRequest="50" HeightRequest="50" TextColor="{StaticResource Accent}" BackgroundColor="White" 
                         HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
@@ -138,77 +138,78 @@
             </StackLayout>
             <!--#fcfdff-->
 
-                <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="False"  OutlineColor="Transparent" VerticalOptions="FillAndExpand">
-                    <syncfusion:SfListView x:Name="ItemsListView" 
+            <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="False"  OutlineColor="Transparent" VerticalOptions="FillAndExpand">
+                <syncfusion:SfListView x:Name="ItemsListView" 
                             ItemsSource="{Binding ItemRows}" 
                             SelectionBackgroundColor="Transparent"
                             SelectionMode="None"
                             BackgroundColor="Transparent"
                             ItemSize="250"
                             AutoFitMode="Height">
-                        <syncfusion:SfListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame CornerRadius="5" Padding="5" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"  OutlineColor="LightGray"
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="5" Padding="5" Margin="5,5,5,0" BackgroundColor="White" HasShadow="True"  OutlineColor="LightGray"
                                           IsVisible="true" >
-                                        <Grid Margin="0" Padding="0">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="{OnIdiom Default=0.4*,  Phone=0.8* }" />
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
+                                    <Grid Margin="0" Padding="0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="{OnIdiom Default=0.4*,  Phone=0.8* }" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="50"/>
-                                            </Grid.RowDefinitions>
-                                            <!-- Image -->
-                                            <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill" 
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="50"/>
+                                        </Grid.RowDefinitions>
+                                        <!-- Image -->
+                                        <Grid Grid.Column="0" Grid.Row="0" HorizontalOptions="Fill" 
                                                           VerticalOptions="Fill" Padding="0" Margin="0"
                                                           HeightRequest="{OnIdiom Default=160,  Phone=100 }">
 
-                                                <ffimageloading:CachedImage 
+                                            <ffimageloading:CachedImage 
                                                              Aspect="AspectFill" HorizontalOptions="Center" 
                                                              BackgroundColor="Transparent" VerticalOptions="Center"
 			                                                 DownsampleToViewSize="False"                                            
 			                                                 Source = "{Binding IMAGE_URL}"
                                                              CacheType="Memory">
-                                                </ffimageloading:CachedImage>
+                                            </ffimageloading:CachedImage>
 
-                                                <StackLayout Opacity="0.8" IsVisible="False">
-                                                    <Image Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
-                                                </StackLayout>
-                                            </Grid>
+                                            <StackLayout Opacity="0.8" IsVisible="False">
+                                                <Image Source="new_128.png"  HeightRequest="50" HorizontalOptions="End" VerticalOptions="Start"/>
+                                            </StackLayout>
+                                        </Grid>
 
-                                            <!-- Infos -->
-                                            <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
-                                                <StackLayout>
-                                                    <!-- Designation -->
-                                                    <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5"
+                                        <!-- Infos -->
+                                        <Grid Grid.Column="1" Grid.Row="0" Padding="0" Margin="0">
+                                            <StackLayout>
+                                                <!-- Designation -->
+                                                <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5"
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontAttributes="Bold" FontSize="Default"/>
 
-                                                    <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="90" />
-                                                            <ColumnDefinition Width="*" />
-                                                            <ColumnDefinition Width="25"/>
-                                                        </Grid.ColumnDefinitions>
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="35" />
-                                                            <RowDefinition Height="35" />
-                                                            <RowDefinition Height="35" />
-                                                            <RowDefinition Height="35" />
-                                                            <RowDefinition Height="35" />
-                                                        </Grid.RowDefinitions>
+                                                <Grid Padding="0" ColumnSpacing="0" Margin="0" RowSpacing="0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="90" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="25"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="35" />
+                                                        <RowDefinition Height="35" />
+                                                    </Grid.RowDefinitions>
 
-                                                        <!-- Pesée brute -->
-                                                        <Label Grid.Column="0" Grid.Row="0" 
+                                                    <!-- Pesée brute -->
+                                                    <Label Grid.Column="0" Grid.Row="0" 
                                                                Text="{i18n:Translate txt_agri_QBrute}" FontSize="Default" HorizontalOptions="Start"/>
-                                                        <Label Grid.Column="1" Grid.Row="0"
+                                                    <Label Grid.Column="1" Grid.Row="0"
                                                             Text="{ Binding QTE_BRUTE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start"/>
-                                                        
-                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0"
+
+                                                    <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="0"
                                                          Minimum="0" FontSize="12" Margin="0,-10,0,0"  VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding QTE_BRUTE}"
@@ -216,41 +217,41 @@
                                                          IsEnabled="{Binding ., Converter={StaticResource enablePeseeBruteConverter}}"                           
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"
                                                          ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pb_{0}'}"/>
-                                                         
-                                                        <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                        <!-- Déchets -->
-                                                        <Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1"  
+                                                    <!-- Déchets -->
+                                                    <Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
+
+                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1"  
                                                          Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" 
                                                          ValueChanged="ne_tauxDechetsChanged"
                                                          IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                         />
-                                                        <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                        <!-- Qte déchets -->
-                                                        <Label Grid.Column="0" Grid.Row="2" 
+                                                    <!-- Qte déchets -->
+                                                    <Label Grid.Column="0" Grid.Row="2" 
                                                                Text="{i18n:Translate txt_agri_QDechet}"  FontSize="Default" HorizontalOptions="Start"/>
-                                                        <Label Grid.Column="1" Grid.Row="2"
+                                                    <Label Grid.Column="1" Grid.Row="2"
                                                             Text="{ Binding QUANTITE_DECHETS, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
-                                                        <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                        <!-- Pesée net -->
-                                                        <Label Grid.Column="0" Grid.Row="3" 
+                                                    <!-- Pesée net -->
+                                                    <Label Grid.Column="0" Grid.Row="3" 
                                                                Text="{i18n:Translate txt_agri_QNet}"  FontSize="Default" HorizontalOptions="Start"/>
-                                                        <!--
+                                                    <!--
                                                         <Label Grid.Column="1" Grid.Row="3"
                                                             Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" HorizontalOptions="Start" />
                                                         -->
 
-                                                        <Label Grid.Column="1" Grid.Row="3"
+                                                    <Label Grid.Column="1" Grid.Row="3"
                                                             Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start" VerticalOptions="Start"/>
 
-                                                        <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" 
+                                                    <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" 
                                                          Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pn_{0}'}"
@@ -258,12 +259,12 @@
                                                          ValueChanged="ne_QteNetChanged"
                                                          IsEnabled="{Binding ., Converter={StaticResource enablePeseeNetConverter}}"   
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
-                                                        
-                                                        <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
-                                                        
-                                                        <!-- Prix -->
-                                                        <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
-                                                        <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
+
+                                                    <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
+
+                                                    <!-- Prix -->
+                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
                                                              Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
@@ -271,61 +272,74 @@
                                                              IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
                                                               ValueChanged="ne_PeseeTTCChanged"
                                                              />
-                                                        <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
-                                                    </Grid>
+                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                </StackLayout>
-                                            </Grid>
+                                                    <!-- Dernier Prix d'Achat fournisseur -->
+                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="5" Text="{i18n:Translate txt_agri_PrixLast}" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="5" 
+                                                             Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
+                                                             ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
+                                                             SelectAllOnFocus="True" Value="{Binding LAST_PRIX_ACHAT, Mode=TwoWay}" 
+                                                             IsVisible="{Binding IS_ACHAT}"                     
+                                                             IsEnabled="False"
+                                                              ValueChanged="ne_PeseeTTCChanged"
+                                                             />
+                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="5" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
 
-                                            <!-- Total -->
-                                            <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="0" 
+                                                </Grid>
+
+                                            </StackLayout>
+                                        </Grid>
+
+                                        <!-- Total -->
+                                        <Grid Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Padding="0" 
                                                   ColumnSpacing="0" Margin="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="50" />
-                                                    <ColumnDefinition Width="50" />
-                                                    <ColumnDefinition Width="60" />
-                                                    <ColumnDefinition Width="60" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="50" />
+                                                <ColumnDefinition Width="60" />
+                                                <ColumnDefinition Width="60" />                                                
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Button x:Name="Btn_Delete" Margin="0" Grid.Column="0"
                                                             WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Red"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.TrashAlt}" BackgroundColor="White"
                                                             IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                             Clicked="Btn_Delete_Clicked" VerticalOptions="Center"/>
 
-                                                <Button x:Name="Btn_SelectCaiss" Margin="0" Grid.Column="1"
+                                            <Button x:Name="Btn_SelectCaiss" Margin="0" Grid.Column="1"
                                                             WidthRequest="50" HeightRequest="50" ClassId="{Binding CODE_PRODUIT}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.Cube}" BackgroundColor="White" 
                                                             IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                             Clicked="Btn_SelectCaiss_Clicked" VerticalOptions="Center"/>
 
-                                                <Label Grid.Column="2" Text="{ Binding Diff_Poids_Caisses, StringFormat=' Caisses : ({0} kg)'}" 
+                                            <Label Grid.Column="2" Text="{ Binding Diff_Poids_Caisses, StringFormat=' Caisses : ({0} kg)'}" 
                                                                HorizontalOptions="Start" VerticalOptions="Start" FontSize="11"
                                                                HorizontalTextAlignment="Start"  TextColor="Chocolate"/>
 
-                                                <Button  Grid.Column="3" x:Name="Btn_SelectExtraUser" Margin="0"
+                                            <Button  Grid.Column="3" x:Name="Btn_SelectExtraUser" Margin="0"
                                                             WidthRequest="60" HeightRequest="50" ClassId="{Binding CODE_DOC_DETAIL}"
                                                             IsVisible="{Binding IS_ACHAT, Converter={StaticResource inverseBoolVisibilityConverter}}"
                                                             HorizontalOptions="Start" Style="{StaticResource FAwesome-B-Solid}" TextColor="Green"
                                                             Text="{x:Static fontawesome:FontAwesomeIcons.users}" BackgroundColor="White" 
                                                             Clicked="Btn_SelectExtraUser_Clicked" VerticalOptions="Center"/>
 
-                                                <Label Grid.Column="4" IsVisible="{Binding IS_ACHAT}" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
+                                            <Label Grid.Column="4" IsVisible="{Binding IS_ACHAT}" Text="{ Binding MT_TTC, StringFormat='T : {0:N2} DA'}" 
                                                                FontSize="Default" HorizontalOptions="EndAndExpand" 
                                                                HorizontalTextAlignment="End" VerticalOptions="Center" TextColor="Chocolate"/>
-                                            </Grid>
                                         </Grid>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </syncfusion:SfListView.ItemTemplate>
-                    </syncfusion:SfListView>
-                </Frame>
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+            </Frame>
 
 
             <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
@@ -333,7 +347,7 @@
                            Text="{ Binding Item.TOTAL_TTC, Mode=TwoWay, StringFormat='Total : {0:N2} DA'}" 
                            IsVisible="{Binding Item.IS_ACHAT}"
                            HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />
-                
+
                 <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal">
                     <flex:FlexButton
                     x:Name="cmd_Buy"
@@ -381,7 +395,7 @@
                     />
                 </StackLayout>
             </StackLayout>
-                    
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>    

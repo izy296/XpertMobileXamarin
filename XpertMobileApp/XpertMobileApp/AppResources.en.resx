@@ -699,4 +699,7 @@
   <data name="sys_prefix_get" xml:space="preserve">
     <value>Get your prefix</value>
   </data>
+  <data name="txt_agri_PrixLast" xml:space="preserve">
+    <value>Last Price :</value>
+  </data>
 </root>

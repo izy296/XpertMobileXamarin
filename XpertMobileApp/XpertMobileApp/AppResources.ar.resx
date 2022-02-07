@@ -799,4 +799,7 @@
   <data name="sys_prefix_get" xml:space="preserve">
     <value>احصل على البادئة الخاصة بك</value>
   </data>
+  <data name="txt_agri_PrixLast" xml:space="preserve">
+    <value>أخر سعر :</value>
+  </data>
 </root>

@@ -510,6 +510,7 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("QUANTITE");
             }
         }
+        public decimal LAST_PRIX_ACHAT { get; set; }
     }
 
     public partial class BSE_TABLE
