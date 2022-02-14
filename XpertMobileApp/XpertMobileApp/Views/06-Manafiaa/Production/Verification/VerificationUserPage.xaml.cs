@@ -156,6 +156,7 @@ namespace XpertMobileApp.Views
 
             string codeDocRecept = viewModel.ProductionInfos.CODE_DOC_RECEPTION;
             string codeDocDetail = viewModel.ProductionInfos.CODE_DOC_DETAIL;
+            string CodeProduction = viewModel.ProductionInfos.CODE_DOC;
             
             if (IsBusy)
                 return;
@@ -166,7 +167,7 @@ namespace XpertMobileApp.Views
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
-                result = await WebServiceClient.LivrerProduction(codeDocRecept, codeDocDetail);
+                result = await WebServiceClient.LivrerProduction(codeDocRecept, codeDocDetail, CodeProduction);
 
                 if (result)
                 {
