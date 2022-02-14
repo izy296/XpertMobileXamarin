@@ -15,9 +15,9 @@ using XpertWebApi.Models;
 
 namespace XpertMobileApp.Views.Encaissement
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VenteDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class VenteDetailPage : ContentPage
+    {
         ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_JOURNAL_DETAIL> viewModel;
 
         private View_VTE_VENTE item;
@@ -84,10 +84,7 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     foreach (var itemC in itemsC)
                     {
-                        if (itemC.PSYCHOTHROPE)
-                        {
-                            InfosPsyco.IsVisible = true;
-                        }
+                        InfosPsyco.IsVisible = false;
                         viewModel.ItemRows.Add(itemC);
                         AddItemPrinterDetails(itemC);
                     }
@@ -96,10 +93,7 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     foreach (var itemC in itemsFromOffline)
                     {
-                        if (itemC.PSYCHOTHROPE)
-                        {
-                            InfosPsyco.IsVisible = true;
-                        }
+                        InfosPsyco.IsVisible = false;
                         viewModel.ItemRows.Add(new View_VTE_JOURNAL_DETAIL
                         {
                             DESIGNATION = itemC.DESIGNATION_PRODUIT,
@@ -110,7 +104,7 @@ namespace XpertMobileApp.Views.Encaissement
                         AddItemPrinterDetails(itemC);
                     }
                 }
-               
+
 
                 UserDialogs.Instance.HideLoading();
             }
@@ -164,7 +158,7 @@ namespace XpertMobileApp.Views.Encaissement
                 PrinterHelper.PrintBL(vente);
             }
         }
-    
+
         private void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;
