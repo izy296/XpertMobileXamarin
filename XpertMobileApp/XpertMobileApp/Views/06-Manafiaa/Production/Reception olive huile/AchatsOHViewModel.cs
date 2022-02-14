@@ -116,7 +116,11 @@ namespace XpertMobileApp.ViewModels
                     NAME = "Clôturée",
                 });
             }
-
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "22",
+                NAME = "Livré",
+            });
         }
 
         protected override string ContoleurName
