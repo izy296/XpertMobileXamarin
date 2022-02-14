@@ -270,7 +270,6 @@
                                                             HorizontalOptions="EndAndExpand"
                                                             Text="Livrer" FontSize="Small" 
                                                             Margin="2" Style="{StaticResource DefaultBtnStyle}" 
-                                                            IsVisible="{Binding Delevred, Mode=TwoWay}"
                                                             Clicked="btn_Livrer_Clicked"></Button>
 
                                                 </StackLayout>

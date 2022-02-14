@@ -36,6 +36,7 @@ namespace XpertMobileApp.Views
         public ProductionFormPage(View_PRD_AGRICULTURE vente, string typeDoc, string motif)
         {
             InitializeComponent();
+                                                           /// < !--IsVisible = "{Binding Delevred, Mode=TwoWay}"-- >
 
             // NavigationPage.SetHasNavigationBar(this, false);
 
@@ -896,6 +897,7 @@ namespace XpertMobileApp.Views
 
             string codeDocRecept = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_RECEPTION;
             string codeDocDetail = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC_DETAIL;
+            string CodeProduction = (btn.BindingContext as View_PRD_AGRICULTURE_DETAIL).CODE_DOC;
 
             if (IsBusy)
                 return;
@@ -906,7 +908,7 @@ namespace XpertMobileApp.Views
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
-                result = await WebServiceClient.LivrerProduction(codeDocRecept, codeDocDetail);
+                result = await WebServiceClient.LivrerProduction(codeDocRecept, codeDocDetail, CodeProduction);
 
                 if (result)
                 {
