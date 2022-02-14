@@ -78,7 +78,6 @@ namespace XpertMobileApp.Models
         public string CODE_CNAS { get; set; } // varchar(11)
         public decimal TARIF { get; set; } // money(19,4)
         public bool AUTORISER_VENTE { get; set; } // bit
-        public bool PSYCHOTHROPE { get; set; } // tinyint(3)
         public string DESIGN_EMPLACEMENT { get; set; } // varchar(100)
         public string CODE_LABO { get; set; } // smallint(5)
         public string DESIGN_FORME { get; set; } // varchar(150)

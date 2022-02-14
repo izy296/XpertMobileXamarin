@@ -444,7 +444,6 @@ namespace XpertMobileApp.DAL
         public string CODE_FAMILLE_TIERS { get; set; }
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public decimal MT_ACHAT { get; set; }
-        public bool PSYCHOTHROPE { get; set; } // tinyint(3)
 
         public bool IS_ACHAT
         {
@@ -555,7 +554,6 @@ namespace XpertMobileApp.DAL
         public string DESCRIPTION { get; set; } // varchar(2000)
         public decimal MARGE { get; set; } // money(19,4)
         public string SPECIALITE { get; set; } // varchar(350)
-        public bool PSYCHOTHROPE { get; set; } // tinyint(3)
         public bool ACTIF { get; set; } // tinyint(3)
         public string CODE_CASNOS { get; set; } // nvarchar(13)
         public string CODE_BARRE { get; set; } // nvarchar(250)
@@ -765,6 +763,7 @@ namespace XpertMobileApp.DAL
         public static string PrdEnAttente { get { return "30"; } }
         public static string PrdEnCours { get { return "31"; } }
         public static string PrdTermine { get { return "32"; } }
+        public static string Livre { get { return "33"; } }
     }
 
     public partial class BSE_DOCUMENT_STATUS

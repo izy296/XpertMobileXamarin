@@ -119,7 +119,6 @@ namespace XpertMobileApp.DAL
         public string NOTE_VENTE { get; set; } // nvarchar(-1)
         public string CODE_MOTIF { get; set; }
         public string CODE_BARRE { get; set; }
-        public string N_ORDRE_PSYCHO { get; set; }
     }
 
     public partial class View_VTE_VENTE : VTE_VENTE
@@ -306,10 +305,6 @@ namespace XpertMobileApp.DAL
         public decimal MT_ACHAT { get; set; } // money(19,4)
         public string NUM_SERIE { get; set; } // varchar(500) - numero de serie 
         public string ID_ARRIVAGE_INSTANCE { get; set; }
-        public short PSYCHOTHROPE { get; set; }
-        // CVM
-        public decimal TARIF_CVM { get; set; } // money(19,4)
-
         // Binding
         private decimal qUANTITE;
         public decimal QUANTITE
@@ -388,9 +383,6 @@ namespace XpertMobileApp.DAL
         // pour que le detail facture chifa indique esque la ligne destocké ou  non 
         // elle a la valeur inverse de la valeur ignoree destockage dans la fenaitre improtation chifa
         public bool DESTOCKER { get; set; }
-        public string DESIGNATION_CVM { get; set; }
-        public string CODE_MEDIC { get; set; }
-        public string N_ORDRE_PSYCHO_ENTET { get; set; }
         public DateTime? DATE_SOINS { get; set; }
         public string CODE_MEDECIN { get; set; }
 
