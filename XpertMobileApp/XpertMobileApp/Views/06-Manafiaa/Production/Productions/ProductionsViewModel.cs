@@ -108,6 +108,11 @@ namespace XpertMobileApp.ViewModels
                 CODE_STATUS = "32",
                 NAME = "Terminé",
             });
+            Status.Add(new BSE_DOCUMENT_STATUS
+            {
+                CODE_STATUS = "33",
+                NAME = "Livré",
+            });
         }
 
         protected override QueryInfos GetFilterParams()
