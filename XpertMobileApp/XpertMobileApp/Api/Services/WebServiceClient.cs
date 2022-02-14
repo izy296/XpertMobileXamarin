@@ -317,13 +317,15 @@ namespace XpertMobileApp.Services
             return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, int>>(url, values, Token);
         }
 
-        public static async Task<bool> LivrerProduction(string codeDoc, string codeDocDetail)
+        public static async Task<bool> LivrerProduction(string codeDoc, string codeDocDetail,string codeProduction)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_UPDATE_LIVRAISON_INFOS_URL);
             url += WSApi2.AddParam(url, "param06", "param06");
 
             Dictionary<string, string> values = new Dictionary<string, string>();
-            values.Add(codeDoc, codeDocDetail);
+            values.Add("codeDoc", codeDoc);
+            values.Add("codeDocDetail", codeDocDetail);
+            values.Add("codeProduction", codeProduction);
 
             return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, string>>(url, values, Token);
         }
