@@ -11,7 +11,7 @@ namespace XpertMobileApp.Helpers
 	[ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        const string ResourceId = "XpertMobileApp.AppResources";
+        const string ResourceId = "XpertMobileAppManafiaa.AppResources";
 
         static readonly Lazy<ResourceManager> resmgr = new Lazy<ResourceManager>(() => new ResourceManager(ResourceId, typeof(TranslateExtension).GetTypeInfo().Assembly));
 
