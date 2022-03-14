@@ -568,7 +568,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 await UpdateTourneeDetail(vente);
                 await UpdateTournee();
-                
+
                 return vente.CODE_VENTE;
             }
         }
@@ -577,7 +577,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
             var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-            if (UpdatedTiers.SOLDE_TIERS > 0 )
+            if (UpdatedTiers.SOLDE_TIERS > 0)
             {
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
             }
@@ -588,7 +588,7 @@ namespace XpertMobileApp.SQLite_Managment
             await getInstance().UpdateAsync(UpdatedTiers);
         }
 
-        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers , string type = "ENC")
+        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers, string type = "ENC")
         {
             List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
             var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
@@ -658,8 +658,8 @@ namespace XpertMobileApp.SQLite_Managment
 
             var id = await getInstance().InsertAsync(tiers);
 
-            tiers.CODE_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
-            tiers.NUM_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
+            tiers.CODE_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
+            tiers.NUM_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
             await getInstance().UpdateAsync(tiers);
         }
 
@@ -760,7 +760,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 var id = await getInstance().UpdateAsync(item);
             }
-            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS , item.CODE_TYPE);
+            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
         }
 
         public static async Task UpdateStock(View_VTE_VENTE vente)
@@ -836,20 +836,17 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
-        public static async Task<bool> AuthUser(User user)
+        public static async Task<SYS_USER> AuthUser(User _user)
         {
             bool validInformations = false;
-            var Users = await getInstance().Table<SYS_USER>().ToListAsync();
-            foreach (var item in Users)
+            var password = XpertHelper.GetMD5Hash(_user.PassWord);
+            SYS_USER User = await getInstance().Table<SYS_USER>().Where(x => x.PASS_USER == password).FirstOrDefaultAsync();
+            if (XpertHelper.IsNotNullAndNotEmpty(User))
             {
-                var password = XpertHelper.GetMD5Hash(user.PassWord);
-                if (item.ID_USER.ToLower() == user.UserName.ToLower() && item.PASS_USER == password)
-                {
-                    validInformations = true;
-                    return validInformations;
-                }
+                validInformations = true;
+                return User;
             }
-            return validInformations;
+            return null;
         }
 
         public static async Task<SYS_USER> getUserInfo(string userid)
@@ -867,13 +864,13 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<Token> getToken(User user)
+        public static async Task<Token> getToken(User _user)
         {
             Token validToken = new Token();
             var Tokens = await getInstance().Table<Token>().ToListAsync();
             foreach (var item in Tokens)
             {
-                if (item.userID.ToLower() == user.UserName.ToLower())
+                if (item.userID.ToLower() == _user.UserName.ToLower())
                 {
                     validToken = item;
                     return validToken;
@@ -937,9 +934,9 @@ namespace XpertMobileApp.SQLite_Managment
                     }
 
                     var compte = await getComptes();
-                    
+
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes,App.PrefixCodification,App.CODE_MAGASIN,compte.FirstOrDefault().CODE_COMPTE);
+                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
 
                     await getInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
@@ -1003,7 +1000,7 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
