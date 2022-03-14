@@ -120,19 +120,19 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
         }
 
-        internal static async Task<List<CFA_CENTRES>> getBordereauxCentresTypes()
-        { 
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_CENTRES_URL);
+        //internal static async Task<List<CFA_CENTRES>> getBordereauxCentresTypes()
+        //{ 
+        //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_CENTRES_URL);
 
-            return await RetrievAauthorizedData<CFA_CENTRES>(url);
-        }
+        //    return await RetrievAauthorizedData<CFA_CENTRES>(url);
+        //}
 
-        internal static async Task<List<CFA_ETAT>> getBordereauxSTATUS()
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_ETAT_URL);
+        //internal static async Task<List<CFA_ETAT>> getBordereauxSTATUS()
+        //{
+        //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_ETAT_URL);
 
-            return await RetrievAauthorizedData<CFA_ETAT>(url);
-        }
+        //    return await RetrievAauthorizedData<CFA_ETAT>(url);
+        //}
 
         internal static async Task<List<Get_Print_ds_ViewTrsEncaiss>> GetDataTecketCaisseEncaisse(string cODE_ENCAISS)
         {
@@ -141,12 +141,12 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<Get_Print_ds_ViewTrsEncaiss>(url);
         }
 
-        internal static async Task<List<CFA_ETAT>> get_CFA_Fact_STATUS()
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_ETAT_URL);
+        //internal static async Task<List<CFA_ETAT>> get_CFA_Fact_STATUS()
+        //{
+        //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_ETAT_URL);
 
-            return await RetrievAauthorizedData<CFA_ETAT>(url);
-        }
+        //    return await RetrievAauthorizedData<CFA_ETAT>(url);
+        //}
 
         internal static async Task<List<Get_Print_VTE_TiketCaisse>> GetDataTecketCaisseVente(string res)
         {
