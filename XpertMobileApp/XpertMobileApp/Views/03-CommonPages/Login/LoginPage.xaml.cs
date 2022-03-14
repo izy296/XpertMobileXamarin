@@ -8,6 +8,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
@@ -70,7 +71,7 @@ namespace XpertMobileApp.Views
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-                    if (viewModel.CheckUser(user))
+                    //if (viewModel.CheckUser(user))
                     {
                         // Authentification via le WebService
                         Token token = await viewModel.Login(user);
@@ -91,6 +92,7 @@ namespace XpertMobileApp.Views
                             user.CODE_TIERS = token.CODE_TIERS;
                             user.UserGroup = token.UserGroup;
                             user.GroupName = token.GroupName;
+                            user.UserName = token.userName;
                             user.ClientId = App.Settings.ClientId;
                             user.Token = token;
                             App.User = user;
@@ -104,8 +106,12 @@ namespace XpertMobileApp.Views
 
                             // suavegrade du user et du token en cours dans la bdd local
 
-                            //Récuperation prefix
-                            await RecupererPrefix();
+                            if (Constants.AppName == Apps.XCOM_Livraison)
+                            {
+                                //Récuperation prefix
+                                await RecupererPrefix();
+                            }
+
 
                             try
                             {
@@ -137,9 +143,9 @@ namespace XpertMobileApp.Views
                             }
                         }
                     }
-                    else
+                    //else
                     {
-                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                        //  await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
                     }
                 }
                 else
@@ -147,12 +153,13 @@ namespace XpertMobileApp.Views
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-                    if (viewModel.CheckUser(user))
+                    //if (viewModel.CheckUser(user))
                     {
                         // Authentification via SQLite
-                        bool validInfo = await UpdateDatabase.AuthUser(user);
-                        if (validInfo)
+                        SYS_USER validUser = await UpdateDatabase.AuthUser(user);
+                        if (XpertHelper.IsNotNullAndNotEmpty(validUser))
                         {
+                            user.UserName = validUser.ID_USER;
                             Token token = await UpdateDatabase.getToken(user);
                             if (token == null)
                             {
@@ -212,23 +219,29 @@ namespace XpertMobileApp.Views
                             await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
                         }
                     }
-                    else
+                    //else
+                    //{
+                    //    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                    //}
+                }
+
+                //
+                if (Constants.AppName == Apps.XCOM_Livraison)
+                {
+                    try
                     {
-                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                        await UpdateDatabase.AssignPrefix();
+                        await UpdateDatabase.AssignMagasin();
+                    }
+                    catch
+                    {
+                    }
+                    if (string.IsNullOrEmpty(App.PrefixCodification))
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
-                try
-                {
-                    await UpdateDatabase.AssignPrefix();
-                    await UpdateDatabase.AssignMagasin();
-                }
-                catch
-                {
-                }
-                if (string.IsNullOrEmpty(App.PrefixCodification))
-                {
-                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                }
+
             }
             catch (Exception ex)
             {

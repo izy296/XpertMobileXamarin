@@ -44,8 +44,8 @@
                         <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
 
                         <StackLayout>
-                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"  />
-                            <Entry x:Name="Ent_UserName" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
+                            <Label x:Name="Lbl_UserName" IsVisible="False" Text="{i18n:Translate lp_lbl_UserName}"  />
+                            <Entry x:Name="Ent_UserName" IsVisible="False" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
                         </StackLayout>
 
                         <StackLayout Padding="0,10,0,0">
