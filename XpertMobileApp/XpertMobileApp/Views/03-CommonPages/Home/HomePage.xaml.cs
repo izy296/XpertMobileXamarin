@@ -75,11 +75,11 @@ namespace XpertMobileApp.Views
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            if (id=="34")
+            if (id=="34")//Export
             {
                 await Upload();
             }
-            else if (id == "35")
+            else if (id == "35")//Import
             {
                 await Download();
             }
