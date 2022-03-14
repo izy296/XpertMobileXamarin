@@ -204,10 +204,10 @@ namespace XpertMobileApp.Views
                 await RootPage.NavigateFromMenu(id);
             };
 
-            MessagingCenter.Subscribe<SignUpPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
-            {
-                ReloadMenu();
-            });
+            //MessagingCenter.Subscribe<SignUpPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
+            //{
+            //    ReloadMenu();
+            //});
 
             MessagingCenter.Subscribe<LoginPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
             {

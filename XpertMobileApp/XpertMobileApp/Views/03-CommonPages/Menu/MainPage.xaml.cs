@@ -33,16 +33,16 @@ namespace XpertMobileApp.Views
                 this.Detail = new NavigationPage(new AchatsPage());
                 MenuPages.Add((int)MenuItemType.Achats, (NavigationPage)Detail);
             }
-            else if (Constants.AppName == Apps.XACATALOG_Mob)
-            {
-                this.Detail = new NavigationPage(new MyCommandesPage());
-                MenuPages.Add((int)MenuItemType.MyCommandes, (NavigationPage)Detail);
-            }
-            else if (Constants.AppName == Apps.X_BOUTIQUE)
-            {
-                this.Detail = new NavigationPage(new ProductHomePage());
-                MenuPages.Add((int)MenuItemType.XBoutiqueHome, (NavigationPage)Detail);
-            }
+            //else if (Constants.AppName == Apps.XACATALOG_Mob)
+            //{
+            //    this.Detail = new NavigationPage(new MyCommandesPage());
+            //    MenuPages.Add((int)MenuItemType.MyCommandes, (NavigationPage)Detail);
+            //}
+            //else if (Constants.AppName == Apps.X_BOUTIQUE)
+            //{
+            //    this.Detail = new NavigationPage(new ProductHomePage());
+            //    MenuPages.Add((int)MenuItemType.XBoutiqueHome, (NavigationPage)Detail);
+            //}
         }
 
         public ContentPage GetMenuPage(int idPage) 
@@ -75,22 +75,22 @@ namespace XpertMobileApp.Views
                         return new VentesPage(VentesTypes.VentePSYCO);
                     case (int)MenuItemType.Tournee:
                         return new TourneesPage();
-                    case (int)MenuItemType.Bordereaux:
-                        return new BordereauxPage();
-                    case (int)MenuItemType.Catalogues:
+                    //case (int)MenuItemType.Bordereaux:
+                    //    return new BordereauxPage();
+                    //case (int)MenuItemType.Catalogues:
                      //   return new Paging();
-                    case (int)MenuItemType.XBoutiqueHome:
-                        return new ProductHomePage();
-                    case (int)MenuItemType.XBoutique:
-                        return new CataloguePage(); 
-                    case (int)MenuItemType.XMyCommandes:
-                        return new XMyCommandesPage();
-                    case (int)MenuItemType.XWishList:
-                        return new WishListPage();
-                    case (int)MenuItemType.XPurchased:
-                        return new PurchasedProdPage();
-                    case (int)MenuItemType.XProfile:
-                        return new ProfilPage();
+                    //case (int)MenuItemType.XBoutiqueHome:
+                    //    return new ProductHomePage();
+                    //case (int)MenuItemType.XBoutique:
+                    //    return new CataloguePage(); 
+                    //case (int)MenuItemType.XMyCommandes:
+                    //    return new XMyCommandesPage();
+                    //case (int)MenuItemType.XWishList:
+                    //    return new WishListPage();
+                    //case (int)MenuItemType.XPurchased:
+                        //return new PurchasedProdPage();
+                    //case (int)MenuItemType.XProfile:
+                    //    return new ProfilPage();
                     case (int)MenuItemType.MyCommandes:
                      //   return new Paging();
                     case (int)MenuItemType.Commandes:
@@ -163,9 +163,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Tournee:
                         MenuPages.Add(id, new NavigationPage(new TourneesPage()));
                         break;
-                    case (int)MenuItemType.Bordereaux:
-                        MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
-                        break;
+                    //case (int)MenuItemType.Bordereaux:
+                    //    MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
+                    //    break;
                     case (int)MenuItemType.Catalogues:
                        // MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
@@ -176,24 +176,24 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));
                         break;
 
-                    case (int)MenuItemType.XBoutiqueHome:
-                        MenuPages.Add(id, new NavigationPage(new ProductHomePage()));
-                        break;
-                    case (int)MenuItemType.XBoutique:
-                        MenuPages.Add(id, new NavigationPage(new CataloguePage()));
-                        break;
-                    case (int)MenuItemType.XMyCommandes:
-                        MenuPages.Add(id, new NavigationPage(new XMyCommandesPage()));
-                        break;
-                    case (int)MenuItemType.XWishList:
-                        MenuPages.Add(id, new NavigationPage(new WishListPage()));
-                        break;
-                    case (int)MenuItemType.XPurchased:
-                        MenuPages.Add(id, new NavigationPage(new PurchasedProdPage()));
-                        break;
-                    case (int)MenuItemType.XProfile:
-                        MenuPages.Add(id, new NavigationPage(new ProfilPage()));
-                        break;
+                    //case (int)MenuItemType.XBoutiqueHome:
+                    //    MenuPages.Add(id, new NavigationPage(new ProductHomePage()));
+                    //    break;
+                    //case (int)MenuItemType.XBoutique:
+                    //    MenuPages.Add(id, new NavigationPage(new CataloguePage()));
+                    //    break;
+                    //case (int)MenuItemType.XMyCommandes:
+                    //    MenuPages.Add(id, new NavigationPage(new XMyCommandesPage()));
+                    //    break;
+                    //case (int)MenuItemType.XWishList:
+                    //    MenuPages.Add(id, new NavigationPage(new WishListPage()));
+                    //    break;
+                    //case (int)MenuItemType.XPurchased:
+                    //    MenuPages.Add(id, new NavigationPage(new PurchasedProdPage()));
+                    //    break;
+                    //case (int)MenuItemType.XProfile:
+                    //    MenuPages.Add(id, new NavigationPage(new ProfilPage()));
+                    //    break;
                     case (int)MenuItemType.Produits:
                         MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
                         break;
