@@ -5,7 +5,7 @@ using System.Text;
 namespace XpertMobileApp.Api.Models
 {
     public class UrlService
-    {//Urlservice Model
+    {//Urlservice Mo
         public bool Selected
         {
             get;
