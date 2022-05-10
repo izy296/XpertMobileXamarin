@@ -63,7 +63,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                updateUI();
+                 updateUI();
             }
             */
             LanguagesPicker.SelectedIndexChanged += LanguagesPicker_SelectedIndexChanged;
