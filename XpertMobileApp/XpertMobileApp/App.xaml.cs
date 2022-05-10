@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
@@ -16,6 +17,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Data;
@@ -78,15 +80,23 @@ namespace XpertMobileApp
             }
         }
 
+        //Toast information
+        public bool IsToastExitConfirmation
+        {
+            get => Preferences.Get(nameof(IsToastExitConfirmation), false);
+            set => Preferences.Set(nameof(IsToastExitConfirmation), value);
+        }
         private void InitApp()
         {
             // Vérification de la licence
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
             LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
 
-            if (licState == LicState.Valid)
+            this.IsToastExitConfirmation = false;
+
+            if (licState == LicState.Valid && Constants.AppName != Apps.XAGRI_Mob)
             {
-                Settings.Mobile_Edition = licenceInfos.Mobile_Edition;
+                Settings.Mobile_Edition = licenceInfos != null ? licenceInfos.Mobile_Edition : Mobile_Edition.Lite;
 
                 string currentVersion = AppInfo.Version.ToString();
                 if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
@@ -110,11 +120,11 @@ namespace XpertMobileApp
                     }
                     else
                     {
-                        if(Constants.AppName == Apps.X_BOUTIQUE)
+                        if (Constants.AppName == Apps.X_BOUTIQUE)
                         {
                             MainPage = new MainPage();
                         }
-                        else 
+                        else
                         {
                             MainPage = new LoginPage();
                         }
@@ -123,7 +133,7 @@ namespace XpertMobileApp
             }
             else
             {
-                if (Constants.AppName == Apps.XCOM_Livraison)
+                if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.XAGRI_Mob)
                 {
                     MainPage = new LoginPage();
 
@@ -131,6 +141,7 @@ namespace XpertMobileApp
                 else
                     MainPage = new ActivationPage(licState);
             }
+
         }
 
         public App()
@@ -235,7 +246,38 @@ namespace XpertMobileApp
         {
             // Handle when your app resumes
         }
-
+        //Methode to set url services 
+        public static void SetUrlServices(UrlService urlService)
+        {
+            try
+            {
+                List<UrlService> liste;
+                liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                // set all the services to false 
+                foreach (UrlService service in liste)
+                {
+                    service.Selected = false;
+                }
+                // set true to the selected service ....
+                for (int i = 0; i < liste.Count; i++)
+                {
+                    if (liste[i].DisplayurlService == urlService.DisplayurlService)
+                    {
+                        liste[i].Selected = true;
+                    }
+                }
+                Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                //string value = urlService.DisplayurlService;
+                //urlService.Selected = true;
+                //if (!string.IsNullOrEmpty(value))
+                //{
+                //    Settings.ServiceUrl = value;
+                //}
+            }
+            catch (Exception e)
+            {
+            }
+        }
         public static void SetAppLanguage(string language)
         {
             try
@@ -261,7 +303,18 @@ namespace XpertMobileApp
 
         public async static Task<bool> IsConected()
         {
-            string url = App.Settings.ServiceUrl;
+            List<UrlService> liste = new List<UrlService>();
+            liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+            string temp = "";
+            foreach (var item in liste)
+            {
+                if (item.Selected == true)
+                {
+                    temp = item.DisplayurlService;
+                }
+
+            }
+            string url = temp;
 
             int port = 80;
             Regex r = new Regex(@"^(?<proto>\w+)://[^/]+?(?<port>:\d+)?/", RegexOptions.None, TimeSpan.FromMilliseconds(50));
@@ -286,7 +339,18 @@ namespace XpertMobileApp
         {
             get
             {
-                return Settings.ServiceUrl + ServiceUrlDico.BASE_URL;
+                //searching in the json file stocked in the local db a valid url wich is  selected in settings page...
+                List<UrlService> liste = new List<UrlService>();
+                liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                foreach (var item in liste)
+                {
+                    if (item.Selected == true)
+                    {
+                        return item.DisplayurlService + ServiceUrlDico.BASE_URL;
+                    }
+                }
+                return "" + ServiceUrlDico.BASE_URL;
+
             }
         }
 
@@ -369,7 +433,6 @@ namespace XpertMobileApp
             {
                 settings = value;
             }
-
         }
 
         // ------ Internet connexion infos ---------
@@ -399,7 +462,7 @@ namespace XpertMobileApp
 
         private async static void CheckIfInternetOverTimeAsync()
         {
-            if (! await App.IsConected())
+            if (!await App.IsConected())
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
@@ -413,7 +476,8 @@ namespace XpertMobileApp
             }
             else
             {
-                Device.BeginInvokeOnMainThread(() => {
+                Device.BeginInvokeOnMainThread(() =>
+                {
                     labelInfo.IsVisible = false;
                     // Remettre l'affichage de l'alerte a false quand internet revient
                     alertDisplayed = false;
@@ -449,5 +513,42 @@ namespace XpertMobileApp
 
             return result;
         }
+
+        //check if there are pages on your navigation stack
+        public bool PromptToConfirmExit
+        {
+            get
+            {
+                bool promptToConfirmExit = false;
+                if (MainPage is ContentPage)
+                {
+                    promptToConfirmExit = true;
+                }
+                else if (MainPage is Xamarin.Forms.MasterDetailPage masterDetailPage
+                    && masterDetailPage.Detail is NavigationPage detailNavigationPage)
+                {
+                    promptToConfirmExit = detailNavigationPage.Navigation.NavigationStack.Count <= 1;
+                }
+                else if (MainPage is NavigationPage mainPage)
+                {
+                    if (mainPage.CurrentPage is TabbedPage tabbedPage
+                        && tabbedPage.CurrentPage is NavigationPage navigationPage)
+                    {
+                        promptToConfirmExit = navigationPage.Navigation.NavigationStack.Count <= 1;
+                    }
+                    else
+                    {
+                        promptToConfirmExit = mainPage.Navigation.NavigationStack.Count <= 1;
+                    }
+                }
+                else if (MainPage is TabbedPage tabbedPage
+                    && tabbedPage.CurrentPage is NavigationPage navigationPage)
+                {
+                    promptToConfirmExit = navigationPage.Navigation.NavigationStack.Count <= 1;
+                }
+                return promptToConfirmExit;
+            }
+        }
     }
+
 }

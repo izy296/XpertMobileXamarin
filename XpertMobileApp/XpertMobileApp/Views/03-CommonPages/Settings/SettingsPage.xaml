@@ -21,7 +21,7 @@
                             <On Platform="UWP" Value="0, 0, 0, 0" />
                         </OnPlatform>
                     </StackLayout.Padding>
-                    
+
                     <!-- language informations -->
                     <Frame Style="{StaticResource FrameForListing}">
                         <StackLayout x:Name="LanguageSettingsZone" Padding="10" Margin="0">
@@ -32,9 +32,8 @@
                                 x:Name="LanguagesPicker"/>
                         </StackLayout>
                     </Frame>
-                    
                     <!-- Service url -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
+                    <!--<Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
                         <StackLayout x:Name="GeneralSettingsZone"  Padding="10"  >
                             <Label x:Name="lbl_ConnexionInfos" Text="{i18n:Translate sp_lbl_ConnexionInfos}" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
                                    Margin="0,0,0,15" />
@@ -45,8 +44,79 @@
                                      WidthRequest="150" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
                                      Clicked="TestConnexion_Clicked"/>
                         </StackLayout>
+                    </Frame>-->
+
+                    <!--Begin service Url section -->
+                    <Frame
+                        Style="{StaticResource FrameForListing}" 
+                        IsVisible="{Binding isConnected, 
+                        Converter={StaticResource inverseBoolVisibilityConverter}}">
+
+                        <StackLayout
+                                Orientation="Vertical">
+
+                            <StackLayout 
+                                x:Name="GeneralSettingsZone"  
+                                Padding="10">
+
+                                <Label 
+                                   x:Name="lbl_ConnexionInfos" 
+                                   Text="{i18n:Translate sp_lbl_ConnexionInfos}" 
+                                   FontSize="Medium" 
+                                   Style="{DynamicResource DefaultTextStyle}"
+                                   Margin="0,0,0,15" />
+
+                                <Label 
+                                    x:Name="lbl_ServiceName" 
+                                    Text="{i18n:Translate sp_lbl_ServiceName}"/>
+
+                                <Picker 
+                                    ItemsSource="{Binding UrlServices, Mode=TwoWay}"
+                                    ItemDisplayBinding="{Binding DisplayurlService,  Mode=TwoWay}"
+                                    x:Name="urlServicePicker"/>
+
+                            </StackLayout>
+
+                            <FlexLayout Direction="Row">
+
+                                <Button Text="Tester la connexion" 
+                                        FontSize="11" 
+                                        Margin="5,0,5,0"
+                                        Style="{DynamicResource DefaultBtnStyle}"
+                                        CornerRadius="5"
+                                        Clicked="TestConnexion_Clicked"
+                                        />
+
+                                <Button 
+                                        Style="{DynamicResource AddUrlBtn}"
+                                        FontSize="11" 
+                                        Margin="5,0,5,0"
+                                        CornerRadius="5"
+                                        ImageSource="addIcon.png"
+                                        Clicked="Add_ServiceUrl"
+                                        />
+                                <Button  
+                                        FontSize="11" 
+                                        Margin="5,0,5,0"
+                                        Style="{DynamicResource DefaultBtnStyle}"
+                                        CornerRadius="5"
+                                        ImageSource="editIcon.png"
+                                        Clicked="EditService"    
+                                        />
+                                <Button 
+                                        FontSize="11" 
+                                        Margin="5,0,5,0"
+                                        Style="{DynamicResource DeleteUrlBtn}"
+                                        CornerRadius="5"
+                                        ImageSource="deleteIcon.png"
+                                        Clicked="DeleteService"
+                                        />
+
+                            </FlexLayout>
+
+                        </StackLayout>
                     </Frame>
-                    
+                    <!--end section of service url-->
                     <!-- Notifications -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="GeneralNotifications"  Padding="10" >
@@ -75,11 +145,7 @@
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                 SelectedItem="{Binding SelectedCompte}" />
                         </StackLayout>
-
-
-
                     </Frame>
-
                     <!-- Imprimante  -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >
@@ -99,7 +165,7 @@
                             -->
                         </StackLayout>
                     </Frame>
-                   
+
                     <!-- Licence informations -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
                         <StackLayout x:Name="LicenceSettingsZone"  Padding="10" >

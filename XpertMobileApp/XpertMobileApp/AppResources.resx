@@ -457,7 +457,7 @@
     <value>Votre licence a déjà été désactivé!</value>
   </data>
   <data name="Exception_errMsg_32" xml:space="preserve">
-    <value>Nous n'avons pas pu trouver votre licence!</value>
+    <value>Licence ou Identifiant CRM introuvables !</value>
   </data>
   <data name="msg_DeactivationSucces" xml:space="preserve">
     <value>La désactivation de votre licence s'est déroulé avec succes.</value>
@@ -631,7 +631,7 @@
     <value>Votre commande a bien été modifiée!</value>
   </data>
   <data name="pn_Achats" xml:space="preserve">
-    <value>Liste des pesées</value>
+    <value>Achats</value>
   </data>
   <data name="PESEE_ENTREE" xml:space="preserve">
     <value>Pesée d'entrée</value>
@@ -894,5 +894,32 @@
   </data>
   <data name="sys_prefix_get" xml:space="preserve">
     <value>Récupérer votre préfixe</value>
+  </data>
+  <data name="pn_Fournisseur" xml:space="preserve">
+    <value>Fournisseur</value>
+  </data>
+  <data name="Exception_errMsg_33" xml:space="preserve">
+    <value>Nombre d'appareil limite atteint !</value>
+  </data>
+  <data name="Exception_errMsg_34" xml:space="preserve">
+    <value>Identifiant CRM non valide !</value>
+  </data>
+  <data name="alrt_quit_Application" xml:space="preserve">
+    <value>Voulez-vous quitter l'application ?</value>
+  </data>
+  <data name="pn_EntreeStock" xml:space="preserve">
+    <value>Entrée du Stock</value>
+  </data>
+  <data name="pn_sortieStock" xml:space="preserve">
+    <value>Sortie du Stock </value>
+  </data>
+  <data name="txt_Motif" xml:space="preserve">
+    <value>Motif</value>
+  </data>
+  <data name="txt_cloture" xml:space="preserve">
+    <value>Cloturée</value>
+  </data>
+  <data name="txt_nonCloturee" xml:space="preserve">
+    <value>Non Cloturée</value>
   </data>
 </root>

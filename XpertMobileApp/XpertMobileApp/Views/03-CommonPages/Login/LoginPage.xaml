@@ -5,7 +5,6 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.LoginPage"
-             
              BackgroundColor="White"
              >
 
@@ -13,25 +12,43 @@
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
     
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelTitleStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="OrangeRed"/>
+                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontFamily" Value="{StaticResource FontGilroySemiBold}"/>                
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+        <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
             <!--Affichage de l'alerte en cas de deconnexion -->
             <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
-
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="{StaticResource Accent}" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+                <ContentView Padding="0,5,0,5" VerticalOptions="FillAndExpand">
                     <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
                 </ContentView>
             </StackLayout>
+            <StackLayout Padding="0,30,0,0" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label x:Name="Lbl_AppFullName" Text="XpertMobile&#x0a;CATALOG" IsVisible="true" HorizontalTextAlignment="Center" Style="{StaticResource LabelTitleStyle}"/>
+            </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
 
+        <StackLayout >
+            
+        </StackLayout>
+
+        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="16,0,16,80" Spacing="10" VerticalOptions="Center">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -67,8 +84,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                
+                </Grid.ColumnDefinitions>                
 
             <Label Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10">
                 <Label.FormattedText>
