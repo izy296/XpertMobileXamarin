@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
@@ -16,7 +17,7 @@ namespace XpertMobileApp.Api.Managers
         
         internal static CrudService<View_VTE_VENTE> Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
 
-        internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
+        internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
 
         internal static CrudService<View_BSE_MAGASIN> BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
         internal static CrudService<BSE_TABLE> BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
@@ -64,7 +65,7 @@ namespace XpertMobileApp.Api.Managers
             BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
 
             Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
-            Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, "ACH_ACHATS", App.User.Token);
+            Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
             Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);
             TiersService = new CrudService<View_TRS_TIERS>(App.RestServiceUrl, "TRS_TIERS", App.User.Token);
 
@@ -80,15 +81,19 @@ namespace XpertMobileApp.Api.Managers
             
             if (typeVte == VentesTypes.Livraison) 
             {
-                controlerName = "XCOM_VTE_LIVRAISON";
+                controlerName = "VTE_LIVRAISON_XCOM";
             }
-            else if (typeVte == VentesTypes.VenteComptoir)
+            else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XPH_Mob)
             { 
-                controlerName = "XCOM_VTE_COMPTOIR";
+                controlerName = "VTE_COMPTOIR";
+            }
+            else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XCOM_Mob)
+            {
+                controlerName = "VTE_COMPTOIR_XCOM";
             }
 
             var bll = new VentesManager(controlerName);
             return bll;
-        }
+        }        
     }
 }
