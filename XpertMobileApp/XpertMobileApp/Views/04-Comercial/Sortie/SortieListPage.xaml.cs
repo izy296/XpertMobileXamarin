@@ -125,6 +125,7 @@ namespace XpertMobileApp.Views
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {        
             viewModel.LoadItemsCommand.Execute(null);
+            FilterPanel.IsVisible = false;
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
