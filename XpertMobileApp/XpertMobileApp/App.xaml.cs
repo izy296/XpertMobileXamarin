@@ -341,15 +341,23 @@ namespace XpertMobileApp
             {
                 //searching in the json file stocked in the local db a valid url wich is  selected in settings page...
                 List<UrlService> liste = new List<UrlService>();
-                liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                foreach (var item in liste)
+                if (Settings.ServiceUrl != null)
                 {
-                    if (item.Selected == true)
+                    liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                    foreach (var item in liste)
                     {
-                        return item.DisplayurlService + ServiceUrlDico.BASE_URL;
+                        if (item.Selected == true)
+                        {
+                            return item.DisplayurlService + ServiceUrlDico.BASE_URL;
+                        }
                     }
+                    return "" + ServiceUrlDico.BASE_URL;
                 }
-                return "" + ServiceUrlDico.BASE_URL;
+                else
+                {
+                    return ServiceUrlDico.BASE_URL;
+                }
+
 
             }
         }

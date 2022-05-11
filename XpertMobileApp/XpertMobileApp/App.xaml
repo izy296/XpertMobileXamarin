@@ -27,10 +27,14 @@
             <On Platform="iOS" Value="Gilroy-SemiBold" />
             <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
           </OnPlatform>
-          
-          
-          
-          <!-- Font awesomone -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyBold">
+                <On Platform="Android" Value="Gilroy-Bold.ttf#GilroyBold" />
+                <On Platform="iOS" Value="Gilroy-Bold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
+            </OnPlatform>
+
+
+            <!-- Font awesomone -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
                 <On Platform="Android" Value="FABrandsRegular400.otf#Regular" />
                 <On Platform="iOS" Value="FontAwesome5Brands-Regular" />
@@ -94,6 +98,14 @@
             
             <Style x:Key="DefaultBtnStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="AddUrlBtn" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#7EC384" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="DeleteUrlBtn" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#e65b65" />
                 <Setter Property="TextColor" Value="White" />
             </Style>
 

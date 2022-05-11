@@ -20,6 +20,8 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -126,19 +128,23 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-
                 UrlService result = new UrlService();
                 if (Settings.ServiceUrl != "")
                 {
-                    List<UrlService> liste;
-                    liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                    foreach (var item in liste)
+                    bool checkIfJson = Manager.isJson(Settings.ServiceUrl);
+                    if (checkIfJson)
                     {
-                        if (item.Selected)
+                        List<UrlService> liste;
+                        liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                        foreach (var item in liste)
                         {
-                            result = item;
+                            if (item.Selected)
+                            {
+                                result = item;
+                            }
                         }
                     }
+                    else result = UrlServices[0];
                 }
                 else
                 {
@@ -153,19 +159,35 @@ namespace XpertMobileApp.ViewModels
                 throw;
             }
         }
-        public void LoadSettings()
+        public async void LoadSettings()
         {
 
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
             if (this.Settings.ServiceUrl != "")
             {
-                List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                foreach (var item in liste)
+                if (Manager.isJson(Settings.ServiceUrl))
                 {
-                    if (UrlServices.Where(e => e.DisplayurlService == item.DisplayurlService).Count() == 0)
+                    List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                    foreach (var item in liste)
                     {
-                        UrlServices.Add(item);
+                        if (UrlServices.Where(e => e.DisplayurlService == item.DisplayurlService).Count() == 0)
+                        {
+                            UrlServices.Add(item);
+                        }
                     }
+                }
+                else
+                {
+                    //execute when migrating to the new version of (xpret mobile )
+                    UrlService ObjtoSerialize = new UrlService
+                    {
+                        DisplayurlService = Settings.ServiceUrl,
+                        Selected = false,
+                    };
+                    List<UrlService> liste = new List<UrlService>();
+                    liste.Add(ObjtoSerialize);
+                    Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                    await SaveSettings();
                 }
                 //end affectation
                 oldCaisseDedier = this.Settings.CaisseDedier;

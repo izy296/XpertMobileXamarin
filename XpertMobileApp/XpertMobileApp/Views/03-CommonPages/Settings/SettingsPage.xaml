@@ -79,7 +79,7 @@
 
                             <FlexLayout Direction="Row">
 
-                                <Button Text="Tester la connexion" 
+                                <Button Text="{i18n:Translate sp_btn_TestConnection}" 
                                         FontSize="11" 
                                         Margin="5,0,5,0"
                                         Style="{DynamicResource DefaultBtnStyle}"

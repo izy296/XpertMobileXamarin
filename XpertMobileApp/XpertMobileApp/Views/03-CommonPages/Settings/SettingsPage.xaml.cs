@@ -18,6 +18,7 @@ using Acr.UserDialogs;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Models;
 using Newtonsoft.Json;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -101,27 +102,27 @@ namespace XpertMobileApp.Views
             List<UrlService> liste;
             try
             {
-                liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
-                foreach (var item in liste)
+                if (Manager.isJson(viewModel.Settings.ServiceUrl))
                 {
-                    if (item.Selected == true)
+                    liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                    foreach (var item in liste)
                     {
-                        finded = true;
-                        break;
+                        if (item.Selected == true)
+                        {
+                            finded = true;
+                            break;
+                        }
+                        else
+                            i++;
                     }
+
+                    if (finded == true)
+                        return i;
+
                     else
-                    {
-                        i++;
-                    }
+                        return 0;
                 }
-                if (finded == true)
-                {
-                    return i;
-                }
-                else
-                {
-                    return 0;
-                }
+                else return 0;
             }
             catch (Exception)
             {
@@ -430,7 +431,10 @@ namespace XpertMobileApp.Views
                     if (viewModel.Settings.ServiceUrl != "")
                     {
                         //deserialize the list stored in local db...
-                        liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                        if (Manager.isJson(viewModel.Settings.ServiceUrl))
+                            liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                        else
+                            liste = new List<UrlService>();
                     }
                     else
                     {
@@ -488,6 +492,7 @@ namespace XpertMobileApp.Views
 
                         //save the new Setting...
                         await viewModel.SaveSettings();
+                        await DisplayAlert(" Suppression Réussie!", "Suppression effectuée avec succès", "OK");
                     }
 
                 }
@@ -514,38 +519,47 @@ namespace XpertMobileApp.Views
                     List<UrlService> liste;
                     //getting the item selected here from the picker ...
                     string itemSelected = urlServicePicker.Items[urlServicePicker.SelectedIndex];
-                    if (viewModel.Settings.ServiceUrl != "")
+
+                    //get the url selected from the picker ..
+                    object url = urlServicePicker.SelectedItem;
+                    UrlService urlToBeModified = url as UrlService;
+
+                    if (urlToBeModified != viewModel.UrlServices[0])
                     {
-                        //Search in the deserialized liste the element that will be modified...
-                        liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
-                        for (int i = 0; i < liste.Count; i++)
+                        if (viewModel.Settings.ServiceUrl != "")
                         {
-                            if (liste[i].DisplayurlService == itemSelected)
+                            //Search in the deserialized liste the element that will be modified...
+                            liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                            for (int i = 0; i < liste.Count; i++)
                             {
-                                liste[i].DisplayurlService = result;
+                                if (liste[i].DisplayurlService == itemSelected)
+                                {
+                                    liste[i].DisplayurlService = result;
+                                }
                             }
+                            //serialize the result list
+                            viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+
+                            //update the itemSource of the picker to show new result 
+                            UrlService newUrl = new UrlService { DisplayurlService = result };
+
+                            int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
+                            if (indexModified != -1)
+                                liste[indexModified - 1] = newUrl;
+                            viewModel.UrlServices.Remove(urlToBeModified);
+                            viewModel.UrlServices.Add(new UrlService
+                            {
+                                DisplayurlService = liste[indexModified - 1].DisplayurlService,
+                                Selected = liste[indexModified - 1].Selected,
+                            });
+
+                            //Save all settings
+                            await viewModel.SaveSettings();
+                            await DisplayAlert(" Modification Réussie!", "Modification effectuée avec succès", "OK");
                         }
-                        //serialize the result list
-                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
-
-                        //update the itemSource of the picker to show new result 
-                        UrlService newUrl = new UrlService { DisplayurlService = result };
-                        object url = urlServicePicker.SelectedItem;
-                        UrlService urlToBeModified = url as UrlService;
-                        int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
-                        if (indexModified != -1)
-                            liste[indexModified - 1] = newUrl;
-                        viewModel.UrlServices.Remove(urlToBeModified);
-                        viewModel.UrlServices.Add(new UrlService
-                        {
-                            DisplayurlService = liste[indexModified - 1].DisplayurlService,
-                            Selected = liste[indexModified - 1].Selected,
-                        });
-
-                        //Save all settings
-                        await viewModel.SaveSettings();
                     }
-
+                    else
+                        await DisplayAlert("Attention !", "Vous ne pouvez pas modifier cet Url", "OK");
                 }
             }
             catch (Exception)
