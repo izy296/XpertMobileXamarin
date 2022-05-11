@@ -73,7 +73,7 @@ namespace XpertMobileApp.Views
                     itemsC = await WebServiceClient.getSortieDetails(this.Item.CODE_SORTIE);
 
                     /*this.viewModel.Title = this.Item.DESIGNATION_TYPE;*/
-                    this.viewModel.Title = "Sortie N "+this.Item.NUM_SORTIE;
+                    this.viewModel.Title = "Sortie N° "+this.Item.NUM_SORTIE;
 
                     foreach (var itemC in itemsC)
                     {

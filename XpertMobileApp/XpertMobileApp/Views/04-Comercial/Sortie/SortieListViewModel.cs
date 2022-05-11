@@ -117,7 +117,7 @@ namespace XpertMobileApp.ViewModels
         }
 
         /// <summary>
-        /// une function 
+        /// une fonction aide à remplir le sélecteur de statut
         /// </summary>
         /// <returns></returns>
         async Task<List<BSE_DOCUMENT_STATUS>> FillStatus()
@@ -141,16 +141,20 @@ namespace XpertMobileApp.ViewModels
         }
 
         /// <summary>
-        /// 
+        /// une fonction aide à remplir le sélecteur de motifs
         /// </summary>
         /// <returns></returns>
         async Task<List<BSE_DOCUMENT_STATUS>> GetFilteredMotifs()
         {
-            List<View_STK_SORTIE> listMotifs= await getMotifs();
+            List<BSE_SORTIE_TYPE> listMotifs= await getMotifs();
             List<BSE_DOCUMENT_STATUS> listAllElem = new List<BSE_DOCUMENT_STATUS>();
-            BSE_DOCUMENT_STATUS allElem;
+            BSE_DOCUMENT_STATUS allElem= new BSE_DOCUMENT_STATUS();
 
-            foreach (View_STK_SORTIE item in listMotifs)
+            allElem.CODE_STATUS = "";
+            allElem.NAME = "";
+            listAllElem.Add(allElem);
+
+            foreach (BSE_SORTIE_TYPE item in listMotifs)
             {
                 allElem = new BSE_DOCUMENT_STATUS();
                 allElem.CODE_STATUS = "";
@@ -258,9 +262,9 @@ namespace XpertMobileApp.ViewModels
         /// pour la remplir de list de motifs dans les filtres
         /// </summary>
         /// <returns></returns>
-        async Task<List<View_STK_SORTIE>> getMotifs()
+        async Task<List<BSE_SORTIE_TYPE>> getMotifs()
         {
-            List<View_STK_SORTIE> Motifs = await WebServiceClient.getSortieMotifs();
+            List<BSE_SORTIE_TYPE> Motifs = await WebServiceClient.getSortieMotifs();
             return Motifs;
         }
 

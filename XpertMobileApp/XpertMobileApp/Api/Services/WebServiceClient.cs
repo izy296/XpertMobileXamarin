@@ -456,10 +456,10 @@ namespace XpertMobileApp.Services
         /// pour la recupérarion des Motifs d'un sortie de stock
         /// </summary>
         /// <returns></returns>
-        internal static async Task<List<View_STK_SORTIE>> getSortieMotifs()
+        internal static async Task<List<BSE_SORTIE_TYPE>> getSortieMotifs()
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STOCK_URL, ServiceUrlDico.STOCK_GET_STOCK_MOTIFS);
-            return await RetrievAauthorizedData<View_STK_SORTIE>(url);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.SORTIE_TYPE_URL, ServiceUrlDico.SORTIE_GET_TYPE);
+            return await RetrievAauthorizedData<BSE_SORTIE_TYPE>(url);
         }
         #endregion
 
