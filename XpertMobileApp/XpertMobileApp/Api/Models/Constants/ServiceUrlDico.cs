@@ -56,6 +56,8 @@ namespace XpertMobileApp.Helpers
 
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
+        public static string LICENCE_ACTIVATION_URL_LOCAL = "http://192.168.171.193:99/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";        
+
         public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
 
 
@@ -134,6 +136,15 @@ namespace XpertMobileApp.Helpers
         public static string RFID_UPDATE_CURENT_INV = "updatecurentinv";
 
         public static string RFID_GET_STOCK_COED_BARRE = "getstockcodebarre";
+
+        //Stock
+        public static string STOCK_URL = "STK_SORTIE";
+        public static string STOCK_GET_STOCK_SORTIE= "GetDetailsByCode";
+        public static string STOCK_GET_STOCK_MOTIFS= "GetMotifs";
+
+        //User
+        public static string USER_URL = "SYS_USER";
+        public static string USER_GET_IDS = "GetUsersID";
 
     }
 

@@ -12,6 +12,8 @@ using System.Linq;
 using Xpert;
 using XpertMobileApp.ViewModels.XLogin;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.Helpers;
+using System.Collections.ObjectModel;
 
 namespace XpertMobileApp.Views
 {
@@ -20,17 +22,20 @@ namespace XpertMobileApp.Views
     {
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
+        ObservableCollection<Grouping<string, int, HomeMenuItem>> menuItemsGrouped;
+
         public MenuPage()
         {
             InitializeComponent();
 
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
+            //Menu commun OFFICINE & COMM
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
             {
-                menuItems = new List<HomeMenuItem>();
+                menuItems = new List<HomeMenuItem>();                
 
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, Image = "", Title = AppResources.pn_home });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, ItemGroup = MenuItemGroup.Home, Image = "", Title = AppResources.pn_home });
                 /*
                 if (AppManager.HasAdmin) 
                 { 
@@ -39,6 +44,7 @@ namespace XpertMobileApp.Views
                 menuItems.Add(new HomeMenuItem
                 {
                     Id = MenuItemType.Ventes,
+                    ItemGroup = MenuItemGroup.Ventes,
                     Title = AppResources.pn_Ventes,
                     CodeObjet = XpertObjets.VTE_VENTE,
                     Action = XpertActions.AcSelect
@@ -47,6 +53,7 @@ namespace XpertMobileApp.Views
                 menuItems.Add(new HomeMenuItem
                 {
                     Id = MenuItemType.Encaissements,
+                    ItemGroup = MenuItemGroup.Tresorerie,
                     Title = AppResources.pn_encaissement,
                     CodeObjet = XpertObjets.TRS_DECAISS,
                     Action = Xpert.XpertActions.AcSelect
@@ -57,75 +64,123 @@ namespace XpertMobileApp.Views
                 {
                     //menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
                     menuItems.Add(new HomeMenuItem { 
-                                        Id = MenuItemType.VenteComptoir, 
+                                        Id = MenuItemType.VenteComptoir,
+                                        ItemGroup = MenuItemGroup.Ventes,
                                         Title = AppResources.pn_VteComptoir, 
                                         CodeObjet = XpertObjets.VTE_COMPTOIR, 
                                         Action = XpertActions.AcSelect });
 
                     if (AppManager.HasAdmin)
                     {
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions, Title = AppResources.pn_session,
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Achats,
+                            ItemGroup = MenuItemGroup.Achats,
+                            Title = AppResources.pn_Achats,
+                            CodeObjet = XpertObjets.ACH_DOCUMENT,
+                            Action = XpertActions.AcSelect
+                        });
+
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Sessions,
+                            ItemGroup = MenuItemGroup.Tresorerie,
+                            Title = AppResources.pn_session,
                             CodeObjet = XpertObjets.TRS_RESUME_SESSION,
                             Action = XpertActions.AcSelect
                         });
 
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie, Title = AppResources.pn_Tresorerie,
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tresorerie,
+                            ItemGroup = MenuItemGroup.Tresorerie,
+                            Title = AppResources.pn_Tresorerie,
                             CodeObjet = XpertObjets.BSE_COMPTE,
                             Action = XpertActions.AcSelect
                         });
 
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes, Title =   AppResources.pn_Commandes,
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.Commandes,
+                            ItemGroup = MenuItemGroup.Ventes,
+                            Title =   AppResources.pn_Commandes,
                             CodeObjet = XpertObjets.VTE_COMMANDE,
                             Action = XpertActions.AcSelect
                         });
 
                         if (Constants.AppName == Apps.XPH_Mob)
                         {
-                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop,Title =    AppResources.pn_VtePsychotrop,
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Psychotrop,
+                                ItemGroup = MenuItemGroup.Psychotrope,
+                                Title =    AppResources.pn_VtePsychotrop,
                               CodeObjet = XpertObjets.VTE_PSYCHOTROP,
                               Action = XpertActions.AcSelect
                             });
 
-                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux, Title = AppResources.pn_Bordereaux,
+                            menuItems.Add(new HomeMenuItem { Id = MenuItemType.Bordereaux,
+                                ItemGroup = MenuItemGroup.CHIFA,
+                                Title = AppResources.pn_Bordereaux,
                                 CodeObjet = XpertObjets.CFA_BORDEREAU,
                                 Action = XpertActions.AcSelect
                             });
                         }
                     }
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, Image = "", Title = AppResources.pn_Produits });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, ItemGroup = MenuItemGroup.Ventes, Image = "", Title = AppResources.pn_Tiers });
+
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, ItemGroup = MenuItemGroup.Stock, Image = "", Title = AppResources.pn_Produits });
 
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Manquants,
+                        ItemGroup = MenuItemGroup.Stock,
                         Title = AppResources.pn_Manquants,
                         CodeObjet = XpertObjets.ACH_MANQUANTS,
                         Action = XpertActions.AcSelect
                     });
 
+/*                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Entre,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Title = AppResources.pn_Enter,
+                        CodeObjet = XpertObjets.ACH_ENTRE,
+                        Action = XpertActions.AcSelect
+                    });*/
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Sortie,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Title = AppResources.pn_Sortie,
+                        CodeObjet = XpertObjets.ACH_SORTIE,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    //Analyse
                     if (AppManager.HasAdmin)
                     {
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.SimpleIndicators, Image = "", Title = "Indicteurs",
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.SimpleIndicators,
+                            ItemGroup = MenuItemGroup.Analyses,
+                            Image = "", Title = "Indicateurs",
                             CodeObjet = XpertObjets.TDB_ANALYSES,
                             Action = XpertActions.AcSelect
                         }); // AppResources.pn_Simpleindicator
                         
-                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses, Title = AppResources.pn_Analyses,
+                        menuItems.Add(new HomeMenuItem { Id = MenuItemType.EncAnalyses,
+                            ItemGroup = MenuItemGroup.Analyses,
+                            Title = AppResources.pn_Analyses,
                             CodeObjet = XpertObjets.TDB_ANALYSES,
                             Action = XpertActions.AcSelect
                             
                         });
                     }
                 }
+
                 if (AppManager.HasAdmin)
                 {
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
+                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_Settings });
                 }
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_About });
 
                 // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
                 // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },
             }
+
+            //Menu Xpert Livraison
             else if (Constants.AppName == Apps.XCOM_Livraison) 
             {
                 menuItems = new List<HomeMenuItem>();
@@ -137,6 +192,8 @@ namespace XpertMobileApp.Views
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
             }
+
+            //Xpert AGRI Manafiaa ACHATS
             else if (Constants.AppName == Apps.XAGRI_Mob)
             {
                 menuItems = new List<HomeMenuItem>
@@ -171,6 +228,8 @@ namespace XpertMobileApp.Views
                     });
                 }
             }
+
+            //Xpert CATALOG
             else if (Constants.AppName == Apps.XACATALOG_Mob)
             {
                 menuItems = new List<HomeMenuItem>
@@ -180,6 +239,8 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
             }
+
+            //Xpert Boutik
             else if (Constants.AppName == Apps.X_BOUTIQUE) 
             {
                 menuItems = new List<HomeMenuItem>
@@ -276,9 +337,21 @@ namespace XpertMobileApp.Views
                     }
                 }
 
-                ListViewMenu.ItemsSource = menus;
+                if(Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
+                {
+                    var sorted = from menu in menus
+                                 orderby menu.ItemGroup , menu.Title
+                                 group menu by menu.ItemGroup into menuGroup
+                                 orderby menuGroup.Key
+                                 select new Grouping<string, int, HomeMenuItem>(menuGroup.Key.ToString(), (int)menuGroup.Key, menuGroup);
 
-                if(menus.Count > 0 )
+                    //create a new collection of groups
+                    menuItemsGrouped = new ObservableCollection<Grouping<string,int, HomeMenuItem>>(sorted);
+                }
+
+                ListViewMenu.ItemsSource = menuItemsGrouped;
+
+                if (menus.Count > 0)
                     ListViewMenu.SelectedItem = menus[0];
 
                 UserDialogs.Instance.HideLoading();

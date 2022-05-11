@@ -58,7 +58,7 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Encaissements:
                         return new EncaissementsPage();
                     case (int)MenuItemType.Achats:
-                        return new AchatsPage();
+                        return new AchatsListPage();
                     case (int)MenuItemType.AchatsProduction:
                         return new AchatsOHPage(AchRecMotifs.PesageForProduction);
                     case (int)MenuItemType.OrdresProduction:
@@ -137,7 +137,7 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new EncaissementsPage()));
                         break;
                     case (int)MenuItemType.Achats:
-                        MenuPages.Add(id, new NavigationPage(new AchatsPage()));
+                        MenuPages.Add(id, new NavigationPage(new AchatsListPage()));
                         break;
                     case (int)MenuItemType.AchatsProduction:
                         MenuPages.Add(id, new NavigationPage(new AchatsOHPage(AchRecMotifs.PesageForProduction)));
@@ -200,6 +200,14 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Manquants:
                         MenuPages.Add(id, new NavigationPage(new ManquantsPage()));
                         break;
+                    //Navigation to the new EntreListPage
+                    case (int)MenuItemType.Entre:
+                        MenuPages.Add(id, new NavigationPage(new EntreListPage()));
+                        break;
+                    //Navigation to the new EntreListPage
+                    case (int)MenuItemType.Sortie:
+                        MenuPages.Add(id, new NavigationPage(new SortieListPage()));
+                        break;
                     case (int)MenuItemType.rfid:
                     // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
                         break;
@@ -224,16 +232,19 @@ namespace XpertMobileApp.Views
                 }
             }
 
-            var newPage = MenuPages[id];
-
-            if (newPage != null && Detail != newPage)
+            if (id > 0)
             {
-                Detail = newPage;
+                var newPage = MenuPages[id];
 
-                if (Device.RuntimePlatform == Device.Android)
-                    await Task.Delay(100);
+                if (newPage != null && Detail != newPage)
+                {
+                    Detail = newPage;
 
-                IsPresented = false;
+                    if (Device.RuntimePlatform == Device.Android)
+                        await Task.Delay(100);
+
+                    IsPresented = false;
+                }
             }
         }
     }

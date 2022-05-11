@@ -907,19 +907,22 @@
   <data name="alrt_quit_Application" xml:space="preserve">
     <value>Voulez-vous quitter l'application ?</value>
   </data>
-  <data name="pn_EntreeStock" xml:space="preserve">
-    <value>Entrée du Stock</value>
+  <data name="pn_Enter" xml:space="preserve">
+    <value>Entre</value>
   </data>
-  <data name="pn_sortieStock" xml:space="preserve">
-    <value>Sortie du Stock </value>
+  <data name="pn_Sortie" xml:space="preserve">
+    <value>Sortie de Stock</value>
   </data>
   <data name="txt_Motif" xml:space="preserve">
     <value>Motif</value>
   </data>
-  <data name="txt_cloture" xml:space="preserve">
-    <value>Cloturée</value>
+  <data name="txt_Cloture" xml:space="preserve">
+    <value>Clôturée</value>
   </data>
-  <data name="txt_nonCloturee" xml:space="preserve">
-    <value>Non Cloturée</value>
+  <data name="txt_Non_Cloture" xml:space="preserve">
+    <value>Non Clôturée</value>
+  </data>
+  <data name="pn_Saissi" xml:space="preserve">
+    <value>Saissé Par</value>
   </data>
 </root>

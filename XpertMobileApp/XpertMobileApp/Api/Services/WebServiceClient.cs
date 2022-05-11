@@ -16,10 +16,10 @@ namespace XpertMobileApp.Services
 {
     public class WebServiceClient
     {
-
+        #region LOGIN 
         public static string Token
         {
-            get { return App.User.Token.access_token; } 
+            get { return App.User.Token.access_token; }
         }
 
         public static async Task<List<T>> RetrievAauthorizedData<T>(string url)
@@ -35,7 +35,7 @@ namespace XpertMobileApp.Services
         public static async Task<Token> Login(string baseUrl, string username, string password)
         {
             try
-            { 
+            {
                 string url = baseUrl + "Token";
                 return await WSApi2.Log_in(url, username, password);
             }
@@ -44,6 +44,8 @@ namespace XpertMobileApp.Services
                 throw new XpertWebException(e.Message, e.Code);
             }
         }
+
+        #endregion
 
         public static async Task<List<TRS_JOURNEES>> GetSessionInfos()
         {
@@ -121,7 +123,7 @@ namespace XpertMobileApp.Services
         }
 
         internal static async Task<List<CFA_CENTRES>> getBordereauxCentresTypes()
-        { 
+        {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_CENTRES_URL);
 
             return await RetrievAauthorizedData<CFA_CENTRES>(url);
@@ -197,12 +199,12 @@ namespace XpertMobileApp.Services
             string url = ServiceUrlDico.LICENCE_DEACTIVATION_URL;
             string result = await WSApi2.PutValue<Client>(url, client);
 
-            return !string.IsNullOrEmpty(result);            
+            return !string.IsNullOrEmpty(result);
         }
 
         #endregion
 
-        
+
         #region Ventes
 
         public static async Task<List<View_VTE_JOURNAL_DETAIL>> GetVenteDetails(string codeVente)
@@ -220,17 +222,14 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
-        
+
         public static async Task<List<BSE_DOCUMENTS_TYPE>> GetVenteTypes()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_TYPES_URL);
 
             return await RetrievAauthorizedData<BSE_DOCUMENTS_TYPE>(url);
         }
-        #endregion
 
-
-        #region 
         public static async Task<List<View_VTE_VENTE_LOT>> GetCommandeDetails(string codeCommande)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.COMMANDE_DETAILS_URL);
@@ -240,6 +239,7 @@ namespace XpertMobileApp.Services
         }
         #endregion
 
+        #region Achats
         public static async Task<List<View_ACH_DOCUMENT_DETAIL>> GetAchatsDetails(string codeDoc)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_ACHATS, ServiceUrlDico.ACHATS_DETAILS_URL);
@@ -248,6 +248,9 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_ACH_DOCUMENT_DETAIL>(url);
         }
 
+        #endregion
+
+        #region Manafiaa
         public static async Task<List<View_PRD_AGRICULTURE_DETAIL>> GetProductionDetails(string codeDoc)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_DETAILS_URL);
@@ -348,9 +351,9 @@ namespace XpertMobileApp.Services
 
             return await WSApi2.PostAauthorizedValue<bool, List<View_BSE_EMBALLAGE>>(url, embalagges, Token);
         }
+        #endregion
 
         #region Produits
-
 
         public static async Task<View_AssistantCommandes> GetProduitDetails(string codeProduit)
         {
@@ -413,15 +416,15 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_STK_STOCK_RFID>> getStockFromRFIDs(List<string> RFIDs)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_RFIDs);
-            return await WSApi2.PostAauthorizedValue< List<View_STK_STOCK_RFID >, List<string>>(url, RFIDs, App.User.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<List<View_STK_STOCK_RFID>, List<string>>(url, RFIDs, App.User.Token.access_token);
         }
         internal static async Task<View_STK_INVENTAIRE> getCurentInventaire()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_CURENT_INV);
-            
+
             return await RetrievValAauthorizedData<View_STK_INVENTAIRE>(url);
         }
-        internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots,string modeValidate,string numInve,bool isOuvert)
+        internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots, string modeValidate, string numInve, bool isOuvert)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_UPDATE_CURENT_INV);
             url += WSApi2.AddParam(url, "modvalidate", modeValidate);
@@ -436,5 +439,42 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_STK_STOCK>(url);
         }
         #endregion
+
+        #region Stock
+        /// <summary>
+        /// pour la recupérarion des détails d'un sortie de stock
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        internal static async Task<List<View_STK_SORTIE_DETAIL>> getSortieDetails(string code)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STOCK_URL, ServiceUrlDico.STOCK_GET_STOCK_SORTIE);
+            url += WSApi2.AddParam(url, "code", code);
+            return await RetrievAauthorizedData<View_STK_SORTIE_DETAIL>(url);
+        }
+        /// <summary>
+        /// pour la recupérarion des Motifs d'un sortie de stock
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<View_STK_SORTIE>> getSortieMotifs()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STOCK_URL, ServiceUrlDico.STOCK_GET_STOCK_MOTIFS);
+            return await RetrievAauthorizedData<View_STK_SORTIE>(url);
+        }
+        #endregion
+
+        #region User
+        /// <summary>
+        /// pour la recupérarion des IDs de utilisateur d'un sortie de stock
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<View_SYS_USER>> getUserIDs()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.USER_URL, ServiceUrlDico.USER_GET_IDS);
+            return await RetrievAauthorizedData<View_SYS_USER>(url);
+
+        #endregion
+        }
+
     }
 }

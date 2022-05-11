@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+                 x:Class="XpertMobileApp.Views.UserSelector">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <Frame CornerRadius="15" Padding="10">
+            <StackLayout BackgroundColor="White">
+
+                <!-- Filter -->
+                <Grid Margin="5,10,5,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                        <!--<ColumnDefinition Width="50"/>-->
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Entry x:Name="ent_Filter" Text="{Binding SearchedText, Mode=TwoWay}" 
+                   Grid.Column="0" Placeholder="{i18n:Translate ph_seachedtxt}" TextChanged="Ent_Filter_TextChanged"/>
+                    <!--
+            <Button x:Name="btn_Search"  Text ="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
+                        Clicked="btn_Search_Clicked" />
+            -->
+                    <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                    WidthRequest="50" HeightRequest="50"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Search_Clicked"/>
+
+                    <!--<Button x:Name="btn_Add" Margin="0" Grid.Column="2"
+                    WidthRequest="50" HeightRequest="50" FontSize="Small"
+                    HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                    Text="New"  BackgroundColor="{StaticResource Primary}"
+                    Clicked="btn_Add_Clicked"/>-->
+
+                    <!--<Button x:Name="btn_Add" Margin="0"  Grid.Column="2"
+                        WidthRequest="50" HeightRequest="50" FontSize="Small"
+                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Add_icon}"  
+                        BackgroundColor="{StaticResource Primary}"
+                        Clicked="btn_Add_Clicked"/>-->
+                </Grid>
+
+                <!-- Listing -->
+                <ListView x:Name="ItemsListView" 
+               ItemsSource="{Binding Items}" 
+               VerticalOptions="FillAndExpand"
+               HasUnevenRows="true"
+               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+               RefreshCommand="{Binding LoadItemsCommand}"
+               SeparatorVisibility="None"
+               IsPullToRefreshEnabled="true"
+               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+               CachingStrategy="RecycleElement" 
+               ItemSelected="OnItemSelected">
+
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem Text="Modifier"
+                                IconImageSource="SelectionEdit.png"
+                                BackgroundColor="LightGreen"
+                                Invoked="OnUpdateSwipeItemInvoked"/>
+                                            <SwipeItem Text="Supprimer" IsVisible="False"
+                                IconImageSource="Delete1.png"
+                                BackgroundColor="LightPink"
+                                Invoked="OnDeleteSwipeItemInvoked" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+                                    <Grid  Padding="5" >
+                                        <StackLayout Spacing="0" BackgroundColor="White">
+                                            <Label TextColor="Black" Text="{Binding ID_USER}" FontAttributes="Bold"/>
+                                            <Label TextColor="Orange" Text="{Binding CODE_TIERS}" FontAttributes="Bold"/>
+                                            <!--<Label Text="{Binding TEL1_TIERS, StringFormat='Tél. {0}'}" TextColor="Black"
+                                   IsVisible="{Binding TEL1_TIERS, Converter={StaticResource stringToVisibilityConverter}}"
+                                    FontSize="Default" HorizontalOptions="Start" />-->
+                                        </StackLayout>
+                                    </Grid>
+                                </SwipeView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout >
+        </Frame>
+        <Button x:Name="btnSelect" IsVisible="False" Text="{i18n:Translate cmd_SelectElement}" IsEnabled="False"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="OnClose"></Button>
+    </StackLayout>
+</pages:PopupPage>

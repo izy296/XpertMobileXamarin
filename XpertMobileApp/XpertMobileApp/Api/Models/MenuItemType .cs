@@ -6,6 +6,7 @@ namespace XpertMobileApp.Api.Models
 {
     public enum MenuItemType
     {
+        None,
         Home,
         Encaissements,
         Tresorerie,
@@ -41,6 +42,22 @@ namespace XpertMobileApp.Api.Models
         XPurchased,
         XProfile,
         Export,
-        Import
+        Import,
+        Sortie,
+        Entre
+    }
+
+    public enum MenuItemGroup
+    {
+        Home,
+        Achats,
+        Ventes,
+        Stock,
+        Psychotrope,
+        Tresorerie,
+        CHIFA,
+        CVM,
+        Analyses,
+        Parametres
     }
 }
