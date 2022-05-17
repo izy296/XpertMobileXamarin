@@ -22,7 +22,7 @@ namespace XpertMobileApp {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class AppResources {
+    public class AppResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -2394,6 +2394,38 @@ namespace XpertMobileApp {
             get
             {
                 return ResourceManager.GetString("txt_Non_Cloture", resourceCulture);
+            }
+        }
+
+        public static string msg_ExitWarning
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_ExitWarning", resourceCulture);
+            }
+        }
+
+        public static string msg_ExitTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_ExitTitle", resourceCulture);
+            }
+        }
+
+        public static string exit_Button_Yes
+        {
+            get
+            {
+                return ResourceManager.GetString("exit_Button_Yes", resourceCulture);
+            }
+        }
+
+        public static string exit_Button_No
+        {
+            get
+            {
+                return ResourceManager.GetString("exit_Button_No", resourceCulture);
             }
         }
     }

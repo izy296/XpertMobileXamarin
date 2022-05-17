@@ -811,7 +811,19 @@
   <data name="alrt_quit_Application" xml:space="preserve">
     <value>هل تريد الخروج من التطبيق ؟</value>
   </data>
-  <data name="pn_EntreeStock" xml:space="preserve">
-    <value>السنة</value>
+  <data name="pn_Enter" xml:space="preserve">
+    <value>دخول</value>
+  </data>
+  <data name="exit_Button_No" xml:space="preserve">
+    <value>لا</value>
+  </data>
+  <data name="exit_Button_Yes" xml:space="preserve">
+    <value>نعم</value>
+  </data>
+  <data name="msg_ExitTitle" xml:space="preserve">
+    <value>تأكيد الخروج</value>
+  </data>
+  <data name="msg_ExitWarning" xml:space="preserve">
+    <value>هل أنت متأكد من أنك تريد الخروج؟</value>
   </data>
 </root>

@@ -15,10 +15,17 @@ using Android.Util;
 using Android.Support.Design.Widget;
 using FFImageLoading.Forms.Platform;
 using Firebase;
+using XpertMobileApp.Views;
+using System.Threading.Tasks;
+using Xamarin.Forms.Platform.Android;
+using Xamarin.Forms;
+using AndroidX.Navigation;
+using Rg.Plugins.Popup.Extensions;
+using Rg.Plugins.Popup.Services;
 
 namespace XpertMobileApp.Droid
 {
-    [Activity(Label = "XpertMobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "XpertMobile OFFICINE",  Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -38,13 +45,7 @@ namespace XpertMobileApp.Droid
             Instance = this;
 
             // Init popup plugin
-            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
-
-
-            Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
-            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);            
 
             UserDialogs.Init(this);
 
@@ -52,7 +53,13 @@ namespace XpertMobileApp.Droid
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
-           // FirebaseApp.InitializeApp(Application.Context);
+            GoogleVisionBarCodeScanner.Droid.RendererInitializer.Init();
+
+            // FirebaseApp.InitializeApp(Application.Context);
+
+            Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             LoadApplication(new App());
 
@@ -111,18 +118,164 @@ namespace XpertMobileApp.Droid
             FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
 
+        bool _isBackPressed = false;
         public override void OnBackPressed()
         {
             // Init popup plugin Back button Pressed
-            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            /*            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+                        {
+                            // Do something if there are some pages in the `PopupStack`
+                        }
+                        else
+                        {
+                            // Do something if there are not any pages in the `PopupStack`
+                        }*/
+
+            //var mainPage = App.Current.MainPage;
+
+            //var dd = NavigationPage.CurrentPageProperty;
+            try
             {
-                // Do something if there are some pages in the `PopupStack`
+
+                // popup est le nombre des fenêtres  (comme le filtre de saisie par dans sortie de stock) ouvert
+
+                var popup = PopupNavigation.PopupStack.Count;
+
+
+                if (popup != 0)
+                {
+                    PopupNavigation.PopAllAsync();
+                    return;
+                }
+
+                int pagesOpen = ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.NavigationStack.Count;
+
+                // testi si il ya des pages ouvert avec la counteur
+                // de stack si il est egal ou inferieur a 1 donc l'utilisateur est dans le HomePage
+                // alors afficher un avertisement pour quiter
+
+                if (pagesOpen <= 1)
+                {
+                    ConfirmWithDialog();
+                }
+                else
+                {
+                    // vérifier s'il y a des pages ouvertes à partir de MenuPage
+                    if (pagesOpen != 0)
+                    {
+                        // supprimer toutes les pages de la pile et revenir à l'accueil
+
+                        ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopToRootAsync();
+                        //TODO Empty ListViewMenu item selected
+
+                    } 
+                    else
+                        // exécuter l'action habituelle du bouton de retour
+                        base.OnBackPressed();
+                }
+
             }
-            else
+            catch (InvalidCastException ex)
             {
-                // Do something if there are not any pages in the `PopupStack`
+                // si le code jeter un exception de InvalidCastException
+                // l'application est dans la fenetre de configuration et authentification
+                // et la classe MasterDetailPage est n'est pas initialisé encors
+                base.OnBackPressed();
             }
+
+
+
+            //if (index == -1)
+            //{
+            //    App.Current.MainPage = new NavigationPage();  
+            //    App.Current.MainPage.Navigation.PushAsync(new HomePage());
+            //}
+
+
+            //var app = (XpertMobileApp.App)App.Current;
+            //if (app.PromptToConfirmExit)
+            //{
+            //    if (app.IsToastExitConfirmation)
+            //        ConfirmWithToast();
+            //    else
+            //        ConfirmWithDialog();
+
+            //    return;
+            //}
+            //base.OnBackPressed();
+
+            //RunOnUiThread(
+            //    async () =>
+            //    {
+            //        var isCloseApp = await AlertAsync(this, "NameOfApp", "Do you want to close this app?", "Yes", "No");
+
+            //        if (isCloseApp)
+            //        {
+            //            //this.FinishAffinity();
+            //        }
+            //    });
+
+            //var mainPage = App.Current.MainPage;
+
+            //Device.BeginInvokeOnMainThread(async () =>
+            //{
+            //    var result = await mainPage.DisplayAlert("Confirmation", "Voulez vous quitter l'application ?", "Oui", "Non");
+            //    if (result)
+            //    {
+            //        System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+            //    }
+            //});
+
+
         }
+
+        public Task<bool> AlertAsync(Context context, string title, string message, string positiveButton, string negativeButton)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            using (var db = new AlertDialog.Builder(context))
+            {
+                db.SetTitle(title);
+                db.SetMessage(message);
+                db.SetPositiveButton(positiveButton, (sender, args) => { tcs.TrySetResult(true); });
+                db.SetNegativeButton(negativeButton, (sender, args) => { tcs.TrySetResult(false); });
+                db.Show();
+            }
+
+            return tcs.Task;
+        }
+
+        private void ConfirmWithDialog()
+        {
+            using (var alert = new AlertDialog.Builder(this))
+            {
+                alert.SetTitle(AppResources.msg_ExitTitle);
+                alert.SetMessage(AppResources.msg_ExitWarning);
+                alert.SetPositiveButton(AppResources.exit_Button_Yes, (sender, args) => { FinishAffinity(); });
+                alert.SetNegativeButton(AppResources.exit_Button_No, (sender, args) => { }); // do nothing
+
+                var dialog = alert.Create();
+                dialog.Show();
+            }
+            return;
+        }
+
+        private void ConfirmWithToast()
+        {
+            if (_isBackPressed)
+            {
+                FinishAffinity(); // inform Android that we are done with the activity
+                return;
+            }
+
+            _isBackPressed = true;
+            Toast.MakeText(this, "Press back again to exit", ToastLength.Short).Show();
+
+            // Disable back to exit after 2 seconds.
+            new Handler().PostDelayed(() => { _isBackPressed = false; }, 2000);
+            return;
+        }
+
 
         static readonly int REQUEST_READ_PHONE_STATE = 0;
 

@@ -8,6 +8,8 @@ using XpertMobileApp.Api;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Models;
+using Acr.UserDialogs.Infrastructure;
+using System.Linq;
 
 namespace XpertMobileApp.Views
 {
@@ -100,9 +102,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Manquants:
                         return new ManquantsPage();
                     case (int)MenuItemType.rfid:
-                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
+                        // TODO    MenuPages.Add(id, (new RfidScanPage()));
                     case (int)MenuItemType.invrfid:
-                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
+                        // TODO    MenuPages.Add(id, (new RfidScanInventairePage()));
                     case (int)MenuItemType.Tiers:
                         return new TiersPage();
                     case (int)MenuItemType.EncAnalyses:
@@ -167,10 +169,10 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
                         break;
                     case (int)MenuItemType.Catalogues:
-                       // MenuPages.Add(id, new NavigationPage(new Paging()));
+                       // MenuPages.Add(id, (new Paging()));
                         break;
                     case (int)MenuItemType.MyCommandes:
-                       // MenuPages.Add(id, new NavigationPage(new Paging()));
+                       // MenuPages.Add(id, (new Paging()));
                         break;
                     case (int)MenuItemType.Commandes:
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));
@@ -209,10 +211,10 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new SortieListPage()));
                         break;
                     case (int)MenuItemType.rfid:
-                    // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
+                    // TODO    MenuPages.Add(id, (new RfidScanPage()));
                         break;
                     case (int)MenuItemType.invrfid:
-                    // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
+                    // TODO    MenuPages.Add(id, (new RfidScanInventairePage()));
                         break;
                     case (int)MenuItemType.Tiers:
                         MenuPages.Add(id, new NavigationPage(new TiersPage()));
@@ -238,7 +240,10 @@ namespace XpertMobileApp.Views
 
                 if (newPage != null && Detail != newPage)
                 {
-                    Detail = newPage;
+                    //Detail = newPage;
+                    NavigationPage.SetHasNavigationBar(newPage, false);
+                    await Detail.Navigation.PushAsync(newPage);
+                    //Detail.Navigation.NavigationStack.Append(newPage);
 
                     if (Device.RuntimePlatform == Device.Android)
                         await Task.Delay(100);
@@ -247,5 +252,6 @@ namespace XpertMobileApp.Views
                 }
             }
         }
+
     }
 }

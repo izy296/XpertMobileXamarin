@@ -146,7 +146,7 @@ namespace XpertMobileApp.Views
                         Id = MenuItemType.Sortie,
                         ItemGroup = MenuItemGroup.Stock,
                         Title = AppResources.pn_Sortie,
-                        CodeObjet = XpertObjets.ACH_SORTIE,
+                        CodeObjet = XpertObjets.STK_SORTIE,
                         Action = XpertActions.AcSelect
                     });
 
@@ -351,8 +351,10 @@ namespace XpertMobileApp.Views
 
                 ListViewMenu.ItemsSource = menuItemsGrouped;
 
-                if (menus.Count > 0)
-                    ListViewMenu.SelectedItem = menus[0];
+                //  je n'ai pas compris pourquoi ce code est ici et est la cause du deuxième lancement ??
+
+                //if (menus.Count > 0)
+                //    ListViewMenu.SelectedItem = menus[0];
 
                 UserDialogs.Instance.HideLoading();
             }
