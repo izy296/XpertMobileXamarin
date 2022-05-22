@@ -68,7 +68,7 @@
                             Margin="30, 0, 30, 10"/>
 
 
-                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
+                <Label x:Name="StatusLabel" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
                 <Picker Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Status}"
                                     ItemDisplayBinding="{Binding NAME}" FontSize="Small"
                                     SelectedItem="{Binding SelectedStatus , Mode=TwoWay}"

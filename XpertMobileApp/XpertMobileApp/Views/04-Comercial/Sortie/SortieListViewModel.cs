@@ -275,32 +275,35 @@ namespace XpertMobileApp.ViewModels
         protected override QueryInfos GetSelectParams()
         {
             base.GetSelectParams();
+;
+            this.AddSelect<View_STK_SORTIE, string>(e => e.CREATED_BY);
+            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.CREATED_ON);
+            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_PPA);
+            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_SHP);
+            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_VENTE);
+            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_SORTIE);
+            this.AddSelect<View_STK_SORTIE, string>(e => e.DESIGNATION_TYPE);
+            this.AddSelect<View_STK_SORTIE, string>(e => e.TYPE_SORTIE);
+            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.DATE_SORTIE);
+
 
             this.AddSelect<View_STK_SORTIE, string>(e => e.CODE_SORTIE);
             this.AddSelect<View_STK_SORTIE, string>(e => e.NUM_SORTIE);
-            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.DATE_SORTIE);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.CODE_TIERS);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.TYPE_SORTIE);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.NOTE_SORTIE);
-            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.CREATED_ON);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.CREATED_BY);
-            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.MODIFIED_ON);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.MODIFIED_BY);
-            this.AddSelect<View_STK_SORTIE, int>(e => e.SENS_DOC);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.EXERCICE);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_ACHAT);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_PPA);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_SHP);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.TYPE_PAIEMENT);
-            this.AddSelect<View_STK_SORTIE, bool>(e => e.SOLVABLE);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_PAYE);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_VENTE);
-            this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_SORTIE);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.STATUS_DOC);
-            this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.CLOTURE_ON);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.CLOTURED_BY);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.TIERS_NomC);
-            this.AddSelect<View_STK_SORTIE, string>(e => e.DESIGNATION_TYPE);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.CODE_TIERS);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.NOTE_SORTIE);
+            //this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.MODIFIED_ON);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.MODIFIED_BY);
+            //this.AddSelect<View_STK_SORTIE, int>(e => e.SENS_DOC);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.EXERCICE);
+            //this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_ACHAT);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.TYPE_PAIEMENT);
+            //this.AddSelect<View_STK_SORTIE, bool>(e => e.SOLVABLE);
+            //this.AddSelect<View_STK_SORTIE, decimal>(e => e.TOTAL_PAYE);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.STATUS_DOC);
+            //this.AddSelect<View_STK_SORTIE, DateTime?>(e => e.CLOTURE_ON);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.CLOTURED_BY);
+            //this.AddSelect<View_STK_SORTIE, string>(e => e.TIERS_NomC);
+            
 
             return qb.QueryInfos;
         }

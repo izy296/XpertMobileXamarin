@@ -12,9 +12,9 @@ using XpertMobileApp.Views.Templates;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SortieListPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SortieListPage : ContentPage
+    {
         private string typeDoc = "SS";
         SortieListViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
@@ -24,12 +24,19 @@ namespace XpertMobileApp.Views
         XpertBaseFilterModel filterObjectTest;
 
         public SortieListPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new UserSelector(CurrentStream);
 
             BindingContext = viewModel = new SortieListViewModel(typeDoc);
+
+
+            if (Constants.AppName == Apps.XCOM_Mob)
+            {
+                StatusLabel.IsVisible = false;
+                StatusPicker.IsVisible = false;
+            }
 
             //Code responsabel a la selectore de status ??
 
@@ -72,13 +79,13 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new SortieDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
-/*        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
-        }*/
+        /*        async void AddItem_Clicked(object sender, EventArgs e)
+                {
+                    await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
+                }*/
 
         protected override async void OnAppearing()
         {
@@ -86,7 +93,7 @@ namespace XpertMobileApp.Views
 
             var connectivity = CrossConnectivity.Current;
             if (connectivity.IsConnected)
-            { 
+            {
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
 
@@ -101,6 +108,8 @@ namespace XpertMobileApp.Views
             }
         }
 
+
+
         private void ApplyVisibility()
         {
             //btn_Additem.IsEnabled = viewModel.hasEditHeader;
@@ -108,22 +117,22 @@ namespace XpertMobileApp.Views
 
         private async void LoadStats()
         {
-             viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;           
-            
+            FilterPanel.IsVisible = !FilterPanel.IsVisible;
 
-/*            if (this.BaseFilterView.IsVisible)
-                BaseFilterView.Hide();
-            else
-                this.BaseFilterView.Show(CurrentStream);*/
+
+            /*            if (this.BaseFilterView.IsVisible)
+                            BaseFilterView.Hide();
+                        else
+                            this.BaseFilterView.Show(CurrentStream);*/
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
             FilterPanel.IsVisible = false;
         }
@@ -131,7 +140,7 @@ namespace XpertMobileApp.Views
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -155,5 +164,6 @@ namespace XpertMobileApp.Views
         {
 
         }
+
     }
 }
