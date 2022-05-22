@@ -115,7 +115,9 @@ namespace XpertMobileApp.Views
                         return new SettingsPage();
                     case (int)MenuItemType.About:
                         return new AboutPage();
-                    default:
+                    case (int)MenuItemType.Sortie:
+                        return new SortieListPage();
+                default:
                         return new HomePage();
             }
         }
@@ -242,7 +244,15 @@ namespace XpertMobileApp.Views
                 {
                     //Detail = newPage;
                     NavigationPage.SetHasNavigationBar(newPage, false);
-                    await Detail.Navigation.PushAsync(newPage);
+                    if (Detail.Navigation.NavigationStack.Count!=0)
+                    {
+                        await Detail.Navigation.PopAsync();
+                        await Detail.Navigation.PushAsync(newPage);
+                    }
+                    else
+                    {
+                        await Detail.Navigation.PushAsync(newPage);
+                    }
                     //Detail.Navigation.NavigationStack.Append(newPage);
 
                     if (Device.RuntimePlatform == Device.Android)
