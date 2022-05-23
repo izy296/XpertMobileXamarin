@@ -244,15 +244,17 @@ namespace XpertMobileApp.Views
                 {
                     //Detail = newPage;
                     NavigationPage.SetHasNavigationBar(newPage, false);
-                    if (Detail.Navigation.NavigationStack.Count!=0)
+                    if (Detail.Navigation.NavigationStack.Count > 1)
                     {
-                        await Detail.Navigation.PopAsync();
+                        var page =Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1];
                         await Detail.Navigation.PushAsync(newPage);
+                        Detail.Navigation.RemovePage(page);
                     }
                     else
                     {
                         await Detail.Navigation.PushAsync(newPage);
                     }
+                    
                     //Detail.Navigation.NavigationStack.Append(newPage);
 
                     if (Device.RuntimePlatform == Device.Android)

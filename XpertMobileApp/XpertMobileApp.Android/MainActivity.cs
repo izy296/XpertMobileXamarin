@@ -22,6 +22,7 @@ using Xamarin.Forms;
 using AndroidX.Navigation;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
+using ListView = Xamarin.Forms.ListView;
 
 namespace XpertMobileApp.Droid
 {
@@ -64,6 +65,7 @@ namespace XpertMobileApp.Droid
             LoadApplication(new App());
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
+
         // verifier les permission 
         /*
         if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
@@ -114,6 +116,7 @@ namespace XpertMobileApp.Droid
 
         protected override void OnNewIntent(Intent intent)
         {
+
             base.OnNewIntent(intent);
             FirebasePushNotificationManager.ProcessIntent(this, intent);
         }
@@ -144,7 +147,7 @@ namespace XpertMobileApp.Droid
 
                 if (popup != 0)
                 {
-                    PopupNavigation.PopAllAsync();
+                    PopupNavigation.PopAsync();
                     return;
                 }
 
@@ -161,17 +164,18 @@ namespace XpertMobileApp.Droid
                 else
                 {
                     // vérifier s'il y a des pages ouvertes à partir de MenuPage
-                    if (pagesOpen != 0)
-                    {
+                    //if (pagesOpen >2)
+                    //{
                         // supprimer toutes les pages de la pile et revenir à l'accueil
+                        base.OnBackPressed();
 
-                        ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopToRootAsync();
                         //TODO Empty ListViewMenu item selected
 
-                    } 
-                    else
-                        // exécuter l'action habituelle du bouton de retour
-                        base.OnBackPressed();
+                    //} 
+                    //else
+                    //    // exécuter l'action habituelle du bouton de retour
+                    //    ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopToRootAsync();
+                    
                 }
 
             }
