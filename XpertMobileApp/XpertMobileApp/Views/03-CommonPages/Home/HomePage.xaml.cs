@@ -88,8 +88,9 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                var page = RootPage.GetMenuPage(Convert.ToInt32(id));
-                await Navigation.PushAsync(page);
+                //var page = RootPage.GetMenuPage(Convert.ToInt32(id));
+                await RootPage.NavigateFromMenu(Convert.ToInt32(id));
+                //await Navigation.PushAsync(page);
                 // await RootPage.NavigateFromMenu(Convert.ToInt32(id));
             }
         }
