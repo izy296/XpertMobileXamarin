@@ -5,13 +5,21 @@ using System.Text;
 namespace XpertMobileApp.Api.Models
 {
     public class UrlService
-    {//Urlservice Mo
+    {
+        //Urlservice Model 
         public bool Selected
         {
             get;
             set;
         }
-        public string DisplayurlService
+        public string DisplayUrlService
+        {
+            get;
+            set;
+        }
+
+        //title for the urlService
+        public string Title
         {
             get;
             set;
