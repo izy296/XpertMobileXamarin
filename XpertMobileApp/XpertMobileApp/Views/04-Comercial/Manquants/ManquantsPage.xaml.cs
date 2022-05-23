@@ -3,21 +3,21 @@ using System;
 using System.Linq;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml; 
+using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ManquantsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ManquantsPage : ContentPage
+    {
         ManquantsViewModel viewModel;
 
         public ManquantsPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new CentresSelector();
 
@@ -26,8 +26,8 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
-               // viewModel.SelectedTiers = selectedItem;
-               // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                // viewModel.SelectedTiers = selectedItem;
+                // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
 
         }
@@ -46,12 +46,14 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
@@ -66,14 +68,14 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private CentresSelector itemSelector;

@@ -126,6 +126,43 @@ namespace XpertMobileApp.Models
                 return caisseDedier;
             }
         }
+
+        //Fields to store cridentials for the next time
+        private string isChecked;
+        public string IsChecked
+        {
+            set { isChecked = value; }
+            get { return isChecked; }
+        }
+
+        private string userName;
+        public string Username
+        {
+            get { return userName; }
+            set { userName = value; }
+        }
+
+        private string password;
+        public string Password
+        {
+            get { return password; }
+            set { password = value; }
+        }
+
+        //Connect Only with password 
+        private bool connectWithPasswordOnly;
+        public bool ConnectWithPasswordOnly
+        {
+            get { return connectWithPasswordOnly; }
+            set { connectWithPasswordOnly = value; }
+        }
+
+        private string usernameOnly;
+        public string UsernameOnly
+        {
+            get { return usernameOnly; }
+            set { usernameOnly = value; }
+        }
         public Settings() { }
     }
 
@@ -137,7 +174,8 @@ namespace XpertMobileApp.Models
         public string DEFAULT_ACHATS_MAGASIN { get; set; }
         public string DEFAULT_VENTE_MAGASIN { get; set; }
         public string DEFAULT_UNITE_ACHATS { get; set; }
-
+        //declare DIRECT_LOGIN boolean
+        public bool DIRECT_LOGIN { get; set; }
         public string NOM_PHARM { get; set; }
         public string ADRESSE_PHARM { get; set; }
         public string TEL_PHARM { get; set; }

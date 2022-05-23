@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage 
+    xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
              xmlns:fontawesome="clr-namespace:FontAwesome"
@@ -11,19 +12,19 @@
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="LabelTitleStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="OrangeRed"/>
                 <Setter Property="FontSize" Value="30"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontFamily" Value="{StaticResource FontGilroySemiBold}"/>                
+                <Setter Property="FontFamily" Value="{StaticResource FontGilroySemiBold}"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -31,20 +32,39 @@
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+            
             <!--Affichage de l'alerte en cas de deconnexion -->
-            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
+            <Label x:Name="Lbl_NoInternet" 
+                   IsVisible="False" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="White"/>
+            
             <StackLayout BackgroundColor="{StaticResource Accent}" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                <ContentView Padding="0,5,0,5" VerticalOptions="FillAndExpand">
-                    <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
+                
+                <ContentView Padding="0,5,0,5" 
+                             VerticalOptions="FillAndExpand">
+                    
+                    <Image Source="logo_v.png" 
+                           VerticalOptions="Center" 
+                           HeightRequest="125" />
+                    
                 </ContentView>
+                
             </StackLayout>
             <StackLayout Padding="0,30,0,0" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label x:Name="Lbl_AppFullName" Text="XpertMobile&#x0a;CATALOG" IsVisible="true" HorizontalTextAlignment="Center" Style="{StaticResource LabelTitleStyle}"/>
+                
+                <Label x:Name="Lbl_AppFullName" 
+                       Text="XpertMobile&#x0a;CATALOG" 
+                       IsVisible="true" 
+                       HorizontalTextAlignment="Center" 
+                       Style="{StaticResource LabelTitleStyle}"/>
+ 
             </StackLayout>
+            
         </StackLayout>
 
         <StackLayout >
-            
+
         </StackLayout>
 
         <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
@@ -52,7 +72,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="5*"/>
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
@@ -61,18 +81,41 @@
                         <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
 
                         <StackLayout>
-                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"  />
-                            <Entry x:Name="Ent_UserName" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
+                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"/>
+                            <Entry x:Name="Ent_UserName" 
+                                   FontSize="15"
+                                   Placeholder="{i18n:Translate lp_ph_UserName}"/>
                         </StackLayout>
 
                         <StackLayout Padding="0,10,0,0">
-                            <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}"/>
-                            <Entry x:Name="Ent_PassWord" Text="" Placeholder="{i18n:Translate lp_ph_PassWord}" IsPassword="True"/>
+                            <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}" />
+                            <Entry 
+                                    x:Name="Ent_PassWord"  
+                                    Placeholder="{i18n:Translate lp_ph_PassWord}" 
+                                    IsPassword="True" 
+                                    FontSize="15"/>
                         </StackLayout>
 
-                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" BorderRadius="5"
+                        <!--Adding Checkbox to remember the login informations-->
+                        <FlexLayout Padding="-5,10,0,0" 
+                                    Direction="row" 
+                                    AlignItems="Center" 
+                                    JustifyContent="Start">
+
+                            <CheckBox Color="{StaticResource Primary}"
+                                      x:Name="checkBox"
+                                      CheckedChanged="OnCheckBoxCheckedChanged"
+                                      IsChecked="{Binding isChecked}"/>
+                            <Label Text="{i18n:Translate lp_lbl_me_souvenir} " 
+                                    FontSize="16"/>
+
+                        </FlexLayout>
+                        
+                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" 
+                                BorderRadius="5"
                                 Style="{DynamicResource DefaultBtnStyle}"
-                                Text="{i18n:Translate lp_btn_Login}" Clicked="ConnectUserAsync"/>
+                                Text="{i18n:Translate lp_btn_Login}" 
+                                Clicked="ConnectUserAsync"/>
                         
                     </StackLayout>
                 </Grid>
@@ -84,31 +127,56 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>                
+                </Grid.ColumnDefinitions>
 
-            <Label Grid.Column="0" FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" Margin="10">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <FormattedString.Spans>
-                            <Span x:Name="XpertVersion" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
-                        </FormattedString.Spans>
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-                
-            <StackLayout Grid.Column="1" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" HorizontalOptions="End" >
-                <Button x:Name="Btn_Config" Margin="0" 
-                        WidthRequest="50" HeightRequest="50"
-                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" BackgroundColor="White" 
-                        Clicked="Settings_Clicked"/>
-            
-                <Button x:Name="Btn_Exit" Margin="0" 
-                        WidthRequest="50" HeightRequest="50" 
-                        HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" TextColor="{StaticResource Accent}"
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" BackgroundColor="White" 
-                        Clicked="Exit_Clicked"/>
-            </StackLayout>
+                <Label Grid.Column="0" 
+                       FontSize="Small" 
+                       HorizontalOptions="Start" 
+                       VerticalOptions="Center" 
+                       Margin="10">
+                    
+                    <Label.FormattedText>
+                        
+                        <FormattedString>
+                            
+                            <FormattedString.Spans>
+                                
+                                <Span x:Name="XpertVersion" 
+                                      Text="1.0" 
+                                      ForegroundColor="{StaticResource LightTextColor}" />
+                                
+                            </FormattedString.Spans>
+                            
+                        </FormattedString>
+                        
+                    </Label.FormattedText>
+                </Label>
+
+                <StackLayout Grid.Column="1" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" HorizontalOptions="End" >
+                    
+                    <Button x:Name="Btn_Config" 
+                            Margin="0" 
+                            WidthRequest="50"
+                            HeightRequest="50"
+                            HorizontalOptions="End" 
+                            Style="{StaticResource FAwesome-B-Solid}" 
+                            TextColor="{StaticResource Accent}"
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" 
+                            BackgroundColor="White" 
+                            Clicked="Settings_Clicked"/>
+
+                    <Button x:Name="Btn_Exit" 
+                            Margin="0" 
+                            WidthRequest="50" 
+                            HeightRequest="50" 
+                            HorizontalOptions="End" 
+                            Style="{StaticResource FAwesome-B-Solid}" 
+                            TextColor="{StaticResource Accent}"
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" 
+                            BackgroundColor="White" 
+                            Clicked="Exit_Clicked"/>
+                    
+                </StackLayout>
             </Grid>
         </StackLayout>
     </Grid>

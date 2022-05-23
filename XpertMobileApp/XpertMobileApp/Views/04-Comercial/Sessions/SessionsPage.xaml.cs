@@ -1,20 +1,21 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SessionsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SessionsPage : ContentPage
+    {
         SessionsViewModel viewModel;
 
         public SessionsPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new SessionsViewModel();
         }
@@ -22,6 +23,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 LoadStats(EncaissDisplayType.All);
@@ -95,13 +98,13 @@ namespace XpertMobileApp.Views
                         ToolbarItems.Remove(btn_Additem);
                     break;
                 case EncaissDisplayType.ENC:
-                    if(ToolbarItems.IndexOf(btn_Additem) < 0)
+                    if (ToolbarItems.IndexOf(btn_Additem) < 0)
                         ToolbarItems.Add(btn_Additem);
                     break;
                 case EncaissDisplayType.DEC:
                     if (ToolbarItems.IndexOf(btn_Additem) < 0)
                         ToolbarItems.Add(btn_Additem);
-                    break; 
+                    break;
             }
 
             if (viewModel.EncaissDisplayType != type)
@@ -117,7 +120,7 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {         
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 

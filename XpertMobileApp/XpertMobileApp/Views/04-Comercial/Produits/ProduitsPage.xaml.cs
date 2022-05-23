@@ -6,14 +6,14 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProduitsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProduitsPage : ContentPage
+    {
         ProduitsViewModel viewModel;
 
         public ProduitsPage()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new ProduitsViewModel();
         }
@@ -36,13 +36,14 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
-         
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
+            Label label = new Label();
+            App.StatrtCheckIfInternet(this);
             if (viewModel.Items.Count == 0)
                 LoadStats();
 
@@ -66,7 +67,7 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {         
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -80,6 +81,18 @@ namespace XpertMobileApp.Views
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public GoogleVisionBS gvsScannedBarcode;
+        private void RowScan_Clicked(object sender, EventArgs e)
+        {
+            gvsScannedBarcode = new GoogleVisionBS();
+            gvsScannedBarcode.UserSubmitted += async (_, scannedPassword) =>
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+                await Navigation.PopAsync();
+            };
+            Navigation.PushAsync(gvsScannedBarcode);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace XpertMobileApp.Views
         public ObservableCollection<Language> Languages { get; }
         //declare observable collection from model UrlService(nadjib)
         public ObservableCollection<UrlService> UrlServices { get; set; }
+
         public SettingsModel viewModel;
 
         // public static IPrinterSPRT printerLocal;
@@ -38,8 +39,10 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new SettingsModel();
             // printerLocal = DependencyService.Get<IPrinterSPRT>();
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
+            Console.WriteLine(App.SettingsDatabase);
             //Set the selected Item from urlService....
             urlServicePicker.SelectedItem = viewModel.GetUrlService();
+
         }
 
         public SettingsPage(bool isModal = false)
@@ -64,7 +67,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                 updateUI();
+                updateUI();
             }
             */
             LanguagesPicker.SelectedIndexChanged += LanguagesPicker_SelectedIndexChanged;
@@ -98,7 +101,7 @@ namespace XpertMobileApp.Views
         private int GetServiceUrlIndex()
         {
             bool finded = false;
-            int i = 1;
+            int i = 0;
             List<UrlService> liste;
             try
             {

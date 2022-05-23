@@ -7,14 +7,14 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CommandesPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CommandesPage : ContentPage
+    {
         CommandesViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
         public CommandesPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
@@ -23,8 +23,8 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
-                 viewModel.SelectedTiers = selectedItem;
-                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                viewModel.SelectedTiers = selectedItem;
+                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
 
         }
@@ -38,7 +38,7 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new CommandeDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -49,6 +49,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 LoadStats();
@@ -65,7 +67,7 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -73,7 +75,7 @@ namespace XpertMobileApp.Views
         {
             viewModel.SelectedCompte = null;
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)

@@ -10,15 +10,15 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class BordereauxPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class BordereauxPage : ContentPage
+    {
         BordereauxViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
         private TiersSelector itemSelector;
         public BordereauxPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
@@ -26,8 +26,8 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
-               // viewModel.SelectedTiers = selectedItem;
-               // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                // viewModel.SelectedTiers = selectedItem;
+                // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
 
         }
@@ -38,7 +38,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-           await Navigation.PushAsync(new BordereauFactsPage(item));
+            await Navigation.PushAsync(new BordereauFactsPage(item));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -46,12 +46,14 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-           // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
+            // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
@@ -66,7 +68,7 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -74,7 +76,7 @@ namespace XpertMobileApp.Views
         {
             FilterPanel.IsVisible = false;
             viewModel.ClearFilters();
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
 

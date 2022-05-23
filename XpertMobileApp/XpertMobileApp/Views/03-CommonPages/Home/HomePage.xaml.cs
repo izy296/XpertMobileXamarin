@@ -19,10 +19,10 @@ namespace XpertMobileApp.Views
 
         public HomePage()
         {
-            
+
             InitializeComponent();
 
-           // Title = AppResources.pn_home;
+            // Title = AppResources.pn_home;
             lblUser.Text = App.User?.UserName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
@@ -31,11 +31,12 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                if(Constants.AppName != Apps.X_BOUTIQUE) 
-                { 
+                if (Constants.AppName != Apps.X_BOUTIQUE)
+                {
                     var param = await AppManager.GetSysParams();
                     var permissions = await AppManager.GetPermissions();
                 }
@@ -48,7 +49,7 @@ namespace XpertMobileApp.Views
                     AppResources.alrt_msg_Ok);
             }
 
-            if (viewModel.Items.Count == 0) 
+            if (viewModel.Items.Count == 0)
             {
                 viewModel.LoadItemsCommand.Execute(null);
             }
@@ -60,6 +61,8 @@ namespace XpertMobileApp.Views
         {
 
         }
+
+
 
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
@@ -75,7 +78,7 @@ namespace XpertMobileApp.Views
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            if (id=="34")
+            if (id == "34")
             {
                 await Upload();
             }

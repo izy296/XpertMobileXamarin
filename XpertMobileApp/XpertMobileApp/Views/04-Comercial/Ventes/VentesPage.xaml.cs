@@ -1,4 +1,5 @@
-﻿using Acr.UserDialogs;
+﻿
+using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
@@ -19,17 +20,17 @@ using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VentesPage : XBasePage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class VentesPage : XBasePage
     {
         VentesViewModel viewModel;
         private string typeDoc = VentesTypes.Vente;
         public string CurrentStream = Guid.NewGuid().ToString();
         public VentesPage(string typeVente)
-		{
+        {
             typeDoc = typeVente;
-            
-            InitializeComponent ();
+
+            InitializeComponent();
 
             if (string.IsNullOrEmpty(typeVente))
                 btn_Additem.IsVisible = false;
@@ -57,7 +58,7 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new VenteDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -109,6 +110,8 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             parames = await AppManager.GetSysParams();
             permissions = await AppManager.GetPermissions();
@@ -116,10 +119,10 @@ namespace XpertMobileApp.Views
             if (viewModel.Items.Count == 0)
                 LoadStats();
 
-              if ( viewModel.TypeVente == VentesTypes.Vente)
-              {                 
-                    viewModel.LoadExtrasDataCommand.Execute(null);
-              }
+            if (viewModel.TypeVente == VentesTypes.Vente)
+            {
+                viewModel.LoadExtrasDataCommand.Execute(null);
+            }
         }
 
         private async void LoadStats()
@@ -133,7 +136,7 @@ namespace XpertMobileApp.Views
         }
 
         private async void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -142,7 +145,7 @@ namespace XpertMobileApp.Views
             viewModel.SelectedType = null;
             viewModel.SelectedTiers = null;
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)

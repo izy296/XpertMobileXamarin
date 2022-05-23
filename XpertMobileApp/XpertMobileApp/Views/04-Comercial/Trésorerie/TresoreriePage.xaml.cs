@@ -14,7 +14,7 @@ namespace XpertMobileApp.Views
 
         public TresoreriePage()
         {
-            
+
             InitializeComponent();
 
             Title = AppResources.pn_home;
@@ -25,6 +25,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);

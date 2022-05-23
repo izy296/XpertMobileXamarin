@@ -8,14 +8,14 @@ using XpertMobileApp.Views.Encaissement;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EncaissementsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EncaissementsPage : ContentPage
+    {
         EncaissementsViewModel viewModel;
 
-        public EncaissementsPage ()
-		{
-			InitializeComponent ();
+        public EncaissementsPage()
+        {
+            InitializeComponent();
 
             BindingContext = viewModel = new EncaissementsViewModel();
         }
@@ -23,6 +23,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            //to check if connection exist or no 
+            App.StatrtCheckIfInternet(this);
 
             if (viewModel.Items.Count == 0)
                 LoadStats(EncaissDisplayType.All);
@@ -50,7 +52,7 @@ namespace XpertMobileApp.Views
             {
                 var item = args.SelectedItem as View_TRS_ENCAISS;
                 var itemfromDB = await SQLite_Manager.getselectedItemEncaiss(item);
-                if (itemfromDB == null || item ==null)
+                if (itemfromDB == null || item == null)
                     return;
 
                 await Navigation.PushAsync(new EncaissementDetailPage(itemfromDB));
@@ -109,13 +111,13 @@ namespace XpertMobileApp.Views
                         ToolbarItems.Remove(btn_Additem);
                     break;
                 case EncaissDisplayType.ENC:
-                    if(ToolbarItems.IndexOf(btn_Additem) < 0)
+                    if (ToolbarItems.IndexOf(btn_Additem) < 0)
                         ToolbarItems.Add(btn_Additem);
                     break;
                 case EncaissDisplayType.DEC:
                     if (ToolbarItems.IndexOf(btn_Additem) < 0)
                         ToolbarItems.Add(btn_Additem);
-                    break; 
+                    break;
             }
 
             if (viewModel.EncaissDisplayType != type)
@@ -143,7 +145,7 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {         
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 

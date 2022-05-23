@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -8,7 +7,6 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
-using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
@@ -33,7 +31,6 @@ namespace XpertMobileApp.Views
             NavigationPage.SetHasNavigationBar(this, false);
             Init();
         }
-
         private void Init()
         {
             //  App.StatrtCheckIfInternet(Lbl_NoInternet, this);
@@ -47,12 +44,43 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            Lbl_UserName.Text = AppResources.lp_lbl_UserName;
-            Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
-            Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
-            Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
-            Btn_LogIn.Text = AppResources.lp_btn_Login;
+            // if the user want to login with password only and he remembered his credietial
+            if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "true")
+            {
+                Ent_UserName.IsVisible = false;
+                Lbl_UserName.IsVisible = false;
+                Ent_UserName.Text = "";
+                Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
+                checkBox.IsChecked = true;
+                Ent_PassWord.Text = App.Settings.Password;
+            }
+            else if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "false")
+            {
+                Ent_UserName.IsVisible = false;
+                Lbl_UserName.IsVisible = false;
+                Ent_UserName.Text = "";
+                Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
+                Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
+                checkBox.IsChecked = false;
+            }
+            // if the user remembred his cridentials and connect with user and password 
+            else if (App.Settings.IsChecked == "true" && !App.Settings.ConnectWithPasswordOnly)
+            {
+                Lbl_UserName.Text = AppResources.lp_lbl_UserName;
+                Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
+                Ent_PassWord.Text = App.Settings.Password;
+                Ent_UserName.Text = App.Settings.Username;
+                checkBox.IsChecked = true;
+                Btn_LogIn.Text = AppResources.lp_btn_Login;
+            }
+            else
+            {
+                Lbl_UserName.Text = AppResources.lp_lbl_UserName;
+                Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
+                Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
+                Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
+                Btn_LogIn.Text = AppResources.lp_btn_Login;
+            }
         }
 
         async void ConnectUserAsync(object sender, EventArgs e)
@@ -69,14 +97,43 @@ namespace XpertMobileApp.Views
                 if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
+                    //check if login_direct 
+                    User user;
+                    if (App.Settings.ConnectWithPasswordOnly && String.IsNullOrEmpty(Ent_UserName.Text))
+                    {
+                        user = new User(App.Settings.UsernameOnly, Ent_PassWord.Text);
+                    }
+                    else
+                    {
+                        user = new User(Ent_UserName.Text, Ent_PassWord.Text);
+                    }
+
+                    //Save the username and the password to show it next time
+                    if (App.Settings.IsChecked == "true")
+                    {
+                        App.Settings.Password = Ent_PassWord.Text;
+
+                        if (!String.IsNullOrEmpty(Ent_UserName.Text))
+                        {
+                            App.Settings.Username = Ent_UserName.Text;
+                            App.Settings.UsernameOnly = Ent_UserName.Text;
+                        }
+                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(Ent_UserName.Text))
+                        {
+                            App.Settings.Username = Ent_UserName.Text;
+                            App.Settings.UsernameOnly = Ent_UserName.Text;
+                        }
+                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    }
 
                     if (viewModel.CheckUser(user))
                     {
                         // Authentification via le WebService
                         Token token = await viewModel.Login(user);
-
-
 
                         // Cas d'un souci avec le web service 
                         if (token == null)
@@ -100,13 +157,27 @@ namespace XpertMobileApp.Views
 
                             await SQLite_Manager.initialisationDbLocal();
                             await SQLite_Manager.AjoutToken(token);
+                            //check if Direct_Login if true in order to login with password only.
+                            var param = await AppManager.GetSysParams();
+
+                            //si l'utilisateur connect with password only
+                            if (param.DIRECT_LOGIN)
+                            {
+                                App.Settings.ConnectWithPasswordOnly = true;
+                                if (Ent_UserName.Text != App.Settings.Username && Ent_UserName.Text != "")
+                                    App.Settings.Username = Ent_UserName.Text;
+                            }
+                            else
+                            {
+                                App.Settings.ConnectWithPasswordOnly = false;
+                            }
                             // Alerte apres la connexion
                             // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
                             // suavegrade du user et du token en cours dans la bdd local
 
                             //Récuperation prefix
-                            if (Constants.AppName == Apps.XCOM_Livraison)                            
+                            if (Constants.AppName == Apps.XCOM_Livraison)
                                 await RecupererPrefix();
 
                             try
@@ -122,7 +193,6 @@ namespace XpertMobileApp.Views
                             {
                                 await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
                             }
-
                             UserDialogs.Instance.HideLoading();
 
                             if (Device.RuntimePlatform == Device.Android)
@@ -263,6 +333,28 @@ namespace XpertMobileApp.Views
             //System.Environment.Exit(1);
             var closer = DependencyService.Get<ICloseApplication>();
             closer?.closeApplication();
+        }
+        /// <summary>
+        /// Set the value of check box to the settings (true or false)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                var checkbox = (CheckBox)sender;
+                if (checkbox.IsChecked)
+                {
+                    App.Settings.IsChecked = "true";
+                    App.SettingsDatabase.SaveItemAsync(App.Settings);
+                }
+                else
+                {
+                    App.Settings.IsChecked = "false";
+                    App.SettingsDatabase.SaveItemAsync(App.Settings);
+                }
+            }
         }
     }
 }
