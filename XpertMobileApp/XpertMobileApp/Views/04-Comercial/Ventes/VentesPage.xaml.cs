@@ -110,8 +110,7 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            //to check if connection exist or no 
-            App.StatrtCheckIfInternet(this);
+
 
             parames = await AppManager.GetSysParams();
             permissions = await AppManager.GetPermissions();

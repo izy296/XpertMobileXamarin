@@ -158,6 +158,7 @@ namespace XpertMobileApp
 
         protected override void OnStart()
         {
+
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
                 object moduleName;
@@ -242,9 +243,10 @@ namespace XpertMobileApp
             // Handle when your app sleeps
         }
 
-        protected override void OnResume()
+        protected override async void OnResume()
         {
             // Handle when your app resumes
+
         }
         //Methode to set url services 
         public static void SetUrlServices(UrlService urlService)
@@ -450,23 +452,27 @@ namespace XpertMobileApp
         private static Label labelInfo;
         private static Page currentPage;
         private static Timer timer;
+        //public static void StatrtCheckIfInternet(Page page)
+        //{
+        //    currentPage = page;
+        //    CheckIfInternetOverTimeAsync();
 
-        public static void StatrtCheckIfInternet(Label label, Page page)
-        {
-            labelInfo = label;
-            label.Text = "Vous n'êtes pas connecté à internet";
-            label.IsVisible = false;
+        //}
+        //public static void StatrtCheckIfInternet(Page page)
+        //{
+        //    //labelInfo = label;
+        //    //label.Text = "Vous n'êtes pas connecté à internet";
+        //    //label.IsVisible = false;
 
-            currentPage = page;
+        //    currentPage = page;
 
-            if (timer == null)
-            {
-                timer = new Timer((e) =>
-                {
-                    CheckIfInternetOverTimeAsync();
-                }, null, 10, (int)TimeSpan.FromSeconds(3).TotalMilliseconds);
-            }
-        }
+        //    if (timer == null)
+        //    {
+        //        timer = new Timer((e) =>
+        //        {
+        //            CheckIfInternetOverTimeAsync();
+        //        }, null, 10, (int)TimeSpan.FromSeconds(3).TotalMilliseconds);
+        //    }
 
         private async static void CheckIfInternetOverTimeAsync()
         {
@@ -474,10 +480,10 @@ namespace XpertMobileApp
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    labelInfo.IsVisible = true;
+                    //labelInfo.IsVisible = true;
                     if (!alertDisplayed)
                     {
-                        alertDisplayed = true;
+                        //alertDisplayed = false;
                         await ShowDisplayAlert();
                     }
                 });
@@ -486,7 +492,7 @@ namespace XpertMobileApp
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    labelInfo.IsVisible = false;
+                    //labelInfo.IsVisible = false;
                     // Remettre l'affichage de l'alerte a false quand internet revient
                     alertDisplayed = false;
                 });
@@ -495,7 +501,7 @@ namespace XpertMobileApp
 
         private static async Task ShowDisplayAlert()
         {
-            await currentPage.DisplayAlert("Internet", "Vous n'êtes pas connecté à internet", "Ok");
+            await currentPage.DisplayAlert("Serveur", "Vous n'êtes pas connecté aux serveur", "Ok");
         }
 
         #endregion

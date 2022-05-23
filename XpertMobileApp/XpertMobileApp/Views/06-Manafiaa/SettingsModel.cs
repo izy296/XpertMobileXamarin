@@ -78,33 +78,13 @@ namespace XpertMobileApp.ViewModels
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
             UrlServices = new ObservableCollection<UrlService>()
                 {
-                    new UrlService{DisplayurlService = "http://xpertsoft.noip.me:8082/",
-                    Selected= true,
-                },
+                    new UrlService
+                    {
+                        DisplayurlService = "http://xpertsoft.noip.me:8082/",
+                        Selected = true,
+                        title = "Serveur Distant"
+                    },
                 };
-
-            if (this.Settings.ServiceUrl.Count() > 0)
-            {
-
-                //LoadSettings();
-                ////get the hole string that contain all the url configs...
-                //this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
-                //UrlServices = new ObservableCollection<UrlService>();
-                //List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                //foreach (var item in liste)
-                //{
-                //    UrlServices.Add(item);
-                //}
-                ////make a list that contain only valid url config and not empty string
-            }
-            else
-            {
-                //UrlServices = new ObservableCollection<UrlService>()
-                //{
-                //    new UrlService{DisplayurlService = "empty"}
-                //};
-            }
-
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
             ComptesList = new ObservableCollection<View_BSE_COMPTE>();
@@ -182,7 +162,7 @@ namespace XpertMobileApp.ViewModels
                     UrlService ObjtoSerialize = new UrlService
                     {
                         DisplayurlService = Settings.ServiceUrl,
-                        Selected = false,
+                        Selected = true
                     };
                     List<UrlService> liste = new List<UrlService>();
                     liste.Add(ObjtoSerialize);

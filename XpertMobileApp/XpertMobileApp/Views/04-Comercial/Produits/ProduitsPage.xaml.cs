@@ -43,7 +43,6 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
             Label label = new Label();
-            App.StatrtCheckIfInternet(this);
             if (viewModel.Items.Count == 0)
                 LoadStats();
 

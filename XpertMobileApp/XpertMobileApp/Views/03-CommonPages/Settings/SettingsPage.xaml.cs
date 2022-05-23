@@ -39,7 +39,7 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new SettingsModel();
             // printerLocal = DependencyService.Get<IPrinterSPRT>();
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
-            Console.WriteLine(App.SettingsDatabase);
+
             //Set the selected Item from urlService....
             urlServicePicker.SelectedItem = viewModel.GetUrlService();
 
