@@ -14,6 +14,8 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+            Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
+
         }
 
         protected override void OnAppearing()

@@ -14,6 +14,7 @@ using XpertMobileApp.ViewModels.XLogin;
 using XpertMobileApp.Api.Models;
 using XpertMobileApp.Helpers;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 
 namespace XpertMobileApp.Views
 {
@@ -29,6 +30,11 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
+
+            XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+            Lbl_AppFullName.Text = Constants.AppFullName;
+
+
 
             //Menu commun OFFICINE & COMM
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
