@@ -121,7 +121,7 @@
     <value>Connexion</value>
   </data>
   <data name="lp_btn_Settings" xml:space="preserve">
-    <value />
+    <value>Paramétre</value>
   </data>
   <data name="lp_lbl_PassWord" xml:space="preserve">
     <value>Mot de passe</value>
@@ -922,6 +922,12 @@
   <data name="txt_Non_Cloture" xml:space="preserve">
     <value>Non Clôturée</value>
   </data>
+  <data name="lp_lbl_me_souvenir" xml:space="preserve">
+    <value>Se souvenir de moi </value>
+  </data>
+  <data name="sp_motDePassOnly" xml:space="preserve">
+    <value>Connecter avec mot de pass seulement.</value>
+  </data>
   <data name="pn_Saissi" xml:space="preserve">
     <value>Saisie Par</value>
   </data>
@@ -936,5 +942,8 @@
   </data>
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir quitter?</value>
+  </data>
+  <data name="pn_EntreeStock" xml:space="preserve">
+    <value>Entree du stock </value>
   </data>
 </root>
