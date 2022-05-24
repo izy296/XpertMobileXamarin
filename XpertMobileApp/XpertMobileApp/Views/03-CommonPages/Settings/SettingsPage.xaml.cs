@@ -427,7 +427,7 @@ namespace XpertMobileApp.Views
                 try
                 {
                     //add the new UrlService  to the list of urlServices ...
-                    viewModel.UrlServices.Add(new UrlService { DisplayurlService = result });
+                    viewModel.UrlServices.Add(new UrlService { DisplayUrlService = result });
 
                     //render the the new list in the picker ...
                     List<UrlService> liste;
@@ -445,7 +445,7 @@ namespace XpertMobileApp.Views
                     }
                     UrlService ObjtoSerialize = new UrlService
                     {
-                        DisplayurlService = result,
+                        DisplayUrlService = result,
                         Selected = false,
                     };
                     liste.Add(ObjtoSerialize);
@@ -481,7 +481,7 @@ namespace XpertMobileApp.Views
                         string itemSelected = urlServicePicker.Items[urlServicePicker.SelectedIndex];
                         for (int i = 0; i < liste.Count; i++)
                         {
-                            if (liste[i].DisplayurlService == itemSelected)
+                            if (liste[i].DisplayUrlService == itemSelected)
                             {
                                 liste.RemoveAt(i);
                             }
@@ -516,8 +516,8 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                string result = await DisplayPromptAsync("Modifier l'Url", "Modifier votre Url", "ОК", "CANCEL", "", -1, null, "http://");
-                if (result != null)
+                string Result = await DisplayPromptAsync("Modifier l'Url", "Modifier votre Url", "ОК", "CANCEL", "", -1, null, "http://");
+                if (Result != null)
                 {
                     List<UrlService> liste;
                     //getting the item selected here from the picker ...
@@ -535,16 +535,16 @@ namespace XpertMobileApp.Views
                             liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
                             for (int i = 0; i < liste.Count; i++)
                             {
-                                if (liste[i].DisplayurlService == itemSelected)
+                                if (liste[i].DisplayUrlService == itemSelected)
                                 {
-                                    liste[i].DisplayurlService = result;
+                                    liste[i].DisplayUrlService = Result;
                                 }
                             }
                             //serialize the result list
                             viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
 
                             //update the itemSource of the picker to show new result 
-                            UrlService newUrl = new UrlService { DisplayurlService = result };
+                            UrlService newUrl = new UrlService { DisplayUrlService = Result };
 
                             int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
                             if (indexModified != -1)
@@ -552,7 +552,7 @@ namespace XpertMobileApp.Views
                             viewModel.UrlServices.Remove(urlToBeModified);
                             viewModel.UrlServices.Add(new UrlService
                             {
-                                DisplayurlService = liste[indexModified - 1].DisplayurlService,
+                                DisplayUrlService = liste[indexModified - 1].DisplayUrlService,
                                 Selected = liste[indexModified - 1].Selected,
                             });
 

@@ -80,7 +80,7 @@
 
                                 <Picker 
                                     ItemsSource="{Binding UrlServices, Mode=TwoWay}"
-                                    ItemDisplayBinding="{Binding DisplayurlService,  Mode=TwoWay}"
+                                    ItemDisplayBinding="{Binding DisplayUrlService,  Mode=TwoWay}"
                                     x:Name="urlServicePicker"/>
 
                             </StackLayout>
