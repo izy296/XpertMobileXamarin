@@ -946,4 +946,40 @@
   <data name="pn_EntreeStock" xml:space="preserve">
     <value>Entree du stock </value>
   </data>
+  <data name="txt_Ajout_Url" xml:space="preserve">
+    <value>Veuillez saisir votre Url de service</value>
+  </data>
+  <data name="txt_modification_message" xml:space="preserve">
+    <value>Modification effectuée avec succès</value>
+  </data>
+  <data name="txt_modification_message_url" xml:space="preserve">
+    <value>Modifier votre Url</value>
+  </data>
+  <data name="txt_modification_succee" xml:space="preserve">
+    <value>Modification Réussie!</value>
+  </data>
+  <data name="txt_modification_url" xml:space="preserve">
+    <value>Modifier l'Url</value>
+  </data>
+  <data name="txt_Nv_Url" xml:space="preserve">
+    <value>Nouveau Url </value>
+  </data>
+  <data name="txt_sp_Url" xml:space="preserve">
+    <value>Suppresion url</value>
+  </data>
+  <data name="txt_suppression_message_url" xml:space="preserve">
+    <value>Vous être sur le point de supprimer le service Sélectionner</value>
+  </data>
+  <data name="txt_supp_message_url" xml:space="preserve">
+    <value>Suppression effectuée avec succès</value>
+  </data>
+  <data name="txt_supp_reussite" xml:space="preserve">
+    <value>Suppression Réussie!</value>
+  </data>
+  <data name="txt_alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="txt_alert_message" xml:space="preserve">
+    <value>Vous n'êtes pas connecté aux serveur</value>
+  </data>
 </root>

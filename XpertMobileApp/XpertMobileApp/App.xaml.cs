@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Newtonsoft.Json;
+
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
@@ -240,13 +241,11 @@ namespace XpertMobileApp
 
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
+            // Handle when your app sleeps}
         }
 
         protected override async void OnResume()
         {
-            // Handle when your app resumes
-
         }
         //Methode to set url services 
         public static void SetUrlServices(UrlService urlService)
@@ -263,7 +262,7 @@ namespace XpertMobileApp
                 // set true to the selected service ....
                 for (int i = 0; i < liste.Count; i++)
                 {
-                    if (liste[i].DisplayurlService == urlService.DisplayurlService)
+                    if (liste[i].DisplayUrlService == urlService.DisplayUrlService)
                     {
                         liste[i].Selected = true;
                     }
@@ -312,7 +311,7 @@ namespace XpertMobileApp
             {
                 if (item.Selected == true)
                 {
-                    temp = item.DisplayurlService;
+                    temp = item.DisplayUrlService;
                 }
 
             }
@@ -332,6 +331,8 @@ namespace XpertMobileApp
 
             string furl = url.Replace(":" + port.ToString(), "");
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+            if (!isReachable)
+                await ShowDisplayAlert();
             Online = isReachable;
             return isReachable;
 
@@ -350,7 +351,7 @@ namespace XpertMobileApp
                     {
                         if (item.Selected == true)
                         {
-                            return item.DisplayurlService + ServiceUrlDico.BASE_URL;
+                            return item.DisplayUrlService + ServiceUrlDico.BASE_URL;
                         }
                     }
                     return "" + ServiceUrlDico.BASE_URL;
@@ -452,28 +453,23 @@ namespace XpertMobileApp
         private static Label labelInfo;
         private static Page currentPage;
         private static Timer timer;
-        //public static void StatrtCheckIfInternet(Page page)
-        //{
-        //    currentPage = page;
-        //    CheckIfInternetOverTimeAsync();
 
-        //}
-        //public static void StatrtCheckIfInternet(Page page)
-        //{
-        //    //labelInfo = label;
-        //    //label.Text = "Vous n'êtes pas connecté à internet";
-        //    //label.IsVisible = false;
+        public static void StatrtCheckIfInternet(Page page)
+        {
+            //labelInfo = label;
+            //label.Text = "Vous n'êtes pas connecté à internet";
+            //label.IsVisible = false;
 
-        //    currentPage = page;
+            currentPage = page;
 
-        //    if (timer == null)
-        //    {
-        //        timer = new Timer((e) =>
-        //        {
-        //            CheckIfInternetOverTimeAsync();
-        //        }, null, 10, (int)TimeSpan.FromSeconds(3).TotalMilliseconds);
-        //    }
-
+            if (timer == null)
+            {
+                timer = new Timer((e) =>
+                {
+                    CheckIfInternetOverTimeAsync();
+                }, null, 10, (int)TimeSpan.FromSeconds(3).TotalMilliseconds);
+            }
+        }
         private async static void CheckIfInternetOverTimeAsync()
         {
             if (!await App.IsConected())
@@ -501,7 +497,8 @@ namespace XpertMobileApp
 
         private static async Task ShowDisplayAlert()
         {
-            await currentPage.DisplayAlert("Serveur", "Vous n'êtes pas connecté aux serveur", "Ok");
+
+            await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_alert_message, AppResources.alrt_msg_Ok);
         }
 
         #endregion

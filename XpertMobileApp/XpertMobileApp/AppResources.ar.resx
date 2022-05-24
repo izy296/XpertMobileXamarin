@@ -826,10 +826,44 @@
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>هل أنت متأكد من أنك تريد الخروج؟</value>
   </data>
+<<<<<<< .mine
+  <data name="txt_alert" xml:space="preserve">
+    <value>تحذير</value>
+  </data>
+  <data name="txt_alert_message" xml:space="preserve">
+    <value>أنت غير متصل بالخوادم</value>
+  </data>
+  <data name="txt_modification_message" xml:space="preserve">
+    <value>تم التغيير بنجاح</value>
+  </data>
+  <data name="txt_modification_message_url" xml:space="preserve">
+    <value>قم بتعديل عنوان URL الخاص بك</value>
+  </data>
+  <data name="txt_modification_succee" xml:space="preserve">
+    <value>التغيير ناجح</value>
+  </data>
+  <data name="txt_modification_url" xml:space="preserve">
+    <value>تعديل URL</value>
+  </data>
+  <data name="txt_Nv_Url" xml:space="preserve">
+    <value>URL جديد</value>
+  </data>
+  <data name="txt_suppression_message_url" xml:space="preserve">
+    <value>أنت على وشك حذف الخدمة </value>
+  </data>
+  <data name="txt_supp_message_url" xml:space="preserve">
+    <value>اكتمل الحذف بنجاح</value>
+  </data>
+  <data name="txt_supp_reussite" xml:space="preserve">
+    <value>تم الحذف بنجاح!</value>
+  </data>
+||||||| .r15936
+=======
   <data name="pn_Saissi" xml:space="preserve">
     <value>إدخال من طرف</value>
   </data>
   <data name="pn_Sortie" xml:space="preserve">
     <value>البضائع الصادرة</value>
   </data>
+>>>>>>> .r15948
 </root>
