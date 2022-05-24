@@ -448,7 +448,7 @@ namespace XpertMobileApp.Services
         /// <returns></returns>
         internal static async Task<List<View_STK_SORTIE_DETAIL>> getSortieDetails(string code)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STOCK_URL, ServiceUrlDico.STOCK_GET_STOCK_SORTIE);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.SORTIE_URL, ServiceUrlDico.SORTIE_GET_STOCK_SORTIE);
             url += WSApi2.AddParam(url, "code", code);
             return await RetrievAauthorizedData<View_STK_SORTIE_DETAIL>(url);
         }
@@ -461,6 +461,17 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.SORTIE_TYPE_URL, ServiceUrlDico.SORTIE_GET_TYPE);
             return await RetrievAauthorizedData<BSE_SORTIE_TYPE>(url);
         }
+
+        /// <summary>
+        /// pour la recupérarion des types des sortie de stock
+        /// </summary>
+        /// <returns></returns>
+        internal static async Task<List<BSE_DOCUMENT_STATUS>> getSortieTypes()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.SORTIE_URL, ServiceUrlDico.SORTIE_GET_STOCK_TYPES);
+            return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
+        }
+
         #endregion
 
         #region User

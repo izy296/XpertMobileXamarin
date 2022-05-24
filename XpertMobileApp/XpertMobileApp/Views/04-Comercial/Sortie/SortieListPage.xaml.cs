@@ -54,8 +54,8 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<UserSelector, View_SYS_USER>(this, CurrentStream, async (obj, selectedItem) =>
             {
-                viewModel.SelectedMotifs = selectedItem;
-                ent_SelectedTiers.Text = selectedItem.ID_USER;
+                viewModel.SelectedUsers = selectedItem;
+                ent_SelectedUsers.Text = selectedItem.ID_USER;
             });
 
             MessagingCenter.Subscribe<BaseFilter, XpertBaseFilterModel>(this, CurrentStream, async (obj, selectedFilter) =>
@@ -98,8 +98,8 @@ namespace XpertMobileApp.Views
                 permissions = await AppManager.GetPermissions();
 
                 LoadStats();
-
-                viewModel.LoadExtrasDataCommand.Execute(null);
+                if (viewModel.Motif.Count == 0 && viewModel.Status.Count == 0)
+                    viewModel.LoadExtrasDataCommand.Execute(null);
             }
 
             if (!AppManager.HasAdmin)
@@ -108,7 +108,12 @@ namespace XpertMobileApp.Views
             }
         }
 
-
+        private void ClearFilters()
+        {
+            ent_SelectedUsers.Text = "";
+            MotifPicker.SelectedItem = MotifPicker.ItemsSource[0];
+            StatusPicker.SelectedItem = StatusPicker.ItemsSource[0];
+        }
 
         private void ApplyVisibility()
         {
@@ -140,6 +145,7 @@ namespace XpertMobileApp.Views
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
+            ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
 

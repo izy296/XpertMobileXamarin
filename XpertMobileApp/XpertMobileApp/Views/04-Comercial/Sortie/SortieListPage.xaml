@@ -78,7 +78,7 @@
 
                 <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Motif}" Margin="5, 0, 0, 0"/>
                 <Picker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" ItemsSource="{Binding Motif}"
-                                    ItemDisplayBinding="{Binding NAME}" FontSize="Small"
+                                    ItemDisplayBinding="{Binding DESIGNATION_TYPE}" FontSize="Small"
                                     SelectedItem="{Binding SelectedMotif , Mode=TwoWay}"
                                     TextColor="Black"
                                     Margin="30, 0, 30, 10"                 
@@ -95,7 +95,7 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.ID_USER, Mode=TwoWay}" 
+                    <Entry x:Name="ent_SelectedUsers" Grid.Column="0" Text="{Binding SelectedUsers.ID_USER, Mode=TwoWay}" 
                            IsEnabled="False" FontSize="Small" />
                     <!--
                     <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 

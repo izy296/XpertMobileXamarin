@@ -138,9 +138,10 @@ namespace XpertMobileApp.Helpers
         public static string RFID_GET_STOCK_COED_BARRE = "getstockcodebarre";
 
         //Sortie
-        public static string STOCK_URL = "STK_SORTIE";
-        public static string STOCK_GET_STOCK_SORTIE= "GetDetailsByCode";
-        public static string STOCK_GET_STOCK_MOTIFS= "GetMotifs";
+        public static string SORTIE_URL = "STK_SORTIE";
+        public static string SORTIE_GET_STOCK_SORTIE = "GetDetailsByCode";
+        public static string SORTIE_GET_STOCK_MOTIFS = "GetMotifs";
+        public static string SORTIE_GET_STOCK_TYPES = "GetSortieTypes";
 
         //User
         public static string USER_URL = "SYS_USER";

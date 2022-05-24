@@ -58,7 +58,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public View_SYS_USER SelectedMotifs { get; set; }
+        public View_SYS_USER SelectedUsers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
         public DateTime StartDate { get; set; } = DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
@@ -66,9 +66,9 @@ namespace XpertMobileApp.ViewModels
 
 
         public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
-        public ObservableCollection<BSE_DOCUMENT_STATUS> Motif { get; set; }
+        public ObservableCollection<BSE_SORTIE_TYPE> Motif { get; set; }
         public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
-        public BSE_DOCUMENT_STATUS SelectedMotif { get; set; }
+        public BSE_SORTIE_TYPE SelectedMotif { get; set; }
 
 
         public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
@@ -89,7 +89,7 @@ namespace XpertMobileApp.ViewModels
             IsLoadExtrasBusy = false;
 
             Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
-            Motif = new ObservableCollection<BSE_DOCUMENT_STATUS>();
+            Motif = new ObservableCollection<BSE_SORTIE_TYPE>();
             base.InitConstructor();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
@@ -122,45 +122,10 @@ namespace XpertMobileApp.ViewModels
         /// <returns></returns>
         async Task<List<BSE_DOCUMENT_STATUS>> FillStatus()
         {
-            List<BSE_DOCUMENT_STATUS> listAllElem = new List<BSE_DOCUMENT_STATUS>();
-            BSE_DOCUMENT_STATUS allElem = new BSE_DOCUMENT_STATUS();
-            allElem.CODE_STATUS = "";
-            allElem.NAME = "";
-            listAllElem.Add(allElem);
-
-            allElem = new BSE_DOCUMENT_STATUS();
-            allElem.CODE_STATUS = "";
-            allElem.NAME = AppResources.txt_cloturee;
-            listAllElem.Add(allElem);
-            allElem = new BSE_DOCUMENT_STATUS();
-            allElem.CODE_STATUS = "";
-            allElem.NAME = AppResources.txt_Non_Cloturee;
-            listAllElem.Add(allElem);
-
-            return listAllElem;
-        }
-
-        /// <summary>
-        /// une fonction aide à remplir le sélecteur de motifs
-        /// </summary>
-        /// <returns></returns>
-        async Task<List<BSE_DOCUMENT_STATUS>> GetFilteredMotifs()
-        {
-            List<BSE_SORTIE_TYPE> listMotifs= await getMotifs();
-            List<BSE_DOCUMENT_STATUS> listAllElem = new List<BSE_DOCUMENT_STATUS>();
-            BSE_DOCUMENT_STATUS allElem= new BSE_DOCUMENT_STATUS();
-
-            allElem.CODE_STATUS = "";
-            allElem.NAME = "";
-            listAllElem.Add(allElem);
-
-            foreach (BSE_SORTIE_TYPE item in listMotifs)
-            {
-                allElem = new BSE_DOCUMENT_STATUS();
-                allElem.CODE_STATUS = "";
-                allElem.NAME = item.DESIGNATION_TYPE;
-                listAllElem.Add(allElem);
-            }
+            List<BSE_DOCUMENT_STATUS> listAllElem = await WebServiceClient.getSortieTypes();
+            BSE_DOCUMENT_STATUS empty = new BSE_DOCUMENT_STATUS();
+            empty.NAME = "";
+            listAllElem.Insert(0,empty);
 
             return listAllElem;
         }
@@ -176,7 +141,7 @@ namespace XpertMobileApp.ViewModels
                     Status.Clear();
                     Motif.Clear();
                     var itemsC = await FillStatus();
-                    var itemsB = await GetFilteredMotifs();
+                    var itemsB = await getMotifs();
 
 
                     foreach (var itemC in itemsC)
@@ -200,7 +165,7 @@ namespace XpertMobileApp.ViewModels
                 Status.Clear();
                 Motif.Clear();
                 var itemsC = await FillStatus();
-                var itemsB = await GetFilteredMotifs();
+                var itemsB = await getMotifs();
 
 
                 foreach (var itemC in itemsC)
@@ -234,20 +199,22 @@ namespace XpertMobileApp.ViewModels
 
             this.AddCondition<View_STK_SORTIE, DateTime?>(e => e.DATE_SORTIE, Operator.BETWEEN_DATE, StartDate, EndDate);
             
-            if (!string.IsNullOrEmpty(SelectedMotifs?.ID_USER))
-                this.AddCondition<View_STK_SORTIE, string>(e => e.CREATED_BY, SelectedMotifs?.ID_USER);
+            if (!string.IsNullOrEmpty(SelectedUsers?.ID_USER))
+                this.AddCondition<View_STK_SORTIE, string>(e => e.CREATED_BY, SelectedUsers?.ID_USER);
 
-            if (!string.IsNullOrEmpty(SelectedMotif?.NAME))
-                this.AddCondition<View_STK_SORTIE, string>(e => e.DESIGNATION_TYPE, SelectedMotif?.NAME);
+            if (!string.IsNullOrEmpty(SelectedMotif?.DESIGNATION_TYPE))
+                this.AddCondition<View_STK_SORTIE, string>(e => e.DESIGNATION_TYPE, SelectedMotif?.DESIGNATION_TYPE);
 
             if (!string.IsNullOrEmpty(SelectedStatus?.NAME))
             {
                 string value =  SelectedStatus?.NAME;
-               
-                if (value==AppResources.txt_cloturee)
-                    this.AddCondition<View_STK_SORTIE,string> (e => e.STATUS_DOC, "42");
-                else 
-                    this.AddCondition<View_STK_SORTIE, string>(e => e.STATUS_DOC, "41");
+
+                this.AddCondition<View_STK_SORTIE, string>(e => e.STATUS_DOC, SelectedStatus?.CODE_STATUS);
+
+                //if (value==AppResources.txt_cloturee)
+                //    this.AddCondition<View_STK_SORTIE,string> (e => e.STATUS_DOC, "42");
+                //else 
+                //    this.AddCondition<View_STK_SORTIE, string>(e => e.STATUS_DOC, "41");
             }
 
             //this.AddCondition<View_STK_SORTIE, string>(e => e.CODE_MOTIF, "ES10");
@@ -265,6 +232,9 @@ namespace XpertMobileApp.ViewModels
         async Task<List<BSE_SORTIE_TYPE>> getMotifs()
         {
             List<BSE_SORTIE_TYPE> Motifs = await WebServiceClient.getSortieMotifs();
+            BSE_SORTIE_TYPE empty = new BSE_SORTIE_TYPE();
+            empty.DESIGNATION_TYPE = "";
+            Motifs.Insert(0, empty);
             return Motifs;
         }
 
