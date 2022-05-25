@@ -2913,7 +2913,7 @@ namespace XpertMobileApp
         public static string msg_ExitWarning
         {
             get
-            {
+            { 
                 return ResourceManager.GetString("msg_ExitWarning", resourceCulture);
             }
         }

@@ -723,7 +723,6 @@
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>Are you sure you want to quit?</value>
   </data>
-<<<<<<< .mine
   <data name="txt_Ajout_Url" xml:space="preserve">
     <value>Please enter your Service Url </value>
   </data>
@@ -754,13 +753,10 @@
   <data name="txt_supp_reussite" xml:space="preserve">
     <value>Delete successful !</value>
   </data>
-||||||| .r15936
-=======
   <data name="pn_Saissi" xml:space="preserve">
     <value>Entry by</value>
   </data>
   <data name="pn_Sortie" xml:space="preserve">
     <value>Outgoing Stock</value>
   </data>
->>>>>>> .r15948
 </root>

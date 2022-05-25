@@ -826,7 +826,6 @@
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>هل أنت متأكد من أنك تريد الخروج؟</value>
   </data>
-<<<<<<< .mine
   <data name="txt_alert" xml:space="preserve">
     <value>تحذير</value>
   </data>
@@ -857,13 +856,10 @@
   <data name="txt_supp_reussite" xml:space="preserve">
     <value>تم الحذف بنجاح!</value>
   </data>
-||||||| .r15936
-=======
   <data name="pn_Saissi" xml:space="preserve">
     <value>إدخال من طرف</value>
   </data>
   <data name="pn_Sortie" xml:space="preserve">
     <value>البضائع الصادرة</value>
   </data>
->>>>>>> .r15948
 </root>
