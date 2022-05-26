@@ -77,21 +77,12 @@ namespace XpertMobileApp.ViewModels
             };
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
             UrlServices = new ObservableCollection<UrlService>()
-                {
-                    new UrlService
-                    {
-                        DisplayurlService = "http://xpertsoft.noip.me:8082/",
-                        Selected = true,
-                        title = "Serveur Distant"
-                    },
-                };
+            { };
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
             ComptesList = new ObservableCollection<View_BSE_COMPTE>();
             _blueToothService = DependencyService.Get<IBlueToothService>();
         }
-
-
 
         public Language GetLanguageElem(string language)
         {
@@ -108,35 +99,34 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                UrlService result = new UrlService();
+                UrlService Result = new UrlService();
                 if (Settings.ServiceUrl != "")
                 {
                     bool checkIfJson = Manager.isJson(Settings.ServiceUrl);
                     if (checkIfJson)
                     {
-                        List<UrlService> liste;
-                        liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                        foreach (var item in liste)
+                        List<UrlService> Liste;
+                        Liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                        foreach (var Item in Liste)
                         {
-                            if (item.Selected)
+                            if (Item.Selected)
                             {
-                                result = item;
+                                Result = Item;
                             }
                         }
                     }
-                    else result = UrlServices[0];
+                    else Result = UrlServices[0];
                 }
                 else
                 {
-                    result = UrlServices[0];
+                    Result = UrlServices[0];
                 }
                 LoadSettings();
-                return result;
+                return Result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                throw ex;
             }
         }
         public async void LoadSettings()
@@ -147,12 +137,12 @@ namespace XpertMobileApp.ViewModels
             {
                 if (Manager.isJson(Settings.ServiceUrl))
                 {
-                    List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                    foreach (var item in liste)
+                    List<UrlService> Liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                    foreach (var Item in Liste)
                     {
-                        if (UrlServices.Where(e => e.DisplayurlService == item.DisplayurlService).Count() == 0)
+                        if (UrlServices.Where(e => e.DisplayUrlService == Item.DisplayUrlService).Count() == 0)
                         {
-                            UrlServices.Add(item);
+                            UrlServices.Add(Item);
                         }
                     }
                 }
@@ -161,12 +151,12 @@ namespace XpertMobileApp.ViewModels
                     //execute when migrating to the new version of (xpret mobile )
                     UrlService ObjtoSerialize = new UrlService
                     {
-                        DisplayurlService = Settings.ServiceUrl,
+                        DisplayUrlService = Settings.ServiceUrl,
                         Selected = true
                     };
-                    List<UrlService> liste = new List<UrlService>();
-                    liste.Add(ObjtoSerialize);
-                    Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                    List<UrlService> Liste = new List<UrlService>();
+                    Liste.Add(ObjtoSerialize);
+                    Settings.ServiceUrl = JsonConvert.SerializeObject(Liste);
                     await SaveSettings();
                 }
                 //end affectation
@@ -177,11 +167,11 @@ namespace XpertMobileApp.ViewModels
                     // App.Settings = this.Settings;
                 }
 
-                foreach (var item in DeviceList)
+                foreach (var Item in DeviceList)
                 {
-                    if (item.Name == Settings.PrinterName && item.Type == Settings.PrinterType)
+                    if (Item.Name == Settings.PrinterName && Item.Type == Settings.PrinterType)
                     {
-                        SelectedDevice = item;
+                        SelectedDevice = Item;
                     }
                 }
             }
