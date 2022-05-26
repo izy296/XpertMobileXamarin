@@ -32,7 +32,7 @@ namespace XpertMobileApp.Views
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
-            Lbl_AppFullName.Text = Constants.AppFullName;
+            Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ","\n") ;
 
 
 

@@ -24,13 +24,26 @@
                   >
 
             <ListView.Header>
-                <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                    <StackLayout Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Center">
-                        <ContentView Padding="0,20,0,5" VerticalOptions="FillAndExpand">
-                            <Image Source="logo_v_tl.png" VerticalOptions="Center" HeightRequest="80" />
+                <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand">
+                    <Grid VerticalOptions="Center">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentView Grid.Column="0" Padding="0,20,0,5" VerticalOptions="FillAndExpand">
+                            <Image Source="logo_v_tl_x.png" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" HeightRequest="80" />
                         </ContentView>
-                        <Label FontSize="Medium" x:Name="Lbl_AppFullName" Text="XpertMobile" IsVisible="true" HorizontalTextAlignment="Center" TextColor="Red"/>
-                        <Label FontSize="Micro" HorizontalOptions="Center" VerticalOptions="Center" Margin="0">
+                        <Label Margin="-15,10,0,0" TextColor="Black" HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" 
+                               FontSize="Large" x:Name="Lbl_AppFullName" Text="XpertMobile" IsVisible="true" HorizontalTextAlignment="Center" 
+                               FontAttributes="Bold"
+                               FontFamily="{StaticResource FontAwesomeBrands}"
+                              />
+                    </Grid>
+                    <StackLayout Padding="0" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center">
+                        <Label FontSize="Micro" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,5" HorizontalTextAlignment="End">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <FormattedString.Spans>
@@ -40,7 +53,7 @@
                             </Label.FormattedText>
                         </Label>
                     </StackLayout>
-                    <Label x:Name="lbl_MenuUser" Text="" TextColor="Black" FontSize="18" Margin="5,0,0,10"/>
+                    <Label x:Name="lbl_MenuUser" Text="" TextColor="Black" FontSize="0" Margin="0,0,0,0" IsVisible="false"/>
                 </StackLayout>
             </ListView.Header>
 
