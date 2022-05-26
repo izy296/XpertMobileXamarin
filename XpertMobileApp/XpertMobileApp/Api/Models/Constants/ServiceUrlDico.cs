@@ -116,6 +116,8 @@ namespace XpertMobileApp.Helpers
         // Manquants
         public static string MANQUANTS_URL = "ACH_MANQUANTS";
         public static string MANQUANTS_TYPES_URL = "GetManquantsTypes";
+        public static string Get_Qte_By_Produit = "GetQteStockByProdeuct";
+        public static string Get_Qte_By_Reference = "GetQteStockByReference";
 
         // Centres bordereaux 
         public static string BORDEREAUX_URL = "CFA_BORDEREAU";

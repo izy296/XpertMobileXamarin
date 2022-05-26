@@ -14,8 +14,12 @@ namespace XpertMobileApp.Api.Managers
     {
         internal static ProductManager Products = new ProductManager();
         internal static StockManager Stock = new StockManager();
-        
+
+       
+
         internal static CrudService<View_VTE_VENTE> Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
+
+        internal static CrudService<View_ACH_MANQUANTS> Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
 
         internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
 
@@ -86,10 +90,6 @@ namespace XpertMobileApp.Api.Managers
             else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XPH_Mob)
             { 
                 controlerName = "VTE_COMPTOIR";
-            }
-            else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XCOM_Mob)
-            {
-                controlerName = "VTE_COMPTOIR_XCOM";
             }
 
             var bll = new VentesManager(controlerName);
