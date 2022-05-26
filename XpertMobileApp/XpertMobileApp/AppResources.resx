@@ -502,7 +502,7 @@
     <value>Produit</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
-    <value>Qté</value>
+    <value>Qté Produit</value>
   </data>
   <data name="txt_QteMin" xml:space="preserve">
     <value>Qté Min</value>
@@ -911,7 +911,7 @@
     <value>Entre</value>
   </data>
   <data name="pn_Sortie" xml:space="preserve">
-    <value>Sortie de Stock</value>
+    <value>Sortie</value>
   </data>
   <data name="txt_Motif" xml:space="preserve">
     <value>Motif</value>
@@ -981,5 +981,44 @@
   </data>
   <data name="txt_alert_message" xml:space="preserve">
     <value>Vous n'êtes pas connecté aux serveur</value>
+  </data>
+  <data name="alrt_msg_Erreur_Traitement_Requéte" xml:space="preserve">
+    <value>Erreur lors de triatement de la requête</value>
+  </data>
+  <data name="alrt_msg_ManquantSaved" xml:space="preserve">
+    <value>Validation avec succès</value>
+  </data>
+  <data name="alrt_msg_MissingMotif" xml:space="preserve">
+    <value>Le type de manquant ne peut pas être vide!</value>
+  </data>
+  <data name="alrt_msg_MissingProduit" xml:space="preserve">
+    <value>Un produit doit être indiqué pour pouvoir créer un manquant! </value>
+  </data>
+  <data name="alrt_msg_MissingQuantite" xml:space="preserve">
+    <value>Vous devez saisir une quantité supérieur à zéro pour le manquant </value>
+  </data>
+  <data name="alrt_msg_title_Manquant" xml:space="preserve">
+    <value>Validation </value>
+  </data>
+  <data name="ph_Produit" xml:space="preserve">
+    <value>Poduits</value>
+  </data>
+  <data name="txt_Annule" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="txt_QteGenerique" xml:space="preserve">
+    <value>Qté Génériques</value>
+  </data>
+  <data name="txt_Quantite" xml:space="preserve">
+    <value>Quantite</value>
+  </data>
+  <data name="txt_Traite" xml:space="preserve">
+    <value>Traitée</value>
+  </data>
+  <data name="txt_Valider" xml:space="preserve">
+    <value>Valider</value>
+  </data>
+  <data name="txt_Saisi" xml:space="preserve">
+    <value>Saisi Par </value>
   </data>
 </root>
