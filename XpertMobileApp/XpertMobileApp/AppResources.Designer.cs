@@ -134,6 +134,56 @@ namespace XpertMobileApp
             }
         }
 
+        internal static string alrt_msg_ManquantSaved
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_ManquantSaved", resourceCulture);
+            }
+        }
+        internal static string alrt_msg_title_Manquant
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_title_Manquant", resourceCulture);
+            }
+        }
+
+        internal static string alrt_msg_MissingProduit
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_MissingProduit", resourceCulture);
+            }
+        }
+        internal static string alrt_msg_MissingMotif
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_MissingMotif", resourceCulture);
+            }
+        }
+
+        internal static string alrt_msg_MissingQuantite
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_MissingQuantite", resourceCulture);
+            }
+        }
+
+        internal static string alrt_msg_Erreur_Traitement_Requéte
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_Erreur_Traitement_Requéte", resourceCulture);
+            }
+        }
+
+      
+
+
+
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Cancel.
         /// </summary>
@@ -2585,6 +2635,14 @@ namespace XpertMobileApp
             get
             {
                 return ResourceManager.GetString("txt_Ref", resourceCulture);
+            }
+        }
+
+        internal static string txt_QteGenerique
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_QteGenerique", resourceCulture);
             }
         }
 

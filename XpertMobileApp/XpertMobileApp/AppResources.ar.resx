@@ -490,7 +490,7 @@
     <value>الوارد</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
-    <value>الكمية</value>
+    <value>كمية المنتج</value>
   </data>
   <data name="txt_QteMin" xml:space="preserve">
     <value>أقل كمية</value>
@@ -861,5 +861,47 @@
   </data>
   <data name="pn_Sortie" xml:space="preserve">
     <value>البضائع الصادرة</value>
+  </data>
+  <data name="alrt_msg_Erreur_Traitement_Requéte" xml:space="preserve">
+    <value> خطأ أثناء طلب معالجة</value>
+  </data>
+  <data name="alrt_msg_ManquantSaved" xml:space="preserve">
+    <value>تم التحقق بنجاح</value>
+  </data>
+  <data name="alrt_msg_MissingMotif" xml:space="preserve">
+    <value>لا يمكن أن يكون نوع المفقود فارغا</value>
+  </data>
+  <data name="alrt_msg_MissingProduit" xml:space="preserve">
+    <value>يجب الإشارة إلى منتج لإنشاء عنصر مفقود!</value>
+  </data>
+  <data name="alrt_msg_MissingQuantite" xml:space="preserve">
+    <value>يجب إدخال كمية أكبر من الصفر للمفقود</value>
+  </data>
+  <data name="alrt_msg_title_Manquant" xml:space="preserve">
+    <value>فاعلية</value>
+  </data>
+  <data name="ph_Produit" xml:space="preserve">
+    <value>منتجات</value>
+  </data>
+  <data name="txt_Annule" xml:space="preserve">
+    <value>إلغاء</value>
+  </data>
+  <data name="txt_Motif" xml:space="preserve">
+    <value>نمط</value>
+  </data>
+  <data name="txt_QteGenerique" xml:space="preserve">
+    <value>الكمية العامة</value>
+  </data>
+  <data name="txt_Quantite" xml:space="preserve">
+    <value>كمية</value>
+  </data>
+  <data name="txt_Traite" xml:space="preserve">
+    <value>يعالج</value>
+  </data>
+  <data name="txt_Valider" xml:space="preserve">
+    <value>تأكيد</value>
+  </data>
+  <data name="txt_Saisi" xml:space="preserve">
+    <value>أدخل بواسطة</value>
   </data>
 </root>

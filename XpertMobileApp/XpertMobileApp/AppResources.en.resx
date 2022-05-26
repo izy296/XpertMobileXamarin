@@ -490,7 +490,7 @@
     <value>Arrival</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
-    <value>Qte</value>
+    <value>Qte Product</value>
   </data>
   <data name="txt_QteMin" xml:space="preserve">
     <value>QMin</value>
@@ -758,5 +758,47 @@
   </data>
   <data name="pn_Sortie" xml:space="preserve">
     <value>Outgoing Stock</value>
+  </data>
+  <data name="alrt_msg_Erreur_Traitement_Requéte" xml:space="preserve">
+    <value>Error processing request</value>
+  </data>
+  <data name="alrt_msg_ManquantSaved" xml:space="preserve">
+    <value>Validation successfully</value>
+  </data>
+  <data name="alrt_msg_MissingMotif" xml:space="preserve">
+    <value>Missing type cannot be empty!</value>
+  </data>
+  <data name="alrt_msg_MissingProduit" xml:space="preserve">
+    <value>A product must be indicated in order to create a missing item!</value>
+  </data>
+  <data name="alrt_msg_MissingQuantite" xml:space="preserve">
+    <value>You must enter a quantity greater than zero for the shortage</value>
+  </data>
+  <data name="alrt_msg_title_Manquant" xml:space="preserve">
+    <value>Validation</value>
+  </data>
+  <data name="ph_Produit" xml:space="preserve">
+    <value>Products</value>
+  </data>
+  <data name="txt_Annule" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="txt_Motif" xml:space="preserve">
+    <value>Pattern</value>
+  </data>
+  <data name="txt_QteGenerique" xml:space="preserve">
+    <value>Generic Quantity</value>
+  </data>
+  <data name="txt_Quantite" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="txt_Traite" xml:space="preserve">
+    <value>Processed</value>
+  </data>
+  <data name="txt_Valider" xml:space="preserve">
+    <value>Validate</value>
+  </data>
+  <data name="txt_Saisi" xml:space="preserve">
+    <value>Entered by</value>
   </data>
 </root>
