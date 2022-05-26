@@ -98,26 +98,26 @@ namespace XpertMobileApp.Views
         /// <returns></returns>
         private int GetServiceUrlIndex()
         {
-            bool Finded = false;
+            bool finded = false;
             int i = 0;
-            List<UrlService> Liste;
+            List<UrlService> listeUrlService;
             try
             {
                 if (Manager.isJson(viewModel.Settings.ServiceUrl))
                 {
-                    Liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
-                    foreach (var Item in Liste)
+                    listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                    foreach (var Item in listeUrlService)
                     {
                         if (Item.Selected == true)
                         {
-                            Finded = true;
+                            finded = true;
                             break;
                         }
                         else
                             i++;
                     }
 
-                    if (Finded == true)
+                    if (finded == true)
                         return i;
                     else
                         return 0;
@@ -146,8 +146,8 @@ namespace XpertMobileApp.Views
         }
         private void UrlServicePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var UrlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
-            App.SetUrlServices(UrlService);
+            var urlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
+            App.SetUrlServices(urlService);
         }
 
         protected override async void OnDisappearing()
@@ -418,38 +418,38 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         async void Add_ServiceUrl(object sender, EventArgs e)
         {
-            string Result = await DisplayPromptAsync(AppResources.txt_Nv_Url, AppResources.txt_Ajout_Url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel, "", -1, null, "http://");
-            if (Result != null)
+            string result = await DisplayPromptAsync(AppResources.txt_Nv_Url, AppResources.txt_Ajout_Url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel, "", -1, null, "http://");
+            if (result != null)
             {
                 try
                 {
                     //add the new UrlService  to the list of urlServices ...
-                    viewModel.UrlServices.Add(new UrlService { DisplayUrlService = Result });
+                    viewModel.UrlServices.Add(new UrlService { DisplayUrlService = result });
 
                     //render the the new list in the picker ...
-                    List<UrlService> Liste;
+                    List<UrlService> listeUrlService;
                     if (viewModel.Settings.ServiceUrl != "")
                     {
                         //deserialize the list stored in local db...
                         if (Manager.isJson(viewModel.Settings.ServiceUrl))
-                            Liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                            listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
                         else
-                            Liste = new List<UrlService>();
+                            listeUrlService = new List<UrlService>();
                     }
                     else
                     {
-                        Liste = new List<UrlService>();
+                        listeUrlService = new List<UrlService>();
                     }
                     UrlService ObjtoSerialize = new UrlService
                     {
-                        DisplayUrlService = Result,
+                        DisplayUrlService = result,
                         Selected = false,
                     };
-                    Liste.Add(ObjtoSerialize);
+                    listeUrlService.Add(ObjtoSerialize);
 
                     for (int i = 0; i < viewModel.UrlServices.Count; i++)
                     {
-                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(Liste);
+                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(listeUrlService);
                     }
                 }
                 catch (Exception ex)
@@ -468,26 +468,26 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                var Result = await DisplayAlert(AppResources.txt_sp_url, AppResources.txt_suppression_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
-                if (Result)
+                var result = await DisplayAlert(AppResources.txt_sp_url, AppResources.txt_suppression_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                if (result)
                 {
-                    List<UrlService> Liste;
+                    List<UrlService> listeUrlService;
                     if (viewModel.Settings.ServiceUrl != "")
                     {
-                        Liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                        listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
                         string itemSelected = UrlServicePicker.Items[UrlServicePicker.SelectedIndex];
-                        for (int i = 0; i < Liste.Count; i++)
+                        for (int i = 0; i < listeUrlService.Count; i++)
                         {
-                            if (Liste[i].DisplayUrlService == itemSelected)
+                            if (listeUrlService[i].DisplayUrlService == itemSelected)
                             {
-                                Liste.RemoveAt(i);
+                                listeUrlService.RemoveAt(i);
                             }
                         }
-                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(Liste);
+                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(listeUrlService);
 
                         //delete the item from the picker 
-                        object Url = UrlServicePicker.SelectedItem;
-                        UrlService UrlToBeDeleted = Url as UrlService;
+                        object url = UrlServicePicker.SelectedItem;
+                        UrlService UrlToBeDeleted = url as UrlService;
                         viewModel.UrlServices.Remove(UrlToBeDeleted);
 
                         //save the new Setting...
@@ -511,10 +511,10 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                string Result = await DisplayPromptAsync(AppResources.txt_modification_url, AppResources.txt_modification_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel, "", -1, null, "http://");
-                if (Result != null)
+                string result = await DisplayPromptAsync(AppResources.txt_modification_url, AppResources.txt_modification_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel, "", -1, null, "http://");
+                if (result != null)
                 {
-                    List<UrlService> Liste;
+                    List<UrlService> listeUrlService;
                     //getting the item selected here from the picker ...
                     string ItemSelected = UrlServicePicker.Items[UrlServicePicker.SelectedIndex];
 
@@ -525,28 +525,28 @@ namespace XpertMobileApp.Views
                     if (viewModel.Settings.ServiceUrl != "")
                     {
                         //Search in the deserialized liste the element that will be modified...
-                        Liste = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
-                        for (int i = 0; i < Liste.Count; i++)
+                        listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                        for (int i = 0; i < listeUrlService.Count; i++)
                         {
-                            if (Liste[i].DisplayUrlService == ItemSelected)
+                            if (listeUrlService[i].DisplayUrlService == ItemSelected)
                             {
-                                Liste[i].DisplayUrlService = Result;
+                                listeUrlService[i].DisplayUrlService = result;
                             }
                         }
                         //serialize the result list
-                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(Liste);
+                        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(listeUrlService);
 
                         //update the itemSource of the picker to show new result 
-                        UrlService newUrl = new UrlService { DisplayUrlService = Result };
+                        UrlService newUrl = new UrlService { DisplayUrlService = result };
 
                         int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
                         if (indexModified != -1)
-                            Liste[indexModified - 1] = newUrl;
+                            listeUrlService[indexModified - 1] = newUrl;
                         viewModel.UrlServices.Remove(urlToBeModified);
                         viewModel.UrlServices.Add(new UrlService
                         {
-                            DisplayUrlService = Liste[indexModified - 1].DisplayUrlService,
-                            Selected = Liste[indexModified - 1].Selected,
+                            DisplayUrlService = listeUrlService[indexModified - 1].DisplayUrlService,
+                            Selected = listeUrlService[indexModified - 1].Selected,
                         });
 
                         //Save all settings

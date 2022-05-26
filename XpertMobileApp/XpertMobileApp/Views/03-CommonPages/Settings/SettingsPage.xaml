@@ -125,6 +125,7 @@
                         </StackLayout>
                     </Frame>
 
+
                     <!-- Notifications -->
                     <Frame Style="{StaticResource FrameForListing}" 
                            IsVisible="{Binding IsConnected}">
