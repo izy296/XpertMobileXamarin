@@ -219,6 +219,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                         }
                         string codeProduit = await CrudManager.Manquant.AddItemAsync(Item);
                         await DisplayAlert(AppResources.alrt_msg_title_Manquant, AppResources.alrt_msg_ManquantSaved, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.HideLoading();
                         await PopupNavigation.PopAsync();
                         MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
                     }
