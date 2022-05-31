@@ -20,7 +20,6 @@ using XpertMobileApp.Api.Models;
 using Newtonsoft.Json;
 using XpertMobileApp.Views.Helper;
 using Rg.Plugins.Popup.Services;
-using Xamarin.CommunityToolkit.Extensions;
 using XpertMobileApp.Views._04_Comercial.Selectors.Settings;
 using TranslateExtension = XpertMobileApp.Helpers.TranslateExtension;
 

@@ -76,8 +76,8 @@ namespace XpertMobileApp.ViewModels
                // new Language { DisplayName =  "中文 - Chinese (simplified)", ShortName = "zh-Hans" }
             };
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
-            UrlServices = new ObservableCollection<UrlService>()
-            { };
+            UrlServices = new ObservableCollection<UrlService>() { };
+
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
             ComptesList = new ObservableCollection<View_BSE_COMPTE>();
@@ -107,6 +107,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         List<UrlService> Liste;
                         Liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+
                         foreach (var Item in Liste)
                         {
                             if (Item.Selected)
@@ -137,8 +138,18 @@ namespace XpertMobileApp.ViewModels
             {
                 if (Manager.isJson(Settings.ServiceUrl))
                 {
-                    List<UrlService> Liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
-                    foreach (var Item in Liste)
+                    List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+
+                    for (int i = 0; i < liste.Count; i++)
+                    {
+                        if (liste[i].Title == null)
+                        {
+                            liste[i].Title = liste[i].DisplayUrlService;
+                        }
+                    }
+                    //Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                    //await SaveSettings();
+                    foreach (var Item in liste)
                     {
                         if (UrlServices.Where(e => e.DisplayUrlService == Item.DisplayUrlService).Count() == 0)
                         {
@@ -152,7 +163,8 @@ namespace XpertMobileApp.ViewModels
                     UrlService ObjtoSerialize = new UrlService
                     {
                         DisplayUrlService = Settings.ServiceUrl,
-                        Selected = true
+                        Selected = true,
+                        Title = Settings.ServiceUrl
                     };
                     List<UrlService> Liste = new List<UrlService>();
                     Liste.Add(ObjtoSerialize);
