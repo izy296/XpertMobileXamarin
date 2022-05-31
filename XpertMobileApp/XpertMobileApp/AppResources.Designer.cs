@@ -180,7 +180,7 @@ namespace XpertMobileApp
             }
         }
 
-      
+
 
 
 
@@ -2971,7 +2971,7 @@ namespace XpertMobileApp
         public static string msg_ExitWarning
         {
             get
-            { 
+            {
                 return ResourceManager.GetString("msg_ExitWarning", resourceCulture);
             }
         }
@@ -3083,5 +3083,55 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_alert_message", resourceCulture);
             }
         }
+        public static string sp_ajout_url
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_ajout_url", resourceCulture);
+            }
+        }
+        public static string sp_lbl_titre
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_lbl_titre", resourceCulture);
+            }
+        }
+        public static string sp_btn_annuler
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_btn_annuler", resourceCulture);
+            }
+        }
+        public static string sp_lbl_url
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_lbl_url", resourceCulture);
+            }
+        }
+        public static string sp_btn_ajouter
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_btn_ajouter", resourceCulture);
+            }
+        }
+        public static string sp_btn_editer
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_btn_editer", resourceCulture);
+            }
+        }
+        public static string lbl_modifier_url
+        {
+            get
+            {
+                return ResourceManager.GetString("lbl_modifier_url", resourceCulture);
+            }
+        }
     }
 }
+

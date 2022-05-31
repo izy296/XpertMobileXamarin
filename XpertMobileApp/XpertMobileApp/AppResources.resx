@@ -1021,4 +1021,25 @@
   <data name="txt_Saisi" xml:space="preserve">
     <value>Saisi Par </value>
   </data>
+  <data name="sp_ajout_url" xml:space="preserve">
+    <value>Ajouter un nouveau url</value>
+  </data>
+  <data name="sp_btn_ajouter" xml:space="preserve">
+    <value>Ajouter</value>
+  </data>
+  <data name="sp_btn_annuler" xml:space="preserve">
+    <value>Annuler</value>
+  </data>
+  <data name="sp_lbl_titre" xml:space="preserve">
+    <value>Titre :</value>
+  </data>
+  <data name="sp_lbl_url" xml:space="preserve">
+    <value>Url :</value>
+  </data>
+  <data name="lbl_modifier_url" xml:space="preserve">
+    <value>Modifier votre url </value>
+  </data>
+  <data name="sp_btn_editer" xml:space="preserve">
+    <value>Modifier</value>
+  </data>
 </root>

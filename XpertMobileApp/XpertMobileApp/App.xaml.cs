@@ -277,6 +277,7 @@ namespace XpertMobileApp
             }
             catch (Exception e)
             {
+                throw e;
             }
         }
         public static void SetAppLanguage(string language)
@@ -342,6 +343,8 @@ namespace XpertMobileApp
         {
             get
             {
+
+
                 //searching in the json file stocked in the local db a valid url wich is  selected in settings page...
                 List<UrlService> liste = new List<UrlService>();
                 if (Settings.ServiceUrl != null)
@@ -360,8 +363,6 @@ namespace XpertMobileApp
                 {
                     return ServiceUrlDico.BASE_URL;
                 }
-
-
             }
         }
 

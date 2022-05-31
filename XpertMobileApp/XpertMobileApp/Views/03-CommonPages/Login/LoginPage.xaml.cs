@@ -291,8 +291,8 @@ namespace XpertMobileApp.Views
                 }
                 try
                 {
-                    await SQLite_Manager.AssignPrefix();
-                    await SQLite_Manager.AssignMagasin();
+                    //await SQLite_Manager.AssignPrefix();
+                    //await SQLite_Manager.AssignMagasin();
                 }
                 catch
                 {
