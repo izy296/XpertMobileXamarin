@@ -550,15 +550,30 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                var page = new EditSettingsSelector();
+                List<UrlService> listeUrlService;
+                string titre = "";
+                string urlService = "";
+                var page = new EditSettingsSelector(titre, urlService);
+                listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
+                foreach (var item in listeUrlService)
+                {
+                    if (item.Selected == true)
+                    {
+                        titre = item.Title;
+                        urlService = item.DisplayUrlService;
+                    }
+                }
 
+                if (!string.IsNullOrEmpty(titre) && !string.IsNullOrEmpty(urlService))
+                {
+                    page = new EditSettingsSelector(titre, urlService);
+                }
                 page.data += async (popupSender, urlData) =>
                 {
                     var desirliazedData = JsonConvert.DeserializeObject<SettingsSelectorViewModel>(urlData);
 
                     if (desirliazedData != null)
                     {
-                        List<UrlService> listeUrlService;
                         //getting the item selected here from the picker ...
                         string ItemSelected = UrlServicePicker.Items[UrlServicePicker.SelectedIndex];
 
@@ -606,50 +621,6 @@ namespace XpertMobileApp.Views
                     };
                 };
                 await PopupNavigation.Instance.PushAsync(page);
-
-                //string result = await DisplayPromptAsync(AppResources.txt_modification_url, AppResources.txt_modification_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel, "", -1, null, "http://");
-                //if (result != null)
-                //{
-                //    List<UrlService> listeUrlService;
-                //    //getting the item selected here from the picker ...
-                //    string ItemSelected = UrlServicePicker.Items[UrlServicePicker.SelectedIndex];
-
-                //    //get the url selected from the picker ..
-                //    object url = UrlServicePicker.SelectedItem;
-                //    UrlService urlToBeModified = url as UrlService;
-
-                //    if (viewModel.Settings.ServiceUrl != "")
-                //    {
-                //        //Search in the deserialized liste the element that will be modified...
-                //        listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
-                //        for (int i = 0; i < listeUrlService.Count; i++)
-                //        {
-                //            if (listeUrlService[i].DisplayUrlService == ItemSelected)
-                //            {
-                //                listeUrlService[i].DisplayUrlService = result;
-                //            }
-                //        }
-                //        //serialize the result list
-                //        viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(listeUrlService);
-
-                //        //update the itemSource of the picker to show new result 
-                //        UrlService newUrl = new UrlService { DisplayUrlService = result };
-
-                //        int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
-                //        if (indexModified != -1)
-                //            listeUrlService[indexModified - 1] = newUrl;
-                //        viewModel.UrlServices.Remove(urlToBeModified);
-                //        viewModel.UrlServices.Add(new UrlService
-                //        {
-                //            DisplayUrlService = listeUrlService[indexModified - 1].DisplayUrlService,
-                //            Selected = listeUrlService[indexModified - 1].Selected,
-                //        });
-
-                //        //Save all settings
-                //        await viewModel.SaveSettings();
-                //        await DisplayAlert(AppResources.txt_modification_succee, AppResources.txt_modification_message, AppResources.alrt_msg_Ok);
-                //    }
-                //}
             }
             catch (Exception ex)
             {

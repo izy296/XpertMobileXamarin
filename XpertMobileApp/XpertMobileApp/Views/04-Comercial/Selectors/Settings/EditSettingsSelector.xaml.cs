@@ -25,10 +25,12 @@ namespace XpertMobileApp.Views
 
         public EventHandler<string> data;
 
-        public EditSettingsSelector()
+        public EditSettingsSelector(string titre, string url)
         {
             InitializeComponent();
             BindingContext = viewModel = new SettingsSelectorViewModel();
+            titreEntry.Text = titre;
+            urlEntry.Text = url;
         }
         private void SendResponse()
         {

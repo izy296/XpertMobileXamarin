@@ -29,6 +29,7 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new SettingsSelectorViewModel();
+            urlEntry.Text = "http://";
         }
         private void SendResponse()
         {

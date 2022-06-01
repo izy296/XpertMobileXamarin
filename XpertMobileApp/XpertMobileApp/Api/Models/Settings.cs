@@ -33,15 +33,7 @@ namespace XpertMobileApp.Models
             }
             get
             {
-                if (string.IsNullOrEmpty(serviceUrl))
-                {
-                    //serviceUrl = "http://192.168.1.21:98/";
-                    return serviceUrl;
-                }
-                else
-                {
-                    return serviceUrl;
-                }
+                return serviceUrl;
             }
         }
 
