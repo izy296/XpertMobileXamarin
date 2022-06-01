@@ -39,8 +39,7 @@ namespace XpertMobileApp.Views
             var item = args.SelectedItem as View_ACH_MANQUANTS;
             if (item == null)
                 return;
-            await Navigation.PushAsync(new ProduitDetailPage(item.CODE_PRODUIT));
-            // Manually deselect item.
+            await Navigation.PushAsync(new ProduitDetailPage(item.CODE_PRODUIT));           
             ItemsListView.SelectedItem = null;
         }       
         protected override async void OnAppearing()
@@ -51,6 +50,13 @@ namespace XpertMobileApp.Views
             if (viewModel.Types.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
         }
+        private void ClearFilters()
+        {
+            ent_SelectedTiers.Text = "";
+            TypesPicker.SelectedItem = TypesPicker.ItemsSource[0];
+            TypesProduitPicker.SelectedItem = TypesProduitPicker.ItemsSource[0];
+            StockMin.IsChecked = false;
+        }
         private void Filter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = !FilterPanel.IsVisible;
@@ -58,21 +64,38 @@ namespace XpertMobileApp.Views
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {        
             viewModel.LoadItemsCommand.Execute(null);
+            FilterPanel.IsVisible = false;
         }
         async void AjoutItem_Clicked(object sender, EventArgs e)
         {
             NewManquantPopupPage form = new NewManquantPopupPage();
             await PopupNavigation.Instance.PushAsync(form);
         }
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
+        private  void btn_CancelFilter_Clicked(object sender, EventArgs e)
+        {           
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            ClearFilters();
+            viewModel.LoadItemsCommand.Execute(null);          
         }        
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             itemSelector.SearchedType = "";
             await PopupNavigation.Instance.PushAsync(itemSelector);
+        }
+        private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
+        {
+            if (sender is CheckBox)
+            {
+                var checkbox = (CheckBox)sender;
+                if (checkbox.IsChecked)
+                {
+                    viewModel.StockMinimum = true;
+                }
+                else
+                {
+                    viewModel.StockMinimum = false;
+                }
+            }
         }
     }
 }
