@@ -1021,6 +1021,9 @@
   <data name="txt_Saisi" xml:space="preserve">
     <value>Saisi Par </value>
   </data>
+  <data name="txt_AfficherStockMin" xml:space="preserve">
+    <value>Stock minimum</value>
+  </data>
   <data name="sp_ajout_url" xml:space="preserve">
     <value>Ajouter un nouveau url</value>
   </data>
@@ -1041,5 +1044,8 @@
   </data>
   <data name="sp_btn_editer" xml:space="preserve">
     <value>Modifier</value>
+  </data>
+  <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
+    <value>Ce produit est déja signalé automatiquement comme manquant, voulez vous continiuer?</value>
   </data>
 </root>
