@@ -910,4 +910,25 @@
   <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
     <value>تم بالفعل تمييز هذا المنتج تلقائيًا على أنه مفقود ، هل تريد المتابعة؟</value>
   </data>
+  <data name="lbl_modifier_url" xml:space="preserve">
+    <value>تغيير الرابط  الخاص بك</value>
+  </data>
+  <data name="sp_ajout_url" xml:space="preserve">
+    <value>أضف عنوان جديدًا</value>
+  </data>
+  <data name="sp_btn_ajouter" xml:space="preserve">
+    <value>تضيف</value>
+  </data>
+  <data name="sp_btn_annuler" xml:space="preserve">
+    <value>الغاء</value>
+  </data>
+  <data name="sp_btn_editer" xml:space="preserve">
+    <value>يحرر</value>
+  </data>
+  <data name="sp_lbl_titre" xml:space="preserve">
+    <value>:العنوان</value>
+  </data>
+  <data name="sp_lbl_url" xml:space="preserve">
+    <value>:الرابط</value>
+  </data>
 </root>

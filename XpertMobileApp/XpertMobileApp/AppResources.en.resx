@@ -807,4 +807,25 @@
   <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
     <value>This product is already automatically flagged as missing, do you want to continue?</value>
   </data>
+  <data name="lbl_modifier_url" xml:space="preserve">
+    <value>Change your Url</value>
+  </data>
+  <data name="sp_ajout_url" xml:space="preserve">
+    <value>Add new url</value>
+  </data>
+  <data name="sp_btn_ajouter" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="sp_btn_annuler" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="sp_btn_editer" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="sp_lbl_titre" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="sp_lbl_url" xml:space="preserve">
+    <value>url:</value>
+  </data>
 </root>
