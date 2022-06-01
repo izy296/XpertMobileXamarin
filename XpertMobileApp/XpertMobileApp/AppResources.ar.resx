@@ -904,4 +904,10 @@
   <data name="txt_Saisi" xml:space="preserve">
     <value>أدخل بواسطة</value>
   </data>
+  <data name="txt_AfficherStockMin" xml:space="preserve">
+    <value>عرض الحد الأدنى من المخزون</value>
+  </data>
+  <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
+    <value>تم بالفعل تمييز هذا المنتج تلقائيًا على أنه مفقود ، هل تريد المتابعة؟</value>
+  </data>
 </root>
