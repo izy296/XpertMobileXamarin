@@ -801,4 +801,10 @@
   <data name="txt_Saisi" xml:space="preserve">
     <value>Entered by</value>
   </data>
+  <data name="txt_AfficherStockMin" xml:space="preserve">
+    <value>Show minimum stock</value>
+  </data>
+  <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
+    <value>This product is already automatically flagged as missing, do you want to continue?</value>
+  </data>
 </root>
