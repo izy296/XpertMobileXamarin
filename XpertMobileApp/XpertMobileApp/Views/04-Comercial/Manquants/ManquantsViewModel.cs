@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -37,13 +38,19 @@ namespace XpertMobileApp.ViewModels
 
         #region filters data
         public View_SYS_USER SelectedTiers { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        public DateTime StartDate { get; set; } = DateTime.ParseExact("2022-01-01", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         public DateTime EndDate { get; set; } = DateTime.Now;
         public View_STK_PRODUITS SearchedText { get; set; }       
         public ObservableCollection<BSE_DOCUMENT_STATUS> Types { get; set; }
         public BSE_DOCUMENT_STATUS SelectedType { get; set; }
         public ObservableCollection<BSE_TABLE_TYPE> TypesProduit { get; set; }
         public BSE_TABLE_TYPE SelectedTypesProduit { get; set; }
+        private bool stockMinimum;
+        public bool StockMinimum
+        {
+            get { return stockMinimum; }
+            set { SetProperty(ref stockMinimum, value); }
+        }
         async Task ExecuteLoadExtrasDataCommand()
         {
             if (IsLoadExtrasBusy)
@@ -112,7 +119,7 @@ namespace XpertMobileApp.ViewModels
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
             }
-        }
+        }      
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
@@ -124,9 +131,13 @@ namespace XpertMobileApp.ViewModels
                 this.AddCondition<View_ACH_MANQUANTS, short>(e => e.TYPE_PRODUIT, SelectedTypesProduit?.CODE_TYPE);
             if (!string.IsNullOrEmpty(SelectedType?.CODE_STATUS))
                 this.AddCondition<View_ACH_MANQUANTS, string>(e => e.CODE_TYPE, SelectedType?.CODE_STATUS);
+            this.AddCondition<View_ACH_MANQUANTS, bool>(e => e.TREATED, false);
+            if (stockMinimum == true)
+                this.AddCondition("(QTE_STOCK < STOCK_MIN AND STOCK_MIN <> 0)");                     
             qb.AddOrderBy<View_ACH_MANQUANTS, DateTime?>(e => e.CREATED_ON,Sort.DESC);
             return qb.QueryInfos;
         }
         #endregion
+      
     }
 }
