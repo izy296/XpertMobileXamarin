@@ -227,15 +227,8 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
             Item.DESIGNATION_PRODUIT = ent_Filter.Text;
             Item.TYPE_NAME = SelectedMotif.NAME;          
             await CrudManager.Manquant.AddItemAsync(Item);
-            var saved = await DisplayAlert(AppResources.alrt_msg_title_Manquant, AppResources.alrt_msg_ManquantSaved, AppResources.alrt_msg_Ok,AppResources.alrt_msg_Cancel);
-            if(saved == true)
-            {
-                await PopupNavigation.Instance.PopAsync();
-            }
-            else
-            {
-                await PopupNavigation.Instance.PopAsync();
-            }
+            await DisplayAlert(AppResources.alrt_msg_title_Manquant, AppResources.alrt_msg_ManquantSaved, AppResources.alrt_msg_Ok);
+            await PopupNavigation.Instance.PopAsync();           
             UserDialogs.Instance.HideLoading();
             MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);         
         }  
