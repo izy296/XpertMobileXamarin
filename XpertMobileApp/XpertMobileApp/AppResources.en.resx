@@ -832,6 +832,6 @@
     <value>There is no product with this Barcode</value>
   </data>
   <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
-    <value>There is an error somewhere\nthere are several products with the same Barcode</value>
+    <value>There is an error somewhere there are several products with the same Barcode</value>
   </data>
 </root>

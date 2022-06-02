@@ -935,6 +935,6 @@
     <value>لا يوجد منتج بهذا الباركود</value>
   </data>
   <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
-    <value>يوجد خطأ في مكان ما \ n يوجد العديد من المنتجات بنفس الرمز الشريطي</value>
+    <value>يوجد خطأ في مكان ما يوجد العديد من المنتجات بنفس الرمز الشريطي</value>
   </data>
 </root>

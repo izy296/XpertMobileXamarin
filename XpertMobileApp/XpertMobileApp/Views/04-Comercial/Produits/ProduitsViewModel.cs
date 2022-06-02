@@ -73,6 +73,7 @@ namespace XpertMobileApp.ViewModels
                 if (products.Count > 1)
                 {
                     await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, AppResources.alrt_msg_Ok);
+                    ExecuteLoadItemsCommand();
                 }
                 else if (products.Count == 0)
                 {
