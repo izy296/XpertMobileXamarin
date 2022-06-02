@@ -15,7 +15,6 @@
             Text="{i18n:Translate cmd_Add}" 
             Clicked="AjoutItem_Clicked">
         </ToolbarItem>
-        
         <ToolbarItem 
             x:Name="btn_Filter"  
             Text="{i18n:Translate cmd_Filter}" 
@@ -28,17 +27,12 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-        
     </ContentPage.ToolbarItems>
-  
-
-
-        <StackLayout 
+    <StackLayout 
         VerticalOptions="FillAndExpand" 
         BackgroundColor="{StaticResource DefaultLisViewBackColor}">
             <!-- Filter -->
- 
-            <StackLayout 
+        <StackLayout 
             x:Name="FilterPanel" 
             IsVisible="False" 
             Padding="0" 
@@ -48,52 +42,52 @@
             VerticalOptions="Start"  
             HorizontalOptions="Fill" 
             BackgroundColor="{StaticResource Accent}">
-                <Grid 
+            <Grid 
                 Margin="0,5,0,0">
-                    <Grid.ColumnDefinitions >
-                        <ColumnDefinition 
+                <Grid.ColumnDefinitions >
+                    <ColumnDefinition 
                         Width="*"/>
-                        <ColumnDefinition 
+                    <ColumnDefinition 
                         Width="*"/>
-                    </Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition 
+                <Grid.RowDefinitions>
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition
+                    <RowDefinition
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                        <RowDefinition 
+                    <RowDefinition 
                         Height="Auto"/>
-                    </Grid.RowDefinitions>
+                </Grid.RowDefinitions>
 
-                    <Label 
+                <Label 
                     Grid.Column="0"  
                     Grid.Row="0"   
                     Text="{i18n:Translate txt_StartDate}"  
                     HorizontalOptions="FillAndExpand" 
                     Margin="5, 0, 0, 0"  />
 
-                    <DatePicker 
+                <DatePicker 
                     x:Name="dp_StartDate"  
                     Grid.Column="0" 
                     Grid.Row="1"                                            
@@ -103,14 +97,14 @@
                     Date="{Binding StartDate, Mode=TwoWay}"  
                     Margin="10, 0, 10, 10"/>
 
-                    <Label 
+                <Label 
                     Grid.Column="1" 
                     Grid.Row="0"     
                     HorizontalOptions="StartAndExpand" 
                     Text="{i18n:Translate txt_EndDate}"  
                     Margin="5, 0, 0, 0" />
 
-                    <DatePicker 
+                <DatePicker 
                     x:Name="dp_EndDate" 
                     Grid.Column="1" 
                     Grid.Row="1"                     
@@ -120,14 +114,14 @@
                     Date="{Binding EndDate, Mode=TwoWay}"  
                     Margin="10, 0, 10, 10"/>
 
-                    <Label 
+                <Label 
                     Grid.Column="0" 
                     Grid.Row="2" 
                     Grid.ColumnSpan="2" 
                     Text="{i18n:Translate txt_Motif}" 
                     Margin="5, 0, 0, 0"/>
 
-                    <Picker 
+                <Picker 
                     Grid.Column="0" 
                     Grid.Row="3" 
                     Grid.ColumnSpan="2" 
@@ -138,13 +132,13 @@
                     Margin="10, 0, 10, 10"   
                     x:Name="TypesPicker"/>
 
-                    <Label 
+                <Label 
                     Grid.Column="0" 
                     Grid.Row="4" 
                     Text="{i18n:Translate txt_Typesproduct}" 
                     Margin="5, 0, 0, 0"/>
 
-                    <Picker 
+                <Picker 
                     x:Name="TypesProduitPicker"
                     Grid.Column="0" 
                     Grid.Row="5"  
@@ -155,14 +149,14 @@
                     TextColor="Black"  
                     Margin="10, 0, 10, 10"/>
 
-                    <Label 
+                <Label 
                     Grid.Column="0" 
                     Grid.Row="6"  
                     Text="{i18n:Translate txt_Saisi}" 
                     Margin="5, 0, 0, 0"/>
 
                 <Entry 
-                    x:Name="ent_SelectedTiers" 
+                    x:Name="ent_SelectedUsers" 
                     Grid.Column="0" 
                     Grid.Row="7" 
                     Text="" 
@@ -182,7 +176,7 @@
                     BackgroundColor="{StaticResource Primary}" Margin="0,0,10,0"  
                     Clicked="btn_Select_Clicked" />
 
-                    <StackLayout  
+                <StackLayout  
                     Grid.Column="0" 
                     Grid.Row="8"
                     Grid.ColumnSpan="2"
@@ -193,21 +187,21 @@
                     HorizontalOptions="End"
                     Margin="0,0,5,0">
 
-                        <Button 
+                    <Button 
                         x:Name="btn_ApplyFilter" 
                         Margin="5" HorizontalOptions="End" 
                         Text="{i18n:Translate txt_Filter}" 
                         Style="{DynamicResource DefaultBtnStyle}"   
                         Clicked="btn_ApplyFilter_Clicked"/>
 
-                        <Button 
+                    <Button 
                         x:Name="btn_CancelFilter" 
                         Margin="5" 
                         HorizontalOptions="End" 
                         Text="{i18n:Translate cmd_Cancel}" 
                         Style="{DynamicResource DefaultBtnStyle}"   
                         Clicked="btn_CancelFilter_Clicked"/>
-                    </StackLayout>
+                </StackLayout>
                 <FlexLayout 
                         Grid.Column="0" 
                         Grid.Row="8" 
@@ -218,7 +212,7 @@
                             x:Name="StockMin"
                             Color="#6279B8"
                             CheckedChanged="CheckBox_CheckedChanged">
-                        
+
                     </CheckBox>
 
                     <Label 
@@ -226,11 +220,8 @@
                             Margin="5, 0, 0, 0"/>
                 </FlexLayout>
             </Grid>
-            </StackLayout>
-        
-
-
-                <StackLayout 
+        </StackLayout>
+        <StackLayout 
                 
                     VerticalOptions="FillAndExpand">
                 <ListView 
