@@ -170,7 +170,12 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.Get_Qte_By_Reference);
             url += "?reference=" + res;
             return await RetrievValAauthorizedData<decimal>(url);
-
+        }
+        public static async Task<List<View_ACH_MANQUANTS>> FindCurrent_Non_CF_Manquants(string codeProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.Find_Current_Non_CF_Manquants);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);           
+            return await WSApi2.PostAauthorizedValue<List<View_ACH_MANQUANTS>,string>(url, codeProduit , Token);
         }
 
         #endregion
