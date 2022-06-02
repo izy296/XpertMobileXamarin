@@ -37,7 +37,7 @@ namespace XpertMobileApp.ViewModels
         }
 
         #region filters data
-        public View_SYS_USER SelectedTiers { get; set; }
+        public View_SYS_USER SelectedUsers { get; set; }
         public DateTime StartDate { get; set; } = DateTime.ParseExact("2022-01-01", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         public DateTime EndDate { get; set; } = DateTime.Now;
         public View_STK_PRODUITS SearchedText { get; set; }       
@@ -71,6 +71,10 @@ namespace XpertMobileApp.ViewModels
                 IsLoadExtrasBusy = false;
             }
         }
+        /// <summary>
+        /// Fonction qui permet de remplir la liste de type de produit qui est afficher dans les filtre
+        /// </summary>
+        /// <returns></returns>
         async Task ExecuteLoadTypesProduitCommand()
         {
             try
@@ -95,6 +99,10 @@ namespace XpertMobileApp.ViewModels
                     AppResources.alrt_msg_Ok);
             }
         }
+        /// <summary>
+        /// Fonction qui permet de remplir la liste de motif de produit qui est afficher dans les filtre
+        /// </summary>
+        /// <returns></returns>
         async Task ExecuteLoadTypesCommand()
         {
             try
@@ -124,8 +132,8 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_ACH_MANQUANTS, DateTime?>(e => e.CREATED_ON, Operator.BETWEEN_DATE, StartDate, EndDate);
-            if (!string.IsNullOrEmpty(SelectedTiers?.ID_USER))
-                this.AddCondition<View_ACH_MANQUANTS, string>(e => e.CREATED_BY, SelectedTiers?.ID_USER);
+            if (!string.IsNullOrEmpty(SelectedUsers?.ID_USER))
+                this.AddCondition<View_ACH_MANQUANTS, string>(e => e.CREATED_BY, SelectedUsers?.ID_USER);
             this.AddCondition<View_ACH_MANQUANTS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
             if (!string.IsNullOrEmpty(SelectedTypesProduit?.CODE_TYPE))
                 this.AddCondition<View_ACH_MANQUANTS, short>(e => e.TYPE_PRODUIT, SelectedTypesProduit?.CODE_TYPE);
