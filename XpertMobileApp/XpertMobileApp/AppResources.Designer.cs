@@ -3139,6 +3139,29 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("lbl_modifier_url", resourceCulture);
             }
         }
+
+        /// <summary>
+        /// fonction pour récupérer le message d'alerte en cas de plusieurs produits trouvés après le scan d'un code-barres
+        /// </summary>
+        public static string txt_mssg_codeBarre_p_produits
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_mssg_codeBarre_p_produits", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        /// fonction pour récupérer le message d'alerte en cas d'absence de produit après le scan d'un code-barres
+        /// </summary>
+        public static string txt_mssg_codeBarre_aucun_produits
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_mssg_codeBarre_aucun_produits", resourceCulture);
+            }
+        }
+
     }
 }
 

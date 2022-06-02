@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
+using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -17,12 +20,16 @@ namespace XpertMobileApp.ViewModels
 
     public class ProduitsViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
+
+
         public ProduitsViewModel()
         {
             Title = AppResources.pn_Produits;
 
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Familles = new ObservableCollection<BSE_TABLE>();
+
+            OnCanLoadMoreBackup = Items.OnCanLoadMore;
 
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
@@ -44,8 +51,58 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                 this.AddCondition<View_STK_PRODUITS, string>(e => e.TYPE_PRODUIT, SelectedType?.CODE_TYPE);
 
+            //if (!string.IsNullOrEmpty(BareCode))
+            //    this.AddCondition<View_STK_PRODUITS, string>(e => e.CODE_BARRE, BareCode);
+
             this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
             return qb.QueryInfos;
+        }
+
+        public async Task GetScanedProduct()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                Items.Clear();
+                List<View_STK_PRODUITS> products = new List<View_STK_PRODUITS>();
+                if (Constants.AppName == Apps.XPH_Mob)
+                    products = await WebServiceClient.GetProductByCodeBarre(BareCode);
+                else if (Constants.AppName == Apps.XCOM_Mob)
+                    products = await WebServiceClient.GetProductByCodeBarreXCOM(BareCode);
+                UserDialogs.Instance.HideLoading();
+                if (products.Count > 1)
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, AppResources.alrt_msg_Ok);
+                }
+                else if (products.Count == 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, AppResources.alrt_msg_Ok);
+                    ExecuteLoadItemsCommand();
+                }
+                else
+                {
+                    Items.AddRange(products);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+
+
+        }
+
+        /// <summary>
+        /// remplacer la valeur par défaut ExecuteLoadItemsCommand pour redéfinir la fonction OnCanLoadMore 
+        /// sur l'événement d'actualisation de la page ou en appuyant sur le bouton Appliquer sur le filtre
+        /// après avoir montré un produit qui est le résultat d'un code-barres scanné
+        /// </summary>
+        /// <returns></returns>
+        internal override Task ExecuteLoadItemsCommand()
+        {
+            Items.OnCanLoadMore = OnCanLoadMoreBackup;
+            return base.ExecuteLoadItemsCommand();
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)
@@ -75,6 +132,21 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref searchedRef, value); }
         }
 
+        private Func<bool> onCanLoadMoreBackup ;
+
+        public Func<bool> OnCanLoadMoreBackup
+        {
+            get { return onCanLoadMoreBackup; }
+            set { SetProperty(ref onCanLoadMoreBackup, value); }
+        }
+
+        private string bareCode;
+
+        public string BareCode
+        {
+            get { return bareCode; }
+            set { SetProperty(ref bareCode, value); }
+        }
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
         private BSE_TABLE_TYPE selectedType;
@@ -98,11 +170,12 @@ namespace XpertMobileApp.ViewModels
             searchedText = "";
             SelectedType = null;
             SelectedFamille = null;
+            BareCode = "";
         }
+
 
         async Task ExecuteLoadExtrasDataCommand()
         {
-
             if (IsLoadExtrasBusy)
                 return;
 

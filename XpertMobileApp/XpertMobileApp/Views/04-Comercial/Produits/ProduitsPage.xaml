@@ -9,6 +9,7 @@
              x:Name="Produits">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -62,7 +63,7 @@
                 <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Product}" Margin="5, 0, 0, 0"/>
                 <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
-                
+
                 <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
                 <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 

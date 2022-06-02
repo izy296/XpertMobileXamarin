@@ -420,6 +420,28 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE>(url);
         }
 
+        /// <summary>
+        /// fonction pour récupérer le produit qui a le code-barres scanné dans le domaine officine
+        /// </summary>
+        /// <param name="codeBarre"></param>
+        /// <returns></returns>
+        public static async Task<List<View_STK_PRODUITS>> GetProductByCodeBarre(string codeBarre)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_PRODUITS_URL, ServiceUrlDico.STK_PRODUITS_CODE_BARRE_LOT);
+            url += WSApi2.AddParam(url, "codeBarre", codeBarre);
+            return await RetrievAauthorizedData<View_STK_PRODUITS>(url);
+        }
+        /// <summary>
+        /// fonction pour récupérer le produit qui a le code-barres scanné dans le domaine commercial
+        /// </summary>
+        /// <param name="codeBarre"></param>
+        /// <returns></returns>
+        public static async Task<List<View_STK_PRODUITS>> GetProductByCodeBarreXCOM(string codeBarre)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_PRODUITS_URL, ServiceUrlDico.STK_PRODUITS_CODE_BARRE);
+            url += WSApi2.AddParam(url, "codeBarre", codeBarre);
+            return await RetrievAauthorizedData<View_STK_PRODUITS>(url);
+        }
         //internal static async Task<List<View_STK_PRODUITS>> getProducts()
         //{
         //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PROD_URL, ServiceUrlDico.PROD_URL_GET_ALL);

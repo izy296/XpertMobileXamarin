@@ -1048,4 +1048,10 @@
   <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
     <value>Ce produit est déja signalé automatiquement comme manquant, voulez vous continiuer?</value>
   </data>
+  <data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
+    <value>il n'existe aucun produit avec ce Code Barre</value>
+  </data>
+  <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
+    <value>Il ya une erreur quelle que part\nil existe plusieurs produits avec le mème Code Barre</value>
+  </data>
 </root>

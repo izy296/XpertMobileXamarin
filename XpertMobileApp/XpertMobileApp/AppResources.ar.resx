@@ -931,4 +931,10 @@
   <data name="sp_lbl_url" xml:space="preserve">
     <value>:الرابط</value>
   </data>
+  <data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
+    <value>لا يوجد منتج بهذا الباركود</value>
+  </data>
+  <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
+    <value>يوجد خطأ في مكان ما \ n يوجد العديد من المنتجات بنفس الرمز الشريطي</value>
+  </data>
 </root>

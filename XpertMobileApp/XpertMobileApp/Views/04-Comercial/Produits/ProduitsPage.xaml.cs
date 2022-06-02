@@ -82,16 +82,36 @@ namespace XpertMobileApp.Views
 
         }
 
+        /// <summary>
+        /// function pour scanner les code barres et retriever un produite
+        /// </summary>
         public GoogleVisionBS gvsScannedBarcode;
         private void RowScan_Clicked(object sender, EventArgs e)
         {
             gvsScannedBarcode = new GoogleVisionBS();
+            MainPage RootPage = Application.Current.MainPage as MainPage;
+            var detail = RootPage.Detail;
             gvsScannedBarcode.UserSubmitted += async (_, scannedPassword) =>
             {
-                viewModel.LoadItemsCommand.Execute(null);
-                await Navigation.PopAsync();
+
+                // une solution pour la fonction Load More après un changement dans le contenu de listView
+                // enregistrez la fonction responsable OnCanLoadMore avant de l'écraser pour bloquer le chargement
+                // d'autres éléments(en appelant la fonction LoadMore) dans la liste après la numérisation d'un code-barres
+                // afin de limiter l'affichage du seul produit numérisé
+
+                var func = viewModel.Items.OnCanLoadMore;
+                viewModel.Items.OnCanLoadMore = () =>
+                {
+                    return false;
+                };
+                viewModel.BareCode = scannedPassword;
+                await detail.Navigation.PopAsync();
+                await viewModel.GetScanedProduct();
+                
             };
-            Navigation.PushAsync(gvsScannedBarcode);
+            
+            NavigationPage.SetHasNavigationBar(gvsScannedBarcode, false);
+            detail.Navigation.PushAsync(gvsScannedBarcode);
         }
     }
 }
