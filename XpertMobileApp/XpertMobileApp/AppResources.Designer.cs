@@ -179,6 +179,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("alrt_msg_Erreur_Traitement_Requéte", resourceCulture);
             }
         }
+        internal static string alrt_msg_ConfirmAjoutManquant
+        {
+            get
+            {
+                return ResourceManager.GetString("alrt_msg_ConfirmAjoutManquant", resourceCulture);
+            }
+        }
 
 
 
