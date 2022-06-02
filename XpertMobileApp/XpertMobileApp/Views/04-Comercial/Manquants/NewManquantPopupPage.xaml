@@ -7,6 +7,9 @@
              x:Class="XpertMobileApp.Views._04_Comercial.Manquants.NewManquantPopupPage"
              xmlns:fontawesome="clr-namespace:FontAwesome">
     <ContentPage.Content>
+        <ScrollView>
+            
+       
         <StackLayout 
             VerticalOptions="Center" 
             HorizontalOptions="FillAndExpand" 
@@ -129,7 +132,7 @@
                         Keyboard="Numeric"
                         Margin="30, 0, 30, 30"
                         Text="{Binding Item.QUANTITE, Mode=TwoWay}"
-                       TextColor="{StaticResource Primary}"/>
+                        TextColor="{StaticResource Primary}"/>
 
                     <FlexLayout 
                         AlignItems="Center"
@@ -197,5 +200,6 @@
 
             </StackLayout>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </pages:PopupPage>
