@@ -65,10 +65,7 @@ namespace XpertMobileApp.ViewModels
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 Items.Clear();
                 List<View_STK_PRODUITS> products = new List<View_STK_PRODUITS>();
-                if (Constants.AppName == Apps.XPH_Mob)
-                    products = await WebServiceClient.GetProductByCodeBarre(BareCode);
-                else if (Constants.AppName == Apps.XCOM_Mob)
-                    products = await WebServiceClient.GetProductByCodeBarreXCOM(BareCode);
+                products = await CrudManager.Products.SelectProduitByCodeBarre(BareCode);
                 UserDialogs.Instance.HideLoading();
                 if (products.Count > 1)
                 {
@@ -87,6 +84,7 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
@@ -173,6 +171,7 @@ namespace XpertMobileApp.ViewModels
             SelectedFamille = null;
             BareCode = "";
         }
+
 
 
         async Task ExecuteLoadExtrasDataCommand()

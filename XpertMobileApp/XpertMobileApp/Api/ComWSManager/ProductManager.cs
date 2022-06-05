@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api
@@ -12,10 +13,20 @@ namespace XpertMobileApp.Api
     internal class ProductManager : CrudService<View_STK_PRODUITS>
     {
         public ProductManager() : 
-            base(App.RestServiceUrl, "STK_PRODUITS", App.User?.Token)
+            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_PRODUITS), App.User?.Token)
         {
 
         }
+
+        //function pour la recuperation d'un produit depuis le barrecode peu import
+        public async Task<List<View_STK_PRODUITS>> SelectProduitByCodeBarre(string codeBarre)
+        {
+            string url = GetActionUrl("GetByCodeBarre");
+            url += WSApi2.AddParam(url, "codebarre", codeBarre);
+
+            return await WSApi2.RetrievAauthorizedData<View_STK_PRODUITS>(url, this.Token.access_token);
+        }
+
 
         public async Task<List<View_STK_PRODUITS>> SelectByCodeBarre(string vparam1)
         {
