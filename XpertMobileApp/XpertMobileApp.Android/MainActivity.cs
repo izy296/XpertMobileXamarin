@@ -64,6 +64,17 @@ namespace XpertMobileApp.Droid
 
             LoadApplication(new App());
 
+            // function que lance avant l'execution de PopupNavigation.PushAsync 
+            // confirme qui le popupstack est vide pour eviter les exceptions
+
+            PopupNavigation.Instance.Pushing += (s, e) => {
+                if (PopupNavigation.PopupStack.Count != 0)
+                {
+                    PopupNavigation.PopAllAsync();
+                }
+            };
+
+
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
         // verifier les permission 
