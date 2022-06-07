@@ -94,6 +94,8 @@ namespace XpertMobileApp.Views
             try
             {
                 bool isconnected = await App.IsConected();
+                if (!isconnected)
+                    return;
                 if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);

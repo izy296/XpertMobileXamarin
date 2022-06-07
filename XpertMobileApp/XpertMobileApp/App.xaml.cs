@@ -307,6 +307,11 @@ namespace XpertMobileApp
         {
             List<UrlService> liste = new List<UrlService>();
             liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+            if (liste.Count == 0)
+            {
+                await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.lp_txt_alert_url_manquant, AppResources.alrt_msg_Ok);
+                return Online;
+            }
             string temp = "";
             foreach (var item in liste)
             {

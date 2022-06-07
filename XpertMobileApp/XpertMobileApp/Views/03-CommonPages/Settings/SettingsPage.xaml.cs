@@ -154,8 +154,18 @@ namespace XpertMobileApp.Views
         }
         private void UrlServicePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var urlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
-            App.SetUrlServices(urlService);
+            if (UrlServicePicker.SelectedIndex != -1)
+            {
+                var urlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
+                App.SetUrlServices(urlService);
+            }
+            else
+            {
+                App.SetUrlServices(new UrlService
+                { Selected = true, Title = "", DisplayUrlService = "" });
+            }
+
+
         }
 
         protected override async void OnDisappearing()
@@ -227,7 +237,7 @@ namespace XpertMobileApp.Views
         protected async void TestConnexion_Clicked(object sender, EventArgs e)
         {
             // Check if the WebService is configured
-            if (string.IsNullOrEmpty(App.RestServiceUrl))
+            if (string.IsNullOrEmpty(App.RestServiceUrl) || UrlServicePicker.SelectedIndex == -1)
             {
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
                 return;
@@ -507,6 +517,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                if (UrlServicePicker.SelectedIndex == -1)
+                {
+                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_txt_alert_supression, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 var result = await DisplayAlert(AppResources.txt_sp_url, AppResources.txt_suppression_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
                 if (result)
                 {
@@ -517,9 +532,11 @@ namespace XpertMobileApp.Views
                         string itemSelected = UrlServicePicker.Items[UrlServicePicker.SelectedIndex];
                         for (int i = 0; i < listeUrlService.Count; i++)
                         {
-                            if (listeUrlService[i].DisplayUrlService == itemSelected)
+                            if (listeUrlService[i].Title == itemSelected)
                             {
                                 listeUrlService.RemoveAt(i);
+                                await DisplayAlert(AppResources.txt_supp_reussite, AppResources.txt_supp_message_url, AppResources.alrt_msg_Ok);
+                                break;
                             }
                         }
                         viewModel.Settings.ServiceUrl = JsonConvert.SerializeObject(listeUrlService);
@@ -531,7 +548,6 @@ namespace XpertMobileApp.Views
 
                         //save the new Setting...
                         await viewModel.SaveSettings();
-                        await DisplayAlert(AppResources.txt_supp_reussite, AppResources.txt_supp_message_url, AppResources.alrt_msg_Ok);
                     }
                 }
             }
@@ -553,6 +569,12 @@ namespace XpertMobileApp.Views
                 List<UrlService> listeUrlService;
                 string titre = "";
                 string urlService = "";
+                if (UrlServicePicker.SelectedIndex == -1)
+                {
+                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_txt_alert_modification, AppResources.alrt_msg_Ok);
+                    return;
+                }
+
                 var page = new EditSettingsSelector(titre, urlService);
                 listeUrlService = JsonConvert.DeserializeObject<List<UrlService>>(viewModel.Settings.ServiceUrl);
                 foreach (var item in listeUrlService)
@@ -604,14 +626,13 @@ namespace XpertMobileApp.Views
                             };
 
                             int indexModified = viewModel.UrlServices.IndexOf(urlToBeModified);
-                            if (indexModified != -1)
-                                listeUrlService[indexModified - 1] = newUrl;
+                            listeUrlService[indexModified] = newUrl;
                             viewModel.UrlServices.Remove(urlToBeModified);
-                            viewModel.UrlServices.Add(new UrlService
+                            viewModel.UrlServices.Insert(indexModified, new UrlService
                             {
-                                DisplayUrlService = listeUrlService[indexModified - 1].DisplayUrlService,
-                                Selected = listeUrlService[indexModified - 1].Selected,
-                                Title = listeUrlService[indexModified - 1].Title
+                                DisplayUrlService = listeUrlService[indexModified].DisplayUrlService,
+                                Selected = listeUrlService[indexModified].Selected,
+                                Title = listeUrlService[indexModified].Title
                             });
 
                             //Save all settings

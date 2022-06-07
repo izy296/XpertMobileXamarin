@@ -3139,6 +3139,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("lbl_modifier_url", resourceCulture);
             }
         }
+        public static string pn_TransfertDeFond
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_TransfertDeFond", resourceCulture);
+            }
+        }
 
         /// <summary>
         /// fonction pour récupérer le message d'alerte en cas de plusieurs produits trouvés après le scan d'un code-barres
@@ -3161,7 +3168,27 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_mssg_codeBarre_aucun_produits", resourceCulture);
             }
         }
-
+        public static string sp_txt_alert_modification
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_txt_alert_modification", resourceCulture);
+            }
+        }
+        public static string sp_txt_alert_supression
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_txt_alert_supression", resourceCulture);
+            }
+        }
+        public static string lp_txt_alert_url_manquant
+        {
+            get
+            {
+                return ResourceManager.GetString("lp_txt_alert_url_manquant", resourceCulture);
+            }
+        }
     }
 }
 

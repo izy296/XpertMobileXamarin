@@ -1048,10 +1048,34 @@
   <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
     <value>Ce produit est déja signalé automatiquement comme manquant, voulez vous continiuer?</value>
   </data>
+  <data name="pn_TransfertDeFond" xml:space="preserve">
+    <value>Transfert de Fond </value>
+  </data>
   <data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
     <value>il n'existe aucun produit avec ce Code Barre</value>
   </data>
   <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
     <value>Il ya une erreur quelle que part il existe plusieurs produits avec le mème Code Barre</value>
+  </data>
+  <data name="lbl_compteDest" xml:space="preserve">
+    <value>Compte Déstination</value>
+  </data>
+  <data name="lbl_compteSource" xml:space="preserve">
+    <value>Compte Source</value>
+  </data>
+  <data name="txt_fond_genere_cloture" xml:space="preserve">
+    <value>Transferts genérés par les clotures.</value>
+  </data>
+  <data name="txt_nv_transfert_fond" xml:space="preserve">
+    <value>Nouveau Transfert de fond </value>
+  </data>
+  <data name="lp_txt_alert_url_manquant" xml:space="preserve">
+    <value>Url Manquant ! Veuillez ajouter un url valide.</value>
+  </data>
+  <data name="sp_txt_alert_modification" xml:space="preserve">
+    <value>Liste vide ! Veuillez inserer une adresse valide. </value>
+  </data>
+  <data name="sp_txt_alert_supression" xml:space="preserve">
+    <value>Liste vide ! Vous ne pouvez pas supprimer un url.</value>
   </data>
 </root>

@@ -931,10 +931,22 @@
   <data name="sp_lbl_url" xml:space="preserve">
     <value>:الرابط</value>
   </data>
+  <data name="pn_TransfertDeFond" xml:space="preserve">
+    <value>تحويل الأموال</value>
+  </data>
   <data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
     <value>لا يوجد منتج بهذا الباركود</value>
   </data>
   <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
     <value>يوجد خطأ في مكان ما يوجد العديد من المنتجات بنفس الرمز الشريطي</value>
+  </data>
+  <data name="lp_txt_alert_url_manquant" xml:space="preserve">
+    <value>العنوان مفقود، الرجاء ادخال عنوان صحيح</value>
+  </data>
+  <data name="sp_txt_alert_modification" xml:space="preserve">
+    <value>قائمة العنوانين فارغة، الرجاء ادخال عنوان صحيح</value>
+  </data>
+  <data name="sp_txt_alert_supression" xml:space="preserve">
+    <value>قائمة العناوين فارغة لا يمكنك الحدف</value>
   </data>
 </root>
