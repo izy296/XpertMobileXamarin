@@ -64,15 +64,41 @@ namespace XpertMobileApp.Droid
 
             LoadApplication(new App());
 
+            // fonction qui empêche l'application de se fermer par une exception
+
+            AndroidEnvironment.UnhandledExceptionRaiser += (s, e) =>
+            {
+                try
+                {
+                    throw e.Exception;
+                }
+                catch (Exception ex)
+                {
+                    if (ex.GetType() == typeof(InvalidOperationException))
+                    {
+                        if (e.Exception.Message.Contains("The page has been pushed already"))
+                            e.Handled = true;
+                        else throw e.Exception;
+                    }
+                }
+
+            };
+
             // function que lance avant l'execution de PopupNavigation.PushAsync 
             // confirme qui le popupstack est vide pour eviter les exceptions
 
             PopupNavigation.Instance.Pushing += (s, e) => {
-                if (PopupNavigation.PopupStack.Count != 0)
+                if (PopupNavigation.Instance.PopupStack.Count != 0)
                 {
-                    PopupNavigation.PopAllAsync();
+                    PopupNavigation.Instance.PopAllAsync();
                 }
             };
+
+
+
+  //          System.InvalidOperationException
+  //Message = The page has been pushed already.Pop or remove the page before to push it again
+
 
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
