@@ -26,7 +26,7 @@ using ListView = Xamarin.Forms.ListView;
 
 namespace XpertMobileApp.Droid
 {
-    [Activity(Label = "XpertMobile OFFICINE",  Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "XpertMobile OFFICINE", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -46,7 +46,7 @@ namespace XpertMobileApp.Droid
             Instance = this;
 
             // Init popup plugin
-            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);            
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             UserDialogs.Init(this);
 
@@ -72,14 +72,10 @@ namespace XpertMobileApp.Droid
                 {
                     throw e.Exception;
                 }
-                catch (Exception ex)
+                catch (InvalidOperationException ex)
                 {
-                    if (ex.GetType() == typeof(InvalidOperationException))
-                    {
-                        if (e.Exception.Message.Contains("The page has been pushed already"))
-                            e.Handled = true;
-                        else throw e.Exception;
-                    }
+                    if (e.Exception.Message.Contains("The page has been pushed already"))
+                        e.Handled = true;
                 }
 
             };
@@ -87,68 +83,71 @@ namespace XpertMobileApp.Droid
             // function que lance avant l'execution de PopupNavigation.PushAsync 
             // confirme qui le popupstack est vide pour eviter les exceptions
 
-            PopupNavigation.Instance.Pushing += (s, e) => {
+            PopupNavigation.Instance.Pushing += (s, e) =>
+            {
                 if (PopupNavigation.Instance.PopupStack.Count != 0)
                 {
-                    PopupNavigation.Instance.PopAllAsync();
+                    var lastPopup = PopupNavigation.Instance.PopupStack[PopupNavigation.Instance.PopupStack.Count - 1];
+                    if (lastPopup == e.Page)
+                        PopupNavigation.Instance.PopAsync();
                 }
             };
 
 
 
-  //          System.InvalidOperationException
-  //Message = The page has been pushed already.Pop or remove the page before to push it again
+            //          System.InvalidOperationException
+            //Message = The page has been pushed already.Pop or remove the page before to push it again
 
 
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
 
-        // verifier les permission 
-        /*
-        if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
-        {
-            if (ApplicationContext.CheckSelfPermission(Android.Manifest.Permission.Camera) != Android.Content.PM.Permission.Granted)
+            // verifier les permission 
+            /*
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
             {
-                RequestPermissions(new String[] { Android.Manifest.Permission.Camera }, 1);
+                if (ApplicationContext.CheckSelfPermission(Android.Manifest.Permission.Camera) != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new String[] { Android.Manifest.Permission.Camera }, 1);
+                }
+                else
+                {
+                }
+
+                if (ApplicationContext.CheckSelfPermission(
+                        Manifest.Permission.AccessCoarseLocation) != Android.Content.PM.Permission.Granted)
+                {
+                    RequestPermissions(new String[] { Manifest.Permission.AccessCoarseLocation },
+                                    1);
+                }
+                if (ApplicationContext.CheckSelfPermission(Manifest.Permission.ReadExternalStorage) != Android.Content.PM.Permission.Granted)
+                {
+
+                    RequestPermissions(new String[] {
+                        Manifest.Permission.WriteExternalStorage,
+                        Manifest.Permission.ReadExternalStorage}, 1);
+                    return;
+                }
+                else
+                {
+
+
+                }
+
             }
             else
             {
-            }
-
-            if (ApplicationContext.CheckSelfPermission(
-                    Manifest.Permission.AccessCoarseLocation) != Android.Content.PM.Permission.Granted)
-            {
-                RequestPermissions(new String[] { Manifest.Permission.AccessCoarseLocation },
-                                1);
-            }
-            if (ApplicationContext.CheckSelfPermission(Manifest.Permission.ReadExternalStorage) != Android.Content.PM.Permission.Granted)
-            {
-
-                RequestPermissions(new String[] {
-                    Manifest.Permission.WriteExternalStorage,
-                    Manifest.Permission.ReadExternalStorage}, 1);
-                return;
-            }
-            else
-            {
-
 
             }
-
+            */
+            // InitPermissions();
         }
-        else
-        {
-
-        }
-        */
-        // InitPermissions();
-    }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -203,16 +202,16 @@ namespace XpertMobileApp.Droid
                     // vérifier s'il y a des pages ouvertes à partir de MenuPage
                     //if (pagesOpen >2)
                     //{
-                        // supprimer toutes les pages de la pile et revenir à l'accueil
-                        base.OnBackPressed();
+                    // supprimer toutes les pages de la pile et revenir à l'accueil
+                    base.OnBackPressed();
 
-                        //TODO Empty ListViewMenu item selected
+                    //TODO Empty ListViewMenu item selected
 
                     //} 
                     //else
                     //    // exécuter l'action habituelle du bouton de retour
                     //    ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopToRootAsync();
-                    
+
                 }
 
             }
