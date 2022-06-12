@@ -436,4 +436,63 @@ namespace XpertMobileApp.DAL
     }
 
 
+    public class TRS_VIREMENT : BASE_CLASS
+    {
+        public string ID_CAISSE { get; set; } // varchar(32)
+        public string CODE_VIR { get; set; } // varchar(32)
+        public string CODE_ENCAISS { get; set; } // varchar(32)
+        public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
+        public string CODE_DECAISS { get; set; } // varchar(32)
+        public string CODE_COMPTE_SRC { get; set; } // varchar(32)
+        public string CODE_COMPTE_DEST { get; set; } // varchar(32)
+        public string CODE_MOTIF { get; set; } // varchar(32)
+        public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
+        public string CODE_MODE { get; set; } // varchar(1)
+        public string REF_REG { get; set; } // varchar(200)
+        public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
+        public string NOTE_ENC { get; set; } // text(2147483647)
+        public string DESIGN_MOTIF { get; set; } // varchar(300)
+        public string DESIGN_COMPTE_DEST { get; set; } // varchar(100)
+        public string DESIGN_COMPTE_SRC { get; set; } // varchar(100)
+        public string DESIGN_MODE { get; set; } // varchar(300)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)  
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)        
+
+    }
+
+    //View TRS Virement
+    public class View_TRS_VIREMENT : TRS_VIREMENT
+    {
+        public string ID_CAISSE { get; set; } // varchar(32)
+        public string CODE_VIR { get; set; } // varchar(32)
+        public string CODE_ENCAISS { get; set; } // varchar(32)
+        public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
+        public string CODE_DECAISS { get; set; } // varchar(32)
+        public string CODE_COMPTE_SRC { get; set; } // varchar(32)
+        public string CODE_COMPTE_DEST { get; set; } // varchar(32)
+        public string CODE_MOTIF { get; set; } // varchar(32)
+        public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
+        public string CODE_MODE { get; set; } // varchar(1)
+        public string REF_REG { get; set; } // varchar(200)
+        public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
+        public string NOTE_ENC { get; set; } // text(2147483647)
+        public string DESIGN_MOTIF { get; set; } // varchar(300)
+        public string DESIGN_COMPTE_DEST { get; set; } // varchar(100)
+        public string DESIGN_COMPTE_SRC { get; set; } // varchar(100)
+        public string DESIGN_MODE { get; set; } // varchar(300)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)  
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)        
+    }
+
+    public partial class BSE_MODE_REG : BASE_CLASS
+    {
+        public string CODE_MODE { get; set; } // varchar(1)
+        public string DESIGN_MODE { get; set; } // varchar(300)
+        public bool ECH_MODE { get; set; } // bit
+    }
+
 }

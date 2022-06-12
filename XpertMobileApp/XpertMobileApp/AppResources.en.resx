@@ -846,4 +846,31 @@
   <data name="sp_txt_alert_supression" xml:space="preserve">
     <value>The list is empty ! You can't delete an url.</value>
   </data>
+  <data name="txt_montant" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="txt_comfirmation_ajout_virement" xml:space="preserve">
+    <value>Transfer of funds completed successfully.</value>
+  </data>
+  <data name="txt_Destination" xml:space="preserve">
+    <value>Destination</value>
+  </data>
+  <data name="txt_mode_reg" xml:space="preserve">
+    <value>Payment mode</value>
+  </data>
+  <data name="txt_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="txt_alert_code_motif" xml:space="preserve">
+    <value>You have to select a pattern</value>
+  </data>
+  <data name="txt_alert_comptedestination" xml:space="preserve">
+    <value>You have to select a destination account </value>
+  </data>
+  <data name="txt_alert_compte_source" xml:space="preserve">
+    <value>You have to select a source account</value>
+  </data>
+  <data name="txt_alert_montant" xml:space="preserve">
+    <value>You have to enter an amount to transfer</value>
+  </data>
 </root>

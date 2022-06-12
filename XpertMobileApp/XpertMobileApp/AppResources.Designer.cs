@@ -3189,6 +3189,41 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("lp_txt_alert_url_manquant", resourceCulture);
             }
         }
+        public static string txt_comfirmation_ajout_virement
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_comfirmation_ajout_virement", resourceCulture);
+            }
+        }
+        public static string txt_alert_compte_source
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_alert_compte_source", resourceCulture);
+            }
+        }
+        public static string txt_alert_comptedestination
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_alert_comptedestination", resourceCulture);
+            }
+        }
+        public static string txt_alert_montant
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_alert_montant", resourceCulture);
+            }
+        }
+        public static string txt_alert_code_motif
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_alert_code_motif", resourceCulture);
+            }
+        }
     }
 }
 

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views._04_Comercial.TransfertDeFond.NewTransfertDeFondPopupPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome">
+
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="FillAndExpand" 
+                     Padding="10">
+
+                <Frame CornerRadius="15" 
+                   Padding="10">
+
+                    <Grid 
+                        Margin="5,10,5,5"
+                        RowSpacing="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition 
+                                Width="*"/>
+                            <ColumnDefinition 
+                                Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                            <RowDefinition 
+                                Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="{i18n:Translate txt_nv_transfert_fond}" 
+                               FontAttributes="Bold"
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="Center"
+                               FontSize="18"
+                               Margin="0,0,0,15"/>
+
+                        <BoxView Style="{StaticResource Separator}" 
+                                 Grid.Row="1"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2"/>
+
+                        <Label Text="{i18n:Translate txt_Source}"
+                               Grid.Row="2"
+                               Grid.Column="0"
+                               Margin="0,10,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <Picker Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding Comptes}"  
+                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
+                                SelectedItem="{Binding SelectedCompteSrc}" 
+                                SelectedIndexChanged="CompteSrcPicker_SelectedIndexChanged"
+                                x:Name="compteSourcePicker"/>
+
+                        <Label Text="{i18n:Translate txt_Destination}"
+                               Grid.Row="4"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"
+                               />
+
+                        <Picker Grid.Row="5"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding Comptes}"  
+                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
+                                SelectedItem="{Binding SelectedCompteSrc}"
+                                SelectedIndexChanged="CompteDesPicker_SelectedIndexChanged"
+                                x:Name="compteDestPicker"/>
+
+                        <Label Text="{i18n:Translate txt_montant}"
+                               Grid.Row="6"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <Entry Grid.Row="7"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                Keyboard="Numeric"
+                                x:Name="montantEntry"
+                                Text="{Binding ItemEnc.TOTAL_ENCAISS, Mode=TwoWay , StringFormat='{0:F2}'}"/>
+
+                        <Label Text="{i18n:Translate txt_Motif}"
+                               Grid.Row="8"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <Picker Grid.Row="9"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding Motifs}"  
+                                ItemDisplayBinding="{Binding DESIGN_MOTIF}"  
+                                SelectedItem="{Binding SelectedMotif}"
+                                SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
+                                x:Name="motifPicker"/>
+
+                        <Label Text="{i18n:Translate txt_Date}"
+                               Grid.Row="10"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <DatePicker Grid.Row="11"
+                                    Grid.Column="0"
+                                    Margin="10,-2,5,0"
+                                    FontSize="13"
+                                    Format="dd/MM/yyyy"
+                                    Date="{Binding ItemEnc.DATE_ENCAISS}"
+                                    />
+
+                        <Label Text="{i18n:Translate txt_mode_reg}"
+                               Grid.Row="10"
+                               Grid.Column="1"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <Picker Grid.Row="11"
+                                Grid.Column="1"
+                                Margin="5,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding ModeReg}"  
+                                ItemDisplayBinding="{Binding DESIGN_MODE}"  
+                                SelectedItem="{Binding ModeReglement}"
+                                />
+
+                        <Label Text="{i18n:Translate txt_Ref} "
+                               Grid.Row="12"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                        <Entry Grid.Row="13"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="5,-2,10,0"
+                                FontSize="13"
+                                x:Name="refEntry"
+                               />
+
+                        <FlexLayout Grid.Row="14"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Direction="Row"
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center"
+                                    Margin="0,60,0,0">
+
+                            <Button Text="{i18n:Translate txt_Annule}"
+                                    Style="{DynamicResource DeleteUrlBtn}"
+                                    Clicked="btn_Cancel_Clicked"
+                                    WidthRequest="140"/>
+
+
+                            <Button Text="{i18n:Translate txt_Valider}"
+                                    Style="{DynamicResource AddUrlBtn}"
+                                    WidthRequest="140"
+                                    Clicked="AddNewTransfertDeFond"/>
+
+                        </FlexLayout>
+                    </Grid>
+
+                </Frame>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+
+</pages:PopupPage>

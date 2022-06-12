@@ -15,9 +15,11 @@ namespace XpertMobileApp.Helpers
         public static string SESSION_INFO_URL = "session";
 
         public static string ENCAISSEMENT_URL = "Encaissements";
-        
+
+        public static string VIREMENT_URL = "TRS_VIREMENT";
+
         public static string ENCAISSEMENT_GET_PRINT_ENCAISSE = "GetPrintTiketCaisseEncaisse";
-        
+
         public static string ENCAISSEMENT_PER_PAGE_URL = "GetEncaissements";
 
         public static string ADD_ENCAISSEMENT_URL = "addEncaissement";
@@ -29,6 +31,8 @@ namespace XpertMobileApp.Helpers
         public static string MOTIFS_URL = "motifs";
 
         public static string COMPTES_URL = "comptes";
+
+        public static string MODE_REG_URL = "GetModeReg";
 
 
         public static string TIERS_URL = "TRS_TIERS";
@@ -49,14 +53,14 @@ namespace XpertMobileApp.Helpers
         public static string ACHAT_AGRO_INFOS_URL = "GetAchatsInfos";
 
         public static string TOTAL_MARGE_PAR_VENDEUR_URL = "GetTotalMargin";
-        
+
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
         // Activation
 
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
-        public static string LICENCE_ACTIVATION_URL_LOCAL = "http://192.168.171.193:99/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";        
+        public static string LICENCE_ACTIVATION_URL_LOCAL = "http://192.168.171.193:99/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";
 
         public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
 
@@ -69,7 +73,7 @@ namespace XpertMobileApp.Helpers
 
         public static string VENTES_TYPES_URL = "GetVenteTypes";
         public static string TIKET_CAISS_PRINT_ENCAISSE_URL = "GetPrintTiketCaisseEncaisse";
-        
+
         public static string TIKET_CAISS_PRINT_VENTE_URL = "getPrintTiketCaisseVente";
         // Commandes
 
@@ -140,7 +144,7 @@ namespace XpertMobileApp.Helpers
         public static string RFID_AddRFIDs_URL = "AddRfids";
         public static string RFID_GET_STOCK_FROM_IDSTOCK = "getStock";
         public static string RFID_GET_STOCK_FROM_RFIDs = "getStockFromRFIDs";
-        
+
         public static string RFID_GET_CURENT_INV = "getcurentinv";
         public static string RFID_UPDATE_CURENT_INV = "updatecurentinv";
 

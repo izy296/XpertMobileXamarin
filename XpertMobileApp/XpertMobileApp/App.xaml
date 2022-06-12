@@ -169,6 +169,16 @@
             <Style x:Key="FAwesome-Regular" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
             </Style>
+            
+            <!-- horizontal Separator -->
+            <Style x:Key="Separator" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="2" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="Color" Value="#2C9CEE" />
+                <Setter Property="Opacity" Value="0.5"/>
+                <Setter Property="Margin" Value="130, 0, 130, 15" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

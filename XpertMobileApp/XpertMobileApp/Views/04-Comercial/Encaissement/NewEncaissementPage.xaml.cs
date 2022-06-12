@@ -84,6 +84,8 @@ namespace XpertMobileApp.Views
 
             BindingContext = this;
 
+
+            //lehna ga3d i3amer f c les info 3a tiers f item 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 SelectedTiers = selectedItem;

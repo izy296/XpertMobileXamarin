@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.TransfertDeFondTemplate">
+    <ContentView.Content>
+
+        <StackLayout>
+            <Frame Style="{StaticResource FrameForList}">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGN_COMPTE_SRC, StringFormat='De: {0:C}'}" TextColor="red" FontSize="13"/>
+                        <Label Text="{Binding DESIGN_COMPTE_DEST, StringFormat='Aux: {0:C}'}" TextColor="Green" FontSize="13"/>
+                        <Label Text="{Binding DATE_ENCAISS , StringFormat='Le : {0:dd/MM/yyyy HH:mm}'}" TextColor="Black" FontSize="13"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
+                        <Label Text="{Binding CREATED_BY, StringFormat='Par: {0:C}'}" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" >
+                        <Label Text="{Binding DESIGN_MODE, StringFormat='Type: {0:C}'}" TextColor="Black" FontSize="13"/>
+                        <Label Text="{ Binding TOTAL_ENCAISS, StringFormat='Total Encais: {0:N2} DA'}" TextColor="Green" FontSize="13"/>
+                        <Label Text="{Binding CREATED_ON, StringFormat='Saisie Le : {0:dd/MM/yyyy}'}" TextColor="Black" FontSize="13"/>
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -949,4 +949,31 @@
   <data name="sp_txt_alert_supression" xml:space="preserve">
     <value>قائمة العناوين فارغة لا يمكنك الحدف</value>
   </data>
+  <data name="txt_montant" xml:space="preserve">
+    <value>المقدار</value>
+  </data>
+  <data name="txt_Source" xml:space="preserve">
+    <value>المصدر</value>
+  </data>
+  <data name="txt_comfirmation_ajout_virement" xml:space="preserve">
+    <value>تم تحويل الأموال بنجاح.</value>
+  </data>
+  <data name="txt_Destination" xml:space="preserve">
+    <value>الوجهة</value>
+  </data>
+  <data name="txt_mode_reg" xml:space="preserve">
+    <value>طريقة السداد</value>
+  </data>
+  <data name="txt_alert_code_motif" xml:space="preserve">
+    <value>يجب عليك اختيار النمط</value>
+  </data>
+  <data name="txt_alert_comptedestination" xml:space="preserve">
+    <value>يجب عليك اختيار حساب السمتقبل </value>
+  </data>
+  <data name="txt_alert_compte_source" xml:space="preserve">
+    <value>يجب عليك اختيار حساب المرسل</value>
+  </data>
+  <data name="txt_alert_montant" xml:space="preserve">
+    <value>يجب عليك ادخال القيمة المراد تحويلها</value>
+  </data>
 </root>

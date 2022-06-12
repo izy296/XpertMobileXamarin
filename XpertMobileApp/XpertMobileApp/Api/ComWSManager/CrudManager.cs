@@ -15,17 +15,19 @@ namespace XpertMobileApp.Api.Managers
         internal static ProductManager Products = new ProductManager();
         internal static StockManager Stock = new StockManager();
 
-       
+
 
         internal static CrudService<View_VTE_VENTE> Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
 
         internal static CrudService<View_ACH_MANQUANTS> Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
 
+        internal static CrudService<View_TRS_ENCAISS> Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
+
         internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
 
         internal static CrudService<View_BSE_MAGASIN> BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
         internal static CrudService<BSE_TABLE> BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
-        
+
 
         internal static CrudService<Settings> MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
 
@@ -79,21 +81,21 @@ namespace XpertMobileApp.Api.Managers
             MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }
 
-        public static VentesManager GetVteBll(string typeVte) 
+        public static VentesManager GetVteBll(string typeVte)
         {
             string controlerName = "VTE_VENTE";
-            
-            if (typeVte == VentesTypes.Livraison) 
+
+            if (typeVte == VentesTypes.Livraison)
             {
                 controlerName = "VTE_LIVRAISON_XCOM";
             }
             else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XPH_Mob)
-            { 
+            {
                 controlerName = "VTE_COMPTOIR";
             }
 
             var bll = new VentesManager(controlerName);
             return bll;
-        }        
+        }
     }
 }

@@ -1078,4 +1078,31 @@
   <data name="sp_txt_alert_supression" xml:space="preserve">
     <value>Liste vide ! Vous ne pouvez pas supprimer un url.</value>
   </data>
+  <data name="txt_montant" xml:space="preserve">
+    <value>Montant</value>
+  </data>
+  <data name="txt_comfirmation_ajout_virement" xml:space="preserve">
+    <value>Transfert de fond effectué avec succée.</value>
+  </data>
+  <data name="txt_Destination" xml:space="preserve">
+    <value>Déstination</value>
+  </data>
+  <data name="txt_mode_reg" xml:space="preserve">
+    <value>Mode.reg</value>
+  </data>
+  <data name="txt_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="txt_alert_code_motif" xml:space="preserve">
+    <value>Veuillez Selectionner un motif</value>
+  </data>
+  <data name="txt_alert_comptedestination" xml:space="preserve">
+    <value>Veuillez selectionner un compte destination</value>
+  </data>
+  <data name="txt_alert_compte_source" xml:space="preserve">
+    <value>Veuillez selectionner un compte source</value>
+  </data>
+  <data name="txt_alert_montant" xml:space="preserve">
+    <value>Veuillez entrer le montant a transferé</value>
+  </data>
 </root>

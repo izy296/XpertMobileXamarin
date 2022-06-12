@@ -159,10 +159,10 @@ namespace XpertMobileApp.Services
 
         public static async Task<decimal> GetQteStockByProdeuct(string res)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL , ServiceUrlDico.Get_Qte_By_Produit);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.Get_Qte_By_Produit);
             url += "?codeProduit=" + res;
-            return  await RetrievValAauthorizedData<decimal>(url);
-          
+            return await RetrievValAauthorizedData<decimal>(url);
+
         }
 
         public static async Task<decimal> GetQteStockByReference(string res)
@@ -174,8 +174,8 @@ namespace XpertMobileApp.Services
         public static async Task<List<View_ACH_MANQUANTS>> FindCurrent_Non_CF_Manquants(string codeProduit)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.Find_Current_Non_CF_Manquants);
-            url += WSApi2.AddParam(url, "codeProduit", codeProduit);           
-            return await WSApi2.PostAauthorizedValue<List<View_ACH_MANQUANTS>,string>(url, codeProduit , Token);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+            return await WSApi2.PostAauthorizedValue<List<View_ACH_MANQUANTS>, string>(url, codeProduit, Token);
         }
 
         #endregion
@@ -201,6 +201,11 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_BSE_COMPTE>(url);
         }
 
+        internal static async Task<List<BSE_MODE_REG>> GetMODE_REGs()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VIREMENT_URL, ServiceUrlDico.MODE_REG_URL);
+            return await RetrievAauthorizedData<BSE_MODE_REG>(url);
+        }
 
         #endregion
 
