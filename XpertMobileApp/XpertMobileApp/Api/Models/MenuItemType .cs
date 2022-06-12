@@ -8,7 +8,9 @@ namespace XpertMobileApp.Api.Models
     {
         None,
         Home,
+        Sessions,
         Encaissements,
+        TransfertDeFond,
         Tresorerie,
         Ventes,
         Livraison,
@@ -22,7 +24,6 @@ namespace XpertMobileApp.Api.Models
         Catalogues,
         MyCommandes,
         Commandes,
-        Sessions,
         Tiers,
         Bordereaux,
         Produits,
@@ -44,7 +45,6 @@ namespace XpertMobileApp.Api.Models
         Export,
         Import,
         Sortie,
-        Entre
     }
 
     public enum MenuItemGroup
