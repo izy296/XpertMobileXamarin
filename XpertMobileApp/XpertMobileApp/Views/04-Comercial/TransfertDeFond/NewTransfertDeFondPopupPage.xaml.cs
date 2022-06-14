@@ -28,12 +28,18 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
     public partial class NewTransfertDeFondPopupPage : PopupPage, INotifyPropertyChanged
     {
         public string CurrentStream = Guid.NewGuid().ToString();
+        internal XpertSqlBuilder querry = new XpertSqlBuilder();
+        public ObservableCollection<BSE_ENCAISS_MOTIFS> Motifs { get; set; }
+        public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
+        public ObservableCollection<BSE_MODE_REG> ModeReg { get; set; }
         public Command LoadComptesAndMotifsCommand { get; set; }
         public Command LoadIMotifsCommand { get; set; }
         public View_TRS_VIREMENT Item { get; set; }
         public View_TRS_ENCAISS ItemEnc { get; set; }
         public View_TRS_ENCAISS ItemDec { get; set; }
-        public ObservableCollection<BSE_ENCAISS_MOTIFS> Motifs { get; set; }
+        public View_BSE_COMPTE SelectedCompteSrc { get; set; }
+        public View_BSE_COMPTE SelectedCompteDst { get; set; }
+
         private BSE_ENCAISS_MOTIFS selectedMotif;
         public BSE_ENCAISS_MOTIFS SelectedMotif
         {
@@ -46,7 +52,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 selectedMotif = value;
             }
         }
-        public ObservableCollection<BSE_MODE_REG> ModeReg { get; set; }
+
         private BSE_MODE_REG modeReglement;
         public BSE_MODE_REG ModeReglement
         {
@@ -59,14 +65,6 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 modeReglement = value;
             }
         }
-        public ObservableCollection<View_BSE_COMPTE> Comptes
-        {
-            get; set;
-        }
-        public View_BSE_COMPTE SelectedCompteSrc { get; set; }
-        public View_BSE_COMPTE SelectedCompteDst { get; set; }
-
-        internal XpertSqlBuilder querry = new XpertSqlBuilder();
         public NewTransfertDeFondPopupPage(View_TRS_VIREMENT item = null, View_TRS_ENCAISS itemEnc = null, View_TRS_ENCAISS itemDec = null)
         {
             InitializeComponent();
@@ -213,7 +211,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             if (compteDestPicker.SelectedIndex != -1)
                 this.SelectedCompteDst = compteDestPicker.ItemsSource[compteDestPicker.SelectedIndex] as View_BSE_COMPTE;
 
-            if (string.IsNullOrEmpty(this.ItemDec.CODE_MODE))
+            if (!string.IsNullOrEmpty(this.ItemDec.CODE_MODE))
                 this.ItemDec.CODE_MODE = this.ItemEnc.CODE_MODE = ModeReglement.CODE_MODE;
 
             if (this.ItemDec.REF_REG != null)
@@ -247,9 +245,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 return false;
             }
             else
-            {
                 return true;
-            }
+
         }
 
         //Add new Transfert de Fond 
@@ -263,8 +260,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             check = await CheckFields(ItemEnc, ItemDec);
 
             /*------ Begin insertion ------*/
-            var codeEnc = "";
-            var codeDec = "";
+            var codeEnc = ""; var codeDec = "";
+
             if (App.Online)
             {
                 if (string.IsNullOrEmpty(ItemEnc.CODE_ENCAISS))
@@ -285,10 +282,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                         UserDialogs.Instance.HideLoading();
                         await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_comfirmation_ajout_virement, AppResources.alrt_msg_Ok);
                     }
-                    else
-                    {
-                        return;
-                    }
+                    else return;
 
                 }
                 await PopupNavigation.Instance.PopAsync();
