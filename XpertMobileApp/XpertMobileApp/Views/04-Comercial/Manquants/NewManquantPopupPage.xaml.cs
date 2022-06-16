@@ -265,7 +265,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingProduit, AppResources.alrt_msg_Ok);
                     return;
                 }
-                if (SelectedMotif == null)
+                if (string.IsNullOrEmpty(SelectedMotif?.NAME))
                 {
                     await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingMotif, AppResources.alrt_msg_Ok);
                     return;
