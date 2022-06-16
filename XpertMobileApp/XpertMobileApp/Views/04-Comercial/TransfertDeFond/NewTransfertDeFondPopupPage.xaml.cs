@@ -217,7 +217,9 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             if (this.ItemDec.REF_REG != null)
                 this.ItemDec.REF_REG = this.ItemEnc.REF_REG = refEntry.Text.ToString();
 
-            this.ItemDec.TOTAL_ENCAISS = ItemEnc.TOTAL_ENCAISS;
+            if (this.ItemDec.TOTAL_ENCAISS > 0)
+                this.ItemDec.TOTAL_ENCAISS = ItemEnc.TOTAL_ENCAISS;
+
             this.ItemDec.DATE_ENCAISS = ItemEnc.DATE_ENCAISS;
         }
         private async Task<bool> CheckFields(View_TRS_ENCAISS itemEncaiss, View_TRS_ENCAISS itemDecaiss)
@@ -233,7 +235,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_alert_comptedestination, AppResources.alrt_msg_Ok);
                 return false;
             }
-            else if (itemEncaiss.TOTAL_ENCAISS == 0 && itemDecaiss.TOTAL_ENCAISS == 0)
+            else if (itemEncaiss.TOTAL_ENCAISS <= 0 && itemDecaiss.TOTAL_ENCAISS <= 0)
             {
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_alert_montant, AppResources.alrt_msg_Ok);
                 return false;
