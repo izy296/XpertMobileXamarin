@@ -35,8 +35,9 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
         internal XpertSqlBuilder querry = new XpertSqlBuilder();
         public NewManquantPopupPage(View_ACH_MANQUANTS item = null)
         {
-            InitializeComponent();
+            InitializeComponent();            
             itemSelector = new ProductSelectorManquant(CurrentStream);
+            BindingContext = viewModel = new ManquantsViewModel();
             Motif = new ObservableCollection<BSE_DOCUMENT_STATUS>();
             LoadMotiftCommand = new Command(async () => await ExecuteLoadMotifCommand());
             MessagingCenter.Subscribe<ProductSelectorManquant, View_STK_PRODUITS>(this, CurrentStream, async (obj, selectedItem) =>
@@ -45,14 +46,14 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                 ent_Filter.Text = selectedItem.DESIGNATION_PRODUIT;
                 ent_CodeProduite.Text = selectedItem.CODE_PRODUIT;
                 ent_refProduite.Text = selectedItem.REFERENCE;
-            });
+            });          
             if (item != null)
             {
                 Item = item;
             }
             else
             {
-                Item = new View_ACH_MANQUANTS();
+                Item = new View_ACH_MANQUANTS();                
             }
             BindingContext = this;
         }
@@ -62,7 +63,6 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
             if (Motif.Count == 0)
                 LoadMotiftCommand.Execute(null);
         }
-
         /// <summary>
         /// Fonction qui permet de selectionner un motif
         /// </summary>
@@ -78,7 +78,6 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                 }
             }
         }
-
         /// <summary>
         /// Fonction qui indique le changement d'un motif
         /// </summary>
@@ -109,7 +108,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                 }
             }
         }
-
+        #region filtredata        
         public ObservableCollection<BSE_DOCUMENT_STATUS> Motif { get; set; }
         public BSE_DOCUMENT_STATUS SelectedMotif { get; set; }
         async Task ExecuteLoadExtrasDataCommand()
@@ -164,7 +163,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
         /// </summary>
         /// <param name="codeProduit"></param>
         /// <returns></returns>
-        async Task<List<View_ACH_MANQUANTS>> FindCurrentManquants(string codeProduit)
+        async Task<List<View_ACH_MANQUANTS>>FindCurrentManquants(string codeProduit)
         {
             List<View_ACH_MANQUANTS> currentManquants = await WebServiceClient.FindCurrent_Non_CF_Manquants(codeProduit);
             return currentManquants;
@@ -220,27 +219,28 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
             }
         }
         /// <summary>
-        /// Fonction qui permet de insérer les manquants 
+        /// Fonction qui permet d'insérer les manquants 
         /// </summary>
-        public async void InsertionManquant()
+        public  async void InsertionManquant()
         {
             Item.CODE_PRODUIT = ent_CodeProduite.Text;
             Item.DESIGNATION_PRODUIT = ent_Filter.Text;
-            Item.TYPE_NAME = SelectedMotif.NAME;
+            Item.TYPE_NAME = SelectedMotif.NAME;          
             await CrudManager.Manquant.AddItemAsync(Item);
             await DisplayAlert(AppResources.alrt_msg_title_Manquant, AppResources.alrt_msg_ManquantSaved, AppResources.alrt_msg_Ok);
-            await PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PopAsync();           
             UserDialogs.Instance.HideLoading();
-            MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
-        }
+            //MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);         
+        }  
         /// <summary>
         /// Fonction qui permet de fermer la popup
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        #endregion       
         private async void btn_Cancel_Clicked(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PopAsync();
+            await PopupNavigation.Instance.PopAsync();                       
         }
         /// <summary>
         /// Fonction qui permet d'afficher la liste des produits 
@@ -270,13 +270,13 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingMotif, AppResources.alrt_msg_Ok);
                     return;
                 }
-
+               
                 if (!string.IsNullOrEmpty(quantiteProduit.Text))
                 {
                     // Conversion de string en décimal en utilisant le TryParse
-                    decimal temp;
+                    decimal temp ;
                     var test = Decimal.TryParse(quantiteProduit.Text, out temp);
-                    if (temp == 0)
+                    if (temp <= 0)
                     {
                         await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingQuantite, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
@@ -296,10 +296,10 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     // Recupérer les manquants qui sont déja insérer 
                     List<View_ACH_MANQUANTS> currentMnaquant = await FindCurrentManquants(ent_CodeProduite.Text);
                     // Tester si le manquants existe ou nn et afficher une alerte pour insérer le méme manquant ou bien annuler
-                    if (currentMnaquant.Count() != 0)
+                    if (currentMnaquant.Count()!=0)
                     {
-                        var validation = await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_ConfirmAjoutManquant, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
-                        if (validation == false)
+                        var validation = await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_ConfirmAjoutManquant, AppResources.alrt_msg_Ok , AppResources.alrt_msg_Cancel);
+                        if(validation == false)
                         {
                             UserDialogs.Instance.HideLoading();
                             await PopupNavigation.Instance.PopAsync();
@@ -307,13 +307,13 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                         else
                         {
                             InsertionManquant();
-                        }
+                        }                       
                     }
                     else
                     {
-                        InsertionManquant();
+                            InsertionManquant();
                     }
-                }
+                }                                                    
             }
             catch (Exception ex)
             {
@@ -330,7 +330,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
         private async void ent_CodeProduite_TextChanged(object sender, TextChangedEventArgs e)
         {
             decimal QteProduit = await GetQteProduit(ent_CodeProduite.Text);
-            quantite.Text = AppResources.txt_Qte + " : " + QteProduit;
+            quantite.Text = AppResources.txt_Qte+" : "+ QteProduit;            
             if (string.IsNullOrEmpty(ent_refProduite.Text))
             {
                 quantiteGenerique.Text = AppResources.txt_QteGenerique + " : 0";
@@ -339,8 +339,8 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
             {
                 decimal QteRefProduit = await GetQteGenProduit(ent_refProduite.Text);
                 quantiteGenerique.Text = AppResources.txt_QteGenerique + " : " + QteRefProduit;
-            }
-        }
+            }                       
+        }      
     }
 }
 
