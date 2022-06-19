@@ -223,9 +223,10 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             if (compteDestPicker.SelectedIndex != -1)
                 this.SelectedCompteDst = compteDestPicker.ItemsSource[compteDestPicker.SelectedIndex] as View_BSE_COMPTE;
 
-            if (!string.IsNullOrEmpty(ModeReglement.CODE_MODE))
+            if (ModeReglement != null)
+            {
                 this.ItemDec.CODE_MODE = this.ItemEnc.CODE_MODE = ModeReglement.CODE_MODE;
-
+            }
             if (this.ItemDec.REF_REG != null)
                 this.ItemDec.REF_REG = this.ItemEnc.REF_REG = refEntry.Text.ToString();
 
