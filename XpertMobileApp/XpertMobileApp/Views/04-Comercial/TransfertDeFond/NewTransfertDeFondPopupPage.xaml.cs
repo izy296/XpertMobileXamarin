@@ -12,6 +12,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using Xpert.Common.WSClient.Services;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -65,6 +66,9 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 modeReglement = value;
             }
         }
+
+
+
         public NewTransfertDeFondPopupPage(View_TRS_VIREMENT item = null, View_TRS_ENCAISS itemEnc = null, View_TRS_ENCAISS itemDec = null)
         {
             InitializeComponent();
@@ -96,12 +100,17 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 };
             }
         }
+
+
+
         protected override void OnAppearing()
         {
             base.OnAppearing();
             if (Comptes.Count == 0 && Motifs.Count == 0 && ModeReg.Count == 0)
                 LoadComptesAndMotifsCommand.Execute(null);
         }
+
+
 
         /// <summary>
         /// Fermer la popup page
@@ -112,6 +121,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
         {
             await PopupNavigation.Instance.PopAsync();
         }
+
 
 
         /// <summary>
@@ -203,6 +213,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             }
         }
 
+
+
         private void SetDataEncDec()
         {
             if (compteSourcePicker.SelectedIndex != -1)
@@ -211,17 +223,20 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             if (compteDestPicker.SelectedIndex != -1)
                 this.SelectedCompteDst = compteDestPicker.ItemsSource[compteDestPicker.SelectedIndex] as View_BSE_COMPTE;
 
-            if (!string.IsNullOrEmpty(this.ItemDec.CODE_MODE))
+            if (!string.IsNullOrEmpty(ModeReglement.CODE_MODE))
                 this.ItemDec.CODE_MODE = this.ItemEnc.CODE_MODE = ModeReglement.CODE_MODE;
 
             if (this.ItemDec.REF_REG != null)
                 this.ItemDec.REF_REG = this.ItemEnc.REF_REG = refEntry.Text.ToString();
 
-            if (this.ItemDec.TOTAL_ENCAISS > 0)
+            if (this.ItemEnc.TOTAL_ENCAISS > 0)
                 this.ItemDec.TOTAL_ENCAISS = ItemEnc.TOTAL_ENCAISS;
 
             this.ItemDec.DATE_ENCAISS = ItemEnc.DATE_ENCAISS;
         }
+
+
+
         private async Task<bool> CheckFields(View_TRS_ENCAISS itemEncaiss, View_TRS_ENCAISS itemDecaiss)
         {
             if (string.IsNullOrEmpty(itemDecaiss.CODE_COMPTE))
@@ -250,6 +265,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 return true;
 
         }
+
+
 
         //Add new Transfert de Fond 
         async void AddNewTransfertDeFond(object sender, EventArgs e)
@@ -285,32 +302,44 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                         await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_comfirmation_ajout_virement, AppResources.alrt_msg_Ok);
                     }
                     else return;
-
                 }
                 await PopupNavigation.Instance.PopAsync();
+                MessagingCenter.Send(this, MCDico.ITEM_ADDED, "Commande refresh");
             }
         }
+
+
 
         private async void Update_Code_Vir(string codeEnc, string codeDec)
         {
             string codeVir = XpertHelper.GetMD5Hash(codeEnc + codeDec);
             ItemDec.CODE_VIR = ItemEnc.CODE_VIR = codeVir;
+
             ItemEnc.CODE_ENCAISS = codeEnc;
             ItemDec.CODE_ENCAISS = codeDec;
+
             await CrudManager.Encaiss.UpdateItemAsync(ItemEnc);
             await CrudManager.Encaiss.UpdateItemAsync(ItemDec);
         }
+
+
+
         private void CompteSrcPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var compte = Comptes[compteSourcePicker.SelectedIndex];
             ItemDec.CODE_COMPTE = compte.CODE_COMPTE;
         }
 
+
+
         private void CompteDesPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var compte = Comptes[compteDestPicker.SelectedIndex];
             ItemEnc.CODE_COMPTE = compte.CODE_COMPTE;
         }
+
+
+
         private void MotifPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             var motif = Motifs[motifPicker.SelectedIndex];

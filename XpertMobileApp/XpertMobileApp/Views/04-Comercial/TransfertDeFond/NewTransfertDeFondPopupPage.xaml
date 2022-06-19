@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
              x:Class="XpertMobileApp.Views._04_Comercial.TransfertDeFond.NewTransfertDeFondPopupPage"
-             xmlns:fontawesome="clr-namespace:FontAwesome">
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.Content>
         <ScrollView>
@@ -129,7 +129,7 @@
                                 Keyboard="Numeric"
                                 x:Name="montantEntry"
                                 Text="{Binding ItemEnc.TOTAL_ENCAISS, Mode=TwoWay , StringFormat='{0:F2}'}"/>
-
+                        
                         <Label Text="{i18n:Translate txt_Motif}"
                                Grid.Row="8"
                                Grid.Column="0"

@@ -15,6 +15,7 @@ namespace XpertMobileApp.Views
     public partial class TransfertDeFondPage : ContentPage
     {
         TransfertDeFondPageViewModel viewModel;
+        private bool opened = false;
 
         public TransfertDeFondPage()
         {
@@ -23,12 +24,12 @@ namespace XpertMobileApp.Views
             Title = AppResources.pn_TransfertDeFond;
 
             BindingContext = viewModel = new TransfertDeFondPageViewModel();
+            filterLayout.TranslateTo(-270, 0);
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
@@ -36,6 +37,11 @@ namespace XpertMobileApp.Views
                 viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            filterLayout.TranslateTo(-270, 0);
+        }
         private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (sender is CheckBox)
@@ -54,7 +60,8 @@ namespace XpertMobileApp.Views
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
-            FilterPanel.IsVisible = false;
+            opened = !opened;
+            filterLayout.TranslateTo(-270, 0);
         }
         /// <summary>
         /// To open and close filter section
@@ -63,7 +70,7 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
+            filterLayout.TranslateTo(-270, 0);
         }
         private void ClearFilters()
         {
@@ -78,7 +85,7 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = false;
+            filterLayout.TranslateTo(-270, 0);
             ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
@@ -96,6 +103,20 @@ namespace XpertMobileApp.Views
         {
             NewTransfertDeFondPopupPage form = new NewTransfertDeFondPopupPage();
             await PopupNavigation.Instance.PushAsync(form);
+        }
+
+        private void showHideFilter(object sender, EventArgs e)
+        {
+            if (opened)
+            {
+                filterLayout.TranslateTo(-270, 0);
+                opened = !opened;
+            }
+            else
+            {
+                filterLayout.TranslateTo(0, 0);
+                opened = !opened;
+            }
         }
     }
 }

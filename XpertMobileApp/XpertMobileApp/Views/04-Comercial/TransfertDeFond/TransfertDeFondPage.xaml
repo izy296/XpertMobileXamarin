@@ -18,44 +18,91 @@
             Clicked="AjoutItem_Clicked"
             >
         </ToolbarItem>
-
-        <ToolbarItem 
-            x:Name="btn_Filter"  
-            Text="{i18n:Translate cmd_Filter}"
-            Clicked="Filter_Clicked"
-            >
-            <ToolbarItem.Icon>
-                <OnPlatform 
-                    x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="filter.png"/>
-                    <On Platform="Android" Value="filter.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
-
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout 
-        VerticalOptions="FillAndExpand" 
-        BackgroundColor="{StaticResource DefaultLisViewBackColor}">
-            <!-- Filter -->
+        <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            >
+            <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <!-- Filter -->
+                    <ListView 
+                        x:Name="ItemsListView"  
+                        ItemsSource="{Binding Items}"  
+                        VerticalOptions="FillAndExpand"  
+                        HasUnevenRows="true"  
+                        SeparatorVisibility="None"                             
+                        RefreshCommand="{Binding LoadItemsCommand}"  
+                        IsPullToRefreshEnabled="true"  
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"  
+                        CachingStrategy="RecycleElement"  
+                        ItemSelected="OnItemSelected">
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template:TransfertDeFondTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Footer>
+                            <Grid Padding="6" 
+                          IsVisible="{Binding IsBusy}">
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                <Trigger 
+                                    TargetType="Grid" 
+                                    Property="IsVisible" 
+                                    Value="False">
+                                    <Setter 
+                                        Property="HeightRequest" 
+                                        Value="0" />
+                                </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
 
-            <StackLayout 
-            x:Name="FilterPanel" 
-            IsVisible="False" 
-            Padding="0" 
-            Margin="0" 
-            Spacing="0" 
-            Orientation="Vertical" 
-            VerticalOptions="Start"  
-            HorizontalOptions="Fill" 
-            BackgroundColor="{StaticResource Accent}">
+                                <Label 
+                                    Text="Loading..." 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
+                
+                </ScrollView>
+
+             <!--floating button-->
+            <Button 
+                x:Name="floatingButton" 
+                ImageSource="filter.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="showHideFilter"/>
+            
+            <!--filter section-->
+            <StackLayout
+                x:Name="filterLayout"
+                IsVisible="true"
+                AbsoluteLayout.LayoutFlags="XProportional"
+                AbsoluteLayout.LayoutBounds="0, 0, 270, 760"
+                BackgroundColor="{StaticResource Accent}"
+                >
                 <Grid 
                 Margin="0,5,0,0">
                     <Grid.ColumnDefinitions >
-                        <ColumnDefinition 
-                        Width="*"/>
                         <ColumnDefinition 
                         Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -79,82 +126,84 @@
                         Height="Auto"/>
                         <RowDefinition 
                         Height="Auto"/>
+                        <RowDefinition 
+                        Height="Auto"/>
+                        <RowDefinition 
+                        Height="Auto"/>
+                        <RowDefinition 
+                        Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label 
-                    Grid.Column="0"  
-                    Grid.Row="0"   
-                    Text="{i18n:Translate txt_StartDate}"  
-                    HorizontalOptions="FillAndExpand" 
-                    Margin="5, 0, 0, 0"  />
+                        Grid.Column="0"  
+                        Grid.Row="0"   
+                        Text="{i18n:Translate txt_StartDate}"  
+                        HorizontalOptions="FillAndExpand" 
+                        Margin="5, 0, 0, 0"  />
 
                     <DatePicker 
-                    x:Name="dp_StartDate"  
-                    Grid.Column="0" 
-                    Grid.Row="1"                                            
-                    Format="dd/MM/yyyy"  
-                    TextColor="Black"  
-                    HorizontalOptions="FillAndExpand" 
-                    Date="{Binding StartDate, Mode=TwoWay}"  
-                    Margin="10, 0, 10, 10"/>
+                        x:Name="dp_StartDate"  
+                        Grid.Column="0" 
+                        Grid.Row="1"                                            
+                        Format="dd/MM/yyyy"  
+                        TextColor="Black"  
+                        HorizontalOptions="FillAndExpand" 
+                        Date="{Binding StartDate, Mode=TwoWay}"  
+                        Margin="10, 0, 10, 10"/>
 
                     <Label 
-                    Grid.Column="1" 
-                    Grid.Row="0"     
-                    HorizontalOptions="StartAndExpand" 
-                    Text="{i18n:Translate txt_EndDate}"  
-                    Margin="5, 0, 0, 0" />
+                        Grid.Column="0" 
+                        Grid.Row="2"     
+                        HorizontalOptions="StartAndExpand" 
+                        Text="{i18n:Translate txt_EndDate}"  
+                        Margin="5, 0, 0, 0" />
 
                     <DatePicker 
-                    x:Name="dp_EndDate" 
-                    Grid.Column="1" 
-                    Grid.Row="1"                     
-                    HorizontalOptions="Fill" 
-                    Format="dd/MM/yyyy"  
-                    TextColor="Black"  
-                    Date="{Binding EndDate, Mode=TwoWay}"  
-                    Margin="10, 0, 10, 10"/>
+                        x:Name="dp_EndDate" 
+                        Grid.Column="0" 
+                        Grid.Row="3"                     
+                        HorizontalOptions="Fill" 
+                        Format="dd/MM/yyyy"  
+                        TextColor="Black"  
+                        Date="{Binding EndDate, Mode=TwoWay}"  
+                        Margin="10, 0, 10, 10"/>
 
                     <Label 
-                    Grid.Column="0" 
-                    Grid.Row="2" 
-                    Grid.ColumnSpan="2" 
-                    Text="{i18n:Translate lbl_compteSource}" 
-                    Margin="5, 0, 0, 0"/>
+                        Grid.Column="0" 
+                        Grid.Row="4" 
+                        Text="{i18n:Translate lbl_compteSource}" 
+                        Margin="5, 0, 0, 0"/>
 
                     <Picker 
-                    Grid.Column="0" 
-                    Grid.Row="3" 
-                    Grid.ColumnSpan="2" 
-                    ItemsSource="{Binding Comptes}"  
-                    ItemDisplayBinding="{Binding DESIGN_COMPTE}"  FontSize="Small"  
-                    SelectedItem="{Binding SelectedCompteSrc}"  
-                    TextColor="Black"  
-                    Margin="10, 0, 10, 10"   
-                    x:Name="compteSourcePicker"/>
+                        Grid.Column="0" 
+                        Grid.Row="5" 
+                        ItemsSource="{Binding Comptes}"  
+                        ItemDisplayBinding="{Binding DESIGN_COMPTE}"  FontSize="Small"  
+                        SelectedItem="{Binding SelectedCompteSrc}"  
+                        TextColor="Black"  
+                        Margin="10, 0, 10, 10"   
+                        x:Name="compteSourcePicker"/>
 
                     <Label 
-                    Grid.Column="0" 
-                    Grid.Row="4" 
-                    Text="{i18n:Translate lbl_compteDest}" 
-                    Margin="5, 0, 0, 0"/>
+                        Grid.Column="0" 
+                        Grid.Row="6" 
+                        Text="{i18n:Translate lbl_compteDest}" 
+                        Margin="5, 0, 0, 0"/>
 
                     <Picker 
-                    x:Name="compteDestPicker"
-                    Grid.Column="0" 
-                    Grid.Row="5"  
-                    Grid.ColumnSpan="2" 
-                    ItemsSource="{Binding Comptes}"  
-                    ItemDisplayBinding="{Binding DESIGN_COMPTE}"  FontSize="Small"  
-                    SelectedItem="{Binding SelectedCompteDst}" 
-                    TextColor="Black"  
-                    Margin="10, 0, 10, 10"/>
+                        x:Name="compteDestPicker"
+                        Grid.Column="0" 
+                        Grid.Row="7"  
+                        ItemsSource="{Binding Comptes}"  
+                        ItemDisplayBinding="{Binding DESIGN_COMPTE}"  FontSize="Small"  
+                        SelectedItem="{Binding SelectedCompteDst}" 
+                        TextColor="Black"  
+                        Margin="10, 0, 10, 10"/>
 
                     <StackLayout
                         Grid.Column="0" 
-                        Grid.Row="6"
+                        Grid.Row="8"
                         Orientation="Horizontal"
-                        Grid.ColumnSpan="2"
                         >
                         <CheckBox 
                             VerticalOptions="Center"
@@ -173,85 +222,38 @@
                     </StackLayout>
 
                     <StackLayout  
-                    Grid.Column="0" 
-                    Grid.Row="7"
-                    Grid.ColumnSpan="2"
-                    Padding="0"                     
-                    Spacing="0" 
-                    Orientation="Horizontal"  
-                    VerticalOptions="End"  
-                    HorizontalOptions="End"
-                    Margin="0,0,5,0">
+                        Grid.Column="0" 
+                        Grid.Row="9"
+                        Padding="0"                     
+                        Spacing="0" 
+                        Orientation="Horizontal"  
+                        VerticalOptions="End"  
+                        HorizontalOptions="StartAndExpand"
+                        Margin="0,0,5,0">
 
                         <Button 
-                        x:Name="btn_ApplyFilter" 
-                        Margin="5" HorizontalOptions="End" 
-                        Text="{i18n:Translate txt_Filter}" 
-                        Style="{DynamicResource DefaultBtnStyle}"
-                        Clicked="btn_ApplyFilter_Clicked" 
+                            x:Name="btn_ApplyFilter" 
+                            Margin="5,5,20,5" HorizontalOptions="Start" 
+                            Text="{i18n:Translate txt_Filter}" 
+                            Style="{DynamicResource DefaultBtnStyle}" 
+                            WidthRequest="115"
+                            Clicked="btn_ApplyFilter_Clicked" 
                             />
 
                         <Button 
-                        x:Name="btn_CancelFilter" 
-                        Margin="5" 
-                        HorizontalOptions="End" 
-                        Text="{i18n:Translate cmd_Cancel}" 
-                        Style="{DynamicResource DefaultBtnStyle}"  
-                        Clicked="btn_CancelFilter_Clicked"
+                            x:Name="btn_CancelFilter" 
+                            Margin="5,5,20,5" 
+                            WidthRequest="115"
+                            HorizontalOptions="End" 
+                            Text="{i18n:Translate cmd_Cancel}" 
+                            Style="{DynamicResource DefaultBtnStyle}"  
+                            Clicked="btn_CancelFilter_Clicked"
                         />
                     </StackLayout>
 
                 </Grid>
             </StackLayout>
-
-
-
-            <StackLayout VerticalOptions="FillAndExpand">
-                <ListView 
-                x:Name="ItemsListView"  
-                ItemsSource="{Binding Items}"  
-                VerticalOptions="FillAndExpand"  
-                HasUnevenRows="true"  
-                SeparatorVisibility="None"                             
-                RefreshCommand="{Binding LoadItemsCommand}"  
-                IsPullToRefreshEnabled="true"  
-                IsRefreshing="{Binding IsBusy, Mode=OneWay}"  
-                CachingStrategy="RecycleElement"  
-                ItemSelected="OnItemSelected">
-                    <ListView.Behaviors>
-                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:TransfertDeFondTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.Footer>
-                        <Grid Padding="6" 
-                          IsVisible="{Binding IsBusy}">
-                            <!-- set the footer to have a zero height when invisible -->
-                            <Grid.Triggers>
-                                <Trigger 
-                                TargetType="Grid" 
-                                Property="IsVisible" 
-                                Value="False">
-                                    <Setter 
-                                    Property="HeightRequest" 
-                                    Value="0" />
-                                </Trigger>
-                            </Grid.Triggers>
-                            <!-- the loading content -->
-
-                            <Label 
-                            Text="Loading..." 
-                            VerticalOptions="Center" 
-                            HorizontalOptions="Center" />
-                        </Grid>
-                    </ListView.Footer>
-                </ListView>
-            </StackLayout>
-        </StackLayout>
+            <!--end filter section-->       
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

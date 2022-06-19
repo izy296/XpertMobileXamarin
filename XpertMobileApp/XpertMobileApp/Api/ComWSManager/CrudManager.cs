@@ -78,6 +78,8 @@ namespace XpertMobileApp.Api.Managers
             ProductionInfosManager = new ProductionInfosManager();
             TiersManager = new TiersManager();
 
+            Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
+
             MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }
 
