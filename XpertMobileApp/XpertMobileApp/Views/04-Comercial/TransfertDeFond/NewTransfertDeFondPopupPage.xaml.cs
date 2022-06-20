@@ -230,9 +230,15 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             if (this.ItemDec.REF_REG != null)
                 this.ItemDec.REF_REG = this.ItemEnc.REF_REG = refEntry.Text.ToString();
 
-            if (this.ItemEnc.TOTAL_ENCAISS > 0)
-                this.ItemDec.TOTAL_ENCAISS = ItemEnc.TOTAL_ENCAISS;
-
+            if (!string.IsNullOrEmpty(montantEntry.Text))
+            {
+                decimal result;
+                bool parsable = decimal.TryParse(montantEntry.Text, out result);
+                if (result > 0 && parsable)
+                {
+                    this.ItemDec.TOTAL_ENCAISS = ItemEnc.TOTAL_ENCAISS = result;
+                }
+            }
             this.ItemDec.DATE_ENCAISS = ItemEnc.DATE_ENCAISS;
         }
 

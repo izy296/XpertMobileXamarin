@@ -27,6 +27,10 @@ namespace XpertMobileApp.ViewModels
             Title = AppResources.pn_TransfertDeFond;
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            MessagingCenter.Subscribe<NewTransfertDeFondPopupPage, string>(this, MCDico.ITEM_ADDED, async (obj, selectedItem) =>
+            {
+                await ExecuteLoadItemsCommand();
+            });
         }
         #region filters data 
         public DateTime StartDate { get; set; } = DateTime.ParseExact("2022-01-01", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
