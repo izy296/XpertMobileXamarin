@@ -79,6 +79,9 @@ namespace XpertMobileApp.Api.Managers
             TiersManager = new TiersManager();
 
             Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
+            Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
+            Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
+            SimpleIndicatorsService = new CrudService<TDB_SIMPLE_INDICATORS>(App.RestServiceUrl, "TDB_SIMPLE_INDICATORS", App.User.Token);
 
             MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }

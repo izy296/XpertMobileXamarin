@@ -83,7 +83,7 @@
                                Margin="0,10,0,0"
                                FontAttributes="Bold"
                                Opacity="0.9"/>
-
+                        
                         <Picker Grid.Row="3"
                                 Grid.Column="0"
                                 Grid.ColumnSpan="2"
@@ -94,6 +94,7 @@
                                 SelectedItem="{Binding SelectedCompteSrc}" 
                                 SelectedIndexChanged="CompteSrcPicker_SelectedIndexChanged"
                                 x:Name="compteSourcePicker"/>
+                            
 
                         <Label Text="{i18n:Translate txt_Destination}"
                                Grid.Row="4"
@@ -128,7 +129,7 @@
                                 FontSize="13"
                                 Keyboard="Numeric"
                                 x:Name="montantEntry"
-                                Text="{Binding ItemEnc.TOTAL_ENCAISS, Mode=TwoWay , StringFormat='{0:F2}'}"/>
+                                />
                         
                         <Label Text="{i18n:Translate txt_Motif}"
                                Grid.Row="8"

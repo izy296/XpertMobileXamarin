@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.Templates.TransfertDeFondTemplate">
+             x:Class="XpertMobileApp.Views.Templates.TransfertDeFondTemplate"
+             >
     <ContentView.Content>
 
         <StackLayout>
@@ -19,24 +20,89 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    
-                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
+
+                    <StackLayout 
+                        Grid.Column="0" 
+                        Grid.Row="0" 
+                        Grid.RowSpan="3" 
+                        Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGN_COMPTE_SRC, StringFormat='De: {0:C}'}" TextColor="red" FontSize="13"/>
-                        <Label Text="{Binding DESIGN_COMPTE_DEST, StringFormat='Aux: {0:C}'}" TextColor="Green" FontSize="13"/>
-                        <Label Text="{Binding DATE_ENCAISS , StringFormat='Le : {0:dd/MM/yyyy HH:mm}'}" TextColor="Black" FontSize="13"/>
+                    <StackLayout 
+                        Grid.Column="1" 
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Grid.RowSpan="2"
+                        Spacing="5" 
+                        Padding="0">
+
+                        <FlexLayout 
+                            Direction="row" 
+                            JustifyContent="Start"
+                            AlignItems="Center"
+                            HeightRequest="30">
+                            
+                                <Image 
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Source="trenddown"
+                                    Margin="0, 0, 5, 0"/>
+
+                                <Label 
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Text="{Binding DESIGN_COMPTE_SRC, StringFormat='{0:C}'}" 
+                                    TextColor="#E65B65"  
+                                    FontSize="13"
+                                    WidthRequest="150"
+                                    LineBreakMode="WordWrap"
+                                     />
+                        </FlexLayout>
+
+
+
+
+                        <Label Text="{Binding DESIGN_MODE, StringFormat='Type: {0:C}'}" 
+                               TextColor="Black" 
+                               FontSize="13"
+                               />
+
+                        <Label Text="{Binding DATE_ENCAISS , StringFormat='Le : {0:dd/MM/yyyy HH:mm}'}" 
+                               TextColor="Black" 
+                               FontSize="13"/>
+
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding CREATED_BY, StringFormat='Par: {0:C}'}" FontAttributes="Bold" TextColor="Black" FontSize="15"/>
-                    </StackLayout>
+                    <StackLayout Grid.Column="2" 
+                                 Grid.Row="0" 
+                                 Spacing="5" 
+                                 Padding="0" >
 
-                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" >
-                        <Label Text="{Binding DESIGN_MODE, StringFormat='Type: {0:C}'}" TextColor="Black" FontSize="13"/>
-                        <Label Text="{ Binding TOTAL_ENCAISS, StringFormat='Total Encais: {0:N2} DA'}" TextColor="Green" FontSize="13"/>
-                        <Label Text="{Binding CREATED_ON, StringFormat='Saisie Le : {0:dd/MM/yyyy}'}" TextColor="Black" FontSize="13"/>
+                        <FlexLayout 
+                            Direction="row" 
+                            JustifyContent="Start" 
+                            AlignItems="Center"
+                            HeightRequest="30"
+                            >
+
+                            <Image Source="trendup"
+                                   Margin="0, 0, 5, 0"/>
+                            
+                            <Label Text="{Binding DESIGN_COMPTE_DEST, StringFormat='{0:C}'}" 
+                               TextColor="#7EC384" 
+                               FontSize="13"/>
+
+                        </FlexLayout>
+
+
+                        <Label Text="{ Binding TOTAL_ENCAISS, StringFormat='Montant: {0:N2} DA'}" 
+                               TextColor="Black" 
+                               FontAttributes="bold"
+                               FontSize="13"/>
+
+                        <Label Text="{Binding CREATED_BY, StringFormat='Par: {0:C}'}" 
+                               TextColor="Black" 
+                               FontSize="15"/>
                     </StackLayout>
                 </Grid>
             </Frame>

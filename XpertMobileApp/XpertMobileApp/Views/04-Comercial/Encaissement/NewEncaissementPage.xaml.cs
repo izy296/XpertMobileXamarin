@@ -85,7 +85,7 @@ namespace XpertMobileApp.Views
             BindingContext = this;
 
 
-            //lehna ga3d i3amer f c les info 3a tiers f item 
+
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 SelectedTiers = selectedItem;
@@ -112,6 +112,29 @@ namespace XpertMobileApp.Views
             }
             if (App.Online)
             {
+                if (!string.IsNullOrEmpty(montantEntry.Text))
+                {
+                    decimal result;
+                    bool parsable = decimal.TryParse(montantEntry.Text, out result);
+                    if (result > 0 && parsable)
+                    {
+                        this.Item.TOTAL_ENCAISS = result;
+                    }
+                    else
+                    {
+                        this.Item.TOTAL_ENCAISS = 0;
+                    }
+                }
+                else
+                {
+                    this.Item.TOTAL_ENCAISS = 0;
+                }
+
+                if (Item.TOTAL_ENCAISS <= 0)
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 if (string.IsNullOrEmpty(Item.CODE_ENCAISS))
                 {
                     MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
@@ -126,6 +149,25 @@ namespace XpertMobileApp.Views
             {
                 if (Item.CODE_TYPE == "ENC")
                 {
+
+                    if (!string.IsNullOrEmpty(montantEntry.Text))
+                    {
+                        decimal result;
+                        bool parsable = decimal.TryParse(montantEntry.Text, out result);
+                        if (result > 0 && parsable)
+                        {
+                            this.Item.TOTAL_ENCAISS = result;
+                        }
+                        else
+                        {
+                            this.Item.TOTAL_ENCAISS = 0;
+                        }
+                    }
+                    else
+                    {
+                        this.Item.TOTAL_ENCAISS = 0;
+                    }
+
                     if (Item.TOTAL_ENCAISS <= 0)
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
