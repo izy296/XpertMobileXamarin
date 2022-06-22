@@ -11,8 +11,10 @@ using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views._04_Comercial.Manquants;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -24,6 +26,10 @@ namespace XpertMobileApp.ViewModels
             Types = new ObservableCollection<BSE_DOCUMENT_STATUS>();
             TypesProduit = new ObservableCollection<BSE_TABLE_TYPE>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            MessagingCenter.Subscribe<NewManquantPopupPage, string>(this, MCDico.ITEM_ADDED, async (obj, selectedItem) =>
+            {
+                await ExecuteLoadItemsCommand();
+            });
         }
         protected override void OnAfterLoadItems(IEnumerable<View_ACH_MANQUANTS> list)
         {
