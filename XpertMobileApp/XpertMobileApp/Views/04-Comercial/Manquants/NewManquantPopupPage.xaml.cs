@@ -202,6 +202,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     {
                         Motif.Add(itemC);
                     }
+                    SelectedMotif = Motif[0]; 
                 }
                 catch (Exception ex)
                 {
@@ -216,6 +217,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                 {
                     Motif.Add(itemC);
                 }
+                SelectedMotif = Motif[0];
             }
         }
         /// <summary>
@@ -265,7 +267,7 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingProduit, AppResources.alrt_msg_Ok);
                     return;
                 }
-                if (string.IsNullOrEmpty(SelectedMotif?.NAME))
+                if (string.IsNullOrEmpty(SelectedMotif.NAME))
                 {
                     await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingMotif, AppResources.alrt_msg_Ok);
                     return;
@@ -313,6 +315,8 @@ namespace XpertMobileApp.Views._04_Comercial.Manquants
                     {
                             InsertionManquant();
                     }
+                    //await PopupNavigation.Instance.PopAsync();
+                    MessagingCenter.Send(this, MCDico.ITEM_ADDED, "Commande refresh");
                 }                                                    
             }
             catch (Exception ex)
