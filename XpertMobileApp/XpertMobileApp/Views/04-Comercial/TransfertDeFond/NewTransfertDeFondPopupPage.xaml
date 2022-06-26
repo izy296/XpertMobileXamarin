@@ -70,7 +70,8 @@
                                Grid.ColumnSpan="2"
                                HorizontalOptions="Center"
                                FontSize="18"
-                               Margin="0,0,0,15"/>
+                               Margin="0,0,0,15"
+                               x:Name="titleLabel"/>
 
                         <BoxView Style="{StaticResource Separator}" 
                                  Grid.Row="1"
@@ -111,7 +112,7 @@
                                 FontSize="13"
                                 ItemsSource="{Binding Comptes}"  
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
-                                SelectedItem="{Binding SelectedCompteSrc}"
+                                SelectedItem="{Binding SelectedCompteDst}"
                                 SelectedIndexChanged="CompteDesPicker_SelectedIndexChanged"
                                 x:Name="compteDestPicker"/>
 
@@ -178,6 +179,7 @@
                                 ItemsSource="{Binding ModeReg}"  
                                 ItemDisplayBinding="{Binding DESIGN_MODE}"  
                                 SelectedItem="{Binding ModeReglement}"
+                                x:Name="ModeReglementPicker"
                                 />
 
                         <Label Text="{i18n:Translate txt_Ref} "

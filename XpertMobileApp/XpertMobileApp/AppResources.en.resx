@@ -873,6 +873,9 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>You have to enter an amount to transfer</value>
   </data>
+  <data name="lbl_edit_transfert_de_fond" xml:space="preserve">
+    <value>Edit funds transfert</value>
+  </data>
   <data name="pp_label_labo" xml:space="preserve">
     <value>Lab</value>
   </data>

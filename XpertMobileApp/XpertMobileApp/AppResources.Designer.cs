@@ -3224,6 +3224,14 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_alert_code_motif", resourceCulture);
             }
         }
+
+        public static string lbl_edit_transfert_de_fond
+        {
+            get
+            {
+                return ResourceManager.GetString("lbl_edit_transfert_de_fond", resourceCulture);
+            }
+        }
     }
 }
 

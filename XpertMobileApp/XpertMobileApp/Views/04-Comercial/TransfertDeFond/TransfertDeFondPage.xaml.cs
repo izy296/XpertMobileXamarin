@@ -90,9 +90,17 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            var item = e.SelectedItem as View_TRS_VIREMENT;
+            if (item == null)
+                return;
+            // Manually deselect item.
 
+            NewTransfertDeFondPopupPage form = new NewTransfertDeFondPopupPage(item);
+            await PopupNavigation.Instance.PushAsync(form);
+
+            ItemsListView.SelectedItem = null;
         }
         /// <summary>
         /// Fonction qui permet d'afficher une popup pour l'ajout d'un Transfert de Fond
@@ -101,7 +109,7 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         async void AjoutItem_Clicked(object sender, EventArgs e)
         {
-            NewTransfertDeFondPopupPage form = new NewTransfertDeFondPopupPage();
+            NewTransfertDeFondPopupPage form = new NewTransfertDeFondPopupPage(null);
             await PopupNavigation.Instance.PushAsync(form);
         }
 

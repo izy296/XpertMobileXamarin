@@ -976,6 +976,10 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>يجب عليك ادخال القيمة المراد تحويلها</value>
   </data>
+  <data name="lbl_edit_transfert_de_fond" xml:space="preserve">
+    <value>تغيير تحويل الأموال</value>
+  </data>
+
   <data name="pp_label_labo" xml:space="preserve">
     <value>مختبر</value>
   </data>

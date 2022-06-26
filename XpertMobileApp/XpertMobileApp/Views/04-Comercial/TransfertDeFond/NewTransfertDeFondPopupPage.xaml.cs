@@ -51,6 +51,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             set
             {
                 selectedMotif = value;
+                OnPropertyChanged(nameof(SelectedCompteSrc));
             }
         }
 
@@ -66,17 +67,16 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 modeReglement = value;
             }
         }
+        View_TRS_VIREMENT item;
 
 
-
-        public NewTransfertDeFondPopupPage(View_TRS_VIREMENT item = null, View_TRS_ENCAISS itemEnc = null, View_TRS_ENCAISS itemDec = null)
+        public NewTransfertDeFondPopupPage(View_TRS_VIREMENT item, View_TRS_ENCAISS itemEnc = null, View_TRS_ENCAISS itemDec = null)
         {
             InitializeComponent();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             ModeReg = new ObservableCollection<BSE_MODE_REG>();
             LoadComptesAndMotifsCommand = new Command(async () => await ExecuteLoadComptesAndMotifs());
-
             BindingContext = this;
 
             if (itemEnc != null)
@@ -99,6 +99,11 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                     CODE_TYPE = "DEC"
                 };
             }
+            this.item = item;
+            if (item != null)
+            {
+                titleLabel.Text = AppResources.lbl_edit_transfert_de_fond;
+            }
         }
 
 
@@ -110,7 +115,63 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 LoadComptesAndMotifsCommand.Execute(null);
         }
 
+        //remplir les champs avec les données arrivés de itemSelected 
+        private void RemplireChamp(View_TRS_VIREMENT item)
+        {
+            if (item == null)
+                return;
 
+            int indexDest = 0;
+            int indexSrc = 0;
+            int indexMotif = 0;
+            int indexReg = 0;
+
+            for (int i = 0; i < Comptes.Count; i++)
+            {
+                if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_DEST)
+                {
+                    indexDest = i;
+                }
+                if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_SRC)
+                {
+                    indexSrc = i;
+                }
+            }
+
+            for (int i = 0; i < ModeReg.Count; i++)
+            {
+                if (ModeReg[i].DESIGN_MODE == item.DESIGN_MODE)
+                {
+                    indexReg = i;
+                }
+            }
+
+            for (int i = 0; i < Motifs.Count; i++)
+            {
+                if (Motifs[i].DESIGN_MOTIF == item.DESIGN_MOTIF)
+                {
+                    indexMotif = i;
+                }
+            }
+
+            //choose wich DESIGN_COMPTE_DEST to display and disable the entry 
+            compteDestPicker.SelectedIndex = indexDest;
+            compteDestPicker.IsEnabled = false;
+
+            //choose wich DESIGN_COMPTE_SRC to display and disable the entry
+            compteSourcePicker.SelectedIndex = indexSrc;
+            compteSourcePicker.IsEnabled = false;
+
+            //choose wich Design_Motif to display 
+            motifPicker.SelectedIndex = indexMotif;
+
+            //choose wich DESIGN_MODE to display
+            ModeReglementPicker.SelectedIndex = indexReg;
+
+            montantEntry.Text = item.TOTAL_ENCAISS.ToString();
+
+            refEntry.Text = item.REF_REG;
+        }
 
         /// <summary>
         /// Fermer la popup page
@@ -168,6 +229,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                         Motifs.Add(itemM);
                     foreach (var itemR in itemsR)
                         ModeReg.Add(itemR);
+
+                    RemplireChamp(this.item);
 
                 }
                 catch (Exception ex)
@@ -294,19 +357,27 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                 {
                     if (check)
                     {
-                        UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                        if (item != null)
+                        {
+                            /*----- Update Transfert de fond ---------*/
+                            Update_Virement();
+                        }
+                        else
+                        {
+                            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                        /*------ Decaiss and return CodeDecaiss ------*/
-                        codeDec = await CrudManager.Encaiss.AddItemAsync(ItemDec);
+                            /*------ Decaiss and return CodeDecaiss ------*/
+                            codeDec = await CrudManager.Encaiss.AddItemAsync(ItemDec);
 
-                        /*------ Encaiss and return CodeEncaiss ------*/
-                        codeEnc = await CrudManager.Encaiss.AddItemAsync(ItemEnc);
+                            /*------ Encaiss and return CodeEncaiss ------*/
+                            codeEnc = await CrudManager.Encaiss.AddItemAsync(ItemEnc);
 
-                        /*------ update CODE_VIR ------*/
-                        Update_Code_Vir(codeEnc, codeDec);
+                            /*------ update CODE_VIR ------*/
+                            Update_Code_Vir(codeEnc, codeDec);
 
-                        UserDialogs.Instance.HideLoading();
-                        await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_comfirmation_ajout_virement, AppResources.alrt_msg_Ok);
+                            UserDialogs.Instance.HideLoading();
+                            await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_comfirmation_ajout_virement, AppResources.alrt_msg_Ok);
+                        }
                     }
                     else return;
                 }
@@ -315,7 +386,13 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             }
         }
 
-
+        private async void Update_Virement()
+        {
+            ItemEnc.CODE_ENCAISS = item.CODE_ENCAISS;
+            ItemDec.CODE_ENCAISS = item.CODE_DECAISS;
+            await CrudManager.Encaiss.UpdateItemAsync(ItemEnc);
+            await CrudManager.Encaiss.UpdateItemAsync(ItemDec);
+        }
 
         private async void Update_Code_Vir(string codeEnc, string codeDec)
         {
@@ -336,8 +413,6 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             var compte = Comptes[compteSourcePicker.SelectedIndex];
             ItemDec.CODE_COMPTE = compte.CODE_COMPTE;
         }
-
-
 
         private void CompteDesPicker_SelectedIndexChanged(object sender, EventArgs e)
         {

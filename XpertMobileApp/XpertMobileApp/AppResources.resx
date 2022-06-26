@@ -1105,6 +1105,9 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>Veuillez entrer le montant a transferé</value>
   </data>
+  <data name="lbl_edit_transfert_de_fond" xml:space="preserve">
+    <value>Modification Transfert de fond </value>
+  </data>
   <data name="pp_label_labo" xml:space="preserve">
     <value>Labo</value>
   </data>

@@ -184,7 +184,7 @@ namespace XpertMobileApp.Models
             {
                 if (selectedPrice == -1)
                     return PRIX_VENTE;
-                else 
+                else
                     return selectedPrice;
             }
             set
