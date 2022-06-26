@@ -28,7 +28,7 @@ namespace FontAwesome
         public static string Arrows_Alt_H = "\uf337";
         public static string Arrows_Alt_V = "\uf338";
         public static string Add_icon = "\uf067";
-
+        public static string Arrow_Trend_Down = "\ue097";
         // Used
         public static string Sign_Out_Alt = "\uf2f5";
         public static string Cog = "\uf013";

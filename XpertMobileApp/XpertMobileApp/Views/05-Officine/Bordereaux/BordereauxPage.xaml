@@ -8,7 +8,7 @@
              Title="{Binding Title}"
              x:Name="Tiers">
 
-    <ContentPage.ToolbarItems>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
@@ -17,84 +17,21 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
 
-    <StackLayout VerticalOptions="FillAndExpand" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
-        <!-- Filter -->
-        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
-                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
 
-            <Grid Margin="0,5,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
 
-<!-- 
-            <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate txt_StartDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="0" Grid.Row="1" 
-                        x:Name="dp_StartDate"                        
-                        Format="dd/MM/yyyy"
-                        TextColor="Black"
-                        Date="{Binding StartDate, Mode=TwoWay}"
-                        Margin="15, 0, 15, 10"/>
-
-            <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_EndDate}" Margin="5, 0, 0, 0" />
-            <DatePicker Grid.Column="1" Grid.Row="1"
-                    x:Name="dp_EndDate"
-                    Format="dd/MM/yyyy"
-                    TextColor="Black"
-                    Date="{Binding EndDate, Mode=TwoWay}"
-                    Margin="15, 0, 15, 10"/>
-            -->
-            <!-- Types manquants -->
-                <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Centre}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="0" Grid.Row="1"  ItemsSource="{Binding Centres}"
-                     ItemDisplayBinding="{Binding CODE}"
-                     SelectedItem="{Binding SelectedCentre}"
-                     TextColor="Black"
-                     Margin="15, 0, 15, 10" 
-                     x:Name="TypesPicker"/>
-
-            <!-- Types produit -->
-                <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding brdStatus}"
-                     ItemDisplayBinding="{Binding DESIGN_ETAT}"
-                     SelectedItem="{Binding SelectedSTATUS}"
-                     TextColor="Black"
-                     Margin="15, 0, 15, 10" 
-                     x:Name="TypesProduitPicker"/>
-                
-            <!-- Searched text -->  
-            <Label IsVisible="False" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Search}" Margin="5, 0, 0, 0"/>
-            <Entry IsVisible="False" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
-               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
-            
-            <!-- Button -->
-            <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
-                     HorizontalOptions="End">
-                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_ApplyFilter_Clicked"/>
-
-                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_CancelFilter_Clicked"/>
-            </StackLayout>
-            </Grid>
-        </StackLayout>
+        
 
         <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand">
+    <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            >
+
+        <ScrollView AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
@@ -135,6 +72,174 @@
                 </ListView.Footer>
 
             </ListView>
+        </ScrollView>
+
+        <!--floating button-->
+        <Button 
+                x:Name="floatingButton" 
+                ImageSource="filter.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="showHideFilter"
+                />
+
+
+        <!--filtre secion-->
+
+        <StackLayout
+                x:Name="filterLayout"
+                IsVisible="true"
+                AbsoluteLayout.LayoutFlags="XProportional"
+                AbsoluteLayout.LayoutBounds="0, 0, 270, 760"
+                BackgroundColor="{StaticResource Accent}"
+                >
+            <!-- Filter -->
+            
+            <StackLayout x:Name="FilterPanel" IsVisible="true" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    
+             
+            <Label Grid.Column="0" 
+                   Grid.Row="0"  
+                   Text="{i18n:Translate txt_StartDate}" 
+                   Margin="5, 0, 0, 0" />
+                    
+            <DatePicker Grid.Column="0" 
+                        Grid.Row="1" 
+                        x:Name="dp_StartDate"                        
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding StartDate, Mode=TwoWay}"
+                        Margin="15, 0, 15, 10"
+                        Grid.ColumnSpan="2"/>
+
+            <Label Grid.Column="0" 
+                   Grid.Row="2" 
+                   Text="{i18n:Translate txt_EndDate}" 
+                   Margin="5, 0, 0, 0" />
+                    
+            <DatePicker Grid.Column="0" 
+                        Grid.Row="3"
+                        x:Name="dp_EndDate"
+                        Format="dd/MM/yyyy"
+                        TextColor="Black"
+                        Date="{Binding EndDate, Mode=TwoWay}"
+                        Margin="15, 0, 15, 10"
+                        Grid.ColumnSpan="2"/>
+            
+             <!--Types manquants--> 
+            
+                    <Label Grid.Column="0" 
+                           Grid.Row="4" 
+                           Grid.ColumnSpan="2" 
+                           Text="{i18n:Translate txt_Centre}" 
+                           Margin="5, 0, 0, 0"/>
+                    
+                    <Picker Grid.Column="0" 
+                            Grid.Row="5"  
+                            ItemsSource="{Binding Centres}"
+                            ItemDisplayBinding="{Binding CODE}"
+                            SelectedItem="{Binding SelectedCentre}"
+                            TextColor="Black"
+                            Margin="15, 0, 15, 10" 
+                            x:Name="TypesPicker"
+                            Grid.ColumnSpan="2"/>
+
+                    
+             <!--Types produit--> 
+            
+                    <Label Grid.Column="0" 
+                           Grid.Row="6" 
+                           Text="{i18n:Translate txt_Status}" 
+                           Margin="5, 0, 0, 0"/>
+                    
+                    <Picker Grid.Column="0" 
+                            Grid.Row="7"  
+                            ItemsSource="{Binding brdStatus}"
+                            ItemDisplayBinding="{Binding DESIGN_ETAT}"
+                            SelectedItem="{Binding SelectedSTATUS}"
+                            TextColor="Black"
+                            Margin="15, 0, 15, 10" 
+                            x:Name="TypesProduitPicker"
+                            Grid.ColumnSpan="2"/>
+
+                    
+             <!--Searched text--> 
+            
+                    <Label IsVisible="False" 
+                           Grid.Column="0" 
+                           Grid.Row="8" 
+                           Grid.ColumnSpan="2" 
+                           Text="{i18n:Translate txt_Search}" 
+                           Margin="5, 0, 0, 0"/>
+                    
+                    <Entry IsVisible="False" 
+                           Grid.Column="0" 
+                           Grid.Row="9" 
+                           Grid.ColumnSpan="2" 
+                           Margin="15, 0, 15, 15"  
+                           x:Name="ent_SearchedTiers" 
+                           TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"
+                           />
+
+                    
+             <!--Button--> 
+            
+                    <StackLayout Grid.Column="0" 
+                                 Grid.Row="10" 
+                                 Grid.ColumnSpan="2" 
+                                 Padding="0" 
+                                 Margin="0" 
+                                 Spacing="0" 
+                                 Orientation="Horizontal" 
+                                 VerticalOptions="End"
+                                 HorizontalOptions="End">
+                        
+                        <Button x:Name="btn_ApplyFilter" 
+                                Margin="5" 
+                                HorizontalOptions="End" 
+                                Text="{i18n:Translate txt_Filter}" 
+                                Style="{DynamicResource DefaultBtnStyle}" 
+                                Clicked="btn_ApplyFilter_Clicked"/>
+
+                        <Button x:Name="btn_CancelFilter" 
+                                Margin="5" 
+                                HorizontalOptions="End" 
+                                Text="{i18n:Translate cmd_Cancel}" 
+                                Style="{DynamicResource DefaultBtnStyle}"
+                                Clicked="btn_CancelFilter_Clicked"/>
+                        
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
         </StackLayout>
-    </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

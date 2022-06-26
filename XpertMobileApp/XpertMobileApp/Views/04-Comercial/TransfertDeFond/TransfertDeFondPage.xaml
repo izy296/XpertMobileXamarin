@@ -25,10 +25,13 @@
             VerticalOptions="Fill" 
             HorizontalOptions="Fill"
             Padding="0,0,0,0"
+            FlowDirection="LeftToRight"
             >
-            <ScrollView AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+            <ScrollView AbsoluteLayout.LayoutFlags="All" 
+                        AbsoluteLayout.LayoutBounds="0,0,1,1">
+                
                 <!-- Filter -->
-                    <ListView 
+                <ListView 
                         x:Name="ItemsListView"  
                         ItemsSource="{Binding Items}"  
                         VerticalOptions="FillAndExpand"  

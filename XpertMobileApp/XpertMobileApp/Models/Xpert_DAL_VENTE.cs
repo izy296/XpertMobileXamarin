@@ -70,7 +70,7 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if(tOTAL_TTC != value) 
+                if (tOTAL_TTC != value)
                 {
                     SetProperty(ref tOTAL_TTC, value);
                 }
@@ -131,7 +131,7 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                return !string.IsNullOrEmpty(DATE_DELIVRE_CARTE) && DATE_DELIVRE_CARTE.ToString().Length>=10 ? DATE_DELIVRE_CARTE.ToString().Substring(0, 10) : "";
+                return !string.IsNullOrEmpty(DATE_DELIVRE_CARTE) && DATE_DELIVRE_CARTE.ToString().Length >= 10 ? DATE_DELIVRE_CARTE.ToString().Substring(0, 10) : "";
             }
         }
 
@@ -160,7 +160,7 @@ namespace XpertMobileApp.DAL
         public override string ToString()
         {
             return "N° " + NUM_VENTE;
-            
+
         }
 
         public string CODE_CARTE_FIDELITE { get; set; }
@@ -180,7 +180,7 @@ namespace XpertMobileApp.DAL
         }
 
         #region Validation vente
-        [Ignore]  
+        [Ignore]
         public List<View_VTE_VENTE_LOT> Details { get; set; }
         public string ID_Random { get; internal set; }
         public string MBL_MODE_PAIMENT { get; internal set; }
@@ -195,11 +195,11 @@ namespace XpertMobileApp.DAL
         public decimal MBL_MT_VERCEMENT
         {
             get { return _MBL_MT_VERCEMENT; }
-            set 
-            {               
-                if(SetProperty(ref _MBL_MT_VERCEMENT, value))
+            set
+            {
+                if (SetProperty(ref _MBL_MT_VERCEMENT, value))
                 {
-                    if(_MBL_MT_VERCEMENT > this.TOTAL_TTC) 
+                    if (_MBL_MT_VERCEMENT > this.TOTAL_TTC)
                     {
                         MBL_MT_RENDU = this.TOTAL_TTC - _MBL_MT_VERCEMENT;
                     }
@@ -211,9 +211,9 @@ namespace XpertMobileApp.DAL
         public decimal MBL_MT_RENDU
         {
             get { return _MBL_MT_RENDU; }
-            set 
-            { 
-                SetProperty(ref _MBL_MT_RENDU, value); 
+            set
+            {
+                SetProperty(ref _MBL_MT_RENDU, value);
             }
         }
         public string MBL_CODE_TOURNEE_DETAIL { get; set; }
@@ -224,18 +224,18 @@ namespace XpertMobileApp.DAL
 
     public class VIEW_FIDELITE_INFOS
     {
-        public string CODE_CARD { get; set; } 
-        public decimal POINTS_USED { get; set; } 
-        public decimal MT_POINTS_USED { get; set; } 
-        public decimal MAX_MT_POINTS { get; set; } 
+        public string CODE_CARD { get; set; }
+        public decimal POINTS_USED { get; set; }
+        public decimal MT_POINTS_USED { get; set; }
+        public decimal MAX_MT_POINTS { get; set; }
     }
 
-    public partial class View_VTE_COMMANDE : View_VTE_VENTE 
-    { 
+    public partial class View_VTE_COMMANDE : View_VTE_VENTE
+    {
     }
 
-    public partial class View_VTE_PSYCHOTROP : View_VTE_VENTE 
-    { 
+    public partial class View_VTE_PSYCHOTROP : View_VTE_VENTE
+    {
     }
 
     public partial class VTE_VENTE_DETAIL : BASE_CLASS
@@ -243,7 +243,7 @@ namespace XpertMobileApp.DAL
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         //[Ignore] 
-       // public View_VTE_VENTE Parent_Doc { get; set; }
+        // public View_VTE_VENTE Parent_Doc { get; set; }
         public string CODE_DETAIL { get; set; } // varchar(32)
         public string CODE_VENTE { get; set; } // varchar(32)
         public int? ID_STOCK { get; set; } // int(10)
@@ -253,11 +253,11 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                return CODE_VENTE?.Replace("/", "").Replace(" ","");
+                return CODE_VENTE?.Replace("/", "").Replace(" ", "");
             }
         }
 
-        
+
         // public decimal PRIX_VTE_TTC { get; set; } // money(19,4)
 
         private decimal _PRIX_VTE_TTC;
@@ -308,7 +308,7 @@ namespace XpertMobileApp.DAL
         public decimal MT_ACHAT { get; set; } // money(19,4)
         public string NUM_SERIE { get; set; } // varchar(500) - numero de serie 
         public string ID_ARRIVAGE_INSTANCE { get; set; }
-        public bool PSYCHOTHROPE { get; set; }
+        public short PSYCHOTHROPE { get; set; }
         // CVM
         public decimal TARIF_CVM { get; set; } // money(19,4)
 
@@ -322,8 +322,8 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-               // qUANTITE = value;
-               if(qUANTITE != value) 
+                // qUANTITE = value;
+                if (qUANTITE != value)
                 {
                     MT_TTC = value * PRIX_VTE_TTC;
                     MT_HT = value * PRIX_VTE_HT;
@@ -544,6 +544,25 @@ namespace XpertMobileApp.DAL
         public string DESIGN_ETAT { get; set; }
     }
 
+    public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA
+    {
+        public string NOM_TIERS { get; set; }
+        public string PRENOM_TIERS { get; set; }
+        public string NOMC_TIERS { get; set; }
+        public string TEL1_TIERS { get; set; } // varchar(50)
+        public byte ETAT { get; set; } // tinyint(3)
+        public string DESIGN_ETAT { get; set; }
+        public int Chifa_Pharmenos { get; set; } // int(10)        
+        public string CREATED_BY { get; set; }
+        public decimal TOTAL_CONV_TO_PAY { get; set; } // money(19,4)
+
+        // Extension not in database
+        public int importSate { get; set; }
+        public string ETAT_ENCAISS { get; set; }
+        public decimal MONT_ASSURE_SANS_REMISE { get; set; }
+
+
+    }
 
     #region Livraison
     public partial class LIV_SECTEUR : BASE_CLASS
@@ -601,15 +620,15 @@ namespace XpertMobileApp.DAL
         public string DESIGNATION_MAGASIN { get; set; }
         public string NOM_VENDEUR { get; set; }
         public string ETAT_COLOR { get; set; }
-        public string ACOMPILCHEMENT_PERCENT 
+        public string ACOMPILCHEMENT_PERCENT
         {
-            get 
+            get
             {
                 if (NBR_CIENTS == 0) return "0 %";
 
                 decimal res = ((NBR_EN_VISITED + NBR_EN_DELEVRED) * 100) / NBR_CIENTS;
 
-                return  "Accompli : " +  res.ToString("N2") + " %";
+                return "Accompli : " + res.ToString("N2") + " %";
             }
         }
         public int NBR_CIENTS { get; set; }

@@ -15,7 +15,7 @@ using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class BordereauFactsViewModel : CrudBaseViewModel2<FACTURE_CHIFA, View_CFA_MOBILE_FACTURE>
+    public class BordereauFactsViewModel : CrudBaseViewModel2<FACTURE_CHIFA, View_CONVENTION_FACTURE>
     {
         public string TypeVente = VentesTypes.Vente;
 
@@ -95,7 +95,7 @@ namespace XpertMobileApp.ViewModels
                 key = TranslateExtension.GetTranslation("TOTAL_AJUSTEMENT"),
                 Value = item.TOTAL_AJUSTEMENT.ToString("N0")
             });
-            
+
             Summaries.Add(new Models.SAMMUARY()
             {
                 key = TranslateExtension.GetTranslation("TOTAL_EXCLUDED"),
@@ -131,21 +131,23 @@ namespace XpertMobileApp.ViewModels
 
         protected override QueryInfos GetFilterParams()
         {
-            base.GetFilterParams();
 
+            base.GetFilterParams();
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
-                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
+                this.AddCondition<View_CONVENTION_FACTURE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(CURRENT_BORDEREAU?.NUM_BORDEREAU))
-                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.NUM_BOURDEREAU, CURRENT_BORDEREAU?.NUM_BORDEREAU);
+                this.AddCondition<View_CONVENTION_FACTURE, string>(e => e.NUM_BOURDEREAU, CURRENT_BORDEREAU?.NUM_BORDEREAU);
 
             if (!string.IsNullOrEmpty(SelectedSTATUS?.CODE_ETAT))
-                this.AddCondition<View_CFA_MOBILE_FACTURE, string>(e => e.ETAT_FACT, SelectedSTATUS?.CODE_ETAT);
+                this.AddCondition<View_CONVENTION_FACTURE, string>(e => e.ETAT_FACT, SelectedSTATUS?.CODE_ETAT);
+
+            this.AddOrderBy<View_CONVENTION_FACTURE, DateTime>(e => e.DATE_FACTURE, Sort.DESC);
 
             return qb.QueryInfos;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_CFA_MOBILE_FACTURE> list)
+        protected override void OnAfterLoadItems(IEnumerable<View_CONVENTION_FACTURE> list)
         {
             base.OnAfterLoadItems(list);
 
@@ -155,6 +157,7 @@ namespace XpertMobileApp.ViewModels
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+            this.LoadSaumuaries(CURRENT_BORDEREAU);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -218,7 +221,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-              //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 Types.Clear();
                 var itemsC = await WebServiceClient.GetVenteTypes();
@@ -232,11 +235,11 @@ namespace XpertMobileApp.ViewModels
                 empty.CODE_TYPE = "";
                 Types.Insert(0, empty);
 
-              //  UserDialogs.Instance.HideLoading();
+                //  UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
-              //  UserDialogs.Instance.HideLoading();
+                //  UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
@@ -250,10 +253,10 @@ namespace XpertMobileApp.ViewModels
         {
 
             try
-            {                
+            {
                 FactStatus.Clear();
                 var itemsC = await WebServiceClient.get_CFA_Fact_STATUS();
-                
+
                 foreach (var itemC in itemsC)
                 {
                     FactStatus.Add(itemC);

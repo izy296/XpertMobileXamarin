@@ -6,27 +6,27 @@
     <Application.Resources>
         <ResourceDictionary Source="Themes/LightTheme.xaml" />
         <ResourceDictionary>
-            <!-- Font Gilroy --> 
-          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
+            <!-- Font Gilroy -->
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
                 <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
                 <On Platform="iOS" Value="Gilroy-Light" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Light.ttf#Font Gilroy Light" />
-              </OnPlatform>
-          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyMedium">
-            <On Platform="Android" Value="Gilroy-Medium.ttf#GilroyMedium" />
-            <On Platform="iOS" Value="Gilroy-Medium" />
-            <On Platform="UWP" Value="/Assets/Gilroy-Medium.ttf#Font Gilroy Medium" />
-          </OnPlatform>
-          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyRegular">
-            <On Platform="Android" Value="Gilroy-Regular.ttf#GilroyRegular" />
-            <On Platform="iOS" Value="Gilroy-Regular" />
-            <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
-          </OnPlatform>
-          <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroySemiBold">
-            <On Platform="Android" Value="Gilroy-SemiBold.ttf#GilroySemiBold" />
-            <On Platform="iOS" Value="Gilroy-SemiBold" />
-            <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
-          </OnPlatform>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyMedium">
+                <On Platform="Android" Value="Gilroy-Medium.ttf#GilroyMedium" />
+                <On Platform="iOS" Value="Gilroy-Medium" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Medium.ttf#Font Gilroy Medium" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyRegular">
+                <On Platform="Android" Value="Gilroy-Regular.ttf#GilroyRegular" />
+                <On Platform="iOS" Value="Gilroy-Regular" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroySemiBold">
+                <On Platform="Android" Value="Gilroy-SemiBold.ttf#GilroySemiBold" />
+                <On Platform="iOS" Value="Gilroy-SemiBold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+            </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyBold">
                 <On Platform="Android" Value="Gilroy-Bold.ttf#GilroyBold" />
                 <On Platform="iOS" Value="Gilroy-Bold" />
@@ -52,7 +52,7 @@
                 <On Platform="iOS" Value="FontAwesome5Free-Regular" />
                 <On Platform="UWP" Value="/Assets/FA5FreeRegular400.otf#Font Awesome 5 Free" />
             </OnPlatform>
-            
+
             <!--Global Coverters -->
             <local:OddEvenColorConverter x:Key="oddEvenInvert"/>
             <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
@@ -63,6 +63,10 @@
             <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
             <local:EnablePeseeNetConverter x:Key="enablePeseeNetConverter"/>
             <local:BordereauStatusToColor x:Key="brdStatusToColor"/>
+            <local:BordereauStatusToColorYellow x:Key="BordereauStatusToColorYellow"/>
+            <local:BordereauStatusToColorBlue x:Key="BordereauStatusToColorBlue"/>
+            <local:BordereauStatusToColorViolet x:Key="BordereauStatusToColorViolet"/>
+            <local:BordereauStatusToColorGreen x:Key="BordereauStatusToColorGreen"/>
             <local:BordereauStatusToTextColor x:Key="brdStatusToTextColor"/>
             <local:CloturedIfTrueConverter x:Key="cloturedIfTrueConverter"/>
             <local:SelectionBoolToImageConverter x:Key="BoolToImageConverter"/>
@@ -82,7 +86,7 @@
 
             <Color x:Key="BoutiquePrimary">MediumVioletRed</Color>
             <!--#2196F3-->
-            
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
@@ -95,7 +99,7 @@
             <Style x:Key="BlackDefaultLblStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="{StaticResource DefaultTextColor}" />
             </Style>
-            
+
             <Style x:Key="DefaultBtnStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="TextColor" Value="White" />
@@ -126,14 +130,14 @@
                 <Setter Property="HorizontalOptions" Value="Fill" />
                 <Setter Property="BackgroundColor" Value="{Binding Index, Converter={StaticResource oddEvenInvert}}"/>
             </Style>
-            
+
             <Style x:Key="FrameForList" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="8" />
                 <Setter Property="Padding" Value="5" />
                 <Setter Property="Margin" Value="8,3,8,3" />
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="OutlineColor" Value="#F2F1EF"/> 
+                <Setter Property="OutlineColor" Value="#F2F1EF"/>
             </Style>
 
             <!-- Style font awesomone Button -->
@@ -145,7 +149,7 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-            
+
             <Style x:Key="FAwesome-B-Brands" TargetType="Button">
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
                 <Setter Property="FontSize" Value="25" />
@@ -161,7 +165,7 @@
             </Style>
 
             <!-- Style font awesomone Label -->
-            
+
             <Style x:Key="FAwesome-Brands" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
             </Style>
@@ -169,7 +173,7 @@
             <Style x:Key="FAwesome-Regular" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegular}" />
             </Style>
-            
+
             <!-- horizontal Separator -->
             <Style x:Key="Separator" TargetType="BoxView">
                 <Setter Property="HeightRequest" Value="2" />
