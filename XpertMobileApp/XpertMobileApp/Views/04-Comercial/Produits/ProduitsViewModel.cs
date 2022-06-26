@@ -91,17 +91,18 @@ namespace XpertMobileApp.ViewModels
                        "AS orig on orig.CODE_PRODUIT = View_STK_PRODUITS.CODE_PRODUIT");
             }//this.AddCondition<View_STK_PRODUITS, string>(e => e., SelectedTag?.DESIGNATION);
 
+
+            if (EtatOperator == "active")
+                this.AddCondition<View_STK_PRODUITS, bool>(e => e.ACTIF, 1);
+            else if (EtatOperator == "nonActive")
+                this.AddCondition<View_STK_PRODUITS, bool>(e => e.ACTIF, 0);
+
             if (Constants.AppName == Apps.XCOM_Mob)
             {
                 if (FidelOperator == "FYes")
                     this.AddCondition<View_STK_PRODUITS, bool>(e => e.INCLUDE_IN_CARD_FIDELITE, 1);
                 else if (FidelOperator == "FNo")
                     this.AddCondition<View_STK_PRODUITS, bool>(e => e.INCLUDE_IN_CARD_FIDELITE, 0);
-
-                if (EtatOperator == "active")
-                    this.AddCondition<View_STK_PRODUITS, bool>(e => e.ACTIF, 1);
-                else if (EtatOperator == "nonActive")
-                    this.AddCondition<View_STK_PRODUITS, bool>(e => e.ACTIF, 0);
             }
 
 

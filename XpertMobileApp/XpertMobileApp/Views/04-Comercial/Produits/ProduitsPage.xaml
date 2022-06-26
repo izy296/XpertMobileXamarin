@@ -7,6 +7,7 @@
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              Title="{Binding Title}"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Name="Produits">
 
     <ContentPage.ToolbarItems>
@@ -148,17 +149,19 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <Entry
+                     <Entry
                      Grid.Column="0"
                      TextColor="Black"
                      Margin="15, 0, 15, 10" 
                      x:Name="TagsPicker"
                      IsEnabled="False"/>
-                        <Button 
+                        
+                    <Button 
                     Grid.Column="1"
                     Clicked="buttonClick"
-                    Style="{DynamicResource DefaultBtnStyle}"
-                    Text="X"
+                    Style="{StaticResource FAwesome-B-Solid}"
+                    BackgroundColor="{StaticResource Primary}"
+                    Text="{x:Static fontawesome:FontAwesomeIcons.Search}"
                     Margin="5"
                     ></Button>
                     </Grid>
