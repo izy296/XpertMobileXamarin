@@ -116,61 +116,72 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
         }
 
         //remplir les champs avec les données arrivés de itemSelected 
-        private void RemplireChamp(View_TRS_VIREMENT item)
+        private async void RemplireChamp(View_TRS_VIREMENT item)
         {
-            if (item == null)
-                return;
-
-            int indexDest = 0;
-            int indexSrc = 0;
-            int indexMotif = 0;
-            int indexReg = 0;
-
-            for (int i = 0; i < Comptes.Count; i++)
+            try
             {
-                if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_DEST)
-                {
-                    indexDest = i;
-                }
-                if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_SRC)
-                {
-                    indexSrc = i;
-                }
-            }
+                if (item == null)
+                    return;
 
-            for (int i = 0; i < ModeReg.Count; i++)
+
+                int indexDest = 0;
+                int indexSrc = 0;
+                int indexMotif = 0;
+                int indexReg = 0;
+
+                for (int i = 0; i < Comptes.Count; i++)
+                {
+                    if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_DEST)
+                    {
+                        indexDest = i;
+                    }
+                    if (Comptes[i].DESIGN_COMPTE == item.DESIGN_COMPTE_SRC)
+                    {
+                        indexSrc = i;
+                    }
+                }
+
+                for (int i = 0; i < ModeReg.Count; i++)
+                {
+                    if (ModeReg[i].DESIGN_MODE == item.DESIGN_MODE)
+                    {
+                        indexReg = i;
+                    }
+                }
+
+                for (int i = 0; i < Motifs.Count; i++)
+                {
+                    if (Motifs[i].DESIGN_MOTIF == item.DESIGN_MOTIF)
+                    {
+                        indexMotif = i;
+                    }
+                }
+
+                //choose wich DESIGN_COMPTE_DEST to display and disable the entry 
+                compteDestPicker.SelectedIndex = indexDest;
+                compteDestPicker.IsEnabled = false;
+
+                //choose wich DESIGN_COMPTE_SRC to display and disable the entry
+                compteSourcePicker.SelectedIndex = indexSrc;
+                compteSourcePicker.IsEnabled = false;
+
+                //choose wich Design_Motif to display 
+                motifPicker.SelectedIndex = indexMotif;
+
+                //choose wich DESIGN_MODE to display
+                ModeReglementPicker.SelectedIndex = indexReg;
+
+                montantEntry.Text = item.TOTAL_ENCAISS.ToString();
+
+                refEntry.Text = item.REF_REG;
+
+            }
+            catch (Exception ex)
             {
-                if (ModeReg[i].DESIGN_MODE == item.DESIGN_MODE)
-                {
-                    indexReg = i;
-                }
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                AppResources.alrt_msg_Ok);
+
             }
-
-            for (int i = 0; i < Motifs.Count; i++)
-            {
-                if (Motifs[i].DESIGN_MOTIF == item.DESIGN_MOTIF)
-                {
-                    indexMotif = i;
-                }
-            }
-
-            //choose wich DESIGN_COMPTE_DEST to display and disable the entry 
-            compteDestPicker.SelectedIndex = indexDest;
-            compteDestPicker.IsEnabled = false;
-
-            //choose wich DESIGN_COMPTE_SRC to display and disable the entry
-            compteSourcePicker.SelectedIndex = indexSrc;
-            compteSourcePicker.IsEnabled = false;
-
-            //choose wich Design_Motif to display 
-            motifPicker.SelectedIndex = indexMotif;
-
-            //choose wich DESIGN_MODE to display
-            ModeReglementPicker.SelectedIndex = indexReg;
-
-            montantEntry.Text = item.TOTAL_ENCAISS.ToString();
-
-            refEntry.Text = item.REF_REG;
         }
 
         /// <summary>
@@ -183,8 +194,6 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             await PopupNavigation.Instance.PopAsync();
         }
 
-
-
         /// <summary>
         /// Avoir les comptes disponible et les ajouter dans le picker
         /// </summary>
@@ -195,6 +204,8 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             {
                 try
                 {
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
                     Comptes.Clear();
                     Motifs.Clear();
                     ModeReg.Clear();
@@ -231,6 +242,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                         ModeReg.Add(itemR);
 
                     RemplireChamp(this.item);
+                    UserDialogs.Instance.HideLoading();
 
                 }
                 catch (Exception ex)
@@ -243,6 +255,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             {
                 try
                 {
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     Comptes.Clear();
                     Motifs.Clear();
                     ModeReg.Clear();
@@ -267,7 +280,9 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
                     foreach (var itemM in itemsM)
                         Motifs.Add(itemM);
 
+                    UserDialogs.Instance.HideLoading();
                 }
+
                 catch (Exception ex)
                 {
                     await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
@@ -290,7 +305,7 @@ namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
             {
                 this.ItemDec.CODE_MODE = this.ItemEnc.CODE_MODE = ModeReglement.CODE_MODE;
             }
-            if (this.ItemDec.REF_REG != null)
+            if (!string.IsNullOrEmpty(refEntry.Text))
                 this.ItemDec.REF_REG = this.ItemEnc.REF_REG = refEntry.Text.ToString();
 
             if (!string.IsNullOrEmpty(montantEntry.Text))
