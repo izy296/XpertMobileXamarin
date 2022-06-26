@@ -164,6 +164,18 @@ namespace XpertMobileApp.Helpers
         public static string SORTIE_TYPE_URL = "BSE_SORTIE_TYPE";
         public static string SORTIE_GET_TYPE = "GetDesignationType";
 
+        //BSE_PRODUIT_TAG
+        public static string PRODUIT_TAG_URL = "BSE_PRODUIT_TAG";
+        public static string PRODUIT_GET_TAG_URL = "SelectAll";
+
+        //BSE_PRODUIT_TAG
+        public static string PRODUIT_LABO_URL = "BSE_PRODUIT_LABO";
+        public static string PRODUIT_GET_LABO_URL = "SelectAll";
+
+        //BSE_PRODUIT_UNITE
+        public static string PRODUIT_UNITE_URL = "BSE_PRODUIT_UNITE";
+        public static string PRODUIT_GET_UNITE_URL = "SelectAll";
+
     }
 
 }

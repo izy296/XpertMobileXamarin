@@ -873,4 +873,28 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>You have to enter an amount to transfer</value>
   </data>
+  <data name="pp_label_labo" xml:space="preserve">
+    <value>Lab</value>
+  </data>
+  <data name="pp_label_tags" xml:space="preserve">
+    <value>Product Tags</value>
+  </data>
+  <data name="pp_text_Rupture" xml:space="preserve">
+    <value>Sold out</value>
+  </data>
+  <data name="pp_text_sActive" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="pp_text_Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="pp_text_sInActive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="pp_text_StockMinimum" xml:space="preserve">
+    <value>Show Minimum Stock</value>
+  </data>
+  <data name="txt_Pts_Fidelites" xml:space="preserve">
+    <value>Loyalty Points</value>
+  </data>
 </root>

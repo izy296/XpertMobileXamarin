@@ -5,78 +5,26 @@
              x:Class="XpertMobileApp.Views.ProduitsPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              Title="{Binding Title}"
              x:Name="Produits">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
-        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="filter.png"/>
-                    <On Platform="Android" Value="filter.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>
     </ContentPage.ToolbarItems>
-
-    <StackLayout VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource DefaultLisViewBackColor}">
-        <!-- Filter -->
-        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
-                         HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
-
-            <Grid Margin="0,5,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                
-                <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
-                         ItemDisplayBinding="{Binding DESIGNATION}"
-                         SelectedItem="{Binding SelectedFamille}"
-                         TextColor="Black"
-                         Margin="15, 0, 15, 10" 
-                         x:Name="FamillesPicker"/>
-
-                <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
-                <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding Types}"
-                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                     SelectedItem="{Binding SelectedType}"
-                     TextColor="Black"
-                     Margin="15, 0, 15, 10" 
-                     x:Name="TypesPicker"/>
-
-                <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Ref}" Margin="5, 0, 0, 0"/>
-                <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedRef" 
-               TextColor="Black" Text="{Binding SearchedRef, Mode=TwoWay}"/>
-
-                <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Product}" Margin="5, 0, 0, 0"/>
-                <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
-               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
-
-                <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
-                         HorizontalOptions="End">
-                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_ApplyFilter_Clicked"/>
-
-                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
-                    Clicked="btn_CancelFilter_Clicked"/>
-            </StackLayout>
-            </Grid>
-        </StackLayout>
-
+    <ContentPage.Resources>
+        <syncfusion:SfRadioGroupKey x:Key="quantiteFilter" />
+        <syncfusion:SfRadioGroupKey x:Key="etatFilter" />
+        <syncfusion:SfRadioGroupKey x:Key="FFilter" />
+    </ContentPage.Resources>
+    <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            FlowDirection="LeftToRight"
+            >
         <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <ListView x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
@@ -115,5 +63,173 @@
 
             </ListView>
         </StackLayout>
-    </StackLayout>
+
+        <!--floating button-->
+        <Button 
+                x:Name="floatingButton" 
+                ImageSource="filter.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="showHideFilter"/>
+
+        <!-- Filter -->
+        <ScrollView      
+                x:Name="FilterScroll"
+                AbsoluteLayout.LayoutFlags="XProportional,WidthProportional,HeightProportional"
+                AbsoluteLayout.LayoutBounds="0,0,0.7,1"
+            >
+            <StackLayout  
+                     x:Name="filterLayout" 
+                     Padding="0" 
+                     Margin="0" 
+                     Spacing="0" 
+                     Orientation="Vertical" 
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="Fill" 
+                     BackgroundColor="{StaticResource Accent}">
+
+                <Grid RowSpacing="0" Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
+                         ItemDisplayBinding="{Binding DESIGNATION}"
+                         SelectedItem="{Binding SelectedFamille}"
+                         TextColor="Black"
+                         Margin="15, 0, 15, 10" 
+                         x:Name="FamillesPicker"/>
+
+                    <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate txt_Types}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="1" Grid.Row="1"  ItemsSource="{Binding Types}"
+                     ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                     SelectedItem="{Binding SelectedType}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TypesPicker"/>
+                    <Label x:Name="tagsLabel" Grid.Column="0" Grid.Row="2" Text="{i18n:Translate pp_label_tags}" Margin="5, 0, 0, 0"/>
+                    <Grid x:Name="tagsPicker" Grid.ColumnSpan="2" Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Entry
+                     Grid.Column="0"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="TagsPicker"
+                     IsEnabled="False"/>
+                        <Button 
+                    Grid.Column="1"
+                    Clicked="buttonClick"
+                    Style="{DynamicResource DefaultBtnStyle}"
+                    Text="X"
+                    Margin="5"
+                    ></Button>
+                    </Grid>
+
+                    <Label x:Name="labosLabel" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate pp_label_labo}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"  ItemsSource="{Binding Labos}"
+                     ItemDisplayBinding="{Binding DESIGNATION}"
+                     SelectedItem="{Binding SelectedLabo}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="LaboPicker"/>
+                    <!--<Label x:Name="uniteLabel" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate pp_label_labo}" Margin="5, 0, 0, 0"/>
+                    <Picker Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"  ItemsSource="{Binding Unites}"
+                     ItemDisplayBinding="{Binding DESIGNATION}"
+                     SelectedItem="{Binding SelectedUnite}"
+                     TextColor="Black"
+                     Margin="15, 0, 15, 10" 
+                     x:Name="unitePicker"/>-->
+
+                    <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Ref}" Margin="5, 0, 0, 0"/>
+                    <Entry Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedRef" 
+               TextColor="Black" Text="{Binding SearchedRef, Mode=TwoWay}"/>
+
+                    <Label Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Product}" Margin="5, 0, 0, 0"/>
+                    <Entry Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
+               TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
+
+
+                    <Label Grid.Column="0" Grid.Row="12" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Status}" Margin="5, 0, 0, 0"/>
+                    <StackLayout Grid.Column="0" Grid.Row="13" Grid.ColumnSpan="2" 
+                        Margin="15, 0, 15, 15" Orientation="Horizontal">
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="etatAll" Margin="0,0,15,0" GroupKey="{StaticResource etatFilter}" Text="{i18n:Translate txt_All}"  
+                                         ClassId="all"  StateChanged="etatAll_StateChanged"/>
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="etatActive" Margin="0,0,15,0" GroupKey="{StaticResource etatFilter}" Text="{i18n:Translate pp_text_sActive}" 
+                                         ClassId="active" StateChanged="etatAll_StateChanged"/>
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="etatNonActive" Margin="0,0,15,0" GroupKey="{StaticResource etatFilter}" Text="{i18n:Translate pp_text_sInActive}" 
+                                         ClassId="nonActive" StateChanged="etatAll_StateChanged"/>
+                    </StackLayout>
+
+                    <Label x:Name="fideleteLabel" Grid.Column="0" Grid.Row="14" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Pts_Fidelites}" Margin="5, 0, 0, 0"/>
+                    <StackLayout x:Name="fideleteRadioBtns" Grid.Column="0" Grid.Row="15" Grid.ColumnSpan="2" 
+                        Margin="15, 0, 15, 15" Orientation="Horizontal">
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="fideliteAll" Margin="0,0,15,0" GroupKey="{StaticResource FFilter}" Text="{i18n:Translate txt_All}"  
+                                         ClassId="all"  StateChanged="FedeliteAll_StateChanged"/>
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="fideliteYes" Margin="0,0,15,0" GroupKey="{StaticResource FFilter}" Text="{i18n:Translate exit_Button_Yes}" 
+                                         ClassId="FYes" StateChanged="FedeliteAll_StateChanged"/>
+                        <syncfusion:SfRadioButton CheckedColor="Blue" UncheckedColor="Black" x:Name="fideliteNo" Margin="0,0,15,0" GroupKey="{StaticResource FFilter}" Text="{i18n:Translate exit_Button_No}" 
+                                         ClassId="FNo" StateChanged="FedeliteAll_StateChanged"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="16" Grid.ColumnSpan="2">
+                        <syncfusion:SfCheckBox CheckedColor="Blue" x:Name="checkBoxSM" Text="{i18n:Translate pp_text_StockMinimum}"
+                                   HorizontalOptions="FillAndExpand" StateChanged="CheckBox_StateChangedSM"/>
+                        <syncfusion:SfCheckBox CheckedColor="Blue" x:Name="checkBoxS" Text="{i18n:Translate pp_text_Service}"
+                                   HorizontalOptions="FillAndExpand" StateChanged="CheckBox_StateChangedS"/>
+                        <syncfusion:SfCheckBox CheckedColor="Blue" x:Name="checkBoxR" Text="{i18n:Translate pp_text_Rupture}"
+                                   HorizontalOptions="FillAndExpand" StateChanged="CheckBox_StateChangedR"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="17" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
+                         HorizontalOptions="End">
+                        <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                    Clicked="btn_ApplyFilter_Clicked"/>
+
+                        <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                    Clicked="btn_CancelFilter_Clicked"/>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+
+
+    </AbsoluteLayout>
 </ContentPage>

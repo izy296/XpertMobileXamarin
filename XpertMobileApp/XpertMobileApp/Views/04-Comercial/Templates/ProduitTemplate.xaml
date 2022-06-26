@@ -4,7 +4,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.Templates.ProduitTemplate">
     <ContentView.Content>
-
+        
         <StackLayout>
             <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >

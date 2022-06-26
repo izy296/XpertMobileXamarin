@@ -627,5 +627,33 @@ namespace XpertMobileApp.Models
 
     }
 
+    public partial class BSE_PRODUIT_TAG : BASE_CLASS
+    {
+        public string CODE { get; set; } //[char](20) NOT NULL,
+        public string DESIGNATION { get; set; } //[varchar](100 ) NOT NULL,
 
+    }
+
+    public partial class BSE_PRODUIT_LABO : BASE_CLASS
+    {
+        public string CODE { get; set; } //smallint
+        public string DESIGNATION { get; set; } // varchar(2500)
+        public string ADRESSE { get; set; } // varchar(2500)
+        public string PAYE { get; set; } // varchar(250)
+        public string TEL { get; set; } // varchar(50)
+        public string FAX { get; set; } // varchar(50)
+        public string E_MAIL { get; set; } // varchar(50)
+        public string SITE_WEB { get; set; }// varchar(250)
+    }
+
+
+    public partial class BSE_PRODUIT_UNITE : BASE_CLASS
+    {
+        public string CODE { get; set; } //[char](20) NOT NULL,
+        public string DESIGNATION { get; set; } //[varchar](100 ) NOT NULL,
+        public bool UNITE_PRODUIT_PUBLIC { get; set; }
+        public bool SYNCHRONISE { get; set; }
+        public DateTime? DATE_SYNCHRONISATION { get; set; }//[datetime] NULL
+
+    }
 }

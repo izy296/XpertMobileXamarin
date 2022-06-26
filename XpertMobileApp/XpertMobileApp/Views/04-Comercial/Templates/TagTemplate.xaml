@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views.Templates.TagTemplate"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" >
+
+    <ContentView.Content
+        BackgroundColor="White"
+         VerticalOptions="Center" 
+         HorizontalOptions="FillAndExpand">
+
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="FillAndExpand" 
+                     Margin="10,5,10,5"
+                     Orientation="Horizontal">
+            <syncfusion:SfCheckBox CheckedColor="Blue" x:Name="checkBox" Text="{Binding DESIGNATION}"
+                                   HorizontalOptions="FillAndExpand" StateChanged="CheckBox_StateChanged"/>
+
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

@@ -976,4 +976,28 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>يجب عليك ادخال القيمة المراد تحويلها</value>
   </data>
+  <data name="pp_label_labo" xml:space="preserve">
+    <value>مختبر</value>
+  </data>
+  <data name="pp_label_tags" xml:space="preserve">
+    <value>علامات المنتج</value>
+  </data>
+  <data name="pp_text_Rupture" xml:space="preserve">
+    <value>نفاذ المخزون</value>
+  </data>
+  <data name="pp_text_sActive" xml:space="preserve">
+    <value>نشيط</value>
+  </data>
+  <data name="pp_text_Service" xml:space="preserve">
+    <value>خدمة</value>
+  </data>
+  <data name="pp_text_sInActive" xml:space="preserve">
+    <value>عاطل</value>
+  </data>
+  <data name="pp_text_StockMinimum" xml:space="preserve">
+    <value>إظهار أدنى مخزون</value>
+  </data>
+  <data name="txt_Pts_Fidelites" xml:space="preserve">
+    <value>نقاط الولاء</value>
+  </data>
 </root>

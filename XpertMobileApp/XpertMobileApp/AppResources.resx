@@ -1105,4 +1105,28 @@
   <data name="txt_alert_montant" xml:space="preserve">
     <value>Veuillez entrer le montant a transferé</value>
   </data>
+  <data name="pp_label_labo" xml:space="preserve">
+    <value>Labo</value>
+  </data>
+  <data name="pp_label_tags" xml:space="preserve">
+    <value>Tag produit</value>
+  </data>
+  <data name="pp_text_Rupture" xml:space="preserve">
+    <value>En Rupture</value>
+  </data>
+  <data name="pp_text_sActive" xml:space="preserve">
+    <value>Actif</value>
+  </data>
+  <data name="pp_text_Service" xml:space="preserve">
+    <value>Service</value>
+  </data>
+  <data name="pp_text_sInActive" xml:space="preserve">
+    <value>Inactif</value>
+  </data>
+  <data name="pp_text_StockMinimum" xml:space="preserve">
+    <value>Afficher Stock minimum</value>
+  </data>
+  <data name="txt_Pts_Fidelites" xml:space="preserve">
+    <value>Pts Fidélités</value>
+  </data>
 </root>

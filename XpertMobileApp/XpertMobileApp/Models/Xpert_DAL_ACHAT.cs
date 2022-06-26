@@ -153,7 +153,8 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_VENTE_REEL { get; set; }
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public string DESIGNATION_STATUS { get; set; }
-
+        public decimal TAUX_MARGE { get; set; }
+        public string TAUX_MARGE_DOC { get; set; }
 
 
         // Mobile extension
@@ -485,15 +486,18 @@ namespace XpertMobileApp.DAL
             {
                 embalages = value;
                 // ParentDoc.PSEE_UPDATED = true;
-                decimal diff = Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
-                Diff_Poids_Caisses = diff >= 0 ? "+" + diff.ToString("N0") : "-" + diff.ToString("N0");
+                if (embalages != null)
+                {
+                    decimal diff = Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                    Diff_Poids_Caisses = diff >= 0 ? "+" + diff.ToString("N0") : "-" + diff.ToString("N0");
 
-                Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
-                Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
+                    Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
+                    Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
 
-                OnPropertyChanged("Diff_Poids_Caisses");
-                OnPropertyChanged("Poids_Caisses");
-                OnPropertyChanged("MT_TTC");
+                    OnPropertyChanged("Diff_Poids_Caisses");
+                    OnPropertyChanged("Poids_Caisses");
+                    OnPropertyChanged("MT_TTC");
+                }
             }
         }
         public string Diff_Poids_Caisses { get; set; }
@@ -508,6 +512,14 @@ namespace XpertMobileApp.DAL
                 this.qTE_BRUTE = v;
                 OnPropertyChanged("QTE_BRUTE");
                 OnPropertyChanged("QUANTITE");
+            }
+        }
+
+        public bool showBonusQty
+        {            
+            get
+            {
+                return QTE_BONUS > 0 ? true : false; ;
             }
         }
     }
@@ -579,6 +591,8 @@ namespace XpertMobileApp.DAL
         public bool IS_NEW { get; set; }
         public bool SHOW_CATALOG { get; set; }
         public string IMAGE_URL { get; set; }
+
+        public bool INCLUDE_IN_CARD_FIDELITE { get; set; }
 
     }
 
@@ -775,6 +789,24 @@ namespace XpertMobileApp.DAL
     }
 
     public partial class ACH_MANQUANTS : BASE_CLASS
+    {
+        public int? CODE_MANQUANT { get; set; } // int(10)
+        public string CODE_TYPE { get; set; } // varchar(30)
+        public string CODE_PRODUIT { get; set; } // varchar(30)
+        public decimal QUANTITE { get; set; } // numeric(19,2)
+        public DateTime? DATE_LIVRAISON_MAX { get; set; } // datetime(3)
+        public string NOTE { get; set; } // varchar(300)
+        public string EXERCICE { get; set; } // char(4)
+        public bool TREATED { get; set; } // bit
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string Etat { get; set; } // char(3)
+        public bool AUTOCREATED { get; set; } // bit
+    }
+
+    public partial class ACH_ENTRE : BASE_CLASS
     {
         public int? CODE_MANQUANT { get; set; } // int(10)
         public string CODE_TYPE { get; set; } // varchar(30)

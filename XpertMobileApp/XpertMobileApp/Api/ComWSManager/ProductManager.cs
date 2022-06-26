@@ -48,5 +48,12 @@ namespace XpertMobileApp.Api
             url += WSApi2.AddParam(url, "CodeMagasin" , CodeMagasin);
             return await WSApi2.RetrievAauthorizedData<View_STK_PRODUITS>(url, this.Token.access_token);
         }
+
+        public async Task<List<View_STK_PRODUITS>> GetProduitUniteByCode(string CodeMagasin)
+        {
+            string url = GetActionUrl("GetProduitUniteByCode");
+            url += WSApi2.AddParam(url, "codeUnite", CodeMagasin);
+            return await WSApi2.RetrievAauthorizedData<View_STK_PRODUITS>(url, this.Token.access_token);
+        }
     }
 }

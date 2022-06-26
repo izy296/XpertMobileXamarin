@@ -425,6 +425,24 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE>(url);
         }
 
+        public static async Task<List<BSE_PRODUIT_TAG>> GetProduitTags()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUIT_TAG_URL, ServiceUrlDico.PRODUIT_GET_TAG_URL);
+            return await RetrievAauthorizedData<BSE_PRODUIT_TAG>(url);
+        }
+
+        public static async Task<List<BSE_PRODUIT_LABO>> GetProduitLabos()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUIT_LABO_URL, ServiceUrlDico.PRODUIT_GET_LABO_URL);
+            return await RetrievAauthorizedData<BSE_PRODUIT_LABO>(url);
+        }
+
+        public static async Task<List<BSE_PRODUIT_UNITE>> GetProduitUnite()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUIT_UNITE_URL, ServiceUrlDico.PRODUIT_GET_UNITE_URL);
+            return await RetrievAauthorizedData<BSE_PRODUIT_UNITE>(url);
+        }
+
         /// <summary>
         /// fonction pour récupérer le produit qui a le code-barres scanné dans le domaine officine
         /// </summary>
