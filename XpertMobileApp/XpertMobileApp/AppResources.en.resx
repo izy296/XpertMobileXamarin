@@ -900,4 +900,7 @@
   <data name="txt_Pts_Fidelites" xml:space="preserve">
     <value>Loyalty Points</value>
   </data>
+  <data name="pn_Notification" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
 </root>

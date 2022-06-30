@@ -101,14 +101,14 @@ namespace XpertMobileApp.ViewModels
         /// <param name="notif"></param>
         public async void setNotificationAsync(Notification notif)
         {
-            if (Settings.Notifiaction == "null")
+            if (Settings.Notifiaction == "null" || Settings.Notifiaction == null)
             {
                 List<Notification> liste = new List<Notification>();
                 liste.Add(notif);
                 string jsonNotification = JsonConvert.SerializeObject(liste);
-                Settings.Notifiaction=jsonNotification;
+                Settings.Notifiaction = jsonNotification;
             }
-            else 
+            else
             {
                 List<Notification> Liste;
                 Liste = JsonConvert.DeserializeObject<List<Notification>>(Settings.Notifiaction);
@@ -126,11 +126,13 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<Notification> getNotificationAsync()
         {
             ObservableCollection<Notification> liste = new ObservableCollection<Notification>();
-
-            if (Settings.Notifiaction != "null")
+            if (Settings.Notifiaction != null)
             {
-                liste = JsonConvert.DeserializeObject<ObservableCollection<Notification>>(Settings.Notifiaction);
-                liste.Reverse();
+                if (Settings.Notifiaction != "null" && Manager.isJson(Settings.Notifiaction))
+                {
+                    liste = JsonConvert.DeserializeObject<ObservableCollection<Notification>>(Settings.Notifiaction);
+                    liste.Reverse();
+                }
             }
             return liste;
         }

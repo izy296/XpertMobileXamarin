@@ -979,7 +979,6 @@
   <data name="lbl_edit_transfert_de_fond" xml:space="preserve">
     <value>تغيير تحويل الأموال</value>
   </data>
-
   <data name="pp_label_labo" xml:space="preserve">
     <value>مختبر</value>
   </data>
@@ -1003,5 +1002,8 @@
   </data>
   <data name="txt_Pts_Fidelites" xml:space="preserve">
     <value>نقاط الولاء</value>
+  </data>
+  <data name="pn_Notification" xml:space="preserve">
+    <value>الاشعارات</value>
   </data>
 </root>
