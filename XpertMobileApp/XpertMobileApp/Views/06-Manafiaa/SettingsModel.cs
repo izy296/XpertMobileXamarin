@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XpertMobileApp.Views.Helper;
 
+
 namespace XpertMobileApp.ViewModels
 {
     public class SettingsModel : BaseViewModel
@@ -37,7 +38,7 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<Language> Languages { get; }
         public ObservableCollection<UrlService> UrlServices { get; set; }
 
-
+        public ObservableCollection<Notification> Notifications { get; set; }
 
         public bool HasVenteConfig
         {
@@ -77,7 +78,7 @@ namespace XpertMobileApp.ViewModels
             };
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
             UrlServices = new ObservableCollection<UrlService>() { };
-
+            Notifications = new ObservableCollection<Notification>() { };
 
             MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
             ComptesList = new ObservableCollection<View_BSE_COMPTE>();
@@ -92,6 +93,54 @@ namespace XpertMobileApp.ViewModels
                 result = Languages.Where(e => e.ShortName == language).ToList()[0];
             }
             return result;
+        }
+
+        /// <summary>
+        /// Save all notification in the settings
+        /// </summary>
+        /// <param name="notif"></param>
+        public async void setNotificationAsync(Notification notif)
+        {
+            if (Settings.Notifiaction == "null")
+            {
+                List<Notification> liste = new List<Notification>();
+                liste.Add(notif);
+                string jsonNotification = JsonConvert.SerializeObject(liste);
+                Settings.Notifiaction=jsonNotification;
+            }
+            else 
+            {
+                List<Notification> Liste;
+                Liste = JsonConvert.DeserializeObject<List<Notification>>(Settings.Notifiaction);
+                Liste.Add(notif);
+                string jsonNotification = JsonConvert.SerializeObject(Liste);
+                Settings.Notifiaction = jsonNotification;
+            }
+            await SaveSettings();
+        }
+
+        /// <summary>
+        /// Get all notifications in settings
+        /// </summary>
+        /// <param name="notif"></param>
+        public ObservableCollection<Notification> getNotificationAsync()
+        {
+            ObservableCollection<Notification> liste = new ObservableCollection<Notification>();
+
+            if (Settings.Notifiaction != "null")
+            {
+                liste = JsonConvert.DeserializeObject<ObservableCollection<Notification>>(Settings.Notifiaction);
+                liste.Reverse();
+            }
+            return liste;
+        }
+        /// <summary>
+        /// Delete all Notifications
+        /// </summary>
+        public void deleteteAllNotification()
+        {
+            Settings.Notifiaction = "null";
+            SaveSettings();
         }
 
         //Set Urls Item once the page is loaded...

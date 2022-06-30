@@ -25,6 +25,7 @@ using XpertMobileApp.Data;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
 
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -184,42 +185,50 @@ namespace XpertMobileApp
                 }
             };
 
-            // Handle when your app starts
+            //Handle when your app starts
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+        {
+            bool saveSettings = false;
+            new SettingsModel().setNotificationAsync(new Notification()
             {
-                bool saveSettings = false;
+                Title = p.Data["title"].ToString(),
+                Message = p.Data["body"].ToString(),
+                Module = p.Data["moduleName"].ToString(),
+                User =p.Data["User"].ToString(),
+                TimeNotification = DateTime.Now
+            }) ;
 
-                // Traitement du message obligant la mise à jour
-                string currentVerision = AppInfo.Version.ToString();
-                object CriticalVersion;
-                if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
+            // Traitement du message obligant la mise à jour
+            string currentVerision = AppInfo.Version.ToString();
+            object CriticalVersion;
+            if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
+            {
+                if (String.Compare(Convert.ToString(CriticalVersion), currentVerision) > 0)
                 {
-                    if (String.Compare(Convert.ToString(CriticalVersion), currentVerision) > 0)
-                    {
-                        App.Settings.ShouldUpdate = true;
-                        App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
-                        saveSettings = true;
-                    }
+                    App.Settings.ShouldUpdate = true;
+                    App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
+                    saveSettings = true;
                 }
+            }
 
-                // Mise à jour de l'app settings depuis un message push
-                foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(App.Settings))
+            // Mise à jour de l'app settings depuis un message push
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(App.Settings))
+            {
+                string fieldName = descriptor.Name;
+                object currentValue = descriptor.GetValue(App.Settings);
+                currentValue = getFormatedValue(currentValue);
+
+                object remoteValue = null;
+                if (p.Data.TryGetValue(fieldName, out remoteValue) && !string.IsNullOrEmpty(Convert.ToString(remoteValue)))
                 {
-                    string fieldName = descriptor.Name;
-                    object currentValue = descriptor.GetValue(App.Settings);
-                    currentValue = getFormatedValue(currentValue);
-
-                    object remoteValue = null;
-                    if (p.Data.TryGetValue(fieldName, out remoteValue) && !string.IsNullOrEmpty(Convert.ToString(remoteValue)))
-                    {
-                        descriptor.SetValue(App.Settings, remoteValue);
-                        saveSettings = true;
-                    }
+                    descriptor.SetValue(App.Settings, remoteValue);
+                    saveSettings = true;
                 }
+            }
 
-                if (saveSettings)
-                    App.SettingsDatabase.SaveItemAsync(App.Settings);
-            };
+            if (saveSettings)
+                App.SettingsDatabase.SaveItemAsync(App.Settings);
+        };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
             {
@@ -246,6 +255,7 @@ namespace XpertMobileApp
 
         protected override async void OnResume()
         {
+            // Handle when your app resumes
         }
         //Methode to set url services 
         public static void SetUrlServices(UrlService urlService)
@@ -450,6 +460,7 @@ namespace XpertMobileApp
             {
                 settings = value;
             }
+
         }
 
         // ------ Internet connexion infos ---------

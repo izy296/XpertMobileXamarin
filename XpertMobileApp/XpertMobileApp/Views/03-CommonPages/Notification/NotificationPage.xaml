@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             x:Class="XpertMobileApp.Views.NotificationPage"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             Title="Notifications">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            
+            <FlexLayout Padding="15"
+                        JustifyContent="SpaceBetween"
+                        AlignItems="Center"
+                        BackgroundColor="#fff"
+                        Margin="0,0,0,0">
+              
+                <Label Text="Récente"
+                       FontSize="16"
+                       TextColor="#000"/>
+
+                <Button 
+                       Text="Tout marquer comme lu"   
+                       FontSize="16"
+                       TextColor="{StaticResource Primary}"
+                       FontAttributes="Bold"
+                       BackgroundColor="Transparent"
+                       Clicked="Button_Clicked"
+                    >
+                </Button>
+            </FlexLayout>
+
+            <ListView 
+                x:Name="ItemsListView"  
+                ItemsSource="{Binding Items , Mode=TwoWay}"  
+                VerticalOptions="FillAndExpand"  
+                HasUnevenRows="true"  
+                SeparatorVisibility="None"                               
+                IsPullToRefreshEnabled="true"
+                RefreshCommand="{Binding RefreshNotification}"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"  
+                CachingStrategy="RecycleElement" 
+                Margin="0"
+                >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <template:NotificationTemplate />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

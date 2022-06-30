@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.Api.Services;
 using XpertWebApi.Models;
 
@@ -154,6 +155,13 @@ namespace XpertMobileApp.Models
         {
             get { return usernameOnly; }
             set { usernameOnly = value; }
+        }
+
+        private string notifiaction;
+        public string Notifiaction
+        {
+            get { return notifiaction; }
+            set { notifiaction = value; }
         }
         public Settings() { }
     }

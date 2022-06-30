@@ -204,7 +204,21 @@ namespace XpertMobileApp.Views
 
                 if (AppManager.HasAdmin)
                 {
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_Settings });
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Settings,
+                        ItemGroup = MenuItemGroup.Parametres,
+                        Image = "",
+                        Title = AppResources.pn_Settings
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Notification,
+                        ItemGroup = MenuItemGroup.Parametres,
+                        Image = "",
+                        Title = AppResources.pn_Notification
+                    });
                 }
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_About });
 

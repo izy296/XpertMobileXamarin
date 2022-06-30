@@ -45,6 +45,7 @@ namespace XpertMobileApp.Api.Models
         Export,
         Import,
         Sortie,
+        Notification
     }
 
     public enum MenuItemGroup
@@ -58,6 +59,6 @@ namespace XpertMobileApp.Api.Models
         CHIFA,
         CVM,
         Analyses,
-        Parametres
+        Parametres,
     }
 }

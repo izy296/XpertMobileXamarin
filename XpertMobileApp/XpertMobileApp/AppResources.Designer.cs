@@ -3232,6 +3232,30 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("lbl_edit_transfert_de_fond", resourceCulture);
             }
         }
+
+        public static string pn_Notification
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Notification", resourceCulture);
+            }
+        }
+
+        public static string np_Alert_Delete
+
+        {
+            get
+            {
+                return ResourceManager.GetString("np_Alert_Delete", resourceCulture);
+            }
+        }
+        public static string np_txt_alert_delete
+        {
+            get
+            {
+                return ResourceManager.GetString("np_txt_alert_delete", resourceCulture);
+            }
+        }
     }
 }
 

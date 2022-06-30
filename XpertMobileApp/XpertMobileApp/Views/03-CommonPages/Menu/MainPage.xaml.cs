@@ -11,6 +11,7 @@ using XpertMobileApp.Api.Models;
 using Acr.UserDialogs.Infrastructure;
 using System.Linq;
 
+
 namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -119,6 +120,8 @@ namespace XpertMobileApp.Views
                     return new SortieListPage();
                 case (int)MenuItemType.TransfertDeFond:
                     return new TransfertDeFondPage();
+                case (int)MenuItemType.Notification:
+                    return new NotificationPage();
                 default:
                     return new HomePage();
             }
@@ -237,6 +240,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.TransfertDeFond:
                         MenuPages.Add(id, new NavigationPage(new TransfertDeFondPage()));
+                        break;
+                    case (int)MenuItemType.Notification:
+                        MenuPages.Add(id, new NavigationPage(new NotificationPage()));
                         break;
                 }
             }
