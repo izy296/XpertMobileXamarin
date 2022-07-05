@@ -99,6 +99,11 @@ namespace XpertMobileApp.Api.Managers
                 controlerName = "VTE_COMPTOIR";
             }
 
+            else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XCOM_Mob)
+            {
+                controlerName = "VTE_COMPTOIR_XCOM";
+            }
+
             var bll = new VentesManager(controlerName);
             return bll;
         }
