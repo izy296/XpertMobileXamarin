@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.Templates.NotificationTemplate">
+             x:Class="XpertMobileApp.Views.Templates.NotificationTemplate"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+>
     <ContentView.Content>
         <Grid  BackgroundColor="#fff" 
                Padding="7">
@@ -12,6 +15,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -28,14 +32,13 @@
                          Spacing="0"
                          Grid.Row="0"
                          Grid.Column="1">
-                
+
                 <Label Text="{Binding Title}"
                        TextColor="#000"
                        FontSize="15"
                        FontAttributes="bold"
                        Margin="0"
                        VerticalTextAlignment="Start"/>
-
                 <Label Text="{Binding Message}"
                        FontSize="15"
                        Margin="0"/>
@@ -51,8 +54,8 @@
                 <Frame CornerRadius="25" 
                        Padding="5"
                        HasShadow="false"
-                       BackgroundColor="#DCEFFF"
-                       >
+                       BackgroundColor="#DCEFFF">
+                    
                     <Label Text="{Binding User}"
                            TextColor="{StaticResource Primary}"
                            FontSize="13"
@@ -63,7 +66,14 @@
                 <Label Text="{Binding TimeNotification}"
                        Margin="0,0,8,0"/>
             </FlexLayout>
-
+            
+            <BoxView Style="{StaticResource Separator}" 
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HeightRequest="1"
+                    Margin="0,5"
+                     Color="#D8D8D8"/>
         </Grid>
     </ContentView.Content>
 </ContentView>

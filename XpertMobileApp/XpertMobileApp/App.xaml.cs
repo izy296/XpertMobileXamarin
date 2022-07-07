@@ -49,6 +49,7 @@ namespace XpertMobileApp
         static SettingsDatabaseControler settingsDatabase;
         static WebServiceClient resteService;
         private static Settings settings;
+        public SettingsModel settingsViewModel;
 
         private static View_VTE_VENTE currentSales;
         public static View_VTE_VENTE CurrentSales
@@ -153,6 +154,7 @@ namespace XpertMobileApp
             InitializeComponent();
 
             App.SetAppLanguage(Settings.Language);
+            settingsViewModel = new SettingsModel();
 
             this.InitApp();
 
@@ -189,15 +191,16 @@ namespace XpertMobileApp
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
         {
             bool saveSettings = false;
-            new SettingsModel().setNotificationAsync(new Notification()
+            settingsViewModel.setNotificationAsync(new Notification()
             {
                 Title = p.Data["title"].ToString(),
                 Message = p.Data["body"].ToString(),
                 Module = p.Data["moduleName"].ToString(),
-                User =p.Data["User"].ToString(),
+                User = p.Data["User"].ToString(),
                 TimeNotification = DateTime.Now
-            }) ;
-
+            });
+            MessagingCenter.Send(this, "RELOAD_MENU", "");
+            MessagingCenter.Send(this, "RELOAD_NOTIF", "");
             // Traitement du message obligant la mise à jour
             string currentVerision = AppInfo.Version.ToString();
             object CriticalVersion;
@@ -227,7 +230,10 @@ namespace XpertMobileApp
             }
 
             if (saveSettings)
+            {
                 App.SettingsDatabase.SaveItemAsync(App.Settings);
+            }
+
         };
 
             CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>

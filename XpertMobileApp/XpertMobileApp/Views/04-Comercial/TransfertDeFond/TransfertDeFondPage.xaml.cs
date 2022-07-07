@@ -113,6 +113,12 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(form);
         }
 
+
+        /// <summary>
+        /// Show hide the filter section when clicking to the floating button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void showHideFilter(object sender, EventArgs e)
         {
             if (opened)

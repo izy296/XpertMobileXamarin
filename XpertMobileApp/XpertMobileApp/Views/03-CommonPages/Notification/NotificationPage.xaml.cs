@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -17,20 +18,72 @@ namespace XpertMobileApp.Views
     {
 
         NotificationViewModel viewModel;
+        public SettingsModel SettingsviewModel;
 
         public NotificationPage()
         {
             InitializeComponent();
 
             BindingContext = viewModel = new NotificationViewModel();
-
+            SettingsviewModel = new SettingsModel();
+            MessagingCenter.Subscribe<App, string>(this, "RELOAD_NOTIF", async (obj, str) =>
+            {
+                viewModel.Items = SettingsviewModel.getNotificationAsync();
+            });
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
+        private async void Button_Clicked(object sender, EventArgs e)
         {
-            new SettingsModel().deleteteAllNotification();
-            viewModel.Items = new SettingsModel().getNotificationAsync();
-            DisplayAlert(AppResources.np_Alert_Delete, AppResources.np_txt_alert_delete, AppResources.alrt_msg_Ok);
+            try
+            {
+
+                SettingsviewModel.deleteteAllNotification();
+                viewModel.Items = SettingsviewModel.getNotificationAsync();
+                await DisplayAlert(AppResources.np_Alert_Delete, AppResources.np_txt_alert_delete, AppResources.alrt_msg_Ok);
+                MessagingCenter.Send(this, "RELOAD_MENU", "");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        /// <summary>
+        /// Delete one notification from sqlite
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void Supprimer(object sender, EventArgs e)
+        {
+            try
+            {
+                SwipeItem item = sender as SwipeItem;
+                var myCurrentNotif = item.BindingContext as Notification;
+
+                List<Notification> liste = JsonConvert.DeserializeObject<List<Notification>>(App.Settings.Notifiaction);
+
+                for (int i = 0; i < liste.Count; i++)
+                {
+                    if (liste[i].Index == myCurrentNotif.Index)
+                    {
+                        liste.RemoveAt(i);
+                        break;
+                    }
+                }
+
+                App.Settings.Notifiaction = JsonConvert.SerializeObject(liste);
+
+                //to update the badge with the number of rest parameter
+                MessagingCenter.Send(this, "RELOAD_MENU", "");
+
+                await SettingsviewModel.SaveSettings();
+                viewModel.Items = SettingsviewModel.getNotificationAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

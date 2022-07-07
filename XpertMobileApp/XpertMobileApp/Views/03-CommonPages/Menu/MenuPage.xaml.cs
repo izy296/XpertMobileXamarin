@@ -15,6 +15,9 @@ using XpertMobileApp.Api.Models;
 using XpertMobileApp.Helpers;
 using System.Collections.ObjectModel;
 using Xamarin.Essentials;
+using System.ComponentModel;
+using XpertMobileApp.Views.Helper;
+using Newtonsoft.Json;
 
 namespace XpertMobileApp.Views
 {
@@ -24,7 +27,16 @@ namespace XpertMobileApp.Views
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
         ObservableCollection<Grouping<string, int, HomeMenuItem>> menuItemsGrouped;
-
+        private int numberOfNotifications;
+        public int NumberOfNotifications
+        {
+            get { return numberOfNotifications; }
+            set
+            {
+                numberOfNotifications = value;
+                OnPropertyChanged("numberOfNotifications");
+            }
+        }
         public MenuPage()
         {
             InitializeComponent();
@@ -34,7 +46,7 @@ namespace XpertMobileApp.Views
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
 
-
+            GetNumberOfNotifications();
 
             //Menu commun OFFICINE & COMM
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
@@ -86,8 +98,8 @@ namespace XpertMobileApp.Views
                             ItemGroup = MenuItemGroup.Tresorerie,
                             Title = AppResources.pn_TransfertDeFond,
                             CodeObjet = XpertObjets.View_TRS_VIREMENT,
-                            Action = XpertActions.AcSelect
-                        });
+                            Action = XpertActions.AcSelect,
+                        }); ;
 
                         menuItems.Add(new HomeMenuItem
                         {
@@ -217,7 +229,9 @@ namespace XpertMobileApp.Views
                         Id = MenuItemType.Notification,
                         ItemGroup = MenuItemGroup.Parametres,
                         Image = "",
-                        Title = AppResources.pn_Notification
+                        Title = AppResources.pn_Notification,
+                        NotificationBadgeIsVisible = true,
+                        CountOfNotifications = numberOfNotifications
                     });
                 }
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_About });
@@ -320,6 +334,23 @@ namespace XpertMobileApp.Views
             {
                 ReloadMenu();
             });
+
+            MessagingCenter.Subscribe<NotificationPage, string>(this, "RELOAD_MENU", async (obj, str) =>
+            {
+                GetNumberOfNotifications();
+                ReloadNumberOfNotifications();
+            });
+            MessagingCenter.Subscribe<App, string>(this, "RELOAD_MENU", async (obj, str) =>
+            {
+                GetNumberOfNotifications();
+                ReloadNumberOfNotifications();
+            });
+
+            MessagingCenter.Subscribe<NotificationPage, string>(this, "RELOAD_MENU", async (obj, str) =>
+            {
+                GetNumberOfNotifications();
+                ReloadNumberOfNotifications();
+            });
         }
 
         private void ReloadMenu()
@@ -357,11 +388,24 @@ namespace XpertMobileApp.Views
                 Application.Current.MainPage = new LoginPage();
             }
         }
+        private void SortMenuItems()
+        {
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
+            {
+                var menus = menuItems;
+                var sorted = from menu in menus
+                             orderby menu.ItemGroup, menu.Title
+                             group menu by menu.ItemGroup into menuGroup
+                             orderby menuGroup.Key
+                             select new Grouping<string, int, HomeMenuItem>(menuGroup.Key.ToString(), (int)menuGroup.Key, menuGroup);
 
+                //create a new collection of groups
+                menuItemsGrouped = new ObservableCollection<Grouping<string, int, HomeMenuItem>>(sorted);
+            }
+        }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
             try
             {
                 var menus = menuItems;
@@ -383,18 +427,7 @@ namespace XpertMobileApp.Views
                     }
                 }
 
-                if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
-                {
-                    var sorted = from menu in menus
-                                 orderby menu.ItemGroup, menu.Title
-                                 group menu by menu.ItemGroup into menuGroup
-                                 orderby menuGroup.Key
-                                 select new Grouping<string, int, HomeMenuItem>(menuGroup.Key.ToString(), (int)menuGroup.Key, menuGroup);
-
-                    //create a new collection of groups
-                    menuItemsGrouped = new ObservableCollection<Grouping<string, int, HomeMenuItem>>(sorted);
-                }
-
+                SortMenuItems();
                 ListViewMenu.ItemsSource = menuItemsGrouped;
 
                 //  je n'ai pas compris pourquoi ce code est ici et est la cause du deuxième lancement ??
@@ -412,5 +445,53 @@ namespace XpertMobileApp.Views
             }
 
         }
+
+
+        /// <summary>
+        /// function pour reloader le menu quand le nombre de notification change
+        /// </summary>
+        private void ReloadNumberOfNotifications()
+        {
+            Device.BeginInvokeOnMainThread(() =>
+            {
+                foreach (var menu in menuItems)
+                {
+                    if (menu.Id == MenuItemType.Notification)
+                        menu.CountOfNotifications = this.NumberOfNotifications;
+                }
+
+                SortMenuItems();
+                ListViewMenu.ItemsSource = menuItemsGrouped;
+            });
+        }
+
+
+        /// <summary>
+        /// avoir le nombre de notification stocké dans sqlite
+        /// </summary>
+        private void GetNumberOfNotifications()
+        {
+            if (App.Settings.Notifiaction != null)
+            {
+                if (Manager.isJson(App.Settings.Notifiaction))
+                {
+                    try
+                    {
+                        List<Notification> tempList = JsonConvert.DeserializeObject<List<Notification>>(App.Settings.Notifiaction);
+                        this.NumberOfNotifications = tempList.Count;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                }
+            }
+            else
+            {
+                this.NumberOfNotifications = 0;
+            }
+        }
+
     }
 }

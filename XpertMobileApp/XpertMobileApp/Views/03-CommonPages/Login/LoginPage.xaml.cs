@@ -110,6 +110,9 @@ namespace XpertMobileApp.Views
                         user = new User(Ent_UserName.Text, Ent_PassWord.Text);
                     }
 
+                    user.UserName = user.UserName.Trim();
+                    //username = (XpertHelper.IsNotNullAndNotEmpty(username)) ? username.Trim() : username;
+
                     //Save the username and the password to show it next time
                     if (App.Settings.IsChecked == "true")
                     {

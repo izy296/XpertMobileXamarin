@@ -4,7 +4,7 @@
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              x:Class=" XpertMobileApp.Views.Templates.RowCmdTemplate">
     <ContentView.Content>
-        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+        <StackLayout Spacing="0" Padding="0" BackgroundColor="Transparent">
             <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
                 <Grid  BackgroundColor="Transparent" >
 

@@ -15,16 +15,17 @@
 
                 <StackLayout>
                     <!--Affichage de l'alerte en cas de deconnexion -->
-                    <Label x:Name="Lbl_NoInternet" 
-                           IsVisible="False" 
-                           HorizontalTextAlignment="Center" 
-                           TextColor="White" 
-                           BackgroundColor="Red"/>
+                    <Label 
+                        x:Name="Lbl_NoInternet" 
+                        IsVisible="False" 
+                        HorizontalTextAlignment="Center" 
+                        TextColor="White" 
+                        BackgroundColor="Red"/>
                 </StackLayout>
 
                 <StackLayout 
-                    x:Name="MainLayout" 
-                    VerticalOptions="FillAndExpand">
+                        x:Name="MainLayout" 
+                        VerticalOptions="FillAndExpand">
 
                     <StackLayout.Padding>
                         <OnPlatform x:TypeArguments="Thickness">
@@ -38,9 +39,9 @@
                     <Frame Style="{StaticResource FrameForListing}">
 
                         <StackLayout 
-                            x:Name="LanguageSettingsZone" 
-                            Padding="10" 
-                            Margin="0">
+                                x:Name="LanguageSettingsZone" 
+                                Padding="10" 
+                                Margin="0">
 
                             <Label 
                                 x:Name="lbl_LanguageSelector" 
@@ -48,7 +49,8 @@
                                 FontSize="Medium" 
                                 Style="{DynamicResource DefaultTextStyle}" />
 
-                            <Picker ItemsSource="{Binding Languages}"
+                            <Picker 
+                                ItemsSource="{Binding Languages}"
                                 ItemDisplayBinding="{Binding DisplayName}"
                                 x:Name="LanguagesPicker"/>
 
@@ -64,8 +66,8 @@
                                 Orientation="Vertical">
 
                             <StackLayout 
-                                x:Name="GeneralSettingsZone"  
-                                Padding="10">
+                                    x:Name="GeneralSettingsZone"  
+                                    Padding="10">
 
                                 <Label 
                                    x:Name="lbl_ConnexionInfos" 
@@ -87,37 +89,42 @@
 
                             <FlexLayout Direction="Row">
 
-                                <Button Text="{i18n:Translate sp_btn_TestConnection}" 
-                                        FontSize="11" 
-                                        Margin="5,0,5,0"
-                                        Style="{DynamicResource DefaultBtnStyle}"
-                                        CornerRadius="5"
-                                        Clicked="TestConnexion_Clicked"
+                                <Button 
+                                    Text="{i18n:Translate sp_btn_TestConnection}" 
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    Style="{DynamicResource DefaultBtnStyle}"
+                                    CornerRadius="5"
+                                    Clicked="TestConnexion_Clicked"
                                         />
 
                                 <Button 
-                                        Style="{DynamicResource AddUrlBtn}"
-                                        FontSize="11" 
-                                        Margin="5,0,5,0"
-                                        CornerRadius="5"
-                                        ImageSource="addIcon.png"
-                                        Clicked="Add_ServiceUrl"
+                                    Style="{DynamicResource AddUrlBtn}"
+                                    BackgroundColor="#ddd"
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    CornerRadius="5"
+                                    ImageSource="addIcon.png"
+                                    Clicked="Add_ServiceUrl"
+                                    IsEnabled="false"
                                         />
                                 <Button  
-                                        FontSize="11" 
-                                        Margin="5,0,5,0"
-                                        Style="{DynamicResource DefaultBtnStyle}"
-                                        CornerRadius="5"
-                                        ImageSource="editIcon.png"
-                                        Clicked="EditService"    
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    Style="{DynamicResource DefaultBtnStyle}"
+                                    CornerRadius="5"
+                                    ImageSource="editIcon.png"
+                                    Clicked="EditService"    
                                         />
                                 <Button 
-                                        FontSize="11" 
-                                        Margin="5,0,5,0"
-                                        Style="{DynamicResource DeleteUrlBtn}"
-                                        CornerRadius="5"
-                                        ImageSource="deleteIcon.png"
-                                        Clicked="DeleteService"
+                                    BackgroundColor="#ddd"
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    Style="{DynamicResource DeleteUrlBtn}"
+                                    CornerRadius="5"
+                                    ImageSource="deleteIcon.png"
+                                    Clicked="DeleteService"
+                                    IsEnabled="false"
                                         />
 
                             </FlexLayout>
@@ -127,33 +134,43 @@
 
 
                     <!-- Notifications -->
-                    <Frame Style="{StaticResource FrameForListing}" 
-                           IsVisible="{Binding IsConnected}">
+                    <Frame 
+                        Style="{StaticResource FrameForListing}" 
+                        IsVisible="{Binding IsConnected}">
 
                         <StackLayout x:Name="GeneralNotifications"  
                                      Padding="10" >
 
-                            <Label x:Name="lbl_Notifications" 
-                                   Text="{i18n:Translate sp_lbl_Notifications}" 
-                                   FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
+                            <Label 
+                                x:Name="lbl_Notifications" 
+                                Text="{i18n:Translate sp_lbl_Notifications}" 
+                                FontSize="Medium" 
+                                Style="{DynamicResource DefaultTextStyle}"
+                                Margin="0,0,0,15" />
 
                             <Label Text="{i18n:Translate sp_lbl_Activate}"/>
 
-                            <Switch x:Name="sw_ActivateNotif" 
-                                    IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
+                            <Switch 
+                                BackgroundColor="{StaticResource Primary}"
+                                x:Name="sw_ActivateNotif" 
+                                IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
 
                         </StackLayout>
                     </Frame>
 
                     <!-- Config Ventes -->
-                    <Frame Style="{StaticResource FrameForListing}" 
-                           IsVisible="{Binding HasVenteConfig}">
+                    <Frame 
+                        Style="{StaticResource FrameForListing}" 
+                        IsVisible="{Binding HasVenteConfig}">
+
                         <StackLayout Padding="10" >
 
-                            <Label Text="{i18n:Translate pn_Ventes}"  
-                                   FontSize="Medium" Style="{DynamicResource DefaultTextStyle}" 
-                                   Margin="0,0,0,15" />
+                            <Label 
+                                Text="{i18n:Translate pn_Ventes}"  
+                                FontSize="Medium" 
+                                Style="{DynamicResource DefaultTextStyle}" 
+                                Margin="0,0,0,15" />
+
                             <!-- Magasin -->
                             <Label Text="{i18n:Translate sp_lbl_SalesMagasin}"/>
 
@@ -165,27 +182,32 @@
                             <!-- Caisse dédier -->
                             <Label Text="{i18n:Translate sp_lbl_SalesCaisseDedier}"/>
 
-                            <Picker ItemsSource="{Binding ComptesList}"
-                                    Title="{i18n:Translate cmd_SelectElement}"
-                                    ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                    SelectedItem="{Binding SelectedCompte}" />
+                            <Picker 
+                                ItemsSource="{Binding ComptesList}"
+                                Title="{i18n:Translate cmd_SelectElement}"
+                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                                SelectedItem="{Binding SelectedCompte}" />
 
                         </StackLayout>
                     </Frame>
                     <!-- Imprimante  -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
+                    <Frame 
+                        Style="{StaticResource FrameForListing}" 
+                        IsVisible="{Binding IsConnected}">
 
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >
 
-                            <Label x:Name="lbl_rinter" 
-                                   Text="{i18n:Translate sp_lbl_rinter}"  
-                                   FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
+                            <Label 
+                                x:Name="lbl_rinter" 
+                                Text="{i18n:Translate sp_lbl_rinter}"  
+                                FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
+                                Margin="0,0,0,15" />
 
-                            <Picker ItemsSource="{Binding DeviceList}"
-                                    Title="{i18n:Translate cmd_selectPrinter}"
-                                    ItemDisplayBinding="{Binding Name}"
-                                    SelectedItem="{Binding SelectedDevice}" />
+                            <Picker 
+                                ItemsSource="{Binding DeviceList}"
+                                Title="{i18n:Translate cmd_selectPrinter}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedDevice}" />
                             <!--
                             <Button x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
                                 Text="Connexion" Clicked="ConnectPrinterAsync"/>
@@ -240,19 +262,21 @@
                         Orientation="Horizontal" 
                         HorizontalOptions="End">
 
-                        <Button WidthRequest="150" 
-                                CornerRadius="8" 
-                                Text="{i18n:Translate btn_Close}" 
-                                x:Name="Btn_CloseSettings" 
-                                IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" 
-                                Style="{DynamicResource DefaultBtnStyle}"  
-                                Clicked="SettingsClose_Clicked"/>
+                        <Button 
+                            WidthRequest="150" 
+                            CornerRadius="8" 
+                            Text="{i18n:Translate btn_Close}" 
+                            x:Name="Btn_CloseSettings" 
+                            IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" 
+                            Style="{DynamicResource DefaultBtnStyle}"  
+                            Clicked="SettingsClose_Clicked"/>
 
-                        <Button WidthRequest="150" 
-                                CornerRadius="8" 
-                                Text="{i18n:Translate sp_btn_SaveSettings}" 
-                                x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  
-                                Clicked="SaveSettings_Clicked"/>
+                        <Button 
+                            WidthRequest="150" 
+                            CornerRadius="8" 
+                            Text="{i18n:Translate sp_btn_SaveSettings}" 
+                            x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  
+                            Clicked="SaveSettings_Clicked"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>

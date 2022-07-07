@@ -131,7 +131,7 @@ namespace XpertMobileApp.ViewModels
                 if (Settings.Notifiaction != "null" && Manager.isJson(Settings.Notifiaction))
                 {
                     liste = JsonConvert.DeserializeObject<ObservableCollection<Notification>>(Settings.Notifiaction);
-                    liste.Reverse();
+                    liste = new ObservableCollection<Notification>(liste.Reverse());
                 }
             }
             return liste;
@@ -139,10 +139,11 @@ namespace XpertMobileApp.ViewModels
         /// <summary>
         /// Delete all Notifications
         /// </summary>
-        public void deleteteAllNotification()
+        public async void deleteteAllNotification()
         {
-            Settings.Notifiaction = "null";
-            SaveSettings();
+            Settings.Notifiaction = null;
+            App.Settings.Notifiaction = null;
+            await SaveSettings();
         }
 
         //Set Urls Item once the page is loaded...

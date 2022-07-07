@@ -7,20 +7,20 @@
              Title="Notifications">
     <ContentPage.Content>
         <StackLayout Spacing="0">
-            
-            <FlexLayout Padding="15"
+
+            <FlexLayout Padding="15,15,5,15"
                         JustifyContent="SpaceBetween"
                         AlignItems="Center"
                         BackgroundColor="#fff"
-                        Margin="0,0,0,0">
-              
+                        Margin="0,0,0,10">
+
                 <Label Text="Récente"
                        FontSize="16"
                        TextColor="#000"/>
 
                 <Button 
                        Text="Tout marquer comme lu"   
-                       FontSize="16"
+                       FontSize="13"
                        TextColor="{StaticResource Primary}"
                        FontAttributes="Bold"
                        BackgroundColor="Transparent"
@@ -28,7 +28,6 @@
                     >
                 </Button>
             </FlexLayout>
-
             <ListView 
                 x:Name="ItemsListView"  
                 ItemsSource="{Binding Items , Mode=TwoWay}"  
@@ -44,7 +43,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <template:NotificationTemplate />
+                            <SwipeView Threshold="200">
+                                <SwipeView.RightItems>
+                                    <SwipeItems SwipeBehaviorOnInvoked="Close"
+                                                Mode="Execute">
+                                        <SwipeItem  BackgroundColor="red" 
+                                                    IconImageSource="Delete.png"
+                                                    Invoked="Supprimer"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <template:NotificationTemplate />
+                            </SwipeView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
