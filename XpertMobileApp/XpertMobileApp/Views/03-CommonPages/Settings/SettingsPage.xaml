@@ -151,7 +151,6 @@
                             <Label Text="{i18n:Translate sp_lbl_Activate}"/>
 
                             <Switch 
-                                BackgroundColor="{StaticResource Primary}"
                                 x:Name="sw_ActivateNotif" 
                                 IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
 
