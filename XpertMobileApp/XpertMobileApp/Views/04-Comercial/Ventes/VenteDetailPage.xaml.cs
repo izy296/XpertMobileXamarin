@@ -15,9 +15,9 @@ using XpertWebApi.Models;
 
 namespace XpertMobileApp.Views.Encaissement
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class VenteDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class VenteDetailPage : ContentPage
+    {
         ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_JOURNAL_DETAIL> viewModel;
 
         private View_VTE_VENTE item;
@@ -26,11 +26,16 @@ namespace XpertMobileApp.Views.Encaissement
             get { return item; }
             set { item = value; }
         }
+
+        public string CodeVente=null;
+
+        public List<View_VTE_VENTE> itemByCodeVente;
         public List<View_VTE_VENTE_LOT> Printerdetails { get; set; }
-        public VenteDetailPage(View_VTE_VENTE vente)
+        public VenteDetailPage(View_VTE_VENTE vente, string codeVente = null)
         {
             InitializeComponent();
 
+            CodeVente = codeVente;
             this.Item = vente;
 
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_JOURNAL_DETAIL>(vente, vente.CODE_VENTE);
@@ -61,8 +66,26 @@ namespace XpertMobileApp.Views.Encaissement
 
             try
             {
+                // une partie de code que permet de crassé l'objet vente pour afficher les informations
+                // de vente envoyé par la notification avec la remplacement de Item avec l'objet avec
+                // le codeVente donné et le changment de Titre de la page et la deuxiem appele
+                // de function ExecuteLoadRowsCommand() pour le recuperation de detaile de nouvelle object
+                if (CodeVente != null)
+                {
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                    itemByCodeVente = await WebServiceClient.GetVente(CodeVente);
+                    this.Item = itemByCodeVente[0];
+                    viewModel.Item = this.Item;
+                    viewModel.ItemId = CodeVente;
+                    viewModel.Title = CodeVente;
+                    CodeVente =null;
+                    IsBusy = false;
+                    await ExecuteLoadRowsCommand();
+                    UserDialogs.Instance.HideLoading();
+                    return;
+                }
+                //------------------------------------
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-
                 viewModel.ItemRows.Clear();
                 List<View_VTE_JOURNAL_DETAIL> itemsC = new List<View_VTE_JOURNAL_DETAIL>();
                 List<View_VTE_VENTE_LOT> itemsFromOffline = new List<View_VTE_VENTE_LOT>();
@@ -84,7 +107,7 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     foreach (var itemC in itemsC)
                     {
-                        if (itemC.PSYCHOTHROPE)
+                        if (itemC.PSYCHOTHROPE == 1)
                         {
                             InfosPsyco.IsVisible = true;
                         }
@@ -96,7 +119,7 @@ namespace XpertMobileApp.Views.Encaissement
                 {
                     foreach (var itemC in itemsFromOffline)
                     {
-                        if (itemC.PSYCHOTHROPE)
+                        if (itemC.PSYCHOTHROPE == 1)
                         {
                             InfosPsyco.IsVisible = true;
                         }
@@ -110,7 +133,7 @@ namespace XpertMobileApp.Views.Encaissement
                         AddItemPrinterDetails(itemC);
                     }
                 }
-               
+
 
                 UserDialogs.Instance.HideLoading();
             }
@@ -122,7 +145,7 @@ namespace XpertMobileApp.Views.Encaissement
             }
             finally
             {
-
+                UserDialogs.Instance.HideLoading();
                 IsBusy = false;
             }
         }
@@ -164,7 +187,7 @@ namespace XpertMobileApp.Views.Encaissement
                 PrinterHelper.PrintBL(vente);
             }
         }
-    
+
         private void UpdateItemIndex<T>(List<T> items)
         {
             int i = 0;

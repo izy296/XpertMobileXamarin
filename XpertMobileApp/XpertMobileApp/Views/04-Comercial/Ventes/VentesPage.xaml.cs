@@ -30,6 +30,17 @@ namespace XpertMobileApp.Views
         {
             typeDoc = typeVente;
 
+            MessagingCenter.Subscribe<App, Object>(this, "ExtraData", async (obj, selectedItem) =>
+            {
+                await Navigation.PushAsync(new VenteDetailPage(new View_VTE_VENTE(), Convert.ToString(selectedItem)));
+            });
+
+            MessagingCenter.Subscribe<NotificationPage, Object>(this, "ExtraData", async (obj, selectedItem) =>
+            {
+                await Navigation.PushAsync(new VenteDetailPage(new View_VTE_VENTE(), Convert.ToString(selectedItem)));
+            });
+
+
             InitializeComponent();
 
             if (string.IsNullOrEmpty(typeVente))

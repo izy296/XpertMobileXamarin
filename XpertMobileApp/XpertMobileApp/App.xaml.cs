@@ -83,6 +83,8 @@ namespace XpertMobileApp
             }
         }
 
+        public static bool IsInForeground { get; set; } = false;
+
         //Toast information
         public bool IsToastExitConfirmation
         {
@@ -144,7 +146,6 @@ namespace XpertMobileApp
                 else
                     MainPage = new ActivationPage(licState);
             }
-
         }
 
         public App()
@@ -162,43 +163,76 @@ namespace XpertMobileApp
 
         protected override void OnStart()
         {
-
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            IsInForeground = true;
+            CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, p) =>
             {
-                object moduleName;
-                if (p.Data.TryGetValue("moduleName", out moduleName) && !string.IsNullOrEmpty(Convert.ToString(moduleName)))
+                try
                 {
-                    string module = Convert.ToString(moduleName);
-
-                    MainPage RootPage = Application.Current.MainPage as MainPage;
-                    var page = RootPage.GetMenuPage(Convert.ToInt32(module));
-                    RootPage.NavigateFromMenu(Convert.ToInt32(module));
-
-                    // Get menu from moduleName
-                    // Open menu
-
-                    /*
-                    object idDoc;
-                    if (p.Data.TryGetValue("idDoc", out idDoc) && !string.IsNullOrEmpty(Convert.ToString(idDoc)))
+                    //Sauvegarde de notification dans l'événement d'ouverture et
+                    //l'affichage de detaile dans le cas de donnes additionnelles
+                    new SettingsModel().setNotificationAsync(new Notification()
                     {
-                        string codeDoc = Convert.ToString(idDoc);
+                        Title = p.Data["title"].ToString(),
+                        Message = p.Data["body"].ToString(),
+                        Module = p.Data["moduleName"].ToString(),
+                        User = p.Data["User"].ToString(),
+                        Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
+                        TimeNotification = DateTime.Now
+                    });
+                    MainPage RootPage = App.Current.MainPage as MainPage;
+                    Enum.TryParse(p.Data["moduleName"].ToString(), out MenuItemType result);
+                    if (result != MenuItemType.None)
+                    {
+                        await RootPage.NavigateFromMenu(Convert.ToInt32(result));
+                        if (p.Data.ContainsKey("extras"))
+                            MessagingCenter.Send(this, "ExtraData", p.Data["extras"]);
                     }
-                    */
+                    else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.lp_txt_alert_url_manquant, AppResources.alrt_msg_Ok);
                 }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync("Error", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                }
+
+                //if (p.Data.TryGetValue("moduleName", out moduleName) && !string.IsNullOrEmpty(Convert.ToString(moduleName)))
+                //{
+                //    string module = Convert.ToString(moduleName);
+
+                //    // Get menu from moduleName
+                //    // Open menu
+
+                //    /*
+                //    object idDoc;
+                //    if (p.Data.TryGetValue("idDoc", out idDoc) && !string.IsNullOrEmpty(Convert.ToString(idDoc)))
+                //    {
+                //        string codeDoc = Convert.ToString(idDoc);
+                //    }
+                //    */
+                //}
             };
 
             //Handle when your app starts
             CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
         {
+            if (IsInForeground)
+            {
+
+            }
             bool saveSettings = false;
+
+            //sauvegard de notification dans le sqlite avec les données nécessaire
             settingsViewModel.setNotificationAsync(new Notification()
             {
                 Title = p.Data["title"].ToString(),
                 Message = p.Data["body"].ToString(),
                 Module = p.Data["moduleName"].ToString(),
                 User = p.Data["User"].ToString(),
+                Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
                 TimeNotification = DateTime.Now
             });
+
+            // code responable a la refresh de badge de notification
             MessagingCenter.Send(this, "RELOAD_MENU", "");
             MessagingCenter.Send(this, "RELOAD_NOTIF", "");
             // Traitement du message obligant la mise à jour
@@ -229,6 +263,8 @@ namespace XpertMobileApp
                 }
             }
 
+
+
             if (saveSettings)
             {
                 App.SettingsDatabase.SaveItemAsync(App.Settings);
@@ -236,32 +272,37 @@ namespace XpertMobileApp
 
         };
 
-            CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
-            {
-                try
-                {
-                    object url;
-                    // Case action is page to open
-                    if (p.Data.TryGetValue("urlPage", out url) && !string.IsNullOrEmpty(Convert.ToString(url)))
-                    {
-                        Device.OpenUri(new Uri(Convert.ToString(url)));
-                    }
-                }
-                catch (Exception e)
-                {
-                }
-            };
+
+
+            //CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
+            //{
+            //    try
+            //    {
+            //        object url;
+            //        // Case action is page to open
+            //        if (p.Data.TryGetValue("urlPage", out url) && !string.IsNullOrEmpty(Convert.ToString(url)))
+            //        {
+            //            Device.OpenUri(new Uri(Convert.ToString(url)));
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //    }
+            //};
 
         }
+
 
         protected override void OnSleep()
         {
             // Handle when your app sleeps}
+            IsInForeground = false;
         }
 
         protected override async void OnResume()
         {
             // Handle when your app resumes
+            IsInForeground = true;
         }
         //Methode to set url services 
         public static void SetUrlServices(UrlService urlService)

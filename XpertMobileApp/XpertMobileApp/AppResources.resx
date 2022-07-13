@@ -1141,4 +1141,7 @@
   <data name="np_txt_alert_delete" xml:space="preserve">
     <value>Toutes Les Notifications sont supprimé</value>
   </data>
+  <data name="np_txt_alert_Notification" xml:space="preserve">
+    <value>Toutes les notifications ont été supprimées avec succès</value>
+  </data>
 </root>

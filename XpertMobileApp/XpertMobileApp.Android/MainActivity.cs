@@ -26,7 +26,8 @@ using ListView = Xamarin.Forms.ListView;
 
 namespace XpertMobileApp.Droid
 {
-    [Activity(Label = "XpertMobile OFFICINE", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    // changer LaunchMode en singletop et supprimer MainLauncher car SplashActivty a MainLauncher défini sur true
+    [Activity(Label = "XpertMobile OFFICINE", Icon = "@drawable/icon", Theme = "@style/MainTheme", LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -56,7 +57,7 @@ namespace XpertMobileApp.Droid
 
             GoogleVisionBarCodeScanner.Droid.RendererInitializer.Init();
 
-            // FirebaseApp.InitializeApp(Application.Context);
+            FirebaseApp.InitializeApp(Application.ApplicationContext);
 
             Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
@@ -142,7 +143,6 @@ namespace XpertMobileApp.Droid
             */
             // InitPermissions();
         }
-
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

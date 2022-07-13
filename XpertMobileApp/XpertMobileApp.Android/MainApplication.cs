@@ -5,6 +5,9 @@ using Firebase;
 using Plugin.FirebasePushNotification;
 using System;
 using System.Collections.Generic;
+using XpertMobileApp.Api.Models;
+using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views;
 
 [Application]
 public class MainApplication : Application
@@ -17,6 +20,7 @@ public class MainApplication : Application
     {
         base.OnCreate();
 
+
         //Set the default notification channel for your app when running Android Oreo
         if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.O)
         {
@@ -25,10 +29,15 @@ public class MainApplication : Application
 
             //Change for your default notification channel name here
             FirebasePushNotificationManager.DefaultNotificationChannelName = "General";
+
+            //changer l'importance de chaine par défaut pour afficher la notification
+            FirebasePushNotificationManager.DefaultNotificationChannelImportance = NotificationImportance.Max;
+            FirebasePushNotificationManager.NotificationActivityFlags = Android.Content.ActivityFlags.ClearTop;
+
         }
 
         //If debug you should reset the token each time.
-        #if DEBUG
+#if DEBUG
             FirebasePushNotificationManager.Initialize(this, new NotificationUserCategory[]
             {
                 new NotificationUserCategory("message",new List<NotificationUserAction> {
@@ -42,28 +51,27 @@ public class MainApplication : Application
                 })
 
             }, true);
-        #else
-	        FirebasePushNotificationManager.Initialize(this,new NotificationUserCategory[]
-		    {
-			new NotificationUserCategory("message",new List<NotificationUserAction> {
-			    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
-			    new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
+#else
+              FirebasePushNotificationManager.Initialize(this,new NotificationUserCategory[]
+           {
+        new NotificationUserCategory("message",new List<NotificationUserAction> {
+            new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
+            new NotificationUserAction("Forward","Forward",NotificationActionType.Foreground)
 
-			}),
-			new NotificationUserCategory("request",new List<NotificationUserAction> {
-			    new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
-			    new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
-			})
+        }),
+        new NotificationUserCategory("request",new List<NotificationUserAction> {
+            new NotificationUserAction("Accept","Accept",NotificationActionType.Default,"check"),
+            new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
+        })
 
-		    },false);
-        #endif
+          },false);
+#endif
 
         //Handle notification when app is closed here
-        CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
+        CrossFirebasePushNotification.Current.OnNotificationDeleted += (s, p) =>
         {
-
-
         };
+
 
 
     }

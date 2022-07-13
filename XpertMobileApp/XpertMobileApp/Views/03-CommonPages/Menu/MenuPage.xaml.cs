@@ -388,6 +388,7 @@ namespace XpertMobileApp.Views
                 Application.Current.MainPage = new LoginPage();
             }
         }
+
         private void SortMenuItems()
         {
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
@@ -494,4 +495,5 @@ namespace XpertMobileApp.Views
         }
 
     }
+
 }

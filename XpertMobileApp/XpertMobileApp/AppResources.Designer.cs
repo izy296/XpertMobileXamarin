@@ -3256,6 +3256,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("np_txt_alert_delete", resourceCulture);
             }
         }
+        public static string np_txt_alert_Notification
+        {
+            get
+            {
+                return ResourceManager.GetString("np_txt_alert_Notification", resourceCulture);
+            }
+        }
     }
 }
 

@@ -37,7 +37,17 @@ namespace com.xamarin.sample.splashscreen
             Log.Debug(TAG, "Performing some startup work that takes a bit of time.");
             await Task.Delay(1000); // Simulate a bit of startup work.
             Log.Debug(TAG, "Startup work is finished - starting MainActivity.");
-            StartActivity(new Intent(Application.Context, typeof (MainActivity)));
+
+            // code important pour recuperer les donnees d'un notification dans le cas d'ouverture d'un notificaion 
+            var mainIntent = new Intent(Application.Context, typeof(MainActivity));
+
+            if (Intent.Extras != null)
+            {
+                mainIntent.PutExtras(Intent.Extras);
+            }
+            mainIntent.SetFlags(ActivityFlags.SingleTop);
+
+            StartActivity(mainIntent);
         }
     }
 }

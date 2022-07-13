@@ -263,6 +263,14 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
+
+        public static async Task<List<View_VTE_VENTE>> GetVente(string codeVente)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_GET_VENTE_URL);
+            url += WSApi2.AddParam(url, "codeVente", codeVente);
+
+            return await RetrievAauthorizedData<View_VTE_VENTE>(url);
+        }
         #endregion
 
         #region Achats

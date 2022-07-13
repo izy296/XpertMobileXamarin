@@ -11,13 +11,15 @@ namespace XpertMobileApp.Api.Models
         public string Title { get; set; }
         public string Message { get; set; }
         public string Module { get; set; }
+        public object Extras { get; set; }
 
         public int ModuleId
         {
             get
             {
-                Enum.TryParse(Module, out MenuItemType res);
+                if (Enum.TryParse(Module, out MenuItemType res))
                 return Convert.ToInt32(res);
+                else return 0;
             }
         }
         public string User { get; set; }

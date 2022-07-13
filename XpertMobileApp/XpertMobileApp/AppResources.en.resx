@@ -903,4 +903,13 @@
   <data name="pn_Notification" xml:space="preserve">
     <value>Notifications</value>
   </data>
+  <data name="np_Alert_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="np_txt_alert_delete" xml:space="preserve">
+    <value>All Notifications were deleted successfully</value>
+  </data>
+  <data name="np_txt_alert_Notification" xml:space="preserve">
+    <value>All notifications have been successfully deleted</value>
+  </data>
 </root>

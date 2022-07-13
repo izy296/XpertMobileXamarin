@@ -55,7 +55,7 @@ namespace XpertMobileApp.ViewModels
 
             this.ItemId = itemId;
 
-            Title = string.IsNullOrEmpty(ItemId) ? AppResources.pn_NewCommande : obj?.ToString();
+            Title = !string.IsNullOrEmpty(ItemId) ? ItemId : obj?.ToString();
 
             // Listing
             ItemRows = new ObservableCollection<TD>();            
