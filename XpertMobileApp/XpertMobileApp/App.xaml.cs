@@ -179,6 +179,9 @@ namespace XpertMobileApp
                         Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
                         TimeNotification = DateTime.Now
                     });
+                    // code responable a la refresh de badge de notification
+                    MessagingCenter.Send(this, "RELOAD_MENU", "");
+                    MessagingCenter.Send(this, "RELOAD_NOTIF", "");
                     MainPage RootPage = App.Current.MainPage as MainPage;
                     Enum.TryParse(p.Data["moduleName"].ToString(), out MenuItemType result);
                     if (result != MenuItemType.None)
