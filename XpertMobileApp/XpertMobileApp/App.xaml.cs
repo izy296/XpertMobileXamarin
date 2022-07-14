@@ -175,9 +175,9 @@ namespace XpertMobileApp
                         Title = p.Data["title"].ToString(),
                         Message = p.Data["body"].ToString(),
                         Module = p.Data["moduleName"].ToString(),
-                        User = p.Data["User"].ToString(),
+                        User = p.Data["user"].ToString(),
                         Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
-                        TimeNotification = DateTime.Now
+                        TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
                     });
                     // code responable a la refresh de badge de notification
                     MessagingCenter.Send(this, "RELOAD_MENU", "");
@@ -230,9 +230,9 @@ namespace XpertMobileApp
                 Title = p.Data["title"].ToString(),
                 Message = p.Data["body"].ToString(),
                 Module = p.Data["moduleName"].ToString(),
-                User = p.Data["User"].ToString(),
+                User = p.Data["user"].ToString(),
                 Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
-                TimeNotification = DateTime.Now
+                TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
             });
 
             // code responable a la refresh de badge de notification
