@@ -110,7 +110,8 @@ namespace XpertMobileApp.Views
                         user = new User(Ent_UserName.Text, Ent_PassWord.Text);
                     }
 
-                    user.UserName = user.UserName.Trim();
+                    if (user.UserName != null)
+                        user.UserName = user.UserName.Trim();
                     //username = (XpertHelper.IsNotNullAndNotEmpty(username)) ? username.Trim() : username;
 
                     //Save the username and the password to show it next time
@@ -135,89 +136,90 @@ namespace XpertMobileApp.Views
                         await App.SettingsDatabase.SaveItemAsync(App.Settings);
                     }
 
-                    if (viewModel.CheckUser(user))
+                    //if (!viewModel.CheckUser(user) || viewModel.CheckUser(user))
+                    //{
+                    // Authentification via le WebService
+                    Token token = await viewModel.Login(user);
+
+                    // Cas d'un souci avec le web service 
+                    if (token == null)
                     {
-                        // Authentification via le WebService
-                        Token token = await viewModel.Login(user);
+                        UserDialogs.Instance.HideLoading();
+                        await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
+                        return;
+                    }
 
-                        // Cas d'un souci avec le web service 
-                        if (token == null)
+                    if (token.access_token != null)
+                    {
+                        user.Id = token.userID;
+                        user.CODE_TIERS = token.CODE_TIERS;
+                        user.UserGroup = token.UserGroup;
+                        user.GroupName = token.GroupName;
+                        user.ClientId = App.Settings.ClientId;
+                        user.UserName = token.userName;
+                        user.Token = token;
+                        App.User = user;
+
+                        CrudManager.InitServices();
+
+                        await SQLite_Manager.initialisationDbLocal();
+                        await SQLite_Manager.AjoutToken(token);
+                        //check if Direct_Login if true in order to login with password only.
+                        var param = await AppManager.GetSysParams();
+
+                        //si l'utilisateur connect with password only
+                        if (param.DIRECT_LOGIN)
                         {
-                            UserDialogs.Instance.HideLoading();
-                            await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
-                            return;
+                            App.Settings.ConnectWithPasswordOnly = true;
+                            if (Ent_UserName.Text != App.Settings.Username && Ent_UserName.Text != "")
+                                App.Settings.Username = Ent_UserName.Text;
                         }
-
-                        if (token.access_token != null)
+                        else
                         {
-                            user.Id = token.userID;
-                            user.CODE_TIERS = token.CODE_TIERS;
-                            user.UserGroup = token.UserGroup;
-                            user.GroupName = token.GroupName;
-                            user.ClientId = App.Settings.ClientId;
-                            user.Token = token;
-                            App.User = user;
+                            App.Settings.ConnectWithPasswordOnly = false;
+                        }
+                        // Alerte apres la connexion
+                        // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
-                            CrudManager.InitServices();
+                        // suavegrade du user et du token en cours dans la bdd local
 
-                            await SQLite_Manager.initialisationDbLocal();
-                            await SQLite_Manager.AjoutToken(token);
-                            //check if Direct_Login if true in order to login with password only.
-                            var param = await AppManager.GetSysParams();
+                        //Récuperation prefix
+                        if (Constants.AppName == Apps.XCOM_Livraison)
+                            await RecupererPrefix();
 
-                            //si l'utilisateur connect with password only
-                            if (param.DIRECT_LOGIN)
+                        try
+                        {
+                            if (Constants.AppName != Apps.X_BOUTIQUE)
                             {
-                                App.Settings.ConnectWithPasswordOnly = true;
-                                if (Ent_UserName.Text != App.Settings.Username && Ent_UserName.Text != "")
-                                    App.Settings.Username = Ent_UserName.Text;
+                                await AppManager.GetPermissions();
                             }
-                            else
-                            {
-                                App.Settings.ConnectWithPasswordOnly = false;
-                            }
-                            // Alerte apres la connexion
-                            // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+                            // await App.UserDatabase.SaveItemAsync(user);
+                            await App.TokenDatabase.SaveItemAsync(token);
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                        }
+                        UserDialogs.Instance.HideLoading();
 
-                            // suavegrade du user et du token en cours dans la bdd local
-
-                            //Récuperation prefix
-                            if (Constants.AppName == Apps.XCOM_Livraison)
-                                await RecupererPrefix();
-
-                            try
-                            {
-                                if (Constants.AppName != Apps.X_BOUTIQUE)
-                                {
-                                    await AppManager.GetPermissions();
-                                }
-                                // await App.UserDatabase.SaveItemAsync(user);
-                                await App.TokenDatabase.SaveItemAsync(token);
-                            }
-                            catch (Exception ex)
-                            {
-                                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
-                            }
-                            UserDialogs.Instance.HideLoading();
-
-                            if (Device.RuntimePlatform == Device.Android)
-                            {
-                                Application.Current.MainPage = new MainPage();
-                            }
-                            else if (Device.RuntimePlatform == Device.iOS)
-                            {
-                                await Navigation.PushModalAsync(new MainPage(), false);
-                            }
-                            else
-                            {
-                                Application.Current.MainPage = new MainPage();
-                            }
+                        if (Device.RuntimePlatform == Device.Android)
+                        {
+                            Application.Current.MainPage = new MainPage();
+                        }
+                        else if (Device.RuntimePlatform == Device.iOS)
+                        {
+                            await Navigation.PushModalAsync(new MainPage(), false);
+                        }
+                        else
+                        {
+                            Application.Current.MainPage = new MainPage();
                         }
                     }
-                    else
-                    {
-                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                    //}
                 }
                 else
                 {
@@ -244,8 +246,10 @@ namespace XpertMobileApp.Views
                                 user.UserGroup = token.UserGroup;
                                 user.GroupName = token.GroupName;
                                 user.ClientId = App.Settings.ClientId;
+                                user.UserName = token.userName;
                                 user.Token = token;
                                 App.User = user;
+
 
                                 CrudManager.InitServices();
 

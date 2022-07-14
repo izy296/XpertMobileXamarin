@@ -23,7 +23,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             // Title = AppResources.pn_home;
-            lblUser.Text = App.User?.UserName;
+            lblUser.Text = App.User?.Token.userName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
         }
