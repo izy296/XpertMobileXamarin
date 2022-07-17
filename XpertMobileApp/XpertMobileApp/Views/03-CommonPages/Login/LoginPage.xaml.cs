@@ -101,18 +101,16 @@ namespace XpertMobileApp.Views
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     //check if login_direct 
                     User user;
-                    if (App.Settings.ConnectWithPasswordOnly && String.IsNullOrEmpty(Ent_UserName.Text))
-                    {
-                        user = new User(App.Settings.UsernameOnly, Ent_PassWord.Text);
-                    }
-                    else
-                    {
-                        user = new User(Ent_UserName.Text, Ent_PassWord.Text);
-                    }
+                    user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
                     if (user.UserName != null)
                         user.UserName = user.UserName.Trim();
                     //username = (XpertHelper.IsNotNullAndNotEmpty(username)) ? username.Trim() : username;
+
+                    //if (!viewModel.CheckUser(user) || viewModel.CheckUser(user))
+                    //{
+                    // Authentification via le WebService
+                    Token token = await viewModel.Login(user);
 
                     //Save the username and the password to show it next time
                     if (App.Settings.IsChecked == "true")
@@ -130,17 +128,11 @@ namespace XpertMobileApp.Views
                     {
                         if (!String.IsNullOrEmpty(Ent_UserName.Text))
                         {
-                            App.Settings.Username = Ent_UserName.Text;
-                            App.Settings.UsernameOnly = Ent_UserName.Text;
+                            App.Settings.Username = token.userName;
+                            App.Settings.UsernameOnly = token.userName;
                         }
                         await App.SettingsDatabase.SaveItemAsync(App.Settings);
                     }
-
-                    //if (!viewModel.CheckUser(user) || viewModel.CheckUser(user))
-                    //{
-                    // Authentification via le WebService
-                    Token token = await viewModel.Login(user);
-
                     // Cas d'un souci avec le web service 
                     if (token == null)
                     {
@@ -151,6 +143,7 @@ namespace XpertMobileApp.Views
 
                     if (token.access_token != null)
                     {
+                        token.userID = token.userName;
                         user.Id = token.userID;
                         user.CODE_TIERS = token.CODE_TIERS;
                         user.UserGroup = token.UserGroup;
@@ -171,8 +164,7 @@ namespace XpertMobileApp.Views
                         if (param.DIRECT_LOGIN)
                         {
                             App.Settings.ConnectWithPasswordOnly = true;
-                            if (Ent_UserName.Text != App.Settings.Username && Ent_UserName.Text != "")
-                                App.Settings.Username = Ent_UserName.Text;
+                            App.Settings.Username = App.Settings.UsernameOnly = user.UserName;
                         }
                         else
                         {
