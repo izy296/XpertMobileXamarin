@@ -130,6 +130,14 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
+        protected override string ContoleurName
+        {
+            get
+            {
+                return Constants.AppName == Apps.XCOM_Mob ? "STK_PRODUITS_XCOM" : "STK_PRODUITS";
+            }
+        }
+
         public async Task GetScanedProduct()
         {
             try
@@ -235,7 +243,7 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref selectedFamille, value); }
         }
 
-        public ObservableCollection<BSE_PRODUIT_UNITE> Unites{ get; set; }
+        public ObservableCollection<BSE_PRODUIT_UNITE> Unites { get; set; }
         private BSE_PRODUIT_UNITE selectedUnite;
         public BSE_PRODUIT_UNITE SelectedUnite
         {
