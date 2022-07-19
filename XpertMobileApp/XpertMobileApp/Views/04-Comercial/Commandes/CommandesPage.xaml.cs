@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
 
@@ -20,7 +21,11 @@ namespace XpertMobileApp.Views
             itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new CommandesViewModel();
-
+            if (Constants.AppName == Apps.XPH_Mob)
+            {
+                this.status_label.IsVisible = false;
+                this.statusPicker.IsVisible = false;
+            }
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {

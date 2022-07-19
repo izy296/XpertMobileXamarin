@@ -54,7 +54,7 @@ namespace XpertMobileApp.Views
                 checkBox.IsChecked = true;
                 Ent_PassWord.Text = App.Settings.Password;
             }
-            else if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "false")
+            else if ((App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "false") || ((App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == null)))
             {
                 Ent_UserName.IsVisible = false;
                 Lbl_UserName.IsVisible = false;
@@ -91,6 +91,7 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
                 return;
             }
+
             try
             {
                 bool isconnected = await App.IsConected();
@@ -99,40 +100,35 @@ namespace XpertMobileApp.Views
                 if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    //check if login_direct 
+
+                    // Create User object And affect to it the username and the password from the textField... 
                     User user;
                     user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
+                    //Ignore the white space at the end of the username ...
                     if (user.UserName != null)
+                    {
                         user.UserName = user.UserName.Trim();
-                    //username = (XpertHelper.IsNotNullAndNotEmpty(username)) ? username.Trim() : username;
+                    }
 
-                    //if (!viewModel.CheckUser(user) || viewModel.CheckUser(user))
-                    //{
                     // Authentification via le WebService
                     Token token = await viewModel.Login(user);
 
                     //Save the username and the password to show it next time
+
+                    //Save the password if the user want to remember its credentials...
                     if (App.Settings.IsChecked == "true")
                     {
                         App.Settings.Password = Ent_PassWord.Text;
+                    }
 
-                        if (!String.IsNullOrEmpty(Ent_UserName.Text))
-                        {
-                            App.Settings.Username = Ent_UserName.Text;
-                            App.Settings.UsernameOnly = Ent_UserName.Text;
-                        }
-                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
-                    }
-                    else
+                    //Save the username if the Username anyway...
+                    if (!String.IsNullOrEmpty(Ent_UserName.Text))
                     {
-                        if (!String.IsNullOrEmpty(Ent_UserName.Text))
-                        {
-                            App.Settings.Username = token.userName;
-                            App.Settings.UsernameOnly = token.userName;
-                        }
-                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                        App.Settings.Username = Ent_UserName.Text;
+                        App.Settings.UsernameOnly = Ent_UserName.Text;
                     }
+
                     // Cas d'un souci avec le web service 
                     if (token == null)
                     {
@@ -150,6 +146,7 @@ namespace XpertMobileApp.Views
                         user.GroupName = token.GroupName;
                         user.ClientId = App.Settings.ClientId;
                         user.UserName = token.userName;
+                        //user.CODE_COMPTE = token.CODE_COMPTE;
                         user.Token = token;
                         App.User = user;
 
@@ -157,10 +154,11 @@ namespace XpertMobileApp.Views
 
                         await SQLite_Manager.initialisationDbLocal();
                         await SQLite_Manager.AjoutToken(token);
-                        //check if Direct_Login if true in order to login with password only.
+
+                        //check if Direct_Login if true in order to login with password only next time.
                         var param = await AppManager.GetSysParams();
 
-                        //si l'utilisateur connect with password only
+                        //if the user Connect with password only
                         if (param.DIRECT_LOGIN)
                         {
                             App.Settings.ConnectWithPasswordOnly = true;
@@ -170,14 +168,12 @@ namespace XpertMobileApp.Views
                         {
                             App.Settings.ConnectWithPasswordOnly = false;
                         }
-                        // Alerte apres la connexion
-                        // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
-
-                        // suavegrade du user et du token en cours dans la bdd local
 
                         //Récuperation prefix
                         if (Constants.AppName == Apps.XCOM_Livraison)
+                        {
                             await RecupererPrefix();
+                        }
 
                         try
                         {
@@ -192,6 +188,10 @@ namespace XpertMobileApp.Views
                         {
                             await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
                         }
+
+                        //Save All settings in sqlite....
+                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
+
                         UserDialogs.Instance.HideLoading();
 
                         if (Device.RuntimePlatform == Device.Android)
@@ -207,11 +207,6 @@ namespace XpertMobileApp.Views
                             Application.Current.MainPage = new MainPage();
                         }
                     }
-                    //}
-                    //else
-                    //{
-                    //    await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
-                    //}
                 }
                 else
                 {
