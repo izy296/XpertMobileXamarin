@@ -395,7 +395,7 @@ namespace XpertMobileApp.Views
             {
                 var menus = menuItems;
                 var sorted = from menu in menus
-                             orderby menu.ItemGroup, menu.Title
+                             orderby menu.ItemGroup, menu.Id
                              group menu by menu.ItemGroup into menuGroup
                              orderby menuGroup.Key
                              select new Grouping<string, int, HomeMenuItem>(menuGroup.Key.ToString(), (int)menuGroup.Key, menuGroup);
