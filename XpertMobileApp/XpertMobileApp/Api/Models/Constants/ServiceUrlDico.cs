@@ -72,6 +72,9 @@ namespace XpertMobileApp.Helpers
         public static string VENTES_DETAILS_URL = "GetVenteDetails";
 
         public static string VENTES_TYPES_URL = "GetVenteTypes";
+
+        public static string STATUS_COMMANDE_URL = "GetStatus";
+
         public static string TIKET_CAISS_PRINT_ENCAISSE_URL = "GetPrintTiketCaisseEncaisse";
 
         public static string TIKET_CAISS_PRINT_VENTE_URL = "getPrintTiketCaisseVente";

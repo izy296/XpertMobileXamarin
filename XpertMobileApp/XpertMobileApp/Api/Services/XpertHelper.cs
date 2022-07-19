@@ -21,7 +21,7 @@ namespace XpertMobileApp.Api.Services
 {
     public static class XpertHelper
     {
-        public static void PeepScan() 
+        public static void PeepScan()
         {
             try
             {
@@ -32,7 +32,7 @@ namespace XpertMobileApp.Api.Services
             catch { }
         }
 
-        public static string GetMachineName() 
+        public static string GetMachineName()
         {
             string machineName = DeviceInfo.Name;
             if (DeviceInfo.Idiom != null)
@@ -80,7 +80,7 @@ namespace XpertMobileApp.Api.Services
                 /* TODO*/
                 string adr = GodexManager.GetPrinterAdress(printerName);
                 GodexManager.PrintQrCode(adr, 1, codeTiers, NomTiers, codeDoc, dateDoc);
-                
+
                 result = true;
             }
             else if (printerType == Printer_Type.Wifi)
@@ -469,6 +469,11 @@ AppResources.alrt_msg_Ok);
                 sb.Append(hash[i].ToString("X2"));
             }
             return sb.ToString();
+        }
+
+        public static decimal RoundPrix(decimal prix)
+        {
+            return Math.Round(prix, 2);
         }
 
     }

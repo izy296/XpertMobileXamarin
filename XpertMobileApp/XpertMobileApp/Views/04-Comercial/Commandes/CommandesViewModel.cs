@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -50,16 +51,21 @@ namespace XpertMobileApp.ViewModels
         public View_BSE_COMPTE SelectedUser { get; set; }
         public Command LoadUsersCommand { get; set; }
 
+        public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
+        public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
+
         public CommandesViewModel()
         {
             Title = AppResources.pn_Commandes;
+            Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         protected override string ContoleurName
         {
             get
             {
-                return "VTE_COMMANDE";
+                return Constants.AppName == Apps.XCOM_Mob ? "VTE_COMMANDE_XCOM" : "VTE_COMMANDE";
             }
         }
         public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
@@ -67,7 +73,7 @@ namespace XpertMobileApp.ViewModels
             if (true)
             {
                 //asyncTableQuery = UpdateDatabase.getInstance().Table<View_VTE_COMMANDE>()
-                 //   .Where(e => e.CODE_TIERS=="").ToListAsync();
+                //   .Where(e => e.CODE_TIERS=="").ToListAsync();
             }
             return base.SelectByPageFromSqlLite(filter);
 
@@ -84,11 +90,25 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<View_VTE_COMMANDE, string>(e => e.CREATED_BY, SelectedCompte?.CODE_COMPTE);
 
+            if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
+                this.AddCondition<View_VTE_COMMANDE, string>(e => e.STATUS_DOC, SelectedStatus?.CODE_STATUS);
+
             this.AddOrderBy<View_VTE_COMMANDE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
 
             return qb.QueryInfos;
         }
+        protected override QueryInfos GetSelectParams()
+        {
+            base.GetSelectParams();
 
+            this.AddSelect<View_VTE_COMMANDE, string>(e => e.TITRE_VENTE);
+            this.AddSelect<View_VTE_COMMANDE, string>(e => e.CREATED_BY);
+            this.AddSelect<View_VTE_COMMANDE, string>(e => e.NOM_TIERS);
+            this.AddSelect<View_VTE_COMMANDE, decimal>(e => e.TOTAL_HT);
+            this.AddSelect<View_VTE_COMMANDE, DateTime?>(e => e.DATE_VENTE);
+
+            return qb.QueryInfos;
+        }
         protected override void OnAfterLoadItems(IEnumerable<View_VTE_COMMANDE> list)
         {
             base.OnAfterLoadItems(list);
@@ -105,13 +125,20 @@ namespace XpertMobileApp.ViewModels
         {
             if (IsBusy)
                 return;
-
             try
             {
                 Items.Clear();
-
                 // liste des ventes
                 await Items.LoadMoreAsync();
+                //Liste des Status commande
+                if (Status.Count == 0)
+                {
+                    var itemsS = await WebServiceClient.GetStatusCommande();
+                    foreach (var itemS in itemsS)
+                    {
+                        Status.Add(itemS);
+                    }
+                }
             }
             catch (Exception ex)
             {

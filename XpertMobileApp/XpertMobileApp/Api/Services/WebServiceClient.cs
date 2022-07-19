@@ -256,6 +256,13 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_DOCUMENTS_TYPE>(url);
         }
 
+        public static async Task<List<BSE_DOCUMENT_STATUS>> GetStatusCommande()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.STATUS_COMMANDE_URL);
+
+            return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
+        }
+
         public static async Task<List<View_VTE_VENTE_LOT>> GetCommandeDetails(string codeCommande)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.COMMANDE_DETAILS_URL);

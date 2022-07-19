@@ -109,6 +109,8 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Label 
@@ -140,13 +142,29 @@
                         Margin="30, 0, 30, 10"/>
 
                     <Label 
+                        x:Name="status_label"
                         Grid.Column="0" 
                         Grid.Row="4" 
-                        Text="{i18n:Translate txt_Client}" 
+                        Text="{i18n:Translate txt_Status}" 
                         Margin="5, 0, 0, 0"/>
 
-
-                    <Grid Grid.Column="0" Grid.Row="6"  Margin="30, 0, 30, 10">
+                    <Picker 
+                        x:Name="statusPicker"
+                        Grid.Column="0" 
+                        Grid.Row="5"  
+                        ItemsSource="{Binding Status}"  
+                        ItemDisplayBinding="{Binding NAME}"  FontSize="Small" 
+                        SelectedItem="{Binding SelectedStatus}"
+                        TextColor="Black"  
+                        Margin="10, 0, 10, 10"/>
+                    
+                    <Label 
+                        Grid.Column="0" 
+                        Grid.Row="6" 
+                        Text="{i18n:Translate txt_Client}" 
+                        Margin="5, 0, 0, 0"/>
+                    
+                    <Grid Grid.Column="0" Grid.Row="7"  Margin="30, 0, 30, 10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="50"/>
@@ -178,7 +196,7 @@
 
                     <StackLayout 
                         Grid.Column="0" 
-                        Grid.Row="7" 
+                        Grid.Row="8" 
                         Padding="0" 
                         Margin="0" 
                         Spacing="0" 

@@ -8,18 +8,21 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewCommandePage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewCommandePage : ContentPage
+    {
         ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT> viewModel;
+        CommandesViewModel CommandViewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
         private View_VTE_VENTE item;
         public View_VTE_VENTE Item
@@ -27,7 +30,7 @@ namespace XpertMobileApp.Views
             get { return item; }
             set { item = value; }
         }
-
+        public GoogleVisionBS gvsScannedBarcode;
         public NewCommandePage(View_VTE_VENTE vente)
         {
             InitializeComponent();
@@ -59,9 +62,9 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                     //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-                     viewModel.SelectedTiers = selectedItem;
-                     viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
+                    //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+                    viewModel.SelectedTiers = selectedItem;
+                    viewModel.Item.CODE_TIERS = selectedItem.CODE_TIERS;
                 });
             });
 
@@ -117,8 +120,8 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if(this.Item != null && !string.IsNullOrEmpty(this.Item.CODE_VENTE))
-            { 
+            if (this.Item != null && !string.IsNullOrEmpty(this.Item.CODE_VENTE))
+            {
                 viewModel.LoadRowsCommand.Execute(null);
             }
         }
@@ -130,7 +133,7 @@ namespace XpertMobileApp.Views
             if (IsBusy)
                 return;
 
-            IsBusy = true; 
+            IsBusy = true;
 
             try
             {
@@ -173,25 +176,23 @@ namespace XpertMobileApp.Views
 
         private TiersSelector TiersSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
-        {            
-                TiersSelector.pargentPage = this;
-                await PopupNavigation.Instance.PushAsync(TiersSelector);            
+        {
+            TiersSelector.pargentPage = this;
+            await PopupNavigation.Instance.PushAsync(TiersSelector);
         }
 
         private void RowScan_Clicked(object sender, EventArgs e)
         {
-            var scaner = new ZXingScannerPage();
-            Navigation.PushAsync(scaner);
-            scaner.OnScanResult += (result) =>
+
+            gvsScannedBarcode = new GoogleVisionBS();
+            Navigation.PushAsync(gvsScannedBarcode);
+            gvsScannedBarcode.UserSubmitted += async (_, result) =>
             {
-                scaner.IsScanning = false;
-                Device.BeginInvokeOnMainThread( async() =>
-                    {
-                        await Navigation.PopAsync();
-
-                        await AddScanedProduct(result.Text);
-
-                    });
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PopAsync();
+                    await AddScanedProduct(result);
+                });
             };
         }
 
@@ -199,8 +200,8 @@ namespace XpertMobileApp.Views
         {
             // Cas prdouit déjà ajouté
             var row = viewModel.ItemRows.Where(e => e.CODE_BARRE_PRODUIT == cb_prod).FirstOrDefault();
-            if(row != null)
-            { 
+            if (row != null)
+            {
                 row.QUANTITE += 1;
                 return true;
             }
@@ -208,12 +209,12 @@ namespace XpertMobileApp.Views
             // Cas prdouit pas déjà ajouté
             List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
 
-            if(prods.Count > 0)
+            if (prods.Count > 0)
             {
                 await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return false;
             }
-            else if(prods.Count == 0)
+            else if (prods.Count == 0)
             {
                 await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return false;
@@ -221,7 +222,7 @@ namespace XpertMobileApp.Views
 
             AddNewRow(prods[0]);
             return true;
-        } 
+        }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
@@ -236,7 +237,13 @@ namespace XpertMobileApp.Views
 
             if (string.IsNullOrEmpty(Item.CODE_VENTE))
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+
+                CommandViewModel = new CommandesViewModel();
+                View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
+                obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(Item);
+                await CommandViewModel.ExecuteAddItemCommand(obj);
+
+                //MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
             }
             else
             {

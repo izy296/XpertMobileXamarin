@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using SQLite;
+using XpertMobileApp.Api.Services;
+
 namespace XpertMobileApp.DAL
 {
     public class View_VTE_Vente_Td22
@@ -34,7 +36,7 @@ namespace XpertMobileApp.DAL
     public partial class VTE_VENTE : BASE_CLASS
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public int? ID { get; set; }
         public string CODE_VENTE { get; set; } // varchar(32)
         public string NUM_VENTE { get; set; } // varchar(32)
         public string REF_CLIENT { get; set; } // varchar(32)
@@ -106,11 +108,11 @@ namespace XpertMobileApp.DAL
             }
         }
 
-
         public string ID_CAISSE { get; set; } // varchar(50)
         public string CODE_ORIGINE { get; set; } // varchar(32)
         public int TYPE_VALIDATION { get; set; } // int(10)
         public short SENS_DOC { get; set; } // smallint(5)
+        public string STATUS_DOC { get; set; } //varchar(20)
         public int TYPE_PRIX_VENTE { get; set; } // int(10)
         public DateTime? CREATED_ON { get; set; } // datetime(3)
         public string CREATED_BY { get; set; } // varchar(200)
@@ -120,6 +122,38 @@ namespace XpertMobileApp.DAL
         public string CODE_MOTIF { get; set; }
         public string CODE_BARRE { get; set; }
         public string N_ORDRE_PSYCHO { get; set; }
+        public decimal TOTAL_ARCHIVE { get; set; } // money(19,4)
+        public string CODE_MEDECIN { get; set; }
+        public int DUREE { get; set; }
+        public bool EXON_TIMBRE { get; set; }
+        public bool EXON_TVA { get; set; }
+        public string CODE_MOTIF_LIVRAISON { get; set; }
+        public string MODE_CAL_MT_ECHANGE { get; set; }
+        // CVM
+        public decimal TOTAL_TARIF_CVM { get; set; } // money(19,4)
+        public bool IS_CVM_COMPLETE { get; set; }
+        public string CREATED_POSTE { get; set; } // varchar(300)
+        public DateTime? DATE_SOINS { get; set; }
+        public string NUM_TERMINAL { get; set; } // varchar(300)
+        public string NUM_COMMERCANT { get; set; } // varchar(300)
+        public string IS_DIM { get; set; } // varchar(200)
+        public string NOTE_PIED { get; set; } // nvarchar(MAX)
+        public string NOM_PORTEUR_ORD { get; set; }
+        public string N_CARTE_PORTEUR_ORD { get; set; }
+        public string ADRESS_LIVRAISON_COMMANDE { get; set; }
+        public int NBR_COLIS { get; set; }
+        public DateTime? CLOTURE_ON { get; set; } // datetime(3)
+        public string CLOTURED_BY { get; set; } // varchar(200)
+        public bool SYNCHRONISE { get; set; }
+        public decimal MT_VERSEMENT { get; set; } // money(19,4)
+        // XBOUTIK
+        public int ORIGINE_COMMANDE { get; set; }
+        public string ID_CMD_WEB { get; set; }
+        public string DESIGN_MOTIF_ANNULATION { get; set; }
+
+        public string TYPE_ORIGINE { get; set; } // char(2)
+
+        //public decimal   TOTAL_PAYE      { get; set; } // money(19,4)
     }
 
     public partial class View_VTE_VENTE : VTE_VENTE
@@ -134,7 +168,6 @@ namespace XpertMobileApp.DAL
                 return !string.IsNullOrEmpty(DATE_DELIVRE_CARTE) && DATE_DELIVRE_CARTE.ToString().Length >= 10 ? DATE_DELIVRE_CARTE.ToString().Substring(0, 10) : "";
             }
         }
-
         public string N_CARTE { get; set; }
 
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
@@ -219,6 +252,150 @@ namespace XpertMobileApp.DAL
         public string MBL_CODE_TOURNEE_DETAIL { get; set; }
         public double GPS_LATITUDE { get; set; }
         public double GPS_LONGITUDE { get; set; }
+        public string NameTableVente { get; set; }
+        public string NameTableVenteDetail { get; set; }
+        public string TauxRemiseGlobale
+        {
+            get
+            {
+                decimal dd = this.TOTAL_TTC + this.REMISE_GLOBALE;
+                if (dd == 0) return "0 %";
+                return XpertHelper.RoundPrix(100 * this.REMISE_GLOBALE / dd) + " %";
+            }
+        }
+        public string DESIGN_TYPE
+        {
+            get
+            {
+                if ("VC".Equals(this.TYPE_VENTE))
+                    return "Vente au Comptoir";
+                else if ("RC".Equals(this.TYPE_VENTE))
+                    return "Retour Client";
+                return "";
+            }
+        }
+        public string NUM_FACTURE
+        {
+            get
+            {
+                return this.CODE_FACTURE;
+            }
+        }
+        public string ETAT_IMPORT
+        {
+            get
+            {
+                switch (this.ETAT_VENTE)
+                {
+                    case "CC":
+                        return "Commandé";
+                    case "BL":
+                        return "Livré";
+                    case "FV":
+                        return "Facturé";
+                    default:
+                        return "";
+                }
+            }
+        }
+        // date sois sera dans la table pas dans la view
+        //public DateTime? DATE_SOINS { get; set; }
+        public decimal TOTAL_ASSURE
+        {
+            get
+            {
+                return this.TOTAL_TTC - TOTAL_TARIF_CVM;
+            }
+        }
+        //informations CVM
+        public string NUM_DECOMPTE { get; set; }
+        public string ORDRE { get; set; }
+        public string ID_CVM_TYPE_DECOMPTE { get; set; }
+        public DateTime? DATE_SOINS_CVM { get; set; }
+        public string CODE_PATHOLOGIE { get; set; }
+        public string NUM_FACTURE_CVM { get; set; }
+        public string NUM_BORDEREAU_CVM { get; set; }
+        public string CVM_ID_FACTURE { get; set; }
+        public string DESIGNATION_DECOMPTE { get; set; }
+        public string DESIGNATION_FACTURE { get; set; }
+        public string DESIGNATION_PHATOLOGIE { get; set; }
+        public DateTime? DATE_FACTURE_CVM { get; set; }
+        public DateTime? DATE_DECOMPTE_CVM { get; set; }
+        public string NOM_ASSURE { get; set; }
+        public bool IS_NOT_CVM_COMPLETE
+
+        {
+            get
+            {
+                return !IS_CVM_COMPLETE;
+            }
+        }
+        public decimal QTE_TOTAL_VENTE { get; set; }
+        public decimal QTE_TOTAL_IMPORTER { get; set; }
+        public decimal QTE_REST_FACTURER { get; set; }
+        public string NUM_TICKET { get; set; }
+
+        public decimal MontantVerseRestant
+        {
+            get
+            {
+                return this.TOTAL_TTC - TOTAL_RECU;
+            }
+        }
+        public string OWNER { get; set; } // varchar(200)
+        public string ADRESSE_TIERS { get; set; } // varchar(500)
+        public string NUM_ASSURE { get; set; } // varchar(12)
+        public string TEL1_TIERS { get; set; } // varchar(50)
+        public string TEL2_TIERS { get; set; } // varchar(50)
+        public string DESIGN_MODE { get; set; } // varchar(300)
+        public string DESIGN_MOTIF { get; set; } // nvarchar(250)
+        public decimal SOLDE_TIERS_AT_VALIDAT { get; set; } // money(19,4)
+        public decimal TOTAL_ENCAISS_AT_VALIDAT { get; set; } // money(19,4)
+        public DateTime? DATE_MAX_ARCHIVE { get; set; }
+        public string ARCHIVER_PAR { get; set; }
+        [Obsolete("Warning :: TYPE_DOC2 is empty in all sales except vente chifa")]
+        public string TYPE_DOC2 { get; set; }
+        // utiliser juste  pour Séparer entre vente CHIFA cash & vente CHIFA crédit
+        // Warning :: TYPE_DOC2 is empty in all sales except vente chifa  ()        
+        public decimal TOTAL_HT_REEL { get { return TOTAL_HT * SENS_DOC; } }
+        public decimal TOTAL_PPA_REEL { get { return TOTAL_PPA * SENS_DOC; } }
+        public decimal TOTAL_SHP_REEL { get { return TOTAL_SHP * SENS_DOC; } }
+        public decimal TOTAL_REMISE_REEL { get { return TOTAL_REMISE * SENS_DOC; } }
+        public decimal TOTAL_TVA_REEL { get { return TOTAL_TVA * SENS_DOC; } }
+        public decimal TOTAL_TTC_REEL { get { return TOTAL_TTC * SENS_DOC; } }
+        public decimal TOTAL_PAYE_REEL { get { return TOTAL_PAYE * SENS_DOC; } }
+        public decimal TOTAL_RESTE_REEL { get { return TOTAL_RESTE * SENS_DOC; } }
+
+        public decimal TOTAL_TTC_INSTANCE { get; set; }
+        public string DESIGN_MOTIF_LIVRAISON { get; set; }
+        public string TYPE_TIERS { get; set; }
+        public decimal TOTAL_TTC_SANS_REMISE { get; set; }
+        public DateTime? DATE_PAYE_CREANCE { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+        public string ETAT_ENCAISS { get; set; }
+        // pour indique que la vente est importee a partir chifa 
+        //se qui signefie que il faut pas modifier la date sois et la date vente dans la fenetre psychothrope
+        public bool IS_IMPORTED { get; set; }
+        #region Validation vente from Mobile
+
+        #endregion
+        public string TITRE_VENTE_SPECIAL
+        {
+            get
+            {
+                if ("4".Equals(CODE_MODE) && "VC".Equals(TYPE_VENTE))
+                {
+                    return "Vente TPE";
+                }
+                else
+                {
+                    return this.TITRE_VENTE;
+                }
+            }
+        }
+        public string ID_USER_TARGET { get; set; }
+        public string DESIGNATION_STATUS { get; set; }
+        public string DESIGNATION_ORIGINE { get; set; }
         #endregion
     }
 
@@ -232,6 +409,8 @@ namespace XpertMobileApp.DAL
 
     public partial class View_VTE_COMMANDE : View_VTE_VENTE
     {
+        public string DESIGNATION_STATUS { get; set; }
+        public string DESIGNATION_ORIGINE { get; set; }
     }
 
     public partial class View_VTE_PSYCHOTROP : View_VTE_VENTE

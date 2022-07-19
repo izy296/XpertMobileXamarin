@@ -78,6 +78,11 @@ namespace XpertMobileApp.Api.ViewModels
             return qb.QueryInfos;
         }
 
+        protected virtual QueryInfos GetSelectParams()
+        {
+            return qb.QueryInfos;
+        }
+
         protected virtual void OnAfterLoadItems(IEnumerable<TView> list)
         {
 
@@ -89,12 +94,14 @@ namespace XpertMobileApp.Api.ViewModels
             {
                 return typeof(T1).Name;
             }
+            set { ContoleurName = value; }
         }
+
 
         protected virtual void InitConstructor()
         {
             string ctrlName = ContoleurName;
-            service = new CrudService<TView>(App.RestServiceUrl, ContoleurName, App.User.Token);
+            service = new CrudService<TView>(App.RestServiceUrl, ctrlName, App.User.Token);
             Summaries = new ObservableCollection<SAMMUARY>();
 
             // Listing
@@ -146,11 +153,12 @@ namespace XpertMobileApp.Api.ViewModels
                             var page = (Items.Count / PageSize) + 1;
 
                             //var items = await service.GetItemsAsync();
-                            var items = await service.SelectByPage(GetFilterParams(), page, PageSize);
+                            var items = await service.SelectByPage(GetSelectParams(), page, PageSize);
                             //var items = await SelectByPageFromSqlLite(GetFilterParams(), page, PageSize);//server.getselectedpqs
                             Summaries.Clear();
                             if (LoadSummaries && elementsCount > 0)
                             {
+
                                 var res = await service.ItemsSums(GetFilterParams());
 
                                 foreach (var item in res)
@@ -223,7 +231,7 @@ namespace XpertMobileApp.Api.ViewModels
                 return tt;
             }
             //await UpdateDatabase.initialisationDbLocal();
-            
+
         }
 
         //static async Task initialisationDbLocal()
@@ -339,7 +347,7 @@ namespace XpertMobileApp.Api.ViewModels
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                     await service.AddItemAsync(item);
-                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
             }
             catch (Exception ex)
