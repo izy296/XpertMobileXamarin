@@ -3263,6 +3263,29 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("np_txt_alert_Notification", resourceCulture);
             }
         }
+
+        public static string codebarre_titre_message
+        {
+            get
+            {
+                return ResourceManager.GetString("codebarre_titre_message", resourceCulture);
+            }
+        }
+        public static string codebarre_corps_message
+        {
+            get
+            {
+                return ResourceManager.GetString("codebarre_corps_message", resourceCulture);
+            }
+        }
+
+        public static string codebarre_error_corps_message
+        {
+            get
+            {
+                return ResourceManager.GetString("codebarre_error_corps_message", resourceCulture);
+            }
+        }
     }
 }
 

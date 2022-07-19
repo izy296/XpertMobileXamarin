@@ -912,4 +912,13 @@
   <data name="np_txt_alert_Notification" xml:space="preserve">
     <value>All notifications have been successfully deleted</value>
   </data>
+  <data name="codebarre_corps_message" xml:space="preserve">
+    <value>Enter a barcode</value>
+  </data>
+  <data name="codebarre_error_corps_message" xml:space="preserve">
+    <value>Barcode is empty</value>
+  </data>
+  <data name="codebarre_titre_message" xml:space="preserve">
+    <value>Barcode</value>
+  </data>
 </root>

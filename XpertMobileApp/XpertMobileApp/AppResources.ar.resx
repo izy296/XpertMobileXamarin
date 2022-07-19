@@ -1012,4 +1012,13 @@
   <data name="np_txt_alert_Notification" xml:space="preserve">
     <value>تم حذف جميع الإخطارات بنجاح</value>
   </data>
+  <data name="codebarre_corps_message" xml:space="preserve">
+    <value>أدخل الرمز الشريطي</value>
+  </data>
+  <data name="codebarre_error_corps_message" xml:space="preserve">
+    <value>الرمز الشريطي فارغ</value>
+  </data>
+  <data name="codebarre_titre_message" xml:space="preserve">
+    <value>الرمز الشريطي</value>
+  </data>
 </root>

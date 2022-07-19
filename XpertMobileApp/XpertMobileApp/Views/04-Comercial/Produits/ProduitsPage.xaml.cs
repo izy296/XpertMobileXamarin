@@ -178,8 +178,7 @@ namespace XpertMobileApp.Views
                 await viewModel.GetScanedProduct();
                 
             };
-            
-            NavigationPage.SetHasNavigationBar(gvsScannedBarcode, false);
+           
             detail.Navigation.PushAsync(gvsScannedBarcode);
         }
 

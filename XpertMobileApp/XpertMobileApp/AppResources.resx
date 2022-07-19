@@ -1144,4 +1144,13 @@
   <data name="np_txt_alert_Notification" xml:space="preserve">
     <value>Toutes les notifications ont été supprimées avec succès</value>
   </data>
+  <data name="codebarre_corps_message" xml:space="preserve">
+    <value>Saisir un code barre</value>
+  </data>
+  <data name="codebarre_error_corps_message" xml:space="preserve">
+    <value>Le Codebarre est vide</value>
+  </data>
+  <data name="codebarre_titre_message" xml:space="preserve">
+    <value>Code à barre</value>
+  </data>
 </root>
