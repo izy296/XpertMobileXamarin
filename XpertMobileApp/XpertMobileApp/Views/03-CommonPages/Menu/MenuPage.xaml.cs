@@ -227,7 +227,7 @@ namespace XpertMobileApp.Views
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Notification,
-                        ItemGroup = MenuItemGroup.Parametres,
+                        ItemGroup = MenuItemGroup.Home,
                         Image = "",
                         Title = AppResources.pn_Notification,
                         NotificationBadgeIsVisible = true,

@@ -196,7 +196,7 @@ namespace XpertMobileApp
                 }
                 catch (Exception ex)
                 {
-                    await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                    await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
     AppResources.alrt_msg_Ok);
                 }
 
@@ -279,7 +279,7 @@ namespace XpertMobileApp
              }
              catch (Exception ex)
              {
-                 await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+                 await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
  AppResources.alrt_msg_Ok);
              }
 
