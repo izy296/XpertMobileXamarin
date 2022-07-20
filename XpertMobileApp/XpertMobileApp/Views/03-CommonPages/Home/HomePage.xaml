@@ -10,16 +10,13 @@
              BackgroundColor="White"
              FlowDirection="MatchParent"
              >
-    <!--
+    
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Refresh" Text="{i18n:Translate cmd_Filter}" 
-                     Icon="refresh_w24.png" Clicked="btn_Refresh_Clicked">
+        <ToolbarItem x:Name="nortificationBell" Text="{i18n:Translate cmd_Filter}" 
+                     Icon="notification.png" Clicked="btn_Notification">
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     
-
-    #ecf0f1
-    -->
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
 

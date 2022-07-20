@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Xamarin.Forms;
 using Xpert;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.Models
 {
-    public class HomeMenuItem
+    public class HomeMenuItem : INotifyPropertyChanged
     {
+        private int countOfNotifications = 0;
+
         public XpertObjets CodeObjet { get; set; } = XpertObjets.None;
 
         public XpertActions Action { get; set; } = XpertActions.None;
@@ -35,9 +40,32 @@ namespace XpertMobileApp.Models
         public bool VisibleToGuest { get; set; } = true;
         public bool NotificationBadgeIsVisible { get; set; } = false;
 
-        public int CountOfNotifications { get; set; } = 0;
-
+        public int CountOfNotifications
+        {
+            get => countOfNotifications;
+            set {
+                if (value != countOfNotifications)
+                {
+                    countOfNotifications = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
         public MenuItemGroup ItemGroup { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (propertyName== "CountOfNotifications")
+            {
+                if (CountOfNotifications > 0)
+                    App.IsThereNotification = true;
+                else App.IsThereNotification = false;
+                MessagingCenter.Send(this, "refreshBell", "");
+            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 
 }

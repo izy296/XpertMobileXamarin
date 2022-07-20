@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
@@ -55,6 +56,16 @@ namespace XpertMobileApp.Views
             }
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
+
+            MessagingCenter.Subscribe<HomeMenuItem, string>(this, "refreshBell", (objet, e) => {
+                if (App.IsThereNotification)
+                    nortificationBell.IconImageSource = "notificationRed.png";
+                else nortificationBell.IconImageSource = "notification.png";
+            });
+            if (App.IsThereNotification)
+            nortificationBell.IconImageSource = "notificationRed.png";
+            else nortificationBell.IconImageSource = "notification.png";
+
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -103,6 +114,11 @@ namespace XpertMobileApp.Views
         public async Task Upload()
         {
             await SQLite_Manager.synchroniseUpload();
+        }
+
+        private async void btn_Notification(object sender, EventArgs e)
+        {
+            await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Notification);
         }
     }
 }

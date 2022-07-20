@@ -7,13 +7,6 @@
              Title="Scannez votre produit">
     <ContentPage.ToolbarItems>
 
-        <ToolbarItem ClassId="Scan" Clicked="RowScan_Clicked">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}" Size="Subtitle" 
-                Glyph="{x:Static fontawesome:FontAwesomeIcons.Barcode}" />
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-
     <!--
         <ToolbarItem Text="Impr" Icon="Selection_32.png" Clicked="AchImpr_Clicked" />
         <ToolbarItem Text="{i18n:Translate lp_btn_Settings}"  Icon="settings_32.png" Clicked="HeaderSettings_Clicked"  />
@@ -21,11 +14,31 @@
 
     </ContentPage.ToolbarItems>
 
-
-    <ContentPage.Content>
-        <StackLayout>
+    <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            FlowDirection="LeftToRight"
+            >
+        <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
             <gv:CameraView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
                            OnDetected="CameraView_OnDetected" DefaultTorchOn="False" VibrationOnDetected="False" AutoStartScanning="True" RequestedFPS="30" />
         </StackLayout>
-    </ContentPage.Content>
+        <Button 
+                x:Name="floatingButton" 
+                Style="{StaticResource FAwesome-B-Solid}"
+                Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="RowScan_Clicked"/>
+    </AbsoluteLayout>
 </ContentPage>

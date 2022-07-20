@@ -50,6 +50,8 @@ namespace XpertMobileApp
         static WebServiceClient resteService;
         private static Settings settings;
         public SettingsModel settingsViewModel;
+        private static bool isThereNotification = false;
+        public static bool IsThereNotification { get { return isThereNotification; } set { isThereNotification = value; } }
 
         private static View_VTE_VENTE currentSales;
         public static View_VTE_VENTE CurrentSales
@@ -194,7 +196,7 @@ namespace XpertMobileApp
                 }
                 catch (Exception ex)
                 {
-                    await UserDialogs.Instance.AlertAsync("Error", AppResources.alrt_msg_Alert,
+                    await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
     AppResources.alrt_msg_Ok);
                 }
 
@@ -216,64 +218,72 @@ namespace XpertMobileApp
             };
 
             //Handle when your app starts
-            CrossFirebasePushNotification.Current.OnNotificationReceived += (s, p) =>
-        {
-            if (IsInForeground)
-            {
+            CrossFirebasePushNotification.Current.OnNotificationReceived += async (s, p) =>
+         {
+             if (IsInForeground)
+             {
 
-            }
-            bool saveSettings = false;
+             }
+             bool saveSettings = false;
+             try
+             {
+                 //sauvegard de notification dans le sqlite avec les données nécehomssaire
+                 settingsViewModel.setNotificationAsync(new Notification()
+                 {
+                     Title = p.Data["title"].ToString(),
+                     Message = p.Data["body"].ToString(),
+                     Module = p.Data["moduleName"].ToString(),
+                     User = p.Data["user"].ToString(),
+                     Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
+                     TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
+                 });
 
-            //sauvegard de notification dans le sqlite avec les données nécessaire
-            settingsViewModel.setNotificationAsync(new Notification()
-            {
-                Title = p.Data["title"].ToString(),
-                Message = p.Data["body"].ToString(),
-                Module = p.Data["moduleName"].ToString(),
-                User = p.Data["user"].ToString(),
-                Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
-                TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
-            });
+                 // code responable a la refresh de badge de notification
+                 MessagingCenter.Send(this, "RELOAD_MENU", "");
+                 MessagingCenter.Send(this, "RELOAD_NOTIF", "");
+                 // Traitement du message obligant la mise à jour
+                 string currentVerision = AppInfo.Version.ToString();
+                 object CriticalVersion;
+                 if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
+                 {
+                     if (String.Compare(Convert.ToString(CriticalVersion), currentVerision) > 0)
+                     {
+                         App.Settings.ShouldUpdate = true;
+                         App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
+                         saveSettings = true;
+                     }
+                 }
 
-            // code responable a la refresh de badge de notification
-            MessagingCenter.Send(this, "RELOAD_MENU", "");
-            MessagingCenter.Send(this, "RELOAD_NOTIF", "");
-            // Traitement du message obligant la mise à jour
-            string currentVerision = AppInfo.Version.ToString();
-            object CriticalVersion;
-            if (p.Data.TryGetValue("CriticalVersion", out CriticalVersion) && !string.IsNullOrEmpty(Convert.ToString(CriticalVersion)))
-            {
-                if (String.Compare(Convert.ToString(CriticalVersion), currentVerision) > 0)
-                {
-                    App.Settings.ShouldUpdate = true;
-                    App.Settings.DestinationVersion = Convert.ToString(CriticalVersion);
-                    saveSettings = true;
-                }
-            }
+                 // Mise à jour de l'app settings depuis un message push
+                 foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(App.Settings))
+                 {
+                     string fieldName = descriptor.Name;
+                     object currentValue = descriptor.GetValue(App.Settings);
+                     currentValue = getFormatedValue(currentValue);
 
-            // Mise à jour de l'app settings depuis un message push
-            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(App.Settings))
-            {
-                string fieldName = descriptor.Name;
-                object currentValue = descriptor.GetValue(App.Settings);
-                currentValue = getFormatedValue(currentValue);
-
-                object remoteValue = null;
-                if (p.Data.TryGetValue(fieldName, out remoteValue) && !string.IsNullOrEmpty(Convert.ToString(remoteValue)))
-                {
-                    descriptor.SetValue(App.Settings, remoteValue);
-                    saveSettings = true;
-                }
-            }
+                     object remoteValue = null;
+                     if (p.Data.TryGetValue(fieldName, out remoteValue) && !string.IsNullOrEmpty(Convert.ToString(remoteValue)))
+                     {
+                         descriptor.SetValue(App.Settings, remoteValue);
+                         saveSettings = true;
+                     }
+                 }
 
 
 
-            if (saveSettings)
-            {
-                App.SettingsDatabase.SaveItemAsync(App.Settings);
-            }
+                 if (saveSettings)
+                 {
+                     App.SettingsDatabase.SaveItemAsync(App.Settings);
+                 }
 
-        };
+             }
+             catch (Exception ex)
+             {
+                 await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert,
+ AppResources.alrt_msg_Ok);
+             }
+
+         };
 
 
 
