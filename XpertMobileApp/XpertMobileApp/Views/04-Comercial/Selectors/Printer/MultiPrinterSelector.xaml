@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             x:Class="XpertMobileApp.Views.MultiPrinterSelector"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+                 xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                 xmlns:i18n="clr-namespace:XpertMobileApp.Helpers">
+
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center"  Padding="20, 100, 20, 100" >
+
+        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+            <ListView 
+               BackgroundColor="White"
+               x:Name="ItemListView"
+               ItemsSource="{Binding Items}"
+               HasUnevenRows="true"
+               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+               CachingStrategy="RecycleElement"
+               ItemSelected="OnItemSelected">
+
+                    <!--<syncfusion:SfCheckBox x:Name="selectAll" Text="Select All" IsChecked="{x:Null}" StateChanged="SelectAll_StateChanged"/> 
+                            -->
+                <ListView.ItemTemplate >
+                    <DataTemplate>
+                        <ViewCell>
+                            <template:PrinterSelectTemplate/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <Button 
+            x:Name="cancelBtn"
+            Text="{i18n:Translate cmd_Cancel}"
+            Clicked="Annuler_Button_Clicked"
+            Style="{DynamicResource DeleteUrlBtn}"></Button>
+    </StackLayout>
+</pages:PopupPage>

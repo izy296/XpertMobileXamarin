@@ -192,7 +192,8 @@
                     <!-- Imprimante  -->
                     <Frame 
                         Style="{StaticResource FrameForListing}" 
-                        IsVisible="{Binding IsConnected}">
+                        IsVisible="{Binding IsConnected}"
+                        HeightRequest="250">
 
                         <StackLayout x:Name="PrintSettingsZone"  Padding="10" >
 
@@ -207,6 +208,46 @@
                                 Title="{i18n:Translate cmd_selectPrinter}"
                                 ItemDisplayBinding="{Binding Name}"
                                 SelectedItem="{Binding SelectedDevice}" />
+
+                            <FlexLayout Margin="0,25,0,10" JustifyContent="SpaceBetween" Direction="Row">
+                                <Label Text="{i18n:Translate lbl_MultiPrinter}"/>
+
+                            <Switch 
+                                x:Name="sw_ActivateMultiPrinter" 
+                                IsToggled="{Binding Settings.EnableMultiPrinter, Mode=TwoWay}"
+                                />
+                                
+                            </FlexLayout>
+
+                            <FlexLayout Direction="Row" IsVisible="{Binding Settings.EnableMultiPrinter,Mode=TwoWay}" x:Name="MPrinterOptions">
+
+                                <Button 
+                                    Text="List" 
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    Style="{DynamicResource DefaultBtnStyle}"
+                                    CornerRadius="5"
+                                    Clicked="List_MultiPrinter_Clicked"
+                                        />
+
+                                <Button 
+                                    Style="{DynamicResource AddUrlBtn}"
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    CornerRadius="5"
+                                    ImageSource="addIcon.png"
+                                    Clicked="Add_MultiPrinter_Clicked"
+                                        />
+                                <Button 
+                                    FontSize="11" 
+                                    Margin="5,0,5,0"
+                                    Style="{DynamicResource DeleteUrlBtn}"
+                                    CornerRadius="5"
+                                    ImageSource="deleteIcon.png"
+                                    Clicked="Delete_MultiPrinter_Clicked"
+                                        />
+
+                            </FlexLayout>
                             <!--
                             <Button x:Name="Btn_ConnectPrinter" Style="{DynamicResource DefaultBtnStyle}"  CornerRadius="8"
                                 Text="Connexion" Clicked="ConnectPrinterAsync"/>
@@ -218,7 +259,7 @@
                         </StackLayout>
 
                     </Frame>
-
+                   
                     <!-- Licence informations -->
                     <Frame Style="{StaticResource FrameForListing}" 
                            IsVisible="{Binding IsConnected}">

@@ -1153,4 +1153,13 @@
   <data name="codebarre_titre_message" xml:space="preserve">
     <value>Code à barre</value>
   </data>
+  <data name="lbl_MultiPrinter" xml:space="preserve">
+    <value>Plusieurs imprimantes</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Ajout" xml:space="preserve">
+    <value>La liste des imprimantes disponibles est vide</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
+    <value>La liste des imprimantes est vide</value>
+  </data>
 </root>

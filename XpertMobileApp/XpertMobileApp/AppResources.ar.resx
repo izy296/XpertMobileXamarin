@@ -1021,4 +1021,13 @@
   <data name="codebarre_titre_message" xml:space="preserve">
     <value>الرمز الشريطي</value>
   </data>
+  <data name="lbl_MultiPrinter" xml:space="preserve">
+    <value>طابعات متعددة</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Ajout" xml:space="preserve">
+    <value>قائمة الطابعات المتوفرة فارغة</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
+    <value>قائمة الطابعات فارغة</value>
+  </data>
 </root>

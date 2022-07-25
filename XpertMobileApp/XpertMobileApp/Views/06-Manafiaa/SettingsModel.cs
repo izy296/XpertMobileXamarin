@@ -146,6 +146,39 @@ namespace XpertMobileApp.ViewModels
             await SaveSettings();
         }
 
+        /// <summary>
+        /// Save all Printers in the settings
+        /// </summary>
+        /// <param name="printer"></param>
+        public async void SetMultiPrintersAsync(List<XPrinter> printers)
+        {
+                List<XPrinter> liste = new List<XPrinter>();
+                foreach (XPrinter printer in printers)
+                {
+                    liste.Add(printer);
+                }
+                string jsonNotification = JsonConvert.SerializeObject(liste);
+                Settings.MultiPrinterList = jsonNotification;
+            
+        }
+
+        /// <summary>
+        /// Get all Printers in settings
+        /// </summary>
+        public List<XPrinter> GetMultiPrintersAsync()
+        {
+            List<XPrinter> liste = new List<XPrinter>();
+            if (Settings.MultiPrinterList != null && Settings.MultiPrinterList!="null")
+            {
+                if (Settings.MultiPrinterList != "null" && Manager.isJson(Settings.MultiPrinterList))
+                {
+                    liste = JsonConvert.DeserializeObject<List<XPrinter>>(Settings.MultiPrinterList);
+                }
+            }
+            return liste;
+        }
+
+
         //Set Urls Item once the page is loaded...
         public UrlService GetUrlService()
         {
@@ -260,6 +293,7 @@ namespace XpertMobileApp.ViewModels
             if (this.Settings.CaisseDedier != oldCaisseDedier)
             {
                 var res = await SaveSettingsToServer();
+
             }
             await App.SettingsDatabase.SaveItemAsync(Settings);
 
@@ -523,7 +557,7 @@ AppResources.alrt_msg_Ok);
                     Name = "",
                     Type = ""
                 });
-                // Blue tooth printer
+                // Bluetooth printer
                 var list = _blueToothService.GetDeviceList();
                 foreach (var item in list)
                 {
@@ -541,7 +575,7 @@ AppResources.alrt_msg_Ok);
                 }
 
                 // Netwirk Printer
-                if (App.Online)
+                if (await App.IsConected())
                 {
                     var ntworkProinters = await WebServiceClient.GetPrintersList();
                     foreach (var item in ntworkProinters)

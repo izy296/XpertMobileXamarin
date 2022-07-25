@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Xamarin.Forms;
 using XpertMobileApp.Api.Models;
 using XpertMobileApp.Api.Services;
 using XpertWebApi.Models;
@@ -12,6 +14,15 @@ namespace XpertMobileApp.Models
     public class Settings : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (propertyName == "EnableMultiPrinter")
+            {
+                MessagingCenter.Send(this, "MultiPrinterChanged", "");
+            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public bool isModified;
 
@@ -76,6 +87,19 @@ namespace XpertMobileApp.Models
         }
 
         public bool SubscribedToFBNotifications { get; set; } = false;
+        private bool enableMultiPrinter = false;
+        public bool EnableMultiPrinter
+        {
+            get { return enableMultiPrinter; }
+            set
+            {
+                if (value != enableMultiPrinter)
+                {
+                    enableMultiPrinter = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         public string ClientId { get; set; }
         public int Mobile_Edition { get; set; }
@@ -163,7 +187,16 @@ namespace XpertMobileApp.Models
             get { return notifiaction; }
             set { notifiaction = value; }
         }
-        public Settings() { }
+
+        private string multiPrinterList;
+        public string MultiPrinterList
+        {
+            get { return multiPrinterList; }
+            set { multiPrinterList = value; }
+        }
+
+        public Settings() { 
+        }
     }
 
     public class SYS_MOBILE_PARAMETRE

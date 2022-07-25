@@ -3286,6 +3286,32 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("codebarre_error_corps_message", resourceCulture);
             }
         }
+
+
+        public static string lbl_MultiPrinter
+        {
+            get
+            {
+                return ResourceManager.GetString("lbl_MultiPrinter", resourceCulture);
+            }
+        }
+
+        public static string txt_Msg_List_Impremant_Vide
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Msg_List_Impremant_Vide", resourceCulture);
+            }
+        }
+
+        public static string txt_Msg_List_Impremant_Ajout
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Msg_List_Impremant_Ajout", resourceCulture);
+            }
+        }
+
     }
 }
 

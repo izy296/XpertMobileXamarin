@@ -8,6 +8,7 @@
 
 >
     <ContentView.Content>
+
         <Grid  BackgroundColor="#fff" 
                Padding="7">
 
@@ -21,7 +22,10 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
+            <Grid.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_Swiped" />
+            </Grid.GestureRecognizers>
+            
             <!--<Image Grid.Row="0"
                    Grid.Column="0"
                    Margin="0,5,0,0"

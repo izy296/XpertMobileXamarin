@@ -921,4 +921,13 @@
   <data name="codebarre_titre_message" xml:space="preserve">
     <value>Barcode</value>
   </data>
+  <data name="lbl_MultiPrinter" xml:space="preserve">
+    <value>Multiple Printers</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Ajout" xml:space="preserve">
+    <value>Available printers list is empty</value>
+  </data>
+  <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
+    <value>Printers list is empty</value>
+  </data>
 </root>
