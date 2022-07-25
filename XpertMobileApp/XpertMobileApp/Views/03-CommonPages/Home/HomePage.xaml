@@ -11,25 +11,44 @@
              FlowDirection="MatchParent"
              >
     
-    <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="nortificationBell" Text="{i18n:Translate cmd_Filter}" 
-                     Icon="notification.png" Clicked="btn_Notification">
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem  
+                     Text="{i18n:Translate cmd_Filter}" 
+                     Icon="notification.png" 
+                     Clicked="btn_Notification">
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
     
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
 
             <!-- Liste des comptes -->
-            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
+            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="0,0,0,55" 
                    Margin="0" IsClippedToBounds="true"
                    BorderColor="{StaticResource NavigationPrimary}"
                    BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
                 
                 <StackLayout Spacing="10" Padding="15,0,15,15" >
-                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label x:Name="lblClientName" Text="Pharmacie Ben Mohamed " FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
-                               HorizontalTextAlignment="Center" TextColor="White"/>
+                    
+                    <StackLayout Orientation="Horizontal" 
+                                 Padding="90,0,0,0" 
+                                 Margin="0,0,0,0">
+                        
+                        <Label x:Name="lblClientName" 
+                               Text="Pharmacie Ben Mohamed " 
+                               FontSize="Medium" 
+                               FontFamily="{StaticResource FontGilroySemiBold}"
+                               HorizontalTextAlignment="Center" 
+                               VerticalTextAlignment="Center" 
+                               Margin="0,0,45,0" 
+                               TextColor="White" />
+
+                        <Button  x:Name="notificationBell" 
+                                 ImageSource="notification36.png" 
+                                 WidthRequest="35" 
+                                 HeightRequest="35"
+                                 Clicked="btn_Notification"
+                                 BackgroundColor="Transparent"/>
                     </StackLayout>
 
                     <Label 

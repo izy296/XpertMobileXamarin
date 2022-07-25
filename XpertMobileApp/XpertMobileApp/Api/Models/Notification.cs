@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace XpertMobileApp.Api.Models
 {
@@ -18,10 +19,20 @@ namespace XpertMobileApp.Api.Models
             get
             {
                 if (Enum.TryParse(Module, out MenuItemType res))
-                return Convert.ToInt32(res);
+                    return Convert.ToInt32(res);
                 else return 0;
             }
         }
+
+        public string Color
+        {
+            get
+            {
+                 
+                return "#665986";
+            }
+        }
+
         public string User { get; set; }
         public DateTime TimeNotification { get; set; }
 

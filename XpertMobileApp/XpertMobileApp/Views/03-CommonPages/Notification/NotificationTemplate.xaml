@@ -4,6 +4,8 @@
              x:Class="XpertMobileApp.Views.Templates.NotificationTemplate"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                          xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+
 >
     <ContentView.Content>
         <Grid  BackgroundColor="#fff" 
@@ -20,12 +22,27 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0"
+            <!--<Image Grid.Row="0"
                    Grid.Column="0"
                    Margin="0,5,0,0"
                    Source="logo_v_tl_x.png"
                    HeightRequest="45"
-            />
+            />-->
+
+            <yummy:PancakeView  Grid.Row="0"
+                                Grid.Column="0"
+                                HeightRequest="70"
+                                x:Name="pancake_view"
+                                CornerRadius="1000"
+                                BackgroundColor="{Binding Color}"
+                                >
+                <StackLayout VerticalOptions="Center">
+                <Image Source="{Binding ModuleId, StringFormat='mi_{0}.png'}" 
+                       WidthRequest="30"
+                       HeightRequest="30"
+                       />
+                    </StackLayout>
+            </yummy:PancakeView>
 
             <StackLayout Orientation="Vertical"
                          VerticalOptions="Start"
@@ -55,7 +72,7 @@
                        Padding="5"
                        HasShadow="false"
                        BackgroundColor="#DCEFFF">
-                    
+
                     <Label Text="{Binding User}"
                            TextColor="{StaticResource Primary}"
                            FontSize="13"
@@ -66,14 +83,8 @@
                 <Label Text="{Binding TimeNotification}"
                        Margin="0,0,8,0"/>
             </FlexLayout>
-            
-            <BoxView Style="{StaticResource Separator}" 
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    HeightRequest="1"
-                    Margin="0,5"
-                     Color="#D8D8D8"/>
+
+
         </Grid>
     </ContentView.Content>
 </ContentView>

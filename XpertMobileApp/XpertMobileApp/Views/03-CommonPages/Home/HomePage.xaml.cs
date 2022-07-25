@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
@@ -17,12 +16,10 @@ namespace XpertMobileApp.Views
     public partial class HomePage : ContentPage
     {
         HomeViewModel viewModel;
-
+        private bool KeepAnimate { get; set; } = false;
         public HomePage()
         {
-
             InitializeComponent();
-
             // Title = AppResources.pn_home;
             lblUser.Text = App.User?.Token.userName;
             lblClientName.Text = App.Settings.ClientName;
@@ -51,30 +48,35 @@ namespace XpertMobileApp.Views
             }
 
             if (viewModel.Items.Count == 0)
-            {
                 viewModel.LoadItemsCommand.Execute(null);
-            }
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
 
-            MessagingCenter.Subscribe<HomeMenuItem, string>(this, "refreshBell", (objet, e) => {
+            MessagingCenter.Subscribe<HomeMenuItem, string>(this, "refreshBell", async (objet, e) =>
+            {
                 if (App.IsThereNotification)
-                    nortificationBell.IconImageSource = "notificationRed.png";
-                else nortificationBell.IconImageSource = "notification.png";
+                {
+                    notificationBell.ImageSource = "notificationRed36.png";
+                    await notificationBell.RotateTo(-50, 300, easing: Easing.Linear);
+                    await notificationBell.RotateTo(0, 300, easing: Easing.Linear);
+                }
+                else notificationBell.ImageSource = "notification36.png";
             });
-            if (App.IsThereNotification)
-            nortificationBell.IconImageSource = "notificationRed.png";
-            else nortificationBell.IconImageSource = "notification.png";
 
+            if (App.IsThereNotification)
+            {
+                notificationBell.ImageSource = "notificationRed36.png";
+                await Task.Delay(500);
+                await notificationBell.RotateTo(-50, 100, easing: Easing.Linear);
+                await notificationBell.RotateTo(0, 100, easing: Easing.Linear);
+            }
+            else notificationBell.ImageSource = "notification36.png";
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 
         }
-
-
-
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
 
@@ -118,6 +120,7 @@ namespace XpertMobileApp.Views
 
         private async void btn_Notification(object sender, EventArgs e)
         {
+            KeepAnimate = false;
             await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Notification);
         }
     }
