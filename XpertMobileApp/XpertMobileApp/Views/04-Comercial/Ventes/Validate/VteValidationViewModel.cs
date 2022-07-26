@@ -85,6 +85,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+                string printerToUse = App.Settings.PrinterName;
                 item.MBL_NUM_CARTE_FEDILITE = SelectedTiers.NUM_CARTE_FIDELITE;
                 item.CODE_CARTE_FIDELITE = SelectedTiers.CODE_CARTE_FIDELITE;
                 item.CODE_MODE = "";
@@ -104,17 +105,17 @@ namespace XpertMobileApp.ViewModels
                             await PopupNavigation.Instance.PushAsync(popupPrinter);
                             var resPop = await popupPrinter.PopupClosedTask;
                             if (resPop != "Null")
-                                App.Settings.PrinterName = resPop;
+                                printerToUse = resPop;
                         }
-                        else await Application.Current.MainPage.DisplayAlert("Error", "La list d'imprement est vide", "Ok");
+                        else await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
                     }
                     else
                     {
-                        await Application.Current.MainPage.DisplayAlert("Error", "La list d'imprement est vide", "Ok");
+                        await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
                     }
                 }
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var res = await bll.ValidateVente(item, App.Settings.PrinterName);
+                var res = await bll.ValidateVente(item, printerToUse);
                 UserDialogs.Instance.HideLoading();
                 return res;
             }

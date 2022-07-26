@@ -35,6 +35,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
         {
             if (!printerLocal.IsInstanceReady())
             {
+                string printerToUse = App.Settings.PrinterName;
                 if (App.Settings.EnableMultiPrinter)
                 {
                     List<XPrinter> Liste;
@@ -48,32 +49,19 @@ namespace XpertMobileSettingsPage.Helpers.Services
                             PopupNavigation.Instance.PushAsync(popupPrinter);
                             var resPop = popupPrinter.PopupClosedTask;
                             if (resPop.Result != "Null")
-                                App.Settings.PrinterName = resPop.Result;
-                            bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, App.Settings.PrinterName);
-
-                            if (!succes)
-                            {
-                                throw new Exception("Échec de la connexion à l'imprimante !");
-                            }
-                            else
-                            {
-                                if (!printerLocal.isConnected())
-                                {
-                                    printerLocal.openConnection();
-                                }
-                            }
+                                printerToUse = resPop.Result;
                         }
-                        else Application.Current.MainPage.DisplayAlert("Error", "La list d'imprement est vide", "Ok");
+                        else Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
 
                     }
                     else
                     {
-                        Application.Current.MainPage.DisplayAlert("Error", "La list d'imprement est vide", "Ok");
+                        Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
                     }
                 }
                 else
                 {
-                    bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, App.Settings.PrinterName);
+                    bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
 
                     if (!succes)
                     {
