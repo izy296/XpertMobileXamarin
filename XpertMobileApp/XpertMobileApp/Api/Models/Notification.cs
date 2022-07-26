@@ -24,12 +24,12 @@ namespace XpertMobileApp.Api.Models
             }
         }
 
-        public string Color
+        public string ColorM
         {
             get
             {
-                 
-                return "#665986";
+                var c = (Color) Application.Current.Resources[$"cl_{ModuleId}"];
+                return c.ToHex(); 
             }
         }
 
