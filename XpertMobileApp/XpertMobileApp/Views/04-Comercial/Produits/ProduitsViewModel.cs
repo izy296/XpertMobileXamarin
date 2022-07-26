@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.Linq;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -149,12 +151,14 @@ namespace XpertMobileApp.ViewModels
                 UserDialogs.Instance.HideLoading();
                 if (products.Count > 1)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, BareCode));
+                    //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits+ System.Environment.NewLine+ BareCode, AppResources.alrt_msg_Ok);
                     await ExecuteLoadItemsCommand();
                 }
                 else if (products.Count == 0)
                 {
-                    await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, BareCode));
+                    //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits + System.Environment.NewLine + BareCode, AppResources.alrt_msg_Ok);
                     await ExecuteLoadItemsCommand();
                 }
                 else
