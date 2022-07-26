@@ -59,7 +59,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         DisplayUrlService = lInfos.Mobile_Remote_URL,
                         Selected = true,
-                        Title = "Demo"
+                        Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
                     };
                 }
                 List<UrlService> liste = new List<UrlService>();

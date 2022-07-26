@@ -675,7 +675,7 @@ namespace XpertMobileApp.Views
                                 Selected = listeUrlService[indexModified].Selected,
                                 Title = listeUrlService[indexModified].Title
                             });
-
+                            UrlServicePicker.SelectedIndex = GetServiceUrlIndex();
                             //Save all settings
                             await viewModel.SaveSettings();
                             await DisplayAlert(AppResources.txt_modification_succee, AppResources.txt_modification_message, AppResources.alrt_msg_Ok);
