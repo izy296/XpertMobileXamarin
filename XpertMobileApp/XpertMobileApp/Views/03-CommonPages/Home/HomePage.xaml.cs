@@ -24,6 +24,11 @@ namespace XpertMobileApp.Views
             lblUser.Text = App.User?.Token.userName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
+            if (App.Settings.Language == "ar")
+            {
+                notif_container.Padding = new Thickness(0, 0, 0, 0);
+                lblClientName.Margin = new Thickness(45, 0, 90, 0);
+            }
         }
 
         protected async override void OnAppearing()
