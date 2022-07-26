@@ -30,7 +30,8 @@
                 
                 <StackLayout Spacing="10" Padding="15,0,15,15" >
                     
-                    <StackLayout Orientation="Horizontal" 
+                    <StackLayout x:Name="notif_container"
+                                 Orientation="Horizontal" 
                                  Padding="90,0,0,0" 
                                  Margin="0,0,0,0">
                         
