@@ -82,11 +82,23 @@
             <Color x:Key="DefaultGrayColor">#808080</Color>
             <Color x:Key="DefaultLisViewBackColor">#F4F3F2</Color>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="AccentOpacity" x:FactoryMethod="FromRgba">
+                <x:Arguments>
+                    <x:Double>150</x:Double>
+                    <x:Double>209</x:Double>
+                    <x:Double>255</x:Double>
+                    <x:Double>0.8</x:Double>
+                </x:Arguments>
+            </Color>
 
 
             <Color x:Key="BoutiquePrimary">MediumVioletRed</Color>
             <!--#2196F3-->
 
+            <Color x:Key="cl_10">#F8C709</Color>
+            <!--Colors for notiications-->
+                
+            <!--End Color for noification--> 
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
@@ -182,6 +194,7 @@
                 <Setter Property="Opacity" Value="0.5"/>
                 <Setter Property="Margin" Value="130, 0, 130, 15" />
             </Style>
+
 
         </ResourceDictionary>
     </Application.Resources>
