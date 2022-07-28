@@ -8,7 +8,7 @@
     <StackLayout x:Name="sl_content" Padding="5" >
 
         <!--Entete Sortie-->
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <Grid  BackgroundColor="Transparent" >
 
                 <Grid.ColumnDefinitions>
@@ -45,7 +45,7 @@
         </Frame>
 
         <!--Detail Sortie-->
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="10" Padding="10">

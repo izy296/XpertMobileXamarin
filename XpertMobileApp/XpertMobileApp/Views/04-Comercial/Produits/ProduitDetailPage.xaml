@@ -8,8 +8,6 @@
 
     <StackLayout x:Name="sl_content" Padding="5" >
 
-
-        
         <Frame CornerRadius="10" Padding="5" Margin="5"  HasShadow="True"  OutlineColor="White">
             <Grid Padding="0,0,0,0" Margin="0">
 
@@ -76,32 +74,25 @@
                 </StackLayout>
             </Grid>
         </Frame>
-        
+
         <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                     <Label Text="{i18n:Translate txt_Lots}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
-                </StackLayout> 
+                </StackLayout>
 
-                <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding ItemRows}"
-                    HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadRowsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement">
+                <RefreshView 
+                    x:Name="refreshView"
+                    Refreshing="RefreshView_Refreshing"
+                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                        <CollectionView 
+                                    ItemsSource="{Binding ItemRows}"
+                                    ItemTemplate="{StaticResource templateSelector}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:Stk_RowElementTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
+                        </CollectionView>
+                </RefreshView>
             </StackLayout>
         </Frame>
     </StackLayout>

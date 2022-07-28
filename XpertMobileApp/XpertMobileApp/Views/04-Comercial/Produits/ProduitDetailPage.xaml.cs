@@ -12,9 +12,9 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProduitDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProduitDetailPage : ContentPage
+    {
         ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK> viewModel;
 
         private STK_PRODUITS item;
@@ -69,11 +69,11 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
+            BindingContext = this;
             try
             {
                 if (this.viewModel == null)
-                { 
+                {
                     var ProdInfos = await WebServiceClient.GetProduitDetails(this.Item.CODE_PRODUIT);
 
                     BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_AssistantCommandes, View_STK_STOCK>(ProdInfos, Item.CODE_PRODUIT);
@@ -137,8 +137,13 @@ namespace XpertMobileApp.Views
         }
 
         private async void RefBtn_Clicked(object sender, EventArgs e)
-        {            
-            await Navigation.PushAsync(new ProduitRefDetailPage(viewModel.Item.REFERENCE));            
+        {
+            await Navigation.PushAsync(new ProduitRefDetailPage(viewModel.Item.REFERENCE));
+        }
+
+        private async void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            await ExecuteLoadRowsCommand();
         }
     }
 }

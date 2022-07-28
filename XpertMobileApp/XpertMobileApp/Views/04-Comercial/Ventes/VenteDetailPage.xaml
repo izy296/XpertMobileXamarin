@@ -69,7 +69,7 @@
                 </StackLayout>
             </Grid>
         </Frame>
-        
+
         <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
@@ -78,25 +78,23 @@
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>
 
-                <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding ItemRows}"
-                    HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadRowsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement">
+                <RefreshView x:Name="refreshView"
+                             Refreshing="RefreshView_Refreshing"
+                             IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:RowElementTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                    <CollectionView ItemsSource="{Binding ItemRows}"
+                                    ItemTemplate="{StaticResource VenteTemplateSelector}">
 
-                </ListView>
-                <Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
-                                Text="Imprimer" Clicked="PrintAsync"/>
+                    </CollectionView>
+                </RefreshView>
+
+                <!--Button Pour Imprimer-->
+                    <Button x:Name="Btn_Print" 
+                            Margin="0,15,0,0" 
+                            Style="{DynamicResource DefaultBtnStyle}" 
+                            CornerRadius="8"
+                            Text="Imprimer" 
+                            Clicked="PrintAsync"/>
             </StackLayout>
         </Frame>
     </StackLayout>

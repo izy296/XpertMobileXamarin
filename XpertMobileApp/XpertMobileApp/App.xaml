@@ -1,11 +1,44 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XpertMobileApp.Converters"
+             xmlns:local="clr-namespace:XpertMobileApp.Converters" xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:tempsel="clr-namespace:XpertMobileApp.Views._Templates.TemplateSelector"
              x:Class="XpertMobileApp.App">
     <Application.Resources>
         <ResourceDictionary Source="Themes/LightTheme.xaml" />
         <ResourceDictionary>
+            <!-- Data Template Selector -->
+
+            <!-- Produit-->
+            <DataTemplate x:Key="LotPharm">
+                <template:Stk_RowElementTemplate />
+            </DataTemplate>
+
+            <DataTemplate x:Key="LotComm">
+                <template:Stk_RowElementTemplateCOMM />
+            </DataTemplate>
+
+            <tempsel:ProduitDataSelectorTemplate  x:Key="templateSelector" 
+                                                  LotPharm="{StaticResource LotPharm}"
+                                                  LotComm="{StaticResource LotComm}"/>
+            <!-- Produit-->
+
+            <!--Vente-->
+            <DataTemplate x:Key="VentePsy">
+                <template:RowElementTemplatePsychotrope/>
+            </DataTemplate>
+
+            <DataTemplate x:Key="VenteNormal">
+                <template:RowElementTemplate/>
+            </DataTemplate>
+
+            <tempsel:VenteDataSelectorTemplate x:Key="VenteTemplateSelector"
+                                               VentePsychotrope="{StaticResource VentePsy}"
+                                               VenteNormal="{StaticResource VenteNormal}"/>
+
+            <!--Vente-->
+            
+            <!--End Data Template Selector-->
             <!-- Font Gilroy -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
                 <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
@@ -97,8 +130,8 @@
 
             <Color x:Key="cl_10">#F8C709</Color>
             <!--Colors for notiications-->
-                
-            <!--End Color for noification--> 
+
+            <!--End Color for noification-->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />

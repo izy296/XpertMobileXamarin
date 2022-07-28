@@ -27,7 +27,7 @@ namespace XpertMobileApp.Views.Encaissement
             set { item = value; }
         }
 
-        public string CodeVente=null;
+        public string CodeVente = null;
 
         public List<View_VTE_VENTE> itemByCodeVente;
         public List<View_VTE_VENTE_LOT> Printerdetails { get; set; }
@@ -66,10 +66,11 @@ namespace XpertMobileApp.Views.Encaissement
 
             try
             {
-                // une partie de code que permet de crassé l'objet vente pour afficher les informations
-                // de vente envoyé par la notification avec la remplacement de Item avec l'objet avec
-                // le codeVente donné et le changment de Titre de la page et la deuxiem appele
-                // de function ExecuteLoadRowsCommand() pour le recuperation de detaile de nouvelle object
+                // une partie de code qui permet d'écrasé l'objet vente pour afficher les informations
+                // envoyé par la notification avec le remplacement d'Item avec l'objet avec
+                // le codeVente donné et le changement du Titre de la page.
+                // Le deuxiéme appelle
+                // de la fonction ExecuteLoadRowsCommand() pour la recuperation de détail du nouvelle object
                 if (CodeVente != null)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
@@ -78,7 +79,7 @@ namespace XpertMobileApp.Views.Encaissement
                     viewModel.Item = this.Item;
                     viewModel.ItemId = CodeVente;
                     viewModel.Title = CodeVente;
-                    CodeVente =null;
+                    CodeVente = null;
                     IsBusy = false;
                     await ExecuteLoadRowsCommand();
                     UserDialogs.Instance.HideLoading();
@@ -196,6 +197,11 @@ namespace XpertMobileApp.Views.Encaissement
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+        }
+
+        private async void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            await ExecuteLoadRowsCommand();
         }
     }
 }
