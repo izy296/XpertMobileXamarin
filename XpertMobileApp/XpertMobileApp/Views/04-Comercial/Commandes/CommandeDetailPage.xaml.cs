@@ -12,9 +12,9 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class CommandeDetailPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CommandeDetailPage : ContentPage
+    {
         ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT> viewModel;
 
         private View_VTE_VENTE item;
@@ -98,6 +98,11 @@ namespace XpertMobileApp.Views
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+        }
+
+        private async void RefreshView_Refreshing(object sender, EventArgs e)
+        {
+            await ExecuteLoadRowsCommand();
         }
     }
 }

@@ -105,6 +105,7 @@ namespace XpertMobileApp.ViewModels
             this.AddSelect<View_VTE_COMMANDE, string>(e => e.CREATED_BY);
             this.AddSelect<View_VTE_COMMANDE, string>(e => e.NOM_TIERS);
             this.AddSelect<View_VTE_COMMANDE, decimal>(e => e.TOTAL_HT);
+            this.AddSelect<View_VTE_COMMANDE, string>(e => e.CODE_VENTE);
             this.AddSelect<View_VTE_COMMANDE, DateTime?>(e => e.DATE_VENTE);
 
             return qb.QueryInfos;

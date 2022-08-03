@@ -1,44 +1,78 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:XpertMobileApp.Converters" xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
-             xmlns:tempsel="clr-namespace:XpertMobileApp.Views._Templates.TemplateSelector"
+             xmlns:local="clr-namespace:XpertMobileApp.Converters" 
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:templateSelector="clr-namespace:XpertMobileApp.Views._Templates.TemplateSelector" 
              x:Class="XpertMobileApp.App">
     <Application.Resources>
         <ResourceDictionary Source="Themes/LightTheme.xaml" />
         <ResourceDictionary>
             <!-- Data Template Selector -->
 
-            <!-- Produit-->
+            <!-- ***************** Produit *****************-->
+            
             <DataTemplate x:Key="LotPharm">
-                <template:Stk_RowElementTemplate />
+                <template:RowElementTemplate_STK />
             </DataTemplate>
 
             <DataTemplate x:Key="LotComm">
-                <template:Stk_RowElementTemplateCOMM />
+                <template:RowElementTemplate_STK_COMM />
             </DataTemplate>
 
-            <tempsel:ProduitDataSelectorTemplate  x:Key="templateSelector" 
-                                                  LotPharm="{StaticResource LotPharm}"
-                                                  LotComm="{StaticResource LotComm}"/>
-            <!-- Produit-->
+            <templateSelector:ProduitDataSelectorTemplate   x:Key="templateSelector" 
+                                                            LotPharm="{StaticResource LotPharm}"
+                                                            LotComm="{StaticResource LotComm}"/>
+            <!-- ***************** Produit *****************-->
 
-            <!--Vente-->
+            <!--***************** Vente *****************e-->
+            
             <DataTemplate x:Key="VentePsy">
-                <template:RowElementTemplatePsychotrope/>
+                <template:RowElementTemplate_VTE_PSYCHOTROPE/>
             </DataTemplate>
 
             <DataTemplate x:Key="VenteNormal">
-                <template:RowElementTemplate/>
+                <template:RowElementTemplate_VTE/>
             </DataTemplate>
 
-            <tempsel:VenteDataSelectorTemplate x:Key="VenteTemplateSelector"
-                                               VentePsychotrope="{StaticResource VentePsy}"
-                                               VenteNormal="{StaticResource VenteNormal}"/>
+            <templateSelector:VenteDataSelectorTemplate x:Key="VenteTemplateSelector"
+                                                        VentePsychotrope="{StaticResource VentePsy}"
+                                                        VenteNormal="{StaticResource VenteNormal}"/>
 
-            <!--Vente-->
+            <!--***************** Vente *****************-->
+
+            <!--***************** ACHAT *****************-->
+
+            <DataTemplate x:Key="Achat">
+                <template:RowElementTemplate_ACH/>
+            </DataTemplate>
+
+            <templateSelector:AchatDataSelectorTemplate x:Key="AchatTemplateSelector" 
+                                                        Achat="{StaticResource Achat}"/>
+            <!--***************** ACHAT *****************-->
             
+            <!--***************** COMMANDE ******************-->
+
+            <DataTemplate x:Key="Commande">
+                <template:RowElementTemplate_CMD/>
+            </DataTemplate>
+
+            <templateSelector:CommandeDataSelectorTemplate x:Key="CommandeDataSelector"
+                                                           Commande="{StaticResource Commande}"/>
+            <!--***************** COMMANDE ******************-->
+            
+            <!--***************** Sortie ********************-->
+
+            <DataTemplate x:Key="Sortie">
+                <template:RowElementTemplate_STK_SORTIE/>
+            </DataTemplate>
+
+            <templateSelector:SortieDataSelectorTemplate x:Key="SortieDataSelector"
+                                                         Sortie="{StaticResource Sortie}"/>
+            <!--***************** Sortie ********************-->
             <!--End Data Template Selector-->
+            
+            
             <!-- Font Gilroy -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
                 <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />

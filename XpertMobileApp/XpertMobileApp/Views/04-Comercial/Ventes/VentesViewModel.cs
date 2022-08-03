@@ -78,9 +78,9 @@ namespace XpertMobileApp.ViewModels
                     return "VTE_VENTE";
                 }
             }
-        }        
+        }
 
-        public VentesViewModel( string typeVente)
+        public VentesViewModel(string typeVente)
         {
             TypeVente = typeVente;
 
@@ -90,7 +90,7 @@ namespace XpertMobileApp.ViewModels
                 Title = AppResources.pn_Ventes;
                 IsVtesList = true;
             }
-            else if(typeVente == VentesTypes.VentePSYCO)
+            else if (typeVente == VentesTypes.VentePSYCO)
             {
                 Title = AppResources.pn_VtePsychotrop;
             }
@@ -105,7 +105,7 @@ namespace XpertMobileApp.ViewModels
             base.InitConstructor();
 
             if (typeVente == VentesTypes.Vente)
-            { 
+            {
                 LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
             }
         }
@@ -122,18 +122,18 @@ namespace XpertMobileApp.ViewModels
                 if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                     this.AddCondition<View_VTE_PSYCHOTROP, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
                 this.AddOrderBy<View_VTE_PSYCHOTROP, DateTime?>(e => e.CREATED_ON, Sort.DESC);
-            } 
+            }
             else
             {
                 this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
                 if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                     this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
-                if (!string.IsNullOrEmpty(TypeVente)) 
+                if (!string.IsNullOrEmpty(TypeVente))
                 {
                     this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_VENTE, TypeVente);
 
-                    if(Constants.AppName == Apps.XCOM_Livraison) 
+                    if (Constants.AppName == Apps.XCOM_Livraison)
                     {
                         this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, App.User.UserName);
                     }
@@ -146,11 +146,42 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
+        protected override QueryInfos GetSelectParams()
+        {
+            base.GetSelectParams();
+
+            if (TypeVente == VentesTypes.VentePSYCO)
+            {
+                this.AddSelect<View_VTE_PSYCHOTROP, string>(e => e.CODE_VENTE);
+                this.AddSelect<View_VTE_PSYCHOTROP, string>(e => e.TITRE_VENTE);
+                this.AddSelect<View_VTE_PSYCHOTROP, string>(e => e.CODE_TIERS);
+                this.AddSelect<View_VTE_PSYCHOTROP, string>(e => e.CREATED_BY);
+                this.AddSelect<View_VTE_PSYCHOTROP, string>(e => e.NOM_TIERS);
+                this.AddSelect<View_VTE_PSYCHOTROP, DateTime?>(e => e.DATE_VENTE);
+                this.AddSelect<View_VTE_PSYCHOTROP, decimal>(e => e.TOTAL_PAYE);
+                this.AddSelect<View_VTE_PSYCHOTROP, decimal>(e => e.TOTAL_RESTE);
+
+            }
+            else
+            {
+                this.AddSelect<View_VTE_VENTE, string>(e => e.CODE_VENTE);
+                this.AddSelect<View_VTE_VENTE, string>(e => e.TITRE_VENTE);
+                this.AddSelect<View_VTE_VENTE, string>(e => e.CODE_TIERS);
+                this.AddSelect<View_VTE_VENTE, string>(e => e.CREATED_BY);
+                this.AddSelect<View_VTE_VENTE, string>(e => e.NOM_TIERS);
+                this.AddSelect<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE);
+                this.AddSelect<View_VTE_VENTE, decimal>(e => e.TOTAL_PAYE);
+                this.AddSelect<View_VTE_VENTE, decimal>(e => e.TOTAL_RESTE);
+            }
+
+            return qb.QueryInfos;
+        }
+
         protected override void OnAfterLoadItems(IEnumerable<View_VTE_VENTE> list)
         {
             base.OnAfterLoadItems(list);
 
-            int i = 0; 
+            int i = 0;
             foreach (var item in list)
             {
                 i += 1;
@@ -218,7 +249,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-              //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 Types.Clear();
                 var itemsC = await WebServiceClient.GetVenteTypes();
@@ -228,17 +259,17 @@ namespace XpertMobileApp.ViewModels
                     Types.Add(itemC);
                 }
 
-                
+
                 BSE_DOCUMENTS_TYPE empty = new BSE_DOCUMENTS_TYPE();
                 empty.CODE_TYPE = "";
                 empty.DESIGNATION_TYPE = AppResources.txt_All;
                 Types.Insert(0, empty);
-                
-              //  UserDialogs.Instance.HideLoading();
+
+                //  UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
-              //  UserDialogs.Instance.HideLoading();
+                //  UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }

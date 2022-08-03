@@ -9,13 +9,13 @@ using Xamarin.Forms.Xaml;
 
 namespace XpertMobileApp.Views.Templates
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class RowCmdTemplate : ContentView
-	{
-		public RowCmdTemplate()
-		{
-			InitializeComponent();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class RowElementTemplate_CMD : ContentView
+    {
+        public RowElementTemplate_CMD()
+        {
+            InitializeComponent();
+        }
 
         void Handle_ValueChanged(object sender, Syncfusion.SfNumericUpDown.XForms.ValueEventArgs e)
         {

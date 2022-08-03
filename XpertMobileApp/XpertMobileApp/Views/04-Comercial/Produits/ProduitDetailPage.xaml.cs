@@ -69,7 +69,6 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-            BindingContext = this;
             try
             {
                 if (this.viewModel == null)

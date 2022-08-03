@@ -8,7 +8,13 @@
 
     <StackLayout x:Name="sl_content" Padding="5" >
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" 
+               Padding="5" 
+               Margin="5" 
+               BackgroundColor="White" 
+               HasShadow="True"  
+               OutlineColor="White">
+
             <Grid  BackgroundColor="White" >
 
                 <Grid.ColumnDefinitions>
@@ -21,51 +27,101 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                    <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                <StackLayout Grid.Column="0" 
+                             Grid.ColumnSpan="2" 
+                             Spacing="0" 
+                             Padding="0,5">
+
+                    <Label Text="{i18n:Translate txt_header}" 
+                           TextColor="{StaticResource Primary}" 
+                           FontSize="Large" 
+                           FontAttributes="Bold"/>
+
+                    <BoxView BackgroundColor="#EFEFEF" 
+                             HeightRequest="0.5"/>
+
                 </StackLayout>
 
-                <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                    <Label Text="{Binding Item.CREATED_BY}" TextColor="{StaticResource DefaultTextColor}"/>
-                    <Label Text="{Binding Item.NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}"/>
+                <StackLayout Grid.Column="0" 
+                             Grid.Row="1" 
+                             Spacing="5" 
+                             Padding="0">
+
+                    <Label Text="{Binding Item.TITRE_VENTE}" 
+                           TextColor="{StaticResource DefaultTextColor}" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"/>
+
+                    <Label Text="{Binding Item.CREATED_BY}" 
+                           TextColor="{StaticResource DefaultTextColor}"/>
+
+                    <Label Text="{Binding Item.NOM_TIERS}"
+                           TextColor="{StaticResource DefaultTextColor}"/>
+
                 </StackLayout>
 
-                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="En cours" FontSize="Default" FontAttributes="Bold" HorizontalOptions="End" TextColor="Red"/>
-                    <Label Text="{ Binding Item.TOTAL_HT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                    <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                <StackLayout Grid.Column="1" 
+                             Grid.Row="1" 
+                             Spacing="5" 
+                             Padding="0">
+
+                    <Label Text="En cours" 
+                           FontSize="Default" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="End" 
+                           TextColor="Red"/>
+
+                    <Label Text="{ Binding Item.TOTAL_HT, StringFormat='{0:N2} DA'}" 
+                           FontAttributes="Bold" 
+                           FontSize="Default" 
+                           HorizontalOptions="End" 
+                           TextColor="Red"/>
+
+                    <Label Text="{Binding Item.DATE_VENTE, StringFormat='{0:dd/MM/yyyy HH:mm}'}" 
+                           TextColor="{StaticResource DefaultTextColor}" 
+                           HorizontalOptions="End"/>
+
                 </StackLayout>
 
             </Grid>
         </Frame>
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
-            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+        <Frame CornerRadius="10" 
+               Padding="5" 
+               Margin="5" 
+               BackgroundColor="White" 
+               HasShadow="True"  
+               OutlineColor="White">
 
-                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                    <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+            <StackLayout x:Name="sl_rows" 
+                         VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" 
+                             Grid.ColumnSpan="2" 
+                             Spacing="0" 
+                             Padding="0,5">
+
+                    <Label Text="{i18n:Translate txt_Details}" 
+                           TextColor="{StaticResource Primary}" 
+                           FontSize="Large" 
+                           FontAttributes="Bold"/>
+
+                    <BoxView BackgroundColor="#EFEFEF" 
+                             HeightRequest="0.5"/>
+
                 </StackLayout>
 
-                <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding ItemRows}"
-                    HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadRowsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement">
+                <RefreshView 
+                    x:Name="refreshView"
+                    Refreshing="RefreshView_Refreshing"
+                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:RowCmdTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                    <CollectionView 
+                        ItemsSource="{Binding ItemRows}"
+                        ItemTemplate="{StaticResource CommandeDataSelector}">
+                    </CollectionView>
 
-                </ListView>
+                </RefreshView>
             </StackLayout>
         </Frame>
     </StackLayout>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class=" XpertMobileApp.Views.Templates.Stk_RowElementTemplateCOMM">
+             x:Class=" XpertMobileApp.Views.Templates.RowElementTemplate_ACH">
     <ContentView.Content>
         <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
                 <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
@@ -23,27 +23,28 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Spacing="5" Padding="0" VerticalOptions="Fill" 
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
                     </StackLayout>
-                        
+                    
                     <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0" Orientation="Horizontal">
-                        <Label Text="{ Binding LOT, StringFormat='Exp: {0:N2}'}" Grid.Column="0" TextColor="{StaticResource DefaultTextColor}" 
-                               HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default"/>
-                        <Label Text="{ Binding EXPIRATION, StringFormat='Exp: {0:N2}'}" Grid.Column="1" TextColor="{StaticResource DefaultTextColor}" 
+                        <Label Text="{Binding LOT}" Grid.Column="0" TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding Expiration}" Grid.Column="1" TextColor="{StaticResource DefaultTextColor}" 
                                HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default"/>
                     </StackLayout>
                     <!--
                         <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
                     -->
-                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qté: {0:N2}'}" 
+                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
-                    
                     <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Text="{ Binding VAL_STK, StringFormat='Val. : {0:N2}'}" 
                            FontSize="Default" FontAttributes="Bold" HorizontalOptions="EndAndExpand" />
 
 
-                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding PRIX_VENTE, StringFormat='PV: {0:N2}'}" TextColor="Orange"
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding SHP, StringFormat='SHP : {0:N2}'}" TextColor="Orange"
                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
-                    <Label Grid.Column="2" Grid.Row="2"  Text="{Binding PRIX_FOURNISSEUR, StringFormat='PA: {0:N2}'}" TextColor="Chocolate"
+                    <Label Grid.Column="2" Grid.Row="2"  Text="{Binding PPA, StringFormat='PPA : {0:N2}'}" TextColor="Chocolate"
                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
+                    <Label Grid.Column="3" Grid.Row="2" Text="{ Binding PRIX_VENTE, StringFormat='PV. {0:N2}'}" FontSize="Default" HorizontalOptions="EndAndExpand"
+                         FontAttributes="Bold" TextColor="Red"/>
                 </Grid>
             </Frame>
         </StackLayout>

@@ -162,17 +162,9 @@
 
                         </StackLayout>
 
-                        <syncfusion:SfListView x:Name="ItemsListView" 
-                                                ItemsSource="{Binding ItemRows}"
-                                               >
-                            <syncfusion:SfListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <template:RowCmdTemplate />
-                                    </ViewCell>
-                                </DataTemplate>
-                            </syncfusion:SfListView.ItemTemplate>
-                        </syncfusion:SfListView>
+                        <CollectionView 
+                                    ItemsSource="{Binding ItemRows}"
+                                    ItemTemplate="{StaticResource templateSelector}"/>
                     </StackLayout>
 
                 </Frame>

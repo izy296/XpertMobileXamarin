@@ -53,70 +53,19 @@
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>
 
-                <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding ItemRows}"
-                    HasUnevenRows="true"
-                    RefreshCommand="{Binding LoadRowsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement">
+                <RefreshView 
+                            x:Name="refreshView"
+                            Refreshing="RefreshView_Refreshing"
+                            IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                    
+                    <CollectionView 
+                                ItemsSource="{Binding ItemRows}"
+                                ItemTemplate="{StaticResource SortieDataSelector}">
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
-                                    <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
-                                        <Grid  BackgroundColor="Transparent" >
-
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="4"/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="auto"/>
-                                                <ColumnDefinition Width="auto"/>
-                                            </Grid.ColumnDefinitions>
-
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="20"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-
-                                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="5" Spacing="5" Padding="0" VerticalOptions="Fill" 
-                                                HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
-                                            </StackLayout>
-
-
-                                            <Label Grid.Column="1" Grid.ColumnSpan="3" Grid.RowSpan="1"  Grid.Row="0" Padding="0" Text="{Binding DESIGNATION_PRODUIT}" 
-                                                   TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="StartAndExpand" FontAttributes="Bold" FontSize="Default"/>
-
-                                            <!--
-                                                <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
-                                            -->
-                                            <!--<Frame Grid.Column="1" Grid.Row="1" BackgroundColor="Red" CornerRadius="10" WidthRequest="22" IsVisible="{Binding PSYCHOTHROPE}" HasShadow="True"
-                                                    Margin="-2,0,0,0" Padding="3,2,3,2" HeightRequest="13" VerticalOptions="Center"  HorizontalOptions="Start">
-                                               
-                                            </Frame>-->
-                                            <Label Grid.Column="1" Grid.Row="1" Text="{ Binding QUANTITE, StringFormat='Quantité : {0:N2}'}" Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="StartAndExpand" />
-                                            <Label Grid.Column="1" Grid.Row="2"  Text="{ Binding LOT, StringFormat='Lot : {0:N2}'}" Margin="20,0,0,0" FontAttributes="Bold"  FontSize="Default" HorizontalOptions="StartAndExpand"  />
-
-
-                                            <Label Grid.Column="2" Grid.Row="1"  Text="{ Binding PPA, StringFormat='PPA : {0:N2}'}" Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="StartAndExpand" />
-                                            <Label Grid.Column="2" Grid.Row="2" Text="{ Binding SHP, StringFormat='SHP : {0:N2}'}" Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="StartAndExpand" />
-
-                                            <Label Grid.Column="1" Grid.Row="3" Text="{ Binding TAUX_TVA, StringFormat='TVA : {0:N2} DA'}"  Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="StartAndExpand" />
-                                            <Label Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="2" Text="{ Binding TARIF, StringFormat='Tarif : {0:N2} DA'}"  Margin="20,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="StartAndExpand" />
-
-                                            <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"  Text="{ Binding DATE_PEREMPTION, StringFormat=' Date De Péremption :{0:dd/MM/yyyy}'}" Margin="20,0,0,0" FontSize="Micro" FontAttributes="Bold" HorizontalOptions="CenterAndExpand" />
-                                        </Grid>
-                                    </Frame>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                </ListView>
+                    </CollectionView>
+                    
+                </RefreshView>
+                
                 <!--<Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Imprimer" Clicked="PrintAsync"/>-->
             </StackLayout>

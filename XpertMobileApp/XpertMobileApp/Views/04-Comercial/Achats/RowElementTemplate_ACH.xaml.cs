@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace XpertMobileApp.Views.Templates
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RowElementTemplatePsychotrope : ContentView
+    public partial class RowElementTemplate_ACH : ContentView
     {
-        public RowElementTemplatePsychotrope()
+        public RowElementTemplate_ACH()
         {
             InitializeComponent();
         }
