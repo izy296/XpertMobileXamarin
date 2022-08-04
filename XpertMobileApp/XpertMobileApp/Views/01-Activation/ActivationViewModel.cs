@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
@@ -47,6 +48,7 @@ namespace XpertMobileApp.ViewModels
                 val = DInfos.GetSimSerialNumber();
                 */
                 Client.AppName = Constants.AppName;
+                Client.Mobile_Version = VersionTracking.CurrentVersion;
                 LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
 
                 await App.ClientDatabase.SaveItemAsync(Client);

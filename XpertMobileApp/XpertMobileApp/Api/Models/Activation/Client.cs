@@ -13,7 +13,7 @@ namespace XpertMobileApp.Models
         public string ClientId { get; set; }
         public string DeviceId { get; set; }
         public string AppName { get; set; }
-
+        public string Mobile_Version { get; set; }
         public string LicenceTxt { get; set; }
 
         public Client() { }
