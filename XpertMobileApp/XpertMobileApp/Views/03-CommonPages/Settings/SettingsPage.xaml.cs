@@ -692,7 +692,7 @@ namespace XpertMobileApp.Views
 
         private async void List_MultiPrinter_Clicked(object sender, EventArgs e)
         {
-            if (MultiPrinters != null)
+            if (MultiPrinters != null && MultiPrinters.Count>0)
                 await PopupNavigation.Instance.PushAsync(new PrinterSelector(MultiPrinters, "LIST"));
             else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
         }
@@ -706,7 +706,7 @@ namespace XpertMobileApp.Views
 
         private async void Delete_MultiPrinter_Clicked(object sender, EventArgs e)
         {
-            if (MultiPrinters!=null)
+            if (MultiPrinters!=null && MultiPrinters.Count > 0)
                 await PopupNavigation.Instance.PushAsync(new PrinterSelector(MultiPrinters, "REMOVE"));
             else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
         }

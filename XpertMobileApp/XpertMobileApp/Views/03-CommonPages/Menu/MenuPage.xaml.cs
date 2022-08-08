@@ -37,6 +37,10 @@ namespace XpertMobileApp.Views
                 OnPropertyChanged("numberOfNotifications");
             }
         }
+        public MenuPage(string id)
+        {
+            MessagingCenter.Send(this, "ChangeListIndex", id);
+        }
         public MenuPage()
         {
             InitializeComponent();
@@ -325,6 +329,19 @@ namespace XpertMobileApp.Views
                 await RootPage.NavigateFromMenu(id);
             };
 
+            MessagingCenter.Subscribe<MenuPage, string>(this, "ChangeListIndex", async (obj, item) =>
+            {
+                HomeMenuItem selected= new HomeMenuItem();
+                foreach (var itemitem in menuItems)
+                {
+                    if (itemitem.Id == (MenuItemType)Convert.ToInt32(item))
+                        selected = itemitem;
+                }
+                ListViewMenu.SelectedItem = selected;
+                ((MasterDetailPage)App.Current.MainPage).Detail.Focus();
+            });
+
+
             MessagingCenter.Subscribe<SignUpPageViewModel, string>(this, "RELOAD_MENU", async (obj, str) =>
             {
                 ReloadMenu();
@@ -409,6 +426,7 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
             try
             {
+
                 var menus = menuItems;
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 if (Constants.AppName != Apps.X_BOUTIQUE)

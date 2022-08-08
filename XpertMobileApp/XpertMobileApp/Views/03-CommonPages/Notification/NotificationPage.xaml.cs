@@ -99,6 +99,9 @@ namespace XpertMobileApp.Views
             }
             else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.np_txt_alert_Notification, AppResources.alrt_msg_Ok);
 
+            ItemsListView.SelectedItem = null;
+
+
         }
     }
 }

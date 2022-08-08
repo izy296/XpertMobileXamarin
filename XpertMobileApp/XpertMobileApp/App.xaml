@@ -141,6 +141,8 @@
             <local:DecimalToColorConverter x:Key="decimalToColor"/>
             <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
             <!--Global Styles-->
+            
+
 
             <Color x:Key="Primary">#2196F3</Color>
             <Color x:Key="Accent">#96d1ff</Color>
@@ -163,6 +165,9 @@
             <!--#2196F3-->
 
             <Color x:Key="cl_10">#F8C709</Color>
+            <Color x:Key="cl_21">#9802ba</Color>
+            <Color x:Key="cl_2">#7EC384</Color>
+            <Color x:Key="cl_0">#3897f0</Color>
             <!--Colors for notiications-->
 
             <!--End Color for noification-->

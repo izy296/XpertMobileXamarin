@@ -10,7 +10,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Models;
 using Acr.UserDialogs.Infrastructure;
 using System.Linq;
-
+using Plugin.FirebasePushNotification;
 
 namespace XpertMobileApp.Views
 {
@@ -247,33 +247,45 @@ namespace XpertMobileApp.Views
                 }
             }
 
-            if (id > 0)
+            try
             {
-                var newPage = MenuPages[id];
-
-                if (newPage != null && Detail != newPage)
+                if (id > 0)
                 {
-                    //Detail = newPage; 
-                    NavigationPage.SetHasNavigationBar(newPage, false);
-                    if (Detail.Navigation.NavigationStack.Count > 1)
+                    var newPage = MenuPages[id];
+
+                    if (newPage != null && ((NavigationPage)Detail).CurrentPage != newPage)
                     {
-                        var page = Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1];
-                        await Detail.Navigation.PushAsync(newPage);
-                        Detail.Navigation.RemovePage(page);
+                        //Detail = newPage; 
+                        NavigationPage.SetHasNavigationBar(newPage, false);
+                        if (Detail.Navigation.NavigationStack.Count > 1)
+                        {
+                            new MenuPage(id.ToString());
+                            var page = Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1];
+                            if (id != (int)MenuItemType.Home)
+                                await Detail.Navigation.PushAsync(newPage);
+                            Detail.Navigation.RemovePage(page);
+                        }
+                        else
+                        {
+                            new MenuPage(id.ToString());
+                            if (id != (int)MenuItemType.Home)
+                                await Detail.Navigation.PushAsync(newPage);
+                        }
+
+                        //Detail.Navigation.NavigationStack.Append(newPage); 
+
+                        if (Device.RuntimePlatform == Device.Android)
+                            await Task.Delay(100);
+
+                        IsPresented = false;
                     }
-                    else
-                    {
-                        await Detail.Navigation.PushAsync(newPage);
-                    }
-
-                    //Detail.Navigation.NavigationStack.Append(newPage); 
-
-                    if (Device.RuntimePlatform == Device.Android)
-                        await Task.Delay(100);
-
-                    IsPresented = false;
                 }
             }
+            catch (Exception ex)
+            {
+                
+            }
+
         }
 
     }
