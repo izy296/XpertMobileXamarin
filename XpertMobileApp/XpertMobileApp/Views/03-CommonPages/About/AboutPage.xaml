@@ -52,18 +52,83 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span Text="" />
-                                <Span Text=" " />
-                                <Span Text=" " FontAttributes="Bold" />
+                                <Span Text="" />
+                                <Span Text="" FontAttributes="Bold" />
                                 <Span Text=" " />
                                 <Span Text="" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
-                <Button Margin="0,10,0,0" Text="{i18n:Translate abtp_lbl_LearnMore}"
+                <!--<Button Margin="0,10,0,0" Text="{i18n:Translate abtp_lbl_LearnMore}"
                         Command="{Binding OpenWebCommand}"
                         BackgroundColor="{StaticResource Primary}"
-                        TextColor="White" />
+                        TextColor="White" ab_VerifMaj/>-->
+                <StackLayout Orientation="Vertical">
+
+                    <Label Text="{i18n:Translate ab_VerifMaj}"
+                       FontSize="22"
+                       TextColor="{StaticResource LightTextColor}"/>
+                    <StackLayout Orientation="Horizontal">
+                        <FlexLayout 
+                                Direction="Column"
+                                Margin="20,0,0,0">
+                            <Label 
+                                Text="{i18n:Translate ab_currentVersion}"
+                                FontSize="15"
+                                TextColor="#7EC384"/>
+
+                            <Label
+                                x:Name="CurrentVersion"
+                                Text="0.1"
+                                FontSize="14"
+                                TextColor="{StaticResource LightTextColor}"/>
+                        </FlexLayout>
+
+                        <FlexLayout 
+                                Direction="Column"
+                                Margin="20,0,0,0">
+                            
+                            <Label 
+                                Text="{i18n:Translate ab_newMaj}"
+                                FontSize="15"
+                                TextColor="#e65b65"/>
+
+                            <Label
+                                x:Name="NewVersion"
+                                Text="{Binding newVersion}"
+                                FontSize="14"
+                                TextColor="{StaticResource LightTextColor}"/>
+                            
+                        </FlexLayout>
+
+                    </StackLayout>
+                    <FlexLayout Direction="Row" 
+                                JustifyContent="SpaceBetween"
+                                Margin="0,20">
+                        <Button 
+                            ImageSource="refresh.png"
+                            CornerRadius="500"
+                            BackgroundColor="{StaticResource Accent}"
+                            WidthRequest="80"
+                            Clicked="CheckForUpdate"/>
+                        <Button 
+                            x:Name="Update_btn"
+                            ImageSource="arrow_up.png"
+                            CornerRadius="500"
+                            WidthRequest="80"
+                            Style="{StaticResource AddUrlBtn}"/>
+                        <Button 
+                            x:Name="googlePlay_btn"
+                            ImageSource="google_play.png"
+                            CornerRadius="500"
+                            WidthRequest="80"
+                            BackgroundColor="#EFEFEF"
+                            Clicked="GoToPlayStore"/>
+                    </FlexLayout>
+                </StackLayout>
+
+
             </StackLayout>
         </ScrollView>
     </Grid>

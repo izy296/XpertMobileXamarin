@@ -228,6 +228,17 @@ namespace XpertMobileApp.Services
             return !string.IsNullOrEmpty(result);
         }
 
+        internal static async Task<string> GetNewVersion()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.New_Version_URL);
+            return await RetrievValAauthorizedData<string>(url);
+        }
+        public static async Task<List<View_ACH_MANQUANTS>> UpdateVersion(string Version)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.Update_URL);
+            url += WSApi2.AddParam(url, "versionToCompare", Version);
+            return await WSApi2.PostAauthorizedValue<List<View_ACH_MANQUANTS>, string>(url, Version, Token);
+        }
         #endregion
 
 

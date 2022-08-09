@@ -41,7 +41,6 @@ namespace XpertMobileApp.Helpers
 
         public static string TIERS_TYPES_URL = "GetTiersTypes";
 
-
         public static string STATISTIC_URL = "statistic";
 
         public static string SESSION_URL = "session";
@@ -64,6 +63,9 @@ namespace XpertMobileApp.Helpers
 
         public static string LICENCE_DEACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/DeActivateDeviceId";
 
+        public static string New_Version_URL = "GetVersion";
+        public static string Update_URL = "Update";
+        public static string WebApiVersion = "WebApiVersion";
 
         // Ventes
 
@@ -80,6 +82,7 @@ namespace XpertMobileApp.Helpers
         public static string TIKET_CAISS_PRINT_VENTE_URL = "getPrintTiketCaisseVente";
 
         public static string VENTES_GET_VENTE_URL = "GetVente";
+
         // Commandes
 
         public static string VTE_COMMANDE = "VTE_COMMANDE";
