@@ -1030,4 +1030,13 @@
   <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
     <value>قائمة الطابعات فارغة</value>
   </data>
+  <data name="ab_currentVersion" xml:space="preserve">
+    <value>النسخة الحالية</value>
+  </data>
+  <data name="ab_VerifMaj" xml:space="preserve">
+    <value>التحقق من الاصدارات</value>
+  </data>
+  <data name="ab_newMaj" xml:space="preserve">
+    <value>النسخة جديدة</value>
+  </data>
 </root>

@@ -1162,4 +1162,13 @@
   <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
     <value>La liste des imprimantes est vide</value>
   </data>
+  <data name="ab_VerifMaj" xml:space="preserve">
+    <value>Mise à jour </value>
+  </data>
+  <data name="ab_currentVersion" xml:space="preserve">
+    <value>La version actuelle</value>
+  </data>
+  <data name="ab_newMaj" xml:space="preserve">
+    <value>La nouvelle version</value>
+  </data>
 </root>

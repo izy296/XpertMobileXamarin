@@ -930,4 +930,13 @@
   <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
     <value>Printers list is empty</value>
   </data>
+  <data name="ab_currentVersion" xml:space="preserve">
+    <value>Current Version</value>
+  </data>
+  <data name="ab_VerifMaj" xml:space="preserve">
+    <value>Check for updates</value>
+  </data>
+  <data name="ab_newMaj" xml:space="preserve">
+    <value>New Version</value>
+  </data>
 </root>
