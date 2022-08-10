@@ -43,6 +43,7 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 throw new Exception(ex.Message);
             }
         }
@@ -51,15 +52,18 @@ namespace XpertMobileApp.ViewModels
         /// Send post request to api to update the web api
         /// </summary>
         /// <exception cref="Exception"></exception>
-        public async void UpdateVersion()
+        public async Task<string> UpdateVersion()
         {
             try
             {
-                await WebServiceClient.UpdateVersion(VersionTracking.CurrentVersion);
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                string res = await WebServiceClient.UpdateVersion(VersionTracking.CurrentVersion);
+                UserDialogs.Instance.HideLoading();
+                return res;
             }
             catch (Exception ex)
             {
-
+                UserDialogs.Instance.HideLoading();
                 throw new Exception(ex.Message);
             }
         }

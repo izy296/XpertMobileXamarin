@@ -78,6 +78,11 @@ namespace XpertMobileApp.Droid
                     if (e.Exception.Message.Contains("The page has been pushed already"))
                         e.Handled = true;
                 }
+                catch (Exception ex)
+                {
+                    e.Handled = true;
+                    UserDialogs.Instance.AlertAsync(ex.Message, "Alert", "Ok");
+                }
 
             };
 
@@ -204,6 +209,7 @@ namespace XpertMobileApp.Droid
                     //{
                     // supprimer toutes les pages de la pile et revenir à l'accueil
                     base.OnBackPressed();
+                    new MenuPage("1");
 
                     //TODO Empty ListViewMenu item selected
 

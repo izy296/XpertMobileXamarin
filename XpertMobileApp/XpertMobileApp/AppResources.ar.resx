@@ -1039,4 +1039,10 @@
   <data name="ab_newMaj" xml:space="preserve">
     <value>النسخة جديدة</value>
   </data>
+  <data name="ap_update_failed" xml:space="preserve">
+    <value>فشل التحديث</value>
+  </data>
+  <data name="ap_update_success" xml:space="preserve">
+    <value>انتهى التحديث بنجاح</value>
+  </data>
 </root>

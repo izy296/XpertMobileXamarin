@@ -233,11 +233,11 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.New_Version_URL);
             return await RetrievValAauthorizedData<string>(url);
         }
-        public static async Task<List<View_ACH_MANQUANTS>> UpdateVersion(string Version)
+        public static async Task<string> UpdateVersion(string Version)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.Update_URL);
             url += WSApi2.AddParam(url, "versionToCompare", Version);
-            return await WSApi2.PostAauthorizedValue<List<View_ACH_MANQUANTS>, string>(url, Version, Token);
+            return await WSApi2.PostAauthorizedValue<string, string>(url, Version, Token);
         }
         #endregion
 

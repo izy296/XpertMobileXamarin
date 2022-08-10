@@ -3310,6 +3310,22 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("txt_Msg_List_Impremant_Ajout", resourceCulture);
             }
+        } 
+        
+        public static string ap_update_failed
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_update_failed", resourceCulture);
+            }
+        }
+
+        public static string ap_update_success
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_update_success", resourceCulture);
+            }
         }
 
     }

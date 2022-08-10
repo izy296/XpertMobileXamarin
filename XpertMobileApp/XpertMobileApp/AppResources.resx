@@ -1171,4 +1171,10 @@
   <data name="ab_newMaj" xml:space="preserve">
     <value>La nouvelle version</value>
   </data>
+  <data name="ap_update_failed" xml:space="preserve">
+    <value>la mise à jour a échoué</value>
+  </data>
+  <data name="ap_update_success" xml:space="preserve">
+    <value>La mise à jour s'est terminée avec succès</value>
+  </data>
 </root>

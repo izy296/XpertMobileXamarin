@@ -939,4 +939,10 @@
   <data name="ab_newMaj" xml:space="preserve">
     <value>New Version</value>
   </data>
+  <data name="ap_update_failed" xml:space="preserve">
+    <value>The update has failed</value>
+  </data>
+  <data name="ap_update_success" xml:space="preserve">
+    <value>The update has finished successfully</value>
+  </data>
 </root>
