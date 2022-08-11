@@ -117,7 +117,8 @@
                             ImageSource="arrow_up.png"
                             CornerRadius="500"
                             WidthRequest="80"
-                            Style="{StaticResource AddUrlBtn}"/>
+                            Style="{StaticResource AddUrlBtn}"
+                            Clicked="Update"/>
                         <Button 
                             x:Name="googlePlay_btn"
                             ImageSource="google_play.png"

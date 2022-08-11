@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using XpertMobileApp.Services;
@@ -35,11 +36,41 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var NewVersion = await WebServiceClient.GetNewVersion();
+                var xml = await WebServiceClient.GetNewVersion();
+                XDocument docWebApiXml = XDocument.Parse(xml);
+                XElement itemWebApiXml = docWebApiXml.Element("item");
+
+                var NewVersion = itemWebApiXml.Element("version").Value;
+
                 newVersion = NewVersion;
                 l.Text = newVersion;
                 UserDialogs.Instance.HideLoading();
                 return NewVersion;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get the new Version of the WebApi Version
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public async Task<bool> GetNewWebApiVersion(Label l)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                var res = await WebServiceClient.GetWebApiVersion();
+                var versionSplited = res.Split('.');
+                string versionConcatenat = versionSplited[0] + '.' + versionSplited[1];
+                UserDialogs.Instance.HideLoading();
+                if (l.Text == versionConcatenat)
+                    return true;
+                else return false;
             }
             catch (Exception ex)
             {
@@ -56,7 +87,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                UserDialogs.Instance.ShowLoading(AppResources.ap_updating_txt);
                 string res = await WebServiceClient.UpdateVersion(VersionTracking.CurrentVersion);
                 UserDialogs.Instance.HideLoading();
                 return res;

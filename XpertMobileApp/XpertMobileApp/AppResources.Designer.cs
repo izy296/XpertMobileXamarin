@@ -3327,6 +3327,34 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("ap_update_success", resourceCulture);
             }
         }
+        public static string ap_updating_txt
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_updating_txt", resourceCulture);
+            }
+        }
+        public static string ap_updated
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_updated", resourceCulture);
+            }
+        }
+        public static string ap_new_update
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_new_update", resourceCulture);
+            }
+        }
+        public static string ap_new_update_web
+        {
+            get
+            {
+                return ResourceManager.GetString("ap_new_update_web", resourceCulture);
+            }
+        }
 
     }
 }

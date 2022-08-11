@@ -945,4 +945,16 @@
   <data name="ap_update_success" xml:space="preserve">
     <value>The update has finished successfully</value>
   </data>
+  <data name="ap_updating_txt" xml:space="preserve">
+    <value>Please wait, Updating files on the server ...</value>
+  </data>
+  <data name="ap_new_update" xml:space="preserve">
+    <value>A new version is available</value>
+  </data>
+  <data name="ap_updated" xml:space="preserve">
+    <value>You are up to date</value>
+  </data>
+  <data name="ap_new_update_web" xml:space="preserve">
+    <value>There is an update for server files.Please continue updating them</value>
+  </data>
 </root>

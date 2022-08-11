@@ -55,6 +55,8 @@ namespace XpertMobileApp.Helpers
 
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
+        public static string WEBAPI_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertWebAPI.xml";
+
         // Activation
 
         public static string LICENCE_ACTIVATION_URL = "http://xpertsoft.noip.me/XpertDecodeWebAPI/api/prodactivationmobile/ActivateDeviceId";

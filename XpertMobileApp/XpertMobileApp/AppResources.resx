@@ -1166,15 +1166,27 @@
     <value>Mise à jour </value>
   </data>
   <data name="ab_currentVersion" xml:space="preserve">
-    <value>La version actuelle</value>
+    <value>Version actuelle</value>
   </data>
   <data name="ab_newMaj" xml:space="preserve">
-    <value>La nouvelle version</value>
+    <value>Nouvelle version</value>
   </data>
   <data name="ap_update_failed" xml:space="preserve">
     <value>la mise à jour a échoué</value>
   </data>
   <data name="ap_update_success" xml:space="preserve">
     <value>La mise à jour s'est terminée avec succès</value>
+  </data>
+  <data name="ap_updating_txt" xml:space="preserve">
+    <value>Veuillez patienter, Mise à jour des fichiers sur le serveur...</value>
+  </data>
+  <data name="ap_new_update" xml:space="preserve">
+    <value>Une nouvelle version est disponible</value>
+  </data>
+  <data name="ap_updated" xml:space="preserve">
+    <value>Vous étes à jour</value>
+  </data>
+  <data name="ap_new_update_web" xml:space="preserve">
+    <value>Il y a une mise à jour pour les fichiers du serveur. Veuillez continuer à les mettre à jour</value>
   </data>
 </root>

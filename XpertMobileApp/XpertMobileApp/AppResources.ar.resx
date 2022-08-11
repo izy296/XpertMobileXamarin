@@ -1045,4 +1045,16 @@
   <data name="ap_update_success" xml:space="preserve">
     <value>انتهى التحديث بنجاح</value>
   </data>
+  <data name="ap_updating_txt" xml:space="preserve">
+    <value>الرجاء الانتظار ، جاري تحديث الملفات على الخادم ...</value>
+  </data>
+  <data name="ap_new_update" xml:space="preserve">
+    <value>إصدار جديد متوفر</value>
+  </data>
+  <data name="ap_updated" xml:space="preserve">
+    <value>أنت محدث</value>
+  </data>
+  <data name="ap_new_update_web" xml:space="preserve">
+    <value>يوجد تحديث لملفات الخادم ، يرجى متابعة تحديثها</value>
+  </data>
 </root>
