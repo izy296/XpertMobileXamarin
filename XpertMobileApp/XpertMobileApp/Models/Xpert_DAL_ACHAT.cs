@@ -524,6 +524,36 @@ namespace XpertMobileApp.DAL
         }
     }
 
+    public partial class ACH_RECLAMATIONS
+    {
+        public int? CODE_RECLAMATION { get; set; } // int(10)
+        public string CODE_TIERS { get; set; } // varchar(50)
+        public string CODE_FACTURE { get; set; } // varchar(50)
+        public string CODE_ENTREE_DETAIL { get; set; } // varchar(50)
+        public DateTime? DATE_RECLAMATION { get; set; } // datetime(3)
+        public string NOTE_RECLAMATION { get; set; } // text(2147483647)
+        public bool Treated { get; set; } // bit
+        public bool AUTO_RECLAMATION { get; set; } // bit
+
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+
+    // View
+    public partial class View_ACH_RECLAMATIONS : ACH_RECLAMATIONS
+    {
+        public string REF_TIERS { get; set; } // varchar(50)
+        public string TIERS { get; set; } // varchar(501)
+        public string TIERS_TEL { get; set; } // varchar(50)
+        public string PRODUIT { get; set; } // varchar(404)
+        public string TYPE_DOC { get; set; }//// varchar(20)
+
+        public string CODE_BARRE_LOT_FROM_STOCK { get; set; } // varchar(200)
+        public decimal QUANTITE { get; set; } // numeric(19,2)
+
+    }
     public partial class BSE_TABLE
     {
         [PrimaryKey, AutoIncrement]

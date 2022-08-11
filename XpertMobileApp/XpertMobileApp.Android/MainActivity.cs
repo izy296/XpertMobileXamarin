@@ -208,8 +208,13 @@ namespace XpertMobileApp.Droid
                     //if (pagesOpen >2)
                     //{
                     // supprimer toutes les pages de la pile et revenir à l'accueil
+
                     base.OnBackPressed();
-                    new MenuPage("1");
+
+                    //if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).RootPage==HomePage))
+                    //{
+                    //    new MenuPage("1");
+                    //}
 
                     //TODO Empty ListViewMenu item selected
 
