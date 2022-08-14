@@ -1,6 +1,5 @@
 ﻿using Acr.UserDialogs;
 using Newtonsoft.Json;
-
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
@@ -12,6 +11,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -51,6 +51,8 @@ namespace XpertMobileApp
         private static Settings settings;
         public SettingsModel settingsViewModel;
         private static bool isThereNotification = false;
+
+        public readonly ILocalNotificationsService localNotificationsService;
         public static bool IsThereNotification { get { return isThereNotification; } set { isThereNotification = value; } }
 
         private static View_VTE_VENTE currentSales;
@@ -160,7 +162,53 @@ namespace XpertMobileApp
             settingsViewModel = new SettingsModel();
 
             this.InitApp();
+            localNotificationsService = DependencyService.Get<ILocalNotificationsService>();
+            new Task(
+                async () =>
+                {
+                    try
+                    {
+                        if (App.User != null && App.User.Token != null)
+                        {
+                            var xml = await WebServiceClient.GetNewVersion();
+                            XDocument docWebApiXml = XDocument.Parse(xml);
+                            XElement itemWebApiXml = docWebApiXml.Element("item");
+                            var NewVersion = itemWebApiXml.Element("version").Value;
+                            var Data = new Dictionary<string, string>()
+                                    {
+                                { "title", AppResources.Update_Notification_Header },
+                                { "body", AppResources.Update_Notification_Text + " " + NewVersion },
+                                { "moduleName", MenuItemType.About.ToString() },
+                                { "user", "XpertSoft Mobile" },
+                                { "timeNotification", DateTime.Now.ToString() }
 
+                                    };
+
+                            if (NewVersion != VersionTracking.CurrentVersion)
+                            {
+                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + NewVersion,Data);
+                                new SettingsModel().setNotificationAsync(new Notification()
+                                {
+                                    Title = Data["title"].ToString(),
+                                    Message = Data["body"].ToString(),
+                                    Module = Data["moduleName"].ToString(),
+                                    User = Data["user"].ToString(),
+                                    Extras = Data.ContainsKey("extras") ? Data["extras"] : null,
+                                    TimeNotification = DateTime.Parse(Data["timeNotification"])
+                                });
+                                // code responable a la refresh de badge de notification
+                                MessagingCenter.Send(this, "RELOAD_MENU", "");
+                                MessagingCenter.Send(this, "RELOAD_NOTIF", "");
+                            }
+
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+                    }
+                }).Start();
         }
 
         protected override void OnStart()

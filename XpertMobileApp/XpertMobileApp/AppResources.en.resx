@@ -957,4 +957,13 @@
   <data name="ap_new_update_web" xml:space="preserve">
     <value>There is an update for server files.Please continue updating them</value>
   </data>
+  <data name="sp_ServerChanged" xml:space="preserve">
+    <value>The changement of service url requires authentication</value>
+  </data>
+  <data name="Update_Notification_Header" xml:space="preserve">
+    <value>Update Available</value>
+  </data>
+  <data name="Update_Notification_Text" xml:space="preserve">
+    <value>There is a new Version </value>
+  </data>
 </root>

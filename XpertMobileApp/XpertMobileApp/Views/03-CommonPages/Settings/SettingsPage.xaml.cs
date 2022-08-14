@@ -22,6 +22,7 @@ using XpertMobileApp.Views.Helper;
 using Rg.Plugins.Popup.Services;
 using XpertMobileApp.Views._04_Comercial.Selectors.Settings;
 using TranslateExtension = XpertMobileApp.Helpers.TranslateExtension;
+using XpertMobileApp.Api;
 
 namespace XpertMobileApp.Views
 {
@@ -35,6 +36,8 @@ namespace XpertMobileApp.Views
         public SettingsModel viewModel;
 
         public List<XPrinter> MultiPrinters { get; set; }
+
+        public bool serverChanged = false;
 
         //private SettingsSelector itemSelector;
 
@@ -231,8 +234,34 @@ namespace XpertMobileApp.Views
 
         protected async void SaveSettings_Clicked(object sender, EventArgs e)
         {
+            if (serverChanged)
+            {
+                App.Settings.IsChecked = "false";
+                App.Settings.ConnectWithPasswordOnly = false;
+            }
             await viewModel.SaveSettings();
             await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_SettingsSaved, AppResources.alrt_msg_Ok);
+            if (serverChanged)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.sp_ServerChanged, AppResources.alrt_msg_Ok);
+
+                //code pour deconecter le client
+                if (App.User != null && App.User.Token != null)
+                    await App.TokenDatabase.DeleteItemAsync(App.User.Token);
+
+                App.User = null;
+                AppManager.permissions = null;
+                // Application.Current.MainPage = new LoginPage();
+                if (Constants.AppName == Apps.X_BOUTIQUE)
+                {
+                    Application.Current.MainPage = new MainPage();
+                }
+                else
+                {
+                    Application.Current.MainPage = new LoginPage();
+                }
+
+            }
         }
 
         protected async void ConfigurerAppareil_Clicked(object sender, EventArgs e)
@@ -679,10 +708,12 @@ namespace XpertMobileApp.Views
                             //Save all settings
                             await viewModel.SaveSettings();
                             await DisplayAlert(AppResources.txt_modification_succee, AppResources.txt_modification_message, AppResources.alrt_msg_Ok);
+                            serverChanged = true;
                         }
                     };
                 };
                 await PopupNavigation.Instance.PushAsync(page);
+
             }
             catch (Exception ex)
             {

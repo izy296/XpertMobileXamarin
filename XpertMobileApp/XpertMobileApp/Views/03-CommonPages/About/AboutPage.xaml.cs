@@ -128,7 +128,7 @@ namespace XpertMobileApp.Views
         [Obsolete]
         private void GoToPlayStore(object sender, EventArgs e)
         {
-            Device.OpenUri(new Uri("market://details?id=" + AppInfo.PackageName));
+            Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
         }
 
         private async void Update(object sender, EventArgs e)

@@ -1189,4 +1189,13 @@
   <data name="ap_new_update_web" xml:space="preserve">
     <value>Il y a une mise à jour pour les fichiers du serveur. Veuillez continuer à les mettre à jour</value>
   </data>
+  <data name="sp_ServerChanged" xml:space="preserve">
+    <value>Le changement d'url de service nécessite une authentification</value>
+  </data>
+  <data name="Update_Notification_Header" xml:space="preserve">
+    <value>Mise à jour disponible</value>
+  </data>
+  <data name="Update_Notification_Text" xml:space="preserve">
+    <value>Il y a une nouvelle version</value>
+  </data>
 </root>

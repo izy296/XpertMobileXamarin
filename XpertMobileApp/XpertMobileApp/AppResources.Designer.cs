@@ -3310,8 +3310,8 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("txt_Msg_List_Impremant_Ajout", resourceCulture);
             }
-        } 
-        
+        }
+
         public static string ap_update_failed
         {
             get
@@ -3356,6 +3356,27 @@ namespace XpertMobileApp
             }
         }
 
+        public static string sp_ServerChanged
+        {
+            get
+            {
+                return ResourceManager.GetString("sp_ServerChanged", resourceCulture);
+            }
+        }
+        public static string Update_Notification_Header
+        {
+            get
+            {
+                return ResourceManager.GetString("Update_Notification_Header", resourceCulture);
+            }
+        }
+        public static string Update_Notification_Text
+        {
+            get
+            {
+                return ResourceManager.GetString("Update_Notification_Text", resourceCulture);
+            }
+        }
     }
 }
 

@@ -1057,4 +1057,13 @@
   <data name="ap_new_update_web" xml:space="preserve">
     <value>يوجد تحديث لملفات الخادم ، يرجى متابعة تحديثها</value>
   </data>
+  <data name="sp_ServerChanged" xml:space="preserve">
+    <value>تغيير رابط الخدمة يتطلب المصادقة</value>
+  </data>
+  <data name="Update_Notification_Header" xml:space="preserve">
+    <value>التحديث متاح</value>
+  </data>
+  <data name="Update_Notification_Text" xml:space="preserve">
+    <value>هناك نسخة جديدة</value>
+  </data>
 </root>
