@@ -136,38 +136,6 @@
                     </Grid>
                 </Frame>
 
-                <!-- Summaries Infos -->
-                <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="#1E47BD"
-                   BorderColor="{StaticResource Accent}" IsVisible="{Binding HasAdmin}">
-                    <Grid >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="75"/>
-                        </Grid.RowDefinitions>
-                        <ListView x:Name="SummariesListView"
-                            VerticalOptions="Fill"
-                            ItemsSource="{Binding Summaries}"
-                              
-                            HasUnevenRows="true"
-                            SelectionMode="None"                        
-                            SeparatorVisibility="None">
-
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" >
-                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
-                                                <Label Grid.Column="0" Text="{Binding key}" TextColor="White" FontAttributes="Bold"/>
-                                                <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2}'}" TextColor="White" 
-                                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </Grid>
-                </Frame>
-
                 <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
                     ItemsSource="{Binding Items}"
@@ -205,7 +173,37 @@
                     </ListView.Footer>
 
                 </ListView>
+                <!-- Summaries Infos -->
+                <Frame x:Name="SummariesInfos" Style="{StaticResource FrameForList}" BackgroundColor="#1E47BD"
+                   BorderColor="{StaticResource Accent}" IsVisible="{Binding HasAdmin}">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="75"/>
+                        </Grid.RowDefinitions>
+                        <ListView x:Name="SummariesListView"
+                            VerticalOptions="Fill"
+                            ItemsSource="{Binding Summaries}"
+                              
+                            HasUnevenRows="true"
+                            SelectionMode="None"                        
+                            SeparatorVisibility="None">
 
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Spacing="0" Padding="2" Orientation="Horizontal" >
+                                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                                                <Label Grid.Column="0" Text="{Binding key}" TextColor="White" FontAttributes="Bold"/>
+                                                <Label Grid.Column="1" Text="{Binding Value, StringFormat='{0:N2}'}" TextColor="White" 
+                                                   HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Frame>
             </StackLayout>
         </StackLayout>
     </base:XBasePage.Content>

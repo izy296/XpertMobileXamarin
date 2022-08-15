@@ -21,8 +21,8 @@ namespace XpertMobileApp.Views.Templates
         }
         private async void showReclamation(object sender, EventArgs e)
         {
-
             ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
+            await reclamationInfo.GetReclamation();
             await PopupNavigation.Instance.PushAsync(reclamationInfo);
         }
     }

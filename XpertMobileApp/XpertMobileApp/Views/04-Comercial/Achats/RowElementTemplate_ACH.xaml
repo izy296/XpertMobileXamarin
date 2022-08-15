@@ -25,7 +25,7 @@
                     </StackLayout>
                     
                     <StackLayout Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Spacing="5" Padding="0" Orientation="Horizontal">
-                        <Label Text="{Binding LOT}" Grid.Column="0" TextColor="{StaticResource DefaultTextColor}" 
+                        <Label Text="{Binding DESIGNATION_PRODUIT}" Grid.Column="0" TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" FontSize="Default"/>
                         <Label Text="{Binding Expiration}" Grid.Column="1" TextColor="{StaticResource DefaultTextColor}" 
                                HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Default"/>
@@ -39,7 +39,7 @@
                            FontSize="Default" FontAttributes="Bold" HorizontalOptions="EndAndExpand" />
 
 
-                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding SHP, StringFormat='SHP : {0:N2}'}" TextColor="Orange"
+                    <Label Grid.Column="1" Grid.Row="2" Text="{Binding SHP, StringFormat='PA : {0:N2}'}" TextColor="Orange"
                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
                     <Label Grid.Column="2" Grid.Row="2"  Text="{Binding PPA, StringFormat='PPA : {0:N2}'}" TextColor="Chocolate"
                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.ReclamationTemplate">
+    <ContentView.Content>
+
+        <StackLayout Orientation="Vertical"
+                     
+                     Margin="10">
+
+            <Label Text="Réclamation"
+                   FontSize="22"
+                   TextColor="Black"/>
+            
+            
+            <!--Fournisseur-->
+            <StackLayout Orientation="Horizontal">
+                
+                <Label Text="Fournisseur: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+                
+                <Label Text="{Binding TIERS , StringFormat='{0}'}"   
+                       TextColor="Black"
+                       FontSize="16"/>
+                
+            </StackLayout>
+            
+            <!--Date-->
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Date: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+                
+                <Label Text="{Binding CREATED_ON , StringFormat='{0}'}"  
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+
+            <!--Fournisseur--> 
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Fournisseur: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+                
+                <Label Text="{Binding TIERS , StringFormat='{0}'}"  
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+
+            <!--Facture-->
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Facture: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+
+                <Label Text="{Binding CODE_FACTURE , StringFormat='{0}'}"  
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+            
+            
+            <!--Produit-->
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Produit: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+
+                <Label Text="{Binding PRODUIT , StringFormat='{0}'}"  
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+
+            <!--Note-->
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="Note: "
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="black"/>
+
+                <Label Text="{Binding NOTE_RECLAMATION , StringFormat='{0}'}"   
+                       TextColor="Black"
+                       FontSize="16"/>
+
+            </StackLayout>
+        </StackLayout>
+
+    </ContentView.Content>
+</ContentView>

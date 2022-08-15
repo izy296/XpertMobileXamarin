@@ -23,26 +23,50 @@ using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Templates;
 
-namespace XpertMobileApp.Views._04_Comercial.TransfertDeFond
+namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ReclamationPopupPage : PopupPage, INotifyPropertyChanged
     {
-        View_ACH_RECLAMATIONS reclamation;
         ReclamationViewModel viewModel;
-
         public ReclamationPopupPage(string CODE_ENTREE_DETAIL)
         {
             InitializeComponent();
             BindingContext = viewModel = new ReclamationViewModel(CODE_ENTREE_DETAIL);
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+        }
+        public async Task GetReclamation()
+        {
             if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
-            viewModel.bla = viewModel.Items[0].NOTE_RECLAMATION;
+            {
+                await ExecuteLoadReclamation();
+            }
+        }
+        async Task ExecuteLoadReclamation()
+        {
+            try
+            {
+                viewModel.Items.Clear();
+                // liste des ventes
+                await viewModel.Items.LoadMoreAsync();
+                //viewModel.Items[0].NOTE_RECLAMATION;
+
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

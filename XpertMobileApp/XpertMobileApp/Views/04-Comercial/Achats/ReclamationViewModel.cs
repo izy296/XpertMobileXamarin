@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +20,6 @@ namespace XpertMobileApp.ViewModels
 
     public class ReclamationViewModel : CrudBaseViewModel2<ACH_RECLAMATIONS, View_ACH_RECLAMATIONS>
     {
-        public string bla;
         string CODE_ENTREE_DETAIL;
         public ReclamationViewModel(string CODE_ENTREE_DETAIL)
         {

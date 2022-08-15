@@ -4,7 +4,8 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="XpertMobileApp.Views._04_Comercial.TransfertDeFond.ReclamationPopupPage"
+             x:Class="XpertMobileApp.Views.ReclamationPopupPage"
+             xmlns:views="clr-namespace:XpertMobileApp.Views.Templates"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.Content>
@@ -13,9 +14,26 @@
                      Padding="10">
 
             <Frame CornerRadius="15" 
-                   Padding="10">
+                   Padding="10"
+                   VerticalOptions="Center">
 
-                <Label Text="{Binding bla}"  />
+                <ListView x:Name="ItemsListView"
+                    VerticalOptions="Fill"
+                    ItemsSource="{Binding Items}"
+                    HasUnevenRows="true" 
+                    BackgroundColor="Transparent"
+                    SeparatorVisibility="None"
+                    CachingStrategy="RecycleElement"
+                    >
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <views:ReclamationTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
 
             </Frame>
         </StackLayout>

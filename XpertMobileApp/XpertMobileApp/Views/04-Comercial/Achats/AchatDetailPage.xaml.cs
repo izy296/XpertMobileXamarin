@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
@@ -37,6 +38,7 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
+            HideFields();
             //// TODO put into th generic view model 
             //MessagingCenter.Subscribe<SessionsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
             //{
@@ -50,6 +52,22 @@ namespace XpertMobileApp.Views
             viewModel.LoadRowsCommand.Execute(null);
         }
 
+        private void HideFields()
+        {
+            try
+            {
+                if (Constants.AppName == Apps.XCOM_Mob)
+                {
+                    labelShp.IsVisible = false;
+                    labelPpa.IsVisible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         async Task ExecuteLoadRowsCommand()
         {
             if (IsBusy)
@@ -84,6 +102,7 @@ namespace XpertMobileApp.Views
                             //afficher le lot psycho
                             //InfosPsyco.IsVisible = true;
                         }
+
                         viewModel.ItemRows.Add(itemC);
                         //AddItemPrinterDetails(itemC);
                     }

@@ -11,7 +11,7 @@
             <!-- Data Template Selector -->
 
             <!-- ***************** Produit *****************-->
-            
+
             <DataTemplate x:Key="LotPharm">
                 <template:RowElementTemplate_STK />
             </DataTemplate>
@@ -26,31 +26,37 @@
             <!-- ***************** Produit *****************-->
 
             <!--***************** Vente *****************e-->
-            
-            <DataTemplate x:Key="VentePsy">
+
+            <DataTemplate x:Key = "VentePsy">
                 <template:RowElementTemplate_VTE_PSYCHOTROPE/>
             </DataTemplate>
 
-            <DataTemplate x:Key="VenteNormal">
+            <DataTemplate x:Key = "VenteNormal">
                 <template:RowElementTemplate_VTE/>
             </DataTemplate>
 
-            <templateSelector:VenteDataSelectorTemplate x:Key="VenteTemplateSelector"
-                                                        VentePsychotrope="{StaticResource VentePsy}"
-                                                        VenteNormal="{StaticResource VenteNormal}"/>
+            <templateSelector:VenteDataSelectorTemplate x:Key = "VenteTemplateSelector"
+                                                        VentePsychotrope = "{StaticResource VentePsy}"
+                                                        VenteNormal = "{StaticResource VenteNormal}"/>
 
             <!--***************** Vente *****************-->
 
             <!--***************** ACHAT *****************-->
 
-            <DataTemplate x:Key="Achat">
+            <DataTemplate x:Key = "AchatPharm">
                 <template:RowElementTemplate_ACH/>
             </DataTemplate>
 
-            <templateSelector:AchatDataSelectorTemplate x:Key="AchatTemplateSelector" 
-                                                        Achat="{StaticResource Achat}"/>
+            <DataTemplate x:Key = "AchatComm">
+                <template:RowElementTemplate_ACH_COMM/>
+            </DataTemplate>
+
+            <templateSelector:AchatDataSelectorTemplate x:Key = "AchatTemplateSelector" 
+                                                        AchatPharm = "{StaticResource AchatPharm}"
+                                                        AchatComm = "{StaticResource AchatComm}"/>
+
             <!--***************** ACHAT *****************-->
-            
+
             <!--***************** COMMANDE ******************-->
 
             <DataTemplate x:Key="Commande">
@@ -60,7 +66,7 @@
             <templateSelector:CommandeDataSelectorTemplate x:Key="CommandeDataSelector"
                                                            Commande="{StaticResource Commande}"/>
             <!--***************** COMMANDE ******************-->
-            
+
             <!--***************** Sortie ********************-->
 
             <DataTemplate x:Key="Sortie">
@@ -71,8 +77,8 @@
                                                          Sortie="{StaticResource Sortie}"/>
             <!--***************** Sortie ********************-->
             <!--End Data Template Selector-->
-            
-            
+
+
             <!-- Font Gilroy -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
                 <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
