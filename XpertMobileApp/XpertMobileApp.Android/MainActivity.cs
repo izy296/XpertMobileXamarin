@@ -210,8 +210,8 @@ namespace XpertMobileApp.Droid
                     // supprimer toutes les pages de la pile et revenir à l'accueil
 
                     base.OnBackPressed();
-
-                    //if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).RootPage==HomePage))
+                    
+                    //if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).Parent== App.Current.MainPage)
                     //{
                     //    new MenuPage("1");
                     //}

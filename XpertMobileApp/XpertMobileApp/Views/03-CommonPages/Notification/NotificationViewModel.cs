@@ -26,6 +26,7 @@ namespace XpertMobileApp.ViewModels
                     IsBusy = true;
                     Items = new SettingsModel().getNotificationAsync();
                     IsBusy = false;
+                    MessagingCenter.Send(this, "RefreshImage", "RefreshImage");
                 });
             }
         }
@@ -33,9 +34,8 @@ namespace XpertMobileApp.ViewModels
         public NotificationViewModel()
         {
             Items = new SettingsModel().getNotificationAsync();
-
+            MessagingCenter.Send(this,"RefreshImage", "RefreshImage");
         }
-
 
 
     }

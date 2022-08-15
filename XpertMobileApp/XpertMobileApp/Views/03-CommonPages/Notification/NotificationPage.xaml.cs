@@ -89,17 +89,27 @@ namespace XpertMobileApp.Views
         // fonction responsable a afficher les détailles d'un evenement (notification)
         private async void NotifcationClicked(object sender, SelectedItemChangedEventArgs e)
         {
-            Notification notification = e.SelectedItem as Notification;
-            MainPage RootPage = App.Current.MainPage as MainPage;
-            if (notification.ModuleId != Convert.ToInt32(MenuItemType.None))
+            try
             {
-                await RootPage.NavigateFromMenu(notification.ModuleId);
-                if (notification.Extras != null)
-                    MessagingCenter.Send(this, "ExtraData", notification.Extras);
-            }
-            else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.np_txt_alert_Notification, AppResources.alrt_msg_Ok);
+                if (e.SelectedItem!=null)
+                {
+                    Notification notification = e.SelectedItem as Notification;
+                    MainPage RootPage = App.Current.MainPage as MainPage;
+                    if (notification.ModuleId != Convert.ToInt32(MenuItemType.None))
+                    {
+                        await RootPage.NavigateFromMenu(notification.ModuleId);
+                        if (notification.Extras != null)
+                            MessagingCenter.Send(this, "ExtraData", notification.Extras);
+                    }
+                    else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.np_txt_alert_Notification, AppResources.alrt_msg_Ok);
 
-            ItemsListView.SelectedItem = null;
+                    ItemsListView.SelectedItem = null;
+                }
+            }
+            catch
+            {
+
+            }
 
 
         }

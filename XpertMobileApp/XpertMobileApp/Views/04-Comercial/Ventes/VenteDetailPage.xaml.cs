@@ -185,7 +185,7 @@ namespace XpertMobileApp.Views.Encaissement
             if (vente != null)
             {
                 vente.Details = Printerdetails;
-                PrinterHelper.PrintBL(vente);
+                //PrinterHelper.PrintBL(vente);
             }
         }
 

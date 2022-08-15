@@ -258,18 +258,18 @@ namespace XpertMobileApp.Views
                         //Detail = newPage; 
                         NavigationPage.SetHasNavigationBar(newPage, false);
                         if (Detail.Navigation.NavigationStack.Count > 1)
-                        {
-                            new MenuPage(id.ToString());
+                        {     
                             var page = Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1];
                             if (id != (int)MenuItemType.Home)
                                 await Detail.Navigation.PushAsync(newPage);
                             Detail.Navigation.RemovePage(page);
+                            new MenuPage(id.ToString());
                         }
                         else
                         {
-                            new MenuPage(id.ToString());
                             if (id != (int)MenuItemType.Home)
                                 await Detail.Navigation.PushAsync(newPage);
+                            new MenuPage(id.ToString());
                         }
 
                         //Detail.Navigation.NavigationStack.Append(newPage); 

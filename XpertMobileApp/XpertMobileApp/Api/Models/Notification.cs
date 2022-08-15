@@ -28,16 +28,16 @@ namespace XpertMobileApp.Api.Models
         {
             get
             {
-                try
-                {
-                    var c = (Color)Application.Current.Resources[$"cl_{ModuleId}"];
-                    return c.ToHex();
-                }
-                catch
-                {
-                    var c = (Color)Application.Current.Resources["cl_0"];
-                    return c.ToHex();
-                } 
+                    if (Application.Current.Resources.ContainsKey($"cl_{ModuleId}"))
+                    {
+                        var c = (Color)Application.Current.Resources[$"cl_{ModuleId}"];
+                        return c.ToHex();
+                    }
+                    else
+                    {
+                        var c = (Color)Application.Current.Resources["cl_0"];
+                        return c.ToHex();
+                    }
             }
         }
 

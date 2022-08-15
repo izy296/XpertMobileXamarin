@@ -33,6 +33,8 @@ namespace FontAwesome
         public static string Sign_Out_Alt = "\uf2f5";
         public static string Cog = "\uf013";
         public const string Filter = "\uf0b0";
+        public const string Bell = "\uf0f3";
+
 
 
         /// <summary>

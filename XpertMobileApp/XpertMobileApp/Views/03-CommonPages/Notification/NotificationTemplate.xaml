@@ -42,6 +42,7 @@
                        WidthRequest="30"
                        HeightRequest="30"
                        BackgroundColor="{Binding Color}"
+                       x:Name="NotifImage"
                        />
                     </StackLayout>
             </yummy:PancakeView>
@@ -57,10 +58,12 @@
                        FontSize="15"
                        FontAttributes="bold"
                        Margin="0"
-                       VerticalTextAlignment="Start"/>
+                       VerticalTextAlignment="Start"
+                       x:Name="NotifTitle"/>
                 <Label Text="{Binding Message}"
                        FontSize="15"
-                       Margin="0"/>
+                       Margin="0"
+                       x:Name="NotifMessage"/>
             </StackLayout>
 
             <FlexLayout Direction="row"

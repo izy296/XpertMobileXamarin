@@ -332,6 +332,7 @@ namespace XpertMobileApp.Views
             MessagingCenter.Subscribe<MenuPage, string>(this, "ChangeListIndex", async (obj, item) =>
             {
                 HomeMenuItem selected= new HomeMenuItem();
+
                 foreach (var itemitem in menuItems)
                 {
                     if (itemitem.Id == (MenuItemType)Convert.ToInt32(item))

@@ -152,6 +152,18 @@ namespace XpertMobileApp
             }
         }
 
+        private bool isNotifiedForUpdate(string title, string message)
+        {
+            bool res = false;
+            var notificationList = new SettingsModel().getNotificationAsync();
+            foreach (var notif in notificationList)
+            {
+                if (notif.Title == title && notif.Message == message)
+                    res = true;
+            }
+            return res;
+        }
+
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDYxNTc2QDMxMzkyZTMxMmUzMER2U3c5d05XeFJzbm04aTJwVnB6ejgxRU1wNTNRYTBVOUt6SnhrWk1ZQm89");
@@ -176,29 +188,37 @@ namespace XpertMobileApp
                             var NewVersion = itemWebApiXml.Element("version").Value;
                             var Data = new Dictionary<string, string>()
                                     {
-                                { "title", AppResources.Update_Notification_Header },
-                                { "body", AppResources.Update_Notification_Text + " " + NewVersion },
-                                { "moduleName", MenuItemType.About.ToString() },
-                                { "user", "XpertSoft Mobile" },
-                                { "timeNotification", DateTime.Now.ToString() }
+                                        { "title", AppResources.Update_Notification_Header },
+                                        { "body", AppResources.Update_Notification_Text + " " + NewVersion },
+                                        { "moduleName", MenuItemType.About.ToString() },
+                                        { "user", "XpertSoft Mobile" },
+                                        { "timeNotification", DateTime.Now.ToString() }
 
                                     };
 
+
                             if (NewVersion != VersionTracking.CurrentVersion)
                             {
-                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + NewVersion,Data);
-                                new SettingsModel().setNotificationAsync(new Notification()
+                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + NewVersion, Data);
+
+                                bool isNotified = isNotifiedForUpdate(Data["title"].ToString(), Data["body"].ToString());
+
+                                if (!isNotified)
                                 {
-                                    Title = Data["title"].ToString(),
-                                    Message = Data["body"].ToString(),
-                                    Module = Data["moduleName"].ToString(),
-                                    User = Data["user"].ToString(),
-                                    Extras = Data.ContainsKey("extras") ? Data["extras"] : null,
-                                    TimeNotification = DateTime.Parse(Data["timeNotification"])
-                                });
-                                // code responable a la refresh de badge de notification
-                                MessagingCenter.Send(this, "RELOAD_MENU", "");
-                                MessagingCenter.Send(this, "RELOAD_NOTIF", "");
+                                    new SettingsModel().setNotificationAsync(new Notification()
+                                    {
+                                        Title = Data["title"].ToString(),
+                                        Message = Data["body"].ToString(),
+                                        Module = Data["moduleName"].ToString(),
+                                        User = Data["user"].ToString(),
+                                        Extras = Data.ContainsKey("extras") ? Data["extras"] : null,
+                                        TimeNotification = DateTime.Parse(Data["timeNotification"])
+                                    });
+                                    // code responable a la refresh de badge de notification
+                                    MessagingCenter.Send(this, "RELOAD_MENU", "");
+                                    MessagingCenter.Send(this, "RELOAD_NOTIF", "");
+                                }
+
                             }
 
                         }
@@ -206,7 +226,7 @@ namespace XpertMobileApp
                     catch (Exception ex)
                     {
                         await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
-AppResources.alrt_msg_Ok);
+                        AppResources.alrt_msg_Ok);
                     }
                 }).Start();
         }
@@ -220,15 +240,16 @@ AppResources.alrt_msg_Ok);
                 {
                     //Sauvegarde de notification dans l'événement d'ouverture et
                     //l'affichage de detaile dans le cas de donnes additionnelles
-                    new SettingsModel().setNotificationAsync(new Notification()
-                    {
-                        Title = p.Data["title"].ToString(),
-                        Message = p.Data["body"].ToString(),
-                        Module = p.Data["moduleName"].ToString(),
-                        User = p.Data["user"].ToString(),
-                        Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
-                        TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
-                    });
+                    if (p.Data["title"].ToString() != AppResources.Update_Notification_Header)
+                        new SettingsModel().setNotificationAsync(new Notification()
+                        {
+                            Title = p.Data["title"].ToString(),
+                            Message = p.Data["body"].ToString(),
+                            Module = p.Data["moduleName"].ToString(),
+                            User = p.Data["user"].ToString(),
+                            Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
+                            TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
+                        });
                     // code responable a la refresh de badge de notification
                     MessagingCenter.Send(this, "RELOAD_MENU", "");
                     MessagingCenter.Send(this, "RELOAD_NOTIF", "");

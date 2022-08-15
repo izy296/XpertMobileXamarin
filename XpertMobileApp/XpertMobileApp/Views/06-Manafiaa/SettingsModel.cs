@@ -112,7 +112,14 @@ namespace XpertMobileApp.ViewModels
             {
                 List<Notification> Liste;
                 Liste = JsonConvert.DeserializeObject<List<Notification>>(Settings.Notifiaction);
-                Liste.Add(notif);
+                var found = false;
+                foreach(var l in Liste)
+                {
+                    if (l.Equals(notif))
+                        found = true;
+                }
+                if (!found)
+                    Liste.Add(notif);
                 string jsonNotification = JsonConvert.SerializeObject(Liste);
                 Settings.Notifiaction = jsonNotification;
             }

@@ -29,6 +29,7 @@ namespace XpertMobileApp.Views
                 notif_container.Padding = new Thickness(0, 0, 0, 0);
                 lblClientName.Margin = new Thickness(45, 0, 90, 0);
             }
+
         }
 
         protected async override void OnAppearing()
@@ -76,6 +77,11 @@ namespace XpertMobileApp.Views
                 await notificationBell.RotateTo(0, 100, easing: Easing.Linear);
             }
             else notificationBell.ImageSource = "notification36.png";
+
+            if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).CurrentPage== this)
+            {
+                new MenuPage("1");
+            }
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)

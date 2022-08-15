@@ -109,6 +109,7 @@ namespace XpertMobileApp.Views
             MessagingCenter.Subscribe<Settings,string>(this, "MultiPrinterChanged", (o,e) =>
             {
                 MPrinterOptions.IsVisible=App.Settings.EnableMultiPrinter;
+                App.Settings.isModified=true;
             });
 
             MessagingCenter.Subscribe<PrinterSelector, List<XPrinter>>(this, MCDico.ITEM_SELECTED, (o, e) =>

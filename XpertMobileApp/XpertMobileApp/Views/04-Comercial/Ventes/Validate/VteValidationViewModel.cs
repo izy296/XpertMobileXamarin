@@ -123,7 +123,7 @@ namespace XpertMobileApp.ViewModels
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                if (ex.Message.Contains("ne sont pas valides"))
+                if (ex.Message.Contains("ne sont pas valides") || ex.Message.Contains("are not valid"))
                 {
                     return "Validation avec success mais probleme dans l'impression du ticket !";
                 }

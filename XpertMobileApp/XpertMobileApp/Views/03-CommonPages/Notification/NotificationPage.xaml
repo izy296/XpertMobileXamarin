@@ -53,7 +53,7 @@
                                                     Invoked="Supprimer"/>
                                     </SwipeItems>
                                 </SwipeView.RightItems>
-                                <template:NotificationTemplate />
+                                <template:NotificationTemplate  x:Name="notifTemplate"/>
                             </SwipeView>
                         </ViewCell>
                         

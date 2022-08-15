@@ -60,7 +60,7 @@
 
             <ListView.GroupHeaderTemplate>
                 <DataTemplate>
-                    <ViewCell Height="35">
+                    <ViewCell Height="40">
                         <ViewCell.View>
                             <StackLayout
                                         BackgroundColor="#dcefff"
@@ -85,8 +85,8 @@
 
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="6" MinimumHeightRequest="25">
+                    <ViewCell Height="35" >
+                        <Grid Padding="6" MinimumHeightRequest="35">
                             <FlexLayout Direction="Row"
                                         JustifyContent="SpaceBetween"
                                         AlignItems="Center">
