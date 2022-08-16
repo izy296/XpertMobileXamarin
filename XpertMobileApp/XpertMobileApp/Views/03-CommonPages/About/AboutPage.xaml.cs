@@ -18,6 +18,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+            ClientId.Text = " ( ID :"+App.Settings.ClientId+" )";
             CurrentVersion.Text = VersionTracking.CurrentVersion;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
             BindingContext = viewModel = new AboutViewModel();

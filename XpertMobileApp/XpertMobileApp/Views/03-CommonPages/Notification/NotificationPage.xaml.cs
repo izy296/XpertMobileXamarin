@@ -95,6 +95,27 @@ namespace XpertMobileApp.Views
                 {
                     Notification notification = e.SelectedItem as Notification;
                     MainPage RootPage = App.Current.MainPage as MainPage;
+
+
+                    List<Notification> liste = JsonConvert.DeserializeObject<List<Notification>>(App.Settings.Notifiaction);
+
+                    for (int i = 0; i < liste.Count; i++)
+                    {
+                        if (liste[i].Index == notification.Index)
+                        {
+                            liste[i].IsUnRead=false;
+                            break;
+                        }
+                    }
+
+                    App.Settings.Notifiaction = JsonConvert.SerializeObject(liste);
+
+                    //to update the badge with the number of rest parameter
+                    MessagingCenter.Send(this, "RELOAD_MENU", "");
+
+                    await SettingsviewModel.SaveSettings();
+                    viewModel.Items = SettingsviewModel.getNotificationAsync();
+
                     if (notification.ModuleId != Convert.ToInt32(MenuItemType.None))
                     {
                         await RootPage.NavigateFromMenu(notification.ModuleId);

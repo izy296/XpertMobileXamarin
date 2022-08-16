@@ -28,22 +28,25 @@ namespace XpertMobileApp.ViewModels
         public Command LoadSessionsCommand { get; set; }
 
 
-        
+
 
         private TRS_JOURNEES currentSession;
-        public TRS_JOURNEES CurrentSession {
+        public TRS_JOURNEES CurrentSession
+        {
             get { return currentSession; }
             set { SetProperty(ref currentSession, value); }
         }
 
         private decimal totalEncaiss;
-        public decimal TotalEncaiss {
+        public decimal TotalEncaiss
+        {
             get { return totalEncaiss; }
             set { SetProperty(ref totalEncaiss, value); }
         }
 
         private decimal totalDecaiss;
-        public decimal TotalDecaiss {
+        public decimal TotalDecaiss
+        {
             get { return totalDecaiss; }
             set { SetProperty(ref totalDecaiss, value); }
         }
@@ -99,10 +102,46 @@ namespace XpertMobileApp.ViewModels
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 ObservableCollection<TDB_SIMPLE_INDICATORS> res = new ObservableCollection<TDB_SIMPLE_INDICATORS>();
-                if (Constants.AppName == Apps.XCOM_Livraison) 
+
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Achats).ToString(),
+                    Title = AppResources.pn_Achats,
+                    Color = "#72cfce",
+                    CodeObjet = Xpert.XpertObjets.ACH_DOCUMENT,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+                if (Constants.AppName == Apps.XPH_Mob)
                 {
                     res.Add(new TDB_SIMPLE_INDICATORS()
-                    {   
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Psychotrop).ToString(),
+                        Title = AppResources.pn_VtePsychotrop,
+                        Color = "#ff7575",
+                        CodeObjet = Xpert.XpertObjets.VTE_PSYCHOTROP,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+                }
+
+                else if (Constants.AppName == Apps.XCOM_Mob)
+                {
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Manquants).ToString(),
+                        Title = AppResources.pn_Manquants,
+                        Color = "#ff7575",
+                        CodeObjet = Xpert.XpertObjets.ACH_MANQUANTS,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+                }
+
+
+                if (Constants.AppName == Apps.XCOM_Livraison)
+                {
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
                         CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
                         Title = "Livraisons",
                         Color = "#FFC000",
@@ -110,7 +149,7 @@ namespace XpertMobileApp.ViewModels
                         Action = Xpert.XpertActions.AcSelect
                     });
                 }
-                else 
+                else
                 {
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
@@ -196,7 +235,7 @@ namespace XpertMobileApp.ViewModels
                     });
                 }
 
-                
+
                 /*
                 var items = await CrudManager.SimpleIndicatorsService.SelectByPage(GetFilterParams(), 1,20);
                 foreach (var item in items)
@@ -208,7 +247,7 @@ namespace XpertMobileApp.ViewModels
                 Items.Clear();
                 foreach (var item in res)
                 {
-                    if(item.HasPermission)
+                    if (item.HasPermission)
                         Items.Add(item);
                 }
 

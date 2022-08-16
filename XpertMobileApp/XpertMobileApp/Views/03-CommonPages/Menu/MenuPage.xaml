@@ -43,16 +43,35 @@
                                FontFamily="{StaticResource FontAwesomeBrands}"
                               />
                     </Grid>
-                    <StackLayout Padding="0" Orientation="Vertical" HorizontalOptions="End" VerticalOptions="Center">
-                        <Label FontSize="Micro" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,10,5" HorizontalTextAlignment="End">
-                            <Label.FormattedText>
-                                <FormattedString>
-                                    <FormattedString.Spans>
-                                        <Span x:Name="XpertVersion" Text="1.0"/>
-                                    </FormattedString.Spans>
-                                </FormattedString>
-                            </Label.FormattedText>
-                        </Label>
+                    <StackLayout Padding="0" Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" FontSize="Micro" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,5" HorizontalTextAlignment="Start">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span x:Name="ClientId" Text="1.0"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Grid.Column="1" FontSize="Micro" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,5" HorizontalTextAlignment="End">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <FormattedString.Spans>
+                                            <Span x:Name="XpertVersion" Text="1.0"/>
+                                        </FormattedString.Spans>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </Grid>
+
                     </StackLayout>
                     <Label x:Name="lbl_MenuUser" Text="" TextColor="Black" FontSize="0" Margin="0,0,0,0" IsVisible="false"/>
                 </StackLayout>

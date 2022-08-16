@@ -23,6 +23,10 @@ namespace XpertMobileApp.Views
             // Title = AppResources.pn_home;
             lblUser.Text = App.User?.Token.userName;
             lblClientName.Text = App.Settings.ClientName;
+
+            var userGroup = App.User.UserGroup;
+            if (userGroup == "AD")
+                notificationBell.IsVisible = true;
             BindingContext = viewModel = new HomeViewModel();
             if (App.Settings.Language == "ar")
             {

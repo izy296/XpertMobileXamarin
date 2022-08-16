@@ -31,6 +31,7 @@
                         <FormattedString>
                             <FormattedString.Spans>
                                 <Span x:Name="XpertVersion" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
+                                <Span x:Name="ClientId" Text="1.0" ForegroundColor="{StaticResource LightTextColor}" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

@@ -17,13 +17,6 @@ namespace XpertMobileApp.Views.Templates
         public NotificationTemplate()
         {
             InitializeComponent();
-            MessagingCenter.Subscribe<NotificationViewModel, string>(this,"RefreshImage", (o,s) =>
-            {
-                if (NotifTitle.Text==AppResources.Update_Notification_Header)
-                {
-                    NotifImage.Source = "mi_0.png";
-                }
-            });
         }
         
 

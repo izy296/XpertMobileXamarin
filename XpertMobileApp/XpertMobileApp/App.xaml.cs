@@ -225,8 +225,8 @@ namespace XpertMobileApp
                     }
                     catch (Exception ex)
                     {
-                        await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                        //await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
+                        //AppResources.alrt_msg_Ok);
                     }
                 }).Start();
         }

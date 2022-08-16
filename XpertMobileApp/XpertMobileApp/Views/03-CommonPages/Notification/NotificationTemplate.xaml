@@ -29,23 +29,39 @@
                    Source="logo_v_tl_x.png"
                    HeightRequest="45"
             />-->
-
-            <yummy:PancakeView  Grid.Row="0"
-                                Grid.Column="0"
+            <StackLayout Grid.Row="0"
+                         Grid.Column="0">
+                <AbsoluteLayout>
+                    <yummy:PancakeView
+                                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                AbsoluteLayout.LayoutFlags="HeightProportional,WidthProportional"
                                 HeightRequest="70"
                                 x:Name="pancake_view"
                                 CornerRadius="1000"
                                 BackgroundColor="{Binding ColorM}"
                                 >
-                <StackLayout VerticalOptions="Center">
-                <Image Source="{Binding ModuleId, StringFormat='mi_{0}.png'}" 
+                        <StackLayout VerticalOptions="Center">
+                            <Image Source="{Binding ModuleId, StringFormat='mi_{0}.png'}" 
                        WidthRequest="30"
                        HeightRequest="30"
                        BackgroundColor="{Binding Color}"
                        x:Name="NotifImage"
                        />
-                    </StackLayout>
-            </yummy:PancakeView>
+                        </StackLayout>
+                    </yummy:PancakeView>
+                    <yummy:PancakeView
+                                AbsoluteLayout.LayoutBounds="2,2,.20,.20"
+                                AbsoluteLayout.LayoutFlags="HeightProportional,WidthProportional"
+                                HeightRequest="10"
+                                x:Name="isUnRead"
+                                CornerRadius="1000"
+                                BackgroundColor="REd"
+                                IsVisible="{Binding IsUnRead}"
+                                >
+                    </yummy:PancakeView>
+                </AbsoluteLayout>
+
+            </StackLayout>
 
             <StackLayout Orientation="Vertical"
                          VerticalOptions="Start"

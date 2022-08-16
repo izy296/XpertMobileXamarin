@@ -48,6 +48,7 @@ namespace XpertMobileApp.Views
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+            ClientId.Text = "ID : "+App.Settings.ClientId;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
 
             GetNumberOfNotifications();
@@ -331,7 +332,7 @@ namespace XpertMobileApp.Views
 
             MessagingCenter.Subscribe<MenuPage, string>(this, "ChangeListIndex", async (obj, item) =>
             {
-                HomeMenuItem selected= new HomeMenuItem();
+                HomeMenuItem selected = new HomeMenuItem();
 
                 foreach (var itemitem in menuItems)
                 {
@@ -477,7 +478,14 @@ namespace XpertMobileApp.Views
                 foreach (var menu in menuItems)
                 {
                     if (menu.Id == MenuItemType.Notification)
+                    {
                         menu.CountOfNotifications = this.NumberOfNotifications;
+                        if (menu.CountOfNotifications == 0)
+                        {
+                            menu.NotificationBadgeIsVisible = false;
+                        }
+                        else menu.NotificationBadgeIsVisible = true;
+                    }
                 }
 
                 SortMenuItems();
@@ -497,8 +505,13 @@ namespace XpertMobileApp.Views
                 {
                     try
                     {
+                        int nbNotification = 0;
                         List<Notification> tempList = JsonConvert.DeserializeObject<List<Notification>>(App.Settings.Notifiaction);
-                        this.NumberOfNotifications = tempList.Count;
+                        foreach (Notification notification in tempList)
+                            if (notification.IsUnRead) nbNotification++;
+                        if (nbNotification == 0)
+                            this.NumberOfNotifications = 0;
+                        else this.NumberOfNotifications = nbNotification;
                     }
                     catch (Exception)
                     {
