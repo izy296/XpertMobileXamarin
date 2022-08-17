@@ -18,12 +18,33 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new SessionsViewModel();
+
+            MessagingCenter.Subscribe<App, Object>(this, "ExtraData", async (s, e) =>
+            {
+                string idCaisse = e as string;
+                TRS_JOURNEES itemSelected = await viewModel.GetItemById(idCaisse);
+                await Navigation.PushAsync(new SessionDetailPage(itemSelected));
+                if (itemSelected != null)
+                    await Navigation.PushAsync(new SessionDetailPage(itemSelected));
+                else
+                    await DisplayAlert(AppResources.txt_alert, "There is no Session Available", AppResources.alrt_msg_Ok);
+            });
+
+            MessagingCenter.Subscribe<NotificationPage, Object>(this, "ExtraData", async (s, e) =>
+            {
+                string idCaisse = e as string;
+                TRS_JOURNEES itemSelected = await viewModel.GetItemById(idCaisse);
+                if (itemSelected != null)
+                    await Navigation.PushAsync(new SessionDetailPage(itemSelected));
+                else
+                    await DisplayAlert(AppResources.txt_alert, "There is no Session Available", AppResources.alrt_msg_Ok);
+            });
+
         }
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
 
             if (viewModel.Items.Count == 0)
                 LoadStats(EncaissDisplayType.All);

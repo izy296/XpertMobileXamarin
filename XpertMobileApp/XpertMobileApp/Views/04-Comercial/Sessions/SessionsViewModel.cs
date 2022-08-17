@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -55,8 +56,7 @@ namespace XpertMobileApp.ViewModels
 
         public SessionsViewModel()
         {
-            Title = AppResources.pn_session;
-
+            Title = AppResources.pn_session;            
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
@@ -132,6 +132,34 @@ namespace XpertMobileApp.ViewModels
             finally
             {
                 IsLoadExtrasBusy = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="idCaisse"></param>
+        /// <returns></returns>
+        public async Task<TRS_JOURNEES> GetItemById(string idCaisse)
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                base.GetFilterParams();
+                this.AddCondition<TRS_JOURNEES, string>(e => e.ID_CAISSE, idCaisse);
+                this.AddOrderBy<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE);
+
+                List<TRS_JOURNEES> items = (List<TRS_JOURNEES>)await service.SelectByPage(qb.QueryInfos, 1, 1);
+                UserDialogs.Instance.HideLoading();
+                if (items.Count != 0)
+                    return items[0];
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return null;
             }
         }
     }
