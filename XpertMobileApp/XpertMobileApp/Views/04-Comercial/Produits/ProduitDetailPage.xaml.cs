@@ -109,7 +109,7 @@ namespace XpertMobileApp.Views
 
                 foreach (var itemC in itemsC)
                 {
-                    viewModel.ItemRows.Add(itemC);
+                    viewModel.ItemRows.Add(itemC);  
                 }
                 UserDialogs.Instance.HideLoading();
             }

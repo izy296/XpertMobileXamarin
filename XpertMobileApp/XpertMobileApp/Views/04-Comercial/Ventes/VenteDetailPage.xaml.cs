@@ -203,5 +203,12 @@ namespace XpertMobileApp.Views.Encaissement
         {
             await ExecuteLoadRowsCommand();
         }
+
+        private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = e.CurrentSelection[0] as View_VTE_JOURNAL_DETAIL;
+            ProduitDetailPage produitDetailPage = new ProduitDetailPage(selected.CODE_PRODUIT);
+            await Navigation.PushAsync(produitDetailPage);
+        }
     }
 }

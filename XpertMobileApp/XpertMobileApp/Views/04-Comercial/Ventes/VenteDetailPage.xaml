@@ -75,6 +75,7 @@
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                     <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <!--<Label Text="{Binding ItemRows.CODE_PRODUIT}"/>-->
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>
 
@@ -83,13 +84,15 @@
                              IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
 
                     <CollectionView ItemsSource="{Binding ItemRows}"
-                                    ItemTemplate="{StaticResource VenteTemplateSelector}">
+                                    ItemTemplate="{StaticResource VenteTemplateSelector}"
+                                    SelectionChanged="CollectionView_SelectionChanged"
+                                    SelectionMode="Single">
 
                     </CollectionView>
                 </RefreshView>
 
                 <!--Button Pour Imprimer-->
-                    <!--<Button x:Name="Btn_Print" 
+                <!--<Button x:Name="Btn_Print" 
                             Margin="0,15,0,0" 
                             Style="{DynamicResource DefaultBtnStyle}" 
                             CornerRadius="8"

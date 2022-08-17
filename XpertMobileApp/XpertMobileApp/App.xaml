@@ -20,7 +20,7 @@
                 <template:RowElementTemplate_STK_COMM />
             </DataTemplate>
 
-            <templateSelector:ProduitDataSelectorTemplate   x:Key="templateSelector" 
+            <templateSelector:ProduitDataSelectorTemplate   x:Key="ProduitTemplateSelector" 
                                                             LotPharm="{StaticResource LotPharm}"
                                                             LotComm="{StaticResource LotComm}"/>
             <!-- ***************** Produit *****************-->
@@ -35,9 +35,14 @@
                 <template:RowElementTemplate_VTE/>
             </DataTemplate>
 
+            <DataTemplate x:Key="VenteNormalComm">
+                <template:RowElementTemplate_VTE_COMM/>
+            </DataTemplate>
+
             <templateSelector:VenteDataSelectorTemplate x:Key = "VenteTemplateSelector"
                                                         VentePsychotrope = "{StaticResource VentePsy}"
-                                                        VenteNormal = "{StaticResource VenteNormal}"/>
+                                                        VenteNormal = "{StaticResource VenteNormal}"
+                                                        VenteNormalComm="{StaticResource VenteNormalComm}"/>
 
             <!--***************** Vente *****************-->
 

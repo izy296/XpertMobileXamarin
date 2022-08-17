@@ -89,9 +89,9 @@
                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
                         <CollectionView 
                                     ItemsSource="{Binding ItemRows}"
-                                    ItemTemplate="{StaticResource templateSelector}">
+                                    ItemTemplate="{StaticResource ProduitTemplateSelector}">
 
-                        </CollectionView>
+                    </CollectionView>
                 </RefreshView>
             </StackLayout>
         </Frame>

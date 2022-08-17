@@ -4,7 +4,7 @@
              x:Class=" XpertMobileApp.Views.Templates.RowElementTemplate_ACH">
     <ContentView.Content>
         <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
-                <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+            <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
@@ -12,9 +12,11 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="17"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -22,7 +24,7 @@
 
                     <StackLayout Grid.Column="0" 
                                  Grid.Row="0" 
-                                 Grid.RowSpan="3" 
+                                 Grid.RowSpan="5" 
                                  Spacing="5" 
                                  Padding="0" 
                                  VerticalOptions="Fill" 
@@ -30,19 +32,20 @@
                                  BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
                                  HeightRequest="40">
                     </StackLayout>
-                    
+
                     <StackLayout Grid.Column="1" 
-                                 Grid.ColumnSpan="2" 
+                                 Grid.ColumnSpan="3" 
                                  Grid.Row="0" 
                                  Spacing="5" 
                                  Padding="0" 
                                  Orientation="Horizontal">
-                        
+
                         <Label Text="{Binding DESIGNATION_PRODUIT}"  
                                TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" 
+                               VerticalOptions="Center"
                                FontSize="Default"/>
-                        
+
                         <!--<Label Text="{Binding Expiration}" 
                                Grid.Column="1" 
                                TextColor="{StaticResource DefaultTextColor}" 
@@ -53,24 +56,68 @@
                         <Label x:Name="CodeReclamaion"
                                Text="{Binding CODE_DOC_DETAIL }" 
                                IsVisible="false"/>
-                        
+
                         <Label x:Name="isLitige"
                                Text="{Binding LITIGES }" 
                                IsVisible="false"
                                />
                     </StackLayout>
-                    <!--
-                        <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal"></StackLayout>
-                    -->
+
+                    <!--Ligne zero-->
                     <Label Grid.Column="1" 
                            Grid.Row="1" 
-                           Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
+                           Text="{ Binding LOT, StringFormat='Lot : {0:N2}'}" 
+                           FontSize="Default" 
+                           TextColor="Black" 
+                           HorizontalOptions="StartAndExpand" />
+
+
+                    <Label Grid.Column="2" 
+                           Grid.Row="1" 
+                           Text="{Binding TAUX_RISTOURNE, StringFormat='Ris : {0:N2}'}" 
+                           TextColor="Black"
                            Margin="0,0,0,0" 
-                           FontAttributes="Bold" 
                            FontSize="Default" 
                            HorizontalOptions="Start" />
 
-                    <Button Grid.Column="3" 
+                    <Label Grid.Column="3" 
+                           Grid.Row="1"  
+                           Text="{Binding TAUX_TVA, StringFormat='TVA : {0:N2}'}" 
+                           TextColor="Chocolate"
+                           Margin="0,0,0,0" 
+                           FontSize="Default" 
+                           HorizontalOptions="StartAndExpand" />
+
+                    <!--Ligne une-->
+
+                    <Label Grid.Column="1" 
+                           Grid.Row="2" 
+                           Text="{ Binding QUANTITE, StringFormat='Qté : {0:N2}'}" 
+                           Margin="0,0,0,0"  
+                           FontSize="Default" 
+                           TextColor="Black"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+
+                    <Label Grid.Column="2" 
+                           Grid.Row="2" 
+                           Text="{ Binding PRIX_UNITAIRE, StringFormat='P.U : {0:N2}'}" 
+                           Margin="0,0,0,0"  
+                           FontSize="Default" 
+                           TextColor="Black"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+
+                    <Label Grid.Column="3" 
+                           Grid.Row="2" 
+                           Text="{ Binding MT_HT, StringFormat='P.A : {0:N2}'}" 
+                           Margin="0,0,0,0"  
+                           FontSize="Default" 
+                           TextColor="Black"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start" />
+                    
+                    <Button Grid.Column="4" 
                             Grid.Row="0" 
                             ImageSource="alert.png"
                             WidthRequest="40"
@@ -81,43 +128,44 @@
                             Clicked="showReclamation"
                             x:Name="reclamationBtn"
                             IsVisible="{Binding LITIGES}"/>
-
-                    <Label Grid.Column="2" 
-                           Grid.Row="1" 
-                           Grid.ColumnSpan="2" 
-                           Text="{ Binding VAL_STK, StringFormat='Val. : {0:N2}'}" 
-                           FontSize="Default" 
-                           FontAttributes="Bold" 
-                           HorizontalOptions="EndAndExpand" />
-
-
+                    
+                    <!--Ligne deux-->
                     <Label Grid.Column="1" 
-                           Grid.Row="2" 
-                           Text="{Binding SHP, StringFormat='PA : {0:N2}'}" 
+                           Grid.Row="3" 
+                           Text="{Binding SHP, StringFormat='SHP : {0:N2}'}" 
                            TextColor="Orange"
-                           Margin="0,0,0,0" 
-                           FontAttributes="Bold" 
+                           Margin="0,0,0,0"  
                            FontSize="Default" 
                            HorizontalOptions="Start" />
-                    
+
                     <Label Grid.Column="2" 
-                           Grid.Row="2"  
+                           Grid.Row="3"  
                            Text="{Binding PPA, StringFormat='PPA : {0:N2}'}" 
                            TextColor="Chocolate"
-                           Margin="0,0,0,0" 
-                           FontAttributes="Bold" 
+                           Margin="0,0,0,0"  
                            FontSize="Default" 
                            HorizontalOptions="Start" />
-                    
+
                     <Label Grid.Column="3" 
-                           Grid.Row="2" 
+                           Grid.Row="3" 
                            Text="{ Binding PRIX_VENTE, StringFormat='PV. {0:N2}'}" 
                            FontSize="Default" 
-                           HorizontalOptions="EndAndExpand"
-                           FontAttributes="Bold" 
+                           HorizontalOptions="StartAndExpand"
                            TextColor="Red"/>
+                    
+                    
+                    <!--Ligne trois-->
+                    <Label Grid.Column="1" 
+                           Grid.Row="4" 
+                           Grid.ColumnSpan="3"
+                           Text="{ Binding DATE_PEREMPTION, StringFormat=' Date De Péremption :{0:dd/MM/yyyy}'}" 
+                           Margin="20,10,0,0"  
+                           HorizontalOptions="CenterAndExpand" 
+                           FontSize="12"
+                           TextColor="Black"/>
+
                 </Grid>
             </Frame>
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>
