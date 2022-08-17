@@ -77,6 +77,21 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
+        protected override QueryInfos GetSelectParams()
+        {
+            base.GetSelectParams();
+            this.AddSelect<TRS_JOURNEES, string>(e => e.DEBUTEE_PAR);
+            this.AddSelect<TRS_JOURNEES, string>(e => e.POSTE_DEBUT);
+            //this.AddSelect<TRS_JOURNEES, decimal>(e => e.MONT_CLOTURE_PH_virtual);
+            this.AddSelect<TRS_JOURNEES, decimal>(e => e.MONT_ECART);
+            this.AddSelect<TRS_JOURNEES, DateTime?>(e => e.DATE_DEBUT);
+            this.AddSelect<TRS_JOURNEES, string>(e => e.CLOTUREE_PAR);
+            this.AddSelect<TRS_JOURNEES, DateTime?>(e => e.DATE_CLOTURE);
+            this.AddSelect<TRS_JOURNEES, bool>(e => e.JOURNEE_CLOTUREE);
+
+            return qb.QueryInfos;
+        }
+
         protected override void OnAfterLoadItems(IEnumerable<TRS_JOURNEES> list)
         {
             base.OnAfterLoadItems(list);
@@ -145,15 +160,25 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                base.GetFilterParams();
-                this.AddCondition<TRS_JOURNEES, string>(e => e.ID_CAISSE, idCaisse);
-                this.AddOrderBy<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE);
+                XpertSqlBuilder qbOneQuery = new XpertSqlBuilder();
+                qbOneQuery.AddCondition<TRS_JOURNEES, string>(e => e.ID_CAISSE, idCaisse);
+                qbOneQuery.AddOrderBy<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE);
 
-                List<TRS_JOURNEES> items = (List<TRS_JOURNEES>)await service.SelectByPage(qb.QueryInfos, 1, 1);
+                qbOneQuery.AddSelect<TRS_JOURNEES, string>(e => e.DEBUTEE_PAR);
+                qbOneQuery.AddSelect<TRS_JOURNEES, string>(e => e.POSTE_DEBUT);
+                //this.AddSelect<TRS_JOURNEES, decimal>(e => e.MONT_CLOTURE_PH_virtual);
+                qbOneQuery.AddSelect<TRS_JOURNEES, decimal>(e => e.MONT_ECART);
+                qbOneQuery.AddSelect<TRS_JOURNEES, DateTime?>(e => e.DATE_DEBUT);
+                qbOneQuery.AddSelect<TRS_JOURNEES, string>(e => e.CLOTUREE_PAR);
+                qbOneQuery.AddSelect<TRS_JOURNEES, DateTime?>(e => e.DATE_CLOTURE);
+                qbOneQuery.AddSelect<TRS_JOURNEES, bool>(e => e.JOURNEE_CLOTUREE);
+
+                List<TRS_JOURNEES> items = (List<TRS_JOURNEES>) await service.SelectByPage(qbOneQuery.QueryInfos, 1, 1);
                 UserDialogs.Instance.HideLoading();
                 if (items.Count != 0)
                     return items[0];
                 else return null;
+
             }
             catch (Exception ex)
             {
