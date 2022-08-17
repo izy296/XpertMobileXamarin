@@ -220,7 +220,7 @@
     <value>Fermer</value>
   </data>
   <data name="DATE_ENCAISS" xml:space="preserve">
-    <value>Date</value>
+    <value>Date:</value>
   </data>
   <data name="DESIGN_COMPTE" xml:space="preserve">
     <value>Compte</value>
@@ -499,7 +499,7 @@
     <value>Prix</value>
   </data>
   <data name="txt_Product" xml:space="preserve">
-    <value>Produit</value>
+    <value>Produit:</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
     <value>Qté Produit</value>
@@ -896,7 +896,7 @@
     <value>Récupérer votre préfixe</value>
   </data>
   <data name="pn_Fournisseur" xml:space="preserve">
-    <value>Fournisseur</value>
+    <value>Fournisseur:</value>
   </data>
   <data name="Exception_errMsg_33" xml:space="preserve">
     <value>Nombre d'appareil limite atteint !</value>
@@ -1197,5 +1197,11 @@
   </data>
   <data name="Update_Notification_Text" xml:space="preserve">
     <value>Il y a une nouvelle version</value>
+  </data>
+  <data name="txt_Facture" xml:space="preserve">
+    <value>Facture:</value>
+  </data>
+  <data name="txt_Note" xml:space="preserve">
+    <value>Note:</value>
   </data>
 </root>

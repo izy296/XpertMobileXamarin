@@ -1,100 +1,92 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="XpertMobileApp.Views.Templates.ReclamationTemplate">
+             x:Class="XpertMobileApp.Views.Templates.ReclamationTemplate"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers">
     <ContentView.Content>
 
         <StackLayout Orientation="Vertical"
-                     
                      Margin="10">
 
-            <Label Text="Réclamation"
-                   FontSize="22"
-                   TextColor="Black"/>
-            
-            
+
             <!--Fournisseur-->
-            <StackLayout Orientation="Horizontal">
-                
-                <Label Text="Fournisseur: "
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,5">
+
+                <Label Text="{i18n:Translate pn_Fournisseur}"
                        FontAttributes="Bold"
-                       FontSize="18"
+                       FontSize="16"
                        TextColor="black"/>
                 
                 <Label Text="{Binding TIERS , StringFormat='{0}'}"   
                        TextColor="Black"
-                       FontSize="16"/>
+                       FontSize="14"/>
                 
             </StackLayout>
             
             <!--Date-->
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,5">
 
-                <Label Text="Date: "
+                <Label Text="{i18n:Translate DATE_ENCAISS}"
                        FontAttributes="Bold"
-                       FontSize="18"
+                       FontSize="16"
                        TextColor="black"/>
-                
+
                 <Label Text="{Binding CREATED_ON , StringFormat='{0}'}"  
                        TextColor="Black"
-                       FontSize="16"/>
-
-            </StackLayout>
-
-            <!--Fournisseur--> 
-            <StackLayout Orientation="Horizontal">
-
-                <Label Text="Fournisseur: "
-                       FontAttributes="Bold"
-                       FontSize="18"
-                       TextColor="black"/>
-                
-                <Label Text="{Binding TIERS , StringFormat='{0}'}"  
-                       TextColor="Black"
-                       FontSize="16"/>
+                       FontSize="14"/>
 
             </StackLayout>
 
             <!--Facture-->
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,5">
 
-                <Label Text="Facture: "
+                <Label Text="{i18n:Translate txt_Facture}"
                        FontAttributes="Bold"
-                       FontSize="18"
+                       FontSize="16"
                        TextColor="black"/>
 
                 <Label Text="{Binding CODE_FACTURE , StringFormat='{0}'}"  
                        TextColor="Black"
-                       FontSize="16"/>
+                       FontSize="14"/>
 
             </StackLayout>
             
             
             <!--Produit-->
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,5">
 
-                <Label Text="Produit: "
+                <Label Text="{i18n:Translate txt_Product}"
                        FontAttributes="Bold"
-                       FontSize="18"
+                       FontSize="16"
                        TextColor="black"/>
 
                 <Label Text="{Binding PRODUIT , StringFormat='{0}'}"  
                        TextColor="Black"
-                       FontSize="16"/>
+                       FontSize="14"/>
 
             </StackLayout>
 
             <!--Note-->
-            <StackLayout Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal"
+                         Margin="0,5">
 
-                <Label Text="Note: "
+                <Label Text="{i18n:Translate txt_Note}"
                        FontAttributes="Bold"
-                       FontSize="18"
+                       FontSize="16"
                        TextColor="black"/>
 
                 <Label Text="{Binding NOTE_RECLAMATION , StringFormat='{0}'}"   
                        TextColor="Black"
-                       FontSize="16"/>
+                       FontSize="14"/>
+
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0"
+                         HorizontalOptions="Center">
 
             </StackLayout>
         </StackLayout>

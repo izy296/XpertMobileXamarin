@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,9 @@ namespace XpertMobileApp.Views.Templates
         private async void showReclamation(object sender, EventArgs e)
         {
             ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
             await reclamationInfo.GetReclamation();
+            UserDialogs.Instance.HideLoading();
             await PopupNavigation.Instance.PushAsync(reclamationInfo);
         }
     }

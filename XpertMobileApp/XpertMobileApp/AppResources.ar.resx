@@ -223,7 +223,7 @@
     <value>الحساب</value>
   </data>
   <data name="DATE_ENCAISS" xml:space="preserve">
-    <value>التاريخ</value>
+    <value>:التاريخ</value>
   </data>
   <data name="DESIGN_MOTIF" xml:space="preserve">
     <value>السبب</value>
@@ -502,7 +502,7 @@
     <value>الدفعة</value>
   </data>
   <data name="txt_Product" xml:space="preserve">
-    <value>المنتوج</value>
+    <value>:المنتوج</value>
   </data>
   <data name="txt_Prix" xml:space="preserve">
     <value>ثمن</value>
@@ -800,7 +800,7 @@
     <value>احصل على البادئة الخاصة بك</value>
   </data>
   <data name="pn_Fournisseur" xml:space="preserve">
-    <value>الممون</value>
+    <value>:الممون</value>
   </data>
   <data name="Exception_errMsg_34" xml:space="preserve">
     <value>رقم الزبون غير متوفر </value>
@@ -1065,5 +1065,11 @@
   </data>
   <data name="Update_Notification_Text" xml:space="preserve">
     <value>هناك نسخة جديدة</value>
+  </data>
+  <data name="txt_Facture" xml:space="preserve">
+    <value>:فاتورة</value>
+  </data>
+  <data name="txt_Note" xml:space="preserve">
+    <value>:ملاحظة</value>
   </data>
 </root>

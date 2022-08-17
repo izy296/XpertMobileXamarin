@@ -10,30 +10,55 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
-                     HorizontalOptions="FillAndExpand" 
+                     HorizontalOptions="Center" 
                      Padding="10">
+
+
 
             <Frame CornerRadius="15" 
                    Padding="10"
+                   HeightRequest="350"
                    VerticalOptions="Center">
+                <StackLayout>
 
-                <ListView x:Name="ItemsListView"
-                    VerticalOptions="Fill"
-                    ItemsSource="{Binding Items}"
-                    HasUnevenRows="true" 
-                    BackgroundColor="Transparent"
-                    SeparatorVisibility="None"
-                    CachingStrategy="RecycleElement"
-                    >
+                    <Label Text="RECLAMATION"
+                   HorizontalOptions="Center"
+                   FontSize="22"
+                   TextColor="{StaticResource Primary}"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,20"
+                   />
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <views:ReclamationTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                    <ListView 
+                        x:Name="ItemsListView"
+                        VerticalOptions="Center"
+                        ItemsSource="{Binding Items}"
+                        HasUnevenRows="true" 
+                        SelectionMode="None"
+                        BackgroundColor="Transparent"
+                        SeparatorVisibility="None"
+                        CachingStrategy="RecycleElement">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <views:ReclamationTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+
+
+                    <Button BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        CornerRadius="10"
+                        HorizontalOptions="Fill"
+                        Padding="30,0"
+                        Text="{i18n:Translate btn_Close}"
+                        Clicked="ClosePopup"/>
+                </StackLayout>
+
+
 
             </Frame>
         </StackLayout>

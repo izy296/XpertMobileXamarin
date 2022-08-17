@@ -223,7 +223,7 @@
     <value>Account</value>
   </data>
   <data name="DATE_ENCAISS" xml:space="preserve">
-    <value>Date</value>
+    <value>Date:</value>
   </data>
   <data name="DESIGN_MOTIF" xml:space="preserve">
     <value>Reason</value>
@@ -502,7 +502,7 @@
     <value>Lots</value>
   </data>
   <data name="txt_Product" xml:space="preserve">
-    <value>Product</value>
+    <value>Product:</value>
   </data>
   <data name="txt_Prix" xml:space="preserve">
     <value>Price</value>
@@ -700,7 +700,7 @@
     <value>Get your prefix</value>
   </data>
   <data name="pn_Fournisseur" xml:space="preserve">
-    <value>Supplier</value>
+    <value>Supplier:</value>
   </data>
   <data name="Exception_errMsg_34" xml:space="preserve">
     <value>CRM ID non valid !</value>
@@ -965,5 +965,11 @@
   </data>
   <data name="Update_Notification_Text" xml:space="preserve">
     <value>There is a new Version </value>
+  </data>
+  <data name="txt_Facture" xml:space="preserve">
+    <value>Bill:</value>
+  </data>
+  <data name="txt_Note" xml:space="preserve">
+    <value>Note: </value>
   </data>
 </root>
