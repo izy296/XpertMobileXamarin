@@ -972,4 +972,7 @@
   <data name="txt_Note" xml:space="preserve">
     <value>Note: </value>
   </data>
+  <data name="sp_session_error" xml:space="preserve">
+    <value>There is no Session Found</value>
+  </data>
 </root>

@@ -27,7 +27,7 @@ namespace XpertMobileApp.Views
                 if (itemSelected != null)
                     await Navigation.PushAsync(new SessionDetailPage(itemSelected));
                 else
-                    await DisplayAlert(AppResources.txt_alert, "There is no Session Available", AppResources.alrt_msg_Ok);
+                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_session_error, AppResources.alrt_msg_Ok);
             });
 
             MessagingCenter.Subscribe<NotificationPage, Object>(this, "ExtraData", async (s, e) =>
@@ -37,7 +37,7 @@ namespace XpertMobileApp.Views
                 if (itemSelected != null)
                     await Navigation.PushAsync(new SessionDetailPage(itemSelected));
                 else
-                    await DisplayAlert(AppResources.txt_alert, "There is no Session Available", AppResources.alrt_msg_Ok);
+                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_session_error, AppResources.alrt_msg_Ok);
             });
 
         }

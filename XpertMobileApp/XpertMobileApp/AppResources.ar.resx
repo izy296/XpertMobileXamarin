@@ -1072,4 +1072,7 @@
   <data name="txt_Note" xml:space="preserve">
     <value>:ملاحظة</value>
   </data>
+  <data name="sp_session_error" xml:space="preserve">
+    <value>لم يتم العثور على جلسة</value>
+  </data>
 </root>
