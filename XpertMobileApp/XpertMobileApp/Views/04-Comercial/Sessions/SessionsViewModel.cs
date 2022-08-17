@@ -80,6 +80,7 @@ namespace XpertMobileApp.ViewModels
         protected override QueryInfos GetSelectParams()
         {
             base.GetSelectParams();
+            this.AddSelect<TRS_JOURNEES, string>(e => e.ID_CAISSE);
             this.AddSelect<TRS_JOURNEES, string>(e => e.DEBUTEE_PAR);
             this.AddSelect<TRS_JOURNEES, string>(e => e.POSTE_DEBUT);
             //this.AddSelect<TRS_JOURNEES, decimal>(e => e.MONT_CLOTURE_PH_virtual);

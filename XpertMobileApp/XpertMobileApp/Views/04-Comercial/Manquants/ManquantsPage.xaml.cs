@@ -39,8 +39,9 @@ namespace XpertMobileApp.Views
             var item = args.SelectedItem as View_ACH_MANQUANTS;
             if (item == null)
                 return;
-            await Navigation.PushAsync(new ProduitDetailPage(item.CODE_PRODUIT));           
-            ItemsListView.SelectedItem = null;
+            //await Navigation.PushAsync(new ProduitDetailPage(item.CODE_PRODUIT));
+            if (ItemsListView.SelectedItem == item)
+                ItemsListView.SelectedItem = null;
         }       
         protected override async void OnAppearing()
         {

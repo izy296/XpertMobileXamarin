@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:644731509129:android:4e12138f2e937eaed46958",
+        "mobilesdk_app_id": "1:644731509129:android:99b03e76c7b99014d46958",
         "android_client_info": {
-          "package_name": "com.xpertsoft.ComMobileAppComm"
+          "package_name": "com.xpertsoft.ComMobileApp"
         }
       },
       "oauth_client": [
@@ -36,9 +36,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:644731509129:android:25510e3b1633ca21d46958",
+        "mobilesdk_app_id": "1:644731509129:android:4e12138f2e937eaed46958",
         "android_client_info": {
-          "package_name": "com.xpertsoft.ComMobileAppOfficine"
+          "package_name": "com.xpertsoft.ComMobileAppComm"
         }
       },
       "oauth_client": [

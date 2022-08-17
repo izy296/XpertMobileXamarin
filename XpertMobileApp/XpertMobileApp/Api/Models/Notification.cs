@@ -28,9 +28,10 @@ namespace XpertMobileApp.Api.Models
         {
             get
             {
-                if (Application.Current.Resources.ContainsKey($"cl_{ModuleId}"))
+
+                if (Application.Current.Resources.TryGetValue($"cl_{ModuleId}", out var result))
                 {
-                    var c = (Color)Application.Current.Resources[$"cl_{ModuleId}"];
+                    Color c = (Color)result;
                     return c.ToHex();
                 }
                 else

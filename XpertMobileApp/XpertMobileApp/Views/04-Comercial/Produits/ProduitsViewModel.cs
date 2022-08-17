@@ -176,6 +176,20 @@ namespace XpertMobileApp.ViewModels
 
         }
 
+        protected override QueryInfos GetSelectParams()
+        {
+            base.GetSelectParams();
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_TYPE);
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_TYPE);
+            this.AddSelect<View_STK_PRODUITS, decimal>(e => e.QTE_STOCK);
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.REFERENCE);
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.CODE_PRODUIT);
+
+            return qb.QueryInfos;
+
+        }
+
         /// <summary>
         /// remplacer la valeur par défaut ExecuteLoadItemsCommand pour redéfinir la fonction OnCanLoadMore 
         /// sur l'événement d'actualisation de la page ou en appuyant sur le bouton Appliquer sur le filtre
