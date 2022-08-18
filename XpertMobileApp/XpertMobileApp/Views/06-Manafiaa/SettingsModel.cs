@@ -113,9 +113,11 @@ namespace XpertMobileApp.ViewModels
                 List<Notification> Liste;
                 Liste = JsonConvert.DeserializeObject<List<Notification>>(Settings.Notifiaction);
                 var found = false;
-                foreach(var l in Liste)
+                foreach (var l in Liste)
                 {
-                    if (l.Equals(notif))
+                    if (l.Message == notif.Message && l.Title == notif.Title &&
+                        l.User == notif.User && l.TimeNotification == notif.TimeNotification &&
+                        notif.ModuleId == notif.ModuleId)
                         found = true;
                 }
                 if (!found)
@@ -159,14 +161,14 @@ namespace XpertMobileApp.ViewModels
         /// <param name="printer"></param>
         public async void SetMultiPrintersAsync(List<XPrinter> printers)
         {
-                List<XPrinter> liste = new List<XPrinter>();
-                foreach (XPrinter printer in printers)
-                {
-                    liste.Add(printer);
-                }
-                string jsonNotification = JsonConvert.SerializeObject(liste);
-                Settings.MultiPrinterList = jsonNotification;
-            
+            List<XPrinter> liste = new List<XPrinter>();
+            foreach (XPrinter printer in printers)
+            {
+                liste.Add(printer);
+            }
+            string jsonNotification = JsonConvert.SerializeObject(liste);
+            Settings.MultiPrinterList = jsonNotification;
+
         }
 
         /// <summary>
@@ -175,7 +177,7 @@ namespace XpertMobileApp.ViewModels
         public List<XPrinter> GetMultiPrintersAsync()
         {
             List<XPrinter> liste = new List<XPrinter>();
-            if (Settings.MultiPrinterList != null && Settings.MultiPrinterList!="null")
+            if (Settings.MultiPrinterList != null && Settings.MultiPrinterList != "null")
             {
                 if (Settings.MultiPrinterList != "null" && Manager.isJson(Settings.MultiPrinterList))
                 {
