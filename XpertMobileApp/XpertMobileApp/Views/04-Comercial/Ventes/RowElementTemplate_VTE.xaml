@@ -20,8 +20,8 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="4"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.55*"/>
+                        <ColumnDefinition Width="1.6*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>

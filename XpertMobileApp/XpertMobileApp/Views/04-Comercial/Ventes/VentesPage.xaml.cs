@@ -26,6 +26,7 @@ namespace XpertMobileApp.Views
         VentesViewModel viewModel;
         private string typeDoc = VentesTypes.Vente;
         public string CurrentStream = Guid.NewGuid().ToString();
+        private bool tapped = false;
         public VentesPage(string typeVente)
         {
             typeDoc = typeVente;
@@ -42,14 +43,13 @@ namespace XpertMobileApp.Views
 
 
             InitializeComponent();
-
             if (string.IsNullOrEmpty(typeVente))
                 btn_Additem.IsVisible = false;
 
             itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
-            vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
+            //vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
             viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
@@ -57,7 +57,6 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
-
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -172,6 +171,23 @@ namespace XpertMobileApp.Views
         private async void deleteAllVente(object sender, EventArgs e)
         {
             await SQLite_Manager.getInstance().DeleteAllAsync<View_VTE_VENTE>();
+        }
+
+        private void ShowHide_Clicked(object sender, EventArgs e)
+        {
+            if (tapped)
+            {
+                SummariesInfos.HeightRequest = 30;
+                tapped = !tapped;
+                arrow_img.RotateTo(0, 400, Easing.Linear);
+            }
+            else
+            {
+                SummariesInfos.HeightRequest = 85;
+                tapped = !tapped;
+                arrow_img.RotateTo(180, 400, Easing.Linear);
+            }
+
         }
     }
 }
