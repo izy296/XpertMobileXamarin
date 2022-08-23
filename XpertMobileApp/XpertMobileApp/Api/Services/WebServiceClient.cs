@@ -570,6 +570,14 @@ namespace XpertMobileApp.Services
 
             #endregion
         }
+        internal static async Task<bool> printTicket(string codeVent,string printerName)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);
+            url += WSApi2.AddParam(url, "printerName", printerName);
+            url += WSApi2.AddParam(url, "codeVente", codeVent);
+            return await WSApi2.PostAauthorizedValue<bool,string>(url,printerName,Token);
+
+        }
 
     }
 }

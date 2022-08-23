@@ -1,4 +1,6 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -10,6 +12,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Helper;
 using XpertMobileSettingsPage.Helpers.Services;
 using XpertWebApi.Models;
 
@@ -184,8 +187,55 @@ namespace XpertMobileApp.Views.Encaissement
             View_VTE_VENTE vente = viewModel.Item;
             if (vente != null)
             {
-                vente.Details = Printerdetails;
-                //PrinterHelper.PrintBL(vente);
+                try
+                {
+                    string printerToUse = App.Settings.PrinterName;
+                    if (App.Settings.EnableMultiPrinter)
+                    {
+                        List<XPrinter> Liste;
+                        if (Manager.isJson(App.Settings.MultiPrinterList))
+                        {
+                            Liste = JsonConvert.DeserializeObject<List<XPrinter>>(App.Settings.MultiPrinterList);
+
+                            if (Liste != null && Liste.Count != 0)
+                            {
+                                var popupPrinter = new MultiPrinterSelector(Liste);
+                                await PopupNavigation.Instance.PushAsync(popupPrinter);
+                                var resPop = await popupPrinter.PopupClosedTask;
+                                if (resPop != "Null")
+                                    printerToUse = resPop;
+                            }
+                            else await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                        }
+                        else
+                        {
+                            await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                        }
+                    }
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                    bool res = await WebServiceClient.printTicket(vente.CODE_VENTE, printerToUse);
+                    UserDialogs.Instance.HideLoading();
+                    if (res)
+                    {
+                        await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionSuccess, AppResources.alrt_msg_Alert,
+        AppResources.alrt_msg_Ok);
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionError, AppResources.alrt_msg_Alert,
+        AppResources.alrt_msg_Ok);
+
+                    }
+                    //vente.Details = Printerdetails;
+                    //PrinterHelper.PrintBL(vente);
+                }
+                catch (Exception ex)
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+
+                }
             }
         }
 

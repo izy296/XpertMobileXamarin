@@ -3377,11 +3377,26 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("Update_Notification_Text", resourceCulture);
             }
         }
+
         public static string sp_session_error
         {
             get
             {
                 return ResourceManager.GetString("sp_session_error", resourceCulture);
+            }
+        }
+
+        public static string vdp_ImpressionSuccess
+        {
+            get
+            {
+                return ResourceManager.GetString("vdp_ImpressionSuccess", resourceCulture);
+            }
+        }        public static string vdp_ImpressionError
+        {
+            get
+            {
+                return ResourceManager.GetString("vdp_ImpressionError", resourceCulture);
             }
         }
     }

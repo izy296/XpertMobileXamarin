@@ -975,4 +975,10 @@
   <data name="sp_session_error" xml:space="preserve">
     <value>There is no Session Found</value>
   </data>
+  <data name="vdp_ImpressionError" xml:space="preserve">
+    <value>The ticket printing was unsuccessful</value>
+  </data>
+  <data name="vdp_ImpressionSuccess" xml:space="preserve">
+    <value>The ticket was printed successfully</value>
+  </data>
 </root>

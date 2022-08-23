@@ -1207,4 +1207,10 @@
   <data name="sp_session_error" xml:space="preserve">
     <value>Il n'y a pas de session trouvée</value>
   </data>
+  <data name="vdp_ImpressionError" xml:space="preserve">
+    <value>L'impression du ticket a échoué</value>
+  </data>
+  <data name="vdp_ImpressionSuccess" xml:space="preserve">
+    <value>Le ticket a été imprimé avec succès</value>
+  </data>
 </root>

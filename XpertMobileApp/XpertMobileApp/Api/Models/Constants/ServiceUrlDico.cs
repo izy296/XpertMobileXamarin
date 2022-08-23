@@ -69,6 +69,10 @@ namespace XpertMobileApp.Helpers
         public static string Update_URL = "Update";
         public static string WebApiVersion = "WebApiVersion";
 
+        // Printer
+
+        public static string Print_Url = "PrintVente";
+
         // Ventes
 
         public static string VENTES_URL = "VTE_VENTE";

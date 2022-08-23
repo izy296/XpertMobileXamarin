@@ -1075,4 +1075,10 @@
   <data name="sp_session_error" xml:space="preserve">
     <value>لم يتم العثور على جلسة</value>
   </data>
+  <data name="vdp_ImpressionError" xml:space="preserve">
+    <value>فشل في طباعة التذكرة</value>
+  </data>
+  <data name="vdp_ImpressionSuccess" xml:space="preserve">
+    <value>تم طباعة التذكرة بنجاح</value>
+  </data>
 </root>
