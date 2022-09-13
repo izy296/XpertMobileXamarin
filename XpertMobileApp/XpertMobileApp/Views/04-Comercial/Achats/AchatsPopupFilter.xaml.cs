@@ -51,7 +51,6 @@ namespace XpertMobileApp.Views
             if (Constants.AppName == Apps.XPH_Mob)
             {
                 status_layout.IsVisible = false;
-
             }
         }
 

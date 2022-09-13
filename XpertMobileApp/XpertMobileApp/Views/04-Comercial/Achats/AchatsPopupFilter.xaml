@@ -131,7 +131,7 @@
                                             Date="{Binding EndDate, Mode=TwoWay}"/>
                                     </Grid>
                                 </FlexLayout>
-                                
+
                                 <!--Réference document-->
                                 <FlexLayout Direction="Column">
                                     <Label
@@ -260,6 +260,7 @@
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="2"
                                                 x:Name="ent_SelectedTiers"
+                                                Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
                                                 FontSize="14"
                                                 IsEnabled="false"
                                                 TextColor="Gray"  

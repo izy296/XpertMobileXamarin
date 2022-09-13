@@ -264,6 +264,7 @@
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="2"
                                                 x:Name="ent_SelectedUsers"
+                                                Text="{Binding SelectedUsers.ID_USER, Mode=TwoWay}" 
                                                 FontSize="14"
                                                 IsEnabled="false"
                                                 TextColor="Gray"  
