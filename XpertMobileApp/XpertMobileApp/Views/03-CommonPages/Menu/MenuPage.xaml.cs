@@ -48,7 +48,7 @@ namespace XpertMobileApp.Views
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
-            ClientId.Text = "ID : "+App.Settings.ClientId;
+            ClientId.Text = "ID : " + App.Settings.ClientId;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
 
             GetNumberOfNotifications();
@@ -103,6 +103,15 @@ namespace XpertMobileApp.Views
                             ItemGroup = MenuItemGroup.Tresorerie,
                             Title = AppResources.pn_TransfertDeFond,
                             CodeObjet = XpertObjets.View_TRS_VIREMENT,
+                            Action = XpertActions.AcSelect,
+                        }); ;
+
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Echange,
+                            ItemGroup = MenuItemGroup.Stock,
+                            Title = AppResources.pn_Echanges,
+                            CodeObjet = XpertObjets.View_STK_ECHANGE,
                             Action = XpertActions.AcSelect,
                         }); ;
 

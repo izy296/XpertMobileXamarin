@@ -11,6 +11,7 @@ using XpertMobileApp.Api.Models;
 using Acr.UserDialogs.Infrastructure;
 using System.Linq;
 using Plugin.FirebasePushNotification;
+using XpertMobileApp.Views._04_Comercial.Echange;
 
 namespace XpertMobileApp.Views
 {
@@ -122,6 +123,8 @@ namespace XpertMobileApp.Views
                     return new TransfertDeFondPage();
                 case (int)MenuItemType.Notification:
                     return new NotificationPage();
+                case (int)MenuItemType.Echange:
+                    return new EchangeListPage();
                 default:
                     return new HomePage();
             }
@@ -244,6 +247,9 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Notification:
                         MenuPages.Add(id, new NavigationPage(new NotificationPage()));
                         break;
+                    case (int)MenuItemType.Echange:
+                        MenuPages.Add(id, new NavigationPage(new EchangeListPage()));
+                        break;
                 }
             }
 
@@ -258,7 +264,7 @@ namespace XpertMobileApp.Views
                         //Detail = newPage; 
                         NavigationPage.SetHasNavigationBar(newPage, false);
                         if (Detail.Navigation.NavigationStack.Count > 1)
-                        {     
+                        {
                             var page = Detail.Navigation.NavigationStack[Detail.Navigation.NavigationStack.Count - 1];
                             if (id != (int)MenuItemType.Home)
                                 await Detail.Navigation.PushAsync(newPage);
@@ -283,7 +289,7 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                
+
             }
 
         }
