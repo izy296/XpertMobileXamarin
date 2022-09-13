@@ -3392,11 +3392,20 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("vdp_ImpressionSuccess", resourceCulture);
             }
-        }        public static string vdp_ImpressionError
+        }
+        public static string vdp_ImpressionError
         {
             get
             {
                 return ResourceManager.GetString("vdp_ImpressionError", resourceCulture);
+            }
+        }
+
+        public static string pn_Echanges
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Echanges", resourceCulture);
             }
         }
     }
