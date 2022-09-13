@@ -25,7 +25,9 @@
                                                             LotComm="{StaticResource LotComm}"/>
             <!-- ***************** Produit *****************-->
 
-            <!--***************** Vente *****************e-->
+            
+            
+            <!--***************** Vente *****************-->
 
             <DataTemplate x:Key = "VentePsy">
                 <template:RowElementTemplate_VTE_PSYCHOTROPE/>
@@ -46,6 +48,8 @@
 
             <!--***************** Vente *****************-->
 
+            
+            
             <!--***************** ACHAT *****************-->
 
             <DataTemplate x:Key = "AchatPharm">
@@ -62,6 +66,8 @@
 
             <!--***************** ACHAT *****************-->
 
+            
+            
             <!--***************** COMMANDE ******************-->
 
             <DataTemplate x:Key="Commande">
@@ -72,6 +78,8 @@
                                                            Commande="{StaticResource Commande}"/>
             <!--***************** COMMANDE ******************-->
 
+            
+            
             <!--***************** Sortie ********************-->
 
             <DataTemplate x:Key="Sortie">
@@ -80,7 +88,19 @@
 
             <templateSelector:SortieDataSelectorTemplate x:Key="SortieDataSelector"
                                                          Sortie="{StaticResource Sortie}"/>
+            
             <!--***************** Sortie ********************-->
+            
+            
+            <!--***************** Echange *******************-->
+            
+            <DataTemplate x:Key="Echange">
+                <template:RowElementTemplate_STK_ECHANGE/>
+            </DataTemplate>
+            <templateSelector:EchangeDataSelectorTemplate x:Key="EchangeDataSelector"
+                                                          EchangePharm="{StaticResource Echange}"/>
+            
+            <!--***************** Echange *******************-->
             <!--End Data Template Selector-->
 
 
@@ -232,7 +252,7 @@
                 <Setter Property="Margin" Value="8,3,8,3" />
                 <Setter Property="BackgroundColor" Value="White"/>
                 <Setter Property="HasShadow" Value="True"/>
-                <Setter Property="OutlineColor" Value="#F2F1EF"/>
+                <Setter Property="OutlineColor" Value="Transparent"/>
             </Style>
 
             <!-- Style font awesomone Button -->

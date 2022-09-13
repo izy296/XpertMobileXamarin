@@ -331,6 +331,7 @@ namespace XpertMobileApp.DAL
         public bool INCLUDE_UG { get; set; }
         public bool PPA_BY_PRIXVENTE { get; set; }
 
+
         // information pour Malade CVM
         public string SEXE { get; set; } // tinyint(3)
         public string LP { get; set; }//varchar(10) 
@@ -346,6 +347,7 @@ namespace XpertMobileApp.DAL
         public string CODE_LIEUX { get; set; }
         public double GPS_LATITUDE { get; set; }
         public double GPS_LONGITUDE { get; set; }
+        public string MODE_CAL_MT_ECHANGE { get; set; }
     }
 
     public partial class View_TRS_TIERS : TRS_TIERS
@@ -367,6 +369,7 @@ namespace XpertMobileApp.DAL
         public string NUM_CARTE_FIDELITE { get; set; } // varchar(20)
         public string CODE_CARTE_FIDELITE { get; set; } // varchar(20)
         public decimal TOTAL_POINT_FIDELITE { get; set; } // varchar(20)
+        public string DESIGNATION_MODE_CAL { get; set; } // string 
         public short STATUT_TIERS { get; set; } // 
         public DateTime? LAST_CREANCE { get; set; } // datetime(3)
         public DateTime? LAST_ENCAISS { get; set; } // datetime(3)
@@ -465,28 +468,8 @@ namespace XpertMobileApp.DAL
     //View TRS Virement
     public class View_TRS_VIREMENT : TRS_VIREMENT
     {
-        public string ID_CAISSE { get; set; } // varchar(32)
-        public string CODE_VIR { get; set; } // varchar(32)
-        public string CODE_ENCAISS { get; set; } // varchar(32)
-        public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
-        public string CODE_DECAISS { get; set; } // varchar(32)
-        public string CODE_COMPTE_SRC { get; set; } // varchar(32)
-        public string CODE_COMPTE_DEST { get; set; } // varchar(32)
-        public string CODE_MOTIF { get; set; } // varchar(32)
-        public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
-        public string CODE_MODE { get; set; } // varchar(1)
-        public string REF_REG { get; set; } // varchar(200)
-        public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
-        public string NOTE_ENC { get; set; } // text(2147483647)
-        public string DESIGN_MOTIF { get; set; } // varchar(300)
-        public string DESIGN_COMPTE_DEST { get; set; } // varchar(100)
-        public string DESIGN_COMPTE_SRC { get; set; } // varchar(100)
-        public string DESIGN_MODE { get; set; } // varchar(300)
-        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
-        public string MODIFIED_BY { get; set; } // varchar(200)  
-        public DateTime? CREATED_ON { get; set; } // datetime(3)
-        public string CREATED_BY { get; set; } // varchar(200)        
     }
+
 
     public partial class BSE_MODE_REG : BASE_CLASS
     {
@@ -494,5 +477,39 @@ namespace XpertMobileApp.DAL
         public string DESIGN_MODE { get; set; } // varchar(300)
         public bool ECH_MODE { get; set; } // bit
     }
+    public partial class TRS_CREDIT_PAIEMENT : BASE_CLASS
+    {
+
+    }
+    public partial class View_TRS_CREDIT_PAIEMENT : TRS_CREDIT_PAIEMENT
+    {
+        public string CODE_DOCUMENT { get; set; } // varchar(532)
+        public int ORDER_DOCUMENT { get; set; } // int(10)
+        public string DESIGN_DOCUMENT { get; set; } // varchar(532)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string NOM_TIERS { get; set; } // varchar(501)
+        public string NUM_DOCUMENT { get; set; } // varchar(32)
+        public DateTime? DATE_DOCUMENT { get; set; } // datetime(3)
+        public string TYPE_DOCUMENT { get; set; } // varchar(4)
+        public string TYPE_DOC { get; set; } // varchar(4)
+        public string OBERSVATION { get; set; } // text(2147483647)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public decimal TOTAL_CREDIT { get; set; } // money(19,4)
+        public decimal TOTAL_CREDIT_REAL { get; set; } // money(19,4)
+        public decimal RESTE_CREDIT { get; set; } // money(19,4)
+        public decimal RESTE_CREDIT_REAL { get; set; } // money(19,4)
+        public decimal TOTAL_PAIEMENT_REAL { get; set; } // money(19,4)
+        public decimal TOTAL_PAIEMENT { get; set; } // money(19,4)
+        public decimal RESTE_PAIEMENT { get; set; } // money(19,4)
+        public decimal RESTE_PAIEMENT_REAL { get; set; } // money(19,4) 
+        public string CATEGORY_DOCUMENT { get; set; } // varchar(32)
+        public string REF_TIERS { get; set; } // varchar(32)
+        public string NUM_ASSURE { get; set; } // varchar(32)
+        public string TYPE_TIERS { get; set; } // varchar(5)
+        public string FAMILLE_TIERS { get; set; } // varchar
+        public DateTime? CREATED_ON { get; set; } // datetime(3)        
+
+    }
+
 
 }

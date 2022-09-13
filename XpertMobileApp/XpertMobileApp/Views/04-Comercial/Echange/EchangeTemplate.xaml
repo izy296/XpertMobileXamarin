@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.EchangeTemplate">
+    <ContentView.Content>
+
+        <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+            <Frame Style="{StaticResource FrameForList}">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" 
+                                 Grid.Row="0" 
+                                 Grid.RowSpan="4" 
+                                 Spacing="5" 
+                                 Padding="0" 
+                                 VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" 
+                                 BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
+                                 HeightRequest="40">
+                    </StackLayout>
+
+                    <!--Column Gauche-->
+
+
+                    <!-- ******* Désignation du motif ******* -->
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="{Binding DESIGNATION_MOTIF, StringFormat='Motif: {0}.'}"  
+                        TextColor="DarkOliveGreen"
+                        FontAttributes="Bold" 
+                        VerticalOptions="Center"
+                        HorizontalOptions="Start"
+                        FontSize="Default"/>
+
+                    <!-- ******* Tiers ******* -->
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="{Binding NOM_TIERS}" 
+                        HorizontalOptions="Start"
+                        IsVisible="true"
+                        TextColor="Black"/>
+
+                    <!-- ******* Numéro Doc ******* -->
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Text="{Binding NUM_DOCUMENT, StringFormat='N.Doc : {0}'}"
+                        HorizontalOptions="Start"
+                        IsVisible="true"
+                        TextColor="Black"/>
+
+                    <!-- ******* Date  ******* -->
+                    <Label 
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Text="{ Binding DATE_DOCUMENT, StringFormat='Date : {0:dd/MM/yyyy}'}"
+                        HorizontalOptions="Start"
+                        IsVisible="true"
+                        TextColor="Black"/>
+
+
+                    <!--Fin de la column Gauche-->
+
+
+                    <!--Column Droite-->
+
+                    <!--******* Mode Calcul *******-->
+                    <Label 
+                            Grid.Column="2" 
+                            Grid.Row="0" 
+                            Text="{ Binding DESIGNATION_MODE_CAL, StringFormat='M.calc: {0}'}" 
+                            Margin="0,0,0,0"  
+                            FontSize="Default" 
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start" />
+
+                    <!--******* Montant PPA *******-->
+                    <Label 
+                            Grid.Column="2" 
+                            Grid.Row="1" 
+                            Text="{ Binding TOTAL_PPA, StringFormat='PPA : {0:N2}'}" 
+                            Margin="0,0,0,0"  
+                            FontSize="Default" 
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start" />
+
+                    <!--******* Montant SHP *******-->
+                    <Label 
+                            Grid.Column="2" 
+                            Grid.Row="2" 
+                            Text="{ Binding TOTAL_SHP, StringFormat='SHP : {0:N2}'}" 
+                            Margin="0,0,0,0"  
+                            FontSize="Default" 
+                            TextColor="Black"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start" />
+
+                    <!--******* Montant Echangé *******-->
+                    <Label 
+                            Grid.Column="2" 
+                            Grid.Row="3" 
+                            Text="{ Binding TOTAL_ECHANGE_DOC, StringFormat='M.E : {0:N2}'}" 
+                            Margin="0,0,0,0"  
+                            FontSize="Default" 
+                            TextColor="Red"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start" />
+
+                    <!--Fin de la column droite-->
+
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

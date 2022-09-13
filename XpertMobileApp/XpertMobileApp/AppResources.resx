@@ -499,7 +499,7 @@
     <value>Prix</value>
   </data>
   <data name="txt_Product" xml:space="preserve">
-    <value>Produit:</value>
+    <value>Produit</value>
   </data>
   <data name="txt_Qte" xml:space="preserve">
     <value>Qté Produit</value>
@@ -1212,5 +1212,17 @@
   </data>
   <data name="vdp_ImpressionSuccess" xml:space="preserve">
     <value>Le ticket a été imprimé avec succès</value>
+  </data>
+  <data name="pn_Echanges" xml:space="preserve">
+    <value>Echanges</value>
+  </data>
+  <data name="txt_type_tiers" xml:space="preserve">
+    <value>Type tiers</value>
+  </data>
+  <data name="txt_Labo" xml:space="preserve">
+    <value>Laboratoire</value>
+  </data>
+  <data name="txt_type_produit" xml:space="preserve">
+    <value>Type de produit</value>
   </data>
 </root>

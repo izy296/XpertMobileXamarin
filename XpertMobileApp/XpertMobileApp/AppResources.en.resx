@@ -981,4 +981,16 @@
   <data name="vdp_ImpressionSuccess" xml:space="preserve">
     <value>The ticket was printed successfully</value>
   </data>
+  <data name="pn_Echanges" xml:space="preserve">
+    <value>Exchanges</value>
+  </data>
+  <data name="txt_type_tiers" xml:space="preserve">
+    <value>Tiers type</value>
+  </data>
+  <data name="txt_Labo" xml:space="preserve">
+    <value>Laboratory</value>
+  </data>
+  <data name="txt_type_produit" xml:space="preserve">
+    <value>Product Type</value>
+  </data>
 </root>

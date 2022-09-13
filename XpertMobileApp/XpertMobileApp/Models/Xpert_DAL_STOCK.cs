@@ -490,7 +490,7 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_UNITE { get; set; }
     }
 
-    public partial class STK_ENTREE :BASE_CLASS
+    public partial class STK_ENTREE : BASE_CLASS
     {
         public string CODE_ENTREE { get; set; } // varchar(50)
         public string NUM_ENTREE { get; set; } // varchar(20)
@@ -655,5 +655,54 @@ namespace XpertMobileApp.Models
         public bool SYNCHRONISE { get; set; }
         public DateTime? DATE_SYNCHRONISATION { get; set; }//[datetime] NULL
 
+    }
+    public partial class STK_ECHANGE : BASE_CLASS
+    {
+        public decimal TOTAL_ECHANGE_SYS { get; set; }
+        public decimal TOTAL_ECHANGE { get; set; }
+        public decimal TOTAL_ECHANGE_DOC { get; set; }
+        public decimal TOTAL_HT { get; set; }
+        public decimal TOTAL_PPA { get; set; }
+        public decimal TOTAL_SHP { get; set; }
+        public decimal TOTAL_TVA { get; set; }
+        public string MODE_CAL_MT_ECHANGE { get; set; }
+        public int SENS_DOC { get; set; } // int(10)
+        public string CODE_MOTIF { get; set; } // string 
+        public string DESIGNATION_MOTIF { get; set; } // string 
+        public string DESIGNATION_MODE_CAL { get; set; } // string 
+    }
+    public partial class View_STK_ECHANGE : View_TRS_CREDIT_PAIEMENT
+    {
+        public decimal TOTAL_ECHANGE_SYS { get; set; }
+        public decimal TOTAL_ECHANGE { get; set; }
+        public decimal TOTAL_ECHANGE_DOC { get; set; }
+        public decimal TOTAL_HT { get; set; }
+        public decimal TOTAL_PPA { get; set; }
+        public decimal TOTAL_SHP { get; set; }
+        public decimal TOTAL_TVA { get; set; }
+        public string MODE_CAL_MT_ECHANGE { get; set; }
+        public int SENS_DOC { get; set; } // int(10)
+        public string CODE_MOTIF { get; set; } // string 
+        public string DESIGNATION_MOTIF { get; set; } // string 
+        public string DESIGNATION_MODE_CAL { get; set; } // string 
+    }
+
+    public partial class View_STK_ECHANGE_DETAIL
+    {
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string CODE_BARRE_LOT { get; set; }
+        public string LOT { get; set; }
+        public DateTime? DATE_PEREMPTION { get; set; }
+        public double QTE_ECHANGE { get; set; }
+        public decimal MT_HT { get; set; } // money(19,4)
+        public decimal MT_SHP { get; set; } // money(19,4)
+        public decimal MT_PPA { get; set; } // money(19,4)
+
+    }
+
+    public partial class View_STK_MOTIF_ECHANGE
+    {
+        public string CODE_MOTIF { get; set; } // string 
+        public string DESIGNATION_MOTIF { get; set; } // string 
     }
 }

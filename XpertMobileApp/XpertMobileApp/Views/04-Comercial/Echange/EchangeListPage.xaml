@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views._04_Comercial.Echange.EchangeListPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
+             BackgroundColor="#ecf0f1"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"  
+             FlowDirection="MatchParent"
+             Title="{Binding Title}">
+    
+    <!--<ContentPage.ToolbarItems>
+        <ToolbarItem 
+            x:Name="btn_Additem" 
+            Icon="add.png" 
+            Text="{i18n:Translate cmd_Add}" 
+            Clicked="AjoutItem_Clicked"
+            >
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>-->
+
+    <ContentPage.Content>
+        <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            FlowDirection="LeftToRight">
+
+            <!-- *******  Listing the items  *******-->
+            <ScrollView 
+                AbsoluteLayout.LayoutFlags="All" 
+                AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ListView 
+                        x:Name="ItemsListView"  
+                        ItemsSource="{Binding Items}"  
+                        VerticalOptions="FillAndExpand"  
+                        HasUnevenRows="true"  
+                        SeparatorVisibility="None"                             
+                        RefreshCommand="{Binding LoadItemsCommand}"  
+                        IsPullToRefreshEnabled="true"  
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"  
+                        CachingStrategy="RecycleElement"
+                        ItemSelected="OnItemSelected"
+                        >
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:EchangeTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Grid 
+                            Padding="6" 
+                            IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger 
+                                    TargetType="Grid" 
+                                    Property="IsVisible" 
+                                    Value="False">
+                                    <Setter 
+                                        Property="HeightRequest" 
+                                        Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+
+                            <Label 
+                                    Text="Loading..." 
+                                    VerticalOptions="Center" 
+                                    HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+                </ListView>
+            </ScrollView>
+
+            <!-- *******  filter floating button  ******* -->
+            <Button 
+                x:Name="floatingButton" 
+                ImageSource="filter.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="ShowHideFilter"/>
+
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

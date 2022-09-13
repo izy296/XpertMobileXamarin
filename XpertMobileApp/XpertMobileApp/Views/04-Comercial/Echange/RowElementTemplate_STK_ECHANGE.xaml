@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.Templates.RowElementTemplate_STK_ECHANGE">
+  <ContentView.Content>
+      <StackLayout>
+            <StackLayout Spacing="10" Padding="0" BackgroundColor="Transparent">
+                <Frame CornerRadius="3" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
+                    <Grid  BackgroundColor="Transparent" >
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Column="0" 
+                                 Grid.Row="0" 
+                                 Grid.RowSpan="5" 
+                                 Spacing="5" 
+                                 Padding="0" 
+                                 VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill" 
+                                 BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
+                                 HeightRequest="40">
+                        </StackLayout>
+
+                        <!--Column Gauche-->
+                        
+                        
+                            <!-- ******* Désignation produit ******* --> 
+                            <Label 
+                                Grid.Column="1"
+                                Grid.ColumnSpan="2"
+                                Grid.Row="0"
+                                Text="{Binding DESIGNATION_PRODUIT}"  
+                                TextColor="{StaticResource DefaultTextColor}" 
+                                FontAttributes="Bold" 
+                                VerticalOptions="Center"
+                                HorizontalOptions="Start"
+                                FontSize="Default"/>
+                            
+                            <!-- ******* QUANTITE ******* -->
+                            <Label 
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Text="{Binding QUANTITE, StringFormat='Qte:{0}'}" 
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>
+
+                            <!-- ******* Désignation du document ******* -->
+                            <!--<Label 
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Text="{Binding DESIGN_DOCUMENT}"
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>-->
+
+                            <!-- ******* Code bare lot  ******* -->
+                            <Label 
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Text="{ Binding CODE_BARRE_LOT, StringFormat='Lot: {0}'}"
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>
+
+                        <!-- ******* Code bare lot  ******* -->
+                            <Label 
+                                Grid.Column="1"
+                                Grid.Row="4"
+                                Grid.ColumnSpan="2"
+                                Text="{ Binding DATE_PEREMPTION, StringFormat='Date Peremption: {0:dd/MM/yyyy}'}"
+                                HorizontalOptions="CenterAndExpand"
+                                IsVisible="true"/>
+
+                        <!--Fin de la column Gauche--> 
+                        <!-- Début column Droite -->
+                        <!-- ******* Date  ******* -->
+
+                        <Label 
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Text="{ Binding PPA, StringFormat='PPA: {0:N2} DA'}"
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>
+                        <Label 
+                                Grid.Column="2"
+                                Grid.Row="2"
+                                Text="{ Binding SHP, StringFormat='SHP: {0:N2} DA'}"
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>
+                        <Label 
+                                Grid.Column="2"
+                                Grid.Row="3"
+                                Text="{ Binding PRIX_UNITAIRE, StringFormat='P.U: {0:N2} DA'}"
+                                HorizontalOptions="Start"
+                                IsVisible="true"/>
+                        <!--Fin column droite-->
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views._04_Comercial.Echange.NewEchangePopupPage"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+
+                <StackLayout 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand" 
+                    Padding="10">
+                    <Frame 
+                        CornerRadius="15" 
+                        Padding="10">
+                        <StackLayout>
+                            <StackLayout>
+                                <Label 
+                                    Text="Nouveau Echange" 
+                                    FontAttributes="Bold"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    FontSize="18"
+                                    Margin="0,0,0,15"
+                                    x:Name="titleLabel"/>
+
+                                <BoxView 
+                                    Style="{StaticResource Separator}"/>
+                            </StackLayout>
+                            <Grid 
+                                x:Name="FirstStepLayout"
+                                Margin="5,10,5,5"
+                                RowSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition 
+                                Width="*"/>
+                                    <ColumnDefinition 
+                                Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                    <RowDefinition 
+                                Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Fournisseur-->
+                                <Label 
+                                Text="Fournisseur :"
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Margin="0,10,0,0"
+                                FontAttributes="Bold"
+                                Opacity="0.9"/>
+
+                                <Picker 
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding ListeTiers}"  
+                                ItemDisplayBinding="{Binding NOM_TIERS}"  
+                                SelectedItem="{Binding TiersSelected}"/>
+
+                                <!--Motif-->
+                                <Label 
+                                Text="Motif : "
+                                Grid.Row="4"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                FontAttributes="Bold"
+                                Opacity="0.9"/>
+
+                                <Entry 
+                                Text="Echange recu"
+                                IsEnabled="False"
+                                Grid.Row="5"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                Keyboard="Numeric"/>
+
+                                <!--N° BL Fournisseur-->
+                                <Label 
+                                Text="N° BL.Fourn : "
+                                Grid.Row="6"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                FontAttributes="Bold"
+                                Opacity="0.9"/>
+
+                                <Entry 
+                                x:Name="blFournisseur"
+                                Grid.Row="7"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                Keyboard="Text"/>
+
+                                <!--Magasin-->
+                                <Label 
+                                Text="Magasin : "
+                                Grid.Row="8"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                FontAttributes="Bold"
+                                Opacity="0.9"/>
+
+                                <Picker 
+                                Grid.Row="9"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,10,0"
+                                FontSize="13"
+                                ItemsSource="{Binding ListeMagasin}"  
+                                ItemDisplayBinding="{Binding DESIGN_MAGASIN}"  
+                                SelectedItem="{Binding MagasinSelected}"/>
+
+                                <!--Date-->
+                                <Label 
+                                Text="Date : "
+                                Grid.Row="11"
+                                Grid.Column="0"
+                                Margin="0,20,0,0"
+                                FontAttributes="Bold"
+                                Grid.ColumnSpan="2"
+                                Opacity="0.9"/>
+
+                                <DatePicker 
+                                Grid.Row="12"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,5,0"
+                                FontSize="13"
+                                Format="dd/MM/yyyy"
+                                Date="{Binding dateEcheance, Mode=TwoWay}"/>
+
+
+                                <!--Echeance-->
+                                <Label Text="echéancé : "
+                               Grid.Row="13"
+                               Grid.Column="0"
+                               Margin="0,20,0,0"
+                               FontAttributes="Bold"
+                               Opacity="0.9"/>
+
+                                <DatePicker 
+                                Grid.Row="14"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Margin="10,-2,5,0"
+                                FontSize="13"
+                                Format="dd/MM/yyyy"
+                                Date="{Binding date, Mode=TwoWay}"/>
+
+                                <FlexLayout Grid.Row="15"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Direction="Row"
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center"
+                                    Margin="0,60,0,0">
+
+                                    <Button 
+                                    Text="{i18n:Translate txt_Annule}"
+                                    Style="{DynamicResource DeleteUrlBtn}"
+                                    Clicked="btn_Cancel_Clicked"
+                                    WidthRequest="140"/>
+
+
+                                    <Button 
+                                    Text="Suivant"
+                                    Style="{DynamicResource AddUrlBtn}"
+                                    Clicked="ShowHideFormByStep"    
+                                    WidthRequest="140"/>
+
+                                </FlexLayout>
+                            </Grid>
+                            <StackLayout 
+                                IsVisible="false"
+                                Padding="10"
+                                x:Name="SecondStepLayout">
+
+                                <!--Total HT-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total H.T : "/>
+                                    <Entry TextColor="black"
+                                           Text="{Binding TotalHT, Mode=TwoWay}"/>
+                                </FlexLayout>
+
+                                <!--Total HT remisé-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total H.T Remisé : "/>
+                                    
+                                    <Entry 
+                                        Text="{Binding TotalHtRemise, Mode=TwoWay}"
+                                        TextColor="black"/>
+                                </FlexLayout>
+
+                                <!--Total TVA-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total TVA : "/>
+                                    <Entry 
+                                        Text="{Binding TotalTVA, Mode=TwoWay}"
+                                        TextColor="black"/>
+                                </FlexLayout>
+
+                                <!--Total PPA-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total PPA : "/>
+                                    <Entry 
+                                        Text="{Binding TotalSHP, Mode=TwoWay}"
+                                        TextColor="black"/>
+                                </FlexLayout>
+
+                                <!--Total SHP-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total SHP : "/>
+                                    <Entry 
+                                        Text="{Binding TotalTTC, Mode=TwoWay}"
+                                        TextColor="black"/>
+                                </FlexLayout>
+
+                                <!--Total TTC-->
+                                <FlexLayout 
+                                    Direction="Column">
+                                    <Label 
+                                        TextColor="Black"
+                                        Text="Total TTC : "/>
+                                    <Entry 
+                                        Text="{Binding TotalTTC, Mode=TwoWay}"
+                                        TextColor="black"/>
+                                </FlexLayout>
+                                
+                                <!--Validate and cancel buttons--> 
+                                <FlexLayout Grid.Row="15"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Direction="Row"
+                                    JustifyContent="SpaceBetween"
+                                    AlignItems="Center"
+                                    Margin="0,60,0,0">
+
+                                    <Button 
+                                    Text="Précedent"
+                                    Style="{DynamicResource DeleteUrlBtn}"
+                                    Clicked="ShowHideFormByStep"
+                                    WidthRequest="140"/>
+
+
+                                    <Button 
+                                    Text="Valider"
+                                    Style="{DynamicResource DefaultBtnStyle}"
+                                    Clicked="btn_Add_Echange"    
+                                    WidthRequest="140"/>
+
+                                </FlexLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</pages:PopupPage>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views._04_Comercial.Echange.EchangeDetailPage"
+             NavigationPage.HasNavigationBar="False"
+             Title="{Binding Item.NUM_DOCUMENT}">
+    <StackLayout x:Name="sl_content" Padding="5" >
+
+        <Frame CornerRadius="10" 
+               Padding="8" 
+               Margin="5" 
+               BackgroundColor="White" 
+               HasShadow="True"  
+               OutlineColor="White">
+
+            <Grid  BackgroundColor="White" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0"  
+                             Spacing="0" 
+                             Padding="0,5">
+
+                    <Label Text="{i18n:Translate txt_header}" 
+                           TextColor="{StaticResource Primary}" 
+                           FontSize="Large" 
+                           FontAttributes="Bold"/>
+
+                    <BoxView BackgroundColor="#EFEFEF" 
+                             HeightRequest="0.5"/>
+
+                </StackLayout>
+
+                <StackLayout  
+                    Grid.Row="1" 
+                    Spacing="5" 
+                    Padding="0">
+
+                    <FlexLayout 
+                        Direction="Row"
+                        AlignContent="Start"
+                        JustifyContent="Start">
+                        <Label 
+                            Text="N° Reception:"
+                            TextColor="Black"
+                            FontAttributes="Bold"/>
+                        <Label 
+                                Text="{Binding Item.NUM_DOCUMENT}" 
+                                TextColor="#232526" 
+                                FontAttributes="Bold" 
+                                FontSize="Default"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout 
+                        Direction="Row"
+                        AlignContent="Start"
+                        JustifyContent="Start">
+
+                        <Label 
+                            Text="Fournisseur:"
+                            TextColor="Black"/>
+
+                        <Label 
+                            Text="{Binding Item.NOM_TIERS}" 
+                            TextColor="#232526"/>
+                    </FlexLayout>
+
+                    <FlexLayout 
+                        Direction="Row"
+                        AlignContent="Start"
+                        JustifyContent="Start">
+                        <Label 
+                            Text="Solde:"
+                            TextColor="Black"/>
+                        <Label 
+                                Text="{Binding Item.TOTAL_ECHANGE_DOC ,StringFormat='{0:N2} DA'}"
+                                TextColor="#232526"/>
+
+                    </FlexLayout>
+
+
+                    <FlexLayout 
+                        Direction="Row"
+                        AlignContent="Start"
+                        JustifyContent="Start">
+                        <Label 
+                            Text="Date:"
+                            TextColor="Black"/>
+                        <Label 
+                                Text="{ Binding Item.DATE_DOCUMENT, StringFormat='{0:dd/MM/yyyy}'}" 
+                                FontSize="Default" 
+                                HorizontalOptions="StartAndExpand" 
+                                TextColor="#232526"/>
+                    </FlexLayout>
+
+                    <FlexLayout 
+                        Direction="Row"
+                        AlignContent="Start"
+                        JustifyContent="Start">
+                        <Label 
+                            Text="Motif:"
+                            TextColor="Black"/>
+
+                        <Label 
+                                Text="{Binding Item.DESIGNATION_MOTIF}" 
+                                FontSize="Default"  
+                                HorizontalOptions="StartAndExpand" 
+                                TextColor="ForestGreen"/>
+
+                    </FlexLayout>
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame 
+            CornerRadius="10" 
+            Padding="5" 
+            Margin="5" 
+            BackgroundColor="White" 
+            HasShadow="True"  
+            OutlineColor="White">
+                <StackLayout 
+                    x:Name="sl_rows" 
+                    VerticalOptions="Start" >
+
+                    <StackLayout 
+                        Spacing="0" 
+                        Padding="0,5">
+                            <Label 
+                                Text="{i18n:Translate txt_Details}" 
+                                TextColor="{StaticResource Primary}" 
+                                FontSize="Large" FontAttributes="Bold"/>
+
+                            <BoxView 
+                                BackgroundColor="#EFEFEF" 
+                                HeightRequest="0.5"/>
+                    </StackLayout>
+                
+                    <RefreshView 
+                        x:Name="refreshView"
+                        Refreshing="RefreshView_Refreshing"
+                        IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+
+                        <CollectionView 
+                            ItemsSource="{Binding ItemRows}"
+                            ItemTemplate="{StaticResource EchangeDataSelector}">
+                        </CollectionView>
+
+                    </RefreshView>
+                </StackLayout>
+        </Frame>
+    </StackLayout>
+</ContentPage>

@@ -1081,4 +1081,16 @@
   <data name="vdp_ImpressionSuccess" xml:space="preserve">
     <value>تم طباعة التذكرة بنجاح</value>
   </data>
+  <data name="pn_Echange" xml:space="preserve">
+    <value>التبديلات</value>
+  </data>
+  <data name="txt_type_tiers" xml:space="preserve">
+    <value>نوع المتعامل</value>
+  </data>
+  <data name="txt_Labo" xml:space="preserve">
+    <value>المصنع</value>
+  </data>
+  <data name="txt_type_produit" xml:space="preserve">
+    <value>نوع المنتوج</value>
+  </data>
 </root>

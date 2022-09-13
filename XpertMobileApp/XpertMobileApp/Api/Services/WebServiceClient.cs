@@ -559,6 +559,38 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_DOCUMENT_STATUS>(url);
         }
 
+        internal static async Task<List<View_STK_MOTIF_ECHANGE>> GetMotifEchange()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ECHANGE_URL, ServiceUrlDico.ECHANGE_GET_MOTIFS);
+            return await RetrievAauthorizedData<View_STK_MOTIF_ECHANGE>(url);
+        }
+
+        internal static async Task<List<BSE_TIERS_TYPE>> GetTypeTiers()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ECHANGE_URL, ServiceUrlDico.ECHANGE_GET_TYPE_TIERS);
+            return await RetrievAauthorizedData<BSE_TIERS_TYPE>(url);
+        }
+        internal static async Task<List<View_TRS_TIERS>> GetListeTiers(string typeTiers, string isPharmacien)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ECHANGE_URL, ServiceUrlDico.ECHANGE_GET_TIERS);
+            url += WSApi2.AddParam(url, "typeTiers", typeTiers);
+            url += WSApi2.AddParam(url, "isPharmacien", isPharmacien);
+            return await RetrievAauthorizedData<View_TRS_TIERS>(url);
+        }
+
+        internal static async Task<List<View_BSE_MAGASIN>> GetListeMagasin()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ECHANGE_URL, ServiceUrlDico.ECHANGE_GET_MAGASIN);
+            return await RetrievAauthorizedData<View_BSE_MAGASIN>(url);
+        }
+        internal static async Task<List<View_VTE_VENTE_LOT>> GetEchangeDetail(string codeDocument, string typeDoc)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ECHANGE_URL, ServiceUrlDico.ECHANGE_GET_DETAIL);
+            url += WSApi2.AddParam(url, "codeDocument", codeDocument);
+            url += WSApi2.AddParam(url, "typeDoc", typeDoc);
+            return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
+        }
+
         #endregion
 
         #region User
@@ -570,12 +602,12 @@ namespace XpertMobileApp.Services
 
             #endregion
         }
-        internal static async Task<bool> printTicket(string codeVent,string printerName)
+        internal static async Task<bool> printTicket(string codeVent, string printerName)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);
             url += WSApi2.AddParam(url, "printerName", printerName);
             url += WSApi2.AddParam(url, "codeVente", codeVent);
-            return await WSApi2.PostAauthorizedValue<bool,string>(url,printerName,Token);
+            return await WSApi2.PostAauthorizedValue<bool, string>(url, printerName, Token);
 
         }
 

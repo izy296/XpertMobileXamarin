@@ -190,6 +190,13 @@ namespace XpertMobileApp.Helpers
         public static string PRODUIT_UNITE_URL = "BSE_PRODUIT_UNITE";
         public static string PRODUIT_GET_UNITE_URL = "SelectAll";
 
+        //ECHANGE
+        public static string ECHANGE_URL = "STK_ECHANGE";
+        public static string ECHANGE_GET_MOTIFS = "GetMotif";
+        public static string ECHANGE_GET_TYPE_TIERS = "GetTiersType";
+        public static string ECHANGE_GET_TIERS = "GetListTiers";
+        public static string ECHANGE_GET_DETAIL = "GetEchangeDetail";
+        public static string ECHANGE_GET_MAGASIN = "GetMagasin";
     }
 
 }
