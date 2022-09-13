@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views.TransfertDeFondPopupFilter"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ScrollView>
+                <StackLayout 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand" 
+                    Padding="10">
+                    <Frame 
+                        CornerRadius="10" 
+                        Padding="10">
+                        <StackLayout>
+                            <StackLayout >
+                                <!--  Image of filter  -->
+                                <Grid 
+                                Margin="4,4,5,5"
+                                RowSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image 
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    Source="filter_popup"
+                                    Margin="0,30,0,20"/>
+
+                                    <Image 
+                                    VerticalOptions="Start"
+                                    Source="closeIcon.png"
+                                    Grid.Row="0"
+                                    Grid.Column="1">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Close_filter_popup"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+                                
+                                <!--Date de début--> 
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="{i18n:Translate txt_StartDate}"
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker-->
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="datePIcon.png"
+                                        HeightRequest="22"
+                                        WidthRequest="22"/>
+
+                                        <DatePicker 
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="2,-2,5,0"
+                                            TextColor="Gray"
+                                            FontSize="15"
+                                            Format="dd/MM/yyyy"
+                                            Date="{Binding StartDate, Mode=TwoWay}" />
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--Date de fin-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="{i18n:Translate txt_EndDate}"
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Date Fin -->
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="datePIcon.png"
+                                        HeightRequest="22"
+                                        WidthRequest="22"/>
+
+                                        <DatePicker 
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Margin="2,-2,5,0"
+                                            TextColor="Gray"
+                                            FontSize="14"
+                                            Format="dd/MM/yyyy"
+                                            Date="{Binding EndDate, Mode=TwoWay}" />
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--Compte-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="{i18n:Translate lbl_compteSource}"
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Type-->
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition 
+                                            Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="tiersIcon.png"
+                                        HeightRequest="22"
+                                        WidthRequest="22"/>
+
+                                        <Picker 
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        x:Name="ComptesPicker"
+                                        ItemsSource="{Binding Comptes}"  
+                                        ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
+                                        SelectedItem="{Binding SelectedCompteSrc}"
+                                        FontSize="14"
+                                        TextColor="Gray"  
+                                        Margin="2,-2,5,0"/>
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--Motif-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="{i18n:Translate lbl_compteDest}" 
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Type-->
+                                    <Grid 
+                                        Margin="4,4,5,5"
+                                        RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition 
+                                            Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="tiersIcon.png"
+                                        HeightRequest="22"
+                                        WidthRequest="22"/>
+
+                                        <Picker 
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        x:Name="MotifsPicker"
+                                        ItemsSource="{Binding Comptes}"  
+                                        ItemDisplayBinding="{Binding DESIGN_COMPTE}" 
+                                        SelectedItem="{Binding SelectedCompteDst}"
+                                        FontSize="14"
+                                        TextColor="Gray"  
+                                        Margin="2,-2,5,0"/>
+                                        
+                                    </Grid>
+                                </FlexLayout>
+                                
+                                <StackLayout
+                                    Grid.Column="0" 
+                                    Grid.Row="8"
+                                    Orientation="Horizontal"
+                                    >
+                                    <CheckBox 
+                                        VerticalOptions="Center"
+                                        x:Name="transfertClotureCheckBox"
+                                        Color="#6279B8"
+                                        CheckedChanged="CheckBox_CheckedChanged">
+                                    </CheckBox>
+
+
+                                    <Label 
+                                        VerticalOptions="Center"
+                                        Text="{i18n:Translate txt_fond_genere_cloture}" 
+                                        Margin="5, 0, 0, 0"/>
+
+                                </StackLayout>
+                                <!--Button to close and open--> 
+                                <StackLayout  
+                                    Padding="0"                     
+                                    Spacing="0" 
+                                    Orientation="Horizontal"  
+                                    VerticalOptions="End"  
+                                    HorizontalOptions="CenterAndExpand"
+                                    Margin="0,25,0,0">
+
+                                    <flex:FlexButton
+                                        HorizontalOptions="FillAndExpand" 
+                                        MinimumHeightRequest="50"
+                                        HeightRequest="50"
+                                        Padding="0"
+                                        Margin="5"
+                                        WidthRequest="130"
+                                        Text="{i18n:Translate txt_Annule}"
+                                        CornerRadius="15"
+                                        ForegroundColor="#ffffff"
+                                        BackgroundColor="#e65b65"
+                                        BorderColor="#e65b65"
+                                        BorderThickness="1"
+                                        Clicked="Close_filter_popup"/>
+
+                                    <flex:FlexButton
+                                        HorizontalOptions="FillAndExpand" 
+                                        MinimumHeightRequest="50"
+                                        HeightRequest="50"
+                                        Padding="0"
+                                        Margin="5"
+                                        Text="Filtrer"
+                                        CornerRadius="15"
+                                        ForegroundColor="#ffffff"
+                                        BackgroundColor="#2196F3"
+                                        BorderColor="#2196F3"
+                                        BorderThickness="1"
+                                        WidthRequest="130"
+                                        Clicked="ApplyFilter"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</pages:PopupPage>
