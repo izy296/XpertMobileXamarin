@@ -101,6 +101,21 @@
                                                           EchangePharm="{StaticResource Echange}"/>
             
             <!--***************** Echange *******************-->
+
+            <!-- ***************** Rotation *****************-->
+
+            <DataTemplate x:Key="RotationPharm">
+                <template:RowElementTemplate_Rotation />
+            </DataTemplate>
+
+            <DataTemplate x:Key="RotationComm">
+                <template:RowElementTemplate_Rotation_COMM />
+            </DataTemplate>
+
+            <templateSelector:RotationDataSelectorTemplate   x:Key="RotationTemplateSelector" 
+                                                            RotationPharm="{StaticResource RotationPharm}"
+                                                            RotationComm="{StaticResource RotationComm}"/>
+            <!-- ***************** Rotation *****************-->
             <!--End Data Template Selector-->
 
 

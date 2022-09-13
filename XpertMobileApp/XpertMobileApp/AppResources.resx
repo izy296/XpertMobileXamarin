@@ -1225,4 +1225,16 @@
   <data name="txt_type_produit" xml:space="preserve">
     <value>Type de produit</value>
   </data>
+  <data name="pn_RotationDesProduits" xml:space="preserve">
+    <value>Rotations Des Produits</value>
+  </data>
+  <data name="rdp_Ach" xml:space="preserve">
+    <value>Achats</value>
+  </data>
+  <data name="rdp_Touts" xml:space="preserve">
+    <value>Touts</value>
+  </data>
+  <data name="rdp_Vte" xml:space="preserve">
+    <value>Ventes</value>
+  </data>
 </root>

@@ -30,6 +30,8 @@ namespace XpertMobileApp.Droid
     [Activity(Label = "XpertMobile OFFICINE", Icon = "@drawable/icon", Theme = "@style/MainTheme", LaunchMode = LaunchMode.SingleTop, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
+
+        public static Toolbar ToolBar { get; private set; }
         internal static MainActivity Instance { get; private set; }
 
         static string[] PERMISSIONS_NEED = {
@@ -365,6 +367,12 @@ namespace XpertMobileApp.Droid
                 ActivityCompat.RequestPermissions(MainActivity.Instance, new string[] { Manifest.Permission.ReadPhoneState }, REQUEST_READ_PHONE_STATE);
             }
 
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            ToolBar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            return base.OnCreateOptionsMenu(menu);
         }
     }
 }

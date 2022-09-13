@@ -993,4 +993,16 @@
   <data name="txt_type_produit" xml:space="preserve">
     <value>Product Type</value>
   </data>
+  <data name="pn_RotationDesProduits" xml:space="preserve">
+    <value>Product Rotation</value>
+  </data>
+  <data name="rdp_Ach" xml:space="preserve">
+    <value>Purchases</value>
+  </data>
+  <data name="rdp_Touts" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="rdp_Vte" xml:space="preserve">
+    <value>Sales</value>
+  </data>
 </root>

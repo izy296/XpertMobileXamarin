@@ -451,6 +451,17 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
         }
 
+        public static async Task<List<RotationDesProduitsDetails>> GetRotationProduitDetails(string codeProduit, string startDate, string endDate,string domain)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ROTATION_URL, ServiceUrlDico.ROTATION_SELECT_PRODUCT);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+            url += WSApi2.AddParam(url, "startDate", startDate);
+            url += WSApi2.AddParam(url, "endDate", endDate);
+            url += WSApi2.AddParam(url, "domain", domain);
+
+            return await RetrievValAauthorizedData<List<RotationDesProduitsDetails>>(url);
+        }
+
         public static async Task<List<BSE_TABLE>> GetProduitFamilles()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_FAMILLES_URL);

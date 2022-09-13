@@ -705,4 +705,61 @@ namespace XpertMobileApp.Models
         public string CODE_MOTIF { get; set; } // string 
         public string DESIGNATION_MOTIF { get; set; } // string 
     }
+
+    public class RotationDesProduits : BASE_CLASS
+    {
+        public string CODE_PRODUIT { get; set; } // varchar(11)
+        public decimal PRIX_UNITAIRE { get; set; } // varchar(11)
+        public string DESIGNATION { get; set; } // varchar(11)
+
+        public decimal QTE_ENTREE { get; set; } // varchar(11)
+
+        public decimal QTE_SORTIE { get; set; } // varchar(11)
+
+        public decimal QuantiteToDisplay
+        {
+            get
+            {
+                if (QTE_ENTREE == 0)
+                {
+                    return QTE_SORTIE;
+                }
+                else if (QTE_SORTIE == 0)
+                {
+                    return QTE_ENTREE;
+                }
+                else return 0;
+            }
+        }
+    }
+
+    public class RotationDesProduitsDetails : RotationDesProduits
+    {
+        public string CREATED_BY { get; set; } // varchar(11)
+        public decimal VAL_SORTIE { get; set; } // varchar(11)
+        public decimal VAL_ENTREE { get; set; } // varchar(11)
+        public string REF { get; set; } // varchar(11)
+        public string CODE_DOC { get; set; } // varchar(11)
+        public DateTime? DATE_MVT { get; set; } // varchar(11)
+        public string TYPE_MVT { get; set; } // varchar(11)
+        public string TIERS { get; set; } // varchar(11)
+        public string TYPE_DOC { get; set; } // varchar(11)
+
+        public decimal ValeurToDisplay
+        {
+            get
+            {
+                if (VAL_SORTIE == 0)
+                {
+                    return VAL_ENTREE;
+                }
+                else if (VAL_ENTREE==0)
+                {
+                    return VAL_SORTIE;
+                }
+                else return 0;
+            }
+        }
+    }
+
 }

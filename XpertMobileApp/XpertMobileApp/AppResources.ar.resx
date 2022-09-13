@@ -1093,4 +1093,16 @@
   <data name="txt_type_produit" xml:space="preserve">
     <value>نوع المنتوج</value>
   </data>
+  <data name="pn_RotationDesProduits" xml:space="preserve">
+    <value>دوران المنتج</value>
+  </data>
+  <data name="rdp_Ach" xml:space="preserve">
+    <value>شراء</value>
+  </data>
+  <data name="rdp_Touts" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="rdp_Vte" xml:space="preserve">
+    <value>بيع</value>
+  </data>
 </root>

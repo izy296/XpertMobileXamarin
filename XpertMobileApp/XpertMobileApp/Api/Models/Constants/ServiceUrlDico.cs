@@ -197,6 +197,11 @@ namespace XpertMobileApp.Helpers
         public static string ECHANGE_GET_TIERS = "GetListTiers";
         public static string ECHANGE_GET_DETAIL = "GetEchangeDetail";
         public static string ECHANGE_GET_MAGASIN = "GetMagasin";
+        //RotationDesProduits
+        public static string ROTATION_URL = "RotationDesProduits";
+        public static string ROTATION_SELECT_PRODUCT = "SelectProduct";
+
+
     }
 
 }

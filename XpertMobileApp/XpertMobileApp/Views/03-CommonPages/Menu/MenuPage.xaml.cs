@@ -203,6 +203,15 @@ namespace XpertMobileApp.Views
                         Action = XpertActions.AcSelect
                     });
 
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.RotationDesProduits,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Title = AppResources.pn_RotationDesProduits,
+                        CodeObjet = XpertObjets.TDB_ANALYSES,
+                        Action = XpertActions.AcSelect
+                    });
+
                     //Analyse
                     if (AppManager.HasAdmin)
                     {

@@ -3408,6 +3408,34 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Echanges", resourceCulture);
             }
         }
+        public static string pn_RotationDesProduits
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_RotationDesProduits", resourceCulture);
+            }
+        }        
+        public static string rdp_Touts
+        {
+            get
+            {
+                return ResourceManager.GetString("rdp_Touts", resourceCulture);
+            }
+        }        
+        public static string rdp_Vte
+        {
+            get
+            {
+                return ResourceManager.GetString("rdp_Vte", resourceCulture);
+            }
+        }        
+        public static string rdp_Ach
+        {
+            get
+            {
+                return ResourceManager.GetString("rdp_Ach", resourceCulture);
+            }
+        }
     }
 }
 

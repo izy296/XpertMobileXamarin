@@ -125,6 +125,8 @@ namespace XpertMobileApp.Views
                     return new NotificationPage();
                 case (int)MenuItemType.Echange:
                     return new EchangeListPage();
+                case (int)MenuItemType.RotationDesProduits:
+                    return new RotationDesProduitsPage();
                 default:
                     return new HomePage();
             }
@@ -249,6 +251,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.Echange:
                         MenuPages.Add(id, new NavigationPage(new EchangeListPage()));
+                        break;
+                    case (int)MenuItemType.RotationDesProduits:
+                        MenuPages.Add(id, new NavigationPage(new RotationDesProduitsPage()));
                         break;
                 }
             }
