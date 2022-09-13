@@ -20,8 +20,9 @@ namespace XpertMobileApp.Views
         public string CurrentStream = Guid.NewGuid().ToString();
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
-
+        private UserSelector itemSelector;
         XpertBaseFilterModel filterObjectTest;
+        private bool opened = false;
 
         public SortieListPage()
         {
@@ -31,32 +32,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new SortieListViewModel(typeDoc);
 
-
-            if (Constants.AppName == Apps.XCOM_Mob)
-            {
-                StatusLabel.IsVisible = false;
-                StatusPicker.IsVisible = false;
-            }
-
-            //Code responsabel a la selectore de status ??
-
-            if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
-            {
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
-            }
-
             //Code responsabel a la selectore de Motifs
-
-            if (MotifPicker.ItemsSource != null && MotifPicker.ItemsSource.Count > 0)
-            {
-                MotifPicker.SelectedItem = MotifPicker.ItemsSource[1];
-            }
-
-            MessagingCenter.Subscribe<UserSelector, View_SYS_USER>(this, CurrentStream, async (obj, selectedItem) =>
-            {
-                viewModel.SelectedUsers = selectedItem;
-                ent_SelectedUsers.Text = selectedItem.ID_USER;
-            });
 
             MessagingCenter.Subscribe<BaseFilter, XpertBaseFilterModel>(this, CurrentStream, async (obj, selectedFilter) =>
             {
@@ -67,7 +43,6 @@ namespace XpertMobileApp.Views
                 //viewModel.SelectedTiers = filterObjectTest.Filter_SelectedTiers;
                 btn_ApplyFilter_Clicked(null, null);
             });
-
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -111,11 +86,9 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void ClearFilters()
+        protected override void OnDisappearing()
         {
-            ent_SelectedUsers.Text = "";
-            MotifPicker.SelectedItem = MotifPicker.ItemsSource[0];
-            StatusPicker.SelectedItem = StatusPicker.ItemsSource[0];
+            base.OnDisappearing();
         }
 
         private void ApplyVisibility()
@@ -130,7 +103,7 @@ namespace XpertMobileApp.Views
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
+            //FilterPanel.IsVisible = !FilterPanel.IsVisible;
 
 
             /*            if (this.BaseFilterView.IsVisible)
@@ -142,14 +115,6 @@ namespace XpertMobileApp.Views
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
-            FilterPanel.IsVisible = false;
-        }
-
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = false;
-            ClearFilters();
-            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,7 +122,6 @@ namespace XpertMobileApp.Views
 
         }
 
-        private UserSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             itemSelector.SearchedType = "";
@@ -175,6 +139,11 @@ namespace XpertMobileApp.Views
         {
 
         }
-
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            SortiePopupFilter filter = new SortiePopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
+        }
     }
 }

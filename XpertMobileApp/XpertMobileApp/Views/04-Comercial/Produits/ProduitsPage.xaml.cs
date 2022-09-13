@@ -18,9 +18,6 @@ namespace XpertMobileApp.Views
         ProduitsViewModel viewModel;
 
         private bool opened = false;
-
-        double translateHide = -270;
-        double translateShow = 0;
         public ProduitsPage()
         {
             InitializeComponent();
@@ -31,38 +28,6 @@ namespace XpertMobileApp.Views
             //    translateHide = App.Current.MainPage.Width;
             //    translateShow = App.Current.MainPage.Width - 360;
             //}
-
-            if (Constants.AppName == Apps.XCOM_Mob)
-            {
-                labosLabel.IsVisible = false;
-                LaboPicker.IsVisible = false;
-                tagsLabel.IsVisible = false;
-                tagsPicker.IsVisible = false;
-                checkBoxR.IsVisible = false;
-            }
-            else
-            {
-                fideleteLabel.IsVisible = false;
-                fideleteRadioBtns.IsVisible = false;
-            }
-            filterLayout.TranslateTo(translateHide, 0);
-            FilterScroll.TranslateTo(translateHide, 0);
-
-            MessagingCenter.Subscribe<ProductTagSelector, List<BSE_PRODUIT_TAG>>(this, MCDico.ITEM_SELECTED, async (obj, items) =>
-             {
-                 viewModel.SelectedTag = items;
-                 
-                 TagsPicker.Text = "";
-                 for (int i =0;i<items.Count;i++)
-                 {
-                     TagsPicker.Text += items[i].DESIGNATION;
-                     if (i != items.Count - 1)
-                         TagsPicker.Text += ", ";
-                 }
-                 //await DisplayAlert("hello", items[0].DESIGNATION, "ok");
-            });
-
-            FilterScroll.Focused += FilterScroll_Focused;
         }
 
         private void FilterScroll_Focused(object sender, FocusEventArgs e)
@@ -77,7 +42,6 @@ namespace XpertMobileApp.Views
                 if (opened)
                 {
                     ItemsListView.Opacity = 1;
-                    hideFilter();
                     ItemsListView.SelectedItem = null;
                     return;
                 }
@@ -121,26 +85,11 @@ namespace XpertMobileApp.Views
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            hideFilter();
+
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
-            hideFilter();
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            hideFilter();
-            //quantiteG.IsChecked = false;
-            //quantiteE.IsChecked = false;
-            //quantiteL.IsChecked = false;
-            etatAll.IsChecked = false;
-            etatActive.IsChecked = false;
-            etatNonActive.IsChecked = false;
-            TagsPicker.Text = "";
-            viewModel.ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -176,56 +125,20 @@ namespace XpertMobileApp.Views
                 viewModel.BareCode = scannedPassword;
                 await detail.Navigation.PopAsync();
                 await viewModel.GetScanedProduct();
-                
+
             };
-           
+
             detail.Navigation.PushAsync(gvsScannedBarcode);
         }
 
-
-        private void etatAll_StateChanged(object sender, StateChangedEventArgs e)
+        private async void ShowHideFilter(object sender, EventArgs e)
         {
-            if (e.IsChecked.HasValue && e.IsChecked.Value)
-            {
-                viewModel.EtatOperator = (sender as SfRadioButton).ClassId;
-            }
-        }
-
-        private void showHideFilter(object sender, EventArgs e)
-        {
-            if (opened)
-            {
-                filterLayout.TranslateTo(translateHide, 0);
-                FilterScroll.TranslateTo(translateHide, 0);
-            }
-            else
-            {
-                filterLayout.TranslateTo(translateShow, 0);
-                FilterScroll.TranslateTo(translateShow, 0);
-            }
-            opened = !opened;
+            ProduitsPopupFilter filter = new ProduitsPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
 
 
-        private void showFilter()
-        {
-
-                filterLayout.TranslateTo(translateShow, 0); 
-            FilterScroll.TranslateTo(translateShow, 0);
-            opened = !opened;
-           
-        }
-
-        private void hideFilter()
-        {
-
-            filterLayout.TranslateTo(translateHide, 0);
-            FilterScroll.TranslateTo(translateHide, 0);
-            opened = !opened;
-
-        }
-
-        
 
         private async void buttonClick(object sender, EventArgs e)
         {
@@ -236,7 +149,7 @@ namespace XpertMobileApp.Views
 
         private void CheckBox_StateChangedSM(object sender, StateChangedEventArgs e)
         {
-            viewModel.CheckBoxSM =(bool) e.IsChecked;
+            viewModel.CheckBoxSM = (bool)e.IsChecked;
         }
 
         private void CheckBox_StateChangedS(object sender, StateChangedEventArgs e)
@@ -254,6 +167,13 @@ namespace XpertMobileApp.Views
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
                 viewModel.FidelOperator = (sender as SfRadioButton).ClassId;
+            }
+        }
+        private void etatAll_StateChanged(object sender, StateChangedEventArgs e)
+        {
+            if (e.IsChecked.HasValue && e.IsChecked.Value)
+            {
+                viewModel.EtatOperator = (sender as SfRadioButton).ClassId;
             }
         }
     }

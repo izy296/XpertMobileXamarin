@@ -10,6 +10,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
@@ -26,7 +27,7 @@ namespace XpertMobileApp.ViewModels
     public class VentesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_VENTE>
     {
         public string TypeVente = VentesTypes.Vente;
-
+        public ObservableCollection<SAMMUARY> SummariesReversed;
         public bool IsVtesList { get; set; } = false;
 
         decimal totalTurnover;
@@ -85,6 +86,7 @@ namespace XpertMobileApp.ViewModels
             TypeVente = typeVente;
 
             Types = new ObservableCollection<BSE_DOCUMENTS_TYPE>();
+            User = new ObservableCollection<View_BSE_COMPTE>();
             if (typeVente == VentesTypes.Vente)
             {
                 Title = AppResources.pn_Ventes;
@@ -182,6 +184,7 @@ namespace XpertMobileApp.ViewModels
             base.OnAfterLoadItems(list);
 
             int i = 0;
+
             foreach (var item in list)
             {
                 i += 1;
@@ -212,7 +215,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadExtrasDataCommand()
+        public async Task ExecuteLoadExtrasDataCommand()
         {
 
             if (IsLoadExtrasBusy)

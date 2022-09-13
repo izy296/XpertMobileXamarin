@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Models;
@@ -12,7 +13,6 @@ namespace XpertMobileApp.Views
     public partial class SessionsPage : ContentPage
     {
         SessionsViewModel viewModel;
-
         public SessionsPage()
         {
             InitializeComponent();
@@ -39,9 +39,11 @@ namespace XpertMobileApp.Views
                 else
                     await DisplayAlert(AppResources.txt_alert, AppResources.sp_session_error, AppResources.alrt_msg_Ok);
             });
-
         }
-
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -134,11 +136,6 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
-        }
-
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
@@ -146,12 +143,18 @@ namespace XpertMobileApp.Views
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = false;
+            //FilterPanel.IsVisible = false;
             viewModel.ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         #endregion
 
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            SessionsPopupFilter filter = new SessionsPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
+        }
     }
 }

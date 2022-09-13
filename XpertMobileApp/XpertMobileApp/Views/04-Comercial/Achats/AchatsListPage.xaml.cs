@@ -12,9 +12,9 @@ using XpertMobileApp.Views.Templates;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AchatsListPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AchatsListPage : ContentPage
+    {
         private string typeDoc = "LF";
         private string motifDoc = AchRecMotifs.PesageReception;
         AchatsListViewModel viewModel;
@@ -24,24 +24,26 @@ namespace XpertMobileApp.Views
 
         XpertBaseFilterModel filterObjectTest;
 
+        private bool opened = false; //Concerning the filter 
+
         public AchatsListPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new AchatsListViewModel(typeDoc);
 
-            if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
-            {
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
-            }
+            //if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
+            //{
+            //    StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
+            //}
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
-            {
-                viewModel.SelectedTiers = selectedItem;
-                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-            });
+            //MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
+            //{
+            //    viewModel.SelectedTiers = selectedItem;
+            //    ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+            //});
 
             MessagingCenter.Subscribe<BaseFilter, XpertBaseFilterModel>(this, CurrentStream, async (obj, selectedFilter) =>
             {
@@ -64,7 +66,7 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new AchatDetailPage(item));
 
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)
@@ -72,21 +74,25 @@ namespace XpertMobileApp.Views
             await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+        }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
 
+
+
             var connectivity = CrossConnectivity.Current;
             if (connectivity.IsConnected)
-            { 
+            {
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
 
-                if (viewModel.Items.Count ==0)
-                {
-                    LoadStats();
-                    viewModel.LoadExtrasDataCommand.Execute(null);
-                }
+                LoadStats();
+
+                viewModel.LoadExtrasDataCommand.Execute(null);
             }
 
             if (!AppManager.HasAdmin)
@@ -102,13 +108,13 @@ namespace XpertMobileApp.Views
 
         private async void LoadStats()
         {
-             viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
             //FilterPanel.IsVisible = !FilterPanel.IsVisible;           
-            
+
 
             if (this.BaseFilterView.IsVisible)
                 BaseFilterView.Hide();
@@ -117,14 +123,13 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,6 +152,13 @@ namespace XpertMobileApp.Views
         private void BaseFilterView_BindingContextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            AchatsPopupFilter filter = new AchatsPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

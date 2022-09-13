@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
@@ -12,7 +13,6 @@ namespace XpertMobileApp.Views
     public partial class EncaissementsPage : ContentPage
     {
         EncaissementsViewModel viewModel;
-
         public EncaissementsPage()
         {
             InitializeComponent();
@@ -30,7 +30,6 @@ namespace XpertMobileApp.Views
             if (viewModel.Comptes.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
         }
-
         #region Afficher / ajouter un element
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -137,11 +136,6 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
-        }
-
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
@@ -154,6 +148,13 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        #endregion 
+        #endregion
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            EncaissementPopupFilter filter = new EncaissementPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
+        }
     }
 }

@@ -15,22 +15,17 @@ namespace XpertMobileApp.Views
     public partial class TiersPage : ContentPage
     {
         TiersViewModel viewModel;
+        private TiersSelector itemSelector;
         public string CurrentStream = Guid.NewGuid().ToString();
         public TiersPage()
         {
             InitializeComponent();
 
-            itemSelector = new TiersSelector(CurrentStream);
-
             BindingContext = viewModel = new TiersViewModel();
-
-
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
-            {
-                // viewModel.SelectedTiers = selectedItem;
-                // ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-            });
-
+        }
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -56,7 +51,6 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
 
@@ -66,7 +60,7 @@ namespace XpertMobileApp.Views
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
+            //FilterPanel.IsVisible = !FilterPanel.IsVisible
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
@@ -74,17 +68,6 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            FilterPanel.IsVisible = false;
-            soldeG.IsChecked = false;
-            soldeE.IsChecked = false;
-            soldeL.IsChecked = false;
-            viewModel.ClearFilters();
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);
@@ -96,6 +79,13 @@ namespace XpertMobileApp.Views
             {
                 viewModel.SoldOperator = (sender as SfRadioButton).ClassId;
             }
+        }
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            TiersPopupFilter filter = new TiersPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

@@ -26,7 +26,8 @@ namespace XpertMobileApp.Views
         VentesViewModel viewModel;
         private string typeDoc = VentesTypes.Vente;
         public string CurrentStream = Guid.NewGuid().ToString();
-        private bool tapped = false;
+        private bool tapped { get; set; } = false;
+
         public VentesPage(string typeVente)
         {
             typeDoc = typeVente;
@@ -52,11 +53,11 @@ namespace XpertMobileApp.Views
             //vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
             viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
-            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
-            {
-                viewModel.SelectedTiers = selectedItem;
-                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-            });
+            //MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
+            //{
+            //    viewModel.SelectedTiers = selectedItem;
+            //    ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+            //});
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -141,20 +142,7 @@ namespace XpertMobileApp.Views
 
         private async void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
-        }
-
-        private async void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
-        private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-        {
-            viewModel.SelectedType = null;
-            viewModel.SelectedTiers = null;
-            FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);
+            //FilterPanel.IsVisible = !FilterPanel.IsVisible;
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,6 +176,13 @@ namespace XpertMobileApp.Views
                 arrow_img.RotateTo(180, 400, Easing.Linear);
             }
 
+        }
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            VentesPopupFilter filter = new VentesPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

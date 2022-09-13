@@ -13,7 +13,7 @@ namespace XpertMobileApp.Views
     {
         CommandesViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
-        private bool opened = false;
+
         public CommandesPage()
         {
             InitializeComponent();
@@ -23,8 +23,9 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new CommandesViewModel();
             if (Constants.AppName == Apps.XPH_Mob)
             {
-                this.status_label.IsVisible = false;
-                this.statusPicker.IsVisible = false;
+                /*-----------TO DO Add in XCOM VERSION -------*/
+                //this.status_label.IsVisible = false;
+                //this.statusPicker.IsVisible = false;
             }
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
@@ -32,14 +33,11 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedTiers = selectedItem;
                 //ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
-
-            filterLayout.TranslateTo(-270, 0);
         }
 
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            filterLayout.TranslateTo(-270, 0);
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -73,21 +71,13 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            filterLayout.TranslateTo(-270, 0);
-        }
-
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
-            opened = !opened;
-            filterLayout.TranslateTo(-270, 0);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            filterLayout.TranslateTo(-270, 0);
             viewModel.SelectedCompte = null;
             //FilterPanel.IsVisible = false;
             viewModel.LoadItemsCommand.Execute(null);
@@ -110,18 +100,11 @@ namespace XpertMobileApp.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void showHideFilter(object sender, EventArgs e)
+        private async void ShowHideFilter(object sender, EventArgs e)
         {
-            if (opened)
-            {
-                filterLayout.TranslateTo(-270, 0);
-                opened = !opened;
-            }
-            else
-            {
-                filterLayout.TranslateTo(0, 0);
-                opened = !opened;
-            }
+            CommandesPopupFilter filter = new CommandesPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

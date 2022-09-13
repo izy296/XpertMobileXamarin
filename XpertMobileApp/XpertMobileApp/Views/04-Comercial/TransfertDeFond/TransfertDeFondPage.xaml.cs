@@ -15,16 +15,12 @@ namespace XpertMobileApp.Views
     public partial class TransfertDeFondPage : ContentPage
     {
         TransfertDeFondPageViewModel viewModel;
-        private bool opened = false;
 
         public TransfertDeFondPage()
         {
             InitializeComponent();
-
             Title = AppResources.pn_TransfertDeFond;
-
             BindingContext = viewModel = new TransfertDeFondPageViewModel();
-            filterLayout.TranslateTo(-270, 0);
         }
 
         protected override void OnAppearing()
@@ -40,13 +36,13 @@ namespace XpertMobileApp.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            filterLayout.TranslateTo(-270, 0);
         }
         private void CheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             if (sender is CheckBox)
             {
                 var checkbox = (CheckBox)sender;
+
                 if (checkbox.IsChecked)
                 {
                     viewModel.TransfertCloture = true;
@@ -60,24 +56,8 @@ namespace XpertMobileApp.Views
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
-            opened = !opened;
-            filterLayout.TranslateTo(-270, 0);
         }
-        /// <summary>
-        /// To open and close filter section
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            filterLayout.TranslateTo(-270, 0);
-        }
-        private void ClearFilters()
-        {
-            compteSourcePicker.SelectedItem = compteSourcePicker.ItemsSource[0];
-            compteDestPicker.SelectedItem = compteDestPicker.ItemsSource[0];
-            transfertClotureCheckBox.IsChecked = false;
-        }
+
         /// <summary>
         /// Fonction qui permet de fermer la page de filtre 
         /// </summary>
@@ -85,8 +65,6 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            filterLayout.TranslateTo(-270, 0);
-            ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -119,18 +97,11 @@ namespace XpertMobileApp.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void showHideFilter(object sender, EventArgs e)
+        private async void ShowHideFilter(object sender, EventArgs e)
         {
-            if (opened)
-            {
-                filterLayout.TranslateTo(-270, 0);
-                opened = !opened;
-            }
-            else
-            {
-                filterLayout.TranslateTo(0, 0);
-                opened = !opened;
-            }
+            TransfertDeFondPopupFilter filter = new TransfertDeFondPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

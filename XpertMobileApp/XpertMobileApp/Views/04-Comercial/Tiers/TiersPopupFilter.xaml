@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views.TiersPopupFilter"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+    
+    <ContentPage.Resources>
+        <syncfusion:SfRadioGroupKey x:Key="soldeFilter" />
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <ScrollView>
+                <StackLayout 
+                    VerticalOptions="Center" 
+                    HorizontalOptions="FillAndExpand" 
+                    Padding="10">
+                    <Frame 
+                        CornerRadius="10" 
+                        Padding="10">
+                        <StackLayout>
+                            <StackLayout >
+                                <!--  Image of filter  -->
+                                <Grid 
+                                Margin="4,4,5,5"
+                                RowSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="30"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Image 
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    HorizontalOptions="Center"
+                                    Source="filter_popup"
+                                    Margin="0,30,0,20"/>
+
+                                    <Image 
+                                    VerticalOptions="Start"
+                                    Source="closeIcon.png"
+                                    Grid.Row="0"
+                                    Grid.Column="1">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Close_filter_popup"/>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+
+                                </Grid>
+
+                                <!--Type filter-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                        Text="Type : "
+                                        FontSize="16"
+                                        Margin="5,0,0,0"
+                                        TextColor="#5D5E65"/>
+
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="datePIcon.png"
+                                            HeightRequest="22"
+                                            WidthRequest="22"/>
+
+                                        <Picker 
+                                            Grid.Column="1" 
+                                            Grid.Row="0"  
+                                            ItemsSource="{Binding Types}"
+                                            ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                                            SelectedItem="{Binding SelectedType}"
+                                            TextColor="Black"
+                                            Margin="2,-2,5,0" 
+                                            x:Name="TypesPicker"/>
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!-- Famille-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="Famille "
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Date Fin -->
+                                    <Grid 
+                                        Margin="4,4,5,5"
+                                        RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="typetiers.png"
+                                            HeightRequest="22"
+                                            WidthRequest="22"/>
+
+                                        <Picker 
+                                            Grid.Column="1" 
+                                            Grid.Row="0" 
+                                            ItemsSource="{Binding Familles}"
+                                            ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
+                                            SelectedItem="{Binding SelectedFamille}"
+                                            TextColor="Black"
+                                            Margin="2,-2,5,0" 
+                                            x:Name="FamillesPicker"/>
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--Client-->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                        x:Name="status_label" 
+                                        Text="{i18n:Translate txt_Client}"
+                                        FontSize="16"
+                                        Margin="5,0,0,0"
+                                        TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Type-->
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition 
+                                            Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="tiersIcon.png"
+                                            HeightRequest="22"
+                                            WidthRequest="22"/>
+
+                                        <Entry 
+                                            Grid.Column="1" 
+                                            Grid.Row="0"  
+                                            x:Name="ent_SearchedTiers" 
+                                            TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"
+                                            Margin="2,-2,5,0"/>
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--Solde--> 
+                                <FlexLayout Direction="Column">
+                                    <Label 
+                                        Grid.Column="0" 
+                                        Grid.Row="6" 
+                                        Text="{i18n:Translate txt_Solde}" 
+                                        Margin="5, 0, 0, 0"/>
+
+                                    <!--solde-->
+                                    <StackLayout 
+                                        Grid.Column="0" 
+                                        Grid.Row="7" 
+                                        Margin="20, 0, 20, 15" 
+                                        Orientation="Horizontal"
+                                        HorizontalOptions="Center">
+
+                                        <syncfusion:SfRadioButton 
+                                            x:Name="soldeG" 
+                                            Margin="0,0,15,0" 
+                                            GroupKey="{StaticResource soldeFilter}" 
+                                            Text="> 0"  
+                                            ClassId=">"  
+                                            StateChanged="rg_solde_StateChanged"/>
+                                        
+                                        <syncfusion:SfRadioButton 
+                                            x:Name="soldeE" 
+                                            Margin="0,0,15,0" 
+                                            GroupKey="{StaticResource soldeFilter}" 
+                                            Text="= 0" 
+                                            ClassId="="
+                                            StateChanged="rg_solde_StateChanged"/>
+                                        
+                                        <syncfusion:SfRadioButton 
+                                            x:Name="soldeL" 
+                                            Margin="0,0,15,0" 
+                                            GroupKey="{StaticResource soldeFilter}" 
+                                            Text="&lt; 0" 
+                                            ClassId="&lt;" 
+                                            StateChanged="rg_solde_StateChanged"/>
+                                    </StackLayout>
+                                </FlexLayout>
+
+                                <!--Buttons to apply and cancel the filter-->
+                                <StackLayout  
+                                    Padding="0"                     
+                                    Spacing="0" 
+                                    Orientation="Horizontal"  
+                                    VerticalOptions="End"  
+                                    HorizontalOptions="CenterAndExpand"
+                                    Margin="0,25,0,0">
+
+                                    <flex:FlexButton
+                                        HorizontalOptions="FillAndExpand" 
+                                        MinimumHeightRequest="50"
+                                        HeightRequest="50"
+                                        Padding="0"
+                                        Margin="5"
+                                        WidthRequest="130"
+                                        Text="{i18n:Translate txt_Annule}"
+                                        CornerRadius="15"
+                                        ForegroundColor="#ffffff"
+                                        BackgroundColor="#e65b65"
+                                        BorderColor="#e65b65"
+                                        BorderThickness="1"
+                                        Clicked="Close_filter_popup"/>
+
+                                    <flex:FlexButton
+                                        HorizontalOptions="FillAndExpand" 
+                                        MinimumHeightRequest="50"
+                                        HeightRequest="50"
+                                        Padding="0"
+                                        Margin="5"
+                                        Text="Filtrer"
+                                        CornerRadius="15"
+                                        ForegroundColor="#ffffff"
+                                        BackgroundColor="#2196F3"
+                                        BorderColor="#2196F3"
+                                        BorderThickness="1"
+                                        WidthRequest="130"
+                                        Clicked="ApplyFilter"/>
+                                </StackLayout>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</pages:PopupPage>
