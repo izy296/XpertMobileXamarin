@@ -73,7 +73,22 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
-         protected override void OnAfterLoadItems(IEnumerable<View_TRS_TIERS> list)
+        protected override QueryInfos GetSelectParams()
+        {
+            base.GetSelectParams();
+            this.AddSelect<View_TRS_TIERS, string>(e => e.NOM_TIERS1);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.CODE_TIERS);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.NOM_TIERS);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.NUM_CARTE_FIDELITE);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.DESIGNATION_TYPE);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.DESIGN_FAMILLE);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.DESIGNATION_TYPE);
+            this.AddSelect<View_TRS_TIERS, decimal>(e => e.SOLDE_TIERS);
+            this.AddSelect<View_TRS_TIERS, string>(e => e.TEL1_TIERS);
+            return qb.QueryInfos;
+        }
+
+        protected override void OnAfterLoadItems(IEnumerable<View_TRS_TIERS> list)
          {
             base.OnAfterLoadItems(list);
 
