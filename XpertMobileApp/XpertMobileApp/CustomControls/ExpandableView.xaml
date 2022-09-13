@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.CustomControls.ExpandableView">
+    <StackLayout  x:Name="Layout" 
+                  Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <FlexLayout Direction="Row" JustifyContent="SpaceBetween" AlignItems="Start">
+            <StackLayout HorizontalOptions="FillAndExpand" x:Name="SummaryRegion"/>
+            <Image x:Name="Arrow" Margin="-30,0,0,0" VerticalOptions="Start" HorizontalOptions="End" Source="down_arrow.png" WidthRequest="15"></Image>
+        </FlexLayout>
+        <StackLayout x:Name="DetailsRegion" IsVisible="False"/>
+    </StackLayout>
+</ContentView>
