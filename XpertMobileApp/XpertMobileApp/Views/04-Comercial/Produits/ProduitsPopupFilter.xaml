@@ -86,7 +86,7 @@
                                         <Image 
                                             Grid.Row="0"
                                             Grid.Column="0"
-                                            Source="datePIcon.png"
+                                            Source="familly.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
 
@@ -127,7 +127,7 @@
                                         <Image 
                                             Grid.Row="0"
                                             Grid.Column="0"
-                                            Source="datePIcon.png"
+                                            Source="spreadsheet.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
 
