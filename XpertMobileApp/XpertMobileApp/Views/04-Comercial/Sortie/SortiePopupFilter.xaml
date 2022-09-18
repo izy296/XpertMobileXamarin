@@ -132,7 +132,7 @@
                                     </Grid>
                                 </FlexLayout>
 
-                                <!--Status -->
+                                <!--Etat -->
                                 <FlexLayout Direction="Column" x:Name="status_layout">
                                     <Label
                                     Text="{i18n:Translate txt_Status}"
@@ -156,25 +156,53 @@
                                         </Grid.RowDefinitions>
 
                                         <Image 
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Source="refer.png"
-                                        HeightRequest="22"
-                                        WidthRequest="22"/>
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="refer.png"
+                                            HeightRequest="22"
+                                            WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding Status}"
-                                        ItemDisplayBinding="{Binding NAME}"
-                                        SelectedItem="{Binding SelectedStatus , Mode=TwoWay}" 
-                                        FontSize="14"
-                                        TextColor="Gray"
-                                        x:Name="StatusPicker"
-                                        Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Status}"
+                                                ItemDisplayBinding="{Binding NAME}"
+                                                SelectedItem="{Binding SelectedStatus , Mode=TwoWay}" 
+                                                FontSize="14"
+                                                TextColor="Gray"
+                                                x:Name="StatusPicker"
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Opacity="0.8"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Status_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
                                     </Grid>
                                 </FlexLayout>
-                                
+
                                 <!--Motif -->
                                 <FlexLayout Direction="Column">
                                     <Label
@@ -205,16 +233,46 @@
                                         HeightRequest="22"
                                         WidthRequest="22"/>
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding Motif}"
-                                        ItemDisplayBinding="{Binding DESIGNATION_TYPE}" 
-                                        SelectedItem="{Binding SelectedMotif , Mode=TwoWay}"
-                                        FontSize="14"
-                                        TextColor="Gray"
-                                        x:Name="MotifPicker"
-                                        Margin="2,-2,5,0"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Motif}"
+                                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}" 
+                                                SelectedItem="{Binding SelectedMotif , Mode=TwoWay}"
+                                                FontSize="14"
+                                                TextColor="Gray"
+                                                x:Name="MotifPicker"
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Opacity="0.8"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Motif_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+
                                     </Grid>
                                 </FlexLayout>
 
@@ -253,16 +311,18 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="35"/>
                                             </Grid.RowDefinitions>
 
+
                                             <Entry
                                                 Grid.Row="0"
                                                 Grid.Column="0"
-                                                Grid.ColumnSpan="2"
+                                                Grid.ColumnSpan="3"
                                                 x:Name="ent_SelectedUsers"
                                                 FontSize="14"
                                                 Text="{Binding SelectedUsers.ID_USER, Mode=TwoWay}"
@@ -274,17 +334,30 @@
                                                 Margin="0,0,14,5"
                                                 VerticalOptions="Start"
                                                 Grid.Row="0"
+                                                Opacity="0.8"
                                                 Grid.Column="1"
                                                 Source="chercher_bleu.png">
                                                 <Image.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="btn_Select_Clicked"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
+
+                                            <Image  
+                                                Margin="0,0,14,17"
+                                                VerticalOptions="End"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Opacity="0.8"
+                                                Source="Supp.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initilize_User_picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>
-                                
-                                <!--Button pour afficher et annuler le filtre--> 
+
+                                <!--Button pour afficher et annuler le filtre-->
                                 <StackLayout  
                                     Padding="0"                     
                                     Spacing="0" 

@@ -52,8 +52,8 @@
                                     </Image>
 
                                 </Grid>
-                                
-                                <!--Date de début--> 
+
+                                <!--Date de début-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -133,7 +133,7 @@
                                     </Grid>
                                 </FlexLayout>
 
-                                <!--Compte-->
+                                <!--Compte Src -->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate lbl_compteSource}"
@@ -162,21 +162,48 @@
                                         Source="tiersIcon.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        x:Name="ComptesPicker"
-                                        ItemsSource="{Binding Comptes}"  
-                                        ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
-                                        SelectedItem="{Binding SelectedCompteSrc}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="ComptesPicker"
+                                                ItemsSource="{Binding Comptes}"  
+                                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"  
+                                                SelectedItem="{Binding SelectedCompteSrc}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_CompteSrc"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
                                     </Grid>
                                 </FlexLayout>
 
-                                <!--Motif-->
+                                <!--Compte dest-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate lbl_compteDest}" 
@@ -205,21 +232,48 @@
                                         Source="tiersIcon.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        x:Name="MotifsPicker"
-                                        ItemsSource="{Binding Comptes}"  
-                                        ItemDisplayBinding="{Binding DESIGN_COMPTE}" 
-                                        SelectedItem="{Binding SelectedCompteDst}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
-                                        
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="MotifsPicker"
+                                                ItemsSource="{Binding Comptes}"  
+                                                ItemDisplayBinding="{Binding DESIGN_COMPTE}" 
+                                                SelectedItem="{Binding SelectedCompteDst}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_CompteDst"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+
                                     </Grid>
                                 </FlexLayout>
-                                
+
                                 <StackLayout
                                     Grid.Column="0" 
                                     Grid.Row="8"
@@ -239,7 +293,7 @@
                                         Margin="5, 0, 0, 0"/>
 
                                 </StackLayout>
-                                <!--Button to close and open--> 
+                                <!--Button to close and open-->
                                 <StackLayout  
                                     Padding="0"                     
                                     Spacing="0" 

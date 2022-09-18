@@ -131,21 +131,6 @@ namespace XpertMobileApp.Views
             detail.Navigation.PushAsync(gvsScannedBarcode);
         }
 
-        private async void ShowHideFilter(object sender, EventArgs e)
-        {
-            ProduitsPopupFilter filter = new ProduitsPopupFilter(viewModel);
-            //Load data for the first time ...
-            await PopupNavigation.Instance.PushAsync(filter);
-        }
-
-
-
-        private async void buttonClick(object sender, EventArgs e)
-        {
-            ProductTagSelector productTagSelector = new ProductTagSelector();
-            await PopupNavigation.Instance.PushAsync(productTagSelector);
-        }
-
 
         private void CheckBox_StateChangedSM(object sender, StateChangedEventArgs e)
         {
@@ -175,6 +160,13 @@ namespace XpertMobileApp.Views
             {
                 viewModel.EtatOperator = (sender as SfRadioButton).ClassId;
             }
+        }
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            ProduitsPopupFilter filter = new ProduitsPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
         }
     }
 }

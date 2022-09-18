@@ -62,6 +62,24 @@ namespace XpertMobileApp.Views
             ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
+
+        private void Initialize_Motifs_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedSTATUS != null)
+            {
+                viewModel.SelectedSTATUS = new CFA_ETAT();
+                MotifsPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Centre_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedCentre != null)
+            {
+                viewModel.SelectedCentre = new CFA_CENTRES();
+                ComptesPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 

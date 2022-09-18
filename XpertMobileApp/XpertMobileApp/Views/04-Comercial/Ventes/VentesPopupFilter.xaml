@@ -52,6 +52,7 @@
 
                                 </Grid>
 
+                                <!--Date début-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -160,28 +161,56 @@
                                         Source="spreadsheet.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding Types}"  
-                                        ItemDisplayBinding="{Binding DESIGNATION_TYPE}"  
-                                        SelectedItem="{Binding SelectedType}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                x:Name="motifPicker"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Types}"  
+                                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"  
+                                                SelectedItem="{Binding SelectedType}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Type_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
                                     </Grid>
                                 </FlexLayout>
 
                                 <!--Type des tiers-->
-                                <FlexLayout Direction="Column" x:Name="tiers_layout">
+                                <FlexLayout Direction="Column">
                                     <Label
-                                    Text="{i18n:Translate pn_Tiers}"
+                                    Text="{i18n:Translate txt_Client}"
                                     FontSize="16"
                                     Margin="5,0,0,0"
                                     TextColor="#5D5E65"/>
 
-                                    <!--Grid for the icon and the picker-->
+                                    <!--Grid for the icon and the picker of tiers -->
                                     <Grid 
                                     Margin="4,0,5,5"
                                     RowSpacing="0">
@@ -208,6 +237,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="30"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
@@ -217,7 +247,7 @@
                                             <Entry
                                                 Grid.Row="0"
                                                 Grid.Column="0"
-                                                Grid.ColumnSpan="2"
+                                                Grid.ColumnSpan="3"
                                                 x:Name="ent_SelectedTiers"
                                                 Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
                                                 FontSize="14"
@@ -233,6 +263,17 @@
                                                 Source="chercher_bleu.png">
                                                 <Image.GestureRecognizers>
                                                     <TapGestureRecognizer Tapped="btn_Select_Clicked"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                            <Image  
+                                                Margin="0,0,14,17"
+                                                VerticalOptions="End"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Source="Supp.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Tiers_Picker"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
                                         </Grid>

@@ -93,6 +93,33 @@ namespace XpertMobileApp.Views
                 }
             }
         }
+
+        private void Initialize_Users_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedUsers != null)
+            {
+                viewModel.SelectedUsers = new View_SYS_USER();
+                ent_SelectedUsers.Text = "";
+            }
+        }
+
+        private void Initialize_Product_Type(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedTypesProduit != null)
+            {
+                viewModel.SelectedTypesProduit = new BSE_TABLE_TYPE();
+                TypesProduitPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Motifs_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedType != null)
+            {
+                viewModel.SelectedType = new BSE_DOCUMENT_STATUS();
+                TypesPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 

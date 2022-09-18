@@ -90,16 +90,43 @@
                                             HeightRequest="22"
                                             WidthRequest="22"/>
 
-                                        <Picker 
-                                            Grid.Row="0" 
-                                            Grid.Column="1" 
-                                            ItemsSource="{Binding Familles}"
-                                            ItemDisplayBinding="{Binding DESIGNATION}"
-                                            SelectedItem="{Binding SelectedFamille}"
-                                            TextColor="Black"
-                                            Margin="2,-2,5,0"
-                                            FontSize="14"
-                                            x:Name="FamillesPicker"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0" 
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Familles}"
+                                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                                SelectedItem="{Binding SelectedFamille}"
+                                                TextColor="Black"
+                                                Margin="2,-2,5,0"
+                                                FontSize="14"
+                                                x:Name="FamillesPicker"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Familly_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -130,17 +157,44 @@
                                             Source="spreadsheet.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                            Grid.Column="1" 
-                                            Grid.Row="0"  
-                                            ItemsSource="{Binding Types}"
-                                            ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
-                                            SelectedItem="{Binding SelectedType}"
-                                            TextColor="Black"
-                                            FontSize="14"
-                                            Margin="2,-2,5,0"
-                                            x:Name="TypesPicker"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Column="0" 
+                                                Grid.Row="0"  
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Types}"
+                                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                                                SelectedItem="{Binding SelectedType}"
+                                                TextColor="Black"
+                                                FontSize="14"
+                                                Margin="2,-2,5,0"
+                                                x:Name="TypesPicker"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Type_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
                                     </Grid>
                                 </FlexLayout>
 
@@ -176,6 +230,7 @@
                                             Source="product.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
+
                                         <Grid
                                             Grid.Row="0"
                                             Grid.Column="1">
@@ -183,6 +238,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="28"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
@@ -192,8 +248,7 @@
                                             <Entry
                                                 Grid.Row="0"
                                                 Grid.Column="0"
-                                                Grid.ColumnSpan="2"
-                                                Text="{Binding SearchedText, Mode=TwoWay}"
+                                                Grid.ColumnSpan="3"
                                                 x:Name="TagsPicker"
                                                 FontSize="14"
                                                 IsEnabled="false"
@@ -207,7 +262,18 @@
                                                 Grid.Column="1"
                                                 Source="chercher_bleu.png">
                                                 <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer />
+                                                    <TapGestureRecognizer Tapped="buttonClick"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                            <Image  
+                                                Margin="0,0,14,17"
+                                                VerticalOptions="End"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Source="Supp.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_TagProduct_picker"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
                                         </Grid>
@@ -243,16 +309,43 @@
                                             Source="laboratory.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
-
-                                        <Picker 
+                                        <Grid
                                             Grid.Row="0"
-                                            Grid.Column="1" 
-                                            ItemsSource="{Binding Labos}"
-                                            ItemDisplayBinding="{Binding DESIGNATION}"
-                                            SelectedItem="{Binding SelectedLabo}"
-                                            TextColor="Black"
-                                            Margin="2,-2,5,0" 
-                                            x:Name="LaboPicker"/>
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Labos}"
+                                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                                SelectedItem="{Binding SelectedLabo}"
+                                                TextColor="Black"
+                                                FontSize="14"
+                                                Margin="2,-2,5,0" 
+                                                x:Name="LaboPicker"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Laboratory_picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -284,14 +377,41 @@
                                             Source="refer.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Entry 
-                                            Grid.Column="1" 
-                                            Grid.Row="0" 
-                                            x:Name="ent_SearchedRef" 
-                                            TextColor="Black" 
-                                            Text="{Binding SearchedRef, Mode=TwoWay}"
-                                            Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Entry 
+                                                Grid.Column="0" 
+                                                Grid.Row="0" 
+                                                Grid.ColumnSpan="2"
+                                                x:Name="ent_SearchedRef" 
+                                                TextColor="Black" 
+                                                FontSize="14"
+                                                Text="{Binding SearchedRef, Mode=TwoWay}"
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Ref"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -323,13 +443,42 @@
                                             Source="product.png"
                                             HeightRequest="22"
                                             WidthRequest="22"/>
-                                        <Entry 
-                                            Grid.Column="1" 
-                                            Grid.Row="0" 
-                                            Margin="2,-2,5,0"  
-                                            x:Name="ent_SearchedTiers" 
-                                            TextColor="Black" 
-                                            Text="{Binding SearchedText, Mode=TwoWay}"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+
+
+                                            <Entry 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding SearchedText, Mode=TwoWay}"
+                                                x:Name="productEntry"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Product_Entry"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -432,7 +581,8 @@
 
                                         <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
-                                                x:Name="checkBoxSM" 
+                                                x:Name="checkBoxSM"
+                                                IsChecked="{Binding CheckBoxSM}"
                                                 Text="{i18n:Translate pp_text_StockMinimum}"
                                                 HorizontalOptions="FillAndExpand" 
                                                 StateChanged="CheckBox_StateChangedSM"/>
@@ -440,12 +590,14 @@
                                         <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
                                                 x:Name="checkBoxS" 
+                                                IsChecked="{Binding CheckBoxS}"
                                                 Text="{i18n:Translate pp_text_Service}"
                                                 HorizontalOptions="FillAndExpand" 
                                                 StateChanged="CheckBox_StateChangedS"/>
 
                                         <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
+                                                IsChecked="{Binding CheckBoxR}"
                                                 x:Name="checkBoxR" 
                                                 Text="{i18n:Translate pp_text_Rupture}"
                                                 HorizontalOptions="FillAndExpand" 

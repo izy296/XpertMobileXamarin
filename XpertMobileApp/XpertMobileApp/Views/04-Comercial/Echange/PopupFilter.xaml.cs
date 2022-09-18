@@ -65,6 +65,33 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
             viewModel.LoadItemsCommand.Execute(null);
             await PopupNavigation.Instance.PopAsync();
         }
+
+        private void Initialize_Motifs_picker(object sender, EventArgs e)
+        {
+            if (viewModel.MotifSelected != null)
+            {
+                viewModel.MotifSelected = new View_STK_MOTIF_ECHANGE();
+                motifPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_family_tiers(object sender, EventArgs e)
+        {
+            if (viewModel.TypeTiersSelected != null)
+            {
+                viewModel.TypeTiersSelected = new BSE_TIERS_TYPE();
+                typeTiersPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Tiers_Field(object sender, EventArgs e)
+        {
+            if (viewModel.TiersSelected != null)
+            {
+                viewModel.TiersSelected = new View_TRS_TIERS();
+                tiersPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 

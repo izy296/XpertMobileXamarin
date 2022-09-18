@@ -48,7 +48,7 @@
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                
+
 
                 <ListView.Footer>
                     <Grid Padding="6" IsVisible="{Binding IsBusy}">

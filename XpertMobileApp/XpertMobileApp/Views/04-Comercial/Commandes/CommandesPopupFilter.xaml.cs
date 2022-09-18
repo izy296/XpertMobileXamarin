@@ -76,6 +76,28 @@ namespace XpertMobileApp.Views
 
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
+
+        private void Initialize_date(object sender, EventArgs e)
+        {
+
+        }
+        private void Initialize_Status_picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedStatus != null)
+            {
+                viewModel.SelectedStatus = new BSE_DOCUMENT_STATUS();
+                statusPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Tiers_Field(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedTiers != null)
+            {
+                viewModel.SelectedTiers = new View_TRS_TIERS();
+                ent_SelectedTiers.Text = "";
+            }
+        }
     }
 }
 

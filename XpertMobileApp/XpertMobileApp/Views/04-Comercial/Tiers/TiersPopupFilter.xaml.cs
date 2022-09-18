@@ -76,6 +76,34 @@ namespace XpertMobileApp.Views
                 viewModel.SoldOperator = (sender as SfRadioButton).ClassId;
             }
         }
+
+        private async void btn_Select_Clicked(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PushAsync(itemSelector);
+        }
+
+        private void Initialize_Type_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedType != null)
+            {
+                viewModel.SelectedType = new BSE_TABLE_TYPE();
+                TypesPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Famille_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedFamille != null)
+            {
+                viewModel.SelectedFamille = new View_BSE_TIERS_FAMILLE();
+                FamillesPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void initialize_Tiers_Entry(object sender, EventArgs e)
+        {
+            ent_SearchedTiers.Text = "";
+        }
     }
 }
 

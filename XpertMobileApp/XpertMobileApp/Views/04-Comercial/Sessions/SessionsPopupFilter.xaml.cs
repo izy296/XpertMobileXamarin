@@ -63,6 +63,15 @@ namespace XpertMobileApp.Views
             ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
+
+        private void Initialize_Compte_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedCompte != null)
+            {
+                viewModel.SelectedCompte = new View_BSE_COMPTE();
+                ComptesPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 

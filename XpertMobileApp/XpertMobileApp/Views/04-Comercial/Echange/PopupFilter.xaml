@@ -52,6 +52,7 @@
 
                                 </Grid>
 
+                                <!--Date de debut-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -161,18 +162,45 @@
                                         HeightRequest="22"
                                         WidthRequest="22"/>
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding Motifs}"  
-                                        ItemDisplayBinding="{Binding DESIGNATION_MOTIF}"  
-                                        SelectedItem="{Binding MotifSelected}"
-                                        FontSize="14"
-                                        TextColor="#B2B3BA"  
-                                        Margin="2,-2,5,0"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                x:Name="motifPicker"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Motifs}"  
+                                                ItemDisplayBinding="{Binding DESIGNATION_MOTIF}"  
+                                                SelectedItem="{Binding MotifSelected}"
+                                                FontSize="14"
+                                                TextColor="#B2B3BA"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Motifs_picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
-
 
                                 <!--Type des tiers-->
                                 <FlexLayout Direction="Column">
@@ -206,16 +234,44 @@
                                         HeightRequest="22"
                                         WidthRequest="22"/>
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding TypeTiers}"  
-                                        ItemDisplayBinding="{Binding DESIGNATION_TYPE}"  
-                                        SelectedItem="{Binding TypeTiersSelected}"
-                                        SelectedIndexChanged="UpdateTiersList"
-                                        FontSize="14"
-                                        TextColor="#B2B3BA"  
-                                        Margin="2,-2,5,0"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                x:Name="typeTiersPicker"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding TypeTiers}"  
+                                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"  
+                                                SelectedItem="{Binding TypeTiersSelected}"
+                                                SelectedIndexChanged="UpdateTiersList"
+                                                FontSize="14"
+                                                TextColor="#B2B3BA"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_family_tiers"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -248,15 +304,45 @@
                                         HeightRequest="22"
                                         WidthRequest="22"/>
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        ItemsSource="{Binding ListeTiers}"  
-                                        ItemDisplayBinding="{Binding NOM_TIERS}"   
-                                        SelectedItem="{Binding TiersSelected}"
-                                        FontSize="14"
-                                        TextColor="#B2B3BA"  
-                                        Margin="2,-2,5,0"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                x:Name="tiersPicker"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding ListeTiers}"  
+                                                ItemDisplayBinding="{Binding NOM_TIERS}"   
+                                                SelectedItem="{Binding TiersSelected}"
+                                                FontSize="14"
+                                                TextColor="#B2B3BA"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Tiers_Field"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+
                                     </Grid>
                                 </FlexLayout>
 

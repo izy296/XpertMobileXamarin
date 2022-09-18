@@ -52,9 +52,9 @@
                                     </Image>
 
                                 </Grid>
-                                
-                                
-                                <!--Date de début--> 
+
+
+                                <!--Date de début-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -122,15 +122,29 @@
                                         Source="datePIcon.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
-
-                                        <DatePicker 
+                                        <Grid
                                             Grid.Row="0"
-                                            Grid.Column="1"
-                                            Margin="2,-2,5,0"
-                                            TextColor="Gray"
-                                            FontSize="14"
-                                            Format="dd/MM/yyyy"
-                                            Date="{Binding EndDate, Mode=TwoWay}"/>
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <DatePicker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                Margin="2,-2,5,0"
+                                                TextColor="Gray"
+                                                FontSize="14"
+                                                Format="dd/MM/yyyy"
+                                                Date="{Binding EndDate, Mode=TwoWay}"/>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -164,16 +178,43 @@
                                         HeightRequest="22"
                                         WidthRequest="22"/>
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        x:Name="ComptesPicker"
-                                        ItemsSource="{Binding Comptes}"
-                                        ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                        SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="ComptesPicker"
+                                                ItemsSource="{Binding Comptes}"
+                                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                                                SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Compte_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 

@@ -52,8 +52,8 @@
                                     </Image>
 
                                 </Grid>
-                                
-                                <!--Date de début--> 
+
+                                <!--Date de début-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -162,17 +162,45 @@
                                         Source="clinic.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        x:Name="ComptesPicker"
-                                        ItemsSource="{Binding Centres}"
-                                        ItemDisplayBinding="{Binding CODE}"
-                                        SelectedItem="{Binding SelectedCentre}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="ComptesPicker"
+                                                ItemsSource="{Binding Centres}"
+                                                ItemDisplayBinding="{Binding CODE}"
+                                                SelectedItem="{Binding SelectedCentre}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Centre_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+
                                     </Grid>
                                 </FlexLayout>
 
@@ -205,21 +233,46 @@
                                         Source="spreadsheet.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
 
-                                        <Picker 
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        x:Name="MotifsPicker"
-                                        ItemsSource="{Binding brdStatus}"
-                                        ItemDisplayBinding="{Binding DESIGN_ETAT}"
-                                        SelectedItem="{Binding SelectedSTATUS}"
-                                        FontSize="14"
-                                        TextColor="Gray"  
-                                        Margin="2,-2,5,0"/>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
 
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="MotifsPicker"
+                                                ItemsSource="{Binding brdStatus}"
+                                                ItemDisplayBinding="{Binding DESIGN_ETAT}"
+                                                SelectedItem="{Binding SelectedSTATUS}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Motifs_Picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
-                                <!--Button to close and open--> 
+
+                                <!--Button to close and open-->
                                 <StackLayout  
                                     Padding="0"                     
                                     Spacing="0" 

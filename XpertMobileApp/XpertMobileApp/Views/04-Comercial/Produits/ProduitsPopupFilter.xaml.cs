@@ -31,7 +31,6 @@ namespace XpertMobileApp.Views
     public partial class ProduitsPopupFilter : PopupPage, INotifyPropertyChanged
     {
         private ProduitsViewModel viewModel;
-        private TiersSelector itemSelector;
         public string CurrentStream = Guid.NewGuid().ToString();
         public ProduitsPopupFilter(ProduitsViewModel viewModel)
         {
@@ -126,6 +125,66 @@ namespace XpertMobileApp.Views
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
                 viewModel.EtatOperator = (sender as SfRadioButton).ClassId;
+            }
+        }
+
+        private async void buttonClick(object sender, EventArgs e)
+        {
+            ProductTagSelector productTagSelector = new ProductTagSelector();
+            await PopupNavigation.Instance.PushAsync(productTagSelector);
+        }
+
+        private void Initialize_Product_Entry(object sender, EventArgs e)
+        {
+            if (viewModel.SearchedText != null)
+            {
+                viewModel.SearchedText = "";
+                productEntry.Text = "";
+            }
+        }
+
+        private void Initialize_Ref(object sender, EventArgs e)
+        {
+            if (viewModel.SearchedRef != null)
+            {
+                viewModel.SearchedRef = "";
+                ent_SearchedRef.Text = "";
+            }
+        }
+
+        private void Initialize_Laboratory_picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedLabo != null)
+            {
+                viewModel.SelectedLabo = new BSE_PRODUIT_LABO();
+                LaboPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_TagProduct_picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedTag != null)
+            {
+                viewModel.SelectedTag = new List<BSE_PRODUIT_TAG>();
+                TagsPicker.Text = "";
+            }
+        }
+
+        private void Initialize_Type_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedType != null)
+            {
+                viewModel.SelectedType = new BSE_TABLE_TYPE();
+                TypesPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Familly_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedFamille != null)
+            {
+                viewModel.SelectedFamille = new BSE_TABLE();
+                FamillesPicker.SelectedIndex = 0;
             }
         }
     }

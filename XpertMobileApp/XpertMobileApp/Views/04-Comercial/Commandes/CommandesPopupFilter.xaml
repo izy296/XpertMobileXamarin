@@ -53,6 +53,7 @@
 
                                 </Grid>
 
+                                <!--Date de debut-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_StartDate}"
@@ -162,17 +163,43 @@
                                         Source="spreadsheet.png"
                                         HeightRequest="22"
                                         WidthRequest="22"/>
-
-                                        <Picker 
-                                            x:Name="statusPicker"
+                                        <Grid
                                             Grid.Row="0"
-                                            Grid.Column="1"
-                                            ItemsSource="{Binding Status}"  
-                                            ItemDisplayBinding="{Binding NAME}" 
-                                            SelectedItem="{Binding SelectedStatus}"
-                                            FontSize="14"
-                                            TextColor="Gray"  
-                                            Margin="2,-2,5,0"/>
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                x:Name="statusPicker"
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                ItemsSource="{Binding Status}"
+                                                ItemDisplayBinding="{Binding NAME}" 
+                                                SelectedItem="{Binding SelectedStatus , Mode=TwoWay}"
+                                                FontSize="14"
+                                                TextColor="Gray"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Status_picker"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </FlexLayout>
 
@@ -211,6 +238,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="35"/>
+                                                <ColumnDefinition Width="40"/>
                                             </Grid.ColumnDefinitions>
 
                                             <Grid.RowDefinitions>
@@ -220,7 +248,7 @@
                                             <Entry
                                                 Grid.Row="0"
                                                 Grid.Column="0"
-                                                Grid.ColumnSpan="2"
+                                                Grid.ColumnSpan="3"
                                                 x:Name="ent_SelectedTiers"
                                                 Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
                                                 FontSize="14"
@@ -238,10 +266,22 @@
                                                     <TapGestureRecognizer Tapped="btn_Select_Clicked"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
+
+                                            <Image  
+                                                Margin="0,0,14,17"
+                                                VerticalOptions="End"
+                                                Grid.Row="0"
+                                                Grid.Column="2"
+                                                Source="Supp.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_Tiers_Field"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>
-
+                                 
+                                <!--Buttons to close and applu filter--> 
                                 <StackLayout  
                                     Padding="0"                     
                                     Spacing="0" 

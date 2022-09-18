@@ -55,7 +55,7 @@ namespace XpertMobileApp.Views
 
             if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
             {
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[0];
             }
         }
 
@@ -92,6 +92,33 @@ namespace XpertMobileApp.Views
         {
             ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private void Initilize_User_picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedUsers != null)
+            {
+                viewModel.SelectedUsers = new View_SYS_USER();
+                ent_SelectedUsers.Text = "";
+            }
+        }
+
+        private void Initialize_Motif_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedMotif != null)
+            {
+                viewModel.SelectedMotif = new BSE_SORTIE_TYPE();
+                MotifPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_Status_Picker(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedStatus != null)
+            {
+                viewModel.SelectedStatus = new BSE_DOCUMENT_STATUS();
+                StatusPicker.SelectedIndex = 0;
+            }
         }
     }
 }

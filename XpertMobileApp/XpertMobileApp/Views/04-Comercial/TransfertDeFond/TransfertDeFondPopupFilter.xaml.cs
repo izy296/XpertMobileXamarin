@@ -79,6 +79,24 @@ namespace XpertMobileApp.Views
                 }
             }
         }
+
+        private void Initialize_CompteSrc(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedCompteSrc != null)
+            {
+                viewModel.SelectedCompteSrc = new View_BSE_COMPTE();
+                ComptesPicker.SelectedIndex = 0;
+            }
+        }
+
+        private void Initialize_CompteDst(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedCompteDst != null)
+            {
+                viewModel.SelectedCompteDst = new View_BSE_COMPTE();
+                MotifsPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 
