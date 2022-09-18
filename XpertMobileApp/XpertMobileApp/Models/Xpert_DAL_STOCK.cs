@@ -716,6 +716,9 @@ namespace XpertMobileApp.Models
 
         public decimal QTE_SORTIE { get; set; } // varchar(11)
 
+        public decimal VAL_SORTIE { get; set; } // varchar(11)
+        public decimal VAL_ENTREE { get; set; } // varchar(11)
+
         public decimal QuantiteToDisplay
         {
             get
@@ -736,8 +739,6 @@ namespace XpertMobileApp.Models
     public class RotationDesProduitsDetails : RotationDesProduits
     {
         public string CREATED_BY { get; set; } // varchar(11)
-        public decimal VAL_SORTIE { get; set; } // varchar(11)
-        public decimal VAL_ENTREE { get; set; } // varchar(11)
         public string REF { get; set; } // varchar(11)
         public string CODE_DOC { get; set; } // varchar(11)
         public DateTime? DATE_MVT { get; set; } // varchar(11)

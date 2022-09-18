@@ -13,6 +13,8 @@
                         <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -24,36 +26,91 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                    <StackLayout Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Spacing="5" Padding="0">
                         <Label Text="{Binding DESIGNATION}" TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" FontSize="Default"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" HorizontalOptions="Start">
-                        <Image Source="trendup"
-                                   Margin="0, 0, 5, 0"/>
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal" HorizontalOptions="Start">
+                        <Image 
+                            WidthRequest="16"
+                            Source="inbox"
+                            Margin="0, 0, 5, 0"/>
+                        <Label
+                            Text="QTE Entre"
+                            FontSize="Micro"
+                            TextColor="Green"
+                            ></Label>
                     </StackLayout>
-                    
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
+
+                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="Center">
                         <Label Text="{Binding QTE_ENTREE, StringFormat='{0:N0}'}" TextColor="Green"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" HorizontalOptions="Start">
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal" HorizontalOptions="Start">
 
                         <Image 
-                                    Source="trenddown"
-                                    Margin="0, 0, 5, 0"/>
+                            WidthRequest="16"
+                            Source="outbox"
+                            Margin="0, 0, 5, 0"/>
+                        <Label
+                            Text="QTE Sortie"
+                            FontSize="Micro"
+                            TextColor="RED"
+                            ></Label>
                         <!--
                         <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                        -->
                     </StackLayout>
-                    
-                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
+
+                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="Center">
                         <Label Text="{Binding QTE_SORTIE, StringFormat='{0:N0}'}" TextColor="RED"/>
                         <!--
                         <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                        -->
                     </StackLayout>
+
+                    <StackLayout Grid.Column="3" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal" HorizontalOptions="Start">
+                        <Image 
+                            WidthRequest="16"
+                            Source="trendup"
+                            Margin="0, 0, 5, 0"/>
+                        <Label
+                            Text="Val Achats"
+                            FontSize="Micro"
+                            TextColor="Green"
+                            ></Label>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="3" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="Center">
+                        <Label Text="{Binding VAL_ENTREE, StringFormat='{0:N0} DA'}" TextColor="Green"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="4" Grid.Row="1" Spacing="5" Padding="0" Orientation="Horizontal" HorizontalOptions="Start">
+
+                        <Image
+                            WidthRequest="16"
+                            Source="trenddown"
+                            Margin="0, 0, 5, 0"/>
+                        <Label
+                            Text="Val Ventes"
+                            FontSize="Micro"
+                            TextColor="RED"
+                            ></Label>
+
+                        <!--
+                        <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                       -->
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="4" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="Center">
+                        <Label Text="{Binding VAL_SORTIE, StringFormat='{0:N0} DA'}"  TextColor="RED"/>
+                        <!--
+                        <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                       -->
+                    </StackLayout>
+
                 </Grid>
             </Frame>
         </StackLayout>

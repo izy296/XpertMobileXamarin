@@ -10,7 +10,6 @@
     <StackLayout x:Name="sl_content" Padding="5" >
         <StackLayout Spacing="0" >
             <Label Text="{i18n:Translate txt_Product}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
-
         </StackLayout>
         <Frame CornerRadius="10" Padding="5" Margin="5"  HasShadow="True"  OutlineColor="White">
             <CustomControls:ExpandableView>
@@ -40,14 +39,12 @@
                              HorizontalOptions="FillAndExpand" >
                                     <Grid>
 
-                                        <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Prix}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
-                                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.PRIX_UNITAIRE, StringFormat='{0:N2} DA'}" HorizontalOptions="Center" FontSize="Small"/>
+                                        <Label Grid.Column="0" Grid.Row="0" Text="QTE Entree" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
+                                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.QTE_ENTREE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
 
-                                        <Label Grid.Column="1" Grid.Row="0" Text="QTE Entree" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
-                                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_ENTREE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
+                                        <Label Grid.Column="1" Grid.Row="0" Text="QTE Sortee" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
+                                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.QTE_SORTIE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
 
-                                        <Label Grid.Column="2" Grid.Row="0" Text="QTE Sortee" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
-                                        <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.QTE_SORTIE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
 
                                     </Grid>
                                 </StackLayout>
@@ -56,7 +53,34 @@
                     </StackLayout>
                 </CustomControls:ExpandableView.Summary>
                 <CustomControls:ExpandableView.Details>
-                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame Padding="5" HasShadow="True"  OutlineColor="White">
+
+                            <StackLayout Margin="5,0,5,10" Padding="0" 
+                             Spacing="0"
+                             HorizontalOptions="FillAndExpand" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0" Text="VAL Entree" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
+                                    <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.VAL_ENTREE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
+
+                                    <Label Grid.Column="1" Grid.Row="0" Text="VAL Sortee" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center" FontSize="Small"/>
+                                    <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.VAL_SORTIE, StringFormat='{0:N2}'}" HorizontalOptions="Center" FontSize="Small"/>
+
+
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+
                         <Frame CornerRadius="25" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White"
                                 HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Vertical">
