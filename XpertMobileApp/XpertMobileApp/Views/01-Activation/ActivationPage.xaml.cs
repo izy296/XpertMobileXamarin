@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
@@ -12,20 +13,22 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ActivationPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ActivationPage : ContentPage
+    {
         ActivationViewModel viewModel;
 
         private LicState currentLicenceState;
 
         public ActivationPage(LicState state = LicState.NotActivated)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             currentLicenceState = state;
 
             BindingContext = viewModel = new ActivationViewModel();
+
+            Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
 
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -34,7 +37,7 @@ namespace XpertMobileApp.Views
 
         private void Init()
         {
-           // App.StatrtCheckIfInternet(Lbl_NoInternet, this);
+            // App.StatrtCheckIfInternet(Lbl_NoInternet, this);
 
             Ent_UserEemail.Text = "";
             Ent_ClientId.Text = "";
@@ -100,9 +103,9 @@ namespace XpertMobileApp.Views
 
                     DateTime LicenceEndDate = await viewModel.GetEndDate(result.LicenceTxt);
                     int nbrDays = Convert.ToInt32(LicenceEndDate.Subtract(DateTime.Now).TotalDays);
-                    if(nbrDays > 0)
+                    if (nbrDays > 0)
                     {
-                        await DisplayAlert(AppResources.alrt_msg_Info, 
+                        await DisplayAlert(AppResources.alrt_msg_Info,
                             String.Format(AppResources.msg_ActivationSucces), AppResources.alrt_msg_Ok);
 
                         if (Device.RuntimePlatform == Device.Android)
