@@ -29,7 +29,7 @@
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     HasUnevenRows="true"
-                    SeparatorVisibility="None"        
+                    SeparatorVisibility="None"      
                     RefreshCommand="{Binding LoadItemsCommand}"
                     IsPullToRefreshEnabled="true"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}"

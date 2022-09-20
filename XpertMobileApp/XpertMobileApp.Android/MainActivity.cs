@@ -23,6 +23,7 @@ using AndroidX.Navigation;
 using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
 using ListView = Xamarin.Forms.ListView;
+using System.Diagnostics;
 
 namespace XpertMobileApp.Droid
 {
@@ -80,10 +81,22 @@ namespace XpertMobileApp.Droid
                     if (e.Exception.Message.Contains("The page has been pushed already"))
                         e.Handled = true;
                 }
+                catch (ArgumentOutOfRangeException ex)
+                {
+                    if (e.Exception.Message.Contains("Specified argument was out of the range of valid values"))
+                        e.Handled = true;
+                }
                 catch (Exception ex)
                 {
+                    //// Get stack trace for the exception with source file information
+                    //var st = new StackTrace(ex, true);
+                    //// Get the top stack frame
+                    //var frame = st.GetFrame(0);
+                    //// Get the line number from the stack frame
+                    //var line = frame.GetFileLineNumber();
                     e.Handled = true;
-                    UserDialogs.Instance.AlertAsync(ex.Message, "Alert", "Ok");
+                    UserDialogs.Instance.AlertAsync(e.Exception.Message , "Alert", "Ok");
+                    //UserDialogs.Instance.AlertAsync(e.Exception.Message+"\n"+st + "\n" +frame + "\n" +line, "Alert", "Ok");
                 }
 
             };

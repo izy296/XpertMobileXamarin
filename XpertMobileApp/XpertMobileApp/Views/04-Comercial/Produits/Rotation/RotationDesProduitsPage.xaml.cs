@@ -1,5 +1,8 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections;
+using System.Collections.ObjectModel;
+using System.Timers;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Base;
@@ -12,6 +15,7 @@ namespace XpertMobileApp.Views
     public partial class RotationDesProduitsPage : XBasePage
     {
         RotationDesProduitsViewModel viewModel;
+
         public RotationDesProduitsPage()
         {
             InitializeComponent();
@@ -76,10 +80,27 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(filter);
         }
 
+        public override void SearchCommand()
+        {
+            while (IsBusy)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
+            viewModel.LoadItemsCommand.Execute(null);
+        }
+
         public override void HandleSearchBarTextChanged(object sender, string searchBarText)
         {
-            viewModel.SearchedText = searchBarText;
-            viewModel.LoadItemsCommand.Execute(null);
+            base.HandleSearchBarTextChanged(sender,searchBarText);
+            if (searchBarText != "")
+            {
+                viewModel.SearchedText = searchBarText;
+            }
+            else
+            {
+                viewModel.SearchedText = "";
+                SearchCommand();
+            }
         }
     }
 }

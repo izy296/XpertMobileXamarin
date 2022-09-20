@@ -68,7 +68,8 @@ namespace XpertMobileApp.ViewModels
             this.AddSelect<RotationDesProduits, string>(e => e.DESIGNATION);
             this.AddSelect<RotationDesProduits, decimal>(e => e.QTE_ENTREE);
             this.AddSelect<RotationDesProduits, decimal>(e => e.QTE_SORTIE);
-
+            this.AddSelect<RotationDesProduits, decimal>(e => e.VAL_ENTREE);
+            this.AddSelect<RotationDesProduits, decimal>(e => e.VAL_SORTIE);
             return qb.QueryInfos;
 
         }
