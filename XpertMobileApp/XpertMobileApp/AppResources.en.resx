@@ -1005,4 +1005,7 @@
   <data name="rdp_Vte" xml:space="preserve">
     <value>Sales</value>
   </data>
+  <data name="txt_triepar" xml:space="preserve">
+    <value>Sort By :</value>
+  </data>
 </root>

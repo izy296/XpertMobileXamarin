@@ -1,62 +1,94 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
              x:Class="XpertMobileApp.Views.Templates.TiersTemplate">
     <ContentView.Content>
         <SwipeView>
             <SwipeView.RightItems>
-            <SwipeItems>
-                <SwipeItem Text="Modifier"
-                                IconImageSource="SelectionEdit.png"
-                                BackgroundColor="LightGreen"
-                                Invoked="OnUpdateSwipeItemInvoked" />
-                <SwipeItem Text="Supprimer" IsVisible="False"
-                                IconImageSource="Delete1.png"
-                                BackgroundColor="LightPink"
-                                Invoked="OnDeleteSwipeItemInvoked" />
-            </SwipeItems>
-        </SwipeView.RightItems>
-        <Grid >
-            <StackLayout>
-            <Frame Style="{StaticResource FrameForList}">
-                <Grid  BackgroundColor="Transparent" >
+                <SwipeItems>
+                    <SwipeItem Text="Modifier"
+                           IconImageSource="SelectionEdit.png"
+                           BackgroundColor="LightGreen"
+                           Invoked="OnUpdateSwipeItemInvoked" />
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <StackLayout Grid.Column="0" Grid.Row="1" Grid.RowSpan="1" Spacing="5" Padding="0" VerticalOptions="Fill" 
-                                 HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
-                    </StackLayout>
+                    <SwipeItem Text="Supprimer" 
+                           IsVisible="False"
+                           IconImageSource="Delete1.png"
+                           BackgroundColor="LightPink"
+                           Invoked="OnDeleteSwipeItemInvoked" />
                     
-                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0">
-                        <Label Text="{Binding NOM_TIERS1}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                        <Label Text="{Binding DESIGNATION_TYPE}" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="{Binding DESIGN_FAMILLE}" TextColor="{StaticResource DefaultTextColor}"/>
-                    </StackLayout>
-                    
-                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
-                        <Label Text="{ Binding SOLDE_TIERS_TXT, StringFormat='{0}'}"
-                               TextColor="{Binding SOLDE_TIERS, Converter={StaticResource decimalToColorInverse}}" FontFamily="{StaticResource FontGilroySemiBold}"
-                               FontAttributes="Bold" FontSize="Default" HorizontalOptions="End"/>
-                        <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="End" TextColor="LightGray"/>
-                        <Label Text="{Binding LAST_CREANCE, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
-                        <!--
-                        <Label Text="{ Binding TOTAL_RESTE, StringFormat='R : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                        <Label Text="Dernière transaction le" FontSize="Default" HorizontalOptions="End"/>
-                        -->
-                    </StackLayout>
-                </Grid>
-            </Frame>
-        </StackLayout>
-        </Grid>
+                </SwipeItems>
+            </SwipeView.RightItems>
+            <Grid>
+                <StackLayout>
+                    <border:SfBorder 
+                        x:Name="border" 
+                        HorizontalOptions="FillAndExpand" 
+                        VerticalOptions="Center" 
+                        BorderColor ="{Binding Index, Converter={StaticResource MultipleColorConverter},Mode=OneWay}" 
+                        CornerRadius="3" 
+                        Padding="5" 
+                        Margin="5"
+                        BackgroundColor="#fff"
+                        BorderThickness="3,0,0,0" >
+
+                        <Grid  BackgroundColor="Transparent" >
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label 
+                                Text="{Binding NOM_TIERS1, StringFormat='Nom:  {0}'}" 
+                                TextColor="{StaticResource DefaultTextColor}"  
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                FontAttributes="Bold"/>
+
+                            <Label 
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding DESIGNATION_TYPE, StringFormat='Type: {0}'}" 
+                                TextColor="{StaticResource DefaultTextColor}"/>
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding DESIGN_FAMILLE, StringFormat='Famille: {0}'}" 
+                                TextColor="{StaticResource DefaultTextColor}"/>
+
+
+                            <Label 
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="{ Binding SOLDE_TIERS_TXT, StringFormat='{0}'}"
+                                TextColor="{Binding SOLDE_TIERS, Converter={StaticResource decimalToColorInverse}}" 
+                                FontFamily="{StaticResource FontGilroySemiBold}"
+                                FontAttributes="Bold" 
+                                FontSize="Default" 
+                                HorizontalOptions="End"/>
+
+                            <Label
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                Text="{Binding LAST_CREANCE, StringFormat='Dernière transaction le: {0:dd/MM/yyyy}'}" 
+                                TextColor="{StaticResource DefaultTextColor}" 
+                                HorizontalOptions="Start"/>
+                        </Grid>
+                    </border:SfBorder>
+                </StackLayout>
+            </Grid>
         </SwipeView>
 
     </ContentView.Content>

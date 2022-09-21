@@ -1237,4 +1237,7 @@
   <data name="rdp_Vte" xml:space="preserve">
     <value>Ventes</value>
   </data>
+  <data name="txt_triepar" xml:space="preserve">
+    <value>Trier par :</value>
+  </data>
 </root>

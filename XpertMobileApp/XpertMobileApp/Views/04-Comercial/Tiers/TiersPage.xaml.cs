@@ -58,16 +58,6 @@ namespace XpertMobileApp.Views
                 viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
-        private void Filter_Clicked(object sender, EventArgs e)
-        {
-            //FilterPanel.IsVisible = !FilterPanel.IsVisible
-        }
-
-        private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {
-            viewModel.LoadItemsCommand.Execute(null);
-        }
-
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(itemSelector);
@@ -86,6 +76,27 @@ namespace XpertMobileApp.Views
             TiersPopupFilter filter = new TiersPopupFilter(viewModel);
             //Load data for the first time ...
             await PopupNavigation.Instance.PushAsync(filter);
+        }
+
+        private void ApplyFilter(object sender, EventArgs e)
+        {
+            viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private void SortAToZ(object sender, EventArgs e)
+        {
+            sortLabelZA.IsVisible = true;
+            sortLabelAZ.IsVisible = false;
+            viewModel.sortAtoZ = false;
+            viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private void SortZToA(object sender, EventArgs e)
+        {
+            sortLabelZA.IsVisible = false;
+            sortLabelAZ.IsVisible = true;
+            viewModel.sortAtoZ = true;
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

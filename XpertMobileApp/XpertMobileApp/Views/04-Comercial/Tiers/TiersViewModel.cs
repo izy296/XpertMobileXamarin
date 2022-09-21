@@ -17,9 +17,9 @@ using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
-     public class TiersViewModel : CrudBaseViewModel2<TRS_TIERS, View_TRS_TIERS>
-     {
-
+    public class TiersViewModel : CrudBaseViewModel2<TRS_TIERS, View_TRS_TIERS>
+    {
+        public bool sortAtoZ { get; set; } = true;
         public bool hasViewSolde
         {
             get
@@ -39,17 +39,17 @@ namespace XpertMobileApp.ViewModels
         }
 
         public TiersViewModel()
-         {
-             Title = AppResources.pn_Tiers;
+        {
+            Title = AppResources.pn_Tiers;
 
-             Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
-             Types = new ObservableCollection<BSE_TABLE_TYPE>();
+            Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
+            Types = new ObservableCollection<BSE_TABLE_TYPE>();
 
-             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
-         }
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+        }
 
-         protected override QueryInfos GetFilterParams()
-         {
+        protected override QueryInfos GetFilterParams()
+        {
             base.GetFilterParams();
 
             this.AddCondition<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Operator.LIKE_ANY, SearchedText);
@@ -65,10 +65,17 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
                 this.AddCondition<View_TRS_TIERS, string>(e => e.CODE_FAMILLE, SelectedFamille?.CODE_FAMILLE);
 
-             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                 this.AddCondition<View_TRS_TIERS, string>(e => e.CODE_TYPE, SelectedType?.CODE_TYPE);
+            if (sortAtoZ)
+            {
+                qb.AddOrderBy<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Sort.ASC);
+            }
+            else
+            {
+                qb.AddOrderBy<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Sort.DESC);
+            }
 
-            qb.AddOrderBy<View_TRS_TIERS, string>(e => e.NOM_TIERS1);
 
             return qb.QueryInfos;
         }
@@ -89,7 +96,7 @@ namespace XpertMobileApp.ViewModels
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_TRS_TIERS> list)
-         {
+        {
             base.OnAfterLoadItems(list);
 
             int i = 0;
@@ -98,7 +105,7 @@ namespace XpertMobileApp.ViewModels
                 i += 1;
                 (item as BASE_CLASS).Index = i;
                 if (hasViewSolde)
-                { 
+                {
                     item.SOLDE_TIERS_TXT = hasViewSolde ? item.SOLDE_TIERS.ToString("N2") + " DA" : "";
                 }
                 else
@@ -106,7 +113,7 @@ namespace XpertMobileApp.ViewModels
                     item.SOLDE_TIERS_TXT = "tél. " + item.TEL1_TIERS;
                 }
             }
-         }
+        }
 
         #region filters data
 
@@ -124,23 +131,23 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref soldOperator, value); }
         }
         public ObservableCollection<View_BSE_TIERS_FAMILLE> Familles { get; set; }
-    
-         View_BSE_TIERS_FAMILLE selectedFamille;
-         public View_BSE_TIERS_FAMILLE SelectedFamille
-         {
-             get { return selectedFamille; }
-             set { SetProperty(ref selectedFamille, value); }
-         }
 
-         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
-         private BSE_TABLE_TYPE selectedType;
-         public BSE_TABLE_TYPE SelectedType
-         {
+        View_BSE_TIERS_FAMILLE selectedFamille;
+        public View_BSE_TIERS_FAMILLE SelectedFamille
+        {
+            get { return selectedFamille; }
+            set { SetProperty(ref selectedFamille, value); }
+        }
+
+        public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
+        private BSE_TABLE_TYPE selectedType;
+        public BSE_TABLE_TYPE SelectedType
+        {
             get { return selectedType; }
             set { SetProperty(ref selectedType, value); }
-         }
+        }
         async Task ExecuteLoadExtrasDataCommand()
-         {
+        {
 
             if (IsLoadExtrasBusy)
                 return;
@@ -160,10 +167,10 @@ namespace XpertMobileApp.ViewModels
             {
                 IsLoadExtrasBusy = false;
             }
-         }
+        }
 
-         async Task ExecuteLoadTypesCommand()
-         {
+        async Task ExecuteLoadTypesCommand()
+        {
             if (App.Online)
             {
                 try
@@ -196,11 +203,11 @@ namespace XpertMobileApp.ViewModels
                     Types.Add(itemC);
                 }
             }
-             
-         }
 
-         async Task ExecuteLoadFamillesCommand()
-         {
+        }
+
+        async Task ExecuteLoadFamillesCommand()
+        {
             if (App.Online)
             {
                 try
@@ -233,7 +240,7 @@ namespace XpertMobileApp.ViewModels
                     Familles.Add(itemC);
                 }
             }
-         }
+        }
 
         public override void ClearFilters()
         {
