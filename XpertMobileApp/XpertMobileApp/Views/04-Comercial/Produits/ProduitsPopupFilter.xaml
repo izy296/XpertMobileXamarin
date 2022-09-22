@@ -252,7 +252,7 @@
                                                 x:Name="TagsPicker"
                                                 FontSize="14"
                                                 IsEnabled="false"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
@@ -465,7 +465,7 @@
                                                 Text="{Binding SearchedText, Mode=TwoWay}"
                                                 x:Name="productEntry"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
                                             <Image  
                                                 Margin="0,0,14,10"
@@ -581,6 +581,8 @@
 
                                         <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
+                                                UncheckedColor="#64BCFF"
+                                                TickColor="#64BCFF"
                                                 x:Name="checkBoxSM"
                                                 IsChecked="{Binding CheckBoxSM}"
                                                 Text="{i18n:Translate pp_text_StockMinimum}"
@@ -589,6 +591,8 @@
 
                                         <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
+                                                TickColor="#64BCFF"
+                                                UncheckedColor="#64BCFF"
                                                 x:Name="checkBoxS" 
                                                 IsChecked="{Binding CheckBoxS}"
                                                 Text="{i18n:Translate pp_text_Service}"
@@ -596,6 +600,8 @@
                                                 StateChanged="CheckBox_StateChangedS"/>
 
                                         <syncfusion:SfCheckBox 
+                                                TickColor="#64BCFF"
+                                                UncheckedColor="#64BCFF"
                                                 CheckedColor="#64BCFF" 
                                                 IsChecked="{Binding CheckBoxR}"
                                                 x:Name="checkBoxR" 

@@ -113,6 +113,7 @@ namespace XpertMobileApp.Views
                             Title = AppResources.pn_Echanges,
                             CodeObjet = XpertObjets.View_STK_ECHANGE,
                             Action = XpertActions.AcSelect,
+                            IsNewModule = true,
                         }); ;
 
                         menuItems.Add(new HomeMenuItem
@@ -172,9 +173,21 @@ namespace XpertMobileApp.Views
                             });
                         }
                     }
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, ItemGroup = MenuItemGroup.Ventes, Image = "", Title = AppResources.pn_Tiers });
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Tiers,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Image = "",
+                        Title = AppResources.pn_Tiers
+                    });
 
-                    menuItems.Add(new HomeMenuItem { Id = MenuItemType.Produits, ItemGroup = MenuItemGroup.Stock, Image = "", Title = AppResources.pn_Produits });
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Produits,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Image = "",
+                        Title = AppResources.pn_Produits
+                    });
 
                     menuItems.Add(new HomeMenuItem
                     {
@@ -184,15 +197,6 @@ namespace XpertMobileApp.Views
                         CodeObjet = XpertObjets.ACH_MANQUANTS,
                         Action = XpertActions.AcSelect
                     });
-
-                    /*                    menuItems.Add(new HomeMenuItem
-                                        {
-                                            Id = MenuItemType.Entre,
-                                            ItemGroup = MenuItemGroup.Stock,
-                                            Title = AppResources.pn_Enter,
-                                            CodeObjet = XpertObjets.ACH_ENTRE,
-                                            Action = XpertActions.AcSelect
-                                        });*/
 
                     menuItems.Add(new HomeMenuItem
                     {
@@ -209,7 +213,8 @@ namespace XpertMobileApp.Views
                         ItemGroup = MenuItemGroup.Stock,
                         Title = AppResources.pn_RotationDesProduits,
                         CodeObjet = XpertObjets.TDB_ANALYSES,
-                        Action = XpertActions.AcSelect
+                        Action = XpertActions.AcSelect,
+                        IsNewModule = true,
                     });
 
                     //Analyse

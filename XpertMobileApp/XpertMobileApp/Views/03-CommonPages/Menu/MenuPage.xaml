@@ -114,22 +114,48 @@
                                    FontAttributes="Bold" 
                                    FontFamily="{StaticResource FontGilroySemiBold}"
                                     />
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                <pcview:PancakeView BackgroundColor="#96d1ff"
-                                                    CornerRadius="250"
-                                                    HorizontalOptions="FillAndExpand"
-                                                    HeightRequest="25"
-                                                    IsVisible="{Binding NotificationBadgeIsVisible}">
+                                    <pcview:PancakeView 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        BackgroundColor="#96d1ff"
+                                        CornerRadius="250"
+                                        HorizontalOptions="FillAndExpand"
+                                        IsVisible="{Binding NotificationBadgeIsVisible}">
 
-                                    <Label Text="{Binding CountOfNotifications}"
-                                           FontSize="11"
-                                           WidthRequest="25"
-                                           HeightRequest="25"
-                                           VerticalTextAlignment="Center"
-                                           HorizontalTextAlignment="Center">
-                                    </Label>
+                                        <Label 
+                                            Text="{Binding CountOfNotifications}"
+                                            FontSize="11"
+                                            WidthRequest="25"
+                                            HeightRequest="25"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center">
+                                        </Label>
 
-                                </pcview:PancakeView>
+                                    </pcview:PancakeView>
+
+                                    <pcview:PancakeView 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        BackgroundColor="Transparent"
+                                        CornerRadius="250"
+                                        HorizontalOptions="FillAndExpand"
+                                        IsVisible="{Binding IsNewModule}">
+
+                                        <Image Source="nouveau.png"
+                                               WidthRequest="25"
+                                               HeightRequest="25"/>
+
+                                    </pcview:PancakeView>
+                                </Grid>
+
 
                             </FlexLayout>
                         </Grid>

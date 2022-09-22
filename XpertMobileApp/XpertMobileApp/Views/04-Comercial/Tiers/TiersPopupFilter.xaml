@@ -193,7 +193,8 @@
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>
-
+                                
+                                <!--Tiers-->
                                 <FlexLayout Direction="Column">
                                     <Label
                                     Text="{i18n:Translate txt_Client}"
@@ -235,13 +236,13 @@
                                             </Grid.RowDefinitions>
 
                                             <Entry 
-                                            Grid.Column="0" 
-                                            Grid.Row="0"  
-                                            Grid.ColumnSpan="2"
-                                            x:Name="ent_SearchedTiers" 
-                                            TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"
-                                            FontSize="14"
-                                            Margin="2,-2,5,0"/>
+                                                Grid.Column="0" 
+                                                Grid.Row="0"  
+                                                Grid.ColumnSpan="2"
+                                                x:Name="ent_SearchedTiers" 
+                                                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"
+                                                FontSize="14"
+                                                Margin="2,-2,5,0"/>
 
                                             <Image  
                                                 Margin="0,0,14,17"
@@ -277,6 +278,7 @@
                                             x:Name="soldeG" 
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
+                                            UncheckedColor="#64BCFF"
                                             Text="> 0"  
                                             ClassId=">"  
                                             StateChanged="rg_solde_StateChanged"/>
@@ -285,6 +287,7 @@
                                             x:Name="soldeE" 
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
+                                            UncheckedColor="#64BCFF"
                                             Text="= 0" 
                                             ClassId="="
                                             StateChanged="rg_solde_StateChanged"/>
@@ -293,6 +296,7 @@
                                             x:Name="soldeL" 
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
+                                            UncheckedColor="#64BCFF"
                                             Text="&lt; 0" 
                                             ClassId="&lt;" 
                                             StateChanged="rg_solde_StateChanged"/>

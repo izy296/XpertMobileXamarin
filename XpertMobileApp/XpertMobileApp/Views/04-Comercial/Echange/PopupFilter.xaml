@@ -85,7 +85,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="#8C8D98"
+                                            TextColor="Black"
                                             FontSize="15"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding StartDate, Mode=TwoWay}"/>
@@ -125,7 +125,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="#8C8D98"
+                                            TextColor="Black"
                                             FontSize="14"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding EndDate, Mode=TwoWay}"/>
@@ -184,7 +184,7 @@
                                                 ItemDisplayBinding="{Binding DESIGNATION_MOTIF}"  
                                                 SelectedItem="{Binding MotifSelected}"
                                                 FontSize="14"
-                                                TextColor="#B2B3BA"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
@@ -257,7 +257,7 @@
                                                 SelectedItem="{Binding TypeTiersSelected}"
                                                 SelectedIndexChanged="UpdateTiersList"
                                                 FontSize="14"
-                                                TextColor="#B2B3BA"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
@@ -326,7 +326,7 @@
                                                 ItemDisplayBinding="{Binding NOM_TIERS}"   
                                                 SelectedItem="{Binding TiersSelected}"
                                                 FontSize="14"
-                                                TextColor="#B2B3BA"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  

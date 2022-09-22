@@ -86,7 +86,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="15"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding StartDate, Mode=TwoWay}"/>
@@ -126,7 +126,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="14"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding EndDate, Mode=TwoWay}"/>
@@ -184,7 +184,7 @@
                                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                                 SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
@@ -254,7 +254,7 @@
                                                 ItemDisplayBinding="{Binding DESIGN_MOTIF}"
                                                 SelectedItem="{Binding SelectedMotif , Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  

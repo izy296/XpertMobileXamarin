@@ -39,11 +39,13 @@ namespace XpertMobileApp.Models
 
         public bool VisibleToGuest { get; set; } = true;
         public bool NotificationBadgeIsVisible { get; set; } = false;
+        public bool IsNewModule { get; set; } = false;
 
         public int CountOfNotifications
         {
             get => countOfNotifications;
-            set {
+            set
+            {
                 if (value != countOfNotifications)
                 {
                     countOfNotifications = value;
@@ -57,7 +59,7 @@ namespace XpertMobileApp.Models
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            if (propertyName== "CountOfNotifications")
+            if (propertyName == "CountOfNotifications")
             {
                 if (CountOfNotifications > 0)
                     App.IsThereNotification = true;

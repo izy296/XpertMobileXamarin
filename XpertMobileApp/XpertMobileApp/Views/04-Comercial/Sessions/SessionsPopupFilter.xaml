@@ -87,7 +87,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="15"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding StartDate, Mode=TwoWay}"/>
@@ -140,7 +140,7 @@
                                                 Grid.Column="0"
                                                 Grid.ColumnSpan="2"
                                                 Margin="2,-2,5,0"
-                                                TextColor="Gray"
+                                                TextColor="Black"
                                                 FontSize="14"
                                                 Format="dd/MM/yyyy"
                                                 Date="{Binding EndDate, Mode=TwoWay}"/>
@@ -200,7 +200,7 @@
                                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                                 SelectedItem="{Binding SelectedCompte , Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  

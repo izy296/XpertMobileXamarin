@@ -85,7 +85,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="15"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding StartDate, Mode=TwoWay}"/>
@@ -125,7 +125,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="14"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding EndDate, Mode=TwoWay}"/>
@@ -182,7 +182,7 @@
                                                 ItemDisplayBinding="{Binding NAME}"
                                                 SelectedItem="{Binding SelectedStatus , Mode=TwoWay}" 
                                                 FontSize="14"
-                                                TextColor="Gray"
+                                                TextColor="Black"
                                                 x:Name="StatusPicker"
                                                 Margin="2,-2,5,0"/>
 
@@ -254,7 +254,7 @@
                                                 ItemDisplayBinding="{Binding DESIGNATION_TYPE}" 
                                                 SelectedItem="{Binding SelectedMotif , Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"
+                                                TextColor="Black"
                                                 x:Name="MotifPicker"
                                                 Margin="2,-2,5,0"/>
 
@@ -327,7 +327,7 @@
                                                 FontSize="14"
                                                 Text="{Binding SelectedUsers.ID_USER, Mode=TwoWay}"
                                                 IsEnabled="false"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
