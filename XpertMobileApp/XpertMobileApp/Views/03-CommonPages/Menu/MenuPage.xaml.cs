@@ -94,6 +94,17 @@ namespace XpertMobileApp.Views
                         CodeObjet = XpertObjets.VTE_COMPTOIR,
                         Action = XpertActions.AcSelect
                     });
+                    if (Constants.AppName == Apps.XCOM_Mob)
+                    {
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Livraison,
+                            ItemGroup = MenuItemGroup.Ventes,
+                            Title = AppResources.pn_Livraison,
+                            CodeObjet = XpertObjets.VTE_LIVRAISON,
+                            Action = XpertActions.AcSelect
+                        });
+                    }
 
                     if (AppManager.HasAdmin)
                     {
@@ -261,6 +272,7 @@ namespace XpertMobileApp.Views
                         NotificationBadgeIsVisible = true,
                         CountOfNotifications = numberOfNotifications
                     });
+                    ReloadNumberOfNotifications();
                 }
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_About });
 

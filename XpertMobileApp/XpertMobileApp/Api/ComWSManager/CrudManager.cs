@@ -90,7 +90,11 @@ namespace XpertMobileApp.Api.Managers
         {
             string controlerName = "VTE_VENTE";
 
-            if (typeVte == VentesTypes.Livraison)
+            if (typeVte == VentesTypes.Livraison && Constants.AppName == Apps.XPH_Mob)
+            {
+                controlerName = "VTE_LIVRAISON";
+            }
+            else if (typeVte == VentesTypes.Livraison && Constants.AppName == Apps.XCOM_Mob)
             {
                 controlerName = "VTE_LIVRAISON_XCOM";
             }
