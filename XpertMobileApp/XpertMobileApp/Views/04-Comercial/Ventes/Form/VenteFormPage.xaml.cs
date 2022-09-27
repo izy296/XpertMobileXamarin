@@ -12,6 +12,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
@@ -39,10 +40,14 @@ namespace XpertMobileApp.Views
             }
         }
 
+        public string getscanbarcode;
+
         public VenteFormPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails ="")
         {
             InitializeComponent();
-            
+
+            GoogleVisionBarCodeScanner.Methods.AskForRequiredPermission();
+
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             if(vente == null)
             {
@@ -168,12 +173,14 @@ namespace XpertMobileApp.Views
                 });
             });
 
+
             if (viewModel.Item != null && !string.IsNullOrEmpty(this.viewModel.Item.CODE_VENTE))
             {
                 viewModel.LoadRowsCommand.Execute(null);
             }
 
-            CheckPointFideliteSeuil();
+            if (viewModel.TypeDoc!= VentesTypes.Livraison)
+                CheckPointFideliteSeuil();
         }
 
         private async void CheckPointFideliteSeuil()
@@ -312,25 +319,17 @@ namespace XpertMobileApp.Views
 
         #region Events
 
+        public GoogleVisionBS gvsScannedBarcode;
+        public string CurrentStreamPage = Guid.NewGuid().ToString();
         private void RowScan_Clicked(object sender, EventArgs e)
         {
-            var scaner = new ZXingScannerPage();
-            Navigation.PushAsync(scaner);
-            scaner.OnScanResult += (result) =>
+            gvsScannedBarcode = new GoogleVisionBS();
+            gvsScannedBarcode.UserSubmitted += async (_, scannedPassword) =>
             {
-                scaner.IsScanning = false;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Navigation.PopAsync();
-
-                    var vteLot = await viewModel.AddScanedProduct(result.Text);
-                    /*
-                    ClassId = string.Format("pb_{0}", vteLot.ID);
-                    var pbruteElem2 = ItemsListView.Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
-                    pbruteElem2.Focus();
-                    */
-                });
+                var vteLot = viewModel.AddScanedProduct(scannedPassword);
+                await Navigation.PopAsync();
             };
+            Navigation.PushAsync(gvsScannedBarcode);
         }
 
         private void HeaderSettings_Clicked(object sender, EventArgs e)

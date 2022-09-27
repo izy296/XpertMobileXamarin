@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -7,7 +9,7 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.ViewModels
 {
-    public class LotSelectorViewModel : CrudBaseViewModel3<STK_STOCK, View_STK_STOCK>
+    public class LotSelectorViewModel : CrudBaseViewModel2<STK_STOCK, View_STK_STOCK>
     {
 
         public string SearchedText { get; set; } = "";
@@ -39,7 +41,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public LotSelectorViewModel(string title= "" )
+        public LotSelectorViewModel(string title = "")
         {
             Title = title;
         }
@@ -47,6 +49,7 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
         {
             base.OnAfterLoadItems(list);
+
 
             int i = 0;
             foreach (var item in list)
@@ -62,19 +65,36 @@ namespace XpertMobileApp.ViewModels
             this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
 
             if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente))
-            { 
+            {
                 this.AddCondition<View_STK_STOCK, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
             }
             this.AddCondition<View_STK_STOCK, bool>(e => e.IS_BLOCKED, 0);
             this.AddCondition<View_STK_STOCK, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
-            
-           // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
+
+            // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
 
             this.AddOrderBy<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT);
 
             qb.QueryInfos.Param1 = CodeTiers;
 
             return qb.QueryInfos;
-        }           
+        }
+
+        internal override async Task ExecuteLoadItemsCommand()
+        {
+            try
+            {
+                base.ExecuteLoadItemsCommand();
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                IsBusy = false;
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
     }
 }

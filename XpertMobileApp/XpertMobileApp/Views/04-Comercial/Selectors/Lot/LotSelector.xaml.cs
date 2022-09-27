@@ -59,10 +59,10 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-           // if (viewModel.Items.Count == 0)
-            //viewModel.LoadItemsCommand.Execute(null);
+            if (viewModel.Items.Count == 0)
+                viewModel.LoadItemsCommand.Execute(null);
 
-            viewModel.LoadMoreItemsCommand.Execute(listView);
+            //viewModel.LoadItemsCommand.Execute(listView);
 
             foreach (var item in viewModel.Items)
             {
