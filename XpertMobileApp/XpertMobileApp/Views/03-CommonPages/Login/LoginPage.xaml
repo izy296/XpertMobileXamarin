@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
              xmlns:fontawesome="clr-namespace:FontAwesome"
-             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             x:Class="XpertMobileApp.Views.LoginPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    x:Class="XpertMobileApp.Views.LoginPage"
              BackgroundColor="White"
              >
 
@@ -31,97 +31,160 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
+
         <StackLayout  VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            
+
             <!--Affichage de l'alerte en cas de deconnexion -->
             <Label x:Name="Lbl_NoInternet" 
                    IsVisible="False" 
                    HorizontalTextAlignment="Center" 
                    TextColor="White"/>
-            
-            <StackLayout BackgroundColor="{StaticResource Accent}" Orientation="Vertical" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-                
-                <ContentView Padding="0,5,0,5" 
-                             VerticalOptions="FillAndExpand">
-                    
-                    <Image Source="logo_v.png" 
-                           VerticalOptions="Center" 
-                           HeightRequest="125" />
-                    
+
+            <StackLayout 
+                                BackgroundColor="{StaticResource Accent}" 
+                                Orientation="Vertical" 
+                                VerticalOptions="Start" 
+                                HorizontalOptions="Fill"
+                                HeightRequest="165">
+
+                <ContentView 
+                                    Padding="0,25,0,25" 
+                                    VerticalOptions="FillAndExpand">
+
+                    <Image 
+                                        Source="logo_v.png" 
+                                        VerticalOptions="Start" 
+                                        HeightRequest="100" />
+
                 </ContentView>
-                
+
             </StackLayout>
-            <StackLayout Padding="0,30,0,0" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                
-                <Label x:Name="Lbl_AppFullName" 
+        </StackLayout>
+
+
+        <yummy:PancakeView 
+            Grid.Row="1"
+            CornerRadius="25,25,0,0" 
+            Padding="0,0,0,55" 
+            Margin="0,-20,0,0" 
+            IsClippedToBounds="true"
+            BorderColor="White"
+            BackgroundColor="White" 
+            HasShadow="False" >
+
+            <StackLayout>
+                <StackLayout Padding="0,30,0,0" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+                    <Label x:Name="Lbl_AppFullName" 
                        Text="XpertMobile&#x0a;CATALOG" 
                        IsVisible="true" 
                        HorizontalTextAlignment="Center" 
                        Style="{StaticResource LabelTitleStyle}"/>
- 
-            </StackLayout>
-            
-        </StackLayout>
 
-        <StackLayout >
+                </StackLayout>
+                <ScrollView  BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+                    <StackLayout Orientation="Vertical" Padding="0,30,0,80" Spacing="4" VerticalOptions="Center">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="25*"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-        </StackLayout>
+                            <StackLayout Grid.Column="1">
 
-        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical" Padding="16,0,16,80" Spacing="10" VerticalOptions="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="5*"/>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                                <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
 
-                    <StackLayout Grid.Column="1">
+                                <StackLayout Padding="4,10,17,0">
+                                    <inputLayout:SfTextInputLayout
+                                        x:Name="usernameContainer"
+                                        ContainerType="Filled"
+                                        FocusedColor="{StaticResource Primary}"
+                                        InputViewPadding="3,11,0,11"
+                                        ContainerBackgroundColor="#fff"
+                                        LeadingViewPosition="Outside"
+                                        OutlineCornerRadius="2"
+                                        WidthRequest="250"
+                                        UnfocusedColor="#D8D8D8">
 
-                        <ActivityIndicator x:Name="ActivitySpiner" Color="Red" IsRunning="True" IsVisible="False"/>
+                                        <Entry 
+                                            x:Name="Ent_UserName"
+                                           TextColor="Black" 
+                                           Text="{Binding SearchedText, Mode=TwoWay}"
+                                           Placeholder="Entrez le nom du tiers"
+                                           PlaceholderColor="#444"
+                                           FontSize="14"/>
 
-                        <StackLayout>
-                            <Label x:Name="Lbl_UserName" Text="{i18n:Translate lp_lbl_UserName}"/>
-                            <Entry x:Name="Ent_UserName" 
-                                   FontSize="15"
-                                   Placeholder="{i18n:Translate lp_ph_UserName}"/>
-                        </StackLayout>
+                                        <inputLayout:SfTextInputLayout.LeadingView>
+                                            <Image Source="username.png">
+                                            </Image>
+                                        </inputLayout:SfTextInputLayout.LeadingView>
+                                    </inputLayout:SfTextInputLayout>
+                                </StackLayout>
 
-                        <StackLayout Padding="0,10,0,0">
-                            <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}" />
-                            <Entry 
+                                <StackLayout Padding="0,10,17,0">
+                                    <inputLayout:SfTextInputLayout
+                                        ContainerType="Filled"
+                                        FocusedColor="{StaticResource Primary}"
+                                        InputViewPadding="3,11,0,11"
+                                        ContainerBackgroundColor="#fff"
+                                        LeadingViewPosition="Outside"
+                                        OutlineCornerRadius="2"
+                                        WidthRequest="250"
+                                        UnfocusedColor="#D8D8D8">
+
+                                        <Entry 
+                                            IsPassword="true"
+                                            x:Name="Ent_PassWord"
+                                            TextColor="Black" 
+                                            Text="{Binding SearchedText, Mode=TwoWay}"
+                                            Placeholder="Mot de passe"
+                                            PlaceholderColor="#444"
+                                            FontSize="14"/>
+
+                                        <inputLayout:SfTextInputLayout.LeadingView>
+                                            <Image Source="padlock.png">
+                                            </Image>
+                                        </inputLayout:SfTextInputLayout.LeadingView>
+
+                                    </inputLayout:SfTextInputLayout>
+                                    <!--<Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}" />
+                                    <Entry 
                                     x:Name="Ent_PassWord"  
                                     Placeholder="{i18n:Translate lp_ph_PassWord}" 
                                     IsPassword="True" 
-                                    FontSize="15"/>
-                        </StackLayout>
+                                    FontSize="15"/>-->
+                                </StackLayout>
 
-                        <!--Adding Checkbox to remember the login informations-->
-                        <FlexLayout Padding="-5,10,0,0" 
+                                <!--Adding Checkbox to remember the login informations-->
+                                <FlexLayout Padding="9,10,0,0" 
                                     Direction="row" 
                                     AlignItems="Center" 
                                     JustifyContent="Start">
 
-                            <CheckBox Color="{StaticResource Primary}"
+                                    <CheckBox Color="{StaticResource Primary}"
                                       x:Name="checkBox"
                                       CheckedChanged="OnCheckBoxCheckedChanged"
                                       IsChecked="{Binding isChecked}"/>
-                            <Label Text="{i18n:Translate lp_lbl_me_souvenir} " 
+                                    <Label Text="{i18n:Translate lp_lbl_me_souvenir} " 
                                     FontSize="16"/>
 
-                        </FlexLayout>
-                        
-                        <Button x:Name="Btn_LogIn" Margin="0,15,0,0" 
-                                BorderRadius="5"
-                                Style="{DynamicResource DefaultBtnStyle}"
-                                Text="{i18n:Translate lp_btn_Login}" 
-                                Clicked="ConnectUserAsync"/>
-                        
-                    </StackLayout>
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                                </FlexLayout>
 
+                                <Button 
+                                    x:Name="Btn_LogIn" Margin="14,15,14,0" 
+                                    BorderRadius="12"
+                                    Style="{DynamicResource DefaultBtnStyle}"
+                                    Text="{i18n:Translate lp_btn_Login}" 
+                                    Clicked="ConnectUserAsync"/>
+
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+
+        </yummy:PancakeView>
         <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="Fill" >
             <Grid HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
@@ -134,26 +197,26 @@
                        HorizontalOptions="Start" 
                        VerticalOptions="Center" 
                        Margin="10">
-                    
+
                     <Label.FormattedText>
-                        
+
                         <FormattedString>
-                            
+
                             <FormattedString.Spans>
-                                
+
                                 <Span x:Name="XpertVersion" 
                                       Text="1.0" 
                                       ForegroundColor="{StaticResource LightTextColor}" />
-                                
+
                             </FormattedString.Spans>
-                            
+
                         </FormattedString>
-                        
+
                     </Label.FormattedText>
                 </Label>
 
                 <StackLayout Grid.Column="1" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" HorizontalOptions="End" >
-                    
+
                     <Button x:Name="Btn_Config" 
                             Margin="0" 
                             WidthRequest="50"
@@ -175,9 +238,11 @@
                             Text="{x:Static fontawesome:FontAwesomeIcons.Sign_Out_Alt}" 
                             BackgroundColor="White" 
                             Clicked="Exit_Clicked"/>
-                    
+
                 </StackLayout>
             </Grid>
         </StackLayout>
+
+
     </Grid>
 </ContentPage>

@@ -47,8 +47,8 @@ namespace XpertMobileApp.Views
             // if the user want to login with password only and he remembered his credietial
             if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "true")
             {
+                usernameContainer.IsVisible = false;
                 Ent_UserName.IsVisible = false;
-                Lbl_UserName.IsVisible = false;
                 Ent_UserName.Text = "";
                 Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
                 checkBox.IsChecked = true;
@@ -56,8 +56,8 @@ namespace XpertMobileApp.Views
             }
             else if ((App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "false") || ((App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == null)))
             {
+                usernameContainer.IsVisible = false;
                 Ent_UserName.IsVisible = false;
-                Lbl_UserName.IsVisible = false;
                 Ent_UserName.Text = "";
                 Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
                 Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
@@ -66,8 +66,6 @@ namespace XpertMobileApp.Views
             // if the user remembred his cridentials and connect with user and password 
             else if (App.Settings.IsChecked == "true" && !App.Settings.ConnectWithPasswordOnly)
             {
-                Lbl_UserName.Text = AppResources.lp_lbl_UserName;
-                Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
                 Ent_PassWord.Text = App.Settings.Password;
                 Ent_UserName.Text = App.Settings.Username;
                 checkBox.IsChecked = true;
@@ -75,8 +73,6 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                Lbl_UserName.Text = AppResources.lp_lbl_UserName;
-                Lbl_PassWord.Text = AppResources.lp_lbl_PassWord;
                 Ent_PassWord.Placeholder = AppResources.lp_ph_PassWord;
                 Ent_UserName.Placeholder = AppResources.lp_ph_UserName;
                 Btn_LogIn.Text = AppResources.lp_btn_Login;
@@ -94,10 +90,10 @@ namespace XpertMobileApp.Views
 
             try
             {
-                bool isconnected = await App.IsConected();
-                if (!isconnected)
-                    return;
-                if (App.Online)
+                //bool isconnected = await App.IsConected();
+                //if (!isconnected)
+                //    return;
+                if (await App.IsConected())
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
@@ -283,6 +279,7 @@ namespace XpertMobileApp.Views
                     else
                     {
                         await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.HideLoading();
                     }
                 }
                 try
