@@ -82,12 +82,16 @@
             
             <!--***************** Sortie ********************-->
 
-            <DataTemplate x:Key="Sortie">
+            <DataTemplate x:Key="SortiePharm">
                 <template:RowElementTemplate_STK_SORTIE/>
+            </DataTemplate>
+            <DataTemplate x:Key="SortieComm">
+                <template:RowElementTemplate_STK_SORTIE_COMM/>
             </DataTemplate>
 
             <templateSelector:SortieDataSelectorTemplate x:Key="SortieDataSelector"
-                                                         Sortie="{StaticResource Sortie}"/>
+                                                         SortiePharm="{StaticResource SortiePharm}"
+                                                         SortieComm="{StaticResource SortieComm}"/>
             
             <!--***************** Sortie ********************-->
             

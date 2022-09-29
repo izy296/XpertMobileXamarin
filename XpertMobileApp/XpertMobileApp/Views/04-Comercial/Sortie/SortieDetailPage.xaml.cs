@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
@@ -41,6 +42,11 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
+            if (Constants.AppName == Apps.XCOM_Mob)
+            {
+                Ppa_label.IsVisible = false;
+                Shp_label.IsVisible = false;
+            }
             //// TODO put into th generic view model 
             //MessagingCenter.Subscribe<SessionsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
             //{

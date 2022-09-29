@@ -4,6 +4,7 @@
              x:Class="XpertMobileApp.Views.SortieDetailPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             
              Title="{Binding Title}">
     <StackLayout x:Name="sl_content" Padding="5" >
 
@@ -31,12 +32,12 @@
                     <!--<Label Text="{Binding Item.CODE_TIERS , StringFormat= '{0}'}" TextColor="{StaticResource DefaultTextColor}"/>-->
                     <Label Text="{Binding Item.CREATED_ON, StringFormat=' Crée Dans : {0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
                     <Label Text="{Binding Item.CREATED_BY , StringFormat= ' Crée Par : {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
-                    <Label Text="{ Binding Item.TOTAL_PPA, StringFormat='Total PPA : {0:N2} DA'}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
+                    <Label x:Name="Ppa_label" Text="{ Binding Item.TOTAL_PPA, StringFormat='Total PPA : {0:N2} DA'}" LineBreakMode="NoWrap" HorizontalOptions="Start"/>
 
                 </StackLayout>
 
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" BackgroundColor="Transparent">
-                    <Label Text="{ Binding Item.TOTAL_SHP, StringFormat='Total SHP : {0:N2} DA'}" LineBreakMode="NoWrap" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="Green"/>
+                    <Label x:Name="Shp_label" Text="{ Binding Item.TOTAL_SHP, StringFormat='Total SHP : {0:N2} DA'}" LineBreakMode="NoWrap" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="Green"/>
                     <Label Text="{ Binding Item.TOTAL_SORTIE, StringFormat='Total Sortie : {0:N2} DA'}" LineBreakMode="NoWrap" FontSize="Small"  HorizontalOptions="StartAndExpand" TextColor="Red"/>
                     <Label Text="{ Binding Item.TOTAL_VENTE, StringFormat='Total Vente : {0:N2} DA'}" LineBreakMode="NoWrap" FontSize="Small" HorizontalOptions="StartAndExpand" TextColor="Black"/>
 
@@ -57,11 +58,10 @@
                             x:Name="refreshView"
                             Refreshing="RefreshView_Refreshing"
                             IsRefreshing="{Binding IsBusy, Mode=OneWay}">
-                    
+
                     <CollectionView 
                                 ItemsSource="{Binding ItemRows}"
                                 ItemTemplate="{StaticResource SortieDataSelector}">
-
                     </CollectionView>
                     
                 </RefreshView>
