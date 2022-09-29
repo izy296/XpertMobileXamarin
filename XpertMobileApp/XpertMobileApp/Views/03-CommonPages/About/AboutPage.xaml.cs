@@ -37,7 +37,9 @@ namespace XpertMobileApp.Views
         private async Task<bool> CheckForNewUpdates()
         {
             string newVersion = await viewModel.GetNewVersion(NewVersion);
-            return newVersion.ToString() != VersionTracking.CurrentVersion ? true : false;
+            Version newVersionHolder = new Version(newVersion);
+            Version currentVersionHolder = new Version(VersionTracking.CurrentVersion);
+            return newVersionHolder > currentVersionHolder ? true : false;
         }
 
         /// <summary>
@@ -93,7 +95,7 @@ namespace XpertMobileApp.Views
             {
                 googlePlay_btn.IsEnabled = false;
                 googlePlay_btn.Opacity = 0.3;
-                if (!await CheckForWebApiUpdate())
+                if (await CheckForWebApiUpdate())
                 {
                     Update_btn.IsEnabled = true;
                     Update_btn.BackgroundColor = Color.FromHex("#7EC384");

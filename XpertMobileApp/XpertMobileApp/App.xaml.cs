@@ -185,21 +185,22 @@ namespace XpertMobileApp
                             var xml = await WebServiceClient.GetNewVersion();
                             XDocument docWebApiXml = XDocument.Parse(xml);
                             XElement itemWebApiXml = docWebApiXml.Element("item");
-                            var NewVersion = itemWebApiXml.Element("version").Value;
+                            var newVersion = itemWebApiXml.Element("version").Value;
                             var Data = new Dictionary<string, string>()
                                     {
                                         { "title", AppResources.Update_Notification_Header },
-                                        { "body", AppResources.Update_Notification_Text + " " + NewVersion },
+                                        { "body", AppResources.Update_Notification_Text + " " + newVersion },
                                         { "moduleName", MenuItemType.About.ToString() },
                                         { "user", "XpertSoft Mobile" },
                                         { "timeNotification", DateTime.Now.ToString() }
 
                                     };
 
-
-                            if (NewVersion != VersionTracking.CurrentVersion)
+                            Version newVersionHolder = new Version(newVersion);
+                            Version currentVersionHolder = new Version(VersionTracking.CurrentVersion);
+                            if (newVersionHolder > currentVersionHolder)
                             {
-                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + NewVersion, Data);
+                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + newVersion, Data);
 
                                 bool isNotified = isNotifiedForUpdate(Data["title"].ToString(), Data["body"].ToString());
 
@@ -225,6 +226,7 @@ namespace XpertMobileApp
                     }
                     catch (Exception ex)
                     {
+                        
                         //await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
                         //AppResources.alrt_msg_Ok);
                     }

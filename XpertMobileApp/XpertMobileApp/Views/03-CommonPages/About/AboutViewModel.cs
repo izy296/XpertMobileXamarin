@@ -65,10 +65,11 @@ namespace XpertMobileApp.ViewModels
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var res = await WebServiceClient.GetWebApiVersion();
-                var versionSplited = res.Split('.');
-                string versionConcatenat = versionSplited[0] + '.' + versionSplited[1];
+                Version webVersion = new Version(res);
+                Version newVersion = new Version(l.Text);
+
                 UserDialogs.Instance.HideLoading();
-                if (l.Text == versionConcatenat)
+                if (newVersion > webVersion)
                     return true;
                 else return false;
             }
