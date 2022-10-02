@@ -193,7 +193,6 @@ namespace XpertMobileApp
                                         { "moduleName", MenuItemType.About.ToString() },
                                         { "user", "XpertSoft Mobile" },
                                         { "timeNotification", DateTime.Now.ToString() }
-
                                     };
 
                             Version newVersionHolder = new Version(newVersion);
@@ -221,7 +220,6 @@ namespace XpertMobileApp
                                 }
 
                             }
-
                         }
                     }
                     catch (Exception ex)
@@ -512,6 +510,9 @@ namespace XpertMobileApp
             }
         }
 
+        /// <summary>
+        /// retourne la table Token, si elle n'existe pas il crée une nouvelle table Token...
+        /// </summary>
         public static TokenDatabaseControler TokenDatabase
         {
             get
@@ -524,6 +525,9 @@ namespace XpertMobileApp
             }
         }
 
+        /// <summary>
+        /// retourne la table Client, si elle n'existe pas il crée une nouvelle table client...
+        /// </summary>
         public static ClientDatabaseControler ClientDatabase
         {
             get
@@ -536,6 +540,9 @@ namespace XpertMobileApp
             }
         }
 
+        /// <summary>
+        /// retourne la table User, si elle n'existe pas il crée une nouvelle table User...
+        /// </summary>
         public static UserDatabaseControler UserDatabase
         {
             get
@@ -548,6 +555,9 @@ namespace XpertMobileApp
             }
         }
 
+        /// <summary>
+        /// retourne la table Settings, si elle n'existe pas il crée une nouvelle table Settings...
+        /// </summary>
         public static SettingsDatabaseControler SettingsDatabase
         {
             get

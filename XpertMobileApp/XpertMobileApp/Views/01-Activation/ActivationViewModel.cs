@@ -51,7 +51,9 @@ namespace XpertMobileApp.ViewModels
                 Client.Mobile_Version = VersionTracking.CurrentVersion;
                 LicenceInfos lInfos = await WebServiceClient.ActivateClient(Client);
 
+                //Stocké les donnés du client ( deviceId, AppName, Moile_version, license_info ) dans la table local Client ...
                 await App.ClientDatabase.SaveItemAsync(Client);
+
                 // set Settings Service url as json when activating the app at the first time
                 string value = lInfos.Mobile_Remote_URL;
                 UrlService url = new UrlService();
@@ -71,6 +73,8 @@ namespace XpertMobileApp.ViewModels
                 App.Settings.ClientName = !string.IsNullOrEmpty(lInfos.ClientName) ? lInfos.ClientName : "-";
                 App.Settings.ClientId = lInfos.ClientId;
                 App.Settings.Mobile_Edition = lInfos.Mobile_Edition;
+
+                // Sauvgarder les données ( ServiceUrl, ClientName, ClientId, Mobile_Edition ) dans l'objet App.Settings...
                 await App.SettingsDatabase.SaveItemAsync(App.Settings);
 
                 IsBusy = false;

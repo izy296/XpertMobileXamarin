@@ -218,7 +218,11 @@ namespace XpertMobileApp.Api.ViewModels
                 }
             };
         }
-
+        /// <summary>
+        /// Retourne une liste des items d'une table voulue ... en applicant un filtre 
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         public virtual async Task<List<TView>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             //if (filter != null && filter.StringCondition != null)

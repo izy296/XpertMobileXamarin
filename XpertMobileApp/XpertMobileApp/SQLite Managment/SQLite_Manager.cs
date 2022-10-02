@@ -38,6 +38,10 @@ namespace XpertMobileApp.SQLite_Managment
         static string StockMethodName;
         static string CodeMagasin;
 
+        /// <summary>
+        /// Retourne la db crée ...
+        /// </summary>
+        /// <returns></returns>
         public static SQLiteAsyncConnection getInstance()
         {
             if (db == null)
@@ -52,6 +56,10 @@ namespace XpertMobileApp.SQLite_Managment
                 return db;
             }
         }
+        /// <summary>
+        /// Création des différents table dans la db local ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task initialisationDbLocal()
         {
             try
@@ -87,6 +95,16 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+
+        /// <summary>
+        /// retoune items qui ne sont pas synchronisés
+        /// </summary>
+        /// <typeparam name="TView"></typeparam>
+        /// <typeparam name="TTabel"></typeparam>
+        /// <param name="_selectAll"></param>
+        /// <param name="param"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
         public static async Task<IEnumerable<TView>> getItemsUnsyncronised<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
         {
             ICurdService<TView> service = new CrudService<TView>(App.RestServiceUrl, typeof(TTabel).Name, App.User.Token);
@@ -100,7 +118,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
 
         }
-
         public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
         {
             var ListItems = new List<TView>();
@@ -124,12 +141,22 @@ namespace XpertMobileApp.SQLite_Managment
             ListItems = null;
         }
 
+        /// <summary>
+        /// Obtenir le tiers par le code_tiers...
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         internal static async Task<View_TRS_TIERS> SelectScanedTiers(string text)
         {
             var tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
             return tiers?.Find(e => e.CODE_TIERS.Equals(text));
         }
 
+        /// <summary>
+        /// Mise à jour du l'etat de couleur et l'etat de l'itemTourné ...
+        /// </summary>
+        /// <param name="selectedItem"></param>
+        /// <returns></returns>
         internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
         {
             selectedItem.CODE_ETAT = TourneeStatus.Visited;
@@ -137,6 +164,10 @@ namespace XpertMobileApp.SQLite_Managment
             return await getInstance().UpdateAsync(selectedItem);
         }
 
+        /// <summary>
+        /// Synchronise toutes les table de la bd local a partir de la bd distante
+        /// </summary>
+        /// <returns></returns>
         public static async Task synchroniseDownload()
         {
             bool isconnected = await App.IsConected();
@@ -175,7 +206,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
-
+        /// <summary>
+        /// uploader les donnés aux base de donné distante ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task synchroniseUpload()
         {
             bool isconnected = await App.IsConected();
@@ -360,6 +394,10 @@ namespace XpertMobileApp.SQLite_Managment
                     AppResources.alrt_msg_Ok);
             }
         }
+        /// <summary>
+        /// Retourne  la liste des compte ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<View_BSE_COMPTE>> getComptes()
         {
             List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
@@ -431,6 +469,12 @@ namespace XpertMobileApp.SQLite_Managment
                 return prixProduct.PRIX_DETAIL;
             }
         }
+
+        /// <summary>
+        /// Retourne la liste des tiers dans les opérations de recherche...
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public static async Task<List<View_TRS_TIERS>> FilterTiers(string search)
         {
             List<View_TRS_TIERS> allTiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
@@ -445,6 +489,11 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Retourne la liste des produits (utilisé dans la recherche du produit)...
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public static async Task<List<View_STK_PRODUITS>> FilterProduits(string search)
         {
             List<View_STK_PRODUITS> allTiers = await getInstance().Table<View_STK_PRODUITS>().ToListAsync();
@@ -459,6 +508,11 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Retourne la liste des tournés ...
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
         public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search)
         {
             List<View_LIV_TOURNEE_DETAIL> allTiers = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
@@ -472,7 +526,11 @@ namespace XpertMobileApp.SQLite_Managment
                 return tiersFiltred;
             }
         }
-
+        /// <summary>
+        /// Retourne la liste des motifs de la table 
+        /// </summary>
+        /// <param name="typeMotif"></param>
+        /// <returns></returns>
         public static async Task<List<BSE_ENCAISS_MOTIFS>> getMotifs(string typeMotif = "ENC")
         {
             List<BSE_ENCAISS_MOTIFS> AllMotifs = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
@@ -492,6 +550,7 @@ namespace XpertMobileApp.SQLite_Managment
             Data = AllEncDec.Where(e => e.CODE_TYPE == typeMotif).ToList();
             return Data;
         }
+
         public static async Task<bool> DeleteEncaiss(View_TRS_ENCAISS encaiss)
         {
             await getInstance().DeleteAsync(encaiss);
@@ -538,7 +597,11 @@ namespace XpertMobileApp.SQLite_Managment
             return Params;
         }
 
-
+        /// <summary>
+        /// Insert vente et vente detail  dans la table vente
+        /// </summary>
+        /// <param name="vente"></param>
+        /// <returns></returns>
         public static async Task<string> AjoutVente(View_VTE_VENTE vente)
         {
             if ((vente.TOTAL_PAYE + vente.MBL_MT_VERCEMENT) > vente.TOTAL_TTC)
@@ -574,7 +637,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 await UpdateTourneeDetail(vente);
                 await UpdateTournee();
-                
+
                 return vente.CODE_VENTE;
             }
         }
@@ -583,7 +646,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
             var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-            if (UpdatedTiers.SOLDE_TIERS > 0 )
+            if (UpdatedTiers.SOLDE_TIERS > 0)
             {
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
             }
@@ -594,7 +657,7 @@ namespace XpertMobileApp.SQLite_Managment
             await getInstance().UpdateAsync(UpdatedTiers);
         }
 
-        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers , string type = "ENC")
+        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers, string type = "ENC")
         {
             List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
             var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
@@ -617,7 +680,12 @@ namespace XpertMobileApp.SQLite_Managment
             return UpdatedTiers.SOLDE_TIERS;
         }
 
-
+        /// <summary>
+        /// utilisé pour génerer le codeVente...
+        /// </summary>
+        /// <param name="TypeDoc"></param>
+        /// <param name="ID"></param>
+        /// <returns></returns>
         public static async Task<string> generateCode(string TypeDoc, string ID)
         {
             var date = DateTime.Now.Year.ToString();
@@ -664,11 +732,15 @@ namespace XpertMobileApp.SQLite_Managment
 
             var id = await getInstance().InsertAsync(tiers);
 
-            tiers.CODE_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
-            tiers.NUM_TIERS = tiers.ID.ToString()+"/"+App.PrefixCodification + "/MOB";
+            tiers.CODE_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
+            tiers.NUM_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
             await getInstance().UpdateAsync(tiers);
         }
-
+        /// <summary>
+        /// Obtenir un produit de la table stk_stock par le code_produit
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public static async Task<View_STK_STOCK> getProductfromStock(View_STK_PRODUITS product)
         {
             List<View_STK_STOCK> Stocks = await getInstance().Table<View_STK_STOCK>().ToListAsync();
@@ -725,6 +797,12 @@ namespace XpertMobileApp.SQLite_Managment
             await getInstance().UpdateAsync(tiers);
         }
 
+
+        /// <summary>
+        /// Supprime tous les tokens de la table token et Inseré
+        /// </summary>
+        /// <param name="token"></param>
+        /// <returns></returns>
         public static async Task AjoutToken(Token token)
         {
             await getInstance().DeleteAllAsync<Token>();
@@ -766,9 +844,15 @@ namespace XpertMobileApp.SQLite_Managment
 
                 var id = await getInstance().UpdateAsync(item);
             }
-            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS , item.CODE_TYPE);
+            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
         }
 
+
+        /// <summary>
+        /// Mise a jour de la quantité du stock  
+        /// </summary>
+        /// <param name="vente"></param>
+        /// <returns></returns>
         public static async Task UpdateStock(View_VTE_VENTE vente)
         {
             var stock = await getInstance().Table<View_STK_STOCK>().ToListAsync();
@@ -812,6 +896,11 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// mise à jour des tournés par les points de lat et long
+        /// </summary>
+        /// <param name="tiers"></param>
+        /// <returns></returns>
         public static async Task<bool> saveGPSToTiers(View_TRS_TIERS tiers)
         {
             if (!XpertHelper.IsNullOrEmpty(tiers) && !XpertHelper.IsNullOrEmpty(tiers.CODE_TIERS))
@@ -842,13 +931,22 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// retourne true si les informations stockés dans la table sys_user sont identique a celle qui sont donnés ...
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static async Task<bool> AuthUser(User user)
         {
             bool validInformations = false;
+
+            //Obtenir la liste des users stocké dans la table sys_user
             var Users = await getInstance().Table<SYS_USER>().ToListAsync();
             foreach (var item in Users)
             {
                 var password = XpertHelper.GetMD5Hash(user.PassWord);
+
+                //Compare le nom d'utilisateur avec le mot de passe ...
                 if (item.ID_USER.ToLower() == user.UserName.ToLower() && item.PASS_USER == password)
                 {
                     validInformations = true;
@@ -858,6 +956,11 @@ namespace XpertMobileApp.SQLite_Managment
             return validInformations;
         }
 
+        /// <summary>
+        /// Retourne un objet user s'il existe un avec le meme userid
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns></returns>
         public static async Task<SYS_USER> getUserInfo(string userid)
         {
             if (userid != null)
@@ -872,7 +975,11 @@ namespace XpertMobileApp.SQLite_Managment
             return null;
         }
 
-
+        /// <summary>
+        /// Obtenir le token a partir du db local en utilisant le userId...
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         public static async Task<Token> getToken(User user)
         {
             Token validToken = new Token();
@@ -888,24 +995,40 @@ namespace XpertMobileApp.SQLite_Managment
             return null;
         }
 
+        /// <summary>
+        /// Obtenir la liste des permissions de la table sys_objet_permission
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<SYS_OBJET_PERMISSION>> getPermission()
         {
             var permission = await getInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
             return permission;
         }
 
+        /// <summary>
+        /// Obtenir la liste des familles des tiers...
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<View_BSE_TIERS_FAMILLE>> getFamille()
         {
             var Famille = await getInstance().Table<View_BSE_TIERS_FAMILLE>().ToListAsync();
             return Famille;
         }
 
+        /// <summary>
+        /// Obtenir la liste des types des tiers 
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<BSE_TABLE_TYPE>> getTypeTiers()
         {
             var TypeTiers = await getInstance().Table<BSE_TABLE_TYPE>().ToListAsync();
             return TypeTiers;
         }
 
+        /// <summary>
+        /// Obtenir la liste des secteurs 
+        /// </summary>
+        /// <returns></returns>
         public static async Task<List<BSE_TABLE>> getSecteurs()
         {
             var Secteurs = await getInstance().Table<BSE_TABLE>().ToListAsync();
@@ -913,7 +1036,10 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-
+        /// <summary>
+        /// Synchronisation de la liste des ventes aux serveur
+        /// </summary>
+        /// <returns></returns>
         public static async Task<string> SyncVenteToServer()
         {
             try
@@ -943,9 +1069,9 @@ namespace XpertMobileApp.SQLite_Managment
                     }
 
                     var compte = await getComptes();
-                    
+
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes,App.PrefixCodification,App.CODE_MAGASIN,compte.FirstOrDefault().CODE_COMPTE);
+                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
 
                     await getInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
@@ -963,6 +1089,11 @@ namespace XpertMobileApp.SQLite_Managment
             return "";
         }
 
+
+        /// <summary>
+        /// synchronisation de la liste des tiers aux serveur
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncTiersToServer()
         {
             try
@@ -992,6 +1123,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchronisation de la liste des encaiss aux serveur nn 
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncEncaissToServer()
         {
             try
@@ -1009,11 +1144,15 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
-
+        /// <summary>
+        /// Obtenire la liste des details de vente par CODE_VENTE
+        /// </summary>
+        /// <param name="CodeVente"></param>
+        /// <returns></returns>
         public static async Task<List<View_VTE_VENTE_LOT>> getVenteDetails(string CodeVente)
         {
             List<View_VTE_VENTE_LOT> ventes = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();

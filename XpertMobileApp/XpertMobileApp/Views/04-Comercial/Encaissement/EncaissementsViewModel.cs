@@ -77,7 +77,7 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(type))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
 
-            if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
             if (!string.IsNullOrEmpty(SelectedMotif?.CODE_MOTIF))
@@ -121,7 +121,7 @@ namespace XpertMobileApp.ViewModels
 
         async Task ExecuteLoadExtrasDataCommand()
         {
-            
+
             if (IsLoadExtrasBusy)
                 return;
             if (App.Online)
@@ -171,8 +171,11 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsLoadExtrasBusy = true;
                     Comptes.Clear();
+
+                    //Obtenir les comptes de la table bse_compte...
                     var itemsC = await SQLite_Manager.getComptes();
 
+                    //Obtenir les motif de la table BSE_ENCAISS_MOTIFS...
                     var itemsM = await SQLite_Manager.getMotifs();
 
                     foreach (var itemC in itemsC)
@@ -187,7 +190,7 @@ namespace XpertMobileApp.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 finally
                 {

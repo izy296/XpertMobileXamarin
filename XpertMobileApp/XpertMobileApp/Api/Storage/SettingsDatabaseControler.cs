@@ -12,6 +12,10 @@ namespace XpertMobileApp.Data
 
         SQLite.SQLiteAsyncConnection database;
 
+        /// <summary>
+        /// Création de la table Settings ...
+        /// </summary>
+        /// <param name="dbPath"></param>
         public SettingsDatabaseControler(string dbPath)
         {
             database = new SQLiteAsyncConnection(dbPath);
@@ -24,16 +28,31 @@ namespace XpertMobileApp.Data
             return database.Table<Settings>().ToListAsync();
         }
 
+        /// <summary>
+        /// Obenir un item de la table Settings avec l'id ...
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task<Settings> GetItemAsync(int id)
         {
             return database.Table<Settings>().Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
+
+        /// <summary>
+        /// Obtenir le premier item dans la table Settings ...
+        /// </summary>
+        /// <returns></returns>
         public Task<Settings> GetFirstItemAsync()
         {
             return database.Table<Settings>().FirstOrDefaultAsync();
         }
 
+        /// <summary>
+        /// Insérer ou remplacer l'objet settings...
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public Task<int> SaveItemAsync(Settings item)
         {
 
@@ -50,6 +69,11 @@ namespace XpertMobileApp.Data
             */
         }
 
+        /// <summary>
+        /// Supprime un item de la table Settings ...
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public Task<int> DeleteItemAsync(Settings item)
         {
             return database.DeleteAsync(item);
