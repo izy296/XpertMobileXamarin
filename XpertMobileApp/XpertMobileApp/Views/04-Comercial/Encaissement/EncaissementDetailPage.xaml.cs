@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -37,7 +38,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            Cancel_Encaiss.IsVisible = this.viewModel.HasCancelEncaiss;
+            Title = "N° "+viewModel.Item.CODE_ENCAISS;
+            //Cancel_Encaiss.IsVisible = this.viewModel.HasCancelEncaiss;
             Update_Encaiss.IsVisible = this.viewModel.HasUpdateEncaiss;
             Delete_Encaiss.IsVisible = this.viewModel.HasDeleteEncaiss;
         }
@@ -57,13 +59,18 @@ namespace XpertMobileApp.Views
 
                 if (attribute == null || !attribute.VisibleInFich) continue;
 
+                if (!XpertHelper.IsNullOrEmpty(attribute.Designation) && attribute.Designation!= "fn_enc_Compte")
+                {
+                    name = attribute.Designation;
+                }
+
                 string[] styleFN = new String[] { "lbl_fieldName" };
                 var lbl_FieldName = new Label
                 {
                     Text = TranslateExtension.GetTranslation(name) + " : ",
                     FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                     FontAttributes = FontAttributes.Bold,
-                    TextColor = Color.LightGray,
+                    TextColor = ((Color)Application.Current.Resources["NavigationPrimary"]),
                     StyleClass = styleFN
                 };
                 sl_content.Children.Add(lbl_FieldName);

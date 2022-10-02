@@ -66,6 +66,7 @@ namespace XpertMobileApp.DAL
         //public decimal TOTAL_PAYE { get; set; } // money(19,4) Calculé dans la vue
         public string CODE_TYPE { get; set; } // varchar(4)
         public string REF_REG { get; set; } // varchar(200)
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "PEncDec_Note_Enc")]
         public string NOTE_ENC { get; set; } // text(2147483647)
         public string CODE_VIR { get; set; } // varchar(32)
         public int SENS_DOC { get; set; } // smallint(5)
@@ -92,7 +93,7 @@ namespace XpertMobileApp.DAL
         public string DESIGN_COMPTE { get; set; } // varchar(100)
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
         public string DESIGN_MOTIF { get; set; } // varchar(300)
-
+        [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "PEncDec_Design_Mode")]
         public string DESIGN_MODE { get; set; } // varchar(300)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
         public decimal TOTAL_PAYE { get; set; } // money(19,4)
@@ -453,6 +454,7 @@ namespace XpertMobileApp.DAL
         public string CODE_MODE { get; set; } // varchar(1)
         public string REF_REG { get; set; } // varchar(200)
         public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
+
         public string NOTE_ENC { get; set; } // text(2147483647)
         public string DESIGN_MOTIF { get; set; } // varchar(300)
         public string DESIGN_COMPTE_DEST { get; set; } // varchar(100)

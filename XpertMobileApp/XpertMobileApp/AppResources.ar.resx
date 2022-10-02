@@ -1108,4 +1108,10 @@
   <data name="txt_triepar" xml:space="preserve">
     <value>:الترتيب حسب</value>
   </data>
+  <data name="PEncDec_Design_Mode" xml:space="preserve">
+    <value>طريقة الدفع</value>
+  </data>
+  <data name="PEncDec_Note_Enc" xml:space="preserve">
+    <value>ملاحظة</value>
+  </data>
 </root>

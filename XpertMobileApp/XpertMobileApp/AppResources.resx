@@ -1240,4 +1240,10 @@
   <data name="txt_triepar" xml:space="preserve">
     <value>Trier par :</value>
   </data>
+  <data name="PEncDec_Design_Mode" xml:space="preserve">
+    <value>Mode Règlement</value>
+  </data>
+  <data name="PEncDec_Note_Enc" xml:space="preserve">
+    <value>Note</value>
+  </data>
 </root>

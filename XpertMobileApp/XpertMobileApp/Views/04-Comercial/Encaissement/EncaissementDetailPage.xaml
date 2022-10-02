@@ -8,18 +8,18 @@
 
     <ContentPage.ToolbarItems>
 
-        <cmp:XToolbarItem x:Name="Cancel_Encaiss" Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" IsVisible="{Binding HasCancelEncaiss}">
+        <!--<cmp:XToolbarItem x:Name="Cancel_Encaiss" Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
+                    <On Platform="Android,iOS,UWP" Value="back.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </cmp:XToolbarItem>
+        </cmp:XToolbarItem>-->
 
         <cmp:XToolbarItem x:Name="Update_Encaiss" Text="{i18n:Translate cmd_Update}" Clicked="Update_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="Android,iOS,UWP" Value="editIcon.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </cmp:XToolbarItem>
@@ -27,7 +27,7 @@
         <cmp:XToolbarItem x:Name="Delete_Encaiss" Text="{i18n:Translate cmd_Delete}" Clicked="Delete_Clicked" IsVisible="{Binding HasCancelEncaiss}">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="Android,iOS,UWP" Value="Delete.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </cmp:XToolbarItem>
@@ -36,14 +36,14 @@
 
 
 
-    <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Vertical" VerticalOptions="End"
+    <StackLayout Padding="0" Margin="0,10,0,0" Spacing="0" Orientation="Vertical" VerticalOptions="FillAndExpand"
                          HorizontalOptions="Fill">
-        <ScrollView Orientation="Vertical" VerticalOptions="Fill" >
-            <StackLayout x:Name="sl_content" Spacing="20" Padding="15" >
+        <ScrollView Orientation="Vertical" VerticalOptions="StartAndExpand" >
+            <StackLayout x:Name="sl_content" Spacing="20" Padding="15" VerticalOptions="StartAndExpand">
 
             </StackLayout>
         </ScrollView>
-        <Button x:Name="btnPrint" Text="Imprimer" CornerRadius="8"
-            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnImprimer_Clicked" HorizontalOptions="FillAndExpand"></Button>
+        <Button x:Name="btnPrint" Text="Imprimer" CornerRadius="8" Margin="5,0,5,5"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnImprimer_Clicked" HorizontalOptions="FillAndExpand" VerticalOptions="End"></Button>
     </StackLayout>
 </ContentPage>
