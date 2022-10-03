@@ -2,20 +2,22 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             x:Class="XpertMobileApp.Views.NewEncaissementPage">
+             x:Class="XpertMobileApp.Views.NewEncaissementPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+>
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
+                    <On Platform="Android,iOS,UWP" Value="close.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
         <ToolbarItem Text="{i18n:Translate cmd_Save}" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="Android,iOS,UWP" Value="check.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -25,33 +27,55 @@
 
         <ScrollView Orientation="Vertical" Padding="15">
             <StackLayout>
-                <Label Text="{i18n:Translate DATE_ENCAISS}" Margin="5, 0, 0, 0" />
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate DATE_ENCAISS}" 
+                       Margin="5, 0, 0, 0" 
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
                 <DatePicker x:Name="dp_DateEncaiss"                        
                         Format="dd/MM/yyyy"
-                        TextColor="{StaticResource Primary}"
+                        TextColor="Black"
                         Margin="30, 0, 30, 30" 
                         Date="{Binding Item.DATE_ENCAISS}"/>
 
-                <Label Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate CODE_MOTIF}" 
+                       Margin="5, 0, 0, 0"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
+                
                 <Picker ItemsSource="{Binding Motifs}"
                                 ItemDisplayBinding="{Binding DESIGN_MOTIF}"
                                 SelectedItem="{Binding SelectedMotif}"
-                                TextColor="{StaticResource Primary}"
+                                TextColor="Black"
                                 SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30" 
                                 x:Name="MotifsPicker"/>
 
-                <Label Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate CODE_COMPTE}" 
+                       Margin="5, 0, 0, 0"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
+                
                 <Picker ItemsSource="{Binding Comptes}"
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                 SelectedItem="{Binding SelectedCompte}"
-                                TextColor="{StaticResource Primary}"
+                                TextColor="Black"
                                 SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30"                 
                                 x:Name="ComptesPicker"/>
 
 
-                <Label Text="{i18n:Translate CODE_TIERS}" Margin="5, 0, 0, 0"/>
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate CODE_TIERS}" 
+                       Margin="5, 0, 0, 0"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
                 <Grid Margin="30, 0, 30, 30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -63,17 +87,27 @@
                     </Grid.RowDefinitions>
 
                     <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
-                    <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
-                        Clicked="btn_Select_Clicked"  HeightRequest="35"/>
+                    <Button x:Name="btn_Search" Text="{x:Static fontawesome:FontAwesomeIcons.Search}" Grid.Column="1" Style="{StaticResource FAwesome-B-Solid}"
+                        Clicked="btn_Select_Clicked"  />
                 </Grid>
 
-                <Label Text="{i18n:Translate TOTAL_ENCAISS}" Margin="5, 0, 0, 0"/>
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate TOTAL_ENCAISS}" 
+                       Margin="5, 0, 0, 0"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
                 <Entry Placeholder="{i18n:Translate msg_EnterTheAmount}"
                        Margin="30, 0, 30, 30"
                        x:Name="montantEntry"
-                       TextColor="{StaticResource Primary}"/>
+                       TextColor="Black"/>
 
-                <Label Text="{i18n:Translate SOLDE_TIERS}" Margin="5, 0, 0, 0"/>
+                <Label TextColor="{StaticResource NavigationPrimary}" 
+                       Text="{i18n:Translate SOLDE_TIERS}" 
+                       Margin="5, 0, 0, 0"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       />
                 <Label x:Name="TierSolde" Text="" TextColor="{StaticResource Primary}" Margin="30, 0, 30, 30" />
             </StackLayout>
         </ScrollView>

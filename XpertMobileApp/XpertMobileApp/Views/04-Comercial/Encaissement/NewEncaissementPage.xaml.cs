@@ -72,9 +72,18 @@ namespace XpertMobileApp.Views
             if (item != null)
             {
                 Item = item;
+                Title = "N°" + Item.CODE_ENCAISS;
             }
             else
             {
+                if (type == EncaissDisplayType.ENC)
+                {
+                    Title = AppResources.txt_Encaiss;
+                }
+                else
+                {
+                    Title = AppResources.txt_Decaiss;
+                }
                 Item = new View_TRS_ENCAISS
                 {
                     DATE_ENCAISS = DateTime.Now,
@@ -211,6 +220,7 @@ namespace XpertMobileApp.Views
 
             if (Comptes.Count == 0)
                 LoadComptesCommand.Execute(null);
+
 
         }
 
