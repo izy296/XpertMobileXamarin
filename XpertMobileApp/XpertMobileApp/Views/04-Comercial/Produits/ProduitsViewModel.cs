@@ -185,6 +185,7 @@ namespace XpertMobileApp.ViewModels
             this.AddSelect<View_STK_PRODUITS, decimal>(e => e.QTE_STOCK);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.REFERENCE);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.CODE_PRODUIT);
+            this.AddSelect<View_STK_PRODUITS, decimal>(e => e.PRIX_VENTE_HT);
 
             return qb.QueryInfos;
 
