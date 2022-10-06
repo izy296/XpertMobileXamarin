@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace XpertMobileApp.Views.Templates
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class ProduitTemplate : ContentView
+	public partial class ProduitTemplate_PHARM : ContentView
 	{
-		public ProduitTemplate()
+		public ProduitTemplate_PHARM()
 		{
 			InitializeComponent ();
 		}
