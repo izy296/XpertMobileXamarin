@@ -35,26 +35,27 @@ namespace XpertMobileApp.Views
             ItemsListView.Opacity = 0;
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnItemSelected(object sender, Xamarin.Forms.SelectionChangedEventArgs args)
         {
-            if (App.Online)
-            {
-                if (opened)
+            if (args.CurrentSelection.Count != 0)
+                if (App.Online)
                 {
-                    ItemsListView.Opacity = 1;
+                    if (opened)
+                    {
+                        ItemsListView.Opacity = 1;
+                        ItemsListView.SelectedItem = null;
+                        return;
+                    }
+                    var item = args.CurrentSelection[0] as STK_PRODUITS;
+
+                    if (item == null)
+                        return;
+
+                    await Navigation.PushAsync(new ProduitDetailPage(item));
+
+                    // Manually deselect item.
                     ItemsListView.SelectedItem = null;
-                    return;
                 }
-                var item = args.SelectedItem as STK_PRODUITS;
-
-                if (item == null)
-                    return;
-
-                await Navigation.PushAsync(new ProduitDetailPage(item));
-
-                // Manually deselect item.
-                ItemsListView.SelectedItem = null;
-            }
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

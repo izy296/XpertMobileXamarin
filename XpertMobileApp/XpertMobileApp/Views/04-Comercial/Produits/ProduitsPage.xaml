@@ -26,44 +26,21 @@
             >
         <!-- Items listing  -->
         <StackLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
-            <ListView x:Name="ItemsListView"
-                    ItemsSource="{Binding Items}"
-                    VerticalOptions="FillAndExpand"
-                    HasUnevenRows="true"
-                    SeparatorVisibility="None"        
-                    RefreshCommand="{Binding LoadItemsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement"
-                    ItemSelected="OnItemSelected">
 
-                <ListView.Behaviors>
-                    <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                </ListView.Behaviors>
+            <RefreshView 
+                    Command="{Binding PullTORefresh}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <CollectionView
+                                    x:Name="ItemsListView"
+                                    ItemsSource="{Binding Items}"
+                                    ItemTemplate="{StaticResource ProduitPageSelector}"
+                                    RemainingItemsThreshold="1"
+                                    RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
+                                    SelectionMode = "Single"
+                                    SelectionChanged="OnItemSelected">
+                </CollectionView>
+                </RefreshView>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <template:ProduitTemplate />
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-
-
-                <ListView.Footer>
-                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                        <!-- set the footer to have a zero height when invisible -->
-                        <Grid.Triggers>
-                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                <Setter Property="HeightRequest" Value="0" />
-                            </Trigger>
-                        </Grid.Triggers>
-                        <!-- the loading content -->
-                        <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                    </Grid>
-                </ListView.Footer>
-
-            </ListView>
         </StackLayout>
 
         <!--floating button-->

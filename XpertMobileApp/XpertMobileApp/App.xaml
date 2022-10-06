@@ -23,10 +23,22 @@
             <templateSelector:ProduitDataSelectorTemplate   x:Key="ProduitTemplateSelector" 
                                                             LotPharm="{StaticResource LotPharm}"
                                                             LotComm="{StaticResource LotComm}"/>
+
+            <DataTemplate x:Key="ProduitPharm">
+                <template:ProduitTemplate_PHARM />
+            </DataTemplate>
+
+            <DataTemplate x:Key="ProduitComm">
+                <template:ProduitTemplate_COMM />
+            </DataTemplate>
+
+            <templateSelector:ProduitPageSelectorTemplate   x:Key="ProduitPageSelector" 
+                                                            ProduitPharm="{StaticResource ProduitPharm}"
+                                                            ProduitComm="{StaticResource ProduitComm}"/>
             <!-- ***************** Produit *****************-->
 
-            
-            
+
+
             <!--***************** Vente *****************-->
 
             <DataTemplate x:Key = "VentePsy">
@@ -48,8 +60,8 @@
 
             <!--***************** Vente *****************-->
 
-            
-            
+
+
             <!--***************** ACHAT *****************-->
 
             <DataTemplate x:Key = "AchatPharm">
@@ -66,8 +78,8 @@
 
             <!--***************** ACHAT *****************-->
 
-            
-            
+
+
             <!--***************** COMMANDE ******************-->
 
             <DataTemplate x:Key="Commande">
@@ -78,8 +90,8 @@
                                                            Commande="{StaticResource Commande}"/>
             <!--***************** COMMANDE ******************-->
 
-            
-            
+
+
             <!--***************** Sortie ********************-->
 
             <DataTemplate x:Key="SortiePharm">
@@ -92,18 +104,18 @@
             <templateSelector:SortieDataSelectorTemplate x:Key="SortieDataSelector"
                                                          SortiePharm="{StaticResource SortiePharm}"
                                                          SortieComm="{StaticResource SortieComm}"/>
-            
+
             <!--***************** Sortie ********************-->
-            
-            
+
+
             <!--***************** Echange *******************-->
-            
+
             <DataTemplate x:Key="Echange">
                 <template:RowElementTemplate_STK_ECHANGE/>
             </DataTemplate>
             <templateSelector:EchangeDataSelectorTemplate x:Key="EchangeDataSelector"
                                                           EchangePharm="{StaticResource Echange}"/>
-            
+
             <!--***************** Echange *******************-->
 
             <!-- ***************** Rotation *****************-->
@@ -192,7 +204,7 @@
             <local:DecimalToColorConverter x:Key="decimalToColor"/>
             <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
             <!--Global Styles-->
-            
+
 
 
             <Color x:Key="Primary">#2196F3</Color>
@@ -223,7 +235,9 @@
 
             <!--End Color for noification-->
             <Style TargetType="NavigationPage">
+
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
 

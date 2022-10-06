@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
 using Syncfusion.Linq;
 using System;
@@ -23,6 +24,7 @@ namespace XpertMobileApp.ViewModels
     public class ProduitsViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
+        string currentQB = null;
 
         public ProduitsViewModel()
         {
@@ -186,6 +188,7 @@ namespace XpertMobileApp.ViewModels
             this.AddSelect<View_STK_PRODUITS, string>(e => e.REFERENCE);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.CODE_PRODUIT);
             this.AddSelect<View_STK_PRODUITS, decimal>(e => e.PRIX_VENTE_HT);
+            this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_DCI);
 
             return qb.QueryInfos;
 
@@ -197,10 +200,54 @@ namespace XpertMobileApp.ViewModels
         /// après avoir montré un produit qui est le résultat d'un code-barres scanné
         /// </summary>
         /// <returns></returns>
-        internal override Task ExecuteLoadItemsCommand()
+        internal override async Task ExecuteLoadItemsCommand()
         {
             Items.OnCanLoadMore = OnCanLoadMoreBackup;
-            return base.ExecuteLoadItemsCommand();
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                if (currentQB != null && currentQB != GetFilterParams().StringCondition)
+                {
+                    currentQB = GetFilterParams().StringCondition;
+                    Items.Clear();
+                }
+                else
+                {
+                    currentQB = GetFilterParams().StringCondition;
+                }
+                await Items.LoadMoreAsync();
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+        }
+
+        public Command PullTORefresh
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    if (IsBusy)
+                    {
+                        return;
+                    }
+                    currentQB = "Empty";
+                    await ExecuteLoadItemsCommand();
+                    IsBusy = false;
+                });
+            }
         }
 
         protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)
