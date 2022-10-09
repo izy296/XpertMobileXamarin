@@ -363,6 +363,85 @@ namespace XpertMobileApp.Views
                 // Si l'utilisateur est un administrateur...
                 if (AppManager.HasAdmin)
                 {
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Home,
+                        ItemGroup = MenuItemGroup.Home,
+                        Image = "",
+                        Title = AppResources.pn_home
+                    }
+                    );
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Commandes,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Title = AppResources.pn_Commandes,
+                        CodeObjet = XpertObjets.VTE_COMMANDE,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Tiers,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Image = "",
+                        Title = AppResources.pn_Tiers
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Livraison,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Title = AppResources.pn_Livraison,
+                        CodeObjet = XpertObjets.VTE_LIVRAISON,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Sessions,
+                        ItemGroup = MenuItemGroup.Tresorerie,
+                        Title = AppResources.pn_session,
+                        CodeObjet = XpertObjets.TRS_RESUME_SESSION,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Tresorerie,
+                        ItemGroup = MenuItemGroup.Tresorerie,
+                        Title = AppResources.pn_Tresorerie,
+                        CodeObjet = XpertObjets.BSE_COMPTE,
+                        Action = XpertActions.AcSelect
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Encaissements,
+                        ItemGroup = MenuItemGroup.Tresorerie,
+                        Title = AppResources.pn_encaissement,
+                        CodeObjet = XpertObjets.TRS_DECAISS,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.TransfertDeFond,
+                        ItemGroup = MenuItemGroup.Tresorerie,
+                        Title = AppResources.pn_TransfertDeFond,
+                        CodeObjet = XpertObjets.View_TRS_VIREMENT,
+                        Action = XpertActions.AcSelect,
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Produits,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Image = "",
+                        Title = AppResources.pn_Produits
+                    });
+
                     /* Page Settings */
                     menuItems.Add(new HomeMenuItem
                     {

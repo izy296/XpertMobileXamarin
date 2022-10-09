@@ -105,6 +105,48 @@ namespace XpertMobileApp.ViewModels
 
                 if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
+                        Title = "Livraisons",
+                        Color = "#FFC000",
+                        CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
+                        Title = "Sessions",
+                        Color = "#ff6b81",
+                        CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
+                        Title = "Tiers",
+                        Color = "#FEF2CC",
+                        CodeObjet = Xpert.XpertObjets.TRS_TIERS,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
+                        Title = "Encaiss / Decaiss",
+                        Color = "#A8D08D",
+                        CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
+                        Title = "Produits",
+                        Color = "#B4C6E7"
+                    });
 
                 }
                 else
@@ -235,14 +277,14 @@ namespace XpertMobileApp.ViewModels
                     }
 
                     Items.Clear();
-                    foreach (var item in res)
-                    {
-                        if (item.HasPermission)
-                            Items.Add(item);
-                    }
+
                 }
 
-
+                foreach (var item in res)
+                {
+                    if (item.HasPermission)
+                        Items.Add(item);
+                }
                 IsBusy = false;
             }
             catch (Exception ex)
