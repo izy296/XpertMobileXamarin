@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <Configurations>Debug;Release;XM_LIVRAISON;XM_AGRO;XM_CATALOG;XM_OFFICINE;XM_VENTE;XM_COMM;XM_DIST</Configurations>
+    <AssemblyVersion>2.74</AssemblyVersion>
+    <FileVersion>2.74</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -10,14 +13,25 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='XM_LIVRAISON|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="DataService\**" />
+    <Compile Remove="Views\04-Comercial\EntreeDuStock\**" />
+    <Compile Remove="Views\04-Comercial\SortieDuStock\**" />
     <Compile Remove="Views\08-Catalogue-old\List\**" />
     <Compile Remove="Views\08-Catalogue-old\Paging\**" />
     <EmbeddedResource Remove="DataService\**" />
+    <EmbeddedResource Remove="Views\04-Comercial\EntreeDuStock\**" />
+    <EmbeddedResource Remove="Views\04-Comercial\SortieDuStock\**" />
     <EmbeddedResource Remove="Views\08-Catalogue-old\List\**" />
     <EmbeddedResource Remove="Views\08-Catalogue-old\Paging\**" />
     <None Remove="DataService\**" />
+    <None Remove="Views\04-Comercial\EntreeDuStock\**" />
+    <None Remove="Views\04-Comercial\SortieDuStock\**" />
     <None Remove="Views\08-Catalogue-old\List\**" />
     <None Remove="Views\08-Catalogue-old\Paging\**" />
   </ItemGroup>
@@ -31,10 +45,15 @@
     <Compile Remove="Api\Services\RFID\RFID_Manager.cs" />
     <Compile Remove="Api\ViewModels\BasePagerViewModel.cs" />
     <Compile Remove="Api\ViewModels\CrudBaseViewModel.cs" />
+    <Compile Remove="BaseView\XBaseFilter.xaml.cs" />
+    <Compile Remove="BaseView\XBaseFilterAbstract.cs" />
     <Compile Remove="Models\BaseContentPage.cs" />
     <Compile Remove="Models\Item.cs" />
     <Compile Remove="Models\Product.cs" />
     <Compile Remove="Models\Review.cs" />
+    <Compile Remove="Views\03-CommonPages\Settings\SettingsModel.cs" />
+    <Compile Remove="Views\04-Comercial\Achats\AchatTestPopup.xaml.cs" />
+    <Compile Remove="Views\04-Comercial\Achats\RowElementTemplate_Entete_ACH.xaml.cs" />
     <Compile Remove="Views\04-Comercial\Ventes\Form\VenteFormViewLivraisonModel.cs" />
     <Compile Remove="Views\AboutPage.xaml.cs" />
     <Compile Remove="Views\ItemDetailPage.xaml.cs" />
@@ -50,9 +69,13 @@
     <Compile Remove="Views\07-XBoutiques\BtqProductList.xaml.cs" />
     <Compile Remove="Views\07-XBoutiques\BtqProductViewModel.cs" />
     <Compile Remove="Views\07-XBoutiques\Catalogue\Model\ProductRepository.cs" />
+    <Compile Remove="Views\_Templates\TemplateSelector\AchatEnteteDataSelectorTemplate.cs" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="BaseView\XBaseFilter.xaml" />
+    <EmbeddedResource Remove="Views\04-Comercial\Achats\AchatTestPopup.xaml" />
+    <EmbeddedResource Remove="Views\04-Comercial\Achats\RowElementTemplate_Entete_ACH.xaml" />
     <EmbeddedResource Remove="Views\AboutPage.xaml" />
     <EmbeddedResource Remove="Views\ItemDetailPage.xaml" />
     <EmbeddedResource Remove="Views\ItemsPage.xaml" />
@@ -89,11 +112,14 @@
 
   <ItemGroup>
     <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
+    <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
+    <PackageReference Include="Com.Airbnb.Xamarin.Forms.Lottie" Version="4.1.0" />
     <PackageReference Include="Forms.Controls.FlexButton" Version="0.11.0" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5" />
-    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.1.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Plugin.FirebasePushNotification" Version="3.4.25" />
     <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
     <PackageReference Include="Syncfusion.Licensing" Version="19.1.0.69" />
     <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.1.0.69" />
     <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.1.0.69" />
@@ -110,10 +136,11 @@
     <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.1.0.69" />
     <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
     <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.4.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="2.0.2" />
     <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />  
     <PackageReference Include="Xamarin.Forms.Extended.InfiniteScrolling" Version="1.0.0-preview2" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.0.1.707" />  
@@ -131,12 +158,110 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-Common\Xpert.Common.WSClient\Xpert.Common.WSClient.csproj" />
-    <ProjectReference Include="..\..\..\..\XpertDesktopSolution\trunk\X-WebApis\XpertWebApi\XpertWebApi.csproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\04-Comercial\Achats\AchatsListPage.xaml.cs">
+      <DependentUpon>AchatsListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Achats\AchatsPopupFilter.xaml.cs">
+      <DependentUpon>AchatsPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Achats\ReclamationTemplate.xaml.cs">
+      <DependentUpon>ReclamationTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Achats\ReclamationPopupPage.xaml.cs">
+      <DependentUpon>ReclamationPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Achats\RowElementTemplate_ACH _COMM.xaml.cs">
+      <DependentUpon>RowElementTemplate_ACH _COMM.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Achats\RowElementTemplate_ACH.xaml.cs">
+      <DependentUpon>RowElementTemplate_ACH.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Commandes\CommandesPopupFilter.xaml.cs">
+      <DependentUpon>CommandesPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Commandes\RowCmdTemplate_CMD.xaml.cs">
+      <DependentUpon>RowCmdTemplate_CMD.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Echange\EchangeListPage.xaml.cs">
+      <DependentUpon>EchangeListPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Echange\PopupFilter.xaml.cs">
+      <DependentUpon>PopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Echange\NewEchangePopupPage.xaml.cs">
+      <DependentUpon>NewEchangePopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Encaissement\EncaissementPopupFilter.xaml.cs">
+      <DependentUpon>EncaissementPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Manquants\ManquantsPopupFilter.xaml.cs">
+      <DependentUpon>ManquantsPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Produits\Rotation\RotationPopupFilter.xaml.cs">
+      <DependentUpon>RotationPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Produits\RowElementTemplate_Stk.xaml.cs">
+      <DependentUpon>RowElementTemplate_STK.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Produits\RowElementTemplate_Stk_COMM.xaml.cs">
+      <DependentUpon>RowElementTemplate_STK_COMM.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Produits\ProduitsPopupFilter.xaml.cs">
+      <DependentUpon>ProduitsPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Selectors\Settings\EditSettingsSelector.xaml.cs">
+      <DependentUpon>EditSettingsSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Selectors\Settings\SettingsSelector.xaml.cs">
+      <DependentUpon>SettingsSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Sessions\SessionsPopupFilter.xaml.cs">
+      <DependentUpon>SessionsPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Sortie\RowElementTemplate_STK_SORTIE_COMM.xaml.cs">
+      <DependentUpon>RowElementTemplate_STK_SORTIE_COMM.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Sortie\SortiePopupFilter.xaml.cs">
+      <DependentUpon>SortiePopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Sortie\RowElementTemplate_STK_SORTIE.xaml.cs">
+      <DependentUpon>RowElementTemplate_STK_SORTIE.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Tiers\TiersPopupFilter.xaml.cs">
+      <DependentUpon>TiersPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\TransfertDeFond\TransfertDeFondPopupFilter.xaml.cs">
+      <DependentUpon>TransfertDeFondPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\TransfertDeFond\NewTransfertDeFondPopupPage.xaml.cs">
+      <DependentUpon>NewTransfertDeFondPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\TransfertDeFond\TransfertDeFondTemplate.xaml.cs">
+      <DependentUpon>TransfertDeFondTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\TransfertDeFond\TransfertDeFondPage.xaml.cs">
+      <DependentUpon>TransfertDeFondPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\04-Comercial\Ventes\Form\VenteFormLivraisonPage.xaml.cs">
       <DependentUpon>VenteFormLivraisonPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Ventes\VentesPopupFilter.xaml.cs">
+      <DependentUpon>VentesPopupFilter.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Ventes\RowElementTemplate_VTE _COMM.xaml.cs">
+      <DependentUpon>RowElementTemplate_VTE _COMM.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Ventes\RowElementTemplate_VTE.xaml.cs">
+      <DependentUpon>RowElementTemplate_VTE.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\04-Comercial\Ventes\RowElementTemplate_VTE_PSYCHOTROPE.xaml.cs">
+      <DependentUpon>RowElementTemplate_VTE_PSYCHOTROPE.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\05-Officine\Bordereaux\BordereauxPopupFilter.xaml.cs">
+      <DependentUpon>BordereauxPopupFilter.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\07-XBoutiques\Commandes\StylesCT.xaml.cs">
       <DependentUpon>StylesCT.xaml</DependentUpon>
@@ -198,6 +323,33 @@
     <EmbeddedResource Update="BaseView\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\03-CommonPages\Notification\NotificationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\03-CommonPages\Notification\NotificationTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Achats\AchatDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Achats\AchatsListTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Echange\EchangeDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Echange\EchangeListPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Echange\EchangeTemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Echange\RowElementTemplate_STK_ECHANGE.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\04-Comercial\Ventes\Form\GoogleVisionBS.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\07-XBoutiques\Commandes\StylesCT.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -230,6 +382,12 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\07-XBoutiques\Login\TabbedForm.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_Templates\AppLayoutStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\_Templates\BaseFilter.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

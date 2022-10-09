@@ -47,7 +47,9 @@ namespace XpertMobileApp.SQLite_Managment
             if (db == null)
             {
                 // Get an absolute path to the database file
-                var databasePath = Path.Combine(FileSystem.AppDataDirectory, "MyData.db");
+                string clientId = App.Settings.ClientId.ToString();
+                string AppName = Constants.AppName.ToString();
+                var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
                 db = new SQLiteAsyncConnection(databasePath);
                 return db;
             }
@@ -65,7 +67,6 @@ namespace XpertMobileApp.SQLite_Managment
             try
             {
                 //await getInstance().DropTableAsync<View_TRS_TIERS>();
-                //await getInstance().DeleteAllAsync<View_VTE_VENTE>();
 
                 await getInstance().CreateTableAsync<View_STK_PRODUITS>();
                 await getInstance().CreateTableAsync<View_TRS_TIERS>();
@@ -97,7 +98,7 @@ namespace XpertMobileApp.SQLite_Managment
 
 
         /// <summary>
-        /// retoune items qui ne sont pas synchronisés
+        /// retoune items qui ne sont pas synchronisés depuis le serveur distant
         /// </summary>
         /// <typeparam name="TView"></typeparam>
         /// <typeparam name="TTabel"></typeparam>
@@ -118,6 +119,16 @@ namespace XpertMobileApp.SQLite_Managment
             }
 
         }
+
+        /// <summary>
+        /// Supprime tous les elements d'une Tview et les ajouter a une liste aprés les insérés dans la table spécifique...
+        /// </summary>
+        /// <typeparam name="TView"></typeparam>
+        /// <typeparam name="TTabel"></typeparam>
+        /// <param name="_selectAll"></param>
+        /// <param name="param"></param>
+        /// <param name="methodName"></param>
+        /// <returns></returns>
         public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
         {
             var ListItems = new List<TView>();
@@ -165,7 +176,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
         /// <summary>
-        /// Synchronise toutes les table de la bd local a partir de la bd distante
+        /// Synchronise toutes les tables sqlite mobile a partir de la bd sqlserver
         /// </summary>
         /// <returns></returns>
         public static async Task synchroniseDownload()
@@ -184,7 +195,7 @@ namespace XpertMobileApp.SQLite_Managment
                 //await SyncProduct();
                 //await SyncData<View_STK_STOCK, STK_STOCK>();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-                await SyncUsers();
+                //await SyncUsers(); // route probleme
                 await syncPermission();
                 await SyncSysParams();
                 await syncSession();
@@ -193,8 +204,9 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncSecteurs();
                 await SyncBseCompte();
                 await SyncMotifs();
-                await SyncProductPriceByQuantity();
+                //await SyncProductPriceByQuantity();       this probelem here 
                 UserDialogs.Instance.HideLoading();
+                var obj = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
                 //await getInstance().DeleteAllAsync<View_VTE_VENTE>();
                 //await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -227,6 +239,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchroniser les tounrnés de livraison par le code vendeur
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncLivTournee()
         {
             if (App.User.UserName != null)
@@ -243,6 +259,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchroniser les détail des tourné ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncLivTourneeDetail()
         {
             //View_LIV_TOURNEE obj = await getInstance().Table<View_LIV_TOURNEE>().OrderByDescending(x=>x.DATE_TOURNEE == DateTime.Now).FirstOrDefaultAsync();
@@ -257,6 +277,11 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+
+        /// <summary>
+        /// Synchroniser le stock par magasin ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncStock()
         {
             var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
@@ -269,11 +294,20 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchronisation des users ...
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncUsers()
         {
             UsersMethodName = "SyncUsers";
             await SyncData<SYS_USER, SYS_USER>(false, "", UsersMethodName);
         }
+
+        /// <summary>
+        /// Synchronisation des produit par magazin 
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncProduct()
         {
             if (string.IsNullOrEmpty(App.CODE_MAGASIN))
@@ -287,6 +321,7 @@ namespace XpertMobileApp.SQLite_Managment
                 var id = await getInstance().InsertAllAsync(products);
             }
         }
+
 
         public static async Task syncPermission()
         {

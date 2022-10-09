@@ -47,6 +47,13 @@ namespace XpertMobileApp.Views
                 this.Detail = new NavigationPage(new ProductHomePage());
                 MenuPages.Add((int)MenuItemType.XBoutiqueHome, (NavigationPage)Detail);
             }
+            //Special pour le project distribution 
+            else if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                this.Detail = new NavigationPage(new HomePage());
+                MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
+            }
+
         }
 
         public ContentPage GetMenuPage(int idPage)

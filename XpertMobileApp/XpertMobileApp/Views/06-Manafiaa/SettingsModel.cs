@@ -194,7 +194,7 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 UrlService Result = new UrlService();
-                if (Settings.ServiceUrl != "")
+                if (Settings.ServiceUrl != "" && Settings.ServiceUrl != null)
                 {
                     bool checkIfJson = Manager.isJson(Settings.ServiceUrl);
                     if (checkIfJson)

@@ -142,7 +142,7 @@ namespace XpertMobileApp
             }
             else
             {
-                if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.XAGRI_Mob)
+                if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
                 {
                     MainPage = new LoginPage();
 
@@ -224,7 +224,7 @@ namespace XpertMobileApp
                     }
                     catch (Exception ex)
                     {
-                        
+
                         //await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
                         //AppResources.alrt_msg_Ok);
                     }
@@ -348,8 +348,7 @@ namespace XpertMobileApp
              }
              catch (Exception ex)
              {
-                 await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
- AppResources.alrt_msg_Ok);
+                 await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
              }
 
          };
@@ -373,8 +372,6 @@ namespace XpertMobileApp
             //};
 
         }
-
-
         protected override void OnSleep()
         {
             // Handle when your app sleeps}

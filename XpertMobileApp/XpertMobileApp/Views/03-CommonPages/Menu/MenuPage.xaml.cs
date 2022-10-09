@@ -356,6 +356,45 @@ namespace XpertMobileApp.Views
                 };
             }
 
+            //Menu Special Xpert Distribution
+            else if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                menuItems = new List<HomeMenuItem>();
+                // Si l'utilisateur est un administrateur...
+                if (AppManager.HasAdmin)
+                {
+                    /* Page Settings */
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Settings,
+                        ItemGroup = MenuItemGroup.Parametres,
+                        Image = "",
+                        Title = AppResources.pn_Settings
+                    });
+
+                    /* Page Notification */
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Notification,
+                        ItemGroup = MenuItemGroup.Home,
+                        Image = "",
+                        Title = AppResources.pn_Notification,
+                        NotificationBadgeIsVisible = true,
+                        CountOfNotifications = numberOfNotifications
+                    });
+                    ReloadNumberOfNotifications();
+                }
+
+                /* Page About */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.About,
+                    ItemGroup = MenuItemGroup.Parametres,
+                    Image = "",
+                    Title = AppResources.pn_About
+                });
+            }
+
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)
@@ -445,7 +484,7 @@ namespace XpertMobileApp.Views
 
         private void SortMenuItems()
         {
-            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
                 var menus = menuItems;
                 var sorted = from menu in menus
