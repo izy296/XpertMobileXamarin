@@ -3436,6 +3436,73 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("rdp_Ach", resourceCulture);
             }
         }
+        public static string pn_TransfertStock
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_TransfertStock", resourceCulture);
+            }
+        }        
+        
+        public static string tsdp_Date
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_Date", resourceCulture);
+            }
+        }        
+        
+        public static string tsdp_TotalAchat
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_TotalAchat", resourceCulture);
+            }
+        }        
+        
+        public static string tsdp_Creation
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_Creation", resourceCulture);
+            }
+        }        
+        
+        public static string tsdp_MagasinSource
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_MagasinSource", resourceCulture);
+            }
+        }
+        
+        public static string tsdp_MagasinDestination
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_MagasinDestination", resourceCulture);
+            }
+        }
+
+        public static string tsdp_Note
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_Note", resourceCulture);
+            }
+        }
+
+        public static string tsdp_Titre
+        {
+            get
+            {
+                return ResourceManager.GetString("tsdp_Titre", resourceCulture);
+            }
+        }
+
+
+
+
     }
 }
 

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{i18n:Translate pn_TransfertStock}"
+             x:Class="XpertMobileApp.Views.TransfertStock">
+    <ContentPage.ToolbarItems>
+        <!--<ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />-->
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+    </ContentPage.Resources>
+    <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            FlowDirection="LeftToRight"
+            >
+        <!-- Items listing  -->
+        <StackLayout VerticalOptions="FillAndExpand" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+            <RefreshView 
+                    Command="{Binding PullTORefresh}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                <CollectionView
+                                    x:Name="ItemsListView"
+                                    ItemsSource="{Binding Items}"
+                                    ItemTemplate="{StaticResource TransfertStockPageSelector}"
+                                    RemainingItemsThreshold="1"
+                                    RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
+                                    SelectionMode = "Single"
+                                    SelectionChanged="OnItemSelected">
+                </CollectionView>
+            </RefreshView>
+
+        </StackLayout>
+
+        <!--floating button-->
+        <Button 
+                x:Name="floatingButton" 
+                ImageSource="filter.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="{StaticResource Primary}"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="ShowHideFilter"/>
+
+
+    </AbsoluteLayout>
+
+</ContentPage>

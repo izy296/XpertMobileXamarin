@@ -116,6 +116,13 @@ namespace XpertMobileApp.ViewModels
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
+                        CODE_ANALYSE = ((int)MenuItemType.TransfertStock).ToString(),
+                        Title = AppResources.pn_TransfertStock,
+                        Color = "#72cfce"
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
                         CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
                         Title = "Sessions",
                         Color = "#ff6b81",

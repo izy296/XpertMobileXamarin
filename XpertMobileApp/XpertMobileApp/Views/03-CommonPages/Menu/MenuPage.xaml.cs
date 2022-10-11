@@ -391,6 +391,14 @@ namespace XpertMobileApp.Views
 
                     menuItems.Add(new HomeMenuItem
                     {
+                        Id = MenuItemType.TransfertStock,
+                        ItemGroup = MenuItemGroup.Stock,
+                        Image = "",
+                        Title = AppResources.pn_TransfertStock
+                    });
+
+                    menuItems.Add(new HomeMenuItem
+                    {
                         Id = MenuItemType.Livraison,
                         ItemGroup = MenuItemGroup.Ventes,
                         Title = AppResources.pn_Livraison,

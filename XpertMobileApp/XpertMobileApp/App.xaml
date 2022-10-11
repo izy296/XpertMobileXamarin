@@ -38,6 +38,38 @@
             <!-- ***************** Produit *****************-->
 
 
+            <!-- ***************** Transfert Stock  *****************-->
+
+
+            <DataTemplate x:Key="TransfertPharm">
+                <template:TransfertStockTemplate_PHARM />
+            </DataTemplate>
+
+            <DataTemplate x:Key="TransfertComm">
+                <template:TransfertStockTemplate_COMM />
+            </DataTemplate>
+
+            <templateSelector:TransfertStockPageSelectorTemplate   x:Key="TransfertStockPageSelector" 
+                                                            TransfertPharm="{StaticResource TransfertPharm}"
+                                                            TransfertComm="{StaticResource TransfertComm}"/>
+
+
+            <DataTemplate x:Key="TransfertDetailPharm">
+                <template:TransfertStockDetailTemplate_PHARM />
+            </DataTemplate>
+
+            <DataTemplate x:Key="TransfertDetailComm">
+                <template:TransfertStockDetailTemplate_COMM />
+            </DataTemplate>
+
+            <templateSelector:TransfertStockDetailPageSelectorTemplate   x:Key="TransfertStockDetailPageSelector" 
+                                                            TransfertDetailPharm="{StaticResource TransfertDetailPharm}"
+                                                            TransfertDetailComm="{StaticResource TransfertDetailComm}"/>
+
+
+            <!-- ***************** Transfert Stock *****************-->
+            
+
 
             <!--***************** Vente *****************-->
 

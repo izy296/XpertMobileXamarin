@@ -763,4 +763,86 @@ namespace XpertMobileApp.Models
         }
     }
 
+    public partial class STK_TRANSFERT : BASE_CLASS
+    {
+        public string CODE_TRANSFERT { get; set; } // varchar(32)
+        public string NUM_TRANSFERT { get; set; } // varchar(32)
+        public DateTime? DATE_TRANSEFRT { get; set; } // datetime(3)
+        public string MAGASIN_SOURCE { get; set; } // varchar(32)
+        public string MAGASIN_DESTINATION { get; set; } // varchar(32)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public decimal TOTAL_ACHAT { get; set; } // money(19,4)
+        public decimal TOTAL_PPA { get; set; } // money(19,4)
+        public decimal TOTAL_SHP { get; set; } // money(19,4)
+        public string NOTE_TRANSFERT { get; set; } // varchar(max)
+    }
+
+    public partial class View_STK_TRANSFERT : STK_TRANSFERT
+    {
+
+        public string DESIGN_MAGASIN_SOURCE { get; set; } // varchar(32)
+        public string DESIGN_MAGASIN_DESTINATION { get; set; } // varchar(32)
+        public string RESPONSABLE_MAGASIN_SOURCE { get; set; } // varchar(200)
+        public string RESPONSABLE_MAGASIN_DESTINATION { get; set; } // varchar(200)
+
+    }
+
+    public partial class STK_TRANSFERT_DETAIL : BASE_CLASS
+    {
+        public string CODE_DETAIL { get; set; } // varchar(32)
+        public short ORDER_ROW { get; set; } // smallint(5)
+        public string CODE_TRANSFERT { get; set; } // varchar(32)
+        public int? ID_STOCK_SOURCE { get; set; } // int(10)
+        public int? ID_STOCK_DESTINATION { get; set; } // int(10)
+        public decimal QUANTITE { get; set; } // numeric(19,2)
+        public decimal COUT_ACHAT { get; set; } // money(19,4)
+        public decimal MONTANT_ACHAT { get; set; } // money(19,4)
+        public decimal MONTANT_PPA { get; set; } // money(19,4)
+        public decimal MONTANT_SHP { get; set; } // money(19,4)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string CODE_EMPLACEMENT_DESTINIATION { get; set; } // varchar(200)
+    }
+
+    public partial class View_STK_TRANSFERT_DETAIL : STK_TRANSFERT_DETAIL
+    {
+        public string NUM_TRANSFERT { get; set; } // varchar(32)
+        public string CODE_PRODUIT { get; set; } // varchar(20)
+        public string DESIGNATION { get; set; } // varchar(404)
+        public string MAGASIN_SOURCE { get; set; } // varchar(10)
+        public string MAGASIN_DESTINATION { get; set; } // varchar(10)
+        public DateTime? DATE_PEREMPTION { get; set; } // datetime(3)
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_BARRE_LOT { get; set; } // nvarchar(1500)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
+        public string LOT { get; set; } // varchar(50)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public string REF_PRODUIT { get; set; } // nvarchar(250)
+        public decimal PRIX_ACH_HT { get; set; } // money(19,4)
+        public decimal PRIX_HT { get; set; } // money(19,4)
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // smallint(5)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public DateTime? DATE_TRANSEFRT { get; set; } // datetime(3)
+        public string DESIGNATION_MAGASIN_SOURCE { get; set; }
+        public string DESIGNATION_MAGASIN_DESTINATION { get; set; }
+        public decimal TAUX_TVA { get; set; }
+        public string DESIGNATION_EMPLACEMENT_SOURCE { get; set; }
+        public string DESIGNATION_EMPLACEMENT_DESTINATION { get; set; }
+
+    }
+
 }

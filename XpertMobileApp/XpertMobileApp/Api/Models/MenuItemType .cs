@@ -47,7 +47,8 @@ namespace XpertMobileApp.Api.Models
         Sortie,
         Notification,
         Echange,
-        RotationDesProduits
+        RotationDesProduits,
+        TransfertStock
     }
 
     public enum MenuItemGroup

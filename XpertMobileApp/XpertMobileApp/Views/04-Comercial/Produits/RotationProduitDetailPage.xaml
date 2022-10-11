@@ -82,7 +82,7 @@
                         </Frame>
 
                         <Frame CornerRadius="25" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White"
-                                HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                >
                             <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="CenterAndExpand" Orientation="Vertical">
                                 <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
                                     <Label Text="Date Debute" VerticalOptions="CenterAndExpand" TextColor="{StaticResource Primary}" FontSize="Micro" FontAttributes="Bold"/>
@@ -115,7 +115,7 @@
                                 </StackLayout>
                                 <Label Text="Types" TextColor="{StaticResource Primary}" FontSize="Small" FontAttributes="Bold"/>
                                 <StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
-                                   
+
                                     <flex:FlexButton
                                     x:Name="btn_All"
                                     HorizontalOptions="FillAndExpand"
@@ -124,7 +124,7 @@
                                     IconPadding="0,0,5,0"
                                     Padding="5"
                                     Margin="2"
-                                    Text="{i18n:Translate txt_All}"
+                                    Text="{i18n:Translate rdp_Touts}"
                                     CornerRadius="25"
                                     ForegroundColor="#ffffff"
                                     HighlightForegroundColor="#6dd5ed"
@@ -184,11 +184,31 @@
             <Label x:Name="SubTitle" Text="{i18n:Translate txt_Product}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
             <RefreshView 
                     x:Name="refreshView"
-                    Refreshing="RefreshView_Refreshing"
-                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    Command="{Binding RefreshCommand}"
+                    IsRefreshing="{Binding IsBusy}">
                 <CollectionView 
+                                    x:Name="ItemCollection"
                                     ItemsSource="{Binding ItemRows}"
                                     ItemTemplate="{StaticResource RotationTemplateSelector}">
+                    <!--<CollectionView.EmptyView >
+                        <ContentView>
+                            <StackLayout HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand">
+                                <Label Text="No results matched your filter."
+                           Margin="10,25,10,10"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                           <Label Text="Try a broader filter?"
+                           FontAttributes="Italic"
+                           FontSize="12"
+                           HorizontalOptions="Fill"
+                           HorizontalTextAlignment="Center" />
+                            </StackLayout>
+                        </ContentView>
+                    </CollectionView.EmptyView>-->
+
                 </CollectionView>
             </RefreshView>
         </StackLayout>

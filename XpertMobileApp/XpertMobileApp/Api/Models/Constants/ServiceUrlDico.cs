@@ -201,6 +201,11 @@ namespace XpertMobileApp.Helpers
         public static string ROTATION_URL = "RotationDesProduits";
         public static string ROTATION_SELECT_PRODUCT = "SelectProduct";
 
+        //TransfertStock
+        public static string TRANSFERT_STOCK_URL = "STK_TRANSFERT";
+        public static string TRANSFERT_STOCK_SELECT_TRANSFERT = "SelectTransfer";
+        public static string TRANSFERT_STOCK_TRANSFERT_DETAILS = "GetTransferProducts";
+
 
     }
 

@@ -1114,4 +1114,28 @@
   <data name="PEncDec_Note_Enc" xml:space="preserve">
     <value>ملاحظة</value>
   </data>
+  <data name="pn_TransfertStock" xml:space="preserve">
+    <value>تحميل / تفريغ</value>
+  </data>
+  <data name="tsdp_Creation" xml:space="preserve">
+    <value>الإنشاء :</value>
+  </data>
+  <data name="tsdp_Date" xml:space="preserve">
+    <value>التاريخ :</value>
+  </data>
+  <data name="tsdp_MagasinDestination" xml:space="preserve">
+    <value>الوجهة :</value>
+  </data>
+  <data name="tsdp_MagasinSource" xml:space="preserve">
+    <value>المصدر :</value>
+  </data>
+  <data name="tsdp_TotalAchat" xml:space="preserve">
+    <value>مجموع الشراء :</value>
+  </data>
+  <data name="tsdp_Note" xml:space="preserve">
+    <value>ملاحظة :</value>
+  </data>
+  <data name="tsdp_Titre" xml:space="preserve">
+    <value>تحويل المخزن</value>
+  </data>
 </root>

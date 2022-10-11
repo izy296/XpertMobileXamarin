@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{Binding Item.CODE_TRANSFERT}"
+             x:Class="XpertMobileApp.Views.TransfertStockDetail">
+    <StackLayout x:Name="sl_content" Padding="5" >
+
+        <Frame CornerRadius="10" Padding="5" Margin="5"  HasShadow="True"  OutlineColor="White">
+            <Grid Padding="0,0,0,0" Margin="0">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5" >
+                    <Label Text="{i18n:Translate tsdp_Titre}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,0,0" >
+                    <Label Text="{Binding Item.PRODUIT}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold"/>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="2"  Grid.ColumnSpan="2" Spacing="0" Margin="5,0,5,10" Padding="0" 
+                             HorizontalOptions="FillAndExpand" >
+                    <Grid>
+
+                        <Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate tsdp_TotalAchat}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.TOTAL_ACHAT, StringFormat='{0:N2} DA'}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate tsdp_Date}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.DATE_TRANSEFRT, StringFormat='{0:MMMM,dd,yyyy}'}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Column="2" Grid.Row="0" Text="{i18n:Translate tsdp_Creation}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="2" Grid.Row="1" Text="{ Binding Item.CREATED_BY, StringFormat='{0}'}" HorizontalOptions="Center"/>
+
+                    </Grid>
+                </StackLayout>
+
+                <StackLayout Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,5,0"
+                             HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                    <Grid Margin="0" Padding="0,0,0,10">
+                        <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate tsdp_MagasinSource}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.Row="1" Text="{ Binding Item.DESIGN_MAGASIN_SOURCE, StringFormat='{0}'}" HorizontalOptions="Center"/>
+
+                        <Label Grid.Column="1" Grid.Row="0" Text="{i18n:Translate tsdp_MagasinDestination}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="1" Grid.Row="1" Text="{ Binding Item.DESIGN_MAGASIN_DESTINATION, StringFormat='{0}'}" HorizontalOptions="Center"/>
+
+                    </Grid>
+                </StackLayout>
+                
+                <StackLayout Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Spacing="5" Padding="5,0,5,0"
+                             HorizontalOptions="FillAndExpand" VerticalOptions="Start" >
+                    <Grid Margin="0" Padding="0,0,0,10">
+                        <Label Grid.Column="0" Grid.Row="0"  Text="{i18n:Translate tsdp_Note}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Center"/>
+                        <Label Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Text="{ Binding Item.NOTE_TRANSFERT, StringFormat='{0}'}" HorizontalOptions="Center"/>
+
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </Frame>
+
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label Text="{i18n:Translate txt_Lots}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
+                </StackLayout>
+
+                <RefreshView 
+                    x:Name="refreshView"
+                    Refreshing="RefreshView_Refreshing"
+                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+                    <CollectionView 
+                                    ItemsSource="{Binding ItemRows}"
+                                    ItemTemplate="{StaticResource TransfertStockDetailPageSelector}">
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+
+</ContentPage>

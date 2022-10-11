@@ -1014,4 +1014,28 @@
   <data name="PEncDec_Note_Enc" xml:space="preserve">
     <value>Note</value>
   </data>
+  <data name="pn_TransfertStock" xml:space="preserve">
+    <value>Loading / Unloading</value>
+  </data>
+  <data name="tsdp_Creation" xml:space="preserve">
+    <value>Created :</value>
+  </data>
+  <data name="tsdp_Date" xml:space="preserve">
+    <value>Date :</value>
+  </data>
+  <data name="tsdp_MagasinDestination" xml:space="preserve">
+    <value>Destination :</value>
+  </data>
+  <data name="tsdp_MagasinSource" xml:space="preserve">
+    <value>Source :</value>
+  </data>
+  <data name="tsdp_TotalAchat" xml:space="preserve">
+    <value>Total Purchase :</value>
+  </data>
+  <data name="tsdp_Note" xml:space="preserve">
+    <value>Note :</value>
+  </data>
+  <data name="tsdp_Titre" xml:space="preserve">
+    <value>Stock Transfer</value>
+  </data>
 </root>
