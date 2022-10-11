@@ -473,8 +473,8 @@ namespace XpertMobileApp
 
             string furl = url.Replace(":" + port.ToString(), "");
             var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
-            if (!isReachable)
-                await ShowDisplayAlert();
+            //if (!isReachable)
+            //    await ShowDisplayAlert();
             Online = isReachable;
             return isReachable;
 

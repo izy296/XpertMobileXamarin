@@ -21,7 +21,7 @@ namespace XpertMobileApp.DAL
         public int ID { get; set; }
         public string CODE_PERMISSION { get; set; }
         public string CodeObjet { get; set; }
-        public string CODE_GROUPE { get; set; } 
+        public string CODE_GROUPE { get; set; }
         public short AcInsert { get; set; }
         public short AcUpdate { get; set; }
         public short AcDelete { get; set; }
@@ -74,6 +74,7 @@ namespace XpertMobileApp.DAL
         public string USER_SQL { get; set; }// just desktop
         public string PASSWORD_SQL { get; set; } //  desktop
         public string PREFIX { get; set; }// 
+        public string ID_USER { get; set; }
     }
 
     public class CBScanedEventArgs : EventArgs

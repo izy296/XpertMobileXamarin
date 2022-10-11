@@ -90,10 +90,13 @@ namespace XpertMobileApp.Views
 
             try
             {
-                //bool isconnected = await App.IsConected();
-                //if (!isconnected)
-                //    return;
-                if (await App.IsConected())
+                bool isconnected = await App.IsConected();
+                if (!isconnected)
+                    if (Constants.AppName != Apps.X_DISTRIBUTION)
+                    {
+                        return;
+                    }
+                if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
@@ -142,13 +145,17 @@ namespace XpertMobileApp.Views
                         user.GroupName = token.GroupName;
                         user.ClientId = App.Settings.ClientId;
                         user.UserName = token.userName;
+
                         //user.CODE_COMPTE = token.CODE_COMPTE;
                         user.Token = token;
                         App.User = user;
 
                         CrudManager.InitServices();
 
-                        await SQLite_Manager.initialisationDbLocal();
+                        //Création des différents tables de la base de donnée local...
+                        await SQLite_Manager.InitialisationDbLocal();
+
+                        //Insertion du token dans la table token ...
                         await SQLite_Manager.AjoutToken(token);
 
                         //check if Direct_Login if true in order to login with password only next time.
@@ -185,7 +192,7 @@ namespace XpertMobileApp.Views
                             await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
                         }
 
-                        //Save All settings in sqlite....
+                        //Sauvgarder (ServiceUrl, ClientName, ClientId, Mobile_Edition) dans la table Settings dans la db local ....
                         await App.SettingsDatabase.SaveItemAsync(App.Settings);
 
                         UserDialogs.Instance.HideLoading();
@@ -204,6 +211,7 @@ namespace XpertMobileApp.Views
                         }
                     }
                 }
+                //
                 else
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -211,11 +219,13 @@ namespace XpertMobileApp.Views
 
                     if (viewModel.CheckUser(user))
                     {
-                        // Authentification via SQLite
-                        bool validInfo = await SQLite_Manager.AuthUser(user);
-                        if (validInfo)
+                        // Vérification si le user avec le meme username et mot de pass existe dans la table ...
+                        SYS_USER validInfo = await SQLite_Manager.AuthUser(user);
+                        if (validInfo != null)
                         {
-                            Token token = await SQLite_Manager.getToken(user);
+                            User tempUser = new User { UserName = validInfo.ID_USER };
+                            // obtenir le token de la base local...
+                            Token token = await SQLite_Manager.getToken(tempUser);
                             if (token == null)
                             {
                                 UserDialogs.Instance.HideLoading();
@@ -239,11 +249,12 @@ namespace XpertMobileApp.Views
                                 // Alerte apres la connexion
                                 // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
 
-                                // suavegrade du user et du token en cours dans la bdd local
+                                // sauvegarde du user et du token en cours dans la bdd local
                                 try
                                 {
                                     if (Constants.AppName != Apps.X_BOUTIQUE)
                                     {
+                                        //Obtenir les permission de la table SYS_OBJET_PERMISSION ...
                                         AppManager.permissions = await SQLite_Manager.getPermission();
                                     }
                                     // await App.UserDatabase.SaveItemAsync(user);

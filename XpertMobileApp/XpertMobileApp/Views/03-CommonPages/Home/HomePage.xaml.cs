@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
@@ -57,6 +58,9 @@ namespace XpertMobileApp.Views
                     AppResources.alrt_msg_Ok);
             }
 
+            //Synchroniser les données si la connexion existe !
+            await WhenToSyncData();
+
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
             if (viewModel.Sessions.Count == 0)
@@ -82,7 +86,7 @@ namespace XpertMobileApp.Views
             }
             else notificationBell.ImageSource = "notification36.png";
 
-            if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).CurrentPage== this)
+            if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).CurrentPage == this)
             {
                 new MenuPage("1");
             }
@@ -110,7 +114,7 @@ namespace XpertMobileApp.Views
             {
                 await Upload();
             }
-            else if (id == "35")
+            else if (id == "11")
             {
                 await Download();
             }
@@ -123,9 +127,32 @@ namespace XpertMobileApp.Views
             }
         }
 
+        /// <summary>
+        /// Quand la connexion existe !
+        /// Uploader les nouveaux données aux sqlserver 
+        /// télécharger les nouveaux données depuis sqlserver
+        /// </summary>
+        /// <returns></returns>
+        public async Task WhenToSyncData()
+        {
+            try
+            {
+                var number = await SQLite_Manager.GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                if (App.Online)
+                {
+                    await Upload();
+                    await Download();
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
         public async Task Download()
         {
-            await SQLite_Manager.synchroniseDownload();
+            await SQLite_Manager.SynchroniseDownload();
         }
 
         public async Task Upload()

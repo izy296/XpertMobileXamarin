@@ -407,6 +407,10 @@ namespace XpertMobileApp.DAL
         public decimal MAX_MT_POINTS { get; set; }
     }
 
+    public class VTE_COMMANDE
+    {
+        //Cet Objet est créer pour etre passé comme paramétre dans la fonction SyncData (sqlite) 
+    }
     public partial class View_VTE_COMMANDE : View_VTE_VENTE
     {
         public string DESIGNATION_STATUS { get; set; }
