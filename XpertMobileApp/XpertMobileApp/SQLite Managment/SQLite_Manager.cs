@@ -417,12 +417,12 @@ namespace XpertMobileApp.SQLite_Managment
                 var items = await bll.GetItemsAsync();
 
                 var finalItem = items.Where(x => x.ID_USER == App.User.UserName).FirstOrDefault();
-
-                App.Settings.MachineName = finalItem.MACHINE;
-                await GetInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
-                var id = await GetInstance().InsertAsync(finalItem);
-                
-
+                if (finalItem != null)
+                {
+                    App.Settings.MachineName = finalItem.MACHINE;
+                    await GetInstance().DeleteAllAsync<SYS_CONFIGURATION_MACHINE>();
+                    var id = await GetInstance().InsertAsync(finalItem);
+                }
             }
             catch (Exception ex)
             {
