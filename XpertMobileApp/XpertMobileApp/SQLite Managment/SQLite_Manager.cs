@@ -1,7 +1,9 @@
 ﻿using Acr.UserDialogs;
 using SQLite;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -40,7 +42,11 @@ namespace XpertMobileApp.SQLite_Managment
         static string StockMethodName;
         static string CodeMagasin;
 
-
+        public class TableName
+        {
+            public TableName() { }
+            public string name { get; set; }
+        }
         #region Methode db standard
 
         /// <summary>
@@ -72,8 +78,6 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                //await GetInstance().DropTableAsync<View_TRS_TIERS>();
-
                 await GetInstance().CreateTableAsync<View_STK_PRODUITS>();
                 await GetInstance().CreateTableAsync<View_TRS_TIERS>();
                 await GetInstance().CreateTableAsync<View_LIV_TOURNEE>();
@@ -95,11 +99,79 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<BSE_ENCAISS_MOTIFS>();
                 await GetInstance().CreateTableAsync<View_VTE_COMMANDE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
-
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+            }
+        }
+        //Vérifie si les toutes les tables sont vide ou non ...
+        public static async Task<bool> CheckAllTablesIfEmpty()
+        {
+            try
+            {
+                List<int> countListe = new List<int>();
+                var obj = await GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
+                countListe.Add(obj.Count);
+
+                var obj1 = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                countListe.Add(obj1.Count);
+                var obj2 = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                countListe.Add(obj2.Count);
+                var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+                countListe.Add(obj3.Count);
+                var obj4 = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
+                countListe.Add(obj4.Count);
+                var obj5 = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+                countListe.Add(obj5.Count);
+                var obj6 = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
+                countListe.Add(obj6.Count);
+                var obj7 = await GetInstance().Table<SYS_USER>().ToListAsync();
+                countListe.Add(obj7.Count);
+                var obj8 = await GetInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
+                countListe.Add(obj8.Count);
+                var obj9 = await GetInstance().Table<TRS_JOURNEES>().ToListAsync();
+                countListe.Add(obj9.Count);
+                var obj10 = await GetInstance().Table<Token>().ToListAsync();
+                countListe.Add(obj10.Count);
+                var obj11 = await GetInstance().Table<View_BSE_TIERS_FAMILLE>().ToListAsync();
+                countListe.Add(obj11.Count);
+                var obj12 = await GetInstance().Table<BSE_TABLE_TYPE>().ToListAsync();
+                countListe.Add(obj12.Count);
+                var obj13 = await GetInstance().Table<BSE_TABLE>().ToListAsync();
+                countListe.Add(obj13.Count);
+
+                var obj14 = await GetInstance().Table<SYS_CONFIGURATION_MACHINE>().ToListAsync();
+                countListe.Add(obj14.Count);
+                var obj15 = await GetInstance().Table<SYS_MOBILE_PARAMETRE>().ToListAsync();
+                countListe.Add(obj15.Count);
+                var obj16 = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+                countListe.Add(obj16.Count);
+                var obj17 = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
+                countListe.Add(obj17.Count);
+                var obj18 = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+                countListe.Add(obj18.Count);
+                var obj19 = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync();
+                countListe.Add(obj19.Count);
+                var obj20 = await GetInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
+                countListe.Add(obj20.Count);
+
+                foreach (var count in countListe)
+                {
+                    if (count > 0)
+                    {
+                        // false means that the liste is not empty
+                        return false;
+                    }
+
+                }
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
 
@@ -186,13 +258,12 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncMotifs();//worked !
                 await SyncUsers(); //worked !
                 await SyncConfigMachine(); //worked
-                var obj4 = await GetInstance().Table<SYS_CONFIGURATION_MACHINE>().ToListAsync();// I added this line for testing purposes !!
-                                                                                                //await SyncProduct();
-                                                                                                //await SyncData<View_STK_STOCK, STK_STOCK>();
-                                                                                                //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-                                                                                                //await SyncProductPriceByQuantity();       this probelem here 
-                                                                                                //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
-                                                                                                //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                await SyncMagasin();                                                                                           //await SyncProduct();
+                //await SyncData<View_STK_STOCK, STK_STOCK>();
+                //await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                //await SyncProductPriceByQuantity();       this probelem here 
+                //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
+                //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                 UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
@@ -212,10 +283,11 @@ namespace XpertMobileApp.SQLite_Managment
             bool isconnected = await App.IsConected();
             if (isconnected)
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 await SyncTiersToServer();
                 await SyncEncaissToServer();
+                UserDialogs.Instance.HideLoading();
                 //await SyncVenteToServer(); // error while coppying content to a stream
-                // ajouter commande 
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else
@@ -225,6 +297,44 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchronisation du magasin 
+        /// Obtenir le code magasin de la table Sys_config_machine
+        /// assigné le code magasin a l'objet App
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SyncMagasin()
+        {
+            try
+            {
+                var listeConfigMachine = await GetInstance().Table<SYS_CONFIGURATION_MACHINE>().ToListAsync();
+                if (listeConfigMachine.Count > 0)
+                {
+                    var codeMagasin = listeConfigMachine.Where(x => x.ID_USER == App.User.UserName).FirstOrDefault()?.CODE_MAGASIN;
+                    if (codeMagasin != null)
+                    {
+                        App.CODE_MAGASIN = codeMagasin;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        //public static async Task<bool> CheckDbIsEmpty()
+        //{
+        //    try
+        //    {
+
+
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //}
         #endregion
 
         #region Tresorerie
@@ -400,6 +510,11 @@ namespace XpertMobileApp.SQLite_Managment
             UsersMethodName = "SyncUsers";
             await SyncData<SYS_USER, SYS_USER>(false, "", UsersMethodName);
         }
+
+        /// <summary>
+        /// Synchronisation des permssions 
+        /// </summary>
+        /// <returns></returns>
         public static async Task syncPermission()
         {
             idGroup = App.User.UserGroup;
@@ -408,6 +523,11 @@ namespace XpertMobileApp.SQLite_Managment
             await SyncData<SYS_OBJET_PERMISSION, SYS_OBJET_PERMISSION>(false, paramPermission, PermissionMethodName);
         }
 
+        /// <summary>
+        /// Synchronisation de la table sys_config_machine
+        /// Assigné ma machine a App.Settings.MachineName
+        /// </summary>
+        /// <returns></returns>
         public static async Task SyncConfigMachine()
         {
             try
@@ -510,6 +630,7 @@ namespace XpertMobileApp.SQLite_Managment
                     AppResources.alrt_msg_Ok);
             }
         }
+
         /// <summary>
         /// Retourne  la liste des compte ...
         /// </summary>
@@ -861,6 +982,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
 
         }
+
         /// <summary>
         /// Obtenir un produit de la table stk_stock par le code_produit
         /// </summary>
@@ -922,7 +1044,6 @@ namespace XpertMobileApp.SQLite_Managment
             await GetInstance().UpdateAsync(tiers);
         }
 
-
         /// <summary>
         /// Supprime tous les tokens de la table token et Inseré
         /// </summary>
@@ -971,7 +1092,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
             await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
         }
-
 
         /// <summary>
         /// Mise a jour de la quantité du stock  
@@ -1214,7 +1334,6 @@ namespace XpertMobileApp.SQLite_Managment
             return "";
         }
 
-
         /// <summary>
         /// synchronisation de la liste des tiers aux serveur
         /// </summary>
@@ -1223,7 +1342,6 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
                 List<View_TRS_TIERS> listNewTiers = new List<View_TRS_TIERS>();
                 foreach (var item in Tiers)
@@ -1238,7 +1356,6 @@ namespace XpertMobileApp.SQLite_Managment
                     var bll = new TiersManager();
                     var res = await bll.SyncTiers(listNewTiers);
                 }
-                //UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -1256,7 +1373,6 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var encaiss = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
                 if (encaiss.Count > 0 && encaiss != null)
                 {
@@ -1264,7 +1380,6 @@ namespace XpertMobileApp.SQLite_Managment
                     var res = await bll.SyncEncaiss(encaiss);
                     await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 }
-                //UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -1273,6 +1388,7 @@ namespace XpertMobileApp.SQLite_Managment
                 //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
+
         /// <summary>
         /// Obtenire la liste des details de vente par CODE_VENTE
         /// </summary>

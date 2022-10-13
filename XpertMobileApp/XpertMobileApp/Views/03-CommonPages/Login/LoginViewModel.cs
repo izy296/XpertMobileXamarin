@@ -40,7 +40,7 @@ namespace XpertMobileApp.ViewModels
             {
                 return true;
             }
-            return false;
+            return true; //a revoire 
         }
     }
 }

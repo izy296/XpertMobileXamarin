@@ -58,9 +58,6 @@ namespace XpertMobileApp.Views
                     AppResources.alrt_msg_Ok);
             }
 
-            //Synchroniser les données si la connexion existe !
-            await WhenToSyncData();
-
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
             if (viewModel.Sessions.Count == 0)
@@ -90,6 +87,9 @@ namespace XpertMobileApp.Views
             {
                 new MenuPage("1");
             }
+
+            //Synchroniser les données si la connexion existe !
+            await SyncDataIfDbEmpty();
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
@@ -133,15 +133,16 @@ namespace XpertMobileApp.Views
         /// télécharger les nouveaux données depuis sqlserver
         /// </summary>
         /// <returns></returns>
-        public async Task WhenToSyncData()
+        public async Task SyncDataIfDbEmpty()
         {
             try
             {
                 var number = await SQLite_Manager.GetInstance().Table<View_TRS_TIERS>().ToListAsync();
                 if (App.Online)
                 {
-                    await Upload();
-                    await Download();
+                    var checkDbEmpty = await SQLite_Manager.CheckAllTablesIfEmpty();
+                    if (checkDbEmpty)
+                        await Download();
                 }
             }
             catch (Exception ex)

@@ -472,6 +472,15 @@ namespace XpertMobileApp.Views
                     ReloadNumberOfNotifications();
                 }
 
+
+                /* Page Synchronisation */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Synchronisation,
+                    ItemGroup = MenuItemGroup.Parametres,
+                    Image = "",
+                    Title = AppResources.pn_synchronisation
+                });
                 /* Page About */
                 menuItems.Add(new HomeMenuItem
                 {

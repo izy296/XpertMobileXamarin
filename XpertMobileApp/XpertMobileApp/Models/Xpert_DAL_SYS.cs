@@ -75,6 +75,7 @@ namespace XpertMobileApp.DAL
         public string PASSWORD_SQL { get; set; } //  desktop
         public string PREFIX { get; set; }// 
         public string ID_USER { get; set; }
+        public string CODE_MAGASIN { get; set; }
     }
 
     public class CBScanedEventArgs : EventArgs

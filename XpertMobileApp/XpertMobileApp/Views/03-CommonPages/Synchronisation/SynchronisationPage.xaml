@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SynchronisationPage"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="{i18n:Translate pn_synchronisation}"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" 
+                     HorizontalOptions="Center"
+                     BackgroundColor="White">
+
+            <Label Text="Synchronisation de données" 
+                   TextColor="#000"
+                   FontSize="22"
+                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
+                   HeightRequest="50"/>
+
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="Center">
+
+                <Button 
+                    WidthRequest="150"
+                    HeightRequest="130"
+                    x:Name="Btn_Download" 
+                    Margin="14,15,14,0" 
+                    BorderRadius="12"
+                    BackgroundColor="#e65b65"
+                    TextColor="#fff"
+                    Text="Téléchargement de données" 
+                    Clicked="SyncDownload"
+                    ImageSource="cloud_download.png"
+                    ContentLayout="Bottom,0"/>
+
+
+                <Button 
+                    WidthRequest="150"
+                    HeightRequest="130"
+                    x:Name="Btn_Upload" 
+                    Margin="14,15,14,0" 
+                    BorderRadius="12"
+                    BackgroundColor="#7EC384"
+                    TextColor="White"
+                    Text="Upload de données" 
+                    Clicked="SyncUpload"
+                    FontAttributes="None"
+                    ImageSource="cloud_upload.png"
+                    ContentLayout="Bottom,0"/>
+
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

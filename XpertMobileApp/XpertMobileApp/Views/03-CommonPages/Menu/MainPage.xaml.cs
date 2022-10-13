@@ -12,6 +12,7 @@ using Acr.UserDialogs.Infrastructure;
 using System.Linq;
 using Plugin.FirebasePushNotification;
 using XpertMobileApp.Views._04_Comercial.Echange;
+using XpertMobileApp.Views._03_CommonPages.Synchronisation;
 
 namespace XpertMobileApp.Views
 {
@@ -136,6 +137,8 @@ namespace XpertMobileApp.Views
                     return new RotationDesProduitsPage();
                 case (int)MenuItemType.TransfertStock:
                     return new TransfertStock();
+                case (int)MenuItemType.Synchronisation:
+                    return new SynchronisationPage();
                 default:
                     return new HomePage();
             }
@@ -266,6 +269,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.TransfertStock:
                         MenuPages.Add(id, new NavigationPage(new TransfertStock()));
+                        break;
+                    case (int)MenuItemType.Synchronisation:
+                        MenuPages.Add(id, new NavigationPage(new SynchronisationPage()));
                         break;
                 }
             }

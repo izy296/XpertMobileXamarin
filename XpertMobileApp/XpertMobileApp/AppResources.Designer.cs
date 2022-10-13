@@ -3414,21 +3414,21 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("pn_RotationDesProduits", resourceCulture);
             }
-        }        
+        }
         public static string rdp_Touts
         {
             get
             {
                 return ResourceManager.GetString("rdp_Touts", resourceCulture);
             }
-        }        
+        }
         public static string rdp_Vte
         {
             get
             {
                 return ResourceManager.GetString("rdp_Vte", resourceCulture);
             }
-        }        
+        }
         public static string rdp_Ach
         {
             get
@@ -3442,32 +3442,32 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("pn_TransfertStock", resourceCulture);
             }
-        }        
-        
+        }
+
         public static string tsdp_Date
         {
             get
             {
                 return ResourceManager.GetString("tsdp_Date", resourceCulture);
             }
-        }        
-        
+        }
+
         public static string tsdp_TotalAchat
         {
             get
             {
                 return ResourceManager.GetString("tsdp_TotalAchat", resourceCulture);
             }
-        }        
-        
+        }
+
         public static string tsdp_Creation
         {
             get
             {
                 return ResourceManager.GetString("tsdp_Creation", resourceCulture);
             }
-        }        
-        
+        }
+
         public static string tsdp_MagasinSource
         {
             get
@@ -3475,7 +3475,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("tsdp_MagasinSource", resourceCulture);
             }
         }
-        
+
         public static string tsdp_MagasinDestination
         {
             get
@@ -3500,7 +3500,13 @@ namespace XpertMobileApp
             }
         }
 
-
+        internal static string pn_synchronisation
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_synchronisation", resourceCulture);
+            }
+        }
 
 
     }

@@ -1270,4 +1270,7 @@
   <data name="tsdp_TotalAchat" xml:space="preserve">
     <value>Total Achat :</value>
   </data>
+  <data name="pn_synchronisation" xml:space="preserve">
+    <value>Synchronisation</value>
+  </data>
 </root>
