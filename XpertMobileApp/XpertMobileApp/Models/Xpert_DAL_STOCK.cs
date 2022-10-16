@@ -778,6 +778,8 @@ namespace XpertMobileApp.Models
         public decimal TOTAL_PPA { get; set; } // money(19,4)
         public decimal TOTAL_SHP { get; set; } // money(19,4)
         public string NOTE_TRANSFERT { get; set; } // varchar(max)
+        public bool? IS_VALIDATE { get; set; } // varchar(max)
+        public string VALIDATE_BY { get; set; } // varchar(max)
     }
 
     public partial class View_STK_TRANSFERT : STK_TRANSFERT

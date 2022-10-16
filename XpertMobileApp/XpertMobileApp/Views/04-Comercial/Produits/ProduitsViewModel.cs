@@ -216,6 +216,8 @@ namespace XpertMobileApp.ViewModels
                 }
                 else
                 {
+                    if (Items.Count >= ElementsCount && Items.Count != 0)
+                        return;
                     currentQB = GetFilterParams().StringCondition;
                 }
                 await Items.LoadMoreAsync();

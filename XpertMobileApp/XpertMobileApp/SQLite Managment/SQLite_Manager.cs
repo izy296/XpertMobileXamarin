@@ -99,6 +99,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<BSE_ENCAISS_MOTIFS>();
                 await GetInstance().CreateTableAsync<View_VTE_COMMANDE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
+                await GetInstance().CreateTableAsync<View_STK_TRANSFERT>();
+
             }
             catch (Exception e)
             {
@@ -259,6 +261,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncUsers(); //worked !
                 await SyncConfigMachine(); //worked
                 await SyncMagasin();                                                                                           //await SyncProduct();
+                await SyncTransfers(); 
                 //await SyncData<View_STK_STOCK, STK_STOCK>();
                 //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                 //await SyncProductPriceByQuantity();       this probelem here 
@@ -282,6 +285,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             bool isconnected = await App.IsConected();
             if (isconnected)
+
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 await SyncTiersToServer();
@@ -827,6 +831,18 @@ namespace XpertMobileApp.SQLite_Managment
             var Params = await CrudManager.SysParams.GetParams();
             await GetInstance().DeleteAllAsync<SYS_MOBILE_PARAMETRE>();
             var id = await GetInstance().InsertAsync(Params);
+        }
+
+        /// <summary>
+        /// Insert Transfers dans la table Transfers
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SyncTransfers()
+        {
+            var codeMagasin = App.CODE_MAGASIN;
+            var paremetre = "codeMagasin=" + codeMagasin;
+            var TransferMethodName = "GetInvaldiateTransfertByMagasin";
+            await SyncData<View_STK_TRANSFERT, STK_TRANSFERT>(false, paremetre, TransferMethodName);
         }
 
         public static async Task<SYS_MOBILE_PARAMETRE> getParams()

@@ -36,6 +36,11 @@ namespace XpertMobileApp.Api.ViewModels
         public int PageSize = 10;
 
         private int elementsCount;
+        public int ElementsCount
+        {
+            get { return elementsCount; }
+            set { SetProperty(ref elementsCount, value); }
+        }
 
         bool isLoadExtrasBusy = false;
         public bool IsLoadExtrasBusy
@@ -231,7 +236,7 @@ namespace XpertMobileApp.Api.ViewModels
             //}
             //else
             {
-                var tt = await SQLite_Manager.getInstance().Table<TView>().ToListAsync();
+                var tt = await SQLite_Manager.GetInstance().Table<TView>().ToListAsync();
                 return tt;
             }
             //await UpdateDatabase.initialisationDbLocal();

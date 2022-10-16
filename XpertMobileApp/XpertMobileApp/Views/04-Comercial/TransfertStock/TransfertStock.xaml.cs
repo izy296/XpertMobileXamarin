@@ -16,7 +16,7 @@ namespace XpertMobileApp.Views
     public partial class TransfertStock : ContentPage
     {
 
-        TransfertStockViewModel viewModel ;
+        TransfertStockViewModel viewModel;
         public TransfertStock()
         {
             InitializeComponent();
@@ -29,18 +29,18 @@ namespace XpertMobileApp.Views
         async void OnItemSelected(object sender, Xamarin.Forms.SelectionChangedEventArgs args)
         {
             if (args.CurrentSelection.Count != 0)
-                if (App.Online)
-                {
-                    var item = args.CurrentSelection[0] as STK_TRANSFERT;
+            {
+                var item = args.CurrentSelection[0] as STK_TRANSFERT;
 
-                    if (item == null)
-                        return;
+                if (item == null)
+                    return;
 
-                    await Navigation.PushAsync(new TransfertStockDetail(item));
+                await Navigation.PushAsync(new TransfertStockDetail(item));
 
-                    // Manually deselect item.
-                    ItemsListView.SelectedItem = null;
-                }
+                // Manually deselect item.
+                ItemsListView.SelectedItem = null;
+            }
+
         }
 
 
