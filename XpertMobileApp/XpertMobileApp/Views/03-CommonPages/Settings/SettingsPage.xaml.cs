@@ -65,18 +65,22 @@ namespace XpertMobileApp.Views
 
             /* Set a temporary url service jus in debug mode */
 #if XM_DIST
-            UrlService url = new UrlService();
-            url = new UrlService
+            if (App.Settings.ServiceUrl == null || App.Settings.ServiceUrl == "")
             {
-                DisplayUrlService = "http://192.168.1.1:100",
-                Selected = true,
-                Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
-            };
-            List<UrlService> liste = new List<UrlService>();
-            liste.Add(url);
+                UrlService url = new UrlService();
+                url = new UrlService
+                {
+                    DisplayUrlService = "http://192.168.1.1:100/",
+                    Selected = true,
+                    Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
+                };
+                List<UrlService> liste = new List<UrlService>();
+                liste.Add(url);
 
-            App.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
-            App.SettingsDatabase.SaveItemAsync(App.Settings);
+                App.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                App.SettingsDatabase.SaveItemAsync(App.Settings);
+            }
+
 
 #endif
             //Set the selected Item from urlService....
