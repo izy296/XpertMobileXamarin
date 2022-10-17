@@ -274,7 +274,14 @@ namespace XpertMobileApp.Views
                     });
                     ReloadNumberOfNotifications();
                 }
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, ItemGroup = MenuItemGroup.Parametres, Image = "", Title = AppResources.pn_About });
+
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.About,
+                    ItemGroup = MenuItemGroup.Parametres,
+                    Image = "",
+                    Title = AppResources.pn_About
+                });
 
                 // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
                 // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },
@@ -367,7 +374,7 @@ namespace XpertMobileApp.Views
                     {
                         Id = MenuItemType.Home,
                         ItemGroup = MenuItemGroup.Home,
-                        Image = "",
+                        Image = "home.png",
                         Title = AppResources.pn_home
                     }
                     );
@@ -377,6 +384,7 @@ namespace XpertMobileApp.Views
                         Id = MenuItemType.Commandes,
                         ItemGroup = MenuItemGroup.Ventes,
                         Title = AppResources.pn_Commandes,
+                        Image = "shopping.png",
                         CodeObjet = XpertObjets.VTE_COMMANDE,
                         Action = XpertActions.AcSelect
                     });
@@ -385,7 +393,7 @@ namespace XpertMobileApp.Views
                     {
                         Id = MenuItemType.Tiers,
                         ItemGroup = MenuItemGroup.Ventes,
-                        Image = "",
+                        Image = "user.png",
                         Title = AppResources.pn_Tiers
                     });
 
@@ -393,7 +401,7 @@ namespace XpertMobileApp.Views
                     {
                         Id = MenuItemType.TransfertStock,
                         ItemGroup = MenuItemGroup.Stock,
-                        Image = "",
+                        Image = "transfer.png",
                         Title = AppResources.pn_TransfertStock
                     });
 
@@ -402,51 +410,61 @@ namespace XpertMobileApp.Views
                         Id = MenuItemType.Livraison,
                         ItemGroup = MenuItemGroup.Ventes,
                         Title = AppResources.pn_Livraison,
+                        Image = "livraison.png",
                         CodeObjet = XpertObjets.VTE_LIVRAISON,
                         Action = XpertActions.AcSelect
                     });
 
+                    /* Page session */
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Sessions,
                         ItemGroup = MenuItemGroup.Tresorerie,
+                        Image = "transaction.png",
                         Title = AppResources.pn_session,
                         CodeObjet = XpertObjets.TRS_RESUME_SESSION,
                         Action = XpertActions.AcSelect
                     });
 
+                    /* Page tresorerie */
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Tresorerie,
+                        Image = "money.png",
                         ItemGroup = MenuItemGroup.Tresorerie,
                         Title = AppResources.pn_Tresorerie,
                         CodeObjet = XpertObjets.BSE_COMPTE,
                         Action = XpertActions.AcSelect
                     });
 
+                    /* Page Encaissement */
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Encaissements,
                         ItemGroup = MenuItemGroup.Tresorerie,
                         Title = AppResources.pn_encaissement,
+                        Image = "encaiss.png",
                         CodeObjet = XpertObjets.TRS_DECAISS,
                         Action = Xpert.XpertActions.AcSelect
                     });
 
+                    /* Page transfert d fond */
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.TransfertDeFond,
                         ItemGroup = MenuItemGroup.Tresorerie,
                         Title = AppResources.pn_TransfertDeFond,
+                        Image = "transferdefond.png",
                         CodeObjet = XpertObjets.View_TRS_VIREMENT,
                         Action = XpertActions.AcSelect,
                     });
 
+                    /* Page Produit */
                     menuItems.Add(new HomeMenuItem
                     {
                         Id = MenuItemType.Produits,
                         ItemGroup = MenuItemGroup.Stock,
-                        Image = "",
+                        Image = "produit.png",
                         Title = AppResources.pn_Produits
                     });
 
@@ -455,7 +473,7 @@ namespace XpertMobileApp.Views
                     {
                         Id = MenuItemType.Settings,
                         ItemGroup = MenuItemGroup.Parametres,
-                        Image = "",
+                        Image = "setting.png",
                         Title = AppResources.pn_Settings
                     });
 
@@ -464,7 +482,7 @@ namespace XpertMobileApp.Views
                     {
                         Id = MenuItemType.Notification,
                         ItemGroup = MenuItemGroup.Home,
-                        Image = "",
+                        Image = "bell.png",
                         Title = AppResources.pn_Notification,
                         NotificationBadgeIsVisible = true,
                         CountOfNotifications = numberOfNotifications
@@ -478,7 +496,7 @@ namespace XpertMobileApp.Views
                 {
                     Id = MenuItemType.Synchronisation,
                     ItemGroup = MenuItemGroup.Parametres,
-                    Image = "",
+                    Image = "synchron.png",
                     Title = AppResources.pn_synchronisation
                 });
                 /* Page About */
@@ -486,7 +504,7 @@ namespace XpertMobileApp.Views
                 {
                     Id = MenuItemType.About,
                     ItemGroup = MenuItemGroup.Parametres,
-                    Image = "",
+                    Image = "information.png",
                     Title = AppResources.pn_About
                 });
             }
