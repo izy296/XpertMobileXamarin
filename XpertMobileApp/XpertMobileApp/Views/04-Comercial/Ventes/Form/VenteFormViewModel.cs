@@ -76,7 +76,7 @@ namespace XpertMobileApp.Views
         {
             get
             {
-                    return isretour;
+                return isretour;
             }
 
             set
@@ -201,21 +201,21 @@ namespace XpertMobileApp.Views
                     {
                         row.PRIX_VTE_HT = product.SelectedPrice;
                         row.PRIX_VTE_TTC = product.SelectedPrice;
-                        decimal qt = product.SelectedQUANTITE ;
+                        decimal qt = product.SelectedQUANTITE;
                         qt = qt * -1;
-                        row.QUANTITE  = (row.QUANTITE ) + qt;
+                        row.QUANTITE = (row.QUANTITE) + qt;
                     }
 
 
                     row.MT_TTC = row.PRIX_VTE_TTC * row.QUANTITE;
                     row.MT_HT = row.PRIX_VTE_HT * row.QUANTITE;
                     Item.TOTAL_TTC = ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
-                    
+
                     this.isRetour = true;
                     this.isretour = true;
 
                     row.Index = ItemRows.Count();
-                    
+
                     UpdateMontants();
                     row.PropertyChanged += Row_PropertyChanged;
 
@@ -303,7 +303,7 @@ namespace XpertMobileApp.Views
             {
                 if (e.PropertyName == "QUANTITE")
                 {
-                    var stock = await SQLite_Manager.getInstance().Table<View_STK_STOCK>().ToListAsync();
+                    var stock = await SQLite_Manager.GetInstance().Table<View_STK_STOCK>().ToListAsync();
                     foreach (var item in stock)
                     {
                         var row = ItemRows.Where(x => x.ID_STOCK == item.ID_STOCK).FirstOrDefault();

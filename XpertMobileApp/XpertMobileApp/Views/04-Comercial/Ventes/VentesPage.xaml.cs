@@ -158,7 +158,7 @@ namespace XpertMobileApp.Views
 
         private async void deleteAllVente(object sender, EventArgs e)
         {
-            await SQLite_Manager.getInstance().DeleteAllAsync<View_VTE_VENTE>();
+            await SQLite_Manager.GetInstance().DeleteAllAsync<View_VTE_VENTE>();
         }
 
         private void ShowHide_Clicked(object sender, EventArgs e)

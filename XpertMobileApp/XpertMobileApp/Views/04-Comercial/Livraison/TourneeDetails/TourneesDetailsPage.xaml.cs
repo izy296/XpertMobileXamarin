@@ -311,7 +311,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                var session = await SQLite_Manager.getInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
+                var session = await SQLite_Manager.GetInstance().Table<TRS_JOURNEES>().FirstOrDefaultAsync();
                 if (session == null)
                 {
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);

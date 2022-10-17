@@ -26,9 +26,9 @@ using XpertMobileApp.Api;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class SettingsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class SettingsPage : ContentPage
+    {
 
         public ObservableCollection<Language> Languages { get; }
         public ObservableCollection<UrlService> UrlServices { get; set; }
@@ -55,8 +55,8 @@ namespace XpertMobileApp.Views
         }
 
         public SettingsPage(bool isModal = false)
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
             //CommandeGrid.IsVisible = isModal;
             BindingContext = viewModel = new SettingsModel();
             //itemSelector = new SettingsSelector(CurrentStream);
@@ -95,22 +95,23 @@ namespace XpertMobileApp.Views
                     expirationDate.ToString("dd/MM/yyyy"));
             }
 
-            if (viewModel.IsConnected) 
+            if (viewModel.IsConnected)
             {
                 await viewModel.BindDeviceList();
 
                 await viewModel.LoadMagasins();
-            }            viewModel.LoadSettings();
+            }
+            viewModel.LoadSettings();
 
             MultiPrinters = viewModel.GetMultiPrintersAsync();
 
 
 
-            MessagingCenter.Subscribe<Settings,string>(this, "MultiPrinterChanged", (o,e) =>
-            {
-                MPrinterOptions.IsVisible=App.Settings.EnableMultiPrinter;
-                App.Settings.isModified=true;
-            });
+            MessagingCenter.Subscribe<Settings, string>(this, "MultiPrinterChanged", (o, e) =>
+             {
+                 MPrinterOptions.IsVisible = App.Settings.EnableMultiPrinter;
+                 App.Settings.isModified = true;
+             });
 
             MessagingCenter.Subscribe<PrinterSelector, List<XPrinter>>(this, MCDico.ITEM_SELECTED, (o, e) =>
             {
@@ -135,7 +136,7 @@ namespace XpertMobileApp.Views
                 List<XPrinter> Printers = e;
                 foreach (XPrinter tempPrinter in Printers)
                 {
-                    for (int i=0;i<MultiPrinters.Count;i++)
+                    for (int i = 0; i < MultiPrinters.Count; i++)
                     {
                         if (tempPrinter.Name == MultiPrinters[i].Name)
                             MultiPrinters.RemoveAt(i);
@@ -218,7 +219,7 @@ namespace XpertMobileApp.Views
             base.OnDisappearing();
 
             if (viewModel.Settings.isModified)
-            { 
+            {
                 var action = await DisplayAlert(AppResources.alrt_msg_title_Settings, AppResources.alrt_msg_SaveSettings,
                     AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
                 if (action)
@@ -273,8 +274,8 @@ namespace XpertMobileApp.Views
                 if (res != null)
                 {
                     await DisplayAlert("Succes", AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                    await SQLite_Manager.getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
-                    var id = await SQLite_Manager.getInstance().InsertAsync(res);
+                    await SQLite_Manager.GetInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
+                    var id = await SQLite_Manager.GetInstance().InsertAsync(res);
                     //RecupererPrefix_Clicked(sender,e);
                 }
             }
@@ -341,7 +342,7 @@ namespace XpertMobileApp.Views
                     await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionError, AppResources.alrt_msg_Ok);
                 }
             }
-            catch 
+            catch
             {
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_CantTestConnexionSettings, AppResources.alrt_msg_Ok);
             }
@@ -350,7 +351,7 @@ namespace XpertMobileApp.Views
         public async Task<bool> IsBlogReachableAndRunning(string url, int msTimeout = 5000)
         {
             try
-            { 
+            {
                 var connectivity = CrossConnectivity.Current;
                 if (!connectivity.IsConnected)
                     return false;
@@ -724,21 +725,21 @@ namespace XpertMobileApp.Views
 
         private async void List_MultiPrinter_Clicked(object sender, EventArgs e)
         {
-            if (MultiPrinters != null && MultiPrinters.Count>0)
+            if (MultiPrinters != null && MultiPrinters.Count > 0)
                 await PopupNavigation.Instance.PushAsync(new PrinterSelector(MultiPrinters, "LIST"));
             else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
         }
 
         private async void Add_MultiPrinter_Clicked(object sender, EventArgs e)
         {
-            if (viewModel.DeviceList.Count>1 && viewModel.DeviceList!=null)
-                await PopupNavigation.Instance.PushAsync(new PrinterSelector(new List<XPrinter>(viewModel.DeviceList),"ADD"));
-            else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Ajout , AppResources.alrt_msg_Ok);
+            if (viewModel.DeviceList.Count > 1 && viewModel.DeviceList != null)
+                await PopupNavigation.Instance.PushAsync(new PrinterSelector(new List<XPrinter>(viewModel.DeviceList), "ADD"));
+            else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Ajout, AppResources.alrt_msg_Ok);
         }
 
         private async void Delete_MultiPrinter_Clicked(object sender, EventArgs e)
         {
-            if (MultiPrinters!=null && MultiPrinters.Count > 0)
+            if (MultiPrinters != null && MultiPrinters.Count > 0)
                 await PopupNavigation.Instance.PushAsync(new PrinterSelector(MultiPrinters, "REMOVE"));
             else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
         }

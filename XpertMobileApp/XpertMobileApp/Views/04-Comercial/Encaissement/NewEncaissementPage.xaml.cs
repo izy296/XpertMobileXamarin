@@ -331,7 +331,7 @@ namespace XpertMobileApp.Views
                     if (Item != null)
                     {
                         //SelectCompte(Item.CODE_COMPTE);
-                        List<SYS_USER> users = await SQLite_Manager.getInstance().Table<SYS_USER>().ToListAsync();
+                        List<SYS_USER> users = await SQLite_Manager.GetInstance().Table<SYS_USER>().ToListAsync();
                         var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
                         if (!(string.IsNullOrEmpty(code_compte)))
                         {
