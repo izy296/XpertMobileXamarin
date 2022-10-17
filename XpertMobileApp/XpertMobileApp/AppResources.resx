@@ -1273,4 +1273,7 @@
   <data name="pn_synchronisation" xml:space="preserve">
     <value>Synchronisation</value>
   </data>
+  <data name="txt_reinstall_app" xml:space="preserve">
+    <value>Veuillez reinstaller votre application.</value>
+  </data>
 </root>

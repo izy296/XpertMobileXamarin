@@ -3507,7 +3507,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_synchronisation", resourceCulture);
             }
         }
-
+        internal static string txt_reinstall_app
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_reinstall_app", resourceCulture);
+            }
+        }
 
     }
 }

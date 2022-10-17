@@ -1038,4 +1038,7 @@
   <data name="tsdp_Titre" xml:space="preserve">
     <value>Stock Transfer</value>
   </data>
+  <data name="txt_reinstall_app" xml:space="preserve">
+    <value>Please reinstall your application.</value>
+  </data>
 </root>

@@ -189,7 +189,7 @@ namespace XpertMobileApp.ViewModels
 
 
         //Set Urls Item once the page is loaded...
-        public UrlService GetUrlService()
+        public async Task<UrlService> GetUrlService()
         {
             try
             {
@@ -199,6 +199,7 @@ namespace XpertMobileApp.ViewModels
                     bool checkIfJson = Manager.isJson(Settings.ServiceUrl);
                     if (checkIfJson)
                     {
+
                         List<UrlService> Liste;
                         Liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
 
@@ -221,14 +222,15 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                throw ex;
+                await UserDialogs.Instance.AlertAsync(AppResources.txt_reinstall_app, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return UrlServices[0];
             }
         }
         public async void LoadSettings()
         {
 
             this.Settings = App.SettingsDatabase.GetFirstItemAsync().Result;
-            if (this.Settings.ServiceUrl != "")
+            if (this.Settings.ServiceUrl != "" && this.Settings.ServiceUrl != null)
             {
                 if (Manager.isJson(Settings.ServiceUrl))
                 {

@@ -384,7 +384,7 @@ namespace XpertMobileApp
             IsInForeground = true;
         }
         //Methode to set url services 
-        public static void SetUrlServices(UrlService urlService)
+        public async static void SetUrlServices(UrlService urlService)
         {
             try
             {
@@ -413,7 +413,8 @@ namespace XpertMobileApp
             }
             catch (Exception e)
             {
-                throw e;
+                await UserDialogs.Instance.AlertAsync(e.Message.ToString(), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
             }
         }
         public static void SetAppLanguage(string language)

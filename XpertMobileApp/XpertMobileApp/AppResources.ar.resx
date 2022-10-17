@@ -1138,4 +1138,7 @@
   <data name="tsdp_Titre" xml:space="preserve">
     <value>تحويل المخزن</value>
   </data>
+  <data name="txt_reinstall_app" xml:space="preserve">
+    <value>الرجاء اعادة تنصيب التطبيق</value>
+  </data>
 </root>

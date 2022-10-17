@@ -63,8 +63,26 @@ namespace XpertMobileApp.Views
 
             LanguagesPicker.SelectedItem = viewModel.GetLanguageElem(viewModel.Settings.Language);
 
+            /* Set a temporary url service jus in debug mode */
+#if XM_DIST
+            UrlService url = new UrlService();
+            url = new UrlService
+            {
+                DisplayUrlService = "http://192.168.1.1:100",
+                Selected = true,
+                Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
+            };
+            List<UrlService> liste = new List<UrlService>();
+            liste.Add(url);
+
+            App.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+            App.SettingsDatabase.SaveItemAsync(App.Settings);
+
+#endif
             //Set the selected Item from urlService....
             UrlServicePicker.SelectedItem = viewModel.GetUrlService();
+
+
 
         }
 
@@ -85,7 +103,7 @@ namespace XpertMobileApp.Views
             UrlServicePicker.SelectedIndexChanged += UrlServicePicker_SelectedIndexChanged;
 
             //Set the index of the UrlService in the Picker to display it as default  
-            UrlServicePicker.SelectedIndex = GetServiceUrlIndex();
+            UrlServicePicker.SelectedIndex = await GetServiceUrlIndex();
 
             Client client = App.ClientDatabase.GetFirstItemAsync().Result;
             if (client != null)
@@ -150,7 +168,7 @@ namespace XpertMobileApp.Views
         /// Search in the local Database the index of the selected UrlService
         /// </summary>
         /// <returns></returns>
-        private int GetServiceUrlIndex()
+        private async Task<int> GetServiceUrlIndex()
         {
             bool finded = false;
             int i = 0;
@@ -180,7 +198,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                throw ex;
+                await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return 0;
             }
 
         }
@@ -200,18 +219,24 @@ namespace XpertMobileApp.Views
         }
         private void UrlServicePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (UrlServicePicker.SelectedIndex != -1)
+            try
             {
-                var urlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
-                App.SetUrlServices(urlService);
+                if (UrlServicePicker.SelectedIndex != -1)
+                {
+                    var urlService = viewModel.UrlServices[UrlServicePicker.SelectedIndex];
+                    App.SetUrlServices(urlService);
+                }
+                else
+                {
+                    App.SetUrlServices(new UrlService
+                    { Selected = true, Title = "", DisplayUrlService = "" });
+                }
             }
-            else
+            catch (Exception ex)
             {
-                App.SetUrlServices(new UrlService
-                { Selected = true, Title = "", DisplayUrlService = "" });
+                DisplayAlert(ex.Message.ToString(), AppResources.alrt_msg_SaveSettings,
+                   AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
             }
-
-
         }
 
         protected override async void OnDisappearing()
@@ -706,7 +731,7 @@ namespace XpertMobileApp.Views
                                 Selected = listeUrlService[indexModified].Selected,
                                 Title = listeUrlService[indexModified].Title
                             });
-                            UrlServicePicker.SelectedIndex = GetServiceUrlIndex();
+                            UrlServicePicker.SelectedIndex = await GetServiceUrlIndex();
                             //Save all settings
                             await viewModel.SaveSettings();
                             await DisplayAlert(AppResources.txt_modification_succee, AppResources.txt_modification_message, AppResources.alrt_msg_Ok);
