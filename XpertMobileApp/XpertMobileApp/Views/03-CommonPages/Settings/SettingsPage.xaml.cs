@@ -74,10 +74,12 @@ namespace XpertMobileApp.Views
                     Selected = true,
                     Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
                 };
+
                 List<UrlService> liste = new List<UrlService>();
                 liste.Add(url);
 
                 App.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+                App.Settings.ClientId = "1540";
                 App.SettingsDatabase.SaveItemAsync(App.Settings);
             }
 
