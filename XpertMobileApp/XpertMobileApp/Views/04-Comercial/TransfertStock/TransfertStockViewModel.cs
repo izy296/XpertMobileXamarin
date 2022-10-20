@@ -19,19 +19,19 @@ namespace XpertMobileApp.ViewModels
     {
 
         string currentQB = null;
-        public DateTime StartDate { get; set; } = DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        public DateTime StartDate { get; set; } = DateTime.Now;//DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         public DateTime EndDate { get; set; } = DateTime.Now;
 
 
         public TransfertStockViewModel()
         {
             base.InitConstructor();
-
             if (XpertHelper.IsNullOrEmpty(App.CODE_MAGASIN))
             {
+                SQLite_Manager.SyncConfigMachine();
+                SQLite_Manager.SyncMagasin();
                 GetCodeMagasin();
             }
-
         }
 
         private async void GetCodeMagasin()
@@ -52,6 +52,7 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
+            
             this.AddCondition<View_STK_TRANSFERT, DateTime?>(e => e.DATE_TRANSEFRT, Operator.BETWEEN_DATE, StartDate, EndDate);
             this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_DESTINATION, App.CODE_MAGASIN);
             this.AddCondition<View_STK_TRANSFERT, bool?>(e => e.IS_VALIDATE, false);

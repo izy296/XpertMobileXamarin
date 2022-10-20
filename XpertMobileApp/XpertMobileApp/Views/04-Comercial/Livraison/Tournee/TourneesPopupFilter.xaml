@@ -4,7 +4,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="XpertMobileApp.Views.TransferStockPopupFilter"
+             x:Class="XpertMobileApp.Views.TourneesPopupFilter"
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
             xmlns:fontawesome="clr-namespace:FontAwesome">

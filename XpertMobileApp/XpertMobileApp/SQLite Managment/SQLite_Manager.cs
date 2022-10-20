@@ -238,42 +238,51 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         public static async Task SynchroniseDownload()
         {
-            bool isconnected = await App.IsConected();
-            if (isconnected)
+            try
             {
-                await InitialisationDbLocal();
+                bool isconnected = await App.IsConected();
+                if (isconnected)
+                {
+                    await InitialisationDbLocal();
 
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
-                await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
-                await SyncCommande(); //worked
-                await SyncLivTournee();//worked !
-                await SyncLivTourneeDetail(); //worked !
-                await SyncStock();//worked !
-                await syncPermission();//worked ! 
-                await SyncSysParams(); //worked !
-                await syncSession(); //worked !
-                await SyncFamille();//worked !
-                await SyncTypeTiers();//worked !
-                await SyncSecteurs();//worked !
-                await SyncBseCompte();//worked !
-                await SyncMotifs();//worked !
-                await SyncUsers(); //worked !
-                await SyncConfigMachine(); //worked
-                await SyncMagasin();                                                                                           //await SyncProduct();
-                await SyncTransfers(); 
-                //await SyncData<View_STK_STOCK, STK_STOCK>();
-                //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-                //await SyncProductPriceByQuantity();       this probelem here 
-                //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
-                //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
+                    await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
+                    await SyncCommande(); //worked
+                    await SyncLivTournee();//worked !
+                    await SyncLivTourneeDetail(); //worked !
+                    await SyncStock();//worked !
+                    await syncPermission();//worked ! 
+                    await SyncSysParams(); //worked !
+                    await syncSession(); //worked !
+                    await SyncFamille();//worked !
+                    await SyncTypeTiers();//worked !
+                    await SyncSecteurs();//worked !
+                    await SyncBseCompte();//worked !
+                    await SyncMotifs();//worked !
+                    await SyncUsers(); //worked !
+                    await SyncConfigMachine(); //worked
+                    await SyncMagasin();                                                                                           //await SyncProduct();
+                    await SyncTransfers();
+                    //await SyncData<View_STK_STOCK, STK_STOCK>();
+                    //await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                    //await SyncProductPriceByQuantity();       this probelem here 
+                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
+                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                throw ex;
             }
         }
 

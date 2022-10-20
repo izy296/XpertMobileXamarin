@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Services;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -68,26 +69,11 @@ namespace XpertMobileApp.Views
         viewModel.LoadItemsCommand.Execute(null);
     }
 
-    private void Filter_Clicked(object sender, EventArgs e)
-    {
-        FilterPanel.IsVisible = !FilterPanel.IsVisible;
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            TourneesPopupFilter filter = new TourneesPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
+        }
     }
-
-    private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-    {
-        viewModel.LoadItemsCommand.Execute(null);
-    }
-
-    private void btn_CancelFilter_Clicked(object sender, EventArgs e)
-    {
-        FilterPanel.IsVisible = false;
-        viewModel.ClearFilters();
-        viewModel.LoadItemsCommand.Execute(null);
-    }
-
-    private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
-    }
-}
 }

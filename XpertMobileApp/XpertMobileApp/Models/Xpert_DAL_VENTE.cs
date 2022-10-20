@@ -795,6 +795,10 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; } // varchar(200)
+        public bool ETAT_TOURNEE { get; set; }
+        public DateTime? DATE_DEPART { get; set; }
+        public DateTime? DATE_RETOUR { get; set; }
+        public DateTime? DATE_LAST_SYNC { get; set; }
     }
     public partial class View_LIV_TOURNEE : LIV_TOURNEE
     {
@@ -851,5 +855,47 @@ namespace XpertMobileApp.DAL
 
         public string ETAT_COLOR { get; set; }
     }
+
+    public partial class View_VTE_VENTE_LIVRAISON : VTE_VENTE
+    {
+        public decimal TOTAL_PAYE { get; set; } // money(19,4)
+        public decimal TOTAL_RESTE { get; set; } // money(19,4)
+        public string OWNER { get; set; } // varchar(200)
+        public string NOM_TIERS { get; set; } // varchar(501)
+        public string ADRESSE_TIERS { get; set; } // varchar(500)
+        public string NUM_ASSURE { get; set; } // varchar(12)
+        public string TEL1_TIERS { get; set; } // varchar(50)
+        public string TEL2_TIERS { get; set; } // varchar(50)
+        public string DESIGN_MODE { get; set; } // varchar(300)      
+        public decimal SOLDE_TIERS_AT_VALIDAT { get; set; } // money(19,4)
+        public decimal TOTAL_ENCAISS_AT_VALIDAT { get; set; } // money(19,4)
+        public DateTime? DATE_MAX_ARCHIVE { get; set; }
+        public string NOM_MEDECIN { get; set; }
+        public string DESIGNATION_WILAYA_DELIVRE { get; set; }
+        public string DATE_DELIVRE_CARTE { get; set; }
+        public string N_CARTE { get; set; }
+        public string TITRE_VENTE { get; set; } // varchar(300)
+        public string TYPE_DOC { get; set; }
+        public decimal TOTAL_HT_REEL { get; set; }
+        public decimal TOTAL_PPA_REEL { get; set; }
+        public decimal TOTAL_SHP_REEL { get; set; }
+        public decimal TOTAL_REMISE_REEL { get; set; }
+        public decimal TOTAL_TVA_REEL { get; set; }
+        public decimal TOTAL_TTC_REEL { get; set; }
+        public decimal TOTAL_PAYE_REEL { get; set; }
+        public decimal TOTAL_RESTE_REEL { get; set; }
+        public string DESIGN_MOTIF_LIVRAISON { get; set; }
+        public string TYPE_TIERS { get; set; }
+        public decimal TOTAL_TTC_SANS_REMISE { get; set; }
+        public DateTime? DATE_PAYE_CREANCE { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+        public decimal QTE_TOTAL_VENTE { get; set; }
+        public decimal QTE_TOTAL_IMPORTER { get; set; }
+        public decimal QTE_REST_FACTURER { get; set; }
+        // bon de livraison facturée
+        public bool LIVRAISON_FACTUREE { get; set; }
+
+    }
+
     #endregion
 }

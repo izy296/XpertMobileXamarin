@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -45,7 +46,8 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
-            if (!(App.User.UserName.ToString() == "Administrateur"))
+            this.AddCondition<View_LIV_TOURNEE, bool>(e => e.ETAT_TOURNEE, false);
+            if (App.User.UserGroup!="AD")
             {
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
             }
