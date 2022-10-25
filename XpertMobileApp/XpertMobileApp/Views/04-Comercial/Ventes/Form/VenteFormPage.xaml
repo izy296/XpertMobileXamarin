@@ -26,7 +26,7 @@
         -->
 
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <StackLayout  Padding="0" BackgroundColor="#f0f2f5" Spacing="0">
             <StackLayout BackgroundColor="#d7e4f7" Spacing="0" HeightRequest="50" Orientation="Horizontal"
@@ -128,7 +128,7 @@
             <ScrollView Padding="0" Margin="0" BackgroundColor="Transparent"></ScrollView>
             -->
             <Frame CornerRadius="10" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  OutlineColor="Transparent">
-                 <syncfusion:SfListView x:Name="listView" 
+                <syncfusion:SfListView x:Name="listView" 
                             ItemsSource="{Binding ItemRows}"
                             SelectionBackgroundColor="Transparent"
                             SelectionMode="None"
@@ -142,13 +142,13 @@
                             Padding="4"
                             BackgroundColor="Transparent"
                             AutoFitMode="Height">
-                        <syncfusion:SfListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  
                                            OutlineColor="Transparent" ClassId="{Binding ID, StringFormat='fr_{0}'}">
-                                        <StackLayout Spacing="20" Padding="15" BackgroundColor="Transparent" >
-                                            <Grid Margin="0" Padding="0">
+                                    <StackLayout Spacing="20" Padding="15" BackgroundColor="Transparent" >
+                                        <Grid Margin="0" Padding="0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
                                             </Grid.ColumnDefinitions>
@@ -159,20 +159,20 @@
                                             </Grid.RowDefinitions>
 
 
-                                                <!-- Designation -->
+                                            <!-- Designation -->
                                             <StackLayout HorizontalOptions="FillAndExpand">
                                                 <Label Text="Retour" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
                                                            TextColor="Red" 
                                                            FontSize="Large"
                                                             IsVisible="false"/>
-                                                
+
                                                 <Label Text="{Binding DESIGNATION_PRODUIT}" Margin="0,5,0,5" HorizontalOptions="FillAndExpand" 
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontSize="Default"/>
                                             </StackLayout>
 
-                                                <!-- Infos row -->
-                                                <Grid Grid.Column="0" Grid.Row="1"  Padding="0" HorizontalOptions="FillAndExpand" 
+                                            <!-- Infos row -->
+                                            <Grid Grid.Column="0" Grid.Row="1"  Padding="0" HorizontalOptions="FillAndExpand" 
                                                   ColumnSpacing="0" Margin="0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
@@ -193,7 +193,7 @@
                                                 </StackLayout>
                                                 <StackLayout Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
                                                     <Label  Text="Prix" Margin="0" HorizontalOptions="Start" TextColor="Gray" FontSize="Micro"/>
-                                                        <Label  Text="{Binding PRIX_VTE_TTC, StringFormat='{0:N1}'}" Margin="5" HorizontalOptions="Center" 
+                                                    <Label  Text="{Binding PRIX_VTE_TTC, StringFormat='{0:N1}'}" Margin="5" HorizontalOptions="Center" 
                                                            TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold"
                                                            FontSize="Default"/>
                                                 </StackLayout>
@@ -205,18 +205,18 @@
                                                 </StackLayout>
                                             </Grid>
                                         </Grid>
-                                        </StackLayout>
-                                    </Frame>
-                                </ViewCell>
-                            </DataTemplate>
-                        </syncfusion:SfListView.ItemTemplate>
-                        <syncfusion:SfListView.RightSwipeTemplate>
-                            <DataTemplate x:Name="LeftSwipeTemplate">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <!--
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                    <syncfusion:SfListView.RightSwipeTemplate>
+                        <DataTemplate x:Name="LeftSwipeTemplate">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <!--
                                     <Grid BackgroundColor="#009EDA" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
                                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
                                             <Image Grid.Column="0"
@@ -229,55 +229,57 @@
                                         </Grid>
                                      </Grid>
                                     -->
-                                     <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
-                                         <Grid VerticalOptions="Center" HorizontalOptions="Center">
-                                             <Image Grid.Column="0"
+                                <Grid BackgroundColor="#DC595F" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                    <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                        <Image Grid.Column="0"
                                                Grid.Row="0"
                                                HeightRequest="35"
                                                WidthRequest="35"
                                                BackgroundColor="Transparent"
                                                BindingContextChanged="delete_Vte"
                                                Source="Delete.png" />
-                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </DataTemplate>
-                        </syncfusion:SfListView.RightSwipeTemplate>
-                    </syncfusion:SfListView>
-                </Frame>
+                            </Grid>
+                        </DataTemplate>
+                    </syncfusion:SfListView.RightSwipeTemplate>
+                </syncfusion:SfListView>
+            </Frame>
 
-            
+
 
             <StackLayout BackgroundColor="Transparent" Padding="0" Margin="3,0,3,3" Spacing="0"  VerticalOptions="End">
                 <Label x:Name="lbl_vteTTC" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="18" Margin="0,5,10,10"
                            Text="{ Binding Item.TOTAL_TTC, StringFormat='Total : {0:N1} DA'}" 
                            IsVisible="{Binding Item.IS_ACHAT}"
                            HorizontalOptions="End" TextColor="Chocolate" FontAttributes="Bold" />
-                
+
                 <StackLayout Padding="0" Margin="10" Spacing="0" Orientation="Horizontal">
                     <flex:FlexButton
                     x:Name="cmd_Buy"
                     HorizontalOptions="FillAndExpand"
                     IconOrientation="Left" 
-                    IconPadding="0,0,5,0"
+                    IconPadding="0,0,20,0"
                     HeightRequest="55"
                     Padding="0"
                     Margin="0"
                     Text="Valider"
-                    CornerRadius="38"
-                    Icon="shopping_cart_24.png"
+                    CornerRadius="50"
+                        BackgroundColor="Green" 
+                    HasShadow="True"
+                        Icon="shopping_cart_24.png"
                     ForegroundColor="#ffffff"
                     HighlightForegroundColor="#49516F"
-                    BackgroundColor="#6279B8"
                     HighlightBackgroundColor="#8EA4D2"
-                    BorderColor="#8EA4D2"
+                    BorderColor="Green"
                     HighlightBorderColor="#8EA4D2"
                     BorderThickness="3"
+                        FontSize="25"
                     Clicked="cmd_Buy_Clicked"
                     />
                 </StackLayout>
             </StackLayout>
-                    
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>    

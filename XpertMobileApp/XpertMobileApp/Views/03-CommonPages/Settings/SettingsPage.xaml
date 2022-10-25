@@ -47,30 +47,6 @@
                         </StackLayout>
                     </Frame>
 
-                    <!-- Authentification d'appareil -->
-                    <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
-                        <StackLayout x:Name="PrefixSettingZone"  Padding="10"  >
-                            <Label x:Name="lbl_configuration" Text="Configuration" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
-                            <Button  x:Name="Btn_AddPrefix" Text="{i18n:Translate sys_prefix_add}" 
-                                     WidthRequest="300" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
-                                     Clicked="ConfigurerAppareil_Clicked"/>
-                            <Button  x:Name="Btn_GetPrefix" Text="{i18n:Translate sys_prefix_get}" 
-                                     WidthRequest="300" HorizontalOptions="End" Style="{DynamicResource DefaultBtnStyle}"
-                                     Clicked="RecupererPrefix_Clicked"/>
-                            <!--<Entry x:Name="PrefixValue" Text="" />-->
-                        </StackLayout>
-                    </Frame>
-                    <!-- Mode offline -->
-                    <!--<Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}">
-                        <StackLayout x:Name="ModeOffline"  Padding="10" >
-                            <Label x:Name="lbl_ModeOffline" Text="Mode offline" FontSize="Medium" Style="{DynamicResource DefaultTextStyle}"
-                                   Margin="0,0,0,15" />
-                            <Label Text="Activer mode offline"/>
-                            <Switch x:Name="offlinemoe" IsToggled="{Binding Settings.SubscribedToFBNotifications, Mode=TwoWay}"/>
-                        </StackLayout>
-                    </Frame>-->
-
 
                     <!-- Notifications -->
                     <Frame Style="{StaticResource FrameForListing}" IsVisible="{Binding IsConnected}">
@@ -133,6 +109,7 @@
                             <Label x:Name="lbl_ExperationDate" Text="" Style="{DynamicResource DefaultTextStyle}" TextColor="Black" />
                             <Button  x:Name="Btn_RemoveLicence" Text="{i18n:Translate sp_btn_RemoveLicence}" CornerRadius="8"
                                       Style="{DynamicResource DefaultBtnStyle}"
+                                     BackgroundColor="OrangeRed"
                                      Clicked="Btn_RemoveLicence_Clicked"/>
                         </StackLayout>
                     </Frame>
@@ -151,7 +128,7 @@
                     <StackLayout Grid.Column="1" x:Name="settings" Orientation="Horizontal" HorizontalOptions="End">
                         <Button WidthRequest="150" CornerRadius="8" Text="{i18n:Translate btn_Close}" x:Name="Btn_CloseSettings" 
                                IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SettingsClose_Clicked"/>
-                        <Button WidthRequest="150" CornerRadius="8" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
+                        <Button WidthRequest="200" Margin="5,0,0,5" CornerRadius="20" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>

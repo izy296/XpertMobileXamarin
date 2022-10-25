@@ -8,6 +8,10 @@ using XpertMobileApp.Api;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.ViewModels.Entree;
+using XpertMobileApp.Views.Entree;
+using XpertMobileAppManafiaa.Views._06_Manafiaa.DaytimeDelivery;
+using XpertMobileAppManafiaa.Views._06_Manafiaa.Stock;
 
 namespace XpertMobileApp.Views
 {
@@ -23,26 +27,18 @@ namespace XpertMobileApp.Views
             FlowDirection = App.PageFlowDirection;
 
             MasterBehavior = MasterBehavior.Popover;
-            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XCOM_Livraison)
+            if ( Constants.AppName == Apps.XCOM_Livraison)
             {
                 this.Detail = new NavigationPage(new HomePage());
                 MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
+
+
             }
             else if (Constants.AppName == Apps.XAGRI_Mob)
             {
                 this.Detail = new NavigationPage(new AchatsPage());
                 MenuPages.Add((int)MenuItemType.Achats, (NavigationPage)Detail);
             }
-            //else if (Constants.AppName == Apps.XACATALOG_Mob)
-            //{
-            //    this.Detail = new NavigationPage(new MyCommandesPage());
-            //    MenuPages.Add((int)MenuItemType.MyCommandes, (NavigationPage)Detail);
-            //}
-            //else if (Constants.AppName == Apps.X_BOUTIQUE)
-            //{
-            //    this.Detail = new NavigationPage(new ProductHomePage());
-            //    MenuPages.Add((int)MenuItemType.XBoutiqueHome, (NavigationPage)Detail);
-            //}
         }
 
         public ContentPage GetMenuPage(int idPage) 
@@ -52,7 +48,7 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Home:
                         return new HomePage();
                     case (int)MenuItemType.Sessions:
-                        return new SessionsPage();
+                        return new DaytimeDelivery_DashBord();
                     case (int)MenuItemType.Tresorerie:
                         return new TresoreriePage();
                     case (int)MenuItemType.Encaissements:
@@ -67,42 +63,21 @@ namespace XpertMobileApp.Views
                         return new VentesPage(VentesTypes.Vente);
                     case (int)MenuItemType.Livraison:
                         return new VentesPage(VentesTypes.Livraison);
-                    case (int)MenuItemType.VenteComptoir:
+         
+                case (int)MenuItemType.VenteComptoir:
                         return new VentesPage(VentesTypes.VenteComptoir);
                     case (int)MenuItemType.SimpleIndicators:
                         return new SimpleIndicators();
-                    case (int)MenuItemType.Psychotrop:
-                        return new VentesPage(VentesTypes.VentePSYCO);
                     case (int)MenuItemType.Tournee:
                         return new TourneesPage();
-                    //case (int)MenuItemType.Bordereaux:
-                    //    return new BordereauxPage();
-                    //case (int)MenuItemType.Catalogues:
-                     //   return new Paging();
-                    //case (int)MenuItemType.XBoutiqueHome:
-                    //    return new ProductHomePage();
-                    //case (int)MenuItemType.XBoutique:
-                    //    return new CataloguePage(); 
-                    //case (int)MenuItemType.XMyCommandes:
-                    //    return new XMyCommandesPage();
-                    //case (int)MenuItemType.XWishList:
-                    //    return new WishListPage();
-                    //case (int)MenuItemType.XPurchased:
-                        //return new PurchasedProdPage();
-                    //case (int)MenuItemType.XProfile:
-                    //    return new ProfilPage();
                     case (int)MenuItemType.MyCommandes:
                      //   return new Paging();
                     case (int)MenuItemType.Commandes:
                         return new CommandesPage();
                     case (int)MenuItemType.Produits:
-                        return new ProduitsPage();
+                        return new StockPage();
                     case (int)MenuItemType.Manquants:
                         return new ManquantsPage();
-                    case (int)MenuItemType.rfid:
-                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
-                    case (int)MenuItemType.invrfid:
-                        // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
                     case (int)MenuItemType.Tiers:
                         return new TiersPage();
                     case (int)MenuItemType.EncAnalyses:
@@ -113,7 +88,10 @@ namespace XpertMobileApp.Views
                         return new SettingsPage();
                     case (int)MenuItemType.About:
                         return new AboutPage();
-                    default:
+                case (int)MenuItemType.entreeStock:
+                    return new  EntreesPage();
+                    //return new EntreeFormPage(null,null);
+                default:
                         return new HomePage();
             }
         }
@@ -128,7 +106,7 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new HomePage()));
                         break;
                     case (int)MenuItemType.Sessions:
-                        MenuPages.Add(id, new NavigationPage(new SessionsPage()));
+                        MenuPages.Add(id, new NavigationPage(new DaytimeDelivery_DashBord()));
                         break;
                     case (int)MenuItemType.Tresorerie:
                         MenuPages.Add(id, new NavigationPage(new TresoreriePage()));
@@ -167,44 +145,18 @@ namespace XpertMobileApp.Views
                     //    MenuPages.Add(id, new NavigationPage(new BordereauxPage()));
                     //    break;
                     case (int)MenuItemType.Catalogues:
-                       // MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
                     case (int)MenuItemType.MyCommandes:
-                       // MenuPages.Add(id, new NavigationPage(new Paging()));
                         break;
                     case (int)MenuItemType.Commandes:
                         MenuPages.Add(id, new NavigationPage(new CommandesPage()));
                         break;
 
-                    //case (int)MenuItemType.XBoutiqueHome:
-                    //    MenuPages.Add(id, new NavigationPage(new ProductHomePage()));
-                    //    break;
-                    //case (int)MenuItemType.XBoutique:
-                    //    MenuPages.Add(id, new NavigationPage(new CataloguePage()));
-                    //    break;
-                    //case (int)MenuItemType.XMyCommandes:
-                    //    MenuPages.Add(id, new NavigationPage(new XMyCommandesPage()));
-                    //    break;
-                    //case (int)MenuItemType.XWishList:
-                    //    MenuPages.Add(id, new NavigationPage(new WishListPage()));
-                    //    break;
-                    //case (int)MenuItemType.XPurchased:
-                    //    MenuPages.Add(id, new NavigationPage(new PurchasedProdPage()));
-                    //    break;
-                    //case (int)MenuItemType.XProfile:
-                    //    MenuPages.Add(id, new NavigationPage(new ProfilPage()));
-                    //    break;
                     case (int)MenuItemType.Produits:
-                        MenuPages.Add(id, new NavigationPage(new ProduitsPage()));
+                        MenuPages.Add(id, new NavigationPage(new StockPage()));
                         break;
                     case (int)MenuItemType.Manquants:
                         MenuPages.Add(id, new NavigationPage(new ManquantsPage()));
-                        break;
-                    case (int)MenuItemType.rfid:
-                    // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanPage()));
-                        break;
-                    case (int)MenuItemType.invrfid:
-                    // TODO    MenuPages.Add(id, new NavigationPage(new RfidScanInventairePage()));
                         break;
                     case (int)MenuItemType.Tiers:
                         MenuPages.Add(id, new NavigationPage(new TiersPage()));
@@ -220,6 +172,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));
+                        break;
+                    case (int)MenuItemType.entreeStock:
+                        MenuPages.Add(id, new NavigationPage(new EntreesPage()));
                         break;
                 }
             }

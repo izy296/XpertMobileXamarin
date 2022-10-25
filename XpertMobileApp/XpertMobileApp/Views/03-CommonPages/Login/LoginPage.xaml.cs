@@ -65,11 +65,12 @@ namespace XpertMobileApp.Views
             }
             try
             {
+                User user;
                 bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
+                    user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
                     //if (viewModel.CheckUser(user))
                     {
@@ -90,9 +91,11 @@ namespace XpertMobileApp.Views
                         {
                             user.Id = token.userID;
                             user.CODE_TIERS = token.CODE_TIERS;
+                            user.CODE_COMPTE = token.CODE_COMPTE;
                             user.UserGroup = token.UserGroup;
                             user.GroupName = token.GroupName;
                             user.UserName = token.userName;
+                            user.PREFIX_USER_MOBILE = token.PREFIX_USER_MOBILE;
                             user.ClientId = App.Settings.ClientId;
                             user.Token = token;
                             App.User = user;
@@ -109,13 +112,14 @@ namespace XpertMobileApp.Views
                             if (Constants.AppName == Apps.XCOM_Livraison)
                             {
                                 //Récuperation prefix
-                                await RecupererPrefix();
+                                App.PrefixCodification = token.PREFIX_USER_MOBILE;
+
+                                //await RecupererPrefix();
                             }
 
 
                             try
                             {
-                                if (Constants.AppName != Apps.X_BOUTIQUE)
                                 {
                                     await AppManager.GetPermissions();
                                 }
@@ -143,17 +147,12 @@ namespace XpertMobileApp.Views
                             }
                         }
                     }
-                    //else
-                    {
-                        //  await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
-                    }
                 }
                 else
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    User user = new User(Ent_UserName.Text, Ent_PassWord.Text);
+                    user = new User(Ent_UserName.Text, Ent_PassWord.Text);
 
-                    //if (viewModel.CheckUser(user))
                     {
                         // Authentification via SQLite
                         SYS_USER validUser = await UpdateDatabase.AuthUser(user);
@@ -169,23 +168,32 @@ namespace XpertMobileApp.Views
                             }
                             if (token.access_token != null)
                             {
+                                user.CODE_COMPTE = validUser.CODE_COMPTE;
+
                                 user.Id = token.userID;
                                 user.CODE_TIERS = token.CODE_TIERS;
                                 user.UserGroup = token.UserGroup;
                                 user.GroupName = token.GroupName;
+                                user.PREFIX_USER_MOBILE = token.PREFIX_USER_MOBILE;
                                 user.ClientId = App.Settings.ClientId;
                                 user.Token = token;
                                 App.User = user;
 
                                 CrudManager.InitServices();
+                                if (App.PrefixCodification == null)
+                                {
+                                    App.PrefixCodification = token.PREFIX_USER_MOBILE;
+                                }
+                                else if (App.PrefixCodification != null && !App.PrefixCodification.Equals(token.PREFIX_USER_MOBILE))
+                                {
+                                    App.PrefixCodification = token.PREFIX_USER_MOBILE;
+                                }
 
-                                // Alerte apres la connexion
-                                // DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+                              
 
                                 // suavegrade du user et du token en cours dans la bdd local
                                 try
                                 {
-                                    if (Constants.AppName != Apps.X_BOUTIQUE)
                                     {
                                         AppManager.permissions = await UpdateDatabase.getPermission();
                                     }
@@ -241,6 +249,11 @@ namespace XpertMobileApp.Views
                         await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
+
+                // Alerte apres la connexion
+                //DependencyService.Get<ITextToSpeech>().Speak(AppResources.app_speech_Hello + " " + user.UserName + "!");
+                await UserDialogs.Instance.AlertAsync("مرحبا "+ user.UserName + " نتمنى لكم يوما سعيدا", AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+
 
             }
             catch (Exception ex)

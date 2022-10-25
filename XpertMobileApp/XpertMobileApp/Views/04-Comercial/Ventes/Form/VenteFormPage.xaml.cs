@@ -164,7 +164,6 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-            if (Constants.AppName != Apps.X_BOUTIQUE)
             {
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();

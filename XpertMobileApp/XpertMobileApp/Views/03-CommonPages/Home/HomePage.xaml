@@ -7,6 +7,8 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:SyncfusionButton="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              BackgroundColor="White"
              FlowDirection="MatchParent"
              >
@@ -22,16 +24,15 @@
     -->
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
-
             <!-- Liste des comptes -->
-            <yummy:PancakeView CornerRadius="0,0,25,25" Padding="40,0,40,55" 
+            <yummy:PancakeView CornerRadius="0,0,40,40" Padding="0,0,0,70" 
                    Margin="0" IsClippedToBounds="true"
                    BorderColor="{StaticResource NavigationPrimary}"
                    BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
                 
                 <StackLayout Spacing="10" Padding="15,0,15,15" >
-                    <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label x:Name="lblClientName" Text="Pharmacie Ben Mohamed " FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
+                    <StackLayout Orientation="Vertical" Padding="0" Margin="15,0,15,15">
+                        <Label x:Name="lblClientName" Text="Manafiaa" FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
                                HorizontalTextAlignment="Center" TextColor="White"/>
                     </StackLayout>
 
@@ -64,7 +65,7 @@
                 >
                     
                     <syncfusion:SfListView.ItemSize>
-                        <OnIdiom x:TypeArguments="x:Double"
+                        <forms:OnIdiom x:TypeArguments="x:Double"
                       Phone="150"
                       Tablet="200"
                       Desktop="200"/>
@@ -73,7 +74,7 @@
                     <syncfusion:SfListView.LayoutManager>
                         <syncfusion:GridLayout>
                             <syncfusion:GridLayout.SpanCount>
-                                <OnIdiom x:TypeArguments="x:Int32"
+                                <forms:OnIdiom x:TypeArguments="x:Int32"
                                 Phone="2"
                                 Tablet="3"
                                 Desktop="3"/>
@@ -86,7 +87,7 @@
                             <!--
                              {Binding Color} OutlineColor="LightGray"
                               -->
-                        <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="8"
+                        <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="17"
                                    Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                                 <Grid Padding="0" ColumnSpacing="0" Margin="0" >
                                     <Grid.RowDefinitions>
@@ -106,10 +107,15 @@
                                        FontFamily="{StaticResource FontGilroySemiBold}" 
                                        HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
 -->
-                                <Button Text="{Binding Title}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontGilroySemiBold}" FontSize="Subtitle" Clicked="Btn_Menu_Clicked" />
+                                <SyncfusionButton:SfButton Text="{Binding Title}" 
+                                                           HorizontalOptions="FillAndExpand" 
+                                                           VerticalOptions="FillAndExpand" 
+                                                           BackgroundColor="{Binding Color}"
+                                                           FontFamily="{StaticResource FontGilroySemiBold}" 
+                                                           FontSize="Subtitle" 
+                                                           Clicked="Btn_Menu_Clicked" />
 
-
+                               
 
                             </Grid>
                             </yummy:PancakeView>

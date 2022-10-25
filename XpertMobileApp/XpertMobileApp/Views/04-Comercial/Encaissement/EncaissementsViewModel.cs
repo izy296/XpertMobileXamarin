@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -12,6 +13,7 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views.Encaissement;
@@ -24,6 +26,14 @@ namespace XpertMobileApp.ViewModels
     {
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
+
+
+        decimal totalEncDec;
+        public decimal TotalENC_DEC
+        {
+            get { return totalEncDec; }
+            set { SetProperty(ref totalEncDec, value); }
+        }
 
 
         DateTime startDate = DateTime.Now;
@@ -77,7 +87,7 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(type))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
 
-            if(!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
             if (!string.IsNullOrEmpty(SelectedMotif?.CODE_MOTIF))
@@ -98,6 +108,7 @@ namespace XpertMobileApp.ViewModels
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+            Totauxjournne();
         }
 
         private string GetCurrentType()
@@ -121,7 +132,7 @@ namespace XpertMobileApp.ViewModels
 
         async Task ExecuteLoadExtrasDataCommand()
         {
-            
+
             if (IsLoadExtrasBusy)
                 return;
             if (App.Online)
@@ -171,10 +182,9 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsLoadExtrasBusy = true;
                     Comptes.Clear();
-                    var itemsC = await UpdateDatabase.getComptes();
+                    var itemsC = await UpdateDatabase.getComptes(null);
 
                     var itemsM = await UpdateDatabase.getMotifs();
-
                     foreach (var itemC in itemsC)
                     {
                         Comptes.Add(itemC);
@@ -184,14 +194,34 @@ namespace XpertMobileApp.ViewModels
                     {
                         Motifs.Add(itemM);
                     }
+                    Totauxjournne();
                 }
                 catch (Exception ex)
                 {
-                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync("veuillez synchroniser svp !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 finally
                 {
                     IsLoadExtrasBusy = false;
+                }
+            }
+        }
+
+        public void Totauxjournne()
+        {
+            Task<List<View_TRS_ENCAISS>> Encaissements = UpdateDatabase.getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+
+            if (Encaissements != null && Encaissements.Result != null)
+            {
+                switch (EncaissDisplayType)
+                {
+                    case EncaissDisplayType.All:
+                        TotalENC_DEC = Encaissements.Result.Sum(x => x.TOTAL_ENCAISS);
+                        break;
+                    case EncaissDisplayType.ENC:
+                    case EncaissDisplayType.DEC:
+                        TotalENC_DEC = Encaissements.Result.Where(x => x.CODE_TYPE == EncaissDisplayType.ToString()).Sum(x => x.TOTAL_ENCAISS);
+                        break;
                 }
             }
         }

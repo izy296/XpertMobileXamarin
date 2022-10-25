@@ -8,12 +8,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileSettingsPage.Helpers.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -92,6 +94,7 @@ namespace XpertMobileApp.Views
                 TierSolde.Text = string.Format("{0:N02} DA", SelectedTiers.SOLDE_TIERS);
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
+
         }
 
         async void Save_Clicked(object sender, EventArgs e)
@@ -103,13 +106,14 @@ namespace XpertMobileApp.Views
                 return;
             }
             */
-            if (SelectedCompte == null)
-            {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
-                return;
-            }
+            
             if (App.Online)
             {
+                if (SelectedCompte == null)
+                {
+                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 if (string.IsNullOrEmpty(Item.CODE_ENCAISS))
                 {
                     MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
@@ -122,18 +126,18 @@ namespace XpertMobileApp.Views
             }
             else
             {
+                if (Constants.AppName == Apps.XCOM_Livraison)
+                {
+
+                    Item.CODE_COMPTE = App.User.CODE_COMPTE;
+                    Item.CODE_MOTIF = "PCR";
+                }
+
                 if (Item.CODE_TYPE == "ENC")
                 {
                     if (Item.TOTAL_ENCAISS <= 0)
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                    }
-                    else
-                    {
-                        UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await UpdateDatabase.AjoutEnciassement(Item);
-                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                        await Navigation.PopModalAsync();
                     }
                 }
                 else
@@ -142,14 +146,14 @@ namespace XpertMobileApp.Views
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
-                    else
-                    {
-                        UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await UpdateDatabase.AjoutEnciassement(Item);
-                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                        await Navigation.PopModalAsync();
-                    }
                 }
+
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                await UpdateDatabase.AjoutEnciassement(Item);
+                await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                PrinterHelper.PrintEncaisseOffline(Item);
+
+                await Navigation.PopModalAsync();
             }
         }
 
@@ -268,7 +272,7 @@ namespace XpertMobileApp.Views
                 try
                 {
                     Comptes.Clear();
-                    var itemsC = await UpdateDatabase.getComptes();
+                    var itemsC = await UpdateDatabase.getComptes(null);
                     foreach (var itemC in itemsC)
                     {
                         Comptes.Add(itemC);
@@ -276,13 +280,7 @@ namespace XpertMobileApp.Views
 
                     if (Item != null)
                     {
-                        //SelectCompte(Item.CODE_COMPTE);
-                        List<SYS_USER> users = await UpdateDatabase.getInstance().Table<SYS_USER>().ToListAsync();
-                        var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
-                        if (!(string.IsNullOrEmpty(code_compte)))
-                        {
-                            SelectCompte(code_compte);
-                        }
+                        SelectCompte(App.User.CODE_COMPTE);
                     }
                 }
                 catch (Exception e)
@@ -298,38 +296,38 @@ namespace XpertMobileApp.Views
 
         private void SelectMotif(string codeElem)
         {
-            for (int i = 0; i < Motifs.Count; i++)
-            {
-                if (Motifs[i].CODE_MOTIF == codeElem)
-                {
-                    MotifsPicker.SelectedIndex = i;
-                    return;
-                }
-            }
+            //for (int i = 0; i < Motifs.Count; i++)
+            //{
+            //    if (Motifs[i].CODE_MOTIF == codeElem)
+            //    {
+            //        MotifsPicker.SelectedIndex = i;
+            //        return;
+            //    }
+            //}
         }
 
         private void SelectCompte(string codeElem)
         {
-            for (int i = 0; i < Comptes.Count; i++)
-            {
-                if (Comptes[i].CODE_COMPTE == codeElem)
-                {
-                    ComptesPicker.SelectedIndex = i;
-                    return;
-                }
-            }
+            //for (int i = 0; i < Comptes.Count; i++)
+            //{
+            //    if (Comptes[i].CODE_COMPTE == codeElem)
+            //    {
+            //        ComptesPicker.SelectedIndex = i;
+            //        return;
+            //    }
+            //}
         }
 
         private void MotifPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var motif = Motifs[MotifsPicker.SelectedIndex];
-            Item.CODE_MOTIF = motif.CODE_MOTIF;
+            //var motif = Motifs[MotifsPicker.SelectedIndex];
+            //Item.CODE_MOTIF = motif.CODE_MOTIF;
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var compte = Comptes[ComptesPicker.SelectedIndex];
-            Item.CODE_COMPTE = compte.CODE_COMPTE;
+            //var compte = Comptes[ComptesPicker.SelectedIndex];
+            //Item.CODE_COMPTE = compte.CODE_COMPTE;
         }
 
         private TiersSelector itemSelector;

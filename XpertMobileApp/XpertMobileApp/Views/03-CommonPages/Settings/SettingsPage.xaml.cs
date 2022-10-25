@@ -125,6 +125,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var res = await UpdateDatabase.AjoutPrefix();
                 if (res != null)
                 {
@@ -132,10 +133,13 @@ namespace XpertMobileApp.Views
                     await UpdateDatabase.getInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
                     var id = await UpdateDatabase.getInstance().InsertAsync(res);
                     //RecupererPrefix_Clicked(sender,e);
+                    UserDialogs.Instance.HideLoading();
+
                 }
             }
             catch (Exception ex)
             {
+                UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }

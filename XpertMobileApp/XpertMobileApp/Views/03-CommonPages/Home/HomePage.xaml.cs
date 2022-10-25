@@ -9,6 +9,7 @@ using XpertMobileApp.Api;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileAppManafiaa.SQLite_Managment;
 
 namespace XpertMobileApp.Views
 {
@@ -19,10 +20,10 @@ namespace XpertMobileApp.Views
 
         public HomePage()
         {
-            
+
             InitializeComponent();
 
-           // Title = AppResources.pn_home;
+            // Title = AppResources.pn_home;
             lblUser.Text = App.User?.UserName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
@@ -34,11 +35,8 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                if(Constants.AppName != Apps.X_BOUTIQUE) 
-                { 
-                    var param = await AppManager.GetSysParams();
-                    var permissions = await AppManager.GetPermissions();
-                }
+                var param = await AppManager.GetSysParams();
+                var permissions = await AppManager.GetPermissions();
                 UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
@@ -48,7 +46,7 @@ namespace XpertMobileApp.Views
                     AppResources.alrt_msg_Ok);
             }
 
-            if (viewModel.Items.Count == 0) 
+            if (viewModel.Items.Count == 0)
             {
                 viewModel.LoadItemsCommand.Execute(null);
             }
@@ -74,8 +72,8 @@ namespace XpertMobileApp.Views
         private async void Btn_Menu_Clicked(object sender, EventArgs e)
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
-            string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            if (id=="34")//Export
+            string id = ((sender as Syncfusion.XForms.Buttons.SfButton).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
+            if (id == "34")//Export
             {
                 await Upload();
             }
@@ -93,12 +91,30 @@ namespace XpertMobileApp.Views
 
         public async Task Download()
         {
-            await UpdateDatabase.synchroniseDownload();
+            try
+            {
+                await SyncManager.synchroniseDownload();
+            }
+            catch (Exception exc)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(exc), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
 
         public async Task Upload()
         {
-            await UpdateDatabase.synchroniseUpload();
+            try
+            {
+                await SyncManager.synchroniseUpload();
+            }
+            catch (Exception exc)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(exc), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
         }
     }
 }

@@ -25,7 +25,7 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0)
-                LoadStats(EncaissDisplayType.All);
+                LoadStats(EncaissDisplayType.ENC);
 
             if (viewModel.Comptes.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
@@ -90,14 +90,16 @@ namespace XpertMobileApp.Views
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
         {
-            btn_All.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Decaiss.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Encaiss.BackgroundColor = Color.FromHex("#2196F3");
+            btn_All.BorderWidth =0;
+            btn_Decaiss.BorderWidth = 0;
+            btn_Encaiss.BorderWidth = 0;
 
             Button btn = (Button)sender;
-            btn.BackgroundColor = Color.FromHex("#51adf6");
+            btn.BorderColor = Color.FromHex("#ffffff");
+            btn.BorderWidth = 2;
 
             LoadStats(GetSelectedType(btn));
+            viewModel.Totauxjournne();
         }
 
         private async void LoadStats(EncaissDisplayType type)

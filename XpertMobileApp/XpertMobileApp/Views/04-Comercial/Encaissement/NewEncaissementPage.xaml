@@ -2,20 +2,21 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+               xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
              x:Class="XpertMobileApp.Views.NewEncaissementPage">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="cancel.png"/>
+                    <On Platform="Android" Value="cancel.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
         <ToolbarItem Text="{i18n:Translate cmd_Save}" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="save.png"/>
+                    <On Platform="Android" Value="save.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
@@ -32,23 +33,23 @@
                         Margin="30, 0, 30, 30" 
                         Date="{Binding Item.DATE_ENCAISS}"/>
 
-                <Label Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0"/>
-                <Picker ItemsSource="{Binding Motifs}"
+                <!--<Label Text="{i18n:Translate CODE_MOTIF}" Margin="5, 0, 0, 0" IsVisible="{Binding HasAdmin}"/>
+                <Picker ItemsSource="{Binding Motifs}" IsVisible="{Binding HasAdmin}"
                                 ItemDisplayBinding="{Binding DESIGN_MOTIF}"
                                 SelectedItem="{Binding SelectedMotif}"
                                 TextColor="{StaticResource Primary}"
                                 SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30" 
-                                x:Name="MotifsPicker"/>
+                                x:Name="MotifsPicker"/>-->
 
-                <Label Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0"/>
-                <Picker ItemsSource="{Binding Comptes}"
+                <!--<Label Text="{i18n:Translate CODE_COMPTE}" Margin="5, 0, 0, 0" IsVisible="{Binding HasAdmin}"/>
+                <Picker ItemsSource="{Binding Comptes}" IsVisible="{Binding HasAdmin}"
                                 ItemDisplayBinding="{Binding DESIGN_COMPTE}"
                                 SelectedItem="{Binding SelectedCompte}"
                                 TextColor="{StaticResource Primary}"
                                 SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
                                 Margin="30, 0, 30, 30"                 
-                                x:Name="ComptesPicker"/>
+                                x:Name="ComptesPicker"/>-->
 
 
                 <Label Text="{i18n:Translate CODE_TIERS}" Margin="5, 0, 0, 0"/>
@@ -65,13 +66,22 @@
                     <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
                     <Button x:Name="btn_Search" Text="{i18n:Translate cmd_seach}" Grid.Column="1" Style="{StaticResource DefaultBtnStyle}" 
                         Clicked="btn_Select_Clicked"  HeightRequest="35"/>
+
+
                 </Grid>
 
-                <Label Text="{i18n:Translate TOTAL_ENCAISS}" Margin="5, 0, 0, 0"/>
-                <Entry Placeholder="{i18n:Translate msg_EnterTheAmount}"
-                       Margin="30, 0, 30, 30"
-                       Text="{Binding Item.TOTAL_ENCAISS, Mode=TwoWay }"
-                       TextColor="{StaticResource Primary}"/>
+                <Label Text="{i18n:Translate TOTAL_ENCAISS}" FontSize="Default" Margin="5, 0, 0, 0"  />
+                <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+                    <numeric1:SfNumericTextBox x:Name="SfNE_MTRecu" Minimum="0" HorizontalOptions="FillAndExpand" FontAttributes="Bold"
+                    ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                    SelectAllOnFocus="True" 
+                    Value="{Binding Item.TOTAL_ENCAISS, Mode=TwoWay}"
+                    VerticalOptions="Center" Margin="30,0,30,0" />
+                </StackLayout>
+                
+                <!--<upDown:SfNumericUpDown Grid.Row="1" Value="100" FormatString="USD 0.00"/>
+                <textBox:SfNumericTextBox Grid.Row="3" Value="1000" FormatString="USD 0.00"/>-->
+                
 
                 <Label Text="{i18n:Translate SOLDE_TIERS}" Margin="5, 0, 0, 0"/>
                 <Label x:Name="TierSolde" Text="" TextColor="{StaticResource Primary}" Margin="30, 0, 30, 30" />

@@ -109,6 +109,14 @@ namespace XpertMobileApp.ViewModels
                         CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
                         Action = Xpert.XpertActions.AcSelect
                     });
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.entreeStock).ToString(),
+                        Title = "Retour stock",
+                        Color = "#1D3557",
+                        CodeObjet = Xpert.XpertObjets.None,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
                 }
                 else 
                 {
@@ -120,21 +128,23 @@ namespace XpertMobileApp.ViewModels
                         CodeObjet = Xpert.XpertObjets.VTE_COMPTOIR,
                         Action = Xpert.XpertActions.AcSelect
                     });
-                }
-                /*
-                if (AppManager.HasAdmin)
-                {
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
+                        Title = "Ventes",
+                        Color = "#BDD6EE",
+                        CodeObjet = Xpert.XpertObjets.VTE_VENTE,
+                        Action = Xpert.XpertActions.AcSelect
+                    });
 
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
+                        CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
+                        Title = "Tiers",
+                        Color = "#FEF2CC"
+                    });
                 }
-                */
-                res.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
-                    Title = "Ventes",
-                    Color = "#BDD6EE",
-                    CodeObjet = Xpert.XpertObjets.VTE_VENTE,
-                    Action = Xpert.XpertActions.AcSelect
-                });
+                
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {
@@ -144,37 +154,36 @@ namespace XpertMobileApp.ViewModels
                     Action = Xpert.XpertActions.AcSelect
                 });
 
-                res.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
-                    Title = "Sessions",
-                    Color = "#ff6b81",
-                    CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
-                    Action = Xpert.XpertActions.AcSelect
-                });
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
                     Title = "Encaiss / Decaiss",
                     Color = "#A8D08D",
-                    CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
+                    CodeObjet = Xpert.XpertObjets.TRS_ENCAISS,
                     Action = Xpert.XpertActions.AcSelect
                 });
+
+
+                res.Add(new TDB_SIMPLE_INDICATORS()
+                {
+                    CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
+                    Title = "Journée",
+                    Color = "#ff6b81",
+                    CodeObjet = Xpert.XpertObjets.None,
+                    Action = Xpert.XpertActions.AcSelect
+                });
+
+            
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {
                     CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
-                    Title = "Produits",
+                    Title = "Magasin",
                     Color = "#B4C6E7"
                 });
 
-                res.Add(new TDB_SIMPLE_INDICATORS()
-                {
-                    CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
-                    Title = "Tiers",
-                    Color = "#FEF2CC"
-                });
+              
 
                 res.Add(new TDB_SIMPLE_INDICATORS()
                 {

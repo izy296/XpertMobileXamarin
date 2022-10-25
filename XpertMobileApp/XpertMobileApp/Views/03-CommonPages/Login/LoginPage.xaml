@@ -2,35 +2,94 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.LoginPage"
              
-             BackgroundColor="White"
-             >
+             BackgroundColor="White" >
 
     <ContentPage.BindingContext>
         <vm:LoginViewModel />
+        
     </ContentPage.BindingContext>
-    
-    <Grid>
+
+
+    <!--<StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
+        --><!-- Liste des comptes --><!--
+        <yummy:PancakeView CornerRadius="0,0,40,40" Padding="0,0,0,70" 
+                   Margin="0" IsClippedToBounds="true"
+                   BorderColor="{StaticResource NavigationPrimary}"
+                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
+
+            <StackLayout Spacing="10" Padding="15,0,15,15" >
+                <StackLayout Orientation="Vertical" Padding="0" Margin="15,0,15,15">
+                    <Label x:Name="lblClientName" Text="Manafiaa" FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
+                               HorizontalTextAlignment="Center" TextColor="White"/>
+                </StackLayout>
+
+                <Label 
+                        HorizontalOptions="Center" Style="{StaticResource FAwesome-B-Solid}" 
+                        TextColor="White" FontSize="90"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
+                        BackgroundColor="Transparent" 
+                        />
+
+                <StackLayout Orientation="Vertical" Padding="0" Margin="0">
+                    <Label Text="Bienvenue" TextColor="White" FontAttributes="Bold" 
+                                    FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+
+                    <Label x:Name="lblUser" Text="Mohamed" FontSize="Default" FontFamily="{StaticResource FontGilroyRegular}"
+                               HorizontalTextAlignment="Center" TextColor="White"/>
+                </StackLayout>
+            </StackLayout>
+        </yummy:PancakeView>-->
+
+
+        <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="50" />
         </Grid.RowDefinitions>
-        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
-            <!--Affichage de l'alerte en cas de deconnexion -->
-            <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
+        <!--NavigationPrimary-->
+      
 
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
-                <ContentView Padding="0,20,0,20" VerticalOptions="FillAndExpand">
-                    <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
-                </ContentView>
+        <yummy:PancakeView CornerRadius="0,0,50,50" Padding="0,0,0,90" 
+                   Margin="0" IsClippedToBounds="true"
+                   BorderColor="{StaticResource NavigationPrimary}"
+                   BackgroundColor="{StaticResource NavigationPrimary}"
+                           HasShadow="True" >
+
+            <StackLayout  BackgroundColor="{StaticResource NavigationPrimary}" VerticalOptions="FillAndExpand" HorizontalOptions="Fill">
+
+                <!--<yummy:PancakeView CornerRadius="0,0,40,40" Padding="0,0,0,70" 
+                   Margin="0" IsClippedToBounds="true"
+                   BorderColor="{StaticResource NavigationPrimary}"
+                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >-->
+
+                <!--Affichage de l'alerte en cas de deconnexion -->
+                <Label x:Name="Lbl_NoInternet" IsVisible="False" HorizontalTextAlignment="Center" TextColor="White"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="Center">
+
+
+
+                    <ContentView Padding="0,50,0,20" VerticalOptions="FillAndExpand">
+                        <Image Source="logo_v.png" VerticalOptions="Center" HeightRequest="125" />
+                    </ContentView>
+
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
-        <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10" VerticalOptions="Center">
+
+
+        </yummy:PancakeView>
+        
+            
+            
+            
+            <ScrollView Grid.Row="1" BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" Padding="16,0,0,40" Spacing="10" VerticalOptions="Center">
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -48,7 +107,7 @@
                             <Entry x:Name="Ent_UserName" IsVisible="False" Text="" Placeholder="{i18n:Translate lp_ph_UserName}" />
                         </StackLayout>
 
-                        <StackLayout Padding="0,10,0,0">
+                        <StackLayout Padding="0,0,0,0">
                             <Label x:Name="Lbl_PassWord" Text="{i18n:Translate lp_lbl_PassWord}"/>
                             <Entry x:Name="Ent_PassWord" Text="" Placeholder="{i18n:Translate lp_ph_PassWord}" IsPassword="True"/>
                         </StackLayout>
