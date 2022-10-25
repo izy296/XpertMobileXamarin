@@ -821,6 +821,7 @@ namespace XpertMobileApp.DAL
 
     }
 
+
     public partial class View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY : BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY
     {
         public string DESIGNATION_PRODUIT { get; set; }

@@ -132,6 +132,9 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? FontAwesomeIcons.Arrow_Up : FontAwesomeIcons.Arrow_Down;
             }
         }
+
+        public decimal OLD_SOLDE { get; set; }
+        public decimal NEW_SOLDE { get; set; }
     }
 
     public class SESSION_INFO : BASE_CLASS
@@ -143,6 +146,24 @@ namespace XpertMobileApp.DAL
         public bool TRANS_MONTANT { get; set; } // bit
         public string POSTE_CLOTURE { get; set; } // nvarchar(250)
     }
+
+
+    public class TRS_DaytimeDelivery_DashBord : BASE_CLASS
+    {
+        public DateTime DATE_JOURNEE { get; set; } // datetime(3)
+        public string VENDEUR { get; set; } // nvarchar(250)
+        public string DESIGNATION_MAGASIN { get; set; } // nvarchar(250)
+        public string NOM_SECTEUR { get; set; } // nvarchar(250)
+        public string NUM_SECTEUR { get; set; } // nvarchar(250)
+        public string NUM_TOURNEE { get; set; } // nvarchar(250)
+        public decimal TOTAL_Encaisement { get; set; } // money(19,4)
+        public decimal TOTAL_TOURNEE { get; set; } // money(19,4)
+        public decimal TOTAL_RETOUR_STOCK { get; set; } // money(19,4)
+        public decimal TOTAL_CREDIT_TIERS { get; set; } // money(19,4)
+        public decimal TOTAL_STOCK { get; set; } // money(19,4)
+    }
+
+
     public partial class TRS_JOURNEES : SESSION_INFO
     {
         public override string ToString()

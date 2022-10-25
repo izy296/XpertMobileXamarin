@@ -1,5 +1,6 @@
 ﻿using SQLite;
 using System;
+using System.Collections.Generic;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
 
@@ -59,7 +60,7 @@ namespace XpertMobileApp.Models
         public decimal MARGE_VENTE { get; set; } // money(19,4)
         public string REF_PRODUIT { get; set; } // nvarchar(250)
         public string CODE_DCI { get; set; } // varchar(20)
-        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public string TYPE_PRODUIT { get; set; } // smallint(5)
         public decimal TAUX_TVA { get; set; } // money(19,4)
         public decimal MARGE { get; set; } // money(19,4)
         public string CODE_BARRE { get; set; } // nvarchar(250)
@@ -183,7 +184,7 @@ namespace XpertMobileApp.Models
             {
                 if (selectedPrice == -1)
                     return PRIX_VENTE;
-                else 
+                else
                     return selectedPrice;
             }
             set
@@ -379,6 +380,209 @@ namespace XpertMobileApp.Models
         public string MODIFIED_BY { get; set; } // varchar(200)
 
     }
+
+
+
+
+    public partial class STK_ENTREE : BASE_CLASS
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CODE_ENTREE { get; set; } // varchar(50)
+        public string ID_Random { get; set; } // varchar(20)
+        public string NUM_ENTREE { get; set; } // varchar(20)
+        public DateTime? DATE_ENTREE { get; set; } // datetime(3)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string NUM_COMMANDE { get; set; } // varchar(20)
+        public string TYPE_ENTREE { get; set; } // varchar(4)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public string MODE_REGLEMENT { get; set; } // varchar(1)
+        public string FACT_BL { get; set; } // varchar(5)
+        public string NUM_DOC_TIER { get; set; } // varchar(50)
+        public decimal TOTAL_HT { get; set; } // money(19,4)
+        public decimal TOTAL_TVA { get; set; } // money(19,4)
+        public decimal TOTAL_PPA { get; set; } // money(19,4)
+        public decimal TOTAL_SHP { get; set; } // money(19,4)
+        public decimal TOTAL_RISTOURNE { get; set; } // money(19,4)
+        public decimal RISTOUNE_FACT { get; set; } // money(19,4)
+        public decimal TOTAL_MARGE { get; set; } // money(19,4)
+        public decimal MT_TIMBRE { get; set; } // money(19,4)
+        private decimal tOTAL_TTC { get; set; }
+        public decimal TOTAL_TTC
+        {
+            get
+            {
+                return tOTAL_TTC;
+            }
+            set
+            {
+                tOTAL_TTC = value;
+                OnPropertyChanged("TOTAL_TTC");
+            }
+        }
+        public decimal TOTAL_VENTE { get; set; } // money(19,4)
+        public decimal TOTAL_UG { get; set; } // money(19,4)
+        public decimal TOTAL_PAYE { get; set; } // money(19,4)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string EXERCICE { get; set; } // char(4)
+        public decimal TOTAL_PPA_UG { get; set; } // money(19,4)
+        public decimal TOTAL_SHP_UG { get; set; } // money(19,4)
+        public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
+        public string NOTE_ENTREE { get; set; } // text
+        public int SENS_DOC { get; set; } // int(1)
+        public decimal TOTAL_FOURNISSEUR { get; set; } // money(19,4)
+        public string STATUS { get; set; } // varchar(5)  
+        public DateTime? DATE_CLOTURE { get; set; }  // datetime(3)
+        public string CLOTURED_BY { get; set; } // varchar(200)
+        public decimal TOTAL_TTC_CLOTURE { get; set; } // money(19,4)
+        public bool PPA_BY_PRIXVENTE { get; set; }// calucle ppa par prix vente c'est la valeur true snn le contraire
+    }
+    public partial class View_STK_ENTREE : STK_ENTREE
+    {
+        public decimal TAUX_MARGE { get; set; } // money(19,4)
+        public decimal TOTAL_RESTE { get; set; } // money(19,4)
+        public string TIERS_NomC { get; set; } // varchar(501)
+        public string DESIGNATION_TYPE { get; set; } // varchar(200)
+        public string DESIGN_MODE_REG { get; set; } // varchar(300)
+        public string DESIGNATION_MAGASIN { get; set; } // varchar(100)
+        public string CATEGORIE { get; set; } // varchar(7)
+        public int LITIGES { get; set; }
+        public string NOM_TIERS { get; set; } // varchar(32)
+        [Ignore]
+        public List<View_STK_ENTREE_DETAIL> Details { get; set; }
+
+    }
+
+    public partial class STK_ENTREE_DETAIL : BASE_CLASS
+    {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
+        public string CODE_ENTREE_DETAIL { get; set; } // varchar(32)        
+        public string CODE_ENTREE { get; set; } // varchar(50)
+        public int? ID_STOCK { get; set; } // int(10)
+        public string CODE_PRODUIT { get; set; } // varchar(32)
+        public string LOT { get; set; } // varchar(50)
+        public string CODE_BARRE_LOT { get; set; } // nvarchar(250)
+        public DateTime? DATE_PEREMPTION { get; set; } // datetime(3)
+        private decimal qUANTITE;
+        public decimal QUANTITE
+        {
+            get
+            {
+                return qUANTITE;
+            }
+            set
+            {
+                // qUANTITE = value;
+                if (qUANTITE != value)
+                {
+                    MT_TTC = value * PRIX_TTC;
+                    MT_HT = value * PRIX_UNITAIRE;
+
+                    SetProperty(ref qUANTITE, value);
+                    OnPropertyChanged("MT_TTC");
+                    OnPropertyChanged("MT_HT");
+                }
+            }
+        }
+        public decimal QTE_BONUS { get; set; } // numeric(19,2)
+        public decimal QTE_RECUE { get; set; } // numeric(19,2)
+        public decimal COUT_ACHAT { get; set; } // money(19,4)
+        public decimal PRIX_UNITAIRE { get; set; } // money(19,4)
+        private decimal _PRIX_VTE_TTC;
+        public decimal PRIX_TTC
+        {
+            get
+            {
+                return _PRIX_VTE_TTC;
+            }
+            set
+            {
+                // qUANTITE = value;
+                if (_PRIX_VTE_TTC != value)
+                {
+                    MT_TTC = value * QUANTITE;
+                    MT_HT = value * QUANTITE;
+
+                    SetProperty(ref _PRIX_VTE_TTC, value);
+                    OnPropertyChanged("MT_TTC");
+                    OnPropertyChanged("MT_HT");
+                }
+            }
+        }
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public decimal TAUX_MARGE { get; set; } // money(19,4)
+        public decimal TAUX_BONUS { get; set; } // money(19,4)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal TAUX_RISTOURNE { get; set; } // money(19,4)
+        public decimal MT_TVA { get; set; } // money(19,4)
+        public decimal MT_PPA { get; set; } // money(19,4)
+        public decimal MT_PPA_UG { get; set; } // money(19,4)
+        public decimal MT_SHP { get; set; } // money(19,4)
+        public decimal MT_SHP_UG { get; set; } // money(19,4)
+        public decimal MT_HT { get; set; } // money(19,4)
+        public decimal MT_RISTOURNE { get; set; } // money(19,4)
+        public decimal TAUX_TVA { get; set; } // money(19,4)
+        public decimal MT_RISTOURNE_FACT { get; set; } // money(19,4)
+        public decimal MT_UG { get; set; } // money(19,4)
+        public decimal MT_TTC { get; set; } // money(19,4)
+        public decimal MT_VENTE { get; set; } // money(19,4)    
+        public string CODE_MAGASIN { get; set; } // varchar(20)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
+        public short ETAT { get; set; } // smallint(5)
+        public int ORDRE { get; set; } // int(10)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+        public string CODE_UNITE { get; set; }// varchar(15)
+    }
+
+    // View
+    public partial class View_STK_ENTREE_DETAIL : STK_ENTREE_DETAIL
+    {
+        public string NUM_DOC_TIER { get; set; } // varchar(50)
+        public string NUM_ENTREE { get; set; } // varchar(20)
+        public DateTime? DATE_ENTREE { get; set; } // datetime(3)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string TYPE_ENTREE { get; set; } // varchar(4)
+        public string TIERS_NOMC { get; set; } // varchar(501)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // smallint(5)
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public string DESIGN_LABO { get; set; } // varchar(2500)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)       
+        public string DESIGN_EMPLACEMENT { get; set; } // varchar(100)       
+        public string FACT_BL { get; set; } // varchar(5)
+        public decimal QTE_MANQUANTS { get; set; } // numeric(19,2)
+        public string DESIGNATION_TYPE_ENTREE { get; set; }
+        public string OLD_CB { get; set; }
+        public int LITIGES { get; set; }
+        public string DESIGNATION_UNITE { get; set; }//varchar(100)
+        public bool HAS_NEW_ID_STOCK { get; set; }//varchar(100)
+    }
+
+
+
+
+
+
+
+
+
+
 
     public partial class VIEW_ACH_INFO_ANEX : ACH_INFO_ANEX
     {
