@@ -224,5 +224,17 @@ namespace FontAwesome
 
         public const string sortAlphaDown = "\uf15d";
 
+        //https://fontawesome.com/v5/cheatsheet
+        public const string shipping_fast = "\uf21a";
+        //stock box
+        public const string box = "\uf466";
+        //
+        public const string truckcontainer = "\uf4dc";
+        // caisse
+        public const string sackdollar = "\uf552";
+        //
+        public const string persondolly = "\uf007";
+
+
     }
 }
