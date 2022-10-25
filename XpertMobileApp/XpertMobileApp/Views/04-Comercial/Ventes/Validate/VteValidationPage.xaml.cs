@@ -75,9 +75,9 @@ namespace XpertMobileApp.Views
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-                cts = new CancellationTokenSource();
-                var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                //var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                //cts = new CancellationTokenSource();
+                var location = await Geolocation.GetLocationAsync();//request, cts.Token
                 if (location != null)
                 {
                     vente.GPS_LATITUDE = location.Latitude;
