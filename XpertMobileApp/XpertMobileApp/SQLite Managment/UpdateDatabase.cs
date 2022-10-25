@@ -16,27 +16,13 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
-using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.SQLite_Managment
 {
     class UpdateDatabase
     {
         static SQLiteAsyncConnection db;
-        static string codeVendeur;
-        static string CodeTournee;
-        static string paramLivTournee;
-        static string paramLivTourneeDetail;
-        static string TourneeMethodName;
-        static string TourneeDetailMethodName;
-        static string UsersMethodName;
-        static string PermissionMethodName;
-        static string paramPermission;
-        static string idGroup;
-        static string SessionMethodName;
-        static string paramStock;
-        static string StockMethodName;
-        static string CodeMagasin;
+        
 
         public static SQLiteAsyncConnection getInstance()
         {
@@ -79,6 +65,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await getInstance().CreateTableAsync<View_BSE_COMPTE>();
                 await getInstance().CreateTableAsync<BSE_ENCAISS_MOTIFS>();
                 await getInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
+                await getInstance().CreateTableAsync<View_STK_ENTREE>();
+                await getInstance().CreateTableAsync<View_STK_ENTREE_DETAIL>();
 
             }
             catch (Exception e)
@@ -126,150 +114,20 @@ namespace XpertMobileApp.SQLite_Managment
 
         internal static async Task<View_TRS_TIERS> SelectScanedTiers(string text)
         {
-            var tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            return tiers?.Find(e => e.CODE_TIERS.Equals(text));
+            var tiers = await getInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(e => e.CODE_TIERS.Equals(text));
+            return tiers;
         }
 
         internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
         {
             selectedItem.CODE_ETAT = TourneeStatus.Visited;
             selectedItem.ETAT_COLOR = "#FFA500";
+            selectedItem.DESIGNATION_ETAT = "#Visited";
             return await getInstance().UpdateAsync(selectedItem);
         }
 
-        public static async Task synchroniseDownload()
-        {
-            bool isconnected = await App.IsConected();
-            if (isconnected)
-            {
-                await initialisationDbLocal();
-
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
-                await SyncData<View_TRS_TIERS, TRS_TIERS>();
-                await SyncLivTournee();
-                await SyncLivTourneeDetail();
-                await SyncStock();
-                //await SyncProduct();
-                //await SyncData<View_STK_STOCK, STK_STOCK>();
-                //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-                await SyncUsers();
-                await syncPermission();
-                await SyncSysParams();
-                await syncSession();
-                await SyncFamille();
-                await SyncTypeTiers();
-                await SyncSecteurs();
-                await SyncBseCompte();
-                await SyncMotifs();
-                await SyncProductPriceByQuantity();
-                UserDialogs.Instance.HideLoading();
-                //await getInstance().DeleteAllAsync<View_VTE_VENTE>();
-                //await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-            else
-            {
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-        }
 
 
-        public static async Task synchroniseUpload()
-        {
-            bool isconnected = await App.IsConected();
-            if (isconnected)
-            {
-                await SyncTiersToServer();
-                await SyncEncaissToServer();
-                await SyncVenteToServer();
-                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-            else
-            {
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-        }
-
-        public static async Task SyncLivTournee()
-        {
-            if (App.User.UserName != null)
-            {
-                codeVendeur = App.User.UserName;
-                paramLivTournee = "CodeVendeur=" + codeVendeur;
-                TourneeMethodName = "GetTourneeParVendeur";
-                await SyncData<View_LIV_TOURNEE, LIV_TOURNEE>(false, paramLivTournee, TourneeMethodName);
-                var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-                if (obj != null && obj.Count > 0)
-                {
-                    App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
-                }
-            }
-        }
-
-        public static async Task SyncLivTourneeDetail()
-        {
-            //View_LIV_TOURNEE obj = await getInstance().Table<View_LIV_TOURNEE>().OrderByDescending(x=>x.DATE_TOURNEE == DateTime.Now).FirstOrDefaultAsync();
-            var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-            if (obj != null && obj.Count > 0)
-            {
-                CodeTournee = obj[0].CODE_TOURNEE;
-                paramLivTourneeDetail = "CodeTournee=" + CodeTournee;
-                TourneeDetailMethodName = "GetDetailTournee";
-                await SyncData<View_LIV_TOURNEE_DETAIL, LIV_TOURNEE_DETAIL>(false, paramLivTourneeDetail, TourneeDetailMethodName);
-
-            }
-        }
-
-        public static async Task SyncStock()
-        {
-            var obj = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-            if (obj != null && obj.Count > 0)
-            {
-                CodeMagasin = obj[0].CODE_MAGASIN;
-                paramStock = "CodeMagasin=" + CodeMagasin;
-                StockMethodName = "GetStockByMagsin";
-                await SyncData<View_STK_STOCK, STK_STOCK>(false, paramStock, StockMethodName);
-            }
-        }
-
-        public static async Task SyncUsers()
-        {
-            UsersMethodName = "SyncUsers";
-            await SyncData<SYS_USER, SYS_USER>(false, "", UsersMethodName);
-        }
-        public static async Task SyncProduct()
-        {
-            if (string.IsNullOrEmpty(App.CODE_MAGASIN))
-            {
-                await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
-            }
-            else
-            {
-                var products = await CrudManager.Products.GetProduitFromMagasin(App.CODE_MAGASIN);
-                await getInstance().DeleteAllAsync<View_STK_PRODUITS>();
-                var id = await getInstance().InsertAllAsync(products);
-            }
-        }
-
-        public static async Task syncPermission()
-        {
-            idGroup = App.User.UserGroup;
-            paramPermission = "idGroup=" + idGroup;
-            PermissionMethodName = "GetPermissions";
-            await SyncData<SYS_OBJET_PERMISSION, SYS_OBJET_PERMISSION>(false, paramPermission, PermissionMethodName);
-        }
-
-        public static async Task syncSession()
-        {
-            var session = await CrudManager.Sessions.GetCurrentSession();
-            await getInstance().DeleteAllAsync<TRS_JOURNEES>();
-            var id = await getInstance().InsertAsync(session);
-            //SessionMethodName = "GetCurrentSession";
-            //await SyncData<TRS_JOURNEES, TRS_JOURNEES>(false, "", SessionMethodName);
-        }
 
         public static async Task<TRS_JOURNEES> getCurrenetSession()
         {
@@ -285,8 +143,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await getInstance().DeleteAllAsync<View_BSE_TIERS_FAMILLE>();
 
                 View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
-                allElem.CODE_FAMILLE = "";
-                allElem.DESIGN_FAMILLE = "";
+                allElem.CODE_FAMILLE = string.Empty;
+                allElem.DESIGN_FAMILLE = string.Empty;
                 var id = await getInstance().InsertAsync(allElem);
 
                 var id2 = await getInstance().InsertAllAsync(itemsC);
@@ -306,8 +164,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await getInstance().DeleteAllAsync<BSE_TABLE_TYPE>();
 
                 BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                allElem.CODE_TYPE = "";
-                allElem.DESIGNATION_TYPE = "";
+                allElem.CODE_TYPE = string.Empty;
+                allElem.DESIGNATION_TYPE = string.Empty;
                 var id = await getInstance().InsertAsync(allElem);
 
                 var id2 = await getInstance().InsertAllAsync(itemsC);
@@ -327,8 +185,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await getInstance().DeleteAllAsync<BSE_TABLE>();
 
                 BSE_TABLE allElem = new BSE_TABLE();
-                allElem.CODE = "";
-                allElem.DESIGNATION = "";
+                allElem.CODE = string.Empty;
+                allElem.DESIGNATION = string.Empty;
                 var id = await getInstance().InsertAsync(allElem);
 
                 var id2 = await getInstance().InsertAllAsync(itemsC);
@@ -344,15 +202,24 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                var itemsC = await WebServiceClient.getComptes();
-                itemsC.Insert(0, new View_BSE_COMPTE()
+                var ListComptes = await WebServiceClient.getComptes();
+                // si admin get all compte sinon get juste compte user exp : user.CodeCompte
+
+                if (!AppManager.HasAdmin)
+                {
+
+                    ListComptes = ListComptes.Where(x => x.CODE_COMPTE == App.User.CODE_COMPTE).ToList();
+                }
+
+                ListComptes.Insert(0, new View_BSE_COMPTE()
                 {
                     DESIGNATION_TYPE = AppResources.txt_All,
                     DESIGN_COMPTE = AppResources.txt_All,
-                    CODE_TYPE = ""
+                    CODE_TYPE = string.Empty
                 });
                 await getInstance().DeleteAllAsync<View_BSE_COMPTE>();
-                var id = await getInstance().InsertAllAsync(itemsC);
+                var id = await getInstance().InsertAllAsync(ListComptes);
+
             }
             catch (Exception ex)
             {
@@ -360,18 +227,16 @@ namespace XpertMobileApp.SQLite_Managment
                     AppResources.alrt_msg_Ok);
             }
         }
-        public static async Task<List<View_BSE_COMPTE>> getComptes()
+        public static async Task<List<View_BSE_COMPTE>> getComptes(string CodeCompte)
         {
             List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
-            List<SYS_USER> users = await getInstance().Table<SYS_USER>().ToListAsync();
-            var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
-            if (string.IsNullOrEmpty(code_compte))
+            if (string.IsNullOrEmpty(CodeCompte))
             {
                 return comptes;
             }
             else
             {
-                List<View_BSE_COMPTE> cpt = comptes.Where(x => x.CODE_COMPTE == code_compte).ToList();
+                List<View_BSE_COMPTE> cpt = comptes.Where(x => x.CODE_COMPTE == CodeCompte).ToList();
                 return cpt;
             }
         }
@@ -384,7 +249,7 @@ namespace XpertMobileApp.SQLite_Managment
                 itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
                 {
                     DESIGN_MOTIF = AppResources.txt_All,
-                    CODE_MOTIF = ""
+                    CODE_MOTIF = string.Empty
                 });
                 await getInstance().DeleteAllAsync<BSE_ENCAISS_MOTIFS>();
                 var id = await getInstance().InsertAllAsync(itemsM);
@@ -412,6 +277,21 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+
+        public static decimal getPrixByQuantitySync(string codeProduit, decimal qteVendu)
+        {
+            Task<List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>> AllPrices = getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
+            var prixProduct = AllPrices.Result.Where(x => x.CODE_PRODUIT == codeProduit).FirstOrDefault();
+            if (Math.Abs(qteVendu) >= prixProduct.QTE_VENTE)
+            {
+                return prixProduct.PRIX_GROS;
+            }
+            else
+            {
+                return prixProduct.PRIX_DETAIL;
+            }
+        }
+
         public static async Task<decimal> getPrixByQuantity(string codeProduit, decimal qteVendu)
         {
             List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await getInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
@@ -428,7 +308,7 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<List<View_TRS_TIERS>> FilterTiers(string search)
         {
             List<View_TRS_TIERS> allTiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            if (search == "")
+            if (search == string.Empty)
             {
                 return allTiers;
             }
@@ -442,7 +322,7 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<List<View_STK_PRODUITS>> FilterProduits(string search)
         {
             List<View_STK_PRODUITS> allTiers = await getInstance().Table<View_STK_PRODUITS>().ToListAsync();
-            if (search == "")
+            if (search == string.Empty)
             {
                 return allTiers;
             }
@@ -456,7 +336,7 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search)
         {
             List<View_LIV_TOURNEE_DETAIL> allTiers = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-            if (search == "")
+            if (search == string.Empty)
             {
                 return allTiers;
             }
@@ -475,16 +355,16 @@ namespace XpertMobileApp.SQLite_Managment
             return Motifs;
         }
 
+
+
         public static async Task<List<View_TRS_ENCAISS>> LoadEncDec(string typeMotif = "")
         {
             List<View_TRS_ENCAISS> AllEncDec = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-            List<View_TRS_ENCAISS> Data;
-            if (typeMotif == "" || typeMotif == "All")
+            if (typeMotif == string.Empty || typeMotif == "All")
             {
                 return AllEncDec;
             }
-            Data = AllEncDec.Where(e => e.CODE_TYPE == typeMotif).ToList();
-            return Data;
+            return AllEncDec.Where(e => e.CODE_TYPE == typeMotif).ToList();
         }
         public static async Task<bool> DeleteEncaiss(View_TRS_ENCAISS encaiss)
         {
@@ -542,13 +422,17 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                //var obj = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
-                vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
+                vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.MBL_MT_VERCEMENT;
                 vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
+                if (!"CXPERTCOMPTOIR".Equals(vente.CODE_TIERS))
+                {
+                    decimal solde = await getSoldTiers(vente.CODE_TIERS);
+                    vente.OLD_SOLDE = solde;
+                    vente.NEW_SOLDE = vente.OLD_SOLDE + vente.TOTAL_RESTE;
+
+                }
                 vente.CREATED_BY = App.User.UserName;
                 var id = await getInstance().InsertAsync(vente);
-                //vente.CODE_VENTE = vente.ID.ToString() + "/" + App.PrefixCodification;
-                //vente.NUM_VENTE = vente.CODE_VENTE;
 
                 vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                 vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
@@ -565,19 +449,47 @@ namespace XpertMobileApp.SQLite_Managment
                     decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
                     await UpdateSoldTiers(sold, vente.CODE_TIERS);
                 }
-
-                await UpdateTourneeDetail(vente);
-                await UpdateTournee();
+                if (!string.IsNullOrEmpty(vente.MBL_CODE_TOURNEE_DETAIL))
+                {
+                    await UpdateTourneeDetail(vente);
+                    await UpdateTournee();
+                }
 
                 return vente.CODE_VENTE;
             }
         }
 
+        public static async Task<string> AjoutEntree(View_STK_ENTREE entree)
+        {
+            await getInstance().CreateTableAsync<View_STK_ENTREE>();
+            await getInstance().CreateTableAsync<View_STK_ENTREE_DETAIL>();
+
+            entree.CREATED_BY = App.User.UserName;
+            var id = await getInstance().InsertAsync(entree);
+
+            entree.CODE_ENTREE = await generateCode("EN", entree.ID.ToString());
+            entree.NUM_ENTREE = await generateNum("EN", entree.ID.ToString());
+
+            entree.DATE_ENTREE = DateTime.Now;
+
+            await getInstance().UpdateAsync(entree);
+
+            foreach (var item in entree.Details)
+            {
+                item.CODE_ENTREE = entree.CODE_ENTREE;
+            }
+            var id2 = await getInstance().InsertAllAsync(entree.Details);
+
+            return entree.CODE_ENTREE;
+        }
+
+
         private static async Task UpdateSoldTiers(decimal sold, string codeTiers)
         {
-            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-            if (UpdatedTiers.SOLDE_TIERS > 0)
+            //View_LIV_TOURNEE_DETAIL
+            View_TRS_TIERS UpdatedTiers = await getInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+            View_LIV_TOURNEE_DETAIL Tournnee = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+            if (UpdatedTiers.SOLDE_TIERS >= 0)
             {
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
             }
@@ -586,12 +498,20 @@ namespace XpertMobileApp.SQLite_Managment
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
             }
             await getInstance().UpdateAsync(UpdatedTiers);
+
+            // juste dans offline :: update solde tierss dans tournnee juste dans offline car le champs de solde tiers dans tournnee not calculable dans offline 
+            if (Tournnee != null)
+            {
+                Tournnee.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS;
+                await getInstance().UpdateAsync(Tournnee);
+            }
         }
 
         private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers, string type = "ENC")
         {
-            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+            View_TRS_TIERS UpdatedTiers = await getInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+            View_LIV_TOURNEE_DETAIL Tournnee = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+
             if (type == "ENC")
             {
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
@@ -601,13 +521,20 @@ namespace XpertMobileApp.SQLite_Managment
                 UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
             }
             await getInstance().UpdateAsync(UpdatedTiers);
+
+            // juste dans offline :: update solde tierss dans tournnee juste dans offline car le champs de solde tiers dans tournnee not calculable dans offline 
+            if (Tournnee != null)
+            {
+                Tournnee.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS;
+                await getInstance().UpdateAsync(Tournnee);
+            }
+
         }
 
 
         private static async Task<decimal> getSoldTiers(string codeTiers)
         {
-            List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+            View_TRS_TIERS UpdatedTiers = await getInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
             return UpdatedTiers.SOLDE_TIERS;
         }
 
@@ -615,7 +542,7 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<string> generateCode(string TypeDoc, string ID)
         {
             var date = DateTime.Now.Year.ToString();
-            var date2 = "";
+            var date2 = string.Empty;
             if (date.Length == 2)
             {
                 date2 = "/" + date.Substring(0, 2);
@@ -631,7 +558,7 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task<string> generateNum(string TypeDoc, string ID)
         {
             var date = DateTime.Now.Year.ToString();
-            var date2 = "";
+            var date2 = string.Empty;
             if (date.Length == 2)
             {
                 date2 = "/" + date.Substring(0, 2);
@@ -728,39 +655,33 @@ namespace XpertMobileApp.SQLite_Managment
         }
         public static async Task AjoutEnciassement(View_TRS_ENCAISS item)
         {
+            int id = 0;
+            View_TRS_TIERS Tiers = await getInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(e => e.CODE_TIERS == item.CODE_TIERS);
+            item.NOM_TIERS = Tiers?.NOM_TIERS + " " + Tiers?.PRENOM_TIERS;
+
+            View_BSE_COMPTE compte = await getInstance().Table<View_BSE_COMPTE>().FirstOrDefaultAsync(e => e.CODE_COMPTE == item.CODE_COMPTE);
+            item.DESIGN_COMPTE = compte?.DESIGN_COMPTE;
+
+            item.CREATED_BY = App.User.UserName;
+
+            BSE_ENCAISS_MOTIFS motif = await getInstance().Table<BSE_ENCAISS_MOTIFS>().FirstOrDefaultAsync(e => e.CODE_MOTIF == item.CODE_MOTIF);
+            item.DESIGN_MOTIF = motif?.DESIGN_MOTIF;
+
+            decimal solde = await getSoldTiers(item.CODE_TIERS);
+            item.OLD_SOLDE = solde;
+            item.NEW_SOLDE = solde - item.TOTAL_ENCAISS;
+
             if (string.IsNullOrEmpty(item.CODE_ENCAISS))
             {
-                List<View_TRS_TIERS> Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-                var nom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS;
-                var prenom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.PRENOM_TIERS;
-                item.NOM_TIERS = nom + " " + prenom;
-
-                List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
-                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
-
-                item.CREATED_BY = App.User.UserName;
-
-                List<BSE_ENCAISS_MOTIFS> motif = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
-                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
-
-                var id = await getInstance().InsertAsync(item);
+                id = await getInstance().InsertAsync(item);
                 item.CODE_ENCAISS = await generateCode(item.CODE_TYPE, item.ID.ToString());
                 item.NUM_ENCAISS = await generateNum(item.CODE_TYPE, item.ID.ToString());
-                await getInstance().UpdateAsync(item);
             }
-            else
-            {
-                List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
-                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
 
-                item.CREATED_BY = App.User.UserName;
+            await getInstance().UpdateAsync(item);
 
-                List<BSE_ENCAISS_MOTIFS> motif = await getInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
-                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
-
-                var id = await getInstance().UpdateAsync(item);
-            }
             await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
+
         }
 
         public static async Task UpdateStock(View_VTE_VENTE vente)
@@ -787,52 +708,38 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
         {
             string codeTourneeDetail = vente.MBL_CODE_TOURNEE_DETAIL;
-
-
-            var tournees = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-
-            foreach (var item in tournees)
+            var item = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().FirstOrDefaultAsync(x => x.CODE_DETAIL == codeTourneeDetail);
+            if (item != null)
             {
-                if (item.CODE_DETAIL == codeTourneeDetail)
-                {
-                    item.CODE_VENTE = vente.CODE_VENTE;
-                    item.CODE_ETAT = TourneeStatus.Delevred;
-                    item.ETAT_COLOR = "#008000";
-                    item.SOLDE_TIERS = await getSoldTiers(item.CODE_TIERS);
-                    item.GPS_LATITUDE = vente.GPS_LATITUDE;
-                    item.GPS_LONGITUDE = vente.GPS_LATITUDE;
-                    await getInstance().UpdateAsync(item);
-                }
+                item.CODE_VENTE = vente.CODE_VENTE;
+                item.CODE_ETAT = TourneeStatus.Delevred;
+                item.DESIGNATION_ETAT = "Delevred";
+                item.ETAT_COLOR = "#008000";
+                item.SOLDE_TIERS = await getSoldTiers(item.CODE_TIERS);
+                item.GPS_LATITUDE = vente.GPS_LATITUDE;
+                item.GPS_LONGITUDE = vente.GPS_LATITUDE;
+                await getInstance().UpdateAsync(item);
             }
+
         }
 
         public static async Task<bool> saveGPSToTiers(View_TRS_TIERS tiers)
         {
             if (!XpertHelper.IsNullOrEmpty(tiers) && !XpertHelper.IsNullOrEmpty(tiers.CODE_TIERS))
             {
-                var tournees = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-
-                foreach (var item in tournees)
-                {
-                    if (item.CODE_TIERS == tiers.CODE_TIERS)
-                    {
-                        item.GPS_LATITUDE = tiers.GPS_LATITUDE;
-                        item.GPS_LONGITUDE = tiers.GPS_LONGITUDE;
-                        await getInstance().UpdateAsync(item);
-                        return true;
-                    }
-                }
+                await getInstance().UpdateAsync(tiers);
+                return true;
             }
             return false;
         }
 
         public static async Task UpdateTournee()
         {
-            var tournee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-            foreach (var item in tournee)
+            var tournee = await getInstance().Table<View_LIV_TOURNEE>().FirstOrDefaultAsync();
+            if (tournee != null)
             {
-                item.NBR_EN_DELEVRED = item.NBR_EN_DELEVRED + 1;
-                await getInstance().UpdateAsync(item);
+                tournee.NBR_EN_DELEVRED = tournee.NBR_EN_DELEVRED + 1;
+                await getInstance().UpdateAsync(tournee);
             }
         }
 
@@ -905,105 +812,7 @@ namespace XpertMobileApp.SQLite_Managment
 
 
 
-        public static async Task<string> SyncVenteToServer()
-        {
-            try
-            {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                var ListVentes = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
-                var vteDetails = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
-
-                if (ListVentes.Count > 0 && ListVentes != null)
-                {
-                    foreach (var iVente in ListVentes)
-                    {
-                        List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
-                        try
-                        {
-                            objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
-                        }
-                        catch
-                        {
-                            objdetail = null;
-                        }
-                        finally
-                        {
-                            iVente.Details = objdetail;
-                        }
-                    }
-
-                    var compte = await getComptes();
-
-                    var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
-
-                    await getInstance().DeleteAllAsync<View_VTE_VENTE>();
-                    await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-
-                    UserDialogs.Instance.HideLoading();
-                    return res;
-                }
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-            return "";
-        }
-
-        public static async Task SyncTiersToServer()
-        {
-            try
-            {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-                List<View_TRS_TIERS> listNewTiers = new List<View_TRS_TIERS>();
-                foreach (var item in Tiers)
-                {
-                    if (item.ETAT_TIERS == STAT_TIERS_MOBILE.ADDED || item.ETAT_TIERS == STAT_TIERS_MOBILE.UPDATED)
-                    {
-                        listNewTiers.Add(item);
-                    }
-                }
-                if (listNewTiers.Count > 0 && listNewTiers != null)
-                {
-                    var bll = new TiersManager();
-                    var res = await bll.SyncTiers(listNewTiers);
-                }
-                //UserDialogs.Instance.HideLoading();
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Tiers!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-        }
-
-        public static async Task SyncEncaissToServer()
-        {
-            try
-            {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var encaiss = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-                if (encaiss.Count > 0 && encaiss != null)
-                {
-                    var bll = new EncaissManager();
-                    var res = await bll.SyncEncaiss(encaiss);
-                    await getInstance().DeleteAllAsync<View_TRS_ENCAISS>();
-                }
-                //UserDialogs.Instance.HideLoading();
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-            }
-        }
 
         public static async Task<List<View_VTE_VENTE_LOT>> getVenteDetails(string CodeVente)
         {
@@ -1014,7 +823,6 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task<SYS_CONFIGURATION_MACHINE> AjoutPrefix()
         {
-            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
             //Nom de la machine
             var userHost = Dns.GetHostName();
@@ -1028,19 +836,23 @@ namespace XpertMobileApp.SQLite_Managment
 
             // Device Name (Motz's iPhone)
             var deviceName = DeviceInfo.Name;
+            var res = userIp.Split('.');
+            string suffix = string.Empty;
+            if (XpertHelper.IsNotNullAndNotEmpty(res))
+            {
+                suffix = res[res.Count() - 1];
+            }
+            //var deviceNameRandom = XpertHelper.RandomString(2);
 
-            var deviceNameRandom = XpertHelper.RandomString(2);
-
-            deviceName = deviceName + "/" + deviceNameRandom;
+            deviceName = deviceName + "/" + suffix;
 
             SYS_CONFIGURATION_MACHINE prefix = new SYS_CONFIGURATION_MACHINE();
             prefix.IP = userIp;
             prefix.MACHINE = deviceName;
 
             var bll = new SYS_MACHINE_CONFIG_Manager();
-            var res = await bll.AddMachine(prefix);
-            UserDialogs.Instance.HideLoading();
-            if (res)
+            var resMachine = await bll.AddMachine(prefix);
+            if (resMachine)
             {
                 return prefix;
             }
