@@ -898,4 +898,7 @@
   <data name="txt_agri_PrixLast" xml:space="preserve">
     <value>Dernier Prix :</value>
   </data>
+  <data name="vteTotalResteVente" xml:space="preserve">
+    <value>Total reste</value>
+  </data>
 </root>
