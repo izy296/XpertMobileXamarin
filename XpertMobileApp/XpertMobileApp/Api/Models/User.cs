@@ -14,9 +14,11 @@ namespace XpertMobileApp.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string CODE_TIERS { get; set; }
+        public string CODE_COMPTE { get; set; }
         public string UserGroup { get; set; }
         public string GroupName { get; set; }
         public string TEL_USER { get; set; } // varchar(32)
+        public string PREFIX_USER_MOBILE { get; set; } // varchar(32)
 
         public Token Token { get; set; }
 
