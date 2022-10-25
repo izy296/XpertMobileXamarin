@@ -9,13 +9,8 @@ namespace XpertMobileApp.Api
 {
     public static class Apps
     {
-        public static string XCOM_Mob = "XCOM_Mob";
-        public static string XPH_Mob = "XCPH_Mob";
         public static string XAGRI_Mob = "XAGRI_Mob";
-        public static string XACATALOG_Mob = "XACATALOG_Mob";
-        public static string XCOM_Vente = "XCOM_Vente";
         public static string XCOM_Livraison = "XCOM_Livraison";
-        public static string X_BOUTIQUE = "X_BOUTIQUE";
     }
 
     public static class Mobile_Edition
@@ -26,19 +21,29 @@ namespace XpertMobileApp.Api
 
         public static string GetEditionTitle(int CodeEdition)
         {
-            if (CodeEdition == 3)
-                return "Edition PRO ";
-            else if (CodeEdition == 2)
-                return "Edition STANDARD ";
-            else 
-                return "Edition LITE ";
+            //if (CodeEdition == 3)
+            return "Edition PRO ";
+            //else if (CodeEdition == 2)
+            //  return "Edition STANDARD ";
+            //else 
+            //  return "Edition LITE ";
         }
-    } 
+    }
 
     public static class Constants
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
+        //#if Debug
+
+        //        public static string AppName = Apps.XAGRI_Mob;
+        //#endif
+
+        //#if XMBL
+        //        public static string AppName = Apps.XAGRI_Mob;
+
+        //#endif
+        //
         public static string AppName = Apps.XCOM_Livraison;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
