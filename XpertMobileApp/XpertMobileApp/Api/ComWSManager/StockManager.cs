@@ -27,5 +27,15 @@ namespace XpertMobileApp.Api
 
             return await WSApi2.RetrievAauthorizedData<View_STK_STOCK>(url, this.Token.access_token);
         }
+
+
+
+
+        public async Task<string> SyncRetourStock(List<View_STK_ENTREE> Entrees,  string CodeMagasin = "")
+        {
+            string url = GetActionUrl("InsertRetourStock");
+            url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);
+            return await WSApi2.PostAauthorizedValue<string, List<View_STK_ENTREE>>(url, Entrees, this.Token.access_token);
+        }
     }
 }
