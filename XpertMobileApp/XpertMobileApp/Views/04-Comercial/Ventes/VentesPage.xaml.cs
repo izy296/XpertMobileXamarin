@@ -37,7 +37,10 @@ namespace XpertMobileApp.Views
             itemSelector = new TiersSelector(CurrentStream);
 
             BindingContext = viewModel = new VentesViewModel(typeVente);
-            vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
+            if (Constants.AppName != Apps.XCOM_Livraison)
+            {
+                vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
+            }
             viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>

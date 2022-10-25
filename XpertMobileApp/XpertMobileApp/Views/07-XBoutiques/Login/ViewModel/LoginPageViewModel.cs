@@ -221,10 +221,7 @@ namespace XpertMobileApp.ViewModels.XLogin
 
                         try
                         {
-                            if (Constants.AppName != Apps.X_BOUTIQUE)
-                            {
-                                List<SYS_OBJET_PERMISSION> permissions = await AppManager.GetPermissions();
-                            }
+                            List<SYS_OBJET_PERMISSION> permissions = await AppManager.GetPermissions();
                             // await App.UserDatabase.SaveItemAsync(user);
                             await App.TokenDatabase.SaveItemAsync(token);
                         }

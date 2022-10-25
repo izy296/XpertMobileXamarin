@@ -105,8 +105,8 @@
             <!-- Items listing  -->
             <StackLayout VerticalOptions="FillAndExpand">
 
-                <!-- Today infos  -->
-                <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" IsVisible="{Binding HasAdmin}">
+                <!-- Today infos  IsVisible="{Binding HasAdmin}"-->
+                <Frame x:Name="vteGlobalInfos" Style="{StaticResource FrameForList}" >
                     <Grid  BackgroundColor="White" >
 
                         <Grid.ColumnDefinitions>
@@ -126,12 +126,13 @@
                         </StackLayout>
 
                         <StackLayout Grid.Column="0" Grid.Row="2" Spacing="5" Padding="0">
-                            <Label Text="{i18n:Translate txt_CA}" TextColor="{StaticResource Primary}"/>
-                            <Label Text="{i18n:Translate txt_Margin}" TextColor="Red"/>
+                            <Label Text="{i18n:Translate vteTotalVente}" TextColor="{StaticResource Primary}"/>
+                            <Label Text="{i18n:Translate vteTotalResteVente}" TextColor="Red"/>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0" HorizontalOptions="End">
-                            <Label Text="{Binding TotalTurnover, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
-                            <Label Text="{Binding TotalMargin, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
+                            <Label Text="{Binding TotalVente, StringFormat='{0:N2} DA'}" TextColor="{StaticResource Primary}" HorizontalOptions="End"/>
+                            <Label Text="{Binding TotalPaye, StringFormat='{0:N2} DA'}" TextColor="Green" HorizontalOptions="End"/>
+                            <Label Text="{Binding TotalReste, StringFormat='{0:N2} DA'}" TextColor="Red" HorizontalOptions="End"/>
                         </StackLayout>
                     </Grid>
                 </Frame>

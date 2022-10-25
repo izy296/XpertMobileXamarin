@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -10,7 +11,9 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -21,6 +24,7 @@ namespace XpertMobileApp.ViewModels
 
         public static string VenteComptoir { get { return "VC"; } }
         public static string Livraison { get { return "BL"; } }
+        public static string BonRetour { get { return "BR"; } }
     }
 
     public class VentesViewModel : CrudBaseViewModel2<VTE_VENTE, View_VTE_VENTE>
@@ -30,17 +34,25 @@ namespace XpertMobileApp.ViewModels
         public bool IsVtesList { get; set; } = false;
 
         decimal totalTurnover;
-        public decimal TotalTurnover
+        public decimal TotalVente
         {
             get { return totalTurnover; }
             set { SetProperty(ref totalTurnover, value); }
         }
 
         decimal totalMargin;
-        public decimal TotalMargin
+        public decimal TotalReste
         {
             get { return totalMargin; }
             set { SetProperty(ref totalMargin, value); }
+        }
+
+
+        decimal totalpaye;
+        public decimal TotalPaye
+        {
+            get { return totalpaye; }
+            set { SetProperty(ref totalpaye, value); }
         }
 
         public View_TRS_TIERS SelectedTiers { get; set; }
@@ -78,9 +90,9 @@ namespace XpertMobileApp.ViewModels
                     return "VTE_VENTE";
                 }
             }
-        }        
+        }
 
-        public VentesViewModel( string typeVente)
+        public VentesViewModel(string typeVente)
         {
             TypeVente = typeVente;
 
@@ -90,7 +102,7 @@ namespace XpertMobileApp.ViewModels
                 Title = AppResources.pn_Ventes;
                 IsVtesList = true;
             }
-            else if(typeVente == VentesTypes.VentePSYCO)
+            else if (typeVente == VentesTypes.VentePSYCO)
             {
                 Title = AppResources.pn_VtePsychotrop;
             }
@@ -104,8 +116,7 @@ namespace XpertMobileApp.ViewModels
             }
             base.InitConstructor();
 
-            if (typeVente == VentesTypes.Vente)
-            { 
+            {
                 LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
             }
         }
@@ -122,18 +133,18 @@ namespace XpertMobileApp.ViewModels
                 if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                     this.AddCondition<View_VTE_PSYCHOTROP, string>(e => e.TYPE_DOC, SelectedType?.CODE_TYPE);
                 this.AddOrderBy<View_VTE_PSYCHOTROP, DateTime?>(e => e.CREATED_ON, Sort.DESC);
-            } 
+            }
             else
             {
                 this.AddCondition<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE, Operator.BETWEEN_DATE, StartDate, EndDate);
                 if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                     this.AddCondition<View_VTE_VENTE, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
-                if (!string.IsNullOrEmpty(TypeVente)) 
+                if (!string.IsNullOrEmpty(TypeVente))
                 {
                     this.AddCondition<View_VTE_VENTE, string>(e => e.TYPE_VENTE, TypeVente);
 
-                    if(Constants.AppName == Apps.XCOM_Livraison) 
+                    if (Constants.AppName == Apps.XCOM_Livraison)
                     {
                         this.AddCondition<View_VTE_VENTE, string>(e => e.CREATED_BY, App.User.UserName);
                     }
@@ -150,11 +161,21 @@ namespace XpertMobileApp.ViewModels
         {
             base.OnAfterLoadItems(list);
 
-            int i = 0; 
+            int i = 0;
             foreach (var item in list)
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
+            }
+            if (!App.Online)
+            {
+                Task<List<View_VTE_VENTE>> AllEntrees = UpdateDatabase.getInstance().Table<View_VTE_VENTE>().ToListAsync();
+                if (AllEntrees != null && AllEntrees.Result != null)
+                {
+                    TotalVente = AllEntrees.Result.Sum(x => x.TOTAL_TTC);
+                    TotalReste = AllEntrees.Result.Sum(x => x.TOTAL_RESTE);
+                    TotalPaye = AllEntrees.Result.Sum(x => x.TOTAL_PAYE);
+                }
             }
         }
 
@@ -198,8 +219,17 @@ namespace XpertMobileApp.ViewModels
                 {
                     STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
                     await ExecuteLoadTypesCommand();
-                    TotalTurnover = stat.MONTANT_VENTE;
-                    TotalMargin = stat.MONTANT_MARGE;
+                    TotalVente = stat.MONTANT_VENTE;
+                    TotalReste = stat.MONTANT_MARGE;
+                }
+                else
+                {
+                    Task<List<View_VTE_VENTE>> AllEntrees = UpdateDatabase.getInstance().Table<View_VTE_VENTE>().ToListAsync();
+                    if (AllEntrees != null && AllEntrees.Result != null)
+                    {
+                        TotalVente = AllEntrees.Result.Sum(x => x.TOTAL_PAYE);
+                        TotalReste = AllEntrees.Result.Sum(x => x.TOTAL_RESTE);
+                    }
                 }
                 // await ExecuteLoadFamillesCommand();
             }
@@ -218,7 +248,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-              //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                //  UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
 
                 Types.Clear();
                 var itemsC = await WebServiceClient.GetVenteTypes();
@@ -228,17 +258,17 @@ namespace XpertMobileApp.ViewModels
                     Types.Add(itemC);
                 }
 
-                
+
                 BSE_DOCUMENTS_TYPE empty = new BSE_DOCUMENTS_TYPE();
                 empty.CODE_TYPE = "";
                 empty.DESIGNATION_TYPE = AppResources.txt_All;
                 Types.Insert(0, empty);
-                
-              //  UserDialogs.Instance.HideLoading();
+
+                //  UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
-              //  UserDialogs.Instance.HideLoading();
+                //  UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
