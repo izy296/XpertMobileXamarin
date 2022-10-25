@@ -1,10 +1,5 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using Acr.UserDialogs;
 using Plugin.FirebasePushNotification;
@@ -12,13 +7,10 @@ using Android.Content;
 using Android;
 using Android.Support.V4.App;
 using Android.Util;
-using Android.Support.Design.Widget;
-using FFImageLoading.Forms.Platform;
-using Firebase;
 
 namespace XpertMobileApp.Droid
 {
-    [Activity(Label = "XpertLivraison", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "XpertDelivery", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         internal static MainActivity Instance { get; private set; }
@@ -52,57 +44,18 @@ namespace XpertMobileApp.Droid
 
             ZXing.Net.Mobile.Forms.Android.Platform.Init();
 
-           // FirebaseApp.InitializeApp(Application.Context);
+            // FirebaseApp.InitializeApp(Application.Context);
 
             LoadApplication(new App());
 
             FirebasePushNotificationManager.ProcessIntent(this, Intent);
-        // verifier les permission 
-        /*
-        if (Build.VERSION.SdkInt >= BuildVersionCodes.M)
-        {
-            if (ApplicationContext.CheckSelfPermission(Android.Manifest.Permission.Camera) != Android.Content.PM.Permission.Granted)
-            {
-                RequestPermissions(new String[] { Android.Manifest.Permission.Camera }, 1);
-            }
-            else
-            {
-            }
-
-            if (ApplicationContext.CheckSelfPermission(
-                    Manifest.Permission.AccessCoarseLocation) != Android.Content.PM.Permission.Granted)
-            {
-                RequestPermissions(new String[] { Manifest.Permission.AccessCoarseLocation },
-                                1);
-            }
-            if (ApplicationContext.CheckSelfPermission(Manifest.Permission.ReadExternalStorage) != Android.Content.PM.Permission.Granted)
-            {
-
-                RequestPermissions(new String[] {
-                    Manifest.Permission.WriteExternalStorage,
-                    Manifest.Permission.ReadExternalStorage}, 1);
-                return;
-            }
-            else
-            {
-
-
-            }
-
         }
-        else
-        {
-
-        }
-        */
-        // InitPermissions();
-    }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
         protected override void OnNewIntent(Intent intent)
