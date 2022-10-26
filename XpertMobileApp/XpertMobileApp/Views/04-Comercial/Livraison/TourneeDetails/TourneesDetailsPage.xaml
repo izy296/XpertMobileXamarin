@@ -130,7 +130,7 @@
                                                 <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}"></StackLayout>
 
                                                 <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                                                    <Label Text="{Binding NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                                                    <Label Text="{Binding FULL_NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
                                                 </StackLayout>
 
                                                 <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">

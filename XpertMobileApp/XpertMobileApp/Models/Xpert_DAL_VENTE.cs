@@ -796,9 +796,9 @@ namespace XpertMobileApp.DAL
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; } // varchar(200)
         public bool ETAT_TOURNEE { get; set; }
-        public DateTime? DATE_DEPART { get; set; }
-        public DateTime? DATE_RETOUR { get; set; }
-        public DateTime? DATE_LAST_SYNC { get; set; }
+        public DateTime? DATE_DEPART_TOURNEE { get; set; }
+        public DateTime? DATE_RETOUR_TOURNEE { get; set; }
+        public DateTime? DATE_LAST_SYNC_TOURNEE { get; set; }
     }
     public partial class View_LIV_TOURNEE : LIV_TOURNEE
     {
@@ -849,7 +849,7 @@ namespace XpertMobileApp.DAL
     }
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
-        public string NOM_TIERS { get; set; }
+        public string FULL_NOM_TIERS{ get; set; }
         public decimal SOLDE_TIERS { get; set; }
         public string DESIGNATION_ETAT { get; set; }
 

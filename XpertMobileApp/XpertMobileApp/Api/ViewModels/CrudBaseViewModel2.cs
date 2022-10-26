@@ -140,15 +140,15 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     try
                     {
-                        bool isconnected = await App.IsConected();
-                        bool isOnline = App.Online;
-                        if (isOnline)
+                        //bool isconnected = await App.IsConected();
+                        //bool isOnline = App.Online;
+                        if (App.Online)
                         {
-                            if (!isconnected)
-                            {
-                                await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                                return new List<TView>();
-                            }
+                            //if (!isconnected)
+                            //{
+                            //    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_NoConnexion, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            //    return new List<TView>();
+                            //}
 
                             IsBusy = true;
 

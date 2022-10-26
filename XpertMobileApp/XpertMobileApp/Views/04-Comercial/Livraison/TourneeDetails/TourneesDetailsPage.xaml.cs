@@ -303,7 +303,7 @@ namespace XpertMobileApp.Views
                 {
                     var trs = new View_TRS_TIERS();
                     trs.CODE_TIERS = tr.CODE_TIERS;
-                    trs.NOM_TIERS1 = tr.NOM_TIERS;
+                    trs.NOM_TIERS1 = tr.FULL_NOM_TIERS;
                     VenteFormLivraisonPage form = new VenteFormLivraisonPage(null, VentesTypes.Livraison, trs, tr.CODE_DETAIL);
 
                     await Navigation.PushAsync(form);
@@ -325,7 +325,7 @@ namespace XpertMobileApp.Views
                 {
                     var trs = new View_TRS_TIERS();
                     trs.CODE_TIERS = tr.CODE_TIERS;
-                    trs.NOM_TIERS1 = tr.NOM_TIERS;
+                    trs.NOM_TIERS1 = tr.FULL_NOM_TIERS;
                     VenteFormLivraisonPage form = new VenteFormLivraisonPage(null, VentesTypes.Livraison, trs, tr.CODE_DETAIL);
 
                     await Navigation.PushAsync(form);

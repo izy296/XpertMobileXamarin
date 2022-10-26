@@ -262,7 +262,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncMotifs();//worked !
                     await SyncUsers(); //worked !
                     await SyncConfigMachine(); //worked
-                    await SyncMagasin();                                                                                           //await SyncProduct();
+                    //await SyncMagasin();                                                                                           //await SyncProduct();
                     await SyncTransfers();
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
                     //await SyncData<View_VTE_VENTE, VTE_VENTE>();
@@ -772,7 +772,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                var tiersFiltred = allTiers.Where(x => x.NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
+                var tiersFiltred = allTiers.Where(x => x.FULL_NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
                 return tiersFiltred;
             }
         }
