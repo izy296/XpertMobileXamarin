@@ -18,6 +18,7 @@ using Xamarin.Essentials;
 using System.ComponentModel;
 using XpertMobileApp.Views.Helper;
 using Newtonsoft.Json;
+using XpertMobileApp.Api.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -44,13 +45,16 @@ namespace XpertMobileApp.Views
         public MenuPage()
         {
             InitializeComponent();
+            // Vérification de la licence
+            LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
 
             lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
             ClientId.Text = "ID : " + App.Settings.ClientId;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
-
+            XpertExpireDate.Text = "Exp: " + licenceInfos.ExpirationDate.GetDateTimeFormats().First().ToString();
+            
             GetNumberOfNotifications();
 
             //Menu commun OFFICINE & COMM
@@ -58,12 +62,13 @@ namespace XpertMobileApp.Views
             {
                 menuItems = new List<HomeMenuItem>();
 
-                menuItems.Add(new HomeMenuItem { Id = MenuItemType.Home, ItemGroup = MenuItemGroup.Home, Image = "", Title = AppResources.pn_home });
-                /*
-                if (AppManager.HasAdmin) 
-                { 
-
-                }*/
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Home,
+                    ItemGroup = MenuItemGroup.Home,
+                    Image = "",
+                    Title = AppResources.pn_home
+                });
                 menuItems.Add(new HomeMenuItem
                 {
                     Id = MenuItemType.Ventes,
@@ -117,15 +122,19 @@ namespace XpertMobileApp.Views
                             Action = XpertActions.AcSelect,
                         }); ;
 
-                        menuItems.Add(new HomeMenuItem
+                        if (Constants.AppName == Apps.XPH_Mob)
                         {
-                            Id = MenuItemType.Echange,
-                            ItemGroup = MenuItemGroup.Stock,
-                            Title = AppResources.pn_Echanges,
-                            CodeObjet = XpertObjets.View_STK_ECHANGE,
-                            Action = XpertActions.AcSelect,
-                            IsNewModule = true,
-                        }); ;
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.Echange,
+                                ItemGroup = MenuItemGroup.Stock,
+                                Title = AppResources.pn_Echanges,
+                                CodeObjet = XpertObjets.View_STK_ECHANGE,
+                                Action = XpertActions.AcSelect,
+                                IsNewModule = true,
+                            });
+                        }
+
 
                         menuItems.Add(new HomeMenuItem
                         {
@@ -370,8 +379,6 @@ namespace XpertMobileApp.Views
                 // Si l'utilisateur est un administrateur...
                 if (AppManager.HasAdmin)
                 {
-
-
                     /* Page session */
                     menuItems.Add(new HomeMenuItem
                     {
@@ -442,7 +449,7 @@ namespace XpertMobileApp.Views
                     Id = MenuItemType.Tiers,
                     ItemGroup = MenuItemGroup.Ventes,
                     Image = "user.png",
-                    Title = AppResources.pn_Tiers
+                    Title = AppResources.pn_Client
                 });
 
                 /* Page Chargement / Déchargement */
