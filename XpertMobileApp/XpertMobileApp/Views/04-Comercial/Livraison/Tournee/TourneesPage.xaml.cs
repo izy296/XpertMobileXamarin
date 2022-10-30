@@ -1,11 +1,15 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views._03_CommonPages.Synchronisation;
 
 namespace XpertMobileApp.Views
 {
@@ -40,9 +44,26 @@ namespace XpertMobileApp.Views
 
         // protected override void OnAppearing()
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+
+            if (App.CODE_MAGASIN == null && App.User.UserGroup != "AD")
+            {
+                var obj = await SQLite_Manager.GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                if (obj != null && obj.Count > 0)
+                {
+                    App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
+                }
+                if (App.CODE_MAGASIN==null)
+                {
+                    await UserDialogs.Instance.AlertAsync("Aucun Magasin est assigner a vous ,s'il vous plait synchroniser les tournes", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                    await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Synchronisation);
+                }
+
+            }
             //Addd();
             //List<View_LIV_TOURNEE> tournee = TourneeServices.getTrounee();
 

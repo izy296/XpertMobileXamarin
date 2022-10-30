@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
@@ -11,6 +12,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views._03_CommonPages.Synchronisation;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -50,6 +52,7 @@ namespace XpertMobileApp.ViewModels
             if (App.User.UserGroup!="AD")
             {
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
+                this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_MAGASIN, App.CODE_MAGASIN);
             }
             //this.AddCondition(e => e.CODE_VENDEUR, user);
             this.AddOrderBy<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Sort.DESC);

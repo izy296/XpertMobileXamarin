@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+                 x:Class="XpertMobileApp.Views.TierDetailPage"
+             x:Name="TierDetail"
+             Title="Tier Detail">
+    <pages:PopupPage.Content>
+        <tabView:SfTabView 
+            BackgroundColor="white" 
+            x:Name="tabView" 
+            VisibleHeaderCount="3"
+            TabHeaderPosition="Bottom"
+            >
+            <tabView:SfTabItem Title="Info">
+                <!--<tabView:SfTabItem.HeaderContent>-->
+                    <!--<Label
+                        FontFamily="{StaticResource FAwesome6-Brands}" 
+                        TextColor="Black"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.Info}"
+                        BackgroundColor="Transparent">
+                    </Label>-->
+                <!--</tabView:SfTabItem.HeaderContent>-->
+                <tabView:SfTabItem.Content
+                    padding="5">
+                    <StackLayout 
+                        Orientation="Vertical"
+                        VerticalOptions="FillAndExpand"
+                        Padding="5"
+                        >
+                        <inputLayout:SfTextInputLayout Hint="Name" ContainerType="Outlined" >
+                            <Entry x:Name="Name"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="LastName" ContainerType="Outlined" >
+                            <Entry x:Name="LastName"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="Tel" ContainerType="Outlined" >
+                            <Entry x:Name="Tel"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Hint="Email" ContainerType="Outlined" >
+                            <Entry x:Name="Email"/>
+                        </inputLayout:SfTextInputLayout>
+                        <syncfusion:SfPicker x:Name="picker"/>
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="Map">
+                
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="QR Code">
+
+            </tabView:SfTabItem>
+        </tabView:SfTabView>
+    </pages:PopupPage.Content>
+</pages:PopupPage>

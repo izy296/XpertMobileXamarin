@@ -8,8 +8,18 @@
                 <SwipeItems>
                     <SwipeItem Text="Modifier"
                            IconImageSource="SelectionEdit.png"
-                           BackgroundColor="LightGreen"
+                           BackgroundColor="LightBlue"
                            Invoked="OnUpdateSwipeItemInvoked" />
+
+                    <SwipeItem Text="Appele"
+                           IconImageSource="PhoneCall.png"
+                           BackgroundColor="LightGreen"
+                           Invoked="OnCallSwipeItemInvoked" />
+
+                    <SwipeItem Text="Location"
+                           IconImageSource="MapLocate.png"
+                           BackgroundColor="OrangeRed"
+                           Invoked="OnLocateSwipeItemInvoked" />
 
                     <SwipeItem Text="Supprimer" 
                            IsVisible="False"
@@ -20,6 +30,9 @@
                 </SwipeItems>
             </SwipeView.RightItems>
             <Grid>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                </Grid.GestureRecognizers>
                 <StackLayout>
                     <border:SfBorder 
                         x:Name="border" 

@@ -118,18 +118,17 @@
 
 
             </FlexLayout>
-            
+
             <AbsoluteLayout 
                 VerticalOptions="Fill" 
                 HorizontalOptions="Fill"
                 Margin="5,5,5,0"
-                FlowDirection="LeftToRight">
+                FlowDirection="LeftToRight"
+                >
 
-                <ScrollView AbsoluteLayout.LayoutFlags="All" 
-                            VerticalScrollBarVisibility="Never"
-                            AbsoluteLayout.LayoutBounds="0,0,1,1">
-
-                    <ListView 
+                <ListView 
+                        AbsoluteLayout.LayoutFlags="All" 
+                            AbsoluteLayout.LayoutBounds="0,0,1,1"
                         BackgroundColor="Transparent"
                         x:Name="ItemsListView"
                         ItemsSource="{Binding Items}"
@@ -143,33 +142,32 @@
                         CachingStrategy="RecycleElement"
                         ItemSelected="OnItemSelected">
 
-                        <ListView.Behaviors>
-                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                        </ListView.Behaviors>
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
 
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <template:TiersTemplate />
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:TiersTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
 
-                        <ListView.Footer>
-                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                                <!-- set the footer to have a zero height when invisible -->
-                                <Grid.Triggers>
-                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                        <Setter Property="HeightRequest" Value="0" />
-                                    </Trigger>
-                                </Grid.Triggers>
-                                <!-- the loading content -->
-                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                            </Grid>
-                        </ListView.Footer>
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
 
-                    </ListView>
-                </ScrollView>
+                </ListView>
 
                 <!--floating button-->
                 <Button 

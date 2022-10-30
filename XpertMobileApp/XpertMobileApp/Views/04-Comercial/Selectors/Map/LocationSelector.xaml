@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.LocationSelector"
+             xmlns:gmaps = "clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+                 xmlns:cmp="clr-namespace:XpertMobileApp.Components" >
+
+    <pages:PopupPage.Content>
+        <StackLayout
+            BackgroundColor="White"
+            Orientation="Vertical"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+            <StackLayout
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand">
+                <gmaps:Map x:Name="MyMap" MapType="Street" HasZoomEnabled="True" MyLocationEnabled="True" IsShowingUser="True" IsTrafficEnabled="True"
+                      VerticalOptions="FillAndExpand"
+                           InitialCameraUpdate="36.913088828987064, 7.734901267506781"/>
+            </StackLayout>
+            <Grid 
+            x:Name="ButtonsPannel"
+            IsVisible="False"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="End"
+            Padding="5"
+            Margin="5"
+            HeightRequest="40"
+            BackgroundColor="AliceBlue"
+            >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                
+                <ImageButton
+                    Padding="3"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    CornerRadius="20"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    x:Name="btn_SaveLocation"
+                    Source="check.png"
+                    BackgroundColor="Navy"
+                    Clicked="SaveLocation_Clicked"
+                    HorizontalOptions="FillAndExpand"
+                    />
+                
+                <ImageButton
+                    Padding="3"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    CornerRadius="20"
+                    WidthRequest="30"
+                    HeightRequest="30"
+                    x:Name="btn_Cancel"
+                    Source="close.png"
+                    BackgroundColor="OrangeRed"
+                    Clicked="CancelLocation_Clicked"
+                    HorizontalOptions="FillAndExpand"/>
+
+            </Grid>
+        </StackLayout>
+    </pages:PopupPage.Content>
+
+</pages:PopupPage>

@@ -26,25 +26,6 @@ namespace XpertMobileApp.ViewModels
         public TransfertStockViewModel()
         {
             base.InitConstructor();
-            if (XpertHelper.IsNullOrEmpty(App.CODE_MAGASIN))
-            {
-                SQLite_Manager.SyncConfigMachine();
-                SQLite_Manager.SyncMagasin();
-                GetCodeMagasin();
-            }
-        }
-
-        private async void GetCodeMagasin()
-        {
-            var tt = await SQLite_Manager.GetInstance().Table<SYS_CONFIGURATION_MACHINE>().ToListAsync();
-
-            foreach (var item in tt)
-            {
-                if (item.ID_USER==App.User.UserName)
-                {
-                    App.CODE_MAGASIN = item.CODE_MAGASIN;
-                }
-            }
         }
 
 
@@ -56,6 +37,7 @@ namespace XpertMobileApp.ViewModels
             this.AddCondition<View_STK_TRANSFERT, DateTime?>(e => e.DATE_TRANSEFRT, Operator.BETWEEN_DATE, StartDate, EndDate);
             this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_DESTINATION, App.CODE_MAGASIN);
             this.AddCondition<View_STK_TRANSFERT, bool?>(e => e.IS_VALIDATE, false);
+
 
             this.AddOrderBy<View_STK_TRANSFERT, DateTime?>(e => e.CREATED_ON);
             return qb.QueryInfos;
