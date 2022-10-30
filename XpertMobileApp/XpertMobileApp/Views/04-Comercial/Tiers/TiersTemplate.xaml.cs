@@ -49,24 +49,24 @@ namespace XpertMobileApp.Views.Templates
 
         private async void OnLocateSwipeItemInvoked(object sender, EventArgs e)
         {
-            //        var tr = (sender as SwipeItem)?.Parent?.Parent?.Parent?.BindingContext as View_TRS_TIERS;
+            var tr = (sender as SwipeItem)?.Parent?.Parent?.Parent?.BindingContext as View_TRS_TIERS;
 
-            //        //await Navigation.PushAsync(new LocationSelector());
-            //        LocationSelector popup = new LocationSelector(tr);
-            //        await PopupNavigation.Instance.PushAsync(popup);
-            //        if (await popup.PopupClosedTask)
-            //        {
-            //            if (popup.Result!=null)
-            //            {
-            //                tr.GPS_LATITUDE = popup.Result.Latitude;
-            //                tr.GPS_LONGITUDE = popup.Result.Longitude;
-            //                await CrudManager.TiersManager.UpdateItemAsync(tr);
-            //                await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert,
-            //AppResources.alrt_msg_Ok);
-            //            }
-            //        }
+            //await Navigation.PushAsync(new LocationSelector(tr));
+            LocationSelector popup = new LocationSelector(tr);
+            await PopupNavigation.Instance.PushAsync(popup);
+            if (await popup.PopupClosedTask)
+            {
+                if (popup.Result != null)
+                {
+                    tr.GPS_LATITUDE = popup.Result.Latitude;
+                    tr.GPS_LONGITUDE = popup.Result.Longitude;
+                    await CrudManager.TiersManager.UpdateItemAsync(tr);
+                    await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                }
+            }
 
-            await Navigation.PushModalAsync(new TierDetailPage());
+            //await Navigation.PushAsync(new LocationSelector());
 
         }
 
