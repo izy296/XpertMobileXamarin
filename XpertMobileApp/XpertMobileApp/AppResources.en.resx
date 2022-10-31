@@ -1041,4 +1041,7 @@
   <data name="txt_reinstall_app" xml:space="preserve">
     <value>Please reinstall your application.</value>
   </data>
+  <data name="pn_Client" xml:space="preserve">
+    <value>Clients</value>
+  </data>
 </root>

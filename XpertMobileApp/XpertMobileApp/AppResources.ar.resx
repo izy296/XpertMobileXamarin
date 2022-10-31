@@ -1141,4 +1141,7 @@
   <data name="txt_reinstall_app" xml:space="preserve">
     <value>الرجاء اعادة تنصيب التطبيق</value>
   </data>
+  <data name="pn_Client" xml:space="preserve">
+    <value>الزبائن</value>
+  </data>
 </root>

@@ -1543,7 +1543,16 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Tiers", resourceCulture);
             }
         }
-
+        /// <summary>
+        /// Recherche une chaîne localisée semblable à Client.
+        /// </summary>
+        internal static string pn_Client
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Client", resourceCulture);
+            }
+        }
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Trésorerie.
         /// </summary>

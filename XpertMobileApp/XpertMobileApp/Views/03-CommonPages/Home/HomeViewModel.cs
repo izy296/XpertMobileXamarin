@@ -133,7 +133,7 @@ namespace XpertMobileApp.ViewModels
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
-                        Title = "Tiers",
+                        Title = AppResources.pn_Client,
                         Color = "#FEF2CC",
                         CodeObjet = Xpert.XpertObjets.TRS_TIERS,
                         Action = Xpert.XpertActions.AcSelect
