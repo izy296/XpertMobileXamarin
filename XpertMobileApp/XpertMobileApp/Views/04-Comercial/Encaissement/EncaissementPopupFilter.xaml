@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
              x:Class="XpertMobileApp.Views.EncaissementPopupFilter"
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
@@ -243,6 +243,7 @@
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="35"/>
+                                                <RowDefinition Height="35"/>
                                             </Grid.RowDefinitions>
 
                                             <Picker 
@@ -268,6 +269,18 @@
                                                     <TapGestureRecognizer Tapped="Initialize_Motifs_picker"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
+
+                                            <syncfusion:SfCheckBox 
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                CheckedColor="#64BCFF" 
+                                                UncheckedColor="#64BCFF"
+                                                TickColor="#64BCFF"
+                                                x:Name="checkBoxTransfertDeFond"
+                                                IsChecked="{Binding CheckBoxTransfertDeFond}"
+                                                Text="Afficher les transfert de fond "
+                                                HorizontalOptions="FillAndExpand" 
+                                                StateChanged="CheckBox_StateChangedTransfertDeFond"/>
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>

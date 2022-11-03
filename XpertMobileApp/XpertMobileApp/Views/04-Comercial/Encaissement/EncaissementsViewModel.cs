@@ -56,7 +56,11 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref selectedMotif, value); }
         }
 
-
+        public bool CheckBoxTransfertDeFond
+        {
+            get;
+            set; 
+        }
         public EncaissementsViewModel()
         {
             Title = AppResources.pn_encaissement;
@@ -74,8 +78,16 @@ namespace XpertMobileApp.ViewModels
 
             this.AddCondition<View_TRS_ENCAISS, DateTime?>(e => e.DATE_ENCAISS, Operator.BETWEEN_DATE, StartDate, EndDate);
 
-            if (!string.IsNullOrEmpty(type))
-                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
+            if (CheckBoxTransfertDeFond)
+            {
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF,"3");
+            } else
+            {
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF,Operator.NOT_EQUAL, "3");
+            }
+
+            //if (!string.IsNullOrEmpty(type))
+            //    this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
 
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
@@ -119,7 +131,7 @@ namespace XpertMobileApp.ViewModels
             return type;
         }
 
-        async Task ExecuteLoadExtrasDataCommand()
+        public async Task ExecuteLoadExtrasDataCommand()
         {
 
             if (IsLoadExtrasBusy)
@@ -130,6 +142,8 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsLoadExtrasBusy = true;
                     Comptes.Clear();
+                    Motifs.Clear();
+
                     var itemsC = await WebServiceClient.getComptes();
                     itemsC.Insert(0, new View_BSE_COMPTE()
                     {
@@ -138,7 +152,7 @@ namespace XpertMobileApp.ViewModels
                         CODE_TYPE = ""
                     });
 
-                    var itemsM = await WebServiceClient.GetMotifs();
+                    var itemsM = await WebServiceClient.GetMotifs(GetCurrentType());
                     itemsM.Insert(0, new BSE_ENCAISS_MOTIFS()
                     {
                         DESIGN_MOTIF = AppResources.txt_All,

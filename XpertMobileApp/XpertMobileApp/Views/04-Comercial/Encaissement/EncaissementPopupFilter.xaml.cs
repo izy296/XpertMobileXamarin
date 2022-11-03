@@ -33,6 +33,7 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
             this.viewModel = viewModel;
+            viewModel.ExecuteLoadExtrasDataCommand();
             BindingContext = this.viewModel;
         }
 
@@ -49,6 +50,10 @@ namespace XpertMobileApp.Views
             viewModel.SelectedMotif = null;
         }
 
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+        }
         /// <summary>
         /// Apply the filter 
         /// </summary>
@@ -86,6 +91,11 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedMotif = new BSE_ENCAISS_MOTIFS();
                 MotifsPicker.SelectedIndex = 0;
             }
+        }
+
+        private void CheckBox_StateChangedTransfertDeFond(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            viewModel.CheckBoxTransfertDeFond = (bool)e.IsChecked;
         }
     }
 }

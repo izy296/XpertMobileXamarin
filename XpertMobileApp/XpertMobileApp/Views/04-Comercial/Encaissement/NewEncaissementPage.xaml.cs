@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -106,7 +107,7 @@ namespace XpertMobileApp.Views
         }
 
         async void Save_Clicked(object sender, EventArgs e)
-        {
+        {   
             /*
             if (SelectedTiers == null && Constants.AppName == Apps.XPH_Mob)
             {
@@ -146,7 +147,9 @@ namespace XpertMobileApp.Views
                 }
                 if (string.IsNullOrEmpty(Item.CODE_ENCAISS))
                 {
-                    MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+                    //MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+                    await CrudManager.Encaiss.AddItemAsync(Item);
+                    await UserDialogs.Instance.AlertAsync("L'ajout a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
                 {
