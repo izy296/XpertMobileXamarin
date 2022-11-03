@@ -7,24 +7,35 @@
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             x:Name="Tiers">
-    
+             x:Name="Clients">
+
     <NavigationPage.TitleView>
-        <Label Text="Tiers"
+        <Label Text="Clients"
                Padding="0,0,10,0"
                HorizontalOptions="Center"
                FontSize="19"
                TextColor="#fff"
                FontAttributes="Bold"/>
     </NavigationPage.TitleView>
-    
+
     <ContentPage.ToolbarItems>
+        
+        <!--Ajouter un nouveau tiers--> 
         <ToolbarItem 
             x:Name="btn_Additem" 
             Icon="add.png" 
             Text="{i18n:Translate cmd_Add}" 
             Clicked="AddItem_Clicked">
         </ToolbarItem>
+        
+        <!--Recherche d'un tiers par qr code--> 
+        <ToolbarItem 
+            x:Name="btn_ScanQrCode" 
+            Icon="qr_code_white.png" 
+            Text="Scan QrCode" 
+            Clicked="ScanQrCode_Clicked">
+        </ToolbarItem>
+        
     </ContentPage.ToolbarItems>
 
     <ContentPage.Resources>
@@ -36,40 +47,39 @@
         <StackLayout>
             <StackLayout HeightRequest="80"
                          BackgroundColor="{StaticResource Primary}">
-                <!--Le input text--> 
+                <!--Le input text-->
                 <StackLayout WidthRequest="330" 
                              HorizontalOptions="Center"
                              Padding="0,40,0,0">
 
-                    <inputLayout:SfTextInputLayout
-                        ContainerType="Outlined"
-                        FocusedColor="{StaticResource Primary}"
-                        InputViewPadding="16"
-                        ContainerBackgroundColor="#fff"
-                        TrailingViewPosition="Inside"
-                        OutlineCornerRadius="25"
-                        UnfocusedColor="#D8D8D8">
+                    <inputLayout:SfTextInputLayout ContainerType="Outlined"
+                                                   FocusedColor="{StaticResource Primary}"
+                                                   InputViewPadding="16"
+                                                   ContainerBackgroundColor="#fff"
+                                                   TrailingViewPosition="Inside"
+                                                   OutlineCornerRadius="25"
+                                                   UnfocusedColor="#D8D8D8">
 
-                        <Entry 
-                               TextColor="Black" 
+                        <Entry TextColor="Black" 
                                Text="{Binding SearchedText, Mode=TwoWay}"
                                Placeholder="Entrez le nom du tiers"
                                PlaceholderColor="#444"
                                FontSize="14"/>
 
                         <inputLayout:SfTextInputLayout.TrailingView>
-                            <Image Source="chercher_bleu.png">
+                            <Image Source="chercher_bleu.png" >
                                 <Image.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="ApplyFilter"/>
                                 </Image.GestureRecognizers>
                             </Image>
                         </inputLayout:SfTextInputLayout.TrailingView>
 
+
                     </inputLayout:SfTextInputLayout>
                 </StackLayout>
-                
+
             </StackLayout>
-            
+
             <FlexLayout Direction="row"
                         JustifyContent="SpaceBetween"
                         AlignItems="Center"
@@ -123,51 +133,22 @@
                 VerticalOptions="Fill" 
                 HorizontalOptions="Fill"
                 Margin="5,5,5,0"
-                FlowDirection="LeftToRight"
-                >
-
-                <ListView 
-                        AbsoluteLayout.LayoutFlags="All" 
-                            AbsoluteLayout.LayoutBounds="0,0,1,1"
-                        BackgroundColor="Transparent"
-                        x:Name="ItemsListView"
-                        ItemsSource="{Binding Items}"
-                        VerticalOptions="FillAndExpand"
-                        HasUnevenRows="true"
-                        VerticalScrollBarVisibility="Never"
-                        SeparatorVisibility="None"       
-                        RefreshCommand="{Binding LoadItemsCommand}"
-                        IsPullToRefreshEnabled="true"
-                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                        CachingStrategy="RecycleElement"
-                        ItemSelected="OnItemSelected">
-
-                    <ListView.Behaviors>
-                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                    </ListView.Behaviors>
-
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:TiersTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-
-                    <ListView.Footer>
-                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                            <!-- set the footer to have a zero height when invisible -->
-                            <Grid.Triggers>
-                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                    <Setter Property="HeightRequest" Value="0" />
-                                </Trigger>
-                            </Grid.Triggers>
-                            <!-- the loading content -->
-                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                        </Grid>
-                    </ListView.Footer>
-
-                </ListView>
+                FlowDirection="LeftToRight">
+                <RefreshView 
+                    Command="{Binding PullTORefresh}"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                    <CollectionView  x:Name="ClientsView"
+                                 AbsoluteLayout.LayoutFlags="All" 
+                                 AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                 VerticalOptions="FillAndExpand"
+                                 ItemsSource="{Binding Items}"
+                                 ItemTemplate="{StaticResource TiersPageSelector}"
+                                 SelectionMode="Single"
+                                 RemainingItemsThreshold="1"
+                                 RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
+                                 SelectionChanged="EmployeeView_SelectionChanged">
+                    </CollectionView>
+                </RefreshView>
 
                 <!--floating button-->
                 <Button 
@@ -187,7 +168,6 @@
                     Clicked="ShowHideFilter"/>
 
             </AbsoluteLayout>
-            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -37,7 +37,16 @@
                                                             ProduitComm="{StaticResource ProduitComm}"/>
             <!-- ***************** Produit *****************-->
 
+            <!-- ***************** Tiers ********************-->
 
+            <DataTemplate x:Key="TiersTemplate">
+                <template:TiersTemplate/>
+            </DataTemplate>
+
+            <templateSelector:TiersPageSelectorTemplate x:Key="TiersPageSelector"
+                                                        Tiers="{StaticResource TiersTemplate}"/>
+
+            <!-- ***************** Tiers ********************-->
             <!-- ***************** Transfert Stock  *****************-->
 
 

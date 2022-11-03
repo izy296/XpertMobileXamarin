@@ -4,11 +4,15 @@
              x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SynchronisationPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              Title="{i18n:Translate pn_synchronisation}"
-             BackgroundColor="White">
+             BackgroundColor="#fff">
     <ContentPage.Content>
         <StackLayout VerticalOptions="Center" 
                      HorizontalOptions="Center"
                      BackgroundColor="White">
+
+            <Image Source="synchronisationIcon.png"
+                   HorizontalOptions="Center"
+                   VerticalOptions="StartAndExpand"/>
 
             <Label Text="Synchronisation de données" 
                    TextColor="#000"

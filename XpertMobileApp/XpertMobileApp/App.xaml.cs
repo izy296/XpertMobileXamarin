@@ -144,7 +144,7 @@ namespace XpertMobileApp
             {
                 if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-                    MainPage = new LoginPage();
+                    MainPage = new ActivationPage(licState);
 
                 }
                 else

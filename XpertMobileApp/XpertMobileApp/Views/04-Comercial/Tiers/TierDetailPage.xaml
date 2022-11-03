@@ -2,57 +2,473 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
-             xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
                  x:Class="XpertMobileApp.Views.TierDetailPage"
              x:Name="TierDetail"
              Title="Tier Detail">
     <pages:PopupPage.Content>
-        <tabView:SfTabView 
-            BackgroundColor="white" 
-            x:Name="tabView" 
-            VisibleHeaderCount="3"
-            TabHeaderPosition="Bottom"
-            >
-            <tabView:SfTabItem Title="Info">
-                <!--<tabView:SfTabItem.HeaderContent>-->
-                    <!--<Label
-                        FontFamily="{StaticResource FAwesome6-Brands}" 
-                        TextColor="Black"
-                        Text="{x:Static fontawesome:FontAwesomeIcons.Info}"
-                        BackgroundColor="Transparent">
-                    </Label>-->
-                <!--</tabView:SfTabItem.HeaderContent>-->
-                <tabView:SfTabItem.Content
-                    padding="5">
-                    <StackLayout 
-                        Orientation="Vertical"
-                        VerticalOptions="FillAndExpand"
-                        Padding="5"
-                        >
-                        <inputLayout:SfTextInputLayout Hint="Name" ContainerType="Outlined" >
-                            <Entry x:Name="Name"/>
-                        </inputLayout:SfTextInputLayout>
-                        <inputLayout:SfTextInputLayout Hint="LastName" ContainerType="Outlined" >
-                            <Entry x:Name="LastName"/>
-                        </inputLayout:SfTextInputLayout>
-                        <inputLayout:SfTextInputLayout Hint="Tel" ContainerType="Outlined" >
-                            <Entry x:Name="Tel"/>
-                        </inputLayout:SfTextInputLayout>
-                        <inputLayout:SfTextInputLayout Hint="Email" ContainerType="Outlined" >
-                            <Entry x:Name="Email"/>
-                        </inputLayout:SfTextInputLayout>
-                        <syncfusion:SfPicker x:Name="picker"/>
-                    </StackLayout>
+        <tabView:SfTabView BackgroundColor="white" 
+                           x:Name="tabView" 
+                           VisibleHeaderCount="3"
+                           TabHeaderPosition="Bottom"
+                           DisplayMode="ImageWithText"
+                           ScrollButtonForegroundColor="Black"
+                           extensions:IconTintColorEffect.TintColor="Black">
+
+            <!--Information of the clients-->
+            <tabView:SfTabItem Title="Info"
+                               ImageSource="file.png"
+                               TitleFontColor="{DynamicResource Primary}">
+                <tabView:SfTabItem.Content padding="1">
+                    <Grid>
+                        <StackLayout Padding="0" x:Name="StackLayout">
+                            <FlexLayout JustifyContent="SpaceBetween" Padding="20,15,20,0">
+                                <Image Source="arrow.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ClosePopup"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+
+                                <Image Source="editIcon.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="DisableEnableEntries"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </FlexLayout>
+
+
+                            <Label Text="Client"
+                                   Margin="0,10,0,25"
+                                   FontSize="26"
+                                   HorizontalOptions="Center"
+                                   TextColor="#fff"/>
+
+                            <yummy:PancakeView CornerRadius="25,25,0,0" 
+                                               Padding="25,15" 
+                                               Margin="0" 
+                                               BackgroundColor="#fff"
+                                               IsClippedToBounds="true"
+                                               BorderColor="#fff"
+                                               HasShadow="False" >
+
+                                <ScrollView VerticalScrollBarVisibility="Never">
+                                    <StackLayout Orientation="Vertical"
+                                                 VerticalOptions="Fill"
+                                                 Padding="5">
+
+                                        <!--Nom-->
+                                        <inputLayout:SfTextInputLayout x:Name="inputName"
+                                                                   Hint="Nom" 
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined">
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="id_card.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Entry x:Name="Name" 
+                                               FontSize="13" 
+                                               Text="{Binding Item.NOM_TIERS, Mode=TwoWay}"/>
+
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Prénom-->
+                                        <inputLayout:SfTextInputLayout Hint="Prénom" 
+                                                                   x:Name="inputPrenom"
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined" >
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="id_card.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Entry x:Name="LastName"
+                                               Text="{Binding Item.PRENOM_TIERS, Mode=TwoWay}"
+                                               FontSize="13"/>
+
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Numero de telephone-->
+                                        <inputLayout:SfTextInputLayout Hint="Téléphone" 
+                                                                   x:Name="inputTelephone"
+                                                                   OutlineCornerRadius="8"
+                                                                   LeadingViewPosition="Inside"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined" >
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="viber.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Entry x:Name="Tel"
+                                               Text="{Binding Item.TEL1_TIERS, Mode=TwoWay}"
+                                               FontSize="13"/>
+
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Email-->
+                                        <inputLayout:SfTextInputLayout Hint="E-mail" 
+                                                                   x:Name="inputEmail"
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined" >
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="email.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Entry x:Name="Email"
+                                               Text="{Binding Item.EMAIL, Mode=TwoWay}"
+                                               FontSize="13"/>
+
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Date de naissance-->
+                                        <inputLayout:SfTextInputLayout OutlineCornerRadius="8"
+                                                                   x:Name="inputNaissance"
+                                                                   LeadingViewPosition="Inside"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined"
+                                                                   Hint="Date de naissance">
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="date_of_birth.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <DatePicker FontSize="13"
+                                                    Date="{Binding Item.DATE_NAISSANCE, Mode=TwoWay}"
+                                                    />
+
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Code a barre-->
+                                        <inputLayout:SfTextInputLayout Hint="Code Barre " 
+                                                                   x:Name="inputCodeBar"
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined" >
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="security.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+                                            <Entry x:Name="CodeBar"
+                                               Text="{Binding Item.NUM_CARTE_FIDELITE, Mode=TwoWay}"
+                                               FontSize="13"/>
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Secteur-->
+                                        <inputLayout:SfTextInputLayout Hint="Secteur"
+                                                                   x:Name="inputSecteur"
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined">
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="locator.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Picker FontSize="13" 
+                                                ItemsSource="{Binding Secteurs}"
+                                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                                SelectedItem="{Binding SelectedSecteur}"
+                                                SelectedIndexChanged="SecteursPicker_SelectedIndexChanged"
+                                                x:Name="SecteursPicker">
+                                            </Picker>
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Type-->
+                                        <inputLayout:SfTextInputLayout Hint="Type"
+                                                                   x:Name="inputType"
+                                                                   LeadingViewPosition="Inside"
+                                                                   OutlineCornerRadius="8"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined">
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="type.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Picker FontSize="13" 
+                                                ItemsSource="{Binding Types}"
+                                                ItemDisplayBinding="{Binding DESIGNATION_TYPE}"
+                                                SelectedItem="{Binding SelectedType}"
+                                                SelectedIndexChanged="TypesPicker_SelectedIndexChanged"
+                                                x:Name="TypesPicker">
+                                            </Picker>
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Famille-->
+                                        <inputLayout:SfTextInputLayout Hint="Famille"
+                                                                   x:Name="inputFamille"
+                                                                   OutlineCornerRadius="8"
+                                                                   LeadingViewPosition="Inside"
+                                                                   FocusedColor="{DynamicResource Primary}"
+                                                                   UnfocusedColor="#277BC0"
+                                                                   ContainerType="Outlined">
+
+                                            <inputLayout:SfTextInputLayout.HintLabelStyle>
+                                                <inputLayout:LabelStyle FontSize="13">
+                                                </inputLayout:LabelStyle>
+                                            </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                                <Image Source="family.png"/>
+                                            </inputLayout:SfTextInputLayout.LeadingView>
+
+                                            <Picker FontSize="13" 
+                                                ItemsSource="{Binding Familles}"
+                                                ItemDisplayBinding="{Binding DESIGN_FAMILLE}"
+                                                SelectedItem="{Binding SelectedFamille}"
+                                                SelectedIndexChanged="FamillesPicker_SelectedIndexChanged"
+                                                x:Name="FamillesPicker">
+
+                                            </Picker>
+                                        </inputLayout:SfTextInputLayout>
+
+                                        <!--Button valider-->
+                                        <button:SfButton x:Name="button" 
+                                                     Text="Valider" 
+                                                     BackgroundColor="#277BC0"
+                                                     TextColor="#fff"
+                                                     FontSize="11"
+                                                     HeightRequest="45"
+                                                     CornerRadius="8"
+                                                     Clicked="ValidateEditTiers">
+
+                                        </button:SfButton>
+
+                                    </StackLayout>
+                                </ScrollView >
+                            </yummy:PancakeView>
+
+                            <StackLayout.Background>
+                                <!--StartPoint defaults to (0,0)-->
+                                <LinearGradientBrush EndPoint="1,0">
+                                    <GradientStop Color="{DynamicResource Primary}"
+                                              Offset="0.1" />
+                                    <GradientStop Color="{DynamicResource Primary}"
+                                              Offset="1.0" />
+                                </LinearGradientBrush>
+                            </StackLayout.Background>
+
+
+                        </StackLayout>
+                        <yummy:PancakeView HorizontalOptions="End"
+                                           VerticalOptions="End"
+                                           Margin="30"
+                                           CornerRadius="40"
+                                           Padding="15"
+                                           BackgroundColor="Transparent">
+
+                            <yummy:PancakeView.BackgroundGradientStops>
+                                <yummy:GradientStopCollection>
+                                    <yummy:GradientStop Color="#2c9cee" Offset="0"/>
+                                    <yummy:GradientStop Color="#0056ff" Offset="1"/>
+                                </yummy:GradientStopCollection>
+                            </yummy:PancakeView.BackgroundGradientStops>
+
+                            <extensions:Expander HorizontalOptions="Start" 
+                                                 Rotation="180"
+                                                 VerticalOptions="End"
+                                                 extensions:ShadowEffect.Color="{DynamicResource Primary}">
+                                <extensions:Expander.Header>
+                                    <Image Source="addFloatingAction.png" WidthRequest="30" HeightRequest="30" Rotation="180">
+                                        <Image.Triggers>
+                                            <DataTrigger TargetType="Image"
+                                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type extensions:Expander}}, Path=IsExpanded}"
+                                                         Value="true">
+                                                <Setter Property="Source" Value="addFloatingAction.png"/>
+                                                <Setter Property="Rotation" Value="45"/>
+                                            </DataTrigger>
+                                        </Image.Triggers>
+                                    </Image>
+                                </extensions:Expander.Header>
+                                <StackLayout Spacing="30" Margin="0,20">
+                                    <ImageButton Source="product_return.png"
+                                                 Rotation="180"
+                                                 WidthRequest="30"
+                                                 HeightRequest="30"
+                                                 BackgroundColor="Transparent"/>
+
+                                    <ImageButton Source="box.png"
+                                                 Rotation="180"
+                                                 WidthRequest="30"
+                                                 HeightRequest="30"
+                                                 BackgroundColor="Transparent"/>
+
+                                    <ImageButton Source="versement.png"
+                                                 Rotation="180"
+                                                 WidthRequest="30"
+                                                 HeightRequest="30"
+                                                 BackgroundColor="Transparent"/>
+
+                                    <ImageButton Source="bl.png"
+                                                 Rotation="180"
+                                                 WidthRequest="30"
+                                                 HeightRequest="30"
+                                                 BackgroundColor="Transparent"/>
+                                </StackLayout>
+                            </extensions:Expander>
+                        </yummy:PancakeView>
+                    </Grid>
+
                 </tabView:SfTabItem.Content>
             </tabView:SfTabItem>
-            <tabView:SfTabItem Title="Map">
-                
-            </tabView:SfTabItem>
-            <tabView:SfTabItem Title="QR Code">
+
+            <!--Showing the pin of the client in the map-->
+            <tabView:SfTabItem Title="Map"
+                               TitleFontColor="{DynamicResource Primary}"
+                               ImageSource="map.png">
 
             </tabView:SfTabItem>
+
+            <!--show the qrCode of the client-->
+            <tabView:SfTabItem Title="QR Code"
+                               TitleFontColor="{DynamicResource Primary}"
+                               ImageSource="qr_code.png">
+
+
+                <tabView:SfTabItem.Content>
+                    <StackLayout Background="{DynamicResource Primary}">
+                        <FlexLayout JustifyContent="SpaceBetween"
+                                        Padding="20,15,20,0">
+                            <Image Source="arrow.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ClosePopup"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </FlexLayout>
+
+                        <Label Text="QR code" 
+                               TextColor="#fff"
+                               HorizontalOptions="Center"
+                               FontSize="24"
+                               Margin="0,10,0,20"/>
+                        <yummy:PancakeView  CornerRadius="25,25,0,0" 
+                                            Padding="25,15" 
+                                            Margin="0" 
+                                            BackgroundColor="#fff"
+                                            IsClippedToBounds="true"
+                                            BorderColor="#fff"
+                                            HasShadow="False"
+                                            VerticalOptions="FillAndExpand">
+                            <StackLayout>
+                                <yummy:PancakeView  CornerRadius="10" 
+                                                    VerticalOptions="Center"
+                                                    Padding="5" 
+                                                    Margin="0" 
+                                                    BackgroundColor="#fff"
+                                                    IsClippedToBounds="true"
+                                                    BorderColor="#393939"
+                                                    BorderThickness="1"
+                                                    HasShadow="False"
+                                                    WidthRequest="400"
+                                                    HeightRequest="400">
+                                    
+                                    <StackLayout x:Name="qrCodeViewer">
+                                        
+                                    </StackLayout>
+                                
+                                </yummy:PancakeView>
+                                
+                                <FlexLayout Direction="row" JustifyContent="SpaceAround">
+
+                                    <yummy:PancakeView WidthRequest="45"
+                                                       HeightRequest="65"
+                                                       CornerRadius="60"
+                                                       Padding="10"
+                                                       BackgroundColor="#A8D08D"
+                                                       HasShadow="True">
+                                        
+                                      <Image Source="share.png"
+                                             HorizontalOptions="Center"
+                                             WidthRequest="30"
+                                             HeightRequest="30"/>  
+                                    
+                                    </yummy:PancakeView>
+
+                                    <yummy:PancakeView WidthRequest="45"
+                                                       HeightRequest="65"
+                                                       Padding="10"
+                                                       CornerRadius="60"
+                                                       HasShadow="True"
+                                                       BackgroundColor="#FFC000">
+                                    
+                                        <Image Source="printer.png" 
+                                               WidthRequest="30"
+                                               HeightRequest="30"
+                                               HorizontalOptions="Center"/>
+                                    
+                                    </yummy:PancakeView>
+
+                                </FlexLayout>
+                            </StackLayout>
+
+
+
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
+
+
+            </tabView:SfTabItem>
+
         </tabView:SfTabView>
     </pages:PopupPage.Content>
 </pages:PopupPage>

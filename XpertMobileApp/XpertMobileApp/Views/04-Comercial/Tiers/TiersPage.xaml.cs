@@ -16,6 +16,7 @@ namespace XpertMobileApp.Views
     {
         TiersViewModel viewModel;
         private TiersSelector itemSelector;
+        public GoogleVisionBS gvsScannedBarcode;
         public string CurrentStream = Guid.NewGuid().ToString();
         public TiersPage()
         {
@@ -85,18 +86,68 @@ namespace XpertMobileApp.Views
 
         private void SortAToZ(object sender, EventArgs e)
         {
-            sortLabelZA.IsVisible = true;
-            sortLabelAZ.IsVisible = false;
+            //sortLabelZA.IsVisible = true;
+            //sortLabelAZ.IsVisible = false;
             viewModel.sortAtoZ = false;
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void SortZToA(object sender, EventArgs e)
         {
-            sortLabelZA.IsVisible = false;
-            sortLabelAZ.IsVisible = true;
+            //sortLabelZA.IsVisible = false;
+            //sortLabelAZ.IsVisible = true;
             viewModel.sortAtoZ = true;
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private async void EmployeeView_SelectionChanged(object sender, Xamarin.Forms.SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (e.CurrentSelection.Count != 0)
+                {
+                    var item = e.CurrentSelection[0] as View_TRS_TIERS;
+                    if (item != null)
+                    {
+                        //UserDialogs.Instance.AlertAsync(); 
+                        await PopupNavigation.Instance.PushAsync(new TierDetailPage(item));
+                        ClientsView.SelectedItem = null;
+                    }
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void ScanQrCode_Clicked(object sender, EventArgs e)
+        {
+            gvsScannedBarcode = new GoogleVisionBS();
+            MainPage RootPage = Application.Current.MainPage as MainPage;
+            var detail = RootPage.Detail;
+            gvsScannedBarcode.UserSubmitted += async (_, tiersScanned) =>
+            {
+
+                // une solution pour la fonction Load More après un changement dans le contenu de listView
+                // enregistrez la fonction responsable OnCanLoadMore avant de l'écraser pour bloquer le chargement
+                // d'autres éléments(en appelant la fonction LoadMore) dans la liste après la numérisation d'un code-barres
+                // afin de limiter l'affichage du seul produit numérisé
+
+                var func = viewModel.Items.OnCanLoadMore;
+                viewModel.Items.OnCanLoadMore = () =>
+                {
+                    return false;
+                };
+
+                viewModel.TiersScanned = tiersScanned;
+                await detail.Navigation.PopAsync();
+                viewModel.LoadItemsCommand.Execute(null);
+            };
+            detail.Navigation.PushAsync(gvsScannedBarcode);
         }
     }
 }

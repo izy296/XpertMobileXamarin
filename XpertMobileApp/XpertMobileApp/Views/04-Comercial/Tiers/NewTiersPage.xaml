@@ -59,12 +59,12 @@
                 
                 <Label Text="Secteurs" Margin="5, 0, 0, 0" />
                 <Picker ItemsSource="{Binding Secteurs}"
-                                ItemDisplayBinding="{Binding DESIGNATION}"
-                                SelectedItem="{Binding SelectedSecteur}"
-                                TextColor="{StaticResource Primary}"
-                                SelectedIndexChanged="SecteursPicker_SelectedIndexChanged"
-                                Margin="30, 0, 30, 30" 
-                                x:Name="SecteursPicker"/>
+                        ItemDisplayBinding="{Binding DESIGNATION}"
+                        SelectedItem="{Binding SelectedSecteur}"
+                        TextColor="{StaticResource Primary}"
+                        SelectedIndexChanged="SecteursPicker_SelectedIndexChanged"
+                        Margin="30, 0, 30, 30" 
+                        x:Name="SecteursPicker"/>
                 
                 <Label Text="{i18n:Translate tct_Type}" Margin="5, 0, 0, 0" />
                 <Picker ItemsSource="{Binding Types}"

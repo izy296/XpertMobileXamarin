@@ -50,7 +50,7 @@ namespace XpertMobileApp.Droid
             Instance = this;
 
             // Init popup plugin
-            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this);
 
             UserDialogs.Init(this);
 
@@ -386,6 +386,13 @@ namespace XpertMobileApp.Droid
         {
             ToolBar = FindViewById<Toolbar>(Resource.Id.toolbar);
             return base.OnCreateOptionsMenu(menu);
+        }
+
+        /* this code belong to actionFloatingButton */
+        public override void SetContentView(Android.Views.View view)
+        {
+            Xamarin.RisePlugin.Droid.Floatingactionbutton.RootView.View = (Android.Widget.RelativeLayout)view;
+            base.SetContentView(view);
         }
     }
 }

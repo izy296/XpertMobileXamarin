@@ -30,9 +30,6 @@
                 </SwipeItems>
             </SwipeView.RightItems>
             <Grid>
-                <Grid.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                </Grid.GestureRecognizers>
                 <StackLayout>
                     <border:SfBorder 
                         x:Name="border" 

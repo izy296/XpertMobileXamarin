@@ -19,6 +19,19 @@ namespace XpertMobileApp.ViewModels
 {
     public class TiersViewModel : CrudBaseViewModel2<TRS_TIERS, View_TRS_TIERS>
     {
+        string currentQB = null;
+        private string tiersScanned { get; set; }
+        public string TiersScanned { 
+            get
+            {
+                return tiersScanned;
+            }
+            set
+            {
+                tiersScanned = value;
+            }
+
+        }
         public bool sortAtoZ { get; set; } = true;
         public bool hasViewSolde
         {
@@ -53,7 +66,10 @@ namespace XpertMobileApp.ViewModels
             base.GetFilterParams();
 
             this.AddCondition<View_TRS_TIERS, string>(e => e.NOM_TIERS1, Operator.LIKE_ANY, SearchedText);
-
+            if (!String.IsNullOrEmpty(tiersScanned))
+            {
+                this.AddCondition<View_TRS_TIERS, string>(e => e.CODE_TIERS, Operator.EQUAL, tiersScanned);
+            }
             this.AddCondition<View_TRS_TIERS, short>(e => e.ACTIF_TIERS, 1);
             if (SoldOperator == ">")
                 this.AddCondition<View_TRS_TIERS, decimal>(e => e.SOLDE_TIERS, Operator.GREATER, 0);
@@ -252,5 +268,68 @@ namespace XpertMobileApp.ViewModels
         }
 
         #endregion
+
+        internal override async Task ExecuteLoadItemsCommand()
+        {
+            if (IsBusy)
+                return;
+
+            try
+            {
+                IsBusy = true;
+                if (currentQB != null && currentQB != GetFilterParams().StringCondition)
+                {
+                    currentQB = GetFilterParams().StringCondition;
+                    Items.Clear();
+                }
+                else
+                {
+                    if (Items.Count >= ElementsCount && Items.Count != 0)
+                        return;
+                    currentQB = GetFilterParams().StringCondition;
+                }
+                await Items.LoadMoreAsync();
+                IsBusy = false;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+
+        }
+        public Command PullTORefresh
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    if (IsBusy)
+                    {
+                        return;
+                    }
+                    currentQB = "Empty";
+                    await ExecuteLoadItemsCommand();
+                    IsBusy = false;
+                });
+            }
+        }
+
+        public void GetScannedTiers(string ScannedCodeTiers)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
