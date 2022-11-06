@@ -81,10 +81,10 @@ namespace XpertMobileApp.ViewModels
             if (!CheckBoxTransfertDeFond)
             {
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "3");
-            } 
+            }
 
-            //if (!string.IsNullOrEmpty(type))
-            //    this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
+            if (!string.IsNullOrEmpty(type))
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);
 
             if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
