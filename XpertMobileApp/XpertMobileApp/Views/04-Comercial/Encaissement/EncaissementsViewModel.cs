@@ -59,8 +59,8 @@ namespace XpertMobileApp.ViewModels
         public bool CheckBoxTransfertDeFond
         {
             get;
-            set; 
-        }
+            set;
+        } = false;
         public EncaissementsViewModel()
         {
             Title = AppResources.pn_encaissement;
@@ -78,13 +78,10 @@ namespace XpertMobileApp.ViewModels
 
             this.AddCondition<View_TRS_ENCAISS, DateTime?>(e => e.DATE_ENCAISS, Operator.BETWEEN_DATE, StartDate, EndDate);
 
-            if (CheckBoxTransfertDeFond)
+            if (!CheckBoxTransfertDeFond)
             {
-                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF,"3");
-            } else
-            {
-                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF,Operator.NOT_EQUAL, "3");
-            }
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "3");
+            } 
 
             //if (!string.IsNullOrEmpty(type))
             //    this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TYPE, type);

@@ -243,7 +243,6 @@
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="35"/>
-                                                <RowDefinition Height="35"/>
                                             </Grid.RowDefinitions>
 
                                             <Picker 
@@ -269,22 +268,19 @@
                                                     <TapGestureRecognizer Tapped="Initialize_Motifs_picker"/>
                                                 </Image.GestureRecognizers>
                                             </Image>
+                                        </Grid>
+                                    </Grid>
+                                </FlexLayout>
 
-                                            <syncfusion:SfCheckBox 
-                                                Grid.Row="1"
-                                                Grid.Column="0"
+                                <syncfusion:SfCheckBox 
                                                 CheckedColor="#64BCFF" 
                                                 UncheckedColor="#64BCFF"
                                                 TickColor="#64BCFF"
                                                 x:Name="checkBoxTransfertDeFond"
                                                 IsChecked="{Binding CheckBoxTransfertDeFond}"
                                                 Text="Afficher les transfert de fond "
-                                                HorizontalOptions="FillAndExpand" 
                                                 StateChanged="CheckBox_StateChangedTransfertDeFond"/>
-                                        </Grid>
-                                    </Grid>
-                                </FlexLayout>
-
+                                
                                 <!--Button to close and open-->
                                 <StackLayout  
                                     Padding="0"                     
