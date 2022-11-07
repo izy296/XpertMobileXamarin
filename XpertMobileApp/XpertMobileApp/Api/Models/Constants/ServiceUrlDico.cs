@@ -55,6 +55,8 @@ namespace XpertMobileApp.Helpers
 
         public static string ENCAISSEMENTS_COUNT = "GetEncaissementsCount";
 
+        public static string TRS_TIER_GET_TIER = "GetTier";
+
         public static string WEBAPI_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertWebAPI.xml";
 
         // Activation

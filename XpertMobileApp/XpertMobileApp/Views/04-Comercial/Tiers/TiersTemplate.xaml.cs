@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfMaps.XForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,18 +57,19 @@ namespace XpertMobileApp.Views.Templates
                 //await Navigation.PushAsync(new LocationSelector());
                 LocationSelector popup = new LocationSelector(tr);
                 await PopupNavigation.Instance.PushAsync(popup);
+                SfMaps MyMap= (SfMaps)popup.Content.FindByName("MyMap");
                 if (await popup.PopupClosedTask)
                 {
                     if (popup.Result != null)
                     {
-                        tr.GPS_LATITUDE = popup.Result.Latitude;
-                        tr.GPS_LONGITUDE = popup.Result.Longitude;
+                        var postition = MyMap.Layers[0].GetLatLonFromPoint(popup.Result);
+                        tr.GPS_LATITUDE = postition.Y;
+                        tr.GPS_LONGITUDE = postition.X;
                         await CrudManager.TiersManager.UpdateItemAsync(tr);
                         await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
 
-                await Navigation.PushModalAsync(new TierDetailPage(null));
             }
             catch (Exception ex)
             {

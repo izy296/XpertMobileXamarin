@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Syncfusion.Linq;
+using Syncfusion.SfMaps.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,16 +12,33 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
 
     public class TourneesDetailsViewModel : CrudBaseViewModel2<LIV_TOURNEE_DETAIL, View_LIV_TOURNEE_DETAIL>
     {
+        public class VisitPin
+        {
+            public string ClientFullName { get; set; }
+            //public string ClientPhone { get; set; }
+            public double GpsLatitude { get; set; }
+            public double GpsLongitude { get; set; }
+        }
+
         string _CodeTournee;
+        List<VisitPin> Clients;
+
+        private TourneesDetailsPage myMapPage;
+        public TourneesDetailsPage MyMapPage
+        {
+            get { return myMapPage; }
+            set { SetProperty(ref myMapPage, value); }
+        }
         public TourneesDetailsViewModel(string codeTournee)
         {
-            Title = "Détails";
+            Title = "Visites";
             _CodeTournee = codeTournee;
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Familles = new ObservableCollection<BSE_TABLE>();
@@ -32,7 +50,7 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_LIV_TOURNEE_DETAIL, string>(e => e.CODE_TOURNEE, _CodeTournee);
-            this.AddOrderBy<View_LIV_TOURNEE_DETAIL, DateTime?>(e => e.CREATED_ON , Sort.DESC);
+            this.AddOrderBy<View_LIV_TOURNEE_DETAIL, DateTime?>(e => e.CREATED_ON, Sort.DESC);
             return qb.QueryInfos;
         }
 
@@ -46,6 +64,9 @@ namespace XpertMobileApp.ViewModels
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+            MyMapPage.RefreshMap(list);
+
+
         }
 
         #region filters data
@@ -62,7 +83,7 @@ namespace XpertMobileApp.ViewModels
             get { return searchedRef; }
             set { SetProperty(ref searchedRef, value); }
         }
-        
+
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
         private BSE_TABLE_TYPE selectedType;

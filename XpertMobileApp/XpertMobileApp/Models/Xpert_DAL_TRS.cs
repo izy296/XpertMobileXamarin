@@ -408,6 +408,15 @@ namespace XpertMobileApp.DAL
         ADDED,
         UPDATED
     }
+
+    public partial class View_TRS_TIERS_ACTIVITY
+    {
+        public string CODE_TIERS { get; set; } // varchar(20)
+        public string TYPE_DOC { get; set; } // varchar(20)
+        public decimal TOTAL_PAYE { get; set; } // varchar(20)
+        public string CODE_VENTE { get; set; } // varchar(20)
+    }
+
     public partial class BSE_ENCAISS_MOTIFS
     {
         public string CODE_MOTIF { get; set; } // varchar(20)

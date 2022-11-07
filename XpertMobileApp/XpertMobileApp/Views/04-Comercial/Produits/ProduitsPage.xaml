@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<base:XBasePage  xmlns:base="clr-namespace:XpertMobileApp.Base"
+                 xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              x:Class="XpertMobileApp.Views.ProduitsPage"
@@ -10,14 +11,14 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Name="Produits">
 
-    <ContentPage.ToolbarItems>
+    <base:XBasePage.ToolbarItems>
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
-    </ContentPage.ToolbarItems>
-    <ContentPage.Resources>
+    </base:XBasePage.ToolbarItems>
+    <base:XBasePage.Resources>
         <syncfusion:SfRadioGroupKey x:Key="quantiteFilter" />
         <syncfusion:SfRadioGroupKey x:Key="etatFilter" />
         <syncfusion:SfRadioGroupKey x:Key="FFilter" />
-    </ContentPage.Resources>
+    </base:XBasePage.Resources>
     <AbsoluteLayout 
             VerticalOptions="Fill" 
             HorizontalOptions="Fill"
@@ -62,4 +63,4 @@
 
 
     </AbsoluteLayout>
-</ContentPage>
+</base:XBasePage>

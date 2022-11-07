@@ -38,6 +38,8 @@ namespace XpertMobileApp.Api.Managers
         internal static CrudService<View_WishList> WishList = new CrudService<View_WishList>(App.RestServiceUrl, "WishList", App.User.Token);
 
         internal static CrudService<View_PRD_AGRICULTURE> Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
+        
+        internal static CrudService<View_LIV_TOURNEE_DETAIL> TourneeDetails = new CrudService<View_LIV_TOURNEE_DETAIL>(App.RestServiceUrl, "LIV_TOURNEE_DETAIL", App.User.Token);
 
         internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();
 
@@ -83,6 +85,7 @@ namespace XpertMobileApp.Api.Managers
             Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
             SimpleIndicatorsService = new CrudService<TDB_SIMPLE_INDICATORS>(App.RestServiceUrl, "TDB_SIMPLE_INDICATORS", App.User.Token);
 
+            TourneeDetails = new CrudService<View_LIV_TOURNEE_DETAIL>(App.RestServiceUrl, "LIV_TOURNEE_DETAIL", App.User.Token);
             MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
         }
 

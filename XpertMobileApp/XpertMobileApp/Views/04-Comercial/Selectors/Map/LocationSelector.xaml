@@ -4,37 +4,58 @@
     xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.LocationSelector"
-             xmlns:gmaps = "clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
                  xmlns:cmp="clr-namespace:XpertMobileApp.Components" >
 
     <pages:PopupPage.Content>
-        <StackLayout
+        <AbsoluteLayout
+                VerticalOptions="Fill" 
+                HorizontalOptions="Fill"
+                FlowDirection="LeftToRight"
+            >
+            <StackLayout
+            AbsoluteLayout.LayoutFlags="All" 
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
             BackgroundColor="White"
             Orientation="Vertical"
             VerticalOptions="FillAndExpand"
             HorizontalOptions="FillAndExpand">
-            <StackLayout
-            VerticalOptions="FillAndExpand"
-            HorizontalOptions="FillAndExpand">
-                <gmaps:Map x:Name="MyMap" MapType="Street" HasZoomEnabled="True" MyLocationEnabled="True" IsShowingUser="True" IsTrafficEnabled="True"
-                      VerticalOptions="FillAndExpand"
-                           InitialCameraUpdate="36.913088828987064, 7.734901267506781"/>
+                <StackLayout                        
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+
+                    <maps:SfMaps 
+                            Tapped="OnMapClicked"
+                            x:Name="MyMap"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            ZoomLevel="10">
+
+                        <maps:SfMaps.Layers >
+                            <maps:ImageryLayer GeoCoordinates="36.91821907661564, 7.743091659017494" CanCacheTiles="True"/>
+                        </maps:SfMaps.Layers>
+
+                    </maps:SfMaps>
+
+                </StackLayout>
             </StackLayout>
             <Grid 
-            x:Name="ButtonsPannel"
-            IsVisible="False"
-            HorizontalOptions="FillAndExpand"
-            VerticalOptions="End"
-            Padding="5"
-            Margin="5"
-            HeightRequest="40"
-            BackgroundColor="AliceBlue"
-            >
+                AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional" 
+                AbsoluteLayout.LayoutBounds="0,0,1,1"
+                x:Name="ButtonsPannel"
+                IsVisible="False"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="End"
+                Padding="5"
+                Margin="5"
+                HeightRequest="40"
+                BackgroundColor="AliceBlue"
+                >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                
+
                 <ImageButton
                     Padding="3"
                     Grid.Column="0"
@@ -48,7 +69,7 @@
                     Clicked="SaveLocation_Clicked"
                     HorizontalOptions="FillAndExpand"
                     />
-                
+
                 <ImageButton
                     Padding="3"
                     Grid.Column="1"
@@ -63,7 +84,7 @@
                     HorizontalOptions="FillAndExpand"/>
 
             </Grid>
-        </StackLayout>
+        </AbsoluteLayout>
     </pages:PopupPage.Content>
 
 </pages:PopupPage>

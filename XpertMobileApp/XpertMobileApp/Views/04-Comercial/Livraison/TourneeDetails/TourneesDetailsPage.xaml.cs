@@ -18,6 +18,7 @@ using Xamarin.Essentials;
 using System.Threading;
 using XpertMobileApp.SQLite_Managment;
 using System.Collections.Generic;
+using Syncfusion.SfMaps.XForms;
 
 namespace XpertMobileApp.Views
 {
@@ -32,6 +33,8 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
+            viewModel.MyMapPage = this;
+
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -40,7 +43,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            //await Navigation.PushAsync(new TourneesDetailsPage(item.CODE_TOURNEE));
+            await Navigation.PushAsync(new TourneeVisitPage(item));
 
             // Manually deselect item.
             listView.SelectedItem = null;
@@ -61,8 +64,33 @@ namespace XpertMobileApp.Views
                 LoadData();
             }
 
+
             //   if (viewModel.Familles.Count == 0)
             //       viewModel.LoadExtrasDataCommand.Execute(null);
+        }
+
+        public void RefreshMap(IEnumerable<View_LIV_TOURNEE_DETAIL> items)
+        {
+            MyMap.Layers[0].MarkerSettings.IconColor = Color.Red;
+            MyMap.Layers[0].MarkerSettings.IconSize = 13;
+            MyMap.Layers[0].MarkerSettings.MarkerIcon = MapMarkerIcon.Diamond;
+            MyMap.Layers[0].Markers.Clear();
+
+            foreach (var item in items)
+            {
+                if (item.GPS_LATITUDE != 0 && item.GPS_LATITUDE != 0)
+                {
+                    MapMarker pin = new MapMarker()
+                    {
+                        Label = item.FULL_NOM_TIERS,
+                        Latitude = item.GPS_LATITUDE.ToString(),
+                        Longitude = item.GPS_LONGITUDE.ToString()
+                    };
+
+                    MyMap.Layers[0].Markers.Add(pin);
+                }
+
+            }
         }
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
@@ -73,6 +101,7 @@ namespace XpertMobileApp.Views
         private void LoadData()
         {
             viewModel.LoadItemsCommand.Execute(null);
+
         }
 
         private void Filter_Clicked(object sender, EventArgs e)

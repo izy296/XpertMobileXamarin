@@ -5,6 +5,8 @@
              x:Class="XpertMobileApp.Views.TourneesDetailsPage"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
              Title="{Binding Title}"
              x:Name="Produits">
 
@@ -38,7 +40,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                
+
                 <!--<Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
                 <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
                          ItemDisplayBinding="{Binding DESIGNATION}"
@@ -62,21 +64,29 @@
                 <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Name}" Margin="5, 0, 0, 0"/>
                 <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
                TextColor="Black" Text="{Binding SearchedText, Mode=TwoWay}"/>
-                
+
                 <StackLayout Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="2" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" VerticalOptions="End"
                          HorizontalOptions="End">
-                <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
+                    <Button x:Name="btn_ApplyFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate txt_Filter}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_ApplyFilter_Clicked"/>
 
-                <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
+                    <Button x:Name="btn_CancelFilter" Margin="5" HorizontalOptions="End" Text="{i18n:Translate cmd_Cancel}" Style="{DynamicResource DefaultBtnStyle}" 
                     Clicked="btn_CancelFilter_Clicked"/>
-            </StackLayout>
+                </StackLayout>
             </Grid>
         </StackLayout>
 
         <!-- Items listing  -->
-        <StackLayout VerticalOptions="FillAndExpand">
-            <ListView x:Name="listView"
+        <tabView:SfTabView 
+            x:Name="tabView" 
+            VisibleHeaderCount="2"
+            TabHeaderPosition="Bottom"
+            EnableSwiping="False"
+            >
+            <tabView:SfTabItem Title="Clients">
+                <tabView:SfTabItem.Content>
+                    <StackLayout VerticalOptions="FillAndExpand">
+                        <ListView x:Name="listView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     SelectedItem="{Binding SelectedItem,Mode=TwoWay}"
@@ -89,89 +99,111 @@
                     CachingStrategy="RecycleElement"
                     ItemSelected="OnItemSelected">
 
-                <ListView.Behaviors>
-                    <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                </ListView.Behaviors>
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
 
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
 
-                            <SwipeView>
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem Text="Visite"
+                                        <SwipeView>
+                                            <SwipeView.RightItems>
+                                                <SwipeItems>
+                                                    <SwipeItem Text="Visite"
                                                IconImageSource="scan_qr_24.png"
                                                BackgroundColor="LightPink"
                                                Invoked="OnVisiteSwipeItemInvoked" />
-                                        <SwipeItem Text="Livraison"
+                                                    <SwipeItem Text="Livraison"
                                                IconImageSource="addToCart24.png"
                                                BackgroundColor="LightGreen"
                                                Invoked="OnDelevrySwipeItemInvoked" />
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
-                                <Grid >
-                                    <StackLayout>
-                                        <Frame Style="{StaticResource FrameForList}">
-                                            <Grid  BackgroundColor="Transparent" >
+                                                </SwipeItems>
+                                            </SwipeView.RightItems>
+                                            <Grid >
+                                                <StackLayout>
+                                                    <Frame Style="{StaticResource FrameForList}">
+                                                        <Grid  BackgroundColor="Transparent" >
 
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="2"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="2"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
 
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="Auto"/>
-                                                    <RowDefinition Height="*"/>
-                                                </Grid.RowDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="Auto"/>
+                                                                <RowDefinition Height="*"/>
+                                                            </Grid.RowDefinitions>
 
-                                                <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}"></StackLayout>
+                                                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}"></StackLayout>
 
-                                                <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                                                    <Label Text="{Binding FULL_NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                                                </StackLayout>
+                                                            <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                                                                <Label Text="{Binding FULL_NOM_TIERS}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                                                            </StackLayout>
 
-                                                <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
-                                                    <Label Text="{Binding SOLDE_TIERS, StringFormat='Solde, {0:N2}'}" TextColor="{StaticResource DefaultTextColor}"/>
-                                                    <Label Text="{Binding DESIGNATION_MAGASIN}" TextColor="{StaticResource DefaultTextColor}"/>
-                                                </StackLayout>
+                                                            <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
+                                                                <Label Text="{Binding SOLDE_TIERS, StringFormat='Solde, {0:N2}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                                                                <Label Text="{Binding DESIGNATION_MAGASIN}" TextColor="{StaticResource DefaultTextColor}"/>
+                                                            </StackLayout>
 
-                                                <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" >
+                                                            <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" >
 
-                                                    <Frame HorizontalOptions="EndAndExpand"  VerticalOptions="Start" CornerRadius="8" WidthRequest="90" Padding="3" Margin="0" BackgroundColor="{Binding ETAT_COLOR}">
-                                                        <Label Text="{Binding DESIGNATION_ETAT}" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
+                                                                <Frame HorizontalOptions="EndAndExpand"  VerticalOptions="Start" CornerRadius="8" WidthRequest="90" Padding="3" Margin="0" BackgroundColor="{Binding ETAT_COLOR}">
+                                                                    <Label Text="{Binding DESIGNATION_ETAT}" FontSize="10" VerticalOptions="Center" HorizontalOptions="Center"
                                    TextColor="White"/>
-                                                    </Frame>
-                                                    <!--
+                                                                </Frame>
+                                                                <!--
                             <Label Text="{Binding ACOMPILCHEMENT_PERCENT}" FontAttributes="Bold"  TextColor="Green" HorizontalOptions="End"/> 
                             <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                         -->
+                                                            </StackLayout>
+                                                        </Grid>
+                                                    </Frame>
                                                 </StackLayout>
                                             </Grid>
-                                        </Frame>
-                                    </StackLayout>
+                                        </SwipeView>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
                                 </Grid>
-                            </SwipeView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
+                            </ListView.Footer>
 
-                <ListView.Footer>
-                    <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                        <!-- set the footer to have a zero height when invisible -->
-                        <Grid.Triggers>
-                            <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                <Setter Property="HeightRequest" Value="0" />
-                            </Trigger>
-                        </Grid.Triggers>
-                        <!-- the loading content -->
-                        <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                    </Grid>
-                </ListView.Footer>
+                        </ListView>
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
 
-            </ListView>
-        </StackLayout>
+            </tabView:SfTabItem>
+            <tabView:SfTabItem Title="Map">
+                <tabView:SfTabItem.Content>
+                    <StackLayout                        
+                        VerticalOptions="FillAndExpand"
+                        HorizontalOptions="FillAndExpand">
+                        <maps:SfMaps 
+                            x:Name="MyMap"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            ZoomLevel="10">
+                            <maps:SfMaps.Layers >
+                                <maps:ImageryLayer GeoCoordinates="36.91821907661564, 7.743091659017494" CanCacheTiles="True"/>
+                            </maps:SfMaps.Layers>
+                        </maps:SfMaps>
+                    </StackLayout>
+
+                </tabView:SfTabItem.Content>
+            </tabView:SfTabItem>
+        </tabView:SfTabView>
     </StackLayout>
 </ContentPage>

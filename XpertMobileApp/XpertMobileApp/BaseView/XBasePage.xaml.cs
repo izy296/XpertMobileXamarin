@@ -26,6 +26,14 @@ namespace XpertMobileApp.Base
 
         }
 
+        private string searchBarText;
+        public string SearchBarText
+        {
+            get { return searchBarText; }
+            set { value=searchBarText; }
+        }
+
+
 
         public XBasePage()
         {
@@ -60,6 +68,7 @@ namespace XpertMobileApp.Base
             }
             else
             {
+                SearchBarText = searchBarText;
                 SearchCommand();
                 if (timer != null)
                 {

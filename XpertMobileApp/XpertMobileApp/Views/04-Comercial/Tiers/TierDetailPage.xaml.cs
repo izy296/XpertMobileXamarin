@@ -95,7 +95,12 @@ namespace XpertMobileApp.Views
             barcode.BarcodeOptions.Margin = 10;
 
             barcode.BarcodeValue = Item.CODE_TIERS;
-            qrCodeViewer.Children.Insert(1, barcode);            
+            qrCodeViewer.Children.Insert(1, barcode);           
+            LocationSelector locationSelector = new LocationSelector(tiers);
+
+            Map.Content= locationSelector.Content;
+
+
             
             BindingContext = this;
         }

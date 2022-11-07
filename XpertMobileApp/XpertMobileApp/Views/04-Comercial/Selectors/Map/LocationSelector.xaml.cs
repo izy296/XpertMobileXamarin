@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfMaps.XForms;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -13,18 +14,19 @@ namespace XpertMobileApp.Views
     public partial class LocationSelector : PopupPage
     {
         private bool pined = false;
-        private View_TRS_TIERS tier;
-        private Position clientPosition;
-        private Position newClientPosition;
+        public View_TRS_TIERS tier;
+        private Point clientPosition;
+        private Point newClientPosition;
 
         private TaskCompletionSource<bool> taskCompletionSource;
         public Task<bool> PopupClosedTask { get { return taskCompletionSource.Task; } }
 
-        public Position Result;
+        public Point Result;
         public LocationSelector()
         {
             InitializeComponent();
             this.tier = null;
+            BindingContext = this;
         }
 
         public LocationSelector(View_TRS_TIERS tier)
@@ -33,24 +35,20 @@ namespace XpertMobileApp.Views
             if (tier != null)
             {
                 this.tier = tier;
-                clientPosition = new Position(this.tier.GPS_LATITUDE, this.tier.GPS_LONGITUDE);
+                clientPosition = new Point(this.tier.GPS_LATITUDE, this.tier.GPS_LONGITUDE);
                 if (this.tier.GPS_LATITUDE != 0 && this.tier.GPS_LONGITUDE != 0)
                 {
-                    Position position = new Position(this.tier.GPS_LATITUDE, this.tier.GPS_LONGITUDE);
-                    MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
-                    MyMap.MoveToRegion(mapSpan);
+                    //((ImageryLayer)MyMap.Layers[0]).GeoCoordinates = ((ImageryLayer)MyMap.Layers[0]).GetLatLonFromPoint(clientPosition);
 
-                    Pin pin = new Pin()
+                    MapMarker pin = new MapMarker()
                     {
-                        Address = tier.ADRESSE_TIERS,
                         Label = tier.NOM_TIERS,
-                        Position = position,
-                        IsDraggable = true,
-                        Type = PinType.SavedPin
+                        Longitude= this.tier.GPS_LONGITUDE.ToString(),
+                        Latitude = this.tier.GPS_LATITUDE.ToString(),
                     };
 
 
-                    MyMap.Pins.Add(pin);
+                    MyMap.Layers[0].Markers.Add(pin);
                     pined = true;
                 }
 
@@ -69,10 +67,8 @@ namespace XpertMobileApp.Views
             if (location != null)
             {
                 Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
-                Position position = new Position(location.Latitude, location.Longitude);
-                MapSpan mapSpan = new MapSpan(position, 0.01, 0.01);
-                MyMap.MoveToRegion(mapSpan);
-                MyMap.MapClicked += OnMapClicked;
+                Point position = new Point(location.Latitude, location.Longitude);
+                MyMap.Layers[0].GeopointToViewPoint(location.Latitude, location.Longitude);
             }
             else
             {
@@ -85,65 +81,73 @@ namespace XpertMobileApp.Views
 
         }
 
-        private void OnMapClicked(object sender, MapClickedEventArgs e)
+        private void OnMapClicked(object sender, MapTappedEventArgs e)
         {
-            Position position = (Position)e.Point;
+            Point position = e.Position;
             if (position != newClientPosition)
             {
-                newClientPosition = position;
+                newClientPosition = MyMap.Layers[0].GetLatLonFromPoint(position);
             }
             if (tier == null)
             {
-                Pin pin = new Pin()
+                MapMarker pin = new MapMarker()
                 {
                     //Address = "Test",
-                    Label = "Test",
-                    Position = position,
-                    IsDraggable = true,
-                    Type = PinType.SavedPin
+                    Label = "Location",
+                    Longitude = MyMap.Layers[0].GetLatLonFromPoint(position).Y.ToString(),
+                    Latitude = MyMap.Layers[0].GetLatLonFromPoint(position).X.ToString(),
                 };
 
                 if (!pined)
                 {
-                    MyMap.Pins.Add(pin);
+                    MyMap.Layers[0].Markers.Add(pin);
                     pined = true;
                 }
                 else
                 {
-                    if (MyMap.Pins[0].Position == position)
+                    if (new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude),
+                        double.Parse(MyMap.Layers[0].Markers[0].Longitude)) == position)
                     {
-                        MyMap.Pins.RemoveAt(0);
+                        MyMap.Layers[0].Markers.RemoveAt(0);
                         pined = false;
                     }
                     else
-                        MyMap.Pins[0].Position = position;
+                    {
+                        MyMap.Layers[0].Markers[0].Latitude = MyMap.Layers[0].GetLatLonFromPoint(position).Y.ToString();
+                        MyMap.Layers[0].Markers[0].Longitude = MyMap.Layers[0].GetLatLonFromPoint(position).X.ToString();
+                    }
+
                 }
             }
             else
             {
-                Pin pin = new Pin()
+                MapMarker pin = new MapMarker()
                 {
-                    Address = tier.ADRESSE_TIERS,
-                    Label = tier.NOM_TIERS,
-                    Position = position,
-                    IsDraggable = true,
-                    Type = PinType.SavedPin
+                    //Address = "Test",
+                    Label = tier.FULL_NOM_TIERS,
+                    Longitude = MyMap.Layers[0].GetLatLonFromPoint(position).Y.ToString(),
+                    Latitude = MyMap.Layers[0].GetLatLonFromPoint(position).X.ToString(),
                 };
 
                 if (!pined)
                 {
-                    MyMap.Pins.Add(pin);
+                    MyMap.Layers[0].Markers.Add(pin);
                     pined = true;
                 }
                 else
                 {
-                    if (MyMap.Pins[0].Position == position)
+                    if (new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude),
+                        double.Parse(MyMap.Layers[0].Markers[0].Longitude)) == MyMap.Layers[0].GetLatLonFromPoint(position))
                     {
-                        MyMap.Pins.RemoveAt(0);
+                        MyMap.Layers[0].Markers.RemoveAt(0);
                         pined = false;
                     }
                     else
-                        MyMap.Pins[0].Position = position;
+                    {
+                        MyMap.Layers[0].Markers[0].Latitude = MyMap.Layers[0].GetLatLonFromPoint(position).Y.ToString();
+                        MyMap.Layers[0].Markers[0].Longitude = MyMap.Layers[0].GetLatLonFromPoint(position).X.ToString();
+
+                    }
                 }
             }
             if (newClientPosition != clientPosition && newClientPosition != null)
@@ -171,6 +175,11 @@ namespace XpertMobileApp.Views
         private async void CancelLocation_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
+        }
+
+        private void SfMaps_Tapped(object sender, MapTappedEventArgs e)
+        {
+
         }
     }
 }

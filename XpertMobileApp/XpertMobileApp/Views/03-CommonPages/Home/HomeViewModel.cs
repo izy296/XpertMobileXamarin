@@ -107,6 +107,14 @@ namespace XpertMobileApp.ViewModels
                 {
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
+                        CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
+                        Title = "Tournee",
+                        Color = "#76b5c5",
+                        Action = Xpert.XpertActions.AcSelect
+                    });
+
+                    res.Add(new TDB_SIMPLE_INDICATORS()
+                    {
                         CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
                         Title = "Livraisons",
                         Color = "#FFC000",

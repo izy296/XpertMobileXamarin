@@ -35,9 +35,13 @@ namespace XpertMobileApp.Droid
         public static Toolbar ToolBar { get; private set; }
         internal static MainActivity Instance { get; private set; }
 
+        const int RequestLocationId = 0;
+
         static string[] PERMISSIONS_NEED = {
             Manifest.Permission.ReadPhoneState,
-            Manifest.Permission.Camera
+            Manifest.Permission.Camera,
+            Manifest.Permission.AccessCoarseLocation,
+            Manifest.Permission.AccessFineLocation
         };
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -50,7 +54,7 @@ namespace XpertMobileApp.Droid
             Instance = this;
 
             // Init popup plugin
-            Rg.Plugins.Popup.Popup.Init(this);
+            Rg.Plugins.Popup.Popup.Init(this,savedInstanceState);
 
             UserDialogs.Init(this);
 
@@ -63,8 +67,11 @@ namespace XpertMobileApp.Droid
             FirebaseApp.InitializeApp(Application.ApplicationContext);
 
             Xamarin.Forms.Forms.SetFlags("SwipeView_Experimental");
+
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
 
             LoadApplication(new App());
 
@@ -95,7 +102,7 @@ namespace XpertMobileApp.Droid
                     //// Get the line number from the stack frame
                     //var line = frame.GetFileLineNumber();
                     e.Handled = true;
-                    UserDialogs.Instance.AlertAsync(e.Exception.Message , "Alert", "Ok");
+                    UserDialogs.Instance.AlertAsync(e.Exception.Message, "Alert", "Ok");
                     //UserDialogs.Instance.AlertAsync(e.Exception.Message+"\n"+st + "\n" +frame + "\n" +line, "Alert", "Ok");
                 }
 
@@ -165,10 +172,47 @@ namespace XpertMobileApp.Droid
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-            global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            if (requestCode == RequestLocationId)
+            {
+                if ((grantResults.Length == 1) && (grantResults[0] == (int)Permission.Granted))
+                {
+                    // Permissions granted - display a message.
+                }
+                else
+                {
+                    // Permissions denied - display a message.
+
+                }
+            }
+            else
+            {
+                Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+                global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+                base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            }
         }
+
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if ((int)Build.VERSION.SdkInt >= 23)
+            {
+                if (CheckSelfPermission(Manifest.Permission.AccessFineLocation) != Permission.Granted)
+                {
+                    RequestPermissions(PERMISSIONS_NEED, RequestLocationId);
+                }
+                else
+                {
+                    // Permissions already granted - display a message.
+                }
+            }
+        }
+
 
         protected override void OnNewIntent(Intent intent)
         {
@@ -225,7 +269,7 @@ namespace XpertMobileApp.Droid
                     // supprimer toutes les pages de la pile et revenir à l'accueil
 
                     base.OnBackPressed();
-                    
+
                     //if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).Parent== App.Current.MainPage)
                     //{
                     //    new MenuPage("1");
@@ -351,6 +395,7 @@ namespace XpertMobileApp.Droid
             {
                 RequestReadPhoneStatePermission();
             }
+
         }
 
         public static void RequestReadPhoneStatePermission()

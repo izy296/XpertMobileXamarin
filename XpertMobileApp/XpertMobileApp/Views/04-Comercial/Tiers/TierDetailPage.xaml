@@ -4,7 +4,8 @@
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
-                 x:Class="XpertMobileApp.Views.TierDetailPage"
+             x:Class="XpertMobileApp.Views.TierDetailPage"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
              x:Name="TierDetail"
              Title="Tier Detail">
     <pages:PopupPage.Content>
@@ -14,7 +15,8 @@
                            TabHeaderPosition="Bottom"
                            DisplayMode="ImageWithText"
                            ScrollButtonForegroundColor="Black"
-                           extensions:IconTintColorEffect.TintColor="Black">
+                           extensions:IconTintColorEffect.TintColor="Black"
+                           EnableSwiping="False">
 
             <!--Information of the clients-->
             <tabView:SfTabItem Title="Info"
@@ -375,6 +377,37 @@
             <tabView:SfTabItem Title="Map"
                                TitleFontColor="{DynamicResource Primary}"
                                ImageSource="map.png">
+                <tabView:SfTabItem.Content>
+                    <StackLayout Background="{DynamicResource Primary}">
+                        <FlexLayout JustifyContent="SpaceBetween"
+                                        Padding="20,15,20,0">
+                            <Image Source="arrow.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ClosePopup"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </FlexLayout>
+
+                        <Label Text="Location" 
+                               TextColor="#fff"
+                               HorizontalOptions="Center"
+                               FontSize="24"
+                               Margin="0,10,0,20"/>
+                        <yummy:PancakeView 
+                            x:Name="Map"
+                            CornerRadius="25,25,0,0"
+                                            Margin="0" 
+                                            BackgroundColor="#fff"
+                                            IsClippedToBounds="true"
+                                            BorderColor="#fff"
+                                            HasShadow="False"
+                                            VerticalOptions="FillAndExpand">
+
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </tabView:SfTabItem.Content>
+
+
 
             </tabView:SfTabItem>
 

@@ -587,7 +587,14 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "typeTiers", typeTiers);
             url += WSApi2.AddParam(url, "isPharmacien", isPharmacien);
             return await RetrievAauthorizedData<View_TRS_TIERS>(url);
+        } 
+        internal static async Task<List<View_TRS_TIERS>> GetTier(string codeTier)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TRS_TIER_GET_TIER);
+            url += WSApi2.AddParam(url, "codeTier", codeTier);
+            return await RetrievAauthorizedData<View_TRS_TIERS>(url);
         }
+
 
         internal static async Task<List<View_BSE_MAGASIN>> GetListeMagasin()
         {

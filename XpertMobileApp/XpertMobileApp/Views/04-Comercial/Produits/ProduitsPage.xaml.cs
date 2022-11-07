@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
+using XpertMobileApp.Base;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
@@ -13,7 +14,7 @@ using XpertMobileApp.ViewModels;
 namespace XpertMobileApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProduitsPage : ContentPage
+    public partial class ProduitsPage : XBasePage
     {
         ProduitsViewModel viewModel;
 
@@ -132,6 +133,12 @@ namespace XpertMobileApp.Views
             detail.Navigation.PushAsync(gvsScannedBarcode);
         }
 
+        public override void SearchCommand()
+        {
+            base.SearchCommand();
+            viewModel.SearchedText = SearchBarText;
+            new Command(async () => await viewModel.ExecuteLoadItemsCommand()) ; 
+        }
 
         private void CheckBox_StateChangedSM(object sender, StateChangedEventArgs e)
         {

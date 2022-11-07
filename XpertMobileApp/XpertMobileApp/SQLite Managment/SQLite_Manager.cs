@@ -100,6 +100,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_VTE_COMMANDE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT>();
+                await CreateView_TRS_TIERS_ACTIVITY_Async();
 
             }
             catch (Exception e)
@@ -107,6 +108,85 @@ namespace XpertMobileApp.SQLite_Managment
                 Console.WriteLine(e.Message);
             }
         }
+
+
+        public static async Task<bool> CreateView_TRS_TIERS_ACTIVITY_Async()
+        {
+            var res = true;
+            try
+            {
+                string dropView = "DROP VIEW View_TRS_TIERS_ACTIVITY";
+
+                await GetInstance().ExecuteAsync(dropView);
+
+            }
+            catch (Exception)
+            {
+                //
+            }
+
+            try
+            {
+                string query = "CREATE VIEW View_TRS_TIERS_ACTIVITY " +
+                        "AS SELECT " +
+                        "t.CODE_TIERS, " +
+                        "t.NOM_TIERS," +
+                        "t.PRENOM_TIERS," +
+                        "v.TYPE_DOC," +
+                        "v.TOTAL_PAYE," +
+                        "v.CODE_VENTE," +
+                        "c.CODE_VENTE CODE_COMMANDE," +
+                        "c.TOTAL_PAYE TOTAL_COMMANDE " +
+                        "FROM View_TRS_TIERS t " +
+                        "LEFT JOIN View_VTE_VENTE v ON v.CODE_TIERS = t.CODE_TIERS " +
+                        "LEFT JOIN View_TRS_ENCAISS e ON e.CODE_TIERS = t.CODE_TIERS " +
+                        "LEFT JOIN View_VTE_COMMANDE c ON c.CODE_TIERS = t.CODE_TIERS;";
+
+                string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY 
+                                AS SELECT * FROM (
+                                    SELECT v.CODE_VENTE, 
+                                    	   v.TOTAL_PAYE,
+                                    	   v.TYPE_DOC,
+                                    	   v.CODE_TIERS
+                                    	   FROM View_VTE_VENTE v
+                                    	   WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR'
+                                    UNION ALL
+                                    SELECT c.CODE_VENTE, 
+                                    	   c.TOTAL_PAYE,
+                                    	   c.TYPE_DOC,
+                                    	   c.CODE_TIERS
+                                    	   FROM View_VTE_COMMANDE c
+                                    UNION ALL
+                                    SELECT e.CODE_ENCAISS,
+                                    		e.TOTAL_PAYE,
+                                    		'ENC' TYPE_DOC,
+                                    		e.CODE_TIERS
+                                    	   FROM View_TRS_ENCAISS e
+                                    	   )T";
+
+
+                await GetInstance().ExecuteAsync(queryNew);
+
+            }
+            catch (Exception Ex)
+            {
+                //
+            }
+            return res;
+        }
+
+
+        public static async Task<IEnumerable<View_TRS_TIERS_ACTIVITY>> get_TRS_TIERS_ACTIVITY_Async(string codeTiers)
+        {
+            string Query = String.Format("SELECT * FROM View_TRS_TIERS_ACTIVITY WHERE CODE_TIERS = '{0}'",codeTiers);
+            var res = await GetInstance().QueryAsync<View_TRS_TIERS_ACTIVITY>(Query);
+            if (res.Count != 0 && res != null)
+            {
+                return res;
+            }
+            else return null;
+        }
+
         //Vérifie si les toutes les tables sont vide ou non ...
         public static async Task<bool> CheckAllTablesIfEmpty()
         {
@@ -265,11 +345,12 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncMagasin();                                                                                           //await SyncProduct();
                     await SyncTransfers();
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
-                    //await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                    await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     UserDialogs.Instance.HideLoading();
+                    var obj = await GetInstance().QueryAsync<View_TRS_TIERS_ACTIVITY>("SELECT * FROM View_TRS_TIERS_ACTIVITY");
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
@@ -1157,7 +1238,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (item.CODE_DETAIL == codeTourneeDetail)
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
-                    item.CODE_ETAT = TourneeStatus.Delevred;
+                    item.CODE_ETAT = TourneeStatus.Delivered;
                     item.ETAT_COLOR = "#008000";
                     item.SOLDE_TIERS = await getSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
