@@ -110,7 +110,8 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
                         Title = "Tournee",
                         Color = "#76b5c5",
-                        Action = Xpert.XpertActions.AcSelect
+                        Action = Xpert.XpertActions.AcSelect,
+                        IconImage = "tourneeIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
@@ -119,14 +120,16 @@ namespace XpertMobileApp.ViewModels
                         Title = "Livraisons",
                         Color = "#FFC000",
                         CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
-                        Action = Xpert.XpertActions.AcSelect
+                        Action = Xpert.XpertActions.AcSelect,
+                        IconImage = "LivraisonMenuIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.TransfertStock).ToString(),
-                        Title = AppResources.pn_TransfertStock,
-                        Color = "#72cfce"
+                        Title = "Charge./Décharge.", 
+                        Color = "#72cfce",
+                        IconImage = "chargementDechargementIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
@@ -135,7 +138,8 @@ namespace XpertMobileApp.ViewModels
                         Title = "Sessions",
                         Color = "#ff6b81",
                         CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
-                        Action = Xpert.XpertActions.AcSelect
+                        Action = Xpert.XpertActions.AcSelect,
+                        IconImage = "sessionIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
@@ -144,25 +148,27 @@ namespace XpertMobileApp.ViewModels
                         Title = AppResources.pn_Client,
                         Color = "#FEF2CC",
                         CodeObjet = Xpert.XpertObjets.TRS_TIERS,
-                        Action = Xpert.XpertActions.AcSelect
+                        Action = Xpert.XpertActions.AcSelect,
+                        IconImage = "clientIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
-                        Title = "Encaiss / Decaiss",
+                        Title = "Versement",
                         Color = "#A8D08D",
                         CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
-                        Action = Xpert.XpertActions.AcSelect
+                        Action = Xpert.XpertActions.AcSelect,
+                        IconImage="encaissIcon.png"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
                         Title = "Produits",
-                        Color = "#B4C6E7"
+                        Color = "#B4C6E7",
+                        IconImage="produitIcon.png"
                     });
-
                 }
                 else
                 {
@@ -287,7 +293,8 @@ namespace XpertMobileApp.ViewModels
                         {
                             CODE_ANALYSE = ((int)MenuItemType.Export).ToString(),
                             Title = "Export Donnée",
-                            Color = "#87CEEB"
+                            Color = "#87CEEB",
+                            
                         });
                     }
 

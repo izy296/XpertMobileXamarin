@@ -22,7 +22,7 @@ namespace XpertMobileApp.Models
         public string Query2 { get; set; }
         public bool IsCustom { get; set; }
         public decimal CustomValue { get; set; }
-
+        public string IconImage { get; set; }
         public XpertObjets CodeObjet { get; set; } = XpertObjets.None;
 
         public XpertActions Action { get; set; } = XpertActions.None;

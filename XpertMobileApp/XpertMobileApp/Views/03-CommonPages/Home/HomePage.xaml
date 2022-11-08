@@ -98,8 +98,7 @@
                 ItemsSource="{Binding Items}"
                 AutoFitMode="None"
                 SelectionBackgroundColor="AliceBlue"
-                BackgroundColor="Transparent"
-                >
+                BackgroundColor="Transparent">
                     
                     <syncfusion:SfListView.ItemSize>
                         <OnIdiom x:TypeArguments="x:Double"
@@ -127,7 +126,7 @@
                         <yummy:PancakeView BackgroundColor="{Binding Color}" 
                                            CornerRadius="8"
                                            Margin="8" 
-                                           Padding="4" 
+                                           Padding="2" 
                                            HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                             
                                 <Grid Padding="0" 
@@ -152,11 +151,14 @@
                                        HorizontalTextAlignment="Center" FontAttributes="Bold" Margin="0,0,0,8"/>
 -->
                                 <Button Text="{Binding Title}" 
+                                        x:Name="btnModule"
+                                        ContentLayout="Top, 0"
                                         HorizontalOptions="FillAndExpand" 
                                         VerticalOptions="FillAndExpand" 
                                         BackgroundColor="{Binding Color}"
                                         FontFamily="{StaticResource FontGilroySemiBold}" 
-                                        FontSize="Subtitle" 
+                                        FontSize="Subtitle"
+                                        ImageSource="{Binding IconImage}"
                                         Clicked="Btn_Menu_Clicked" />
 
                                 </Grid>
