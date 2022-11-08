@@ -150,6 +150,7 @@ namespace XpertMobileApp
                 else
                     MainPage = new ActivationPage(licState);
             }
+
         }
 
         private bool isNotifiedForUpdate(string title, string message)

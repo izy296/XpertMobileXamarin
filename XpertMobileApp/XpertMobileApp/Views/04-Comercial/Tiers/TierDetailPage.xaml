@@ -85,19 +85,19 @@
 
                                         <!--Prénom-->
                                         <inputLayout:SfTextInputLayout Hint="Prénom" 
-                                                                   x:Name="inputPrenom"
-                                                                   LeadingViewPosition="Inside"
-                                                                   OutlineCornerRadius="8"
-                                                                   FocusedColor="{DynamicResource Primary}"
-                                                                   UnfocusedColor="#277BC0"
-                                                                   ContainerType="Outlined" >
+                                                                       x:Name="inputPrenom"
+                                                                       LeadingViewPosition="Inside"
+                                                                       OutlineCornerRadius="8"
+                                                                       FocusedColor="{DynamicResource Primary}"
+                                                                       UnfocusedColor="#277BC0"
+                                                                       ContainerType="Outlined" >
 
                                             <inputLayout:SfTextInputLayout.HintLabelStyle>
                                                 <inputLayout:LabelStyle FontSize="13">
                                                 </inputLayout:LabelStyle>
                                             </inputLayout:SfTextInputLayout.HintLabelStyle>
 
-                                            <inputLayout:SfTextInputLayout.LeadingView>
+                                            <inputLayout:SfTextInputLayout.LeadingView >
                                                 <Image Source="id_card.png"/>
                                             </inputLayout:SfTextInputLayout.LeadingView>
 
@@ -109,12 +109,12 @@
 
                                         <!--Numero de telephone-->
                                         <inputLayout:SfTextInputLayout Hint="Téléphone" 
-                                                                   x:Name="inputTelephone"
-                                                                   OutlineCornerRadius="8"
-                                                                   LeadingViewPosition="Inside"
-                                                                   FocusedColor="{DynamicResource Primary}"
-                                                                   UnfocusedColor="#277BC0"
-                                                                   ContainerType="Outlined" >
+                                                                       x:Name="inputTelephone"
+                                                                       OutlineCornerRadius="8"
+                                                                       LeadingViewPosition="Inside"
+                                                                       FocusedColor="{DynamicResource Primary}"
+                                                                       UnfocusedColor="#277BC0"
+                                                                       ContainerType="Outlined" >
 
                                             <inputLayout:SfTextInputLayout.HintLabelStyle>
                                                 <inputLayout:LabelStyle FontSize="13">
@@ -302,71 +302,95 @@
                             <StackLayout.Background>
                                 <!--StartPoint defaults to (0,0)-->
                                 <LinearGradientBrush EndPoint="1,0">
-                                    <GradientStop Color="{DynamicResource Primary}"
+                                    <GradientStop Color="{DynamicResource NavigationPrimary}"
                                               Offset="0.1" />
-                                    <GradientStop Color="{DynamicResource Primary}"
+                                    <GradientStop Color="{DynamicResource NavigationPrimary}"
                                               Offset="1.0" />
                                 </LinearGradientBrush>
                             </StackLayout.Background>
 
 
                         </StackLayout>
+
+                        <!--the expandable floating button-->
                         <yummy:PancakeView HorizontalOptions="End"
                                            VerticalOptions="End"
-                                           Margin="30"
+                                           Margin="30,30,30,15"
                                            CornerRadius="40"
-                                           Padding="15"
+                                           Padding="15,15,15,5"
                                            BackgroundColor="Transparent">
 
-                            <yummy:PancakeView.BackgroundGradientStops>
-                                <yummy:GradientStopCollection>
-                                    <yummy:GradientStop Color="#2c9cee" Offset="0"/>
-                                    <yummy:GradientStop Color="#0056ff" Offset="1"/>
-                                </yummy:GradientStopCollection>
-                            </yummy:PancakeView.BackgroundGradientStops>
+                            <!--Button Container-->
+                            <StackLayout>
+                                <!--First Button-->
+                                <StackLayout x:Name="FloatMenuItem1" 
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="0">
 
-                            <extensions:Expander HorizontalOptions="Start" 
-                                                 Rotation="180"
-                                                 VerticalOptions="End"
-                                                 extensions:ShadowEffect.Color="{DynamicResource Primary}">
-                                <extensions:Expander.Header>
-                                    <Image Source="addFloatingAction.png" WidthRequest="30" HeightRequest="30" Rotation="180">
-                                        <Image.Triggers>
-                                            <DataTrigger TargetType="Image"
-                                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type extensions:Expander}}, Path=IsExpanded}"
-                                                         Value="true">
-                                                <Setter Property="Source" Value="addFloatingAction.png"/>
-                                                <Setter Property="Rotation" Value="45"/>
-                                            </DataTrigger>
-                                        </Image.Triggers>
-                                    </Image>
-                                </extensions:Expander.Header>
-                                <StackLayout Spacing="30" Margin="0,20">
-                                    <ImageButton Source="product_return.png"
-                                                 Rotation="180"
-                                                 WidthRequest="30"
-                                                 HeightRequest="30"
-                                                 BackgroundColor="Transparent"/>
+                                    <Label Text="Menu Item1" 
+                                           VerticalTextAlignment="Center"/>
 
-                                    <ImageButton Source="box.png"
-                                                 Rotation="180"
-                                                 WidthRequest="30"
-                                                 HeightRequest="30"
-                                                 BackgroundColor="Transparent"/>
 
-                                    <ImageButton Source="versement.png"
-                                                 Rotation="180"
-                                                 WidthRequest="30"
-                                                 HeightRequest="30"
-                                                 BackgroundColor="Transparent"/>
+                                    <Frame BackgroundColor="Blue"
+                                           WidthRequest="15" 
+                                           HeightRequest="15"
+                                           CornerRadius="40"/>
 
-                                    <ImageButton Source="bl.png"
-                                                 Rotation="180"
-                                                 WidthRequest="30"
-                                                 HeightRequest="30"
-                                                 BackgroundColor="Transparent"/>
                                 </StackLayout>
-                            </extensions:Expander>
+
+                                <!--Second Button-->
+                                <StackLayout x:Name="FloatMenuItem2" 
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="1">
+
+                                    <Label Text="Menu Item2" 
+                                           VerticalTextAlignment="Center"/>
+
+                                    <Frame BackgroundColor="Blue" 
+                                           HorizontalOptions="End"
+                                           WidthRequest="15" 
+                                           HeightRequest="15"
+                                           CornerRadius="40"/>
+
+                                </StackLayout>
+
+                                <!--Third Button-->
+                                <StackLayout x:Name="FloatMenuItem3" 
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="2">
+
+                                    <Label Text="Menu Item3" 
+                                           VerticalTextAlignment="Center"/>
+
+                                    <Frame BackgroundColor="Blue" 
+                                           HorizontalOptions="End"
+                                           WidthRequest="15" 
+                                           HeightRequest="15"
+                                           CornerRadius="40"/>
+
+                                </StackLayout>
+
+                                <Frame BackgroundColor="Blue" 
+                                       CornerRadius="50" 
+                                       HasShadow="True" 
+                                       HorizontalOptions="End"
+                                       WidthRequest="25" 
+                                       HeightRequest="25"
+                                       Margin="0,0,10,10">
+
+                                    <Image Source="addFloatingAction.png" 
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="Center"/>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OpenCloseButtons"/>
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+                            </StackLayout>
+
                         </yummy:PancakeView>
                     </Grid>
 
@@ -453,13 +477,13 @@
                                                     HasShadow="False"
                                                     WidthRequest="400"
                                                     HeightRequest="400">
-                                    
+
                                     <StackLayout x:Name="qrCodeViewer">
-                                        
+
                                     </StackLayout>
-                                
+
                                 </yummy:PancakeView>
-                                
+
                                 <FlexLayout Direction="row" JustifyContent="SpaceAround">
 
                                     <yummy:PancakeView WidthRequest="45"
@@ -468,12 +492,12 @@
                                                        Padding="10"
                                                        BackgroundColor="#A8D08D"
                                                        HasShadow="True">
-                                        
-                                      <Image Source="share.png"
+
+                                        <Image Source="share.png"
                                              HorizontalOptions="Center"
                                              WidthRequest="30"
-                                             HeightRequest="30"/>  
-                                    
+                                             HeightRequest="30"/>
+
                                     </yummy:PancakeView>
 
                                     <yummy:PancakeView WidthRequest="45"
@@ -482,12 +506,12 @@
                                                        CornerRadius="60"
                                                        HasShadow="True"
                                                        BackgroundColor="#FFC000">
-                                    
+
                                         <Image Source="printer.png" 
                                                WidthRequest="30"
                                                HeightRequest="30"
                                                HorizontalOptions="Center"/>
-                                    
+
                                     </yummy:PancakeView>
 
                                 </FlexLayout>

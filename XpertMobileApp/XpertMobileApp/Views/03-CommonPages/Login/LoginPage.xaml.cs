@@ -81,6 +81,7 @@ namespace XpertMobileApp.Views
 
         async void ConnectUserAsync(object sender, EventArgs e)
         {
+                
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
             {

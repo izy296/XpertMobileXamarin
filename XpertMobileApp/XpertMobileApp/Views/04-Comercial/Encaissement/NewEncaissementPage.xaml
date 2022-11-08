@@ -27,7 +27,7 @@
 
         <ScrollView Orientation="Vertical" Padding="15">
             <StackLayout>
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate DATE_ENCAISS}" 
                        Margin="5, 0, 0, 0" 
                        FontSize="Medium"
@@ -39,7 +39,7 @@
                         Margin="30, 0, 30, 30" 
                         Date="{Binding Item.DATE_ENCAISS}"/>
 
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate CODE_MOTIF}" 
                        Margin="5, 0, 0, 0"
                        FontSize="Medium"
@@ -54,7 +54,7 @@
                                 Margin="30, 0, 30, 30" 
                                 x:Name="MotifsPicker"/>
 
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate CODE_COMPTE}" 
                        Margin="5, 0, 0, 0"
                        FontSize="Medium"
@@ -70,7 +70,7 @@
                                 x:Name="ComptesPicker"/>
 
 
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate CODE_TIERS}" 
                        Margin="5, 0, 0, 0"
                        FontSize="Medium"
@@ -91,19 +91,19 @@
                         Clicked="btn_Select_Clicked"  />
                 </Grid>
 
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate TOTAL_ENCAISS}" 
                        Margin="5, 0, 0, 0"
                        FontSize="Medium"
                        FontAttributes="Bold"
                        />
-                <Entry Placeholder="{i18n:Translate msg_EnterTheAmount}"
+                <Entry Placeholder="{i18n:Translate Primary}"
                        Margin="30, 0, 30, 30"
                        x:Name="montantEntry"
                        Keyboard="Numeric"
                        TextColor="Black"/>
 
-                <Label TextColor="{StaticResource NavigationPrimary}" 
+                <Label TextColor="{StaticResource Primary}" 
                        Text="{i18n:Translate SOLDE_TIERS}" 
                        Margin="5, 0, 0, 0"
                        FontSize="Medium"

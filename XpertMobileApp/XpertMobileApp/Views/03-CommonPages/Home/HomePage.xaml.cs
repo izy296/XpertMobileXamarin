@@ -34,6 +34,17 @@ namespace XpertMobileApp.Views
                 notif_container.Padding = new Thickness(0, 0, 0, 0);
                 lblClientName.Margin = new Thickness(45, 0, 90, 0);
             }
+            if (App.Online)
+            {
+                Application.Current.Resources["NavigationPrimary"] = "#2196F3";
+                Application.Current.Resources["MenuAccent"] = "#96d1ff";
+            }
+
+            else
+            {
+                Application.Current.Resources["NavigationPrimary"] = "#5B5B5B";
+                Application.Current.Resources["MenuAccent"] = "#5B5B5B";
+            }
 
         }
 

@@ -7,8 +7,9 @@
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              BackgroundColor="White"
              FlowDirection="MatchParent"
+             
              >
-
+    
     <ContentPage.Content>
         <StackLayout Spacing="0" 
                      Padding="0" 
@@ -19,8 +20,8 @@
             <yummy:PancakeView CornerRadius="0,0,25,25" 
                                Padding="0,0,0,55" 
                                Margin="0" IsClippedToBounds="true"
-                               BorderColor="{StaticResource NavigationPrimary}"
-                               BackgroundColor="{StaticResource NavigationPrimary}" 
+                               BorderColor="{DynamicResource NavigationPrimary}"
+                               BackgroundColor="{DynamicResource NavigationPrimary}" 
                                HasShadow="False" >
                 
                 <StackLayout Spacing="10" 
