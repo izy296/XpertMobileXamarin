@@ -8,22 +8,22 @@
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
              xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
              Title="{Binding Title}"
-             x:Name="Produits">
+             x:Name="Visites">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
+        <!--<ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="filter.png"/>
                     <On Platform="Android" Value="filter.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>
+        </ToolbarItem>-->
     </ContentPage.ToolbarItems>
 
     <StackLayout VerticalOptions="FillAndExpand"  BackgroundColor="{StaticResource DefaultLisViewBackColor}">
         <!-- Filter -->
-        <StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
+        <!--<StackLayout x:Name="FilterPanel" IsVisible="False" Padding="0" Margin="0" Spacing="0" Orientation="Vertical" VerticalOptions="Start"
                          HorizontalOptions="Fill" BackgroundColor="{StaticResource Accent}">
 
             <Grid Margin="0,5,0,0">
@@ -41,7 +41,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <!--<Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
+                --><!--<Label Grid.Column="0" Grid.Row="0" Text="{i18n:Translate txt_Famille}" Margin="5, 0, 0, 0"/>
                 <Picker Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Familles}"
                          ItemDisplayBinding="{Binding DESIGNATION}"
                          SelectedItem="{Binding SelectedFamille}"
@@ -59,7 +59,7 @@
 
                 <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Ref}" Margin="5, 0, 0, 0"/>
                 <Entry Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedRef" 
-               TextColor="Black" Text="{Binding SearchedRef, Mode=TwoWay}"/>-->
+               TextColor="Black" Text="{Binding SearchedRef, Mode=TwoWay}"/>--><!--
 
                 <Label Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" Text="{i18n:Translate txt_Name}" Margin="5, 0, 0, 0"/>
                 <Entry Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Margin="15, 0, 15, 15"  x:Name="ent_SearchedTiers" 
@@ -74,7 +74,7 @@
                     Clicked="btn_CancelFilter_Clicked"/>
                 </StackLayout>
             </Grid>
-        </StackLayout>
+        </StackLayout>-->
 
         <!-- Items listing  -->
         <tabView:SfTabView 

@@ -30,7 +30,7 @@ namespace XpertMobileApp.Base
         public string SearchBarText
         {
             get { return searchBarText; }
-            set { value=searchBarText; }
+            set { searchBarText=value; }
         }
 
 
@@ -54,6 +54,8 @@ namespace XpertMobileApp.Base
 
         public virtual void HandleSearchBarTextChanged(object sender, string searchBarText)
         {
+            SearchBarText = searchBarText;
+
             if (searchBarText != "")
             {
                 if (timer != null)
@@ -68,7 +70,6 @@ namespace XpertMobileApp.Base
             }
             else
             {
-                SearchBarText = searchBarText;
                 SearchCommand();
                 if (timer != null)
                 {

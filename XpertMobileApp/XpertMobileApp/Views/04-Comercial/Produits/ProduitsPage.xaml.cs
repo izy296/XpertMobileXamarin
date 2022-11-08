@@ -137,7 +137,7 @@ namespace XpertMobileApp.Views
         {
             base.SearchCommand();
             viewModel.SearchedText = SearchBarText;
-            new Command(async () => await viewModel.ExecuteLoadItemsCommand()) ; 
+            viewModel.ExecuteLoadItemsCommand();
         }
 
         private void CheckBox_StateChangedSM(object sender, StateChangedEventArgs e)

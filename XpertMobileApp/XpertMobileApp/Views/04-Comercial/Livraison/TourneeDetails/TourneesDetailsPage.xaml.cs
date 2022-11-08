@@ -57,9 +57,8 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-
-            // if (viewModel.Items.Count == 0)
-            if (autoLodData)
+            //if (autoLodData)
+            if (viewModel.Items.Count == 0)
             {
                 LoadData();
             }
@@ -106,7 +105,7 @@ namespace XpertMobileApp.Views
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = !FilterPanel.IsVisible;
+            //FilterPanel.IsVisible = !FilterPanel.IsVisible;
         }
 
         private async void btn_ApplyFilter_Clicked(object sender, EventArgs e)
@@ -125,7 +124,7 @@ namespace XpertMobileApp.Views
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
-            FilterPanel.IsVisible = false;
+            //FilterPanel.IsVisible = false;
             viewModel.ClearFilters();
             viewModel.LoadItemsCommand.Execute(null);
         }
