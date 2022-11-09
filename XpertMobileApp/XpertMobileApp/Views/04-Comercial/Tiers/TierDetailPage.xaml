@@ -315,9 +315,9 @@
                         <!--the expandable floating button-->
                         <yummy:PancakeView HorizontalOptions="End"
                                            VerticalOptions="End"
-                                           Margin="30,30,30,15"
+                                           Margin="30,30,10,15"
                                            CornerRadius="40"
-                                           Padding="15,15,15,5"
+                                           Padding="15,15,5,5"
                                            BackgroundColor="Transparent">
 
                             <!--Button Container-->

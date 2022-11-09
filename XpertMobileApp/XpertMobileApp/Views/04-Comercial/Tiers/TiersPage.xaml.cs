@@ -81,6 +81,8 @@ namespace XpertMobileApp.Views
 
         private void ApplyFilter(object sender, EventArgs e)
         {
+            // clearing the tiersScanned
+            viewModel.TiersScanned = null;
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -126,28 +128,36 @@ namespace XpertMobileApp.Views
 
         private void ScanQrCode_Clicked(object sender, EventArgs e)
         {
-            gvsScannedBarcode = new GoogleVisionBS();
-            MainPage RootPage = Application.Current.MainPage as MainPage;
-            var detail = RootPage.Detail;
-            gvsScannedBarcode.UserSubmitted += async (_, tiersScanned) =>
+            try
+            {
+                gvsScannedBarcode = new GoogleVisionBS();
+                MainPage RootPage = Application.Current.MainPage as MainPage;
+                var detail = RootPage.Detail;
+                gvsScannedBarcode.UserSubmitted += async (_, tiersScanned) =>
+                {
+
+                    // une solution pour la fonction Load More après un changement dans le contenu de listView
+                    // enregistrez la fonction responsable OnCanLoadMore avant de l'écraser pour bloquer le chargement
+                    // d'autres éléments(en appelant la fonction LoadMore) dans la liste après la numérisation d'un code-barres
+                    // afin de limiter l'affichage du seul produit numérisé
+
+                    var func = viewModel.Items.OnCanLoadMore;
+                    viewModel.Items.OnCanLoadMore = () =>
+                    {
+                        return false;
+                    };
+
+                    viewModel.TiersScanned = tiersScanned;
+                    await detail.Navigation.PopAsync();
+                    viewModel.LoadItemsCommand.Execute(null);
+                };
+                detail.Navigation.PushAsync(gvsScannedBarcode);
+        }
+            catch (Exception ex)
             {
 
-                // une solution pour la fonction Load More après un changement dans le contenu de listView
-                // enregistrez la fonction responsable OnCanLoadMore avant de l'écraser pour bloquer le chargement
-                // d'autres éléments(en appelant la fonction LoadMore) dans la liste après la numérisation d'un code-barres
-                // afin de limiter l'affichage du seul produit numérisé
-
-                var func = viewModel.Items.OnCanLoadMore;
-                viewModel.Items.OnCanLoadMore = () =>
-                {
-                    return false;
-                };
-
-                viewModel.TiersScanned = tiersScanned;
-                await detail.Navigation.PopAsync();
-                viewModel.LoadItemsCommand.Execute(null);
-            };
-            detail.Navigation.PushAsync(gvsScannedBarcode);
+                throw ex;
+            }
         }
     }
 }
