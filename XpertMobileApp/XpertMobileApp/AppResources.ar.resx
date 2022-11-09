@@ -1150,4 +1150,13 @@
   <data name="txt_online" xml:space="preserve">
     <value>متصل</value>
   </data>
+  <data name="TOTAL_PPA" xml:space="preserve">
+    <value>مبلغ PPA</value>
+  </data>
+  <data name="TOTAL_SHP" xml:space="preserve">
+    <value>مبلغ SHP</value>
+  </data>
+  <data name="TOTAL_NB_VENTE" xml:space="preserve">
+    <value>عدد المبيعات</value>
+  </data>
 </root>

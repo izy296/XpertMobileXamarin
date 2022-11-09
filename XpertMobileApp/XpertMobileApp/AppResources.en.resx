@@ -1050,4 +1050,13 @@
   <data name="txt_online" xml:space="preserve">
     <value>Online</value>
   </data>
+  <data name="TOTAL_PPA" xml:space="preserve">
+    <value>Total PPA</value>
+  </data>
+  <data name="TOTAL_SHP" xml:space="preserve">
+    <value>Total SHP</value>
+  </data>
+  <data name="TOTAL_NB_VENTE" xml:space="preserve">
+    <value>Sales Count</value>
+  </data>
 </root>
