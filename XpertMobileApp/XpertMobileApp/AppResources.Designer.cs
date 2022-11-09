@@ -3523,7 +3523,20 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_reinstall_app", resourceCulture);
             }
         }
-
+        internal static string txt_online
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_online", resourceCulture);
+            }
+        }
+        internal static string txt_offline
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_offline", resourceCulture);
+            }
+        }
     }
 }
 

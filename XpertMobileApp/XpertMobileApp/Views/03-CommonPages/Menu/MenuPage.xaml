@@ -55,7 +55,7 @@
                     <StackLayout Padding="0" 
                                  Orientation="Horizontal" 
                                  HorizontalOptions="FillAndExpand" 
-                                 VerticalOptions="Center">
+                                 VerticalOptions="End">
 
                         <Grid HorizontalOptions="FillAndExpand">
                             <Grid.RowDefinitions>
@@ -70,7 +70,7 @@
                             <Label Grid.Column="0" 
                                    FontSize="Micro" 
                                    HorizontalOptions="Start" 
-                                   VerticalOptions="Center" 
+                                   VerticalOptions="End" 
                                    Margin="10,0,0,5" 
                                    HorizontalTextAlignment="Start">
 
@@ -85,7 +85,7 @@
                             <Label Grid.Column="1" 
                                    FontSize="Micro" 
                                    HorizontalOptions="End" 
-                                   VerticalOptions="Center" 
+                                   VerticalOptions="End" 
                                    Margin="0,0,10,5" 
                                    HorizontalTextAlignment="End">
 
@@ -99,22 +99,42 @@
 
                             </Label>
 
-                            <Label Grid.Column="2" 
-                                   FontSize="Micro" 
-                                   HorizontalOptions="End" 
-                                   VerticalOptions="Center" 
-                                   Margin="0,0,10,5" 
-                                   HorizontalTextAlignment="End">
 
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <FormattedString.Spans>
-                                            <Span x:Name="XpertExpireDate" Text="1.0"/>
-                                        </FormattedString.Spans>
-                                    </FormattedString>
-                                </Label.FormattedText>
+                            <FlexLayout Direction="Column"
+                                        HorizontalOptions="End" 
+                                        VerticalOptions="End"
+                                        Grid.Column="2">
+                                
+                                <Label FontSize="Micro" 
+                                       Margin="0,0,10,5" 
+                                       HorizontalTextAlignment="End">
 
-                            </Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span x:Name="connetionStatus" Text="1.0"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+
+                                <Label FontSize="Micro" 
+                                       Margin="0,0,10,5" 
+                                       HorizontalTextAlignment="End">
+
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <FormattedString.Spans>
+                                                <Span x:Name="XpertExpireDate" Text="1.0"/>
+                                            </FormattedString.Spans>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+
+                            </FlexLayout>
+                            
 
                         </Grid>
 

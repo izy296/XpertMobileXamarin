@@ -31,9 +31,8 @@
                                  Orientation="Horizontal" 
                                  Padding="35,0,0,0" 
                                  Margin="0,0,0,0"
-                                 HeightRequest="40"
-                                 >
-                        
+                                 HeightRequest="40">
+
                         <Label x:Name="lblClientName" 
                                Text="Pharmacie Ben Mohamed " 
                                FontSize="Medium" 
@@ -42,7 +41,7 @@
                                HorizontalTextAlignment="Center" 
                                VerticalTextAlignment="Center" 
                                TextColor="White" />
-                        
+
                         <AbsoluteLayout >
                             <Button 
                                 AbsoluteLayout.LayoutBounds="0,0,1,1"
@@ -71,6 +70,13 @@
                                  Padding="0" 
                                  Margin="0">
                         
+                        <Label x:Name="connectionStatus"
+                               FontSize="11"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="White"/>
+                        
                         <Label Text="Bienvenue" 
                                TextColor="White" 
                                FontAttributes="Bold" 
@@ -90,16 +96,15 @@
                 </StackLayout>
             </yummy:PancakeView>
             
-            <syncfusion:SfListView 
-                Margin="10,-60,10,0"
-                x:Name="listView"
-                SelectionMode="None"
-                SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                SelectionChanged="listView_SelectionChanged"
-                ItemsSource="{Binding Items}"
-                AutoFitMode="None"
-                SelectionBackgroundColor="AliceBlue"
-                BackgroundColor="Transparent">
+            <syncfusion:SfListView  Margin="10,-60,10,0"
+                                    x:Name="listView"
+                                    SelectionMode="None"
+                                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                    SelectionChanged="listView_SelectionChanged"
+                                    ItemsSource="{Binding Items}"
+                                    AutoFitMode="None"
+                                    SelectionBackgroundColor="AliceBlue"
+                                    BackgroundColor="Transparent">
                     
                     <syncfusion:SfListView.ItemSize>
                         <OnIdiom x:TypeArguments="x:Double"

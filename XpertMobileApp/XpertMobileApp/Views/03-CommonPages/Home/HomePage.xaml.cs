@@ -38,12 +38,14 @@ namespace XpertMobileApp.Views
             {
                 Application.Current.Resources["NavigationPrimary"] = "#2196F3";
                 Application.Current.Resources["MenuAccent"] = "#96d1ff";
+                connectionStatus.Text = AppResources.txt_online;
             }
 
             else
             {
                 Application.Current.Resources["NavigationPrimary"] = "#5B5B5B";
                 Application.Current.Resources["MenuAccent"] = "#5B5B5B";
+                connectionStatus.Text = AppResources.txt_offline;
             }
 
         }

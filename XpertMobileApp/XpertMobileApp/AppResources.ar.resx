@@ -1144,4 +1144,10 @@
   <data name="pn_Client" xml:space="preserve">
     <value>الزبائن</value>
   </data>
+  <data name="txt_offline" xml:space="preserve">
+    <value>غير متصل</value>
+  </data>
+  <data name="txt_online" xml:space="preserve">
+    <value>متصل</value>
+  </data>
 </root>

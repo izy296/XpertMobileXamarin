@@ -1044,4 +1044,10 @@
   <data name="pn_Client" xml:space="preserve">
     <value>Clients</value>
   </data>
+  <data name="txt_offline" xml:space="preserve">
+    <value>Offline</value>
+  </data>
+  <data name="txt_online" xml:space="preserve">
+    <value>Online</value>
+  </data>
 </root>

@@ -624,6 +624,21 @@ namespace XpertMobileApp.Views
                 GetNumberOfNotifications();
                 ReloadNumberOfNotifications();
             });
+
+            /* Styling elements when app is in offline mode or online mode */
+            if (!App.Online)
+            {
+                Lbl_AppFullName.TextColor = Color.White;
+                ClientId.TextColor = Color.White;
+                XpertVersion.TextColor = Color.White;
+                XpertExpireDate.TextColor = Color.White;
+                connetionStatus.Text = "mode: " + AppResources.txt_offline;
+                connetionStatus.TextColor = Color.White;
+            }
+            else
+            {
+                connetionStatus.Text = "mode: " + AppResources.txt_online;
+            }
         }
 
         private void ReloadMenu()

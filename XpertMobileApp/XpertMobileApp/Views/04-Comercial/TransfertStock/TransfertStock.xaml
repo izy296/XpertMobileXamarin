@@ -43,7 +43,7 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
                 CornerRadius="100"
-                BackgroundColor="{StaticResource Primary}"
+                BackgroundColor="{DynamicResource Primary}"
                 HeightRequest="60"
                 WidthRequest="60"
                 HorizontalOptions="CenterAndExpand"
