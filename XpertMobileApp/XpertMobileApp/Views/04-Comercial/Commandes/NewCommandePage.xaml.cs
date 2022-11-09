@@ -32,7 +32,7 @@ namespace XpertMobileApp.Views
             set { item = value; }
         }
         public GoogleVisionBS gvsScannedBarcode;
-        public NewCommandePage(View_VTE_VENTE vente, View_TRS_TIERS tiers)
+        public NewCommandePage(View_VTE_VENTE vente, View_TRS_TIERS tiers = null)
         {
             InitializeComponent();
 
