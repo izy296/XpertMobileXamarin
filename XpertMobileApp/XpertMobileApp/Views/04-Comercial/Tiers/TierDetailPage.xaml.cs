@@ -26,6 +26,7 @@ namespace XpertMobileApp.Views
     public partial class TierDetailPage : PopupPage
     {
         private bool isEnable = false;
+        private bool isOpen = false;
         public Command LoadFamilleCommand { get; set; }
         public Command LoadTypesCommand { get; set; }
         public Command LoadSecteursCommand { get; set; }
@@ -86,7 +87,7 @@ namespace XpertMobileApp.Views
                 AutomationId = "zxingBarcodeImageView"
             };
 
-            barcode.BarcodeFormat = ZXing. BarcodeFormat.QR_CODE;
+            barcode.BarcodeFormat = ZXing.BarcodeFormat.QR_CODE;
 
             barcode.BarcodeOptions.Width = 400;
 
@@ -95,13 +96,13 @@ namespace XpertMobileApp.Views
             barcode.BarcodeOptions.Margin = 10;
 
             barcode.BarcodeValue = Item.CODE_TIERS;
-            qrCodeViewer.Children.Insert(1, barcode);           
+            qrCodeViewer.Children.Insert(1, barcode);
             LocationSelector locationSelector = new LocationSelector(tiers);
 
-            Map.Content= locationSelector.Content;
+            Map.Content = locationSelector.Content;
 
 
-            
+
             BindingContext = this;
         }
 
@@ -395,6 +396,46 @@ namespace XpertMobileApp.Views
             try
             {
                 await PopupNavigation.Instance.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async void AddNewCommand(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewCommandePage(null, Item)));
+            await PopupNavigation.Instance.PopAsync();
+        }
+
+
+        private async void OpenCloseButtons(object sender, EventArgs e)
+        {
+            try
+            {
+                await ((Frame)sender).ScaleTo(0, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+                
+                if (isOpen)
+                {
+                    isOpen = !isOpen;
+                    FloatMenuItem1.IsVisible = false;
+                    await Task.Delay(100);
+                    FloatMenuItem2.IsVisible = false;
+                    await Task.Delay(100);
+                    FloatMenuItem3.IsVisible = false;
+
+                }
+                else
+                {
+                    isOpen = !isOpen;
+                    FloatMenuItem1.IsVisible = true;
+                    await Task.Delay(100);
+                    FloatMenuItem2.IsVisible = true;
+                    await Task.Delay(100);
+                    FloatMenuItem3.IsVisible = true;
+                }
             }
             catch (Exception ex)
             {
