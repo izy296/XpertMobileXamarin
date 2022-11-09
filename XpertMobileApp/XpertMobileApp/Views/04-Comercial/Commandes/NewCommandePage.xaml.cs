@@ -13,6 +13,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using ZXing.Net.Mobile.Forms;
 
@@ -31,12 +32,13 @@ namespace XpertMobileApp.Views
             set { item = value; }
         }
         public GoogleVisionBS gvsScannedBarcode;
-        public NewCommandePage(View_VTE_VENTE vente)
+        public NewCommandePage(View_VTE_VENTE vente, View_TRS_TIERS tiers)
         {
             InitializeComponent();
 
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector(CurrentStream);
+            CommandViewModel = new CommandesViewModel();
 
             this.Item = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null) // new item init object
@@ -45,8 +47,20 @@ namespace XpertMobileApp.Views
                 this.Item.DATE_VENTE = DateTime.Now;
                 this.Item.DATE_ECHEANCE = DateTime.Now;
             }
-
+            
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(this.Item, this.Item?.CODE_VENTE);
+
+            // Si le tiers n'est pa null.
+            // c'est à dire nous venons de la fiche tiers.
+            // on n'as pas besoin de selectionner un tiers.
+            // on affecte le tiers selectionner dans la fiche tiers.
+            // et on l'affecte a selectedtiers pour la creation d'une commande.
+            if (tiers != null)
+            {
+                tiersSelectorContainer.IsVisible = TiersSelectorLabel.IsVisible = false;
+                viewModel.SelectedTiers = tiers;
+                viewModel.Item.CODE_TIERS = tiers.CODE_TIERS;
+            }
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
@@ -226,31 +240,35 @@ namespace XpertMobileApp.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            /*
-            if (dp_EcheanceDate.Date < DateTime.Now)
-            {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_DateShouldBeGreaterThanToday, AppResources.alrt_msg_Ok);
-                return;
-            }
-            */
-            this.Item.Details = viewModel.ItemRows.ToList();
-
-            if (string.IsNullOrEmpty(Item.CODE_VENTE))
+            try
             {
 
-                CommandViewModel = new CommandesViewModel();
-                View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
-                obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(Item);
-                await CommandViewModel.ExecuteAddItemCommand(obj);
+                this.Item.Details = viewModel.ItemRows.ToList();
+                if (string.IsNullOrEmpty(Item.CODE_VENTE))
+                {
 
-                //MessagingCenter.Send(App.MsgCenter, MCDico.ADD_ITEM, Item);
+                    View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
+                    obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(Item);
+                    if (App.Online)
+                    {
+                        await CommandViewModel.ExecuteAddItemCommand(obj);
+                    }
+                    else
+                    {
+                        await SQLite_Manager.AjoutCommande(obj);
+                    }
+
+                }
+                else
+                {
+                    MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                }
+                await Navigation.PopModalAsync();
             }
-            else
+            catch (Exception ex)
             {
-                MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                throw ex;
             }
-
-            await Navigation.PopModalAsync();
         }
 
         async void Cancel_Clicked(object sender, EventArgs e)

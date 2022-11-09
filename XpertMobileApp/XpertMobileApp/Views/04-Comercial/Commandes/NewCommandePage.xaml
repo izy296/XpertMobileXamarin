@@ -89,14 +89,16 @@
                                     Date="{Binding Item.DATE_ECHEANCE, Mode=TwoWay}"
                                     Margin="5"/>
 
-                        <Label  Grid.Column="0" 
+                        <Label  x:Name="TiersSelectorLabel"
+                                Grid.Column="0" 
                                 Grid.Row="2" 
                                 Text="{i18n:Translate pn_Tiers}" 
                                 VerticalOptions="Center"
                                 FontSize="Medium" 
                                 Margin="5" />
 
-                        <StackLayout Grid.Column="1" 
+                        <StackLayout x:Name="tiersSelectorContainer"
+                                     Grid.Column="1" 
                                      Grid.Row="2" 
                                      Orientation="Horizontal"
                                      VerticalOptions="Center">
