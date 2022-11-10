@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.SfMaps.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -97,10 +98,26 @@ namespace XpertMobileApp.Views
 
             barcode.BarcodeValue = Item.CODE_TIERS;
             qrCodeViewer.Children.Insert(1, barcode);
-            LocationSelector locationSelector = new LocationSelector(tiers);
 
-            Map.Content = locationSelector.Content;
+            MyMap.Layers[0].MarkerSettings.LabelSize = 15;
+            MyMap.Layers[0].MarkerSettings.IconColor = Color.Red;
+            MyMap.Layers[0].MarkerSettings.IconSize = 15;
+            MyMap.Layers[0].MarkerSettings.MarkerIcon = MapMarkerIcon.Diamond;
+            MyMap.Layers[0].Markers.Clear();
 
+            if (tiers.GPS_LATITUDE != 0 && tiers.GPS_LONGITUDE != 0)
+            {
+                MapMarker pin = new MapMarker()
+                {
+                    Label = tiers.FULL_NOM_TIERS,
+                    Latitude = tiers.GPS_LATITUDE.ToString(),
+                    Longitude = tiers.GPS_LONGITUDE.ToString()
+                };
+
+                MyMap.Layers[0].Markers.Add(pin);
+                MyMap.ZoomLevel = 15;
+                ((ImageryLayer)MyMap.Layers[0]).GeoCoordinates = new Point(tiers.GPS_LATITUDE, tiers.GPS_LONGITUDE);
+            }
 
 
             BindingContext = this;
@@ -416,7 +433,7 @@ namespace XpertMobileApp.Views
             {
                 await ((Frame)sender).ScaleTo(0, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-                
+
                 if (isOpen)
                 {
                     isOpen = !isOpen;

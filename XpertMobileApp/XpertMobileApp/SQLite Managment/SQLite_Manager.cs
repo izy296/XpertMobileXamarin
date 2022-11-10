@@ -7,6 +7,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xpert.Common.WSClient.Helpers;
@@ -100,6 +101,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_VTE_COMMANDE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT>();
+                await GetInstance().CreateTableAsync<View_STK_TRANSFERT_DETAIL>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
 
             }
@@ -142,25 +144,28 @@ namespace XpertMobileApp.SQLite_Managment
                         "LEFT JOIN View_TRS_ENCAISS e ON e.CODE_TIERS = t.CODE_TIERS " +
                         "LEFT JOIN View_VTE_COMMANDE c ON c.CODE_TIERS = t.CODE_TIERS;";
 
-                string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY 
-                                AS SELECT * FROM (
+                string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY AS
+                                    SELECT * FROM (
                                     SELECT v.CODE_VENTE, 
                                     	   v.TOTAL_PAYE,
                                     	   v.TYPE_DOC,
-                                    	   v.CODE_TIERS
+                                    	   v.CODE_TIERS,
+                                    	   v.CREATED_ON
                                     	   FROM View_VTE_VENTE v
                                     	   WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR'
                                     UNION ALL
                                     SELECT c.CODE_VENTE, 
                                     	   c.TOTAL_PAYE,
                                     	   c.TYPE_DOC,
-                                    	   c.CODE_TIERS
+                                    	   c.CODE_TIERS,
+                                    	   c.CREATED_ON
                                     	   FROM View_VTE_COMMANDE c
                                     UNION ALL
                                     SELECT e.CODE_ENCAISS,
                                     		e.TOTAL_PAYE,
                                     		'ENC' TYPE_DOC,
-                                    		e.CODE_TIERS
+                                    		e.CODE_TIERS,
+                                    		e.CREATED_ON
                                     	   FROM View_TRS_ENCAISS e
                                     	   )T";
 
@@ -178,7 +183,7 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task<IEnumerable<View_TRS_TIERS_ACTIVITY>> get_TRS_TIERS_ACTIVITY_Async(string codeTiers)
         {
-            string Query = String.Format("SELECT * FROM View_TRS_TIERS_ACTIVITY WHERE CODE_TIERS = '{0}'",codeTiers);
+            string Query = String.Format("SELECT * FROM View_TRS_TIERS_ACTIVITY WHERE CODE_TIERS = '{0}'", codeTiers);
             var res = await GetInstance().QueryAsync<View_TRS_TIERS_ACTIVITY>(Query);
             if (res.Count != 0 && res != null)
             {
@@ -200,6 +205,7 @@ namespace XpertMobileApp.SQLite_Managment
                 countListe.Add(obj1.Count);
                 var obj2 = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
                 countListe.Add(obj2.Count);
+                Thread.Sleep(2000);
                 var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
                 countListe.Add(obj3.Count);
                 var obj4 = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
@@ -252,6 +258,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
+                throw ex;
                 Console.WriteLine(ex.Message);
                 return false;
             }
@@ -344,13 +351,15 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncConfigMachine(); //worked
                     //await SyncMagasin();                                                                                           //await SyncProduct();
                     await SyncTransfers();
+                    await SyncTransfersDetail();
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
                     await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     UserDialogs.Instance.HideLoading();
-                    var obj = await GetInstance().QueryAsync<View_TRS_TIERS_ACTIVITY>("SELECT * FROM View_TRS_TIERS_ACTIVITY");
+
+                    //var obj = await GetInstance().QueryAsync<View_LIV_TOURNEE_DETAIL>("SELECT * FROM View_LIV_TOURNEE_DETAIL");
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
@@ -365,6 +374,19 @@ namespace XpertMobileApp.SQLite_Managment
                 UserDialogs.Instance.HideLoading();
                 throw ex;
             }
+        }
+
+
+        public static async Task<List<View_TRS_TIERS>> GetClients(string codeTournee)
+        {
+            var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+            var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+
+            var tourneeCLients = from tc in listClients
+                                 where listeTourneeClents.Any(x => x.CODE_TIERS == tc.CODE_TIERS)
+                                 select tc;
+            return tourneeCLients as List<View_TRS_TIERS>;
+
         }
 
         /// <summary>
@@ -524,7 +546,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             if (App.User.UserName != null)
             {
-                codeVendeur = App.User.UserName;
+                string codeVendeur = App.User.UserName;
                 paramLivTournee = "CodeVendeur=" + codeVendeur;
                 TourneeMethodName = "GetTourneeParVendeur";
                 await SyncData<View_LIV_TOURNEE, LIV_TOURNEE>(false, paramLivTournee, TourneeMethodName);
@@ -544,14 +566,23 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task SyncLivTourneeDetail()
         {
             //View_LIV_TOURNEE obj = await GetInstance().Table<View_LIV_TOURNEE>().OrderByDescending(x=>x.DATE_TOURNEE == DateTime.Now).FirstOrDefaultAsync();
-            var obj = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-            if (obj != null && obj.Count > 0)
+            try
             {
-                CodeTournee = obj[0].CODE_TOURNEE;
-                paramLivTourneeDetail = "CodeTournee=" + CodeTournee;
-                TourneeDetailMethodName = "GetDetailTournee";
-                await SyncData<View_LIV_TOURNEE_DETAIL, LIV_TOURNEE_DETAIL>(false, paramLivTourneeDetail, TourneeDetailMethodName);
+                var obj = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                if (obj != null && obj.Count > 0)
+                {
+                    CodeTournee = obj[0].CODE_TOURNEE;
+                    paramLivTourneeDetail = "CodeTournee=" + CodeTournee;
+                    TourneeDetailMethodName = "GetDetailTournee";
+                    await SyncData<View_LIV_TOURNEE_DETAIL, LIV_TOURNEE_DETAIL>(false, paramLivTourneeDetail, TourneeDetailMethodName);
+                }
             }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
         #endregion
@@ -934,6 +965,46 @@ namespace XpertMobileApp.SQLite_Managment
             var paremetre = "codeMagasin=" + codeMagasin;
             var TransferMethodName = "GetInvaldiateTransfertByMagasin";
             await SyncData<View_STK_TRANSFERT, STK_TRANSFERT>(false, paremetre, TransferMethodName);
+        }
+
+        /// <summary>
+        /// Recuperer l'entete d'un transfert
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<View_STK_TRANSFERT> GetTransfertHeader(string codeTransfert)
+        {
+            var transferDetails = await GetInstance().Table<View_STK_TRANSFERT>().ToListAsync();
+
+            var transfer = from e in transferDetails
+                           where e.CODE_TRANSFERT == codeTransfert
+                           select e;
+            return transfer.First();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SyncTransfersDetail()
+        {
+            var codeMagasin = App.CODE_MAGASIN;
+            var paramTransferDetail = "codeMagasin=" + codeMagasin;
+            var transfertDetailMethodName = "GetDetailsTransferts";
+            await SyncData<View_STK_TRANSFERT_DETAIL, STK_TRANSFERT_DETAIL>(false, paramTransferDetail, transfertDetailMethodName);
+        }
+
+        /// <summary>
+        /// Recuperer la detail d'un transfert
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<View_STK_TRANSFERT_DETAIL>> GetTransfertDetail(string codeTransfert)
+        {
+            var transferDetails = await GetInstance().Table<View_STK_TRANSFERT_DETAIL>().ToListAsync();
+
+            var transfer = from e in transferDetails
+                           where e.CODE_TRANSFERT == codeTransfert
+                           select e;
+            return transfer.ToList();
         }
 
         public static async Task<SYS_MOBILE_PARAMETRE> getParams()

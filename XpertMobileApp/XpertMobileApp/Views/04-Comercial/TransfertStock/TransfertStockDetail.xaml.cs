@@ -11,6 +11,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -54,18 +55,31 @@ namespace XpertMobileApp.Views
             {
                 if (this.viewModel == null)
                 {
-                    var TransfertInfos = await WebServiceClient.GetTransfertDetail(this.Item.CODE_TRANSFERT);
-
-                    STK_TRANSFERT objTransfer=new STK_TRANSFERT();
-
-                    if (TransfertInfos != null && TransfertInfos.Count !=0)
+                    List<View_STK_TRANSFERT> TransfertInfos= new List<View_STK_TRANSFERT>();
+                    if (App.Online)
                     {
-                        objTransfer = TransfertInfos[0];
+                        TransfertInfos = await WebServiceClient.GetTransfertHeader(this.Item.CODE_TRANSFERT);
+
+                    }
+                    else
+                    {
+                        var obj = await SQLite_Manager.GetTransfertHeader(this.Item.CODE_TRANSFERT);
+                        TransfertInfos.Add(obj);
+
                     }
 
-                    BindingContext = this.viewModel = new ItemRowsDetailViewModel<STK_TRANSFERT, View_STK_TRANSFERT_DETAIL>(objTransfer, Item.CODE_TRANSFERT);
+                    STK_TRANSFERT objTransfer = new STK_TRANSFERT();
 
-                    this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+                        if (TransfertInfos != null && TransfertInfos.Count != 0)
+                        {
+                            objTransfer = TransfertInfos[0];
+                        }
+
+                        BindingContext = this.viewModel = new ItemRowsDetailViewModel<STK_TRANSFERT, View_STK_TRANSFERT_DETAIL>(objTransfer, Item.CODE_TRANSFERT);
+
+                        this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+
+
                 }
                 viewModel.LoadRowsCommand.Execute(null);
             }
@@ -90,16 +104,32 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetTransfertProduits(this.Item.CODE_TRANSFERT);
-
-                UpdateItemIndex(itemsC);
-
-                foreach (var itemC in itemsC)
+                if (App.Online)
                 {
-                    viewModel.ItemRows.Add(itemC);
+                    viewModel.ItemRows.Clear();
+                    var itemsC = await WebServiceClient.GetTransfertDetail(this.Item.CODE_TRANSFERT);
+
+                    UpdateItemIndex(itemsC);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        viewModel.ItemRows.Add(itemC);
+                    }
+                    UserDialogs.Instance.HideLoading();
                 }
-                UserDialogs.Instance.HideLoading();
+                else
+                {
+                    viewModel.ItemRows.Clear();
+                    var itemsC = await SQLite_Manager.GetTransfertDetail(this.Item.CODE_TRANSFERT);
+
+                    UpdateItemIndex(itemsC);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        viewModel.ItemRows.Add(itemC);
+                    }
+                    UserDialogs.Instance.HideLoading();
+                }
             }
             catch (Exception ex)
             {

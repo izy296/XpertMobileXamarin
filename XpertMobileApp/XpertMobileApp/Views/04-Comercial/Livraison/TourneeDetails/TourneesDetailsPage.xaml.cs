@@ -27,6 +27,8 @@ namespace XpertMobileApp.Views
     {
         TourneesDetailsViewModel viewModel;
         CancellationTokenSource cts;
+
+
         bool autoLodData = true;
         public TourneesDetailsPage(string codeTournee)
         {
@@ -70,20 +72,21 @@ namespace XpertMobileApp.Views
 
         public void RefreshMap(IEnumerable<View_LIV_TOURNEE_DETAIL> items)
         {
+            MyMap.Layers[0].MarkerSettings.LabelSize = 15;
             MyMap.Layers[0].MarkerSettings.IconColor = Color.Red;
-            MyMap.Layers[0].MarkerSettings.IconSize = 13;
+            MyMap.Layers[0].MarkerSettings.IconSize = 15;
             MyMap.Layers[0].MarkerSettings.MarkerIcon = MapMarkerIcon.Diamond;
             MyMap.Layers[0].Markers.Clear();
 
             foreach (var item in items)
             {
-                if (item.GPS_LATITUDE != 0 && item.GPS_LATITUDE != 0)
+                if (item.GPS_LATITUDE_CLIENT != 0 && item.GPS_LONGITUDE_CLIENT != 0)
                 {
                     MapMarker pin = new MapMarker()
                     {
                         Label = item.FULL_NOM_TIERS,
-                        Latitude = item.GPS_LATITUDE.ToString(),
-                        Longitude = item.GPS_LONGITUDE.ToString()
+                        Latitude = item.GPS_LATITUDE_CLIENT.ToString(),
+                        Longitude = item.GPS_LONGITUDE_CLIENT.ToString()
                     };
 
                     MyMap.Layers[0].Markers.Add(pin);

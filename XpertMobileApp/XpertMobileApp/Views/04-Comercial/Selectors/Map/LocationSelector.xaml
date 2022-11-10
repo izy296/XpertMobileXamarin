@@ -5,7 +5,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.LocationSelector"
              xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
-                 xmlns:cmp="clr-namespace:XpertMobileApp.Components" >
+                 xmlns:cmp="clr-namespace:XpertMobileApp.Components" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
 
     <pages:PopupPage.Content>
         <AbsoluteLayout
@@ -23,19 +23,44 @@
                 <StackLayout                        
                         VerticalOptions="FillAndExpand"
                         HorizontalOptions="FillAndExpand">
+                    <StackLayout Background="{DynamicResource Primary}">
+                        <FlexLayout JustifyContent="SpaceBetween"
+                                        Padding="20,15,20,0">
+                            <Image Source="arrow.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ClosePopup"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </FlexLayout>
 
-                    <maps:SfMaps 
+                        <Label Text="Location" 
+                               TextColor="#fff"
+                               HorizontalOptions="Center"
+                               FontSize="24"
+                               Margin="0,10,0,20"/>
+                        <yummy:PancakeView 
+                            x:Name="Map"
+                            CornerRadius="25,25,0,0"
+                                            Margin="0" 
+                                            BackgroundColor="#fff"
+                                            IsClippedToBounds="true"
+                                            BorderColor="#fff"
+                                            HasShadow="False"
+                                            VerticalOptions="FillAndExpand">
+                            <maps:SfMaps 
                             Tapped="OnMapClicked"
                             x:Name="MyMap"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand"
                             ZoomLevel="10">
 
-                        <maps:SfMaps.Layers >
-                            <maps:ImageryLayer GeoCoordinates="36.91821907661564, 7.743091659017494" CanCacheTiles="True"/>
-                        </maps:SfMaps.Layers>
+                                <maps:SfMaps.Layers >
+                                    <maps:ImageryLayer GeoCoordinates="36.91821907661564, 7.743091659017494" CanCacheTiles="True"/>
+                                </maps:SfMaps.Layers>
 
-                    </maps:SfMaps>
+                            </maps:SfMaps>
+                        </yummy:PancakeView>
+                    </StackLayout>
 
                 </StackLayout>
             </StackLayout>

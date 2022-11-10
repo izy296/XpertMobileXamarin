@@ -187,7 +187,9 @@ namespace XpertMobileApp.Api.ViewModels
                         {
                             IsBusy = true;
 
+
                             var items = await SelectByPageFromSqlLite(GetFilterParams());//server.getselectedpqs
+                            elementsCount = items.Count;
                             //Summaries.Clear();
                             //if (LoadSummaries && elementsCount > 0)
                             //{
@@ -235,9 +237,21 @@ namespace XpertMobileApp.Api.ViewModels
             //    return await asyncTableQuery.ToListAsync();
             //}
             //else
+            try
             {
-                var tt = await SQLite_Manager.GetInstance().Table<TView>().ToListAsync();
-                return tt;
+                var res = SQLite_Manager.GetInstance().Table<TView>().ToListAsync().Exception;
+                if (res == null)
+                {
+                    return await SQLite_Manager.GetInstance().Table<TView>().ToListAsync();
+                }
+                else
+                {
+                    throw res;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             //await UpdateDatabase.initialisationDbLocal();
 

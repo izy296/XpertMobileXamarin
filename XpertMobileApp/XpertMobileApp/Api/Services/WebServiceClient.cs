@@ -109,7 +109,12 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
         }
 
-
+        internal static async Task<List<View_TRS_TIERS>> GetClients(string codeTournee)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TIERS_GET_LIST_URL);
+            url += "?codeTournee=" + codeTournee;
+            return await RetrievAauthorizedData<View_TRS_TIERS>(url);
+        }
 
         #endregion
 
@@ -610,16 +615,16 @@ namespace XpertMobileApp.Services
         }
 
 
-        internal static async Task<List<View_STK_TRANSFERT>> GetTransfertDetail(string codeTransfer)
+        internal static async Task<List<View_STK_TRANSFERT>> GetTransfertHeader(string codeTransfer)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TRANSFERT_STOCK_URL, ServiceUrlDico.TRANSFERT_STOCK_SELECT_TRANSFERT);
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT>(url);
         }
 
-        internal static async Task<List<View_STK_TRANSFERT_DETAIL>> GetTransfertProduits(string codeTransfer)
+        internal static async Task<List<View_STK_TRANSFERT_DETAIL>> GetTransfertDetail(string codeTransfer)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TRANSFERT_STOCK_URL, ServiceUrlDico.TRANSFERT_STOCK_TRANSFERT_DETAILS);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TRANSFERT_STOCK_DETAIL_URL, ServiceUrlDico.TRANSFERT_STOCK_GET_DETAIL);
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT_DETAIL>(url);
         }

@@ -839,22 +839,33 @@ namespace XpertMobileApp.DAL
         public string MODIFIED_BY { get; set; }
         public double GPS_LATITUDE { get; set; }
         public double GPS_LONGITUDE { get; set; }
+        public DateTime? HEURE_DEPART_VISITE { get; set; } 
+        public DateTime? HEURE_RETOUR_VISITE { get; set; }
 
+        public string MOTIF_NON_LIVRAISON { get; set; }
+        public string PROOF_NON_LIVRAISON { get; set; }
+
+        public string VISITE_CATEGORIE { get; set; }
+        public string CODE_ETAT_VISITE { get; set; }
     }
     public static class TourneeStatus
     {
         public static string Planifier { get { return "15"; } }
-        public static string EnRoute { get { return "16"; } }
-        public static string Visited { get { return "17"; } }
-        public static string Delivered { get { return "18"; } }
-        public static string Canceled { get { return "19"; } }
-        public static string VisitedNotDelivered { get { return "20"; } }
-        public static string NotVisited { get { return "21"; } }
+        public static string Visited { get { return "16"; } }
+        public static string Delivered { get { return "17"; } }
+        public static string Canceled { get { return "18"; } }
+        public static string VisitedNotDelivered { get { return "19"; } }
+        public static string NotVisited { get { return "20"; } }
+        public static string EnRoute { get { return "21"; } }
     }
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
         public string FULL_NOM_TIERS { get; set; }
         public decimal SOLDE_TIERS { get; set; }
+        public double GPS_LATITUDE_CLIENT { get; set; }
+        public double GPS_LONGITUDE_CLIENT { get; set; }
+        public decimal MT_VERSEMENT { get; set; }
+        public decimal TOTAL_TTC { get; set; }
         public string DESIGNATION_ETAT
         {
             get
@@ -899,7 +910,6 @@ namespace XpertMobileApp.DAL
             }
 
         }
-
 
         public string ETAT_COLOR
         {

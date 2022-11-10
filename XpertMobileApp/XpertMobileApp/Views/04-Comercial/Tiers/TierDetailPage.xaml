@@ -426,7 +426,17 @@
                                             BorderColor="#fff"
                                             HasShadow="False"
                                             VerticalOptions="FillAndExpand">
+                            <maps:SfMaps 
+                            x:Name="MyMap"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand"
+                            ZoomLevel="15">
 
+                                <maps:SfMaps.Layers >
+                                    <maps:ImageryLayer GeoCoordinates="36.91821907661564, 7.743091659017494" CanCacheTiles="True"/>
+                                </maps:SfMaps.Layers>
+
+                            </maps:SfMaps>
                         </yummy:PancakeView>
                     </StackLayout>
                 </tabView:SfTabItem.Content>

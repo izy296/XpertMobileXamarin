@@ -62,11 +62,13 @@ namespace XpertMobileApp.Views.Templates
                 {
                     if (popup.Result != null)
                     {
-                        var postition = MyMap.Layers[0].GetLatLonFromPoint(popup.Result);
+                        UserDialogs.Instance.ShowLoading();
+                        var postition = popup.Result;
                         tr.GPS_LATITUDE = postition.Y;
                         tr.GPS_LONGITUDE = postition.X;
                         await CrudManager.TiersManager.UpdateItemAsync(tr);
                         await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.HideLoading();
                     }
                 }
 

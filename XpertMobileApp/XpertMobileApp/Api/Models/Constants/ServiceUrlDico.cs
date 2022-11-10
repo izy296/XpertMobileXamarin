@@ -34,12 +34,14 @@ namespace XpertMobileApp.Helpers
 
         public static string MODE_REG_URL = "GetModeReg";
 
-
+        //Tiers
         public static string TIERS_URL = "TRS_TIERS";
 
         public static string TIERS_FAMILLES_URL = "GetTiersFamilles";
 
         public static string TIERS_TYPES_URL = "GetTiersTypes";
+
+        public static string TIERS_GET_LIST_URL = "GetTiers";
 
         public static string STATISTIC_URL = "statistic";
 
@@ -199,6 +201,7 @@ namespace XpertMobileApp.Helpers
         public static string ECHANGE_GET_TIERS = "GetListTiers";
         public static string ECHANGE_GET_DETAIL = "GetEchangeDetail";
         public static string ECHANGE_GET_MAGASIN = "GetMagasin";
+
         //RotationDesProduits
         public static string ROTATION_URL = "RotationDesProduits";
         public static string ROTATION_SELECT_PRODUCT = "SelectProduct";
@@ -206,7 +209,9 @@ namespace XpertMobileApp.Helpers
         //TransfertStock
         public static string TRANSFERT_STOCK_URL = "STK_TRANSFERT";
         public static string TRANSFERT_STOCK_SELECT_TRANSFERT = "SelectTransfer";
-        public static string TRANSFERT_STOCK_TRANSFERT_DETAILS = "GetTransferProducts";
+
+        public static string TRANSFERT_STOCK_DETAIL_URL = "STK_TRANSFERT_DETAIL";
+        public static string TRANSFERT_STOCK_GET_DETAIL= "GetTransferProducts";
 
 
     }

@@ -76,12 +76,20 @@
                             Orientation="Horizontal"
                             HorizontalOptions="CenterAndExpand">
                                 <Button
-                                Text="Information"
+                                Text="Location"
                                 Clicked="Location"
                                 CornerRadius="10"
                                 TextColor="White"
-                                Padding="3"
+                                Padding="8"
                                 BackgroundColor="OrangeRed"
+                            />
+                                <Button
+                                Text="Route"
+                                Clicked="RouteClicked"
+                                CornerRadius="10"
+                                TextColor="White"
+                                Padding="8"
+                                BackgroundColor="{StaticResource Primary}"
                             />
                             </StackLayout>
                             <CollectionView
@@ -94,41 +102,53 @@
                             >
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
-                                        <Frame 
+                                        <StackLayout
+                                            Padding="5">
+                                            <Frame 
                                         CornerRadius="10" 
                                         Padding="5" 
                                         BackgroundColor="White" 
                                         HasShadow="True"  
                                         OutlineColor="white"
                                         VerticalOptions="CenterAndExpand">
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition/>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="Auto"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <Image 
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition/>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Image 
                                                 WidthRequest="40"
                                                 Grid.Column="0" Source="{Binding TYPE_DOC,StringFormat='TVisit_{0}.png'}"/>
-                                                <StackLayout
-                                            VerticalOptions="FillAndExpand"
-                                            HorizontalOptions="FillAndExpand"
-                                            Orientation="Vertical"
-                                            Grid.Column="1">
-                                                    <Label
-                                                    Text="{Binding TYPE_DOC,Converter={StaticResource TypeDocConverter}}"
-                                                    TextColor="Black">
-                                                    </Label>
-                                                    <Label
-                                                    Text="{Binding TOTAL_PAYE,StringFormat='{0:N2} DA'}"
-                                                    TextColor="{StaticResource Primary}">
-                                                    </Label>
-                                                </StackLayout>
-                                            </Grid>
+                                                    <StackLayout
+                                                    VerticalOptions="FillAndExpand"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    Orientation="Vertical"
+                                                    Grid.Column="1">
+                                                        <Label
+                                                        Text="{Binding TYPE_DOC,Converter={StaticResource TypeDocConverter}}"
+                                                        TextColor="Black">
+                                                        </Label>
+                                                        <Grid>
+                                                            <Label
+                                                            Grid.Column="0"
+                                                            Text="{Binding TOTAL_PAYE,StringFormat='{0:N2} DA'}"
+                                                            TextColor="{StaticResource Primary}">
+                                                            </Label>
+                                                            <Label
+                                                            Grid.Column="1"
+                                                            Text="{Binding CREATED_ON}"
+                                                            TextColor="Black">
+                                                            </Label>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Grid>
 
-                                        </Frame>
+                                            </Frame>
+
+                                        </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
 
@@ -164,7 +184,7 @@
                         <yummy:GradientStop Color="{StaticResource Primary}" Offset="1"/>
                     </yummy:GradientStopCollection>
                 </yummy:PancakeView.BackgroundGradientStops>
-                
+
                 <extensions:Expander 
                     HorizontalOptions="Start" 
                     Rotation="180"
@@ -183,7 +203,7 @@
                         </Image>
                     </extensions:Expander.Header>
                     <StackLayout Spacing="30" Margin="0,20">
-                        
+
                         <ImageButton 
                             Source="product_return.png"
                             Rotation="180"
@@ -211,7 +231,7 @@
                             WidthRequest="30"
                             HeightRequest="30"
                             BackgroundColor="Transparent"/>
-                        
+
                     </StackLayout>
                 </extensions:Expander>
             </yummy:PancakeView>

@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new TiersViewModel();
         }
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();

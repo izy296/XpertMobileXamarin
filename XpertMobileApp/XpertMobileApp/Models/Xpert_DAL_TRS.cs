@@ -415,6 +415,7 @@ namespace XpertMobileApp.DAL
         public string TYPE_DOC { get; set; } // varchar(20)
         public decimal TOTAL_PAYE { get; set; } // varchar(20)
         public string CODE_VENTE { get; set; } // varchar(20)
+        public DateTime? CREATED_ON { get; set; }
     }
 
     public partial class BSE_ENCAISS_MOTIFS

@@ -6,7 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Web;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Managers;
@@ -16,57 +17,173 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class TourneeVisitPage : ContentPage
-	{
-		TourneeVisitViewModel viewModel;
-		View_TRS_TIERS tier;
-		public TourneeVisitPage ()
-		{
-			InitializeComponent ();
-			BindingContext = viewModel = new TourneeVisitViewModel();
-		}
-
-		public TourneeVisitPage(View_LIV_TOURNEE_DETAIL item)
-		{
-			InitializeComponent();
-			BindingContext = viewModel = new TourneeVisitViewModel(item);
-			new Command(async () =>
-			{
-				var result = await WebServiceClient.GetTier(item.CODE_TIERS);
-				tier = result.First();
-			});
-			
-		}
-
-		protected override void OnAppearing()
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class TourneeVisitPage : ContentPage
+    {
+        TourneeVisitViewModel viewModel;
+        View_TRS_TIERS tier;
+        public TourneeVisitPage()
         {
-			base.OnAppearing();
-			new Command(async () =>
-			{
-				await viewModel.ExecuteLoadActiviteCommand();
-			}).Execute(null);
+            InitializeComponent();
+            BindingContext = viewModel = new TourneeVisitViewModel();
+        }
+
+        public TourneeVisitPage(View_LIV_TOURNEE_DETAIL item)
+        {
+            InitializeComponent();
+            BindingContext = viewModel = new TourneeVisitViewModel(item);
+            new Command(async () =>
+            {
+                var result = await WebServiceClient.GetTier(item.CODE_TIERS);
+                tier = result.First();
+            }).Execute(null);
+
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            new Command(async () =>
+            {
+                await viewModel.ExecuteLoadActiviteCommand();
+            }).Execute(null);
         }
 
         private async void Location(object sender, EventArgs e)
         {
-			LocationSelector locationSelector = new LocationSelector(tier);
-			await PopupNavigation.Instance.PushAsync(locationSelector);
-			if (await locationSelector.PopupClosedTask)
+
+            if (tier.GPS_LATITUDE == 0 && tier.GPS_LONGITUDE == 0)
             {
-				if (locationSelector.Result != null)
-				{
-					var postition = ((SfMaps) locationSelector.Content.FindByName("MyMap")).Layers[0].GetLatLonFromPoint(locationSelector.Result);
-					tier.GPS_LATITUDE = postition.Y;
-					tier.GPS_LONGITUDE = postition.X;
-					await CrudManager.TiersManager.UpdateItemAsync(tier);
-					await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-				}
-			}
+                var result = await UserDialogs.Instance.ConfirmAsync("Location est Vide, Voulez vous la mise a jour avec votre position", "Confirm Selection", "Oui", "Non");
+                if (!result)
+                {
+                    LocationSelector locationSelector = new LocationSelector(tier);
+                    await PopupNavigation.Instance.PushAsync(locationSelector);
+                    if (await locationSelector.PopupClosedTask)
+                    {
+                        if (locationSelector.Result != null)
+                        {
+                            try
+                            {
+                                UserDialogs.Instance.ShowLoading();
+                                var postition = locationSelector.Result;
+                                tier.GPS_LATITUDE = postition.Y;
+                                tier.GPS_LONGITUDE = postition.X;
+                                await CrudManager.TiersManager.UpdateItemAsync(tier);
+                                await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                UserDialogs.Instance.HideLoading();
+                            }
+                            catch (Exception)
+                            {
+                                throw;
+                            }
+                            finally
+                            {
+                                UserDialogs.Instance.HideLoading();
+                            }
 
-		}
+                        }
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        UserDialogs.Instance.ShowLoading();
+                        var location = await Geolocation.GetLocationAsync();
+                        tier.GPS_LATITUDE = location.Latitude;
+                        tier.GPS_LONGITUDE = location.Longitude;
+                        await CrudManager.TiersManager.UpdateItemAsync(tier);
+                        await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.ShowLoading();
 
-		private void Appele(object sender, EventArgs e)
+                    }
+                    catch (Exception ex) 
+                    {
+                        throw ex;
+                    }
+                    finally
+                    {
+                        UserDialogs.Instance.HideLoading();
+                    }
+
+                }
+            }
+            else
+            {
+                LocationSelector locationSelector = new LocationSelector(tier);
+                await PopupNavigation.Instance.PushAsync(locationSelector);
+                if (await locationSelector.PopupClosedTask)
+                {
+                    if (locationSelector.Result != null)
+                    {
+                        try
+                        {
+                            UserDialogs.Instance.ShowLoading();
+                            var postition = locationSelector.Result;
+                            tier.GPS_LATITUDE = postition.Y;
+                            tier.GPS_LONGITUDE = postition.X;
+                            await CrudManager.TiersManager.UpdateItemAsync(tier);
+                            await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            UserDialogs.Instance.HideLoading();
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                        finally
+                        {
+                            UserDialogs.Instance.HideLoading();
+                        }
+
+                    }
+                }
+            }
+
+        }
+
+        private async void RouteClicked(object sender, EventArgs e)
+        {
+            string destinationCordinates = HttpUtility.UrlEncode(tier.GPS_LATITUDE.ToString().Replace(",",".") + 
+                                                           "," + tier.GPS_LONGITUDE.ToString().Replace(",", "."), Encoding.UTF8);
+            Location location =null;
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                location = await Geolocation.GetLocationAsync();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
+
+            if (location != null)
+            {
+                string startCordinates = HttpUtility.UrlEncode(location.Latitude.ToString().Replace(",", ".") +
+                                         "," + location.Longitude.ToString().Replace(",", "."), Encoding.UTF8);
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    // https://developer.apple.com/library/ios/featuredarticles/iPhoneURLScheme_Reference/MapLinks/MapLinks.html
+                    await Launcher.OpenAsync("http://maps.apple.com/?daddr=San+Francisco,+CA&saddr=cupertino");
+                }
+                else if (Device.RuntimePlatform == Device.Android)
+                {
+                    // opens the 'task chooser' so the user can pick Maps, Chrome or other mapping app
+                    await Launcher.OpenAsync("http://maps.google.com/?saddr=" + startCordinates + "&daddr=" + destinationCordinates);
+                }
+            }
+            else
+            {
+                await UserDialogs.Instance.AlertAsync("Activer la location et ressayer", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+        }
+
+        private void Appele(object sender, EventArgs e)
         {
 
         }
@@ -79,8 +196,13 @@ namespace XpertMobileApp.Views
         private async void VisitDemarer(object sender, EventArgs e)
         {
 
-				viewModel.Item.CODE_ETAT = TourneeStatus.EnRoute;
-				await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
+            viewModel.Item.CODE_ETAT = TourneeStatus.EnRoute;
+            await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
+        }
+
+        private void RouteClicked()
+        {
+
         }
     }
 }

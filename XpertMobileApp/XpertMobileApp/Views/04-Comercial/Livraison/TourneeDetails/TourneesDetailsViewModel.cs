@@ -4,6 +4,7 @@ using Syncfusion.SfMaps.XForms;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
@@ -12,6 +13,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
@@ -28,7 +30,6 @@ namespace XpertMobileApp.ViewModels
         }
 
         string _CodeTournee;
-        List<VisitPin> Clients;
 
         private TourneesDetailsPage myMapPage;
         public TourneesDetailsPage MyMapPage
@@ -43,7 +44,7 @@ namespace XpertMobileApp.ViewModels
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Familles = new ObservableCollection<BSE_TABLE>();
 
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            //LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
         protected override QueryInfos GetFilterParams()
@@ -54,7 +55,7 @@ namespace XpertMobileApp.ViewModels
             return qb.QueryInfos;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_LIV_TOURNEE_DETAIL> list)
+        protected override async void OnAfterLoadItems(IEnumerable<View_LIV_TOURNEE_DETAIL> list)
         {
             base.OnAfterLoadItems(list);
 
@@ -63,6 +64,30 @@ namespace XpertMobileApp.ViewModels
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
+            }
+
+            List<View_TRS_TIERS> clientsInfo = new List<View_TRS_TIERS>();
+
+            if (App.Online)
+            {
+                clientsInfo = await WebServiceClient.GetClients(_CodeTournee);
+
+            }
+            else
+            {
+                clientsInfo = await SQLite_Manager.GetClients(_CodeTournee);
+            }
+
+            foreach (var info in clientsInfo)
+            {
+                foreach (var item in list)
+                {
+                    if (info.CODE_TIERS == item.CODE_TIERS)
+                    {
+                        item.GPS_LATITUDE_CLIENT = info.GPS_LATITUDE;
+                        item.GPS_LONGITUDE_CLIENT = info.GPS_LONGITUDE;
+                    }
+                }
             }
             MyMapPage.RefreshMap(list);
 

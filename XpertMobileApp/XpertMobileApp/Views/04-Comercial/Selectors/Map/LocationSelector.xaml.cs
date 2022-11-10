@@ -181,5 +181,10 @@ namespace XpertMobileApp.Views
         {
 
         }
+
+        private async void ClosePopup(object sender, EventArgs e)
+        {
+            await PopupNavigation.Instance.PopAsync();
+        }
     }
 }
