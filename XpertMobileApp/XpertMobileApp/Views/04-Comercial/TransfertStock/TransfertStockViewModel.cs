@@ -36,7 +36,7 @@ namespace XpertMobileApp.ViewModels
             
             this.AddCondition<View_STK_TRANSFERT, DateTime?>(e => e.DATE_TRANSEFRT, Operator.BETWEEN_DATE, StartDate, EndDate);
             this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_DESTINATION, App.CODE_MAGASIN);
-            this.AddCondition<View_STK_TRANSFERT, bool?>(e => e.IS_VALIDATE, false);
+            this.AddCondition<View_STK_TRANSFERT, bool>(e => e.IS_VALIDATE, false);
 
 
             this.AddOrderBy<View_STK_TRANSFERT, DateTime?>(e => e.CREATED_ON);
