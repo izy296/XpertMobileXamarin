@@ -156,9 +156,9 @@
                             <Button
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="FillAndExpand"
-                        BackgroundColor="{Binding Item.ETAT_COLOR}"
+                        BackgroundColor="{Binding Item.ETAT_COLOR_M}"
                         TextColor="White"
-                        Text="{Binding Item.DESIGNATION_ETAT}"
+                        Text="{Binding Item.DESIGNATION_ETAT_M}"
                         HeightRequest="50"
                         CornerRadius="15"
                         Clicked="VisitDemarer"

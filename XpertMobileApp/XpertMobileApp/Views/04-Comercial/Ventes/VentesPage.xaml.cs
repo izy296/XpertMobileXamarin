@@ -79,6 +79,11 @@ namespace XpertMobileApp.Views
                 var session = await CrudManager.Sessions.GetCurrentSession();
                 if (session == null)
                 {
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    {
+                        await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+                        return;
+                    }
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
                     if (res)
                     {

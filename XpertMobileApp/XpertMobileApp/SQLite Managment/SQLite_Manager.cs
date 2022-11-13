@@ -102,6 +102,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT>();
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT_DETAIL>();
+                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_AUTRE_UNITE>();
+                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
 
             }
@@ -205,9 +207,8 @@ namespace XpertMobileApp.SQLite_Managment
                 countListe.Add(obj1.Count);
                 var obj2 = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
                 countListe.Add(obj2.Count);
-                Thread.Sleep(2000);
-                var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-                countListe.Add(obj3.Count);
+                //var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+                //countListe.Add(obj3.Count);
                 var obj4 = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
                 countListe.Add(obj4.Count);
                 var obj5 = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
@@ -354,12 +355,14 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncTransfersDetail();
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
                     await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                    await SyncProduiteUnite();
+                    await SyncProduiteUniteAutre();
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     UserDialogs.Instance.HideLoading();
 
-                    //var obj = await GetInstance().QueryAsync<View_LIV_TOURNEE_DETAIL>("SELECT * FROM View_LIV_TOURNEE_DETAIL");
+                    //var obj = await GetInstance().QueryAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>("SELECT * FROM View_BSE_PRODUIT_UNITE_COEFFICIENT");
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
@@ -382,11 +385,54 @@ namespace XpertMobileApp.SQLite_Managment
             var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
             var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
 
-            var tourneeCLients = from tc in listClients
-                                 where listeTourneeClents.Any(x => x.CODE_TIERS == tc.CODE_TIERS)
-                                 select tc;
+            var tourneeCLients = listClients.Where(p => listeTourneeClents.Any(p2 => p2.CODE_TIERS == p.CODE_TIERS)).ToList();
             return tourneeCLients as List<View_TRS_TIERS>;
 
+        }
+
+        public static async Task<View_TRS_TIERS> GetClient(string codeTier)
+        {
+            var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+
+            var tourneeCLients = listClients.Where(p => p.CODE_TIERS == codeTier).First();
+            return tourneeCLients;
+
+        }
+
+        /// <summary>
+        /// Synchronisation de vue View_BSE_PRODUIT_UNITE_COEFFICIENT
+        /// </summary>
+        /// <returns></returns>
+
+        public static async Task SyncProduiteUnite()
+        {
+            try
+            {
+                var MethodName = "GetAllProduiteUniteCoeficient";
+                await SyncData<View_BSE_PRODUIT_UNITE_COEFFICIENT, BSE_PRODUIT_AUTRE_UNITE_XCOM>(false, "", MethodName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Synchronisation de vue View_BSE_PRODUIT_AUTRE_UNITE
+        /// </summary>
+        /// <returns></returns>
+
+        public static async Task SyncProduiteUniteAutre()
+        {
+            try
+            {
+                var MethodName = "GetAllProduiteAutreUnite";
+                await SyncData<View_BSE_PRODUIT_AUTRE_UNITE, BSE_PRODUIT_AUTRE_UNITE_XCOM>(false, "", MethodName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>

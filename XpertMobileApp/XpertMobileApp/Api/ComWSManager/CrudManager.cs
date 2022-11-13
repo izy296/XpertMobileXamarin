@@ -97,7 +97,7 @@ namespace XpertMobileApp.Api.Managers
             {
                 controlerName = "VTE_LIVRAISON";
             }
-            else if (typeVte == VentesTypes.Livraison && Constants.AppName == Apps.XCOM_Mob)
+            else if (typeVte == VentesTypes.Livraison && (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION))
             {
                 controlerName = "VTE_LIVRAISON_XCOM";
             }
@@ -105,7 +105,6 @@ namespace XpertMobileApp.Api.Managers
             {
                 controlerName = "VTE_COMPTOIR";
             }
-
             else if (typeVte == VentesTypes.VenteComptoir && Constants.AppName == Apps.XCOM_Mob)
             {
                 controlerName = "VTE_COMPTOIR_XCOM";

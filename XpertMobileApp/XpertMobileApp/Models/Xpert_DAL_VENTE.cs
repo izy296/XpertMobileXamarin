@@ -211,6 +211,8 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("POINTS_CONSUMED");
             }
         }
+        
+        public string CODE_TOURNEE { get; set; }
 
         #region Validation vente
         [Ignore]
@@ -842,11 +844,11 @@ namespace XpertMobileApp.DAL
         public DateTime? HEURE_DEPART_VISITE { get; set; } 
         public DateTime? HEURE_RETOUR_VISITE { get; set; }
 
-        public string MOTIF_NON_LIVRAISON { get; set; }
+        public int MOTIF_NON_LIVRAISON { get; set; }
         public string PROOF_NON_LIVRAISON { get; set; }
 
-        public string VISITE_CATEGORIE { get; set; }
-        public string CODE_ETAT_VISITE { get; set; }
+        public int VISITE_CATEGORIE { get; set; }
+        public int CODE_ETAT_VISITE { get; set; }
     }
     public static class TourneeStatus
     {
@@ -862,10 +864,13 @@ namespace XpertMobileApp.DAL
     {
         public string FULL_NOM_TIERS { get; set; }
         public decimal SOLDE_TIERS { get; set; }
-        public double GPS_LATITUDE_CLIENT { get; set; }
-        public double GPS_LONGITUDE_CLIENT { get; set; }
         public decimal MT_VERSEMENT { get; set; }
         public decimal TOTAL_TTC { get; set; }
+        [Ignore]
+        public double GPS_LATITUDE_CLIENT { get; set; }
+        [Ignore]
+        public double GPS_LONGITUDE_CLIENT { get; set; }
+        [Ignore]
         public string DESIGNATION_ETAT
         {
             get
@@ -910,7 +915,7 @@ namespace XpertMobileApp.DAL
             }
 
         }
-
+        [Ignore]
         public string ETAT_COLOR
         {
             get

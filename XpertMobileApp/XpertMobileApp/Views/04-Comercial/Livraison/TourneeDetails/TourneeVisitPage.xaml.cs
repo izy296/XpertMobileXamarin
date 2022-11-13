@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -34,8 +35,20 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new TourneeVisitViewModel(item);
             new Command(async () =>
             {
-                var result = await WebServiceClient.GetTier(item.CODE_TIERS);
-                tier = result.First();
+                if (App.Online)
+                {
+                    var result = await WebServiceClient.GetTier(item.CODE_TIERS);
+                    if (result.Count != 0)
+                        tier = result.First();
+                }
+                else
+                {
+                    var result = await SQLite_Manager.GetClient(item.CODE_TIERS);
+                    if (result != null)
+                        tier = result;
+
+                }
+
             }).Execute(null);
 
         }
@@ -51,11 +64,66 @@ namespace XpertMobileApp.Views
 
         private async void Location(object sender, EventArgs e)
         {
-
-            if (tier.GPS_LATITUDE == 0 && tier.GPS_LONGITUDE == 0)
+            if (tier != null)
             {
-                var result = await UserDialogs.Instance.ConfirmAsync("Location est Vide, Voulez vous la mise a jour avec votre position", "Confirm Selection", "Oui", "Non");
-                if (!result)
+                if (tier.GPS_LATITUDE == 0 && tier.GPS_LONGITUDE == 0)
+                {
+                    var result = await UserDialogs.Instance.ConfirmAsync("Location est Vide, Voulez vous la mise a jour avec votre position", "Confirm Selection", "Oui", "Non");
+                    if (!result)
+                    {
+                        LocationSelector locationSelector = new LocationSelector(tier);
+                        await PopupNavigation.Instance.PushAsync(locationSelector);
+                        if (await locationSelector.PopupClosedTask)
+                        {
+                            if (locationSelector.Result != null)
+                            {
+                                try
+                                {
+                                    UserDialogs.Instance.ShowLoading();
+                                    var postition = locationSelector.Result;
+                                    tier.GPS_LATITUDE = postition.Y;
+                                    tier.GPS_LONGITUDE = postition.X;
+                                    await CrudManager.TiersManager.UpdateItemAsync(tier);
+                                    await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                    UserDialogs.Instance.HideLoading();
+                                }
+                                catch (Exception)
+                                {
+                                    throw;
+                                }
+                                finally
+                                {
+                                    UserDialogs.Instance.HideLoading();
+                                }
+
+                            }
+                        }
+                    }
+                    else
+                    {
+                        try
+                        {
+                            UserDialogs.Instance.ShowLoading();
+                            var location = await Geolocation.GetLocationAsync();
+                            tier.GPS_LATITUDE = location.Latitude;
+                            tier.GPS_LONGITUDE = location.Longitude;
+                            await CrudManager.TiersManager.UpdateItemAsync(tier);
+                            await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            UserDialogs.Instance.ShowLoading();
+
+                        }
+                        catch (Exception ex)
+                        {
+                            throw ex;
+                        }
+                        finally
+                        {
+                            UserDialogs.Instance.HideLoading();
+                        }
+
+                    }
+                }
+                else
                 {
                     LocationSelector locationSelector = new LocationSelector(tier);
                     await PopupNavigation.Instance.PushAsync(locationSelector);
@@ -85,61 +153,7 @@ namespace XpertMobileApp.Views
                         }
                     }
                 }
-                else
-                {
-                    try
-                    {
-                        UserDialogs.Instance.ShowLoading();
-                        var location = await Geolocation.GetLocationAsync();
-                        tier.GPS_LATITUDE = location.Latitude;
-                        tier.GPS_LONGITUDE = location.Longitude;
-                        await CrudManager.TiersManager.UpdateItemAsync(tier);
-                        await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                        UserDialogs.Instance.ShowLoading();
-
-                    }
-                    catch (Exception ex) 
-                    {
-                        throw ex;
-                    }
-                    finally
-                    {
-                        UserDialogs.Instance.HideLoading();
-                    }
-
-                }
             }
-            else
-            {
-                LocationSelector locationSelector = new LocationSelector(tier);
-                await PopupNavigation.Instance.PushAsync(locationSelector);
-                if (await locationSelector.PopupClosedTask)
-                {
-                    if (locationSelector.Result != null)
-                    {
-                        try
-                        {
-                            UserDialogs.Instance.ShowLoading();
-                            var postition = locationSelector.Result;
-                            tier.GPS_LATITUDE = postition.Y;
-                            tier.GPS_LONGITUDE = postition.X;
-                            await CrudManager.TiersManager.UpdateItemAsync(tier);
-                            await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                            UserDialogs.Instance.HideLoading();
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                        finally
-                        {
-                            UserDialogs.Instance.HideLoading();
-                        }
-
-                    }
-                }
-            }
-
         }
 
         private async void RouteClicked(object sender, EventArgs e)
@@ -195,7 +209,6 @@ namespace XpertMobileApp.Views
 
         private async void VisitDemarer(object sender, EventArgs e)
         {
-
             viewModel.Item.CODE_ETAT = TourneeStatus.EnRoute;
             await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
         }
