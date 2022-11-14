@@ -8,6 +8,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -70,11 +71,21 @@ namespace XpertMobileApp.Views
             try
             {
                 viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
+                List<View_VTE_VENTE_LOT> itemsCommands;
 
-                UpdateItemIndex(itemsC);
-
-                foreach (var itemC in itemsC)
+                if (App.Online)
+                {
+                    itemsCommands = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
+                }
+                else
+                {
+                    /* Avoir les details de commandes */
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    itemsCommands = await SQLite_Manager.getVenteDetails(this.Item.CODE_VENTE);
+                    UserDialogs.Instance.HideLoading();
+                }
+                UpdateItemIndex(itemsCommands);
+                foreach (var itemC in itemsCommands)
                 {
                     viewModel.ItemRows.Add(itemC);
                 }

@@ -174,7 +174,7 @@ namespace XpertMobileApp.Views
                         }
 
                         //Récuperation prefix
-                        if (Constants.AppName == Apps.XCOM_Livraison)
+                        if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
                         {
                             await RecupererPrefix();
                         }
@@ -257,6 +257,10 @@ namespace XpertMobileApp.Views
                                     {
                                         //Obtenir les permission de la table SYS_OBJET_PERMISSION ...
                                         AppManager.permissions = await SQLite_Manager.getPermission();
+                                    }
+                                    if(Constants.AppName == Apps.X_DISTRIBUTION)
+                                    {
+                                        await SQLite_Manager.AssignPrefix();
                                     }
                                     // await App.UserDatabase.SaveItemAsync(user);
                                     await App.TokenDatabase.SaveItemAsync(token);

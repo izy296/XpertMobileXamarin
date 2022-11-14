@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -65,19 +66,19 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return Constants.AppName == Apps.XCOM_Mob ? "VTE_COMMANDE_XCOM" : "VTE_COMMANDE";
+                return Constants.AppName == Apps.XPH_Mob ? "VTE_COMMANDE" : "VTE_COMMANDE_XCOM";
             }
         }
-        public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
-        {
-            if (true)
-            {
-                //asyncTableQuery = UpdateDatabase.getInstance().Table<View_VTE_COMMANDE>()
-                //   .Where(e => e.CODE_TIERS=="").ToListAsync();
-            }
-            return base.SelectByPageFromSqlLite(filter);
+        //public override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
+        //{
+        //    if (true)
+        //    {
+        //        //asyncTableQuery = UpdateDatabase.GetInstance().Table<View_VTE_COMMANDE>()
+        //        //   .Where(e => e.CODE_TIERS=="").ToListAsync();
+        //    }
+        //    return base.SelectByPageFromSqlLite(filter);
 
-        }
+        //}
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
@@ -113,7 +114,6 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_VTE_COMMANDE> list)
         {
             base.OnAfterLoadItems(list);
-
             int i = 0;
             foreach (var item in list)
             {

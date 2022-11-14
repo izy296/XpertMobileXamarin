@@ -19,26 +19,26 @@ using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class NewTiersPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class NewTiersPage : ContentPage
+    {
 
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public Command LoadFamilleCommand { get; set; }
         public Command LoadSecteursCommand { get; set; }
-        
+
         public Command LoadTypesCommand { get; set; }
         public string CurrentStream = Guid.NewGuid().ToString();
         public View_TRS_TIERS Item { get; set; }
 
         public NewTiersPage(View_TRS_TIERS item = null)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
-            Familles  = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
+            Familles = new ObservableCollection<View_BSE_TIERS_FAMILLE>();
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Secteurs = new ObservableCollection<BSE_TABLE>();
 
@@ -48,7 +48,7 @@ namespace XpertMobileApp.Views
             if (item != null)
             {
                 Item = item;
-            } 
+            }
             else
             {
                 Item = new View_TRS_TIERS
@@ -79,7 +79,7 @@ namespace XpertMobileApp.Views
                 LoadTypesCommand.Execute(null);
 
             if (Familles.Count == 0)
-               LoadFamilleCommand.Execute(null);
+                LoadFamilleCommand.Execute(null);
 
             if (Secteurs.Count == 0)
                 LoadSecteursCommand.Execute(null);
@@ -101,7 +101,7 @@ namespace XpertMobileApp.Views
         {
             for (int i = 0; i < Familles.Count; i++)
             {
-                if(Familles[i].CODE_FAMILLE == codeElem)
+                if (Familles[i].CODE_FAMILLE == codeElem)
                 {
                     FamillesPicker.SelectedIndex = i;
                     return;
@@ -174,7 +174,7 @@ namespace XpertMobileApp.Views
             }
             finally
             {
-     
+
             }
         }
 
@@ -280,7 +280,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Secteurs.Clear();
-                var itemsC = await SQLite_Manager.getSecteurs(); 
+                var itemsC = await SQLite_Manager.getSecteurs();
                 foreach (var itemC in itemsC)
                 {
                     Secteurs.Add(itemC);
@@ -293,7 +293,7 @@ namespace XpertMobileApp.Views
         private async void btn_Save_Clicked(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 /*
                 if (SelectedType == null && Constants.AppName == Apps.XPH_Mob)
                 {
@@ -331,18 +331,25 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    if (Item.ID == 0)
+                    try
                     {
-                        Item.ACTIF_TIERS = 1;
-                        await SQLite_Manager.AjoutTiers(Item);
-                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
-                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                        if (Item.ID == 0)
+                        {
+                            Item.ACTIF_TIERS = 1;
+                            await SQLite_Manager.AjoutTiers(Item);
+                            Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                            MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                        }
+                        else
+                        {
+                            await SQLite_Manager.UpdateTiers(Item);
+                            Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
+                            MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        await SQLite_Manager.UpdateTiers(Item);
-                        Item.NOM_TIERS1 = Item.NOM_TIERS + " " + Item.PRENOM_TIERS;
-                        MessagingCenter.Send(App.MsgCenter, MCDico.ITEM_ADDED, Item);
+                        await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
                 }
 
@@ -350,7 +357,7 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                 await Navigation.PopModalAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 await DisplayAlert(AppResources.alrt_msg_Alert, "Erreur lors de traitement de la requête ! " + ex.Message, AppResources.alrt_msg_Ok);
@@ -379,4 +386,3 @@ namespace XpertMobileApp.Views
         }
     }
 }
- 

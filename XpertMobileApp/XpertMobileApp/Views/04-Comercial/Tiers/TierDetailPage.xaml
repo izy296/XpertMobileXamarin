@@ -324,56 +324,144 @@
                             <StackLayout>
                                 <!--First Button-->
                                 <StackLayout x:Name="FloatMenuItem1" 
+                                             HorizontalOptions="End"
                                              Orientation="Horizontal" 
                                              IsVisible="false" 
                                              Grid.Row="0">
 
-                                    <Label Text="Menu Item1" 
-                                           VerticalTextAlignment="Center"/>
+                                    <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                                       Padding="5,1"
+                                                       Opacity="0.7"
+                                                       CornerRadius="10">
+                                        <Label TextColor="white"
+                                               Text="BL" 
+                                               VerticalTextAlignment="Center"/>
+                                    </yummy:PancakeView>
 
 
-                                    <Frame BackgroundColor="Blue"
-                                           WidthRequest="15" 
-                                           HeightRequest="15"
-                                           CornerRadius="40"/>
-
+                                    <Frame BackgroundColor="#e65b65"
+                                           extensions:ShadowEffect.Color="#e65b65"
+                                           extensions:ShadowEffect.Opacity="1"
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="newBl"/>
+                                        </Frame.GestureRecognizers>
+                                        <Image Source="bl.png" 
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                                    </Frame>
                                 </StackLayout>
 
                                 <!--Second Button-->
                                 <StackLayout x:Name="FloatMenuItem2" 
+                                             HorizontalOptions="End"
                                              Orientation="Horizontal" 
                                              IsVisible="false" 
                                              Grid.Row="1">
+                                    <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                                       Padding="5,1"
+                                                       Opacity="0.7"
+                                                       CornerRadius="10">
+                                        <Label TextColor="white"
+                                               Text="Retour" 
+                                               VerticalTextAlignment="Center"/>
+                                    </yummy:PancakeView>
 
-                                    <Label Text="Menu Item2" 
-                                           VerticalTextAlignment="Center"/>
-
-                                    <Frame BackgroundColor="Blue" 
+                                    <Frame BackgroundColor="#519872" 
+                                           HasShadow="true"
+                                           extensions:ShadowEffect.Color="#519872"
+                                           extensions:ShadowEffect.Opacity="1"
                                            HorizontalOptions="End"
-                                           WidthRequest="15" 
-                                           HeightRequest="15"
-                                           CornerRadius="40"/>
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="newRetour"/>
+                                        </Frame.GestureRecognizers>
+
+                                        <Image Source="product_return.png"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+
+                                    </Frame>
 
                                 </StackLayout>
 
                                 <!--Third Button-->
                                 <StackLayout x:Name="FloatMenuItem3" 
+                                             HorizontalOptions="End"
                                              Orientation="Horizontal" 
                                              IsVisible="false" 
                                              Grid.Row="2">
 
-                                    <Label Text="Menu Item3" 
-                                           VerticalTextAlignment="Center"/>
+                                    <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                                       Padding="5,1"
+                                                       Opacity="0.7"
+                                                       CornerRadius="10">
+                                        <Label TextColor="white"
+                                               Text="Versement" 
+                                               VerticalTextAlignment="Center"/>
+                                    </yummy:PancakeView>
 
-                                    <Frame BackgroundColor="Blue" 
+                                    <Frame BackgroundColor="#141E61" 
+                                           extensions:ShadowEffect.Color="#141E61"
+                                           extensions:ShadowEffect.Opacity="1"
                                            HorizontalOptions="End"
-                                           WidthRequest="15" 
-                                           HeightRequest="15"
-                                           CornerRadius="40"/>
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="newVersement"/>
+                                        </Frame.GestureRecognizers>
+
+                                        <Image Source="versement.png" 
+                                               HorizontalOptions="Center" 
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+
 
                                 </StackLayout>
 
-                                <Frame BackgroundColor="Blue" 
+                                <!--Fourth Button-->
+                                <StackLayout x:Name="FloatMenuItem4" 
+                                             HorizontalOptions="End"
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="2">
+                                    <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                                       Padding="5,1"
+                                                       Opacity="0.7"
+                                                       CornerRadius="10">
+                                        <Label TextColor="white"
+                                               Text="Commande" 
+                                               VerticalTextAlignment="Center"/>
+                                    </yummy:PancakeView>
+
+
+                                    <Frame BackgroundColor="#334756" 
+                                           extensions:ShadowEffect.Color="#334756"
+                                           extensions:ShadowEffect.Opacity="1"
+                                           HorizontalOptions="End"
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="AddNewCommand"/>
+                                        </Frame.GestureRecognizers>
+                                        <Image Source="box.png" 
+                                               HorizontalOptions="Center" 
+                                               VerticalOptions="Center"/>
+                                    </Frame>
+
+                                </StackLayout>
+
+                                <Frame BackgroundColor="{DynamicResource Primary}" 
                                        CornerRadius="50" 
                                        HasShadow="True" 
                                        HorizontalOptions="End"
@@ -381,7 +469,8 @@
                                        HeightRequest="25"
                                        Margin="0,0,10,10">
 
-                                    <Image Source="addFloatingAction.png" 
+                                    <Image x:Name="closeIcon"
+                                           Source="addFloatingAction.png" 
                                            HorizontalOptions="Center"
                                            VerticalOptions="Center"/>
 
