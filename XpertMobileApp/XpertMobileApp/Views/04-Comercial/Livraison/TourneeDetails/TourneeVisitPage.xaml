@@ -230,7 +230,8 @@
                             Rotation="180"
                             WidthRequest="30"
                             HeightRequest="30"
-                            BackgroundColor="Transparent"/>
+                            BackgroundColor="Transparent"
+                            Clicked="BLClicked"/>
 
                     </StackLayout>
                 </extensions:Expander>

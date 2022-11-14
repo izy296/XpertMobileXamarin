@@ -55,6 +55,10 @@ namespace XpertMobileApp.Views
             ParentStream = stream;
             BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
 
+            if (tiers!=null)
+            {
+                viewModel.SelectedTiers = tiers;
+            }
             // Initialisation du montant reçu au reste a payer
             if (Constants.AppName != Apps.XCOM_Livraison)
             {

@@ -99,10 +99,5 @@ namespace XpertMobileApp.Base
             }
         }
 
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-        }
     }
 }

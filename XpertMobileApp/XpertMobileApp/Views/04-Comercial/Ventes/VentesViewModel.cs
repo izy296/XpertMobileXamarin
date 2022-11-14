@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
@@ -146,6 +147,21 @@ namespace XpertMobileApp.ViewModels
                 this.AddOrderBy<View_VTE_VENTE, DateTime?>(e => e.CREATED_ON, Sort.DESC);
             }
             return qb.QueryInfos;
+        }
+
+        public override async Task<List<View_VTE_VENTE>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
+            sqliteRes = sqliteRes.Where(e => e.DATE_VENTE >= StartDate && e.DATE_VENTE <= EndDate).ToList();
+            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                sqliteRes = sqliteRes.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
+            if (!string.IsNullOrEmpty(TypeVente))
+                sqliteRes = sqliteRes.Where(e => e.TYPE_VENTE == TypeVente).ToList();
+            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                sqliteRes = sqliteRes.Where(e => e.TYPE_DOC == SelectedType?.CODE_TYPE).ToList();
+            sqliteRes = sqliteRes.OrderByDescending(e => e.CREATED_ON).ToList();
+            return sqliteRes;
+
         }
 
         protected override QueryInfos GetSelectParams()

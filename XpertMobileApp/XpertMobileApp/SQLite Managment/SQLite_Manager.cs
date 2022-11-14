@@ -146,31 +146,30 @@ namespace XpertMobileApp.SQLite_Managment
                         "LEFT JOIN View_TRS_ENCAISS e ON e.CODE_TIERS = t.CODE_TIERS " +
                         "LEFT JOIN View_VTE_COMMANDE c ON c.CODE_TIERS = t.CODE_TIERS;";
 
-                string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY AS
-                                    SELECT * FROM (
-                                    SELECT v.CODE_VENTE, 
-                                    	   v.TOTAL_PAYE,
-                                    	   v.TYPE_DOC,
-                                    	   v.CODE_TIERS,
-                                    	   v.CREATED_ON
-                                    	   FROM View_VTE_VENTE v
-                                    	   WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR'
-                                    UNION ALL
-                                    SELECT c.CODE_VENTE, 
-                                    	   c.TOTAL_PAYE,
-                                    	   c.TYPE_DOC,
-                                    	   c.CODE_TIERS,
-                                    	   c.CREATED_ON
-                                    	   FROM View_VTE_COMMANDE c
-                                    UNION ALL
-                                    SELECT e.CODE_ENCAISS,
-                                    		e.TOTAL_ENCAISS TOTAL_PAYE,
-                                    		'ENC' TYPE_DOC,
-                                    		e.CODE_TIERS,
-                                    		e.CREATED_ON
-                                    	   FROM View_TRS_ENCAISS e
-                                    	   )T";
-
+                string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY AS 
+                                    SELECT * FROM ( 
+                                    SELECT v.CODE_VENTE,  
+                                            v.TOTAL_PAYE, 
+                                            v.TYPE_DOC, 
+                                            v.CODE_TIERS, 
+                                            v.CREATED_ON 
+                                            FROM View_VTE_VENTE v 
+                                            WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR' 
+                                    UNION ALL 
+                                    SELECT c.CODE_VENTE,  
+                                            c.TOTAL_PAYE, 
+                                            c.TYPE_DOC, 
+                                            c.CODE_TIERS, 
+                                            c.CREATED_ON 
+                                            FROM View_VTE_COMMANDE c 
+                                    UNION ALL 
+                                    SELECT e.CODE_ENCAISS, 
+                                              e.TOTAL_ENCAISS TOTAL_PAYE, 
+                                              'ENC' TYPE_DOC, 
+                                              e.CODE_TIERS, 
+                                              e.CREATED_ON 
+                                            FROM View_TRS_ENCAISS e 
+                                            )T";
 
                 await GetInstance().ExecuteAsync(queryNew);
 
@@ -207,8 +206,8 @@ namespace XpertMobileApp.SQLite_Managment
                 countListe.Add(obj1.Count);
                 var obj2 = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
                 countListe.Add(obj2.Count);
-                //var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-                //countListe.Add(obj3.Count);
+                var obj3 = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+                countListe.Add(obj3.Count);
                 var obj4 = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
                 countListe.Add(obj4.Count);
                 var obj5 = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
@@ -395,21 +394,35 @@ namespace XpertMobileApp.SQLite_Managment
 
         public static async Task<List<View_TRS_TIERS>> GetClients(string codeTournee)
         {
-            var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-            var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+            try
+            {
+                var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+                var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
 
-            var tourneeCLients = listClients.Where(p => listeTourneeClents.Any(p2 => p2.CODE_TIERS == p.CODE_TIERS)).ToList();
-            return tourneeCLients as List<View_TRS_TIERS>;
-
+                var tourneeCLients = listClients.Where(p => listeTourneeClents.Any(p2 => p2.CODE_TIERS == p.CODE_TIERS)).ToList();
+                return tourneeCLients as List<View_TRS_TIERS>;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static async Task<View_TRS_TIERS> GetClient(string codeTier)
         {
-            var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+            try
+            {
+                var listClients = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
 
-            var tourneeCLients = listClients.Where(p => p.CODE_TIERS == codeTier).First();
-            return tourneeCLients;
-
+                var tourneeCLients = listClients.Where(p => p.CODE_TIERS == codeTier);
+                if (tourneeCLients.Count() != 0)
+                    return tourneeCLients.First();
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         /// <summary>
@@ -449,6 +462,26 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
         /// <summary>
+        /// Synchronisation de vue View_TRS_ENCAISS
+        /// </summary>
+        /// <returns></returns>
+
+        public static async Task SyncEncaiss()
+        {
+            try
+            {
+                var MethodName = "GetEncaissParTournee";
+                //var parmetre
+                await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>(false, "", MethodName);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        /// <summary>
         /// uploader les donnés aux base de donné distante ...
         /// </summary>
         /// <returns></returns>
@@ -462,7 +495,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncTiersToServer();
                 await SyncEncaissToServer();
                 UserDialogs.Instance.HideLoading();
-                //await SyncVenteToServer(); // error while coppying content to a stream
+                await SyncVenteToServer(); // error while coppying content to a stream
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else

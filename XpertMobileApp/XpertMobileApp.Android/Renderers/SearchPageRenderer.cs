@@ -84,8 +84,19 @@ namespace XpertMobileApp.Droid
             {
                 var toolbars = GetToolbars(viewGroup);
 
+                Toolbar? toolbarRes=null;
+
+                foreach (var toolbarE in toolbars)
+                {
+                    if (Element is ISearchPage && Element is Page page)
+                    {
+                        if (toolbarE.Title == page.Title)
+                            toolbarRes = toolbarE;
+                    }
+                }
+                return toolbarRes;
                 //Return top-most Toolbar
-                return toolbars.FirstOrDefault();
+                //return toolbars.FirstOrDefault();
             }
 
             return null;
