@@ -68,7 +68,7 @@ namespace XpertMobileApp.ViewModels
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand;
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
         protected override QueryInfos GetFilterParams()
