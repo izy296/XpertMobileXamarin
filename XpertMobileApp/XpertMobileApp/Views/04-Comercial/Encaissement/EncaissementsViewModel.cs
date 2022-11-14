@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -67,7 +68,7 @@ namespace XpertMobileApp.ViewModels
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
-            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand;
         }
 
         protected override QueryInfos GetFilterParams()
@@ -100,13 +101,24 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_TRS_ENCAISS> list)
         {
             base.OnAfterLoadItems(list);
-
+           
             int i = 0;
             foreach (var item in list)
             {
                 i += 1;
                 (item as BASE_CLASS).Index = i;
             }
+        }
+
+        public override async Task<List<View_TRS_ENCAISS>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            var res = await base.SelectByPageFromSqlLite(filter);
+            if(EncaissDisplayType.ToString() != "")
+            {
+                res = res.Where(x => x.CODE_TYPE == EncaissDisplayType.ToString()).ToList();
+                return res;
+            }
+            return res;
         }
 
         private string GetCurrentType()
@@ -124,7 +136,6 @@ namespace XpertMobileApp.ViewModels
                     type = "DEC";
                     break;
             }
-
             return type;
         }
 

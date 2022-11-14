@@ -94,8 +94,6 @@ namespace XpertMobileApp.Views
 
             BindingContext = this;
 
-
-
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {
                 SelectedTiers = selectedItem;
@@ -189,12 +187,27 @@ namespace XpertMobileApp.Views
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                         await SQLite_Manager.AjoutEnciassement(Item);
                         await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.HideLoading();
                         await Navigation.PopModalAsync();
                     }
                 }
                 else
                 {
-                    if (Item.TOTAL_ENCAISS >= 0)
+                    if (!string.IsNullOrEmpty(montantEntry.Text))
+                    {
+                        decimal result;
+                        bool parsable = decimal.TryParse(montantEntry.Text, out result);
+                        if (result > 0 && parsable)
+                        {
+                            this.Item.TOTAL_ENCAISS = result;
+                        }
+                        else
+                        {
+                            this.Item.TOTAL_ENCAISS = 0;
+                        }
+                    }
+
+                    if (Item.TOTAL_ENCAISS <= 0)
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
@@ -203,6 +216,7 @@ namespace XpertMobileApp.Views
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                         await SQLite_Manager.AjoutEnciassement(Item);
                         await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        UserDialogs.Instance.HideLoading();
                         await Navigation.PopModalAsync();
                     }
                 }
@@ -393,6 +407,9 @@ namespace XpertMobileApp.Views
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            await search_icon.ScaleTo(0.75, 50, Easing.Linear);
+            await search_icon.ScaleTo(1, 50, Easing.Linear);
+
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }

@@ -3,9 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.NewEncaissementPage"
-             xmlns:fontawesome="clr-namespace:FontAwesome"
->
-    
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
@@ -22,94 +21,172 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
 
         <ScrollView Orientation="Vertical" Padding="15">
-            <StackLayout>
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate DATE_ENCAISS}" 
-                       Margin="5, 0, 0, 0" 
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
-                <DatePicker x:Name="dp_DateEncaiss"                        
+            <StackLayout VerticalOptions="Center">
+
+
+                <!--Date-->
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                FocusedColor="#72CFCE"
+                                                Margin="0,10"
+                                                InputViewPadding="0,16,30,5"
+                                                UnfocusedColor="#2C9CEE"
+                                                ContainerBackgroundColor="Transparent"
+                                                IsHintAlwaysFloated="true"
+                                                Hint="{i18n:Translate DATE_ENCAISS}">
+                    <DatePicker x:Name="dp_DateEncaiss"                        
                         Format="dd/MM/yyyy"
+                        FontSize="13"
                         TextColor="Black"
                         Margin="30, 0, 30, 30" 
                         Date="{Binding Item.DATE_ENCAISS}"/>
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="datePickerIcon.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
 
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate CODE_MOTIF}" 
-                       Margin="5, 0, 0, 0"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
+
+                <!--Motif-->
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                FocusedColor="#72CFCE"
+                                                InputViewPadding="0,16,30,5"
+                                                Margin="0,10"
+                                                UnfocusedColor="#2C9CEE"
+                                                ContainerBackgroundColor="Transparent"
+                                                IsHintAlwaysFloated="true"
+                                                Hint="{i18n:Translate CODE_MOTIF}">
+
+                    <Picker ItemsSource="{Binding Motifs}"
+                            ItemDisplayBinding="{Binding DESIGN_MOTIF}"
+                            SelectedItem="{Binding SelectedMotif}"
+                            TextColor="Black"
+                            FontSize="13"
+                            SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
+                            Margin="30, 0, 30, 30" 
+                            x:Name="MotifsPicker"/>
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="spreadsheet.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
                 
-                <Picker ItemsSource="{Binding Motifs}"
-                                ItemDisplayBinding="{Binding DESIGN_MOTIF}"
-                                SelectedItem="{Binding SelectedMotif}"
-                                TextColor="Black"
-                                SelectedIndexChanged="MotifPicker_SelectedIndexChanged"
-                                Margin="30, 0, 30, 30" 
-                                x:Name="MotifsPicker"/>
+                <!--Compte-->
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                FocusedColor="#72CFCE"
+                                                InputViewPadding="0,16,30,5"
+                                                UnfocusedColor="#2C9CEE"
+                                                Margin="0,10"
+                                                IsHintAlwaysFloated="true"
+                                                ContainerBackgroundColor="Transparent"
+                                                Hint="{i18n:Translate CODE_COMPTE}">
 
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate CODE_COMPTE}" 
-                       Margin="5, 0, 0, 0"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
+                    <Picker ItemsSource="{Binding Comptes}"
+                            ItemDisplayBinding="{Binding DESIGN_COMPTE}"
+                            SelectedItem="{Binding SelectedCompte}"
+                            TextColor="Black"
+                            SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
+                            Margin="30, 0, 30, 30"  
+                            FontSize="13"
+                            x:Name="ComptesPicker"/>
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="profile.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
                 
-                <Picker ItemsSource="{Binding Comptes}"
-                                ItemDisplayBinding="{Binding DESIGN_COMPTE}"
-                                SelectedItem="{Binding SelectedCompte}"
-                                TextColor="Black"
-                                SelectedIndexChanged="ComptePicker_SelectedIndexChanged"
-                                Margin="30, 0, 30, 30"                 
-                                x:Name="ComptesPicker"/>
-
-
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate CODE_TIERS}" 
-                       Margin="5, 0, 0, 0"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
-                <Grid Margin="30, 0, 30, 30">
+                <!--Tiers-->
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="30"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" IsEnabled="False" />
-                    <Button x:Name="btn_Search" Text="{x:Static fontawesome:FontAwesomeIcons.Search}" Grid.Column="1" Style="{StaticResource FAwesome-B-Solid}"
-                        Clicked="btn_Select_Clicked"  />
+
+
+                    <inputLayout:SfTextInputLayout  Grid.Column = "0"
+                                                    Grid.ColumnSpan="2"
+                                                    TrailingViewPosition="Outside" 
+                                                    FocusedColor="#72CFCE"
+                                                    InputViewPadding="0,16,30,5"
+                                                    Margin="0,10"
+                                                    UnfocusedColor="#2C9CEE"
+                                                    IsHintAlwaysFloated="true"
+                                                    ContainerBackgroundColor="Transparent"
+                                                    Hint="{i18n:Translate CODE_TIERS}">
+
+                        <Entry x:Name="ent_SelectedTiers" 
+                           FontSize="12"
+                           Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}" 
+                           IsEnabled="False" />
+
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Image Source="profile.png"/>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+                    </inputLayout:SfTextInputLayout>
+
+                    <Image  x:Name="search_icon"
+                            Grid.Column="1"
+                            VerticalOptions="Center"
+                            WidthRequest="20"
+                            HeightRequest="20"
+                            Margin="0,0,0,5"
+                            Source="chercher_bleu.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="btn_Select_Clicked"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </Grid>
 
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate TOTAL_ENCAISS}" 
-                       Margin="5, 0, 0, 0"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
-                <Entry Placeholder="{i18n:Translate Primary}"
-                       Margin="30, 0, 30, 30"
-                       x:Name="montantEntry"
-                       Keyboard="Numeric"
-                       TextColor="Black"/>
 
-                <Label TextColor="{StaticResource Primary}" 
-                       Text="{i18n:Translate SOLDE_TIERS}" 
-                       Margin="5, 0, 0, 0"
-                       FontSize="Medium"
-                       FontAttributes="Bold"
-                       />
-                <Label x:Name="TierSolde" Text="" TextColor="{StaticResource Primary}" Margin="30, 0, 30, 30" />
+                <!--Total encaissé-->
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                IsHintAlwaysFloated="true"
+                                                FocusedColor="#72CFCE"
+                                                InputViewPadding="0,16,30,5"
+                                                Margin="0,10"
+                                                UnfocusedColor="#2C9CEE"
+                                                ContainerBackgroundColor="Transparent"
+                                                Hint="{i18n:Translate TOTAL_ENCAISS}">
+
+                    <Entry Margin="30, 0, 30, 30"
+                           FontSize="13"
+                           x:Name="montantEntry"
+                           Keyboard="Numeric"
+                           TextColor="Black"/>
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="money_bag.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                IsHintAlwaysFloated="true"
+                                                FocusedColor="#72CFCE"
+                                                InputViewPadding="0,16,30,5"
+                                                UnfocusedColor="#2C9CEE"
+                                                ContainerBackgroundColor="Transparent"
+                                                Hint="{i18n:Translate SOLDE_TIERS}">
+                    <Entry x:Name="TierSolde" 
+                           IsEnabled="False"
+                           Text="" 
+                           TextColor="{StaticResource Primary}" 
+                           FontSize="13"
+                           Margin="30, 0, 30, 30" />
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="credit_card.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
