@@ -70,7 +70,7 @@ namespace XpertMobileApp.Views
                     Text = TranslateExtension.GetTranslation(name) + " : ",
                     FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
                     FontAttributes = FontAttributes.Bold,
-                    TextColor = ((Color)Application.Current.Resources["NavigationPrimary"]),
+                    TextColor = Color.Black,
                     StyleClass = styleFN
                 };
                 sl_content.Children.Add(lbl_FieldName);
