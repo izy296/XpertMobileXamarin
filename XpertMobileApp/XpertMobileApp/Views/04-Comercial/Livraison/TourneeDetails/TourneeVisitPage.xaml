@@ -97,9 +97,7 @@
                             ItemsSource="{Binding Activitys}"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand"
-                            VerticalScrollBarVisibility="Always"
-                            
-                            >
+                            VerticalScrollBarVisibility="Always">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
                                         <StackLayout
@@ -137,10 +135,9 @@
                                                             Text="{Binding TOTAL_PAYE,StringFormat='{0:N2} DA'}"
                                                             TextColor="{StaticResource Primary}">
                                                             </Label>
-                                                            <Label
-                                                            Grid.Column="1"
-                                                            Text="{Binding CREATED_ON}"
-                                                            TextColor="Black">
+                                                            <Label Grid.Column="1"
+                                                                   Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy}'}"
+                                                                   TextColor="Black">
                                                             </Label>
                                                         </Grid>
                                                     </StackLayout>
@@ -168,73 +165,183 @@
                     </yummy:PancakeView.Content>
                 </yummy:PancakeView>
             </StackLayout>
-            <yummy:PancakeView
-                AbsoluteLayout.LayoutFlags="PositionProportional,SizeProportional"
-                AbsoluteLayout.LayoutBounds="1,1,1,1"
-                HorizontalOptions="End"
-                VerticalOptions="End"
-                Margin="30,30,30,60"
-                CornerRadius="40"
-                Padding="15"
-                BackgroundColor="Transparent">
+            <yummy:PancakeView HorizontalOptions="End"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                               VerticalOptions="End"
+                               Margin="30,30,10,15"
+                               CornerRadius="40"
+                               Padding="15,15,5,5"
+                               BackgroundColor="Transparent">
 
-                <yummy:PancakeView.BackgroundGradientStops>
-                    <yummy:GradientStopCollection>
-                        <yummy:GradientStop Color="{StaticResource Primary}" Offset="0"/>
-                        <yummy:GradientStop Color="{StaticResource Primary}" Offset="1"/>
-                    </yummy:GradientStopCollection>
-                </yummy:PancakeView.BackgroundGradientStops>
+                <!--Button Container-->
+                <StackLayout>
+                    <!--First Button-->
+                    <StackLayout x:Name="FloatMenuItem1" 
+                                             HorizontalOptions="End"
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="0">
 
-                <extensions:Expander 
-                    HorizontalOptions="Start" 
-                    Rotation="180"
-                    VerticalOptions="End"
-                    extensions:ShadowEffect.Color="{DynamicResource Primary}">
-                    <extensions:Expander.Header Grid.Row="1">
-                        <Image Source="addFloatingAction.png" WidthRequest="30" HeightRequest="30" Rotation="180">
-                            <Image.Triggers>
-                                <DataTrigger TargetType="Image"
-                                                         Binding="{Binding Source={RelativeSource AncestorType={x:Type extensions:Expander}}, Path=IsExpanded}"
-                                                         Value="true">
-                                    <Setter Property="Source" Value="addFloatingAction.png"/>
-                                    <Setter Property="Rotation" Value="45"/>
-                                </DataTrigger>
-                            </Image.Triggers>
-                        </Image>
-                    </extensions:Expander.Header>
-                    <StackLayout Spacing="30" Margin="0,20">
+                        <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                           Padding="5,1"
+                                           WidthRequest="85"
+                                           Opacity="0.65"
+                                           CornerRadius="10">
+                            <Label TextColor="white"
+                                   HorizontalOptions="Center"
+                                               Text="BL" 
+                                               VerticalTextAlignment="Center"/>
+                        </yummy:PancakeView>
 
-                        <ImageButton 
-                            Source="product_return.png"
-                            Rotation="180"
-                            WidthRequest="30"
-                            HeightRequest="30"
-                            BackgroundColor="Transparent"/>
 
-                        <ImageButton 
-                            Source="box.png"
-                            Rotation="180"
-                            WidthRequest="30"
-                            HeightRequest="30"
-                            BackgroundColor="Transparent"/>
+                        <Frame BackgroundColor="#e65b65"
+                                           extensions:ShadowEffect.Color="#e65b65"
+                                           extensions:ShadowEffect.Opacity="1"
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="newBl"/>
+                            </Frame.GestureRecognizers>
+                            <Image Source="bl.png" 
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+                        </Frame>
+                    </StackLayout>
 
-                        <ImageButton 
-                            Source="versement.png"
-                            Rotation="180"
-                            WidthRequest="30"
-                            HeightRequest="30"
-                            BackgroundColor="Transparent"/>
+                    <!--Second Button-->
+                    <StackLayout x:Name="FloatMenuItem2" 
+                                             HorizontalOptions="End"
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="1">
+                        <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                           Padding="5,1"
+                                           WidthRequest="85"
+                                           Opacity="0.65"
+                                           CornerRadius="10">
+                            <Label TextColor="white"
+                                   HorizontalOptions="Center"
+                                               Text="Retour" 
+                                               VerticalTextAlignment="Center"/>
+                        </yummy:PancakeView>
 
-                        <ImageButton 
-                            Source="bl.png"
-                            Rotation="180"
-                            WidthRequest="30"
-                            HeightRequest="30"
-                            BackgroundColor="Transparent"
-                            Clicked="BLClicked"/>
+                        <Frame BackgroundColor="#519872" 
+                                           HasShadow="true"
+                                           extensions:ShadowEffect.Color="#519872"
+                                           extensions:ShadowEffect.Opacity="1"
+                                           HorizontalOptions="End"
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="newRetour"/>
+                            </Frame.GestureRecognizers>
+
+                            <Image Source="product_return.png"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center"/>
+
+                        </Frame>
 
                     </StackLayout>
-                </extensions:Expander>
+
+                    <!--Third Button-->
+                    <StackLayout x:Name="FloatMenuItem3" 
+                                             HorizontalOptions="End"
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="2">
+
+                        <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                           Padding="5,1"
+                                           WidthRequest="85"
+                                           Opacity="0.65"
+                                           CornerRadius="10">
+                            <Label TextColor="white"
+                                   Text="Versement" 
+                                   HorizontalOptions="Center"
+                                   VerticalTextAlignment="Center"/>
+                        </yummy:PancakeView>
+
+                        <Frame BackgroundColor="#141E61" 
+                                           extensions:ShadowEffect.Color="#141E61"
+                                           extensions:ShadowEffect.Opacity="1"
+                                           HorizontalOptions="End"
+                                           WidthRequest="30" 
+                                           HeightRequest="30"
+                                           Padding="10"
+                                           CornerRadius="40">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="newVersement"/>
+                            </Frame.GestureRecognizers>
+
+                            <Image Source="versement.png" 
+                                               HorizontalOptions="Center" 
+                                               VerticalOptions="Center"/>
+                        </Frame>
+
+
+                    </StackLayout>
+
+                    <!--Fourth Button-->
+                    <StackLayout x:Name="FloatMenuItem4" 
+                                             HorizontalOptions="End"
+                                             Orientation="Horizontal" 
+                                             IsVisible="false" 
+                                             Grid.Row="2">
+                        <yummy:PancakeView BackgroundColor="#1E1E1E"
+                                                       Padding="5,1"
+                                                       Opacity="0.65"
+                                                       WidthRequest="85"
+                                                       CornerRadius="10">
+                            <Label    TextColor="white"
+                                      HorizontalOptions="Center"
+                                      Text="Commande" 
+                                      VerticalTextAlignment="Center"/>
+                        </yummy:PancakeView>
+
+
+                        <Frame BackgroundColor="#334756" 
+                               extensions:ShadowEffect.Color="#334756"
+                               extensions:ShadowEffect.Opacity="1"
+                               HorizontalOptions="End"
+                               WidthRequest="30" 
+                               HeightRequest="30"
+                               Padding="10"
+                               CornerRadius="40">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="AddNewCommand"/>
+                            </Frame.GestureRecognizers>
+                            <Image Source="box.png" 
+                                               HorizontalOptions="Center" 
+                                               VerticalOptions="Center"/>
+                        </Frame>
+
+                    </StackLayout>
+
+                    <Frame BackgroundColor="{DynamicResource Primary}" 
+                           CornerRadius="50" 
+                           HasShadow="True" 
+                           HorizontalOptions="End"
+                           WidthRequest="25" 
+                           HeightRequest="25"
+                           Margin="0,0,10,10">
+
+                        <Image x:Name="closeIcon"
+                               Source="addFloatingAction.png" 
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"/>
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OpenCloseButtons"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+                </StackLayout>
+
             </yummy:PancakeView>
         </AbsoluteLayout>
     </ContentPage.Content>

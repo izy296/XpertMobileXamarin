@@ -6,7 +6,7 @@
              xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked">
+        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" x:Name="closePageBtn">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android,iOS,UWP" Value="close.png"/>
@@ -112,7 +112,8 @@
 
 
 
-                    <inputLayout:SfTextInputLayout  Grid.Column = "0"
+                    <inputLayout:SfTextInputLayout  x:Name="tiersInputLayout"
+                                                    Grid.Column = "0"
                                                     Grid.ColumnSpan="2"
                                                     TrailingViewPosition="Outside" 
                                                     FocusedColor="#72CFCE"
@@ -129,7 +130,7 @@
                            IsEnabled="False" />
 
                         <inputLayout:SfTextInputLayout.LeadingView>
-                            <Image Source="profile.png"/>
+                            <Image  Source="profile.png"/>
                         </inputLayout:SfTextInputLayout.LeadingView>
                     </inputLayout:SfTextInputLayout>
 

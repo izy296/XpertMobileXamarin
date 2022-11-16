@@ -58,12 +58,20 @@ namespace XpertMobileApp.Views
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage(View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC)
+        public NewEncaissementPage(View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC, View_TRS_TIERS tier = null)
         {
             InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
-
+            
+            if(tier != null)
+            {
+                closePageBtn.IsEnabled = false;
+                ent_SelectedTiers.IsEnabled = false;
+                search_icon.IsVisible = false;
+                SelectedTiers = tier;
+                TierSolde.Text = string.Format("{0:N02} DA", tier.SOLDE_TIERS);
+            }
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
 
@@ -185,10 +193,13 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                        if (SelectedTiers != null)
+                        {
+                            Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
+                        }
                         await SQLite_Manager.AjoutEnciassement(Item);
-                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
-                        await Navigation.PopModalAsync();
+                        await Navigation.PopAsync();
                     }
                 }
                 else

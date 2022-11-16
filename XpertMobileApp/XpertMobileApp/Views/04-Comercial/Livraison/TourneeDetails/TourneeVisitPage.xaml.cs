@@ -23,6 +23,7 @@ namespace XpertMobileApp.Views
     {
         TourneeVisitViewModel viewModel;
         View_TRS_TIERS tier;
+        private bool isOpen = false;
         public TourneeVisitPage()
         {
             InitializeComponent();
@@ -161,9 +162,9 @@ namespace XpertMobileApp.Views
 
         private async void RouteClicked(object sender, EventArgs e)
         {
-            string destinationCordinates = HttpUtility.UrlEncode(tier.GPS_LATITUDE.ToString().Replace(",",".") + 
+            string destinationCordinates = HttpUtility.UrlEncode(tier.GPS_LATITUDE.ToString().Replace(",", ".") +
                                                            "," + tier.GPS_LONGITUDE.ToString().Replace(",", "."), Encoding.UTF8);
-            Location location =null;
+            Location location = null;
             try
             {
                 UserDialogs.Instance.ShowLoading();
@@ -221,9 +222,111 @@ namespace XpertMobileApp.Views
 
         }
 
-        private async void BLClicked(object sender, EventArgs e)
+        /// <summary>
+        /// Open and close the floating expandable button ...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void OpenCloseButtons(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new VenteFormPage(null,"BL",tier));
+            try
+            {
+                await ((Frame)sender).ScaleTo(0.5, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+
+                if (isOpen)
+                {
+                    isOpen = !isOpen;
+                    await closeIcon.RotateTo(0);
+                    FloatMenuItem1.IsVisible = false;
+                    await Task.Delay(70);
+                    FloatMenuItem2.IsVisible = false;
+                    await Task.Delay(70);
+                    FloatMenuItem3.IsVisible = false;
+                    await Task.Delay(70);
+                    FloatMenuItem4.IsVisible = false;
+
+                }
+                else
+                {
+                    isOpen = !isOpen;
+                    await closeIcon.RotateTo(-45);
+                    FloatMenuItem1.IsVisible = true;
+                    await Task.Delay(70);
+                    FloatMenuItem2.IsVisible = true;
+                    await Task.Delay(70);
+                    FloatMenuItem3.IsVisible = true;
+                    await Task.Delay(70);
+                    FloatMenuItem4.IsVisible = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async void AddNewCommand(object sender, EventArgs e)
+        {
+            try
+            {
+                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+                await Navigation.PushModalAsync(new NavigationPage(new NewCommandePage(null, tier)));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async void newRetour(object sender, EventArgs e)
+        {
+            try
+            {
+                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private async void newVersement(object sender, EventArgs e)
+        {
+            try
+            {
+                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+
+                await Navigation.PushAsync(new NewEncaissementPage(null, EncaissDisplayType.ENC, tier));
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private async void newCommande(object sender, EventArgs e)
+        {
+            try
+            {
+                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
+                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void newBl(object sender, EventArgs e)
+        {
+
         }
     }
 }
