@@ -135,26 +135,26 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY AS 
                                     SELECT * FROM ( 
-                                    SELECT v.CODE_VENTE,  
+                                    SELECT v.CODE_VENTE CODE_DOC,  
                                             v.TOTAL_PAYE, 
                                             v.TYPE_DOC, 
                                             v.CODE_TIERS, 
-                                            v.CREATED_ON 
+                                            v.CREATED_ON DATE_DOC
                                             FROM View_VTE_VENTE v 
                                             WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR' 
                                     UNION ALL 
-                                    SELECT c.CODE_VENTE,  
+                                    SELECT c.CODE_VENTE CODE_DOC,  
                                             c.TOTAL_PAYE, 
                                             c.TYPE_DOC, 
                                             c.CODE_TIERS, 
-                                            c.CREATED_ON 
+                                            c.CREATED_ON DATE_DOC
                                             FROM View_VTE_COMMANDE c 
                                     UNION ALL 
-                                    SELECT e.CODE_ENCAISS, 
+                                    SELECT e.CODE_ENCAISS CODE_DOC, 
                                               e.TOTAL_ENCAISS TOTAL_PAYE, 
                                               'ENC' TYPE_DOC, 
                                               e.CODE_TIERS, 
-                                              e.DATE_ENCAISS CREATED_ON 
+                                              e.DATE_ENCAISS DATE_DOC 
                                             FROM View_TRS_ENCAISS e 
                                             )T ORDER BY CREATED_ON DESC";
 
@@ -321,7 +321,7 @@ namespace XpertMobileApp.SQLite_Managment
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
-                    await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
+                    //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
@@ -348,8 +348,7 @@ namespace XpertMobileApp.SQLite_Managment
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     UserDialogs.Instance.HideLoading();
-                    var obj = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-                    //var obj = await GetInstance().QueryAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>("SELECT * FROM View_BSE_PRODUIT_UNITE_COEFFICIENT");
+
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
