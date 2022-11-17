@@ -65,7 +65,6 @@ namespace XpertMobileApp.SQLite_Managment
                 string AppName = Constants.AppName.ToString();
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
                 db = new SQLiteAsyncConnection(databasePath);
-
                 return db;
             }
             else
