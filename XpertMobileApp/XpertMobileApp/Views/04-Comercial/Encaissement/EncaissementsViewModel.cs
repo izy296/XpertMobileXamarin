@@ -64,7 +64,7 @@ namespace XpertMobileApp.ViewModels
         } = false;
         public EncaissementsViewModel()
         {
-            Title = AppResources.pn_encaissement;
+            Title = AppResources.pn_encaissement ;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
@@ -113,7 +113,8 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_TRS_ENCAISS>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var res = await base.SelectByPageFromSqlLite(filter);
-            if(EncaissDisplayType.ToString() != "")
+            string temp  = EncaissDisplayType.ToString(); 
+            if (EncaissDisplayType.ToString() != "" && EncaissDisplayType.ToString() != EncaissDisplayType.All.ToString())
             {
                 res = res.Where(x => x.CODE_TYPE == EncaissDisplayType.ToString()).ToList();
                 return res;

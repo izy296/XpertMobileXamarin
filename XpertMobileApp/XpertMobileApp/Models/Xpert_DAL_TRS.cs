@@ -112,7 +112,8 @@ namespace XpertMobileApp.DAL
         public string CODE_COMPTE_TYPE { get; set; }
         public string DESIGNATION_TYPE_COMPTE { get; set; }
         public string CODE_FAMILLE_TIERS { get; set; }
-
+        public double GPS_LATITUDE { get; set; }
+        public double GPS_LONGITUDE { get; set; }
         public override string ToString()
         {
             return AppResources.pn_encaissement + " N° : " + NUM_ENCAISS;

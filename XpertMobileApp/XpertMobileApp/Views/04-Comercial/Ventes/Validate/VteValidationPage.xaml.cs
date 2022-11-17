@@ -49,8 +49,8 @@ namespace XpertMobileApp.Views
             if (Constants.AppName == Apps.XCOM_Livraison)
                 PrintTicketZoneLayout.IsVisible = true;
 
-            if (Constants.AppName != Apps.XCOM_Livraison)
-                SfNE_MTRecu.IsEnabled = false;
+            //if (Constants.AppName != Apps.XCOM_Livraison)
+            //    SfNE_MTRecu.IsEnabled = false;
 
             ParentStream = stream;
             BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
@@ -159,7 +159,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                if (Constants.AppName == Apps.XCOM_Livraison)
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
                     viewModel.Item.GPS_LATITUDE = 0;
                     viewModel.Item.GPS_LONGITUDE = 0;
@@ -168,6 +168,12 @@ namespace XpertMobileApp.Views
 
                 if (App.Online)
                 {
+                    if(((decimal)SfNE_MTRecu.Value < (decimal)mt_Reste.Value) && viewModel.Item.CODE_TIERS == "CXPERTCOMPTOIR")
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez selectionner un client !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        return;
+                    }
+
                     string res = await viewModel.ValidateVte(viewModel.Item);
                     viewModel.Item.NUM_VENTE = res;
                     if (!XpertHelper.IsNullOrEmpty(res))
@@ -217,7 +223,9 @@ namespace XpertMobileApp.Views
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            
             itemSelector = new TiersSelector(viewModel.CurrentStream);
+            itemSelector.SearchedType = "C";
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 

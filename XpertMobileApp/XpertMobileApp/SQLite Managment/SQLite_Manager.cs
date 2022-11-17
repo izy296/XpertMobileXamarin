@@ -10,6 +10,7 @@ using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
@@ -50,6 +51,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
         #region Methode db standard
 
+
         /// <summary>
         /// Retourne la db crée ...
         /// </summary>
@@ -62,9 +64,8 @@ namespace XpertMobileApp.SQLite_Managment
                 string clientId = App.Settings.ClientId.ToString();
                 string AppName = Constants.AppName.ToString();
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
-                // Copy DB to extrnale directory
-                File.Copy(databasePath, "/storage/F4A6D8A0A6D864A0/Download/", true);
                 db = new SQLiteAsyncConnection(databasePath);
+
                 return db;
             }
             else
@@ -73,6 +74,19 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        //public async static void CreateCopyOfSQlite()
+        //{
+        //    try
+        //    {
+        //        //Get the 98
+        //        var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await UserDialogs.Instance.AlertAsync("Impossible de créer une copie sur la base de donnée", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+        //    }
+        //}
         /// <summary>
         /// Création des différents table dans la db local ...
         /// </summary>
@@ -107,7 +121,6 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_AUTRE_UNITE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
-
             }
             catch (Exception e)
             {
@@ -167,7 +180,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
             return res;
         }
-
 
         public static async Task<IEnumerable<View_TRS_TIERS_ACTIVITY>> Get_TRS_TIERS_ACTIVITY_Async(string codeTiers)
         {
@@ -321,6 +333,7 @@ namespace XpertMobileApp.SQLite_Managment
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
+                    
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
@@ -328,7 +341,8 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncStock();//worked !
                     await syncPermission();//worked ! 
                     await SyncSysParams(); //worked !
-                    await syncSession(); //worked !
+                    await SyncProductPriceByQuantity();
+                    //await syncSession(); //worked !
                     await SyncFamille();//worked !
                     await SyncTypeTiers();//worked !
                     await SyncSecteurs();//worked !
@@ -340,8 +354,9 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncProduct();
                     await SyncTransfers();
                     await SyncTransfersDetail();
+                    //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>(); // we don't need to sync all the encaiss 
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
-                    await SyncData<View_VTE_VENTE, VTE_VENTE>();
+                    //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
                     //await SyncProductPriceByQuantity();       this probelem here 
@@ -364,6 +379,7 @@ namespace XpertMobileApp.SQLite_Managment
                 throw ex;
             }
         }
+
 
         //public static async Task<List<View_TRS_ENCAISS>> GetEncaissByUser(string idUser)
         //{
@@ -481,7 +497,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncTiersToServer();
                 await SyncEncaissToServer();
                 UserDialogs.Instance.HideLoading();
-                await SyncVenteToServer(); // error while coppying content to a stream
+                //await SyncVenteToServer(); // error while coppying content to a stream
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else
@@ -668,41 +684,52 @@ namespace XpertMobileApp.SQLite_Managment
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static async Task AjoutEnciassement(View_TRS_ENCAISS item)
+        public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location)
         {
-            if (string.IsNullOrEmpty(item.CODE_ENCAISS))
+            if (!string.IsNullOrEmpty(App.PrefixCodification))
             {
-                List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-                var nom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS;
-                var prenom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.PRENOM_TIERS;
-                item.NOM_TIERS = nom + " " + prenom;
+                if (string.IsNullOrEmpty(item.CODE_ENCAISS))
+                {
+                    List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                    var nom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS;
+                    var prenom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.PRENOM_TIERS;
+                    item.NOM_TIERS = nom + " " + prenom;
 
-                List<View_BSE_COMPTE> comptes = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
-                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
+                    List<View_BSE_COMPTE> comptes = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
+                    item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
+                    item.CREATED_ON = DateTime.Now;
+                    item.CREATED_BY = App.User.UserName;
+                    List<BSE_ENCAISS_MOTIFS> motif = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+                    item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+                    if (location != null)
+                    {
+                        item.GPS_LATITUDE = location.Latitude;
+                        item.GPS_LONGITUDE = location.Longitude;
+                    }
 
-                item.CREATED_BY = App.User.UserName;
+                    var id = await GetInstance().InsertAsync(item);
 
-                List<BSE_ENCAISS_MOTIFS> motif = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
-                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+                    await GetInstance().UpdateAsync(item);
+                    await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    List<View_BSE_COMPTE> comptes = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
+                    item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
 
-                var id = await GetInstance().InsertAsync(item);
-                item.CODE_ENCAISS = await generateCode(item.CODE_TYPE, item.ID.ToString());
-                item.NUM_ENCAISS = await generateNum(item.CODE_TYPE, item.ID.ToString());
-                await GetInstance().UpdateAsync(item);
+                    item.CREATED_BY = App.User.UserName;
+
+                    List<BSE_ENCAISS_MOTIFS> motif = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
+                    item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+
+                    var id = await GetInstance().UpdateAsync(item);
+                }
+                await UpdateSoldeTiers(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
             }
             else
             {
-                List<View_BSE_COMPTE> comptes = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
-                item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
-
-                item.CREATED_BY = App.User.UserName;
-
-                List<BSE_ENCAISS_MOTIFS> motif = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
-                item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
-
-                var id = await GetInstance().UpdateAsync(item);
+                await UserDialogs.Instance.AlertAsync("Veuillez configurer le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-            await UpdateSoldTiersApresEncaiss(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
         }
 
         public static async Task UpdateTiers(View_TRS_TIERS tiers)
@@ -783,37 +810,56 @@ namespace XpertMobileApp.SQLite_Managment
             return true;
         }
 
-        private static async Task UpdateSoldTiers(decimal sold, string codeTiers)
+        //private static async Task UpdateSoldTiers(decimal sold, string codeTiers)
+        //{
+        //    List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+        //    var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
+        //    if (UpdatedTiers.SOLDE_TIERS > 0)
+        //    {
+        //        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
+        //    }
+        //    else
+        //    {
+        //        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
+        //    }
+        //    await GetInstance().UpdateAsync(UpdatedTiers);
+        //}
+
+        private static async Task UpdateSoldeTiers(decimal sold, string codeTiers, string type = "ENC")
         {
-            List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-            if (UpdatedTiers.SOLDE_TIERS > 0)
+            try
             {
-                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
+                View_TRS_TIERS UpdatedTiers = await GetInstance().Table<View_TRS_TIERS>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+                View_LIV_TOURNEE_DETAIL Tournnee = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().FirstOrDefaultAsync(x => x.CODE_TIERS == codeTiers);
+                if (UpdatedTiers != null)
+                {
+                    if (type == "ENC")
+                    {
+                        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
+                    }
+                    else
+                    {
+                        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
+                    }
+                    await GetInstance().UpdateAsync(UpdatedTiers);
+
+                    // juste dans offline :: update solde tierss dans tournnee juste dans offline car le champs de solde tiers dans tournnee not calculable dans offline 
+                    if (Tournnee != null)
+                    {
+                        Tournnee.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS;
+                        await GetInstance().UpdateAsync(Tournnee);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
-            await GetInstance().UpdateAsync(UpdatedTiers);
+
+
         }
 
-        private static async Task UpdateSoldTiersApresEncaiss(decimal sold, string codeTiers, string type = "ENC")
-        {
-            List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-            var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-            if (type == "ENC")
-            {
-                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
-            }
-            else
-            {
-                UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
-            }
-            await GetInstance().UpdateAsync(UpdatedTiers);
-        }
-
-        private static async Task<decimal> getSoldTiers(string codeTiers)
+        private static async Task<decimal> GetSoldTiers(string codeTiers)
         {
             List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
             var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
@@ -824,25 +870,33 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                tiers.NOM_TIERS1 = tiers.NOM_TIERS + " " + tiers.PRENOM_TIERS;
+                if (!string.IsNullOrEmpty(App.PrefixCodification))
+                {
+                    tiers.NOM_TIERS1 = tiers.NOM_TIERS + " " + tiers.PRENOM_TIERS;
 
-                List<BSE_TABLE_TYPE> Types = await GetInstance().Table<BSE_TABLE_TYPE>().ToListAsync();
-                tiers.DESIGNATION_TYPE = Types.Where(e => e.CODE_TYPE == tiers.CODE_TYPE).FirstOrDefault()?.DESIGNATION_TYPE;
+                    List<BSE_TABLE_TYPE> Types = await GetInstance().Table<BSE_TABLE_TYPE>().ToListAsync();
+                    tiers.DESIGNATION_TYPE = Types.Where(e => e.CODE_TYPE == tiers.CODE_TYPE).FirstOrDefault()?.DESIGNATION_TYPE;
 
-                List<View_BSE_TIERS_FAMILLE> familles = await GetInstance().Table<View_BSE_TIERS_FAMILLE>().ToListAsync();
-                tiers.DESIGN_FAMILLE = familles.Where(e => e.CODE_FAMILLE == tiers.CODE_FAMILLE).FirstOrDefault()?.DESIGN_FAMILLE;
+                    List<View_BSE_TIERS_FAMILLE> familles = await GetInstance().Table<View_BSE_TIERS_FAMILLE>().ToListAsync();
+                    tiers.DESIGN_FAMILLE = familles.Where(e => e.CODE_FAMILLE == tiers.CODE_FAMILLE).FirstOrDefault()?.DESIGN_FAMILLE;
 
-                tiers.ETAT_TIERS = STAT_TIERS_MOBILE.ADDED;
+                    tiers.ETAT_TIERS = STAT_TIERS_MOBILE.ADDED;
 
-                var id = await GetInstance().InsertAsync(tiers);
+                    var id = await GetInstance().InsertAsync(tiers);
 
-                tiers.CODE_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
-                tiers.NUM_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
-                await GetInstance().UpdateAsync(tiers);
+                    tiers.CODE_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
+                    tiers.NUM_TIERS = tiers.ID.ToString() + "/" + App.PrefixCodification + "/MOB";
+                    await GetInstance().UpdateAsync(tiers);
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
 
         }
@@ -967,7 +1021,7 @@ namespace XpertMobileApp.SQLite_Managment
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT = TourneeStatus.Delivered;
                     item.ETAT_COLOR = "#008000";
-                    item.SOLDE_TIERS = await getSoldTiers(item.CODE_TIERS);
+                    item.SOLDE_TIERS = await GetSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
                     item.GPS_LONGITUDE = vente.GPS_LATITUDE;
                     await GetInstance().UpdateAsync(item);
@@ -1233,8 +1287,16 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         public static async Task<List<SYS_OBJET_PERMISSION>> getPermission()
         {
-            var permission = await GetInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
-            return permission;
+            try
+            {
+                var permission = await GetInstance().Table<SYS_OBJET_PERMISSION>().ToListAsync();
+                return permission;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
 
         /// <summary>
@@ -1326,6 +1388,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
+
                 var itemsC = await WebServiceClient.getComptes();
                 itemsC.Insert(0, new View_BSE_COMPTE()
                 {
@@ -1507,7 +1570,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (vente.TOTAL_TTC != vente.MT_VERSEMENT)
                 {
                     decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
-                    await UpdateSoldTiers(sold, vente.CODE_TIERS);
+                    await UpdateSoldeTiers(sold, vente.CODE_TIERS);
                 }
 
                 await UpdateTourneeDetail(vente);
@@ -1521,13 +1584,21 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-                var obj4 = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync(); // I added this line for testing purposes !! 
-                item.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
-                item.CREATED_BY = App.User.UserName;
-                item.CODE_VENTE = await generateCode(item.TYPE_DOC, item.ID.ToString());
+                //Test si le prefix est configurer ou non...
+                if (!string.IsNullOrEmpty(App.PrefixCodification))
+                {
+                    var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                    var obj4 = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync(); // I added this line for testing purposes !! 
+                    item.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
+                    item.CREATED_BY = App.User.UserName;
+                    item.CODE_VENTE = await generateCode(item.TYPE_DOC, item.ID.ToString());
+                    await GetInstance().InsertAsync(item);
+                }
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez configurer le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
 
-                await GetInstance().InsertAsync(item);
             }
             catch (Exception ex)
             {
@@ -1547,14 +1618,21 @@ namespace XpertMobileApp.SQLite_Managment
         {
             List<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY> AllPrices = await GetInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
             var prixProduct = AllPrices.Where(x => x.CODE_PRODUIT == codeProduit).FirstOrDefault();
-            if (Math.Abs(qteVendu) >= prixProduct.QTE_VENTE)
+            if (prixProduct != null)
             {
-                return prixProduct.PRIX_GROS;
-            }
-            else
+                if (Math.Abs(qteVendu) >= prixProduct.QTE_VENTE)
+                {
+                    return prixProduct.PRIX_GROS;
+                }
+                else
+                {
+                    return prixProduct.PRIX_DETAIL;
+                }
+            } else
             {
-                return prixProduct.PRIX_DETAIL;
+                return 100;
             }
+
         }
 
         public static async Task<SYS_MOBILE_PARAMETRE> getParams()
@@ -1571,6 +1649,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         public static async Task<string> generateCode(string TypeDoc, string ID)
         {
+
             var date = DateTime.Now.Year.ToString();
             var date2 = "";
             if (date.Length == 2)
@@ -1700,14 +1779,30 @@ namespace XpertMobileApp.SQLite_Managment
         }
         public static async Task AssignPrefix()
         {
-            var prefix = await GetInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
-            if (!(string.IsNullOrEmpty(prefix.PREFIX)))
+            try
             {
-                App.PrefixCodification = prefix.PREFIX;
+                var prefix = await GetInstance().Table<SYS_CONFIGURATION_MACHINE>().FirstOrDefaultAsync();
+                if (prefix != null)
+                {
+                    if (!(string.IsNullOrEmpty(prefix.PREFIX)))
+                    {
+                        App.PrefixCodification = prefix.PREFIX;
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+
+                else
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
-            else
+            catch (Exception)
             {
-                //await DisplayAlert(AppResources.alrt_msg_Alert, "Veuillez configurer votre prefixe", AppResources.alrt_msg_Ok);
+
+                await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
         public static async Task AssignMagasin()

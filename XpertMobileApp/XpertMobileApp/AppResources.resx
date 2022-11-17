@@ -142,7 +142,7 @@
     <value>Analyses</value>
   </data>
   <data name="pn_encaissement" xml:space="preserve">
-    <value>Encaiss &amp; Décaiss</value>
+    <value>Versement &amp; Remboursement</value>
   </data>
   <data name="pn_home" xml:space="preserve">
     <value>Accueil</value>
@@ -268,10 +268,10 @@
     <value>Compte</value>
   </data>
   <data name="txt_Decaiss" xml:space="preserve">
-    <value>Décaissement</value>
+    <value>Remboursement</value>
   </data>
   <data name="txt_Encaiss" xml:space="preserve">
-    <value>Encaissement</value>
+    <value>Versement</value>
   </data>
   <data name="txt_Today" xml:space="preserve">
     <value>Aujourd'hui</value>
@@ -1165,7 +1165,7 @@
   <data name="ab_VerifMaj" xml:space="preserve">
     <value>Mise à jour </value>
   </data>
-  <data name="ab_currentVersion" xml:space="preserve">
+  <data name="t" xml:space="preserve">
     <value>Version actuelle</value>
   </data>
   <data name="ab_newMaj" xml:space="preserve">

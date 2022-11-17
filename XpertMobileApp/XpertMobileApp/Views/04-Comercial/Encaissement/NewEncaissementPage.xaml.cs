@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Managers;
@@ -197,7 +199,10 @@ namespace XpertMobileApp.Views
                         {
                             Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
                         }
-                        await SQLite_Manager.AjoutEnciassement(Item);
+                        var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
+                        var cts = new CancellationTokenSource();
+                        var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                        await SQLite_Manager.AjoutEncaissement(Item, location);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopAsync();
                     }
@@ -225,7 +230,7 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await SQLite_Manager.AjoutEnciassement(Item);
+                        await SQLite_Manager.AjoutEncaissement(Item, null);
                         await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopModalAsync();
