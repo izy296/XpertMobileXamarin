@@ -62,6 +62,8 @@ namespace XpertMobileApp.SQLite_Managment
                 string clientId = App.Settings.ClientId.ToString();
                 string AppName = Constants.AppName.ToString();
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
+                // Copy DB to extrnale directory
+                File.Copy(databasePath, "/storage/F4A6D8A0A6D864A0/Download/", true);
                 db = new SQLiteAsyncConnection(databasePath);
                 return db;
             }
@@ -131,21 +133,6 @@ namespace XpertMobileApp.SQLite_Managment
 
             try
             {
-                string query = "CREATE VIEW View_TRS_TIERS_ACTIVITY " +
-                        "AS SELECT " +
-                        "t.CODE_TIERS, " +
-                        "t.NOM_TIERS," +
-                        "t.PRENOM_TIERS," +
-                        "v.TYPE_DOC," +
-                        "v.TOTAL_PAYE," +
-                        "v.CODE_VENTE," +
-                        "c.CODE_VENTE CODE_COMMANDE," +
-                        "c.TOTAL_PAYE TOTAL_COMMANDE " +
-                        "FROM View_TRS_TIERS t " +
-                        "LEFT JOIN View_VTE_VENTE v ON v.CODE_TIERS = t.CODE_TIERS " +
-                        "LEFT JOIN View_TRS_ENCAISS e ON e.CODE_TIERS = t.CODE_TIERS " +
-                        "LEFT JOIN View_VTE_COMMANDE c ON c.CODE_TIERS = t.CODE_TIERS;";
-
                 string queryNew = @"CREATE VIEW View_TRS_TIERS_ACTIVITY AS 
                                     SELECT * FROM ( 
                                     SELECT v.CODE_VENTE,  
@@ -167,9 +154,9 @@ namespace XpertMobileApp.SQLite_Managment
                                               e.TOTAL_ENCAISS TOTAL_PAYE, 
                                               'ENC' TYPE_DOC, 
                                               e.CODE_TIERS, 
-                                              e.CREATED_ON 
+                                              e.DATE_ENCAISS CREATED_ON 
                                             FROM View_TRS_ENCAISS e 
-                                            )T";
+                                            )T ORDER BY CREATED_ON DESC";
 
                 await GetInstance().ExecuteAsync(queryNew);
 
@@ -182,7 +169,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<IEnumerable<View_TRS_TIERS_ACTIVITY>> get_TRS_TIERS_ACTIVITY_Async(string codeTiers)
+        public static async Task<IEnumerable<View_TRS_TIERS_ACTIVITY>> Get_TRS_TIERS_ACTIVITY_Async(string codeTiers)
         {
             string Query = String.Format("SELECT * FROM View_TRS_TIERS_ACTIVITY WHERE CODE_TIERS = '{0}'", codeTiers);
             var res = await GetInstance().QueryAsync<View_TRS_TIERS_ACTIVITY>(Query);
@@ -326,8 +313,8 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                bool isconnected = await App.IsConected();
-                if (isconnected)
+                //bool isconnected = await App.IsConected();
+                if (App.Online)
                 {
                     await InitialisationDbLocal();
 

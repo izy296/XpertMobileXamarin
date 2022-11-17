@@ -81,7 +81,7 @@ namespace XpertMobileApp.Views
                 {
                     if (Constants.AppName == Apps.X_DISTRIBUTION)
                     {
-                        await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
+                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
                         return;
                     }
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
@@ -104,6 +104,11 @@ namespace XpertMobileApp.Views
                 var session = await SQLite_Manager.getCurrenetSession();
                 if (session == null)
                 {
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    {
+                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
+                        return;
+                    }
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
                     if (res)
                     {

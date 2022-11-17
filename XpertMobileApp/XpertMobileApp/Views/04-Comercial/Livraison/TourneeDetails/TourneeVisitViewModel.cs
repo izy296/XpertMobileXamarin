@@ -51,7 +51,7 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 IsBusy = true;
-                var Activity = await SQLite_Manager.get_TRS_TIERS_ACTIVITY_Async(Item.CODE_TIERS);
+                var Activity = await SQLite_Manager.Get_TRS_TIERS_ACTIVITY_Async(Item.CODE_TIERS);
                 if (Activity != null)
                     Activitys = Activity as List<View_TRS_TIERS_ACTIVITY>;
             }

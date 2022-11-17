@@ -13,7 +13,7 @@
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-                BackgroundColor="{StaticResource Primary}">
+                BackgroundColor="{DynamicResource NavigationPrimary}">
                 <StackLayout
                 Orientation="Horizontal"
                 Margin="0,10,0,20"

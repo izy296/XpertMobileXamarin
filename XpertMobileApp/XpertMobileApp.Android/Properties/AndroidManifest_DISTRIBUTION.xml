@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2273" android:versionName="2.73" package="com.xpertsoft.ComMobileAppDist" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="2273" android:versionName="2.73" package="com.xpertsoft.ComMobileAppDistribution" android:installLocation="preferExternal">
 	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="30" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -14,11 +13,20 @@
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+	<uses-permission android:name="android.permission.CONTROL_LOCATION_UPDATES" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 	<uses-feature android:name="android.hardware.location" android:required="false" />
 	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
 	<uses-feature android:name="android.hardware.location.network" android:required="false" />
 	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 	<application android:label="XpertMobile DIST" android:usesCleartextTraffic="true" android:icon="@drawable/icon">
+		<meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
+		<!--<meta-data android:name = "com.google.android.maps.v2.API_KEY" android:value = "AIzaSyAoRxjBQs9OP8FKmK5cnPvlHZ6v75Tcw3M" />-->
+		<meta-data android:name = "com.google.android.geo.API_KEY" android:value = "AIzaSyAoRxjBQs9OP8FKmK5cnPvlHZ6v75Tcw3M" />
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
 		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
 			<intent-filter>

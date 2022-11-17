@@ -272,7 +272,7 @@ namespace XpertMobileApp.Views
             {
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-                await Navigation.PushModalAsync(new NavigationPage(new NewCommandePage(null, tier)));
+                await Navigation.PushAsync(new NavigationPage(new NewCommandePage(null, tier)));
             }
             catch (Exception ex)
             {
@@ -286,6 +286,8 @@ namespace XpertMobileApp.Views
             {
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+
+                await Navigation.PushAsync(new VenteFormPage(null, "BR", tier));
             }
             catch (Exception ex)
             {
@@ -310,22 +312,22 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private async void newCommande(object sender, EventArgs e)
+
+        private async void newBl(object sender, EventArgs e)
         {
             try
             {
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
+
+                await Navigation.PushAsync(new VenteFormLivraisonPage(null, "BL", tier,viewModel.Item.CODE_DETAIL));
+
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-        }
-
-        private void newBl(object sender, EventArgs e)
-        {
 
         }
     }
