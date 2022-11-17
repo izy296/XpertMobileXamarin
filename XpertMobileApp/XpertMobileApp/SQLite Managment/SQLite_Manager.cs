@@ -380,6 +380,26 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static async Task SynchroniseDELETE()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<TRS_JOURNEES>();
+                await GetInstance().DeleteAllAsync<View_STK_STOCK>();
+                await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
+                await GetInstance().DeleteAllAsync<View_LIV_TOURNEE>();
+                await GetInstance().DeleteAllAsync<View_TRS_TIERS>();
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+                await UserDialogs.Instance.AlertAsync("Suppression des tables de base faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                throw ex;
+            }
+        }
 
         //public static async Task<List<View_TRS_ENCAISS>> GetEncaissByUser(string idUser)
         //{
