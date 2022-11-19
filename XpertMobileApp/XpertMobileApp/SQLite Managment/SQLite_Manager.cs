@@ -72,20 +72,6 @@ namespace XpertMobileApp.SQLite_Managment
                 return db;
             }
         }
-
-        //public async static void CreateCopyOfSQlite()
-        //{
-        //    try
-        //    {
-        //        //Get the 98
-        //        var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await UserDialogs.Instance.AlertAsync("Impossible de créer une copie sur la base de donnée", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-
-        //    }
-        //}
         /// <summary>
         /// Création des différents table dans la db local ...
         /// </summary>
@@ -688,7 +674,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// Obtenir la liste des types des tiers 
         /// </summary>
         /// <returns></returns>
-        public static async Task<List<BSE_TABLE_TYPE>> getTypeTiers()
+        public static async Task<List<BSE_TABLE_TYPE>> GetTypeTiers()
         {
             var TypeTiers = await GetInstance().Table<BSE_TABLE_TYPE>().ToListAsync();
             return TypeTiers;
@@ -731,7 +717,6 @@ namespace XpertMobileApp.SQLite_Managment
                         item.GPS_LATITUDE = location.Latitude;
                         item.GPS_LONGITUDE = location.Longitude;
                     }
-
                     var id = await GetInstance().InsertAsync(item);
 
                     await GetInstance().UpdateAsync(item);
