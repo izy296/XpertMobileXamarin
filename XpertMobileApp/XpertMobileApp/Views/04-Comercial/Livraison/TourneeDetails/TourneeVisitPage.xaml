@@ -203,7 +203,7 @@
                                            Padding="10"
                                            CornerRadius="40">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="newBl"/>
+                                <TapGestureRecognizer Tapped="AddNewBl"/>
                             </Frame.GestureRecognizers>
                             <Image Source="bl.png" 
                                                HorizontalOptions="Center"
@@ -238,7 +238,7 @@
                                            Padding="10"
                                            CornerRadius="40">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="newRetour"/>
+                                <TapGestureRecognizer Tapped="AddNewRetour"/>
                             </Frame.GestureRecognizers>
 
                             <Image Source="product_return.png"
@@ -276,7 +276,7 @@
                                            Padding="10"
                                            CornerRadius="40">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="newVersement"/>
+                                <TapGestureRecognizer Tapped="AddNewVersement"/>
                             </Frame.GestureRecognizers>
 
                             <Image Source="versement.png" 

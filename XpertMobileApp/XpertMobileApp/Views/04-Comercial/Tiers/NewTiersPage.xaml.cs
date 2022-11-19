@@ -206,7 +206,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Types.Clear();
-                var itemsC = await SQLite_Manager.getTypeTiers();
+                var itemsC = await SQLite_Manager.GetTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);

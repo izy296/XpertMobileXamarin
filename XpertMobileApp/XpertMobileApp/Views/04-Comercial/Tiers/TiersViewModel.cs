@@ -213,7 +213,7 @@ namespace XpertMobileApp.ViewModels
             else
             {
                 Types.Clear();
-                var itemsC = await SQLite_Manager.getTypeTiers();
+                var itemsC = await SQLite_Manager.GetTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -330,6 +330,37 @@ namespace XpertMobileApp.ViewModels
 
                 throw ex;
             }
+        }
+
+        public override async Task<List<View_TRS_TIERS>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
+            
+            if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
+                sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE_FAMILLE).ToList();
+
+
+            if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
+                sqliteRes = sqliteRes.Where(e => e.CODE_TYPE == selectedType.CODE_TYPE).ToList();
+
+            if (!string.IsNullOrEmpty(SearchedText))
+                sqliteRes = sqliteRes.Where(e => e.NOM_TIERS1.Contains(SearchedText)).ToList();
+
+            if (SoldOperator == ">")
+                sqliteRes = sqliteRes.Where(e => e.SOLDE_TIERS > 0).ToList();
+
+            else if (SoldOperator == "<")
+                sqliteRes = sqliteRes.Where(e => e.SOLDE_TIERS < 0).ToList();
+
+            else if (SoldOperator == "=")
+                sqliteRes = sqliteRes.Where(e => e.SOLDE_TIERS == 0).ToList();
+
+            if (sortAtoZ)
+            {
+                sqliteRes = sqliteRes.OrderBy(x => x.NOM_TIERS1).ToList();
+            }
+
+            return sqliteRes;
         }
     }
 }

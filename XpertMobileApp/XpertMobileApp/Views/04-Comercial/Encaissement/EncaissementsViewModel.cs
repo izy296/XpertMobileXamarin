@@ -64,7 +64,7 @@ namespace XpertMobileApp.ViewModels
         } = false;
         public EncaissementsViewModel()
         {
-            Title = AppResources.pn_encaissement ;
+            Title = AppResources.pn_encaissement;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
@@ -101,7 +101,7 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_TRS_ENCAISS> list)
         {
             base.OnAfterLoadItems(list);
-           
+
             int i = 0;
             foreach (var item in list)
             {
@@ -113,12 +113,19 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_TRS_ENCAISS>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var res = await base.SelectByPageFromSqlLite(filter);
-            string temp  = EncaissDisplayType.ToString(); 
             if (EncaissDisplayType.ToString() != "" && EncaissDisplayType.ToString() != EncaissDisplayType.All.ToString())
             {
                 res = res.Where(x => x.CODE_TYPE == EncaissDisplayType.ToString()).ToList();
                 return res;
             }
+            res = res.Where(e => e.DATE_ENCAISS >= StartDate && e.DATE_ENCAISS <= EndDate).ToList();
+
+            if (selectedCompte != null)
+                res = res.Where(e => e.CODE_COMPTE == selectedCompte.CODE_COMPTE).ToList();
+
+            if (selectedMotif != null)
+                res = res.Where(e => e.CODE_MOTIF == selectedMotif.CODE_MOTIF).ToList();
+
             return res;
         }
 
@@ -194,7 +201,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     IsLoadExtrasBusy = true;
                     Comptes.Clear();
-
+                    Motifs.Clear();
                     //Obtenir les comptes de la table bse_compte...
                     var itemsC = await SQLite_Manager.getComptes();
 
@@ -230,5 +237,7 @@ namespace XpertMobileApp.ViewModels
             SelectedCompte = null;
             selectedMotif = null;
         }
+
     }
+
 }

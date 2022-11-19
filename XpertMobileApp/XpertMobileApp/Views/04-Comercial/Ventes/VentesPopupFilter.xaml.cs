@@ -13,6 +13,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -47,6 +48,11 @@ namespace XpertMobileApp.Views
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
             if (viewModel.TypeVente == VentesTypes.VenteComptoir)
+            {
+                status_layout.IsVisible = false;
+            }
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
             {
                 status_layout.IsVisible = false;
             }

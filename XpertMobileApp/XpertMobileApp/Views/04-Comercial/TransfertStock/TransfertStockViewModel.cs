@@ -33,14 +33,20 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            
             this.AddCondition<View_STK_TRANSFERT, DateTime?>(e => e.DATE_TRANSEFRT, Operator.BETWEEN_DATE, StartDate, EndDate);
             this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_DESTINATION, App.CODE_MAGASIN);
             this.AddCondition<View_STK_TRANSFERT, bool>(e => e.IS_VALIDATE, false);
 
-
             this.AddOrderBy<View_STK_TRANSFERT, DateTime?>(e => e.CREATED_ON);
             return qb.QueryInfos;
+        }
+        public override async Task<List<View_STK_TRANSFERT>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
+
+            sqliteRes = sqliteRes.Where(e => e.DATE_TRANSEFRT >= StartDate && e.DATE_TRANSEFRT <= EndDate).ToList();
+
+            return sqliteRes;
         }
 
         internal override async Task ExecuteLoadItemsCommand()
@@ -58,7 +64,7 @@ namespace XpertMobileApp.ViewModels
                 }
                 else
                 {
-                    if (Items.Count >= ElementsCount && Items.Count!=0)
+                    if (Items.Count >= ElementsCount && Items.Count != 0)
                         return;
                     currentQB = GetFilterParams().StringCondition;
                 }
@@ -76,9 +82,6 @@ namespace XpertMobileApp.ViewModels
             }
 
         }
-
-
-
         public Command PullTORefresh
         {
             get

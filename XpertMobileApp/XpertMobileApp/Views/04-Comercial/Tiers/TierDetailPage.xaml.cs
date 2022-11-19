@@ -27,7 +27,6 @@ namespace XpertMobileApp.Views
     public partial class TierDetailPage : PopupPage
     {
         private bool isEnable = false;
-        private bool isOpen = false;
         public Command LoadFamilleCommand { get; set; }
         public Command LoadTypesCommand { get; set; }
         public Command LoadSecteursCommand { get; set; }
@@ -302,7 +301,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Types.Clear();
-                var itemsC = await SQLite_Manager.getTypeTiers();
+                var itemsC = await SQLite_Manager.GetTypeTiers();
                 foreach (var itemC in itemsC)
                 {
                     Types.Add(itemC);
@@ -420,116 +419,5 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private async void AddNewCommand(object sender, EventArgs e)
-        {
-            try
-            {
-                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
-                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-                await Navigation.PushModalAsync(new NavigationPage(new NewCommandePage(null, Item)));
-                await PopupNavigation.Instance.PopAsync();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-
-        private async void OpenCloseButtons(object sender, EventArgs e)
-        {
-            try
-            {
-                await ((Frame)sender).ScaleTo(0.5, 50, Easing.Linear);
-                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-
-                if (isOpen)
-                {
-                    isOpen = !isOpen;
-                    await closeIcon.RotateTo(0);
-                    FloatMenuItem1.IsVisible = false;
-                    await Task.Delay(70);
-                    FloatMenuItem2.IsVisible = false;
-                    await Task.Delay(70);
-                    FloatMenuItem3.IsVisible = false;
-                    await Task.Delay(70);
-                    FloatMenuItem4.IsVisible = false;
-
-                }
-                else
-                {
-                    isOpen = !isOpen;
-                    await closeIcon.RotateTo(-45);
-                    FloatMenuItem1.IsVisible = true;
-                    await Task.Delay(70);
-                    FloatMenuItem2.IsVisible = true;
-                    await Task.Delay(70);
-                    FloatMenuItem3.IsVisible = true;
-                    await Task.Delay(70);
-                    FloatMenuItem4.IsVisible = true;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        private async void newBl(object sender, EventArgs e)
-        {
-            try
-            {
-                await((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
-                await((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-        private async void newRetour(object sender, EventArgs e)
-        {
-            try
-            {
-                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
-                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-        private async void newVersement(object sender, EventArgs e)
-        {
-            try
-            {
-                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
-                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-        private async void newCommande(object sender, EventArgs e)
-        {
-            try
-            {
-                await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
-                await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
     }
 }

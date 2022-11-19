@@ -77,6 +77,9 @@ namespace XpertMobileApp.ViewModels
                 }*/
                 else
                 {
+                    if (Constants.AppName == Apps.XCOM_Livraison)
+                        return "VTE_VENTE_XCOM";
+                    else
                     return "VTE_VENTE";
                 }
             }
@@ -161,7 +164,6 @@ namespace XpertMobileApp.ViewModels
                 sqliteRes = sqliteRes.Where(e => e.TYPE_DOC == SelectedType?.CODE_TYPE).ToList();
             sqliteRes = sqliteRes.OrderByDescending(e => e.CREATED_ON).ToList();
             return sqliteRes;
-
         }
 
         protected override QueryInfos GetSelectParams()

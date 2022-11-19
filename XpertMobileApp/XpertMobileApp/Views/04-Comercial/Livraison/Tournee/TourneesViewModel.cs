@@ -3,6 +3,7 @@ using Syncfusion.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
@@ -49,7 +50,7 @@ namespace XpertMobileApp.ViewModels
             base.GetFilterParams();
             this.AddCondition<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
             this.AddCondition<View_LIV_TOURNEE, bool>(e => e.ETAT_TOURNEE, false);
-            if (App.User.UserGroup!="AD")
+            if (App.User.UserGroup != "AD")
             {
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_MAGASIN, App.CODE_MAGASIN);
@@ -85,7 +86,7 @@ namespace XpertMobileApp.ViewModels
             get { return searchedRef; }
             set { SetProperty(ref searchedRef, value); }
         }
-        
+
 
         public ObservableCollection<BSE_TABLE_TYPE> Types { get; set; }
         private BSE_TABLE_TYPE selectedType;
@@ -163,6 +164,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+
                 Familles.Clear();
                 var itemsC = await WebServiceClient.GetProduitFamilles();
 
@@ -184,6 +186,18 @@ namespace XpertMobileApp.ViewModels
         }
 
         #endregion
+
+        #region filter Data Offline 
+
+        public async override Task<List<View_LIV_TOURNEE>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
+            sqliteRes = sqliteRes.Where(e => e.DATE_TOURNEE >= StartDate && e.DATE_TOURNEE <= EndDate).ToList();
+            return sqliteRes;
+        }
+        #endregion
+
     }
 
 }
