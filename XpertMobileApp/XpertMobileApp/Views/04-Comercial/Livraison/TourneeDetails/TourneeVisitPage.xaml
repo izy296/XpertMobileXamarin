@@ -136,7 +136,7 @@
                                                             TextColor="{StaticResource Primary}">
                                                             </Label>
                                                             <Label Grid.Column="1"
-                                                                   Text="{Binding CREATED_ON, StringFormat='{0:dd/MM/yyyy}'}"
+                                                                   Text="{Binding DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}"
                                                                    TextColor="Black">
                                                             </Label>
                                                         </Grid>
