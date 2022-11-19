@@ -280,7 +280,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private async void newRetour(object sender, EventArgs e)
+        private async void AddNewRetour(object sender, EventArgs e)
         {
             try
             {
@@ -296,7 +296,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private async void newVersement(object sender, EventArgs e)
+        private async void AddNewVersement(object sender, EventArgs e)
         {
             try
             {
@@ -313,7 +313,7 @@ namespace XpertMobileApp.Views
         }
 
 
-        private async void newBl(object sender, EventArgs e)
+        private async void AddNewBl(object sender, EventArgs e)
         {
             try
             {
