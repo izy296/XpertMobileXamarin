@@ -27,7 +27,7 @@ namespace XpertMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VenteFormLivraisonPage : ContentPage
     {
-        private VenteFormViewModel viewModel;
+        private VenteFormLivraisonViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
 
@@ -62,7 +62,7 @@ namespace XpertMobileApp.Views
                 vte.PropertyChanged += Vte_PropertyChanged;
             }
 
-            BindingContext = this.viewModel = new VenteFormViewModel(vte, vte?.CODE_VENTE);
+            BindingContext = this.viewModel = new VenteFormLivraisonViewModel(vte, vte?.CODE_VENTE);
             viewModel.TypeDoc = typeDoc;
 
             //viewModel.IsEnabled = disable;
@@ -211,7 +211,7 @@ namespace XpertMobileApp.Views
             try
             {
                 viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetVenteLotDetails(this.viewModel.Item.CODE_VENTE);
+                var itemsC = await WebServiceClient.GetVenteLotLivraisonDetails(this.viewModel.Item.CODE_VENTE);
 
                 foreach (var itemC in itemsC)
                 {
@@ -310,7 +310,7 @@ namespace XpertMobileApp.Views
 
         private async void Btn_Delete_Clicked(object sender, EventArgs e)
         {
-            View_VTE_VENTE_LOT vteD = (sender as Button).BindingContext as View_VTE_VENTE_LOT;
+            View_VTE_VENTE_LIVRAISON vteD = (sender as Button).BindingContext as View_VTE_VENTE_LIVRAISON;
 
             if (vteD != null)
             {
@@ -318,9 +318,9 @@ namespace XpertMobileApp.Views
                 {
                     int index = viewModel.ItemRows.IndexOf(vteD);
                     viewModel.ItemRows.Remove(vteD);
-                    if (viewModel.Item?.Details?.Count - 1 >= index)
+                    if (viewModel.Item?.DetailsDistrib?.Count - 1 >= index)
                     {
-                        viewModel.Item.Details.RemoveAt(index);
+                        viewModel.Item.DetailsDistrib.RemoveAt(index);
                     }
                 }
             }
@@ -339,7 +339,7 @@ namespace XpertMobileApp.Views
             if (viewModel.ItemRows.Count > 0)
             {
                 VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
-                VteValidationPage.ParentviewModel = viewModel;
+                VteValidationPage.ParentLivraisonviewModel= viewModel;
                 await PopupNavigation.Instance.PushAsync(VteValidationPage);
             }
             else
@@ -416,7 +416,7 @@ namespace XpertMobileApp.Views
             {
                 var obj = viewModel.ItemRows[itemIndex];
                 viewModel.ItemRows.RemoveAt(itemIndex);
-                viewModel.Item.Details.Remove(obj);
+                viewModel.Item.DetailsDistrib.Remove(obj);
             }
             this.listView.ResetSwipe();
             viewModel.UpdateMontants();

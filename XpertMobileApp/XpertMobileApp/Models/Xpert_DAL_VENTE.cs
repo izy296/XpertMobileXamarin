@@ -217,6 +217,8 @@ namespace XpertMobileApp.DAL
         #region Validation vente
         [Ignore]
         public List<View_VTE_VENTE_LOT> Details { get; set; }
+        [Ignore]
+        public List<View_VTE_VENTE_LIVRAISON> DetailsDistrib { get; set; }
         public string ID_Random { get; internal set; }
         public string MBL_MODE_PAIMENT { get; internal set; }
         private string _MBL_NUM_CARTE_FEDILITE;
@@ -843,10 +845,8 @@ namespace XpertMobileApp.DAL
         public double GPS_LONGITUDE { get; set; }
         public DateTime? HEURE_DEPART_VISITE { get; set; } 
         public DateTime? HEURE_RETOUR_VISITE { get; set; }
-
         public int MOTIF_NON_LIVRAISON { get; set; }
         public string PROOF_NON_LIVRAISON { get; set; }
-
         public int VISITE_CATEGORIE { get; set; }
         public int CODE_ETAT_VISITE { get; set; }
     }
@@ -957,44 +957,109 @@ namespace XpertMobileApp.DAL
         }
     }
 
-    public partial class View_VTE_VENTE_LIVRAISON : VTE_VENTE
+    public partial class View_VTE_VENTE_LIVRAISON : VTE_VENTE_DETAIL
     {
-        public decimal TOTAL_PAYE { get; set; } // money(19,4)
-        public decimal TOTAL_RESTE { get; set; } // money(19,4)
-        public string OWNER { get; set; } // varchar(200)
+        /// <summary>
+        /// Le contenu ancien de View_VTE_VENTE_LIVRAISON
+        /// </summary>
+        /// 
+        //public decimal TOTAL_PAYE { get; set; } // money(19,4)
+        //public decimal TOTAL_RESTE { get; set; } // money(19,4)
+        //public string OWNER { get; set; } // varchar(200)
+        //public string NOM_TIERS { get; set; } // varchar(501)
+        //public string ADRESSE_TIERS { get; set; } // varchar(500)
+        //public string NUM_ASSURE { get; set; } // varchar(12)
+        //public string TEL1_TIERS { get; set; } // varchar(50)
+        //public string TEL2_TIERS { get; set; } // varchar(50)
+        //public string DESIGN_MODE { get; set; } // varchar(300)      
+        //public decimal SOLDE_TIERS_AT_VALIDAT { get; set; } // money(19,4)
+        //public decimal TOTAL_ENCAISS_AT_VALIDAT { get; set; } // money(19,4)
+        //public DateTime? DATE_MAX_ARCHIVE { get; set; }
+        //public string NOM_MEDECIN { get; set; }
+        //public string DESIGNATION_WILAYA_DELIVRE { get; set; }
+        //public string DATE_DELIVRE_CARTE { get; set; }
+        //public string N_CARTE { get; set; }
+        //public string TITRE_VENTE { get; set; } // varchar(300)
+        //public string TYPE_DOC { get; set; }
+        //public decimal TOTAL_HT_REEL { get; set; }
+        //public decimal TOTAL_PPA_REEL { get; set; }
+        //public decimal TOTAL_SHP_REEL { get; set; }
+        //public decimal TOTAL_REMISE_REEL { get; set; }
+        //public decimal TOTAL_TVA_REEL { get; set; }
+        //public decimal TOTAL_TTC_REEL { get; set; }
+        //public decimal TOTAL_PAYE_REEL { get; set; }
+        //public decimal TOTAL_RESTE_REEL { get; set; }
+        //public string DESIGN_MOTIF_LIVRAISON { get; set; }
+        //public string TYPE_TIERS { get; set; }
+        //public decimal TOTAL_TTC_SANS_REMISE { get; set; }
+        //public DateTime? DATE_PAYE_CREANCE { get; set; }
+        //public string DESIGNATION_UNITE { get; set; }
+        //public decimal QTE_TOTAL_VENTE { get; set; }
+        //public decimal QTE_TOTAL_IMPORTER { get; set; }
+        //public decimal QTE_REST_FACTURER { get; set; }
+        //// bon de livraison facturée
+        //public bool LIVRAISON_FACTUREE { get; set; }
+
+        public string IMAGE_URL { get; set; }
+        public string NUM_VENTE { get; set; } // varchar(32)
+        public DateTime? DATE_VENTE { get; set; } // datetime(3)
         public string NOM_TIERS { get; set; } // varchar(501)
-        public string ADRESSE_TIERS { get; set; } // varchar(500)
-        public string NUM_ASSURE { get; set; } // varchar(12)
-        public string TEL1_TIERS { get; set; } // varchar(50)
-        public string TEL2_TIERS { get; set; } // varchar(50)
-        public string DESIGN_MODE { get; set; } // varchar(300)      
-        public decimal SOLDE_TIERS_AT_VALIDAT { get; set; } // money(19,4)
-        public decimal TOTAL_ENCAISS_AT_VALIDAT { get; set; } // money(19,4)
-        public DateTime? DATE_MAX_ARCHIVE { get; set; }
-        public string NOM_MEDECIN { get; set; }
-        public string DESIGNATION_WILAYA_DELIVRE { get; set; }
-        public string DATE_DELIVRE_CARTE { get; set; }
-        public string N_CARTE { get; set; }
-        public string TITRE_VENTE { get; set; } // varchar(300)
-        public string TYPE_DOC { get; set; }
-        public decimal TOTAL_HT_REEL { get; set; }
-        public decimal TOTAL_PPA_REEL { get; set; }
-        public decimal TOTAL_SHP_REEL { get; set; }
-        public decimal TOTAL_REMISE_REEL { get; set; }
-        public decimal TOTAL_TVA_REEL { get; set; }
-        public decimal TOTAL_TTC_REEL { get; set; }
-        public decimal TOTAL_PAYE_REEL { get; set; }
-        public decimal TOTAL_RESTE_REEL { get; set; }
-        public string DESIGN_MOTIF_LIVRAISON { get; set; }
-        public string TYPE_TIERS { get; set; }
-        public decimal TOTAL_TTC_SANS_REMISE { get; set; }
-        public DateTime? DATE_PAYE_CREANCE { get; set; }
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string TYPE_VENTE { get; set; } // char(2)
+        public decimal QTE_RETOUR { get; set; }
+        public decimal QTE_RESTE_RETOUR { get; set; }
+        public string CODE_ORIGINE { get; set; } // varchar(32)
+        public decimal TAUX_MARGE { get; set; } // money(19,4)
+        public string OWNER { get; set; } // varchar(200)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(754)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public DateTime? DATE_PEREMPTION { get; set; }
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_BARRE_LOT { get; set; } // nvarchar(1500)
+        public int TYPE_VALIDATION { get; set; } // int(10)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
+        public string DESIGN_EMPLACEMENT { get; set; } // varchar(10)
+        public string LOT { get; set; } // varchar(50)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)
+        public string REF_PRODUIT { get; set; } // nvarchar(250)
+        public decimal PRIX_ACH_HT { get; set; } // money(19,4)
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // smallint(5)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string DESIGN_LABO { get; set; } // varchar(2500)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public string CODE_CNAS { get; set; }
+        public bool PENDING { get; set; }
+        public decimal PENDING_QUANTITY { get; set; }
+        public bool EXON_TVA { get; set; }
+        public decimal QTE_STOCK_PRODUIT { get; set; } // numeric(18,2)
         public string DESIGNATION_UNITE { get; set; }
-        public decimal QTE_TOTAL_VENTE { get; set; }
-        public decimal QTE_TOTAL_IMPORTER { get; set; }
-        public decimal QTE_REST_FACTURER { get; set; }
-        // bon de livraison facturée
-        public bool LIVRAISON_FACTUREE { get; set; }
+        public string DESIGNATION_UNITE2 { get; set; }
+        public string UNITE_AFFICHER { get; set; }
+        public decimal QTE_AFFICHER { get; set; }
+        public decimal PU_AFFICHER { get; set; }
+
+        // pour que le detail facture chifa indique esque la ligne destocké ou  non 
+        // elle a la valeur inverse de la valeur ignoree destockage dans la fenaitre improtation chifa
+        public bool DESTOCKER { get; set; }
+        public string DESIGNATION_CVM { get; set; }
+        public string CODE_MEDIC { get; set; }
+        public string N_ORDRE_PSYCHO_ENTET { get; set; }
+        public DateTime? DATE_SOINS { get; set; }
+        public string CODE_MEDECIN { get; set; }
+
+        public string TYPE_DOC { get; set; }
+        public string ID { get; internal set; }
+        public string VenteID { get; internal set; }
+        public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
 
     }
 

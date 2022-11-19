@@ -16,7 +16,7 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-    public class VenteFormViewModel : ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>
+    public class VenteFormLivraisonViewModel : ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LIVRAISON>
     {
         private List<String> immatriculationList;
         public List<String> ImmatriculationList
@@ -135,12 +135,12 @@ namespace XpertMobileApp.Views
             set { SetProperty(ref selectedImmat, value); }
         }
 
-        public VenteFormViewModel(View_VTE_VENTE obj, string itemId) : base(obj, itemId)
+        public VenteFormLivraisonViewModel(View_VTE_VENTE obj, string itemId) : base(obj, itemId)
         {
 
         }
 
-        public async Task<View_VTE_VENTE_LOT> AddNewRows(List<View_STK_STOCK> products, bool retour)
+        public async Task<View_VTE_VENTE_LIVRAISON> AddNewRows(List<View_STK_STOCK> products, bool retour)
         {
             foreach (var product in products)
             {
@@ -149,7 +149,7 @@ namespace XpertMobileApp.Views
                     var row = ItemRows.Where(e => e.ID_STOCK == product.ID_STOCK && e.QUANTITE < 0).FirstOrDefault();
                     if (row == null)
                     {
-                        row = new View_VTE_VENTE_LOT();
+                        row = new View_VTE_VENTE_LIVRAISON();
                         decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
                         // row.Parent_Doc = Item;
                         row.VenteID = row.ID;
@@ -195,7 +195,7 @@ namespace XpertMobileApp.Views
                         qte = qte * -1;
                         row.QUANTITE = qte;
                         ItemRows.Add(row);
-                        this.Item.Details = ItemRows.ToList();
+                        this.Item.DetailsDistrib = ItemRows.ToList();
                     }
                     else
                     {
@@ -225,7 +225,7 @@ namespace XpertMobileApp.Views
                     var row = ItemRows.Where(e => e.ID_STOCK == product.ID_STOCK && e.QUANTITE > 0).FirstOrDefault();
                     if (row == null)
                     {
-                        row = new View_VTE_VENTE_LOT();
+                        row = new View_VTE_VENTE_LIVRAISON();
                         decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
                         // row.Parent_Doc = Item;
                         row.VenteID = row.ID;
@@ -266,7 +266,7 @@ namespace XpertMobileApp.Views
                         }
                         row.QUANTITE = qte;
                         ItemRows.Add(row);
-                        this.Item.Details = ItemRows.ToList();
+                        this.Item.DetailsDistrib = ItemRows.ToList();
                     }
                     else
                     {
@@ -365,7 +365,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public async Task<View_VTE_VENTE_LOT> AddScanedProduct(string cb_prod)
+        public async Task<View_VTE_VENTE_LIVRAISON> AddScanedProduct(string cb_prod)
         {
             try
             {

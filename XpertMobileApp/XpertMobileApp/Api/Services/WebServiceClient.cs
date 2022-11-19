@@ -271,6 +271,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
 
+        public static async Task<List<View_VTE_VENTE_LIVRAISON>> GetVenteLotLivraisonDetails(string codeVente)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_DETAILS_URL);
+            url += WSApi2.AddParam(url, "codeVente", codeVente);
+
+            return await RetrievAauthorizedData<View_VTE_VENTE_LIVRAISON>(url);
+        }
+
         public static async Task<List<BSE_DOCUMENTS_TYPE>> GetVenteTypes()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_TYPES_URL);

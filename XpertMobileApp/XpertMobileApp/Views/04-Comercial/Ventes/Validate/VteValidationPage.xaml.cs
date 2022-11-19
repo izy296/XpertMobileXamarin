@@ -28,6 +28,7 @@ namespace XpertMobileApp.Views
         VteValidationViewModel viewModel;
 
         public VenteFormViewModel ParentviewModel { get; set; }
+        public VenteFormLivraisonViewModel ParentLivraisonviewModel { get; set; }
 
         public string ParentStream { get; set; }
         public View_VTE_VENTE Item 
@@ -186,29 +187,43 @@ namespace XpertMobileApp.Views
                             {
                                 PrinterHelper.PrintBL(viewModel.Item);
                             }
-                        ParentviewModel.InitNewVentes();
+                        if (Constants.AppName != Apps.X_DISTRIBUTION)
+                            ParentviewModel.InitNewVentes();
+                        else ParentLivraisonviewModel.InitNewVentes();
+
                         await PopupNavigation.Instance.PopAsync();
                     }
                 }
                 else
                 {
-                    if (viewModel.Item.Details != null)
+                    try
                     {
-                        string res = await SQLite_Manager.AjoutVente(viewModel.Item);
-                        if (!XpertHelper.IsNullOrEmpty(res))
+                        if (viewModel.Item.Details != null || viewModel.Item.DetailsDistrib != null)
                         {
-                            await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
-                            if (viewModel.imprimerTecketCaiss)
+                            string res = await SQLite_Manager.AjoutVente(viewModel.Item);
+                            if (!XpertHelper.IsNullOrEmpty(res))
                             {
-                                PrinterHelper.PrintBL(viewModel.Item);
+                                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                                if (viewModel.imprimerTecketCaiss)
+                                {
+                                    PrinterHelper.PrintBL(viewModel.Item);
+                                }
+                                if (Constants.AppName != Apps.X_DISTRIBUTION)
+                                    ParentviewModel.InitNewVentes();
+                                else ParentLivraisonviewModel.InitNewVentes();
+
+                                await PopupNavigation.Instance.PopAsync();
                             }
-                            ParentviewModel.InitNewVentes();
-                            await PopupNavigation.Instance.PopAsync();
+                        }
+                        else
+                        {
+                            await UserDialogs.Instance.AlertAsync("Veuillez selectionner au moins un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         }
                     }
-                    else
+                    catch (Exception Ex)
                     {
-                        await UserDialogs.Instance.AlertAsync("Veuillez selectionner au moins un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                        throw Ex;
                     }
 
                 }

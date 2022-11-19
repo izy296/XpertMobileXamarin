@@ -119,6 +119,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT_DETAIL>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_AUTRE_UNITE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
+                await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
@@ -151,7 +152,7 @@ namespace XpertMobileApp.SQLite_Managment
                                             v.TOTAL_PAYE, 
                                             v.TYPE_DOC, 
                                             v.CODE_TIERS, 
-                                            v.CREATED_ON DATE_DOC
+                                            v.DATE_VENTE DATE_DOC
                                             FROM View_VTE_VENTE v 
                                             WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR' 
                                     UNION ALL 
@@ -159,7 +160,7 @@ namespace XpertMobileApp.SQLite_Managment
                                             c.TOTAL_PAYE, 
                                             c.TYPE_DOC, 
                                             c.CODE_TIERS, 
-                                            c.CREATED_ON DATE_DOC
+                                            c.DATE_VENTE DATE_DOC
                                             FROM View_VTE_COMMANDE c 
                                     UNION ALL 
                                     SELECT e.CODE_ENCAISS CODE_DOC, 
@@ -168,7 +169,7 @@ namespace XpertMobileApp.SQLite_Managment
                                               e.CODE_TIERS, 
                                               e.DATE_ENCAISS DATE_DOC 
                                             FROM View_TRS_ENCAISS e 
-                                            )T ORDER BY CREATED_ON DESC";
+                                            )T ORDER BY DATE_DOC DESC";
 
                 await GetInstance().ExecuteAsync(queryNew);
 
@@ -241,6 +242,9 @@ namespace XpertMobileApp.SQLite_Managment
                 countListe.Add(obj19.Count);
                 var obj20 = await GetInstance().Table<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>().ToListAsync();
                 countListe.Add(obj20.Count);
+
+                var obj21 = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
+                countListe.Add(obj21.Count);
 
                 foreach (var count in countListe)
                 {
@@ -332,7 +336,7 @@ namespace XpertMobileApp.SQLite_Managment
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
-                    
+
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
@@ -358,6 +362,8 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
+
+                    await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
@@ -1039,7 +1045,6 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT = TourneeStatus.Delivered;
-                    item.ETAT_COLOR = "#008000";
                     item.SOLDE_TIERS = await GetSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
                     item.GPS_LONGITUDE = vente.GPS_LATITUDE;
@@ -1096,18 +1101,40 @@ namespace XpertMobileApp.SQLite_Managment
 
             foreach (var item in stock)
             {
-                foreach (var items in vente.Details)
+
+                // check if Details is empty ( in case of Pharm or Comm)
+                if (vente.Details !=null)
                 {
-                    if (item.ID_STOCK == items.ID_STOCK)
+                    foreach (var items in vente.Details)
                     {
-                        if (items.QUANTITE > 0)
+                        if (item.ID_STOCK == items.ID_STOCK)
                         {
-                            item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
-                            item.QUANTITE = item.QUANTITE - items.QUANTITE;
-                            await GetInstance().UpdateAsync(item);
+                            if (items.QUANTITE > 0)
+                            {
+                                item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
+                                item.QUANTITE = item.QUANTITE - items.QUANTITE;
+                                await GetInstance().UpdateAsync(item);
+                            }
                         }
                     }
                 }
+                // check if DetailsDistrib is empty or not ( in case of Ditribution using different viewModel )
+                else if (vente.DetailsDistrib!=null)
+                {
+                    foreach (var items in vente.DetailsDistrib)
+                    {
+                        if (item.ID_STOCK == items.ID_STOCK)
+                        {
+                            if (items.QUANTITE > 0)
+                            {
+                                item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
+                                item.QUANTITE = item.QUANTITE - items.QUANTITE;
+                                await GetInstance().UpdateAsync(item);
+                            }
+                        }
+                    }
+                }
+
             }
         }
 
@@ -1580,11 +1607,28 @@ namespace XpertMobileApp.SQLite_Managment
                 vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
                 vente.DATE_VENTE = DateTime.Now;
                 await GetInstance().UpdateAsync(vente);
-                foreach (var item in vente.Details)
+
+                //check if vente.Detail is empty than use 
+
+                if (vente.Details != null)
+                    foreach (var item in vente.Details)
+                    {
+                        item.CODE_VENTE = vente.CODE_VENTE;
+                    }
+                else if (vente.DetailsDistrib != null)
+                    foreach (var item in vente.DetailsDistrib)
+                    {
+                        item.CODE_VENTE = vente.CODE_VENTE;
+                    }
+                if (vente.Details != null)
                 {
-                    item.CODE_VENTE = vente.CODE_VENTE;
+                    var id2 = await GetInstance().InsertAllAsync(vente.Details);
                 }
-                var id2 = await GetInstance().InsertAllAsync(vente.Details);
+                else if (vente.DetailsDistrib != null)
+                {
+                    var id2 = await GetInstance().InsertAllAsync(vente.DetailsDistrib);
+                }
+
                 await UpdateStock(vente);
                 if (vente.TOTAL_TTC != vente.MT_VERSEMENT)
                 {
@@ -1647,7 +1691,8 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     return prixProduct.PRIX_DETAIL;
                 }
-            } else
+            }
+            else
             {
                 return 100;
             }
