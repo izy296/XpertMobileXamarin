@@ -220,6 +220,15 @@ namespace XpertMobileApp.Views
                                 else ParentLivraisonviewModel.InitNewVentes();
 
                                 await PopupNavigation.Instance.PopAsync();
+                                await Navigation.PopAsync();
+                            }
+                            else
+                            {
+                                if (App.PrefixCodification == "" || App.PrefixCodification == null)
+                                {
+                                    await UserDialogs.Instance.AlertAsync("Veuillez Verifier le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                    await PopupNavigation.Instance.PopAsync();
+                                }
                             }
                         }
                         else

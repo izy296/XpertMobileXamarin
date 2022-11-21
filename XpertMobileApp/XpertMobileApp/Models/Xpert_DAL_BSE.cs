@@ -49,7 +49,6 @@ namespace XpertMobileApp.Models
     {
         public string DESIGNATION_UNITE { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
-
     }
 
     public partial class View_BSE_PRODUIT_UNITE_COEFFICIENT
@@ -60,6 +59,21 @@ namespace XpertMobileApp.Models
         public decimal COEFFICIENT { get; set; }
         public string DESIGNATION_UNITE_1 { get; set; }
         public string DESIGNATION_UNITE_2 { get; set; }
+    }
+
+    public partial class View_BSE_PRODUIT_PRIX_VENTE
+    {
+      public string CODE_DETAIL { get;set;}
+      public string CODE_PRODUIT { get;set;}
+      public string CODE_FAMILLE { get;set;}
+      public int TYPE_PRIX { get;set;}
+      public decimal VALEUR { get;set;}
+      public decimal VALEUR_ACHAT { get;set;}
+      public bool PRODUIT_PRIX_VENTE_PUBLIC { get;set;}
+      public bool SYNCHRONISE { get;set;}
+      public DateTime? DATE_SYNCHRONISATION { get;set;}
+      public string DESIGN_FAMILLE { get;set;}
+      public string DESIGNATION_TYPE_PRIX { get; set; }
     }
 }
 

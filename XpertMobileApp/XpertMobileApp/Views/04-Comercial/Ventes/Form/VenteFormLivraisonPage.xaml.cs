@@ -247,6 +247,7 @@ namespace XpertMobileApp.Views
                 return;
             }
             */
+            itemSelector.viewModel.Tier = viewModel.SelectedTiers;
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
             //itemSelector.AutoriserReception = "1";
             await PopupNavigation.Instance.PushAsync(itemSelector);

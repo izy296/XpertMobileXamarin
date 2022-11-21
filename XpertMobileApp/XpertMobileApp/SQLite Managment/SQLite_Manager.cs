@@ -105,6 +105,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_STK_TRANSFERT_DETAIL>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_AUTRE_UNITE>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
+                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE>();
                 await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
@@ -113,6 +114,33 @@ namespace XpertMobileApp.SQLite_Managment
                 Console.WriteLine(e.Message);
             }
         }
+
+
+        public static async Task<IEnumerable<View_STK_PRODUITS_PRIX_UNITE>> GetProduitPrixUniteByCodeFamille(string codeFamille)
+        {
+
+            // 
+            string query = $@"SELECT DISTINCT p.CODE_PRODUIT,p.DESIGNATION_PRODUIT,
+							    CASE
+                                       WHEN pv.CODE_FAMILLE = '' THEN p.PRIX_VENTE_HT
+                                       WHEN pv.VALEUR = 0 THEN p.PRIX_VENTE_HT
+                                       ELSE pv.VALEUR
+                                   end PRIX_VENTE,
+                                   p.QTE_STOCK,
+                                   u.CODE_UNITE,
+                                   u.COEFFICIENT,
+                                   u.PRIX_VENTE PRIX_VENTE_COLLISAGE,
+                                   u.DESIGNATION_UNITE,
+                                   pv.VALEUR PRIX_VENTE_FAMILLE, pv.CODE_FAMILLE, pv.DESIGN_FAMILLE
+                                FROM View_STK_PRODUITS p
+                                LEFT JOIN View_BSE_PRODUIT_AUTRE_UNITE U on p.CODE_PRODUIT = U.CODE_PRODUIT
+                                LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'";
+
+            // WHERE p.CODE_PRODUIT = '{codeProduit}'
+            var list = await GetInstance().QueryAsync<View_STK_PRODUITS_PRIX_UNITE>(query);
+            return list;
+        }
+
 
 
         public static async Task<bool> CreateView_TRS_TIERS_ACTIVITY_Async()
@@ -1580,6 +1608,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
+                if (App.PrefixCodification=="" || App.PrefixCodification ==  null)
+                {
+                    return null;
+                }
                 //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                 vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
                 vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
@@ -1709,6 +1741,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 date2 = "/" + date.Substring(2, 2);
             }
+
             var code = date + TypeDoc + ID + date2 + "/" + App.PrefixCodification;
             return code;
         }
