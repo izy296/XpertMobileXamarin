@@ -84,7 +84,7 @@ namespace XpertMobileApp.Views
 
             btn_Search.IsVisible = disable;
             btn_Scan.IsVisible = disable;
-            itemSelector = new LotSelectorLivraison(viewModel.CurrentStream);
+            itemSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream);
             retourSelector = new RetourProducts(viewModel.CurrentStream);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
@@ -96,7 +96,7 @@ namespace XpertMobileApp.Views
 
             // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
-            MessagingCenter.Subscribe<LotSelectorLivraison, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -111,7 +111,7 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<LotSelectorLivraison, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -236,7 +236,7 @@ namespace XpertMobileApp.Views
 
         #region Selectors
 
-        private LotSelectorLivraison itemSelector;
+        private LotSelectorLivraisonUniteFamille itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
             /*
@@ -284,23 +284,16 @@ namespace XpertMobileApp.Views
 
         private void RowScan_Clicked(object sender, EventArgs e)
         {
-            var scaner = new ZXingScannerPage();
-            Navigation.PushAsync(scaner);
-            scaner.OnScanResult += (result) =>
+            GoogleVisionBS gvsScannedBarcode = new GoogleVisionBS();
+            MainPage RootPage = Application.Current.MainPage as MainPage;
+            var detail = RootPage.Detail;
+            gvsScannedBarcode.UserSubmitted += async (_, scannedText) =>
             {
-                scaner.IsScanning = false;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Navigation.PopAsync();
-
-                    var vteLot = await viewModel.AddScanedProduct(result.Text);
-                    /*
-                    ClassId = string.Format("pb_{0}", vteLot.ID);
-                    var pbruteElem2 = ItemsListView.Children.Where(x => x.ClassId == ClassId).FirstOrDefault() as SfNumericTextBox;
-                    pbruteElem2.Focus();
-                    */
-                });
+                await detail.Navigation.PopAsync();
+                var vteLot = await viewModel.AddScanedProduct(scannedText);
             };
+
+            detail.Navigation.PushAsync(gvsScannedBarcode);
         }
 
         private void HeaderSettings_Clicked(object sender, EventArgs e)
@@ -462,18 +455,18 @@ namespace XpertMobileApp.Views
 
         private void btn_ScanTiers_Clicked(object sender, EventArgs e)
         {
-            var scaner = new ZXingScannerPage();
-            Navigation.PushAsync(scaner);
-            scaner.OnScanResult += (result) =>
+            GoogleVisionBS gvsScannedBarcode = new GoogleVisionBS();
+            MainPage RootPage = Application.Current.MainPage as MainPage;
+            var detail = RootPage.Detail;
+            gvsScannedBarcode.UserSubmitted += async (_, scannedText) =>
             {
-                scaner.IsScanning = false;
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Navigation.PopAsync();
 
-                    await viewModel.SelectScanedTiers(result.Text);
-                });
+                await detail.Navigation.PopAsync();
+                await viewModel.SelectScanedTiers(scannedText);
+
             };
+
+            detail.Navigation.PushAsync(gvsScannedBarcode);
         }
        
     }

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Essentials;
 using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.Views.Helper
@@ -23,6 +25,22 @@ namespace XpertMobileApp.Views.Helper
             catch (Exception e)
             {
                 return false;
+            }
+        }
+
+        /// <summary>
+        /// fonction pour la récupération de cordonnée actuelle
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<Location> GetLocation()
+        {
+            try
+            {
+                return await Geolocation.GetLocationAsync();  //(request, cts.Token);
+            }
+            catch (Exception Ex)
+            {
+                return null;
             }
         }
     }

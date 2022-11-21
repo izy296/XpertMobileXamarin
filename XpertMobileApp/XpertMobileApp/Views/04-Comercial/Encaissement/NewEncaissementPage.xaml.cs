@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
@@ -17,6 +18,7 @@ using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -199,9 +201,12 @@ namespace XpertMobileApp.Views
                         {
                             Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
                         }
-                        var request = new GeolocationRequest(GeolocationAccuracy.Medium, TimeSpan.FromSeconds(10));
-                        var cts = new CancellationTokenSource();
-                        var location = await Geolocation.GetLocationAsync(request, cts.Token);
+                        Location location = await Manager.GetLocation();
+                        if (location == null)
+                        {
+                            await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            location = new Location(0, 0);
+                        }
                         await SQLite_Manager.AjoutEncaissement(Item, location);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopAsync();

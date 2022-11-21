@@ -20,6 +20,7 @@ using Xamarin.Essentials;
 using System.Threading.Tasks;
 using System.Threading;
 using XpertMobileApp.Api;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -162,8 +163,14 @@ namespace XpertMobileApp.Views
             {
                 if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-                    viewModel.Item.GPS_LATITUDE = 0;
-                    viewModel.Item.GPS_LONGITUDE = 0;
+                    Location location = await Manager.GetLocation();
+                    if (location == null)
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        location = new Location(0, 0);
+                    }
+                    viewModel.Item.GPS_LATITUDE = location.Latitude;
+                    viewModel.Item.GPS_LONGITUDE = location.Longitude;
                     await SaveGPsLocationToVente(viewModel.Item);
                 }
 
