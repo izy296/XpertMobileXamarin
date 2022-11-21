@@ -44,7 +44,6 @@ namespace XpertMobileApp.Views
             var item = args.SelectedItem as View_LIV_TOURNEE_DETAIL;
             if (item == null)
                 return;
-
             await Navigation.PushAsync(new TourneeVisitPage(item));
 
             // Manually deselect item.
@@ -59,13 +58,7 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            //if (autoLodData)
-            if (viewModel.Items.Count == 0)
-            {
-                LoadData();
-            }
-
-
+            LoadData();
             //   if (viewModel.Familles.Count == 0)
             //       viewModel.LoadExtrasDataCommand.Execute(null);
         }

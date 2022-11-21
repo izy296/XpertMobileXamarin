@@ -51,7 +51,10 @@
                                     <Image 
                         Source="money.png"/>
 
-                                    <Label Text="{Binding Item.SOLDE_TIERS,StringFormat='{0:N2} DA' ,FallbackValue='0.00 DA'}"
+                                    <Label  x:Name="soldeTierLabel"
+                                            Text="{Binding Item.SOLDE_TIERS,
+                                            StringFormat='{0:N2} DA' ,
+                                            FallbackValue='0.00 DA'}"
                             VerticalOptions="Center" 
                             HorizontalOptions="Start"
                            FontSize="18"
@@ -64,7 +67,9 @@
                     Padding="10">
                                     <Image 
                            Source="trendup.png"/>
-                                    <Label Text="{Binding Item.MT_VERSEMENT,StringFormat='{0:N2} DA' ,FallbackValue='0.00 DA'}"
+                                    <Label Text="{Binding Item.MT_VERSEMENT,
+                                           StringFormat='{0:N2} DA' ,
+                                           FallbackValue='0.00 DA'}"
                             VerticalOptions="Center" 
                             HorizontalOptions="Start"
                            TextColor="Green"

@@ -23,6 +23,7 @@ namespace XpertMobileApp.Views
     {
         TourneeVisitViewModel viewModel;
         View_TRS_TIERS tier;
+        private View_LIV_TOURNEE_DETAIL livTournee;
         private bool isOpen = false;
         public TourneeVisitPage()
         {
@@ -33,6 +34,7 @@ namespace XpertMobileApp.Views
         public TourneeVisitPage(View_LIV_TOURNEE_DETAIL item)
         {
             InitializeComponent();
+            livTournee = item;
             BindingContext = viewModel = new TourneeVisitViewModel(item);
             new Command(async () =>
             {
@@ -51,16 +53,22 @@ namespace XpertMobileApp.Views
                 }
 
             }).Execute(null);
-
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+            UserDialogs.Instance.ShowLoading();
+            if (livTournee != null)
+            {
+                var currentClient = await SQLite_Manager.GetClient(livTournee.CODE_TIERS);
+                soldeTierLabel.Text = string.Format("{0:N2} DA", currentClient.SOLDE_TIERS); ;
+            }
             new Command(async () =>
             {
                 await viewModel.ExecuteLoadActiviteCommand();
             }).Execute(null);
+            UserDialogs.Instance.HideLoading();
         }
 
         public async void SaveNewLocation(Point point)
@@ -83,6 +91,7 @@ namespace XpertMobileApp.Views
                     {
                         UserDialogs.Instance.ShowLoading();
                         await SQLite_Manager.UpdateTiers(tier);
+
                         await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                     }
@@ -320,12 +329,11 @@ namespace XpertMobileApp.Views
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
-                await Navigation.PushAsync(new VenteFormLivraisonPage(null, "BL", tier,viewModel.Item.CODE_DETAIL));
+                await Navigation.PushAsync(new VenteFormLivraisonPage(null, "BL", tier, viewModel.Item.CODE_DETAIL));
 
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 

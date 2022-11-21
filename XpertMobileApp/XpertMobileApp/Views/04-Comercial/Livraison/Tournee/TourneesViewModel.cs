@@ -193,7 +193,7 @@ namespace XpertMobileApp.ViewModels
         {
 
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-            sqliteRes = sqliteRes.Where(e => e.DATE_TOURNEE >= StartDate && e.DATE_TOURNEE <= EndDate).ToList();
+            //sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) <= 0).ToList();
             return sqliteRes;
         }
         #endregion
