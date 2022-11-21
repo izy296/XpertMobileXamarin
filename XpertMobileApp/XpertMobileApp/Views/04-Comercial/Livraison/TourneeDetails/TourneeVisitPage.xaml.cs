@@ -15,6 +15,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -131,7 +132,12 @@ namespace XpertMobileApp.Views
                         try
                         {
                             UserDialogs.Instance.ShowLoading();
-                            var location = await Geolocation.GetLocationAsync();
+                            Location location = await Manager.GetLocation();
+                            if (location == null)
+                            {
+                                await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                return;
+                            }
                             tier.GPS_LATITUDE = location.Latitude;
                             tier.GPS_LONGITUDE = location.Longitude;
                             if (App.Online)
@@ -174,20 +180,22 @@ namespace XpertMobileApp.Views
             string destinationCordinates = HttpUtility.UrlEncode(tier.GPS_LATITUDE.ToString().Replace(",", ".") +
                                                            "," + tier.GPS_LONGITUDE.ToString().Replace(",", "."), Encoding.UTF8);
             Location location = null;
-            try
-            {
-                UserDialogs.Instance.ShowLoading();
-                location = await Geolocation.GetLocationAsync();
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-
-            }
-            finally
-            {
-                UserDialogs.Instance.HideLoading();
-            }
+            if (App.Online)
+                try
+                {
+                    UserDialogs.Instance.ShowLoading();
+                    location = await Geolocation.GetLocationAsync();
+                    UserDialogs.Instance.HideLoading();
+                }
+                catch (Exception ex)
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Alert, ex.Message, AppResources.alrt_msg_Ok);
+                    UserDialogs.Instance.HideLoading();
+                }
+                finally
+                {
+                    UserDialogs.Instance.HideLoading();
+                }
 
             if (location != null)
             {
