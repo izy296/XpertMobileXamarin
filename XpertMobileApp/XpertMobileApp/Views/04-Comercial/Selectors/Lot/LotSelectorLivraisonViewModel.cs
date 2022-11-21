@@ -4,6 +4,7 @@ using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -31,6 +32,13 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        private View_TRS_TIERS tier;
+        public View_TRS_TIERS Tier
+        {
+            get { return tier; }
+            set { tier = value; }
+        }
+
         public string SelectionsInfos
         {
             get
@@ -44,14 +52,16 @@ namespace XpertMobileApp.ViewModels
             Title = title;
         }
 
-        protected override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
+        protected async override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
         {
             base.OnAfterLoadItems(list);
+            var listProduits = await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE);
 
             int i = 0;
             foreach (var item in list)
             {
                 i += 1;
+                var produits = listProduits.Where(e => e.CODE_PRODUIT == item.CODE_PRODUIT).ToList();
                 (item as BASE_CLASS).Index = i;
             }
         }
