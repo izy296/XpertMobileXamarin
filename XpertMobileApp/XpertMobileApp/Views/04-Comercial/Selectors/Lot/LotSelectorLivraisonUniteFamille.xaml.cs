@@ -114,37 +114,10 @@ namespace XpertMobileApp.Views
                 {
                     SelectedlistLot = new List<View_STK_STOCK>();
                 }
-                if (viewModel.SelectedItem.OLD_QUANTITE > 0)
-                {
-                    if (viewModel.SelectedItem.SelectedQUANTITE < viewModel.SelectedItem.OLD_QUANTITE)
-                    {
-                        if (SelectedlistLot.Contains(viewModel.SelectedItem))
-                        {
-                            try
-                            {
-                                SelectedlistLot.Where(x => x.ID_STOCK == viewModel.SelectedItem.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
-                            }
-                            catch
-                            {
-                            }
-                        }
-                        else
-                        {
-                            viewModel.SelectedItem.SelectedQUANTITE += 1;
-                            SelectedlistLot.Add(viewModel.SelectedItem);
-                        }
-                        //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
-                        UpdateTotaux();
-                    }
-                    else
-                    {
-                        await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                    }
-                }
-                else
-                {
-                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.SelectedItem.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                }
+                var lot = (viewModel.SelectedItem as View_STK_STOCK);
+                QteUpdater = new QteUpdater(lot);
+                QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
+                await PopupNavigation.Instance.PushAsync(QteUpdater);
             }
         }
 

@@ -201,8 +201,6 @@ namespace XpertMobileApp.Models
                 return SelectedQUANTITE > 0;
             }
         }
-        [Ignore]
-        public decimal COEFFICIENT { get; set; }
     }
     public partial class STK_STOCK_RFID
     {
@@ -849,8 +847,11 @@ namespace XpertMobileApp.Models
 
     }
 
-    public partial class View_STK_PRODUITS_PRIX_UNITE
+    public partial class View_STK_PRODUITS_PRIX_UNITE : BASE_CLASS
     {
+        public int? ID_STOCK{ get; set; }
+        public string lot { get; set; }
+        public DateTime? DATE_PEREMPTION { get; set; }
         public string CODE_PRODUIT { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
         public decimal PRIX_VENTE { get; set; }

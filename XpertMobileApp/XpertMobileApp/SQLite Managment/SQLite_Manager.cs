@@ -116,26 +116,25 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<IEnumerable<View_STK_PRODUITS_PRIX_UNITE>> GetProduitPrixUniteByCodeFamille(string codeFamille)
+        public static async Task<IEnumerable<View_STK_PRODUITS_PRIX_UNITE>> GetProduitPrixUniteByCodeFamille(string codeFamille,string columnName= "p.DESIGNATION_PRODUIT", string order="ASC")
         {
 
             // 
-            string query = $@"SELECT DISTINCT p.CODE_PRODUIT,p.DESIGNATION_PRODUIT,
-							    CASE
-                                       WHEN pv.CODE_FAMILLE = '' THEN p.PRIX_VENTE_HT
-                                       WHEN pv.VALEUR = 0 THEN p.PRIX_VENTE_HT
-                                       ELSE pv.VALEUR
-                                   end PRIX_VENTE,
-                                   p.QTE_STOCK,
-                                   u.CODE_UNITE,
-                                   u.COEFFICIENT,
-                                   u.PRIX_VENTE PRIX_VENTE_COLLISAGE,
-                                   u.DESIGNATION_UNITE,
-                                   pv.VALEUR PRIX_VENTE_FAMILLE, pv.CODE_FAMILLE, pv.DESIGN_FAMILLE
-                                FROM View_STK_PRODUITS p
-                                LEFT JOIN View_BSE_PRODUIT_AUTRE_UNITE U on p.CODE_PRODUIT = U.CODE_PRODUIT
-                                LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'";
-
+            string query = $@"SELECT DISTINCT s.ID_STOCK, s.lot, s.DATE_PEREMPTION, p.CODE_PRODUIT,p.DESIGNATION_PRODUIT, 
+                                             CASE 
+                                                    WHEN pv.CODE_FAMILLE = '' THEN p.PRIX_VENTE_HT 
+                                                    WHEN pv.VALEUR = 0 THEN p.PRIX_VENTE_HT 
+                                                    ELSE pv.VALEUR 
+                                                end PRIX_VENTE_PRODUIT, 
+                                                p.QTE_STOCK, 
+                                                p.CODE_UNITE_PRODUIT, 
+                                                  p.CODE_UNITE_ACHAT, 
+                                                  p.CODE_UNITE_VENTE, 
+                                                  p.CODE_UNITE_ACHAT 
+                                            FROM View_STK_STOCK s 
+                                            JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
+                                            LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
+                                ORDER BY {columnName} {order}";
             // WHERE p.CODE_PRODUIT = '{codeProduit}'
             var list = await GetInstance().QueryAsync<View_STK_PRODUITS_PRIX_UNITE>(query);
             return list;
