@@ -127,10 +127,8 @@ namespace XpertMobileApp.SQLite_Managment
                                                     ELSE pv.VALEUR 
                                                 end PRIX_VENTE_PRODUIT, 
                                                 p.QTE_STOCK, 
-                                                p.CODE_UNITE_PRODUIT, 
                                                   p.CODE_UNITE_ACHAT, 
-                                                  p.CODE_UNITE_VENTE, 
-                                                  p.CODE_UNITE_ACHAT 
+                                                  p.CODE_UNITE_VENTE
                                             FROM View_STK_STOCK s 
                                             JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
                                             LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'

@@ -853,6 +853,8 @@ namespace XpertMobileApp.Models
         public string lot { get; set; }
         public DateTime? DATE_PEREMPTION { get; set; }
         public string CODE_PRODUIT { get; set; }
+        public string CODE_UNITE_ACHAT { get; set; }
+        public string CODE_UNITE_VENTE{ get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
         public decimal PRIX_VENTE { get; set; }
         public decimal QTE_STOCK { get; set; }
