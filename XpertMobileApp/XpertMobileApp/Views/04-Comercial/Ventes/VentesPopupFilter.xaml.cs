@@ -61,6 +61,8 @@ namespace XpertMobileApp.Views
 
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
 
@@ -77,14 +79,18 @@ namespace XpertMobileApp.Views
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            await searchIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await searchIcon.ScaleTo(1, 50, Easing.Linear);
             itemSelector.SearchedType = "";
 
             await PopupNavigation.Instance.PushAsync(itemSelector);
 
         }
 
-        private void Initialize_Type_Picker(object sender, EventArgs e)
+        private async void Initialize_Type_Picker(object sender, EventArgs e)
         {
+            await initTypePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTypePicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedType != null)
             {
                 viewModel.SelectedType = new BSE_DOCUMENTS_TYPE();
@@ -92,8 +98,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Tiers_Picker(object sender, EventArgs e)
+        private async  void Initialize_Tiers_Picker(object sender, EventArgs e)
         {
+            await initTierPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTierPicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedTiers != null)
             {
                 viewModel.SelectedTiers = new View_TRS_TIERS();

@@ -49,6 +49,8 @@ namespace XpertMobileApp.Views
 
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             //FilterPanel.IsVisible = false;
             this.soldeG.IsChecked = false;
             soldeE.IsChecked = false;
@@ -82,8 +84,10 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
-        private void Initialize_Type_Picker(object sender, EventArgs e)
+        private async void Initialize_Type_Picker(object sender, EventArgs e)
         {
+            await initTypePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTypePicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedType != null)
             {
                 viewModel.SelectedType = new BSE_TABLE_TYPE();
@@ -91,8 +95,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Famille_Picker(object sender, EventArgs e)
+        private async void Initialize_Famille_Picker(object sender, EventArgs e)
         {
+            await initFamillePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initFamillePicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedFamille != null)
             {
                 viewModel.SelectedFamille = new View_BSE_TIERS_FAMILLE();
@@ -100,8 +106,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void initialize_Tiers_Entry(object sender, EventArgs e)
+        private async void initialize_Tiers_Entry(object sender, EventArgs e)
         {
+            await initTierEntry.ScaleTo(0.75, 50, Easing.Linear);
+            await initTierEntry.ScaleTo(1, 50, Easing.Linear);
             ent_SearchedTiers.Text = "";
         }
     }

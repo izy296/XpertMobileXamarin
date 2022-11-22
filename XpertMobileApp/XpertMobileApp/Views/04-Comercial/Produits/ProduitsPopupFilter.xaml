@@ -51,10 +51,11 @@
                                     Margin="0,30,0,20"/>
 
                                     <Image 
-                                    VerticalOptions="Start"
-                                    Source="closeIcon.png"
-                                    Grid.Row="0"
-                                    Grid.Column="1">
+                                        x:Name="closeIcon"
+                                        VerticalOptions="Start"
+                                        Source="closeIcon.png"
+                                        Grid.Row="0"
+                                        Grid.Column="1">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="Close_filter_popup"/>
                                         </Image.GestureRecognizers>
@@ -116,6 +117,7 @@
                                                 x:Name="FamillesPicker"/>
 
                                             <Image  
+                                                x:Name="initFamillePicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -183,6 +185,7 @@
                                                 x:Name="TypesPicker"/>
 
                                             <Image  
+                                                x:Name="initTypePicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -256,6 +259,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="searchIcon"
                                                 Margin="0,0,14,5"
                                                 VerticalOptions="Start"
                                                 Grid.Row="0"
@@ -335,6 +339,7 @@
                                                 x:Name="LaboPicker"/>
 
                                             <Image  
+                                                x:Name="initLaboPicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -401,6 +406,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="initRef"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -468,6 +474,7 @@
                                                 TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
                                             <Image  
+                                                x:Name="initProduct"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"

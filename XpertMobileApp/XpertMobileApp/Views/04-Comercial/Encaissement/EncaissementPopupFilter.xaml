@@ -42,6 +42,7 @@
                                     Margin="0,30,0,20"/>
 
                                     <Image 
+                                        x:Name="closeIcon"
                                     VerticalOptions="Start"
                                     Source="closeIcon.png"
                                     Grid.Row="0"
@@ -188,6 +189,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="initComptePicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -258,6 +260,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="initMotifPicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"

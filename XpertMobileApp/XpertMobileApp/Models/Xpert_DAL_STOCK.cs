@@ -754,7 +754,7 @@ namespace XpertMobileApp.Models
                 {
                     return VAL_ENTREE;
                 }
-                else if (VAL_ENTREE==0)
+                else if (VAL_ENTREE == 0)
                 {
                     return VAL_SORTIE;
                 }
@@ -847,6 +847,17 @@ namespace XpertMobileApp.Models
 
     }
 
+    public class BSE_PRODUIT_FAMILLE 
+    {
+        public string CODE { get; set; } // varchar(10)
+        public string DESIGNATION { get; set; } // varchar(50)
+    }
+
+    public class BSE_PRODUIT_TYPE
+    {
+        public string CODE_TYPE { get; set; }
+        public string DESIGNATION_TYPE { get; set; }
+    }
     public partial class View_STK_PRODUITS_PRIX_UNITE : BASE_CLASS
     {
         public int? ID_STOCK{ get; set; }
@@ -865,6 +876,8 @@ namespace XpertMobileApp.Models
         public decimal PRIX_VENTE_FAMILLE { get; set; }
         public string DESIGN_FAMILLE { get; set; }
         public string CODE_FAMILLE { get; set; }
+
+
     }
 
 }

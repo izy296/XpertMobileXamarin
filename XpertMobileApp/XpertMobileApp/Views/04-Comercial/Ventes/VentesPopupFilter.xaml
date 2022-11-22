@@ -33,18 +33,19 @@
                                     </Grid.RowDefinitions>
 
                                     <Image 
-                                    Grid.Row="0"
-                                    Grid.Column="0"
-                                    Grid.ColumnSpan="2"
-                                    HorizontalOptions="Center"
-                                    Source="filter_popup"
-                                    Margin="0,30,0,20"/>
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        HorizontalOptions="Center"
+                                        Source="filter_popup"
+                                        Margin="0,30,0,20"/>
 
                                     <Image 
-                                    VerticalOptions="Start"
-                                    Source="closeIcon.png"
-                                    Grid.Row="0"
-                                    Grid.Column="1">
+                                        x:Name="closeIcon"
+                                        VerticalOptions="Start"
+                                        Source="closeIcon.png"
+                                        Grid.Row="0"
+                                        Grid.Column="1">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Tapped="Close_filter_popup"/>
                                         </Image.GestureRecognizers>
@@ -187,6 +188,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="initTypePicker"
                                                 Margin="0,0,14,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -256,6 +258,7 @@
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="searchIcon"
                                                 Margin="0,0,14,5"
                                                 VerticalOptions="Start"
                                                 Grid.Row="0"
@@ -267,6 +270,7 @@
                                             </Image>
 
                                             <Image  
+                                                x:Name="initTierPicker"
                                                 Margin="0,0,14,17"
                                                 VerticalOptions="End"
                                                 Grid.Row="0"

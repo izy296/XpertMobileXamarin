@@ -67,8 +67,8 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
-            
-            if(tier != null)
+
+            if (tier != null)
             {
                 closePageBtn.IsEnabled = false;
                 ent_SelectedTiers.IsEnabled = false;
@@ -117,7 +117,7 @@ namespace XpertMobileApp.Views
         }
 
         async void Save_Clicked(object sender, EventArgs e)
-        {   
+        {
             /*
             if (SelectedTiers == null && Constants.AppName == Apps.XPH_Mob)
             {
@@ -208,6 +208,7 @@ namespace XpertMobileApp.Views
                             location = new Location(0, 0);
                         }
                         await SQLite_Manager.AjoutEncaissement(Item, location);
+                        await UserDialogs.Instance.AlertAsync("Versement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopAsync();
                     }
@@ -236,7 +237,7 @@ namespace XpertMobileApp.Views
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                         await SQLite_Manager.AjoutEncaissement(Item, null);
-                        await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync("Remboursement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopModalAsync();
                     }

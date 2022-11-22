@@ -51,6 +51,7 @@
                                     Margin="0,30,0,20"/>
 
                                     <Image 
+                                        x:Name="closeIcon"
                                     VerticalOptions="Start"
                                     Source="closeIcon.png"
                                     Grid.Row="0"

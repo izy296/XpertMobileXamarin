@@ -5,6 +5,7 @@ using Syncfusion.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
@@ -16,6 +17,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
@@ -25,7 +27,6 @@ namespace XpertMobileApp.ViewModels
     {
 
         string currentQB = null;
-
         public ProduitsViewModel()
         {
             Title = AppResources.pn_Produits;
@@ -485,17 +486,37 @@ namespace XpertMobileApp.ViewModels
                         AppResources.alrt_msg_Ok);
                 }
             }
+            else
+            {
+                Types.Clear();
+                var itemsC = await SQLite_Manager.GetProduitType();
+                BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                allElem.CODE_TYPE = "";
+                allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                Types.Add(allElem);
+
+                foreach (var item in itemsC)
+                {
+                    Types.Add(new BSE_TABLE_TYPE()
+                    {
+                        CODE_TYPE = item.CODE_TYPE,
+                        DESIGNATION_TYPE = item.DESIGNATION_TYPE
+                    });
+                }
+            }
         }
 
         async Task ExecuteLoadFamillesCommand()
         {
-            if (App.Online)
-            {
-                try
-                {
-                    Familles.Clear();
-                    var itemsC = await WebServiceClient.GetProduitFamilles();
 
+
+            try
+            {
+                Familles.Clear();
+                if (App.Online)
+                {
+
+                    var itemsC = await WebServiceClient.GetProduitFamilles();
                     BSE_TABLE allElem = new BSE_TABLE();
                     allElem.CODE = "";
                     allElem.DESIGNATION = AppResources.txt_All;
@@ -506,12 +527,31 @@ namespace XpertMobileApp.ViewModels
                         Familles.Add(itemC);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                    var itemsC = await SQLite_Manager.GetProduitFamilles();
+                    BSE_TABLE allElem = new BSE_TABLE();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = AppResources.txt_All;
+                    Familles.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Familles.Add(new BSE_TABLE()
+                        {
+                            CODE = itemC.CODE,
+                            DESIGNATION = itemC.DESIGNATION
+                        });
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+
         }
 
         async Task ExecuteLoadUniteCommand()
@@ -541,6 +581,45 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+        public async override Task<List<View_STK_PRODUITS>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
+            if (!string.IsNullOrEmpty(SelectedFamille?.DESIGNATION))
+                sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE).ToList();
+
+            if (!string.IsNullOrEmpty(SelectedType?.DESIGNATION_TYPE))
+                sqliteRes = sqliteRes.Where(e => e.TYPE_PRODUIT == selectedType.CODE_TYPE).ToList();
+
+            if (!string.IsNullOrEmpty(SearchedRef))
+                sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedRef)).ToList();
+
+            if (!string.IsNullOrEmpty(SearchedText))
+                sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedText)).ToList();
+
+            if (CheckBoxSM)
+            {
+                sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
+            }
+
+            if (CheckBoxS)
+            {
+                sqliteRes = sqliteRes.Where(e => e.IS_STOCKABLE == !CheckBoxS).ToList();
+            }
+
+            if (CheckBoxR)
+            {
+                sqliteRes = sqliteRes.Where(e => e.RUPTURE == CheckBoxR).ToList();
+            }
+
+            if (EtatOperator == "active")
+                sqliteRes = sqliteRes.Where(e => e.ACTIF == true).ToList();
+
+            else if (EtatOperator == "nonActive")
+                sqliteRes = sqliteRes.Where(e => e.ACTIF == false).ToList();
+
+            return sqliteRes;
+        }
         #endregion
     }
 

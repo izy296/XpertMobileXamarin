@@ -98,6 +98,24 @@ namespace XpertMobileApp.ViewModels
 
             return qb.QueryInfos;
         }
+
+        public async override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            var res = await base.SelectByPageFromSqlLite(filter);
+
+            res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
+
+            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                res = res.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
+
+            if (!string.IsNullOrEmpty(SelectedCompte?.CODE_COMPTE))
+                res = res.Where(e => e.CREATED_BY == SelectedCompte?.CODE_COMPTE).ToList();
+
+            if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
+                res = res.Where(e => e.STATUS_DOC == SelectedStatus?.CODE_STATUS).ToList();
+
+            return res;
+        }
         protected override QueryInfos GetSelectParams()
         {
             base.GetSelectParams();

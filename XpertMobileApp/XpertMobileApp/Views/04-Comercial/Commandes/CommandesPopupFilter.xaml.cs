@@ -52,10 +52,15 @@ namespace XpertMobileApp.Views
                 status_layout.IsVisible = !true;
             }
         }
-
-
+        /// <summary>
+        /// fermer la popup des filtres ...
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
 
@@ -72,6 +77,8 @@ namespace XpertMobileApp.Views
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            await searchIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await searchIcon.ScaleTo(1, 50, Easing.Linear);
             itemSelector.SearchedType = "";
 
             await PopupNavigation.Instance.PushAsync(itemSelector);
@@ -81,8 +88,10 @@ namespace XpertMobileApp.Views
         {
 
         }
-        private void Initialize_Status_picker(object sender, EventArgs e)
+        private async void Initialize_Status_picker(object sender, EventArgs e)
         {
+            await initStatusPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initStatusPicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedStatus != null)
             {
                 viewModel.SelectedStatus = new BSE_DOCUMENT_STATUS();
@@ -90,8 +99,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Tiers_Field(object sender, EventArgs e)
+        private async void Initialize_Tiers_Field(object sender, EventArgs e)
         {
+            await initTiersPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTiersPicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedTiers != null)
             {
                 viewModel.SelectedTiers = new View_TRS_TIERS();

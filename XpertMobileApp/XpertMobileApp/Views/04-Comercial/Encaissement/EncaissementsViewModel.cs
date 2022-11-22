@@ -118,7 +118,8 @@ namespace XpertMobileApp.ViewModels
                 res = res.Where(x => x.CODE_TYPE == EncaissDisplayType.ToString()).ToList();
                 return res;
             }
-            res = res.Where(e => e.DATE_ENCAISS >= StartDate && e.DATE_ENCAISS <= EndDate).ToList();
+
+            res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) >= 0).ToList();
 
             if (selectedCompte != null)
                 res = res.Where(e => e.CODE_COMPTE == selectedCompte.CODE_COMPTE).ToList();

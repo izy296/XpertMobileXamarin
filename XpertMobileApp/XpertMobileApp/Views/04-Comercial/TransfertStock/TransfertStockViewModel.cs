@@ -42,9 +42,8 @@ namespace XpertMobileApp.ViewModels
         }
         public override async Task<List<View_STK_TRANSFERT>> SelectByPageFromSqlLite(QueryInfos filter)
         {
-            var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-
-            sqliteRes = sqliteRes.Where(e => e.DATE_TRANSEFRT >= StartDate && e.DATE_TRANSEFRT <= EndDate).ToList();
+            var sqliteRes = await base.SelectByPageFromSqlLite(filter); 
+            sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TRANSEFRT).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TRANSEFRT).Date) >= 0).ToList();
 
             return sqliteRes;
         }

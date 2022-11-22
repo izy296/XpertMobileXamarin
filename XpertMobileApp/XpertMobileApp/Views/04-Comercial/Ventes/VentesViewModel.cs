@@ -155,7 +155,7 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_VTE_VENTE>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-            sqliteRes = sqliteRes.Where(e => e.DATE_VENTE >= StartDate && e.DATE_VENTE <= EndDate).ToList();
+            sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 sqliteRes = sqliteRes.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
             if (!string.IsNullOrEmpty(TypeVente))

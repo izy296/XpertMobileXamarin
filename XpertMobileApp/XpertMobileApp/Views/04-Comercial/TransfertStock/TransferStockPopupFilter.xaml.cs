@@ -58,6 +58,8 @@ namespace XpertMobileApp.Views
 
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
 

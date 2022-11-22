@@ -42,6 +42,7 @@
                                     Margin="0,30,0,20"/>
 
                                     <Image 
+                                    x:Name="closeIcon"    
                                     VerticalOptions="Start"
                                     Source="closeIcon.png"
                                     Grid.Row="0"
@@ -52,6 +53,7 @@
                                     </Image>
 
                                 </Grid>
+                                
                                 <!--Date de debut-->
                                 <FlexLayout Direction="Column">
                                     <Label
@@ -85,7 +87,7 @@
                                                 Grid.Row="0"
                                                 Grid.Column="1"
                                                 Margin="2,-2,5,0"
-                                                TextColor="Gray"
+                                                TextColor="Black"
                                                 FontSize="15"
                                                 Format="dd/MM/yyyy"
                                                 Date="{Binding StartDate, Mode=TwoWay}"/>
@@ -125,7 +127,7 @@
                                             Grid.Row="0"
                                             Grid.Column="1"
                                             Margin="2,-2,5,0"
-                                            TextColor="Gray"
+                                            TextColor="Black"
                                             FontSize="14"
                                             Format="dd/MM/yyyy"
                                             Date="{Binding EndDate, Mode=TwoWay}"/>
@@ -182,10 +184,11 @@
                                                 Grid.ColumnSpan="2"
                                                 Text="{Binding RefDocum, Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="suppIcon"
                                                 Margin="0,0,19,10"
                                                 VerticalOptions="Center"
                                                 Grid.Row="0"
@@ -201,7 +204,8 @@
                                 </FlexLayout>
 
                                 <!--Status-->
-                                <FlexLayout Direction="Column" x:Name="status_layout">
+                                <FlexLayout Direction="Column" 
+                                            x:Name="status_layout">
                                     <Label
                                     Text="{i18n:Translate txt_Status}"
                                     FontSize="16"
@@ -252,7 +256,7 @@
                                                 ItemDisplayBinding="{Binding NAME}" 
                                                 SelectedItem="{Binding SelectedStatus , Mode=TwoWay}"
                                                 FontSize="14"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
@@ -321,10 +325,11 @@
                                                 Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
                                                 FontSize="14"
                                                 IsEnabled="false"
-                                                TextColor="Gray"  
+                                                TextColor="Black"  
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
+                                                x:Name="searchIcon"
                                                 Margin="0,0,14,5"
                                                 VerticalOptions="Start"
                                                 Grid.Row="0"
@@ -336,6 +341,7 @@
                                             </Image>
 
                                             <Image  
+                                                x:Name="initTiersIcon"
                                                 Margin="0,0,14,17"
                                                 VerticalOptions="End"
                                                 Grid.Row="0"

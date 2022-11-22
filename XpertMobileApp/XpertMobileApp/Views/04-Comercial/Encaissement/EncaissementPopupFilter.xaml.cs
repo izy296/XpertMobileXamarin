@@ -37,9 +37,10 @@ namespace XpertMobileApp.Views
             BindingContext = this.viewModel;
         }
 
-
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
         public void ClearFilters()
@@ -70,13 +71,10 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void Initialize_date(object sender, EventArgs e)
+        private async void Initialize_Compte_Picker(object sender, EventArgs e)
         {
-
-        }
-
-        private void Initialize_Compte_Picker(object sender, EventArgs e)
-        {
+            await initComptePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initComptePicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedCompte != null)
             {
                 viewModel.SelectedCompte = new View_BSE_COMPTE();
@@ -84,8 +82,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Motifs_picker(object sender, EventArgs e)
+        private async void Initialize_Motifs_picker(object sender, EventArgs e)
         {
+            await initMotifPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initMotifPicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedMotif != null)
             {
                 viewModel.SelectedMotif = new BSE_ENCAISS_MOTIFS();

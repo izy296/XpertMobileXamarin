@@ -38,7 +38,7 @@ namespace XpertMobileApp.Views
             this.viewModel = viewModel;
             BindingContext = this.viewModel;
 
-            if (Constants.AppName == Apps.XCOM_Mob)
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
                 Labo_layout.IsVisible = false;
                 tags_layout.IsVisible = false;
@@ -66,6 +66,8 @@ namespace XpertMobileApp.Views
 
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
 
@@ -130,12 +132,16 @@ namespace XpertMobileApp.Views
 
         private async void buttonClick(object sender, EventArgs e)
         {
+            await searchIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await searchIcon.ScaleTo(1, 50, Easing.Linear);
             ProductTagSelector productTagSelector = new ProductTagSelector();
             await PopupNavigation.Instance.PushAsync(productTagSelector);
         }
 
-        private void Initialize_Product_Entry(object sender, EventArgs e)
+        private async  void Initialize_Product_Entry(object sender, EventArgs e)
         {
+            await initProduct.ScaleTo(0.75, 50, Easing.Linear);
+            await initProduct.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SearchedText != null)
             {
                 viewModel.SearchedText = "";
@@ -143,8 +149,11 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Ref(object sender, EventArgs e)
+        private async  void Initialize_Ref(object sender, EventArgs e)
         {
+            await initRef.ScaleTo(0.75, 50, Easing.Linear);
+            await initRef.ScaleTo(1, 50, Easing.Linear);
+
             if (viewModel.SearchedRef != null)
             {
                 viewModel.SearchedRef = "";
@@ -152,8 +161,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Laboratory_picker(object sender, EventArgs e)
+        private async void Initialize_Laboratory_picker(object sender, EventArgs e)
         {
+            await initLaboPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initLaboPicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedLabo != null)
             {
                 viewModel.SelectedLabo = new BSE_PRODUIT_LABO();
@@ -161,8 +172,9 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_TagProduct_picker(object sender, EventArgs e)
+        private async void Initialize_TagProduct_picker(object sender, EventArgs e)
         {
+
             if (viewModel.SelectedTag != null)
             {
                 viewModel.SelectedTag = new List<BSE_PRODUIT_TAG>();
@@ -170,8 +182,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Type_Picker(object sender, EventArgs e)
+        private async void Initialize_Type_Picker(object sender, EventArgs e)
         {
+            await initTypePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTypePicker.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.SelectedType != null)
             {
                 viewModel.SelectedType = new BSE_TABLE_TYPE();
@@ -179,8 +193,11 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_Familly_Picker(object sender, EventArgs e)
+        private async void Initialize_Familly_Picker(object sender, EventArgs e)
         {
+            await initFamillePicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initFamillePicker.ScaleTo(1, 50, Easing.Linear);
+
             if (viewModel.SelectedFamille != null)
             {
                 viewModel.SelectedFamille = new BSE_TABLE();

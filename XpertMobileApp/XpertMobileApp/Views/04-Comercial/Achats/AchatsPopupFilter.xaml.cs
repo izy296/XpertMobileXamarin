@@ -57,6 +57,8 @@ namespace XpertMobileApp.Views
 
         private async void Close_filter_popup(object sender, EventArgs e)
         {
+            await closeIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await closeIcon.ScaleTo(1, 50, Easing.Linear);
             await PopupNavigation.Instance.PopAsync();
         }
 
@@ -73,13 +75,18 @@ namespace XpertMobileApp.Views
 
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
+            await searchIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await searchIcon.ScaleTo(1, 50, Easing.Linear);
             itemSelector.SearchedType = "";
 
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
-        private void Initialize_Tiers_Field(object sender, EventArgs e)
+        private async void Initialize_Tiers_Field(object sender, EventArgs e)
         {
+            await initTiersIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await initTiersIcon.ScaleTo(1, 50, Easing.Linear);
+
             if (viewModel.SelectedTiers != null)
             {
                 viewModel.SelectedTiers = new View_TRS_TIERS();
@@ -96,8 +103,10 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void Initialize_ref_picker(object sender, EventArgs e)
+        private async void Initialize_ref_picker(object sender, EventArgs e)
         {
+            await suppIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await suppIcon.ScaleTo(1, 50, Easing.Linear);
             if (viewModel.RefDocum != null)
             {
                 viewModel.RefDocum = null;

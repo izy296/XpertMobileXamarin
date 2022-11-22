@@ -94,6 +94,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_BSE_TIERS_FAMILLE>();
                 await GetInstance().CreateTableAsync<BSE_TABLE_TYPE>();
                 await GetInstance().CreateTableAsync<BSE_TABLE>();
+                await GetInstance().CreateTableAsync<BSE_PRODUIT_FAMILLE>();
                 await GetInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
                 await GetInstance().CreateTableAsync<SYS_MOBILE_PARAMETRE>();
                 await GetInstance().CreateTableAsync<View_TRS_ENCAISS>();
@@ -107,7 +108,9 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
                 await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE>();
                 await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
-                await CreateView_TRS_TIERS_ACTIVITY_Async();
+                await GetInstance().CreateTableAsync<BSE_DOCUMENT_STATUS>();
+                await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
+                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
             {
@@ -137,8 +140,6 @@ namespace XpertMobileApp.SQLite_Managment
             var list = await GetInstance().QueryAsync<View_STK_PRODUITS_PRIX_UNITE>(query);
             return list;
         }
-
-
 
         public static async Task<bool> CreateView_TRS_TIERS_ACTIVITY_Async()
         {
@@ -345,9 +346,12 @@ namespace XpertMobileApp.SQLite_Managment
                     await InitialisationDbLocal();
 
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    var tabeTemp = await GetInstance().Table<BSE_PRODUIT_FAMILLE>().ToListAsync();
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
+                    await SyncProduitFamille();
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
-
+                    await SyncStatusCommande();
+                    await SyncProduitType();
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
@@ -373,11 +377,12 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
-
+                    
                     await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                    
                     UserDialogs.Instance.HideLoading();
 
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -745,7 +750,6 @@ namespace XpertMobileApp.SQLite_Managment
                     var id = await GetInstance().InsertAsync(item);
 
                     await GetInstance().UpdateAsync(item);
-                    await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
                 {
@@ -1040,6 +1044,78 @@ namespace XpertMobileApp.SQLite_Managment
         {
             var Secteurs = await GetInstance().Table<BSE_TABLE>().ToListAsync();
             return Secteurs;
+        }
+
+        public static async Task SyncProduitType()
+        {
+            try
+            {
+                var itemsC = await WebServiceClient.GetProduitTypes();
+                List<BSE_PRODUIT_TYPE> itemsTypes = new List<BSE_PRODUIT_TYPE>();
+                foreach (var item in itemsC)
+                {
+                    itemsTypes.Add(new BSE_PRODUIT_TYPE()
+                    {
+                        CODE_TYPE = item.CODE_TYPE, 
+                        DESIGNATION_TYPE = item.DESIGNATION_TYPE
+                    });
+                }
+                var id = await GetInstance().InsertAllAsync(itemsTypes);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task<List<BSE_PRODUIT_TYPE>>  GetProduitType()
+        {
+            try
+            {
+                List<BSE_PRODUIT_TYPE> listeItemsType= await GetInstance().Table<BSE_PRODUIT_TYPE>().ToListAsync();
+                return listeItemsType;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public static async Task SyncProduitFamille()
+        {
+            try
+            {
+                var itemsC = await WebServiceClient.GetProduitFamilles();
+                List<BSE_PRODUIT_FAMILLE> itemsFamilles = new List<BSE_PRODUIT_FAMILLE>();
+                foreach (var item in itemsC)
+                {
+                    itemsFamilles.Add(new BSE_PRODUIT_FAMILLE()
+                    {
+                        CODE = item.CODE,
+                        DESIGNATION = item.DESIGNATION
+                    });
+                }
+                var id = await GetInstance().InsertAllAsync(itemsFamilles);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        public static async Task<List<BSE_PRODUIT_FAMILLE>> GetProduitFamilles()
+        {
+            try
+            {
+                List<BSE_PRODUIT_FAMILLE> listeProduitsFamille = await GetInstance().Table<BSE_PRODUIT_FAMILLE>().ToListAsync();
+                return listeProduitsFamille;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
@@ -1526,6 +1602,25 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        /// <summary>
+        /// Synchronisation des Status de commande 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task SyncStatusCommande()
+        {
+            try
+            {
+                var itemsS = await WebServiceClient.GetStatusCommande();
+                if (itemsS != null)
+                    await GetInstance().InsertAllAsync(itemsS);
+                var list = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();// testing only 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         /// <summary>
         /// Obtenire la liste des details de vente par CODE_VENTE
         /// </summary>

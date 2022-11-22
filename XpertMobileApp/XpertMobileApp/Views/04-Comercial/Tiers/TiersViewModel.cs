@@ -339,7 +339,6 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedFamille?.CODE_FAMILLE))
                 sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE_FAMILLE).ToList();
 
-
             if (!string.IsNullOrEmpty(SelectedType?.CODE_TYPE))
                 sqliteRes = sqliteRes.Where(e => e.CODE_TYPE == selectedType.CODE_TYPE).ToList();
 
