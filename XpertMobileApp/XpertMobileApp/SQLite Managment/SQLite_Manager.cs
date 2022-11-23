@@ -142,12 +142,12 @@ namespace XpertMobileApp.SQLite_Managment
             return list;
         }
 
-        public static async Task<IEnumerable<View_STK_STOCK>> GetUniteByProduit(string codeProduit = "")
+        public static async Task<IEnumerable<View_BSE_PRODUIT_AUTRE_UNITE>> GetUniteByProduit(string codeProduit = "")
         {
 
             // 
-            string query = $@"";
-            var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
+            string query = $@"SELECT DESIGNATION_UNITE,PRIX_VENTE,COEFFICIENT FROM View_BSE_PRODUIT_AUTRE_UNITE WHERE CODE_PRODUIT ='{codeProduit}'";
+            var list = await GetInstance().QueryAsync<View_BSE_PRODUIT_AUTRE_UNITE>(query);
             return list;
         }
 
@@ -388,7 +388,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
 
-                    await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
+                    //await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE,BSE_PRODUIT_PRIX_VENTE>();
 
                     //await SyncProductPriceByQuantity();       this probelem here 

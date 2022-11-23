@@ -63,6 +63,7 @@ namespace XpertMobileApp.Views
             if (livTournee != null)
             {
                 var currentClient = await SQLite_Manager.GetClient(livTournee.CODE_TIERS);
+                if (currentClient!=null)
                 soldeTierLabel.Text = string.Format("{0:N2} DA", currentClient.SOLDE_TIERS); ;
             }
             new Command(async () =>

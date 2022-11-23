@@ -26,6 +26,10 @@ namespace XpertMobileApp.Views
         public ObservableCollection<BSE_TABLE> Prices { get; set; }
         public View_TRS_TIERS Item { get; set; }
 
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> unites;
+
+        public decimal coeficiantUnite = 1;
+
         protected virtual void OnCBScaned(LotInfosEventArgs e)
         {
             EventHandler<LotInfosEventArgs> handler = LotInfosUpdated;
@@ -42,13 +46,27 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new QteUpdaterViewModel(item);
             NUD_Price.Value = item.SelectedPrice;
             NUD_Qte.Value = item.SelectedQUANTITE;
-            new Command(async => ExecuteLoadUnite());
+            new Command(async => ExecuteLoadUnite()).Execute(null);
         }
 
         private async void ExecuteLoadUnite()
         {
-            var Unite = SQLite_Manager.;
+            try
+            {
+                unites = await SQLite_Manager.GetUniteByProduit(viewModel.Item.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
+                if (unites.Count > 0)
+                {
+                    QteUniteLabel.Text = unites.ToList()[0].DESIGNATION_UNITE.ToString() + " - x " + unites.ToList()[0].COEFFICIENT.ToString();
+                    coeficiantUnite = unites.ToList()[0].COEFFICIENT;
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+
         }
+
 
         private async void OnClose(object sender, EventArgs e)
         {
@@ -69,8 +87,9 @@ namespace XpertMobileApp.Views
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
                 if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE)
                 {
+                    var qteU = (Convert.ToDecimal(ButtonQteUnite.Value) * coeficiantUnite);
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
+                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value) + qteU;
                     OnCBScaned(eventArgs);
                     await PopupNavigation.Instance.PopAsync();
                 }
@@ -81,7 +100,7 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
     }

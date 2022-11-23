@@ -9,20 +9,31 @@
                  xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
                  xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
                  xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+                 xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+                 xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
                  x:Class="XpertMobileApp.Views.QteUpdater">
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="30, 20, 30, 20">
+        <ScrollView>
         <Frame CornerRadius="8">
             <StackLayout BackgroundColor="White"
                      x:Name="EmbSelector">
-                <Grid Margin="15">
+                <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Label Text="Quantité" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
                     <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
-                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                                     Minimum="0" 
+                                     HorizontalOptions="FillAndExpand" 
                                      SelectAllOnFocus="True"            
                                      MaximumDecimalDigits="2"
                                      ParsingMode="Double"
@@ -32,26 +43,28 @@
                                      ValueChangeMode="OnKeyFocus"
                                      x:Name="NUD_Qte">
                     </numeric:SfNumericUpDown>
-
-                    <StackLayout VerticalOptions="Start" HorizontalOptions="Start" Padding="30" Grid.Row="2">
-                        <combobox:SfComboBox HeightRequest="40" x:Name="comboBox"/>
-                    </StackLayout>
-                    
-                    <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"
-                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                    <StackLayout
+                        x:Name="QuantiteUnite"
+                        HorizontalOptions="FillAndExpand" 
+                        Grid.Column="0" 
+                        Grid.ColumnSpan="2" 
+                        Grid.Row="3">
+                            <Label x:Name="QteUniteLabel" Text="Quantité Unite" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+                            <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                                     Minimum="0" HorizontalOptions="FillAndExpand" 
                                      SelectAllOnFocus="True"            
                                      MaximumDecimalDigits="2"
                                      ParsingMode="Double"
                                      FontSize="Large" TextAlignment="Center"
-                                     SpinButtonAlignment="Both"
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      ValueChangeMode="OnKeyFocus"
-                                     x:Name="NUDd_Qte">
-                    </numeric:SfNumericUpDown>
+                                     x:Name="ButtonQteUnite">
+                            </numeric:SfNumericUpDown>
+                        </StackLayout>
 
                     <Label Text="{i18n:Translate txt_agri_Prix}" FontSize="Medium"  Grid.Column="0"  Grid.Row="4" />
                     <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"
-                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                                     Minimum="0" HorizontalOptions="FillAndExpand"
                                      MaximumDecimalDigits="2"
                                      SpinButtonAlignment="Both"
                                      ParsingMode="Double"
@@ -81,7 +94,7 @@
 
             </StackLayout >
         </Frame>
-
+        </ScrollView>
     </StackLayout>
 
 </pages:PopupPage>
