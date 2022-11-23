@@ -118,6 +118,7 @@ namespace XpertMobileApp.Views
                 QteUpdater = new QteUpdater(lot);
                 QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
                 await PopupNavigation.Instance.PushAsync(QteUpdater);
+                SelectedlistLot.Add(lot);
             }
         }
 

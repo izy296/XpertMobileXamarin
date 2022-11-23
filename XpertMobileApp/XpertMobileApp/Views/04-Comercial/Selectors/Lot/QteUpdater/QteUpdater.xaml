@@ -6,20 +6,22 @@
                  xmlns:fontawesome="clr-namespace:FontAwesome"
                  xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
                  xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
-                 xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+                 xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+                 xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
+                 xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
                  x:Class="XpertMobileApp.Views.QteUpdater">
 
-      <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="30, 20, 30, 20">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="30, 20, 30, 20">
         <Frame CornerRadius="8">
-         <StackLayout BackgroundColor="White"
+            <StackLayout BackgroundColor="White"
                      x:Name="EmbSelector">
-            <Grid Margin="15">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Text="Quantité" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
-                <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
+                <Grid Margin="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Quantité" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+                    <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
                                      Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
                                      SelectAllOnFocus="True"            
                                      MaximumDecimalDigits="2"
@@ -29,10 +31,26 @@
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      ValueChangeMode="OnKeyFocus"
                                      x:Name="NUD_Qte">
-                </numeric:SfNumericUpDown>
+                    </numeric:SfNumericUpDown>
 
-                    <Label Text="{i18n:Translate txt_agri_Prix}" FontSize="Medium"  Grid.Column="0"  Grid.Row="2" />
+                    <StackLayout VerticalOptions="Start" HorizontalOptions="Start" Padding="30" Grid.Row="2">
+                        <combobox:SfComboBox HeightRequest="40" x:Name="comboBox"/>
+                    </StackLayout>
+                    
                     <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"
+                                     Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
+                                     SelectAllOnFocus="True"            
+                                     MaximumDecimalDigits="2"
+                                     ParsingMode="Double"
+                                     FontSize="Large" TextAlignment="Center"
+                                     SpinButtonAlignment="Both"
+                                     TextColor="Black" AllowNull="false" VerticalOptions="Center"
+                                     ValueChangeMode="OnKeyFocus"
+                                     x:Name="NUDd_Qte">
+                    </numeric:SfNumericUpDown>
+
+                    <Label Text="{i18n:Translate txt_agri_Prix}" FontSize="Medium"  Grid.Column="0"  Grid.Row="4" />
+                    <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5"
                                      Minimum="0" HorizontalOptions="FillAndExpand" Margin="30,-15,0,0"
                                      MaximumDecimalDigits="2"
                                      SpinButtonAlignment="Both"
@@ -63,7 +81,7 @@
 
             </StackLayout >
         </Frame>
-          
+
     </StackLayout>
 
 </pages:PopupPage>

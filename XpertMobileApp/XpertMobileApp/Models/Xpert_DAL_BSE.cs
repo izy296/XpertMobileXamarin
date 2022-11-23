@@ -61,6 +61,11 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_UNITE_2 { get; set; }
     }
 
+    public partial class BSE_PRODUIT_PRIX_VENTE
+    {
+        // declaration de type BSE_PRODUIT_PRIX_VENTE pour la sycnhronisation sqlite
+    }
+
     public partial class View_BSE_PRODUIT_PRIX_VENTE
     {
       public string CODE_DETAIL { get;set;}

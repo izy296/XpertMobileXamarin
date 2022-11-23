@@ -201,6 +201,13 @@ namespace XpertMobileApp.Models
                 return SelectedQUANTITE > 0;
             }
         }
+        public string CODE_UNITE_ACHAT { get; set; }
+        public string CODE_UNITE_VENTE { get; set; }
+        public string CODE_UNITE { get; set; }
+        public decimal COEFFICIENT { get; set; }
+        public decimal PRIX_VENTE_COLLISAGE { get; set; }
+        public string DESIGNATION_UNITE { get; set; }
+        public decimal PRIX_VENTE_FAMILLE { get; set; }
     }
     public partial class STK_STOCK_RFID
     {
@@ -867,7 +874,7 @@ namespace XpertMobileApp.Models
         public string CODE_UNITE_ACHAT { get; set; }
         public string CODE_UNITE_VENTE{ get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
-        public decimal PRIX_VENTE { get; set; }
+        public decimal PRIX_VENTE_PRODUIT { get; set; }
         public decimal QTE_STOCK { get; set; }
         public string CODE_UNITE { get; set; }
         public decimal COEFFICIENT { get; set; }

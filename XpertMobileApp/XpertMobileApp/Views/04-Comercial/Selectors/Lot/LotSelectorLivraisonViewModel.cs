@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -47,7 +48,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public LotSelectorLivraisonViewModel(string title= "" )
+        public LotSelectorLivraisonViewModel(string title = "")
         {
             Title = title;
         }
@@ -55,15 +56,19 @@ namespace XpertMobileApp.ViewModels
         protected async override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
         {
             base.OnAfterLoadItems(list);
-            var listProduits = await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE);
 
             int i = 0;
             foreach (var item in list)
             {
                 i += 1;
-                var produits = listProduits.Where(e => e.CODE_PRODUIT == item.CODE_PRODUIT).ToList();
                 (item as BASE_CLASS).Index = i;
             }
+        }
+
+        public override async Task<List<View_STK_STOCK>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
+            return await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE,"00094") as List<View_STK_STOCK>;
+
         }
 
         protected override QueryInfos GetFilterParams()
@@ -72,19 +77,19 @@ namespace XpertMobileApp.ViewModels
             this.AddCondition<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
 
             if (!string.IsNullOrEmpty(App.Settings.DefaultMagasinVente))
-            { 
+            {
                 this.AddCondition<View_STK_STOCK, string>(e => e.CODE_MAGASIN, App.Settings.DefaultMagasinVente);
             }
             this.AddCondition<View_STK_STOCK, bool>(e => e.IS_BLOCKED, 0);
             this.AddCondition<View_STK_STOCK, decimal>(e => e.QUANTITE, Operator.GREATER, 0);
-            
-           // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
+
+            // this.AddCondition<View_STK_STOCK, bool>(e => e.IS_VALID, 1);
 
             this.AddOrderBy<View_STK_STOCK, string>(e => e.DESIGNATION_PRODUIT);
 
             qb.QueryInfos.Param1 = CodeTiers;
 
             return qb.QueryInfos;
-        }           
+        }
     }
 }

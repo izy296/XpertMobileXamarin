@@ -110,7 +110,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
                 await GetInstance().CreateTableAsync<BSE_DOCUMENT_STATUS>();
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
-                 await CreateView_TRS_TIERS_ACTIVITY_Async();
+                await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
             {
@@ -119,27 +119,38 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<IEnumerable<View_STK_PRODUITS_PRIX_UNITE>> GetProduitPrixUniteByCodeFamille(string codeFamille,string columnName= "p.DESIGNATION_PRODUIT", string order="ASC")
+        public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille,string codeProduit="",string columnName= "p.DESIGNATION_PRODUIT", string order="ASC")
         {
 
             // 
-            string query = $@"SELECT DISTINCT s.ID_STOCK, s.lot, s.DATE_PEREMPTION, p.CODE_PRODUIT,p.DESIGNATION_PRODUIT, 
+            string query = $@"SELECT DISTINCT s.ID_STOCK, s.LOT, s.DATE_PEREMPTION, p.CODE_PRODUIT,p.DESIGNATION_PRODUIT, s.CODE_BARRE_LOT, s.CODE_BARRE,
                                              CASE 
                                                     WHEN pv.CODE_FAMILLE = '' THEN p.PRIX_VENTE_HT 
                                                     WHEN pv.VALEUR = 0 THEN p.PRIX_VENTE_HT 
+                                                    WHEN pv.VALEUR IS NULL THEN p.PRIX_VENTE_HT
                                                     ELSE pv.VALEUR 
-                                                end PRIX_VENTE_PRODUIT, 
-                                                p.QTE_STOCK, 
+                                                end PRIX_VENTE, 
+                                                p.QTE_STOCK QUANTITE, 
                                                   p.CODE_UNITE_ACHAT, 
                                                   p.CODE_UNITE_VENTE
                                             FROM View_STK_STOCK s 
                                             JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
                                             LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
+                                --WHERE p.CODE_PRODUIT = '{codeProduit}'
                                 ORDER BY {columnName} {order}";
-            // WHERE p.CODE_PRODUIT = '{codeProduit}'
-            var list = await GetInstance().QueryAsync<View_STK_PRODUITS_PRIX_UNITE>(query);
+            var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
             return list;
         }
+
+        public static async Task<IEnumerable<View_STK_STOCK>> GetUniteByProduit(string codeProduit = "")
+        {
+
+            // 
+            string query = $@"";
+            var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
+            return list;
+        }
+
 
         public static async Task<bool> CreateView_TRS_TIERS_ACTIVITY_Async()
         {
@@ -346,7 +357,6 @@ namespace XpertMobileApp.SQLite_Managment
                     await InitialisationDbLocal();
 
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    var tabeTemp = await GetInstance().Table<BSE_PRODUIT_FAMILLE>().ToListAsync();
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
                     await SyncProduitFamille();
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
@@ -377,12 +387,13 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncData<View_VTE_VENTE, VTE_VENTE>();
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
-                    
+
                     await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
+                    await SyncData<View_BSE_PRODUIT_PRIX_VENTE,BSE_PRODUIT_PRIX_VENTE>();
+
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                    
                     UserDialogs.Instance.HideLoading();
 
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -750,6 +761,7 @@ namespace XpertMobileApp.SQLite_Managment
                     var id = await GetInstance().InsertAsync(item);
 
                     await GetInstance().UpdateAsync(item);
+                    await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
                 else
                 {
@@ -1056,7 +1068,7 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     itemsTypes.Add(new BSE_PRODUIT_TYPE()
                     {
-                        CODE_TYPE = item.CODE_TYPE, 
+                        CODE_TYPE = item.CODE_TYPE,
                         DESIGNATION_TYPE = item.DESIGNATION_TYPE
                     });
                 }
@@ -1068,11 +1080,11 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
-        public static async Task<List<BSE_PRODUIT_TYPE>>  GetProduitType()
+        public static async Task<List<BSE_PRODUIT_TYPE>> GetProduitType()
         {
             try
             {
-                List<BSE_PRODUIT_TYPE> listeItemsType= await GetInstance().Table<BSE_PRODUIT_TYPE>().ToListAsync();
+                List<BSE_PRODUIT_TYPE> listeItemsType = await GetInstance().Table<BSE_PRODUIT_TYPE>().ToListAsync();
                 return listeItemsType;
             }
             catch (Exception ex)
@@ -1117,6 +1129,7 @@ namespace XpertMobileApp.SQLite_Managment
                 throw ex;
             }
         }
+
 
         public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
         {

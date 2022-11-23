@@ -12,6 +12,7 @@ using Acr.UserDialogs;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using System.Collections.ObjectModel;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.Views
 {
@@ -41,6 +42,12 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new QteUpdaterViewModel(item);
             NUD_Price.Value = item.SelectedPrice;
             NUD_Qte.Value = item.SelectedQUANTITE;
+            new Command(async => ExecuteLoadUnite());
+        }
+
+        private async void ExecuteLoadUnite()
+        {
+            var Unite = SQLite_Manager.;
         }
 
         private async void OnClose(object sender, EventArgs e)
@@ -60,7 +67,7 @@ namespace XpertMobileApp.Views
             {
 
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
-                if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.OLD_QUANTITE)
+                if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE)
                 {
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
                     eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
@@ -69,7 +76,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.Item.OLD_QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    await UserDialogs.Instance.AlertAsync(" Quantité stock insuffisante ! \n La quantité stock = " + viewModel.Item.QUANTITE, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
             }
             catch (Exception ex)
