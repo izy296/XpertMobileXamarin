@@ -1294,4 +1294,7 @@
   <data name="TOTAL_NB_VENTE" xml:space="preserve">
     <value>Nombre de ventes</value>
   </data>
+  <data name="msg_Reconnect" xml:space="preserve">
+    <value>vous êtes déconnecté souhaitez être connecté ?</value>
+  </data>
 </root>

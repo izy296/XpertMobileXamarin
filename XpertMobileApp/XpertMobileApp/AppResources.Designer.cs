@@ -3537,6 +3537,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_offline", resourceCulture);
             }
         }
+        public static string msg_Reconnect
+        {
+            get
+            {
+                return ResourceManager.GetString("msg_Reconnect", resourceCulture);
+            }
+        }
     }
 }
 

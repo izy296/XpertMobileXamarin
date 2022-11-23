@@ -1059,4 +1059,7 @@
   <data name="TOTAL_NB_VENTE" xml:space="preserve">
     <value>Sales Count</value>
   </data>
+  <data name="msg_Reconnect" xml:space="preserve">
+    <value>you are offline want to be connected ?</value>
+  </data>
 </root>

@@ -1159,4 +1159,7 @@
   <data name="TOTAL_NB_VENTE" xml:space="preserve">
     <value>عدد المبيعات</value>
   </data>
+  <data name="msg_Reconnect" xml:space="preserve">
+    <value>أنت غير متصل ، تريد أن تكون متصلاً؟</value>
+  </data>
 </root>
