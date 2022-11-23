@@ -36,15 +36,41 @@ namespace XpertMobileApp.Views
             }
             if (App.Online)
             {
-                Application.Current.Resources["NavigationPrimary"] = "#2196F3";
-                Application.Current.Resources["MenuAccent"] = "#96d1ff";
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    Application.Current.Resources["NavigationPrimary"] = "#F9B208 "; //orange foncé
+                    Application.Current.Resources["MenuAccent"] = "#F9B208";
+                    Application.Current.Resources["MenuItemGroup"] = "#FBEEC9"; //orange Claire
+                }
+                else if (Constants.AppName == Apps.XPH_Mob)
+                {
+                    Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
+                    Application.Current.Resources["MenuAccent"] = "#087565";
+                    Application.Current.Resources["MenuItemGroup"] = "#ACD1CB"; // vert claire
+                }
+                else
+                {
+                    Application.Current.Resources["NavigationPrimary"] = "#2196F3";
+                    Application.Current.Resources["MenuAccent"] = "#96d1ff";
+                }
+
                 connectionStatus.Text = AppResources.txt_online;
             }
 
             else
             {
-                Application.Current.Resources["NavigationPrimary"] = "#5B5B5B";
-                Application.Current.Resources["MenuAccent"] = "#5B5B5B";
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    Application.Current.Resources["MenuItemGroup"] = "#FBEEC9"; //orange Claire
+                    Application.Current.Resources["NavigationPrimary"] = "#5B5B5B";
+                    Application.Current.Resources["MenuAccent"] = "#5B5B5B";
+                }
+                else if (Constants.AppName == Apps.XPH_Mob)
+                {
+                    Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
+                    Application.Current.Resources["MenuAccent"] = "#087565";
+                    Application.Current.Resources["MenuItemGroup"] = "#ACD1CB"; // vert claire
+                }
                 connectionStatus.Text = AppResources.txt_offline;
             }
 
@@ -125,11 +151,11 @@ namespace XpertMobileApp.Views
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
             if (id == "34")
             {
-                await Upload();
+                //await Upload();
             }
             else if (id == "11")
             {
-                await Download();
+                //await Download();
             }
             else
             {
