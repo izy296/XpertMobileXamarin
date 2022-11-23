@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
@@ -238,10 +239,22 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.New_Version_URL);
             return await RetrievValAauthorizedData<string>(url);
         }
+        
+        internal static async Task<string> GetNewWebApiVersion()
+        {
+            string url = WSApi2.CreateLink(ServiceUrlDico.WEBAPI_XML_URL);
+            return await RetrievValAauthorizedData<string>(url);
+        }
 
         internal static async Task<string> GetNewVersion()
         {
             string url = WSApi2.CreateLink(ServiceUrlDico.WEBAPI_XML_URL);
+            if (Constants.AppName == Apps.XPH_Mob)
+                url = WSApi2.CreateLink(ServiceUrlDico.XOFFICINE_XML_URL);
+            else if (Constants.AppName == Apps.XCOM_Mob)
+                url = WSApi2.CreateLink(ServiceUrlDico.XCOMM_XML_URL);
+            else if (Constants.AppName == Apps.X_DISTRIBUTION)
+                url = WSApi2.CreateLink(ServiceUrlDico.XDISTRIB_XML_URL);
             return await RetrievValAauthorizedData<string>(url);
         }
         public static async Task<string> UpdateVersion(string Version)

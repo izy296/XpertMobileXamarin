@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Acr.UserDialogs;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -18,7 +19,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
-            ClientId.Text = " ( ID :"+App.Settings.ClientId+" )";
+            ClientId.Text = " ( ID :" + App.Settings.ClientId + " )";
             CurrentVersion.Text = VersionTracking.CurrentVersion;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
             BindingContext = viewModel = new AboutViewModel();
@@ -26,6 +27,7 @@ namespace XpertMobileApp.Views
             googlePlay_btn.IsEnabled = false;
             googlePlay_btn.Opacity = 0.3;
             Update_btn.BackgroundColor = Color.FromHex("#ddd");
+
 
             handleVersions();
         }
@@ -83,32 +85,43 @@ namespace XpertMobileApp.Views
 
         private async void CheckForUpdate(object sender, EventArgs e)
         {
-
-            if (await CheckForNewUpdates())
+            try
             {
-                googlePlay_btn.IsEnabled = true;
-                googlePlay_btn.Opacity = 1;
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update, AppResources.alrt_msg_Ok);
-                await animateButton(googlePlay_btn);
-            }
-            else
-            {
-                googlePlay_btn.IsEnabled = false;
-                googlePlay_btn.Opacity = 0.3;
-                if (await CheckForWebApiUpdate())
+                if (await CheckForNewUpdates())
                 {
-                    Update_btn.IsEnabled = true;
-                    Update_btn.BackgroundColor = Color.FromHex("#7EC384");
-                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update_web, AppResources.alrt_msg_Ok);
-                    await animateButton(Update_btn);
+                    googlePlay_btn.IsEnabled = true;
+                    googlePlay_btn.Opacity = 1;
+                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update, AppResources.alrt_msg_Ok);
+                    await animateButton(googlePlay_btn);
                 }
                 else
                 {
-                    Update_btn.IsEnabled = false;
-                    Update_btn.BackgroundColor = Color.FromHex("#ddd");
-                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_updated, AppResources.alrt_msg_Ok);
+                    googlePlay_btn.IsEnabled = false;
+                    googlePlay_btn.Opacity = 0.3;
+                    if (await CheckForWebApiUpdate())
+                    {
+                        Update_btn.IsEnabled = true;
+                        Update_btn.BackgroundColor = Color.FromHex("#7EC384");
+                        await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update_web, AppResources.alrt_msg_Ok);
+                        await animateButton(Update_btn);
+                    }
+                    else
+                    {
+                        Update_btn.IsEnabled = false;
+                        Update_btn.BackgroundColor = Color.FromHex("#ddd");
+                        await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_updated, AppResources.alrt_msg_Ok);
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
+AppResources.alrt_msg_Ok);
+
+
+            }
+
         }
 
         private async Task<bool> CheckForWebApiUpdate()

@@ -60,6 +60,9 @@ namespace XpertMobileApp.Helpers
         public static string TRS_TIER_GET_TIER = "GetTier";
 
         public static string WEBAPI_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertWebAPI.xml";
+        public static string XOFFICINE_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertMobileOFFICINE.xml";
+        public static string XCOMM_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertMobileCOMM.xml";
+        public static string XDISTRIB_XML_URL = "http://xpertsoft.biz/XpertDecode/Update/XpertWebAPI/Production/XpertMobileDISTRIB.xml";
 
         // Activation
 

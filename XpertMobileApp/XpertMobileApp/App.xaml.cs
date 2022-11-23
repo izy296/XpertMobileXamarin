@@ -181,7 +181,7 @@ namespace XpertMobileApp
                 {
                     try
                     {
-                        if (App.User != null && App.User.Token != null && App.Online)
+                        if (App.User != null && App.User.Token != null && await App.IsConected())
                         {
                             var xml = await WebServiceClient.GetNewVersion();
                             XDocument docWebApiXml = XDocument.Parse(xml);
@@ -200,12 +200,12 @@ namespace XpertMobileApp
                             Version currentVersionHolder = new Version(VersionTracking.CurrentVersion);
                             if (newVersionHolder > currentVersionHolder)
                             {
-                                localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + newVersion, Data);
-
                                 bool isNotified = isNotifiedForUpdate(Data["title"].ToString(), Data["body"].ToString());
 
                                 if (!isNotified)
                                 {
+                                    localNotificationsService.ShowNotification(AppResources.Update_Notification_Header, AppResources.Update_Notification_Text + " " + newVersion, Data);
+
                                     new SettingsModel().setNotificationAsync(new Notification()
                                     {
                                         Title = Data["title"].ToString(),
