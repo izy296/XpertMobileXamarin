@@ -6,6 +6,7 @@ using Plugin.Multilingual;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -37,6 +38,7 @@ namespace XpertMobileApp
         public static User User { get; internal set; }
 
         public static bool Online = false;
+        public static bool showReconnectMessage { get; set; } = true;
         public static string PrefixCodification { get; internal set; }
         public static string CODE_MAGASIN { get; internal set; }
         public static decimal PARAM_FIDELITE_TIERS { get; internal set; } = 0;
@@ -152,6 +154,7 @@ namespace XpertMobileApp
             }
 
         }
+
 
         private bool isNotifiedForUpdate(string title, string message)
         {

@@ -79,7 +79,7 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
+            CheckIfUserWantReconnect();
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
@@ -149,11 +149,11 @@ namespace XpertMobileApp.Views
         {
             MainPage RootPage = Application.Current.MainPage as MainPage;
             string id = ((sender as Button).Parent.Parent.Parent.BindingContext as TDB_SIMPLE_INDICATORS).CODE_ANALYSE;
-            if (id == "34")
+            if (id == "31324")
             {
                 //await Upload();
             }
-            else if (id == "11")
+            else if (id == "5611")
             {
                 //await Download();
             }
@@ -204,6 +204,33 @@ namespace XpertMobileApp.Views
         {
             KeepAnimate = false;
             await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Notification);
+        }
+        public async static void CheckIfUserWantReconnect()
+        {
+            try
+            {
+                if (App.showReconnectMessage == true && App.Online == false)
+                {
+                    if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
+                    {
+                        Console.WriteLine(Application.Current.MainPage.Navigation.NavigationStack);
+                        bool answer = await App.Current.MainPage.DisplayAlert("Reconnexion", AppResources.msg_Reconnect, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                        if (answer)
+                        {
+                            bool response = await App.IsConected();
+                            if (!response)
+                                await UserDialogs.Instance.AlertAsync("Veuillez vous connectez a l'internet !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        }
+                    }
+                    App.showReconnectMessage = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }
