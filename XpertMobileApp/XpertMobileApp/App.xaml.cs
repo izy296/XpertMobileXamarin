@@ -184,7 +184,7 @@ namespace XpertMobileApp
                 {
                     try
                     {
-                        if (App.User != null && App.User.Token != null && await App.IsConected())
+                        if (App.User != null && App.User.Token != null)
                         {
                             var xml = await WebServiceClient.GetNewVersion();
                             XDocument docWebApiXml = XDocument.Parse(xml);
