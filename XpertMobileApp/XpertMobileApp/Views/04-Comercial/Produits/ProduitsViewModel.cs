@@ -26,6 +26,7 @@ namespace XpertMobileApp.ViewModels
     public class ProduitsViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
+        public bool DisplayWithQuantity { get; set; } = false;
         string currentQB = null;
         public ProduitsViewModel()
         {
@@ -45,11 +46,11 @@ namespace XpertMobileApp.ViewModels
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
-            Items.Clear();
             // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
 
             this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
-
+            if (!DisplayWithQuantity)
+                this.AddCondition<View_STK_PRODUITS, decimal>(e => e.QTE_STOCK, Operator.GREATER, 0);
             if (!string.IsNullOrEmpty(SearchedRef))
                 this.AddCondition<View_STK_PRODUITS, string>(e => e.REFERENCE, SearchedRef);
 
@@ -609,7 +610,7 @@ namespace XpertMobileApp.ViewModels
 
             else
             {
-                Items.Clear();
+                
                 if (!string.IsNullOrEmpty(SelectedFamille?.DESIGNATION))
                     sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE).ToList();
 

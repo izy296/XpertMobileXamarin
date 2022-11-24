@@ -176,5 +176,18 @@ namespace XpertMobileApp.Views
             //Load data for the first time ...
             await PopupNavigation.Instance.PushAsync(filter);
         }
+
+        private void Switch1_Toggled(object sender, ToggledEventArgs e)
+        {
+            try
+            {
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
