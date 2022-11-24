@@ -78,6 +78,7 @@ namespace XpertMobileApp.Views
         /// <param name="e"></param>
         private async void ApplyFilter(object sender, EventArgs e)
         {
+            viewModel.BareCode = null;
             viewModel.LoadItemsCommand.Execute(null);
             await PopupNavigation.Instance.PopAsync();
         }

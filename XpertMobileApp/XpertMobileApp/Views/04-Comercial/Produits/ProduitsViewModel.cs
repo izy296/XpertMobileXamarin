@@ -45,7 +45,7 @@ namespace XpertMobileApp.ViewModels
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();
-
+            Items.Clear();
             // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
 
             this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
@@ -147,26 +147,46 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 Items.Clear();
                 List<View_STK_PRODUITS> products = new List<View_STK_PRODUITS>();
-                products = await CrudManager.Products.SelectProduitByCodeBarre(BareCode);
-                UserDialogs.Instance.HideLoading();
-                if (products.Count > 1)
+
+                if (App.Online)
                 {
-                    await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, BareCode));
-                    //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits+ System.Environment.NewLine+ BareCode, AppResources.alrt_msg_Ok);
-                    await ExecuteLoadItemsCommand();
-                }
-                else if (products.Count == 0)
-                {
-                    await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, BareCode));
-                    //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits + System.Environment.NewLine + BareCode, AppResources.alrt_msg_Ok);
-                    await ExecuteLoadItemsCommand();
+                    products = await CrudManager.Products.SelectProduitByCodeBarre(BareCode);
+
+                    UserDialogs.Instance.HideLoading();
+                    if (products.Count > 1)
+                    {
+                        await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits, BareCode));
+                        //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_p_produits+ System.Environment.NewLine+ BareCode, AppResources.alrt_msg_Ok);
+                        await ExecuteLoadItemsCommand();
+                    }
+                    else if (products.Count == 0)
+                    {
+                        await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, BareCode));
+                        //await Application.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits + System.Environment.NewLine + BareCode, AppResources.alrt_msg_Ok);
+                        await ExecuteLoadItemsCommand();
+                    }
+                    else
+                    {
+                        Items.AddRange(products);
+                    }
                 }
                 else
                 {
-                    Items.AddRange(products);
+                    products = await SQLite_Manager.GetProductByBarCode(BareCode);
+                    if (products.Count == 1)
+                    {
+                        Items.AddRange(products);
+                        UserDialogs.Instance.HideLoading();
+                    }
+                    else
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        await PopupNavigation.Instance.PushAsync(new CodeBarrePopUp(AppResources.txt_alert, AppResources.txt_mssg_codeBarre_aucun_produits, BareCode));
+                    }
                 }
             }
             catch (Exception ex)
@@ -175,8 +195,6 @@ namespace XpertMobileApp.ViewModels
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
-
-
         }
 
         protected override QueryInfos GetSelectParams()
@@ -210,7 +228,7 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 IsBusy = true;
-                if (currentQB != null && currentQB != GetFilterParams().StringCondition)
+                if (currentQB != null && currentQB != GetFilterParams().StringCondition && BareCode == null)
                 {
                     currentQB = GetFilterParams().StringCondition;
                     Items.Clear();
@@ -221,7 +239,8 @@ namespace XpertMobileApp.ViewModels
                         return;
                     currentQB = GetFilterParams().StringCondition;
                 }
-                await Items.LoadMoreAsync();
+                if (String.IsNullOrEmpty(BareCode))
+                    await Items.LoadMoreAsync();
                 IsBusy = false;
             }
             catch (Exception ex)
@@ -441,17 +460,20 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
-                Labos.Clear();
-                var itemsC = await WebServiceClient.GetProduitLabos();
-
-                BSE_PRODUIT_LABO allElem = new BSE_PRODUIT_LABO();
-                allElem.CODE = "";
-                allElem.DESIGNATION = "";
-                Labos.Add(allElem);
-
-                foreach (var itemC in itemsC)
+                if (App.Online)
                 {
-                    Labos.Add(itemC);
+                    Labos.Clear();
+                    var itemsC = await WebServiceClient.GetProduitLabos();
+
+                    BSE_PRODUIT_LABO allElem = new BSE_PRODUIT_LABO();
+                    allElem.CODE = "";
+                    allElem.DESIGNATION = "";
+                    Labos.Add(allElem);
+
+                    foreach (var itemC in itemsC)
+                    {
+                        Labos.Add(itemC);
+                    }
                 }
             }
             catch (Exception ex)
@@ -508,8 +530,6 @@ namespace XpertMobileApp.ViewModels
 
         async Task ExecuteLoadFamillesCommand()
         {
-
-
             try
             {
                 Familles.Clear();
@@ -583,41 +603,46 @@ namespace XpertMobileApp.ViewModels
 
         public async override Task<List<View_STK_PRODUITS>> SelectByPageFromSqlLite(QueryInfos filter)
         {
-
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-            if (!string.IsNullOrEmpty(SelectedFamille?.DESIGNATION))
-                sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE).ToList();
+            if (!string.IsNullOrEmpty(BareCode))
+                sqliteRes = sqliteRes.Where(e => e.CODE_BARRE.Equals(BareCode)).ToList();
 
-            if (!string.IsNullOrEmpty(SelectedType?.DESIGNATION_TYPE))
-                sqliteRes = sqliteRes.Where(e => e.TYPE_PRODUIT == selectedType.CODE_TYPE).ToList();
-
-            if (!string.IsNullOrEmpty(SearchedRef))
-                sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedRef)).ToList();
-
-            if (!string.IsNullOrEmpty(SearchedText))
-                sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedText)).ToList();
-
-            if (CheckBoxSM)
+            else
             {
-                sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
+                Items.Clear();
+                if (!string.IsNullOrEmpty(SelectedFamille?.DESIGNATION))
+                    sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE).ToList();
+
+                if (!string.IsNullOrEmpty(SelectedType?.DESIGNATION_TYPE))
+                    sqliteRes = sqliteRes.Where(e => e.TYPE_PRODUIT == selectedType.CODE_TYPE).ToList();
+
+                if (!string.IsNullOrEmpty(SearchedRef))
+                    sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedRef)).ToList();
+
+                if (!string.IsNullOrEmpty(SearchedText))
+                    sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedText)).ToList();
+
+                if (CheckBoxSM)
+                {
+                    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
+                }
+
+                if (CheckBoxS)
+                {
+                    sqliteRes = sqliteRes.Where(e => e.IS_STOCKABLE == !CheckBoxS).ToList();
+                }
+
+                if (CheckBoxR)
+                {
+                    sqliteRes = sqliteRes.Where(e => e.RUPTURE == CheckBoxR).ToList();
+                }
+
+                if (EtatOperator == "active")
+                    sqliteRes = sqliteRes.Where(e => e.ACTIF == true).ToList();
+
+                else if (EtatOperator == "nonActive")
+                    sqliteRes = sqliteRes.Where(e => e.ACTIF == false).ToList();
             }
-
-            if (CheckBoxS)
-            {
-                sqliteRes = sqliteRes.Where(e => e.IS_STOCKABLE == !CheckBoxS).ToList();
-            }
-
-            if (CheckBoxR)
-            {
-                sqliteRes = sqliteRes.Where(e => e.RUPTURE == CheckBoxR).ToList();
-            }
-
-            if (EtatOperator == "active")
-                sqliteRes = sqliteRes.Where(e => e.ACTIF == true).ToList();
-
-            else if (EtatOperator == "nonActive")
-                sqliteRes = sqliteRes.Where(e => e.ACTIF == false).ToList();
-
             return sqliteRes;
         }
         #endregion

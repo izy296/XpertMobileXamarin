@@ -1244,6 +1244,20 @@ namespace XpertMobileApp.SQLite_Managment
             return Produit;
         }
 
+        public static async Task<List<View_STK_PRODUITS>> GetProductByBarCode(string codeBar)
+        {
+            try
+            {
+                var produitsList = await GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
+                var produit = produitsList.Where(element => element.CODE_BARRE.Equals(codeBar)).ToList();
+                return produit;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         public static async Task SyncProductPriceByQuantity()
         {
             try
