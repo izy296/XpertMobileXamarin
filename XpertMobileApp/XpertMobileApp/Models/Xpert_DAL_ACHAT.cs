@@ -567,6 +567,11 @@ namespace XpertMobileApp.DAL
         public bool? GENERER_VENTE_CHIFA { get; set; }
     }
 
+    public class STK_PRODUITS_XCOM
+    {
+        // implementer pour la synchronisation de produits
+    }
+
     public partial class STK_PRODUITS : BASE_CLASS
     {
         [PrimaryKey, AutoIncrement]
@@ -633,7 +638,20 @@ namespace XpertMobileApp.DAL
     {
         public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
         public string DESIGN_DCI { get; set; } // nvarchar(50)
-        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        private decimal qTE_STOCK { get; set; }
+        public decimal QTE_STOCK
+        {
+            get
+            {
+                return Api.Constants.AppName == Api.Apps.X_DISTRIBUTION ? QUANTITE : qTE_STOCK;
+            }
+            set
+            {
+
+                qTE_STOCK = value;
+
+            }
+        } // numeric(18,2)
         public string DESIGN_FORME { get; set; } // 
         public string DESIGN_LABO { get; set; } // 
         public string DESIGN_TYPE { get; set; }
@@ -688,6 +706,8 @@ namespace XpertMobileApp.DAL
         public decimal ReviewValue { get; set; } = (decimal)4.5;
         public string CODE_UNITE_ACHAT { get; set; }
         public string CODE_UNITE_VENTE { get; set; }
+        public decimal QUANTITE { get; set; }
+        public decimal QUANTITE_BONUS { get; set; }
     }
 
     public class View_AssistantCommandes : BASE_CLASS

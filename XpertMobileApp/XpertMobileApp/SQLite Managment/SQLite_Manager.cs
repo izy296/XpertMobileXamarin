@@ -119,7 +119,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille,string codeProduit="",string columnName= "p.DESIGNATION_PRODUIT", string order="ASC")
+        public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille, string codeProduit = "", string columnName = "p.DESIGNATION_PRODUIT", string order = "ASC")
         {
 
             // 
@@ -130,9 +130,10 @@ namespace XpertMobileApp.SQLite_Managment
                                                     WHEN pv.VALEUR IS NULL THEN p.PRIX_VENTE_HT
                                                     ELSE pv.VALEUR 
                                                 end PRIX_VENTE, 
-                                                p.QTE_STOCK QUANTITE, 
-                                                  p.CODE_UNITE_ACHAT, 
-                                                  p.CODE_UNITE_VENTE
+                                                s.QUANTITE,
+                                                s.QTE_STOCK, 
+                                                p.CODE_UNITE_ACHAT, 
+                                                p.CODE_UNITE_VENTE
                                             FROM View_STK_STOCK s 
                                             JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
                                             LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
@@ -355,14 +356,11 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
-
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    await SyncData<View_STK_PRODUITS, STK_PRODUITS>(); // worked !
                     await SyncProduitFamille();
                     await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
                     await SyncStatusCommande();
                     await SyncProduitType();
-                    //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
@@ -370,7 +368,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await syncPermission();//worked ! 
                     await SyncSysParams(); //worked !
                     await SyncProductPriceByQuantity();
-                    //await syncSession(); //worked !
+                    await SyncProduitsByMagasin();
                     await SyncFamille();//worked !
                     await SyncTypeTiers();//worked !
                     await SyncSecteurs();//worked !
@@ -378,19 +376,21 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncMotifs();//worked !
                     await SyncUsers(); //worked !
                     await SyncConfigMachine(); //worked
-                    //await SyncMagasin();                                                                                           
-                    //await SyncProduct();
                     await SyncTransfers();
                     await SyncTransfersDetail();
+                    await SyncProduiteUnite();
+                    await SyncProduiteUniteAutre();
+                    await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
+
+
+                    //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
+                    //await syncSession(); //worked !
+                    //await SyncMagasin();                                                                                           
+                    //await SyncProduct();
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>(); // we don't need to sync all the encaiss 
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
                     //await SyncData<View_VTE_VENTE, VTE_VENTE>();
-                    await SyncProduiteUnite();
-                    await SyncProduiteUniteAutre();
-
                     //await SyncData<View_VTE_VENTE_LIVRAISON,VTE_VENTE>();
-                    await SyncData<View_BSE_PRODUIT_PRIX_VENTE,BSE_PRODUIT_PRIX_VENTE>();
-
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
@@ -480,6 +480,23 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
         /// <summary>
+        /// Synchronisation des produits par Magasin
+        /// </summary>
+        /// <returns></returns>
+
+        public static async Task SyncProduitsByMagasin()
+        {
+            try
+            {
+                await SyncData<View_STK_PRODUITS, STK_PRODUITS_XCOM>(false, "codeMagasin=" + App.CODE_MAGASIN, "GetProduitFromMagasin");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
         /// Synchronisation de vue View_BSE_PRODUIT_UNITE_COEFFICIENT
         /// </summary>
         /// <returns></returns>
@@ -548,8 +565,9 @@ namespace XpertMobileApp.SQLite_Managment
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 await SyncTiersToServer();
                 await SyncEncaissToServer();
+                await SyncVenteToServer(); // error while coppying content to a stream
+
                 UserDialogs.Instance.HideLoading();
-                //await SyncVenteToServer(); // error while coppying content to a stream
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             else
@@ -1202,7 +1220,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
 
                 // check if Details is empty ( in case of Pharm or Comm)
-                if (vente.Details !=null)
+                if (vente.Details != null)
                 {
                     foreach (var items in vente.Details)
                     {
@@ -1218,7 +1236,7 @@ namespace XpertMobileApp.SQLite_Managment
                     }
                 }
                 // check if DetailsDistrib is empty or not ( in case of Ditribution using different viewModel )
-                else if (vente.DetailsDistrib!=null)
+                else if (vente.DetailsDistrib != null)
                 {
                     foreach (var items in vente.DetailsDistrib)
                     {
@@ -1727,10 +1745,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                if (App.PrefixCodification=="" || App.PrefixCodification ==  null)
-                {
-                    return null;
-                }
                 //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                 vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
                 vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;

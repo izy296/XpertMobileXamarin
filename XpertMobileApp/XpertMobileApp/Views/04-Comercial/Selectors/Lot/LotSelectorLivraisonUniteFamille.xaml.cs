@@ -54,7 +54,6 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-           // if (viewModel.Items.Count == 0)
             viewModel.LoadItemsCommand.Execute(null);
 
             foreach (var item in viewModel.Items)
@@ -87,7 +86,7 @@ namespace XpertMobileApp.Views
         private async void btnSelect_Clicked(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
-            if (viewModel.SelectedItem != null)
+            if (SelectedlistLot != null)
             {
                 MessagingCenter.Send(this, CurrentStream, SelectedlistLot);
                 SelectedlistLot = null;
@@ -118,7 +117,7 @@ namespace XpertMobileApp.Views
                 QteUpdater = new QteUpdater(lot);
                 QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
                 await PopupNavigation.Instance.PushAsync(QteUpdater);
-                SelectedlistLot.Add(lot);
+                ItemsListView.SelectedItem = null;
             }
         }
 
@@ -145,6 +144,9 @@ namespace XpertMobileApp.Views
             var item = sender as View_STK_STOCK;
             item.SelectedPrice = e.Price;
             item.SelectedQUANTITE = e.Quantity;
+
+            if (item.SelectedQUANTITE>0)
+                SelectedlistLot.Add(item);
 
             UpdateTotaux();
             MessagingCenter.Send(this, CurrentStream, item);

@@ -44,12 +44,12 @@
                                      x:Name="NUD_Qte">
                     </numeric:SfNumericUpDown>
                     <StackLayout
-                        x:Name="QuantiteUnite"
+                        x:Name="QuantiteUniteLayout"
                         HorizontalOptions="FillAndExpand" 
                         Grid.Column="0" 
                         Grid.ColumnSpan="2" 
                         Grid.Row="3">
-                            <Label x:Name="QteUniteLabel" Text="Quantité Unite" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
+                            <!--<Label x:Name="QteUniteLabel" Text="Quantité Unite" FontSize="Medium" Grid.Column="0" Grid.Row="0"/>
                             <numeric:SfNumericUpDown Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"
                                      Minimum="0" HorizontalOptions="FillAndExpand" 
                                      SelectAllOnFocus="True"            
@@ -59,7 +59,7 @@
                                      TextColor="Black" AllowNull="false" VerticalOptions="Center"
                                      ValueChangeMode="OnKeyFocus"
                                      x:Name="ButtonQteUnite">
-                            </numeric:SfNumericUpDown>
+                            </numeric:SfNumericUpDown>-->
                         </StackLayout>
 
                     <Label Text="{i18n:Translate txt_agri_Prix}" FontSize="Medium"  Grid.Column="0"  Grid.Row="4" />

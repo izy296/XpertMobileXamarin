@@ -13,6 +13,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using System.Collections.ObjectModel;
 using XpertMobileApp.SQLite_Managment;
+using Syncfusion.SfNumericUpDown.XForms;
 
 namespace XpertMobileApp.Views
 {
@@ -54,10 +55,30 @@ namespace XpertMobileApp.Views
             try
             {
                 unites = await SQLite_Manager.GetUniteByProduit(viewModel.Item.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
+                var unitesElements = unites;
+                unitesElements.Reverse();
                 if (unites.Count > 0)
                 {
-                    QteUniteLabel.Text = unites.ToList()[0].DESIGNATION_UNITE.ToString() + " - x " + unites.ToList()[0].COEFFICIENT.ToString();
-                    coeficiantUnite = unites.ToList()[0].COEFFICIENT;
+                    foreach (var unite in unitesElements)
+                    {
+                        Label uniteLable = new Label();
+                        uniteLable.Text = unite.DESIGNATION_UNITE.ToString() + " - x " + unite.COEFFICIENT.ToString();
+                        uniteLable.FontSize = 15;
+                        SfNumericUpDown qteUnite = new SfNumericUpDown();
+                        qteUnite.Minimum = 0;
+                        qteUnite.SelectAllOnFocus = true;
+                        qteUnite.MaximumDecimalDigits = 2;
+                        qteUnite.ParsingMode = ParsingMode.Double;
+                        qteUnite.FontSize = 15;
+                        qteUnite.TextAlignment = TextAlignment.Center;
+                        qteUnite.TextColor = Color.Black;
+                        qteUnite.AllowNull = false;
+                        qteUnite.VerticalOptions = LayoutOptions.Center;
+                        qteUnite.ValueChangeMode = ValueChangeMode.OnKeyFocus;
+
+                        QuantiteUniteLayout.Children.Add(uniteLable);
+                        QuantiteUniteLayout.Children.Add(qteUnite);
+                    }
                 }
             }
             catch (Exception ex)
@@ -87,7 +108,17 @@ namespace XpertMobileApp.Views
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
                 if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE)
                 {
-                    var qteU = (Convert.ToDecimal(ButtonQteUnite.Value) * coeficiantUnite);
+                    decimal qteU = 0;//(Convert.ToDecimal(ButtonQteUnite.Value) * coeficiantUnite);
+                    int i = 0;
+                    foreach (var element in QuantiteUniteLayout.Children)
+                    {
+                        if (element.GetType()== typeof(SfNumericUpDown))
+                        {
+                            var qteUnite = (SfNumericUpDown)element;
+                            qteU += Convert.ToDecimal(qteUnite.Value) * unites[i].COEFFICIENT;
+                            i++;
+                        }
+                    }
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
                     eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value) + qteU;
                     OnCBScaned(eventArgs);

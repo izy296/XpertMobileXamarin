@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Xpert.Common.DAO;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -67,8 +68,10 @@ namespace XpertMobileApp.ViewModels
 
         public override async Task<List<View_STK_STOCK>> SelectByPageFromSqlLite(QueryInfos filter)
         {
-            return await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE,"00094") as List<View_STK_STOCK>;
-
+            var result = await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE) as List<View_STK_STOCK>;
+            if (!XpertHelper.IsNullOrEmpty(SearchedText))
+                result = result.Where(e => e.DESIGNATION_PRODUIT.Contains(SearchedText)).ToList();
+            return result;
         }
 
         protected override QueryInfos GetFilterParams()

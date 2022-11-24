@@ -21,7 +21,7 @@ namespace XpertMobileApp.ViewModels
     public class TourneesViewModel : CrudBaseViewModel2<LIV_TOURNEE, View_LIV_TOURNEE>
     {
 
-        DateTime startDate = DateTime.Now;
+        DateTime startDate = new DateTime(DateTime.Now.Year, 1, 1);
         public DateTime StartDate
         {
             get { return startDate; }
