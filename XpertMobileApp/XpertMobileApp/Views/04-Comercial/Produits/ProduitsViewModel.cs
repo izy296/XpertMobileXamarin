@@ -627,8 +627,8 @@ namespace XpertMobileApp.ViewModels
                 {
                     sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
                 }
-                if (!DisplayWithQuantity)
-                    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK > 0).ToList();
+                //if (!DisplayWithQuantity)
+                //    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK > 0).ToList();
 
                 if (CheckBoxS)
                 {

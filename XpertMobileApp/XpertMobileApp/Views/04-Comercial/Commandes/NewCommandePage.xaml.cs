@@ -47,7 +47,7 @@ namespace XpertMobileApp.Views
                 this.Item.DATE_VENTE = DateTime.Now;
                 this.Item.DATE_ECHEANCE = DateTime.Now;
             }
-            
+
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(this.Item, this.Item?.CODE_VENTE);
 
             // Si le tiers n'est pa null.
@@ -219,51 +219,82 @@ namespace XpertMobileApp.Views
                 row.QUANTITE += 1;
                 return true;
             }
-
+            List<View_STK_PRODUITS> prods;
             // Cas prdouit pas déjà ajouté
-            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
-
-            if (prods.Count > 0)
+            if (App.Online)
             {
-                await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                return false;
-            }
-            else if (prods.Count == 0)
-            {
-                await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                return false;
+                prods = await CrudManager.Products.SelectProduitByCodeBarre(cb_prod);
+                if (prods.Count > 1)
+                {
+                    await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return false;
+                }
+                else if (prods.Count == 0)
+                {
+                    await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return false;
+                }
+                AddNewRow(prods[0]);
+                return true;
             }
 
-            AddNewRow(prods[0]);
-            return true;
+            else
+            {
+                prods = await SQLite_Manager.GetProductByBarCode(cb_prod);
+            }
+
+
+            if (prods != null)
+            {
+                if (prods.Count > 1)
+                {
+                    await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return false;
+                }
+                else if (prods.Count == 0)
+                {
+                    await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return false;
+                }
+                AddNewRow(prods[0]);
+                return true;
+            }
+            return false;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
             try
             {
-
                 this.Item.Details = viewModel.ItemRows.ToList();
-                if (string.IsNullOrEmpty(Item.CODE_VENTE))
+                if (viewModel.SelectedTiers != null)
                 {
-
-                    View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
-                    obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(Item);
-                    if (App.Online)
+                    if (string.IsNullOrEmpty(Item.CODE_VENTE))
                     {
-                        await CommandViewModel.ExecuteAddItemCommand(obj);
+
+                        View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
+                        obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(Item);
+                        if (App.Online)
+                        {
+                            await CommandViewModel.ExecuteAddItemCommand(obj);
+                        }
+                        else
+                        {
+                            await SQLite_Manager.AjoutCommande(obj);
+                        }
                     }
                     else
                     {
-                        await SQLite_Manager.AjoutCommande(obj);
+                        MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
                     }
-
+                    await Navigation.PopModalAsync();
                 }
                 else
                 {
-                    MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
+                    await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un client svp !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
-                await Navigation.PopModalAsync();
+
+
             }
             catch (Exception ex)
             {

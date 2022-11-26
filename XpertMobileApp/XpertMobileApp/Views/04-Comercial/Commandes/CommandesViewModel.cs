@@ -146,18 +146,25 @@ namespace XpertMobileApp.ViewModels
                 return;
             try
             {
+
                 Items.Clear();
                 // liste des ventes
                 await Items.LoadMoreAsync();
                 //Liste des Status commande
                 if (Status.Count == 0)
                 {
-                    var itemsS = await WebServiceClient.GetStatusCommande();
-                    foreach (var itemS in itemsS)
+                    if (App.Online)
                     {
-                        Status.Add(itemS);
+                        var itemsS = await WebServiceClient.GetStatusCommande();
+                        foreach (var itemS in itemsS)
+                        {
+                            Status.Add(itemS);
+                        }
                     }
+
                 }
+
+
             }
             catch (Exception ex)
             {
