@@ -610,7 +610,7 @@ namespace XpertMobileApp.ViewModels
 
             else
             {
-                
+
                 if (!string.IsNullOrEmpty(SelectedFamille?.DESIGNATION))
                     sqliteRes = sqliteRes.Where(e => e.CODE_FAMILLE == selectedFamille.CODE).ToList();
 
@@ -627,6 +627,8 @@ namespace XpertMobileApp.ViewModels
                 {
                     sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
                 }
+                if (!DisplayWithQuantity)
+                    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK > 0).ToList();
 
                 if (CheckBoxS)
                 {
