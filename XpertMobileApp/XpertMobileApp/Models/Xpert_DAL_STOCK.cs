@@ -1,7 +1,10 @@
 ﻿using SQLite;
 using System;
+using System.Collections.Generic;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
+using System.IO;
+using Xamarin.Forms;
 
 namespace XpertMobileApp.Models
 {
@@ -37,11 +40,31 @@ namespace XpertMobileApp.Models
         public decimal PENDING_QUANTITY { get; set; } // numeric(18,2)
         public bool GENERATE_BL { get; set; } // {trace Arrivage en instance} :: generer un bon de reception .
         public bool GENERATE_DECAISS { get; set; } // {trace Arrivage en instance} :: generer un rembouresement client .
+        public byte[] IMAGE { get; set; }
+        private string iMAGE_URL { get; set; }
         public string IMAGE_URL
         {
             get
             {
-                return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+                if (App.Online)
+                {
+                    return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+                }
+                else
+                {
+                    if (IMAGE != null)
+                        if (iMAGE_URL == null)
+                        {
+                            iMAGE_URL = BitConverter.ToString(IMAGE);
+                            return iMAGE_URL;
+                        }
+                        else
+                        {
+                            return iMAGE_URL;
+                        }
+
+                    else return null;
+                }
             }
         }
         public string Expiration
@@ -201,6 +224,9 @@ namespace XpertMobileApp.Models
                 return SelectedQUANTITE > 0;
             }
         }
+
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> Unites { get; set; }
+
         public string CODE_UNITE_ACHAT { get; set; }
         public string CODE_UNITE_VENTE { get; set; }
         public string CODE_UNITE { get; set; }
@@ -854,7 +880,7 @@ namespace XpertMobileApp.Models
 
     }
 
-    public class BSE_PRODUIT_FAMILLE 
+    public class BSE_PRODUIT_FAMILLE
     {
         public string CODE { get; set; } // varchar(10)
         public string DESIGNATION { get; set; } // varchar(50)
@@ -867,12 +893,11 @@ namespace XpertMobileApp.Models
     }
     public partial class View_STK_PRODUITS_PRIX_UNITE : BASE_CLASS
     {
-        public int? ID_STOCK{ get; set; }
         public string lot { get; set; }
         public DateTime? DATE_PEREMPTION { get; set; }
         public string CODE_PRODUIT { get; set; }
         public string CODE_UNITE_ACHAT { get; set; }
-        public string CODE_UNITE_VENTE{ get; set; }
+        public string CODE_UNITE_VENTE { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
         public decimal PRIX_VENTE_PRODUIT { get; set; }
         public decimal QTE_STOCK { get; set; }
@@ -883,8 +908,18 @@ namespace XpertMobileApp.Models
         public decimal PRIX_VENTE_FAMILLE { get; set; }
         public string DESIGN_FAMILLE { get; set; }
         public string CODE_FAMILLE { get; set; }
+    }
+    public partial class STK_PRODUITS_IMAGES_XCOM
+    {
+        // implementer pour la synchronisaton
+    }
 
-
+    public partial class STK_PRODUITS_IMAGES
+    {
+        public string CODE_IMAGE { get; set; } // varchar(11)
+        public string CODE_PRODUIT { get; set; } // varchar(150)
+        public byte[] IMAGE { get; set; } // varchar(50)
+        public bool DEFAULT_IMAGE { get; set; } // varchar(50)
     }
 
 }

@@ -110,6 +110,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
                 await GetInstance().CreateTableAsync<BSE_DOCUMENT_STATUS>();
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
+                await GetInstance().CreateTableAsync<STK_PRODUITS_IMAGES>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
@@ -133,14 +134,28 @@ namespace XpertMobileApp.SQLite_Managment
                                                 s.QUANTITE,
                                                 s.QTE_STOCK, 
                                                 p.CODE_UNITE_ACHAT, 
-                                                p.CODE_UNITE_VENTE
+                                                p.CODE_UNITE_VENTE,
+                                                pim.IMAGE
                                             FROM View_STK_STOCK s 
                                             JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
+                                            LEFT JOIN STK_PRODUITS_IMAGES pim on p.CODE_PRODUIT = pim.CODE_PRODUIT AND pim.DEFAULT_IMAGE = 1
                                             LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
                                 --WHERE p.CODE_PRODUIT = '{codeProduit}'
                                 ORDER BY {columnName} {order}";
             var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
             return list;
+        }
+
+        public static async Task SyncImages()
+        {
+            try
+            {
+                await SyncData<STK_PRODUITS_IMAGES, STK_PRODUITS_IMAGES_XCOM>(false,"", "GetImages");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static async Task<IEnumerable<View_BSE_PRODUIT_AUTRE_UNITE>> GetUniteByProduit(string codeProduit = "")
@@ -381,6 +396,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
+                    await SyncImages();
 
 
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();

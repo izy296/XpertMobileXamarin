@@ -245,6 +245,7 @@
             <local:DecimalToColorConverter x:Key="decimalToColor"/>
             <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
             <local:TypeDocConverter x:Key="TypeDocConverter"/>
+            <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
             <!--Global Styles-->
 
 
@@ -283,6 +284,7 @@
 
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+           
 
             <Style x:Key="DefaultTextStyle" TargetType="Label">
                 <Setter Property="TextColor" Value="#3897f0"/>

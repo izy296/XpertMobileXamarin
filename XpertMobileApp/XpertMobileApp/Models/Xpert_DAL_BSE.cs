@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -49,6 +50,19 @@ namespace XpertMobileApp.Models
     {
         public string DESIGNATION_UNITE { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
+        private decimal selectedQUANTITE { get; set; }
+        [Ignore]
+        public Decimal SelectedQUANTITE
+        {
+            get
+            {
+                return SelectedQUANTITE;
+            }
+            set
+            {
+                selectedQUANTITE = value;
+            }
+        }
     }
 
     public partial class View_BSE_PRODUIT_UNITE_COEFFICIENT
@@ -68,17 +82,17 @@ namespace XpertMobileApp.Models
 
     public partial class View_BSE_PRODUIT_PRIX_VENTE
     {
-      public string CODE_DETAIL { get;set;}
-      public string CODE_PRODUIT { get;set;}
-      public string CODE_FAMILLE { get;set;}
-      public int TYPE_PRIX { get;set;}
-      public decimal VALEUR { get;set;}
-      public decimal VALEUR_ACHAT { get;set;}
-      public bool PRODUIT_PRIX_VENTE_PUBLIC { get;set;}
-      public bool SYNCHRONISE { get;set;}
-      public DateTime? DATE_SYNCHRONISATION { get;set;}
-      public string DESIGN_FAMILLE { get;set;}
-      public string DESIGNATION_TYPE_PRIX { get; set; }
+        public string CODE_DETAIL { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public string CODE_FAMILLE { get; set; }
+        public int TYPE_PRIX { get; set; }
+        public decimal VALEUR { get; set; }
+        public decimal VALEUR_ACHAT { get; set; }
+        public bool PRODUIT_PRIX_VENTE_PUBLIC { get; set; }
+        public bool SYNCHRONISE { get; set; }
+        public DateTime? DATE_SYNCHRONISATION { get; set; }
+        public string DESIGN_FAMILLE { get; set; }
+        public string DESIGNATION_TYPE_PRIX { get; set; }
     }
 }
 

@@ -76,10 +76,14 @@
                                   <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" 
                                            WidthRequest="100" Grid.RowSpan="2">
                                           <ffimageloading:CachedImage 
+                                              x:Name="ImageHolder"
                                                   Aspect="AspectFit"
 			                                   DownsampleToViewSize="True"                                            
-			                                   Source = "{Binding IMAGE_URL}"
-                                               CacheType="None">
+			                                   Source = "{Binding IMAGE_URL , Converter={StaticResource ByteArrayToImageConverter} ,Mode=Default}"
+                                               CacheType="Disk"
+                                                CacheDuration= "30"
+                                                RetryCount= "3"
+                                                RetryDelay= "600">
                                           </ffimageloading:CachedImage>
                                   </StackLayout>
 
