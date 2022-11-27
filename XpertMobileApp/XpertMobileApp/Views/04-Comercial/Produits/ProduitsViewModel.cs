@@ -658,7 +658,7 @@ namespace XpertMobileApp.ViewModels
                     sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedRef)).ToList();
 
                 if (!string.IsNullOrEmpty(SearchedText))
-                    sqliteRes = sqliteRes.Where(e => e.REFERENCE.Contains(SearchedText)).ToList();
+                    sqliteRes = sqliteRes.Where(e => e.DESIGNATION.Contains(SearchedText)).ToList();
 
                 if (CheckBoxSM)
                 {
