@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
@@ -28,6 +29,7 @@ namespace XpertMobileApp.ViewModels
 
         public bool DisplayWithQuantity { get; set; } = false;
         string currentQB = null;
+        public InfiniteScrollCollection<View_STK_PRODUITS> ItemsWithQteMagasin { get; set; }
         public ProduitsViewModel()
         {
             Title = AppResources.pn_Produits;
@@ -37,10 +39,12 @@ namespace XpertMobileApp.ViewModels
             Labos = new ObservableCollection<BSE_PRODUIT_LABO>();
             Unites = new ObservableCollection<BSE_PRODUIT_UNITE>();
             SelectedTag = new List<BSE_PRODUIT_TAG>();
-
+            ItemsWithQteMagasin = new InfiniteScrollCollection<View_STK_PRODUITS>();
             OnCanLoadMoreBackup = Items.OnCanLoadMore;
 
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+
+
         }
 
         protected override QueryInfos GetFilterParams()
@@ -49,8 +53,10 @@ namespace XpertMobileApp.ViewModels
             // this.AddSelect<View_STK_STOCK, View_STK_STOCK>(e=>e.)
 
             this.AddCondition<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT, Operator.LIKE_ANY, SearchedText);
+
             if (!DisplayWithQuantity)
                 this.AddCondition<View_STK_PRODUITS, decimal>(e => e.QTE_STOCK, Operator.GREATER, 0);
+
             if (!string.IsNullOrEmpty(SearchedRef))
                 this.AddCondition<View_STK_PRODUITS, string>(e => e.REFERENCE, SearchedRef);
 
@@ -233,6 +239,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     currentQB = GetFilterParams().StringCondition;
                     Items.Clear();
+                    ItemsWithQteMagasin.Clear();
                 }
                 else
                 {
@@ -276,6 +283,36 @@ namespace XpertMobileApp.ViewModels
         protected override void OnAfterLoadItems(IEnumerable<View_STK_PRODUITS> list)
         {
             base.OnAfterLoadItems(list);
+            if (!DisplayWithQuantity && Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                List<View_STK_PRODUITS> tempList = new List<View_STK_PRODUITS>();
+                if (list != null)
+                {
+                    foreach (View_STK_PRODUITS item in list)
+                    {
+                        if (item.QTE_STOCK > 0)
+                        {
+                            tempList.Add(item);
+                        }
+                    }
+                    ItemsWithQteMagasin.AddRange(tempList);
+                }
+            }
+            else
+            {
+                List<View_STK_PRODUITS> tempList = new List<View_STK_PRODUITS>();
+                if (list != null)
+                {
+                    foreach (View_STK_PRODUITS item in list)
+                    {
+                        if (item.QTE_STOCK <= 0)
+                        {
+                            tempList.Add(item);
+                        }
+                    }
+                    ItemsWithQteMagasin.AddRange(tempList);
+                }
+            }
 
             int i = 0;
             foreach (var item in list)
@@ -627,8 +664,8 @@ namespace XpertMobileApp.ViewModels
                 {
                     sqliteRes = sqliteRes.Where(e => e.QTE_STOCK < e.STOCK_MIN && e.STOCK_MIN != 0).ToList();
                 }
-                //if (!DisplayWithQuantity)
-                //    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK > 0).ToList();
+                if (!DisplayWithQuantity)
+                    sqliteRes = sqliteRes.Where(e => e.QTE_STOCK > 0).ToList();
 
                 if (CheckBoxS)
                 {

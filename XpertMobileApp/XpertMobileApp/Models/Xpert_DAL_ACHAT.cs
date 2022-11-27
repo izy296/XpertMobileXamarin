@@ -6,6 +6,9 @@ using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using SQLite;
+using Xamarin.Forms;
+using System.IO;
+using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.DAL
 {
@@ -708,6 +711,34 @@ namespace XpertMobileApp.DAL
         public string CODE_UNITE_VENTE { get; set; }
         public decimal QUANTITE { get; set; }
         public decimal QUANTITE_BONUS { get; set; }
+        private ImageSource image_source { get; set; }
+        [Ignore]
+        public ImageSource IMAGE_SOURCE
+        {
+            get
+            {
+                if (image_source == null)
+                {
+
+                    if (!App.Online)
+                    {
+                        var IMAGE = SQLite_Manager.GetImage(CODE_PRODUIT);
+                        if (IMAGE != null)
+                            image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                        else image_source = ImageSource.FromFile("defaultProdImg.png");
+                    }
+                    else
+                    {
+                        image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                    }
+                }
+                return image_source;
+            }
+            set
+            {
+                image_source = value;
+            }
+        }
     }
 
     public class View_AssistantCommandes : BASE_CLASS

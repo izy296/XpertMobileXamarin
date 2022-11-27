@@ -29,6 +29,10 @@ namespace XpertMobileApp.Views
             //    translateHide = App.Current.MainPage.Width;
             //    translateShow = App.Current.MainPage.Width - 360;
             //}
+            if (App.Online && Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                ItemsListView.ItemsSource = viewModel.ItemsWithQteMagasin;
+            }
         }
 
         private void FilterScroll_Focused(object sender, FocusEventArgs e)
@@ -181,6 +185,8 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                viewModel.Items.Clear();
+                viewModel.ItemsWithQteMagasin.Clear();
                 viewModel.LoadItemsCommand.Execute(null);
             }
             catch (Exception ex)

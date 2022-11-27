@@ -4,13 +4,14 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.Templates.ProduitTemplate_COMM">
     <ContentView.Content>
-        
-        <StackLayout>
+
+        <StackLayout Orientation="Vertical">
             <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
@@ -24,17 +25,31 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGNATION_PRODUIT}" TextColor="{StaticResource DefaultTextColor}" 
-                               FontAttributes="Bold" FontSize="Default"/>
+                    <StackLayout Grid.Column="1"
+                                 Grid.RowSpan="2"
+                                 Grid.Row="0">
+                        <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="CenterAndExpand" Aspect="AspectFill" />
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding DESIGN_TYPE}" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="{Binding DESIGN_FAMILLE}" TextColor="{StaticResource DefaultTextColor}"/>
+                    <StackLayout Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                        
+                        <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                               TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold" 
+                               FontSize="Default"/>
+                    
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
+                        <Label Text="{Binding DESIGN_TYPE}" 
+                               TextColor="{StaticResource DefaultTextColor}"/>
+                        
+                        <Label Text="{Binding DESIGN_FAMILLE}" 
+                               TextColor="{StaticResource DefaultTextColor}"/>
+                        
                     </StackLayout>
                     
-                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
+                    <StackLayout Grid.Column="3" Grid.Row="1" Spacing="5" Padding="0">
                         <Label Text="{Binding PRIX_VENTE_HT, StringFormat='Prix. {0:N2}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Green"/>
                         <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                         <Label Text="{Binding REFERENCE, StringFormat='Réf. {0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/> 

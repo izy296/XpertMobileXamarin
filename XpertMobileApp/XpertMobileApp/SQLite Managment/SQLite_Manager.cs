@@ -158,6 +158,21 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        public static byte[] GetImage(string codeProduit)
+        {
+            try
+            {
+                var listImages = GetInstance().Table<STK_PRODUITS_IMAGES>().Where(e => e.CODE_PRODUIT == codeProduit).FirstOrDefaultAsync().Result;
+                if (listImages !=null)
+                    return listImages.IMAGE;
+                return null; 
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static async Task<IEnumerable<View_BSE_PRODUIT_AUTRE_UNITE>> GetUniteByProduit(string codeProduit = "")
         {
 

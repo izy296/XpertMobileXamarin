@@ -16,15 +16,24 @@
     </base:XBasePage.ToolbarItems>
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal" HorizontalOptions="End">
-            <Label Text="Qte > 0 : " TextColor="#fff" VerticalOptions="Center"/>
-            
-            <Switch x:Name="Switch1" 
+        <FlexLayout JustifyContent="SpaceBetween" AlignContent="Center">
+            <StackLayout VerticalOptions="End">
+                <Label Text="{Binding Title} "
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="17"></Label>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="End">
+                <Label Text="Qte 0 : " TextColor="#fff" VerticalOptions="Center"/>
+
+                <Switch x:Name="Switch1" 
                     IsToggled="{Binding DisplayWithQuantity ,Mode=TwoWay}" 
                     VerticalOptions="Center"
                     Margin="5,0,0,0" 
                     Toggled="Switch1_Toggled"/>
-        </StackLayout>
+            </StackLayout>
+        </FlexLayout>
+
     </NavigationPage.TitleView>
     <base:XBasePage.Resources>
         <syncfusion:SfRadioGroupKey x:Key="quantiteFilter" />
