@@ -224,8 +224,8 @@ namespace XpertMobileApp.Models
                 return SelectedQUANTITE > 0;
             }
         }
-
-        public List<View_BSE_PRODUIT_AUTRE_UNITE> Unites { get; set; }
+        [Ignore]
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList { get; set; }
 
         public string CODE_UNITE_ACHAT { get; set; }
         public string CODE_UNITE_VENTE { get; set; }
