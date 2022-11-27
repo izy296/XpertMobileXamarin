@@ -42,6 +42,31 @@ namespace XpertMobileApp.Models
         public bool GENERATE_DECAISS { get; set; } // {trace Arrivage en instance} :: generer un rembouresement client .
         public byte[] IMAGE { get; set; }
         private string iMAGE_URL { get; set; }
+        private ImageSource image_source { get; set; }
+        public ImageSource IMAGE_SOURCE
+        {
+            get
+            {
+                if (image_source==null)
+                {
+                    if (!App.Online)
+                    {
+                        if (IMAGE != null)
+                            image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                        else image_source = null;
+                    }
+                    else
+                    {
+                        image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                    }
+                }
+                return image_source;
+            }
+            set
+            {
+                image_source = value;
+            }
+        }
         public string IMAGE_URL
         {
             get

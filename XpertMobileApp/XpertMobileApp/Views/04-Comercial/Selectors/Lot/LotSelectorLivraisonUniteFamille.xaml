@@ -79,7 +79,7 @@
                                               x:Name="ImageHolder"
                                                   Aspect="AspectFit"
 			                                   DownsampleToViewSize="True"                                            
-			                                   Source = "{Binding IMAGE_URL , Converter={StaticResource ByteArrayToImageConverter} ,Mode=Default}"
+			                                   Source = "{Binding IMAGE_SOURCE}"
                                                CacheType="Disk"
                                                 CacheDuration= "30"
                                                 RetryCount= "3"
