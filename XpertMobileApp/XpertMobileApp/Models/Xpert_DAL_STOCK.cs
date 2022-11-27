@@ -43,11 +43,12 @@ namespace XpertMobileApp.Models
         public byte[] IMAGE { get; set; }
         private string iMAGE_URL { get; set; }
         private ImageSource image_source { get; set; }
+        [Ignore]
         public ImageSource IMAGE_SOURCE
         {
             get
             {
-                if (image_source==null)
+                if (image_source == null)
                 {
                     if (!App.Online)
                     {
@@ -249,8 +250,19 @@ namespace XpertMobileApp.Models
                 return SelectedQUANTITE > 0;
             }
         }
+        private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
         [Ignore]
-        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList { get; set; }
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
+        {
+            get
+            {
+                return unitesList;
+            }
+            set
+            {
+                unitesList=value;
+            }
+        }
 
         public string CODE_UNITE_ACHAT { get; set; }
         public string CODE_UNITE_VENTE { get; set; }
