@@ -108,12 +108,12 @@
                                         <StackLayout
                                             Padding="5">
                                             <Frame 
-                                        CornerRadius="10" 
-                                        Padding="5" 
-                                        BackgroundColor="White" 
-                                        HasShadow="True"  
-                                        OutlineColor="white"
-                                        VerticalOptions="CenterAndExpand">
+                                                CornerRadius="10" 
+                                                Padding="5" 
+                                                BackgroundColor="White" 
+                                                HasShadow="True"  
+                                                OutlineColor="white"
+                                                VerticalOptions="CenterAndExpand">
                                                 <Grid>
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition/>

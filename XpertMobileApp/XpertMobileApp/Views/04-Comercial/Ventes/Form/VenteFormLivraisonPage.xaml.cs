@@ -101,14 +101,24 @@ namespace XpertMobileApp.Views
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    viewModel.AddNewRows(selectedItem , false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                    viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
                 });
             });
+
+            MessagingCenter.Subscribe<VenteFormLivraisonPage, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var list = new List<View_STK_STOCK> { selectedItem };
+                    viewModel.AddNewRows(list, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+
             MessagingCenter.Subscribe<RetourProducts, List<View_STK_STOCK>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
-                    viewModel.AddNewRows(selectedItem , true); // true veut dire le type de produit ajouter est un retour
+                    viewModel.AddNewRows(selectedItem, true); // true veut dire le type de produit ajouter est un retour
                 });
             });
 
@@ -216,7 +226,7 @@ namespace XpertMobileApp.Views
 
                 foreach (var itemC in itemsC)
                 {
-                 //   itemC.Parent_Doc = viewModel.Item;
+                    //   itemC.Parent_Doc = viewModel.Item;
                     viewModel.ItemRows.Add(itemC);
                 }
 
@@ -255,7 +265,7 @@ namespace XpertMobileApp.Views
 
             if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
             {
-                MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.ID_STOCK).ToList() ) ;
+                MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.ID_STOCK).ToList());
             }
         }
 
@@ -339,7 +349,7 @@ namespace XpertMobileApp.Views
             if (viewModel.ItemRows.Count > 0)
             {
                 VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
-                VteValidationPage.ParentLivraisonviewModel= viewModel;
+                VteValidationPage.ParentLivraisonviewModel = viewModel;
                 await PopupNavigation.Instance.PushAsync(VteValidationPage);
             }
             else
@@ -475,6 +485,22 @@ namespace XpertMobileApp.Views
 
             detail.Navigation.PushAsync(gvsScannedBarcode);
         }
-       
+
+        private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
+        {
+            var item = (View_VTE_VENTE_LIVRAISON)e.ItemData;
+            var qteUpdater = new QteUpdater(item, viewModel.SelectedTiers.CODE_FAMILLE);
+            qteUpdater.LotInfosUpdated += OnLotInfosUpdated;
+            await PopupNavigation.Instance.PushAsync(qteUpdater);
+        }
+
+        private void OnLotInfosUpdated(object sender, LotInfosEventArgs e)
+        {
+            var item = sender as View_STK_STOCK;
+            item.SelectedPrice = e.Price;
+            item.SelectedQUANTITE = e.Quantity;
+            MessagingCenter.Send(this, viewModel.CurrentStream, item);
+        }
+
     }
 }

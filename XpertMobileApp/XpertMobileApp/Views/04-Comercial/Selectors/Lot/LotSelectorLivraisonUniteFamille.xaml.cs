@@ -9,6 +9,7 @@ using System.Linq;
 using XpertMobileApp.DAL;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -82,6 +83,7 @@ namespace XpertMobileApp.Views
                     }
                 });
             });
+            UpdateTotaux();
 
         }
 
@@ -114,7 +116,7 @@ namespace XpertMobileApp.Views
             {
                 foreach (var element in SelectedlistLot.Distinct())
                 {
-                    element.SelectedQUANTITE += TotalQuantiteUnite(element.UnitesList);
+                    element.SelectedQUANTITE += Manager.TotalQuantiteUnite(element.UnitesList);
                 }
                 MessagingCenter.Send(this, CurrentStream, SelectedlistLot);
                 SelectedlistLot = null;
@@ -154,7 +156,7 @@ namespace XpertMobileApp.Views
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
             SelectedlistLot.Remove(lot);
             lot.SelectedQUANTITE = 0;
-            ClearUnitesList(lot.UnitesList);
+            Manager.ClearUnitesList(lot.UnitesList);
             App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             UpdateTotaux();
         }
@@ -168,62 +170,15 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(QteUpdater);
         }
 
-        public decimal QuantiteUnitetoQuantite(View_BSE_PRODUIT_AUTRE_UNITE unite)
-        {
-            return unite.SelectedQUANTITE * unite.COEFFICIENT;
-        }
-
-        public decimal TotalQuantiteUnite(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
-        {
-            if (list != null)
-            {
-                decimal total = 0;
-                foreach (var item in list)
-                    total += QuantiteUnitetoQuantite(item);
-                return total;
-            }
-            else
-            {
-                return 0;
-            }
-        }
-
-        public string TotalQuantiteUniteString(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
-        {
-            string totalstring = "";
-            if (list != null)
-            {
-                foreach (var item in list)
-                {
-                    if (totalstring != "")
-                        totalstring += "\n";
-                    totalstring += item.SelectedQUANTITE + " " + item.DESIGNATION_UNITE + "( x" + item.COEFFICIENT + " )";
-                }
-                return totalstring;
-            }
-            else
-            {
-                return totalstring;
-            }
-        }
-
-        public void ClearUnitesList(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
-        {
-            foreach (var item in list)
-            {
-                item.SelectedQUANTITE = 0;
-            }
-        }
-
         private void OnLotInfosUpdated(object sender, LotInfosEventArgs e)
         {
             var item = sender as View_STK_STOCK;
             item.SelectedPrice = e.Price;
             item.SelectedQUANTITE = e.Quantity;
-            var countUniteList = TotalQuantiteUnite(item.UnitesList);
+            var countUniteList = Manager.TotalQuantiteUnite(item.UnitesList);
 
             if (countUniteList > 0)
-                item.TotalSelectedQuantite = item.SelectedQUANTITE + "\n" + TotalQuantiteUniteString(item.UnitesList);
+                item.TotalSelectedQuantite = item.SelectedQUANTITE.ToString() + " \n" + Manager.TotalQuantiteUniteString(item.UnitesList);
             else item.TotalSelectedQuantite = item.SelectedQUANTITE.ToString();
 
             if (item.SelectedQUANTITE > 0 || countUniteList > 0)
@@ -237,7 +192,7 @@ namespace XpertMobileApp.Views
 
         private void UpdateTotaux()
         {
-            viewModel.TotalSelected = viewModel.Items.Where(e => e.SelectedQUANTITE > 0 || TotalQuantiteUnite(e.UnitesList) > 0).Sum(e => (e.SelectedQUANTITE + TotalQuantiteUnite(e.UnitesList)) * e.SelectedPrice);
+            viewModel.TotalSelected = viewModel.Items.Where(e => e.SelectedQUANTITE > 0 || Manager.TotalQuantiteUnite(e.UnitesList) > 0).Sum(e => (e.SelectedQUANTITE + Manager.TotalQuantiteUnite(e.UnitesList)) * e.SelectedPrice);
         }
     }
 }

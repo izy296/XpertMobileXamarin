@@ -45,7 +45,7 @@
                RefreshCommand="{Binding LoadItemsCommand}"
                IsPullToRefreshEnabled="true"
                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-               
+               SeparatorVisibility="None"
                CachingStrategy="RecycleElement"
                ItemTapped="ItemsListView_ItemTapped"
                ItemSelected="OnItemSelected" 
@@ -57,10 +57,18 @@
 
           <ListView.ItemTemplate>
               <DataTemplate>
-                  <ViewCell >
-                            <StackLayout Padding="0" Margin="0" BackgroundColor="{Binding Selected,Converter={StaticResource BoolToColorConverter}}">
-                          <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
-                                  OutlineColor="Transparent">
+                  <ViewCell>
+                            <StackLayout 
+                                Padding="0" 
+                                Margin="0" 
+                                BackgroundColor="White">
+                                <Frame 
+                                    CornerRadius="10" 
+                                    Padding="3" 
+                                    Margin="5" 
+                                    BackgroundColor="{Binding Selected,Converter={StaticResource BoolToColorConverter}}" 
+                                    HasShadow="True"  
+                                    OutlineColor="LightGray" >
                               <Grid RowSpacing="0" Padding="0" Margin="0" >
 
                                   <Grid.ColumnDefinitions>
@@ -73,17 +81,22 @@
                                       <RowDefinition Height="Auto"/>
                                   </Grid.RowDefinitions>
 
-                                  <StackLayout Grid.Column="0" Grid.Row="0" HorizontalOptions="StartAndExpand" 
-                                           WidthRequest="100" Grid.RowSpan="2">
+                                  <StackLayout 
+                                      Grid.Column="0" 
+                                      Grid.Row="0" 
+                                      HorizontalOptions="StartAndExpand" 
+                                      WidthRequest="100" 
+                                      Grid.RowSpan="2">
                                           <ffimageloading:CachedImage 
                                               x:Name="ImageHolder"
-                                                  Aspect="AspectFit"
-			                                   DownsampleToViewSize="True"                                            
-			                                   Source = "{Binding IMAGE_SOURCE}"
-                                               CacheType="Disk"
-                                                CacheDuration= "30"
-                                                RetryCount= "3"
-                                                RetryDelay= "600">
+                                              Aspect="AspectFit"
+			                                  DownsampleToViewSize="True"                                            
+			                                  Source = "{Binding IMAGE_SOURCE}"
+                                              CacheType="Disk"
+                                              CacheDuration= "30"
+                                              RetryCount= "3"
+                                              RetryDelay= "600"
+                                              VerticalOptions="CenterAndExpand">
                                           </ffimageloading:CachedImage>
                                   </StackLayout>
 

@@ -14,6 +14,7 @@ using XpertMobileApp.DAL;
 using System.Collections.ObjectModel;
 using XpertMobileApp.SQLite_Managment;
 using Syncfusion.SfNumericUpDown.XForms;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -26,6 +27,7 @@ namespace XpertMobileApp.Views
         public event EventHandler<LotInfosEventArgs> LotInfosUpdated;
         public ObservableCollection<BSE_TABLE> Prices { get; set; }
         public View_TRS_TIERS Item { get; set; }
+        public View_VTE_VENTE_LIVRAISON ItemVenteLivaison { get; set; }
 
         public List<View_BSE_PRODUIT_AUTRE_UNITE> unites;
 
@@ -54,10 +56,34 @@ namespace XpertMobileApp.Views
             ).Execute(null);
         }
 
+        // constructeur pour passer un element de Type View_VTE_VENTE_LIVRAISON de la page VenteFormLivraisonPage
+        public QteUpdater(View_VTE_VENTE_LIVRAISON item,string codeFamille)
+        {
+            InitializeComponent();
+
+            ItemVenteLivaison = item;
+
+            BindingContext = viewModel = new QteUpdaterViewModel(item, codeFamille);
+
+            new Command(async async =>
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                while (viewModel.Item == null)
+                {
+                    await Task.Delay(1000);
+                }
+                NUD_Price.Value = viewModel.Item.SelectedPrice;
+                NUD_Qte.Value = viewModel.Item.SelectedQUANTITE;
+                ExecuteLoadUnite();
+            }
+            ).Execute(null);
+        }
+
         private async void ExecuteLoadUnite()
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 if (viewModel.Item.UnitesList == null)
                     viewModel.Item.UnitesList = await SQLite_Manager.GetUniteByProduit(viewModel.Item.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
                 var unitesElements = viewModel.Item.UnitesList;
@@ -86,6 +112,7 @@ namespace XpertMobileApp.Views
                         QuantiteUniteLayout.Children.Add(qteUnite);
                     }
                 }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -124,8 +151,17 @@ namespace XpertMobileApp.Views
                             i++;
                         }
                     }
-                    eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
+                    if (ItemVenteLivaison==null)
+                    {
+                        eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
+                        eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
+
+                    }
+                    else
+                    {
+                        eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
+                        eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value)+ Manager.TotalQuantiteUnite(viewModel.Item.UnitesList);
+                    }
                     OnCBScaned(eventArgs);
                     await PopupNavigation.Instance.PopAsync();
                 }

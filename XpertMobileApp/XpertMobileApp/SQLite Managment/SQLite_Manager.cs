@@ -120,7 +120,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
 
-        public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille, string codeProduit = "", string columnName = "p.DESIGNATION_PRODUIT", string order = "ASC")
+        public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille, string columnName = "p.DESIGNATION_PRODUIT", string order = "ASC")
         {
 
             // 
@@ -140,10 +140,35 @@ namespace XpertMobileApp.SQLite_Managment
                                             JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
                                             LEFT JOIN STK_PRODUITS_IMAGES pim on p.CODE_PRODUIT = pim.CODE_PRODUIT AND pim.DEFAULT_IMAGE = 1
                                             LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
-                                --WHERE p.CODE_PRODUIT = '{codeProduit}'
                                 ORDER BY {columnName} {order}";
             var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
             return list;
+        }
+
+        public static async Task<View_STK_STOCK> GetProduitPrixUniteByCodeProduit(string codeFamille, string codeProduit = "", string columnName = "p.DESIGNATION_PRODUIT", string order = "ASC")
+        {
+
+            // 
+            string query = $@"SELECT DISTINCT s.ID_STOCK, s.LOT, s.DATE_PEREMPTION, p.CODE_PRODUIT,p.DESIGNATION_PRODUIT, s.CODE_BARRE_LOT, s.CODE_BARRE,
+                                             CASE 
+                                                    WHEN pv.CODE_FAMILLE = '' THEN p.PRIX_VENTE_HT 
+                                                    WHEN pv.VALEUR = 0 THEN p.PRIX_VENTE_HT 
+                                                    WHEN pv.VALEUR IS NULL THEN p.PRIX_VENTE_HT
+                                                    ELSE pv.VALEUR 
+                                                end PRIX_VENTE, 
+                                                s.QUANTITE,
+                                                s.QTE_STOCK, 
+                                                p.CODE_UNITE_ACHAT, 
+                                                p.CODE_UNITE_VENTE,
+                                                pim.IMAGE
+                                            FROM View_STK_STOCK s 
+                                            JOIN View_STK_PRODUITS p on p.CODE_PRODUIT = s.CODE_PRODUIT 
+                                            LEFT JOIN STK_PRODUITS_IMAGES pim on p.CODE_PRODUIT = pim.CODE_PRODUIT AND pim.DEFAULT_IMAGE = 1
+                                            LEFT JOIN View_BSE_PRODUIT_PRIX_VENTE pv on p.CODE_PRODUIT = pv.CODE_PRODUIT AND pv.CODE_FAMILLE= '{codeFamille}'
+                                WHERE p.CODE_PRODUIT = '{codeProduit}'
+                                ORDER BY {columnName} {order}";
+            var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
+            return list.FirstOrDefault();
         }
 
         public static async Task SyncImages()

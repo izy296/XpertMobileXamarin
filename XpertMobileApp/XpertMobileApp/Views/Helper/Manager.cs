@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Views.Helper
 {
@@ -43,5 +44,72 @@ namespace XpertMobileApp.Views.Helper
                 return null;
             }
         }
+        #region Unite de Mesure
+        /// <summary>
+        /// fonction pour calculer la quantite d'une unite de mesure
+        /// </summary>
+        /// <param name="unite"></param>
+        /// <returns></returns>
+        public static decimal QuantiteUnitetoQuantite(View_BSE_PRODUIT_AUTRE_UNITE unite)
+        {
+            return unite.SelectedQUANTITE * unite.COEFFICIENT;
+        }
+
+        /// <summary>
+        /// fonction pour calculer la quantite d'une liste des unites de mesures
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static decimal TotalQuantiteUnite(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
+        {
+            if (list != null)
+            {
+                decimal total = 0;
+                foreach (var item in list)
+                    total += QuantiteUnitetoQuantite(item);
+                return total;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// fonction pour donner la quantite d'une liste des unites de mesure sous forme de string pour l'affichage dans la page
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static string TotalQuantiteUniteString(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
+        {
+            string totalstring = "";
+            if (list != null)
+            {
+                foreach (var item in list)
+                {
+                    if (totalstring != "")
+                        totalstring += "\n";
+                    totalstring += item.SelectedQUANTITE + " " + item.DESIGNATION_UNITE + "( x" + item.COEFFICIENT + " )";
+                }
+                return totalstring;
+            }
+            else
+            {
+                return totalstring;
+            }
+        }
+
+        /// <summary>
+        /// fonction pour vider la quantite dans une liste des unites de mesure
+        /// </summary>
+        /// <param name="list"></param>
+        public static void ClearUnitesList(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
+        {
+            foreach (var item in list)
+            {
+                item.SelectedQUANTITE = 0;
+            }
+        }
+        #endregion
     }
 }

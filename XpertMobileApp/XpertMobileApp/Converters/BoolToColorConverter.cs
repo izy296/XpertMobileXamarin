@@ -13,9 +13,9 @@ namespace XpertMobileApp.Converters
             switch ((bool)value)
             {
                 case true:
-                    return Color.LightGray;
+                    return Color.DarkOrange;
                 case false:
-                    return Color.Transparent;
+                    return Color.LightBlue;
             }
 
             return Color.Transparent;
