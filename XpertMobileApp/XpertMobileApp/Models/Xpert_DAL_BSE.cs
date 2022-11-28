@@ -56,7 +56,7 @@ namespace XpertMobileApp.Models
         {
             get
             {
-                return SelectedQUANTITE;
+                return selectedQUANTITE;
             }
             set
             {

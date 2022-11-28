@@ -54,7 +54,7 @@ namespace XpertMobileApp.Models
                     {
                         if (IMAGE != null)
                             image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
-                        else image_source = null;
+                        else image_source = ImageSource.FromFile("defaultProdImg.png");
                     }
                     else
                     {
@@ -261,6 +261,20 @@ namespace XpertMobileApp.Models
             set
             {
                 unitesList=value;
+            }
+        }
+        private string totalSelectedQuantite { get; set; }
+        [Ignore]
+        public string TotalSelectedQuantite
+        {
+            get
+            {
+                return totalSelectedQuantite;
+            }
+            set
+            {
+                totalSelectedQuantite = value;
+                OnPropertyChanged("TotalSelectedQuantite");
             }
         }
 

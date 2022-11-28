@@ -47,17 +47,22 @@ namespace XpertMobileApp.Views
             BindingContext = viewModel = new QteUpdaterViewModel(item);
             NUD_Price.Value = item.SelectedPrice;
             NUD_Qte.Value = item.SelectedQUANTITE;
-            new Command(async => ExecuteLoadUnite()).Execute(null);
+            new Command(async async =>
+            {
+                ExecuteLoadUnite();
+            }
+            ).Execute(null);
         }
 
         private async void ExecuteLoadUnite()
         {
             try
             {
-                unites = await SQLite_Manager.GetUniteByProduit(viewModel.Item.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
-                var unitesElements = unites;
+                if (viewModel.Item.UnitesList == null)
+                    viewModel.Item.UnitesList = await SQLite_Manager.GetUniteByProduit(viewModel.Item.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
+                var unitesElements = viewModel.Item.UnitesList;
                 unitesElements.Reverse();
-                if (unites.Count > 0)
+                if (viewModel.Item.UnitesList.Count > 0)
                 {
                     foreach (var unite in unitesElements)
                     {
@@ -75,6 +80,7 @@ namespace XpertMobileApp.Views
                         qteUnite.AllowNull = false;
                         qteUnite.VerticalOptions = LayoutOptions.Center;
                         qteUnite.ValueChangeMode = ValueChangeMode.OnKeyFocus;
+                        qteUnite.Value = unite.SelectedQUANTITE;
 
                         QuantiteUniteLayout.Children.Add(uniteLable);
                         QuantiteUniteLayout.Children.Add(qteUnite);
@@ -108,19 +114,18 @@ namespace XpertMobileApp.Views
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
                 if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE)
                 {
-                    decimal qteU = 0;//(Convert.ToDecimal(ButtonQteUnite.Value) * coeficiantUnite);
                     int i = 0;
                     foreach (var element in QuantiteUniteLayout.Children)
                     {
-                        if (element.GetType()== typeof(SfNumericUpDown))
+                        if (element.GetType() == typeof(SfNumericUpDown))
                         {
                             var qteUnite = (SfNumericUpDown)element;
-                            qteU += Convert.ToDecimal(qteUnite.Value) * unites[i].COEFFICIENT;
+                            viewModel.Item.UnitesList[i].SelectedQUANTITE = Convert.ToDecimal(qteUnite.Value);
                             i++;
                         }
                     }
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value) + qteU;
+                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
                     OnCBScaned(eventArgs);
                     await PopupNavigation.Instance.PopAsync();
                 }

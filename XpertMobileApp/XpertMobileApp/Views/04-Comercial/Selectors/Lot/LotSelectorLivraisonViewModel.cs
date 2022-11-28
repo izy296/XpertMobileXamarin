@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -45,7 +49,7 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return "Total : " + TotalSelected.ToString("N2") + "\r\n" + "Total Qte : " + Items.Sum(e => e.SelectedQUANTITE);
+                return "Total : " + TotalSelected.ToString("N2") + "\r\n" + "Total Qte : " + Items.Sum(e => (e.SelectedQUANTITE + new LotSelectorLivraisonUniteFamille().TotalQuantiteUnite(e.UnitesList)));
             }
         }
 
