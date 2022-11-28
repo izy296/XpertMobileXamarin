@@ -11,6 +11,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -49,7 +50,7 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return "Total : " + TotalSelected.ToString("N2") + "\r\n" + "Total Qte : " + Items.Sum(e => (e.SelectedQUANTITE + new LotSelectorLivraisonUniteFamille().TotalQuantiteUnite(e.UnitesList)));
+                return "Total : " + TotalSelected.ToString("N2") + "\r\n" + "Total Qte : " + Items.Sum(e => (e.SelectedQUANTITE + Manager.TotalQuantiteUnite(e.UnitesList)));
             }
         }
 
