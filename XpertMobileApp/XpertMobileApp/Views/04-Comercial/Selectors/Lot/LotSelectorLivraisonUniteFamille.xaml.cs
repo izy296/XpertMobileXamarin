@@ -8,6 +8,7 @@ using XpertMobileApp.Models;
 using System.Linq;
 using XpertMobileApp.DAL;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace XpertMobileApp.Views
 {
@@ -63,6 +64,25 @@ namespace XpertMobileApp.Views
             {
                 item.SelectedQUANTITE = 0;
             }
+
+            // recevoire les id stock des elements selectioné pour changer color de fond d'element
+            MessagingCenter.Subscribe<VenteFormLivraisonPage, List<int?>>(this, "SelectedList", async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    foreach (var item in selectedItem)
+                    {
+                        foreach (var selectedListItem in viewModel.Items)
+                        {
+                            if (selectedListItem.ID_STOCK == item)
+                            {
+                                selectedListItem.Selected = true;
+                            }
+                        }
+                    }
+                });
+            });
+
         }
 
         private async void OnClose(object sender, EventArgs e)
@@ -134,6 +154,7 @@ namespace XpertMobileApp.Views
             var lot = ((sender as Button).BindingContext as View_STK_STOCK);
             SelectedlistLot.Remove(lot);
             lot.SelectedQUANTITE = 0;
+            ClearUnitesList(lot.UnitesList);
             App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
             UpdateTotaux();
         }
@@ -176,7 +197,7 @@ namespace XpertMobileApp.Views
                 {
                     if (totalstring != "")
                         totalstring += "\n";
-                    totalstring += item.SelectedQUANTITE +" "+ item.DESIGNATION_UNITE + "( x" + item.COEFFICIENT +" )";
+                    totalstring += item.SelectedQUANTITE + " " + item.DESIGNATION_UNITE + "( x" + item.COEFFICIENT + " )";
                 }
                 return totalstring;
             }

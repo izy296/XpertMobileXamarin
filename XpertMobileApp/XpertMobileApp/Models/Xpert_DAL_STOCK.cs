@@ -285,6 +285,22 @@ namespace XpertMobileApp.Models
         public decimal PRIX_VENTE_COLLISAGE { get; set; }
         public string DESIGNATION_UNITE { get; set; }
         public decimal PRIX_VENTE_FAMILLE { get; set; }
+
+
+        private bool selected { get; set; }
+        [Ignore]
+        public bool Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
     }
     public partial class STK_STOCK_RFID
     {

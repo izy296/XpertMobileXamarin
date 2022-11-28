@@ -4,6 +4,7 @@ using Rg.Plugins.Popup.Services;
 using Syncfusion.SfNumericTextBox.XForms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -251,6 +252,11 @@ namespace XpertMobileApp.Views
             itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
             //itemSelector.AutoriserReception = "1";
             await PopupNavigation.Instance.PushAsync(itemSelector);
+
+            if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
+            {
+                MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.ID_STOCK).ToList() ) ;
+            }
         }
 
         private RetourProducts retourSelector;

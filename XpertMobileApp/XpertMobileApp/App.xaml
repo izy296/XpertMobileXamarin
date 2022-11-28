@@ -246,6 +246,7 @@
             <local:DecimalToColorInverseConverter x:Key="decimalToColorInverse"/>
             <local:TypeDocConverter x:Key="TypeDocConverter"/>
             <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
+            <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
             <!--Global Styles-->
 
 

@@ -58,7 +58,7 @@
           <ListView.ItemTemplate>
               <DataTemplate>
                   <ViewCell >
-                      <StackLayout Padding="0" Margin="0" >
+                            <StackLayout Padding="0" Margin="0" BackgroundColor="{Binding Selected,Converter={StaticResource BoolToColorConverter}}">
                           <Frame CornerRadius="3" Padding="0" Margin="5" BackgroundColor="Transparent" HasShadow="True"  
                                   OutlineColor="Transparent">
                               <Grid RowSpacing="0" Padding="0" Margin="0" >
