@@ -175,7 +175,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                await SyncData<STK_PRODUITS_IMAGES, STK_PRODUITS_IMAGES_XCOM>(false,"", "GetImages");
+                await SyncData<STK_PRODUITS_IMAGES, STK_PRODUITS_IMAGES_XCOM>(false, "", "GetImages");
             }
             catch (Exception ex)
             {
@@ -188,9 +188,9 @@ namespace XpertMobileApp.SQLite_Managment
             try
             {
                 var listImages = GetInstance().Table<STK_PRODUITS_IMAGES>().Where(e => e.CODE_PRODUIT == codeProduit).FirstOrDefaultAsync().Result;
-                if (listImages !=null)
+                if (listImages != null)
                     return listImages.IMAGE;
-                return null; 
+                return null;
             }
             catch (Exception ex)
             {
@@ -413,12 +413,12 @@ namespace XpertMobileApp.SQLite_Managment
                     await InitialisationDbLocal();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncProduitFamille();
-                    await SyncData<View_TRS_TIERS, TRS_TIERS>(); //worked !
                     await SyncStatusCommande();
                     await SyncProduitType();
                     await SyncCommande(); //worked
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
+                    await SyncTiers();
                     await SyncStock();//worked !
                     await syncPermission();//worked ! 
                     await SyncSysParams(); //worked !
@@ -464,6 +464,26 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
+                throw ex;
+            }
+        }
+
+        private static async Task SyncTiers()
+        {
+            try
+            {
+                var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                foreach (var tournee in listeTourneeClents)
+                {
+                    var itemsS = await WebServiceClient.GetClients(tournee.CODE_TOURNEE);
+                    if (itemsS != null)
+                        await GetInstance().InsertAllAsync(itemsS);
+                }
+                var list = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();// testing only 
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }

@@ -104,7 +104,16 @@ namespace XpertMobileApp.Views
 
         internal void InitNewVentes()
         {
-            ItemRows.Clear();
+            if (ItemRows.Count > 0)
+            {
+                try
+                {
+                    ItemRows.Clear();
+                }
+                catch (Exception)
+                {
+                }
+            }
             Title = AppResources.pn_NewVente;
 
             var vte = new View_VTE_VENTE();
