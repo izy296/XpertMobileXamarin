@@ -32,9 +32,15 @@
                 <template:ProduitTemplate_COMM />
             </DataTemplate>
 
+
+            <DataTemplate x:Key="ProduitVerticalComm">
+                <template:ProduitTemplate_Vertical_COMM />
+            </DataTemplate>
+
             <templateSelector:ProduitPageSelectorTemplate   x:Key="ProduitPageSelector" 
                                                             ProduitPharm="{StaticResource ProduitPharm}"
-                                                            ProduitComm="{StaticResource ProduitComm}"/>
+                                                            ProduitComm="{StaticResource ProduitComm}"
+                                                            ProduitVerticalComm="{StaticResource ProduitVerticalComm}"/>
             <!-- ***************** Produit *****************-->
 
             <!-- ***************** Tiers ********************-->
@@ -192,6 +198,21 @@
                 <On Platform="iOS" Value="Gilroy-Regular" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
             </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontMontserat">
+                <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold.ttf" />
+                <On Platform="iOS" Value="Gilroy-SemiBold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontPoppins">
+                <On Platform="Android" Value="Poppins-Regular.ttf#Poppins-Regular.ttf" />
+                <On Platform="iOS" Value="Gilroy-SemiBold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontMuseo">
+                <On Platform="Android" Value="Museofont.ttf#Museofont.ttf" />
+                <On Platform="iOS" Value="Gilroy-SemiBold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
+            </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroySemiBold">
                 <On Platform="Android" Value="Gilroy-SemiBold.ttf#GilroySemiBold" />
                 <On Platform="iOS" Value="Gilroy-SemiBold" />
@@ -202,7 +223,11 @@
                 <On Platform="iOS" Value="Gilroy-Bold" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
             </OnPlatform>
-
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontOpenSans">
+                <On Platform="Android" Value="OpenSans.ttf#OpenSans.ttf" />
+                <On Platform="iOS" Value="Gilroy-Bold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
+            </OnPlatform>
 
             <!-- Font awesomone -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontAwesomeBrands">
@@ -259,6 +284,7 @@
             <Color x:Key="DefaultLisViewBackColor">#F4F3F2</Color>
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Color x:Key="MenuAccent">#96d1ff</Color>
+            <Color x:Key="MenuItemGroup">#dcefff</Color>
             <Color x:Key="AccentOpacity" x:FactoryMethod="FromRgba">
                 <x:Arguments>
                     <x:Double>150</x:Double>

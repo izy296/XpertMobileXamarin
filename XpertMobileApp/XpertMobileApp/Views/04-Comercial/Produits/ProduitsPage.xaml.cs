@@ -13,28 +13,24 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProduitsPage : XBasePage
     {
         ProduitsViewModel viewModel;
-
+        public static bool displayGrid { get; set; } = false;
         private bool opened = false;
         public ProduitsPage()
         {
             InitializeComponent();
 
             BindingContext = viewModel = new ProduitsViewModel();
-            //if (App.Settings.Language == "ar")
-            //{
-            //    translateHide = App.Current.MainPage.Width;
-            //    translateShow = App.Current.MainPage.Width - 360;
-            //}
+
             if (App.Online && Constants.AppName == Apps.X_DISTRIBUTION)
             {
                 ItemsListView.ItemsSource = viewModel.ItemsWithQteMagasin;
             }
         }
-
         private void FilterScroll_Focused(object sender, FocusEventArgs e)
         {
             ItemsListView.Opacity = 0;
@@ -194,6 +190,26 @@ namespace XpertMobileApp.Views
 
                 throw ex;
             }
+        }
+
+        private void SwitchDisplayMode(object sender, EventArgs e)
+        {
+            if (!displayGrid)
+            {
+                ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
+                changeDisplayItem.IconImageSource = "grid_display.png";
+                changeDisplayItem.Text = "Affichage par Ligne";
+            }
+            else
+            {
+                ItemsListView.ItemsLayout = LinearItemsLayout.Vertical;
+                changeDisplayItem.IconImageSource = "row_display.png";
+                changeDisplayItem.Text = "Affichage par Grille";
+            }
+            displayGrid = !displayGrid;
+            viewModel.Items.Clear();
+            viewModel.ItemsWithQteMagasin.Clear();
+            viewModel.LoadItemsCommand.Execute(null);
         }
     }
 }

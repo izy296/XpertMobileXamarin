@@ -169,6 +169,12 @@ namespace XpertMobileApp.Views
             }
             else
             {
+                Location location = await Manager.GetLocation();
+                if (location == null)
+                {
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    location = new Location(0, 0);
+                }
                 if (Item.CODE_TYPE == "ENC")
                 {
 
@@ -197,18 +203,12 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        if (SelectedTiers != null)
-                        {
-                            Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
-                        }
-                        Location location = await Manager.GetLocation();
                         if (location == null)
                         {
                             await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                             location = new Location(0, 0);
                         }
                         await SQLite_Manager.AjoutEncaissement(Item, location);
-                        await UserDialogs.Instance.AlertAsync("Versement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopAsync();
                     }
@@ -236,8 +236,7 @@ namespace XpertMobileApp.Views
                     else
                     {
                         UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                        await SQLite_Manager.AjoutEncaissement(Item, null);
-                        await UserDialogs.Instance.AlertAsync("Remboursement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await SQLite_Manager.AjoutEncaissement(Item, location);
                         UserDialogs.Instance.HideLoading();
                         await Navigation.PopModalAsync();
                     }

@@ -11,9 +11,17 @@ namespace XpertMobileApp.Views._Templates.TemplateSelector
     {
         public DataTemplate ProduitPharm { get; set; }
         public DataTemplate ProduitComm { get; set; }
+        public DataTemplate ProduitVerticalComm { get; set; }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION ? ProduitComm : ProduitPharm;
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                return ProduitsPage.displayGrid == true ? ProduitVerticalComm : ProduitComm;
+            }
+            else
+            {
+                return ProduitPharm;
+            }
         }
     }
 }

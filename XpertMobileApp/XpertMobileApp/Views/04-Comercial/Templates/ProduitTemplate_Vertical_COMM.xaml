@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="XpertMobileApp.Views.Templates.ProduitTemplate_Vertical_COMM">
+    <ContentView.Content>
+
+        <StackLayout Orientation="Vertical">
+            <Frame Style="{StaticResource FrameForList}" BorderColor="#ddd" Padding="4">
+                <Grid  BackgroundColor="Transparent" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="100"/>
+                        <RowDefinition Height="15"/>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="2"/>
+                    </Grid.RowDefinitions>
+
+                    <StackLayout Grid.Column="0" Grid.Row="4" Style="{StaticResource StackLOddEven}" Orientation="Horizontal">
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0"
+                                 Spacing="1"
+                                 Grid.Row="0" 
+                                 Padding="4,0,4,0">
+                        <yummy:PancakeView 
+                               HeightRequest="100"
+                               CornerRadius="10,10,10,10" 
+                               Padding="0,0,0,55" 
+                               Margin="0" 
+                               IsClippedToBounds="true"
+                               BorderColor="black"
+                               BackgroundColor="#FDFDFD" 
+                               HasShadow="False">
+                            <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="Center" HeightRequest="100"  />
+                        </yummy:PancakeView>
+
+                    </StackLayout>
+
+                    <StackLayout HeightRequest="35"  Grid.Column="0" Grid.Row="1"  Padding="4,0,4,0">
+
+                        <Label 
+                               Text="{Binding DESIGNATION_PRODUIT}" 
+                               TextColor="{StaticResource DefaultTextColor}" 
+                               FontAttributes="Bold"
+                               LineBreakMode="TailTruncation"                            
+                               FontSize="Default"/>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="2" Spacing="1" Padding="4,0,4,0">
+                        <Label Text="{Binding DESIGN_TYPE}" 
+                               TextColor="{StaticResource Gray-900}"/>
+
+                        <Label Text="{Binding DESIGN_FAMILLE}" 
+                               TextColor="{StaticResource Gray-900}"/>
+
+                    </StackLayout>
+
+                    <StackLayout Grid.Column="0" Grid.Row="3" Spacing="1" Padding="4,0,4,0" >
+                        <Label Text="{Binding PRIX_VENTE_HT, StringFormat='Prix. {0:N2}'}" FontAttributes="None" FontSize="Default" HorizontalOptions="Start" TextColor="Green"/>
+                        <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" FontAttributes="None" FontSize="Default" HorizontalOptions="Start" TextColor="Red"/>
+                        <Label Text="{Binding REFERENCE, StringFormat='Réf. {0}'}" TextColor="{ StaticResource Gray-900}" HorizontalOptions="Start"/>
+                        <!--
+                        <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
+                       -->
+                    </StackLayout>
+
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

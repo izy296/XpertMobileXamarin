@@ -27,7 +27,7 @@ namespace XpertMobileApp.ViewModels
     public class ProduitsViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
-        public bool DisplayWithQuantity { get; set; } = false;
+        public bool DisplayWithQuantity { get; set; }
         string currentQB = null;
         public InfiniteScrollCollection<View_STK_PRODUITS> ItemsWithQteMagasin { get; set; }
         public ProduitsViewModel()
