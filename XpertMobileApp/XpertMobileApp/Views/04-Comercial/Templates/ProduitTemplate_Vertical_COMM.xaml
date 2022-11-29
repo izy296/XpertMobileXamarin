@@ -58,6 +58,7 @@
                                TextColor="{StaticResource Gray-900}"/>
 
                         <Label Text="{Binding DESIGN_FAMILLE}" 
+                               LineBreakMode="TailTruncation"  
                                TextColor="{StaticResource Gray-900}"/>
 
                     </StackLayout>
