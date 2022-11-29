@@ -181,22 +181,21 @@ namespace XpertMobileApp.Views
             string destinationCordinates = HttpUtility.UrlEncode(tier.GPS_LATITUDE.ToString().Replace(",", ".") +
                                                            "," + tier.GPS_LONGITUDE.ToString().Replace(",", "."), Encoding.UTF8);
             Location location = null;
-            if (App.Online)
-                try
-                {
-                    UserDialogs.Instance.ShowLoading();
-                    location = await Geolocation.GetLocationAsync();
-                    UserDialogs.Instance.HideLoading();
-                }
-                catch (Exception ex)
-                {
-                    await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Alert, ex.Message, AppResources.alrt_msg_Ok);
-                    UserDialogs.Instance.HideLoading();
-                }
-                finally
-                {
-                    UserDialogs.Instance.HideLoading();
-                }
+            try
+            {
+                UserDialogs.Instance.ShowLoading();
+                location = await Geolocation.GetLocationAsync();
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Alert, ex.Message, AppResources.alrt_msg_Ok);
+                UserDialogs.Instance.HideLoading();
+            }
+            finally
+            {
+                UserDialogs.Instance.HideLoading();
+            }
 
             if (location != null)
             {
@@ -290,7 +289,7 @@ namespace XpertMobileApp.Views
             {
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-                await Navigation.PushAsync(new NavigationPage(new NewCommandePage(null, tier)));
+                await Navigation.PushAsync(new NewCommandePage(null, tier));
             }
             catch (Exception ex)
             {

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Models
 {
@@ -29,7 +30,7 @@ namespace XpertMobileApp.Models
         // implementer pour l'appele api SyncProduiteUnite
     }
 
-    public partial class BSE_PRODUIT_AUTRE_UNITE
+    public partial class BSE_PRODUIT_AUTRE_UNITE : BASE_CLASS
     {
         public string CODE_DETAIL { get; set; }
         public string CODE_PRODUIT { get; set; }
@@ -61,6 +62,7 @@ namespace XpertMobileApp.Models
             set
             {
                 selectedQUANTITE = value;
+                OnPropertyChanged("SelectedQUANTITE");
             }
         }
     }

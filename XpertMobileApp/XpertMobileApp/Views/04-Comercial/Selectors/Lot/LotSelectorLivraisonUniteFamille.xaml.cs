@@ -114,10 +114,10 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PopAsync();
             if (SelectedlistLot != null)
             {
-                foreach (var element in SelectedlistLot.Distinct())
-                {
-                    element.SelectedQUANTITE += Manager.TotalQuantiteUnite(element.UnitesList);
-                }
+                //foreach (var element in SelectedlistLot.Distinct())
+                //{
+                //    element.SelectedQUANTITE += Manager.TotalQuantiteUnite(element.UnitesList);
+                //}
                 MessagingCenter.Send(this, CurrentStream, SelectedlistLot);
                 SelectedlistLot = null;
             }
@@ -157,8 +157,9 @@ namespace XpertMobileApp.Views
             SelectedlistLot.Remove(lot);
             lot.SelectedQUANTITE = 0;
             Manager.ClearUnitesList(lot.UnitesList);
-            App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
+            lot.TotalSelectedQuantite = "";
             UpdateTotaux();
+            App.MsgCenter.SendAction(this, CurrentStream, "REMOVE", MCDico.REMOVE_ITEM, viewModel.SelectedItem);
         }
 
         private QteUpdater QteUpdater;

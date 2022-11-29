@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using SQLite;
 using XpertMobileApp.Api.Services;
+using XpertMobileApp.Models;
 
 namespace XpertMobileApp.DAL
 {
@@ -1060,6 +1061,31 @@ namespace XpertMobileApp.DAL
         public string ID { get; internal set; }
         public string VenteID { get; internal set; }
         public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
+
+        private decimal mt_ttc { get; set;}
+        public decimal MT_TTC{ get
+            {
+                return mt_ttc;
+            } set
+            {
+                mt_ttc = value;
+                OnPropertyChanged("MT_TTC");
+            }
+        }
+
+        private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
+        [Ignore]
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
+        {
+            get
+            {
+                return unitesList;
+            }
+            set
+            {
+                unitesList = value;
+            }
+        }
 
     }
 

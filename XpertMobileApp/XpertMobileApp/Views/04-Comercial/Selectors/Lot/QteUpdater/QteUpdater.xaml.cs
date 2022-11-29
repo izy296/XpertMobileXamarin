@@ -151,17 +151,8 @@ namespace XpertMobileApp.Views
                             i++;
                         }
                     }
-                    if (ItemVenteLivaison==null)
-                    {
-                        eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                        eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
-
-                    }
-                    else
-                    {
-                        eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
-                        eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value)+ Manager.TotalQuantiteUnite(viewModel.Item.UnitesList);
-                    }
+                    eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
+                    eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
                     OnCBScaned(eventArgs);
                     await PopupNavigation.Instance.PopAsync();
                 }

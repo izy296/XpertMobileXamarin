@@ -156,7 +156,7 @@
 
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="30"/>
+                                                <RowDefinition Height="Auto"/>
                                             </Grid.RowDefinitions>
 
 
@@ -182,6 +182,7 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="40" />
+                                                    <RowDefinition Height="40" />
                                                 </Grid.RowDefinitions>
 
                                                 <StackLayout Margin="0" Padding="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Start">
@@ -190,6 +191,7 @@
                                                           FontSize="14" Margin="0,-5,0,0"  VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" FontAttributes="Bold"
                                                          SelectAllOnFocus="True" Value="{Binding QUANTITE}"
+                                                                               TextColor="Black"
                                                          ClassId="{Binding ID, StringFormat='pb_{0}'}"/>
                                                 </StackLayout>
                                                 <StackLayout Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
@@ -203,6 +205,59 @@
                                                     <Label  Text="{Binding MT_TTC, StringFormat='{0:N1}'}" Margin="5" HorizontalOptions="End" FontAttributes="Bold"
                                                            TextColor="{StaticResource DefaultTextColor}" 
                                                            FontSize="Default"/>
+                                                </StackLayout>
+                                                <StackLayout 
+                                                    Margin="0"
+                                                    Padding="0"
+                                                    Grid.Column="0"
+                                                    Grid.Row="1" 
+                                                    Grid.ColumnSpan="3"
+                                                    Orientation="Horizontal"
+                                                    HorizontalOptions="FillAndExpand"
+                                                    VerticalOptions="FillAndExpand">
+                                                    <CollectionView
+                                                        VerticalOptions="FillAndExpand"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        SelectionMode="None"
+                                                        ItemsSource="{Binding UnitesList}"
+                                                        ItemsLayout="HorizontalList"
+                                                        >
+                                                        <CollectionView.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <StackLayout 
+                                                                        HorizontalOptions="FillAndExpand"
+                                                                        Orientation="Vertical">
+                                                                        <Label  
+                                                                            Text="{Binding DESIGNATION_UNITE}" 
+                                                                            Margin="0" 
+                                                                            HorizontalOptions="Start" 
+                                                                            TextColor="Gray" 
+                                                                            FontSize="Micro"/>
+                                                                        <numeric1:SfNumericTextBox 
+                                                                            IsEnabled="False" 
+                                                                            Grid.Column="1" 
+                                                                            Grid.Row="0" 
+                                                                            WidthRequest="60"
+                                                                            FontSize="14" 
+                                                                            Margin="0,-5,0,0"  
+                                                                            VerticalOptions="Start"
+                                                                            ParserMode="Double" 
+                                                                            MaximumNumberDecimalDigits="2" 
+                                                                            FontAttributes="Bold"
+                                                                            SelectAllOnFocus="True" 
+                                                                            TextColor="Black"
+                                                                            Value="{Binding SelectedQUANTITE}"/>
+                                                                    </StackLayout>
+                                                            </DataTemplate>
+                                                        </CollectionView.ItemTemplate>
+                                                        
+                                                    </CollectionView>
+                                                    <!--<Label  Text="Qte" Margin="0" HorizontalOptions="Start" TextColor="Gray" FontSize="Micro"/>
+                                                    <numeric1:SfNumericTextBox IsEnabled="False" Grid.Column="1" Grid.Row="0" WidthRequest="60"
+                                                          FontSize="14" Margin="0,-5,0,0"  VerticalOptions="Start"
+                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" FontAttributes="Bold"
+                                                         SelectAllOnFocus="True" Value="{Binding QUANTITE}"
+                                                         ClassId="{Binding ID, StringFormat='pb_{0}'}"/>-->
                                                 </StackLayout>
                                             </Grid>
                                         </Grid>

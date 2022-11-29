@@ -5,6 +5,7 @@ using Xpert.Common.WSClient.Model;
 using XpertMobileApp.DAL;
 using System.IO;
 using Xamarin.Forms;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Models
 {
@@ -247,7 +248,9 @@ namespace XpertMobileApp.Models
         {
             get
             {
-                return SelectedQUANTITE > 0;
+                if (UnitesList != null)
+                    return SelectedQUANTITE > 0 || Manager.TotalQuantiteUnite(UnitesList) > 0;
+                else return SelectedQUANTITE > 0;
             }
         }
         private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
@@ -275,6 +278,7 @@ namespace XpertMobileApp.Models
             {
                 totalSelectedQuantite = value;
                 OnPropertyChanged("TotalSelectedQuantite");
+                OnPropertyChanged("HasSelectedQUANTITE");
             }
         }
 

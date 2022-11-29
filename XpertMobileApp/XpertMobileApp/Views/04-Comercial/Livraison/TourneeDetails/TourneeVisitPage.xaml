@@ -81,13 +81,13 @@
                             Orientation="Horizontal"
                             HorizontalOptions="CenterAndExpand">
                                 <Button
-                                Text="Location"
+                                Text="Localisation"
                                 Clicked="Location"
                                 CornerRadius="10"
                                 TextColor="White"
                                 Padding="8"
                                 BackgroundColor="OrangeRed"
-                            />
+                                    />
                                 <Button
                                 Text="Route"
                                 Clicked="RouteClicked"
@@ -95,7 +95,7 @@
                                 TextColor="White"
                                 Padding="8"
                                 BackgroundColor="{StaticResource Primary}"
-                            />
+                                    />
                             </StackLayout>
                             <CollectionView
                             x:Name="ActivitysCollectionView"

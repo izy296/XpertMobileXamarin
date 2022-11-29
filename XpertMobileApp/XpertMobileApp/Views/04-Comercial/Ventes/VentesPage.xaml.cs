@@ -143,6 +143,9 @@ namespace XpertMobileApp.Views
             {
                 viewModel.LoadExtrasDataCommand.Execute(null);
             }
+
+            if (viewModel.TypeVente == VentesTypes.Livraison)
+                ArrowUp.IsVisible = false;
         }
 
         private async void LoadStats()
