@@ -280,7 +280,7 @@ namespace XpertMobileApp.Views
                         }
                         else
                         {
-                            await SQLite_Manager.AjoutCommande(obj);
+                            await SQLite_Manager.AjoutVente(obj);
                         }
                     }
                     else

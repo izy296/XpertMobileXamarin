@@ -509,19 +509,6 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
-        //public static async Task<List<View_TRS_ENCAISS>> GetEncaissByUser(string idUser)
-        //{
-        //    try
-        //    {
-        //        var items  = CrudManager.Encaiss.get
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //        throw;
-        //    }
-        //}
-
         public static async Task<List<View_TRS_TIERS>> GetClients(string codeTournee)
         {
             try
@@ -855,7 +842,14 @@ namespace XpertMobileApp.SQLite_Managment
                     var id = await GetInstance().InsertAsync(item);
 
                     await GetInstance().UpdateAsync(item);
-                    await UserDialogs.Instance.AlertAsync("Encaissement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    if (item.CODE_TYPE == "ENC")
+                    {
+                        await UserDialogs.Instance.AlertAsync("Versement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Remboursement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
                 }
                 else
                 {
@@ -1821,6 +1815,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
+                var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
                 //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                 vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
                 vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
@@ -1828,7 +1823,7 @@ namespace XpertMobileApp.SQLite_Managment
                 var id = await GetInstance().InsertAsync(vente);
                 //vente.CODE_VENTE = vente.ID.ToString() + "/" + App.PrefixCodification;
                 //vente.NUM_VENTE = vente.CODE_VENTE;
-
+                vente.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
                 vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                 vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
                 vente.DATE_VENTE = DateTime.Now;
@@ -1877,7 +1872,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (!string.IsNullOrEmpty(App.PrefixCodification))
                 {
                     var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-                    var obj4 = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync(); // I added this line for testing purposes !! 
+
                     item.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
                     item.CREATED_BY = App.User.UserName;
                     item.CODE_VENTE = await generateCode(item.TYPE_DOC, item.ID.ToString());
