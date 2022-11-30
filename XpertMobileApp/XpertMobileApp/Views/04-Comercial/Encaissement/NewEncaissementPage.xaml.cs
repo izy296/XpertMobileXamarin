@@ -62,7 +62,7 @@ namespace XpertMobileApp.Views
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage(View_TRS_ENCAISS item = null, EncaissDisplayType type = EncaissDisplayType.ENC, View_TRS_TIERS tier = null)
+        public NewEncaissementPage(View_TRS_ENCAISS itemEncaiss = null, EncaissDisplayType type = EncaissDisplayType.ENC, View_TRS_TIERS tier = null)
         {
             InitializeComponent();
 
@@ -82,9 +82,9 @@ namespace XpertMobileApp.Views
             LoadIMotifsCommand = new Command(async () => await ExecuteLoadMotifsCommand(type));
             LoadComptesCommand = new Command(async () => await ExecuteLoadComptesCommand());
 
-            if (item != null)
+            if (itemEncaiss != null)
             {
-                Item = item;
+                Item = itemEncaiss;
                 Title = "N°" + Item.CODE_ENCAISS;
             }
             else
@@ -100,7 +100,7 @@ namespace XpertMobileApp.Views
                 Item = new View_TRS_ENCAISS
                 {
                     DATE_ENCAISS = DateTime.Now,
-                    CODE_TYPE = type.ToString()
+                    CODE_TYPE = type.ToString(),
                 };
             }
 
@@ -169,6 +169,10 @@ namespace XpertMobileApp.Views
             }
             else
             {
+                if (SelectedTiers != null)
+                {
+                    Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
+                }
                 Location location = await Manager.GetLocation();
                 if (location == null)
                 {
