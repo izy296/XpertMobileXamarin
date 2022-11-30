@@ -43,7 +43,7 @@ namespace XpertMobileApp.Views
             this.Item = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null) // new item init object
             {
-                this.Item.TYPE_VENTE = "CC";
+                this.Item.TYPE_VENTE = this.Item.TYPE_DOC = "CC"; 
                 this.Item.DATE_VENTE = DateTime.Now;
                 this.Item.DATE_ECHEANCE = DateTime.Now;
             }
@@ -287,7 +287,7 @@ namespace XpertMobileApp.Views
                     {
                         MessagingCenter.Send(App.MsgCenter, MCDico.UPDATE_ITEM, Item);
                     }
-                    await Navigation.PopModalAsync();
+                    await Navigation.PopAsync();
                 }
                 else
                 {
