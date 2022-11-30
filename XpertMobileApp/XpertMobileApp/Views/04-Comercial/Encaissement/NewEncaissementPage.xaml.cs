@@ -85,6 +85,7 @@ namespace XpertMobileApp.Views
             if (itemEncaiss != null)
             {
                 Item = itemEncaiss;
+
                 Title = "N°" + Item.CODE_ENCAISS;
             }
             else
@@ -173,7 +174,9 @@ namespace XpertMobileApp.Views
                 {
                     Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
                 }
+                UserDialogs.Instance.ShowLoading();
                 Location location = await Manager.GetLocation();
+                UserDialogs.Instance.HideLoading();
                 if (location == null)
                 {
                     await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
