@@ -21,6 +21,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.SQLite_Managment
 {
@@ -64,6 +65,7 @@ namespace XpertMobileApp.SQLite_Managment
                 string clientId = App.Settings.ClientId.ToString();
                 string AppName = Constants.AppName.ToString();
                 var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
+
                 db = new SQLiteAsyncConnection(databasePath);
                 return db;
             }
@@ -1747,6 +1749,17 @@ namespace XpertMobileApp.SQLite_Managment
             List<View_VTE_VENTE_LOT> VenteDetail = ventes.Where(e => e.CODE_VENTE == CodeVente).ToList();
             return VenteDetail;
         }
+        /// <summary>
+        /// Obtenire la liste des details de vente par CODE_VENTE
+        /// </summary>
+        /// <param name="CodeVente"></param>
+        /// <returns></returns>
+        public static async Task<List<View_VTE_VENTE_LIVRAISON>> getVenteDetailsDistrib(string CodeVente)
+        {
+            List<View_VTE_VENTE_LIVRAISON> ventes = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
+            List<View_VTE_VENTE_LIVRAISON> VenteDetail = ventes.Where(e => e.CODE_VENTE == CodeVente).ToList();
+            return VenteDetail;
+        }
 
         /// <summary>
         /// Synchronisation de la liste des ventes aux serveur
@@ -1760,15 +1773,20 @@ namespace XpertMobileApp.SQLite_Managment
 
                 var ListVentes = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                 var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+                var vteDetailsDistrib = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
 
                 if (ListVentes.Count > 0 && ListVentes != null)
                 {
                     foreach (var iVente in ListVentes)
                     {
                         List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
+                        List<View_VTE_VENTE_LIVRAISON> objdetailDistrib = new List<View_VTE_VENTE_LIVRAISON>();
                         try
                         {
-                            objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                            if (vteDetails.Count>0)
+                                objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                            else
+                                objdetailDistrib = vteDetailsDistrib?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
                         }
                         catch
                         {
@@ -1776,7 +1794,17 @@ namespace XpertMobileApp.SQLite_Managment
                         }
                         finally
                         {
+                            if (objdetail.Count>0)
                             iVente.Details = objdetail;
+                            else if (objdetailDistrib.Count > 0)
+                            {
+                                iVente.Details = new List<View_VTE_VENTE_LOT>();
+                                foreach (var v in objdetailDistrib)
+                                {
+
+                                    iVente.Details.Add(XpertHelper.CloneObject<View_VTE_VENTE_LOT>(v));
+                                }
+                            }
                         }
                     }
 
@@ -1787,6 +1815,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                     await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                    await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
 
                     UserDialogs.Instance.HideLoading();
                     return res;
@@ -1840,6 +1869,10 @@ namespace XpertMobileApp.SQLite_Managment
                     foreach (var item in vente.DetailsDistrib)
                     {
                         item.CODE_VENTE = vente.CODE_VENTE;
+
+                        // mise a jour la quantite dans la BL on ajout la quantite d'unites des mesures a la quantite
+
+                        item.QUANTITE += Manager.TotalQuantiteUnite(item.UnitesList);
                     }
                 if (vente.Details != null)
                 {

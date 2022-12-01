@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
@@ -93,6 +94,7 @@ namespace XpertMobileApp.Views.Encaissement
                 viewModel.ItemRows.Clear();
                 List<View_VTE_JOURNAL_DETAIL> itemsC = new List<View_VTE_JOURNAL_DETAIL>();
                 List<View_VTE_VENTE_LOT> itemsFromOffline = new List<View_VTE_VENTE_LOT>();
+                List<View_VTE_VENTE_LIVRAISON> itemsFromOfflineDistrib = new List<View_VTE_VENTE_LIVRAISON>();
                 if (App.Online)
                 {
                     itemsC = await WebServiceClient.GetVenteDetails(this.Item.CODE_VENTE);
@@ -100,7 +102,10 @@ namespace XpertMobileApp.Views.Encaissement
                 }
                 else
                 {
-                    itemsFromOffline = await SQLite_Manager.getVenteDetails(this.Item.CODE_VENTE);
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                        itemsFromOfflineDistrib = await SQLite_Manager.getVenteDetailsDistrib(this.Item.CODE_VENTE);
+                    else
+                        itemsFromOffline = await SQLite_Manager.getVenteDetails(this.Item.CODE_VENTE);
                 }
 
 
@@ -121,21 +126,38 @@ namespace XpertMobileApp.Views.Encaissement
                 }
                 else
                 {
-                    foreach (var itemC in itemsFromOffline)
-                    {
-                        if (itemC.PSYCHOTHROPE == 1)
+                    if (Constants.AppName != Apps.X_DISTRIBUTION)
+                        foreach (var itemC in itemsFromOffline)
                         {
-                            InfosPsyco.IsVisible = true;
+                            if (itemC.PSYCHOTHROPE == 1)
+                            {
+                                InfosPsyco.IsVisible = true;
+                            }
+                            viewModel.ItemRows.Add(new View_VTE_JOURNAL_DETAIL
+                            {
+                                DESIGNATION = itemC.DESIGNATION_PRODUIT,
+                                QUANTITE = itemC.QUANTITE,
+                                PRIX_VENTE = itemC.PRIX_VTE_TTC,
+                                MT_VENTE = itemC.MT_TTC,
+                            });
+                            AddItemPrinterDetails(itemC);
                         }
-                        viewModel.ItemRows.Add(new View_VTE_JOURNAL_DETAIL
+                    else
+                        foreach (var itemC in itemsFromOfflineDistrib)
                         {
-                            DESIGNATION = itemC.DESIGNATION_PRODUIT,
-                            QUANTITE = itemC.QUANTITE,
-                            PRIX_VENTE = itemC.PRIX_VTE_TTC,
-                            MT_VENTE = itemC.MT_TTC,
-                        });
-                        AddItemPrinterDetails(itemC);
-                    }
+                            if (itemC.PSYCHOTHROPE == 1)
+                            {
+                                InfosPsyco.IsVisible = true;
+                            }
+                            viewModel.ItemRows.Add(new View_VTE_JOURNAL_DETAIL
+                            {
+                                DESIGNATION = itemC.DESIGNATION_PRODUIT,
+                                QUANTITE = itemC.QUANTITE,
+                                PRIX_VENTE = itemC.PRIX_VTE_TTC,
+                                MT_VENTE = itemC.MT_TTC,
+                            });
+                            AddItemPrinterDetails(itemC);
+                        }
                 }
 
 
@@ -162,6 +184,16 @@ namespace XpertMobileApp.Views.Encaissement
                 QUANTITE = itemC.QUANTITE,
                 PRIX_VTE_TTC = itemC.PRIX_VENTE,
                 MT_TTC = itemC.MT_VENTE
+            });
+        }
+        private void AddItemPrinterDetails(View_VTE_VENTE_LIVRAISON itemC)
+        {
+            Printerdetails.Add(new View_VTE_VENTE_LOT
+            {
+                DESIGNATION_PRODUIT = itemC.DESIGNATION_PRODUIT,
+                QUANTITE = itemC.QUANTITE,
+                PRIX_VTE_TTC = itemC.PRIX_VENTE,
+                MT_TTC = itemC.MT_TTC
             });
         }
 

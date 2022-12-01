@@ -122,11 +122,21 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
                 string datvalue = "";
                 string designation = "";
+                if (data.Details!=null)
                 foreach (var item in data.Details)
                 {
                     designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
                     datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
                     printerLocal.PrintText(datvalue);
+                }
+                else
+                {
+                    foreach (var item in data.DetailsDistrib)
+                    {
+                        designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                        datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                        printerLocal.PrintText(datvalue);
+                    }
                 }
                 printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
                 printerLocal.PrintText(string.Format($"Versement : {data.TOTAL_RECU:0.00}" + $"        Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
