@@ -13,7 +13,9 @@ namespace XpertMobileApp.Api
     internal class EncaissManager : CrudService<View_TRS_ENCAISS>
     {
         public EncaissManager() : 
-            base(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token)
+            base(App.RestServiceUrl,
+                Constants.AppName == Apps.X_DISTRIBUTION || Constants.AppName == Apps.X_DISTRIBUTION?  "TRS_ENCAISS_XCOM" : "TRS_ENCAISS", 
+                App.User.Token)
         {
 
         }

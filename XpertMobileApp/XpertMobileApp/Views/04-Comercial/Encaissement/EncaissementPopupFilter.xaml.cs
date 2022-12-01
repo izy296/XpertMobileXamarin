@@ -29,11 +29,20 @@ namespace XpertMobileApp.Views
     public partial class EncaissementPopupFilter : PopupPage, INotifyPropertyChanged
     {
         private EncaissementsViewModel viewModel;
+        private TiersSelector itemSelector;
+        public string CurrentStream = Guid.NewGuid().ToString();
+
         public EncaissementPopupFilter(EncaissementsViewModel viewModel)
         {
             InitializeComponent();
             this.viewModel = viewModel;
             viewModel.ExecuteLoadExtrasDataCommand();
+            itemSelector = new TiersSelector(CurrentStream);
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
+            {
+                viewModel.SelectedTiers = selectedItem;
+                ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
+            });
             BindingContext = this.viewModel;
         }
 
@@ -96,6 +105,26 @@ namespace XpertMobileApp.Views
         private void CheckBox_StateChangedTransfertDeFond(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
         {
             viewModel.CheckBoxTransfertDeFond = (bool)e.IsChecked;
+        }
+        private async void btn_Select_Clicked(object sender, EventArgs e)
+        {
+            await searchIcon.ScaleTo(0.75, 50, Easing.Linear);
+            await searchIcon.ScaleTo(1, 50, Easing.Linear);
+            itemSelector.SearchedType = "";
+
+            await PopupNavigation.Instance.PushAsync(itemSelector);
+
+        }
+
+        private async void Initialize_Tiers_Picker(object sender, EventArgs e)
+        {
+            await initTierPicker.ScaleTo(0.75, 50, Easing.Linear);
+            await initTierPicker.ScaleTo(1, 50, Easing.Linear);
+            if (viewModel.SelectedTiers != null)
+            {
+                viewModel.SelectedTiers = new View_TRS_TIERS();
+                ent_SelectedTiers.Text = "";
+            }
         }
     }
 }

@@ -254,26 +254,20 @@ namespace XpertMobileApp.Views
                 if (isOpen)
                 {
                     isOpen = !isOpen;
-                    await closeIcon.RotateTo(0);
+                    closeIcon.RotateTo(0);
                     FloatMenuItem1.IsVisible = false;
-                    await Task.Delay(70);
                     FloatMenuItem2.IsVisible = false;
-                    await Task.Delay(70);
                     FloatMenuItem3.IsVisible = false;
-                    await Task.Delay(70);
                     FloatMenuItem4.IsVisible = false;
 
                 }
                 else
                 {
                     isOpen = !isOpen;
-                    await closeIcon.RotateTo(-45);
+                    closeIcon.RotateTo(-45);
                     FloatMenuItem1.IsVisible = true;
-                    await Task.Delay(70);
                     FloatMenuItem2.IsVisible = true;
-                    await Task.Delay(70);
                     FloatMenuItem3.IsVisible = true;
-                    await Task.Delay(70);
                     FloatMenuItem4.IsVisible = true;
                 }
             }

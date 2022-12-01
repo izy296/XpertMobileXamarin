@@ -48,7 +48,7 @@ namespace XpertMobileApp.ViewModels
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } = DateTime.Now;
 
         public ObservableCollection<BSE_DOCUMENTS_TYPE> Types { get; set; }
@@ -80,7 +80,7 @@ namespace XpertMobileApp.ViewModels
                     if (Constants.AppName == Apps.XCOM_Livraison)
                         return "VTE_VENTE_XCOM";
                     else
-                    return "VTE_VENTE";
+                        return "VTE_VENTE";
                 }
             }
         }
@@ -114,7 +114,9 @@ namespace XpertMobileApp.ViewModels
             {
                 LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
             }
-        }
+            if (App.Online)
+                StartDate = DateTime.Now;
+    }
 
         protected override QueryInfos GetFilterParams()
         {
@@ -155,7 +157,8 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_VTE_VENTE>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-            sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
+            if (StartDate != null)
+                sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 sqliteRes = sqliteRes.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
             if (!string.IsNullOrEmpty(TypeVente))

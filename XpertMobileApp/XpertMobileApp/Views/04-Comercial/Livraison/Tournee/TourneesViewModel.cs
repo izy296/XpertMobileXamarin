@@ -21,7 +21,7 @@ namespace XpertMobileApp.ViewModels
     public class TourneesViewModel : CrudBaseViewModel2<LIV_TOURNEE, View_LIV_TOURNEE>
     {
 
-        DateTime startDate = new DateTime(DateTime.Now.Year, 1, 1);
+        DateTime startDate;
         public DateTime StartDate
         {
             get { return startDate; }
@@ -38,7 +38,8 @@ namespace XpertMobileApp.ViewModels
         public TourneesViewModel()
         {
             Title = "Mes tournées";
-
+            if (App.Online)
+                StartDate = DateTime.Now;
             //Types = new ObservableCollection<BSE_TABLE_TYPE>();
             //Familles = new ObservableCollection<BSE_TABLE>();
 
@@ -193,8 +194,11 @@ namespace XpertMobileApp.ViewModels
         {
 
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
-            sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) >= 0).ToList();
-            return sqliteRes;
+            if (StartDate == null)
+            {
+                sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) >= 0).ToList();
+            }
+                return sqliteRes;
         }
         #endregion
 

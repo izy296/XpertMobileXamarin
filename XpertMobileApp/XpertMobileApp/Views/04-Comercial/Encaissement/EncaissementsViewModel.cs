@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -27,7 +28,7 @@ namespace XpertMobileApp.ViewModels
         public EncaissDisplayType EncaissDisplayType { get; set; }
 
 
-        DateTime startDate = DateTime.Now;
+        private DateTime startDate;
         public DateTime StartDate
         {
             get { return startDate; }
@@ -56,7 +57,7 @@ namespace XpertMobileApp.ViewModels
             get { return selectedMotif; }
             set { SetProperty(ref selectedMotif, value); }
         }
-
+        public View_TRS_TIERS SelectedTiers { get; set; }
         public bool CheckBoxTransfertDeFond
         {
             get;
@@ -69,6 +70,15 @@ namespace XpertMobileApp.ViewModels
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            if (App.Online)
+                StartDate = DateTime.Now;
+        }
+        protected override string ContoleurName
+        {
+            get
+            {
+                return Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION ? "TRS_ENCAISS_XCOM" : "TRS_ENCAISS";
+            }
         }
 
         protected override QueryInfos GetFilterParams()
@@ -92,6 +102,9 @@ namespace XpertMobileApp.ViewModels
 
             if (!string.IsNullOrEmpty(SelectedMotif?.CODE_MOTIF))
                 this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_MOTIF, SelectedMotif?.CODE_MOTIF);
+
+            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                this.AddCondition<View_TRS_ENCAISS, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             this.AddOrderBy<View_TRS_ENCAISS, DateTime?>(e => e.DATE_ENCAISS, Sort.DESC);
 
@@ -119,7 +132,13 @@ namespace XpertMobileApp.ViewModels
                 return res;
             }
 
-            res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) >= 0).ToList();
+            if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
+                res = res.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
+
+            if (StartDate == null)
+            {
+                res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_ENCAISS).Date) >= 0).ToList();
+            }
 
             if (selectedCompte != null)
                 res = res.Where(e => e.CODE_COMPTE == selectedCompte.CODE_COMPTE).ToList();

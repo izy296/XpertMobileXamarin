@@ -19,13 +19,15 @@ namespace XpertMobileApp.ViewModels
     {
 
         string currentQB = null;
-        public DateTime StartDate { get; set; } = DateTime.Now;//DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        public DateTime StartDate { get; set; }//DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         public DateTime EndDate { get; set; } = DateTime.Now;
 
 
         public TransfertStockViewModel()
         {
             base.InitConstructor();
+            if (App.Online)
+                StartDate = DateTime.Now;
         }
 
 
@@ -43,6 +45,7 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_STK_TRANSFERT>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var sqliteRes = await base.SelectByPageFromSqlLite(filter); 
+            if(StartDate == null)
             sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TRANSEFRT).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TRANSEFRT).Date) >= 0).ToList();
 
             return sqliteRes;

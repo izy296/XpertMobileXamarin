@@ -37,7 +37,7 @@ namespace XpertMobileApp.ViewModels
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now;
+        public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } = DateTime.Now;
 
         public ObservableCollection<View_BSE_COMPTE> Comptes { get; set; }
@@ -60,6 +60,8 @@ namespace XpertMobileApp.ViewModels
             Title = AppResources.pn_Commandes;
             Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            if (App.Online)
+                StartDate = DateTime.Now;
         }
 
         protected override string ContoleurName
@@ -102,9 +104,12 @@ namespace XpertMobileApp.ViewModels
         public async override Task<List<View_VTE_COMMANDE>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var res = await base.SelectByPageFromSqlLite(filter);
-
-            res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
-
+            
+            if (StartDate == null)
+            {
+                res = res.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_VENTE).Date) >= 0).ToList();
+            }
+            
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 res = res.Where(e => e.CODE_TIERS == SelectedTiers?.CODE_TIERS).ToList();
 

@@ -343,7 +343,7 @@ namespace XpertMobileApp.ViewModels
                 sqliteRes = sqliteRes.Where(e => e.CODE_TYPE == selectedType.CODE_TYPE).ToList();
 
             if (!string.IsNullOrEmpty(SearchedText))
-                sqliteRes = sqliteRes.Where(e => e.NOM_TIERS1.Contains(SearchedText)).ToList();
+                sqliteRes = sqliteRes.Where(e => e.NOM_TIERS1.ToString().ToLower().Contains(SearchedText.ToString().ToLower())).ToList();
 
             if (SoldOperator == ">")
                 sqliteRes = sqliteRes.Where(e => e.SOLDE_TIERS > 0).ToList();
