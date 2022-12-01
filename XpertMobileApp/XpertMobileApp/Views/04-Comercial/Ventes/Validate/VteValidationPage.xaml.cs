@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using XpertMobileApp.Api;
 using XpertMobileApp.Views.Helper;
+using XpertMobileApp.Helpers;
 
 namespace XpertMobileApp.Views
 {
@@ -81,7 +82,6 @@ namespace XpertMobileApp.Views
                     pts_Consumed.IsEnabled = viewModel.PointFideliteParam;
                 });
             });
-           
         }
 
         public void CheckPointFidelParam()
@@ -192,7 +192,7 @@ namespace XpertMobileApp.Views
                         if (Constants.AppName == Apps.XCOM_Livraison)
                             if (viewModel.imprimerTecketCaiss)
                             {
-                                PrinterHelper.PrintBL(viewModel.Item);
+                                await PrinterHelper.PrintBL(viewModel.Item);
                             }
                         if (Constants.AppName != Apps.X_DISTRIBUTION)
                             ParentviewModel.InitNewVentes();
@@ -213,7 +213,7 @@ namespace XpertMobileApp.Views
                                 await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                                 if (viewModel.imprimerTecketCaiss)
                                 {
-                                    PrinterHelper.PrintBL(viewModel.Item);
+                                    await PrinterHelper.PrintBL(viewModel.Item);
                                 }
                                 if (Constants.AppName != Apps.X_DISTRIBUTION)
                                     ParentviewModel.InitNewVentes();

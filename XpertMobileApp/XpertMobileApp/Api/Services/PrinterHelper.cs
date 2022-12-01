@@ -3,6 +3,7 @@ using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common;
 using XpertMobileApp;
@@ -78,7 +79,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
 
             }
         }
-        public async static void PrintBL(View_VTE_VENTE data)
+        public async static Task PrintBL(View_VTE_VENTE data)
         {
             if (data == null) return;
             try
