@@ -412,7 +412,8 @@ namespace XpertMobileApp.SQLite_Managment
                 //bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
-                    await InitialisationDbLocal();
+                    await InitialisationDbLocal(); 
+                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncProduitFamille();
                     await SyncStatusCommande();
@@ -779,10 +780,11 @@ namespace XpertMobileApp.SQLite_Managment
             try
             {
                 var encaiss = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-                if (encaiss.Count > 0 && encaiss != null)
+                var encaissList = encaiss.Where(e => e.IS_SYNCHRONISABLE == true).ToList<View_TRS_ENCAISS>();
+                if (encaissList.Count() > 0 && encaissList != null)
                 {
                     var bll = new EncaissManager();
-                    var res = await bll.SyncEncaiss(encaiss);
+                    var res = await bll.SyncEncaiss(encaissList);
                     await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 }
             }
@@ -819,7 +821,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location)
+        public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location,string codeCompte="")
         {
             if (!string.IsNullOrEmpty(App.PrefixCodification))
             {
@@ -1844,6 +1846,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
+                var encaissement = new View_TRS_ENCAISS();
                 var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
                 //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                 vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
@@ -1889,6 +1892,16 @@ namespace XpertMobileApp.SQLite_Managment
                     decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
                     await UpdateSoldeTiers(sold, vente.CODE_TIERS);
                 }
+
+                encaissement.CODE_TYPE = "ENC";
+                encaissement.CODE_TIERS= vente.CODE_TIERS;
+                encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
+                encaissement.CODE_MOTIF = "PCR";
+                //encaissement.CODE_COMPTE= 
+                encaissement.DATE_ENCAISS = DateTime.Now;
+                encaissement.IS_SYNCHRONISABLE = false;
+                await AjoutEncaissement(encaissement, null);
 
                 await UpdateTourneeDetail(vente);
                 await UpdateTournee();

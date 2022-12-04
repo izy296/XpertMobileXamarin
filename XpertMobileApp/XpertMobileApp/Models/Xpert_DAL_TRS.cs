@@ -134,6 +134,27 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? FontAwesomeIcons.Arrow_Up : FontAwesomeIcons.Arrow_Down;
             }
         }
+
+        [Ignore]
+        public string CODE_TOURNEE { get; set; }
+        private bool is_synchronisable { get; set; }
+        [Ignore]
+        public bool IS_SYNCHRONISABLE
+        {
+            get
+            {
+                if (is_synchronisable != null)
+                return is_synchronisable;
+                else
+                {
+                    return is_synchronisable = true;
+                }
+            }
+            set
+            {
+                is_synchronisable = value;
+            }
+        }
     }
 
     public class SESSION_INFO : BASE_CLASS
