@@ -49,6 +49,19 @@ namespace XpertMobileApp.Models
             }
         }
 
+        /* to save display type (line or grid ) ! */
+        private bool displayType;
+        public bool DisplayType
+        {
+            get
+            {
+                return displayType;
+            }
+            set
+            {
+                displayType = value;
+            }
+        }
         public string PrinterType { get; set; }
 
         private string printerName;
@@ -195,7 +208,8 @@ namespace XpertMobileApp.Models
             set { multiPrinterList = value; }
         }
 
-        public Settings() { 
+        public Settings()
+        {
         }
     }
 
@@ -207,7 +221,6 @@ namespace XpertMobileApp.Models
         public string DEFAULT_ACHATS_MAGASIN { get; set; }
         public string DEFAULT_VENTE_MAGASIN { get; set; }
         public string DEFAULT_UNITE_ACHATS { get; set; }
-        //declare DIRECT_LOGIN boolean
         public bool DIRECT_LOGIN { get; set; }
         public string NOM_PHARM { get; set; }
         public string ADRESSE_PHARM { get; set; }

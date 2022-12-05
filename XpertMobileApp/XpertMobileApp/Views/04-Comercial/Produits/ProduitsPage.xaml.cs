@@ -18,18 +18,27 @@ namespace XpertMobileApp.Views
     public partial class ProduitsPage : XBasePage
     {
         ProduitsViewModel viewModel;
-        public static bool displayGrid { get; set; } = false;
+        public static bool displayGrid { get; set; }
         private bool opened = false;
         public ProduitsPage()
         {
             InitializeComponent();
 
+            // Get the display mode of the products form sqlite...
             BindingContext = viewModel = new ProduitsViewModel();
 
-            if (App.Online && Constants.AppName == Apps.X_DISTRIBUTION)
+            if (App.Settings.DisplayType == false)
             {
-                ItemsListView.ItemsSource = viewModel.ItemsWithQteMagasin;
+                ItemsListView.ItemsLayout = LinearItemsLayout.Vertical;
+                changeDisplayItem.IconImageSource = "row_display.png";
+                changeDisplayItem.Text = "Affichage par Grille";
+            } else
+            {
+                ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
+                changeDisplayItem.IconImageSource = "grid_display.png";
+                changeDisplayItem.Text = "Affichage par Ligne";
             }
+
         }
         private void FilterScroll_Focused(object sender, FocusEventArgs e)
         {
@@ -192,7 +201,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void SwitchDisplayMode(object sender, EventArgs e)
+        private async void SwitchDisplayMode(object sender, EventArgs e)
         {
             if (!displayGrid)
             {
@@ -207,6 +216,10 @@ namespace XpertMobileApp.Views
                 changeDisplayItem.Text = "Affichage par Grille";
             }
             displayGrid = !displayGrid;
+
+            // save the display mode in the sqlite.. 
+            App.Settings.DisplayType = displayGrid;
+            await App.SettingsDatabase.SaveItemAsync(App.Settings);
             viewModel.Items.Clear();
             viewModel.ItemsWithQteMagasin.Clear();
             viewModel.LoadItemsCommand.Execute(null);

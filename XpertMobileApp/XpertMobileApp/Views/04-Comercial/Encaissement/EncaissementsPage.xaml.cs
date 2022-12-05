@@ -89,10 +89,9 @@ namespace XpertMobileApp.Views
 
         private void TypeFilter_Clicked(object sender, EventArgs e)
         {
-            btn_All.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Decaiss.BackgroundColor = Color.FromHex("#2196F3");
-            btn_Encaiss.BackgroundColor = Color.FromHex("#2196F3");
-
+            btn_All.BackgroundColor = Color.FromHex("EBEBEB");
+            btn_Decaiss.BackgroundColor = Color.FromHex("EBEBEB");
+            btn_Encaiss.BackgroundColor = Color.FromHex("EBEBEB"); 
             Button btn = (Button)sender;
             btn.BackgroundColor = Color.FromHex("#51adf6");
 
