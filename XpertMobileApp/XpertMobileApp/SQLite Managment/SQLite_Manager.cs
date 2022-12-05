@@ -413,7 +413,6 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal(); 
-                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncProduitFamille();
                     await SyncStatusCommande();
@@ -482,7 +481,6 @@ namespace XpertMobileApp.SQLite_Managment
                     if (itemsS != null)
                         await GetInstance().InsertAllAsync(itemsS);
                 }
-                var list = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();// testing only 
             }
             catch (Exception ex)
             {
