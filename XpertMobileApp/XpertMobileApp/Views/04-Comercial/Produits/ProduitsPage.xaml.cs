@@ -18,7 +18,7 @@ namespace XpertMobileApp.Views
     public partial class ProduitsPage : XBasePage
     {
         ProduitsViewModel viewModel;
-        public static bool displayGrid { get; set; }
+        public static bool displayGrid { get; set; } = App.Settings.DisplayType;
         private bool opened = false;
         public ProduitsPage()
         {
@@ -27,12 +27,13 @@ namespace XpertMobileApp.Views
             // Get the display mode of the products form sqlite...
             BindingContext = viewModel = new ProduitsViewModel();
 
-            if (App.Settings.DisplayType == false)
+            if (displayGrid == false)
             {
                 ItemsListView.ItemsLayout = LinearItemsLayout.Vertical;
                 changeDisplayItem.IconImageSource = "row_display.png";
                 changeDisplayItem.Text = "Affichage par Grille";
-            } else
+            }
+            else
             {
                 ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
                 changeDisplayItem.IconImageSource = "grid_display.png";
