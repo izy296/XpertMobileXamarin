@@ -162,7 +162,7 @@
                                         HorizontalOptions="FillAndExpand" 
                                         VerticalOptions="FillAndExpand" 
                                         BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontPoppins}" 
+                                        FontFamily="{StaticResource FontGilroyRegular}" 
                                         FontSize="18"
                                         FontAttributes="bold"
                                         ImageSource="{Binding IconImage}"
