@@ -54,14 +54,15 @@ namespace XpertMobileApp.Views
             ClientId.Text = "ID : " + App.Settings.ClientId;
             Lbl_AppFullName.Text = Constants.AppFullName.Replace(" ", "\n");
             XpertExpireDate.Text = "Exp: " + licenceInfos.ExpirationDate.GetDateTimeFormats().First().ToString();
-            
+
             GetNumberOfNotifications();
 
-            //Menu commun OFFICINE & COMM
-            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
-            {
-                menuItems = new List<HomeMenuItem>();
+            // Initialisation de la liste de menu ...
+            menuItems = new List<HomeMenuItem>();
 
+            /* Menu Commun entre (XCOM && XPH_mob && X_DISTRIBUTION) */
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
+            {
                 /* Page Home */
                 menuItems.Add(new HomeMenuItem
                 {
@@ -69,17 +70,6 @@ namespace XpertMobileApp.Views
                     ItemGroup = MenuItemGroup.Home,
                     Image = "home.png",
                     Title = AppResources.pn_home
-                });
-
-                /* page Vente */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Ventes,
-                    ItemGroup = MenuItemGroup.Ventes,
-                    Title = AppResources.pn_Ventes,
-                    CodeObjet = XpertObjets.VTE_VENTE,
-                    Action = XpertActions.AcSelect,
-                    Image = "vente.png"
                 });
 
                 /* Page Encaissement */
@@ -93,95 +83,70 @@ namespace XpertMobileApp.Views
                     Image = "encaisss.png"
                 });
 
+                /* Tiers */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Tiers,
+                    ItemGroup = MenuItemGroup.Ventes,
+                    Image = "user.png",
+                    Title = AppResources.pn_Client
+                });
+
+                /* Produit */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Produits,
+                    ItemGroup = MenuItemGroup.Stock,
+                    Image = "produit.png",
+                    Title = AppResources.pn_Produits
+                });
+
+                /* Page Settings */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Settings,
+                    ItemGroup = MenuItemGroup.Parametres,
+                    Image = "setting.png",
+                    Title = AppResources.pn_Settings
+                });
+
+                /* About */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.About,
+                    ItemGroup = MenuItemGroup.Parametres,
+                    Image = "information.png",
+                    Title = AppResources.pn_About
+                });
+
+                // Modules qui existe dans la version Pro Seulement 
                 if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
                 {
-                    //menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
-
-                    /* Vente au comptoire */
+                    /* Page tresorerie */
                     menuItems.Add(new HomeMenuItem
                     {
-                        Id = MenuItemType.VenteComptoir,
-                        ItemGroup = MenuItemGroup.Ventes,
-                        Title = AppResources.pn_VteComptoir,
-                        CodeObjet = XpertObjets.VTE_COMPTOIR,
-                        Action = XpertActions.AcSelect,
-                        Image = "vente.png"
+                        Id = MenuItemType.Tresorerie,
+                        Image = "money.png",
+                        ItemGroup = MenuItemGroup.Tresorerie,
+                        Title = AppResources.pn_Tresorerie,
+                        CodeObjet = XpertObjets.BSE_COMPTE,
+                        Action = XpertActions.AcSelect
                     });
-                    if (Constants.AppName == Apps.XCOM_Mob)
-                    {
-                        /* Livraison */
-                        menuItems.Add(new HomeMenuItem
-                        {
-                            Id = MenuItemType.Livraison,
-                            ItemGroup = MenuItemGroup.Ventes,
-                            Title = AppResources.pn_Livraison,
-                            Image = "livraison.png",
-                            CodeObjet = XpertObjets.VTE_LIVRAISON,
-                            Action = XpertActions.AcSelect
-                        });
-                    }
 
+                    // Modules qui sont affichés dans la version Pro avec un compte Adiministrateur seulement ...
                     if (AppManager.HasAdmin)
                     {
-                        /* Transfert du fond */
+                        /* Page Notification */
                         menuItems.Add(new HomeMenuItem
                         {
-                            Id = MenuItemType.TransfertDeFond,
-                            ItemGroup = MenuItemGroup.Tresorerie,
-                            Title = AppResources.pn_TransfertDeFond,
-                            Image = "transferdefond.png",
-                            CodeObjet = XpertObjets.View_TRS_VIREMENT,
-                            Action = XpertActions.AcSelect,
+                            Id = MenuItemType.Notification,
+                            ItemGroup = MenuItemGroup.Home,
+                            Image = "bell.png",
+                            Title = AppResources.pn_Notification,
+                            NotificationBadgeIsVisible = true,
+                            CountOfNotifications = numberOfNotifications
                         });
-
-                        if (Constants.AppName == Apps.XPH_Mob)
-                        {
-
-                            /* Echnage */
-                            menuItems.Add(new HomeMenuItem
-                            {
-                                Id = MenuItemType.Echange,
-                                ItemGroup = MenuItemGroup.Stock,
-                                Title = AppResources.pn_Echanges,
-                                CodeObjet = XpertObjets.View_STK_ECHANGE,
-                                Action = XpertActions.AcSelect,
-                                IsNewModule = true,
-                            });
-                        }
-
-                        /* Achat */
-                        menuItems.Add(new HomeMenuItem
-                        {
-                            Id = MenuItemType.Achats,
-                            ItemGroup = MenuItemGroup.Achats,
-                            Title = AppResources.pn_Achats,
-                            CodeObjet = XpertObjets.ACH_DOCUMENT,
-                            Action = XpertActions.AcSelect,
-                            Image = "achat.png"
-                        });
-
-
-                        /* Session */
-                        menuItems.Add(new HomeMenuItem
-                        {
-                            Id = MenuItemType.Sessions,
-                            ItemGroup = MenuItemGroup.Tresorerie,
-                            Title = AppResources.pn_session,
-                            CodeObjet = XpertObjets.TRS_RESUME_SESSION,
-                            Action = XpertActions.AcSelect,
-                            Image = "transaction.png",
-                        });
-
-                        /* Page tresorerie */
-                        menuItems.Add(new HomeMenuItem
-                        {
-                            Id = MenuItemType.Tresorerie,
-                            Image = "money.png",
-                            ItemGroup = MenuItemGroup.Tresorerie,
-                            Title = AppResources.pn_Tresorerie,
-                            CodeObjet = XpertObjets.BSE_COMPTE,
-                            Action = XpertActions.AcSelect
-                        });
+                        ReloadNumberOfNotifications();
 
                         /* Commande */
                         menuItems.Add(new HomeMenuItem
@@ -193,151 +158,234 @@ namespace XpertMobileApp.Views
                             CodeObjet = XpertObjets.VTE_COMMANDE,
                             Action = XpertActions.AcSelect
                         });
+                    }
+                } /* fin du bloc de la version pro */
 
-                        if (Constants.AppName == Apps.XPH_Mob)
+                /* Modules qui exitent dans XCOM ET XPHARM */
+                if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
+                {
+                    // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
+                    // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },
+
+                    /* page Vente */
+                    menuItems.Add(new HomeMenuItem
+                    {
+                        Id = MenuItemType.Ventes,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Title = AppResources.pn_Ventes,
+                        CodeObjet = XpertObjets.VTE_VENTE,
+                        Action = XpertActions.AcSelect,
+                        Image = "vente.png"
+                    });
+
+                    if (App.Settings.Mobile_Edition == Mobile_Edition.Standard)
+                    {
+                        /* Vente au comptoire */
+                        menuItems.Add(new HomeMenuItem
                         {
-                            /* Pyschotrope */
+                            Id = MenuItemType.VenteComptoir,
+                            ItemGroup = MenuItemGroup.Ventes,
+                            Title = AppResources.pn_VteComptoir,
+                            CodeObjet = XpertObjets.VTE_COMPTOIR,
+                            Action = XpertActions.AcSelect,
+                            Image = "vente.png"
+                        });
+
+                        if (AppManager.HasAdmin)
+                        {
+                            /* Transfert du fond */
                             menuItems.Add(new HomeMenuItem
                             {
-                                Id = MenuItemType.Psychotrop,
-                                ItemGroup = MenuItemGroup.Psychotrope,
-                                Title = AppResources.pn_VtePsychotrop,
-                                CodeObjet = XpertObjets.VTE_PSYCHOTROP,
+                                Id = MenuItemType.TransfertDeFond,
+                                ItemGroup = MenuItemGroup.Tresorerie,
+                                Title = AppResources.pn_TransfertDeFond,
+                                Image = "transferdefond.png",
+                                CodeObjet = XpertObjets.View_TRS_VIREMENT,
+                                Action = XpertActions.AcSelect,
+                            });
+
+
+                            /* Achat */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.Achats,
+                                ItemGroup = MenuItemGroup.Achats,
+                                Title = AppResources.pn_Achats,
+                                CodeObjet = XpertObjets.ACH_DOCUMENT,
+                                Action = XpertActions.AcSelect,
+                                Image = "achat.png"
+                            });
+
+                            /* Session */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.Sessions,
+                                ItemGroup = MenuItemGroup.Tresorerie,
+                                Title = AppResources.pn_session,
+                                CodeObjet = XpertObjets.TRS_RESUME_SESSION,
+                                Action = XpertActions.AcSelect,
+                                Image = "transaction.png",
+                            });
+
+                            /* Page tresorerie */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.Tresorerie,
+                                Image = "money.png",
+                                ItemGroup = MenuItemGroup.Tresorerie,
+                                Title = AppResources.pn_Tresorerie,
+                                CodeObjet = XpertObjets.BSE_COMPTE,
                                 Action = XpertActions.AcSelect
                             });
 
-                            /* Chifa */
+                            /* Manquant */
                             menuItems.Add(new HomeMenuItem
                             {
-                                Id = MenuItemType.Bordereaux,
-                                ItemGroup = MenuItemGroup.CHIFA,
-                                Title = AppResources.pn_Bordereaux,
-                                CodeObjet = XpertObjets.CFA_BORDEREAU,
+                                Id = MenuItemType.Manquants,
+                                ItemGroup = MenuItemGroup.Stock,
+                                Title = AppResources.pn_Manquants,
+                                CodeObjet = XpertObjets.ACH_MANQUANTS,
+                                Action = XpertActions.AcSelect,
+                                Image = "manquant.png"
+                            });
+
+                            /* Sortie du stock */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.Sortie,
+                                ItemGroup = MenuItemGroup.Stock,
+                                Title = AppResources.pn_Sortie,
+                                CodeObjet = XpertObjets.STK_SORTIE,
+                                Action = XpertActions.AcSelect,
+                                Image = "sortie.png"
+                            });
+
+
+                            /* Rotation des produit */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.RotationDesProduits,
+                                ItemGroup = MenuItemGroup.Stock,
+                                Title = AppResources.pn_RotationDesProduits,
+                                CodeObjet = XpertObjets.TDB_ANALYSES,
+                                Action = XpertActions.AcSelect,
+                                IsNewModule = true,
+                                Image = "rotation.png"
+                            });
+
+                            /* Indicateur */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.SimpleIndicators,
+                                ItemGroup = MenuItemGroup.Analyses,
+                                Image = "indicateur.png",
+                                Title = "Indicateurs",
+                                CodeObjet = XpertObjets.TDB_ANALYSES,
                                 Action = XpertActions.AcSelect
+                            }); // AppResources.pn_Simpleindicator
+
+
+                            /* Analyse */
+                            menuItems.Add(new HomeMenuItem
+                            {
+                                Id = MenuItemType.EncAnalyses,
+                                ItemGroup = MenuItemGroup.Analyses,
+                                Title = AppResources.pn_Analyses,
+                                CodeObjet = XpertObjets.TDB_ANALYSES,
+                                Action = XpertActions.AcSelect,
+                                Image = "analyse.png"
+
                             });
                         }
                     }
 
-                    /* Tiers */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Tiers,
-                        ItemGroup = MenuItemGroup.Ventes,
-                        Image = "user.png",
-                        Title = AppResources.pn_Client
-                    });
-
-                    /* Produit */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Produits,
-                        ItemGroup = MenuItemGroup.Stock,
-                        Image = "produit.png",
-                        Title = AppResources.pn_Produits
-                    });
-
-
-                    /* Manquant */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Manquants,
-                        ItemGroup = MenuItemGroup.Stock,
-                        Title = AppResources.pn_Manquants,
-                        CodeObjet = XpertObjets.ACH_MANQUANTS,
-                        Action = XpertActions.AcSelect,
-                        Image = "manquant.png"
-                    });
-
-                    /* Sortie du stock */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Sortie,
-                        ItemGroup = MenuItemGroup.Stock,
-                        Title = AppResources.pn_Sortie,
-                        CodeObjet = XpertObjets.STK_SORTIE,
-                        Action = XpertActions.AcSelect,
-                        Image = "sortie.png"
-                    });
-
-
-                    /* Rotation des produit */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.RotationDesProduits,
-                        ItemGroup = MenuItemGroup.Stock,
-                        Title = AppResources.pn_RotationDesProduits,
-                        CodeObjet = XpertObjets.TDB_ANALYSES,
-                        Action = XpertActions.AcSelect,
-                        IsNewModule = true,
-                        Image = "rotation.png"
-                    });
-
-                    //Analyse
-                    if (AppManager.HasAdmin)
+                    /* Module qui exite dans XCOM seulement */
+                    if (Constants.AppName == Apps.XCOM_Mob)
                     {
 
-                        /* Indicateur */
+                    }
+
+                    /* Modules qui exite dans XPHARM seulement */
+                    if (Constants.AppName == Apps.XPH_Mob)
+                    {
+                        /* Echnage */
                         menuItems.Add(new HomeMenuItem
                         {
-                            Id = MenuItemType.SimpleIndicators,
-                            ItemGroup = MenuItemGroup.Analyses,
-                            Image = "indicateur.png",
-                            Title = "Indicateurs",
-                            CodeObjet = XpertObjets.TDB_ANALYSES,
-                            Action = XpertActions.AcSelect
-                        }); // AppResources.pn_Simpleindicator
-
-
-                        /* Analyse */
-                        menuItems.Add(new HomeMenuItem
-                        {
-                            Id = MenuItemType.EncAnalyses,
-                            ItemGroup = MenuItemGroup.Analyses,
-                            Title = AppResources.pn_Analyses,
-                            CodeObjet = XpertObjets.TDB_ANALYSES,
+                            Id = MenuItemType.Echange,
+                            ItemGroup = MenuItemGroup.Stock,
+                            Title = AppResources.pn_Echanges,
+                            CodeObjet = XpertObjets.View_STK_ECHANGE,
                             Action = XpertActions.AcSelect,
-                            Image = "analyse.png"
+                            IsNewModule = true,
+                        });
 
+                        /* Pyschotrope */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Psychotrop,
+                            ItemGroup = MenuItemGroup.Psychotrope,
+                            Title = AppResources.pn_VtePsychotrop,
+                            CodeObjet = XpertObjets.VTE_PSYCHOTROP,
+                            Action = XpertActions.AcSelect
+                        });
+
+                        /* Chifa */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Bordereaux,
+                            ItemGroup = MenuItemGroup.CHIFA,
+                            Title = AppResources.pn_Bordereaux,
+                            CodeObjet = XpertObjets.CFA_BORDEREAU,
+                            Action = XpertActions.AcSelect
                         });
                     }
                 }
-
-                if (AppManager.HasAdmin)
+                else
+                if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-
-                    /* Page Settings */
+                    /* Livraison */
                     menuItems.Add(new HomeMenuItem
                     {
-                        Id = MenuItemType.Settings,
-                        ItemGroup = MenuItemGroup.Parametres,
-                        Image = "setting.png",
-                        Title = AppResources.pn_Settings
+                        Id = MenuItemType.Livraison,
+                        ItemGroup = MenuItemGroup.Ventes,
+                        Title = AppResources.pn_Livraison,
+                        Image = "livraison.png",
+                        CodeObjet = XpertObjets.VTE_LIVRAISON,
+                        Action = XpertActions.AcSelect
                     });
 
-                    /* Page Notification */
-                    menuItems.Add(new HomeMenuItem
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
                     {
-                        Id = MenuItemType.Notification,
-                        ItemGroup = MenuItemGroup.Home,
-                        Image = "bell.png",
-                        Title = AppResources.pn_Notification,
-                        NotificationBadgeIsVisible = true,
-                        CountOfNotifications = numberOfNotifications
-                    });
-                    ReloadNumberOfNotifications();
+                        /* Page Chargement / Déchargement */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.TransfertStock,
+                            ItemGroup = MenuItemGroup.Stock,
+                            Image = "transfer.png",
+                            Title = AppResources.pn_TransfertStock
+                        });
+
+                        /* Page Tournee */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Tournee,
+                            ItemGroup = MenuItemGroup.Ventes,
+                            CodeObjet = XpertObjets.LIV_TOURNEE,
+                            Action = Xpert.XpertActions.AcSelect,
+                            Image = "tournee.png",
+                            Title = "Tournee"
+                        });
+
+                        /* Page Synchronisation */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.Synchronisation,
+                            ItemGroup = MenuItemGroup.Parametres,
+                            Image = "synchron.png",
+                            Title = AppResources.pn_synchronisation
+                        });
+                    }
                 }
-
-                /* About */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.About,
-                    ItemGroup = MenuItemGroup.Parametres,
-                    Image = "information.png",
-                    Title = AppResources.pn_About
-                });
-
-                // new HomeMenuItem {Id = MenuItemType.rfid, Image = "", Title=AppResources.pn_RfidScan },
-                // new HomeMenuItem {Id = MenuItemType.invrfid, Image = "",Title= AppResources.pn_rfid_inventaire },
             }
 
             //Menu Xpert Livraison
@@ -414,165 +462,6 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.XProfile, Image = "", Title="Profile", VisibleToGuest=false },
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
-            }
-
-            //Menu Special Xpert Distribution
-            else if (Constants.AppName == Apps.X_DISTRIBUTION)
-            {
-                menuItems = new List<HomeMenuItem>();
-                // Si l'utilisateur est un administrateur...
-                if (AppManager.HasAdmin)
-                {
-                    /* Page session */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Sessions,
-                        ItemGroup = MenuItemGroup.Tresorerie,
-                        Image = "transaction.png",
-                        Title = AppResources.pn_session,
-                        CodeObjet = XpertObjets.TRS_RESUME_SESSION,
-                        Action = XpertActions.AcSelect
-                    });
-
-                    /* Page tresorerie */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Tresorerie,
-                        Image = "money.png",
-                        ItemGroup = MenuItemGroup.Tresorerie,
-                        Title = AppResources.pn_Tresorerie,
-                        CodeObjet = XpertObjets.BSE_COMPTE,
-                        Action = XpertActions.AcSelect
-                    });
-
-                    /* Page transfert d fond */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.TransfertDeFond,
-                        ItemGroup = MenuItemGroup.Tresorerie,
-                        Title = AppResources.pn_TransfertDeFond,
-                        Image = "transferdefond.png",
-                        CodeObjet = XpertObjets.View_TRS_VIREMENT,
-                        Action = XpertActions.AcSelect,
-                    });
-
-                    /* Page Settings */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Settings,
-                        ItemGroup = MenuItemGroup.Parametres,
-                        Image = "setting.png",
-                        Title = AppResources.pn_Settings
-                    });
-
-                    /* Page Notification */
-                    menuItems.Add(new HomeMenuItem
-                    {
-                        Id = MenuItemType.Notification,
-                        ItemGroup = MenuItemGroup.Home,
-                        Image = "bell.png",
-                        Title = AppResources.pn_Notification,
-                        NotificationBadgeIsVisible = true,
-                        CountOfNotifications = numberOfNotifications
-                    });
-                    ReloadNumberOfNotifications();
-                }
-
-                /* Page d'Acceuil */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Home,
-                    ItemGroup = MenuItemGroup.Home,
-                    Image = "home.png",
-                    Title = AppResources.pn_home
-                });
-
-                /* Page Tiers */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Tiers,
-                    ItemGroup = MenuItemGroup.Ventes,
-                    Image = "user.png",
-                    Title = AppResources.pn_Client
-                });
-
-                /* Page Chargement / Déchargement */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.TransfertStock,
-                    ItemGroup = MenuItemGroup.Stock,
-                    Image = "transfer.png",
-                    Title = AppResources.pn_TransfertStock
-                });
-
-                /* Page Commandes */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Commandes,
-                    ItemGroup = MenuItemGroup.Ventes,
-                    Title = AppResources.pn_Commandes,
-                    Image = "shopping.png",
-                    CodeObjet = XpertObjets.VTE_COMMANDE,
-                    Action = XpertActions.AcSelect
-                });
-
-                /* Page Tournee */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Tournee,
-                    ItemGroup = MenuItemGroup.Ventes,
-                    Image = "tournee.png",
-                    Title = "Tournee"
-                });
-
-                /* Page Encaissement */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Encaissements,
-                    ItemGroup = MenuItemGroup.Tresorerie,
-                    Title = AppResources.pn_encaissement,
-                    Image = "encaiss.png",
-                    CodeObjet = XpertObjets.TRS_DECAISS,
-                    Action = Xpert.XpertActions.AcSelect
-                });
-
-                /* Page Produit */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Produits,
-                    ItemGroup = MenuItemGroup.Stock,
-                    Image = "produit.png",
-                    Title = AppResources.pn_Produits
-                });
-
-                /* Page Livraison */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Livraison,
-                    ItemGroup = MenuItemGroup.Ventes,
-                    Title = AppResources.pn_Livraison,
-                    Image = "livraison.png",
-                    CodeObjet = XpertObjets.VTE_LIVRAISON,
-                    Action = XpertActions.AcSelect
-                });
-
-                /* Page Synchronisation */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.Synchronisation,
-                    ItemGroup = MenuItemGroup.Parametres,
-                    Image = "synchron.png",
-                    Title = AppResources.pn_synchronisation
-                });
-
-                /* Page About */
-                menuItems.Add(new HomeMenuItem
-                {
-                    Id = MenuItemType.About,
-                    ItemGroup = MenuItemGroup.Parametres,
-                    Image = "information.png",
-                    Title = AppResources.pn_About
-                });
             }
 
             ListViewMenu.ItemSelected += async (sender, e) =>
@@ -681,7 +570,7 @@ namespace XpertMobileApp.Views
         {
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
-                var menus = menuItems;
+                var menus = menuItems.Where(x => x.HasPermission == true).ToList();
                 var sorted = from menu in menus
                              orderby menu.ItemGroup, menu.Id
                              group menu by menu.ItemGroup into menuGroup

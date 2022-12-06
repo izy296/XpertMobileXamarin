@@ -111,6 +111,7 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
                         Title = "Tournee",
                         Color = "#FAEBCD",
+                        CodeObjet = Xpert.XpertObjets.LIV_TOURNEE,
                         Action = Xpert.XpertActions.AcSelect,
                         IconImage = "tourneeIcon.png"
                     });
@@ -149,8 +150,6 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
                         Title = AppResources.pn_Client,
                         Color = "#A8D08D",
-                        CodeObjet = Xpert.XpertObjets.TRS_TIERS,
-                        Action = Xpert.XpertActions.AcSelect,
                         IconImage = "clientIcon.png"
                     });
 
@@ -159,8 +158,6 @@ namespace XpertMobileApp.ViewModels
                         CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
                         Title = "Versement",
                         Color = "#F5F5F5",
-                        CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
-                        Action = Xpert.XpertActions.AcSelect,
                         IconImage = "encaissIcon.png"
                     });
 
@@ -174,7 +171,8 @@ namespace XpertMobileApp.ViewModels
 
                     foreach (var item in res)
                     {
-                        Items.Add(item);
+                        if (item.HasPermission)
+                            Items.Add(item);
                     }
                 }
                 else

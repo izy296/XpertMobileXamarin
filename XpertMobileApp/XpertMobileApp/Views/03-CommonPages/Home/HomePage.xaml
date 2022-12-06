@@ -108,7 +108,7 @@
                     
                     <syncfusion:SfListView.ItemSize>
                         <OnIdiom x:TypeArguments="x:Double"
-                                 Phone="150"
+                                 Phone="140"
                                  Tablet="200"
                                  Desktop="200"/>
                     </syncfusion:SfListView.ItemSize>
@@ -130,8 +130,8 @@
                              {Binding Color} OutlineColor="LightGray"
                               -->
                         <yummy:PancakeView BackgroundColor="{Binding Color}" 
-                                           CornerRadius="8"
-                                           Margin="8" 
+                                           CornerRadius="6"
+                                           Margin="2" 
                                            Padding="2" 
                                            HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
                             
@@ -162,8 +162,9 @@
                                         HorizontalOptions="FillAndExpand" 
                                         VerticalOptions="FillAndExpand" 
                                         BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontGilroySemiBold}" 
-                                        FontSize="Subtitle"
+                                        FontFamily="{StaticResource FontPoppins}" 
+                                        FontSize="18"
+                                        FontAttributes="bold"
                                         ImageSource="{Binding IconImage}"
                                         Clicked="Btn_Menu_Clicked" />
 
