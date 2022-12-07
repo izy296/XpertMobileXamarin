@@ -36,7 +36,7 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
             this.viewModel = viewModel;
-            viewModel.ExecuteLoadExtrasDataCommand();
+            //viewModel.ExecuteLoadExtrasDataCommand();
             itemSelector = new TiersSelector(CurrentStream);
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {

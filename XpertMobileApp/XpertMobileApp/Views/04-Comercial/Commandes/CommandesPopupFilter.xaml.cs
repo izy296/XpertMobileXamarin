@@ -39,8 +39,8 @@ namespace XpertMobileApp.Views
             BindingContext = this.viewModel;
             itemSelector = new TiersSelector(CurrentStream);
 
-            if (viewModel.Status.Count <= 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            //if (viewModel.Status.Count <= 0)
+            //    viewModel.LoadItemsCommand.Execute(null);
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             {

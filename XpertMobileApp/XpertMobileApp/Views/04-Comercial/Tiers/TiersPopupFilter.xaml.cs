@@ -40,11 +40,11 @@ namespace XpertMobileApp.Views
             BindingContext = this.viewModel;
             itemSelector = new TiersSelector(CurrentStream);
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            //if (viewModel.Items.Count == 0)
+            //    viewModel.LoadItemsCommand.Execute(null);
 
-            if (viewModel.Familles.Count == 0)
-                viewModel.LoadExtrasDataCommand.Execute(null);
+            //if (viewModel.Familles.Count == 0)
+            //    viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
         private async void Close_filter_popup(object sender, EventArgs e)
