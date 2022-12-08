@@ -102,6 +102,8 @@
                             ItemsSource="{Binding Activitys}"
                             VerticalOptions="FillAndExpand"
                             HorizontalOptions="FillAndExpand"
+                            SelectionChanged="OnItemSelected"
+                            SelectionMode="Single"
                             VerticalScrollBarVisibility="Always">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -158,9 +160,9 @@
                             <Button
                         VerticalOptions="EndAndExpand"
                         HorizontalOptions="FillAndExpand"
-                        BackgroundColor="{Binding Item.ETAT_COLOR_M}"
+                        BackgroundColor="{Binding Item.ETAT_COLOR}"
                         TextColor="White"
-                        Text="{Binding Item.DESIGNATION_ETAT_M}"
+                        Text="{Binding Item.DESIGNATION_ETAT}"
                         HeightRequest="50"
                         CornerRadius="15"
                         Clicked="VisitDemarer"

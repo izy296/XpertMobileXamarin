@@ -93,7 +93,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    if (Constants.AppName == Apps.XCOM_Livraison)
+                    if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
                         await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
                     else
                         await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
@@ -118,7 +118,7 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    if (Constants.AppName == Apps.XCOM_Livraison)
+                    if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
                         await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
                     else
                         await Navigation.PushAsync(new VenteFormPage(null, typeDoc));

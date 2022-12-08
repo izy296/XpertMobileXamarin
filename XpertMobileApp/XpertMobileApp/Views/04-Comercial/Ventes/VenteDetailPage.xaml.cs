@@ -40,11 +40,8 @@ namespace XpertMobileApp.Views.Encaissement
             InitializeComponent();
 
             CodeVente = codeVente;
-            this.Item = vente;
-
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_JOURNAL_DETAIL>(vente, vente.CODE_VENTE);
-
-            this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+            if (vente != null)
+                this.Item = vente;
 
             // TODO put into th generic view model 
             MessagingCenter.Subscribe<SessionsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
@@ -53,11 +50,32 @@ namespace XpertMobileApp.Views.Encaissement
             });
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
+            if (Item == null)
+                Item = await ExecuteGetVente(CodeVente);
+
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_JOURNAL_DETAIL>(Item, Item.CODE_VENTE);
+
+            this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+
             viewModel.LoadRowsCommand.Execute(null);
+        }
+
+        async Task<View_VTE_VENTE> ExecuteGetVente(string codeVente)
+        {
+            View_VTE_VENTE res=null;
+            if (App.Online)
+            {
+                var vente = await WebServiceClient.GetVente(codeVente);
+                if (vente != null  && vente.Count>0)
+                    res = vente[0];
+            }
+            else
+                res = await SQLite_Manager.GetVente(codeVente);
+            return res;
         }
 
         async Task ExecuteLoadRowsCommand()
@@ -75,7 +93,7 @@ namespace XpertMobileApp.Views.Encaissement
                 // le codeVente donné et le changement du Titre de la page.
                 // Le deuxiéme appelle
                 // de la fonction ExecuteLoadRowsCommand() pour la recuperation de détail du nouvelle object
-                if (CodeVente != null)
+                if (CodeVente != null && App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                     itemByCodeVente = await WebServiceClient.GetVente(CodeVente);
@@ -291,6 +309,12 @@ AppResources.alrt_msg_Ok);
             var selected = e.CurrentSelection[0] as View_VTE_JOURNAL_DETAIL;
             ProduitDetailPage produitDetailPage = new ProduitDetailPage(selected.CODE_PRODUIT);
             await Navigation.PushAsync(produitDetailPage);
+        }
+
+        private async void EditClicked(object sender, EventArgs e)
+        {
+            var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
+            await Navigation.PushAsync(new VenteFormLivraisonPage(Item, Item.TYPE_DOC, client));
         }
     }
 }

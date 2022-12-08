@@ -11,10 +11,12 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views.Encaissement;
 using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
@@ -59,12 +61,17 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            if (XpertHelper.IsNullOrEmpty(App.PrefixCodification))
+            {
+                await UserDialogs.Instance.AlertAsync("S'il vous plait reconecter pour initiliser votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                await Navigation.PopAsync();
+            }
             UserDialogs.Instance.ShowLoading();
             if (livTournee != null)
             {
                 var currentClient = await SQLite_Manager.GetClient(livTournee.CODE_TIERS);
-                if (currentClient!=null)
-                soldeTierLabel.Text = string.Format("{0:N2} DA", currentClient.SOLDE_TIERS); ;
+                if (currentClient != null)
+                    soldeTierLabel.Text = string.Format("{0:N2} DA", currentClient.SOLDE_TIERS); ;
             }
             new Command(async () =>
             {
@@ -230,8 +237,32 @@ namespace XpertMobileApp.Views
 
         private async void VisitDemarer(object sender, EventArgs e)
         {
-            viewModel.Item.CODE_ETAT = TourneeStatus.EnRoute;
-            await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
+            bool modified = false;
+            var x = ((int)TourneeStatus.Canceled).ToString();
+            if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.Planifier).ToString())
+            {
+                viewModel.Item.CODE_ETAT = ((int)TourneeStatus.EnRoute).ToString();
+                modified = true;
+            }
+            else if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.EnRoute).ToString())
+            {
+
+                modified = true;
+            }
+            else if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.Canceled).ToString())
+            {
+                modified = true;
+            }
+            if (modified)
+                if (App.Online)
+                {
+                    await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
+
+                }
+                else
+                {
+                    await SQLite_Manager.GetInstance().UpdateAsync(viewModel.Item);
+                }
         }
 
         private void RouteClicked()
@@ -298,7 +329,7 @@ namespace XpertMobileApp.Views
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
-                await Navigation.PushAsync(new VenteFormPage(null, "BR", tier));
+                await Navigation.PushAsync(new VenteFormLivraisonPage(null, "BR", tier, viewModel.Item.CODE_DETAIL));
             }
             catch (Exception ex)
             {
@@ -339,6 +370,31 @@ namespace XpertMobileApp.Views
                 throw ex;
             }
 
+        }
+
+        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.CurrentSelection.Count != 0)
+            {
+                var item = e.CurrentSelection[0] as View_TRS_TIERS_ACTIVITY;
+
+                if (item == null)
+                    return;
+
+                if (item.TYPE_DOC == "ENC")
+                {
+                    var encaisse = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elmeent => elmeent.CODE_ENCAISS == item.CODE_DOC).FirstAsync();
+                    await Navigation.PushAsync(new EncaissementDetailPage(encaisse));
+                }
+                else if (item.TYPE_DOC == "BL" || item.TYPE_DOC == "BR")
+                {
+                    await Navigation.PushAsync(new VenteDetailPage(null,item.CODE_DOC));
+                }
+                
+
+                // Manually deselect item.
+                ActivitysCollectionView.SelectedItem = null;
+            }
         }
     }
 }

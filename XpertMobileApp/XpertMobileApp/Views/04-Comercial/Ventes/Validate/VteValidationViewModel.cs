@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
@@ -112,6 +113,16 @@ namespace XpertMobileApp.ViewModels
                     else
                     {
                         await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                    }
+                }
+
+                if (item.DetailsDistrib.Count > 0 && Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    item.Details = new List<View_VTE_VENTE_LOT>();
+                    foreach (var v in item.DetailsDistrib)
+                    {
+
+                        item.Details.Add(XpertHelper.CloneObject<View_VTE_VENTE_LOT>(v));
                     }
                 }
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);

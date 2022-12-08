@@ -51,6 +51,7 @@ namespace XpertMobileApp.DAL
         public decimal TAUX_REMISE { get; set; } // money(19,4)
 
         private decimal tOTAL_HT;
+        [Ignore]
         public decimal TOTAL_HT
         {
             get
@@ -65,6 +66,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal tOTAL_TTC;
+        [Ignore]
         public decimal TOTAL_TTC
         {
             get
@@ -94,6 +96,7 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
 
         private decimal tOTAL_RECU;
+        [Ignore]
         public decimal TOTAL_RECU
         {
             get
@@ -162,6 +165,7 @@ namespace XpertMobileApp.DAL
         public string NOM_MEDECIN { get; set; }
         public string DESIGNATION_WILAYA_DELIVRE { get; set; }
         public string DATE_DELIVRE_CARTE { get; set; }
+        [Ignore]
         public string DATE_DELIVRE_CARTE_TITLE
         {
             get
@@ -176,6 +180,7 @@ namespace XpertMobileApp.DAL
         public decimal MT_VERSEMENT { get; set; } // money(19,4)
 
         private string nOM_TIERS;
+        [Ignore]
         public string NOM_TIERS
         {
             get
@@ -200,6 +205,7 @@ namespace XpertMobileApp.DAL
         public string CODE_CARTE_FIDELITE { get; set; }
 
         private decimal pOINTS_CONSUMED;
+        [Ignore]
         public decimal POINTS_CONSUMED
         {
             get
@@ -212,7 +218,8 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("POINTS_CONSUMED");
             }
         }
-        
+
+        [Ignore]
         public string CODE_TOURNEE { get; set; }
 
         #region Validation vente
@@ -230,6 +237,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal _MBL_MT_VERCEMENT;
+        [Ignore]
         public decimal MBL_MT_VERCEMENT
         {
             get { return _MBL_MT_VERCEMENT; }
@@ -246,6 +254,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal _MBL_MT_RENDU;
+        [Ignore]
         public decimal MBL_MT_RENDU
         {
             get { return _MBL_MT_RENDU; }
@@ -259,6 +268,7 @@ namespace XpertMobileApp.DAL
         public double GPS_LONGITUDE { get; set; }
         public string NameTableVente { get; set; }
         public string NameTableVenteDetail { get; set; }
+        [Ignore]
         public string TauxRemiseGlobale
         {
             get
@@ -268,6 +278,7 @@ namespace XpertMobileApp.DAL
                 return XpertHelper.RoundPrix(100 * this.REMISE_GLOBALE / dd) + " %";
             }
         }
+        [Ignore]
         public string DESIGN_TYPE
         {
             get
@@ -279,6 +290,7 @@ namespace XpertMobileApp.DAL
                 return "";
             }
         }
+        [Ignore]
         public string NUM_FACTURE
         {
             get
@@ -286,6 +298,7 @@ namespace XpertMobileApp.DAL
                 return this.CODE_FACTURE;
             }
         }
+        [Ignore]
         public string ETAT_IMPORT
         {
             get
@@ -305,6 +318,7 @@ namespace XpertMobileApp.DAL
         }
         // date sois sera dans la table pas dans la view
         //public DateTime? DATE_SOINS { get; set; }
+        [Ignore]
         public decimal TOTAL_ASSURE
         {
             get
@@ -327,6 +341,7 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_FACTURE_CVM { get; set; }
         public DateTime? DATE_DECOMPTE_CVM { get; set; }
         public string NOM_ASSURE { get; set; }
+        [Ignore]
         public bool IS_NOT_CVM_COMPLETE
 
         {
@@ -339,7 +354,7 @@ namespace XpertMobileApp.DAL
         public decimal QTE_TOTAL_IMPORTER { get; set; }
         public decimal QTE_REST_FACTURER { get; set; }
         public string NUM_TICKET { get; set; }
-
+        [Ignore]
         public decimal MontantVerseRestant
         {
             get
@@ -363,12 +378,19 @@ namespace XpertMobileApp.DAL
         // utiliser juste  pour Séparer entre vente CHIFA cash & vente CHIFA crédit
         // Warning :: TYPE_DOC2 is empty in all sales except vente chifa  ()        
         public decimal TOTAL_HT_REEL { get { return TOTAL_HT * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_PPA_REEL { get { return TOTAL_PPA * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_SHP_REEL { get { return TOTAL_SHP * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_REMISE_REEL { get { return TOTAL_REMISE * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_TVA_REEL { get { return TOTAL_TVA * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_TTC_REEL { get { return TOTAL_TTC * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_PAYE_REEL { get { return TOTAL_PAYE * SENS_DOC; } }
+        [Ignore]
         public decimal TOTAL_RESTE_REEL { get { return TOTAL_RESTE * SENS_DOC; } }
 
         public decimal TOTAL_TTC_INSTANCE { get; set; }
@@ -384,6 +406,7 @@ namespace XpertMobileApp.DAL
         #region Validation vente from Mobile
 
         #endregion
+        [Ignore]
         public string TITRE_VENTE_SPECIAL
         {
             get
@@ -800,7 +823,7 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; } // varchar(200)
-        public bool ETAT_TOURNEE { get; set; }
+        public int ETAT_TOURNEE { get; set; }
         public DateTime? DATE_DEPART_TOURNEE { get; set; }
         public DateTime? DATE_RETOUR_TOURNEE { get; set; }
         public DateTime? DATE_LAST_SYNC_TOURNEE { get; set; }
@@ -811,7 +834,50 @@ namespace XpertMobileApp.DAL
         public string NOM_SECTEUR { get; set; }
         public string DESIGNATION_MAGASIN { get; set; }
         public string NOM_VENDEUR { get; set; }
-        public string ETAT_COLOR { get; set; }
+        [Ignore]
+        public string ETAT_COLOR
+        {
+            get
+            {
+                if (ETAT_TOURNEE == (int)TourneeStatus.Planifier)
+                {
+                    return "#ffffff";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.EnRoute)
+                {
+                    return "#6fc2e3";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.Visited)
+                {
+                    return "#009DDC";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.Delivered)
+                {
+                    return "#009B72";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.Canceled)
+                {
+                    return "#F26430";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.VisitedNotDelivered)
+                {
+                    return "#6761A8";
+                }
+                else if (ETAT_TOURNEE == (int)TourneeStatus.NotVisited)
+                {
+                    return "#6761A8";
+                }
+                else
+                {
+                    return "#2A2D34";
+                }
+            }
+            set
+            {
+                ETAT_COLOR = value;
+                OnPropertyChanged("ETAT_COLOR");
+            }
+        }
         public string ACOMPILCHEMENT_PERCENT
         {
             get
@@ -827,6 +893,9 @@ namespace XpertMobileApp.DAL
         public int NBR_EN_WAITING { get; set; }
         public int NBR_EN_VISITED { get; set; }
         public int NBR_EN_DELEVRED { get; set; }
+
+        [Ignore]
+        public List<View_LIV_TOURNEE_DETAIL> Details { get; set; }
     }
 
     public partial class LIV_TOURNEE_DETAIL : BASE_CLASS
@@ -844,22 +913,22 @@ namespace XpertMobileApp.DAL
         public string MODIFIED_BY { get; set; }
         public double GPS_LATITUDE { get; set; }
         public double GPS_LONGITUDE { get; set; }
-        public DateTime? HEURE_DEPART_VISITE { get; set; } 
+        public DateTime? HEURE_DEPART_VISITE { get; set; }
         public DateTime? HEURE_RETOUR_VISITE { get; set; }
         public int MOTIF_NON_LIVRAISON { get; set; }
         public string PROOF_NON_LIVRAISON { get; set; }
         public int VISITE_CATEGORIE { get; set; }
         public int CODE_ETAT_VISITE { get; set; }
     }
-    public static class TourneeStatus
+    public enum TourneeStatus
     {
-        public static string Planifier { get { return "15"; } }
-        public static string Visited { get { return "16"; } }
-        public static string Delivered { get { return "17"; } }
-        public static string Canceled { get { return "18"; } }
-        public static string VisitedNotDelivered { get { return "19"; } }
-        public static string NotVisited { get { return "20"; } }
-        public static string EnRoute { get { return "21"; } }
+        Planifier = 15,
+        Visited = 16,
+        Delivered = 17,
+        Canceled = 18,
+        VisitedNotDelivered = 19,
+        NotVisited = 20,
+        EnRoute = 21
     }
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
@@ -877,31 +946,31 @@ namespace XpertMobileApp.DAL
             get
             {
 
-                if (CODE_ETAT == TourneeStatus.Planifier)
+                if (CODE_ETAT == TourneeStatus.Planifier.ToString())
                 {
                     return "Planifié";
                 }
-                else if (CODE_ETAT == TourneeStatus.EnRoute)
+                else if (CODE_ETAT == TourneeStatus.EnRoute.ToString())
                 {
                     return "En Route";
                 }
-                else if (CODE_ETAT == TourneeStatus.Visited)
+                else if (CODE_ETAT == TourneeStatus.Visited.ToString())
                 {
                     return "Visité";
                 }
-                else if (CODE_ETAT == TourneeStatus.Delivered)
+                else if (CODE_ETAT == TourneeStatus.Delivered.ToString())
                 {
                     return "Livré";
                 }
-                else if (CODE_ETAT == TourneeStatus.Canceled)
+                else if (CODE_ETAT == TourneeStatus.Canceled.ToString())
                 {
                     return "Annulé";
                 }
-                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered)
+                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered.ToString())
                 {
                     return "Visité non livré";
                 }
-                else if (CODE_ETAT == TourneeStatus.NotVisited)
+                else if (CODE_ETAT == TourneeStatus.NotVisited.ToString())
                 {
                     return "Pas visité";
                 }
@@ -913,6 +982,7 @@ namespace XpertMobileApp.DAL
             set
             {
                 DESIGNATION_ETAT = value;
+                OnPropertyChanged("DESIGNATION_ETAT");
             }
 
         }
@@ -921,31 +991,31 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                if (CODE_ETAT == TourneeStatus.Planifier)
+                if (CODE_ETAT == TourneeStatus.Planifier.ToString())
                 {
                     return "#2A2D34";
                 }
-                else if (CODE_ETAT == TourneeStatus.EnRoute)
+                else if (CODE_ETAT == TourneeStatus.EnRoute.ToString())
                 {
                     return "#6fc2e3";
                 }
-                else if (CODE_ETAT == TourneeStatus.Visited)
+                else if (CODE_ETAT == TourneeStatus.Visited.ToString())
                 {
                     return "#009DDC";
                 }
-                else if (CODE_ETAT == TourneeStatus.Delivered)
+                else if (CODE_ETAT == TourneeStatus.Delivered.ToString())
                 {
                     return "#009B72";
                 }
-                else if (CODE_ETAT == TourneeStatus.Canceled)
+                else if (CODE_ETAT == TourneeStatus.Canceled.ToString())
                 {
                     return "#F26430";
                 }
-                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered)
+                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered.ToString())
                 {
                     return "#6761A8";
                 }
-                else if (CODE_ETAT == TourneeStatus.NotVisited)
+                else if (CODE_ETAT == TourneeStatus.NotVisited.ToString())
                 {
                     return "#6761A8";
                 }
@@ -954,7 +1024,11 @@ namespace XpertMobileApp.DAL
                     return "#2A2D34";
                 }
             }
-            set { ETAT_COLOR = value; }
+            set
+            {
+                ETAT_COLOR = value;
+                OnPropertyChanged("ETAT_COLOR");
+            }
         }
     }
 
@@ -1062,11 +1136,14 @@ namespace XpertMobileApp.DAL
         public string VenteID { get; internal set; }
         public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
 
-        private decimal mt_ttc { get; set;}
-        public decimal MT_TTC{ get
+        private decimal mt_ttc { get; set; }
+        public decimal MT_TTC
+        {
+            get
             {
                 return mt_ttc;
-            } set
+            }
+            set
             {
                 mt_ttc = value;
                 OnPropertyChanged("MT_TTC");
@@ -1084,6 +1161,7 @@ namespace XpertMobileApp.DAL
             set
             {
                 unitesList = value;
+                OnPropertyChanged("UnitesList");
             }
         }
 

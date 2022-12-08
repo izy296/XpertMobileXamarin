@@ -19,6 +19,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views._04_Comercial.Selectors.Lot;
 using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
@@ -71,16 +72,18 @@ namespace XpertMobileApp.Views
 
             if (tiers == null)
             {
-                SelectedTiers = new View_TRS_TIERS()
-                {
-                    CODE_TIERS = "CXPERTCOMPTOIR",
-                    NOM_TIERS1 = "COMPTOIR"
-                };
+                if (Constants.AppName != Apps.X_DISTRIBUTION)
+                    SelectedTiers = new View_TRS_TIERS()
+                    {
+                        CODE_TIERS = "CXPERTCOMPTOIR",
+                        NOM_TIERS1 = "COMPTOIR"
+                    };
             }
             else
             {
                 SelectedTiers = tiers;
-                disable = false;
+                if (Constants.AppName != Apps.X_DISTRIBUTION)
+                    disable = false;
             }
 
             btn_Search.IsVisible = disable;
@@ -221,9 +224,16 @@ namespace XpertMobileApp.Views
 
             try
             {
-                viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetVenteLotLivraisonDetails(this.viewModel.Item.CODE_VENTE);
-
+                if (viewModel.ItemRows.Count != 0)
+                    viewModel.ItemRows.Clear();
+                List<View_VTE_VENTE_LIVRAISON> itemsC;
+                if (App.Online)
+                    itemsC = await WebServiceClient.GetVenteLotLivraisonDetails(this.viewModel.Item.CODE_VENTE);
+                else
+                {
+                    itemsC = await SQLite_Manager.getVenteDetailsDistrib(this.viewModel.Item.CODE_VENTE);
+                    viewModel.Item.DetailsDistrib = itemsC;
+                }
                 foreach (var itemC in itemsC)
                 {
                     //   itemC.Parent_Doc = viewModel.Item;
@@ -247,6 +257,7 @@ namespace XpertMobileApp.Views
 
         #region Selectors
 
+        private RetourProducts retourSelector;
         private LotSelectorLivraisonUniteFamille itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
@@ -258,18 +269,28 @@ namespace XpertMobileApp.Views
                 return;
             }
             */
-            itemSelector.viewModel.Tier = viewModel.SelectedTiers;
-            itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
-            //itemSelector.AutoriserReception = "1";
-            await PopupNavigation.Instance.PushAsync(itemSelector);
-
-            if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
+            if (viewModel.TypeDoc == "BR")
             {
-                MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.ID_STOCK).ToList());
+                retourSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
+                //itemSelector.AutoriserReception = "1";
+                await PopupNavigation.Instance.PushAsync(retourSelector);
             }
+            else
+            {
+                itemSelector.viewModel.Tier = viewModel.SelectedTiers;
+                itemSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
+                //itemSelector.AutoriserReception = "1";
+                await PopupNavigation.Instance.PushAsync(itemSelector);
+
+                if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
+                {
+                    MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.ID_STOCK).ToList());
+                }
+            }
+
         }
 
-        private RetourProducts retourSelector;
+
         private async void RetourProduct_Clicked(object sender, EventArgs e)
         {
             /*

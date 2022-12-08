@@ -32,7 +32,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
             updateConnected();
         }
 
-        public static void GetPrinterInstance()
+        public static async void GetPrinterInstance()
         {
             if (!printerLocal.IsInstanceReady())
             {
@@ -62,6 +62,13 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 }
                 else
                 {
+                    //if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    //{
+                    //    PrinterSelector printerSelector = new PrinterSelector();
+                    //    await PopupNavigation.Instance.PushAsync(printerSelector);
+
+
+                    //}
                     bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
 
                     if (!succes)

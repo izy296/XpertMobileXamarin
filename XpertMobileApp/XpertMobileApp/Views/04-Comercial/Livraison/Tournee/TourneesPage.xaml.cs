@@ -10,6 +10,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views._03_CommonPages.Synchronisation;
+using XpertMobileApp.Views.Templates;
 
 namespace XpertMobileApp.Views
 {
@@ -23,15 +24,34 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new TourneesViewModel();
-        }
 
+            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "UpdateTourneeStatus", async (sender, selectedItem) =>
+            {
+                await viewModel.UpdateTourneStatus(selectedItem);
+                await viewModel.ExecuteLoadItemsCommand();
+
+            });
+
+            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
+            {
+                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE));
+            });
+
+            MessagingCenter.Subscribe<TourneesViewModel, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
+            {
+                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE));
+            });
+        }
+        TourneePopup popup;
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
             var item = args.SelectedItem as View_LIV_TOURNEE;
             if (item == null)
                 return;
 
-            await Navigation.PushAsync(new TourneesDetailsPage(item.CODE_TOURNEE));
+            popup=new TourneePopup(item);
+            await PopupNavigation.Instance.PushAsync(popup);
+            //await Navigation.PushAsync(new TourneesDetailsPage(item.CODE_TOURNEE));
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
@@ -47,8 +67,6 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
-
-
             if (App.CODE_MAGASIN == null && App.User.UserGroup != "AD")
             {
                 var obj = await SQLite_Manager.GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();

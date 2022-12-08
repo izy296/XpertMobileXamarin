@@ -11,25 +11,27 @@ namespace XpertMobileApp.Api.Managers
 {
     public class VentesManager : CrudService<View_VTE_VENTE>
     {
-        public VentesManager(string controleurName) 
+        public VentesManager(string controleurName)
             : base(App.RestServiceUrl, controleurName, App.User.Token)
         {
         }
 
-        public async Task<string> ValidateVente(View_VTE_VENTE vte, string vparam1)
+        public async Task<string> ValidateVente(View_VTE_VENTE vte, string printerName)
         {
             string url = GetActionUrl("ValidateVente");
-            url += WSApi2.AddParam(url, "vparam1", vparam1);
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+                url += WSApi2.AddParam(url, "vparam1", "1");
+            else url += WSApi2.AddParam(url, "vparam1", printerName);
             return await WSApi2.PostAauthorizedValue<string, View_VTE_VENTE>(url, vte, this.Token.access_token);
         }
 
-        public async Task<string> SyncVentes(List<View_VTE_VENTE> vtes,string prefix,string CodeMagasin = "",string CodeCompte = "")
+        public async Task<string> SyncVentes(List<View_VTE_VENTE> vtes, string prefix, string CodeMagasin = "", string CodeCompte = "")
         {
             string url = GetActionUrl("SynchronisationVente");
             url += WSApi2.AddParam(url, "prefix", prefix);
             url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);
             url += WSApi2.AddParam(url, "CodeCompte", CodeCompte);
-            return await WSApi2.PostAauthorizedValue<string, List<View_VTE_VENTE>>(url, vtes , this.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<string, List<View_VTE_VENTE>>(url, vtes, this.Token.access_token);
         }
 
         public async Task<VIEW_FIDELITE_INFOS> GetFideliteInfos(string CodeCard, decimal PointUsed)

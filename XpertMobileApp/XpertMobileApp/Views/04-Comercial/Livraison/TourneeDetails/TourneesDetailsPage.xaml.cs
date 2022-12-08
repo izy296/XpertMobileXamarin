@@ -27,13 +27,16 @@ namespace XpertMobileApp.Views
     {
         TourneesDetailsViewModel viewModel;
         CancellationTokenSource cts;
-
+        View_LIV_TOURNEE Item;
 
         bool autoLodData = true;
-        public TourneesDetailsPage(string codeTournee)
+        public TourneesDetailsPage(string codeTournee,View_LIV_TOURNEE item=null)
         {
             InitializeComponent();
-
+            if (item!=null)
+            {
+                Item = item;
+            }
             BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
             viewModel.MyMapPage = this;
 
@@ -55,9 +58,17 @@ namespace XpertMobileApp.Views
             // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+            if (Item != null)
+            {
+                //if (Item.ETAT_TOURNEE)
+                //{
+                //    await UserDialogs.Instance.AlertAsync("", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                //}
+            }
             LoadData();
             //   if (viewModel.Familles.Count == 0)
             //       viewModel.LoadExtrasDataCommand.Execute(null);
@@ -150,7 +161,7 @@ namespace XpertMobileApp.Views
                             tiers = await SelectScanedTiers(result.Text);
                             if (tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS)
                             {
-                                tr.CODE_ETAT = TourneeStatus.Visited;
+                                tr.CODE_ETAT = ((int)TourneeStatus.Visited).ToString();
                                 tr.ETAT_COLOR = "#FFA500";
                                 var res = await viewModel.UpdateItem(tr);
                                 await SaveGPsLocationToTiers(tiers);

@@ -70,7 +70,7 @@ namespace XpertMobileApp.SQLite_Managment
                 return db;
             }
             else
-            {
+            {              
                 return db;
             }
         }
@@ -204,7 +204,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
 
             // 
-            string query = $@"SELECT DESIGNATION_UNITE,PRIX_VENTE,COEFFICIENT FROM View_BSE_PRODUIT_AUTRE_UNITE WHERE CODE_PRODUIT ='{codeProduit}'";
+            string query = $@"SELECT DISTINCT DESIGNATION_UNITE,PRIX_VENTE,COEFFICIENT FROM View_BSE_PRODUIT_AUTRE_UNITE WHERE CODE_PRODUIT ='{codeProduit}'";
             var list = await GetInstance().QueryAsync<View_BSE_PRODUIT_AUTRE_UNITE>(query);
             return list;
         }
@@ -378,12 +378,13 @@ namespace XpertMobileApp.SQLite_Managment
         /// <param name="param"></param>
         /// <param name="methodName"></param>
         /// <returns></returns>
-        public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "")
+        public static async Task SyncData<TView, TTabel>(bool _selectAll = true, string param = "", string methodName = "", bool delete = false)
         {
             var ListItems = new List<TView>();
 
             var items = await getItemsUnsyncronised<TView, TTabel>(_selectAll, param, methodName);
-            await GetInstance().DeleteAllAsync<TView>();
+            if (delete)
+                await GetInstance().DeleteAllAsync<TView>();
 
             try
             {
@@ -412,27 +413,28 @@ namespace XpertMobileApp.SQLite_Managment
                 //bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
-                    await InitialisationDbLocal(); 
+                    await InitialisationDbLocal();
+                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                    await SyncProduitFamille();
-                    await SyncStatusCommande();
-                    await SyncProduitType();
-                    await SyncCommande(); //worked
+                    await SyncProduitFamille(); //To Delete On Download
+                    await SyncStatusCommande(); //To Delete On Download
+                    await SyncProduitType(); //To Delete On Download
+                    await SyncCommande(); //worked //To Delete On Download
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
                     await SyncTiers();
                     await SyncStock();//worked !
-                    await syncPermission();//worked ! 
-                    await SyncSysParams(); //worked !
+                    await syncPermission();//worked ! //To Delete On Download
+                    await SyncSysParams(); //worked ! //To Delete On Download
                     await SyncProductPriceByQuantity();
                     await SyncProduitsByMagasin();
-                    await SyncFamille();//worked !
-                    await SyncTypeTiers();//worked !
-                    await SyncSecteurs();//worked !
-                    await SyncBseCompte();//worked !
-                    await SyncMotifs();//worked !
-                    await SyncUsers(); //worked !
-                    await SyncConfigMachine(); //worked
+                    await SyncFamille();//worked ! //To Delete On Download
+                    await SyncTypeTiers();//worked ! //To Delete On Download
+                    await SyncSecteurs();//worked ! //To Delete On Download
+                    await SyncBseCompte();//worked ! //To Delete On Download
+                    await SyncMotifs();//worked ! //To Delete On Download
+                    await SyncUsers(); //worked ! 
+                    await SyncConfigMachine(); //worked 
                     await SyncTransfers();
                     await SyncTransfersDetail();
                     await SyncProduiteUnite();
@@ -630,6 +632,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncTiersToServer();
                 await SyncEncaissToServer();
                 await SyncVenteToServer(); // error while coppying content to a stream
+                await SyncTourneesToServer();
 
                 UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -760,6 +763,8 @@ namespace XpertMobileApp.SQLite_Managment
                     var bll = new TiersManager();
                     var res = await bll.SyncTiers(listNewTiers);
                 }
+
+                await GetInstance().DeleteAllAsync<View_TRS_TIERS>();
             }
             catch (Exception ex)
             {
@@ -819,7 +824,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location,string codeCompte="")
+        public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location, string codeCompte = "")
         {
             if (!string.IsNullOrEmpty(App.PrefixCodification))
             {
@@ -1066,7 +1071,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
         {
-            selectedItem.CODE_ETAT = TourneeStatus.Visited;
+            selectedItem.CODE_ETAT = ((int)TourneeStatus.Visited).ToString();
             selectedItem.ETAT_COLOR = "#FFA500";
             return await GetInstance().UpdateAsync(selectedItem);
         }
@@ -1233,7 +1238,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (item.CODE_DETAIL == codeTourneeDetail)
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
-                    item.CODE_ETAT = TourneeStatus.Delivered;
+                    item.CODE_ETAT = ((int)TourneeStatus.Delivered).ToString();
                     item.SOLDE_TIERS = await GetSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
                     item.GPS_LONGITUDE = vente.GPS_LATITUDE;
@@ -1739,6 +1744,33 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
         /// <summary>
+        /// Obtenire une vente par CODE_VENTE
+        /// </summary>
+        /// <param name="CodeVente"></param>
+        /// <returns></returns>
+        public static async Task<View_VTE_VENTE> GetVente(string CodeVente)
+        {
+            try
+            {
+                var exception = SQLite_Manager.GetInstance().Table<View_VTE_VENTE>().ToListAsync().Exception;
+                if (exception == null)
+                {
+
+                    var ventes = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
+                    var res = ventes.Where(e => e.CODE_VENTE == CodeVente).FirstOrDefault();
+                    return res;
+                }
+                else throw exception;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return null;
+            }
+
+        }
+
+        /// <summary>
         /// Obtenire la liste des details de vente par CODE_VENTE
         /// </summary>
         /// <param name="CodeVente"></param>
@@ -1783,7 +1815,7 @@ namespace XpertMobileApp.SQLite_Managment
                         List<View_VTE_VENTE_LIVRAISON> objdetailDistrib = new List<View_VTE_VENTE_LIVRAISON>();
                         try
                         {
-                            if (vteDetails.Count>0)
+                            if (vteDetails.Count > 0)
                                 objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
                             else
                                 objdetailDistrib = vteDetailsDistrib?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
@@ -1794,8 +1826,8 @@ namespace XpertMobileApp.SQLite_Managment
                         }
                         finally
                         {
-                            if (objdetail.Count>0)
-                            iVente.Details = objdetail;
+                            if (objdetail.Count > 0)
+                                iVente.Details = objdetail;
                             else if (objdetailDistrib.Count > 0)
                             {
                                 iVente.Details = new List<View_VTE_VENTE_LOT>();
@@ -1829,6 +1861,48 @@ namespace XpertMobileApp.SQLite_Managment
             }
             return "";
         }
+        /// <summary>
+        /// Synchronisation de la liste des Tournees aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<string> SyncTourneesToServer()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
+                var ListTorunee = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                var tourneeDetails = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+
+                if (ListTorunee.Count > 0 && ListTorunee != null)
+                {
+                    foreach (var iTournee in ListTorunee)
+                    {
+                        var details = tourneeDetails.Where(e => e.CODE_TOURNEE == iTournee.CODE_TOURNEE).ToList();
+                        if (details.Count() > 0 && details != null)
+                            iTournee.Details = details;
+                    }
+
+                    var compte = await getComptes();
+
+                    var bll = CrudManager.Tournee;
+                    var res = await bll.SyncTournee(ListTorunee);
+
+                    await GetInstance().DeleteAllAsync<View_LIV_TOURNEE>();
+                    await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
+
+                    UserDialogs.Instance.HideLoading();
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            return "";
+        }
 
         /// <summary>
         /// Insert vente et vente detail  dans la table vente
@@ -1844,67 +1918,107 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                var encaissement = new View_TRS_ENCAISS();
-                var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-                //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
-                vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
-                vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
-                vente.CREATED_BY = App.User.UserName;
-                var id = await GetInstance().InsertAsync(vente);
-                //vente.CODE_VENTE = vente.ID.ToString() + "/" + App.PrefixCodification;
-                //vente.NUM_VENTE = vente.CODE_VENTE;
-                vente.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
-                vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
-                vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
-                vente.DATE_VENTE = DateTime.Now;
-                await GetInstance().UpdateAsync(vente);
+                if (string.IsNullOrEmpty(vente.CODE_VENTE))
+                {
+                    var encaissement = new View_TRS_ENCAISS();
+                    var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                    //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
+                    vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
+                    vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
+                    vente.CREATED_BY = App.User.UserName;
+                    var id = await GetInstance().InsertAsync(vente);
+                    //vente.CODE_VENTE = vente.ID.ToString() + "/" + App.PrefixCodification;
+                    //vente.NUM_VENTE = vente.CODE_VENTE;
+                    vente.NOM_TIERS = listeTiers.Where(x => x.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault()?.NOM_TIERS1;
+                    vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
+                    vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
+                    vente.DATE_VENTE = DateTime.Now;
+                    await GetInstance().UpdateAsync(vente);
 
-                //check if vente.Detail is empty than use 
+                    //check if vente.Detail is empty than use 
 
-                if (vente.Details != null)
-                    foreach (var item in vente.Details)
+                    if (vente.Details != null)
+                        foreach (var item in vente.Details)
+                        {
+                            item.CODE_VENTE = vente.CODE_VENTE;
+                        }
+                    else if (vente.DetailsDistrib != null)
+                        foreach (var item in vente.DetailsDistrib)
+                        {
+                            item.CODE_VENTE = vente.CODE_VENTE;
+
+                            // mise a jour la quantite dans la BL on ajout la quantite d'unites des mesures a la quantite
+
+                            item.QUANTITE += Manager.TotalQuantiteUnite(item.UnitesList);
+                        }
+                    if (vente.Details != null)
                     {
-                        item.CODE_VENTE = vente.CODE_VENTE;
+                        var id2 = await GetInstance().InsertAllAsync(vente.Details);
                     }
-                else if (vente.DetailsDistrib != null)
-                    foreach (var item in vente.DetailsDistrib)
+                    else if (vente.DetailsDistrib != null)
                     {
-                        item.CODE_VENTE = vente.CODE_VENTE;
-
-                        // mise a jour la quantite dans la BL on ajout la quantite d'unites des mesures a la quantite
-
-                        item.QUANTITE += Manager.TotalQuantiteUnite(item.UnitesList);
+                        var id2 = await GetInstance().InsertAllAsync(vente.DetailsDistrib);
                     }
-                if (vente.Details != null)
-                {
-                    var id2 = await GetInstance().InsertAllAsync(vente.Details);
+
+                    await UpdateStock(vente);
+                    if (vente.TOTAL_TTC != vente.MT_VERSEMENT)
+                    {
+                        decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
+                        await UpdateSoldeTiers(sold, vente.CODE_TIERS);
+                    }
+
+                    encaissement.CODE_TYPE = "ENC";
+                    encaissement.CODE_TIERS = vente.CODE_TIERS;
+                    encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                    encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
+                    encaissement.CODE_MOTIF = "PCR";
+                    //encaissement.CODE_COMPTE= 
+                    encaissement.DATE_ENCAISS = DateTime.Now;
+                    encaissement.IS_SYNCHRONISABLE = false;
+                    await AjoutEncaissement(encaissement, null);
+
+                    await UpdateTourneeDetail(vente);
+                    await UpdateTournee();
+
+                    return vente.CODE_VENTE;
                 }
-                else if (vente.DetailsDistrib != null)
+                else
                 {
-                    var id2 = await GetInstance().InsertAllAsync(vente.DetailsDistrib);
+                    if (vente.Details != null)
+                        foreach (var item in vente.Details)
+                        {
+                            item.CODE_VENTE = vente.CODE_VENTE;
+                        }
+                    else if (vente.DetailsDistrib != null)
+                        foreach (var item in vente.DetailsDistrib)
+                        {
+                            item.CODE_VENTE = vente.CODE_VENTE;
+
+                            // mise a jour la quantite dans la BL on ajout la quantite d'unites des mesures a la quantite
+
+                            item.QUANTITE += Manager.TotalQuantiteUnite(item.UnitesList);
+                        }
+                    if (vente.Details != null)
+                    {
+                        var id2 = await GetInstance().UpdateAllAsync(vente.Details);
+                    }
+                    else if (vente.DetailsDistrib != null)
+                    {
+                        var id2 = await GetInstance().UpdateAllAsync(vente.DetailsDistrib);
+                    }
+
+                    var encaiss = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+                    var encaissElement = encaiss.Where(e => e.CODE_TOURNEE == vente.CODE_TOURNEE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
+                    encaissElement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                    encaissElement.DATE_ENCAISS = DateTime.Now;
+
+
+                    await GetInstance().UpdateAsync(vente);
+                    await GetInstance().UpdateAsync(encaissElement);
+
+
+                    return vente.CODE_VENTE;
                 }
-
-                await UpdateStock(vente);
-                if (vente.TOTAL_TTC != vente.MT_VERSEMENT)
-                {
-                    decimal sold = vente.TOTAL_TTC - vente.MT_VERSEMENT;
-                    await UpdateSoldeTiers(sold, vente.CODE_TIERS);
-                }
-
-                encaissement.CODE_TYPE = "ENC";
-                encaissement.CODE_TIERS= vente.CODE_TIERS;
-                encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
-                encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
-                encaissement.CODE_MOTIF = "PCR";
-                //encaissement.CODE_COMPTE= 
-                encaissement.DATE_ENCAISS = DateTime.Now;
-                encaissement.IS_SYNCHRONISABLE = false;
-                await AjoutEncaissement(encaissement, null);
-
-                await UpdateTourneeDetail(vente);
-                await UpdateTournee();
-
-                return vente.CODE_VENTE;
             }
         }
 

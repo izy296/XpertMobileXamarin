@@ -5,7 +5,7 @@
              x:Class="XpertMobileApp.Views.Templates.TourneeTemplate">
     <ContentView.Content>
 
-        <StackLayout>
+        <StackLayout BackgroundColor="{Binding ETAT_COLOR}">
             <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
 

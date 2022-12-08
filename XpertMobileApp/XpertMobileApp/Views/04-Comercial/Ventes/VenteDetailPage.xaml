@@ -5,7 +5,13 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              Title="{Binding Title}">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            IsEnabled="{Binding App.Online}"
+            IconImageSource="editIcon.png"
+            Clicked="EditClicked"
+            />
+    </ContentPage.ToolbarItems>
     <StackLayout x:Name="sl_content" Padding="5" >
 
         <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">

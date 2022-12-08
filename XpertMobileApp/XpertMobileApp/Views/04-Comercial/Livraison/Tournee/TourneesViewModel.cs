@@ -9,10 +9,12 @@ using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views._03_CommonPages.Synchronisation;
 
 namespace XpertMobileApp.ViewModels
@@ -50,7 +52,7 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
-            this.AddCondition<View_LIV_TOURNEE, bool>(e => e.ETAT_TOURNEE, false);
+            this.AddCondition<View_LIV_TOURNEE, int>(e => e.ETAT_TOURNEE, (int)TourneeStatus.Planifier);
             if (App.User.UserGroup != "AD")
             {
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
@@ -198,9 +200,67 @@ namespace XpertMobileApp.ViewModels
             {
                 sqliteRes = sqliteRes.Where(e => StartDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) <= 0 && EndDate.Date.CompareTo(((DateTime)e.DATE_TOURNEE).Date) >= 0).ToList();
             }
-                return sqliteRes;
+            return sqliteRes;
         }
         #endregion
+
+        public async Task UpdateTourneStatus(View_LIV_TOURNEE item)
+        {
+            try
+            {
+                bool answer = false;
+                if (item.ETAT_TOURNEE == (int)TourneeStatus.EnRoute)
+                {
+
+                    answer = await App.Current.MainPage.DisplayAlert("Cloturer La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    if (answer)
+                    {
+                        item.ETAT_TOURNEE = (int)TourneeStatus.Delivered;
+                    }
+                }
+                else if (item.ETAT_TOURNEE == (int)TourneeStatus.Planifier)
+                {
+                    answer = await App.Current.MainPage.DisplayAlert("Demarrer La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    if (answer)
+                    {
+                        item.ETAT_TOURNEE = (int)TourneeStatus.EnRoute;
+                    }
+                }
+                else if (item.ETAT_TOURNEE == (int)TourneeStatus.Delivered)
+                {
+                    answer = await App.Current.MainPage.DisplayAlert("Ouvrir La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    if (answer)
+                    {
+                        item.ETAT_TOURNEE = (int)TourneeStatus.Planifier;
+                    }
+
+                }
+
+                if (answer)
+                    if (App.Online)
+                    {
+
+                        await CrudManager.Tournee.UpdateItemAsync(item);
+                        await UserDialogs.Instance.AlertAsync("Mise a jour avec success", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                    }
+                    else
+                    {
+                        await SQLite_Manager.GetInstance().UpdateAsync(item);
+                        await UserDialogs.Instance.AlertAsync("Mise a jour avec success", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+
+                if (item.ETAT_TOURNEE == (int)TourneeStatus.EnRoute && answer)
+                {
+                    MessagingCenter.Send(this, "TourneeDetails", item);
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+
+        }
 
     }
 
