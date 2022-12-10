@@ -414,7 +414,6 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
-                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncProduitFamille(); //To Delete On Download
                     await SyncStatusCommande(); //To Delete On Download
