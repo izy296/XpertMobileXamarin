@@ -922,13 +922,15 @@ namespace XpertMobileApp.DAL
     }
     public enum TourneeStatus
     {
-        Planifier = 15,
+        Planned = 15,
         Visited = 16,
         Delivered = 17,
         Canceled = 18,
         VisitedNotDelivered = 19,
         NotVisited = 20,
-        EnRoute = 21
+        EnRoute = 21,
+        Started = 22,
+        Closed = 30
     }
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
