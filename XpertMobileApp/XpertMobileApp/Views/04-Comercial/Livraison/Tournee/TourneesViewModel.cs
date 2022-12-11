@@ -52,7 +52,7 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
             this.AddCondition<View_LIV_TOURNEE, DateTime>(e => e.DATE_TOURNEE, Operator.BETWEEN_DATE, StartDate, EndDate);
-            this.AddCondition<View_LIV_TOURNEE, int>(e => e.ETAT_TOURNEE, (int)TourneeStatus.Planifier);
+            this.AddCondition<View_LIV_TOURNEE, TourneeStatus>(e => e.ETAT_TOURNEE, TourneeStatus.Planned);
             if (App.User.UserGroup != "AD")
             {
                 this.AddCondition<View_LIV_TOURNEE, string>(e => e.CODE_VENDEUR, App.User.UserName);
@@ -209,29 +209,29 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 bool answer = false;
-                if (item.ETAT_TOURNEE == (int)TourneeStatus.EnRoute)
+                if (item.ETAT_TOURNEE == TourneeStatus.EnRoute)
                 {
 
                     answer = await App.Current.MainPage.DisplayAlert("Cloturer La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
-                        item.ETAT_TOURNEE = (int)TourneeStatus.Delivered;
+                        item.ETAT_TOURNEE = TourneeStatus.Delivered;
                     }
                 }
-                else if (item.ETAT_TOURNEE == (int)TourneeStatus.Planifier)
+                else if (item.ETAT_TOURNEE == TourneeStatus.Planned)
                 {
                     answer = await App.Current.MainPage.DisplayAlert("Demarrer La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
-                        item.ETAT_TOURNEE = (int)TourneeStatus.EnRoute;
+                        item.ETAT_TOURNEE = TourneeStatus.EnRoute;
                     }
                 }
-                else if (item.ETAT_TOURNEE == (int)TourneeStatus.Delivered)
+                else if (item.ETAT_TOURNEE == TourneeStatus.Delivered)
                 {
                     answer = await App.Current.MainPage.DisplayAlert("Ouvrir La Tournee ?", AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
-                        item.ETAT_TOURNEE = (int)TourneeStatus.Planifier;
+                        item.ETAT_TOURNEE = TourneeStatus.Planned;
                     }
 
                 }
@@ -250,7 +250,7 @@ namespace XpertMobileApp.ViewModels
                         await UserDialogs.Instance.AlertAsync("Mise a jour avec success", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     }
 
-                if (item.ETAT_TOURNEE == (int)TourneeStatus.EnRoute && answer)
+                if (item.ETAT_TOURNEE == TourneeStatus.EnRoute && answer)
                 {
                     MessagingCenter.Send(this, "TourneeDetails", item);
                 }

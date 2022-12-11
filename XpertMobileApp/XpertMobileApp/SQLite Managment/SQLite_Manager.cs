@@ -419,19 +419,24 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncStatusCommande(); //To Delete On Download
                     await SyncProduitType(); //To Delete On Download
                     await SyncCommande(); //worked //To Delete On Download
+
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
                     await SyncTiers();
                     await SyncStock();//worked !
+
                     await syncPermission();//worked ! //To Delete On Download
                     await SyncSysParams(); //worked ! //To Delete On Download
+
                     await SyncProductPriceByQuantity();
                     await SyncProduitsByMagasin();
+
                     await SyncFamille();//worked ! //To Delete On Download
                     await SyncTypeTiers();//worked ! //To Delete On Download
                     await SyncSecteurs();//worked ! //To Delete On Download
                     await SyncBseCompte();//worked ! //To Delete On Download
                     await SyncMotifs();//worked ! //To Delete On Download
+
                     await SyncUsers(); //worked ! 
                     await SyncConfigMachine(); //worked 
                     await SyncTransfers();
@@ -494,6 +499,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
+                await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
                 await GetInstance().DeleteAllAsync<TRS_JOURNEES>();
                 await GetInstance().DeleteAllAsync<View_STK_STOCK>();
                 await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
@@ -628,9 +634,9 @@ namespace XpertMobileApp.SQLite_Managment
 
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await SyncTiersToServer();
+                //await SyncTiersToServer();
                 await SyncEncaissToServer();
-                await SyncVenteToServer(); // error while coppying content to a stream
+                //await SyncVenteToServer(); // error while coppying content to a stream
                 await SyncTourneesToServer();
 
                 UserDialogs.Instance.HideLoading();
@@ -1070,7 +1076,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         internal static async Task<int> UpdateTourneeItemVisited(View_LIV_TOURNEE_DETAIL selectedItem)
         {
-            selectedItem.CODE_ETAT = ((int)TourneeStatus.Visited).ToString();
+            selectedItem.CODE_ETAT_VISITE = TourneeStatus.Visited;
             selectedItem.ETAT_COLOR = "#FFA500";
             return await GetInstance().UpdateAsync(selectedItem);
         }
@@ -1237,7 +1243,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (item.CODE_DETAIL == codeTourneeDetail)
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
-                    item.CODE_ETAT = ((int)TourneeStatus.Delivered).ToString();
+                    item.CODE_ETAT_VISITE = TourneeStatus.Delivered;
                     item.SOLDE_TIERS = await GetSoldTiers(item.CODE_TIERS);
                     item.GPS_LATITUDE = vente.GPS_LATITUDE;
                     item.GPS_LONGITUDE = vente.GPS_LATITUDE;

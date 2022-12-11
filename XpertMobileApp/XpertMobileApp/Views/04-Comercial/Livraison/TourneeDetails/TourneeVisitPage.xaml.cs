@@ -239,17 +239,17 @@ namespace XpertMobileApp.Views
         {
             bool modified = false;
             var x = ((int)TourneeStatus.Canceled).ToString();
-            if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.Planifier).ToString())
+            if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.Planned)
             {
-                viewModel.Item.CODE_ETAT = ((int)TourneeStatus.EnRoute).ToString();
+                viewModel.Item.CODE_ETAT_VISITE = TourneeStatus.EnRoute;
                 modified = true;
             }
-            else if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.EnRoute).ToString())
+            else if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.EnRoute)
             {
 
                 modified = true;
             }
-            else if (viewModel.Item.CODE_ETAT == ((int)TourneeStatus.Canceled).ToString())
+            else if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.Canceled)
             {
                 modified = true;
             }

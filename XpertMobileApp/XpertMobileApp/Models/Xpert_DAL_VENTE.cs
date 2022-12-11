@@ -823,7 +823,7 @@ namespace XpertMobileApp.DAL
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
         public string MODIFIED_BY { get; set; } // varchar(200)
-        public int ETAT_TOURNEE { get; set; }
+        public TourneeStatus ETAT_TOURNEE { get; set; }
         public DateTime? DATE_DEPART_TOURNEE { get; set; }
         public DateTime? DATE_RETOUR_TOURNEE { get; set; }
         public DateTime? DATE_LAST_SYNC_TOURNEE { get; set; }
@@ -839,31 +839,31 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                if (ETAT_TOURNEE == (int)TourneeStatus.Planifier)
+                if (ETAT_TOURNEE == TourneeStatus.Planned)
                 {
                     return "#ffffff";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.EnRoute)
+                else if (ETAT_TOURNEE == TourneeStatus.EnRoute)
                 {
                     return "#6fc2e3";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.Visited)
+                else if (ETAT_TOURNEE == TourneeStatus.Visited)
                 {
                     return "#009DDC";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.Delivered)
+                else if (ETAT_TOURNEE == TourneeStatus.Delivered)
                 {
                     return "#009B72";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.Canceled)
+                else if (ETAT_TOURNEE == TourneeStatus.Canceled)
                 {
                     return "#F26430";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.VisitedNotDelivered)
+                else if (ETAT_TOURNEE == TourneeStatus.VisitedNotDelivered)
                 {
                     return "#6761A8";
                 }
-                else if (ETAT_TOURNEE == (int)TourneeStatus.NotVisited)
+                else if (ETAT_TOURNEE == TourneeStatus.NotVisited)
                 {
                     return "#6761A8";
                 }
@@ -905,8 +905,7 @@ namespace XpertMobileApp.DAL
         public string CODE_DETAIL { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string CODE_TIERS { get; set; }
-        public string CODE_VENTE { get; set; }
-        public string CODE_ETAT { get; set; }
+        public string CODE_VENTE { get; set; }        
         public string CREATED_BY { get; set; }
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
@@ -918,9 +917,9 @@ namespace XpertMobileApp.DAL
         public int MOTIF_NON_LIVRAISON { get; set; }
         public string PROOF_NON_LIVRAISON { get; set; }
         public int VISITE_CATEGORIE { get; set; }
-        public int CODE_ETAT_VISITE { get; set; }
+        public TourneeStatus CODE_ETAT_VISITE { get; set; }
     }
-    public enum TourneeStatus
+    public enum TourneeStatus : byte
     {
         Planned = 15,
         Visited = 16,
@@ -947,32 +946,31 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-
-                if (CODE_ETAT == TourneeStatus.Planifier.ToString())
+                if (CODE_ETAT_VISITE == TourneeStatus.Planned)
                 {
                     return "Planifié";
                 }
-                else if (CODE_ETAT == TourneeStatus.EnRoute.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.EnRoute)
                 {
                     return "En Route";
                 }
-                else if (CODE_ETAT == TourneeStatus.Visited.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Visited)
                 {
                     return "Visité";
                 }
-                else if (CODE_ETAT == TourneeStatus.Delivered.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Delivered)
                 {
                     return "Livré";
                 }
-                else if (CODE_ETAT == TourneeStatus.Canceled.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Canceled)
                 {
                     return "Annulé";
                 }
-                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.VisitedNotDelivered)
                 {
                     return "Visité non livré";
                 }
-                else if (CODE_ETAT == TourneeStatus.NotVisited.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.NotVisited)
                 {
                     return "Pas visité";
                 }
@@ -993,31 +991,31 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                if (CODE_ETAT == TourneeStatus.Planifier.ToString())
+                if (CODE_ETAT_VISITE == TourneeStatus.Planned)
                 {
                     return "#2A2D34";
                 }
-                else if (CODE_ETAT == TourneeStatus.EnRoute.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.EnRoute)
                 {
                     return "#6fc2e3";
                 }
-                else if (CODE_ETAT == TourneeStatus.Visited.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Visited)
                 {
                     return "#009DDC";
                 }
-                else if (CODE_ETAT == TourneeStatus.Delivered.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Delivered)
                 {
                     return "#009B72";
                 }
-                else if (CODE_ETAT == TourneeStatus.Canceled.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.Canceled)
                 {
                     return "#F26430";
                 }
-                else if (CODE_ETAT == TourneeStatus.VisitedNotDelivered.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.VisitedNotDelivered)
                 {
                     return "#6761A8";
                 }
-                else if (CODE_ETAT == TourneeStatus.NotVisited.ToString())
+                else if (CODE_ETAT_VISITE == TourneeStatus.NotVisited)
                 {
                     return "#6761A8";
                 }

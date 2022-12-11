@@ -161,7 +161,7 @@ namespace XpertMobileApp.Views
                             tiers = await SelectScanedTiers(result.Text);
                             if (tiers != null && tiers.CODE_TIERS == tr.CODE_TIERS)
                             {
-                                tr.CODE_ETAT = ((int)TourneeStatus.Visited).ToString();
+                                tr.CODE_ETAT_VISITE = TourneeStatus.Visited;
                                 tr.ETAT_COLOR = "#FFA500";
                                 var res = await viewModel.UpdateItem(tr);
                                 await SaveGPsLocationToTiers(tiers);
