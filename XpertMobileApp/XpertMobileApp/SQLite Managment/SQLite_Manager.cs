@@ -420,8 +420,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduitFamille();
                     await SyncStatusCommande();
                     await SyncProduitType();
-                    await SyncCommande(); //worked                    await SyncLivTournee();//worked !
-                    await SyncProduitFamille(); //To Delete On Download
+                    await SyncCommande(); //worked  await SyncLivTournee();//worked !
                     await SyncStatusCommande(); //To Delete On Download
                     await SyncProduitType(); //To Delete On Download
                     await SyncCommande(); //worked //To Delete On Download
