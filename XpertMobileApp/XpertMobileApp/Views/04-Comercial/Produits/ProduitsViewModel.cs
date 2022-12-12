@@ -387,24 +387,26 @@ namespace XpertMobileApp.ViewModels
                 ListOfallProducts.Clear();
 
                 ListOfallProducts.AddRange(list);
+                if(ListOfallProducts.Count > 0)
+                {
+                    if (OrderWithFamille)
+                    {
+                        await GroupByFamille();
+                        LoadItemsCommand.Execute(null);
+                    }
+                    else if (OrderWithMarque)
+                    {
+                        await GroupByBrand();
+                        LoadItemsCommand.Execute(null);
+                    }
+                    else if (OrderWithType)
+                    {
+                        await GroupByType();
+                        LoadItemsCommand.Execute(null);
+                    }
 
-                if (OrderWithFamille)
-                {
-                    await GroupByFamille();
-                    LoadItemsCommand.Execute(null);
+                    ListOfallProducts.Clear();
                 }
-                else if (OrderWithMarque)
-                {
-                    await GroupByBrand();
-                    LoadItemsCommand.Execute(null);
-                }
-                else if (OrderWithType)
-                {
-                    await GroupByType();
-                    LoadItemsCommand.Execute(null);
-                }
-
-                ListOfallProducts.Clear();
             }
             else if (SearchedText == "")
             {
@@ -466,11 +468,11 @@ namespace XpertMobileApp.ViewModels
                             {
                                 if (DisplayWithQuantity)
                                 {
-                                    if (product.DESIGN_TYPE == type.DESIGNATION_TYPE && product.QTE_STOCK > 0)
+                                    if (product.DESIGN_TYPE.ToLower() == type.DESIGNATION_TYPE.ToLower() && product.QTE_STOCK > 0)
                                     {
                                         tempList.Add(product);
                                     }
-                                    else if (product.DESIGN_TYPE == type.DESIGNATION_TYPE)
+                                    else if (product.DESIGN_TYPE.ToLower() == type.DESIGNATION_TYPE.ToLower())
                                     {
                                         tempList.Add(product);
                                     }
@@ -520,12 +522,12 @@ namespace XpertMobileApp.ViewModels
                             {
                                 if (DisplayWithQuantity)
                                 {
-                                    if (product.DESIGN_FAMILLE == famille.DESIGNATION && product.QTE_STOCK > 0)
+                                    if (product.DESIGN_FAMILLE.ToLower() == famille.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
                                     {
                                         tempList.Add(product);
                                     }
                                 }
-                                else if (product.DESIGN_FAMILLE == famille.DESIGNATION)
+                                else if (product.DESIGN_FAMILLE.ToLower() == famille.DESIGNATION.ToLower())
                                 {
                                     tempList.Add(product);
                                 }
@@ -577,11 +579,11 @@ namespace XpertMobileApp.ViewModels
                             {
                                 if (DisplayWithQuantity)
                                 {
-                                    if (product.DESIGN_LABO == labo.DESIGNATION && product.QTE_STOCK > 0)
+                                    if (product.DESIGN_LABO.ToLower() == labo.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
                                     {
                                         tempList.Add(product);
                                     }
-                                    else if (product.DESIGN_LABO == labo.DESIGNATION)
+                                    else if (product.DESIGN_LABO.ToLower() == labo.DESIGNATION.ToLower())
                                     {
                                         tempList.Add(product);
                                     }
