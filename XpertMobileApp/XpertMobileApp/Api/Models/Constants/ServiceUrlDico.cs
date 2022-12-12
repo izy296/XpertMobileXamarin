@@ -139,9 +139,10 @@ namespace XpertMobileApp.Helpers
         public static string PRODUITS_LOTS_REF_URL = "GetLotsFromRef";
 
         public static string STK_PRODUITS_URL = "STK_PRODUITS";
+        public static string STK_PRODUITS_COM_URL = "STK_PRODUITS_XCOM";
         public static string STK_PRODUITS_CODE_BARRE_LOT = "GetByCodeBarreLot";
         public static string STK_PRODUITS_CODE_BARRE = "GetByCodeBarre";
-
+        public static string ALL_PRODUCTS = "GetAllProduct";
 
         // Manquants
         public static string MANQUANTS_URL = "ACH_MANQUANTS";

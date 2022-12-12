@@ -19,6 +19,7 @@ namespace XpertMobileApp.Views
     {
         ProduitsViewModel viewModel;
         public static bool displayGrid { get; set; } = App.Settings.DisplayType;
+
         private bool opened = false;
         public ProduitsPage()
         {
@@ -43,7 +44,7 @@ namespace XpertMobileApp.Views
         }
         private void FilterScroll_Focused(object sender, FocusEventArgs e)
         {
-            ItemsListView.Opacity = 0;
+            //ItemsListView.Opacity = 0;
         }
 
         async void OnItemSelected(object sender, Xamarin.Forms.SelectionChangedEventArgs args)
@@ -53,8 +54,8 @@ namespace XpertMobileApp.Views
                 {
                     if (opened)
                     {
-                        ItemsListView.Opacity = 1;
-                        ItemsListView.SelectedItem = null;
+                        //ItemsListView.Opacity = 1;
+                        //ItemsListView.SelectedItem = null;
                         return;
                     }
                     var item = args.CurrentSelection[0] as STK_PRODUITS;
@@ -65,7 +66,7 @@ namespace XpertMobileApp.Views
                     await Navigation.PushAsync(new ProduitDetailPage(item));
 
                     // Manually deselect item.
-                    ItemsListView.SelectedItem = null;
+                    //ItemsListView.SelectedItem = null;
                 }
         }
 
@@ -182,18 +183,43 @@ namespace XpertMobileApp.Views
 
         private async void ShowHideFilter(object sender, EventArgs e)
         {
+            //Set the Collection view to show product in non grouped way
+            ItemsListView.IsGrouped = false;
+            ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
+            viewModel.OrderWithFamille = false;
+            viewModel.OrderWithMarque = false;
+            viewModel.OrderWithType = false;
             ProduitsPopupFilter filter = new ProduitsPopupFilter(viewModel);
             //Load data for the first time ...
             await PopupNavigation.Instance.PushAsync(filter);
         }
 
-        private void Switch1_Toggled(object sender, ToggledEventArgs e)
+        private async void Switch1_Toggled(object sender, ToggledEventArgs e)
         {
             try
             {
-                viewModel.Items.Clear();
-                viewModel.ItemsWithQteMagasin.Clear();
-                viewModel.LoadItemsCommand.Execute(null);
+                if (viewModel.OrderWithFamille)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByFamille();
+                }
+                else if (viewModel.OrderWithMarque)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByBrand();
+                }
+                else if (viewModel.OrderWithType)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByType();
+                }
+                else
+                {
+                    viewModel.Items.Clear();
+                    viewModel.ItemsWithQteMagasin.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+
             }
             catch (Exception ex)
             {
@@ -218,12 +244,92 @@ namespace XpertMobileApp.Views
             }
             displayGrid = !displayGrid;
 
-            // save the display mode in the sqlite.. 
+            // Save the display mode in the sqlite.. 
             App.Settings.DisplayType = displayGrid;
             await App.SettingsDatabase.SaveItemAsync(App.Settings);
             viewModel.Items.Clear();
             viewModel.ItemsWithQteMagasin.Clear();
             viewModel.LoadItemsCommand.Execute(null);
+        }
+
+        private async void OrderByFamille(object sender, EventArgs e)
+        {
+            try
+            {
+                viewModel.OrderWithFamille = !viewModel.OrderWithFamille;
+                viewModel.OrderWithMarque = false;
+                viewModel.OrderWithType = false;
+                viewModel.ListOfGroupedProducts.Clear();
+                if (viewModel.OrderWithFamille == true)
+                {
+                    await viewModel.GroupByFamille();
+                    ItemsListView.IsGrouped = true;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "ListOfGroupedProducts");
+                }
+                else
+                {
+                    ItemsListView.IsGrouped = false;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
+                }
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private async void OrderByMarque(object sender, EventArgs e)
+        {
+            try
+            {
+                viewModel.OrderWithFamille = false;
+                viewModel.OrderWithMarque = !viewModel.OrderWithMarque;
+                viewModel.OrderWithType = false;
+                viewModel.ListOfGroupedProducts.Clear();
+                if (viewModel.OrderWithMarque == true)
+                {
+                    await viewModel.GroupByBrand();
+                    ItemsListView.IsGrouped = true;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "ListOfGroupedProducts");
+                }
+                else
+                {
+                    ItemsListView.IsGrouped = false;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
+                }
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private async void OrderByType(object sender, EventArgs e)
+        {
+            try
+            {
+                viewModel.OrderWithFamille = false;
+                viewModel.OrderWithMarque = false;
+                viewModel.OrderWithType = !viewModel.OrderWithType;
+                viewModel.ListOfGroupedProducts.Clear();
+                if (viewModel.OrderWithType == true)
+                {
+                    await viewModel.GroupByType();
+                    ItemsListView.IsGrouped = true;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "ListOfGroupedProducts");
+                }
+                else
+                {
+                    ItemsListView.IsGrouped = false;
+                    ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
+                }
+
+                viewModel.LoadItemsCommand.Execute(null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

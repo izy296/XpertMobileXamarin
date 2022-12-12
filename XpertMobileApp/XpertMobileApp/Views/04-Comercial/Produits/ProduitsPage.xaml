@@ -11,7 +11,7 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Name="Produits">
 
-    <base:XBasePage.ToolbarItems>
+    <base:XBasePage.ToolbarItems >
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
 
         <ToolbarItem x:Name="changeDisplayItem"
@@ -20,6 +20,29 @@
                      IconImageSource="grid_display.png"
                      Text="Affichage par grille" 
                      Clicked="SwitchDisplayMode"/>
+        
+        <ToolbarItem x:Name="FamilleDisplayItem"
+                     Order="Secondary" 
+                     Priority="0"
+                     IconImageSource="grid_display.png"
+                     Text="Classement par Famille" 
+                     Clicked="OrderByFamille"/>
+
+        <ToolbarItem x:Name="TypeDisplayItem"
+                     Order="Secondary" 
+                     Priority="0"
+                     IconImageSource="grid_display.png"
+                     Text="Classement par Type" 
+                     Clicked="OrderByType"/>
+        
+        <ToolbarItem x:Name="marqueDisplayItem"
+                     Order="Secondary" 
+                     Priority="0"
+                     IconImageSource="grid_display.png"
+                     Text="Classement par Marque" 
+                     Clicked="OrderByMarque"/>
+        
+        
     </base:XBasePage.ToolbarItems>
 
     <NavigationPage.TitleView>
@@ -61,15 +84,35 @@
             <RefreshView 
                     Command="{Binding PullTORefresh}"
                     IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+
+                
                 <CollectionView
-                                    ItemsLayout="VerticalList"
-                                    x:Name="ItemsListView"
-                                    ItemsSource="{Binding Items}"
-                                    ItemTemplate="{StaticResource ProduitPageSelector}"
-                                    RemainingItemsThreshold="1"
-                                    RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
-                                    SelectionMode = "Single"
-                                    SelectionChanged="OnItemSelected">
+                            
+                            ItemsLayout="VerticalList"
+                            x:Name="ItemsListView"
+                            ItemsSource="{Binding Items}"
+                            ItemTemplate="{StaticResource ProduitPageSelector}"
+                            RemainingItemsThreshold="1"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
+                            SelectionMode = "Single"
+                            SelectionChanged="OnItemSelected">
+                    <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="0,0,0,5"
+                                         BackgroundColor="White"
+                                         VerticalOptions="Center"
+                                         HorizontalOptions="Center">
+                                <Label Text="{Binding GroupTitle}"
+                                   BackgroundColor="#F8DE93"
+                                   Padding="0,10"
+                                   TextColor="#000"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontSize="16"
+                                   FontAttributes="Bold" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
                 </CollectionView>
             </RefreshView>
 

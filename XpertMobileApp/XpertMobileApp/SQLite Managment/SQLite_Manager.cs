@@ -113,6 +113,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<BSE_DOCUMENT_STATUS>();
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
                 await GetInstance().CreateTableAsync<STK_PRODUITS_IMAGES>();
+                await GetInstance().CreateTableAsync<BSE_PRODUIT_LABO>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
@@ -415,6 +416,11 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     await InitialisationDbLocal();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await SyncLabos();
+                    await SyncProduitFamille();
+                    await SyncStatusCommande();
+                    await SyncProduitType();
+                    await SyncCommande(); //worked                    await SyncLivTournee();//worked !
                     await SyncProduitFamille(); //To Delete On Download
                     await SyncStatusCommande(); //To Delete On Download
                     await SyncProduitType(); //To Delete On Download
@@ -445,6 +451,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
                     await SyncImages();
+                    
 
 
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
@@ -1271,6 +1278,19 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+
+        public static async Task SyncLabos()
+        {
+            try
+            {
+                await SyncData<BSE_PRODUIT_LABO, BSE_PRODUIT_LABO>();
+                var listeLabos = await GetInstance().Table<BSE_PRODUIT_LABO>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         /// Synchronisation des produits par magazin 
         /// </summary>

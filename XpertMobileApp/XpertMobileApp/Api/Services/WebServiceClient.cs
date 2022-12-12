@@ -265,7 +265,6 @@ namespace XpertMobileApp.Services
         }
         #endregion
 
-
         #region Ventes
 
         public static async Task<List<View_VTE_JOURNAL_DETAIL>> GetVenteDetails(string codeVente)
@@ -512,6 +511,12 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_PRODUIT_UNITE>(url);
         }
 
+        public static async Task<List<View_STK_PRODUITS>> GetAllProduct()
+        {
+
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_PRODUITS_COM_URL, ServiceUrlDico.ALL_PRODUCTS);
+            return await RetrievAauthorizedData<View_STK_PRODUITS>(url);
+        }
         /// <summary>
         /// fonction pour récupérer le produit qui a le code-barres scanné dans le domaine officine
         /// </summary>
