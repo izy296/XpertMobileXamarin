@@ -80,6 +80,7 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
             CheckIfUserWantReconnect();
+            CHeckIfPrefixIsConfigured();
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
@@ -213,7 +214,6 @@ namespace XpertMobileApp.Views
                 {
                     if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob)
                     {
-                        Console.WriteLine(Application.Current.MainPage.Navigation.NavigationStack);
                         bool answer = await App.Current.MainPage.DisplayAlert("Reconnexion", AppResources.msg_Reconnect, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                         if (answer)
                         {
@@ -228,8 +228,39 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-
                 throw ex;
+            }
+        }
+
+        public async static void CHeckIfPrefixIsConfigured()
+        {
+            try
+            {
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    if (App.showPrefixConfigurationMessage == true && App.Online == false)
+                    {
+                        if (string.IsNullOrEmpty(App.PrefixCodification))
+                        {
+                            bool answer = await App.Current.MainPage.DisplayAlert("Configuration du prefix !", AppResources.txt_ConfigPrefix, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                            if (answer)
+                            {
+                                await SQLite_Manager.AssignPrefix();
+                                if (string.IsNullOrEmpty(App.PrefixCodification))
+                                    await UserDialogs.Instance.AlertAsync(AppResources.txt_erreurProduit, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                else
+                                    await UserDialogs.Instance.AlertAsync(AppResources.txt_prefixConfSucce, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                            }
+                        }
+                    }
+                    App.showPrefixConfigurationMessage = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); ;
             }
         }
     }

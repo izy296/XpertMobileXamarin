@@ -3544,6 +3544,63 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("msg_Reconnect", resourceCulture);
             }
         }
+        public static string txt_DisplayGrid
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_DisplayGrid", resourceCulture);
+            }
+        }
+        public static string txt_DisplayInline
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_DisplayInline", resourceCulture);
+            }
+        }
+        public static string txt_SyncData
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_SyncData", resourceCulture);
+            }
+        }
+        public static string txt_dowloadData
+        {
+            get
+            {
+                return ResourceManager.GetString("btn_downloadData", resourceCulture);
+            }
+        }
+        public static string txt_uploadData
+        {
+            get
+            {
+                return ResourceManager.GetString("btn_uploadData", resourceCulture);
+            }
+        }
+        public static string txt_ConfigPrefix
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_ConfigPrefix", resourceCulture);
+            }
+        }
+        public static string txt_erreurProduit
+
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_erreurProduit", resourceCulture);
+            }
+        }
+        public static string txt_prefixConfSucce
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_prefixConfSucce", resourceCulture);
+            }
+        }
     }
 }
 

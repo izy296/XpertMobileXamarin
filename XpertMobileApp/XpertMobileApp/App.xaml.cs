@@ -39,6 +39,7 @@ namespace XpertMobileApp
 
         public static bool Online = false;
         public static bool showReconnectMessage { get; set; } = true;
+        public static bool showPrefixConfigurationMessage { get; set; } = true;
         public static string PrefixCodification { get; internal set; }
         public static string CODE_MAGASIN { get; internal set; }
         public static decimal PARAM_FIDELITE_TIERS { get; internal set; } = 0;
@@ -102,6 +103,7 @@ namespace XpertMobileApp
             // Vérification de la licence
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
             LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
+            PreventLinkerFromStrippingCommonLocalizationReferences();
 
             this.IsToastExitConfirmation = false;
 
@@ -155,7 +157,13 @@ namespace XpertMobileApp
 
         }
 
-
+        private static void PreventLinkerFromStrippingCommonLocalizationReferences()
+        {
+            _ = new System.Globalization.GregorianCalendar();
+            _ = new System.Globalization.PersianCalendar();
+            _ = new System.Globalization.UmAlQuraCalendar();
+            _ = new System.Globalization.ThaiBuddhistCalendar();
+        }
         private bool isNotifiedForUpdate(string title, string message)
         {
             bool res = false;

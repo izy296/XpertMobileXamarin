@@ -1297,4 +1297,28 @@
   <data name="msg_Reconnect" xml:space="preserve">
     <value>vous êtes déconnecté souhaitez être connecté ?</value>
   </data>
+  <data name="btn_downloadData" xml:space="preserve">
+    <value>Téléchargement de donnés</value>
+  </data>
+  <data name="btn_uploadData" xml:space="preserve">
+    <value>Téléversement de donnés </value>
+  </data>
+  <data name="txt_DisplayGrid" xml:space="preserve">
+    <value>Affichage par Grile</value>
+  </data>
+  <data name="txt_DisplayInline" xml:space="preserve">
+    <value>Affichage par Ligne</value>
+  </data>
+  <data name="txt_SyncData" xml:space="preserve">
+    <value>Synchronisation de donnés</value>
+  </data>
+  <data name="txt_ConfigPrefix" xml:space="preserve">
+    <value>Le prefix n'est configurer , vouler vous le configurer ? </value>
+  </data>
+  <data name="txt_erreurProduit" xml:space="preserve">
+    <value>Une erreur c'est produit ! Vueillez reconnecté</value>
+  </data>
+  <data name="txt_prefixConfSucce" xml:space="preserve">
+    <value>Préfix configuré avec succés</value>
+  </data>
 </root>
