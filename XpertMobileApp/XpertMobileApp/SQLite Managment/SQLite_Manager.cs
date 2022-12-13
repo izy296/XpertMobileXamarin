@@ -70,7 +70,7 @@ namespace XpertMobileApp.SQLite_Managment
                 return db;
             }
             else
-            {              
+            {
                 return db;
             }
         }
@@ -414,6 +414,7 @@ namespace XpertMobileApp.SQLite_Managment
                 //bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
+                    await SynchroniseDELETE();
                     await InitialisationDbLocal();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
@@ -450,7 +451,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
                     await SyncImages();
-                    
+
 
 
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
@@ -514,6 +515,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                 await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+                await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
                 await UserDialogs.Instance.AlertAsync("Suppression des tables de base faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             catch (Exception ex)
@@ -1284,6 +1286,19 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 await SyncData<BSE_PRODUIT_LABO, BSE_PRODUIT_LABO>();
                 var listeLabos = await GetInstance().Table<BSE_PRODUIT_LABO>().ToListAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task<List<BSE_PRODUIT_LABO>> GetLabos()
+        {
+            try
+            {
+                var listLabos = await GetInstance().Table<BSE_PRODUIT_LABO>().ToListAsync();
+                return listLabos;
             }
             catch (Exception ex)
             {

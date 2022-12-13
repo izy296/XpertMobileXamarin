@@ -14,7 +14,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="StartAndExpand"/>
 
-            <Label Text="Synchronisation de données" 
+            <Label Text="{i18n:Translate txt_SyncData}" 
                    TextColor="#000"
                    FontSize="22"
                    HorizontalTextAlignment="Center"
@@ -32,7 +32,7 @@
                     BorderRadius="12"
                     BackgroundColor="#e65b65"
                     TextColor="#fff"
-                    Text="Téléchargement de données" 
+                    Text="{i18n:Translate btn_downloadData}" 
                     Clicked="SyncDownload"
                     ImageSource="cloud_download.png"
                     ContentLayout="Bottom,0"/>
@@ -46,7 +46,7 @@
                     BorderRadius="12"
                     BackgroundColor="#7EC384"
                     TextColor="White"
-                    Text="Upload de données" 
+                    Text="{i18n:Translate btn_uploadData}" 
                     Clicked="SyncUpload"
                     FontAttributes="None"
                     ImageSource="cloud_upload.png"

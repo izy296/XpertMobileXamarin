@@ -32,13 +32,13 @@ namespace XpertMobileApp.Views
             {
                 ItemsListView.ItemsLayout = LinearItemsLayout.Vertical;
                 changeDisplayItem.IconImageSource = "row_display.png";
-                changeDisplayItem.Text = "Affichage par Grille";
+                changeDisplayItem.Text = AppResources.txt_DisplayGrid;
             }
             else
             {
                 ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
                 changeDisplayItem.IconImageSource = "grid_display.png";
-                changeDisplayItem.Text = "Affichage par Ligne";
+                changeDisplayItem.Text = AppResources.txt_DisplayInline;
             }
 
         }
@@ -194,6 +194,9 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(filter);
         }
 
+
+
+        #region grouped list functions
         private async void Switch1_Toggled(object sender, ToggledEventArgs e)
         {
             try
@@ -227,20 +230,19 @@ namespace XpertMobileApp.Views
                 throw ex;
             }
         }
-
         private async void SwitchDisplayMode(object sender, EventArgs e)
         {
             if (!displayGrid)
             {
                 ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
                 changeDisplayItem.IconImageSource = "grid_display.png";
-                changeDisplayItem.Text = "Affichage par Ligne";
+                changeDisplayItem.Text = AppResources.txt_DisplayInline; 
             }
             else
             {
                 ItemsListView.ItemsLayout = LinearItemsLayout.Vertical;
                 changeDisplayItem.IconImageSource = "row_display.png";
-                changeDisplayItem.Text = "Affichage par Grille";
+                changeDisplayItem.Text = AppResources.txt_DisplayGrid;
             }
             displayGrid = !displayGrid;
 
@@ -251,7 +253,6 @@ namespace XpertMobileApp.Views
             viewModel.ItemsWithQteMagasin.Clear();
             viewModel.LoadItemsCommand.Execute(null);
         }
-
         private async void OrderByFamille(object sender, EventArgs e)
         {
             try
@@ -271,7 +272,6 @@ namespace XpertMobileApp.Views
                     ItemsListView.IsGrouped = false;
                     ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
                 }
-                viewModel.LoadItemsCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -297,7 +297,6 @@ namespace XpertMobileApp.Views
                     ItemsListView.IsGrouped = false;
                     ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
                 }
-                viewModel.LoadItemsCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -323,13 +322,12 @@ namespace XpertMobileApp.Views
                     ItemsListView.IsGrouped = false;
                     ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
                 }
-
-                viewModel.LoadItemsCommand.Execute(null);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+        #endregion
     }
 }

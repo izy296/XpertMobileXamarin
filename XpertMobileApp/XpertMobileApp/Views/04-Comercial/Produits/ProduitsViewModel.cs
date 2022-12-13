@@ -629,9 +629,9 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+                Labos.Clear();
                 if (App.Online)
                 {
-                    Labos.Clear();
                     var itemsC = await WebServiceClient.GetProduitLabos();
 
                     BSE_PRODUIT_LABO allElem = new BSE_PRODUIT_LABO();
@@ -642,6 +642,14 @@ namespace XpertMobileApp.ViewModels
                     foreach (var itemC in itemsC)
                     {
                         Labos.Add(itemC);
+                    }
+                }
+                else
+                {
+                    var itemsC = await SQLite_Manager.GetLabos();
+                    foreach (var item in itemsC)
+                    {
+                        Labos.Add(item);
                     }
                 }
             }
@@ -770,6 +778,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
+
         public async override Task<List<View_STK_PRODUITS>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             var sqliteRes = await base.SelectByPageFromSqlLite(filter);
@@ -855,6 +864,9 @@ namespace XpertMobileApp.ViewModels
                 }
                 if (ListOfallProducts != null)
                 {
+                    // Create an empty list so we can add products with no Type.
+                    List<View_STK_PRODUITS> listProductWithoutType = new List<View_STK_PRODUITS>();
+
                     // Create the liste of all types 
                     if (Types != null && Types.Count() > 0)
                     {
@@ -869,20 +881,41 @@ namespace XpertMobileApp.ViewModels
                                     {
                                         tempList.Add(product);
                                     }
-                                    else if (product.DESIGN_TYPE.ToLower() == type.DESIGNATION_TYPE.ToLower() && product.QTE_STOCK > 0)
-                                    {
-                                        tempList.Add(product);
-                                    }
+                                }
+                                else if (product.DESIGN_TYPE.ToLower() == type.DESIGNATION_TYPE.ToLower() && product.QTE_STOCK > 0)
+                                {
+                                    tempList.Add(product);
                                 }
                             }
-                            if (type.DESIGNATION_TYPE.ToLower() != "tous" && tempList.Count > 0)
+                            if ((type.DESIGNATION_TYPE.ToLower() != "tous" && type.DESIGNATION_TYPE.ToLower() != "") && tempList.Count > 0)
                             {
                                 Device.BeginInvokeOnMainThread(() =>
                                 {
                                     ListOfGroupedProducts.Add(new ProductGroup(type.DESIGNATION_TYPE.ToString().ToUpper(), tempList));
                                 });
                             }
+                        }
+                        foreach (var product in ListOfallProducts)
+                        {
+                            if (DisplayWithQuantity)
+                            {
+                                if (String.IsNullOrEmpty(product.DESIGN_TYPE) && product.QTE_STOCK > 0)
+                                {
+                                    listProductWithoutType.Add(product);
+                                }
+                            }
+                            else if (String.IsNullOrEmpty(product.DESIGN_TYPE))
+                            {
+                                listProductWithoutType.Add(product);
+                            }
+                        }
 
+                        if (listProductWithoutType.Count > 0)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                ListOfGroupedProducts.Add(new ProductGroup("Autre Type".ToString().ToUpper(), listProductWithoutType));
+                            });
                         }
                     }
                 }
@@ -896,6 +929,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+
                 if (!String.IsNullOrEmpty(SearchedText))
                 {
                     Device.BeginInvokeOnMainThread(async () =>
@@ -909,6 +943,9 @@ namespace XpertMobileApp.ViewModels
                 }
                 if (ListOfallProducts != null)
                 {
+                    // Create an empty list so we can add products with no familly.
+                    List<View_STK_PRODUITS> listProductWithoutFamille = new List<View_STK_PRODUITS>();
+
                     // Create the liste of all types 
                     if (Familles != null && Familles.Count() > 0)
                     {
@@ -927,15 +964,37 @@ namespace XpertMobileApp.ViewModels
                                 else if (product.DESIGN_FAMILLE.ToLower() == famille.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
                                 {
                                     tempList.Add(product);
-                                }
+                                } 
                             }
-                            if (famille.DESIGNATION.ToLower() != "tous" && tempList.Count > 0)
+                            if ((famille.DESIGNATION.ToLower() != "tous" && famille.DESIGNATION.ToLower() != "") && tempList.Count > 0)
                             {
                                 Device.BeginInvokeOnMainThread(() =>
                                 {
                                     ListOfGroupedProducts.Add(new ProductGroup(famille.DESIGNATION.ToString().ToUpper(), tempList));
                                 });
                             }
+                        }
+                        foreach (var product in ListOfallProducts)
+                        {
+                            if (DisplayWithQuantity)
+                            {
+                                if (String.IsNullOrEmpty(product.DESIGN_FAMILLE) && product.QTE_STOCK > 0)
+                                {
+                                    listProductWithoutFamille.Add(product);
+                                }
+                            }
+                            else if (String.IsNullOrEmpty(product.DESIGN_FAMILLE))
+                            {
+                                listProductWithoutFamille.Add(product);
+                            }
+                        }
+
+                        if (listProductWithoutFamille.Count > 0)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                ListOfGroupedProducts.Add(new ProductGroup("Autre famille".ToString().ToUpper(), listProductWithoutFamille));
+                            });
                         }
                     }
                 }
@@ -962,6 +1021,10 @@ namespace XpertMobileApp.ViewModels
                 }
                 if (ListOfallProducts != null)
                 {
+
+                    // Create an empty list so we can add products with no Brand.
+                    List<View_STK_PRODUITS> listProductWithoutBrand = new List<View_STK_PRODUITS>();
+
                     // Create the liste of all types 
                     if (Labos != null && Labos.Count() > 0)
                     {
@@ -976,22 +1039,44 @@ namespace XpertMobileApp.ViewModels
                                     {
                                         tempList.Add(product);
                                     }
-                                    else if (product.DESIGN_LABO.ToLower() == labo.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
-                                    {
-                                        tempList.Add(product);
-                                    }
+                                }
+                                else if (product.DESIGN_LABO.ToLower() == labo.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
+                                {
+                                    tempList.Add(product);
                                 }
                             }
-                            if (labo.DESIGNATION.ToLower() != "tous" && tempList.Count > 0)
+                            if ((labo.DESIGNATION.ToLower() != "tous" && labo.DESIGNATION.ToLower() != "") && tempList.Count > 0)
                             {
                                 Device.BeginInvokeOnMainThread(() =>
                                 {
                                     ListOfGroupedProducts.Add(new ProductGroup(labo.DESIGNATION.ToString().ToUpper(), tempList));
                                 });
                             }
+                        }
+                        foreach (var product in ListOfallProducts)
+                        {
+                            if (DisplayWithQuantity)
+                            {
+                                if (String.IsNullOrEmpty(product.DESIGN_LABO) && product.QTE_STOCK > 0)
+                                {
+                                    listProductWithoutBrand.Add(product);
+                                }
+                            }
+                            else if (String.IsNullOrEmpty(product.DESIGN_LABO))
+                            {
+                                listProductWithoutBrand.Add(product);
+                            }
+                        }
 
+                        if (listProductWithoutBrand.Count > 0)
+                        {
+                            Device.BeginInvokeOnMainThread(() =>
+                            {
+                                ListOfGroupedProducts.Add(new ProductGroup("Autre Marque".ToString().ToUpper(), listProductWithoutBrand));
+                            });
                         }
                     }
+
                 }
             }
             catch (Exception ex)

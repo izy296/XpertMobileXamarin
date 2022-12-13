@@ -1062,4 +1062,19 @@
   <data name="msg_Reconnect" xml:space="preserve">
     <value>you are offline want to be connected ?</value>
   </data>
+  <data name="txt_DisplayGrid" xml:space="preserve">
+    <value>Display Grid</value>
+  </data>
+  <data name="txt_DisplayInline" xml:space="preserve">
+    <value>Display Inline</value>
+  </data>
+  <data name="btn_downloadData" xml:space="preserve">
+    <value>Download Data</value>
+  </data>
+  <data name="btn_uploadData" xml:space="preserve">
+    <value>Upload Data</value>
+  </data>
+  <data name="txt_SyncData" xml:space="preserve">
+    <value>Synch Data </value>
+  </data>
 </root>

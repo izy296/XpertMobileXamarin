@@ -104,9 +104,9 @@
                                          HorizontalOptions="Center">
                                 <Label Text="{Binding GroupTitle}"
                                    BackgroundColor="#F8DE93"
-                                   Padding="0,10"
+                                   Padding="5,10"
                                    TextColor="#000"
-                                   HorizontalTextAlignment="Center"
+                                   HorizontalTextAlignment="Start"
                                    VerticalTextAlignment="Center"
                                    FontSize="16"
                                    FontAttributes="Bold" />

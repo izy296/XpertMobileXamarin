@@ -1162,4 +1162,19 @@
   <data name="msg_Reconnect" xml:space="preserve">
     <value>أنت غير متصل ، تريد أن تكون متصلاً؟</value>
   </data>
+  <data name="txt_DisplayGrid" xml:space="preserve">
+    <value>عرض المنتجات شبكيا</value>
+  </data>
+  <data name="txt_DisplayInline" xml:space="preserve">
+    <value>عرض المنتجات خطيا</value>
+  </data>
+  <data name="btn_downloadData" xml:space="preserve">
+    <value>تنزيل البيانات</value>
+  </data>
+  <data name="btn_uploadData" xml:space="preserve">
+    <value>تحميل البيانات</value>
+  </data>
+  <data name="txt_SyncData" xml:space="preserve">
+    <value>مزامنة البيانات</value>
+  </data>
 </root>
