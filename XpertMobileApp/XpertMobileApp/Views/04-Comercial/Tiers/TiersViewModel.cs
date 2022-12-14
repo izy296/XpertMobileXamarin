@@ -20,6 +20,43 @@ namespace XpertMobileApp.ViewModels
     public class TiersViewModel : CrudBaseViewModel2<TRS_TIERS, View_TRS_TIERS>
     {
         string currentQB = null;
+
+        private bool soldeEqualZero;
+        public bool SoldeEqualZero
+        {
+            get
+            {
+                return soldeEqualZero;
+            }
+            set
+            {
+                soldeEqualZero = value;
+            }
+        }
+        private bool soldeGreaterThanZero;
+        public bool SoldeGreaterThanZero
+        {
+            get
+            {
+                return soldeGreaterThanZero;
+            }
+            set
+            {
+                soldeGreaterThanZero = value;
+            }
+        }
+        private bool soldeLessThanZero;
+        public bool SoldeLessThanZero
+        {
+            get
+            {
+                return soldeEqualZero;
+            }
+            set
+            {
+                soldeEqualZero = value;
+            }
+        }
         private string tiersScanned { get; set; }
         public string TiersScanned { 
             get

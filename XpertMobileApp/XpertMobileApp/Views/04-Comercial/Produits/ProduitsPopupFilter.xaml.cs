@@ -62,8 +62,27 @@ namespace XpertMobileApp.Views
                         TagsPicker.Text += ", ";
                 }
             });
-        }
 
+            //if(String.IsNullOrEmpty(viewModel.EtatOperator))
+            //{
+            //    if (viewModel.EtatOperator == "active")
+            //    {
+            //        etatActive.IsChecked = true;
+            //        etatAll.IsChecked = etatNonActive.IsChecked = false;
+            //    }
+            //    else if (viewModel.EtatOperator == "nonActive")
+            //    {
+            //        etatAll.IsChecked = etatActive.IsChecked = false;
+            //        etatNonActive.IsChecked = true;
+            //    }
+            //    else
+            //    {
+            //        etatAll.IsChecked = true;
+            //        etatActive.IsChecked = etatNonActive.IsChecked = false;
+            //    }
+            //}
+        }
+       
         private async void Close_filter_popup(object sender, EventArgs e)
         {
             await closeIcon.ScaleTo(0.75, 50, Easing.Linear);

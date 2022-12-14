@@ -492,17 +492,18 @@
                                 <!--Etat-->
                                 <FlexLayout Direction="Column">
                                     <Label
-                                    Text="{i18n:Translate txt_etat}"
-                                    FontSize="16"
-                                    Margin="5,0,0,0"
-                                    TextColor="#5D5E65"/>
+                                        Text="{i18n:Translate txt_etat}"
+                                        FontSize="16"
+                                        Margin="5,0,0,0"
+                                        TextColor="#5D5E65"/>
                                     <StackLayout HorizontalOptions="FillAndExpand">
-                                        <syncfusion:SfRadioGroup Orientation="Horizontal">
+                                        <syncfusion:SfRadioGroup Orientation="Horizontal" >
                                             <syncfusion:SfRadioButton 
                                                 CheckedColor="#64BCFF" 
                                                 UncheckedColor="#64BCFF" 
                                                 x:Name="etatAll" 
                                                 Margin="0,0,15,0" 
+                                                IsChecked="{Binding SelectedEtatTous, Mode=TwoWay}"
                                                 GroupKey="{StaticResource etatFilter}" 
                                                 Text="{i18n:Translate txt_All}"  
                                                 ClassId="all"
@@ -513,6 +514,7 @@
                                                 UncheckedColor="#64BCFF" 
                                                 x:Name="etatActive" 
                                                 Margin="0,0,15,0" 
+                                                IsChecked="{Binding SelectedEtatActif, Mode=TwoWay}"
                                                 GroupKey="{StaticResource etatFilter}" 
                                                 Text="{i18n:Translate pp_text_sActive}" 
                                                 ClassId="active"
@@ -524,6 +526,7 @@
                                                 UncheckedColor="#64BCFF" 
                                                 x:Name="etatNonActive" 
                                                 Margin="0,0,15,0" 
+                                                IsChecked="{Binding SelectionedEtatInActive, Mode=TwoWay}"
                                                 GroupKey="{StaticResource etatFilter}" 
                                                 Text="{i18n:Translate pp_text_sInActive}" 
                                                 ClassId="nonActive" 
@@ -553,6 +556,7 @@
                                                 GroupKey="{StaticResource FFilter}" 
                                                 Text="{i18n:Translate txt_All}"  
                                                 ClassId="all"
+                                                IsChecked="{Binding SelectedFidAll, Mode=TwoWay}"
                                                 StateChanged="FedeliteAll_StateChanged"/>
 
                                             <syncfusion:SfRadioButton 
@@ -562,8 +566,10 @@
                                                 Margin="0,0,15,0" 
                                                 GroupKey="{StaticResource FFilter}" 
                                                 Text="{i18n:Translate exit_Button_Yes}" 
+                                                IsChecked="{Binding SelectedFidYes, Mode=TwoWay}"
                                                 ClassId="FYes" 
                                                 StateChanged="FedeliteAll_StateChanged"/>
+                                            
                                             <!--StateChanged="FedeliteAll_StateChanged"-->
                                             <syncfusion:SfRadioButton 
                                                 CheckedColor="#64BCFF" 
@@ -572,6 +578,7 @@
                                                 Margin="0,0,15,0" 
                                                 GroupKey="{StaticResource FFilter}" 
                                                 Text="{i18n:Translate exit_Button_No}" 
+                                                IsChecked="{Binding SelectedFidNo, Mode=TwoWay}"
                                                 ClassId="FNo" 
                                                 StateChanged="FedeliteAll_StateChanged"/>
                                         </syncfusion:SfRadioGroup>

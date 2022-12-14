@@ -461,6 +461,84 @@ namespace XpertMobileApp.ViewModels
             set { SetProperty(ref searchedText, value); }
         }
 
+        private bool selectedEtatTous;
+        public bool SelectedEtatTous
+        {
+            get
+            {
+                return selectedEtatTous;
+            }
+            set
+            {
+                selectedEtatTous = value;
+            }
+        }
+
+        private bool selectedEtatActif;
+        public bool SelectedEtatActif
+        {
+            get
+            {
+                return selectedEtatActif;
+            }
+            set
+            {
+                selectedEtatActif = value;
+            }
+        }
+
+        private bool selectedEtatInActive;
+        public bool SelectionedEtatInActive
+        {
+            get
+            {
+                return selectedEtatInActive;
+            }
+            set
+            {
+                selectedEtatInActive = value;
+            }
+        }
+
+        private bool selectedFidAll;
+        public bool SelectedFidAll
+        {
+            get
+            {
+                return selectedFidAll;
+            }
+            set
+            {
+                selectedFidAll = value;
+            }
+        }
+
+        private bool selectedFidYes;
+        public bool SelectedFidYes
+        {
+            get
+            {
+                return selectedFidYes;
+            }
+            set
+            {
+                selectedFidYes = value;
+            }
+        }
+
+        private bool selectedFidNo;
+        public bool SelectedFidNo
+        {
+            get
+            {
+                return selectedFidNo;
+            }
+            set
+            {
+                selectedFidNo = value;
+            }
+        }
+
         private string searchedRef;
         public string SearchedRef
         {
@@ -964,7 +1042,7 @@ namespace XpertMobileApp.ViewModels
                                 else if (product.DESIGN_FAMILLE.ToLower() == famille.DESIGNATION.ToLower() && product.QTE_STOCK > 0)
                                 {
                                     tempList.Add(product);
-                                } 
+                                }
                             }
                             if ((famille.DESIGNATION.ToLower() != "tous" && famille.DESIGNATION.ToLower() != "") && tempList.Count > 0)
                             {

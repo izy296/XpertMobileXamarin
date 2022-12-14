@@ -85,7 +85,7 @@ namespace XpertMobileApp.Views
             if (itemEncaiss != null)
             {
                 Item = itemEncaiss;
-
+                montantEntry.Text = itemEncaiss.TOTAL_ENCAISS.ToString();
                 Title = "N°" + Item.CODE_ENCAISS;
             }
             else
@@ -93,10 +93,12 @@ namespace XpertMobileApp.Views
                 if (type == EncaissDisplayType.ENC)
                 {
                     Title = AppResources.txt_Encaiss;
+                    montantLabel.Hint = AppResources.TOTAL_ENCAISS;
                 }
                 else
                 {
                     Title = AppResources.txt_Decaiss;
+                    montantLabel.Hint = AppResources.TOTAL_DECAISS;
                 }
                 Item = new View_TRS_ENCAISS
                 {

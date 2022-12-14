@@ -3601,6 +3601,13 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_prefixConfSucce", resourceCulture);
             }
         }
+        public static string TOTAL_DECAISS
+        {
+            get
+            {
+                return ResourceManager.GetString("TOTAL_DECAISS", resourceCulture);
+            }
+        }
     }
 }
 

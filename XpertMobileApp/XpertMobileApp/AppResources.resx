@@ -1312,6 +1312,9 @@
   <data name="txt_SyncData" xml:space="preserve">
     <value>Synchronisation de donnés</value>
   </data>
+  <data name="TOTAL_DECAISS" xml:space="preserve">
+    <value>Total Décaissé</value>
+  </data>
   <data name="txt_ConfigPrefix" xml:space="preserve">
     <value>Le prefix n'est configurer , vouler vous le configurer ? </value>
   </data>

@@ -283,6 +283,7 @@
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
                                             UncheckedColor="#64BCFF"
+                                            IsChecked="{Binding SoldeEqualZero, Mode=TwoWay}"
                                             Text="> 0"  
                                             ClassId=">"  
                                             StateChanged="rg_solde_StateChanged"/>
@@ -292,6 +293,7 @@
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
                                             UncheckedColor="#64BCFF"
+                                            IsChecked="{Binding SoldeGreaterThanZero, Mode=TwoWay}"
                                             Text="= 0" 
                                             ClassId="="
                                             StateChanged="rg_solde_StateChanged"/>
@@ -300,6 +302,7 @@
                                             x:Name="soldeL" 
                                             Margin="0,0,15,0" 
                                             GroupKey="{StaticResource soldeFilter}" 
+                                            IsChecked="{Binding SoldeLessThanZero, Mode=TwoWay}"
                                             UncheckedColor="#64BCFF"
                                             Text="&lt; 0" 
                                             ClassId="&lt;" 

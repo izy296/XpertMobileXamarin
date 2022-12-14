@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.NewEncaissementPage"
-             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+             xmlns:fontawesome="clr-namespace:FontAwesome" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" x:Name="closePageBtn">
@@ -154,6 +155,7 @@
                                                 FocusedColor="#72CFCE"
                                                 InputViewPadding="0,16,30,5"
                                                 Margin="0,10"
+                                                x:Name="montantLabel"
                                                 UnfocusedColor="#2C9CEE"
                                                 ContainerBackgroundColor="Transparent"
                                                 Hint="{i18n:Translate TOTAL_ENCAISS}">
