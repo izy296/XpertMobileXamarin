@@ -17,7 +17,8 @@ namespace XpertMobileApp.Views
     {
         public StackLayout statusChanger;
         private bool TourneeClosed;
-        public TourneeStatusSelector()
+        public View_LIV_TOURNEE_DETAIL tournee;
+        public TourneeStatusSelector(View_LIV_TOURNEE_DETAIL tournee = null)
         {
             InitializeComponent();
 
@@ -26,9 +27,46 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Info, "Décloturer la tournee et ressayer !", AppResources.alrt_msg_Ok);
                 await PopupNavigation.PopAsync();
             });
+
             statusChanger = (StackLayout)StatusChanger;
+
+            if (tournee != null)
+            {
+                if (tournee.CODE_ETAT_VISITE == TourneeStatus.Planned || tournee.CODE_ETAT_VISITE == 0)
+                {
+                    AddButton(statusChanger, TourneeStatus.EnRoute.ToString());
+                }
+                else if (tournee.CODE_ETAT_VISITE == TourneeStatus.EnRoute)
+                {
+                    AddButton(statusChanger, TourneeStatus.Visited.ToString());
+                    AddButton(statusChanger, TourneeStatus.Canceled.ToString());
+                }
+                else if (tournee.CODE_ETAT_VISITE == TourneeStatus.Canceled)
+                {
+                    AddButton(statusChanger, TourneeStatus.NotVisited.ToString());
+
+                }
+                else if (tournee.CODE_ETAT_VISITE == TourneeStatus.Visited)
+                {
+                    AddButton(statusChanger, TourneeStatus.VisitedNotDelivered.ToString());
+
+                }
+            }
+            else
+            {
+                AddButton(statusChanger);
+            }
+
+        }
+
+        private async void AddButton(StackLayout layout, string buttonName = "")
+        {
             foreach (var status in Enum.GetValues(typeof(TourneeStatus)))
             {
+                if (buttonName != "")
+                    if (status.ToString() != buttonName)
+                        continue;
+
                 Button statusButton = new Button();
 
                 statusButton.TextColor = Color.White;
@@ -77,7 +115,7 @@ namespace XpertMobileApp.Views
 
                 statusButton.Clicked += StatusClicked;
                 if (status.ToString() != TourneeStatus.Started.ToString() && status.ToString() != TourneeStatus.Closed.ToString())
-                    statusChanger.Children.Add(statusButton);
+                    layout.Children.Add(statusButton);
             }
 
         }

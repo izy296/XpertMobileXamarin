@@ -259,7 +259,7 @@ namespace XpertMobileApp.Views
 
         private async void VisitDemarer(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new TourneeStatusSelector());
+            await PopupNavigation.Instance.PushAsync(new TourneeStatusSelector(livTournee));
         }
 
         private void RouteClicked()

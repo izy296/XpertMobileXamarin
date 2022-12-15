@@ -30,10 +30,10 @@ namespace XpertMobileApp.Views
         View_LIV_TOURNEE Item;
 
         bool autoLodData = true;
-        public TourneesDetailsPage(string codeTournee,View_LIV_TOURNEE item=null)
+        public TourneesDetailsPage(string codeTournee, View_LIV_TOURNEE item = null)
         {
             InitializeComponent();
-            if (item!=null)
+            if (item != null)
             {
                 Item = item;
             }
@@ -47,9 +47,9 @@ namespace XpertMobileApp.Views
             var item = args.SelectedItem as View_LIV_TOURNEE_DETAIL;
             if (item == null)
                 return;
-            if (Item.ETAT_TOURNEE!=TourneeStatus.Delivered)
+            if (Item.ETAT_TOURNEE != TourneeStatus.Closed)
                 await Navigation.PushAsync(new TourneeVisitPage(item));
-            else await Navigation.PushAsync(new TourneeVisitPage(item,true));
+            else await Navigation.PushAsync(new TourneeVisitPage(item, true));
 
             // Manually deselect item.
             listView.SelectedItem = null;
@@ -99,8 +99,8 @@ namespace XpertMobileApp.Views
                 }
 
             }
-
-            ((ImageryLayer)MyMap.Layers[0]).GeoCoordinates=new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude), double.Parse(MyMap.Layers[0].Markers[0].Longitude));
+            if (MyMap.Layers[0].Markers.Count > 0)
+                ((ImageryLayer)MyMap.Layers[0]).GeoCoordinates = new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude), double.Parse(MyMap.Layers[0].Markers[0].Longitude));
             MyMap.ZoomLevel = 25;
         }
 
