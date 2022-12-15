@@ -33,6 +33,12 @@ namespace XpertMobileApp.Views
                 displayObject(typeof(View_TRS_ENCAISS), item);
                 // viewModel.Item = item;
             });
+
+            MessagingCenter.Subscribe<TourneeVisitPage, string>(this, "TourneeClosed", async (obj, item) =>
+            {
+                Update_Encaiss.IsVisible = false;
+                Delete_Encaiss.IsVisible = false;
+            });
         }
 
         protected override void OnAppearing()

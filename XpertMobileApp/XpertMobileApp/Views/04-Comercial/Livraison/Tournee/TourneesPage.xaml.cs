@@ -24,23 +24,7 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             BindingContext = viewModel = new TourneesViewModel();
-
-            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "UpdateTourneeStatus", async (sender, selectedItem) =>
-            {
-                await viewModel.UpdateTourneStatus(selectedItem);
-                await viewModel.ExecuteLoadItemsCommand();
-
-            });
-
-            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
-            {
-                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE));
-            });
-
-            MessagingCenter.Subscribe<TourneesViewModel, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
-            {
-                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE));
-            });
+            
         }
         TourneePopup popup;
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -82,6 +66,23 @@ namespace XpertMobileApp.Views
                 }
 
             }
+
+            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "UpdateTourneeStatus", async (sender, selectedItem) =>
+            {
+                await viewModel.UpdateTourneStatus(selectedItem);
+                await viewModel.ExecuteLoadItemsCommand();
+
+            });
+
+            MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
+            {
+                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE, selectedItem));
+            });
+
+            MessagingCenter.Subscribe<TourneesViewModel, View_LIV_TOURNEE>(this, "TourneeDetails", async (sender, selectedItem) =>
+            {
+                await Navigation.PushAsync(new TourneesDetailsPage(selectedItem.CODE_TOURNEE, selectedItem));
+            });
             //Addd();
             //List<View_LIV_TOURNEE> tournee = TourneeServices.getTrounee();
 
@@ -98,7 +99,15 @@ namespace XpertMobileApp.Views
             //    viewModel.LoadExtrasDataCommand.Execute(null);
         }
 
-    private void TypeFilter_Clicked(object sender, EventArgs e)
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<TourneePopup, View_LIV_TOURNEE>(this, "TourneeDetails");
+            MessagingCenter.Unsubscribe<TourneePopup, View_LIV_TOURNEE>(this, "UpdateTourneeStatus");
+            MessagingCenter.Unsubscribe<TourneesViewModel, View_LIV_TOURNEE>(this, "TourneeDetails");
+        }
+
+        private void TypeFilter_Clicked(object sender, EventArgs e)
     {
         LoadData();
     }

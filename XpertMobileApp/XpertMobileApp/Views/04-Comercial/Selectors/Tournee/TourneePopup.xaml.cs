@@ -21,7 +21,27 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
             if (tournee != null)
+            {
                 this.tournee = tournee;
+                if (this.tournee.ETAT_TOURNEE == TourneeStatus.Planned)
+                {
+                    StatusButton.Text = AppResources.tourneePopUpStart;
+                    StatusButton.BackgroundColor = Color.Green;
+                    StatusButton.TextColor = Color.White;
+                }
+                else if (this.tournee.ETAT_TOURNEE == TourneeStatus.Started)
+                {
+                    StatusButton.Text = AppResources.tourneePopUpClose;
+                    StatusButton.BackgroundColor = Color.FromHex("#F26430");
+                    StatusButton.TextColor = Color.White;
+                }
+                else if (this.tournee.ETAT_TOURNEE == TourneeStatus.Closed)
+                {
+                    StatusButton.Text = AppResources.tourneePopUpOpen;
+                    StatusButton.BackgroundColor = Color.LightBlue;
+                    StatusButton.TextColor = Color.White;
+                }
+            }
         }
 
 

@@ -7,6 +7,7 @@
              Title="{Binding Title}">
     <ContentPage.ToolbarItems>
         <ToolbarItem
+            x:Name="EditButton"
             IsEnabled="{Binding App.Online}"
             IconImageSource="editIcon.png"
             Clicked="EditClicked"

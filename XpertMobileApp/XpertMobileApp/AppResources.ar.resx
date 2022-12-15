@@ -1177,4 +1177,70 @@
   <data name="txt_SyncData" xml:space="preserve">
     <value>مزامنة البيانات</value>
   </data>
+  <data name="LocationTurnedOffMessage" xml:space="preserve">
+    <value>قم بتمكين التتبع وحاول مرة أخرى</value>
+  </data>
+  <data name="tourneeClientLocationVide" xml:space="preserve">
+    <value>الموقع فارغ ، هل تريد تحديث موقعك</value>
+  </data>
+  <data name="tourneeClosedMessage" xml:space="preserve">
+    <value>قم بفك الجولة وحاول مرة أخرى</value>
+  </data>
+  <data name="tourneeLocalisationErrorMessage" xml:space="preserve">
+    <value>يرجى التحقق من الموقع</value>
+  </data>
+  <data name="tourneeLocalisationLabel" xml:space="preserve">
+    <value>موقع</value>
+  </data>
+  <data name="tourneeMapLabel" xml:space="preserve">
+    <value>طريق</value>
+  </data>
+  <data name="tourneePopUpClose" xml:space="preserve">
+    <value>إغلاق</value>
+  </data>
+  <data name="tourneePopUpOpen" xml:space="preserve">
+    <value>إعادة الفتح</value>
+  </data>
+  <data name="tourneePopUpStart" xml:space="preserve">
+    <value>بدأ</value>
+  </data>
+  <data name="tourneeStatusCanceled" xml:space="preserve">
+    <value>ألغيت</value>
+  </data>
+  <data name="tourneeStatusClosedMessage" xml:space="preserve">
+    <value>هل ستنتهي الجولة؟</value>
+  </data>
+  <data name="tourneeStatusDelivered" xml:space="preserve">
+    <value>تم التوصيل</value>
+  </data>
+  <data name="tourneeStatusInRoute" xml:space="preserve">
+    <value>علي الطريق</value>
+  </data>
+  <data name="tourneeStatusNotVisited" xml:space="preserve">
+    <value>لم تتم زيارتها</value>
+  </data>
+  <data name="tourneeStatusPlaned" xml:space="preserve">
+    <value>مخطط</value>
+  </data>
+  <data name="tourneeStatusReopenMessage" xml:space="preserve">
+    <value>افتح الجولة؟</value>
+  </data>
+  <data name="tourneeStatusStartMessage" xml:space="preserve">
+    <value>ابدأ الجولة؟</value>
+  </data>
+  <data name="tourneeStatusUpdateSuccessful" xml:space="preserve">
+    <value>التحديث بنجاح</value>
+  </data>
+  <data name="tourneeStatusVisited" xml:space="preserve">
+    <value>زيارة</value>
+  </data>
+  <data name="tourneeStatusVisitedNotDelivered" xml:space="preserve">
+    <value>تمت زيارته ولم يتم تسليمه</value>
+  </data>
+  <data name="visiteStatusChangeConfirm" xml:space="preserve">
+    <value>تغيير الوضع؟</value>
+  </data>
+  <data name="pn_Inventaire" xml:space="preserve">
+    <value>عملية الجرد</value>
+  </data>
 </root>

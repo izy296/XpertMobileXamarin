@@ -3544,6 +3544,162 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("msg_Reconnect", resourceCulture);
             }
         }
+        public static string tourneeStatusPlaned
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusPlaned", resourceCulture);
+            }
+        }
+        public static string tourneeStatusDelivered
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusDelivered", resourceCulture);
+            }
+        }
+        public static string tourneeStatusInRoute
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusInRoute", resourceCulture);
+            }
+        }
+        public static string tourneeStatusVisited
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusVisited", resourceCulture);
+            }
+        }
+        public static string tourneeStatusCanceled
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusCanceled", resourceCulture);
+            }
+        }
+        public static string tourneeStatusVisitedNotDelivered
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusVisitedNotDelivered", resourceCulture);
+            }
+        }
+        public static string tourneeStatusNotVisited
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusNotVisited", resourceCulture);
+            }
+        }
+        public static string tourneeStatusClosedMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusClosedMessage", resourceCulture);
+            }
+        }
+        public static string tourneeStatusStartMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusStartMessage", resourceCulture);
+            }
+        }
+        public static string tourneeStatusReopenMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusReopenMessage", resourceCulture);
+            }
+        }
+        public static string tourneeStatusUpdateSuccessful
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeStatusUpdateSuccessful", resourceCulture);
+            }
+        }
+        public static string tourneeClosedMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeClosedMessage", resourceCulture);
+            }
+        }
+        public static string tourneeLocalisationErrorMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeLocalisationErrorMessage", resourceCulture);
+            }
+        }
+        public static string tourneeClientLocationVide
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeClientLocationVide", resourceCulture);
+            }
+        }
+        public static string LocationTurnedOffMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("LocationTurnedOffMessage", resourceCulture);
+            }
+        }
+        public static string visiteStatusChangeConfirm
+        {
+            get
+            {
+                return ResourceManager.GetString("visiteStatusChangeConfirm", resourceCulture);
+            }
+        }
+        public static string tourneeLocalisationLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeLocalisationLabel", resourceCulture);
+            }
+        }
+        public static string tourneeMapLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneeMapLabel", resourceCulture);
+            }
+        }
+        public static string tourneePopUpStart
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneePopUpStart", resourceCulture);
+            }
+        }
+        public static string tourneePopUpClose
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneePopUpClose", resourceCulture);
+            }
+        }
+        public static string tourneePopUpOpen
+        {
+            get
+            {
+                return ResourceManager.GetString("tourneePopUpOpen", resourceCulture);
+            }
+        }
+        public static string pn_Inventaire
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Inventaire", resourceCulture);
+            }
+        }
+
+
         public static string txt_DisplayGrid
         {
             get

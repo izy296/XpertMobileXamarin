@@ -1324,4 +1324,70 @@
   <data name="txt_prefixConfSucce" xml:space="preserve">
     <value>Préfix configuré avec succés</value>
   </data>
+  <data name="LocationTurnedOffMessage" xml:space="preserve">
+    <value>Activer la location et ressayer</value>
+  </data>
+  <data name="tourneeClientLocationVide" xml:space="preserve">
+    <value>Location est Vide, Voulez vous la mise a jour avec votre position</value>
+  </data>
+  <data name="tourneeClosedMessage" xml:space="preserve">
+    <value>Decloturer la tournee et ressayer</value>
+  </data>
+  <data name="tourneeLocalisationErrorMessage" xml:space="preserve">
+    <value>Veuillez verifier la localisation</value>
+  </data>
+  <data name="tourneeLocalisationLabel" xml:space="preserve">
+    <value>Localisation</value>
+  </data>
+  <data name="tourneeMapLabel" xml:space="preserve">
+    <value>Route</value>
+  </data>
+  <data name="tourneePopUpClose" xml:space="preserve">
+    <value>Cloturé</value>
+  </data>
+  <data name="tourneePopUpOpen" xml:space="preserve">
+    <value>Decloturé</value>
+  </data>
+  <data name="tourneePopUpStart" xml:space="preserve">
+    <value>Demarrer</value>
+  </data>
+  <data name="tourneeStatusCanceled" xml:space="preserve">
+    <value>Annulé</value>
+  </data>
+  <data name="tourneeStatusClosedMessage" xml:space="preserve">
+    <value>Cloturer La Tournee ?</value>
+  </data>
+  <data name="tourneeStatusDelivered" xml:space="preserve">
+    <value>Livré</value>
+  </data>
+  <data name="tourneeStatusInRoute" xml:space="preserve">
+    <value>En Route</value>
+  </data>
+  <data name="tourneeStatusNotVisited" xml:space="preserve">
+    <value>Pas visité</value>
+  </data>
+  <data name="tourneeStatusPlaned" xml:space="preserve">
+    <value>Planifié</value>
+  </data>
+  <data name="tourneeStatusReopenMessage" xml:space="preserve">
+    <value>Ouvrir La Tournee ?</value>
+  </data>
+  <data name="tourneeStatusStartMessage" xml:space="preserve">
+    <value>Demarrer La Tournee ?</value>
+  </data>
+  <data name="tourneeStatusUpdateSuccessful" xml:space="preserve">
+    <value>Mise a jour avec success</value>
+  </data>
+  <data name="tourneeStatusVisited" xml:space="preserve">
+    <value>Visité</value>
+  </data>
+  <data name="tourneeStatusVisitedNotDelivered" xml:space="preserve">
+    <value>Visité non livré</value>
+  </data>
+  <data name="visiteStatusChangeConfirm" xml:space="preserve">
+    <value>Modifier Le Status ?</value>
+  </data>
+  <data name="pn_Inventaire" xml:space="preserve">
+    <value>Inventaire</value>
+  </data>
 </root>

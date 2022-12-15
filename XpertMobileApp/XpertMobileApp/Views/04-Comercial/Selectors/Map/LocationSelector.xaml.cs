@@ -8,6 +8,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.Views
 {
@@ -49,6 +50,7 @@ namespace XpertMobileApp.Views
 
 
                     MyMap.Layers[0].Markers.Add(pin);
+                    ((ImageryLayer)MyMap.Layers[0]).GeoCoordinates = new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude), double.Parse(MyMap.Layers[0].Markers[0].Longitude));
                     pined = true;
                 }
 
@@ -62,7 +64,7 @@ namespace XpertMobileApp.Views
 
             taskCompletionSource = new TaskCompletionSource<bool>();
 
-            var location = await Geolocation.GetLocationAsync();
+            Location location = await Manager.GetLocation();
 
             if (location != null)
             {

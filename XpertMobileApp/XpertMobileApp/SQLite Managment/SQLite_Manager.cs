@@ -414,7 +414,6 @@ namespace XpertMobileApp.SQLite_Managment
                 //bool isconnected = await App.IsConected();
                 if (App.Online)
                 {
-                    await SynchroniseDELETE();
                     await InitialisationDbLocal();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
@@ -516,6 +515,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                 await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
+                await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
                 await UserDialogs.Instance.AlertAsync("Suppression des tables de base faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             catch (Exception ex)

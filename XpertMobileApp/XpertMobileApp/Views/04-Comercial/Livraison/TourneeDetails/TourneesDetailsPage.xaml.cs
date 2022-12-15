@@ -47,7 +47,9 @@ namespace XpertMobileApp.Views
             var item = args.SelectedItem as View_LIV_TOURNEE_DETAIL;
             if (item == null)
                 return;
-            await Navigation.PushAsync(new TourneeVisitPage(item));
+            if (Item.ETAT_TOURNEE!=TourneeStatus.Delivered)
+                await Navigation.PushAsync(new TourneeVisitPage(item));
+            else await Navigation.PushAsync(new TourneeVisitPage(item,true));
 
             // Manually deselect item.
             listView.SelectedItem = null;
@@ -97,6 +99,9 @@ namespace XpertMobileApp.Views
                 }
 
             }
+
+            ((ImageryLayer)MyMap.Layers[0]).GeoCoordinates=new Point(double.Parse(MyMap.Layers[0].Markers[0].Latitude), double.Parse(MyMap.Layers[0].Markers[0].Longitude));
+            MyMap.ZoomLevel = 25;
         }
 
         private void TypeFilter_Clicked(object sender, EventArgs e)

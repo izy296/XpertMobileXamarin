@@ -48,6 +48,11 @@ namespace XpertMobileApp.Views.Encaissement
             {
                 // viewModel.Item = item;
             });
+
+            MessagingCenter.Subscribe<TourneeVisitPage, string>(this, "TourneeClosed", async (obj, item) =>
+            {
+                EditButton.IsEnabled = false;
+            });
         }
 
         protected async override void OnAppearing()

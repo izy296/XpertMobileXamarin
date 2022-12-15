@@ -4,6 +4,7 @@
              x:Class="XpertMobileApp.Views.TourneeVisitPage"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:extensions="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              Title="{Binding Item.CODE_TOURNEE}">
     <ContentPage.Content
         VerticalOptions="FillAndExpand">
@@ -81,7 +82,7 @@
                             Orientation="Horizontal"
                             HorizontalOptions="CenterAndExpand">
                                 <Button
-                                Text="Localisation"
+                                Text="{i18n:Translate tourneeLocalisationLabel}"
                                 Clicked="Location"
                                 CornerRadius="10"
                                 TextColor="White"
@@ -89,7 +90,7 @@
                                 BackgroundColor="OrangeRed"
                                     />
                                 <Button
-                                Text="Route"
+                                Text="{i18n:Translate tourneeMapLabel}"
                                 Clicked="RouteClicked"
                                 CornerRadius="10"
                                 TextColor="White"

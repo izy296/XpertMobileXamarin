@@ -867,6 +867,14 @@ namespace XpertMobileApp.DAL
                 {
                     return "#6761A8";
                 }
+                else if (ETAT_TOURNEE == TourneeStatus.Started)
+                {
+                    return "#6fc2e3";
+                }
+                else if (ETAT_TOURNEE == TourneeStatus.Closed)
+                {
+                    return "#009B72";
+                }
                 else
                 {
                     return "#2A2D34";
@@ -905,7 +913,20 @@ namespace XpertMobileApp.DAL
         public string CODE_DETAIL { get; set; }
         public string CODE_TOURNEE { get; set; }
         public string CODE_TIERS { get; set; }
-        public string CODE_VENTE { get; set; }        
+        public string CODE_VENTE { get; set; }
+        private string code_etat { get; set; }
+        public string CODE_ETAT
+        {
+            get { return code_etat; }
+            set
+            {
+                code_etat = value;
+                OnPropertyChanged("CODE_ETAT");
+                OnPropertyChanged("DESIGNATION_ETAT");
+                OnPropertyChanged("ETAT_COLOR");
+
+            }
+        }
         public string CREATED_BY { get; set; }
         public DateTime? CREATED_ON { get; set; }
         public DateTime? MODIFIED_ON { get; set; }
@@ -917,7 +938,21 @@ namespace XpertMobileApp.DAL
         public int MOTIF_NON_LIVRAISON { get; set; }
         public string PROOF_NON_LIVRAISON { get; set; }
         public int VISITE_CATEGORIE { get; set; }
-        public TourneeStatus CODE_ETAT_VISITE { get; set; }
+        private TourneeStatus codeEtatVisitie { get; set; }
+        public TourneeStatus CODE_ETAT_VISITE
+        {
+            get
+            {
+                return codeEtatVisitie;
+            }
+            set
+            {
+                codeEtatVisitie = value;
+                OnPropertyChanged("CODE_ETAT_VISITE");
+                OnPropertyChanged("DESIGNATION_ETAT");
+                OnPropertyChanged("ETAT_COLOR");
+            }
+        }
     }
     public enum TourneeStatus : byte
     {
@@ -948,31 +983,39 @@ namespace XpertMobileApp.DAL
             {
                 if (CODE_ETAT_VISITE == TourneeStatus.Planned)
                 {
-                    return "Planifié";
+                    return AppResources.tourneeStatusPlaned;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.EnRoute)
                 {
-                    return "En Route";
+                    return AppResources.tourneeStatusInRoute;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Visited)
                 {
-                    return "Visité";
+                    return AppResources.tourneeStatusVisited;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Delivered)
                 {
-                    return "Livré";
+                    return AppResources.tourneeStatusDelivered;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Canceled)
                 {
-                    return "Annulé";
+                    return AppResources.tourneeStatusCanceled;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.VisitedNotDelivered)
                 {
-                    return "Visité non livré";
+                    return AppResources.tourneeStatusVisited;
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.NotVisited)
                 {
-                    return "Pas visité";
+                    return AppResources.tourneeStatusNotVisited;
+                }
+                else if (CODE_ETAT_VISITE == TourneeStatus.Started)
+                {
+                    return AppResources.tourneePopUpStart;
+                }
+                else if (CODE_ETAT_VISITE == TourneeStatus.Closed)
+                {
+                    return AppResources.tourneePopUpClose;
                 }
                 else
                 {
@@ -1018,6 +1061,14 @@ namespace XpertMobileApp.DAL
                 else if (CODE_ETAT_VISITE == TourneeStatus.NotVisited)
                 {
                     return "#6761A8";
+                }
+                else if (CODE_ETAT_VISITE == TourneeStatus.Started)
+                {
+                    return "#6fc2e3";
+                }
+                else if (CODE_ETAT_VISITE == TourneeStatus.Closed)
+                {
+                    return "#009B72";
                 }
                 else
                 {

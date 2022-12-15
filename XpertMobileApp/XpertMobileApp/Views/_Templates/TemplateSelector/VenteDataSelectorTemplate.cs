@@ -14,7 +14,7 @@ namespace XpertMobileApp.Views._Templates.TemplateSelector
         public DataTemplate VentePsychotrope { get; set; }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            if (Constants.AppName == Apps.XCOM_Mob)
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
                 return VenteNormalComm;
             }

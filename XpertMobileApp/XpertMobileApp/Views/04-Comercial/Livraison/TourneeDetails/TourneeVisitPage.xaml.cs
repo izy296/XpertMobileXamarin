@@ -28,17 +28,20 @@ namespace XpertMobileApp.Views
         View_TRS_TIERS tier;
         private View_LIV_TOURNEE_DETAIL livTournee;
         private bool isOpen = false;
+        private bool tourneeClosed;
         public TourneeVisitPage()
         {
             InitializeComponent();
             BindingContext = viewModel = new TourneeVisitViewModel();
         }
 
-        public TourneeVisitPage(View_LIV_TOURNEE_DETAIL item)
+        public TourneeVisitPage(View_LIV_TOURNEE_DETAIL item, bool tourneeClosed = false)
         {
             InitializeComponent();
             livTournee = item;
             BindingContext = viewModel = new TourneeVisitViewModel(item);
+            if (tourneeClosed)
+                this.tourneeClosed = tourneeClosed;
             new Command(async () =>
             {
                 if (App.Online)
@@ -78,6 +81,25 @@ namespace XpertMobileApp.Views
                 await viewModel.ExecuteLoadActiviteCommand();
             }).Execute(null);
             UserDialogs.Instance.HideLoading();
+
+
+            MessagingCenter.Subscribe<TourneeStatusSelector, TourneeStatus>(this, "VisitStatusChanged", async (sender, selectedItem) =>
+            {
+                if (!tourneeClosed)
+                    await viewModel.UpdateVisteStatus(selectedItem);
+                else await viewModel.UpdateVisteStatus(selectedItem, true);
+            });
+            MessagingCenter.Subscribe<TourneeStatusSelector, string>(this, "TourneeClosed", async (sender, selectedItem) =>
+            {
+                tourneeClosed = true;
+            });
+        }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            MessagingCenter.Unsubscribe<TourneeStatusSelector, string>(this, "TourneeClosed");
+            MessagingCenter.Unsubscribe<TourneeStatusSelector, TourneeStatus>(this, "VisitStatusChanged");
         }
 
         public async void SaveNewLocation(Point point)
@@ -93,7 +115,7 @@ namespace XpertMobileApp.Views
                     {
                         UserDialogs.Instance.ShowLoading();
                         await CrudManager.TiersManager.UpdateItemAsync(tier);
-                        await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync(AppResources.tourneeStatusUpdateSuccessful, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                     }
                     else
@@ -101,7 +123,7 @@ namespace XpertMobileApp.Views
                         UserDialogs.Instance.ShowLoading();
                         await SQLite_Manager.UpdateTiers(tier);
 
-                        await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync(AppResources.tourneeStatusUpdateSuccessful, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         UserDialogs.Instance.HideLoading();
                     }
 
@@ -143,7 +165,7 @@ namespace XpertMobileApp.Views
                             Location location = await Manager.GetLocation();
                             if (location == null)
                             {
-                                await UserDialogs.Instance.AlertAsync("Veuillez verifier la localisation", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                                await UserDialogs.Instance.AlertAsync(AppResources.tourneeLocalisationErrorMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                                 return;
                             }
                             tier.GPS_LATITUDE = location.Latitude;
@@ -156,7 +178,7 @@ namespace XpertMobileApp.Views
                             {
                                 await SQLite_Manager.UpdateTiers(tier);
                             }
-                            await UserDialogs.Instance.AlertAsync("Mise a jour avec succee", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            await UserDialogs.Instance.AlertAsync(AppResources.tourneeStatusUpdateSuccessful, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                             UserDialogs.Instance.ShowLoading();
 
                         }
@@ -221,7 +243,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                await UserDialogs.Instance.AlertAsync("Activer la location et ressayer", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(AppResources.LocationTurnedOffMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
 
@@ -237,32 +259,7 @@ namespace XpertMobileApp.Views
 
         private async void VisitDemarer(object sender, EventArgs e)
         {
-            bool modified = false;
-            var x = ((int)TourneeStatus.Canceled).ToString();
-            if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.Planned)
-            {
-                viewModel.Item.CODE_ETAT_VISITE = TourneeStatus.EnRoute;
-                modified = true;
-            }
-            else if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.EnRoute)
-            {
-
-                modified = true;
-            }
-            else if (viewModel.Item.CODE_ETAT_VISITE == TourneeStatus.Canceled)
-            {
-                modified = true;
-            }
-            if (modified)
-                if (App.Online)
-                {
-                    await CrudManager.TourneeDetails.UpdateItemAsync(viewModel.Item);
-
-                }
-                else
-                {
-                    await SQLite_Manager.GetInstance().UpdateAsync(viewModel.Item);
-                }
+            await PopupNavigation.Instance.PushAsync(new TourneeStatusSelector());
         }
 
         private void RouteClicked()
@@ -312,6 +309,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                if (tourneeClosed)
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.tourneeClosedMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
                 await Navigation.PushAsync(new NewCommandePage(null, tier));
@@ -326,6 +328,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                if (tourneeClosed)
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.tourneeClosedMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
@@ -342,6 +349,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                if (tourneeClosed)
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.tourneeClosedMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
@@ -359,6 +371,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                if (tourneeClosed)
+                {
+                    await UserDialogs.Instance.AlertAsync(AppResources.tourneeClosedMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    return;
+                }
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
@@ -381,6 +398,7 @@ namespace XpertMobileApp.Views
                 if (item == null)
                     return;
 
+
                 if (item.TYPE_DOC == "ENC")
                 {
                     var encaisse = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elmeent => elmeent.CODE_ENCAISS == item.CODE_DOC).FirstAsync();
@@ -388,9 +406,10 @@ namespace XpertMobileApp.Views
                 }
                 else if (item.TYPE_DOC == "BL" || item.TYPE_DOC == "BR")
                 {
-                    await Navigation.PushAsync(new VenteDetailPage(null,item.CODE_DOC));
+                    await Navigation.PushAsync(new VenteDetailPage(null, item.CODE_DOC));
                 }
-                
+                if (tourneeClosed)
+                    MessagingCenter.Send(this, "TourneeClosed", "TourneeClosed");
 
                 // Manually deselect item.
                 ActivitysCollectionView.SelectedItem = null;

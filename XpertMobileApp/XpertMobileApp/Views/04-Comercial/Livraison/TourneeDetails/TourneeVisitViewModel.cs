@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.SQLite_Managment;
@@ -69,6 +70,39 @@ namespace XpertMobileApp.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        public async Task UpdateVisteStatus(TourneeStatus selectedItem,bool tourneClosed=false)
+        {
+            bool modified = false;
+            if (Item.CODE_ETAT_VISITE != selectedItem)
+            {
+
+                var answer = await App.Current.MainPage.DisplayAlert(AppResources.visiteStatusChangeConfirm, AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                if (answer)
+                {
+                    if (!tourneClosed)
+                    {
+                        Item.CODE_ETAT_VISITE = selectedItem;
+                        modified = true;
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync(AppResources.tourneeClosedMessage, AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+                    }
+                }
+            }
+
+            if (modified)
+                if (App.Online)
+                {
+                    await CrudManager.TourneeDetails.UpdateItemAsync(Item);
+                }
+                else
+                {
+                    await SQLite_Manager.GetInstance().UpdateAsync(Item);
+                }
         }
     }
 }
