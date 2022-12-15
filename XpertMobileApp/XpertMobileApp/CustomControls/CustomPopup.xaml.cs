@@ -39,6 +39,7 @@ namespace XpertMobileApp.Views
         public CustomPopup(String Message, string falseMessage = null, string trueMessage = null)
         {
             InitializeComponent();
+            this.CloseWhenBackgroundIsClicked = false;
             messageLabel.Text = Message.ToString();
             taskCompletionSource = new TaskCompletionSource<bool>();
             if (!string.IsNullOrEmpty(falseMessage))
