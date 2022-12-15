@@ -87,6 +87,7 @@ namespace XpertMobileApp.Views
                 Item = itemEncaiss;
                 montantEntry.Text = itemEncaiss.TOTAL_ENCAISS.ToString();
                 Title = "N°" + Item.CODE_ENCAISS;
+                noteLabel.Text = itemEncaiss.NOTE_ENC.ToString();
             }
             else
             {
@@ -133,6 +134,8 @@ namespace XpertMobileApp.Views
                 await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.error_AccountNotEmpty, AppResources.alrt_msg_Ok);
                 return;
             }
+            // setting the note into the note_enc
+            this.Item.NOTE_ENC = noteLabel.Text;
             if (App.Online)
             {
                 if (!string.IsNullOrEmpty(montantEntry.Text))

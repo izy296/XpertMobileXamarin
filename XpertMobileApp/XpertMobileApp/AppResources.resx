@@ -1316,7 +1316,7 @@
     <value>Total Décaissé</value>
   </data>
   <data name="txt_ConfigPrefix" xml:space="preserve">
-    <value>Le prefix n'est configurer , vouler vous le configurer ? </value>
+    <value>Le préfixe n'est pas configuré, Voulez-vous le configurer ?</value>
   </data>
   <data name="txt_erreurProduit" xml:space="preserve">
     <value>Une erreur c'est produit ! Vueillez reconnecté</value>

@@ -74,7 +74,7 @@
                     </inputLayout:SfTextInputLayout.LeadingView>
                 </inputLayout:SfTextInputLayout>
 
-                
+
                 <!--Compte-->
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 FocusedColor="#72CFCE"
@@ -99,7 +99,7 @@
                     </inputLayout:SfTextInputLayout.LeadingView>
                 </inputLayout:SfTextInputLayout>
 
-                
+
                 <!--Tiers-->
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -189,7 +189,27 @@
                         <Image Source="credit_card.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
                 </inputLayout:SfTextInputLayout>
+    
+                <!--Note-->
+                <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
+                                                IsHintAlwaysFloated="true"
+                                                FocusedColor="#72CFCE"
+                                                InputViewPadding="0,16,30,5"
+                                                Margin="0,10"
+                                                x:Name="NoteLabel"
+                                                UnfocusedColor="#2C9CEE"
+                                                ContainerBackgroundColor="Transparent"
+                                                Hint="Note: ">
 
+                    <Editor Text=""
+                            FontSize="13"
+                            x:Name="noteLabel"
+                            HeightRequest="75"/>
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="bill.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+                </inputLayout:SfTextInputLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -18,6 +19,7 @@ namespace XpertMobileApp.Views
     {
         HomeViewModel viewModel;
         private bool KeepAnimate { get; set; } = false;
+
         public HomePage()
         {
             InitializeComponent();
@@ -242,15 +244,24 @@ namespace XpertMobileApp.Views
                     {
                         if (string.IsNullOrEmpty(App.PrefixCodification))
                         {
-                            bool answer = await App.Current.MainPage.DisplayAlert("Configuration du prefix !", AppResources.txt_ConfigPrefix, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
-                            if (answer)
+                            CustomPopup customPopup = new CustomPopup(AppResources.txt_ConfigPrefix, "Non", "Oui");
+                            await PopupNavigation.Instance.PushAsync(customPopup);
+                            if (await customPopup.PopupClosedTask)
                             {
-                                await SQLite_Manager.AssignPrefix();
-                                if (string.IsNullOrEmpty(App.PrefixCodification))
-                                    await UserDialogs.Instance.AlertAsync(AppResources.txt_erreurProduit, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                                else
-                                    await UserDialogs.Instance.AlertAsync(AppResources.txt_prefixConfSucce, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-
+                                if (customPopup.Result)
+                                {
+                                    await SQLite_Manager.AssignPrefix();
+                                    if (string.IsNullOrEmpty(App.PrefixCodification))
+                                    {
+                                        CustomPopup AlertPopup = new CustomPopup(AppResources.txt_erreurProduit, trueMessage: AppResources.alrt_msg_Ok);
+                                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                                    }
+                                    else
+                                    {
+                                        CustomPopup AlertPopup = new CustomPopup(AppResources.txt_prefixConfSucce, trueMessage: AppResources.alrt_msg_Ok);
+                                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                                    }
+                                }
                             }
                         }
                     }
