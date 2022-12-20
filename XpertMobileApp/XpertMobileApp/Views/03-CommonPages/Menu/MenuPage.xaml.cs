@@ -227,17 +227,6 @@ namespace XpertMobileApp.Views
                                 Image = "transaction.png",
                             });
 
-                            /* Page tresorerie */
-                            menuItems.Add(new HomeMenuItem
-                            {
-                                Id = MenuItemType.Tresorerie,
-                                Image = "money.png",
-                                ItemGroup = MenuItemGroup.Tresorerie,
-                                Title = AppResources.pn_Tresorerie,
-                                CodeObjet = XpertObjets.BSE_COMPTE,
-                                Action = XpertActions.AcSelect
-                            });
-
                             /* Manquant */
                             menuItems.Add(new HomeMenuItem
                             {
