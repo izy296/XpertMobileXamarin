@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 
-namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
+namespace XpertMobileApp.Views
 {
-    class RetourProductViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
+    public class RetourProductViewModel : CrudBaseViewModel2<STK_PRODUITS, View_STK_PRODUITS>
     {
 
         public string SearchedText { get; set; } = "";
@@ -17,6 +18,13 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
         public string CodeTiers { get; set; } = "";
 
         public string AutoriserReception { get; set; } = "";
+
+        private View_TRS_TIERS tier;
+        public View_TRS_TIERS Tier
+        {
+            get { return tier; }
+            set { tier = value; }
+        }
 
         private decimal totalSelected;
         public decimal TotalSelected

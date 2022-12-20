@@ -54,9 +54,12 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public LotSelectorLivraisonViewModel(string title = "")
+        public bool retour;
+
+        public LotSelectorLivraisonViewModel(string title = "",bool retour = false)
         {
             Title = title;
+            this.retour = retour;
         }
 
         protected async override void OnAfterLoadItems(IEnumerable<View_STK_STOCK> list)
@@ -74,7 +77,39 @@ namespace XpertMobileApp.ViewModels
         public override async Task<List<View_STK_STOCK>> SelectByPageFromSqlLite(QueryInfos filter)
         {
             List<View_STK_STOCK> result;
-            result = await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE) as List<View_STK_STOCK>;
+            if (retour)
+            {
+                //var res = await SQLite_Manager.GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
+                var Produits = await SQLite_Manager.GetProduits();
+
+                var list = Produits;
+                foreach (var p in list)
+                {
+                    p.HAS_NEW_ID_STOCK = true;
+                    p.ID_STOCK = p.CODE_PRODUIT.GetHashCode();
+                }
+                //foreach (var p in res)
+                //{
+                //    list.Add(new View_STK_STOCK()
+                //    {
+                //        ID_STOCK = p.CODE_PRODUIT.GetHashCode(),
+                //        DESIGNATION_PRODUIT = p.DESIGNATION_PRODUIT,
+                //        QUANTITE = p.QTE_STOCK,
+                //        SelectedPrice=p.PRIX_VENTE_HT,
+                //        PRIX_VENTE= p.PRIX_VENTE_HT,
+                //        CODE_BARRE = p.CODE_BARRE,
+                //        CODE_PRODUIT = p.CODE_PRODUIT,
+                //        HAS_NEW_ID_STOCK = true,
+
+                //    }) ;
+                //}
+                result = list;
+            }
+            else
+            {
+                result = await SQLite_Manager.GetProduitPrixUniteByCodeFamille(Tier.CODE_FAMILLE) as List<View_STK_STOCK>;
+            }
+
             if (!XpertHelper.IsNullOrEmpty(SearchedText))
                 result = result.Where(e => e.DESIGNATION_PRODUIT.Contains(SearchedText)).ToList();
             return result;

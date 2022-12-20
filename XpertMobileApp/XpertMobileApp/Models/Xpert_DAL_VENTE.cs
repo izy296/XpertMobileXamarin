@@ -51,7 +51,6 @@ namespace XpertMobileApp.DAL
         public decimal TAUX_REMISE { get; set; } // money(19,4)
 
         private decimal tOTAL_HT;
-        [Ignore]
         public decimal TOTAL_HT
         {
             get
@@ -66,7 +65,6 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal tOTAL_TTC;
-        [Ignore]
         public decimal TOTAL_TTC
         {
             get
@@ -96,7 +94,6 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
 
         private decimal tOTAL_RECU;
-        [Ignore]
         public decimal TOTAL_RECU
         {
             get
@@ -165,7 +162,6 @@ namespace XpertMobileApp.DAL
         public string NOM_MEDECIN { get; set; }
         public string DESIGNATION_WILAYA_DELIVRE { get; set; }
         public string DATE_DELIVRE_CARTE { get; set; }
-        [Ignore]
         public string DATE_DELIVRE_CARTE_TITLE
         {
             get
@@ -180,7 +176,6 @@ namespace XpertMobileApp.DAL
         public decimal MT_VERSEMENT { get; set; } // money(19,4)
 
         private string nOM_TIERS;
-        [Ignore]
         public string NOM_TIERS
         {
             get
@@ -205,7 +200,6 @@ namespace XpertMobileApp.DAL
         public string CODE_CARTE_FIDELITE { get; set; }
 
         private decimal pOINTS_CONSUMED;
-        [Ignore]
         public decimal POINTS_CONSUMED
         {
             get
@@ -237,7 +231,6 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal _MBL_MT_VERCEMENT;
-        [Ignore]
         public decimal MBL_MT_VERCEMENT
         {
             get { return _MBL_MT_VERCEMENT; }
@@ -254,7 +247,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal _MBL_MT_RENDU;
-        [Ignore]
+        
         public decimal MBL_MT_RENDU
         {
             get { return _MBL_MT_RENDU; }
@@ -268,7 +261,6 @@ namespace XpertMobileApp.DAL
         public double GPS_LONGITUDE { get; set; }
         public string NameTableVente { get; set; }
         public string NameTableVenteDetail { get; set; }
-        [Ignore]
         public string TauxRemiseGlobale
         {
             get
@@ -278,7 +270,6 @@ namespace XpertMobileApp.DAL
                 return XpertHelper.RoundPrix(100 * this.REMISE_GLOBALE / dd) + " %";
             }
         }
-        [Ignore]
         public string DESIGN_TYPE
         {
             get
@@ -378,19 +369,19 @@ namespace XpertMobileApp.DAL
         // utiliser juste  pour Séparer entre vente CHIFA cash & vente CHIFA crédit
         // Warning :: TYPE_DOC2 is empty in all sales except vente chifa  ()        
         public decimal TOTAL_HT_REEL { get { return TOTAL_HT * SENS_DOC; } }
-        [Ignore]
+        
         public decimal TOTAL_PPA_REEL { get { return TOTAL_PPA * SENS_DOC; } }
-        [Ignore]
+       
         public decimal TOTAL_SHP_REEL { get { return TOTAL_SHP * SENS_DOC; } }
-        [Ignore]
+       
         public decimal TOTAL_REMISE_REEL { get { return TOTAL_REMISE * SENS_DOC; } }
-        [Ignore]
+        
         public decimal TOTAL_TVA_REEL { get { return TOTAL_TVA * SENS_DOC; } }
-        [Ignore]
+        
         public decimal TOTAL_TTC_REEL { get { return TOTAL_TTC * SENS_DOC; } }
-        [Ignore]
+        
         public decimal TOTAL_PAYE_REEL { get { return TOTAL_PAYE * SENS_DOC; } }
-        [Ignore]
+        
         public decimal TOTAL_RESTE_REEL { get { return TOTAL_RESTE * SENS_DOC; } }
 
         public decimal TOTAL_TTC_INSTANCE { get; set; }
@@ -406,7 +397,7 @@ namespace XpertMobileApp.DAL
         #region Validation vente from Mobile
 
         #endregion
-        [Ignore]
+        
         public string TITRE_VENTE_SPECIAL
         {
             get

@@ -20,7 +20,6 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
-using XpertMobileApp.Views._04_Comercial.Selectors.Lot;
 using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
 
@@ -89,7 +88,7 @@ namespace XpertMobileApp.Views
             btn_Search.IsVisible = disable;
             btn_Scan.IsVisible = disable;
             itemSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream);
-            retourSelector = new RetourProducts(viewModel.CurrentStream);
+            retourSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream+"BR",true);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
@@ -105,6 +104,14 @@ namespace XpertMobileApp.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream+"BR", async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.AddNewRows(selectedItem, true); // false veut dire le type de produit ajouter est une vente (pas retour)
                 });
             });
 
@@ -133,7 +140,7 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<RetourProducts, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream+"BR", async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
@@ -257,7 +264,7 @@ namespace XpertMobileApp.Views
 
         #region Selectors
 
-        private RetourProducts retourSelector;
+        private LotSelectorLivraisonUniteFamille retourSelector;
         private LotSelectorLivraisonUniteFamille itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
@@ -271,9 +278,14 @@ namespace XpertMobileApp.Views
             */
             if (viewModel.TypeDoc == "BR")
             {
+                retourSelector.viewModel.Tier = viewModel.SelectedTiers;
                 retourSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
                 //itemSelector.AutoriserReception = "1";
                 await PopupNavigation.Instance.PushAsync(retourSelector);
+                if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
+                {
+                    MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.CODE_PRODUIT).ToList());
+                }
             }
             else
             {
@@ -443,14 +455,24 @@ namespace XpertMobileApp.Views
 
         private void Delete()
         {
-            if (itemIndex >= 0)
+            try
             {
-                var obj = viewModel.ItemRows[itemIndex];
-                viewModel.ItemRows.RemoveAt(itemIndex);
-                viewModel.Item.DetailsDistrib.Remove(obj);
+                if (itemIndex >= 0)
+                {
+
+                    var obj = viewModel.ItemRows[itemIndex];
+                    if (viewModel.ItemRows !=null && viewModel.ItemRows.Count > 0)
+                    viewModel.ItemRows.RemoveAt(itemIndex);
+                    viewModel.Item.DetailsDistrib.Remove(obj);
+                }
+                this.listView.ResetSwipe();
+                viewModel.UpdateMontants();
             }
-            this.listView.ResetSwipe();
-            viewModel.UpdateMontants();
+            catch (Exception ex)
+            {
+                // null reference exception
+            }
+
         }
 
         private void ListView_SwipeStarted(object sender, Syncfusion.ListView.XForms.SwipeStartedEventArgs e)

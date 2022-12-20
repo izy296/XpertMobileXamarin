@@ -33,6 +33,8 @@ namespace XpertMobileApp.Views
 
         public decimal coeficiantUnite = 1;
 
+        private bool retour = false;
+
         protected virtual void OnCBScaned(LotInfosEventArgs e)
         {
             EventHandler<LotInfosEventArgs> handler = LotInfosUpdated;
@@ -41,6 +43,24 @@ namespace XpertMobileApp.Views
                 handler(viewModel.Item, e);
             }
         }
+
+        private void CheckIfRetour()
+        {
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, string>(this, "SetRetourTrue", (o, s) =>
+            {
+                retour = true;
+            });
+            MessagingCenter.Subscribe<VenteFormLivraisonPage, string>(this, "SetRetourTrue", (o, s) =>
+            {
+                retour = true;
+            });
+        }
+        private void RemoveCheckIfRetour()
+        {
+            MessagingCenter.Unsubscribe<LotSelectorLivraisonUniteFamille, string>(this, "SetRetourTrue");
+            MessagingCenter.Unsubscribe<VenteFormLivraisonPage, string>(this, "SetRetourTrue");
+        }
+
 
         public QteUpdater(View_STK_STOCK item)
         {
@@ -54,10 +74,11 @@ namespace XpertMobileApp.Views
                 ExecuteLoadUnite();
             }
             ).Execute(null);
+            CheckIfRetour();
         }
 
         // constructeur pour passer un element de Type View_VTE_VENTE_LIVRAISON de la page VenteFormLivraisonPage
-        public QteUpdater(View_VTE_VENTE_LIVRAISON item,string codeFamille)
+        public QteUpdater(View_VTE_VENTE_LIVRAISON item, string codeFamille)
         {
             InitializeComponent();
 
@@ -77,6 +98,7 @@ namespace XpertMobileApp.Views
                 ExecuteLoadUnite();
             }
             ).Execute(null);
+            CheckIfRetour();
         }
 
         private async void ExecuteLoadUnite()
@@ -139,7 +161,7 @@ namespace XpertMobileApp.Views
             {
 
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
-                if (Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE)
+                if ((Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE) || retour)
                 {
                     int i = 0;
                     foreach (var element in QuantiteUniteLayout.Children)
@@ -155,6 +177,7 @@ namespace XpertMobileApp.Views
                     eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
                     OnCBScaned(eventArgs);
                     await PopupNavigation.Instance.PopAsync();
+                    RemoveCheckIfRetour();
                 }
                 else
                 {

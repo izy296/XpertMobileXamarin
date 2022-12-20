@@ -173,6 +173,15 @@ namespace XpertMobileApp.SQLite_Managment
             var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
             return list.FirstOrDefault();
         }
+        
+        public static async Task<List<View_STK_STOCK>> GetProduits()
+        {
+
+            // 
+            string query = $@"SELECT *,DESIGNATION_PRODUIT,QTE_STOCK QUANTITE,PRIX_VENTE_HT SelectedPrice,PRIX_VENTE_HT PRIX_VENTE,CODE_BARRE,CODE_PRODUIT  FROM View_STK_PRODUITS";
+            var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
+            return list;
+        }
 
         public static async Task SyncImages()
         {
@@ -451,7 +460,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
                     await SyncImages();
 
-
+                    await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
 
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     //await syncSession(); //worked !
@@ -642,9 +651,9 @@ namespace XpertMobileApp.SQLite_Managment
 
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                //await SyncTiersToServer();
+                await SyncTiersToServer();
                 await SyncEncaissToServer();
-                //await SyncVenteToServer(); // error while coppying content to a stream
+                await SyncVenteToServer(); // error while coppying content to a stream
                 await SyncTourneesToServer();
 
                 UserDialogs.Instance.HideLoading();
@@ -1972,8 +1981,20 @@ namespace XpertMobileApp.SQLite_Managment
                     vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                     vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
                     vente.DATE_VENTE = DateTime.Now;
+
+                    if (vente.TYPE_DOC == "BR")
+                    {
+                        vente.SENS_DOC = -1;
+                        encaissement.CODE_TYPE = "DEC";
+                    }
+                    else if (vente.TYPE_DOC == "BL")
+                    {
+                        encaissement.CODE_TYPE = "ENC";
+                    }
+
                     await GetInstance().UpdateAsync(vente);
 
+                    var array = GetInstance().Table<View_VTE_VENTE>().ToListAsync().Result;
                     //check if vente.Detail is empty than use 
 
                     if (vente.Details != null)
@@ -2006,15 +2027,17 @@ namespace XpertMobileApp.SQLite_Managment
                         await UpdateSoldeTiers(sold, vente.CODE_TIERS);
                     }
 
-                    encaissement.CODE_TYPE = "ENC";
-                    encaissement.CODE_TIERS = vente.CODE_TIERS;
-                    encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
-                    encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
-                    encaissement.CODE_MOTIF = "PCR";
-                    //encaissement.CODE_COMPTE= 
-                    encaissement.DATE_ENCAISS = DateTime.Now;
-                    encaissement.IS_SYNCHRONISABLE = false;
-                    await AjoutEncaissement(encaissement, null);
+                    if (vente.TOTAL_RECU != 0)
+                    {
+                        encaissement.CODE_TIERS = vente.CODE_TIERS;
+                        encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                        encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
+                        encaissement.CODE_MOTIF = "PCR";
+                        //encaissement.CODE_COMPTE= 
+                        encaissement.DATE_ENCAISS = DateTime.Now;
+                        encaissement.IS_SYNCHRONISABLE = false;
+                        await AjoutEncaissement(encaissement, null);
+                    }
 
                     await UpdateTourneeDetail(vente);
                     await UpdateTournee();

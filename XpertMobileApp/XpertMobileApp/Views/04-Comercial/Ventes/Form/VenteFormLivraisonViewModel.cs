@@ -173,6 +173,15 @@ namespace XpertMobileApp.Views
                         row.CODE_DETAIL_ORIGINE = XpertHelper.RandomString(5);
                         row.HAS_NEW_ID_STOCK = product.HAS_NEW_ID_STOCK;
 
+                        foreach (var qtcU in product.UnitesList)
+                        {
+                            qtcU.SelectedQUANTITE = (qtcU.SelectedQUANTITE * -1);
+                        }
+
+
+                        // ajout uniteList a la nouvelle objet
+                        row.UnitesList = product.UnitesList;
+
                         // prix ht et ttc
                         // get prix gros ou detail
                         if (App.Online)
@@ -182,26 +191,27 @@ namespace XpertMobileApp.Views
                         }
                         else
                         {
-                            try
-                            {
-                                var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
-                                if (prix > 0)
-                                {
-                                    row.PRIX_VTE_HT = prix;
-                                    row.PRIX_VTE_TTC = prix;
-                                }
-                                else
-                                {
-                                    row.PRIX_VTE_HT = product.SelectedPrice;
-                                    row.PRIX_VTE_TTC = product.SelectedPrice;
-                                }
-                            }
-                            catch
-                            {
+                            //try
+                            //{
+                            //    var prix = await SQLite_Manager.getPrixByQuantity(product.CODE_PRODUIT, qte);
+                            //    if (prix > 0)
+                            //    {
+                            //        row.PRIX_VTE_HT = prix;
+                            //        row.PRIX_VTE_TTC = prix;
+                            //    }
+                            //    else
+                            //    {
+                            //        row.PRIX_VTE_HT = product.SelectedPrice;
+                            //        row.PRIX_VTE_TTC = product.SelectedPrice;
+                            //    }
+                            //}
+                            //catch
+                            //{
                                 row.PRIX_VTE_HT = product.SelectedPrice;
                                 row.PRIX_VTE_TTC = product.SelectedPrice;
-                            }
+                            //}
                         }
+
                         qte = qte * -1;
                         row.QUANTITE = qte;
                         ItemRows.Add(row);
@@ -211,6 +221,15 @@ namespace XpertMobileApp.Views
                     {
                         row.PRIX_VTE_HT = product.SelectedPrice;
                         row.PRIX_VTE_TTC = product.SelectedPrice;
+
+                        foreach (var qtcU in row.UnitesList)
+                        {
+                            var unite = product.UnitesList.Where(e => e.CODE_UNITE == qtcU.CODE_UNITE).FirstOrDefault();
+                            if (unite != null)
+                                if (unite.SelectedQUANTITE > 0)
+                                    qtcU.SelectedQUANTITE += (unite.SelectedQUANTITE * -1);
+                        }
+
                         decimal qt = product.SelectedQUANTITE;
                         qt = qt * -1;
                         row.QUANTITE = (row.QUANTITE) + qt;

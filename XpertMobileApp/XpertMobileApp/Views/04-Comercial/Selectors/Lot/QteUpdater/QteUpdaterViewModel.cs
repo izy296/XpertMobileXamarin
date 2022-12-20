@@ -18,11 +18,28 @@ namespace XpertMobileApp.ViewModels
             Item = item;
         }
 
-        public QteUpdaterViewModel(View_VTE_VENTE_LIVRAISON item,string codeFamille)
+        public QteUpdaterViewModel(View_STK_PRODUITS item)
+        {
+            Item = new View_STK_STOCK()
+            {
+                CODE_PRODUIT = item.CODE_PRODUIT,
+                CODE_MAGASIN = App.CODE_MAGASIN,
+                COUT_ACHAT = item.PRIX_ACHAT_TTC,
+                PPA = item.PPA,
+                SHP = item.SHP,
+                CODE_BARRE_LOT = item.CODE_BARRE,
+                DESIGNATION_PRODUIT = item.DESIGNATION,
+                PRIX_VENTE = item.PRIX_VENTE_HT,
+                HAS_NEW_ID_STOCK = true,
+            };
+        }
+
+        public QteUpdaterViewModel(View_VTE_VENTE_LIVRAISON item, string codeFamille)
         {
             if (!App.Online)
             {
-                new Command(async() => {
+                new Command(async () =>
+                {
                     Item = await SQLite_Manager.GetProduitPrixUniteByCodeProduit(codeFamille, item.CODE_PRODUIT);
                 }).Execute(null);
             }

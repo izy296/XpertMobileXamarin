@@ -42,12 +42,12 @@ namespace XpertMobileApp.Views
                 viewModel.AutoriserReception = value;
             }
         }
-
-        public LotSelectorLivraisonUniteFamille(string stream)
+        public LotSelectorLivraisonUniteFamille(string stream, bool retour = false)
         {
             InitializeComponent();
             CurrentStream = stream;
             BindingContext = viewModel = new LotSelectorLivraisonViewModel();
+            viewModel.retour = retour;
         }
 
 
@@ -147,6 +147,8 @@ namespace XpertMobileApp.Views
                 QteUpdater = new QteUpdater(lot);
                 QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
                 await PopupNavigation.Instance.PushAsync(QteUpdater);
+                if (viewModel.retour)
+                    MessagingCenter.Send(this, "SetRetourTrue", "SetRetourTrue");
                 ItemsListView.SelectedItem = null;
             }
         }

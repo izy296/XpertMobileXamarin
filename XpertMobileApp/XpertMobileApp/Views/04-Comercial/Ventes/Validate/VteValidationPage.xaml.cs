@@ -22,6 +22,7 @@ using System.Threading;
 using XpertMobileApp.Api;
 using XpertMobileApp.Views.Helper;
 using XpertMobileApp.Helpers;
+using Syncfusion.SfNumericTextBox.XForms;
 
 namespace XpertMobileApp.Views
 {
@@ -33,16 +34,16 @@ namespace XpertMobileApp.Views
         public VenteFormLivraisonViewModel ParentLivraisonviewModel { get; set; }
 
         public string ParentStream { get; set; }
-        public View_VTE_VENTE Item 
-        { 
-            get 
-            { 
-                return viewModel.Item; 
-            } 
-            internal set 
-            { 
-                viewModel.Item = value; 
-            } 
+        public View_VTE_VENTE Item
+        {
+            get
+            {
+                return viewModel.Item;
+            }
+            internal set
+            {
+                viewModel.Item = value;
+            }
         }
         CancellationTokenSource cts;
         public VteValidationPage(string stream, View_VTE_VENTE item, View_TRS_TIERS tiers = null)
@@ -56,9 +57,9 @@ namespace XpertMobileApp.Views
             //    SfNE_MTRecu.IsEnabled = false;
 
             ParentStream = stream;
-            BindingContext = viewModel = new VteValidationViewModel(item,"",tiers);
+            BindingContext = viewModel = new VteValidationViewModel(item, "", tiers);
 
-            if (tiers!=null)
+            if (tiers != null)
             {
                 viewModel.SelectedTiers = tiers;
             }
@@ -70,6 +71,18 @@ namespace XpertMobileApp.Views
             }
 
             UpdateMontants(viewModel.Item.TOTAL_RECU);
+
+            if (Apps.X_DISTRIBUTION == Constants.AppName)
+            {
+                var list = Container.Children;
+                SfNE_MTRecu.Minimum = null;
+                foreach (var element in list)
+                {
+                    if (element.GetType() == typeof(SfNumericTextBox))
+                        ((SfNumericTextBox)element).Minimum = null;
+                }
+            }
+
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
@@ -176,7 +189,7 @@ namespace XpertMobileApp.Views
 
                 if (App.Online)
                 {
-                    if(((decimal)SfNE_MTRecu.Value < (decimal)mt_Reste.Value) && viewModel.Item.CODE_TIERS == "CXPERTCOMPTOIR")
+                    if (((decimal)SfNE_MTRecu.Value < (decimal)mt_Reste.Value) && viewModel.Item.CODE_TIERS == "CXPERTCOMPTOIR")
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez selectionner un client !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         return;
@@ -243,9 +256,9 @@ namespace XpertMobileApp.Views
                     }
 
                 }
-               
+
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
@@ -254,7 +267,7 @@ namespace XpertMobileApp.Views
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
-            
+
             itemSelector = new TiersSelector(viewModel.CurrentStream);
             itemSelector.SearchedType = "C";
             await PopupNavigation.Instance.PushAsync(itemSelector);
@@ -292,7 +305,7 @@ namespace XpertMobileApp.Views
             UpdateMontants(Mt_Recu);
         }
 
-        private void UpdateMontants(decimal mt_Recu) 
+        private void UpdateMontants(decimal mt_Recu)
         {
 
             if (mt_Recu >= viewModel.Item.TOTAL_RESTE)
@@ -319,7 +332,7 @@ namespace XpertMobileApp.Views
                     await viewModel.SelectScanedTiers(cb);
                 });
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
@@ -327,23 +340,23 @@ namespace XpertMobileApp.Views
 
         private async void POINTS_CONSUMED_Changed(object sender, Syncfusion.SfNumericTextBox.XForms.ValueEventArgs e)
         {
-            if (Convert.ToDecimal(pts_Consumed.Value) > 0) 
+            if (Convert.ToDecimal(pts_Consumed.Value) > 0)
             {
-                if (Convert.ToDecimal(pts_Consumed.Value) > viewModel.SelectedTiers.TOTAL_POINT_FIDELITE) 
+                if (Convert.ToDecimal(pts_Consumed.Value) > viewModel.SelectedTiers.TOTAL_POINT_FIDELITE)
                 {
-                    pts_Consumed.Value = viewModel.SelectedTiers.TOTAL_POINT_FIDELITE;                    
+                    pts_Consumed.Value = viewModel.SelectedTiers.TOTAL_POINT_FIDELITE;
                     return;
                 }
-                    
+
                 var vteBll = CrudManager.GetVteBll(null);
                 var res = await vteBll.GetFideliteInfos(viewModel.SelectedTiers.CODE_CARTE_FIDELITE, Convert.ToDecimal(pts_Consumed.Value));
 
-                mt_PointsUsed.Text = "(" + res.MT_POINTS_USED.ToString("N2") +"Da)";
+                mt_PointsUsed.Text = "(" + res.MT_POINTS_USED.ToString("N2") + "Da)";
                 viewModel.Item.REMISE_GLOBALE = res.MT_POINTS_USED;
                 mt_Reste.Value = viewModel.Item.TOTAL_TTC - viewModel.Item.REMISE_GLOBALE;
                 SfNE_MTRecu.Value = mt_Reste.Value;
             }
-            else 
+            else
             {
                 mt_PointsUsed.Text = "";
             }
