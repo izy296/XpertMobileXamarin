@@ -120,7 +120,7 @@ namespace XpertMobileApp.Views
                 });
 
                 // Modules qui existe dans la version Pro Seulement 
-                if (App.Settings.Mobile_Edition >= Mobile_Edition.Standard)
+                if (App.Settings.Mobile_Edition >= Mobile_Edition.Pro)
                 {
                     /* Page tresorerie */
                     menuItems.Add(new HomeMenuItem
