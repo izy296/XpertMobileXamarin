@@ -178,7 +178,7 @@ namespace XpertMobileApp.Views
                         Image = "vente.png"
                     });
 
-                    if (App.Settings.Mobile_Edition == Mobile_Edition.Standard)
+                    if (App.Settings.Mobile_Edition == Mobile_Edition.Pro)
                     {
                         /* Vente au comptoire */
                         menuItems.Add(new HomeMenuItem
