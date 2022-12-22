@@ -29,7 +29,7 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                    <Label Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                    <Label x:Name="ItemHeader" Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>
 
@@ -80,7 +80,7 @@
         <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
-                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                <StackLayout x:Name="DetailsHeader" Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                     <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <!--<Label Text="{Binding ItemRows.CODE_PRODUIT}"/>-->
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>

@@ -13,7 +13,7 @@ namespace XpertMobileApp.Views._Templates.TemplateSelector
         public DataTemplate TransfertComm { get; set; }
         protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
         {
-            return Constants.AppName == Apps.XCOM_Mob ? TransfertComm : TransfertPharm;
+            return Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION ? TransfertComm : TransfertPharm;
         }
     }
 }

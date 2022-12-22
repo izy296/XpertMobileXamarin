@@ -101,6 +101,7 @@ namespace XpertMobileApp.Helpers
         public static string VTE_COMMANDE = "VTE_COMMANDE";
 
         public static string COMMANDE_DETAILS_URL = "GetCommandesDetails";
+        public static string COMMANDE_URL = "GetCommande";
 
         // Achats
         public static string ACH_ACHATS = "ACH_ACHATS";
@@ -217,7 +218,13 @@ namespace XpertMobileApp.Helpers
         public static string TRANSFERT_STOCK_DETAIL_URL = "STK_TRANSFERT_DETAIL";
         public static string TRANSFERT_STOCK_GET_DETAIL= "GetTransferProducts";
 
+        //Inventaire
+        public static string STK_INVENTAIRE_URL = "STK_INVENTAIRE";
+        public static string STK_INVENTAIRE_OPEN = "GetOpenInventory";
 
+        public static string STK_INVENTAIRE_DETAIL_URL = "STK_INVENTAIRE_DETAIL";
+        public static string STK_INVENTAIRE_DETAIL_GET_LOT_INFO = "GetCodeBarreLotInfo";
+        public static string STK_INVENTAIRE_DETAIL_INSERT = "InsertInventory";
     }
 
 }

@@ -5,7 +5,14 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              Title="{Binding Title}">
-
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            x:Name="EditButton"
+            IsEnabled="{Binding App.Online}"
+            IconImageSource="editIcon.png"
+            Clicked="EditClicked"
+            />
+    </ContentPage.ToolbarItems>
     <StackLayout x:Name="sl_content" Padding="5" >
 
         <Frame CornerRadius="10" 
@@ -32,7 +39,9 @@
                              Spacing="0" 
                              Padding="0,5">
 
-                    <Label Text="{i18n:Translate txt_header}" 
+                    <Label 
+                        x:Name="ItemHeader"
+                        Text="{i18n:Translate txt_header}" 
                            TextColor="{StaticResource Primary}" 
                            FontSize="Large" 
                            FontAttributes="Bold"/>
@@ -96,12 +105,15 @@
             <StackLayout x:Name="sl_rows" 
                          VerticalOptions="Start" >
 
-                <StackLayout Grid.Column="0" 
-                             Grid.ColumnSpan="2" 
-                             Spacing="0" 
-                             Padding="0,5">
+                <StackLayout 
+                    x:Name="DetailsHeader"
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="2" 
+                    Spacing="0" 
+                    Padding="0,5">
 
-                    <Label Text="{i18n:Translate txt_Details}" 
+                    <Label
+                        Text="{i18n:Translate txt_Details}" 
                            TextColor="{StaticResource Primary}" 
                            FontSize="Large" 
                            FontAttributes="Bold"/>

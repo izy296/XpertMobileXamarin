@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
@@ -25,15 +26,20 @@ namespace XpertMobileApp.Views
             set { item = value; }
         }
 
-        public CommandeDetailPage(View_VTE_VENTE vente)
+        public string codeCommande { get; set; }
+
+        public CommandeDetailPage(View_VTE_VENTE vente, string codeCommande = null)
         {
             InitializeComponent();
 
             this.Item = vente;
+            this.codeCommande = codeCommande;
+            if (vente != null)
+            {
+                BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(vente, vente.CODE_VENTE);
 
-            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(vente, vente.CODE_VENTE);
-
-            this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+                viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
+            }
 
             // TODO put into th generic view model 
             MessagingCenter.Subscribe<EncaissementsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
@@ -53,9 +59,31 @@ namespace XpertMobileApp.Views
             */
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+            if (codeCommande != null)
+                if (App.Online)
+                {
+                    var res = await WebServiceClient.GetCommande(codeCommande);
+                    if (res != null && res.Count > 0)
+                        this.Item = res[0];
+                }
+                else
+                {
+                    this.Item = await SQLite_Manager.GetCommande(codeCommande);
+                }
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                ItemHeader.Text = Item.CODE_VENTE;
+                DetailsHeader.IsVisible = false;
+                Title = AppResources.pn_MyCommandes;
+            }
+
+            BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(Item, Item.CODE_VENTE);
+
+            this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             viewModel.LoadRowsCommand.Execute(null);
         }
@@ -71,11 +99,15 @@ namespace XpertMobileApp.Views
             try
             {
                 viewModel.ItemRows.Clear();
-                List<View_VTE_VENTE_LOT> itemsCommands;
+                List<View_VTE_VENTE_LOT> itemsCommands = new List<View_VTE_VENTE_LOT>();
+                List<View_VTE_VENTE_LIVRAISON> itemsCommandsDistrib = new List<View_VTE_VENTE_LIVRAISON>();
 
                 if (App.Online)
                 {
-                    itemsCommands = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                        itemsCommandsDistrib = await WebServiceClient.GetVenteLotLivraisonDetails(this.Item.CODE_VENTE);
+                    else
+                        itemsCommands = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
                 }
                 else
                 {
@@ -114,6 +146,12 @@ namespace XpertMobileApp.Views
         private async void RefreshView_Refreshing(object sender, EventArgs e)
         {
             await ExecuteLoadRowsCommand();
+        }
+
+        private async void EditClicked(object sender, EventArgs e)
+        {
+            var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
+            await Navigation.PushAsync(new NewCommandePage(Item, client));
         }
     }
 }

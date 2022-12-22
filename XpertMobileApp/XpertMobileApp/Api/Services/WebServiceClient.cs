@@ -313,6 +313,14 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
 
+        public static async Task<List<View_VTE_COMMANDE>> GetCommande(string codeCommande)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VTE_COMMANDE, ServiceUrlDico.COMMANDE_URL);
+            url += WSApi2.AddParam(url, "codeCommande", codeCommande);
+
+            return await RetrievAauthorizedData<View_VTE_COMMANDE>(url);
+        }
+
         public static async Task<List<View_VTE_VENTE>> GetVente(string codeVente)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_GET_VENTE_URL);
@@ -654,6 +662,15 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT_DETAIL>(url);
         }
+
+        //internal static async Task<View_STK_INVENTAIRE_DETAIL> GetInventaireDetail(string numIvent, string codeBarre)
+        //{
+        //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);
+        //    url += WSApi2.AddParam(url, "printerName", numIvent);
+        //    url += WSApi2.AddParam(url, "codeVente", codeBarre);
+        //    return await WSApi2.PostAauthorizedValue<View_STK_INVENTAIRE_DETAIL>(url);
+
+        //}
 
         #endregion
 

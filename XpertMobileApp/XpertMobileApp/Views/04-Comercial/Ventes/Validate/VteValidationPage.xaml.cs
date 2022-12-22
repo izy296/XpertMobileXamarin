@@ -53,6 +53,13 @@ namespace XpertMobileApp.Views
             if (Constants.AppName == Apps.XCOM_Livraison)
                 PrintTicketZoneLayout.IsVisible = true;
 
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                PointsFideliteLabel.IsVisible = false;
+                PointsFidelite.IsVisible = false;
+            }
+
+
             //if (Constants.AppName != Apps.XCOM_Livraison)
             //    SfNE_MTRecu.IsEnabled = false;
 
@@ -115,6 +122,15 @@ namespace XpertMobileApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
+
+            MessagingCenter.Subscribe<VenteFormLivraisonPage, string>(this, "TourneeVisit", async (obj, selectedItem) =>
+            {
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    btn_Search.IsVisible = false;
+                    btn_Scan.IsVisible = false;
+                }
+            });
         }
 
 

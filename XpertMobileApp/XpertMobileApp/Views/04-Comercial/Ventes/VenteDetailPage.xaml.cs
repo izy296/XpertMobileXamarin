@@ -53,6 +53,11 @@ namespace XpertMobileApp.Views.Encaissement
             {
                 EditButton.IsEnabled = false;
             });
+
+            MessagingCenter.Subscribe<TourneeVisitPage, string>(this, "CodeVente", async (obj, item) =>
+            {
+                CodeVente = item;
+            });
         }
 
         protected async override void OnAppearing()
@@ -67,15 +72,25 @@ namespace XpertMobileApp.Views.Encaissement
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             viewModel.LoadRowsCommand.Execute(null);
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                ItemHeader.Text = Item.CODE_VENTE;
+                DetailsHeader.IsVisible = false;
+                if (Item.TYPE_VENTE == "BL")
+                    Title = AppResources.pn_Livraison;
+                else if (Item.TYPE_VENTE == "BR")
+                    Title = "Bon Retour";
+            }
         }
 
         async Task<View_VTE_VENTE> ExecuteGetVente(string codeVente)
         {
-            View_VTE_VENTE res=null;
+            View_VTE_VENTE res = null;
             if (App.Online)
             {
                 var vente = await WebServiceClient.GetVente(codeVente);
-                if (vente != null  && vente.Count>0)
+                if (vente != null && vente.Count > 0)
                     res = vente[0];
             }
             else

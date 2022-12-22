@@ -152,8 +152,10 @@ namespace XpertMobileApp.Views
             try
             {
                 viewModel.ItemRows.Clear();
-                var itemsC = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
-
+                List<View_VTE_VENTE_LOT> itemsC;
+                if (App.Online)
+                    itemsC = await WebServiceClient.GetCommandeDetails(this.Item.CODE_VENTE);
+                else itemsC = await SQLite_Manager.getVenteDetails(this.Item.CODE_VENTE);
                 UpdateItemIndex(itemsC);
 
                 foreach (var itemC in itemsC)

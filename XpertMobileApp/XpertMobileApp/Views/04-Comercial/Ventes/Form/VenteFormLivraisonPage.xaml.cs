@@ -81,7 +81,7 @@ namespace XpertMobileApp.Views
             else
             {
                 SelectedTiers = tiers;
-                if (Constants.AppName != Apps.X_DISTRIBUTION)
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
                     disable = false;
             }
 
@@ -384,6 +384,7 @@ namespace XpertMobileApp.Views
                 VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
                 VteValidationPage.ParentLivraisonviewModel = viewModel;
                 await PopupNavigation.Instance.PushAsync(VteValidationPage);
+                MessagingCenter.Send(this, "TourneeVisit", "TourneeVisit");
             }
             else
             {

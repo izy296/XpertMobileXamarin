@@ -408,6 +408,10 @@ namespace XpertMobileApp.Views
                 {
                     await Navigation.PushAsync(new VenteDetailPage(null, item.CODE_DOC));
                 }
+                else if (item.TYPE_DOC == "CC")
+                {
+                    await Navigation.PushAsync(new CommandeDetailPage(null,item.CODE_DOC));
+                }
                 if (tourneeClosed)
                     MessagingCenter.Send(this, "TourneeClosed", "TourneeClosed");
 

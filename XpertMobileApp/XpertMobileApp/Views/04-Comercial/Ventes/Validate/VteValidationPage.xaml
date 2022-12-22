@@ -38,8 +38,8 @@
                     
                     </StackLayout>
                 
-                    <Label Text="Points fidélité à utiliser " FontSize="Default" Margin="5,5,5,-10" />
-                    <StackLayout Orientation="Horizontal">
+                    <Label x:Name="PointsFideliteLabel" Text="Points fidélité à utiliser " FontSize="Default" Margin="5,5,5,-10" />
+                    <StackLayout x:Name="PointsFidelite" Orientation="Horizontal">
                         <numeric1:SfNumericTextBox x:Name="pts_Consumed" Minimum="0"  FontAttributes="Bold" TextColor="Black"
                                              ParserMode="Double" MaximumNumberDecimalDigits="2"   WidthRequest="60"
                                              SelectAllOnFocus="True" Value="{Binding Item.POINTS_CONSUMED}" 
