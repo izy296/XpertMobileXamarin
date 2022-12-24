@@ -23,7 +23,8 @@ namespace XpertMobileApp.Api.Models
         TRS_JOURNEES,
         STK_STOCK,
         SYS_PARAMETRE,
-        LIV_TOURNEE
+        LIV_TOURNEE,
+        STK_TRANSFERT
     }
 
     public static class ControllerNameSwitch

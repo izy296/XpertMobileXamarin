@@ -33,27 +33,31 @@
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 FocusedColor="#72CFCE"
                                                 Margin="0,10"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 UnfocusedColor="#2C9CEE"
                                                 ContainerBackgroundColor="Transparent"
                                                 IsHintAlwaysFloated="true"
                                                 Hint="{i18n:Translate DATE_ENCAISS}">
                     <DatePicker x:Name="dp_DateEncaiss"                        
                         Format="dd/MM/yyyy"
-                        FontSize="13"
+                        FontSize="14"
                         TextColor="Black"
                         Margin="30, 0, 30, 30" 
                         Date="{Binding Item.DATE_ENCAISS}"/>
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="datePickerIcon.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
 
 
                 <!--Motif-->
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 FocusedColor="#72CFCE"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 Margin="0,10"
                                                 UnfocusedColor="#2C9CEE"
                                                 ContainerBackgroundColor="Transparent"
@@ -72,13 +76,17 @@
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="spreadsheet.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
 
 
                 <!--Compte-->
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 FocusedColor="#72CFCE"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 UnfocusedColor="#2C9CEE"
                                                 Margin="0,10"
                                                 IsHintAlwaysFloated="true"
@@ -97,6 +105,10 @@
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="profile.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
 
 
@@ -118,7 +130,7 @@
                                                     Grid.ColumnSpan="2"
                                                     TrailingViewPosition="Outside" 
                                                     FocusedColor="#72CFCE"
-                                                    InputViewPadding="0,16,30,5"
+                                                    InputViewPadding="0,18,30,5"
                                                     Margin="0,10"
                                                     UnfocusedColor="#2C9CEE"
                                                     IsHintAlwaysFloated="true"
@@ -133,6 +145,10 @@
                         <inputLayout:SfTextInputLayout.LeadingView>
                             <Image  Source="profile.png"/>
                         </inputLayout:SfTextInputLayout.LeadingView>
+                        <inputLayout:SfTextInputLayout.HintLabelStyle>
+                            <inputLayout:LabelStyle FontSize="18">
+                            </inputLayout:LabelStyle>
+                        </inputLayout:SfTextInputLayout.HintLabelStyle>
                     </inputLayout:SfTextInputLayout>
 
                     <Image  x:Name="search_icon"
@@ -153,7 +169,7 @@
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 IsHintAlwaysFloated="true"
                                                 FocusedColor="#72CFCE"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 Margin="0,10"
                                                 x:Name="montantLabel"
                                                 UnfocusedColor="#2C9CEE"
@@ -169,12 +185,16 @@
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="money_bag.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
 
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 IsHintAlwaysFloated="true"
                                                 FocusedColor="#72CFCE"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 UnfocusedColor="#2C9CEE"
                                                 ContainerBackgroundColor="Transparent"
                                                 Hint="{i18n:Translate SOLDE_TIERS}">
@@ -188,13 +208,17 @@
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="credit_card.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
     
                 <!--Note-->
                 <inputLayout:SfTextInputLayout  TrailingViewPosition="Outside" 
                                                 IsHintAlwaysFloated="true"
                                                 FocusedColor="#72CFCE"
-                                                InputViewPadding="0,16,30,5"
+                                                InputViewPadding="0,18,30,5"
                                                 Margin="0,10"
                                                 x:Name="NoteLabel"
                                                 UnfocusedColor="#2C9CEE"
@@ -209,6 +233,11 @@
                     <inputLayout:SfTextInputLayout.LeadingView>
                         <Image Source="bill.png"/>
                     </inputLayout:SfTextInputLayout.LeadingView>
+
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
                 </inputLayout:SfTextInputLayout>
             </StackLayout>
         </ScrollView>

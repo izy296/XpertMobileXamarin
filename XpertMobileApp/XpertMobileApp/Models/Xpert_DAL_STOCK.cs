@@ -144,6 +144,22 @@ namespace XpertMobileApp.Models
         public string DESIGN_FAMILLE { get; set; } // varchar()
         public decimal COUT_ACHAT { get; set; } // varchar(2500)
         public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
+
+        //for Distribution app 
+        private bool dECHARGE_SELECTED { get; set; }
+        [Ignore]
+        public bool DECHARGE_SELECTED
+        {
+            get
+            {
+                return dECHARGE_SELECTED;
+            }
+            set
+            {
+                dECHARGE_SELECTED = value;
+                OnPropertyChanged("DECHARGE_SELECTED");
+            }
+        }
     }
 
     public partial class View_STK_STOCK
@@ -263,7 +279,7 @@ namespace XpertMobileApp.Models
             }
             set
             {
-                unitesList=value;
+                unitesList = value;
             }
         }
         private string totalSelectedQuantite { get; set; }
@@ -893,7 +909,22 @@ namespace XpertMobileApp.Models
         public string DESIGN_MAGASIN_DESTINATION { get; set; } // varchar(32)
         public string RESPONSABLE_MAGASIN_SOURCE { get; set; } // varchar(200)
         public string RESPONSABLE_MAGASIN_DESTINATION { get; set; } // varchar(200)
-
+        //pour l'utilisé dans le mobile...
+        [Ignore]
+        public List<View_STK_TRANSFERT_DETAIL> DETAILS { get; set; }
+        
+        [Ignore]
+        public string IMAGE_TYPE
+        {
+            get
+            {
+                return App.CODE_MAGASIN == MAGASIN_SOURCE ? "dechargement.png" : "chargement.png";
+            }
+            set
+            {
+                IMAGE_TYPE = value;
+            }
+        }
     }
 
     public partial class STK_TRANSFERT_DETAIL : BASE_CLASS

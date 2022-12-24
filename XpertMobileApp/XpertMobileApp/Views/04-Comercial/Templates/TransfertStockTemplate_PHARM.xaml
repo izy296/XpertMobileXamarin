@@ -4,7 +4,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views.Templates.TransfertStockTemplate_PHARM">
     <ContentView.Content>
-        
+
         <StackLayout>
             <Frame Style="{StaticResource FrameForList}">
                 <Grid  BackgroundColor="Transparent" >
@@ -13,6 +13,7 @@
                         <ColumnDefinition Width="2"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -24,17 +25,29 @@
                     <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
                     </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Spacing="5" Padding="0">
-                        <Label Text="{Binding NUM_TRANSFERT}" TextColor="{StaticResource DefaultTextColor}" 
-                               FontAttributes="Bold" FontSize="Default"/>
-                    </StackLayout>
 
-                    <StackLayout Grid.Column="1" Grid.Row="2" Spacing="5" Padding="0">
+                    <Label Grid.Row="0"
+                           Grid.Column="1"
+                           Text="{Binding NUM_TRANSFERT}" 
+                           TextColor="{StaticResource DefaultTextColor}" 
+                           FontAttributes="Bold"
+                           HorizontalOptions="Start"
+                           FontSize="Default"/>
+
+                    <Image Grid.Row="0"
+                           Grid.Column="3"
+                           Source="{Binding IMAGE_TYPE}"  
+                           WidthRequest="24"
+                           VerticalOptions="Start"  
+                           HorizontalOptions="End"/>
+
+
+                    <StackLayout Grid.Column="1" Grid.Row="2"  Spacing="5" Padding="0">
                         <Label Text="{Binding DESIGN_MAGASIN_SOURCE, StringFormat='Source : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
                         <Label Text="{Binding DESIGN_MAGASIN_DESTINATION, StringFormat='Distination : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
                     </StackLayout>
 
-                    <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
+                    <StackLayout Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Spacing="5" Padding="0">
                         <Label Text="{Binding TOTAL_ACHAT, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Green"/>
                         <Label Text="{Binding CREATED_BY, StringFormat='{0}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
                         <Label Text="{Binding DATE_TRANSEFRT, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
@@ -45,5 +58,5 @@
                 </Grid>
             </Frame>
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>

@@ -1390,4 +1390,10 @@
   <data name="pn_Inventaire" xml:space="preserve">
     <value>Inventaire</value>
   </data>
+  <data name="txt_non" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="txt_oui" xml:space="preserve">
+    <value>Oui</value>
+  </data>
 </root>

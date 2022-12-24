@@ -11,10 +11,10 @@ using XpertMobileApp.Models;
 
 namespace XpertMobileApp.Api
 {
-    internal class StockManager : CrudService<View_STK_STOCK>
+    internal class TransfertStock_Manager : CrudService<View_STK_STOCK>
     {
-        public StockManager() : 
-            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_STOCK), App.User.Token)
+        public TransfertStock_Manager() :
+            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_TRANSFERT), App.User.Token)
         {
 
         }
@@ -24,7 +24,7 @@ namespace XpertMobileApp.Api
             string url = GetActionUrl("GetByCodeBarreLot");
             url += WSApi2.AddParam(url, "codebarre", codeBarre);
             url += WSApi2.AddParam(url, "tiers", tiers);
-            url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);            
+            url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);
 
             return await WSApi2.RetrievAauthorizedData<View_STK_STOCK>(url, this.Token.access_token);
         }
@@ -35,19 +35,11 @@ namespace XpertMobileApp.Api
             url += WSApi2.AddParam(url, "idStock", idStock.ToString());
             return await WSApi2.RetrievAauthorizedValue<string>(url, this.Token.access_token);
         }
-        public async Task<List<View_STK_STOCK>> SelectAllByMagasin(string CodeMagasin)
-        {
-            try
-            {
-                string url = GetActionUrl("GetStockByMagsin");
-                url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin.ToString());
-                return await WSApi2.RetrievAauthorizedValue<List<View_STK_STOCK>>(url, this.Token.access_token);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
+        public async Task<bool> InsertTransfert(View_STK_TRANSFERT transfers)
+        {
+            string url = GetActionUrl("InsertTransfert");
+            return await WSApi2.PostAauthorizedValue<bool, View_STK_TRANSFERT>(url, transfers, this.Token.access_token);
+        }
     }
 }

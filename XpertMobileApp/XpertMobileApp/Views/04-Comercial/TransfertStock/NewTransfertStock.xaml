@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views._04_Comercial.TransfertStock.NewTransfertStock"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" 
+             Title="Nouveau Déchargement"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+
+    <!--Toolbar Item-->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{i18n:Translate cmd_Cancel}" Clicked="Cancel_Clicked" x:Name="closePageBtn">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android,iOS,UWP" Value="close.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+        <ToolbarItem Text="{i18n:Translate cmd_Save}" Clicked="Save_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android,iOS,UWP" Value="check.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical" Padding="0,15,15,15">
+            <StackLayout VerticalOptions="Start" Margin="0,5">
+                <!--Date-->
+                <inputLayout:SfTextInputLayout  
+                    TrailingViewPosition="Outside" 
+                    FocusedColor="#72CFCE"
+                    Margin="0,1"
+                    InputViewPadding="0,14,15,10"
+                    UnfocusedColor="#2C9CEE"
+                    ContainerBackgroundColor="Transparent"
+                    IsHintAlwaysFloated="true"
+                    Hint="{i18n:Translate DATE_ENCAISS}">
+
+                    <DatePicker 
+                        x:Name="dp_DateEncaiss"                        
+                        Format="dd/MM/yyyy"
+                        FontSize="14"
+                        TextColor="Black"
+                        Margin="30, 0, 30, 30" 
+                        Date="{Binding Item.DATE_ENCAISS}"/>
+
+                    <inputLayout:SfTextInputLayout.LeadingView>
+                        <Image Source="datePickerIcon.png"/>
+                    </inputLayout:SfTextInputLayout.LeadingView>
+
+                    <inputLayout:SfTextInputLayout.HintLabelStyle>
+                        <inputLayout:LabelStyle FontSize="18">
+                        </inputLayout:LabelStyle>
+                    </inputLayout:SfTextInputLayout.HintLabelStyle>
+
+                </inputLayout:SfTextInputLayout>
+                <!--Date-->
+                <StackLayout Orientation="Horizontal">
+
+                    <!--Magasin Source-->
+                    <inputLayout:SfTextInputLayout  
+                        TrailingViewPosition="Outside" 
+                        FocusedColor="#72CFCE"
+                        InputViewPadding="0,14,0,10"
+                        Margin="0,1"
+                        HorizontalOptions="FillAndExpand"
+                        UnfocusedColor="#2C9CEE"
+                        ContainerBackgroundColor="Transparent"
+                        IsHintAlwaysFloated="true"
+                        Hint="Magasin Source ">
+
+                        <Picker 
+                            ItemsSource="{Binding Magasin}"
+                            ItemDisplayBinding="{Binding DESIGNATION}"
+                            SelectedItem="{Binding SelectedMagasinSource}"
+                            TextColor="Black"
+                            FontSize="13"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="0, 0, 10, 30" 
+                            x:Name="magasinSourcePicker"/>
+
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Image Source="shop.png"/>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+
+                        <inputLayout:SfTextInputLayout.HintLabelStyle>
+                            <inputLayout:LabelStyle FontSize="16"/>
+                        </inputLayout:SfTextInputLayout.HintLabelStyle>
+                    </inputLayout:SfTextInputLayout>
+                    <!--Magasin Source-->
+
+                    <!--Magasin Destination-->
+                    <!--Magasin Source-->
+                    <inputLayout:SfTextInputLayout  
+                        TrailingViewPosition="Outside" 
+                        FocusedColor="#72CFCE"
+                        InputViewPadding="0,14,0,10"
+                        Margin="0,1"
+                        UnfocusedColor="#2C9CEE"
+                        ContainerBackgroundColor="Transparent"
+                        IsHintAlwaysFloated="true"
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Magasin Source ">
+
+                        <Picker 
+                            ItemsSource="{Binding Magasin}"
+                            ItemDisplayBinding="{Binding DESIGNATION}"
+                            SelectedItem="{Binding SelectedMagasinDest}"
+                            TextColor="Black"
+                            FontSize="13"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="0, 0, 0, 30" 
+                            x:Name="magasinDestPicker"/>
+
+                        <inputLayout:SfTextInputLayout.LeadingView>
+                            <Image Source="shop.png"/>
+                        </inputLayout:SfTextInputLayout.LeadingView>
+
+                        <inputLayout:SfTextInputLayout.HintLabelStyle>
+                            <inputLayout:LabelStyle FontSize="16"/>
+                        </inputLayout:SfTextInputLayout.HintLabelStyle>
+                    </inputLayout:SfTextInputLayout>
+
+                    <!--Magasin Destination-->
+                </StackLayout>
+
+
+
+                <Frame 
+                    VerticalOptions="End"
+                    CornerRadius="5" 
+                    Padding="10" 
+                    Margin="15,0,0,0" 
+                    BackgroundColor="White" 
+                    HasShadow="True"  
+                    OutlineColor="White">
+                    <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+                        <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                <Label 
+                                Text="Produits à déchargés" 
+                                TextColor="{StaticResource Primary}" 
+                                FontSize="16"
+                                Padding="0,0,0,10"
+                                FontAttributes="Bold"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Selectionner tous" TextColor="#000" VerticalOptions="Center" Padding="0,0,0,10"/>
+
+                                    <syncfusion:SfCheckBox 
+                                        StateChanged="SelectAll"
+                                        x:Name="checkBoxSelectAll" 
+                                        IsChecked="false" 
+                                        CheckedColor="{StaticResource Primary}" 
+                                        TickColor="#fff"
+                                        CornerRadius="50"
+                                        BorderWidth="2"
+                                        Margin="0,0,0,5"
+                                        UncheckedColor="{StaticResource Primary}"
+                                        />
+                                </StackLayout>
+
+
+                            </FlexLayout>
+
+
+                            <BoxView BackgroundColor="#EFEFEF"
+                                     Margin="0,5,0,0"
+                                     HeightRequest="0.5"/>
+
+                        </StackLayout>
+                        <RefreshView 
+                            x:Name="refreshView"
+                            IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                            Command="{Binding PullTORefresh}">
+
+                            <CollectionView x:Name="collectionView"
+                                            ItemsSource="{Binding AllProductInStock}"
+                                            SelectionMode = "Single"
+                                            HeightRequest="350"
+                                            SelectionChanged="SelectedItem"
+                                            VerticalOptions="EndAndExpand">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid  BackgroundColor="Transparent" >
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2"/>
+                                                <ColumnDefinition Width="80"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <StackLayout Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource StackLOddEven}">
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="1"
+                                                         Grid.RowSpan="2"
+                                                         Grid.Row="0">
+                                                <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="CenterAndExpand" Aspect="AspectFill" />
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="2" Spacing="5" Padding="0">
+                                                <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                                                       TextColor="{StaticResource DefaultTextColor}" 
+                                                       FontAttributes="Bold" 
+                                                       FontSize="14"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
+                                                <Label Text="{Binding DESIGN_FAMILLE}" TextColor="{StaticResource DefaultTextColor}" FontSize="13"/>
+                                                <Label Text="{Binding PRIX_VENTE, StringFormat='Prix. {0:N2}'}" FontAttributes="Bold" FontSize="Default" TextColor="Green"/>
+                                                <Label Text="{Binding QUANTITE, StringFormat='Qte. {0:N2}'}" FontAttributes="Bold" FontSize="Default"  TextColor="Red"/>
+                                            </StackLayout>
+
+                                            <StackLayout Grid.Column="3" Grid.Row="1" Spacing="5" Padding="0">
+
+                                                <syncfusion:SfCheckBox 
+                                                       x:Name="checkBox" 
+                                                       IsChecked="{Binding DECHARGE_SELECTED}" 
+                                                       CheckedColor="{StaticResource Primary}" 
+                                                       TickColor="#fff"
+                                                       CornerRadius="50"
+                                                       HorizontalOptions="End"
+                                                       Padding="2"
+                                                       BorderWidth="1"
+                                                       StateChanged="SelectProduct"
+                                                       UncheckedColor="{StaticResource Primary}"/>
+
+                                                <Label Text="{Binding REF_PRODUIT, StringFormat='Réf. {0}'}" 
+                                                       HorizontalOptions="End" 
+                                                       TextColor="{StaticResource DefaultTextColor}"/>
+
+                                                <Label Text="{Binding UNITE, StringFormat='UNITE: {0}'}" 
+                                                       HorizontalOptions="End" 
+                                                       TextColor="{StaticResource DefaultTextColor}"/>
+
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+
+                        </RefreshView>
+                    </StackLayout>
+                </Frame>
+                
+                <!--Summary-->
+                <yummy:PancakeView
+                            Padding="10"
+                            Margin="15,0,0,5"
+                            CornerRadius="7"
+                            BackgroundColor="{StaticResource Primary}">
+                    <StackLayout Orientation="Vertical">
+                        <Label TextColor="#fff" Text="{Binding NumOfProductSelected,StringFormat='Nombre de produit: {0}'}"/>
+                        <Label TextColor="#fff" Text="{Binding MontantTotal,StringFormat='Montant total: {0:N2}'}"/>
+                    </StackLayout>
+
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

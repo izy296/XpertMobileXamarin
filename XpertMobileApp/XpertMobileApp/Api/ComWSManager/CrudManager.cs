@@ -22,12 +22,12 @@ namespace XpertMobileApp.Api.Managers
         internal static CrudService<View_ACH_MANQUANTS> Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
 
         internal static CrudService<View_TRS_ENCAISS> Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
-
+        
         internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
 
         internal static CrudService<View_BSE_MAGASIN> BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
+        
         internal static CrudService<BSE_TABLE> BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
-
 
         internal static CrudService<Settings> MobileSettings = new CrudService<Settings>(App.RestServiceUrl, "MobileSettings", App.User.Token);
 
@@ -40,6 +40,9 @@ namespace XpertMobileApp.Api.Managers
         internal static CrudService<View_PRD_AGRICULTURE> Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
         
         internal static TourneeManager Tournee = new TourneeManager();
+
+        internal static TransfertStock_Manager StockTransfert = new TransfertStock_Manager();
+
         internal static CrudService<View_LIV_TOURNEE_DETAIL> TourneeDetails = new CrudService<View_LIV_TOURNEE_DETAIL>(App.RestServiceUrl, "LIV_TOURNEE_DETAIL", App.User.Token);
 
         internal static SYS_PARAMS_Manager SysParams = new SYS_PARAMS_Manager();
@@ -72,7 +75,6 @@ namespace XpertMobileApp.Api.Managers
             BSE_MAGASINS = new CrudService<View_BSE_MAGASIN>(App.RestServiceUrl, "BSE_MAGASINS", App.User.Token);
             BSE_COMPTE = new CrudService<View_BSE_COMPTE>(App.RestServiceUrl, "BSE_COMPTE", App.User.Token);
             BSE_LIEUX = new CrudService<BSE_TABLE>(App.RestServiceUrl, "BSE_LIEUX", App.User.Token);
-
             Commandes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_COMMANDE", App.User.Token);
             Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
             Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);

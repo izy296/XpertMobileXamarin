@@ -244,7 +244,7 @@ namespace XpertMobileApp.Views
                     {
                         if (string.IsNullOrEmpty(App.PrefixCodification))
                         {
-                            CustomPopup customPopup = new CustomPopup(AppResources.txt_ConfigPrefix, "Non", "Oui");
+                            CustomPopup customPopup = new CustomPopup(AppResources.txt_ConfigPrefix, AppResources.txt_non, AppResources.txt_oui);
                             await PopupNavigation.Instance.PushAsync(customPopup);
                             if (await customPopup.PopupClosedTask)
                             {

@@ -929,6 +929,7 @@ namespace XpertMobileApp.ViewModels
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 if (!String.IsNullOrEmpty(SearchedText))
                 {
                     Device.BeginInvokeOnMainThread(() =>
@@ -997,6 +998,7 @@ namespace XpertMobileApp.ViewModels
                         }
                     }
                 }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {

@@ -3764,6 +3764,21 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("TOTAL_DECAISS", resourceCulture);
             }
         }
+
+        public static string txt_oui
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_oui", resourceCulture);
+            }
+        }
+        public static string txt_non
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_non", resourceCulture);
+            }
+        }
     }
 }
 
