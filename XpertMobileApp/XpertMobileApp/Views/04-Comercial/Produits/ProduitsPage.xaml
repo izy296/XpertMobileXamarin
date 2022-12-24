@@ -12,6 +12,8 @@
              x:Name="Produits">
 
     <base:XBasePage.ToolbarItems >
+        <ToolbarItem Icon="qteless.png" ClassId="Scan" Clicked="ShowWithQuantityGreatThanZero" x:Name="qteSwitch"/>
+
         <ToolbarItem Icon="scan_qr_24.png" ClassId="Scan" Clicked="RowScan_Clicked" />
 
         <ToolbarItem x:Name="changeDisplayItem"
@@ -45,7 +47,7 @@
         
     </base:XBasePage.ToolbarItems>
 
-    <NavigationPage.TitleView>
+    <!--<NavigationPage.TitleView>
         <FlexLayout JustifyContent="SpaceBetween" AlignContent="Center">
             <StackLayout VerticalOptions="End">
                 <Label Text="{Binding Title}"
@@ -64,9 +66,9 @@
                     Margin="5,0,0,0" 
                     Toggled="Switch1_Toggled"/>
             </StackLayout>
-        </FlexLayout>
+        </FlexLayout>-->
 
-    </NavigationPage.TitleView>
+    <!--</NavigationPage.TitleView>-->
     <base:XBasePage.Resources>
         <syncfusion:SfRadioGroupKey x:Key="quantiteFilter" />
         <syncfusion:SfRadioGroupKey x:Key="etatFilter" />

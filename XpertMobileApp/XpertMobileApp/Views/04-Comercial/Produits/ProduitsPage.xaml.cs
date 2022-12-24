@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
 using System;
 using System.Collections.Generic;
@@ -236,7 +237,7 @@ namespace XpertMobileApp.Views
             {
                 ItemsListView.ItemsLayout = new GridItemsLayout(2, ItemsLayoutOrientation.Vertical);
                 changeDisplayItem.IconImageSource = "grid_display.png";
-                changeDisplayItem.Text = AppResources.txt_DisplayInline; 
+                changeDisplayItem.Text = AppResources.txt_DisplayInline;
             }
             else
             {
@@ -257,6 +258,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 viewModel.OrderWithFamille = !viewModel.OrderWithFamille;
                 viewModel.OrderWithMarque = false;
                 viewModel.OrderWithType = false;
@@ -272,6 +274,7 @@ namespace XpertMobileApp.Views
                     ItemsListView.IsGrouped = false;
                     ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
                 }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -282,6 +285,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 viewModel.OrderWithFamille = false;
                 viewModel.OrderWithMarque = !viewModel.OrderWithMarque;
                 viewModel.OrderWithType = false;
@@ -297,6 +301,7 @@ namespace XpertMobileApp.Views
                     ItemsListView.IsGrouped = false;
                     ItemsListView.SetBinding(ItemsView.ItemsSourceProperty, "Items");
                 }
+                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
@@ -329,5 +334,46 @@ namespace XpertMobileApp.Views
             }
         }
         #endregion
+
+        private async void ShowWithQuantityGreatThanZero(object sender, EventArgs e)
+        {
+            try
+            {
+                viewModel.DisplayWithQuantity = !viewModel.DisplayWithQuantity;
+                if (viewModel.DisplayWithQuantity)
+                {
+                    qteSwitch.IconImageSource = "qtegreater.png";
+                }
+                else
+                {
+                    qteSwitch.IconImageSource = "qteless.png";
+                }
+                if (viewModel.OrderWithFamille)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByFamille();
+                }
+                else if (viewModel.OrderWithMarque)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByBrand();
+                }
+                else if (viewModel.OrderWithType)
+                {
+                    viewModel.ListOfGroupedProducts.Clear();
+                    await viewModel.GroupByType();
+                }
+                else
+                {
+                    viewModel.Items.Clear();
+                    viewModel.ItemsWithQteMagasin.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

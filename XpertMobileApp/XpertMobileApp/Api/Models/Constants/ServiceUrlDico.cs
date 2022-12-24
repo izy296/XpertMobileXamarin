@@ -217,6 +217,7 @@ namespace XpertMobileApp.Helpers
 
         public static string TRANSFERT_STOCK_DETAIL_URL = "STK_TRANSFERT_DETAIL";
         public static string TRANSFERT_STOCK_GET_DETAIL= "GetTransferProducts";
+        public static string TRANSFERT_STOCK_ADD = "InsertTransfert";
 
         //Inventaire
         public static string STK_INVENTAIRE_URL = "STK_INVENTAIRE";

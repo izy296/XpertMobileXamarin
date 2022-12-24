@@ -192,19 +192,21 @@
                                              Grid.Row="0">
 
                         <yummy:PancakeView BackgroundColor="#1E1E1E"
-                                           Padding="5,1"
                                            WidthRequest="85"
                                            Opacity="0.65"
-                                           CornerRadius="10">
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           CornerRadius="5">
                             <Label TextColor="white"
-                                   HorizontalOptions="Center"
-                                               Text="BL" 
-                                               VerticalTextAlignment="Center"/>
+                                   Text="BL"
+                                   VerticalTextAlignment="Center"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Center"/>
                         </yummy:PancakeView>
 
 
-                        <Frame BackgroundColor="#e65b65"
-                                           extensions:ShadowEffect.Color="#e65b65"
+                        <Frame BackgroundColor="#334756"
+                                           extensions:ShadowEffect.Color="#1E1E1E"
                                            extensions:ShadowEffect.Opacity="1"
                                            WidthRequest="30" 
                                            HeightRequest="30"
@@ -226,19 +228,21 @@
                                              IsVisible="false" 
                                              Grid.Row="1">
                         <yummy:PancakeView BackgroundColor="#1E1E1E"
-                                           Padding="5,1"
                                            WidthRequest="85"
                                            Opacity="0.65"
-                                           CornerRadius="10">
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           CornerRadius="5">
                             <Label TextColor="white"
-                                   HorizontalOptions="Center"
-                                               Text="Retour" 
-                                               VerticalTextAlignment="Center"/>
+                                   Text="Retour"
+                                   VerticalTextAlignment="Center"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Center"/>
                         </yummy:PancakeView>
 
-                        <Frame BackgroundColor="#519872" 
+                        <Frame BackgroundColor="#334756" 
                                            HasShadow="true"
-                                           extensions:ShadowEffect.Color="#519872"
+                                           extensions:ShadowEffect.Color="#1E1E1E"
                                            extensions:ShadowEffect.Opacity="1"
                                            HorizontalOptions="End"
                                            WidthRequest="30" 
@@ -259,23 +263,25 @@
 
                     <!--Third Button-->
                     <StackLayout x:Name="FloatMenuItem3" 
-                                             HorizontalOptions="End"
-                                             Orientation="Horizontal" 
-                                             IsVisible="false" 
-                                             Grid.Row="2">
+                                 HorizontalOptions="End"
+                                 Orientation="Horizontal" 
+                                 IsVisible="false" 
+                                 Grid.Row="2">
 
                         <yummy:PancakeView BackgroundColor="#1E1E1E"
-                                           Padding="5,1"
                                            WidthRequest="85"
                                            Opacity="0.65"
-                                           CornerRadius="10">
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           CornerRadius="5">
                             <Label TextColor="white"
-                                   Text="Versement" 
-                                   HorizontalOptions="Center"
-                                   VerticalTextAlignment="Center"/>
+                                   Text="Versement"
+                                   VerticalTextAlignment="Center"
+                                   HeightRequest="40"
+                                   HorizontalOptions="Center"/>
                         </yummy:PancakeView>
 
-                        <Frame BackgroundColor="#141E61" 
+                        <Frame BackgroundColor="#334756" 
                                            extensions:ShadowEffect.Color="#141E61"
                                            extensions:ShadowEffect.Opacity="1"
                                            HorizontalOptions="End"
@@ -302,14 +308,17 @@
                                              IsVisible="false" 
                                              Grid.Row="2">
                         <yummy:PancakeView BackgroundColor="#1E1E1E"
-                                                       Padding="5,1"
-                                                       Opacity="0.65"
-                                                       WidthRequest="85"
-                                                       CornerRadius="10">
-                            <Label    TextColor="white"
-                                      HorizontalOptions="Center"
-                                      Text="Commande" 
-                                      VerticalTextAlignment="Center"/>
+                                           WidthRequest="100"
+                                           Opacity="0.65"
+                                           VerticalOptions="Center"
+                                           HeightRequest="20"
+                                           CornerRadius="5">
+                            <Label TextColor="white"
+                                   Text="Commandes"
+                                   VerticalTextAlignment="Center"
+                                   WidthRequest="80"
+                                   HeightRequest="50"
+                                   HorizontalOptions="Center"/>
                         </yummy:PancakeView>
 
 
