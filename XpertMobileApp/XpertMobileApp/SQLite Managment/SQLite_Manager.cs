@@ -424,6 +424,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
+                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
                     await SyncProduitFamille();
@@ -525,6 +526,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
                 await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
+                await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
                 await UserDialogs.Instance.AlertAsync("Suppression des tables de base faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
             catch (Exception ex)
@@ -1819,6 +1821,33 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
         /// <summary>
+        /// Obtenire une Commande par CODE_VENTE
+        /// </summary>
+        /// <param name="CodeVente"></param>
+        /// <returns></returns>
+        public static async Task<View_VTE_VENTE> GetCommande(string CodeVente)
+        {
+            try
+            {
+                var exception = SQLite_Manager.GetInstance().Table<View_VTE_COMMANDE>().ToListAsync().Exception;
+                if (exception == null)
+                {
+
+                    var ventes = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync();
+                    var res = ventes.Where(e => e.CODE_VENTE == CodeVente).FirstOrDefault();
+                    return res;
+                }
+                else throw exception;
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return null;
+            }
+
+        }
+
+        /// <summary>
         /// Obtenire la liste des details de vente par CODE_VENTE
         /// </summary>
         /// <param name="CodeVente"></param>
@@ -1864,9 +1893,27 @@ namespace XpertMobileApp.SQLite_Managment
                         try
                         {
                             if (vteDetails.Count > 0)
+                            {
                                 objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                                if (iVente.TYPE_DOC == "CC")
+                                {
+                                    foreach (var detail in objdetail)
+                                    {
+                                        detail.ID_STOCK = null;
+                                    }
+                                }
+                            }
                             else
+                            {
                                 objdetailDistrib = vteDetailsDistrib?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                                if (iVente.TYPE_DOC == "CC")
+                                {
+                                    foreach (var detail in objdetailDistrib)
+                                    {
+                                        detail.ID_STOCK = null;
+                                    }
+                                }
+                            }
                         }
                         catch
                         {
@@ -1886,7 +1933,9 @@ namespace XpertMobileApp.SQLite_Managment
                                 }
                             }
                         }
+
                     }
+
 
                     var compte = await getComptes();
 
