@@ -245,14 +245,7 @@ namespace XpertMobileApp.SQLite_Managment
                                             v.CODE_TIERS, 
                                             v.DATE_VENTE DATE_DOC
                                             FROM View_VTE_VENTE v 
-                                            WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR' 
-                                    UNION ALL 
-                                    SELECT c.CODE_VENTE CODE_DOC,  
-                                            c.TOTAL_PAYE, 
-                                            c.TYPE_DOC, 
-                                            c.CODE_TIERS, 
-                                            c.DATE_VENTE DATE_DOC
-                                            FROM View_VTE_COMMANDE c 
+                                            WHERE v.TYPE_DOC ='BL' or v.TYPE_DOC ='BR' or v.TYPE_DOC ='CC' 
                                     UNION ALL 
                                     SELECT e.CODE_ENCAISS CODE_DOC, 
                                               e.TOTAL_ENCAISS TOTAL_PAYE, 
@@ -263,7 +256,13 @@ namespace XpertMobileApp.SQLite_Managment
                                             )T ORDER BY DATE_DOC DESC";
 
                 await GetInstance().ExecuteAsync(queryNew);
-
+        //        SELECT c.CODE_VENTE CODE_DOC,
+        //c.TOTAL_PAYE, 
+        //                                    c.TYPE_DOC, 
+        //                                    c.CODE_TIERS, 
+        //                                    c.DATE_VENTE DATE_DOC
+        //                                    FROM View_VTE_COMMANDE c
+        //                            UNION ALL
             }
             catch (Exception Ex)
             {
@@ -424,6 +423,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
+                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
                     await SyncProduitFamille();
@@ -656,6 +656,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncEncaissToServer();
                 await SyncVenteToServer(); // error while coppying content to a stream
                 await SyncTourneesToServer();
+                await SyncCommandToServer();
 
                 UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -1879,7 +1880,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                var ListVentes = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
+                var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e=>e.TYPE_DOC!="CC").ToListAsync();
                 var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
                 var vteDetailsDistrib = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
 
@@ -1894,23 +1895,95 @@ namespace XpertMobileApp.SQLite_Managment
                             if (vteDetails.Count > 0)
                             {
                                 objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
-                                if (iVente.TYPE_DOC == "CC")
+                            }
+                            else
+                            {
+                                objdetailDistrib = vteDetailsDistrib?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                            }
+                        }
+                        catch
+                        {
+                            objdetail = null;
+                        }
+                        finally
+                        {
+                            if (objdetail.Count > 0)
+                                iVente.Details = objdetail;
+                            else if (objdetailDistrib.Count > 0)
+                            {
+                                iVente.Details = new List<View_VTE_VENTE_LOT>();
+                                foreach (var v in objdetailDistrib)
                                 {
-                                    foreach (var detail in objdetail)
-                                    {
-                                        detail.ID_STOCK = null;
-                                    }
+                                    iVente.Details.Add(XpertHelper.CloneObject<View_VTE_VENTE_LOT>(v));
+                                }
+                            }
+                        }
+
+                    }
+
+
+                    var compte = await getComptes();
+
+                    var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
+                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
+
+                    // Commenter cette section a cause de donnes utilisé avec les commandes et vider les tableauxs apres la synchronisation
+                    // des commandes
+
+                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
+                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
+
+                    UserDialogs.Instance.HideLoading();
+                    return res;
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+            }
+            return "";
+        }
+
+
+        /// <summary>
+        /// Synchronisation de la liste des Commandes aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<string> SyncCommandToServer()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
+                var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC == "CC").ToListAsync();
+                var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+                var vteDetailsDistrib = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
+
+                if (ListVentes.Count > 0 && ListVentes != null)
+                {
+                    foreach (var iVente in ListVentes)
+                    {
+                        List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
+                        List<View_VTE_VENTE_LIVRAISON> objdetailDistrib = new List<View_VTE_VENTE_LIVRAISON>();
+                        try
+                        {
+                            if (vteDetails.Count > 0)
+                            {
+                                objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                                foreach (var detail in objdetail)
+                                {
+                                    detail.ID_STOCK = null;
                                 }
                             }
                             else
                             {
                                 objdetailDistrib = vteDetailsDistrib?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
-                                if (iVente.TYPE_DOC == "CC")
+                                foreach (var detail in objdetailDistrib)
                                 {
-                                    foreach (var detail in objdetailDistrib)
-                                    {
-                                        detail.ID_STOCK = null;
-                                    }
+                                    detail.ID_STOCK = null;
                                 }
                             }
                         }
@@ -1938,15 +2011,15 @@ namespace XpertMobileApp.SQLite_Managment
 
                     var compte = await getComptes();
 
-                    var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
-                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
+                    var bll = CrudManager.Commandes;
+                    var res = await bll.SyncCommandes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
 
                     await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
 
                     UserDialogs.Instance.HideLoading();
-                    return res;
+                    return res.ToString();
                 }
             }
             catch (Exception ex)
@@ -2075,7 +2148,7 @@ namespace XpertMobileApp.SQLite_Managment
                         await UpdateSoldeTiers(sold, vente.CODE_TIERS);
                     }
 
-                    if (vente.TOTAL_RECU != 0)
+                    if (vente.TOTAL_RECU != 0 && vente.TYPE_DOC!="CC")
                     {
                         encaissement.CODE_TIERS = vente.CODE_TIERS;
                         encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;

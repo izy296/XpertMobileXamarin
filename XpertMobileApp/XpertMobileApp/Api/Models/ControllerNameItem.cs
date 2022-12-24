@@ -31,8 +31,11 @@ namespace XpertMobileApp.Api.Models
     {
         public static string GetControllerName(ControllerNameItem controllerName)
         {
-            if (Constants.AppName == Apps.XCOM_Mob)
-                return controllerName.ToString() + "_XCOM";
+            if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
+                if (controllerName == ControllerNameItem.LIV_TOURNEE)
+                    return controllerName.ToString();
+                else
+                    return controllerName.ToString() + "_XCOM";
             else
                 return
                     controllerName.ToString();

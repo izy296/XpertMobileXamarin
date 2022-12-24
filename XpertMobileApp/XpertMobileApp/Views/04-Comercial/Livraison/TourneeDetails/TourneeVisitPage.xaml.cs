@@ -316,7 +316,9 @@ namespace XpertMobileApp.Views
                 }
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
-                await Navigation.PushAsync(new NewCommandePage(null, tier));
+                //await Navigation.PushAsync(new NewCommandePage(null, tier));
+                await Navigation.PushAsync(new VenteFormLivraisonPage(null, "CC", tier, viewModel.Item.CODE_DETAIL));
+
             }
             catch (Exception ex)
             {
@@ -404,14 +406,14 @@ namespace XpertMobileApp.Views
                     var encaisse = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elmeent => elmeent.CODE_ENCAISS == item.CODE_DOC).FirstAsync();
                     await Navigation.PushAsync(new EncaissementDetailPage(encaisse));
                 }
-                else if (item.TYPE_DOC == "BL" || item.TYPE_DOC == "BR")
+                else
                 {
                     await Navigation.PushAsync(new VenteDetailPage(null, item.CODE_DOC));
                 }
-                else if (item.TYPE_DOC == "CC")
-                {
-                    await Navigation.PushAsync(new CommandeDetailPage(null,item.CODE_DOC));
-                }
+                //else if (item.TYPE_DOC == "CC")
+                //{
+                //    await Navigation.PushAsync(new CommandeDetailPage(null,item.CODE_DOC));
+                //}
                 if (tourneeClosed)
                     MessagingCenter.Send(this, "TourneeClosed", "TourneeClosed");
 

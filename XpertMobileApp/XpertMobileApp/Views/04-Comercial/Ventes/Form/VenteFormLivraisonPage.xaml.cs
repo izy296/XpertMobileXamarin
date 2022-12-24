@@ -89,6 +89,7 @@ namespace XpertMobileApp.Views
             btn_Scan.IsVisible = disable;
             itemSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream);
             retourSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream+"BR",true);
+            commandSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream+"CC",true);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
@@ -112,6 +113,14 @@ namespace XpertMobileApp.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     viewModel.AddNewRows(selectedItem, true); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream + "CC", async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
                 });
             });
 
@@ -265,6 +274,7 @@ namespace XpertMobileApp.Views
         #region Selectors
 
         private LotSelectorLivraisonUniteFamille retourSelector;
+        private LotSelectorLivraisonUniteFamille commandSelector;
         private LotSelectorLivraisonUniteFamille itemSelector;
         private async void RowSelect_Clicked(object sender, EventArgs e)
         {
@@ -282,6 +292,17 @@ namespace XpertMobileApp.Views
                 retourSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
                 //itemSelector.AutoriserReception = "1";
                 await PopupNavigation.Instance.PushAsync(retourSelector);
+                if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
+                {
+                    MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.CODE_PRODUIT).ToList());
+                }
+            }
+            else if (viewModel.TypeDoc == "CC")
+            {
+                commandSelector.viewModel.Tier = viewModel.SelectedTiers;
+                commandSelector.CodeTiers = viewModel?.Item?.CODE_TIERS;
+                //itemSelector.AutoriserReception = "1";
+                await PopupNavigation.Instance.PushAsync(commandSelector);
                 if (viewModel.ItemRows != null || viewModel.ItemRows.Count > 0)
                 {
                     MessagingCenter.Send(this, "SelectedList", viewModel.ItemRows.Select(elm => elm.CODE_PRODUIT).ToList());

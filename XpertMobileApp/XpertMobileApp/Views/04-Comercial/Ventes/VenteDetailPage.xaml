@@ -90,7 +90,9 @@
                              Refreshing="RefreshView_Refreshing"
                              IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
 
-                    <CollectionView ItemsSource="{Binding ItemRows}"
+                    <CollectionView 
+                        x:Name="collectionView"
+                        ItemsSource="{Binding ItemRows}"
                                     ItemTemplate="{StaticResource VenteTemplateSelector}"
                                     SelectionChanged="CollectionView_SelectionChanged"
                                     SelectionMode="Single">

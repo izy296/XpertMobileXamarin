@@ -79,6 +79,8 @@ namespace XpertMobileApp.Views.Encaissement
                 DetailsHeader.IsVisible = false;
                 if (Item.TYPE_VENTE == "BL")
                     Title = AppResources.pn_Livraison;
+                else if (Item.TYPE_VENTE == "CC")
+                    Title = AppResources.pn_Commandes;
                 else if (Item.TYPE_VENTE == "BR")
                     Title = "Bon Retour";
             }
@@ -328,7 +330,31 @@ AppResources.alrt_msg_Ok);
         {
             var selected = e.CurrentSelection[0] as View_VTE_JOURNAL_DETAIL;
             ProduitDetailPage produitDetailPage = new ProduitDetailPage(selected.CODE_PRODUIT);
-            await Navigation.PushAsync(produitDetailPage);
+            if (App.Online)
+            {
+                await Navigation.PushAsync(produitDetailPage);
+                Device.BeginInvokeOnMainThread(() => { 
+                    try
+                    {
+                        collectionView.SelectedItem = null;
+                    }
+                    catch
+                    {
+                    }
+                });
+            }
+            else
+            {
+                Device.BeginInvokeOnMainThread(() => {
+                    try
+                    {
+                        collectionView.SelectedItem = null;
+                    }
+                    catch
+                    {
+                    }
+                });
+            }
         }
 
         private async void EditClicked(object sender, EventArgs e)
