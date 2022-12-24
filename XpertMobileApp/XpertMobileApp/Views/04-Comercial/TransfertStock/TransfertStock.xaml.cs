@@ -13,6 +13,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views._04_Comercial.TransfertStock;
 
 namespace XpertMobileApp.Views
 {
@@ -85,5 +86,9 @@ namespace XpertMobileApp.Views
 
         }
 
+        private async void AjoutItem_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewTransfertStock()));
+        }
     }
 }
