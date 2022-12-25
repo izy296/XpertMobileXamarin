@@ -14,9 +14,7 @@ namespace XpertMobileApp.Api
     internal class TransfertStock_Manager : CrudService<View_STK_STOCK>
     {
         public TransfertStock_Manager() :
-            base(App.RestServiceUrl, 
-                Constants.AppName != Apps.X_DISTRIBUTION ?  ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_TRANSFERT)
-                : ControllerNameItem.STK_TRANSFERT.ToString(), App.User.Token)
+            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_TRANSFERT), App.User.Token)
         {
 
         }

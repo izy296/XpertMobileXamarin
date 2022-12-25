@@ -14,7 +14,8 @@ namespace XpertMobileApp.Api
     internal class StockManager : CrudService<View_STK_STOCK>
     {
         public StockManager() : 
-            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_STOCK), App.User.Token)
+            base(App.RestServiceUrl, Constants.AppName != Apps.X_DISTRIBUTION ? ControllerNameSwitch.GetControllerName(ControllerNameItem.STK_STOCK)
+                : ControllerNameItem.STK_STOCK.ToString(), App.User.Token)
         {
 
         }
