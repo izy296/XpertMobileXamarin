@@ -13,7 +13,9 @@ namespace XpertMobileApp.Api.Managers
     public class TourneeManager : CrudService<View_LIV_TOURNEE>
     {
         public TourneeManager()
-    : base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.LIV_TOURNEE), App.User.Token)
+    : base(App.RestServiceUrl, 
+          Constants.AppName != Apps.X_DISTRIBUTION ? ControllerNameSwitch.GetControllerName(ControllerNameItem.LIV_TOURNEE)
+          : ControllerNameItem.LIV_TOURNEE.ToString(), App.User.Token)
         {
         }
 
