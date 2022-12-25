@@ -35,7 +35,7 @@ namespace XpertMobileApp.Views
         {
             if (args.CurrentSelection.Count != 0)
             {
-                var item = args.CurrentSelection[0] as STK_TRANSFERT;
+                var item = args.CurrentSelection[0] as View_STK_TRANSFERT;
 
                 if (item == null)
                     return;

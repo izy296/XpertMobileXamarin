@@ -41,5 +41,11 @@ namespace XpertMobileApp.Api
             string url = GetActionUrl("InsertTransfert");
             return await WSApi2.PostAauthorizedValue<bool, View_STK_TRANSFERT>(url, transfers, this.Token.access_token);
         }
+
+        public async Task<bool> ValidateTransfert(View_STK_TRANSFERT item)
+        {
+            string url = GetActionUrl("ValidateTransfert");
+            return await WSApi2.UpdateAauthorizedValue<bool, View_STK_TRANSFERT>(url, item, this.Token.access_token);
+        }
     }
 }
