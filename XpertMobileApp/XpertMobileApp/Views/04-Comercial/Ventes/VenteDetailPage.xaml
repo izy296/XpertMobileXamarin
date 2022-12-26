@@ -28,13 +28,13 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
-                    <Label x:Name="ItemHeader" Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
+                <StackLayout x:Name="ItemHeader" Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+                    <Label x:Name="ItemHeaderLabel" Text="{i18n:Translate txt_header}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>
 
                 <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="0">
-                    <Label Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                    <Label x:Name="titreVente"  Text="{Binding Item.TITRE_VENTE}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
                     <Label Text="{Binding Item.CREATED_BY , StringFormat= 'Vendeur : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
                     <Label Text="{Binding Item.NOM_TIERS , StringFormat= 'Client : {0}'}" TextColor="{StaticResource DefaultTextColor}"/>
                 </StackLayout>

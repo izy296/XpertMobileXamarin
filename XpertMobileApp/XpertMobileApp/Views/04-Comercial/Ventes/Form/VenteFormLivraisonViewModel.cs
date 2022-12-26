@@ -207,8 +207,8 @@ namespace XpertMobileApp.Views
                             //}
                             //catch
                             //{
-                                row.PRIX_VTE_HT = product.SelectedPrice;
-                                row.PRIX_VTE_TTC = product.SelectedPrice;
+                            row.PRIX_VTE_HT = product.SelectedPrice;
+                            row.PRIX_VTE_TTC = product.SelectedPrice;
                             //}
                         }
 
@@ -305,13 +305,18 @@ namespace XpertMobileApp.Views
                         row.PRIX_VTE_HT = product.SelectedPrice;
                         row.PRIX_VTE_TTC = product.SelectedPrice;
                         row.QUANTITE += product.SelectedQUANTITE;
-                        foreach (var qtcU in row.UnitesList)
+                        if (row.UnitesList == null && product.UnitesList != null)
                         {
-                            var unite = product.UnitesList.Where(e => e.CODE_UNITE == qtcU.CODE_UNITE).FirstOrDefault();
-                            if (unite != null)
-                                if (unite.SelectedQUANTITE > 0)
-                                    qtcU.SelectedQUANTITE += unite.SelectedQUANTITE;
+                            row.UnitesList = product.UnitesList;
                         }
+                        if (row.UnitesList != null)
+                            foreach (var qtcU in row.UnitesList)
+                            {
+                                var unite = product.UnitesList.Where(e => e.CODE_UNITE == qtcU.CODE_UNITE).FirstOrDefault();
+                                if (unite != null)
+                                    if (unite.SelectedQUANTITE > 0)
+                                        qtcU.SelectedQUANTITE += unite.SelectedQUANTITE;
+                            }
                     }
                     row.MT_TTC = row.PRIX_VTE_TTC * (row.QUANTITE + Manager.TotalQuantiteUnite(row.UnitesList));
                     row.MT_HT = row.PRIX_VTE_HT * (row.QUANTITE + Manager.TotalQuantiteUnite(row.UnitesList));

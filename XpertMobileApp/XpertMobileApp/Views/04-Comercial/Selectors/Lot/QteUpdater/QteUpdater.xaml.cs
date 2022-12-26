@@ -78,13 +78,13 @@ namespace XpertMobileApp.Views
         }
 
         // constructeur pour passer un element de Type View_VTE_VENTE_LIVRAISON de la page VenteFormLivraisonPage
-        public QteUpdater(View_VTE_VENTE_LIVRAISON item, string codeFamille)
+        public QteUpdater(View_VTE_VENTE_LIVRAISON item, string codeFamille, bool replaceIdStock = false)
         {
             InitializeComponent();
 
             ItemVenteLivaison = item;
 
-            BindingContext = viewModel = new QteUpdaterViewModel(item, codeFamille);
+            BindingContext = viewModel = new QteUpdaterViewModel(item, codeFamille, replaceIdStock);
 
             new Command(async async =>
             {
@@ -176,8 +176,8 @@ namespace XpertMobileApp.Views
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
                     eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
                     OnCBScaned(eventArgs);
-                    await PopupNavigation.Instance.PopAsync();
                     RemoveCheckIfRetour();
+                    await PopupNavigation.Instance.PopAsync();
                 }
                 else
                 {

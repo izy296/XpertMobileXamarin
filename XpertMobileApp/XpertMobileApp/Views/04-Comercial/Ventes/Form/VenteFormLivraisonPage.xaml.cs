@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
@@ -20,7 +21,10 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
+using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Achats;
+using XpertMobileApp.Views.Helper;
+using XpertMobileSettingsPage.Helpers.Services;
 using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
@@ -88,8 +92,8 @@ namespace XpertMobileApp.Views
             btn_Search.IsVisible = disable;
             btn_Scan.IsVisible = disable;
             itemSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream);
-            retourSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream+"BR",true);
-            commandSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream+"CC",true);
+            retourSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream + "BR", true);
+            commandSelector = new LotSelectorLivraisonUniteFamille(viewModel.CurrentStream + "CC", true);
             TiersSelector = new TiersSelector(viewModel.CurrentStream);
 
             // jobFieldAutoComplete.BindingContext = viewModel;
@@ -108,13 +112,13 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream+"BR", async (obj, selectedItem) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    viewModel.AddNewRows(selectedItem, true); // false veut dire le type de produit ajouter est une vente (pas retour)
-                });
-            });
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream + "BR", async (obj, selectedItem) =>
+              {
+                  Device.BeginInvokeOnMainThread(() =>
+                  {
+                      viewModel.AddNewRows(selectedItem, true); // false veut dire le type de produit ajouter est une vente (pas retour)
+                  });
+              });
 
             MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, List<View_STK_STOCK>>(this, viewModel.CurrentStream + "CC", async (obj, selectedItem) =>
             {
@@ -149,13 +153,13 @@ namespace XpertMobileApp.Views
                 });
             });
 
-            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream+"BR", async (obj, selectedItem) =>
-            {
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    viewModel.RemoveNewRow(selectedItem);
-                });
-            });
+            MessagingCenter.Subscribe<LotSelectorLivraisonUniteFamille, View_STK_PRODUITS>(this, "REMOVE" + viewModel.CurrentStream + "BR", async (obj, selectedItem) =>
+              {
+                  Device.BeginInvokeOnMainThread(() =>
+                  {
+                      viewModel.RemoveNewRow(selectedItem);
+                  });
+              });
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
@@ -397,14 +401,86 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(TiersSelector);
         }
 
+        private async Task AddCommande()
+        {
+            try
+            {
+                viewModel.Item.TOTAL_PAYE = viewModel.Item.TOTAL_TTC;
+                viewModel.Item.TOTAL_RESTE = 0;
+                viewModel.Item.MBL_MT_VERCEMENT = 0;
+
+                if (App.Online)
+                {
+                    CommandesManager commandes = new CommandesManager();
+                    View_VTE_COMMANDE obj = new View_VTE_COMMANDE();
+                    obj = XpertHelper.CloneObject<View_VTE_COMMANDE>(viewModel.Item);
+                    var res = await commandes.AddItemAsync(obj);
+                    if (!XpertHelper.IsNullOrEmpty(res))
+                    {
+                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                        await PrinterHelper.PrintBL(viewModel.Item);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        if (App.PrefixCodification == "" || App.PrefixCodification == null)
+                        {
+                            await UserDialogs.Instance.AlertAsync("Veuillez Verifier le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            await Navigation.PopAsync();
+                        }
+                    }
+                }
+                else
+                {
+                    string res = await SQLite_Manager.AjoutVente(viewModel.Item);
+                    if (!XpertHelper.IsNullOrEmpty(res))
+                    {
+                        await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                        await PrinterHelper.PrintBL(viewModel.Item);
+                        await Navigation.PopAsync();
+                    }
+                    else
+                    {
+                        if (App.PrefixCodification == "" || App.PrefixCodification == null)
+                        {
+                            await UserDialogs.Instance.AlertAsync("Veuillez Verifier le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PopAsync();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+    AppResources.alrt_msg_Ok);
+
+            }
+
+        }
+
         private VteValidationPage VteValidationPage;
         private async void cmd_Buy_Clicked(object sender, EventArgs e)
         {
             if (viewModel.ItemRows.Count > 0)
             {
-                VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
-                VteValidationPage.ParentLivraisonviewModel = viewModel;
-                await PopupNavigation.Instance.PushAsync(VteValidationPage);
+                if (viewModel.Item.TYPE_DOC == "CC")
+                {
+                    if (viewModel.Item.Details != null || viewModel.Item.DetailsDistrib != null)
+                    {
+                        await AddCommande();
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Veuillez selectionner au moins un produit!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+                else
+                {
+                    VteValidationPage = new VteValidationPage(viewModel.CurrentStream, viewModel.Item, SelectedTiers);
+                    VteValidationPage.ParentLivraisonviewModel = viewModel;
+                    await PopupNavigation.Instance.PushAsync(VteValidationPage);
+                }
+
                 MessagingCenter.Send(this, "TourneeVisit", "TourneeVisit");
             }
             else
@@ -483,8 +559,8 @@ namespace XpertMobileApp.Views
                 {
 
                     var obj = viewModel.ItemRows[itemIndex];
-                    if (viewModel.ItemRows !=null && viewModel.ItemRows.Count > 0)
-                    viewModel.ItemRows.RemoveAt(itemIndex);
+                    if (viewModel.ItemRows != null && viewModel.ItemRows.Count > 0)
+                        viewModel.ItemRows.RemoveAt(itemIndex);
                     viewModel.Item.DetailsDistrib.Remove(obj);
                 }
                 this.listView.ResetSwipe();
@@ -554,7 +630,11 @@ namespace XpertMobileApp.Views
         private async void listView_ItemTapped(object sender, Syncfusion.ListView.XForms.ItemTappedEventArgs e)
         {
             var item = (View_VTE_VENTE_LIVRAISON)e.ItemData;
-            var qteUpdater = new QteUpdater(item, viewModel.SelectedTiers.CODE_FAMILLE);
+            QteUpdater qteUpdater;
+            if (viewModel.TypeDoc == "CC")
+                qteUpdater = new QteUpdater(item, viewModel.SelectedTiers.CODE_FAMILLE, true);
+            else
+                qteUpdater = new QteUpdater(item, viewModel.SelectedTiers.CODE_FAMILLE);
             qteUpdater.LotInfosUpdated += OnLotInfosUpdated;
             await PopupNavigation.Instance.PushAsync(qteUpdater);
         }

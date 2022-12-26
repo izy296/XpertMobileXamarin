@@ -75,7 +75,9 @@ namespace XpertMobileApp.Views.Encaissement
 
             if (Constants.AppName == Apps.X_DISTRIBUTION)
             {
-                ItemHeader.Text = Item.CODE_VENTE;
+                ItemHeaderLabel.Text = Item.CODE_VENTE;
+                ItemHeader.IsVisible = false;
+                titreVente.Text = Item.CODE_VENTE;
                 DetailsHeader.IsVisible = false;
                 if (Item.TYPE_VENTE == "BL")
                     Title = AppResources.pn_Livraison;

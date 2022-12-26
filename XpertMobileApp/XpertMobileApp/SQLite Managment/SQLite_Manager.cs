@@ -423,7 +423,6 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
-                    await SynchroniseDELETE();
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
                     await SyncProduitFamille();
@@ -2183,17 +2182,30 @@ namespace XpertMobileApp.SQLite_Managment
                         }
                     if (vente.Details != null)
                     {
-                        var id2 = await GetInstance().UpdateAllAsync(vente.Details);
+                        foreach (var detail in vente.Details)
+                        {
+                            var rowsEffected = await GetInstance().UpdateAsync(detail);
+                            if (rowsEffected == 0)
+                                await GetInstance().InsertAsync(detail);
+                        }
                     }
                     else if (vente.DetailsDistrib != null)
                     {
-                        var id2 = await GetInstance().UpdateAllAsync(vente.DetailsDistrib);
+                        foreach (var detail in vente.DetailsDistrib)
+                        {
+                            var rowsEffected = await GetInstance().UpdateAsync(detail);
+                            if (rowsEffected == 0)
+                                await GetInstance().InsertAsync(detail);
+                        }
                     }
 
                     var encaiss = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
                     var encaissElement = encaiss.Where(e => e.CODE_TOURNEE == vente.CODE_TOURNEE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
-                    encaissElement.TOTAL_ENCAISS = vente.TOTAL_RECU;
-                    encaissElement.DATE_ENCAISS = DateTime.Now;
+                    if (encaissElement != null)
+                    {
+                        encaissElement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                        encaissElement.DATE_ENCAISS = DateTime.Now;
+                    }
 
 
                     await GetInstance().UpdateAsync(vente);

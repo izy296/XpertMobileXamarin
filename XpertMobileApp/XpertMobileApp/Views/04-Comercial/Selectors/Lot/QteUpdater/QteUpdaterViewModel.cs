@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
@@ -34,13 +35,17 @@ namespace XpertMobileApp.ViewModels
             };
         }
 
-        public QteUpdaterViewModel(View_VTE_VENTE_LIVRAISON item, string codeFamille)
+        public QteUpdaterViewModel(View_VTE_VENTE_LIVRAISON item, string codeFamille,bool replaceID_STOCK=false)
         {
             if (!App.Online)
             {
                 new Command(async () =>
                 {
                     Item = await SQLite_Manager.GetProduitPrixUniteByCodeProduit(codeFamille, item.CODE_PRODUIT);
+                    if (Item != null && replaceID_STOCK)
+                    {
+                        Item.ID_STOCK = item.CODE_PRODUIT.GetHashCode();
+                    }
                 }).Execute(null);
             }
         }
