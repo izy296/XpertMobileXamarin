@@ -156,7 +156,7 @@ namespace XpertMobileApp.ViewModels
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
-                        Title = "Versement",
+                        Title = Constants.AppName != Apps.X_DISTRIBUTION ? "Versement" : "Paiement",
                         Color = "#F5F5F5",
                         IconImage = "encaissIcon.png"
                     });

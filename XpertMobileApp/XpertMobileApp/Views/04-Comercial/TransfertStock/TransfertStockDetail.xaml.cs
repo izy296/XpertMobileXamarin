@@ -39,9 +39,9 @@ namespace XpertMobileApp.Views
 
             this.Item = item;
             bool hasPermission = AppManager.HasPermission(XpertObjets.STK_TRANSFERT, XpertActions.AcUpdate); 
-            if (!hasPermission)
+            if (hasPermission && App.Online)
             {
-                validerTransfert.IsVisible = false;
+                validerTransfert.IsVisible = true;
             }
         }
 

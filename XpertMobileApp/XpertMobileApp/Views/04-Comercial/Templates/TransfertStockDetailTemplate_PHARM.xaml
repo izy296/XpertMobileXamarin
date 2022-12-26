@@ -36,7 +36,7 @@
 
                     <StackLayout Grid.Column="2" Grid.Row="2" Spacing="5" Padding="0">
                         <Label Text="{Binding QUANTITE, StringFormat='Qte. {0:N2}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="{StaticResource DefaultTextColor}"/>
-                        <Label Text="{Binding DATE_TRANSEFRT, StringFormat='Date. {0:MMMM,dd,yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/> 
+                        <Label Text="{Binding DATE_TRANSEFRT, StringFormat='Date. {0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/> 
                         <!--
                         <Label Text="{Binding QTE_STOCK, StringFormat='Qte. {0:N2}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
                        -->

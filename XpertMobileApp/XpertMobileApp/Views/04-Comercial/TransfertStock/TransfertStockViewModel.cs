@@ -47,11 +47,14 @@ namespace XpertMobileApp.ViewModels
             base.GetFilterParams();
 
             this.AddCondition<View_STK_TRANSFERT, DateTime?>(e => e.DATE_TRANSEFRT, Operator.BETWEEN_DATE, StartDate, EndDate);
+            if (!String.IsNullOrEmpty(App.CODE_MAGASIN))
+            {
                 this.AddConditionOperator(TypeConnector.AND, TypeParenthese.LEFT);
                 this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_DESTINATION, App.CODE_MAGASIN);
                 this.AddConditionOperator(TypeConnector.OR);
                 this.AddCondition<View_STK_TRANSFERT, string>(e => e.MAGASIN_SOURCE, App.CODE_MAGASIN);
                 this.AddConditionOperator(TypeParenthese.RIGHT);
+            }
             this.AddCondition<View_STK_TRANSFERT, bool>(e => e.IS_VALIDATE, false);
             this.AddOrderBy<View_STK_TRANSFERT, DateTime?>(e => e.CREATED_ON);
             return qb.QueryInfos;

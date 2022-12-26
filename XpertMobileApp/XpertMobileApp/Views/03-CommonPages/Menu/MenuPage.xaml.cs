@@ -77,7 +77,7 @@ namespace XpertMobileApp.Views
                 {
                     Id = MenuItemType.Encaissements,
                     ItemGroup = MenuItemGroup.Tresorerie,
-                    Title = AppResources.pn_encaissement,
+                    Title = Constants.AppName != Apps.X_DISTRIBUTION ? AppResources.pn_encaissement : "Paiement",
                     CodeObjet = XpertObjets.TRS_DECAISS,
                     Action = Xpert.XpertActions.AcSelect,
                     Image = "encaisss.png"
