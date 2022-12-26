@@ -6,7 +6,7 @@
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
              xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"    
-                x:Class="XpertMobileApp.Views._04_Comercial.Selectors.Lot.RetourProducts">
+                x:Class="XpertMobileApp.Views.RetourProducts">
 
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
         <StackLayout BackgroundColor="LightSteelBlue">
