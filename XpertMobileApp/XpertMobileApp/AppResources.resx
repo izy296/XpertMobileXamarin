@@ -1298,10 +1298,10 @@
     <value>vous êtes déconnecté souhaitez être connecté ?</value>
   </data>
   <data name="btn_downloadData" xml:space="preserve">
-    <value>Téléchargement de donnés</value>
+    <value>Téléchargement de données</value>
   </data>
   <data name="btn_uploadData" xml:space="preserve">
-    <value>Téléversement de donnés </value>
+    <value>Téléversement de données </value>
   </data>
   <data name="txt_DisplayGrid" xml:space="preserve">
     <value>Affichage par Grile</value>
