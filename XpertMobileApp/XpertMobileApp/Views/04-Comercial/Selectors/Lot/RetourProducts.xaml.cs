@@ -14,7 +14,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 
-namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
+namespace XpertMobileApp.Views
 {
     //    [XamlCompilation(XamlCompilationOptions.Compile)]
     //    public partial class RetourProducts : ContentPage
@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
     public partial class RetourProducts : PopupPage
     {
 
-        RetourProductViewModel viewModel;
+        public RetourProductViewModel viewModel;
         List<View_STK_STOCK> SelectedlistLot;
         public string CurrentStream { get; set; }
         public string CodeTiers
@@ -73,6 +73,25 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
             {
                 item.SelectedQUANTITE = 0;
             }
+
+            //// recevoire les id stock des elements selectioné pour changer color de fond d'element
+            //MessagingCenter.Subscribe<VenteFormLivraisonPage, List<int?>>(this, "SelectedList", async (obj, selectedItem) =>
+            //{
+            //    Device.BeginInvokeOnMainThread(() =>
+            //    {
+            //        foreach (var item in selectedItem)
+            //        {
+            //            foreach (var selectedListItem in viewModel.Items)
+            //            {
+            //                if (selectedListItem.CODE_PRODUIT == item)
+            //                {
+            //                    selectedListItem.Selected = true;
+            //                }
+            //            }
+            //        }
+            //    });
+            //});
+            //UpdateTotaux();
         }
 
         private async void OnClose(object sender, EventArgs e)
@@ -136,26 +155,30 @@ namespace XpertMobileApp.Views._04_Comercial.Selectors.Lot
                     SelectedlistLot = new List<View_STK_STOCK>();
                 }
                 var res = await SQLite_Manager.getProductfromStock(viewModel.SelectedItem);
+                QteUpdater = new QteUpdater(res);
+                QteUpdater.LotInfosUpdated += OnLotInfosUpdated;
+                await PopupNavigation.Instance.PushAsync(QteUpdater);
+                ItemsListView.SelectedItem = null;
                 //if (SelectedlistLot.Contains(res))
-                if (checkIfExist(res))
-                {
-                    try
-                    {
-                        //var element = SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault();
-                        //element.SelectedQUANTITE += 1;
-                        viewModel.SelectedItem.SelectedQUANTITE += 1;
-                        SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
-                    }
-                    catch
-                    {
-                    }
-                }
-                else
-                {
-                    viewModel.SelectedItem.SelectedQUANTITE += 1;
-                    res.SelectedQUANTITE += 1;
-                    SelectedlistLot.Add(res);
-                }
+                //if (checkIfExist(res))
+                //{
+                //    try
+                //    {
+                //        //var element = SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault();
+                //        //element.SelectedQUANTITE += 1;
+                //        viewModel.SelectedItem.SelectedQUANTITE += 1;
+                //        SelectedlistLot.Where(x => x.ID_STOCK == res.ID_STOCK).FirstOrDefault().SelectedQUANTITE += 1;
+                //    }
+                //    catch
+                //    {
+                //    }
+                //}
+                //else
+                //{
+                //    viewModel.SelectedItem.SelectedQUANTITE += 1;
+                //    res.SelectedQUANTITE += 1;
+                //    SelectedlistLot.Add(res);
+                //}
                 //MessagingCenter.Send(this, CurrentStream, viewModel.SelectedItem);
                 UpdateTotaux();
             }
