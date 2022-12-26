@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Services;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Api
@@ -9,7 +10,7 @@ namespace XpertMobileApp.Api
     internal class TiersManager : CrudService<View_TRS_TIERS>
     {
         public TiersManager() : 
-            base(App.RestServiceUrl, "TRS_TIERS", App.User.Token)
+            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.TRS_TIERS), App.User.Token)
         {
 
         }
