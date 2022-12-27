@@ -57,6 +57,12 @@ namespace XpertMobileApp.Views
             {
                 PointsFideliteLabel.IsVisible = false;
                 PointsFidelite.IsVisible = false;
+                if (item.TYPE_DOC == "CC")
+                    TitleLabel.Text = AppResources.pn_NewCommande;
+                else if (item.TYPE_DOC == "BR")
+                    TitleLabel.Text = "Nouvelle Bon de Retour";
+                else if (item.TYPE_DOC == "BL")
+                    TitleLabel.Text = "Nouvelle de Bon Livraison";
             }
 
 
@@ -82,11 +88,30 @@ namespace XpertMobileApp.Views
             if (Apps.X_DISTRIBUTION == Constants.AppName)
             {
                 var list = Container.Children;
-                SfNE_MTRecu.Minimum = null;
-                foreach (var element in list)
+                if (viewModel.Item.TYPE_DOC == "BR")
                 {
-                    if (element.GetType() == typeof(SfNumericTextBox))
-                        ((SfNumericTextBox)element).Minimum = null;
+                    SfNE_MTRecu.Minimum = null;
+                    SfNE_MTRecu.Maximum = 0;
+                    foreach (var element in list)
+                    {
+                        if (element.GetType() == typeof(SfNumericTextBox))
+                        {
+                            ((SfNumericTextBox)element).Minimum = null;
+                            ((SfNumericTextBox)element).Maximum = 0;
+                        }
+                    }
+                }
+                else {
+                    SfNE_MTRecu.Minimum = 0;
+                    SfNE_MTRecu.Maximum = null;
+                    foreach (var element in list)
+                    {
+                        if (element.GetType() == typeof(SfNumericTextBox))
+                        {
+                            ((SfNumericTextBox)element).Minimum = 0;
+                            ((SfNumericTextBox)element).Maximum = null;
+                        }
+                    }
                 }
             }
 
@@ -323,7 +348,6 @@ namespace XpertMobileApp.Views
 
         private void UpdateMontants(decimal mt_Recu)
         {
-
             if (mt_Recu >= viewModel.Item.TOTAL_RESTE)
             {
                 viewModel.Item.MBL_MT_RENDU = mt_Recu - viewModel.Item.TOTAL_RESTE;

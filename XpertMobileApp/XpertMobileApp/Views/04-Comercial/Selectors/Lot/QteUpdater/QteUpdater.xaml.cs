@@ -161,18 +161,18 @@ namespace XpertMobileApp.Views
             {
 
                 LotInfosEventArgs eventArgs = new LotInfosEventArgs();
-                if ((Convert.ToDecimal(NUD_Qte.Value) <= viewModel.Item.QUANTITE) || retour)
+                int i = 0;
+                foreach (var element in QuantiteUniteLayout.Children)
                 {
-                    int i = 0;
-                    foreach (var element in QuantiteUniteLayout.Children)
+                    if (element.GetType() == typeof(SfNumericUpDown))
                     {
-                        if (element.GetType() == typeof(SfNumericUpDown))
-                        {
-                            var qteUnite = (SfNumericUpDown)element;
-                            viewModel.Item.UnitesList[i].SelectedQUANTITE = Convert.ToDecimal(qteUnite.Value);
-                            i++;
-                        }
+                        var qteUnite = (SfNumericUpDown)element;
+                        viewModel.Item.UnitesList[i].SelectedQUANTITE = Convert.ToDecimal(qteUnite.Value);
+                        i++;
                     }
+                }
+                if ((Convert.ToDecimal(NUD_Qte.Value) + Manager.TotalQuantiteUnite(viewModel.Item.UnitesList) <= viewModel.Item.QUANTITE) || retour)
+                {
                     eventArgs.Price = Convert.ToDecimal(NUD_Price.Value);
                     eventArgs.Quantity = Convert.ToDecimal(NUD_Qte.Value);
                     OnCBScaned(eventArgs);

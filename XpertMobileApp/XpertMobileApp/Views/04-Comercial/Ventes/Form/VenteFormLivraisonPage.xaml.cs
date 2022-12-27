@@ -70,6 +70,15 @@ namespace XpertMobileApp.Views
             BindingContext = this.viewModel = new VenteFormLivraisonViewModel(vte, vte?.CODE_VENTE);
             viewModel.TypeDoc = typeDoc;
 
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+                if (viewModel.TypeDoc == "CC")
+                    Title = AppResources.pn_NewCommande;
+                else if (viewModel.TypeDoc == "BR")
+                    Title = "Bon de Retour";
+                else if (viewModel.TypeDoc == "BL")
+                    Title = "Bon de Livraison";
+
+
             //viewModel.IsEnabled = disable;
 
 
@@ -467,6 +476,8 @@ namespace XpertMobileApp.Views
                 {
                     if (viewModel.Item.Details != null || viewModel.Item.DetailsDistrib != null)
                     {
+                        viewModel.Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
+                        viewModel.Item.TOTAL_RECU = viewModel.Item.TOTAL_TTC;
                         await AddCommande();
                     }
                     else

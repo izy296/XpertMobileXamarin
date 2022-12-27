@@ -249,7 +249,7 @@ namespace XpertMobileApp.SQLite_Managment
                                     UNION ALL 
                                     SELECT e.CODE_ENCAISS CODE_DOC, 
                                               e.TOTAL_ENCAISS TOTAL_PAYE, 
-                                              'ENC' TYPE_DOC, 
+                                              e.CODE_TYPE TYPE_DOC, 
                                               e.CODE_TIERS, 
                                               e.DATE_ENCAISS DATE_DOC 
                                             FROM View_TRS_ENCAISS e 
@@ -2203,7 +2203,7 @@ namespace XpertMobileApp.SQLite_Managment
                     var encaissElement = encaiss.Where(e => e.CODE_TOURNEE == vente.CODE_TOURNEE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
                     if (encaissElement != null)
                     {
-                        encaissElement.TOTAL_ENCAISS = vente.TOTAL_RECU;
+                        encaissElement.TOTAL_ENCAISS += vente.TOTAL_RECU;
                         encaissElement.DATE_ENCAISS = DateTime.Now;
                     }
 

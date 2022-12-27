@@ -198,9 +198,12 @@ namespace XpertMobileApp.Views
             await Navigation.PopAsync();
         }
 
-        private async void Update_Clicked(object sender, EventArgs e)
+        void Update_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(viewModel.Item)));
+            if (viewModel.Item != null)
+            {
+                Navigation.PushAsync(new NewEncaissementPage(viewModel.Item));
+            }
         }
     }
 }

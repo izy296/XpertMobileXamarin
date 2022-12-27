@@ -87,7 +87,9 @@ namespace XpertMobileApp.Views
                 Item = itemEncaiss;
                 montantEntry.Text = itemEncaiss.TOTAL_ENCAISS.ToString();
                 Title = "N°" + Item.CODE_ENCAISS;
+                if (itemEncaiss.NOTE_ENC!=null)
                 noteLabel.Text = itemEncaiss.NOTE_ENC.ToString();
+                Item.CODE_TIERS = SelectedTiers.CODE_TIERS;
             }
             else
             {

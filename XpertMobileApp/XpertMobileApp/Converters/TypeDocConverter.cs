@@ -15,6 +15,10 @@ namespace XpertMobileApp.Converters
             {
                 return "Encaissement";
             }
+            if ((string)value == "DEC")
+            {
+                return "Decaissement";
+            }
             if ((string)value == "BL")
             {
                 return "Bon de Livraison";
@@ -35,6 +39,10 @@ namespace XpertMobileApp.Converters
             if ((string)value == "Encaissement")
             {
                 return "ENC";
+            }
+            if ((string)value == "Decaissement")
+            {
+                return "DEC";
             }
             if ((string)value == "Bon de Livraison")
             {
