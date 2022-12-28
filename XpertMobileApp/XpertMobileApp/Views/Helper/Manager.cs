@@ -37,7 +37,8 @@ namespace XpertMobileApp.Views.Helper
         {
             try
             {
-                 return await Geolocation.GetLocationAsync();  //(request, cts.Token);
+                GeolocationRequest geolocationRequest = new GeolocationRequest(accuracy:GeolocationAccuracy.Medium,timeout: TimeSpan.FromSeconds(3));
+                 return await Geolocation.GetLocationAsync(geolocationRequest);  //(request, cts.Token);
             }
             catch (Exception Ex)
             {

@@ -213,7 +213,12 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading();
-                location = await Geolocation.GetLocationAsync();
+                location = await Manager.GetLocation();
+                if (location == null)
+                {
+                    location = new Location(0, 0);
+                    await UserDialogs.Instance.AlertAsync(AppResources.tourneeLocalisationErrorMessage, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
                 UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
