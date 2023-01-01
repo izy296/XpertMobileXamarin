@@ -18,12 +18,14 @@ namespace XpertMobileApp.Views
     public partial class EncaissementDetailPage : ContentPage
     {
         EncaissementsDetailViewModel viewModel;
-
-        public EncaissementDetailPage(View_TRS_ENCAISS encaiss)
+        View_TRS_TIERS tier;
+        public EncaissementDetailPage(View_TRS_ENCAISS encaiss,View_TRS_TIERS tier=null)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = new EncaissementsDetailViewModel(encaiss);
+            if (tier != null)
+            this.tier = tier;
 
             displayObject(typeof(View_TRS_ENCAISS), viewModel.Item);
 
@@ -202,7 +204,7 @@ namespace XpertMobileApp.Views
         {
             if (viewModel.Item != null)
             {
-                Navigation.PushAsync(new NewEncaissementPage(viewModel.Item));
+                Navigation.PushAsync(new NewEncaissementPage(viewModel.Item, (EncaissDisplayType)Enum.Parse(typeof(EncaissDisplayType), viewModel.Item.CODE_TYPE), tier:tier));
             }
         }
     }
