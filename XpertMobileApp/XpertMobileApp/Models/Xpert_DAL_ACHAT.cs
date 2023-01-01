@@ -153,6 +153,7 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_VENTE_REEL { get; set; }
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public string DESIGNATION_STATUS { get; set; }
+        public string TEL_TIERS { get; set; }
 
 
 
@@ -935,6 +936,7 @@ namespace XpertMobileApp.DAL
     public partial class View_PRD_AGRICULTURE_DETAIL : PRD_AGRICULTURE_DETAIL
     {
         public string NOM_TIERS { get; set; }
+        public string TEL_TIERS { get; set; }
         public string NUM_DOC { get; set; }
         public string NUM_DOC_RECEPTION { get; set; }
         public string CODE_TIERS_RESPONSABLE { get; set; }

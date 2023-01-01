@@ -36,7 +36,7 @@ namespace XpertMobileApp.Api
         /// <param name="DateDoc"></param>
 
         public static void PrintQrCode(string Adress,int typeConnection
-            , string codeTiers, string nomTiers,string codeDoc,DateTime? DateDoc)
+            , string codeTiers, string nomTiers,string codeDoc,DateTime? DateDoc, string TEL_TIERS)
         {
             if(Adress!=null && !Adress.Equals(""))
             {
@@ -57,7 +57,7 @@ namespace XpertMobileApp.Api
                 Godex.Bar_QRCode(5, 130, 2, 2, "M", 8, 8, 0, codeDoc
                     + "-" + codeTiers + "-" +
                     DateDoc.Value.ToString("dd/MM/yyyy"));
-                Godex.SendCommand("AD,210,160,1,1,0,0," + codeDoc);
+                Godex.SendCommand("AD,210,160,1,1,0,0," + TEL_TIERS);
                 Godex.SendCommand("AD,210,210,1,1,0,0," + codeTiers);
                 Godex.SendCommand("AD,210,260,1,1,0,0," + DateDoc.Value.ToString("dd/MM/yyyy"));
                 Godex.SendCommand("E");
