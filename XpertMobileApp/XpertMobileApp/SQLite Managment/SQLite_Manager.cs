@@ -173,7 +173,7 @@ namespace XpertMobileApp.SQLite_Managment
             var list = await GetInstance().QueryAsync<View_STK_STOCK>(query);
             return list.FirstOrDefault();
         }
-        
+
         public static async Task<List<View_STK_STOCK>> GetProduits()
         {
 
@@ -256,13 +256,13 @@ namespace XpertMobileApp.SQLite_Managment
                                             )T ORDER BY DATE_DOC DESC";
 
                 await GetInstance().ExecuteAsync(queryNew);
-        //        SELECT c.CODE_VENTE CODE_DOC,
-        //c.TOTAL_PAYE, 
-        //                                    c.TYPE_DOC, 
-        //                                    c.CODE_TIERS, 
-        //                                    c.DATE_VENTE DATE_DOC
-        //                                    FROM View_VTE_COMMANDE c
-        //                            UNION ALL
+                //        SELECT c.CODE_VENTE CODE_DOC,
+                //c.TOTAL_PAYE, 
+                //                                    c.TYPE_DOC, 
+                //                                    c.CODE_TIERS, 
+                //                                    c.DATE_VENTE DATE_DOC
+                //                                    FROM View_VTE_COMMANDE c
+                //                            UNION ALL
             }
             catch (Exception Ex)
             {
@@ -858,6 +858,7 @@ namespace XpertMobileApp.SQLite_Managment
                     var prenom = Tiers.Where(e => e.CODE_TIERS == item.CODE_TIERS).FirstOrDefault()?.PRENOM_TIERS;
                     item.NOM_TIERS = nom + " " + prenom;
 
+                    item.CODE_ENCAISS = await generateCode(item.CODE_TYPE, item.ID.ToString());
                     List<View_BSE_COMPTE> comptes = await GetInstance().Table<View_BSE_COMPTE>().ToListAsync();
                     item.DESIGN_COMPTE = comptes.Where(e => e.CODE_COMPTE == item.CODE_COMPTE).FirstOrDefault()?.DESIGN_COMPTE;
                     item.CREATED_ON = DateTime.Now;
@@ -890,6 +891,11 @@ namespace XpertMobileApp.SQLite_Managment
 
                     List<BSE_ENCAISS_MOTIFS> motif = await GetInstance().Table<BSE_ENCAISS_MOTIFS>().ToListAsync();
                     item.DESIGN_MOTIF = motif.Where(e => e.CODE_MOTIF == item.CODE_MOTIF).FirstOrDefault()?.DESIGN_MOTIF;
+                    if (!string.IsNullOrEmpty(item.CODE_DOC))
+                    {
+                        View_VTE_VENTE vente = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.CODE_VENTE == item.CODE_DOC).FirstAsync();
+                        vente.TOTAL_TTC = item.TOTAL_ENCAISS;
+                    }
 
                     var id = await GetInstance().UpdateAsync(item);
                 }
@@ -1258,7 +1264,7 @@ namespace XpertMobileApp.SQLite_Managment
 
             foreach (var item in tournees)
             {
-                if (item.CODE_DETAIL == codeTourneeDetail)
+                if (item.CODE_DETAIL == codeTourneeDetail && vente.TYPE_DOC=="BL")
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT_VISITE = TourneeStatus.Delivered;
@@ -1341,6 +1347,74 @@ namespace XpertMobileApp.SQLite_Managment
         public static async Task UpdateStock(View_VTE_VENTE vente)
         {
             var stock = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
+
+            foreach (var item in stock)
+            {
+
+                // check if Details is empty ( in case of Pharm or Comm)
+                if (vente.Details != null)
+                {
+                    foreach (var items in vente.Details)
+                    {
+                        if (item.ID_STOCK == items.ID_STOCK)
+                        {
+                            if (items.QUANTITE > 0)
+                            {
+                                item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
+                                item.QUANTITE = item.QUANTITE - items.QUANTITE;
+                                await GetInstance().UpdateAsync(item);
+                            }
+                        }
+                    }
+                }
+                // check if DetailsDistrib is empty or not ( in case of Ditribution using different viewModel )
+                else if (vente.DetailsDistrib != null)
+                {
+                    foreach (var items in vente.DetailsDistrib)
+                    {
+                        if (item.ID_STOCK == items.ID_STOCK)
+                        {
+                            if (items.QUANTITE > 0)
+                            {
+                                item.OLD_QUANTITE = item.OLD_QUANTITE - items.QUANTITE;
+                                item.QUANTITE = item.QUANTITE - items.QUANTITE;
+                                await GetInstance().UpdateAsync(item);
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        /// <summary>
+        /// Mise a jour de la quantité du stock apres la modification de vente
+        /// </summary>
+        /// <param name="vente"></param>
+        /// <returns></returns>
+        public static async Task UpdateStockAfterModification(View_VTE_VENTE venteOld, View_VTE_VENTE venteNew)
+        {
+            var stock = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
+
+            var vente = venteNew;
+
+            if (vente.Details != null)
+            {
+                foreach (var detail in vente.Details)
+                {
+                    var oldDetail = venteOld.Details.Where(e => e.ID_STOCK == detail.ID_STOCK).FirstOrDefault();
+                    detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                }
+            }
+
+            if (vente.DetailsDistrib != null)
+            {
+                foreach (var detail in vente.DetailsDistrib)
+                {
+                    var oldDetail = venteOld.DetailsDistrib.Where(e => e.ID_STOCK == detail.ID_STOCK).FirstOrDefault();
+                    detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                }
+            }
 
             foreach (var item in stock)
             {
@@ -1879,7 +1953,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
-                var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e=>e.TYPE_DOC!="CC").ToListAsync();
+                var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC != "CC").ToListAsync();
                 var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
                 var vteDetailsDistrib = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
 
@@ -2147,12 +2221,13 @@ namespace XpertMobileApp.SQLite_Managment
                         await UpdateSoldeTiers(sold, vente.CODE_TIERS);
                     }
 
-                    if (vente.TOTAL_RECU != 0 && vente.TYPE_DOC!="CC")
+                    if (vente.TOTAL_RECU != 0 && vente.TYPE_DOC != "CC")
                     {
                         encaissement.CODE_TIERS = vente.CODE_TIERS;
                         encaissement.TOTAL_ENCAISS = vente.TOTAL_RECU;
                         encaissement.CODE_TOURNEE = vente.CODE_TOURNEE;
                         encaissement.CODE_MOTIF = "PCR";
+                        encaissement.CODE_DOC = vente.CODE_VENTE;
                         //encaissement.CODE_COMPTE= 
                         encaissement.DATE_ENCAISS = DateTime.Now;
                         encaissement.IS_SYNCHRONISABLE = false;
@@ -2180,6 +2255,17 @@ namespace XpertMobileApp.SQLite_Managment
 
                             item.QUANTITE += Manager.TotalQuantiteUnite(item.UnitesList);
                         }
+
+                    View_VTE_VENTE venteOld = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.CODE_VENTE == vente.CODE_VENTE).FirstAsync();
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    {
+                        venteOld.DetailsDistrib = await getVenteDetailsDistrib(venteOld.CODE_VENTE);
+                    }
+                    else
+                    {
+                        venteOld.Details = await getVenteDetails(venteOld.CODE_VENTE);
+                    }
+
                     if (vente.Details != null)
                     {
                         foreach (var detail in vente.Details)
@@ -2200,15 +2286,17 @@ namespace XpertMobileApp.SQLite_Managment
                     }
 
                     var encaiss = await GetInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-                    var encaissElement = encaiss.Where(e => e.CODE_TOURNEE == vente.CODE_TOURNEE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
+                    var encaissElement = encaiss.Where(e => e.CODE_DOC == vente.CODE_VENTE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
                     if (encaissElement != null)
                     {
                         encaissElement.TOTAL_ENCAISS += vente.TOTAL_RECU;
                         encaissElement.DATE_ENCAISS = DateTime.Now;
                     }
 
-
                     await GetInstance().UpdateAsync(vente);
+
+                    if (vente.TYPE_DOC != "CC")
+                        await UpdateStockAfterModification(venteOld, vente);
                     await GetInstance().UpdateAsync(encaissElement);
 
 
@@ -2358,10 +2446,22 @@ namespace XpertMobileApp.SQLite_Managment
         }
         public static async Task UpdateTournee()
         {
-            var tournee = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-            foreach (var item in tournee)
+            var tournees = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+            foreach (var item in tournees)
             {
-                item.NBR_EN_DELEVRED = item.NBR_EN_DELEVRED + 1;
+                var nbr_en_delivered = 0;
+                var nbr_en_visited = 0;
+                var tourneeDetails = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().Where(e => e.CODE_TOURNEE == item.CODE_TOURNEE).ToListAsync();
+                foreach (var detail in tourneeDetails)
+                {
+                    if (detail.CODE_ETAT_VISITE == TourneeStatus.Delivered)
+                        nbr_en_delivered++;
+                    else if (detail.CODE_ETAT_VISITE == TourneeStatus.Visited)
+                        nbr_en_visited++;
+                }
+
+                item.NBR_EN_DELEVRED = nbr_en_delivered;
+                item.NBR_EN_VISITED = nbr_en_visited;
                 await GetInstance().UpdateAsync(item);
             }
         }

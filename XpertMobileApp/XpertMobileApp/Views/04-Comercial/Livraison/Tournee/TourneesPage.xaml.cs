@@ -67,6 +67,11 @@ namespace XpertMobileApp.Views
 
             }
 
+            if (!App.Online)
+            {
+                await SQLite_Manager.UpdateTournee();
+            }
+
             MessagingCenter.Subscribe<TourneePopup, View_LIV_TOURNEE>(this, "UpdateTourneeStatus", async (sender, selectedItem) =>
             {
                 await viewModel.UpdateTourneStatus(selectedItem);

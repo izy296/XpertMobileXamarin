@@ -85,6 +85,8 @@ namespace XpertMobileApp.DAL
         public bool MONTANT_SUM { get; set; } // 
         public DateTime? DATE_VALEUR { get; set; }
         public bool ANNULEE { get; set; }
+        private string cODE_DOC;
+        public string CODE_DOC { get => cODE_DOC; set => cODE_DOC = value; }
     }
 
     // View
@@ -137,21 +139,13 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? FontAwesomeIcons.Arrow_Up : FontAwesomeIcons.Arrow_Down;
             }
         }
-
-        [Ignore]
         public string CODE_TOURNEE { get; set; }
-        private bool is_synchronisable { get; set; }
-        [Ignore]
+        private bool is_synchronisable { get; set; } = true;
         public bool IS_SYNCHRONISABLE
         {
             get
             {
-                if (is_synchronisable != null)
                 return is_synchronisable;
-                else
-                {
-                    return is_synchronisable = true;
-                }
             }
             set
             {

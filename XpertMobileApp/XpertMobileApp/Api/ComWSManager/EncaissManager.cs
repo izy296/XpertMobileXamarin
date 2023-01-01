@@ -14,16 +14,16 @@ namespace XpertMobileApp.Api
     {
         public EncaissManager() : 
             base(App.RestServiceUrl,
-                Constants.AppName == Apps.X_DISTRIBUTION || Constants.AppName == Apps.X_DISTRIBUTION?  "TRS_ENCAISS_XCOM" : "TRS_ENCAISS", 
+                Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION ? "TRS_ENCAISS_XCOM" : "TRS_ENCAISS", 
                 App.User.Token)
         {
 
         }
 
-        public async Task<string> SyncEncaiss(List<View_TRS_ENCAISS> encaiss)
+        public async Task<List<string>> SyncEncaiss(List<View_TRS_ENCAISS> encaiss)
         {
             string url = GetActionUrl("SyncEncaiss");
-            return await WSApi2.PostAauthorizedValue<string, List<View_TRS_ENCAISS>>(url, encaiss, this.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<List<string>, List<View_TRS_ENCAISS>>(url, encaiss, this.Token.access_token);
         }
     }
 }

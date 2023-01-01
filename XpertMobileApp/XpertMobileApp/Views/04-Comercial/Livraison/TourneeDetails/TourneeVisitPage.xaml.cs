@@ -406,10 +406,10 @@ namespace XpertMobileApp.Views
                     return;
 
 
-                if (item.TYPE_DOC == "ENC")
+                if (item.TYPE_DOC == "ENC" || item.TYPE_DOC == "DEC")
                 {
                     var encaisse = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elmeent => elmeent.CODE_ENCAISS == item.CODE_DOC).FirstAsync();
-                    await Navigation.PushAsync(new EncaissementDetailPage(encaisse));
+                    await Navigation.PushAsync(new EncaissementDetailPage(encaisse, tier));
                 }
                 else
                 {

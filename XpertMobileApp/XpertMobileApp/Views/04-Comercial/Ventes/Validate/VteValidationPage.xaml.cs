@@ -274,7 +274,6 @@ namespace XpertMobileApp.Views
                                 else ParentLivraisonviewModel.InitNewVentes();
 
                                 await PopupNavigation.Instance.PopAsync();
-                                await Navigation.PopAsync();
                             }
                             else
                             {

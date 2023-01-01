@@ -22,7 +22,7 @@ namespace XpertMobileApp.Droid.Services
         {
             using (BluetoothAdapter bluetoothAdapter = BluetoothAdapter.DefaultAdapter)
             {
-                var btdevice = bluetoothAdapter?.BondedDevices.Select(i => i.Name).ToList();
+                var btdevice = bluetoothAdapter?.BondedDevices.Where(e => e.BluetoothClass.MajorDeviceClass == Android.Bluetooth.MajorDeviceClass.Imaging).Select(i => i.Name).ToList();
                 return btdevice;
             }
         }

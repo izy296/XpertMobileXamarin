@@ -22,6 +22,7 @@ namespace XpertMobileSettingsPage.Helpers.Services
     {
         public static bool printerReady = false;
         private static IPrinterSPRT printerLocal = DependencyService.Get<IPrinterSPRT>();
+        private static readonly IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
 
         private static void updateConnected()
         {
@@ -32,58 +33,121 @@ namespace XpertMobileSettingsPage.Helpers.Services
             updateConnected();
         }
 
-        public static async void GetPrinterInstance()
+        public static List<XPrinter> GetBluetoothPrinters()
         {
-            if (!printerLocal.IsInstanceReady())
+            List<XPrinter> DeviceList = new List<XPrinter>();
+            try
             {
-                string printerToUse = App.Settings.PrinterName;
-                if (App.Settings.EnableMultiPrinter)
+                // Bluetooth printer
+                var list = _blueToothService.GetDeviceList();
+                
+                DeviceList.Add(new XPrinter()
                 {
-                    List<XPrinter> Liste;
-                    if (Manager.isJson(App.Settings.MultiPrinterList))
+                    Name = "",
+                    Type = Printer_Type.Bluetooth
+                }
+                    );
+                foreach (var item in list)
+                {
+                    XPrinter itm = new XPrinter()
                     {
-                        Liste = Newtonsoft.Json.JsonConvert.DeserializeObject<List<XPrinter>>(App.Settings.MultiPrinterList);
+                        Name = item,
+                        Type = Printer_Type.Bluetooth
+                    };
+                    DeviceList.Add(itm);
+                }
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+            }
+            return DeviceList;
+        }
 
-                        if (Liste != null && Liste.Count != 0)
+        public static async Task GetPrinterInstance()
+        {
+            try
+            {
+                if (!printerLocal.IsInstanceReady() || Constants.AppName == Apps.X_DISTRIBUTION)
+                {
+                    string printerToUse = App.Settings.PrinterName;
+
+                    if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    {
+                        var Liste = GetBluetoothPrinters();
+                        var popupPrinter = new MultiPrinterSelector(Liste);
+                        await PopupNavigation.Instance.PushAsync(popupPrinter);
+                        var resPop = await popupPrinter.PopupClosedTask;
+                        if (resPop != "Null")
+                            printerToUse = resPop;
+
+                        bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
+
+                        if (!succes)
                         {
-                            var popupPrinter = new MultiPrinterSelector(Liste);
-                            PopupNavigation.Instance.PushAsync(popupPrinter);
-                            var resPop = popupPrinter.PopupClosedTask;
-                            if (resPop.Result != "Null")
-                                printerToUse = resPop.Result;
+                            throw new Exception("Échec de la connexion à l'imprimante !");
                         }
-                        else Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                        else
+                        {
+                            if (!printerLocal.isConnected())
+                            {
+                                printerLocal.openConnection();
+                            }
+                        }
+                        return;
+                    }
+                    else if (App.Settings.EnableMultiPrinter)
+                    {
+                        List<XPrinter> Liste;
+                        if (Manager.isJson(App.Settings.MultiPrinterList))
+                        {
+                            Liste = Newtonsoft.Json.JsonConvert.DeserializeObject<List<XPrinter>>(App.Settings.MultiPrinterList);
 
+                            if (Liste != null && Liste.Count != 0)
+                            {
+                                var popupPrinter = new MultiPrinterSelector(Liste);
+                                PopupNavigation.Instance.PushAsync(popupPrinter);
+                                var resPop = popupPrinter.PopupClosedTask;
+                                if (resPop.Result != "Null")
+                                    printerToUse = resPop.Result;
+                            }
+                            else Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+
+                        }
+                        else
+                        {
+                            Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                        }
                     }
                     else
                     {
-                        Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
-                    }
-                }
-                else
-                {
-                    //if (Constants.AppName == Apps.X_DISTRIBUTION)
-                    //{
-                    //    PrinterSelector printerSelector = new PrinterSelector();
-                    //    await PopupNavigation.Instance.PushAsync(printerSelector);
+                        //if (Constants.AppName == Apps.X_DISTRIBUTION)
+                        //{
+                        //    PrinterSelector printerSelector = new PrinterSelector();
+                        //    await PopupNavigation.Instance.PushAsync(printerSelector);
 
 
-                    //}
-                    bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
+                        //}
+                        bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
 
-                    if (!succes)
-                    {
-                        throw new Exception("Échec de la connexion à l'imprimante !");
-                    }
-                    else
-                    {
-                        if (!printerLocal.isConnected())
+                        if (!succes)
                         {
-                            printerLocal.openConnection();
+                            throw new Exception("Échec de la connexion à l'imprimante !");
+                        }
+                        else
+                        {
+                            if (!printerLocal.isConnected())
+                            {
+                                printerLocal.openConnection();
+                            }
                         }
                     }
-                }
 
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message,AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
             }
         }
         public async static Task PrintBL(View_VTE_VENTE data)
@@ -106,9 +170,10 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 //       GetPrinterInstance();
                 //   }
 
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    printerLocal = DependencyService.Get<IPrinterSPRT>();
 
-                GetPrinterInstance();
-
+                await GetPrinterInstance();
 
                 printerLocal.setPrinter(13, 0);
                 printerLocal.setPrinter(13, 0);
@@ -130,13 +195,13 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
                 string datvalue = "";
                 string designation = "";
-                if (data.Details!=null)
-                foreach (var item in data.Details)
-                {
-                    designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
-                    datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
-                    printerLocal.PrintText(datvalue);
-                }
+                if (data.Details != null)
+                    foreach (var item in data.Details)
+                    {
+                        designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                        datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                        printerLocal.PrintText(datvalue);
+                    }
                 else
                 {
                     foreach (var item in data.DetailsDistrib)
@@ -155,11 +220,14 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 printerLocal.PrintText(monyWord + Environment.NewLine);
                 printerLocal.PrintText(" " + Environment.NewLine);
                 printerLocal.PrintText(" " + Environment.NewLine);
+
                 //             }
                 //             else
                 //             {
                 //                 await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
                 //             }
+                if (Constants.AppName == Apps.X_DISTRIBUTION)
+                    printerLocal.closeConnection();
 
             }
             catch (Exception ex)

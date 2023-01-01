@@ -212,8 +212,6 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("POINTS_CONSUMED");
             }
         }
-
-        [Ignore]
         public string CODE_TOURNEE { get; set; }
 
         #region Validation vente
@@ -247,7 +245,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal _MBL_MT_RENDU;
-        
+
         public decimal MBL_MT_RENDU
         {
             get { return _MBL_MT_RENDU; }
@@ -369,19 +367,19 @@ namespace XpertMobileApp.DAL
         // utiliser juste  pour Séparer entre vente CHIFA cash & vente CHIFA crédit
         // Warning :: TYPE_DOC2 is empty in all sales except vente chifa  ()        
         public decimal TOTAL_HT_REEL { get { return TOTAL_HT * SENS_DOC; } }
-        
+
         public decimal TOTAL_PPA_REEL { get { return TOTAL_PPA * SENS_DOC; } }
-       
+
         public decimal TOTAL_SHP_REEL { get { return TOTAL_SHP * SENS_DOC; } }
-       
+
         public decimal TOTAL_REMISE_REEL { get { return TOTAL_REMISE * SENS_DOC; } }
-        
+
         public decimal TOTAL_TVA_REEL { get { return TOTAL_TVA * SENS_DOC; } }
-        
+
         public decimal TOTAL_TTC_REEL { get { return TOTAL_TTC * SENS_DOC; } }
-        
+
         public decimal TOTAL_PAYE_REEL { get { return TOTAL_PAYE * SENS_DOC; } }
-        
+
         public decimal TOTAL_RESTE_REEL { get { return TOTAL_RESTE * SENS_DOC; } }
 
         public decimal TOTAL_TTC_INSTANCE { get; set; }
@@ -397,7 +395,7 @@ namespace XpertMobileApp.DAL
         #region Validation vente from Mobile
 
         #endregion
-        
+
         public string TITRE_VENTE_SPECIAL
         {
             get
@@ -890,8 +888,26 @@ namespace XpertMobileApp.DAL
         }
         public int NBR_CIENTS { get; set; }
         public int NBR_EN_WAITING { get; set; }
-        public int NBR_EN_VISITED { get; set; }
-        public int NBR_EN_DELEVRED { get; set; }
+        private int nbr_en_visited { get; set; }
+        public int NBR_EN_VISITED
+        {
+            get { return nbr_en_visited; }
+            set
+            {
+                nbr_en_visited = value;
+                OnPropertyChanged("NBR_EN_VISITED");
+            }
+        }
+        private int nbr_en_delevred { get; set; }
+        public int NBR_EN_DELEVRED
+        {
+            get { return nbr_en_delevred; }
+            set
+            {
+                nbr_en_delevred = value;
+                OnPropertyChanged("NBR_EN_DELEVRED");
+            }
+        }
 
         [Ignore]
         public List<View_LIV_TOURNEE_DETAIL> Details { get; set; }

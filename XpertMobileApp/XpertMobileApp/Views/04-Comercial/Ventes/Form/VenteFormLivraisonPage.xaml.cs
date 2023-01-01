@@ -66,6 +66,10 @@ namespace XpertMobileApp.Views
                 vte.MBL_CODE_TOURNEE_DETAIL = codeTourneeDetails;
                 vte.PropertyChanged += Vte_PropertyChanged;
             }
+            else
+            {
+                vte.MBL_CODE_TOURNEE_DETAIL = codeTourneeDetails;
+            }
 
             BindingContext = this.viewModel = new VenteFormLivraisonViewModel(vte, vte?.CODE_VENTE);
             viewModel.TypeDoc = typeDoc;
