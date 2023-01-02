@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                x:Class="XpertMobileAppManafiaa.Views._06_Manafiaa.DaytimeDelivery.DaytimeDelivery_DashBord"
+                xmlns:fontawesome="clr-namespace:FontAwesome"
+             xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms" 
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             Title="Journée">
+
+    <ScrollView Orientation="Vertical" VerticalOptions="Fill" BackgroundColor="{StaticResource DefaultLisViewBackColor}">
+
+        <StackLayout Spacing="0" BackgroundColor="Transparent" Padding="5">
+
+            <!-- User / date -->
+            <Frame CornerRadius="15" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True" 
+                   OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="{Binding Item.NOM_VENDEUR, StringFormat='{0}'}" TextColor="Black" FontAttributes="Bold" 
+                                       FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.persondolly}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Tournée du " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding Item.DATE_TOURNEE,  StringFormat='{0:dd/MM/yyyy}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="NBR Clients :" FontSize="Default" HorizontalOptions="Start" FontAttributes="Bold" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{Binding Item.NBR_CIENTS,  StringFormat='{0}'} " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+
+                        <Label Text="{Binding Item.ACOMPILCHEMENT_PERCENT,  StringFormat='{0}'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Total journée  -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Total journée" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.sackdollar}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.TOTAL_TOURNEE, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Large" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+
+            
+            
+
+
+            <!-- Total Vente  -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Total vente" TextColor="Black" FontAttributes="Bold" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.ExchangeAlt}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.TOTAL_Vente, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+
+            <!-- Total paiement crédit   -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Total paiement crédit" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.MoneyBillWave}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.TOTAL_PaiementCredit, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="#26c281"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Total crédit journée   -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Total crédit journée" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.MoneyBillWave}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.Total_Credit_Journee, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="Red"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <!-- Total retour stock   -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="Transparent">
+                <StackLayout Spacing="20" Padding="15" >
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Total retour stock" TextColor="Black" FontAttributes="Bold" HorizontalOptions="Start" 
+                                   FontSize="Medium"/>
+                        <Label Text="{x:Static fontawesome:FontAwesomeIcons.box}"  Style="{StaticResource FAwesome-B-Solid}"
+                               FontAttributes="Bold" FontSize="25" HorizontalOptions="EndAndExpand" 
+                               HorizontalTextAlignment="End" BackgroundColor="White" TextColor="{StaticResource DefaultGrayColor}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Montant " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.TOTAL_RETOUR_STOCK, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="DarkOrange"/>
+                    </StackLayout>
+                    <!--<StackLayout Orientation="Horizontal" Padding="0" Margin="0">
+                        <Label Text="Quantité " FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" TextColor="{StaticResource DefaultGrayColor}" />
+                        <Label Text="{ Binding Item.TOTAL_RETOUR_STOCK, StringFormat='{0}'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End" TextColor="DarkOrange"/>
+                    </StackLayout>-->
+                </StackLayout>
+                
+            </Frame>
+
+
+
+
+            <!-- Chart Paiement -->
+            <Frame CornerRadius="8" Padding="5" Margin="5" BackgroundColor="Transparent" HasShadow="True" 
+                   OutlineColor="Transparent">
+                <chart:SfChart >
+                    <chart:PieSeries ExplodeOnTouch="True" ItemsSource ="{Binding Item.Data1}" XBindingPath="Name" 
+                                     YBindingPath="Value" >
+                        <chart:PieSeries.DataMarker >
+                            <chart:ChartDataMarker ShowLabel="true" >
+                                <chart:ChartDataMarker.LabelStyle >
+                                    <chart:DataMarkerLabelStyle LabelPosition="Outer" LabelFormat="#,###.00 '%'"   
+                                                           TextColor="White"   FontSize="10" BackgroundColor="Blue">
+                                    </chart:DataMarkerLabelStyle>
+                                </chart:ChartDataMarker.LabelStyle>
+                            </chart:ChartDataMarker>
+                        </chart:PieSeries.DataMarker>
+                    </chart:PieSeries>
+
+                    <chart:SfChart.Legend>
+                        <chart:ChartLegend ToggleSeriesVisibility="True"  DockPosition="Right" IconWidth="14" IconHeight="14" />
+                    </chart:SfChart.Legend>
+
+                    <chart:SfChart.Title>
+                        <chart:ChartTitle Text=" Statistique" FontSize="17" TextAlignment="Start" TextColor="Black" FontAttributes="Bold" />
+                    </chart:SfChart.Title>
+                </chart:SfChart>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>    
