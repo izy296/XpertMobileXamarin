@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SyncResumePoup">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+           
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame BackgroundColor="#fff"
+               WidthRequest="250"
+               HeightRequest="200"
+               Padding="25"
+               CornerRadius="7"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand">
+            <StackLayout HorizontalOptions="Center">
+
+                <Label 
+                        VerticalOptions="Center"
+                        Text="Etat de la Synchronisation" 
+                        FontSize="17" 
+                        TextColor="{StaticResource Primary}"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                <StackLayout VerticalOptions="CenterAndExpand">
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des teirs" FontSize="12" TextColor="#000"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des Encaissements" FontSize="12" TextColor="#000"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des ventes" FontSize="12" TextColor="#000"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des commandes" FontSize="12" TextColor="#000"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16"/>
+
+                    </FlexLayout>
+
+                </StackLayout>
+
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+
+</pages:PopupPage>

@@ -62,7 +62,7 @@ namespace XpertMobileApp.Views
 
         public View_TRS_ENCAISS Item { get; set; }
 
-        public NewEncaissementPage(View_TRS_ENCAISS itemEncaiss = null, EncaissDisplayType type = EncaissDisplayType.ENC, View_TRS_TIERS tier = null)
+        public NewEncaissementPage(View_TRS_ENCAISS itemEncaiss = null, EncaissDisplayType type = EncaissDisplayType.ENC, View_TRS_TIERS tier = null, string codeDetail = null)
         {
             InitializeComponent();
 

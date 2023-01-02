@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using SQLite;
 using System;
 using System.Collections;
@@ -21,6 +22,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views;
 using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.SQLite_Managment
@@ -114,6 +116,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
                 await GetInstance().CreateTableAsync<STK_PRODUITS_IMAGES>();
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_LABO>();
+                await GetInstance().CreateTableAsync<LOG_SYNCHRONISATION>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
@@ -423,7 +426,6 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                     await SyncLabos();
                     await SyncProduitFamille();
                     await SyncStatusCommande();
@@ -472,7 +474,6 @@ namespace XpertMobileApp.SQLite_Managment
                     //await SyncProductPriceByQuantity();       this probelem here 
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                    UserDialogs.Instance.HideLoading();
 
                     await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 }
@@ -644,26 +645,43 @@ namespace XpertMobileApp.SQLite_Managment
         /// uploader les donnés aux base de donné distante ...
         /// </summary>
         /// <returns></returns>
-        public static async Task synchroniseUpload()
+        public static async Task synchroniseUpload(int id = -1)
         {
-            bool isconnected = await App.IsConected();
-            if (isconnected)
-
+            try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await SyncTiersToServer();
-                await SyncEncaissToServer();
-                await SyncVenteToServer(); // error while coppying content to a stream
-                await SyncTourneesToServer();
-                await SyncCommandToServer();
+                LOG_SYNCHRONISATION obj = null;
+                if (id != -1)
+                    obj = await GetInstance().Table<LOG_SYNCHRONISATION>().Where(element => element.ID == id).FirstAsync();
 
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                bool isconnected = await App.IsConected();
+                if (isconnected)
+                {
+                    //await SyncTiersToServer();
+                    //await SyncEncaissToServer();
+                    //await SyncVenteToServer(); // error while coppying content to a stream
+                    //await SyncTourneesToServer();
+                    if (obj.SYNC_COMMANDE != null)
+                    {
+                        await SyncCommandToServer();
+                        if (obj != null)
+                        {
+                            obj.SYNC_COMMANDE = DateTime.Now;
+                            await GetInstance().UpdateAsync(obj);
+                        }
+                        await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                throw ex;
             }
         }
 
@@ -870,6 +888,7 @@ namespace XpertMobileApp.SQLite_Managment
                         item.GPS_LATITUDE = location.Latitude;
                         item.GPS_LONGITUDE = location.Longitude;
                     }
+
                     var id = await GetInstance().InsertAsync(item);
 
                     await GetInstance().UpdateAsync(item);
@@ -1264,7 +1283,7 @@ namespace XpertMobileApp.SQLite_Managment
 
             foreach (var item in tournees)
             {
-                if (item.CODE_DETAIL == codeTourneeDetail && vente.TYPE_DOC=="BL")
+                if (item.CODE_DETAIL == codeTourneeDetail && vente.TYPE_DOC == "BL")
                 {
                     item.CODE_VENTE = vente.CODE_VENTE;
                     item.CODE_ETAT_VISITE = TourneeStatus.Delivered;
@@ -1951,7 +1970,6 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                 var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC != "CC").ToListAsync();
                 var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
@@ -2006,8 +2024,6 @@ namespace XpertMobileApp.SQLite_Managment
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
-
-                    UserDialogs.Instance.HideLoading();
                     return res;
                 }
             }
@@ -2098,11 +2114,36 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                throw ex;
             }
             return "";
         }
+
+        public async static void InsertSyncLog(object list, string typeDoc)
+        {
+            try
+            {
+                if (typeDoc == "BR" || typeDoc == "BL")
+                {
+                    List<View_VTE_VENTE> liste = list as List<View_VTE_VENTE>;
+
+                }
+                else if (typeDoc == "CC")
+                {
+                    List<View_VTE_COMMANDE> liste = list as List<View_VTE_COMMANDE>;
+                }
+                else if (typeDoc == "ENC")
+                {
+                    List<View_TRS_ENCAISS> liste = list as List<View_TRS_ENCAISS>;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+            }
+        }
+
         /// <summary>
         /// Synchronisation de la liste des Tournees aux serveur
         /// </summary>
@@ -2111,7 +2152,6 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                 var ListTorunee = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
                 var tourneeDetails = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
@@ -2132,8 +2172,6 @@ namespace XpertMobileApp.SQLite_Managment
 
                     await GetInstance().DeleteAllAsync<View_LIV_TOURNEE>();
                     await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
-
-                    UserDialogs.Instance.HideLoading();
                     return res;
                 }
             }

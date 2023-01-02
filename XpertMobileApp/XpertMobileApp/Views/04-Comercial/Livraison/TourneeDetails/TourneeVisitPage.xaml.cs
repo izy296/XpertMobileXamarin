@@ -364,7 +364,7 @@ namespace XpertMobileApp.Views
                 await ((Frame)sender).ScaleTo(0.75, 50, Easing.Linear);
                 await ((Frame)sender).ScaleTo(1, 50, Easing.Linear);
 
-                await Navigation.PushAsync(new NewEncaissementPage(null, EncaissDisplayType.ENC, tier));
+                await Navigation.PushAsync(new NewEncaissementPage(null, EncaissDisplayType.ENC, tier, livTournee.CODE_DETAIL));
             }
             catch (Exception ex)
             {

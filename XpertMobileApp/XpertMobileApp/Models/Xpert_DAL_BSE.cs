@@ -77,6 +77,7 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_UNITE_2 { get; set; }
     }
 
+
     public partial class BSE_PRODUIT_PRIX_VENTE
     {
         // declaration de type BSE_PRODUIT_PRIX_VENTE pour la sycnhronisation sqlite
@@ -95,6 +96,18 @@ namespace XpertMobileApp.Models
         public DateTime? DATE_SYNCHRONISATION { get; set; }
         public string DESIGN_FAMILLE { get; set; }
         public string DESIGNATION_TYPE_PRIX { get; set; }
+    }
+
+    public class LOG_SYNCHRONISATION
+    {
+        [PrimaryKey, AutoIncrement]
+        public decimal ID { get; set; }
+        public string CODE_TOURNEE { get; set; }
+        public DateTime SYNC_TIERS { get; set; }
+        public DateTime SYNC_ENCAISS { get; set; }
+        public DateTime SYNC_VENTE { get; set; }
+        public DateTime SYNC_TOURNEE { get; set; }
+        public DateTime SYNC_COMMANDE { get; set; }
     }
 }
 

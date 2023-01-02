@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SynchronisationPage"
-             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:pages="http://rotorgames.com"
              Title="{i18n:Translate pn_synchronisation}"
              BackgroundColor="#fff">
     <ContentPage.Content>
@@ -10,11 +11,74 @@
                      HorizontalOptions="Center"
                      BackgroundColor="White">
 
-            <Image Source="synchronisationIcon.png"
-                   HorizontalOptions="Center"
-                   VerticalOptions="StartAndExpand"/>
+            <Label Text="Synchronisation" FontSize="32" FontAttributes="Bold" TextColor="{StaticResource Primary}" VerticalOptions="Start" HorizontalOptions="Center"/>
 
-            <Label Text="{i18n:Translate txt_SyncData}" 
+            <Grid HorizontalOptions="Center"
+                  VerticalOptions="CenterAndExpand">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*" />
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.4*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <Image 
+                   x:Name="syncImage"
+                   Margin="20,0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Source="pattern.png"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"/>
+
+                <Image 
+                    x:Name="syncImg"
+                    Source="sync.png"
+                    Grid.Column="1"
+                    WidthRequest="50"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+
+                <Button
+                    VerticalOptions="Center"
+                    Grid.Column="0"
+                    WidthRequest="220"
+                    HeightRequest="110"
+                    x:Name="Btn_Download" 
+                    Margin="14,15,14,0" 
+                    BorderRadius="12"
+                    BackgroundColor="#e65b65"
+                    TextColor="#fff"
+                    Text="{i18n:Translate btn_downloadData}" 
+                    FontSize="13"
+                    Clicked="SyncDownload"
+                    ImageSource="cloud_download.png"
+                    ContentLayout="Bottom,0"/>
+
+                <Button 
+                    VerticalOptions="Center"
+                    Grid.Column="2"
+                    WidthRequest="220"
+                    HeightRequest="110"
+                    x:Name="Btn_Upload" 
+                    FontSize="13"
+                    Margin="14,15,14,0" 
+                    BorderRadius="12"
+                    BackgroundColor="#7EC384"
+                    TextColor="White"
+                    Text="{i18n:Translate btn_uploadData}" 
+                    Clicked="SyncUpload"
+                    FontAttributes="None"
+                    ImageSource="cloud_upload.png"
+                    ContentLayout="Bottom,0"/> 
+            </Grid>
+
+
+            <!--<Label Text="{i18n:Translate txt_SyncData}" 
                    TextColor="#000"
                    FontSize="22"
                    HorizontalTextAlignment="Center"
@@ -50,10 +114,10 @@
                     Clicked="SyncUpload"
                     FontAttributes="None"
                     ImageSource="cloud_upload.png"
-                    ContentLayout="Bottom,0"/>
-
-            </StackLayout>
+                    ContentLayout="Bottom,0"/>-->
 
         </StackLayout>
+
+        <!--</StackLayout>-->
     </ContentPage.Content>
 </ContentPage>

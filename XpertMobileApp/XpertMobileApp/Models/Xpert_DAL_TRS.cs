@@ -57,6 +57,8 @@ namespace XpertMobileApp.DAL
 
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
         public DateTime? DATE_ENCAISS { get; set; } // datetime(3)
+
+        // datetime(3)
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "fn_enc_Compte")]
         public decimal TOTAL_ENCAISS { get; set; } // money(19,4)
 
@@ -87,6 +89,18 @@ namespace XpertMobileApp.DAL
         public bool ANNULEE { get; set; }
         private string cODE_DOC;
         public string CODE_DOC { get => cODE_DOC; set => cODE_DOC = value; }
+        private string CODE_TOURNEE_DETAIL;
+        public string cODE_TOURNEE_DETAIL
+        {
+            get
+            {
+                return CODE_TOURNEE_DETAIL;
+            }
+            set
+            {
+                CODE_TOURNEE_DETAIL = value;
+            }
+        }
     }
 
     // View
@@ -145,7 +159,7 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                return is_synchronisable;
+                    return is_synchronisable;
             }
             set
             {
