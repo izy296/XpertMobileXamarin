@@ -44,7 +44,7 @@ namespace XpertMobileApp.Api
 
         //#endif
         //
-        public static string AppName = Apps.XCOM_Livraison;
+        public static string AppName = Apps.XAGRI_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 

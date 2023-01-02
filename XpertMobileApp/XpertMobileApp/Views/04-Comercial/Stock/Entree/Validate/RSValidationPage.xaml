@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+                 x:Class="XpertMobileApp.Views.RSValidationPage">
+  <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+
+        <Frame Padding="10" CornerRadius="8" >
+            <StackLayout BackgroundColor="White" >
+                <Frame Margin="0" Padding="15" CornerRadius="8" BackgroundColor="{StaticResource Primary}" HasShadow="True">
+                    <Label Text="Retour stock" FontSize="Medium" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" />
+                </Frame>
+
+                <zxing:ZXingScannerView Grid.Row="1" x:Name="_scanView" OnScanResult="Handle_OnScanResult" IsScanning="False" IsVisible="False"
+                                WidthRequest="200" HeightRequest="120" />
+                <Frame CornerRadius="8" BackgroundColor="#87CEFA" Padding="0">
+                    <StackLayout Padding="0" Margin="5" Spacing="0" >
+                    <Label Text="Client " FontSize="Default" Margin="5,0,0,-15" />
+                    <StackLayout Orientation="Horizontal" Margin="30,0,30,0">
+                        <Entry x:Name="ent_SelectedTiers" Grid.Column="0" Text="{Binding SelectedTiers.NOM_TIERS1, Mode=TwoWay}"
+                                IsReadOnly="True" HorizontalOptions="FillAndExpand" TextColor="Black"/>
+                        
+                            <Button x:Name="btn_Search" Margin="0" Grid.Column="1"
+                            WidthRequest="45" HeightRequest="45" FontSize="Medium"
+                            HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Search}"  BackgroundColor="{StaticResource Primary}"
+                            Clicked="btn_Select_Clicked"/>
+
+                            <Button x:Name="btn_Scan" Margin="0" Grid.Column="1"
+                            WidthRequest="45" HeightRequest="45" FontSize="Medium"
+                            HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}"  BackgroundColor="{StaticResource Primary}"
+                            Clicked="btn_Scan_Clicked"/>
+                    
+                    </StackLayout>
+                
+                </StackLayout>
+                </Frame>
+                <Label Text="Montant. total" FontSize="Default" Margin="5,5,5,-10" />
+                <numeric1:SfNumericTextBox  Minimum="0"  HorizontalOptions="FillAndExpand" FontAttributes="Bold" TextColor="Black"
+                                     ParserMode="Double" MaximumNumberDecimalDigits="2"  IsEnabled="False"
+                                     SelectAllOnFocus="True" Value="{Binding Item.TOTAL_TTC, Mode=TwoWay}"
+                                     VerticalOptions="Center" Margin="30,0,30,0" />
+
+
+                
+
+                <StackLayout Padding="0" Margin="0" Spacing="5" Orientation="Horizontal" HorizontalOptions="Fill">
+
+                    <Button x:Name="btnSelect" Text="{i18n:Translate cmd_Cancel}" CornerRadius="8"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnCancel_Clicked" HorizontalOptions="FillAndExpand"></Button>
+
+                    <Button x:Name="btnColse" Text="{i18n:Translate cmd_Validate}" CornerRadius="8"
+            TextColor="White" Style="{StaticResource DefaultBtnStyle}" Clicked="btnValidate_Clicked" HorizontalOptions="FillAndExpand"></Button>
+                    
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Imprimer tiket caisse" FontSize="Default" Margin="5" />
+                    <CheckBox x:Name="imprimerTecketCaiss"   IsChecked="{Binding imprimerTecketCaiss, Mode=TwoWay}" />
+                </StackLayout>
+                
+            </StackLayout>
+        </Frame>
+      
+
+  </StackLayout>
+</pages:PopupPage>
