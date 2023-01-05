@@ -127,8 +127,8 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
                 catch (Exception ex)
                 {
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
         }
@@ -166,8 +166,8 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
                 catch (Exception ex)
                 {
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
         }
@@ -178,30 +178,35 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
             {
                 if (TiersSelected == null)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Tiers Manquant", AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Tiers Manquant", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
 
                 if (blFournisseur.Text == null || blFournisseur == null)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "bl fournisseur manquant", AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("bl fournisseur manquant", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
 
                 if (MagasinSelected == null)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Magasin Manquant", AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Magasin Manquant", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
 
                 if (date == null)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Date Manquante", AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Date Manquante", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
                 if (dateEcheance == null)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Date Echeance manquante", AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Date Echeance manquante", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
 
@@ -258,7 +263,8 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
                         MessagingCenter.Send(this, MCDico.ITEM_ADDED, "Commande refresh");
 
                         /*------ SUCCESS MESSAGE ----*/
-                        await DisplayAlert(AppResources.alrt_msg_Alert, "Echange créer avec succées !", AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Echange créer avec succées !", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     };
                 }
                 catch (Exception ex)

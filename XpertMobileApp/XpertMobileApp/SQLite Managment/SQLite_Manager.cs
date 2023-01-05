@@ -426,6 +426,7 @@ namespace XpertMobileApp.SQLite_Managment
                 if (App.Online)
                 {
                     await InitialisationDbLocal();
+                    await SynchroniseDELETE();
                     await SyncLabos();
                     await SyncProduitFamille();
                     await SyncStatusCommande();
@@ -433,7 +434,6 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncCommande(); //worked  await SyncLivTournee();//worked !
                     await SyncStatusCommande(); //To Delete On Download
                     await SyncProduitType(); //To Delete On Download
-                    await SyncCommande(); //worked //To Delete On Download
 
                     await SyncLivTournee();//worked !
                     await SyncLivTourneeDetail(); //worked !
@@ -462,6 +462,11 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncImages();
 
                     await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
+
+
+                    // Todo add row to log table when downloading
+
+
 
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     //await syncSession(); //worked !
@@ -645,45 +650,35 @@ namespace XpertMobileApp.SQLite_Managment
         /// uploader les donnés aux base de donné distante ...
         /// </summary>
         /// <returns></returns>
-        public static async Task synchroniseUpload(int id = -1)
-        {
-            try
-            {
-                LOG_SYNCHRONISATION obj = null;
-                if (id != -1)
-                    obj = await GetInstance().Table<LOG_SYNCHRONISATION>().Where(element => element.ID == id).FirstAsync();
+        //public static async Task synchroniseUpload()
+        //{
+        //    try
+        //    {
+        //        bool isconnected = await App.IsConected();
+        //        if (isconnected)
+        //        {
+        //            //await SyncTiersToServer();
+        //            //await SyncEncaissToServer();
+        //            //await SyncVenteToServer(); // error while coppying content to a stream
+        //            //await SyncTourneesToServer();
 
-                bool isconnected = await App.IsConected();
-                if (isconnected)
-                {
-                    //await SyncTiersToServer();
-                    //await SyncEncaissToServer();
-                    //await SyncVenteToServer(); // error while coppying content to a stream
-                    //await SyncTourneesToServer();
-                    if (obj.SYNC_COMMANDE != null)
-                    {
-                        await SyncCommandToServer();
-                        if (obj != null)
-                        {
-                            obj.SYNC_COMMANDE = DateTime.Now;
-                            await GetInstance().UpdateAsync(obj);
-                        }
-                        await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                    }
-                }
-                else
-                {
-                    UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                }
+        //            await SyncCommandToServer();
+        //            //await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
 
-            }
-            catch (Exception ex)
-            {
-                UserDialogs.Instance.HideLoading();
-                throw ex;
-            }
-        }
+        //        }
+        //        else
+        //        {
+        //            UserDialogs.Instance.HideLoading();
+        //            await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        UserDialogs.Instance.HideLoading();
+        //        throw ex;
+        //    }
+        //}
 
         /// <summary>
         /// Synchronisation du magasin 
@@ -786,7 +781,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// Uploader la liste des tiers aux serveur
         /// </summary>
         /// <returns></returns>
-        public static async Task SyncTiersToServer()
+        public static async Task<bool> SyncTiersToServer()
         {
             try
             {
@@ -803,15 +798,36 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     var bll = new TiersManager();
                     var res = await bll.SyncTiers(listNewTiers);
+                    if (res)
+                    {
+                        if (await UpdateLogs("TIERS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
-
-                await GetInstance().DeleteAllAsync<View_TRS_TIERS>();
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Tiers!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "TIERS";
+                throw ex;
+            }
+        }
+
+        public async static void DeleteAllTiersSInQLite()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<View_TRS_TIERS>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -819,7 +835,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// Synchronisation de la liste des encaiss aux serveur nn 
         /// </summary>
         /// <returns></returns>
-        public static async Task SyncEncaissToServer()
+        public static async Task<bool> SyncEncaissToServer()
         {
             try
             {
@@ -829,14 +845,36 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     var bll = new EncaissManager();
                     var res = await bll.SyncEncaiss(encaissList);
-                    await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+                    if (res)
+                    {
+                        if (await UpdateLogs("ENCAISS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "ENCAISS";
+                throw ex;
+            }
+        }
+
+        public static async void DeleteAllEncaissInSQlite()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
 
@@ -1141,6 +1179,16 @@ namespace XpertMobileApp.SQLite_Managment
                 if (obj != null && obj.Count > 0)
                 {
                     App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
+                    /* Initialisation de la table Log */
+                    LOG_SYNCHRONISATION logItem = new LOG_SYNCHRONISATION();
+                    foreach (var item in obj)
+                    {
+                        logItem.CODE_TOURNEE = item.CODE_TOURNEE;
+                        await GetInstance().InsertAsync(logItem);
+                    }
+
+                    var objTest = await GetInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
+
                 }
             }
         }
@@ -1637,7 +1685,6 @@ namespace XpertMobileApp.SQLite_Managment
             UsersMethodName = "SyncUsers";
             await SyncData<SYS_USER, SYS_USER>(false, "", UsersMethodName);
         }
-
         /// <summary>
         /// Synchronisation des permssions 
         /// </summary>
@@ -1859,6 +1906,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 CommandeMethode = "SyncCommande";
                 await SyncData<View_VTE_COMMANDE, VTE_COMMANDE>(false, "", CommandeMethode);
+
             }
             catch (Exception ex)
             {
@@ -1966,7 +2014,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// Synchronisation de la liste des ventes aux serveur
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> SyncVenteToServer()
+        public static async Task<bool> SyncVenteToServer()
         {
             try
             {
@@ -2018,34 +2066,52 @@ namespace XpertMobileApp.SQLite_Managment
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
                     var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
 
+                    if (res)
+                    {
+                        if (await UpdateLogs("VENTE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return true;
+
                     // Commenter cette section a cause de donnes utilisé avec les commandes et vider les tableauxs apres la synchronisation
                     // des commandes
-
-                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
-                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                    //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
-                    return res;
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "VENTES";
+                throw ex;
             }
-            return "";
+            return false;
         }
 
+        public static async void DeleteAllVentesInSQLite()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         /// <summary>
         /// Synchronisation de la liste des Commandes aux serveur
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> SyncCommandToServer()
+        public static async Task<bool> SyncCommandToServer()
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                 var ListVentes = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC == "CC").ToListAsync();
                 var vteDetails = await GetInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
@@ -2097,28 +2163,98 @@ namespace XpertMobileApp.SQLite_Managment
 
                     }
 
-
                     var compte = await getComptes();
-
                     var bll = CrudManager.Commandes;
                     var res = await bll.SyncCommandes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
 
-                    await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
-                    await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
-                    await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
-
-                    UserDialogs.Instance.HideLoading();
-                    return res.ToString();
+                    if (res)
+                    {
+                        if (await UpdateLogs("COMMANDE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "COMMANDES";
                 throw ex;
             }
-            return "";
         }
 
+        /// <summary>
+        ///  
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public async static Task<bool> UpdateLogs(string operation)
+        {
+            try
+            {
+                var tournee = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                var listCodeTournee = tournee.Select(x => x.CODE_TOURNEE).ToArray();
+                var logListe = await GetInstance().Table<LOG_SYNCHRONISATION>().Where(element => listCodeTournee.Contains(element.CODE_TOURNEE)).ToListAsync();
+
+                bool allRowChecked = false;
+                foreach (var log in logListe)
+                {
+                    allRowChecked = await UpdateLog(log, operation);
+                    if (!allRowChecked)
+                        return false;
+                }
+                return allRowChecked;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Update one row in Log_Synchronisation table ...
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public static async Task<bool> UpdateLog(LOG_SYNCHRONISATION log, string operation)
+        {
+            try
+            {
+                switch (operation)
+                {
+                    case "COMMANDE":
+                        log.SYNC_COMMANDE = DateTime.Now;
+                        break;
+                    case "VENTE":
+                        log.SYNC_VENTE = DateTime.Now;
+                        break;
+                    case "TOURNEE":
+                        log.SYNC_TOURNEE = DateTime.Now;
+                        break;
+                    case "TIERS":
+                        log.SYNC_TIERS = DateTime.Now;
+                        break;
+                    case "ENCAISS":
+                        log.SYNC_ENCAISS = DateTime.Now;
+                        break;
+                    default:
+                        return false;
+                }
+
+                await GetInstance().UpdateAsync(log);
+                var tourneeDetails = await GetInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async static void InsertSyncLog(object list, string typeDoc)
         {
             try
@@ -2148,7 +2284,7 @@ namespace XpertMobileApp.SQLite_Managment
         /// Synchronisation de la liste des Tournees aux serveur
         /// </summary>
         /// <returns></returns>
-        public static async Task<string> SyncTourneesToServer()
+        public static async Task<bool> SyncTourneesToServer()
         {
             try
             {
@@ -2169,21 +2305,41 @@ namespace XpertMobileApp.SQLite_Managment
 
                     var bll = CrudManager.Tournee;
                     var res = await bll.SyncTournee(ListTorunee);
-
-                    await GetInstance().DeleteAllAsync<View_LIV_TOURNEE>();
-                    await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
-                    return res;
+                    if (res)
+                    {
+                        if (await UpdateLogs("COMMANDE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
+                return true;
             }
+            
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "TOURNEE";
+                throw ex;
             }
-            return "";
         }
 
+
+        public async static void DeleteAllTourneeInSQLite()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<View_LIV_TOURNEE>();
+                await GetInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         /// <summary>
         /// Insert vente et vente detail  dans la table vente
         /// </summary>

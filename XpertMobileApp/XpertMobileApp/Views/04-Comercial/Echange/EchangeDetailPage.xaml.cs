@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,7 +70,8 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
             catch (Exception e)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(e), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(e), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {

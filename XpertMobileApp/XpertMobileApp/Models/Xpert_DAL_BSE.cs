@@ -101,7 +101,7 @@ namespace XpertMobileApp.Models
     public class LOG_SYNCHRONISATION
     {
         [PrimaryKey, AutoIncrement]
-        public decimal ID { get; set; }
+        public int ID { get; set; }
         public string CODE_TOURNEE { get; set; }
         public DateTime SYNC_TIERS { get; set; }
         public DateTime SYNC_ENCAISS { get; set; }

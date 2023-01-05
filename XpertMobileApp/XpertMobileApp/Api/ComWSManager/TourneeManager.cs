@@ -19,10 +19,10 @@ namespace XpertMobileApp.Api.Managers
         {
         }
 
-        public async Task<string> SyncTournee(List<View_LIV_TOURNEE> tournees)
+        public async Task<bool> SyncTournee(List<View_LIV_TOURNEE> tournees)
         {
             string url = GetActionUrl("SyncTournee");
-            return await WSApi2.PostAauthorizedValue<string, List<View_LIV_TOURNEE>>(url, tournees, this.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<bool, List<View_LIV_TOURNEE>>(url, tournees, this.Token.access_token);
         }
 
     }

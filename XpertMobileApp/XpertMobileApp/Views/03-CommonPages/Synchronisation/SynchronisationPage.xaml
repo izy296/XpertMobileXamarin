@@ -74,47 +74,8 @@
                     Clicked="SyncUpload"
                     FontAttributes="None"
                     ImageSource="cloud_upload.png"
-                    ContentLayout="Bottom,0"/> 
-            </Grid>
-
-
-            <!--<Label Text="{i18n:Translate txt_SyncData}" 
-                   TextColor="#000"
-                   FontSize="22"
-                   HorizontalTextAlignment="Center"
-                   HorizontalOptions="Center"
-                   HeightRequest="50"/>
-
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="Center">
-
-                <Button 
-                    WidthRequest="150"
-                    HeightRequest="130"
-                    x:Name="Btn_Download" 
-                    Margin="14,15,14,0" 
-                    BorderRadius="12"
-                    BackgroundColor="#e65b65"
-                    TextColor="#fff"
-                    Text="{i18n:Translate btn_downloadData}" 
-                    Clicked="SyncDownload"
-                    ImageSource="cloud_download.png"
                     ContentLayout="Bottom,0"/>
-
-
-                <Button 
-                    WidthRequest="150"
-                    HeightRequest="130"
-                    x:Name="Btn_Upload" 
-                    Margin="14,15,14,0" 
-                    BorderRadius="12"
-                    BackgroundColor="#7EC384"
-                    TextColor="White"
-                    Text="{i18n:Translate btn_uploadData}" 
-                    Clicked="SyncUpload"
-                    FontAttributes="None"
-                    ImageSource="cloud_upload.png"
-                    ContentLayout="Bottom,0"/>-->
+            </Grid>
 
         </StackLayout>
 

@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -393,12 +394,16 @@ namespace XpertMobileApp.Views
 
                 if (prods.Count > 1)
                 {
-                    await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Plusieurs produits pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+
                     return null;
                 }
                 else if (prods.Count == 0)
                 {
-                    await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Aucun produit pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+
                     return null;
                 }
 
@@ -429,11 +434,13 @@ namespace XpertMobileApp.Views
 
                 if (tiers.Count() > 1)
                 {
-                    await UserDialogs.Instance.AlertAsync("Plusieurs tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Plusieurs tiers pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else if (tiers.Count() == 0)
                 {
-                    await UserDialogs.Instance.AlertAsync("Aucun tiers pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Aucun tiers pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else
                 {

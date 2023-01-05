@@ -110,7 +110,6 @@ namespace XpertMobileApp
             if (licState == LicState.Valid && Constants.AppName != Apps.XAGRI_Mob)
             {
                 Settings.Mobile_Edition = licenceInfos != null ? licenceInfos.Mobile_Edition : Mobile_Edition.Lite;
-
                 string currentVersion = AppInfo.Version.ToString();
                 if (App.Settings != null && App.Settings.ShouldUpdate && string.Compare(App.Settings.DestinationVersion, currentVersion) >= 0)
                 {
@@ -174,6 +173,10 @@ namespace XpertMobileApp
                     res = true;
             }
             return res;
+        }
+        public static string GetAppName()
+        {
+            return Constants.AppName;
         }
 
         public App()

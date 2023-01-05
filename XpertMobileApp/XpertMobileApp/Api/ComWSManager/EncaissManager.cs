@@ -20,10 +20,10 @@ namespace XpertMobileApp.Api
 
         }
 
-        public async Task<List<string>> SyncEncaiss(List<View_TRS_ENCAISS> encaiss)
+        public async Task<bool> SyncEncaiss(List<View_TRS_ENCAISS> encaiss)
         {
             string url = GetActionUrl("SyncEncaiss");
-            return await WSApi2.PostAauthorizedValue<List<string>, List<View_TRS_ENCAISS>>(url, encaiss, this.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<bool, List<View_TRS_ENCAISS>>(url, encaiss, this.Token.access_token);
         }
     }
 }

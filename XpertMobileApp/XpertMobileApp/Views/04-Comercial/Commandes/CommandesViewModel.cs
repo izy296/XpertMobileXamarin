@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +14,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -173,8 +175,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {

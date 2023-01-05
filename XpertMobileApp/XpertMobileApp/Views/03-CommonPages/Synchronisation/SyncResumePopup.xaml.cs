@@ -32,16 +32,150 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
         public SyncResumePoup()
         {
             InitializeComponent();
-
+            this.CloseWhenBackgroundIsClicked = false;
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
         }
 
+        public async void CheckSynchronisation()
+        {
+            try
+            {
+                bool isconnected = await App.IsConected();
+                if (isconnected)
+                {
+                    var itemSynchronised = false;
+                    /* Synchronisation des Tiers */
+                    labelTiers.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SQLite_Manager.SyncTiersToServer();
+                    labelTiers.FontAttributes = FontAttributes.None;
+                    if (itemSynchronised)
+                    {
+                        syncTiers.IsVisible = true;
+                        SQLite_Manager.DeleteAllTiersSInQLite();
+                    }
+                    else
+                    {
+                        syncTiers.Source = "incorrect.png";
+                        syncTiers.IsVisible = true;
+                    }
+
+                    /* ---------------------------- */
+
+                    /* Synchronisation des encaiss */
+                    labelEncaiss.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SQLite_Manager.SyncEncaissToServer();
+                    labelEncaiss.FontAttributes = FontAttributes.None;
+                    if (itemSynchronised)
+                    {
+                        syncEncaiss.IsVisible = true;
+                        SQLite_Manager.DeleteAllEncaissInSQlite();
+                    }
+                    else
+                    {
+                        syncEncaiss.Source = "incorrect.png";
+                        syncEncaiss.IsVisible = true;
+                    }
+                    /* -------------------------------- */
 
 
+
+                    /* Synchronisation des ventes */
+
+                    labelVentes.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SQLite_Manager.SyncVenteToServer();
+                    labelVentes.FontAttributes = FontAttributes.None;
+                    if (itemSynchronised)
+                    {
+                        syncVentes.IsVisible = true;
+                    }
+                    else
+                    {
+                        syncVentes.Source = "incorrect.png";
+                        syncVentes.IsVisible = true;
+                    }
+
+                    /* ------------------------- */
+
+
+
+                    /* Synchronisation des commandes */
+                    labelCommande.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SQLite_Manager.SyncCommandToServer();
+                    labelCommande.FontAttributes = FontAttributes.None;
+                    if (itemSynchronised)
+                    {
+                        syncCommande.IsVisible = true;
+                        SQLite_Manager.DeleteAllVentesInSQLite();
+                    }
+
+                    else
+                    {
+                        syncCommande.Source = "incorrect.png";
+                        syncCommande.IsVisible = true;
+                    }
+                    /* -------------------------------- */
+                    /* Synchronisation des Tournee */
+                    labelTournee.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SQLite_Manager.SyncTourneesToServer();
+                    labelTournee.FontAttributes = FontAttributes.None;
+
+                    if (itemSynchronised)
+                    {
+                        syncTournees.IsVisible = true;
+                        SQLite_Manager.DeleteAllTourneeInSQLite();
+                    }
+                    else
+                    {
+                        syncTournees.Source = "incorrect.png";
+                        syncTournees.IsVisible = true;
+                    }
+                    /* ------------------------- */
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+            }
+            catch (Exception ex)
+            {
+                switch (ex.Data["opeartion"])
+                {
+                    case "TIERS":
+                        syncTiers.Source = syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
+                        syncTiers.IsVisible = syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        labelTiers.FontAttributes = FontAttributes.None;
+                        break;
+                    case "ENCAISS":
+                        syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
+                        syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        labelEncaiss.FontAttributes = FontAttributes.None;
+                        break;
+                    case "VENTES":
+                        syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
+                        syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        labelVentes.FontAttributes = FontAttributes.None;
+                        break;
+                    case "TOURNEE":
+                        syncTournees.Source = syncCommande.Source = "incorrect.png";
+                        syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        labelTournee.FontAttributes = FontAttributes.None;
+                        break;
+                    case "COMMANDES":
+                        syncCommande.Source = "incorrect.png";
+                        syncCommande.IsVisible = true;
+                        labelCommande.FontAttributes = FontAttributes.None;
+                        break;
+                    default:
+                        // code blocks
+                        break;
+                }
+            }
+        }
         /// <summary>
         /// Fermer la popup page
         /// </summary>

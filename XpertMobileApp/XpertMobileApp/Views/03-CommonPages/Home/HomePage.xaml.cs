@@ -40,15 +40,14 @@ namespace XpertMobileApp.Views
             {
                 if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-                    Application.Current.Resources["NavigationPrimary"] = "#F9B208 "; //orange foncé
-                    Application.Current.Resources["MenuAccent"] = "#F9B208";
-                    Application.Current.Resources["MenuItemGroup"] = "#FBEEC9"; //orange Claire
+                    Application.Current.Resources["NavigationPrimary"] = "#FF9500"; //orange foncé
+                    Application.Current.Resources["MenuAccent"] = "#FFDCA9";
                 }
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
                     Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#087565";
-                    Application.Current.Resources["MenuItemGroup"] = "#ACD1CB"; // vert claire
+                    Application.Current.Resources["MenuAccent"] = "#B1D7B4"; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] = "#B1D7B4";
                 }
                 else
                 {
@@ -57,6 +56,7 @@ namespace XpertMobileApp.Views
                 }
 
                 connectionStatus.Text = AppResources.txt_online;
+                connectionStatusIcon.Source = "wifi.png";
             }
 
             else
@@ -70,10 +70,11 @@ namespace XpertMobileApp.Views
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
                     Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#087565";
-                    Application.Current.Resources["MenuItemGroup"] = "#ACD1CB"; // vert claire
+                    Application.Current.Resources["MenuAccent"] = "#B1D7B4"; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] = "#B1D7B4"; // vert claire
                 }
                 connectionStatus.Text = AppResources.txt_offline;
+                connectionStatusIcon.Source = "nowifi.png";
             }
 
         }
@@ -96,8 +97,8 @@ namespace XpertMobileApp.Views
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
 
             if (viewModel.Items.Count == 0)
@@ -189,7 +190,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -200,7 +202,7 @@ namespace XpertMobileApp.Views
 
         public async Task Upload()
         {
-            await SQLite_Manager.synchroniseUpload();
+            //await SQLite_Manager.synchroniseUpload();
         }
 
         private async void btn_Notification(object sender, EventArgs e)
@@ -221,7 +223,10 @@ namespace XpertMobileApp.Views
                         {
                             bool response = await App.IsConected();
                             if (!response)
-                                await UserDialogs.Instance.AlertAsync("Veuillez vous connectez a l'internet !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                            {
+                                CustomPopup AlertPopup = new CustomPopup("Veuillez vous connectez a l'internet !", trueMessage: AppResources.alrt_msg_Ok);
+                                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                            }
                         }
                     }
                     App.showReconnectMessage = false;
@@ -270,8 +275,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-
-                UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok); ;
+                CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
     }

@@ -165,8 +165,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {
@@ -228,12 +228,14 @@ namespace XpertMobileApp.Views
                 prods = await CrudManager.Products.SelectProduitByCodeBarre(cb_prod);
                 if (prods.Count > 1)
                 {
-                    await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Plusieurs produits pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
                 else if (prods.Count == 0)
                 {
-                    await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Aucun produit pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
                 AddNewRow(prods[0]);
@@ -250,12 +252,14 @@ namespace XpertMobileApp.Views
             {
                 if (prods.Count > 1)
                 {
-                    await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Plusieurs produits pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
                 else if (prods.Count == 0)
                 {
-                    await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Aucun produit pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return false;
                 }
                 AddNewRow(prods[0]);
@@ -294,7 +298,8 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un client svp !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez sélectionner un client svp !", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
 
 

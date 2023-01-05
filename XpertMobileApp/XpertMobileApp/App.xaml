@@ -53,6 +53,7 @@
                                                         Tiers="{StaticResource TiersTemplate}"/>
 
             <!-- ***************** Tiers ********************-->
+            
             <!-- ***************** Transfert Stock  *****************-->
 
 
@@ -137,6 +138,15 @@
                                                            Commande="{StaticResource Commande}"/>
             <!--***************** COMMANDE ******************-->
 
+            <!--***************** TRANSFERT STOCK************-->
+
+            <DataTemplate x:Key="TransfertStock">
+                <template:RowElementTemplate_TransfertStock/>
+            </DataTemplate>
+
+            <templateSelector:TransfertStockDataSelectorTemplate x:Key="TransfertStockDataSelector"
+                                                                 TransfertStockTemplate="{StaticResource TransfertStock}"/>
+            <!--***************** TRANSFERT STOCK************-->
 
 
             <!--***************** Sortie ********************-->
@@ -198,6 +208,11 @@
                 <On Platform="iOS" Value="Gilroy-Regular" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
             </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="ReadexPro">
+                <On Platform="Android" Value="ReadexPro.ttf#ReadexPro"/>
+                <On Platform="iOS" Value="ReadexPro" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
+            </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontMontserat">
                 <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold.ttf" />
                 <On Platform="iOS" Value="Gilroy-SemiBold" />
@@ -225,6 +240,16 @@
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontOpenSans">
                 <On Platform="Android" Value="OpenSans.ttf#OpenSans.ttf" />
+                <On Platform="iOS" Value="Gilroy-Bold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="dmSans">
+                <On Platform="Android" Value="DMSans.ttf#DMSans.ttf" />
+                <On Platform="iOS" Value="Gilroy-Bold" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="nunitoSans">
+                <On Platform="Android" Value="NunitoSans.ttf#Nunito.ttf" />
                 <On Platform="iOS" Value="Gilroy-Bold" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Bold.ttf#Font Gilroy Bold" />
             </OnPlatform>
@@ -285,6 +310,7 @@
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Color x:Key="MenuAccent">#96d1ff</Color>
             <Color x:Key="MenuItemGroup">#dcefff</Color>
+            <Color x:Key="TilesColor">#FFFFFF</Color>
             <Color x:Key="AccentOpacity" x:FactoryMethod="FromRgba">
                 <x:Arguments>
                     <x:Double>150</x:Double>

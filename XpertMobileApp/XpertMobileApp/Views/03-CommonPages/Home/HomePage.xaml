@@ -5,16 +5,17 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              BackgroundColor="White"
              FlowDirection="MatchParent"
              
              >
-    
+
     <ContentPage.Content>
         <StackLayout Spacing="0" 
                      Padding="0" 
                      Margin="0" 
-                     BackgroundColor="Transparent">
+                     BackgroundColor="#f1f1f1">
 
             <!-- Liste des comptes -->
             <yummy:PancakeView CornerRadius="0,0,25,25" 
@@ -23,10 +24,10 @@
                                BorderColor="{DynamicResource NavigationPrimary}"
                                BackgroundColor="{DynamicResource NavigationPrimary}" 
                                HasShadow="False" >
-                
+
                 <StackLayout Spacing="10" 
                              Padding="15,0,15,15" >
-                    
+
                     <StackLayout x:Name="notif_container"
                                  Orientation="Horizontal" 
                                  Padding="35,0,0,0" 
@@ -54,7 +55,7 @@
                                 BackgroundColor="Transparent"
                                 IsVisible="False"/>
                         </AbsoluteLayout>
-                        
+
                     </StackLayout>
 
                     <!--<Label 
@@ -65,18 +66,32 @@
                         Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
                         BackgroundColor="Transparent" 
                         />-->
-                    
+
                     <StackLayout Orientation="Vertical" 
                                  Padding="0" 
                                  Margin="0">
-                        
-                        <Label x:Name="connectionStatus"
+
+                        <FlexLayout Direction="Row"                             
+                                    JustifyContent="Center"
+                                    AlignItems="Center"
+                                    HorizontalOptions="Center">
+
+                            <Label x:Name="connectionStatus"
                                FontSize="11"
                                HorizontalTextAlignment="Center"
                                HorizontalOptions="Center"
                                VerticalTextAlignment="Center"
                                TextColor="White"/>
-                        
+
+                            <Image x:Name="connectionStatusIcon"
+                                   Source="nowifi.png"
+                                   Margin="5,0,0,0"
+                                   WidthRequest="17"
+                                   HeightRequest="17"/>
+
+                        </FlexLayout>
+
+
                         <Label Text="Bienvenue" 
                                TextColor="White" 
                                FontAttributes="Bold" 
@@ -91,12 +106,12 @@
                                FontFamily="{StaticResource FontGilroyRegular}"
                                HorizontalTextAlignment="Center" 
                                TextColor="White"/>
-                        
+
                     </StackLayout>
                 </StackLayout>
             </yummy:PancakeView>
-            
-            <syncfusion:SfListView  Margin="10,-60,10,0"
+
+            <syncfusion:SfListView  Margin="10,-40,10,0"
                                     x:Name="listView"
                                     SelectionMode="None"
                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
@@ -105,44 +120,47 @@
                                     AutoFitMode="None"
                                     SelectionBackgroundColor="AliceBlue"
                                     BackgroundColor="Transparent">
-                    
-                    <syncfusion:SfListView.ItemSize>
-                        <OnIdiom x:TypeArguments="x:Double"
+
+                <syncfusion:SfListView.ItemSize>
+                    <OnIdiom x:TypeArguments="x:Double"
                                  Phone="140"
                                  Tablet="200"
                                  Desktop="200"/>
-                    </syncfusion:SfListView.ItemSize>
-                    
-                    <syncfusion:SfListView.LayoutManager>
-                        <syncfusion:GridLayout>
-                            <syncfusion:GridLayout.SpanCount>
-                                <OnIdiom x:TypeArguments="x:Int32"
+                </syncfusion:SfListView.ItemSize>
+
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout>
+                        <syncfusion:GridLayout.SpanCount>
+                            <OnIdiom x:TypeArguments="x:Int32"
                                 Phone="2"
                                 Tablet="3"
                                 Desktop="3"/>
-                            </syncfusion:GridLayout.SpanCount>
-                        </syncfusion:GridLayout>
-                    </syncfusion:SfListView.LayoutManager>
-                    
-                    <syncfusion:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <!--
+                        </syncfusion:GridLayout.SpanCount>
+                    </syncfusion:GridLayout>
+                </syncfusion:SfListView.LayoutManager>
+
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--
                              {Binding Color} OutlineColor="LightGray"
                               -->
-                        <yummy:PancakeView BackgroundColor="{Binding Color}" 
+                        <yummy:PancakeView xct:ShadowEffect.Color="Silver" 
+                                           xct:ShadowEffect.OffsetY="8"
+                                           xct:ShadowEffect.Radius="50"
+                                           BackgroundColor="{Binding Color}" 
                                            CornerRadius="6"
-                                           Margin="2" 
+                                           Margin="5" 
                                            Padding="2" 
-                                           HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
-                            
-                                <Grid Padding="0" 
+                                           HasShadow="False">
+
+                            <Grid Padding="0" 
                                       ColumnSpacing="0" 
                                       Margin="0" >
-                                    
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height= "*" />
-                                    </Grid.RowDefinitions>
-<!--
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "*" />
+                                </Grid.RowDefinitions>
+                                <!--
                                 <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"
                      VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
@@ -158,21 +176,24 @@
 -->
                                 <Button Text="{Binding Title}" 
                                         x:Name="btnModule"
-                                        ContentLayout="Top, 0"
+                                        ContentLayout="Top,0"
                                         HorizontalOptions="FillAndExpand" 
                                         VerticalOptions="FillAndExpand" 
                                         BackgroundColor="{Binding Color}"
-                                        FontFamily="{StaticResource FontGilroyRegular}" 
-                                        FontSize="18"
-                                        FontAttributes="bold"
+                                        FontFamily="{StaticResource FontOpenSans}" 
+                                        TextColor="#080808"
+                                        Padding="0,30"
+                                        FontSize="14"
+                                        CornerRadius="6"
+                                        FontAttributes="Bold"
                                         ImageSource="{Binding IconImage}"
                                         Clicked="Btn_Menu_Clicked" />
 
-                                </Grid>
-                            </yummy:PancakeView>
-                        </DataTemplate>
-                    </syncfusion:SfListView.ItemTemplate>
-                </syncfusion:SfListView>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
 
         </StackLayout>
     </ContentPage.Content>

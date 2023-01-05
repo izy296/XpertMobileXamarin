@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,18 +26,21 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
             try
             {
                 Btn_Upload.IsEnabled = false;
+                Btn_Download.IsEnabled = false;
                 syncImage.RotateTo(350 * -360, 10 * 60 * 1000);
 
                 SyncResumePoup popup = new SyncResumePoup();
                 await PopupNavigation.Instance.PushAsync(popup);
+                popup.CheckSynchronisation();
 
-                await SQLite_Manager.synchroniseUpload();
                 syncImage.CancelAnimations();
                 Btn_Upload.IsEnabled = true;
+                Btn_Download.IsEnabled = true;
             }
             catch (Exception ex)
             {
-
+                syncImage.CancelAnimations();
+                Btn_Upload.IsEnabled = true;
             }
 
         }
@@ -45,10 +49,13 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
         {
             try
             {
+                Btn_Upload.IsEnabled = false;
                 Btn_Download.IsEnabled = false;
+
                 syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
                 await SQLite_Manager.SynchroniseDownload();
                 syncImage.CancelAnimations();
+                Btn_Upload.IsEnabled = true;
                 Btn_Download.IsEnabled = true;
             }
             catch (Exception ex)
