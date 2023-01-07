@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <Configurations>Debug;Release;XMBL;XMAG</Configurations>
+    <Configurations>Debug;Release;XMBL;XMAG;XMAB</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,6 +17,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='XMBL|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='XMAB|AnyCPU'">
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
@@ -170,6 +175,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="CustomControls\VeterinaryAddRejectedPopup.xaml.cs">
+      <DependentUpon>VeterinaryAddRejectedPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="CustomControls\VeterinarySecondVerificationPopup.xaml.cs">
+      <DependentUpon>VeterinarySecondVerificationPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="CustomControls\VeterinaryPopup.xaml.cs">
+      <DependentUpon>VeterinaryPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\04-Comercial\Livraison\TourneeDetails\TourneesDetailsPage.xaml.cs">
       <DependentUpon>TourneesDetailsPage.xaml</DependentUpon>
     </Compile>
@@ -191,14 +205,32 @@
     <Compile Update="Views\04-Comercial\Tiers\CBScaner\CBScanerPopupPage.xaml.cs">
       <DependentUpon>CBScanerPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\06-Manafiaa\Achats\AchatFormPageAbattoire.xaml.cs">
+      <DependentUpon>AchatFormPageAbattoire.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\06-Manafiaa\DaytimeDelivery\DaytimeDelivery_DashBord.xaml.cs">
       <DependentUpon>DaytimeDelivery_DashBord.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\06-Manafiaa\Production\Reception olive huile\AchatsOHPageAbattoire.xaml.cs">
+      <DependentUpon>AchatsOHPageAbattoire.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="BaseView\XBasePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomControls\VeterinaryAddRejectedPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomControls\VeterinarySecondVerificationPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomControls\VeterinaryPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="CustomControls\CustomPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\04-Comercial\Templates\ReviewTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>

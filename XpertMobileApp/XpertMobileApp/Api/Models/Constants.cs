@@ -11,6 +11,7 @@ namespace XpertMobileApp.Api
     {
         public static string XAGRI_Mob = "XAGRI_Mob";
         public static string XCOM_Livraison = "XCOM_Livraison";
+        public static string XCOM_Abattoir = "XCOM_Abattoir";
     }
 
     public static class Mobile_Edition
@@ -34,17 +35,24 @@ namespace XpertMobileApp.Api
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
-        //#if Debug
+#if Debug
+                public static string AppName = Apps.XAGRI_Mob;
+#endif
 
-        //        public static string AppName = Apps.XAGRI_Mob;
-        //#endif
+#if XMBL
+                public static string AppName = Apps.XCOM_Livraison;
 
-        //#if XMBL
-        //        public static string AppName = Apps.XAGRI_Mob;
+#endif
+#if XMAG
+                public static string AppName = Apps.XAGRI_Mob;
 
-        //#endif
+#endif
+#if XMAB
+                public static string AppName = Apps.XCOM_Abattoir;
+
+#endif
         //
-        public static string AppName = Apps.XAGRI_Mob;
+        //public static string AppName = Apps.XAGRI_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 

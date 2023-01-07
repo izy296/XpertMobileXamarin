@@ -78,12 +78,23 @@
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'XMAB|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\XMAB\</OutputPath>
+    <DefineConstants>XMAB;</DefineConstants>
+    <AndroidManifest>Properties\AndroidManifest_XMAB.xml</AndroidManifest>
+    <DebugType>portable</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <LangVersion>8.0</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="bindigJarPrinterSPRT">
-      <HintPath>..\..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
+      <HintPath>..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
     </Reference>
     <Reference Include="EZioAD">
-      <HintPath>..\..\Xpert.Dll\Godex\Android\EZioAD.dll</HintPath>
+      <HintPath>..\Xpert.Dll\Godex\Godex\Android\EZioAD.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -431,6 +442,18 @@
       <Project>{f23bc09a-1484-406f-8354-ebb432d9cbb6}</Project>
       <Name>XpertMobileAppManafiaa</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AndroidManifest_XMAB.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\warning64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\checkmark.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
