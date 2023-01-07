@@ -77,6 +77,19 @@ namespace XpertMobileApp.Views
                 }
             }
 
+             else if (Constants.AppName == Apps.XCOM_Abattoir)
+            {
+                menuItems = new List<HomeMenuItem>
+                {
+                    //new HomeMenuItem {Id = MenuItemType.Achats, Image = "", Title=AppResources.pn_Achats },
+                    new HomeMenuItem {Id = MenuItemType.AchatsProduction, Image = "", Title=AppResources.pn_AchatsProduction },
+                    new HomeMenuItem {Id = MenuItemType.OrdresProduction, Image = "", Title=AppResources.pn_OrdresProduction },
+                    new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },
+                    new HomeMenuItem {Id = MenuItemType.Settings, Image = "", Title=AppResources.pn_Settings },
+                    new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
+                };
+            }
+
             ListViewMenu.ItemSelected += async (sender, e) =>
             {
                 if (e.SelectedItem == null)

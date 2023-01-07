@@ -43,7 +43,7 @@ public class MainApplication : Application
 
             }, true);
         #else
-	        FirebasePushNotificationManager.Initialize(this,new NotificationUserCategory[]
+	        /*FirebasePushNotificationManager.Initialize(this,new NotificationUserCategory[]
 		    {
 			new NotificationUserCategory("message",new List<NotificationUserAction> {
 			    new NotificationUserAction("Reply","Reply",NotificationActionType.Foreground),
@@ -55,7 +55,7 @@ public class MainApplication : Application
 			    new NotificationUserAction("Reject","Reject",NotificationActionType.Default,"cancel")
 			})
 
-		    },false);
+		    },false);*/
         #endif
 
         //Handle notification when app is closed here
