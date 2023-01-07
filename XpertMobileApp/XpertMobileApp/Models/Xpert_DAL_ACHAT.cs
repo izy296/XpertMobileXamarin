@@ -63,7 +63,8 @@ namespace XpertMobileApp.DAL
         public decimal TOTAL_FOURN_PPA { get; set; } // money(19,4)
         public decimal TOTAL_FOURN_HT_REMISE { get; set; } // money(19,4)
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
-        public string NOTE_DOC { get; set; } // nvarchar(-1)
+        private string note_doc { get; set; }
+        public string NOTE_DOC { get { return note_doc; } set { note_doc = value; OnPropertyChanged("NOTE_DOC"); } } // nvarchar(-1)
         public int SENS_DOC { get; set; } // int(10)
         public decimal RISTOUNE_FACT { get; set; } // money(19,4)
         public decimal TOTAL_VENTE { get; set; } // money(19,4)
@@ -90,11 +91,12 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_PESEE_SORTIE { get; set; }
         public string CODE_CHAUFFEUR { get; set; }
         public string CODE_UNITE { get; set; }
-        
+
         public decimal TOTAL_HT { get; set; } // money(19,4)
 
         private decimal tOTAL_TTC { get; set; }
-        public decimal TOTAL_TTC {
+        public decimal TOTAL_TTC
+        {
             get
             {
                 return tOTAL_TTC;
@@ -128,7 +130,7 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-               return TIERS_NomC + " ( " + CODE_TIERS + " )";
+                return TIERS_NomC + " ( " + CODE_TIERS + " )";
             }
         } // varchar(32)
         public string DESIGN_MODE_REG { get; set; } // varchar(300)
@@ -188,7 +190,7 @@ namespace XpertMobileApp.DAL
         public override string ToString()
         {
             string result = "N° " + NUM_DOC;
-            if (!string.IsNullOrEmpty(TIERS_NomC)) 
+            if (!string.IsNullOrEmpty(TIERS_NomC))
             {
                 result += "(" + TIERS_NomC + ")";
             }
@@ -236,6 +238,25 @@ namespace XpertMobileApp.DAL
                 return CODE_MOTIF != AchRecMotifs.PesageForProduction;
             }
         }
+
+        private List<PRESTATION_REJECTED> list_PRESTATION_REJECTED { get; set; }
+        public List<PRESTATION_REJECTED> List_PRESTATION_REJECTED
+        {
+            get
+            {
+                return list_PRESTATION_REJECTED;
+            }
+            set
+            {
+                list_PRESTATION_REJECTED = value;
+            }
+        }
+    }
+
+    public partial class PRESTATION_REJECTED
+    {
+        public string CODE_PRESTATION { get; set; }
+        public string DESIGNATION_REJET { get; set; }
     }
 
     public partial class ACH_DOCUMENT_DETAIL : BASE_CLASS
@@ -244,7 +265,8 @@ namespace XpertMobileApp.DAL
         public string CODE_ORIGINE_DETAIL { get; set; } // varchar(32)
         public string CODE_DOC { get; set; } // varchar(50)
         public string CLEANED_CODE_DOC
-        { get
+        {
+            get
             {
                 return CODE_DOC?.Replace("/", "");
             }
@@ -295,8 +317,8 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if(qUANTITE_DECHETS != value)
-                { 
+                if (qUANTITE_DECHETS != value)
+                {
                     qUANTITE_DECHETS = value;
                     OnPropertyChanged("QUANTITE_DECHETS");
                 }
@@ -315,8 +337,8 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if(qUANTITE_NET_PRIMAIRE != value)
-                { 
+                if (qUANTITE_NET_PRIMAIRE != value)
+                {
                     qUANTITE_NET_PRIMAIRE = value;
                     OnPropertyChanged("QUANTITE_NET_PRIMAIRE");
                 }
@@ -333,8 +355,8 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if(Math.Round(qUANTITE,2) != Math.Round(value,2))
-                { 
+                if (Math.Round(qUANTITE, 2) != Math.Round(value, 2))
+                {
                     qUANTITE = value;
                     OnPropertyChanged("QUANTITE");
                 }
@@ -351,8 +373,8 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if(iS_PRINCIPAL != value)
-                { 
+                if (iS_PRINCIPAL != value)
+                {
                     iS_PRINCIPAL = value;
                     OnPropertyChanged("IS_PRINCIPAL");
                 }
@@ -384,7 +406,7 @@ namespace XpertMobileApp.DAL
                     OnPropertyChanged("MT_TTC");
                 }
             }
-        } 
+        }
 
         internal decimal qTE_BRUTE;
         public decimal QTE_BRUTE
@@ -395,7 +417,7 @@ namespace XpertMobileApp.DAL
             }
             set
             {
-                if (Math.Round(qTE_BRUTE, 2) != Math.Round(value,2))
+                if (Math.Round(qTE_BRUTE, 2) != Math.Round(value, 2))
                 {
                     qTE_BRUTE = value;
                     OnPropertyChanged("QTE_BRUTE");
@@ -462,10 +484,10 @@ namespace XpertMobileApp.DAL
             {
                 return edited_BY_QteNet;
             }
-           set
+            set
             {
-                if(edited_BY_QteNet != value)
-                { 
+                if (edited_BY_QteNet != value)
+                {
                     edited_BY_QteNet = value;
                     OnPropertyChanged("QTE_BRUTE");
                 }
@@ -503,8 +525,8 @@ namespace XpertMobileApp.DAL
 
         internal void SetPeseeBrute(decimal v)
         {
-            if(Math.Round(this.qTE_BRUTE,2) != Math.Round(v,2))
-            { 
+            if (Math.Round(this.qTE_BRUTE, 2) != Math.Round(v, 2))
+            {
                 this.qTE_BRUTE = v;
                 OnPropertyChanged("QTE_BRUTE");
                 OnPropertyChanged("QUANTITE");
@@ -530,12 +552,13 @@ namespace XpertMobileApp.DAL
         public int ID { get; set; }
         public string CODE_PRODUIT { get; set; } // varchar(11)
         public string DESIGNATION { get; set; } // varchar(150)
-        public string SHORT_DESIGNATION {
+        public string SHORT_DESIGNATION
+        {
             get
             {
                 return DESIGNATION.Truncate(40);
             }
-        } 
+        }
         public string DOSAGE { get; set; } // varchar(50)
         public string UNITE { get; set; } // varchar(50)
         public string CONDIT { get; set; } // varchar(50)
@@ -880,7 +903,7 @@ namespace XpertMobileApp.DAL
                 qTE_PRODUITE = value;
                 OnPropertyChanged("QTE_PRODUITE");
                 OnPropertyChanged("PRODUCTIVITE");
-                
+
             }
         }
     }
@@ -942,9 +965,9 @@ namespace XpertMobileApp.DAL
         public string CODE_TIERS_RESPONSABLE { get; set; }
         public string NOTE_DOC { get; set; }
         public decimal QTE_APPORT { get; set; }
-        public string ACH_CODE_STATUS { get; set; }        
+        public string ACH_CODE_STATUS { get; set; }
 
-        public bool Delevred 
+        public bool Delevred
         {
             get
             {

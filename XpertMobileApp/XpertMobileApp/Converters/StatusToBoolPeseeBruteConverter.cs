@@ -13,7 +13,7 @@ namespace XpertMobileApp.Converters
         {
             View_ACH_DOCUMENT obj = (View_ACH_DOCUMENT)value;
 
-            if (AppManager.HasAdmin) return true;
+            if (AppManager.HasAdmin || Constants.AppName == Apps.XCOM_Abattoir) return true;
 
             if (obj == null) return false;
             

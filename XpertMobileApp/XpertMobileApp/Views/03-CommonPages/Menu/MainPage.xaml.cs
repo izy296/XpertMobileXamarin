@@ -56,7 +56,12 @@ namespace XpertMobileApp.Views
                     case (int)MenuItemType.Achats:
                         return new AchatsPage();
                     case (int)MenuItemType.AchatsProduction:
-                        return new AchatsOHPage(AchRecMotifs.PesageForProduction);
+                    {
+                        if (Constants.AppName == Apps.XCOM_Abattoir)
+                            return new AchatsOHPageAbattoire(AchRecMotifs.PesageForProduction);
+                        else
+                            return new AchatsOHPage(AchRecMotifs.PesageForProduction);
+                    }
                     case (int)MenuItemType.OrdresProduction:
                         return new ProductionsPage(AchRecMotifs.PesageForProduction);
                     case (int)MenuItemType.Ventes:
@@ -118,8 +123,13 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new AchatsPage()));
                         break;
                     case (int)MenuItemType.AchatsProduction:
-                        MenuPages.Add(id, new NavigationPage(new AchatsOHPage(AchRecMotifs.PesageForProduction)));
-                        break;
+                        {
+                            if (Constants.AppName == Apps.XCOM_Abattoir)
+                                MenuPages.Add(id, new NavigationPage(new AchatsOHPageAbattoire(AchRecMotifs.PesageForProduction)));
+                            else
+                                MenuPages.Add(id, new NavigationPage(new AchatsOHPage(AchRecMotifs.PesageForProduction)));
+                            break;
+                        }
                     case (int)MenuItemType.OrdresProduction:
                         MenuPages.Add(id, new NavigationPage(new ProductionsPage(AchRecMotifs.PesageForProduction)));
                         break;
