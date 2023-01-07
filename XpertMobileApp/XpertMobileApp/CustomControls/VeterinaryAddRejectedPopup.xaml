@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views.VeterinaryAddRejectedPopup"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+            xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <yummy:PancakeView  CornerRadius="9"
+                                Padding="10"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                WidthRequest="250"
+                                BackgroundColor="#fff">
+                <StackLayout Orientation="Vertical">
+                    <Image 
+                        x:Name="closeIcon"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        WidthRequest="24"
+                        Source="closeIcon.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_filter_popup"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Image  Source="warning64.png" HorizontalOptions="Center"/>
+
+                    <Label x:Name="messageLabel"
+                           HorizontalTextAlignment="Center"
+                           Text="Voullez vous supprimer ce document ? "
+                           Margin="0,15"
+                           TextColor="Black"/>
+                    <Entry 
+                         Grid.Row="0"
+                         Grid.Column="0"
+                        x:Name="entryNote" 
+                        Placeholder="Note"
+                        MinimumHeightRequest="50"
+                        />
+
+                    <StackLayout
+                        x:Name="ListRejected"
+                        Orientation="Vertical">
+                        <!--<Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Entry Text="" Placeholder="Ajout Réjecté" />
+                            <ImageButton
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Source="closeIcon.png"
+                                Clicked="Button_Clicked"
+                            />
+                        </Grid>-->
+                    </StackLayout>
+                    <flex:FlexButton
+                                x:Name="buttonNewRejected"
+                                HorizontalOptions="FillAndExpand" 
+                                MinimumHeightRequest="50"
+                                HeightRequest="35"
+                                Padding="0"
+                                Margin="5"
+                                WidthRequest="130"
+                                Text="Ajouté Recjectés"
+                                CornerRadius="15"
+                                ForegroundColor="#ffffff"
+                                BackgroundColor="#e65b65"
+                                BorderColor="#e65b65"
+                                BorderThickness="1"
+                                Clicked="AddNewRejected"/>
+
+                    <StackLayout Orientation="Horizontal">
+                        <flex:FlexButton
+                                x:Name="buttonNon"
+                                HorizontalOptions="FillAndExpand" 
+                                MinimumHeightRequest="50"
+                                HeightRequest="35"
+                                Padding="0"
+                                Margin="5"
+                                WidthRequest="130"
+                                Text="Non"
+                                CornerRadius="15"
+                                ForegroundColor="#ffffff"
+                                BackgroundColor="#e65b65"
+                                BorderColor="#e65b65"
+                                BorderThickness="1"
+                                Clicked="AnswerWithNo"/>
+
+                        <flex:FlexButton
+                                x:Name="buttonYes"
+                                HorizontalOptions="FillAndExpand" 
+                                MinimumHeightRequest="50"
+                                HeightRequest="35"
+                                Padding="0"
+                                Margin="5"
+                                Text="Oui"
+                                CornerRadius="15"
+                                ForegroundColor="#ffffff"
+                                BackgroundColor="#2196F3"
+                                BorderColor="#2196F3"
+                                BorderThickness="1"
+                                WidthRequest="130"
+                            Clicked="AnswerWithYes"/>
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+        </StackLayout>
+    </ContentPage.Content>
+
+</pages:PopupPage>
