@@ -57,6 +57,24 @@ namespace XpertMobileApp.ViewModels
                 return result;
             }
         }
+        
+        public bool hasInsertHeader
+        {
+            get
+            {
+                if (AppManager.HasAdmin && Constants.AppName != Apps.XCOM_Abattoir) return true;
+
+                bool result = false;
+                if (AppManager.permissions != null)
+                {
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_ENTETE").FirstOrDefault();
+                    result = obj != null && obj.AcInsert > 0;
+                }
+                return result;
+            }
+        }
+
+
 
         public View_TRS_TIERS SelectedTiers { get; set; }
 

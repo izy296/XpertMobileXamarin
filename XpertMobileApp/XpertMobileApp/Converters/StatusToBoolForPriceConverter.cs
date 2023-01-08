@@ -17,7 +17,7 @@ namespace XpertMobileApp.Converters
 
             if (obj == null) return false;
 
-            if ((obj.STATUS_DOC == DocStatus.EnAttente || obj.STATUS_DOC == DocStatus.EnCours || obj.STATUS_DOC == DocStatus.Termine) && HasPermission)
+            if ((obj.STATUS_DOC == DocStatus.EnAttente || obj.STATUS_DOC == DocStatus.EnCours || obj.STATUS_DOC == DocStatus.Terminer) && HasPermission)
             {
                 return true;
             }

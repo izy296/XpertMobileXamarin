@@ -137,7 +137,7 @@ namespace XpertMobileApp.Views
             if (item == null)
                 return;
 
-            if (item.STATUS_DOC == DocStatus.EnAttente)
+            if (item.STATUS_DOC == DocStatus.EnAttente && !viewModel.hasInsertHeader)
             {
                 var bll = CrudManager.Achats;
                 VeterinaryPopup popup = new VeterinaryPopup("Voulez vous accepter cette article ?", "Recjecté", "Valider");
@@ -182,7 +182,7 @@ namespace XpertMobileApp.Views
                                 {
                                     if (confirmationPopup.Result)
                                     {
-                                        item.STATUS_DOC = DocStatus.Cloture;
+                                        item.STATUS_DOC = DocStatus.Rejeter;
                                         item.NOTE_DOC = veterinaryNote;
                                         UserDialogs.Instance.ShowLoading();
                                         await bll.UpdateItemAsync(item);
@@ -202,6 +202,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
+                if (!viewModel.hasInsertHeader)
                 await Navigation.PushAsync(new AchatFormPageAbattoire(item, typeDoc, MotifDoc));
             }
             // Manually deselect item.
@@ -230,7 +231,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, MotifDoc));
+            await Navigation.PushAsync(new AchatFormPageAbattoire(null, typeDoc, MotifDoc));
         }
 
         protected override async void OnAppearing()
@@ -251,7 +252,7 @@ namespace XpertMobileApp.Views
 
         private void ApplyVisibility()
         {
-            btn_Additem.IsEnabled = viewModel.hasEditHeader;
+            btn_Additem.IsEnabled = viewModel.hasInsertHeader;
         }
 
         private async void LoadStats()

@@ -774,12 +774,19 @@ namespace XpertMobileApp.DAL
 
     public static class DocStatus
     {
+        public static string NonCloturee { get { return "12"; } }
+        public static string ClotureeTtcJuste { get { return "13"; } }
+        public static string ClotureeTtcErrone { get { return "14"; } }
+        public static string ClotureeAutomatiquement { get { return "15"; } }
         public static string EnAttente { get { return "16"; } }
         public static string EnCours { get { return "17"; } }
-        public static string Termine { get { return "18"; } }
-        public static string Cloture { get { return "19"; } }
-        public static string EnProduction { get { return "20"; } }
+        public static string Terminer { get { return "18"; } }
+        public static string Cloturee { get { return "19"; } }
+        public static string EnCourDeProduction { get { return "20"; } }
         public static string Livre { get { return "22"; } }
+        public static string ProductionLivre { get { return "33"; } }
+        public static string Rejeter { get { return "34"; } }
+        public static string Accepter { get { return "35"; } }
     }
 
     public static class DocProdStatus

@@ -56,13 +56,15 @@ namespace XpertMobileApp.Views
                 ach.CODE_MOTIF = motif;
                 ach.DATE_DOC = DateTime.Now.Date;
 
-                ne_PESEE_ENTREE_Label.IsVisible = true;
-                ne_PESEE_ENTREE_Layout.IsVisible = true;
+                ne_PESEE_ENTREE_Label.IsVisible = false;
+                ne_PESEE_ENTREE_Layout.IsVisible = false;
 
                 //ne_PESEE_SORTIE_Label.IsVisible = false;
                 //ne_PESEE_SORTIE_Layout.IsVisible = false;
                 lbl_NOTE.IsVisible = false;
                 stk_lbl_NOTE.IsVisible = false;
+                lbl_VETERINARY.IsVisible = false;
+                cmd_VETERINARY.IsVisible = false;
             }
 
             if (Apps.XCOM_Abattoir == Constants.AppName)
@@ -280,7 +282,7 @@ namespace XpertMobileApp.Views
                     cmd_Terminate.IsVisible = true;
                 }
             }
-            else if (viewModel.Item.STATUS_DOC == DocStatus.Termine || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Terminer || viewModel.Item.STATUS_DOC == DocStatus.Cloturee)
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
@@ -867,7 +869,7 @@ namespace XpertMobileApp.Views
                 this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
 
                 viewModel.IsBusy = true;
-                viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                viewModel.Item.STATUS_DOC = DocStatus.Terminer;
                 await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
                 await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
@@ -897,7 +899,7 @@ namespace XpertMobileApp.Views
 
             try
             {
-                if (viewModel.Item.STATUS_DOC == DocStatus.EnProduction || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+                if (viewModel.Item.STATUS_DOC == DocStatus.EnCourDeProduction || viewModel.Item.STATUS_DOC == DocStatus.Accepter)
                 {
                     await UserDialogs.Instance.AlertAsync("Document " + viewModel.Item.DESIGNATION_STATUS + ", Vous ne pouvez pas le modifier!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
@@ -928,29 +930,30 @@ namespace XpertMobileApp.Views
                     return;
                 }
 
-                if (veterinaryValidation == -1)
-                {
-                    await UserDialogs.Instance.AlertAsync("Veuillez saisir la Validation Véterinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                    return;
-
-                }
-                else if (veterinaryValidation == 2)
-                {
-                    viewModel.Item.STATUS_DOC = DocStatus.Cloture;
-                    viewModel.Item.List_PRESTATION_REJECTED = ListPrestationRejected;
-                }
-                else
-                {
-                    if (veterinaryValidation == 1)
+                if (viewModel.Item.STATUS_DOC != null)
+                    if (veterinaryValidation == -1)
                     {
-                        viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                        await UserDialogs.Instance.AlertAsync("Veuillez saisir la Validation Véterinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        return;
+
+                    }
+                    else if (veterinaryValidation == 2)
+                    {
+                        viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                        viewModel.Item.List_PRESTATION_REJECTED = ListPrestationRejected;
                     }
                     else
                     {
-                        viewModel.Item.STATUS_DOC = DocStatus.Cloture;
+                        if (veterinaryValidation == 1)
+                        {
+                            viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                        }
+                        else
+                        {
+                            viewModel.Item.STATUS_DOC = DocStatus.Rejeter;
+                        }
+                        viewModel.Item.List_PRESTATION_REJECTED = null;
                     }
-                    viewModel.Item.List_PRESTATION_REJECTED = null;
-                }
 
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
                 // this.viewModel.Item.CODE_MOTIF = "ES10";

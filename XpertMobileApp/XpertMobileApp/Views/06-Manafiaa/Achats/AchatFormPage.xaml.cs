@@ -229,7 +229,7 @@ namespace XpertMobileApp.Views
                     cmd_Terminate.IsVisible = true;
                 }
             }
-            else if (viewModel.Item.STATUS_DOC == DocStatus.Termine || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Terminer || viewModel.Item.STATUS_DOC == DocStatus.Cloturee)
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
@@ -816,7 +816,7 @@ namespace XpertMobileApp.Views
                  this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
 
                  viewModel.IsBusy = true;
-                 viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                 viewModel.Item.STATUS_DOC = DocStatus.Terminer;
                  await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
                  await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated,AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
@@ -846,7 +846,7 @@ namespace XpertMobileApp.Views
 
             try
             {
-                if (viewModel.Item.STATUS_DOC == DocStatus.EnProduction || viewModel.Item.STATUS_DOC == DocStatus.Cloture)
+                if (viewModel.Item.STATUS_DOC == DocStatus.EnCourDeProduction || viewModel.Item.STATUS_DOC == DocStatus.Cloturee)
                 {
                     await UserDialogs.Instance.AlertAsync("Document " + viewModel.Item.DESIGNATION_STATUS + ", Vous ne pouvez pas le modifier!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;

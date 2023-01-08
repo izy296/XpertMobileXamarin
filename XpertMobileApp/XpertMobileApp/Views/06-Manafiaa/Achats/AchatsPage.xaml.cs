@@ -11,9 +11,9 @@ using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AchatsPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AchatsPage : ContentPage
+    {
         private string typeDoc = "LF";
         private string motifDoc = AchRecMotifs.PesageReception;
         AchatsViewModel viewModel;
@@ -22,8 +22,8 @@ namespace XpertMobileApp.Views
         List<SYS_OBJET_PERMISSION> permissions;
 
         public AchatsPage()
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             itemSelector = new TiersSelector(CurrentStream);
 
@@ -64,7 +64,7 @@ namespace XpertMobileApp.Views
 
             var connectivity = CrossConnectivity.Current;
             if (connectivity.IsConnected)
-            { 
+            {
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
 
@@ -84,7 +84,7 @@ namespace XpertMobileApp.Views
 
         private async void LoadStats()
         {
-             viewModel.LoadItemsCommand.Execute(null);
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void Filter_Clicked(object sender, EventArgs e)
@@ -93,14 +93,14 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)

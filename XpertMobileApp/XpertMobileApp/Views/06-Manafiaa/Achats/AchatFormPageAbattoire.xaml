@@ -123,7 +123,7 @@
                         <Switch IsToggled="{Binding Item.IS_INDIVIDUAL, Mode=TwoWay}" />
                     </StackLayout>
 
-                    <Label x:Name="lbl_VETERINARY" Grid.Column="0" Grid.Row="7" Text="Note" FontSize="Medium" Margin="5" />
+                    <Label x:Name="lbl_VETERINARY" Grid.Column="0" Grid.Row="7" Text="Validation" FontSize="Medium" Margin="5" />
                     <flex:FlexButton
                             x:Name="cmd_VETERINARY"
                             Grid.Column="1" 
