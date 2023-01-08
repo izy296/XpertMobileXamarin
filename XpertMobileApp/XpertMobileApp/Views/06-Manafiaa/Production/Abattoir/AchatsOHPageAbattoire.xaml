@@ -62,10 +62,10 @@
                             <Label Text="{Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Black"/>
                             <Label Text="{Binding QTE_NET, StringFormat='{0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="#26c281"/>
 
-                            <Frame CornerRadius="10" Margin="0" Padding="6,4,6,4" HeightRequest="25"
+                            <!--<Frame CornerRadius="10" Margin="0" Padding="6,4,6,4" HeightRequest="25"
                                    IsVisible="{Binding IS_INDIVIDUAL}"  HorizontalOptions="End" BackgroundColor="Red">
                                     <Label Text="Individuel" TextColor="White" FontSize="Default" HorizontalOptions="Start"/>
-                            </Frame>
+                            </Frame>-->
                                 <!--
                             <Label Text="{ Binding PESEE_SORTIE, StringFormat='S. {0:N2} Kg'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="OrangeRed"/>
                             -->

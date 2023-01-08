@@ -134,7 +134,7 @@
                             HeightRequest="55"
                             Padding="0"
                             Margin="0"
-                            Text="Validation Vétérinaire"
+                            Text="Validation vétérinaire"
                             CornerRadius="38"
                             Icon="checkmark.png"
                             ForegroundColor="#ffffff"

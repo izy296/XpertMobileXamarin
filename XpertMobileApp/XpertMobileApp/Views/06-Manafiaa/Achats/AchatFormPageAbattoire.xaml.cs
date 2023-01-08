@@ -933,7 +933,7 @@ namespace XpertMobileApp.Views
                 if (viewModel.Item.STATUS_DOC != null)
                     if (veterinaryValidation == -1)
                     {
-                        await UserDialogs.Instance.AlertAsync("Veuillez saisir la Validation Véterinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        await UserDialogs.Instance.AlertAsync("Veuillez saisir la validation Vétérinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                         return;
 
                     }
@@ -1160,9 +1160,9 @@ namespace XpertMobileApp.Views
             if (viewModel.Item.STATUS_DOC == DocStatus.EnCours)
             {
                 var bll = CrudManager.Achats;
-                VeterinarySecondVerificationPopup rejectPopup = new VeterinarySecondVerificationPopup("Voulez-vous Validé cet article ?", "Recjecté", "Rejecté Partiale", "Valider");
-                VeterinaryAddRejectedPopup rejectListPopup = new VeterinaryAddRejectedPopup("Ajouté a la liste de Rejecté", "Annuler", "Valider");
-                CustomPopup confirmationPopup = new CustomPopup("etes-vous sûr ?", "Annuller", "Ok");
+                VeterinarySecondVerificationPopup rejectPopup = new VeterinarySecondVerificationPopup("Voulez-vous Validé cet article ?", "Rejeté", "Rejetée Partiale", "Valider");
+                VeterinaryAddRejectedPopup rejectListPopup = new VeterinaryAddRejectedPopup("Ajouté à la liste de Rejeté", "Annuler", "Ok");
+                CustomPopup confirmationPopup = new CustomPopup("Êtes-vous sûr ?", "Annuller", "Ok");
                 await PopupNavigation.Instance.PushAsync(rejectPopup);
                 if (await rejectPopup.PopupClosedTask)
                 {
@@ -1172,7 +1172,7 @@ namespace XpertMobileApp.Views
                         {
                             try
                             {
-                                VeterinaryPopup popup = new VeterinaryPopup("Donneé un note pour la Validation", "Annuler", "Ok");
+                                VeterinaryPopup popup = new VeterinaryPopup("Donné une note pour la validation", "Annuler", "Ok");
                                 await PopupNavigation.Instance.PushAsync(popup);
                                 if (await popup.PopupClosedTask)
                                 {
@@ -1198,7 +1198,7 @@ namespace XpertMobileApp.Views
                         {
                             try
                             {
-                                VeterinaryPopup popup = new VeterinaryPopup("Donneé un note pour la Réjection", "Annuler", "Ok");
+                                VeterinaryPopup popup = new VeterinaryPopup("Donné une note pour la validation", "Annuler", "Ok");
                                 await PopupNavigation.Instance.PushAsync(popup);
                                 if (await popup.PopupClosedTask)
                                 {
