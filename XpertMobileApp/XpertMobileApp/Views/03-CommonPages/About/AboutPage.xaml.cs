@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -91,7 +92,8 @@ namespace XpertMobileApp.Views
                 {
                     googlePlay_btn.IsEnabled = true;
                     googlePlay_btn.Opacity = 1;
-                    await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     await animateButton(googlePlay_btn);
                 }
                 else
@@ -102,24 +104,24 @@ namespace XpertMobileApp.Views
                     {
                         Update_btn.IsEnabled = true;
                         Update_btn.BackgroundColor = Color.FromHex("#7EC384");
-                        await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_new_update_web, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                         await animateButton(Update_btn);
                     }
                     else
                     {
                         Update_btn.IsEnabled = false;
                         Update_btn.BackgroundColor = Color.FromHex("#ddd");
-                        await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_updated, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 }
 
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert,
-AppResources.alrt_msg_Ok);
-
-
+                CustomPopup AlertPopup = new CustomPopup(ex.Message.ToString(), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
 
         }
@@ -130,9 +132,7 @@ AppResources.alrt_msg_Ok);
             return res;
         }
 
-        private async
-        Task
-        animateButton(Button btn)
+        private async Task animateButton(Button btn)
         {
             var scaleOriginal = btn.Scale;
             await btn.ScaleTo(btn.Scale * 1.3, 500);
@@ -153,11 +153,13 @@ AppResources.alrt_msg_Ok);
             {
                 Update_btn.IsEnabled = false;
                 Update_btn.BackgroundColor = Color.FromHex("#ddd");
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_update_success, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             else
             {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.ap_update_failed, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
     }

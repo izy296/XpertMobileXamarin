@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -24,11 +26,13 @@ namespace XpertMobileApp.ViewModels
             {
                 if (e.Code == XpertWebException.ERROR_XPERT_INCORRECTPASSWORD)
                 {
-                    await UserDialogs.Instance.AlertAsync(AppResources.err_msg_IncorrectLoginInfos, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.err_msg_IncorrectLoginInfos, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync(e.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(e.Message, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 return null;
             }

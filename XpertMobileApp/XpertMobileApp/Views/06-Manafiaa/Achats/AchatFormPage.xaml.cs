@@ -20,9 +20,9 @@ using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AchatFormPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AchatFormPage : ContentPage
+    {
         AchatsFormViewModel viewModel;
         public string CurrentStream = Guid.NewGuid().ToString();
         SYS_MOBILE_PARAMETRE parames;
@@ -46,8 +46,8 @@ namespace XpertMobileApp.Views
             EmballageSelector = new EmballageSelector();
 
             var ach = vente == null ? new View_ACH_DOCUMENT() : vente;
-            if(vente == null)
-            { 
+            if (vente == null)
+            {
                 ach.TYPE_DOC = typeDoc;
                 ach.CODE_MOTIF = motif;
                 ach.DATE_DOC = DateTime.Now.Date;
@@ -61,7 +61,7 @@ namespace XpertMobileApp.Views
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
-           // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
+            // viewModel.ItemRows.CollectionChanged += ItemsRowsChanged;
 
             MessagingCenter.Subscribe<ProductSelector, View_STK_PRODUITS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
@@ -87,16 +87,16 @@ namespace XpertMobileApp.Views
                 {
                     try
                     {
-                        if(items != null && items.Count > 0)
-                        { 
+                        if (items != null && items.Count > 0)
+                        {
                             currentRow.ANNEX_USERS = items;
                             currentRow.QUANTITE = currentRow.QTE_RECUE = items.Sum(x => x.QUANTITE_APPORT);
                         }
                     }
                     catch (Exception ex)
                     {
-                        UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                        PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 });
             });
@@ -126,8 +126,8 @@ namespace XpertMobileApp.Views
                     }
                     catch (Exception ex)
                     {
-                        UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-    AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                        PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 });
             });
@@ -156,14 +156,14 @@ namespace XpertMobileApp.Views
             viewModel.ImmatriculationList = await GetImmatriculations("");
 
             if (!AppManager.HasAdmin)
-            { 
+            {
                 ApplyVisibility();
             }
             else
             {
                 if ((viewModel.Item.STATUS_DOC == DocStatus.EnCours || viewModel.Item.STATUS_DOC == DocStatus.EnAttente) && viewModel.Item.PESEE_ENTREE == 0)
                 {
-                     cmd_Terminate.IsVisible = true;
+                    cmd_Terminate.IsVisible = true;
                 }
             }
 
@@ -273,8 +273,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {
@@ -321,10 +321,10 @@ namespace XpertMobileApp.Views
                 row.CODE_BARRE = product.CODE_BARRE;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
                 // row.UNITE
-                row.TAUX_DECHET   = product.TAUX_DECHET;
+                row.TAUX_DECHET = product.TAUX_DECHET;
                 row.CODE_MOTIF = viewModel.Item.CODE_MOTIF;
                 if (viewModel.Item.CODE_MOTIF == AchRecMotifs.PesageForProduction)
-                { 
+                {
                     row.PRIX_UNITAIRE = 0;
                 }
                 else
@@ -332,7 +332,7 @@ namespace XpertMobileApp.Views
                     row.PRIX_UNITAIRE = product.PRIX_ACHAT_HT;
                 }
 
-                row.PRIX_VENTE    = product.PRIX_VENTE_HT;
+                row.PRIX_VENTE = product.PRIX_VENTE_HT;
 
                 row.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
                 row.LOT = parames?.DEFAULT_COMPAGNE_LOT;
@@ -345,17 +345,17 @@ namespace XpertMobileApp.Views
                     row.SetPeseeBrute(viewModel.Item.PESEE_BRUTE);
                 }
 
-                if(viewModel.ItemRows.Count == 0)
+                if (viewModel.ItemRows.Count == 0)
                 {
                     viewModel.Item.STATUS_DOC = DocStatus.EnCours;
-                }                
+                }
 
                 viewModel.ItemRows.Add(row);
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
             }
             else
             {
-              //  row.QUANTITE += 1;
+                //  row.QUANTITE += 1;
             }
 
             viewModel.Item.TOTAL_TTC = viewModel.ItemRows.Sum(e => e.MT_TTC * e.QUANTITE);
@@ -368,7 +368,7 @@ namespace XpertMobileApp.Views
         private void ne_PeseeTTCChanged(object sender, ValueEventArgs e)
         {
             foreach (var item in viewModel.ItemRows.ToList())
-            {                    
+            {
                 item.MT_TTC = item.QUANTITE * item.PRIX_UNITAIRE;
                 item.MT_HT = item.MT_TTC;
             }
@@ -387,16 +387,18 @@ namespace XpertMobileApp.Views
             }
 
             // Cas prdouit pas déjà ajouté
-            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectByCodeBarre(cb_prod);
+            List<View_STK_PRODUITS> prods = await CrudManager.Products.SelectProduitByCodeBarre(cb_prod);
 
             if (prods.Count > 0)
             {
-                await UserDialogs.Instance.AlertAsync("Plusieurs produits pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Plusieurs produits pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return false;
             }
             else if (prods.Count == 0)
             {
-                await UserDialogs.Instance.AlertAsync("Aucun produit pour ce code barre!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Aucun produit pour ce code barre!", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return false;
             }
 
@@ -416,13 +418,13 @@ namespace XpertMobileApp.Views
                 {
                     // 0 - Calcul du brute initial => celui du camions 
                     qteNetPrimaireInitial = viewModel.Item.PESEE_ENTREE - viewModel.Item.PESEE_SORTIE;
-                    if(principalItem.Embalages != null)
-                    {                
-                       qteNetPrimaireInitial = qteNetPrimaireInitial - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
+                    if (principalItem.Embalages != null)
+                    {
+                        qteNetPrimaireInitial = qteNetPrimaireInitial - principalItem.Embalages.Sum(x => x.QTE_DEFF * x.QUANTITE_UNITE);
                     }
 
                     // 1 - Calcul de la quantité net primaire du produit principal
-                    principalItem.SetPeseeBrute(qteNetPrimaireInitial);                  
+                    principalItem.SetPeseeBrute(qteNetPrimaireInitial);
                     principalItem.QUANTITE = principalItem.QTE_RECUE = principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial;
 
                     // 2 - calcul des emballages du l'item principal
@@ -460,13 +462,13 @@ namespace XpertMobileApp.Views
                         decimal totalPoidsEmballageVide = 0;
                         decimal totalPoidsEmballagePlein = 0;
                         if (item.Embalages != null)
-                        { 
+                        {
                             totalPoidsEmballage = item.Embalages.Sum(e => e.QUANTITE_ENTREE * e.QUANTITE_UNITE);
                             totalPoidsEmballageVide = item.Embalages.Sum(e => e.QUANTITE_VIDE * e.QUANTITE_UNITE);
                             totalPoidsEmballagePlein = totalPoidsEmballage - totalPoidsEmballageVide;
                         }
                         if (item.Edited_BY_QteNet != true)
-                        { 
+                        {
                             item.QUANTITE_NET_PRIMAIRE = item.QTE_BRUTE - totalPoidsEmballagePlein;
                             item.QUANTITE_DECHETS = ((item.QUANTITE_NET_PRIMAIRE * item.TAUX_DECHET) / 100);
                             item.QUANTITE = item.QUANTITE_NET_PRIMAIRE - item.QUANTITE_DECHETS;
@@ -495,7 +497,7 @@ namespace XpertMobileApp.Views
                 {
                     // Calcul de la quantité net finale du produit principal
 
-                    decimal NetPrimaireExceptions =  viewModel.ItemRows.Where(x => x.IS_PRINCIPAL == false).Sum(x => x.QUANTITE_NET_PRIMAIRE);
+                    decimal NetPrimaireExceptions = viewModel.ItemRows.Where(x => x.IS_PRINCIPAL == false).Sum(x => x.QUANTITE_NET_PRIMAIRE);
                     principalItem.QUANTITE_NET_PRIMAIRE = qteNetPrimaireInitial - NetPrimaireExceptions;
                     principalItem.QUANTITE_DECHETS = ((principalItem.QUANTITE_NET_PRIMAIRE * principalItem.TAUX_DECHET) / 100);
                     principalItem.QUANTITE = principalItem.QUANTITE_NET_PRIMAIRE - principalItem.QUANTITE_DECHETS;
@@ -509,7 +511,7 @@ namespace XpertMobileApp.Views
                         totalPoidsEmballage = principalItem.Embalages.Sum(e => e.QUANTITE_ENTREE_REEL * e.QUANTITE_UNITE);
 
                     principalItem.SetPeseeBrute(principalItem.QUANTITE_NET_PRIMAIRE + totalPoidsEmballage);
-               
+
                 }
 
                 // calcul du total du document
@@ -567,10 +569,10 @@ namespace XpertMobileApp.Views
         {
 
         }
-        #endregion 
+        #endregion
 
         #region Events
-        
+
         private void ne_QteNetChanged(object sender, ValueEventArgs e)
         {
             if (!viewModel.hasEditDetails)
@@ -773,7 +775,7 @@ namespace XpertMobileApp.Views
         {
             View_ACH_DOCUMENT_DETAIL vteD = (sender as Button).BindingContext as View_ACH_DOCUMENT_DETAIL;
 
-            if(vteD.IS_PRINCIPAL && viewModel.ItemRows.Count > 1)
+            if (vteD.IS_PRINCIPAL && viewModel.ItemRows.Count > 1)
             {
                 await UserDialogs.Instance.AlertAsync("Vous ne pouvez pas supprimer le produit principal tant qu'il y a des produits d'exceptions!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return;
@@ -785,8 +787,8 @@ namespace XpertMobileApp.Views
                 {
                     int index = viewModel.ItemRows.IndexOf(vteD);
                     viewModel.ItemRows.Remove(vteD);
-                    if(viewModel.Item?.Details?.Count - 1 >= index)
-                    { 
+                    if (viewModel.Item?.Details?.Count - 1 >= index)
+                    {
                         viewModel.Item.Details.RemoveAt(index);
                     }
                 }
@@ -807,31 +809,31 @@ namespace XpertMobileApp.Views
             }
 
             try
-             {
-                 UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
+            {
+                UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
-                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
-                 // this.viewModel.Item.CODE_MOTIF = "ES10";
-                 this.viewModel.Item.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
-                 this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
+                this.viewModel.Item.Details = viewModel.ItemRows.ToList();
+                // this.viewModel.Item.CODE_MOTIF = "ES10";
+                this.viewModel.Item.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
+                this.viewModel.Item.CODE_UNITE = parames?.DEFAULT_UNITE_ACHATS;
 
-                 viewModel.IsBusy = true;
-                 viewModel.Item.STATUS_DOC = DocStatus.Termine;
-                 await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
+                viewModel.IsBusy = true;
+                viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
-                 await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated,AppResources.alrt_msg_Alert,AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_CommandesUpdated, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
 
                 await Navigation.PopAsync();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
             finally
             {
-                 viewModel.IsBusy = false;
-                 UserDialogs.Instance.HideLoading();
+                viewModel.IsBusy = false;
+                UserDialogs.Instance.HideLoading();
             }
         }
 
@@ -853,7 +855,7 @@ namespace XpertMobileApp.Views
                 }
 
                 if (string.IsNullOrEmpty(viewModel.Item.CODE_TIERS))
-                { 
+                {
                     await UserDialogs.Instance.AlertAsync("Veuillez sélectionner un tiers!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
                 }
@@ -886,20 +888,20 @@ namespace XpertMobileApp.Views
                 if (string.IsNullOrEmpty(viewModel.Item.CODE_DOC)) // Ajout d'une reception
                 {
                     try
-                    { 
+                    {
                         UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
 
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.AddItemAsync(viewModel.Item);
-                           /*
-                        UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
-                            .SetTitle("Choose Type")
-                            .Add("Default", null, "Icon.png")
-                            .Add("E-Mail", null, "addToCart24.png")
-                        );
-                           */ 
+                        /*
+                     UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                         .SetTitle("Choose Type")
+                         .Add("Default", null, "Icon.png")
+                         .Add("E-Mail", null, "addToCart24.png")
+                     );
+                        */
                         await UserDialogs.Instance.AlertAsync(AppResources.txt_Cat_DocumentSaved, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                     
+
                     }
                     finally
                     {
@@ -913,7 +915,7 @@ namespace XpertMobileApp.Views
                     try
                     {
                         UserDialogs.Instance.ShowLoading("Traitement en cours ...", MaskType.Black);
-                        
+
                         viewModel.IsBusy = true;
                         await CrudManager.Achats.UpdateItemAsync(viewModel.Item);
 
@@ -950,7 +952,7 @@ namespace XpertMobileApp.Views
         {
             List<string> result = null;
 
-         //   if (string.IsNullOrEmpty(str)) return result;
+            //   if (string.IsNullOrEmpty(str)) return result;
 
             if (IsBusy)
                 return result;
@@ -964,8 +966,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return result;
             }
             finally
@@ -987,7 +989,7 @@ namespace XpertMobileApp.Views
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                 result = await WebServiceClient.GetPesse();
+                result = await WebServiceClient.GetPesse();
                 ne_PESEE_ENTREE.Value = result;
             }
             catch (Exception ex)
@@ -1019,8 +1021,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {
@@ -1055,8 +1057,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {

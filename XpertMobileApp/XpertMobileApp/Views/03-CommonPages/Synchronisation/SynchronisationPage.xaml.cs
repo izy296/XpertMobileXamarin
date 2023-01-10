@@ -25,17 +25,27 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
         {
             try
             {
-                Btn_Upload.IsEnabled = false;
-                Btn_Download.IsEnabled = false;
-                syncImage.RotateTo(350 * -360, 10 * 60 * 1000);
+                if (App.Online)
+                {
+                    Btn_Upload.IsEnabled = false;
+                    Btn_Download.IsEnabled = false;
+                    syncImage.RotateTo(350 * -360, 10 * 60 * 1000);
 
-                SyncResumePoup popup = new SyncResumePoup();
-                await PopupNavigation.Instance.PushAsync(popup);
-                popup.CheckSynchronisation();
+                    SyncResumePoup popup = new SyncResumePoup();
+                    await PopupNavigation.Instance.PushAsync(popup);
+                    popup.CheckSynchronisation();
 
-                syncImage.CancelAnimations();
-                Btn_Upload.IsEnabled = true;
-                Btn_Download.IsEnabled = true;
+                    syncImage.CancelAnimations();
+                    Btn_Upload.IsEnabled = true;
+                    Btn_Download.IsEnabled = true;
+
+                }
+                else
+                {
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+                }
+
             }
             catch (Exception ex)
             {
@@ -49,20 +59,29 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
         {
             try
             {
-                Btn_Upload.IsEnabled = false;
-                Btn_Download.IsEnabled = false;
+                if (App.Online)
+                {
+                    Btn_Upload.IsEnabled = false;
+                    Btn_Download.IsEnabled = false;
 
-                syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
-                await SQLite_Manager.SynchroniseDownload();
-                syncImage.CancelAnimations();
-                Btn_Upload.IsEnabled = true;
-                Btn_Download.IsEnabled = true;
+                    syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
+                    await SQLite_Manager.SynchroniseDownload();
+                    syncImage.CancelAnimations();
+                    Btn_Upload.IsEnabled = true;
+                    Btn_Download.IsEnabled = true;
+                }
+                else
+                {
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+                }
+
             }
             catch (Exception ex)
             {
-
+                syncImage.CancelAnimations();
+                Btn_Upload.IsEnabled = true;
             }
-
         }
     }
 }

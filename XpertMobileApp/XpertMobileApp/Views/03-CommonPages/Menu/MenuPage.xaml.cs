@@ -19,6 +19,7 @@ using System.ComponentModel;
 using XpertMobileApp.Views.Helper;
 using Newtonsoft.Json;
 using XpertMobileApp.Api.Services;
+using Rg.Plugins.Popup.Services;
 
 namespace XpertMobileApp.Views
 {
@@ -608,8 +609,8 @@ namespace XpertMobileApp.Views
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
 
         }
@@ -660,7 +661,7 @@ namespace XpertMobileApp.Views
                             this.NumberOfNotifications = 0;
                         else this.NumberOfNotifications = nbNotification;
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
 
                     }

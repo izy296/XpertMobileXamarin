@@ -2,9 +2,9 @@
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-                 x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SyncResumePoup">
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SyncResumePoup">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
@@ -20,8 +20,8 @@
     <ContentPage.Content>
         <Frame BackgroundColor="#fff"
                WidthRequest="250"
-               HeightRequest="200"
-               Padding="25,25,25,5"
+               HeightRequest="210"
+               Padding="25,25,25,25"
                CornerRadius="7"
                VerticalOptions="CenterAndExpand"
                HorizontalOptions="CenterAndExpand">
@@ -72,23 +72,24 @@
                     </FlexLayout>
 
                 </StackLayout>
-                
-                
+
+
                 <flex:FlexButton
-                                x:Name="buttonYes"
-                                HorizontalOptions="FillAndExpand" 
-                                MinimumHeightRequest="50"
-                                HeightRequest="35"
-                                Padding="0"
-                                Margin="5,5,5,0"
-                                Text="Ok"
-                                CornerRadius="15"
-                                ForegroundColor="#ffffff"
-                                BackgroundColor="#2196F3"
-                                BorderColor="#2196F3"
-                                BorderThickness="1"
-                                WidthRequest="130"
-                                Clicked="btn_Cancel_Clicked"/>
+                        x:Name="buttonYes"
+                        HorizontalOptions="FillAndExpand" 
+                        MinimumHeightRequest="50"
+                        HeightRequest="35"
+                        Padding="0"
+                        Margin="5,0,5,0"
+                        Text="Ok"
+                        IsEnabled="False"
+                        CornerRadius="15"
+                        ForegroundColor="#ffffff"
+                        BackgroundColor="#2196F3"
+                        BorderColor="#2196F3"
+                        BorderThickness="1"
+                        WidthRequest="130"
+                        Clicked="btn_Cancel_Clicked"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

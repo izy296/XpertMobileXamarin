@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,8 @@ namespace XpertMobileApp.Views
 
                 SettingsviewModel.deleteteAllNotification();
                 viewModel.Items = SettingsviewModel.getNotificationAsync();
-                await DisplayAlert(AppResources.np_Alert_Delete, AppResources.np_txt_alert_delete, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.np_txt_alert_delete, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 MessagingCenter.Send(this, "RELOAD_MENU", "");
             }
             catch (Exception ex)

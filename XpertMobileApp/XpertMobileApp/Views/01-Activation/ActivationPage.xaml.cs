@@ -1,4 +1,5 @@
 ﻿using Plugin.FirebasePushNotification;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -86,7 +87,8 @@ namespace XpertMobileApp.Views
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
             {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return;
             }
 
@@ -125,12 +127,14 @@ namespace XpertMobileApp.Views
                 }
                 catch (Exception ex)
                 {
-                    await DisplayAlert(AppResources.lp_Login, "Erreur lors de l'activation : " + ex.Message, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Erreur lors de l'activation : " + ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
             else
             {
-                await DisplayAlert(AppResources.lp_Login, "Informations d'activation manquantes", AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Informations d'activation manquantes", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 

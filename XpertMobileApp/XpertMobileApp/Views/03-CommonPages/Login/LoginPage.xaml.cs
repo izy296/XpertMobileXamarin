@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -81,11 +82,12 @@ namespace XpertMobileApp.Views
 
         async void ConnectUserAsync(object sender, EventArgs e)
         {
-                
+
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
             {
-                await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_MissingServerInfos, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return;
             }
 
@@ -133,7 +135,9 @@ namespace XpertMobileApp.Views
                     if (token == null)
                     {
                         UserDialogs.Instance.HideLoading();
-                        await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
+
+                        CustomPopup AlertPopup = new CustomPopup("un soucis est survenu lors de la tentative de connexion!", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                         return;
                     }
 
@@ -230,7 +234,9 @@ namespace XpertMobileApp.Views
                             if (token == null)
                             {
                                 UserDialogs.Instance.HideLoading();
-                                await DisplayAlert(AppResources.lp_Login, "un soucis est survenu lors de la tentative de connexion!", AppResources.alrt_msg_Ok);
+
+                                CustomPopup AlertPopup = new CustomPopup("un soucis est survenu lors de la tentative de connexion!", trueMessage: AppResources.alrt_msg_Ok);
+                                await PopupNavigation.Instance.PushAsync(AlertPopup);
                                 return;
                             }
                             if (token.access_token != null)
@@ -258,7 +264,7 @@ namespace XpertMobileApp.Views
                                         //Obtenir les permission de la table SYS_OBJET_PERMISSION ...
                                         AppManager.permissions = await SQLite_Manager.getPermission();
                                     }
-                                    if(Constants.AppName == Apps.X_DISTRIBUTION)
+                                    if (Constants.AppName == Apps.X_DISTRIBUTION)
                                     {
                                         await SQLite_Manager.AssignPrefix();
                                     }
@@ -289,12 +295,15 @@ namespace XpertMobileApp.Views
                         else
                         {
                             UserDialogs.Instance.HideLoading();
-                            await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+
+                            CustomPopup AlertPopup = new CustomPopup(AppResources.lp_login_WrongAcces, trueMessage: AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
                         }
                     }
                     else
                     {
-                        await DisplayAlert(AppResources.lp_Login, AppResources.lp_login_WrongAcces, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.lp_login_WrongAcces, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                         UserDialogs.Instance.HideLoading();
                     }
                 }
@@ -311,14 +320,16 @@ namespace XpertMobileApp.Views
                 {
                     if (string.IsNullOrEmpty(App.PrefixCodification))
                     {
-                        await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Veuillez configurer votre prefixe!!", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 }
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 

@@ -2,6 +2,7 @@
 
 using Acr.UserDialogs;
 using Newtonsoft.Json;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using XpertMobileApp.Data;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -85,14 +87,14 @@ namespace XpertMobileApp.ViewModels
             {
                 if (ex.Code == XpertWebException.ERROR_XPERT_UNKNOWN)
                 {
-                    await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                        AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else
                 {
                     string msgKey = string.Format("Exception_errMsg_{0}", ex.Code);
-                    await UserDialogs.Instance.AlertAsync(TranslateExtension.GetTranslation(msgKey), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(TranslateExtension.GetTranslation(msgKey), trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 return null;
             }

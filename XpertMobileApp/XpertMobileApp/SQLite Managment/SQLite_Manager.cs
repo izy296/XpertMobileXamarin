@@ -480,12 +480,14 @@ namespace XpertMobileApp.SQLite_Managment
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                     //await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
 
-                    await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Synchronisation faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else
                 {
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
 
             }
@@ -531,7 +533,9 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
                 await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
                 await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
-                await UserDialogs.Instance.AlertAsync("Suppression des tables de base faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                
+                CustomPopup AlertPopup = new CustomPopup("Suppression des tables de base faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             catch (Exception ex)
             {
@@ -751,8 +755,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -772,8 +776,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -932,11 +936,13 @@ namespace XpertMobileApp.SQLite_Managment
                     await GetInstance().UpdateAsync(item);
                     if (item.CODE_TYPE == "ENC")
                     {
-                        await UserDialogs.Instance.AlertAsync("Versement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Versement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                     else
                     {
-                        await UserDialogs.Instance.AlertAsync("Remboursement a été effectuée avec succès!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Remboursement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 }
                 else
@@ -960,7 +966,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
-                await UserDialogs.Instance.AlertAsync("Veuillez configurer le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -1041,21 +1048,6 @@ namespace XpertMobileApp.SQLite_Managment
             await GetInstance().UpdateAsync(encaiss);
             return true;
         }
-
-        //private static async Task UpdateSoldTiers(decimal sold, string codeTiers)
-        //{
-        //    List<View_TRS_TIERS> Tiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
-        //    var UpdatedTiers = Tiers.Where(x => x.CODE_TIERS == codeTiers).FirstOrDefault();
-        //    if (UpdatedTiers.SOLDE_TIERS > 0)
-        //    {
-        //        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS + sold;
-        //    }
-        //    else
-        //    {
-        //        UpdatedTiers.SOLDE_TIERS = UpdatedTiers.SOLDE_TIERS - sold;
-        //    }
-        //    await GetInstance().UpdateAsync(UpdatedTiers);
-        //}
 
         private static async Task UpdateSoldeTiers(decimal sold, string codeTiers, string type = "ENC")
         {
@@ -1188,7 +1180,6 @@ namespace XpertMobileApp.SQLite_Managment
                     }
 
                     var objTest = await GetInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
-
                 }
             }
         }
@@ -1361,7 +1352,6 @@ namespace XpertMobileApp.SQLite_Managment
                 await SyncData<View_STK_STOCK, STK_STOCK>(false, paramStock, StockMethodName);
             }
         }
-
 
         public static async Task SyncLabos()
         {
@@ -1720,7 +1710,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -1954,7 +1945,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return null;
             }
 
@@ -1981,7 +1973,8 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return null;
             }
 
@@ -2349,7 +2342,9 @@ namespace XpertMobileApp.SQLite_Managment
         {
             if ((vente.TOTAL_PAYE + vente.MBL_MT_VERCEMENT) > vente.TOTAL_TTC)
             {
-                await UserDialogs.Instance.AlertAsync("Montant versé suppérieur au montant à payer!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+
+                CustomPopup AlertPopup = new CustomPopup("Montant versé suppérieur au montant à payer!", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return vente.MBL_MT_VERCEMENT.ToString();
             }
             else
@@ -2515,7 +2510,8 @@ namespace XpertMobileApp.SQLite_Managment
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync("Veuillez configurer le Prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
 
             }
@@ -2723,19 +2719,21 @@ namespace XpertMobileApp.SQLite_Managment
                     }
                     else
                     {
-                        await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 }
 
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
             catch (Exception)
             {
-
-                await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefix", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
         public static async Task AssignMagasin()

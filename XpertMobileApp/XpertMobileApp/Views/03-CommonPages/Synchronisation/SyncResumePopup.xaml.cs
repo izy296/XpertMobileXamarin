@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SyncResumePoup : PopupPage, INotifyPropertyChanged
     {
-
+        
         public SyncResumePoup()
         {
             InitializeComponent();
@@ -126,6 +126,7 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
                     if (itemSynchronised)
                     {
                         syncTournees.IsVisible = true;
+                        buttonYes.IsEnabled = true;
                         SQLite_Manager.DeleteAllTourneeInSQLite();
                     }
                     else
@@ -138,7 +139,8 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
                 else
                 {
                     UserDialogs.Instance.HideLoading();
-                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
             catch (Exception ex)

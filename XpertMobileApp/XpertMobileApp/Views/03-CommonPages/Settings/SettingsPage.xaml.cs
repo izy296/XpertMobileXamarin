@@ -87,9 +87,6 @@ namespace XpertMobileApp.Views
 #endif
             //Set the selected Item from urlService....
             UrlServicePicker.SelectedItem = viewModel.GetUrlService();
-
-
-
         }
 
         protected override async void OnAppearing()
@@ -204,7 +201,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message.ToString(), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(ex.Message.ToString(), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return 0;
             }
 
@@ -223,7 +221,7 @@ namespace XpertMobileApp.Views
             Btn_RemoveLicence.Text = AppResources.sp_btn_RemoveLicence;
             lbl_LicenceInfos.Text = AppResources.sp_lbl_LicenceInfos;
         }
-        private void UrlServicePicker_SelectedIndexChanged(object sender, EventArgs e)
+        private async void UrlServicePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -240,8 +238,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                DisplayAlert(ex.Message.ToString(), AppResources.alrt_msg_SaveSettings,
-                   AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
+                CustomPopup AlertPopup = new CustomPopup(ex.Message.ToString(), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -273,11 +271,12 @@ namespace XpertMobileApp.Views
                 App.Settings.ConnectWithPasswordOnly = false;
             }
             await viewModel.SaveSettings();
+
             await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_SettingsSaved, AppResources.alrt_msg_Ok);
             if (serverChanged)
             {
-                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.sp_ServerChanged, AppResources.alrt_msg_Ok);
-
+                CustomPopup AlertPopup = new CustomPopup(AppResources.sp_ServerChanged, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 //code pour deconecter le client
                 if (App.User != null && App.User.Token != null)
                     await App.TokenDatabase.DeleteItemAsync(App.User.Token);
@@ -304,7 +303,9 @@ namespace XpertMobileApp.Views
                 var res = await SQLite_Manager.AjoutPrefix();
                 if (res != null)
                 {
-                    await DisplayAlert("Succes", AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.txt_actionsSucces, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+
                     await SQLite_Manager.GetInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
                     var id = await SQLite_Manager.GetInstance().InsertAsync(res);
                     //RecupererPrefix_Clicked(sender,e);
@@ -312,7 +313,8 @@ namespace XpertMobileApp.Views
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -328,12 +330,14 @@ namespace XpertMobileApp.Views
                 }
                 else
                 {
-                    await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez configurer votre prefixe!!", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync("Veuillez configurer votre prefixe!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup("Veuillez configurer votre prefixe!!", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -342,7 +346,9 @@ namespace XpertMobileApp.Views
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl) || UrlServicePicker.SelectedIndex == -1)
             {
-                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_MissingServerInfos, AppResources.alrt_msg_Ok);
+
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_MissingServerInfos, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return;
             }
 
@@ -366,16 +372,19 @@ namespace XpertMobileApp.Views
                 bool reachable = await this.IsBlogReachableAndRunning(url);
                 if (reachable)
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionSucces, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_ConnectionSucces, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
                 else
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_ConnectionError, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_ConnectionError, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                 }
             }
             catch
             {
-                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.alrt_msg_CantTestConnexionSettings, AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_CantTestConnexionSettings, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -622,7 +631,8 @@ namespace XpertMobileApp.Views
             {
                 if (UrlServicePicker.SelectedIndex == -1)
                 {
-                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_txt_alert_supression, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.sp_txt_alert_supression, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return;
                 }
                 var result = await DisplayAlert(AppResources.txt_sp_url, AppResources.txt_suppression_message_url, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
@@ -638,7 +648,8 @@ namespace XpertMobileApp.Views
                             if (listeUrlService[i].Title == itemSelected)
                             {
                                 listeUrlService.RemoveAt(i);
-                                await DisplayAlert(AppResources.txt_supp_reussite, AppResources.txt_supp_message_url, AppResources.alrt_msg_Ok);
+                                CustomPopup AlertPopup = new CustomPopup(AppResources.txt_supp_message_url, trueMessage: AppResources.alrt_msg_Ok);
+                                await PopupNavigation.Instance.PushAsync(AlertPopup);
                                 break;
                             }
                         }
@@ -674,7 +685,8 @@ namespace XpertMobileApp.Views
                 string urlService = "";
                 if (UrlServicePicker.SelectedIndex == -1)
                 {
-                    await DisplayAlert(AppResources.txt_alert, AppResources.sp_txt_alert_modification, AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.sp_txt_alert_modification, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
                     return;
                 }
 
@@ -740,7 +752,8 @@ namespace XpertMobileApp.Views
                             UrlServicePicker.SelectedIndex = await GetServiceUrlIndex();
                             //Save all settings
                             await viewModel.SaveSettings();
-                            await DisplayAlert(AppResources.txt_modification_succee, AppResources.txt_modification_message, AppResources.alrt_msg_Ok);
+                            CustomPopup AlertPopup = new CustomPopup(AppResources.txt_modification_succee, trueMessage: AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
                             serverChanged = true;
                         }
                     };

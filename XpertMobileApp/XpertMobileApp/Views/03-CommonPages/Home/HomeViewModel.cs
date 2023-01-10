@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,6 +16,7 @@ using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -85,8 +87,8 @@ namespace XpertMobileApp.ViewModels
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.err_msg_loadingDataError, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -317,8 +319,8 @@ namespace XpertMobileApp.ViewModels
             catch (Exception ex)
             {
                 IsBusy = false;
-                await UserDialogs.Instance.AlertAsync(AppResources.err_msg_loadingDataError, AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(AppResources.err_msg_loadingDataError, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
             finally
             {
