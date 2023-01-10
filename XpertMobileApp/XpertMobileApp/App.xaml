@@ -138,16 +138,6 @@
                                                            Commande="{StaticResource Commande}"/>
             <!--***************** COMMANDE ******************-->
 
-            <!--***************** TRANSFERT STOCK************-->
-
-            <DataTemplate x:Key="TransfertStock">
-                <template:RowElementTemplate_TransfertStock/>
-            </DataTemplate>
-
-            <templateSelector:TransfertStockDataSelectorTemplate x:Key="TransfertStockDataSelector"
-                                                                 TransfertStockTemplate="{StaticResource TransfertStock}"/>
-            <!--***************** TRANSFERT STOCK************-->
-
 
             <!--***************** Sortie ********************-->
 
