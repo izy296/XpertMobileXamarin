@@ -646,7 +646,7 @@
     <value>Chauffeur</value>
   </data>
   <data name="txt_Immatriculation" xml:space="preserve">
-    <value>Matricule</value>
+    <value>Identifiant</value>
   </data>
   <data name="txt_Date" xml:space="preserve">
     <value>Date</value>
@@ -900,5 +900,8 @@
   </data>
   <data name="vteTotalResteVente" xml:space="preserve">
     <value>Total reste</value>
+  </data>
+  <data name="txt_Imatriculation_abattoir" xml:space="preserve">
+    <value>Identifiant</value>
   </data>
 </root>

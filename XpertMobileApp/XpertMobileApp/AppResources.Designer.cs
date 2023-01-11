@@ -2352,5 +2352,12 @@ namespace XpertMobileApp {
                 return ResourceManager.GetString("sys_prefix_get", resourceCulture);
             }
         }
+        internal static string txt_Imatriculation_abattoir
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Imatriculation_abattoir", resourceCulture);
+            }
+        }
     }
 }

@@ -90,6 +90,7 @@ namespace XpertMobileApp.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     this.AddNewRow(selectedItem);
+                    pnl_Header.IsVisible = false;
                 });
             });
 
@@ -159,6 +160,7 @@ namespace XpertMobileApp.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     this.RemoveNewRow(selectedItem);
+                    pnl_Header.IsVisible = false;
                 });
             });
 
@@ -171,6 +173,7 @@ namespace XpertMobileApp.Views
                 }
 
             });
+
             MessagingCenter.Subscribe<VeterinaryAddRejectedPopup, string>(this, "VeterinaryPopup", async (obj, selectedItem) =>
             {
                 if (XpertHelper.IsNotNullAndNotEmpty(selectedItem))
@@ -222,14 +225,37 @@ namespace XpertMobileApp.Views
             {
                 ne_PESEE_SORTIE_Label.IsVisible = false;
                 ne_PESEE_SORTIE_Layout.IsVisible = false;
+                LabelImatricluation.Text = AppResources.txt_Imatriculation_abattoir;
+                if (viewModel.hasExaminationVeterinaire)
+                {
+                    lbl_VETERINARY.IsVisible = true;
+                    cmd_VETERINARY.IsVisible = true;
+                    btn_Get_PESEE_ENTREE.IsVisible = false;
+                    ne_PESEE_ENTREE_Label.IsVisible = false;
+                    ne_PESEE_ENTREE.IsVisible = false;
+                    cmd_Buy.IsVisible = false;
+                    if (viewModel.Item.VALIDATE==1 || 
+                        (viewModel.Item.STATUS_DOC!=DocStatus.EnCours 
+                        && viewModel.Item.STATUS_DOC != DocStatus.Accepter 
+                        && viewModel.Item.STATUS_DOC != DocStatus.Rejeter))
+                    {
+                        cmd_VETERINARY.IsEnabled = false;
+                    }
+                }
+                else
+                {
+                    lbl_VETERINARY.IsVisible = false;
+                    cmd_VETERINARY.IsVisible = false;
+                    ne_PESEE_ENTREE.Focus();
+                }
             }
 
             // Par défaut le header est caché s'il n'a pas le droit d'éditer le header
             pnl_Header.IsVisible = viewModel.hasEditHeader;
 
             // Commandes pour la selection de produit
-            btn_RowSelect.IsEnabled = viewModel.hasEditDetails;
-            btn_RowScan.IsEnabled = viewModel.hasEditDetails;
+            btn_RowSelect.IsEnabled = viewModel.hasEditDetails && viewModel.hasInsertDetails;
+            btn_RowScan.IsEnabled = viewModel.hasEditDetails && viewModel.hasInsertDetails;
 
             // Champs d'edition du header
             dp_EcheanceDate.IsEnabled = viewModel.hasEditHeader;
@@ -246,8 +272,8 @@ namespace XpertMobileApp.Views
                 ne_PESEE_SORTIE.IsEnabled = false;
                 btn_Get_PESEE_SORTIE.IsEnabled = false;
 
-                btn_RowSelect.IsEnabled = false;
-                btn_RowScan.IsEnabled = false;
+                btn_RowSelect.IsEnabled = viewModel.hasEditDetails || viewModel.hasInsertDetails;
+                btn_RowScan.IsEnabled = viewModel.hasEditDetails || viewModel.hasInsertDetails;
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.EnAttente)
             {
@@ -295,6 +321,13 @@ namespace XpertMobileApp.Views
 
                 btn_RowSelect.IsEnabled = false;
                 btn_RowScan.IsEnabled = false;
+            }
+
+            if (viewModel.hasEditDetails==false && viewModel.hasInsertDetails == false)
+            {
+                detailsBar.IsVisible = false;
+                detailsBarFrame.IsVisible = false;
+                pnl_Header.IsVisible = true;
             }
         }
 
@@ -398,7 +431,7 @@ namespace XpertMobileApp.Views
                     row.SetPeseeBrute(viewModel.Item.PESEE_BRUTE);
                 }
 
-                if (viewModel.ItemRows.Count == 0)
+                if (viewModel.ItemRows.Count == 0 && Constants.AppName != Apps.XCOM_Abattoir)
                 {
                     viewModel.Item.STATUS_DOC = DocStatus.EnCours;
                 }
@@ -899,7 +932,7 @@ namespace XpertMobileApp.Views
 
             try
             {
-                if (viewModel.Item.STATUS_DOC == DocStatus.EnCourDeProduction || viewModel.Item.STATUS_DOC == DocStatus.Accepter)
+                if (viewModel.Item.STATUS_DOC == DocStatus.Terminer)
                 {
                     await UserDialogs.Instance.AlertAsync("Document " + viewModel.Item.DESIGNATION_STATUS + ", Vous ne pouvez pas le modifier!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
@@ -930,30 +963,33 @@ namespace XpertMobileApp.Views
                     return;
                 }
 
-                if (viewModel.Item.STATUS_DOC != null)
-                    if (veterinaryValidation == -1)
-                    {
-                        await UserDialogs.Instance.AlertAsync("Veuillez saisir la validation Vétérinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                        return;
+                //if (viewModel.Item.STATUS_DOC != null)
+                //    if (veterinaryValidation == -1)
+                //    {
+                //        await UserDialogs.Instance.AlertAsync("Veuillez saisir la validation Vétérinaire", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                //        return;
 
-                    }
-                    else if (veterinaryValidation == 2)
-                    {
-                        viewModel.Item.STATUS_DOC = DocStatus.Accepter;
-                        viewModel.Item.List_PRESTATION_REJECTED = ListPrestationRejected;
-                    }
-                    else
-                    {
-                        if (veterinaryValidation == 1)
-                        {
-                            viewModel.Item.STATUS_DOC = DocStatus.Accepter;
-                        }
-                        else
-                        {
-                            viewModel.Item.STATUS_DOC = DocStatus.Rejeter;
-                        }
-                        viewModel.Item.List_PRESTATION_REJECTED = null;
-                    }
+                //    }
+                //    else if (veterinaryValidation == 2)
+                //    {
+                //        viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                //        viewModel.Item.List_PRESTATION_REJECTED = ListPrestationRejected;
+                //    }
+                //    else
+                //    {
+                //        if (veterinaryValidation == 1)
+                //        {
+                //            viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                //        }
+                //        else
+                //        {
+                //            viewModel.Item.STATUS_DOC = DocStatus.Rejeter;
+                //        }
+                //        viewModel.Item.List_PRESTATION_REJECTED = null;
+                //    }
+
+                if (viewModel.Item.VALIDATE == 1)
+                    viewModel.Item.STATUS_DOC = DocStatus.Terminer;
 
                 this.viewModel.Item.Details = viewModel.ItemRows.ToList();
                 // this.viewModel.Item.CODE_MOTIF = "ES10";
@@ -1180,6 +1216,12 @@ namespace XpertMobileApp.Views
                                     {
                                         viewModel.Item.NOTE_DOC = veterinaryNote;
                                         //viewModel.Item.STATUS_DOC = DocStatus.Termine;
+                                        viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                                        viewModel.Item.VALIDATE = 1;
+                                        UserDialogs.Instance.ShowLoading();
+                                        await bll.UpdateItemAsync(viewModel.Item);
+                                        UserDialogs.Instance.HideLoading();
+                                        await Navigation.PopAsync();
                                         veterinaryValidation = 1;
 
                                     }
@@ -1206,7 +1248,13 @@ namespace XpertMobileApp.Views
                                     {
                                         viewModel.Item.NOTE_DOC = veterinaryNote;
                                         //viewModel.Item.STATUS_DOC = DocStatus.Cloture;
+                                        viewModel.Item.STATUS_DOC = DocStatus.Rejeter;
+                                        viewModel.Item.VALIDATE = 0;
+                                        UserDialogs.Instance.ShowLoading(); 
+                                        await bll.UpdateItemAsync(viewModel.Item);
                                         veterinaryValidation = 0;
+                                        UserDialogs.Instance.HideLoading();
+                                        await Navigation.PopAsync();
                                     }
                                 }
                             }
@@ -1238,6 +1286,14 @@ namespace XpertMobileApp.Views
                                             rejected.CODE_PRESTATION = viewModel.Item.CODE_DOC;
                                         }
 
+                                        viewModel.Item.STATUS_DOC = DocStatus.Accepter;
+                                        viewModel.Item.List_PRESTATION_REJECTED = ListPrestationRejected;
+                                        viewModel.Item.VALIDATE = 1;
+                                        UserDialogs.Instance.ShowLoading();
+                                        await bll.UpdateItemAsync(viewModel.Item);
+                                        UserDialogs.Instance.HideLoading();
+                                        await Navigation.PopAsync();
+
                                         veterinaryValidation = 2;
                                     }
                                 }
@@ -1251,7 +1307,18 @@ namespace XpertMobileApp.Views
                     }
                 }
             }
+            else
+            {
 
+            }
+        }
+
+        private async void btn_Scan_QRCode(object sender, EventArgs e)
+        {
+            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+            var result = await scanner.Scan();
+            jobFieldAutoComplete.Text = result.Text;
+            OnPropertyChanged("SelectedIdentifiant");
         }
     }
 }

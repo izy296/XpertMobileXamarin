@@ -71,7 +71,7 @@ namespace XpertMobileApp.Views
 
                          foreach (var item in selectedItem)
                          {
-                             AddNewRejectedRow("Ajout Réjecté", item.DESIGNATION_REJET);
+                             AddNewRejectedRow("Ajout Réjeté", item.DESIGNATION_REJET);
                              //Entry newEntry = new Entry();
                              //newEntry.Text = item.DESIGNATION_REJET;
                              //ListRejected.Children.Add(newEntry);
@@ -176,7 +176,7 @@ namespace XpertMobileApp.Views
         {
             Device.InvokeOnMainThreadAsync(() =>
             {
-                AddNewRejectedRow("Ajout Réjecté");
+                AddNewRejectedRow("Ajout Réjeté");
             });
         }
 

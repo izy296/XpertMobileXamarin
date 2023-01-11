@@ -251,6 +251,8 @@ namespace XpertMobileApp.DAL
                 list_PRESTATION_REJECTED = value;
             }
         }
+
+        public int VALIDATE { get; set; }
     }
 
     public partial class PRESTATION_REJECTED

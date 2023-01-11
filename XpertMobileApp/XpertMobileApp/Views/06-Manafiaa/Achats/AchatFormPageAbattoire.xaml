@@ -73,20 +73,38 @@
                         Clicked="btn_Select_Clicked" />
                     </StackLayout>
 
-                    <Label  Grid.Column="0" Grid.Row="3" Text="{i18n:Translate txt_Immatriculation}" FontSize="Medium" Margin="5" />
-                    <auto:AutoCompleteRenderer Watermark="abc..." PopupDelay="0" HorizontalOptions="FillAndExpand"
-                            Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" Grid.Column="1" Grid.Row="3"
+                    <Label  x:Name="LabelImatricluation" Grid.Column="0" Grid.Row="3" Text="{i18n:Translate txt_Immatriculation}" FontSize="Medium" Margin="5" />
+
+                    <Grid Grid.Column="1" Grid.Row="3" HorizontalOptions="FillAndExpand">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <auto:AutoCompleteRenderer Watermark="abc..." PopupDelay="0" HorizontalOptions="FillAndExpand"
+                            Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" Grid.Column="0" Grid.Row="0"
                             WatermarkColor="#adb2bb" TextSize="16" x:Name="jobFieldAutoComplete" 
                             SuggestionMode="Contains" AutoCompleteMode="Suggest" HeightRequest="60" 
                             MinimumPrefixCharacters="2" MaximumDropDownHeight="150" HighlightedTextColor="Red" 
                             TextHighlightMode="MultipleOccurrence" AutoCompleteSource="{Binding ImmatriculationList}" 
                             DropDownItemHeight="50">
-                    </auto:AutoCompleteRenderer>
+                        </auto:AutoCompleteRenderer>
+                        
+                        <Button x:Name="btn_ScanQRCode" Margin="0" Grid.Column="1"
+                            WidthRequest="50" HeightRequest="50"
+                            HorizontalOptions="End" Style="{StaticResource FAwesome-B-Solid}" 
+                            Text="{x:Static fontawesome:FontAwesomeIcons.Barcode}" BackgroundColor="{StaticResource Primary}"
+                            Clicked="btn_Scan_QRCode"/>
+                    </Grid>
 
                     <Label x:Name="ne_PESEE_ENTREE_Label" Grid.Column="0" Grid.Row="4"  Text="{i18n:Translate PESEE_ENTREE}" FontSize="Medium" Margin="5" />
                     <StackLayout x:Name="ne_PESEE_ENTREE_Layout" Grid.Column="1" Grid.Row="4" Orientation="Horizontal" Padding="0" Margin="0" Spacing="0" >
                         <numeric1:SfNumericTextBox x:Name="ne_PESEE_ENTREE" Minimum="0" HorizontalOptions="FillAndExpand"
-                             ParserMode="Double" MaximumNumberDecimalDigits="2" 
+                             ParserMode="Double" MaximumNumberDecimalDigits="2"
                              SelectAllOnFocus="True" Value="{Binding Item.PESEE_ENTREE, Mode=TwoWay}"
                               VerticalOptions="Center" Margin="3" ValueChanged="ne_Pesee_entree_Changed"
                         />
@@ -123,7 +141,7 @@
                         <Switch IsToggled="{Binding Item.IS_INDIVIDUAL, Mode=TwoWay}" />
                     </StackLayout>
 
-                    <Label x:Name="lbl_VETERINARY" Grid.Column="0" Grid.Row="7" Text="Validation" FontSize="Medium" Margin="5" />
+                    <Label x:Name="lbl_VETERINARY" IsVisible="false" Grid.Column="0" Grid.Row="7" Text="Validation" FontSize="Medium" Margin="5" />
                     <flex:FlexButton
                             x:Name="cmd_VETERINARY"
                             Grid.Column="1" 
@@ -144,6 +162,7 @@
                             BorderColor="#8EA4D2"
                             HighlightBorderColor="#8EA4D2"
                             BorderThickness="3"
+                            IsVisible="false"
                             Clicked="cmd_VETERINARY_Clicked"
                     />
 
@@ -156,14 +175,14 @@
             </Frame>
 
             <!-- Details Bar -->
-            <StackLayout Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
+            <StackLayout x:Name="detailsBar" Padding="0" Margin="0" Spacing="0" Orientation="Horizontal" BackgroundColor="Black">
                 <Label Text="{i18n:Translate txt_Details}" Margin="5,0,0,0" HorizontalOptions="StartAndExpand" TextColor="White" FontSize="Medium" VerticalOptions="Center"/>
                 <Button x:Name="btn_RowSelect" BackgroundColor="Transparent" IsEnabled="True" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Scan" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_SelectRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowSelect_Clicked"></Button>
                 <Button x:Name="btn_RowScan" BackgroundColor="Transparent" IsEnabled="True" HeightRequest="40" WidthRequest="75" FontSize="Small" ClassId="Select" Margin="0,0,5,0" HorizontalOptions="End" Text="{i18n:Translate txt_ScanRow}" Style="{DynamicResource DefaultBtnStyle}" Clicked="RowScan_Clicked"></Button>
             </StackLayout>
             <!--#fcfdff-->
 
-            <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="False"  OutlineColor="Transparent" VerticalOptions="FillAndExpand">
+            <Frame x:Name="detailsBarFrame" CornerRadius="10" Padding="0" Margin="0" BackgroundColor="White" HasShadow="False"  OutlineColor="Transparent" VerticalOptions="FillAndExpand">
                 <syncfusion:SfListView x:Name="ItemsListView" 
                             ItemsSource="{Binding ItemRows}" 
                             SelectionBackgroundColor="Transparent"
@@ -288,16 +307,15 @@
                                                     <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                     <!-- Prix -->
-                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
                                                     <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
                                                              Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
-                                                             SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}" 
-                                                             IsVisible="{Binding IS_ACHAT}"                      
+                                                             SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}"                    
                                                              IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
                                                               ValueChanged="ne_PeseeTTCChanged"
                                                              />
-                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label  Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
 
                                                     <!-- Dernier Prix d'Achat fournisseur -->
                                                     <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="5" Text="{i18n:Translate txt_agri_PrixLast}" FontSize="Default" HorizontalOptions="Start"/>
@@ -305,11 +323,11 @@
                                                              Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
                                                              ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
                                                              SelectAllOnFocus="True" Value="{Binding LAST_PRIX_ACHAT, Mode=TwoWay}" 
-                                                             IsVisible="{Binding IS_ACHAT}"                     
+                                                                                 
                                                              IsEnabled="False"
                                                               ValueChanged="ne_PeseeTTCChanged"
                                                              />
-                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="2" Grid.Row="5" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label  Grid.Column="2" Grid.Row="5" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
 
                                                 </Grid>
 

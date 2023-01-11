@@ -32,6 +32,35 @@ namespace XpertMobileApp.Views.Achats
             }            
         }
 
+        public bool hasInsertDetails
+        {
+            get
+            {
+                if (AppManager.HasAdmin && Constants.AppName != Apps.XCOM_Abattoir) return true;
+                bool result = false;
+                if (AppManager.permissions != null)
+                {
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_UPDATE_DETAIL").FirstOrDefault();
+                    result = obj != null && obj.AcInsert > 0;
+                }
+                return result;
+            }
+        }
+
+        public bool hasExaminationVeterinaire
+        {
+            get
+            {
+                bool result = false;
+                if (AppManager.permissions != null)
+                {
+                    var obj = AppManager.permissions.Where(x => x.CodeObjet == "ACH_VALIDATE_VETERINAIRE").FirstOrDefault();
+                    result = obj != null && obj.AcSelect > 0;
+                }
+                return result;
+            }
+        }
+
         public bool hasEditPrice
         {
             get

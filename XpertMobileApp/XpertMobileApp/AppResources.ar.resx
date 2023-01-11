@@ -802,4 +802,7 @@
   <data name="txt_agri_PrixLast" xml:space="preserve">
     <value>أخر سعر :</value>
   </data>
+  <data name="txt_Imatriculation_abattoir" xml:space="preserve">
+    <value>المعرف</value>
+  </data>
 </root>

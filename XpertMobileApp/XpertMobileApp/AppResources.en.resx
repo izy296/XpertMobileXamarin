@@ -702,4 +702,7 @@
   <data name="txt_agri_PrixLast" xml:space="preserve">
     <value>Last Price :</value>
   </data>
+  <data name="txt_Imatriculation_abattoir" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
 </root>

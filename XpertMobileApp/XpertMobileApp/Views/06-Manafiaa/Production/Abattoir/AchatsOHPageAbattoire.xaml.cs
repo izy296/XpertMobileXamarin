@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
@@ -13,12 +15,13 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using ZXing.Net.Mobile.Forms;
 
 namespace XpertMobileApp.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class AchatsOHPageAbattoire : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class AchatsOHPageAbattoire : ContentPage
+    {
         private string typeDoc = "LF";
         public string MotifDoc { get; set; }
         public string CurrentStream = Guid.NewGuid().ToString();
@@ -29,8 +32,8 @@ namespace XpertMobileApp.Views
         string veterinaryNote;
 
         public AchatsOHPageAbattoire(string motifDoc)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
 
             MotifDoc = motifDoc;
 
@@ -45,7 +48,7 @@ namespace XpertMobileApp.Views
 
             if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
             {
-                StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
+                StatusPicker.SelectedItem = StatusPicker.ItemsSource[0];
             }
 
             MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
@@ -53,13 +56,43 @@ namespace XpertMobileApp.Views
                 viewModel.SelectedTiers = selectedItem;
                 ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
             });
-            
+
             MessagingCenter.Subscribe<VeterinaryPopup, string>(this, "VeterinaryPopup", async (obj, selectedItem) =>
             {
-                veterinaryNote=selectedItem;
+                veterinaryNote = selectedItem;
             });
 
             viewModel.SelectedDocs.CollectionChanged += SlectedItempsChanged;
+
+            viewModel.Items.OnAfterLoadMore = () =>
+            {
+                UserDialogs.Instance.ShowLoading();
+                var itemsList = viewModel.Items;
+                var EnAttentEncours = itemsList.Where(e => e.STATUS_DOC == DocStatus.EnAttente || e.STATUS_DOC == DocStatus.EnCours || e.STATUS_DOC == DocStatus.EnAttente)
+                                        //.OrderBy(e => e.STATUS_DOC)
+                                        .OrderByDescending(e => e.DATE_DOC)
+                                        .GroupBy(e => e.STATUS_DOC)
+                                        .ToList();
+                var OtehrItems = itemsList.Where(e => e.STATUS_DOC != DocStatus.EnAttente && e.STATUS_DOC != DocStatus.EnCours && e.STATUS_DOC != DocStatus.EnAttente)
+                                        //.OrderBy(e => e.STATUS_DOC)
+                                        .OrderByDescending(e => e.DATE_DOC)
+                                        .GroupBy(e => e.STATUS_DOC)
+                                        .ToList();
+                List<View_ACH_DOCUMENT> resList = new List<View_ACH_DOCUMENT>();
+                foreach (var groupedList in EnAttentEncours)
+                {
+                    resList.AddRange(groupedList);
+                }
+                foreach (var groupedList in OtehrItems)
+                {
+                    resList.AddRange(groupedList);
+                }
+                //resList.Reverse();
+                viewModel.Items.Clear();
+                viewModel.Items.AddRange(new InfiniteScrollCollection<View_ACH_DOCUMENT>(resList));
+                OnPropertyChanged("Items");
+                UserDialogs.Instance.HideLoading();
+            };
         }
 
         #region Selections 
@@ -127,7 +160,7 @@ namespace XpertMobileApp.Views
             decimal totalQte = viewModel.SelectedDocs.Sum(x => x.QTE_NET);
             int totalCount = viewModel.SelectedDocs.Count();
 
-            txt_PoidsTotal.Text = "Quantité : "  + totalQte.ToString() + " Kg";
+            txt_PoidsTotal.Text = "Quantité : " + totalQte.ToString() + " Kg";
             txt_Count.Text = "Selection : " + "(" + totalCount.ToString() + ")";
         }
 
@@ -203,10 +236,10 @@ namespace XpertMobileApp.Views
             else
             {
                 if (!viewModel.hasInsertHeader)
-                await Navigation.PushAsync(new AchatFormPageAbattoire(item, typeDoc, MotifDoc));
+                    await Navigation.PushAsync(new AchatFormPageAbattoire(item, typeDoc, MotifDoc));
             }
             // Manually deselect item.
-            ItemsListView.SelectedItem = null;                        
+            ItemsListView.SelectedItem = null;
         }
 
         private void ItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -214,8 +247,8 @@ namespace XpertMobileApp.Views
             var selectedItem = e.Item as View_ACH_DOCUMENT;
             if (selectedItem == null)
                 return;
-            if(ItemsListView.SelectionMode == ListViewSelectionMode.None)
-            { 
+            if (ItemsListView.SelectionMode == ListViewSelectionMode.None)
+            {
                 var item = viewModel.SelectedDocs.Where(x => x.CODE_DOC == selectedItem.CODE_DOC).SingleOrDefault();
                 selectedItem.IsSelected = item == null;
                 if (item != null)
@@ -266,14 +299,14 @@ namespace XpertMobileApp.Views
         }
 
         private void btn_ApplyFilter_Clicked(object sender, EventArgs e)
-        {        
+        {
             viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
-            viewModel.LoadItemsCommand.Execute(null);            
+            viewModel.LoadItemsCommand.Execute(null);
         }
 
         private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
@@ -288,9 +321,18 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
 
+        private async void btn_Scan_QRCode(object sender, EventArgs e)
+        {
+            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+            var result = await scanner.Scan();
+            this.viewModel.SelectedIdentifiant = result.Text;
+            ent_SelectedIdentifiant.Text = result.Text;
+            OnPropertyChanged("SelectedIdentifiant");
+        }
+
         private async void btn_Production_Clicked(object sender, EventArgs e)
         {
-            string  result = "";
+            string result = "";
 
             if (IsBusy)
                 return;
@@ -307,7 +349,7 @@ namespace XpertMobileApp.Views
             */
 
             int Net0Count = viewModel.SelectedDocs.Where(x => x.QTE_NET <= 0).Count();
-            if(Net0Count > 0)
+            if (Net0Count > 0)
             {
                 await UserDialogs.Instance.AlertAsync("Vous avez choisit des receptions avec des quantiés null!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 return;
@@ -318,7 +360,7 @@ namespace XpertMobileApp.Views
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 string[] docs = viewModel.SelectedDocs.Select(x => x.CODE_DOC).ToArray();
                 result = await WebServiceClient.GenerateProductionOrder(docs);
-                if (!string.IsNullOrEmpty(result)) 
+                if (!string.IsNullOrEmpty(result))
                 {
                     await UserDialogs.Instance.AlertAsync("L'ordre de production a été correctement généré!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     viewModel.SelectedDocs.Clear();
