@@ -30,8 +30,6 @@ namespace XpertMobileApp.ViewModels
         public Command LoadSessionsCommand { get; set; }
 
 
-
-
         private TRS_JOURNEES currentSession;
         public TRS_JOURNEES CurrentSession
         {
@@ -183,7 +181,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Achats).ToString(),
                         Title = AppResources.pn_Achats,
-                        Color = "#fff",
+                        Color = "#f1f1f1",
                         CodeObjet = Xpert.XpertObjets.ACH_DOCUMENT,
                         Action = Xpert.XpertActions.AcSelect
                     });
@@ -194,7 +192,7 @@ namespace XpertMobileApp.ViewModels
                         {
                             CODE_ANALYSE = ((int)MenuItemType.Psychotrop).ToString(),
                             Title = AppResources.pn_VtePsychotrop,
-                            Color = "#fff",
+                            Color = "#f1f1f1",
                             CodeObjet = Xpert.XpertObjets.VTE_PSYCHOTROP,
                             Action = Xpert.XpertActions.AcSelect
                         });
@@ -206,7 +204,7 @@ namespace XpertMobileApp.ViewModels
                         {
                             CODE_ANALYSE = ((int)MenuItemType.Manquants).ToString(),
                             Title = AppResources.pn_Manquants,
-                            Color = "#fff",
+                            Color = "#f1f1f1",
                             CodeObjet = Xpert.XpertObjets.ACH_MANQUANTS,
                             Action = Xpert.XpertActions.AcSelect
                         });
@@ -230,7 +228,7 @@ namespace XpertMobileApp.ViewModels
                         {
                             CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
                             Title = "Ventes comptoir",
-                            Color = "#fff",
+                            Color = "#f1f1f1",
                             CodeObjet = Xpert.XpertObjets.VTE_COMPTOIR,
                             Action = Xpert.XpertActions.AcSelect
                         });
@@ -239,7 +237,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Ventes).ToString(),
                         Title = "Ventes",
-                        Color = "#fff",
+                        Color = "#f1f1f1",
                         CodeObjet = Xpert.XpertObjets.VTE_VENTE,
                         Action = Xpert.XpertActions.AcSelect
                     });
@@ -259,7 +257,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Sessions).ToString(),
                         Title = "Sessions",
-                        Color = "#fff",
+                        Color = "#f1f1f1",
                         CodeObjet = Xpert.XpertObjets.TRS_RESUME_SESSION,
                         Action = Xpert.XpertActions.AcSelect
                     });
@@ -268,7 +266,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
                         Title = "Encaiss / Decaiss",
-                        Color = "#fff",
+                        Color = "#f1f1f1",
                         CodeObjet = Xpert.XpertObjets.TRS_DECAISS,
                         Action = Xpert.XpertActions.AcSelect
                     });
@@ -277,14 +275,14 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
                         Title = "Produits",
-                        Color = "#fff"
+                        Color = "#f1f1f1"
                     });
 
                     res.Add(new TDB_SIMPLE_INDICATORS()
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
                         Title = "Tiers",
-                        Color = "#fff"
+                        Color = "#f1f1f1"
                     });
 
                     if (Constants.AppName == Apps.XCOM_Livraison)

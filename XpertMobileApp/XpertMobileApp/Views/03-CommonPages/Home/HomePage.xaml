@@ -15,7 +15,7 @@
         <StackLayout Spacing="0" 
                      Padding="0" 
                      Margin="0" 
-                     BackgroundColor="#f1f1f1">
+                     BackgroundColor="#ffffff">
 
             <!-- Liste des comptes -->
             <yummy:PancakeView CornerRadius="0,0,25,25" 
@@ -111,21 +111,20 @@
                 </StackLayout>
             </yummy:PancakeView>
 
-            <syncfusion:SfListView  Margin="10,-40,10,0"
+            <syncfusion:SfListView  Margin="10,-40,10,15"
                                     x:Name="listView"
                                     SelectionMode="None"
                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                     SelectionChanged="listView_SelectionChanged"
                                     ItemsSource="{Binding Items}"
                                     AutoFitMode="None"
-                                    SelectionBackgroundColor="AliceBlue"
-                                    BackgroundColor="Transparent">
+                                    SelectionBackgroundColor="AliceBlue">
 
                 <syncfusion:SfListView.ItemSize>
                     <OnIdiom x:TypeArguments="x:Double"
-                                 Phone="140"
-                                 Tablet="200"
-                                 Desktop="200"/>
+                             Phone="140"
+                             Tablet="200"
+                             Desktop="200"/>
                 </syncfusion:SfListView.ItemSize>
 
                 <syncfusion:SfListView.LayoutManager>
@@ -144,7 +143,7 @@
                         <!--
                              {Binding Color} OutlineColor="LightGray"
                               -->
-                        <yummy:PancakeView xct:ShadowEffect.Color="Silver" 
+                        <yummy:PancakeView xct:ShadowEffect.Color="#fff" 
                                            xct:ShadowEffect.OffsetY="8"
                                            xct:ShadowEffect.Radius="50"
                                            BackgroundColor="{Binding Color}" 
@@ -161,8 +160,7 @@
                                     <RowDefinition Height= "*" />
                                 </Grid.RowDefinitions>
                                 <!--
-                                <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"
-                     VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+                                <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
                                 <Label Grid.Row="1" Text="{Binding CustomValue, StringFormat='{0:N2} DA'}"  
                                        FontFamily="{StaticResource FontGilroySemiBold}"

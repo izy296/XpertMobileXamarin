@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Rg.Plugins.Popup.Services;
+using Syncfusion.ListView.XForms;
 using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -82,6 +83,7 @@ namespace XpertMobileApp.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
             CheckIfUserWantReconnect();
             CHeckIfPrefixIsConfigured();
             try
@@ -131,19 +133,25 @@ namespace XpertMobileApp.Views
                 new MenuPage("1");
             }
 
+
+
             //Synchroniser les données si la connexion existe !
-            await SyncDataIfDbEmpty();
+            //await SyncDataIfDbEmpty();
+            /* Custumazing the home menu */
+
+            if(Constants.AppName == Apps.XCOM_Mob ||Constants.AppName == Apps.XPH_Mob)
+            {
+                //Get the height of the listview ...
+                double menuHeight = this.listView.Height;
+
+                //calculate the 
+                int numberOfBtnInHomeMenu = viewModel.Items.Count;
+
+                listView.ItemSize = (menuHeight / numberOfBtnInHomeMenu) * 2;
+                UserDialogs.Instance.HideLoading();
+            }
+            
         }
-
-        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-
-        }
-        private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
-        {
-
-        }
-
         private void btn_Refresh_Clicked(object sender, EventArgs e)
         {
             viewModel.LoadItemsCommand.Execute(null);
@@ -278,6 +286,11 @@ namespace XpertMobileApp.Views
                 CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
+        }
+
+        private void listView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
+        {
+
         }
     }
 }
