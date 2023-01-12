@@ -28,7 +28,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new LoginViewModel();
 
-            XpertVersion.Text = Mobile_Edition.GetEditionTitle(App.Settings.Mobile_Edition) + VersionTracking.CurrentVersion;
+            XpertVersion.Text = Mobile_Edition.GetEditionTitle(Constants.AppName) + VersionTracking.CurrentVersion;
 
             NavigationPage.SetHasNavigationBar(this, false);
             Init();

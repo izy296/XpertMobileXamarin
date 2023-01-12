@@ -29,11 +29,22 @@ namespace XpertMobileApp.Api
             //else 
             //  return "Edition LITE ";
         }
+        public static string GetEditionTitle(string AppName)
+        {
+            if (AppName == Apps.XCOM_Abattoir)
+                return "Edition ABAT ";
+            else
+                return "Edition PRO ";
+        }
     }
 
     public static class Constants
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
+
+#if RELEASE
+        public static string AppName = Apps.XCOM_Abattoir;
+#endif
 
 #if Debug
                 public static string AppName = Apps.XAGRI_Mob;
@@ -48,7 +59,7 @@ namespace XpertMobileApp.Api
 
 #endif
 #if XMAB
-                public static string AppName = Apps.XCOM_Abattoir;
+        public static string AppName = Apps.XCOM_Abattoir;
 
 #endif
         //

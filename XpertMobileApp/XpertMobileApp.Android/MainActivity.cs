@@ -7,6 +7,9 @@ using Android.Content;
 using Android;
 using Android.Support.V4.App;
 using Android.Util;
+using Rg.Plugins.Popup.Services;
+using Xamarin.Forms;
+using System;
 
 namespace XpertMobileApp.Droid
 {
@@ -66,18 +69,90 @@ namespace XpertMobileApp.Droid
 
         public override void OnBackPressed()
         {
-            // Init popup plugin Back button Pressed
-            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            //// Init popup plugin Back button Pressed
+            //if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            //{
+            //    // Do something if there are some pages in the `PopupStack`
+            //}
+            //else
+            //{
+            //    // Do something if there are not any pages in the `PopupStack`
+            //}
+
+            try
             {
-                // Do something if there are some pages in the `PopupStack`
+
+                // popup est le nombre des fenêtres  (comme le filtre de saisie par dans sortie de stock) ouvert
+
+                var popup = PopupNavigation.PopupStack.Count;
+
+
+                if (popup != 0)
+                {
+                    PopupNavigation.PopAsync();
+                    return;
+                }
+
+                int pagesOpen = ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.NavigationStack.Count;
+
+                // testi si il ya des pages ouvert avec la counteur
+                // de stack si il est egal ou inferieur a 1 donc l'utilisateur est dans le HomePage
+                // alors afficher un avertisement pour quiter
+
+                if (pagesOpen <= 1)
+                {
+                    ConfirmWithDialog();
+                }
+                else
+                {
+                    // vérifier s'il y a des pages ouvertes à partir de MenuPage
+                    //if (pagesOpen >2)
+                    //{
+                    // supprimer toutes les pages de la pile et revenir à l'accueil
+
+                    base.OnBackPressed();
+
+                    //if (((NavigationPage)((MasterDetailPage)App.Current.MainPage).Detail).Parent== App.Current.MainPage)
+                    //{
+                    //    new MenuPage("1");
+                    //}
+
+                    //TODO Empty ListViewMenu item selected
+
+                    //} 
+                    //else
+                    //    // exécuter l'action habituelle du bouton de retour
+                    //    ((MasterDetailPage)App.Current.MainPage).Detail.Navigation.PopToRootAsync();
+
+                }
+
             }
-            else
+            catch (InvalidCastException ex)
             {
-                // Do something if there are not any pages in the `PopupStack`
+                // si le code jeter un exception de InvalidCastException
+                // l'application est dans la fenetre de configuration et authentification
+                // et la classe MasterDetailPage est n'est pas initialisé encors
+                base.OnBackPressed();
             }
         }
 
         static readonly int REQUEST_READ_PHONE_STATE = 0;
+
+
+        private void ConfirmWithDialog()
+        {
+            using (var alert = new AlertDialog.Builder(this))
+            {
+                alert.SetTitle(AppResources.msg_ExitTitle);
+                alert.SetMessage(AppResources.msg_ExitWarning);
+                alert.SetPositiveButton(AppResources.exit_Button_Yes, (sender, args) => { FinishAffinity(); });
+                alert.SetNegativeButton(AppResources.exit_Button_No, (sender, args) => { }); // do nothing
+                
+                var dialog = alert.Create();
+                dialog.Show();
+            }
+            return;
+        }
 
         private void InitPermissions()
         {

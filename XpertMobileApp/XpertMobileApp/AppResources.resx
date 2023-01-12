@@ -904,4 +904,17 @@
   <data name="txt_Imatriculation_abattoir" xml:space="preserve">
     <value>Identifiant</value>
   </data>
+  <data name="exit_Button_No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="exit_Button_Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="msg_ExitTitle" xml:space="preserve">
+    <value>Confirmer Quitter</value>
+  </data>
+  <data name="msg_ExitWarning" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir quitter?</value>
+  </data>
+
 </root>

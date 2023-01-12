@@ -173,8 +173,8 @@ namespace XpertMobileApp.Views
             if (item.STATUS_DOC == DocStatus.EnAttente && !viewModel.hasInsertHeader)
             {
                 var bll = CrudManager.Achats;
-                VeterinaryPopup popup = new VeterinaryPopup("Voulez vous accepter cette article ?", "Recjecté", "Valider");
-                CustomPopup confirmationPopup = new CustomPopup("etes-vous sûr ?", "Annuller", "Ok");
+                VeterinaryPopup popup = new VeterinaryPopup("Voulez vous accepter cet article ?", "Rejeté", "Valider");
+                CustomPopup confirmationPopup = new CustomPopup("êtes-vous sûrs ?", "Annuller", "Ok");
                 await PopupNavigation.Instance.PushAsync(popup);
                 if (await popup.PopupClosedTask)
                 {
@@ -235,7 +235,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                if (!viewModel.hasInsertHeader)
+                if (!viewModel.hasInsertHeader && item.STATUS_DOC != DocStatus.Terminer)
                     await Navigation.PushAsync(new AchatFormPageAbattoire(item, typeDoc, MotifDoc));
             }
             // Manually deselect item.
@@ -274,6 +274,7 @@ namespace XpertMobileApp.Views
             parames = await AppManager.GetSysParams();
             permissions = await AppManager.GetPermissions();
 
+            UserDialogs.Instance.ShowLoading();
             if (!AppManager.HasAdmin)
             {
                 ApplyVisibility();
@@ -281,6 +282,7 @@ namespace XpertMobileApp.Views
 
             //if (viewModel.Items.Count == 0)
             LoadStats();
+            UserDialogs.Instance.HideLoading();
         }
 
         private void ApplyVisibility()
@@ -306,6 +308,8 @@ namespace XpertMobileApp.Views
         private void btn_CancelFilter_Clicked(object sender, EventArgs e)
         {
             FilterPanel.IsVisible = false;
+            ent_SelectedIdentifiant.Text = "";
+            ent_SelectedTiers= null;
             viewModel.LoadItemsCommand.Execute(null);
         }
 
@@ -323,11 +327,20 @@ namespace XpertMobileApp.Views
 
         private async void btn_Scan_QRCode(object sender, EventArgs e)
         {
-            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
-            var result = await scanner.Scan();
-            this.viewModel.SelectedIdentifiant = result.Text;
-            ent_SelectedIdentifiant.Text = result.Text;
-            OnPropertyChanged("SelectedIdentifiant");
+            try
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                var result = await scanner.Scan();
+                if (result != null)
+                {
+                    ent_SelectedIdentifiant.Text = result.Text;
+                    OnPropertyChanged("SelectedIdentifiant");
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Alerte", "Ok");
+            }
         }
 
         private async void btn_Production_Clicked(object sender, EventArgs e)

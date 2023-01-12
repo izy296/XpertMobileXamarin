@@ -188,16 +188,6 @@ namespace XpertMobileApp.Views
             {
                 viewModel.LoadRowsCommand.Execute(null);
             }
-        }
-
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-
-            parames = await AppManager.GetSysParams();
-            permissions = await AppManager.GetPermissions();
-
-            viewModel.ImmatriculationList = await GetImmatriculations("");
 
             if (!AppManager.HasAdmin)
             {
@@ -210,6 +200,17 @@ namespace XpertMobileApp.Views
                     cmd_Terminate.IsVisible = true;
                 }
             }
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            parames = await AppManager.GetSysParams();
+            permissions = await AppManager.GetPermissions();
+
+            viewModel.ImmatriculationList = await GetImmatriculations("");
+
 
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
@@ -1315,10 +1316,20 @@ namespace XpertMobileApp.Views
 
         private async void btn_Scan_QRCode(object sender, EventArgs e)
         {
-            var scanner = new ZXing.Mobile.MobileBarcodeScanner();
-            var result = await scanner.Scan();
-            jobFieldAutoComplete.Text = result.Text;
-            OnPropertyChanged("SelectedIdentifiant");
+            try
+            {
+                var scanner = new ZXing.Mobile.MobileBarcodeScanner();
+                var result = await scanner.Scan();
+                if (result!=null)
+                {
+                    jobFieldAutoComplete.Text = result.Text;
+                    OnPropertyChanged("SelectedIdentifiant");
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(ex.Message,"Alerte","Ok");
+            }
         }
     }
 }

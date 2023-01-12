@@ -128,7 +128,7 @@
                     <StackLayout Grid.Column="1" x:Name="settings" Orientation="Horizontal" HorizontalOptions="End">
                         <Button WidthRequest="150" CornerRadius="8" Text="{i18n:Translate btn_Close}" x:Name="Btn_CloseSettings" 
                                IsVisible="{Binding IsConnected, Converter={StaticResource inverseBoolVisibilityConverter}}" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SettingsClose_Clicked"/>
-                        <Button WidthRequest="200" Margin="5,0,0,5" CornerRadius="20" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
+                        <Button WidthRequest="150"  CornerRadius="8" Text="{i18n:Translate sp_btn_SaveSettings}" x:Name="Btn_SaveSettings" Style="{DynamicResource DefaultBtnStyle}"  Clicked="SaveSettings_Clicked"/>
                     </StackLayout>
                 </Grid>
             </StackLayout>
