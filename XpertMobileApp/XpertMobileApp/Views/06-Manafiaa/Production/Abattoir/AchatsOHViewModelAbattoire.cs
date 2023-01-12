@@ -82,7 +82,7 @@ namespace XpertMobileApp.ViewModels
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.Now.Subtract(TimeSpan.FromDays(1));
+        public DateTime StartDate { get; set; } = DateTime.Now;
         public DateTime EndDate { get; set; } = DateTime.Now;
 
         public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
