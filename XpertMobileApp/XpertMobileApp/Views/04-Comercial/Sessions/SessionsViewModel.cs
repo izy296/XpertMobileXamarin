@@ -9,15 +9,28 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.Models;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 
 namespace XpertMobileApp.ViewModels
 {
-
     public class SessionsViewModel : CrudBaseViewModel2<TRS_JOURNEES, TRS_JOURNEES>
     {
 
         EncaissDisplayType encaissDisplayType;
+        public ObservableCollection<View_SYS_USER> Users { get; set; }
+        private View_SYS_USER selectedUser;
+        public View_SYS_USER SelectedUser
+        {
+            get
+            {
+                return selectedUser;
+            }
+            set
+            {
+                selectedUser = value;
+            }
+        }
         public EncaissDisplayType EncaissDisplayType
         {
             get { return encaissDisplayType; }
@@ -58,6 +71,8 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_session;            
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
+            Users = new ObservableCollection<View_SYS_USER>();
+
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
         }
 
@@ -73,7 +88,8 @@ namespace XpertMobileApp.ViewModels
                 this.AddCondition<TRS_JOURNEES, string>(e => e.CODE_COMPTE, SelectedCompte?.CODE_COMPTE);
 
             this.AddOrderBy<TRS_JOURNEES, DateTime>(e => e.DATE_JOURNEE);
-
+            if (SelectedUser != null)
+            this.AddCondition<TRS_JOURNEES, string>(e => e.CREATED_BY, SelectedUser.ID_USER);
             return qb.QueryInfos;
         }
 
@@ -131,14 +147,27 @@ namespace XpertMobileApp.ViewModels
                 return;
             
             try
+
             {
                 IsLoadExtrasBusy = true;
                 Comptes.Clear();
+                Users.Clear();
+                Users.Add(new View_SYS_USER
+                {
+                    ID_USER = "",
+                });
                 var itemsC = await WebServiceClient.getComptes();
+                var itemsU = await WebServiceClient.getUserIDs();  
+                
                 foreach (var itemC in itemsC)
                 {
                     Comptes.Add(itemC);
                 }
+
+                foreach(var itemU in itemsU)
+                {
+                    Users.Add(itemU);
+                };
             }
             catch (Exception ex)
             {
@@ -173,6 +202,7 @@ namespace XpertMobileApp.ViewModels
                 qbOneQuery.AddSelect<TRS_JOURNEES, string>(e => e.CLOTUREE_PAR);
                 qbOneQuery.AddSelect<TRS_JOURNEES, DateTime?>(e => e.DATE_CLOTURE);
                 qbOneQuery.AddSelect<TRS_JOURNEES, bool>(e => e.JOURNEE_CLOTUREE);
+                
 
                 List<TRS_JOURNEES> items = (List<TRS_JOURNEES>) await service.SelectByPage(qbOneQuery.QueryInfos, 1, 1);
                 UserDialogs.Instance.HideLoading();

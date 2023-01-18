@@ -72,6 +72,15 @@ namespace XpertMobileApp.Views
                 ComptesPicker.SelectedIndex = 0;
             }
         }
+
+        private void Initialize_CompteSrc(object sender, EventArgs e)
+        {
+            if (viewModel.SelectedUser != null)
+            {
+                viewModel.SelectedUser = new View_SYS_USER();
+                UserPicker.SelectedIndex = 0;
+            }
+        }
     }
 }
 

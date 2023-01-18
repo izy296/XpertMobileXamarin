@@ -217,6 +217,76 @@
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>
+                                
+                                <!--Utilisateur -->
+                                <FlexLayout Direction="Column">
+                                    <Label
+                                    Text="Utlisateur"
+                                    FontSize="16"
+                                    Margin="5,0,0,0"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker Type-->
+                                    <Grid 
+                                    Margin="4,4,5,5"
+                                    RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition 
+                                            Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Source="tiersIcon.png"
+                                        HeightRequest="22"
+                                        WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Picker 
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                x:Name="UserPicker"
+                                                ItemsSource="{Binding Users}"  
+                                                ItemDisplayBinding="{Binding ID_USER}"  
+                                                SelectedItem="{Binding SelectedUser}"
+                                                FontSize="14"
+                                                TextColor="Black"  
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                Margin="0,0,14,10"
+                                                VerticalOptions="Center"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="supp.png">
+
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="Initialize_CompteSrc"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+
+                                    </Grid>
+                                </FlexLayout>
 
                                 <StackLayout  
                                     Padding="0"                     
