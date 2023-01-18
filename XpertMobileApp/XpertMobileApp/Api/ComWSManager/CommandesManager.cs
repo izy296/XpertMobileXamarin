@@ -16,6 +16,13 @@ namespace XpertMobileApp.Api
         {
 
         }
-
+        public async Task<bool> SyncCommandes(List<View_VTE_VENTE> vtes, string prefix, string CodeMagasin = "", string CodeCompte = "")
+        {
+            string url = GetActionUrl("SyncCommandes");
+            url += WSApi2.AddParam(url, "prefix", prefix);
+            url += WSApi2.AddParam(url, "CodeMagasin", CodeMagasin);
+            url += WSApi2.AddParam(url, "CodeCompte", CodeCompte);
+            return await WSApi2.PostAauthorizedValue<bool, List<View_VTE_VENTE>>(url, vtes, this.Token.access_token);
+        }
     }
 }

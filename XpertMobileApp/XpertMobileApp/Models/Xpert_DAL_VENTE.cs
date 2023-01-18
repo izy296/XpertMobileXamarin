@@ -32,7 +32,6 @@ namespace XpertMobileApp.DAL
         public int NOMBRE_PRODUIT { get; set; }
         public string TOTAL_PAYE { get; set; }
     }
-
     public partial class VTE_VENTE : BASE_CLASS
     {
         [PrimaryKey, AutoIncrement]
@@ -122,7 +121,6 @@ namespace XpertMobileApp.DAL
         public string CODE_MOTIF { get; set; }
         public string CODE_BARRE { get; set; }
     }
-
     public partial class View_VTE_VENTE : VTE_VENTE
     {
         public string NOM_MEDECIN { get; set; }
@@ -645,6 +643,9 @@ namespace XpertMobileApp.DAL
                 return data;
             }
         }
+
+        [Ignore]
+        public List<View_LIV_TOURNEE_DETAIL> Details { get; set; }
     }
 
     public partial class LIV_TOURNEE_DETAIL : BASE_CLASS

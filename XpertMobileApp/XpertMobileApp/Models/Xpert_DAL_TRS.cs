@@ -116,7 +116,6 @@ namespace XpertMobileApp.DAL
         {
             return AppResources.pn_encaissement + " N° : " + NUM_ENCAISS;
         }
-
         public Color ValColor
         {
             get
@@ -124,7 +123,6 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? Color.Black : Color.Red;
             }
         }
-
         public string ValIcon
         {
             get
@@ -132,9 +130,20 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? FontAwesomeIcons.Arrow_Up : FontAwesomeIcons.Arrow_Down;
             }
         }
-
         public decimal OLD_SOLDE { get; set; }
         public decimal NEW_SOLDE { get; set; }
+        private bool is_synchronisable { get; set; } = true;
+        public bool IS_SYNCHRONISABLE
+        {
+            get
+            {
+                return is_synchronisable;
+            }
+            set
+            {
+                is_synchronisable = value;
+            }
+        }
     }
 
     public class SESSION_INFO : BASE_CLASS

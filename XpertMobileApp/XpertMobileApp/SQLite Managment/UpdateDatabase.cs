@@ -16,13 +16,14 @@ using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.SQLite_Managment
 {
     class UpdateDatabase
     {
         static SQLiteAsyncConnection db;
-        
+
 
         public static SQLiteAsyncConnection getInstance()
         {
@@ -237,6 +238,25 @@ namespace XpertMobileApp.SQLite_Managment
             else
             {
                 List<View_BSE_COMPTE> cpt = comptes.Where(x => x.CODE_COMPTE == CodeCompte).ToList();
+                return cpt;
+            }
+        }
+        /// <summary>
+        /// Retourne  la liste des comptes ...
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<View_BSE_COMPTE>> getComptes()
+        {
+            List<View_BSE_COMPTE> comptes = await getInstance().Table<View_BSE_COMPTE>().ToListAsync();
+            List<SYS_USER> users = await getInstance().Table<SYS_USER>().ToListAsync();
+            var code_compte = users.Where(x => x.ID_USER == App.User.UserName.ToUpper()).FirstOrDefault()?.CODE_COMPTE;
+            if (string.IsNullOrEmpty(code_compte))
+            {
+                return comptes;
+            }
+            else
+            {
+                List<View_BSE_COMPTE> cpt = comptes.Where(x => x.CODE_COMPTE == code_compte).ToList();
                 return cpt;
             }
         }
@@ -912,5 +932,422 @@ namespace XpertMobileApp.SQLite_Managment
             //return string.IsNullOrEmpty(cmd) ? false : true;
         }
 
+        #region Sync section (upload)
+
+        /* begin section of Synchronisation tiers */
+
+        /// <summary>
+        /// Uploader la liste des tiers aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncTiersToServer()
+        {
+            try
+            {
+                var Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
+                List<View_TRS_TIERS> listNewTiers = new List<View_TRS_TIERS>();
+                foreach (var item in Tiers)
+                {
+                    if (item.ETAT_TIERS == STAT_TIERS_MOBILE.ADDED || item.ETAT_TIERS == STAT_TIERS_MOBILE.UPDATED)
+                    {
+                        listNewTiers.Add(item);
+                    }
+                }
+                if (listNewTiers.Count > 0 && listNewTiers != null)
+                {
+                    var bll = new TiersManager();
+                    var res = await bll.SyncTiers(listNewTiers);
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("TIERS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "TIERS";
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Update all logs 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public async static Task<bool> UpdateLogs(string operation)
+        {
+            try
+            {
+                var tournee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                var listCodeTournee = tournee.Select(x => x.CODE_TOURNEE).ToArray();
+                var logListe = await getInstance().Table<LOG_SYNCHRONISATION>().Where(element => listCodeTournee.Contains(element.CODE_TOURNEE)).ToListAsync();
+
+                bool allRowChecked = false;
+                foreach (var log in logListe)
+                {
+                    allRowChecked = await UpdateLog(log, operation);
+                    if (!allRowChecked)
+                        return false;
+                }
+                return allRowChecked;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+       
+        /// <summary>
+        /// Update One Log with datetime.now
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public static async Task<bool> UpdateLog(LOG_SYNCHRONISATION log, string operation)
+        {
+            try
+            {
+                switch (operation)
+                {
+                    case "COMMANDE":
+                        log.SYNC_COMMANDE = DateTime.Now;
+                        break;
+                    case "VENTE":
+                        log.SYNC_VENTE = DateTime.Now;
+                        break;
+                    case "TOURNEE":
+                        log.SYNC_TOURNEE = DateTime.Now;
+                        break;
+                    case "TIERS":
+                        log.SYNC_TIERS = DateTime.Now;
+                        break;
+                    case "ENCAISS":
+                        log.SYNC_ENCAISS = DateTime.Now;
+                        break;
+                    default:
+                        return false;
+                }
+
+                await getInstance().UpdateAsync(log);
+                var tourneeDetails = await getInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Delete all the clients (tiers) which was stored in sqlite ... 
+        /// </summary>
+        public async static void DeleteAllTiersSInQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_TRS_TIERS>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /* End section of Synchronisation tiers */
+
+        /* Begin Section of Synchronisation Encaiss */
+
+        /// <summary>
+        /// Synchronisation de la liste des encaiss aux serveur 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncEncaissToServer()
+        {
+            try
+            {
+                var encaiss = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
+                var encaissList = encaiss.Where(e => e.IS_SYNCHRONISABLE == true).ToList<View_TRS_ENCAISS>();
+                if (encaissList.Count() > 0 && encaissList != null)
+                {
+                    var bll = new EncaissManager();
+                    var res = await bll.SyncEncaiss(encaissList);
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("ENCAISS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "ENCAISS";
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Delete all the encaiss which was stored in  sqlite
+        /// </summary>
+        public static async void DeleteAllEncaissInSQlite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /* End Section of Synchronisation Encaiss*/
+
+        /* Begin section of Synchronisation VENTES */
+
+        /// <summary>
+        /// Delete all the VENTES Which is stored in sqlite 
+        /// </summary>
+        /// /// <summary>
+        /// Synchronisation de la liste des ventes aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncVenteToServer()
+        {
+            try
+            {
+
+                var ListVentes = await getInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC != "CC").ToListAsync();
+                var vteDetails = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+
+                if (ListVentes.Count > 0 && ListVentes != null)
+                {
+                    foreach (var iVente in ListVentes)
+                    {
+                        List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
+                        List<View_VTE_VENTE_LOT> objdetailD = new List<View_VTE_VENTE_LOT>();
+                        try
+                        {
+                            if (vteDetails.Count > 0)
+                                objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                        }
+                        catch
+                        {
+                            objdetail = null;
+                        }
+                        finally
+                        {
+                            if (objdetail.Count > 0)
+                                iVente.Details = objdetail;
+                            else if (objdetailD.Count > 0)
+                            {
+                                iVente.Details = new List<View_VTE_VENTE_LOT>();
+                                foreach (var v in objdetailD)
+                                {
+                                    iVente.Details.Add(XpertHelper.CloneObject<View_VTE_VENTE_LOT>(v));
+                                }
+                            }
+                        }
+
+                    }
+
+
+                    var compte = await getComptes();
+
+                    var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
+                    var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
+
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("VENTE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return true;
+
+                    // Commenter cette section a cause de donnes utilisé avec les commandes et vider les tableauxs apres la synchronisation
+                    // des commandes
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "VENTES";
+                throw ex;
+            }
+            return false;
+        }
+        public static async void DeleteAllVentesInSQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_VTE_VENTE>();
+                await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                //await getInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /* End section of Synchronisation VENTES */
+
+        /* begin  section of Synchronisation TOURNEE */
+
+        /// <summary>
+        /// Synchronisation de la liste des Tournees aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncTourneesToServer()
+        {
+            try
+            {
+
+                var ListTorunee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                var tourneeDetails = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+
+                if (ListTorunee.Count > 0 && ListTorunee != null)
+                {
+                    foreach (var iTournee in ListTorunee)
+                    {
+                        var details = tourneeDetails.Where(e => e.CODE_TOURNEE == iTournee.CODE_TOURNEE).ToList();
+                        if (details.Count() > 0 && details != null)
+                            iTournee.Details = details;
+                    }
+
+                    var compte = await getComptes();
+
+                    var bll = CrudManager.Tournee;
+                    var res = await bll.SyncTournee(ListTorunee);
+                    if (res)
+                    {
+                        if (await UpdateLogs("COMMANDE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "TOURNEE";
+                throw ex;
+            }
+        }
+
+
+        public async static void DeleteAllTourneeInSQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_LIV_TOURNEE>();
+                await getInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        /* End Section of synchronisation TOURNEE */
+
+        /* BEGIN Section of synchronisation des VENTES */
+
+        public static async Task<bool> SyncCommandToServer()
+        {
+            try
+            {
+
+                var ListVentes = await getInstance().Table<View_VTE_VENTE>().Where(e => e.TYPE_DOC == "CC").ToListAsync();
+                var vteDetails = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+                var vteDetailsD = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+
+                if (ListVentes.Count > 0 && ListVentes != null)
+                {
+                    foreach (var iVente in ListVentes)
+                    {
+                        List<View_VTE_VENTE_LOT> objdetail = new List<View_VTE_VENTE_LOT>();
+                        List<View_VTE_VENTE_LOT> objdetailDistrib = new List<View_VTE_VENTE_LOT>();
+                        try
+                        {
+                            if (vteDetails.Count > 0)
+                            {
+                                objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
+                                foreach (var detail in objdetail)
+                                {
+                                    detail.ID_STOCK = null;
+                                }
+                            }
+                        }
+                        catch
+                        {
+                            objdetail = null;
+                        }
+                        finally
+                        {
+                            if (objdetail.Count > 0)
+                                iVente.Details = objdetail;
+                            else if (objdetailDistrib.Count > 0)
+                            {
+                                iVente.Details = new List<View_VTE_VENTE_LOT>();
+                                foreach (var v in objdetailDistrib)
+                                {
+
+                                    iVente.Details.Add(XpertHelper.CloneObject<View_VTE_VENTE_LOT>(v));
+                                }
+                            }
+                        }
+
+                    }
+
+                    var compte = await getComptes();
+                    var bll = CrudManager.Commandes;
+                    var res = await bll.SyncCommandes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, compte.FirstOrDefault().CODE_COMPTE);
+
+                    if (res)
+                    {
+                        if (await UpdateLogs("COMMANDE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "COMMANDES";
+                throw ex;
+            }
+        }
+        #endregion
     }
 }

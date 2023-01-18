@@ -38,11 +38,13 @@ namespace XpertMobileApp.Views
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.About, Image = "", Title = AppResources.pn_About });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.synchronisation, Image = "", Title = "Synchronisation" });
                 menuItems.Insert(3, new HomeMenuItem {  Id = MenuItemType.Tresorerie, Title = AppResources.pn_Tresorerie, CodeObjet = XpertObjets.BSE_COMPTE, Action = XpertActions.AcSelect
+                
                 });
               
             }
-            else if (Constants.AppName == Apps.XAGRI_Mob)
+             else if (Constants.AppName == Apps.XAGRI_Mob)
             {
                 menuItems = new List<HomeMenuItem>
                 {
@@ -51,6 +53,7 @@ namespace XpertMobileApp.Views
                     new HomeMenuItem {Id = MenuItemType.OrdresProduction, Image = "", Title=AppResources.pn_OrdresProduction },
                     new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },
                     new HomeMenuItem {Id = MenuItemType.Settings, Image = "", Title=AppResources.pn_Settings },
+
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }
                 };
 
@@ -76,7 +79,6 @@ namespace XpertMobileApp.Views
                     });
                 }
             }
-
              else if (Constants.AppName == Apps.XCOM_Abattoir)
             {
                 menuItems = new List<HomeMenuItem>
@@ -84,6 +86,7 @@ namespace XpertMobileApp.Views
                     //new HomeMenuItem {Id = MenuItemType.Achats, Image = "", Title=AppResources.pn_Achats },
                     new HomeMenuItem {Id = MenuItemType.AchatsProduction, Image = "", Title=AppResources.pn_AchatsProduction },
                     //new HomeMenuItem {Id = MenuItemType.OrdresProduction, Image = "", Title=AppResources.pn_OrdresProduction },
+                    new HomeMenuItem{ Id = MenuItemType.synchronisation, Image = "", Title = "Synchronisation" },
                     new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },
                     new HomeMenuItem {Id = MenuItemType.Settings, Image = "", Title=AppResources.pn_Settings },
                     new HomeMenuItem {Id = MenuItemType.About, Image = "", Title=AppResources.pn_About }

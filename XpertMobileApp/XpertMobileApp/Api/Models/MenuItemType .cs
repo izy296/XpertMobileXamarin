@@ -42,6 +42,7 @@ namespace XpertMobileApp.Api.Models
         XProfile,
         Export,
         Import,
-        entreeStock
+        entreeStock,
+        synchronisation
     }
 }

@@ -12,6 +12,7 @@ using XpertMobileApp.ViewModels.Entree;
 using XpertMobileApp.Views.Entree;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.DaytimeDelivery;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.Stock;
+using XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation;
 
 namespace XpertMobileApp.Views
 {
@@ -185,6 +186,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.entreeStock:
                         MenuPages.Add(id, new NavigationPage(new EntreesPage()));
+                        break;
+                    case (int)MenuItemType.synchronisation:
+                        MenuPages.Add(id, new NavigationPage(new SynchronisationPage()));
                         break;
                 }
             }

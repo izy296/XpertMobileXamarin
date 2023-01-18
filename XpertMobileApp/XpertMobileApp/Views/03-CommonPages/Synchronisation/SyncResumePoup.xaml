@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+    x:Class="XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation.SyncResumePoup">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation 
+            PositionIn="Bottom"
+            PositionOut="Bottom"
+           
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <Frame BackgroundColor="#fff"
+               WidthRequest="250"
+               HeightRequest="210"
+               Padding="25,25,25,25"
+               CornerRadius="7"
+               VerticalOptions="CenterAndExpand"
+               HorizontalOptions="CenterAndExpand">
+            <StackLayout HorizontalOptions="Center">
+
+                <Label 
+                        VerticalOptions="Center"
+                        Text="Etat de la Synchronisation" 
+                        FontSize="17" 
+                        TextColor="{StaticResource Primary}"
+                        HorizontalOptions="CenterAndExpand"/>
+
+                <StackLayout VerticalOptions="CenterAndExpand">
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des clients" FontSize="12" TextColor="#000" x:Name="labelTiers"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncTiers"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des Encaissements" FontSize="12" TextColor="#000" x:Name="labelEncaiss"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncEncaiss"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des ventes" FontSize="12" TextColor="#000" x:Name="labelVentes"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncVentes"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des commandes" FontSize="12" TextColor="#000" x:Name="labelCommande"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncCommande"/>
+
+                    </FlexLayout>
+
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des Tournées" FontSize="12" TextColor="#000" x:Name="labelTournee"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncTournees"/>
+
+                    </FlexLayout>
+
+                </StackLayout>
+
+
+                <flex:FlexButton
+                        x:Name="buttonYes"
+                        HorizontalOptions="FillAndExpand" 
+                        MinimumHeightRequest="50"
+                        HeightRequest="35"
+                        Padding="0"
+                        Margin="5,0,5,0"
+                        Text="Ok"
+                        IsEnabled="False"
+                        CornerRadius="15"
+                        ForegroundColor="#ffffff"
+                        BackgroundColor="#2196F3"
+                        BorderColor="#2196F3"
+                        BorderThickness="1"
+                        WidthRequest="130"
+                        Clicked="btn_Cancel_Clicked"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+
+</pages:PopupPage>
