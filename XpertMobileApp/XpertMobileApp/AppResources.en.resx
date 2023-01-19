@@ -1143,4 +1143,7 @@
   <data name="pn_Inventaire" xml:space="preserve">
     <value>Inventory</value>
   </data>
+  <data name="lbl_SaveToPhone" xml:space="preserve">
+    <value>Save To Phone</value>
+  </data>
 </root>

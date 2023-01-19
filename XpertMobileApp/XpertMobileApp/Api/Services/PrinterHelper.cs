@@ -2,8 +2,10 @@
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xpert.Common;
 using XpertMobileApp;
@@ -11,6 +13,7 @@ using XpertMobileApp.Api;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 using XpertMobileApp.Views.Helper;
@@ -21,8 +24,10 @@ namespace XpertMobileSettingsPage.Helpers.Services
     public class PrinterHelper
     {
         public static bool printerReady = false;
+        public static bool saveToFile = false;
         private static IPrinterSPRT printerLocal = DependencyService.Get<IPrinterSPRT>();
         private static readonly IBlueToothService _blueToothService = DependencyService.Get<IBlueToothService>();
+        public static IAppDirectory appDirectory = DependencyService.Get<IAppDirectory>();
 
         private static void updateConnected()
         {
@@ -40,13 +45,20 @@ namespace XpertMobileSettingsPage.Helpers.Services
             {
                 // Bluetooth printer
                 var list = _blueToothService.GetDeviceList();
-                
+
                 DeviceList.Add(new XPrinter()
                 {
                     Name = "",
                     Type = Printer_Type.Bluetooth
                 }
-                    );
+                            );
+                DeviceList.Add(new XPrinter()
+                {
+                    Name = AppResources.lbl_SaveToPhone,
+                    Type = Printer_Type.Bluetooth
+                    
+                }
+                            );
                 foreach (var item in list)
                 {
                     XPrinter itm = new XPrinter()
@@ -81,6 +93,11 @@ namespace XpertMobileSettingsPage.Helpers.Services
                         if (resPop != "Null")
                             printerToUse = resPop;
 
+                        if (printerToUse == AppResources.lbl_SaveToPhone)
+                        {
+                            saveToFile = true;
+                            return;
+                        }
                         bool succes = printerLocal.GetPrinterInstance(eventConnecedUpdate, printerToUse);
 
                         if (!succes)
@@ -147,9 +164,81 @@ namespace XpertMobileSettingsPage.Helpers.Services
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message,AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
             }
         }
+
+        public async static Task PrintToShare(View_VTE_VENTE data)
+        {
+            if (data == null) return;
+            try
+            {
+                var sysParams = await AppManager.GetSysParams();
+                SYS_USER user = await SQLite_Manager.getUserInfo(App.User.UserName);
+
+                var fn = data.CODE_VENTE.Replace("/","") + ".txt";
+                var file = Path.Combine(appDirectory.GetPublicDirectroy()+"/Abattoir/", fn);
+                if (!Directory.Exists(appDirectory.GetPublicDirectroy() + "/Abattoir/"))
+                    Directory.CreateDirectory(appDirectory.GetPublicDirectroy() + "/Abattoir/");
+                //File.WriteAllText(file, "Hello World");
+                using (StreamWriter writer = new StreamWriter(file))
+                {
+                    writer.WriteLine(sysParams.NOM_PHARM + Environment.NewLine);
+                    writer.WriteLine(sysParams.ADRESSE_PHARM + Environment.NewLine);
+                    writer.WriteLine("-----------------------------------------------" + Environment.NewLine);
+                    writer.WriteLine("N : " + data.NUM_VENTE + Environment.NewLine);
+                    writer.WriteLine("Client : " + data.NOM_TIERS + Environment.NewLine);
+                    string date = String.Format($"Date :{data.DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
+                    writer.WriteLine(date);
+                    writer.WriteLine("Etablie par : " + data.CREATED_BY + Environment.NewLine);
+                    writer.WriteLine("Tel : " + user.TEL_USER + Environment.NewLine);
+                    writer.WriteLine("-----------------------------------------------" + Environment.NewLine);
+                    writer.WriteLine("Designation        Qte   Prix       MT " + Environment.NewLine);
+                    writer.WriteLine("-----------------------------------------------" + Environment.NewLine);
+
+                    string datvalue = "";
+                    string designation = "";
+                    if (data.Details != null)
+                        foreach (var item in data.Details)
+                        {
+                            designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                            datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                            writer.WriteLine(datvalue);
+                        }
+                    else
+                    {
+                        foreach (var item in data.DetailsDistrib)
+                        {
+                            designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                            datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                            writer.WriteLine(datvalue);
+                        }
+                    }
+
+                    writer.WriteLine("-----------------------------------------------" + Environment.NewLine);
+                    writer.WriteLine(string.Format($"Versement : {data.TOTAL_RECU:0.00}" + $"        Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
+                    writer.WriteLine(string.Format($"Reste : {data.TOTAL_TTC - data.TOTAL_RECU:0.00}") + Environment.NewLine);
+
+                    var MoneyWords = ChiffresLettres.MoneyToLetter(data.TOTAL_TTC);
+                    string monyWord = XpertHelper.IsNullOrEmpty(MoneyWords) ? "" : MoneyWords.Replace('é', 'e');
+                    writer.WriteLine(monyWord + Environment.NewLine);
+                    writer.WriteLine(" " + Environment.NewLine);
+                    writer.WriteLine(" " + Environment.NewLine);
+
+                }
+
+                await Share.RequestAsync(new ShareFileRequest
+                {
+                    Title = data.CODE_VENTE,
+                    File = new ShareFile(file)
+                });
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync( ex.Message, AppResources.alrt_msg_Info, AppResources.alrt_msg_Ok);
+            }
+        }
+
         public async static Task PrintBL(View_VTE_VENTE data)
         {
             if (data == null) return;
@@ -175,51 +264,59 @@ namespace XpertMobileSettingsPage.Helpers.Services
 
                 await GetPrinterInstance();
 
-                printerLocal.setPrinter(13, 0);
-                printerLocal.setPrinter(13, 0);
-                printerLocal.setFont(0, 0, 1, 1, 0);
-                printerLocal.PrintText(sysParams.NOM_PHARM + Environment.NewLine);
-                printerLocal.setFont(0, 0, 0, 1, 0);
-                printerLocal.PrintText(sysParams.ADRESSE_PHARM + Environment.NewLine);
-                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-                printerLocal.setFont(0, 0, 0, 1, 0);
-                printerLocal.PrintText("N : " + data.NUM_VENTE + Environment.NewLine);
-                printerLocal.PrintText("Client : " + data.NOM_TIERS + Environment.NewLine);
-                string date = String.Format($"Date :{data.DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
-                printerLocal.PrintText(date);
-                printerLocal.PrintText("Etablie par : " + data.CREATED_BY + Environment.NewLine);
-                printerLocal.PrintText("Tel : " + user.TEL_USER + Environment.NewLine);
-                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-                printerLocal.setFont(0, 0, 0, 1, 0);
-                printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
-                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-                string datvalue = "";
-                string designation = "";
-                if (data.Details != null)
-                    foreach (var item in data.Details)
-                    {
-                        designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
-                        datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
-                        printerLocal.PrintText(datvalue);
-                    }
-                else
+                if (saveToFile)
                 {
-                    foreach (var item in data.DetailsDistrib)
+                    await PrintToShare(data);
+                    saveToFile = false;
+                    return;
+                }else
+                {
+                    printerLocal.setPrinter(13, 0);
+                    printerLocal.setPrinter(13, 0);
+                    printerLocal.setFont(0, 0, 1, 1, 0);
+                    printerLocal.PrintText(sysParams.NOM_PHARM + Environment.NewLine);
+                    printerLocal.setFont(0, 0, 0, 1, 0);
+                    printerLocal.PrintText(sysParams.ADRESSE_PHARM + Environment.NewLine);
+                    printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                    printerLocal.setFont(0, 0, 0, 1, 0);
+                    printerLocal.PrintText("N : " + data.NUM_VENTE + Environment.NewLine);
+                    printerLocal.PrintText("Client : " + data.NOM_TIERS + Environment.NewLine);
+                    string date = String.Format($"Date :{data.DATE_VENTE:dd/MM/yyyy}") + Environment.NewLine;
+                    printerLocal.PrintText(date);
+                    printerLocal.PrintText("Etablie par : " + data.CREATED_BY + Environment.NewLine);
+                    printerLocal.PrintText("Tel : " + user.TEL_USER + Environment.NewLine);
+                    printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                    printerLocal.setFont(0, 0, 0, 1, 0);
+                    printerLocal.PrintText("Designation        Qte   Prix       MT " + Environment.NewLine);
+                    printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                    string datvalue = "";
+                    string designation = "";
+                    if (data.Details != null)
+                        foreach (var item in data.Details)
+                        {
+                            designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                            datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                            printerLocal.PrintText(datvalue);
+                        }
+                    else
                     {
-                        designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
-                        datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
-                        printerLocal.PrintText(datvalue);
+                        foreach (var item in data.DetailsDistrib)
+                        {
+                            designation = item.DESIGNATION_PRODUIT != null && item.DESIGNATION_PRODUIT.Length > 18 ? item.DESIGNATION_PRODUIT.Substring(0, 18) : item.DESIGNATION_PRODUIT;
+                            datvalue = string.Format($"{designation,-18} {item.QUANTITE,-5:N1} {item.PRIX_VTE_TTC,-10:0.00} {item.MT_TTC,-12:0.00}") + Environment.NewLine;
+                            printerLocal.PrintText(datvalue);
+                        }
                     }
-                }
-                printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
-                printerLocal.PrintText(string.Format($"Versement : {data.TOTAL_RECU:0.00}" + $"        Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
-                printerLocal.PrintText(string.Format($"Reste : {data.TOTAL_TTC - data.TOTAL_RECU:0.00}") + Environment.NewLine);
+                    printerLocal.PrintText("-----------------------------------------------" + Environment.NewLine);
+                    printerLocal.PrintText(string.Format($"Versement : {data.TOTAL_RECU:0.00}" + $"        Total : {data.TOTAL_TTC:0.00}") + Environment.NewLine);
+                    printerLocal.PrintText(string.Format($"Reste : {data.TOTAL_TTC - data.TOTAL_RECU:0.00}") + Environment.NewLine);
 
-                var MoneyWords = ChiffresLettres.MoneyToLetter(data.TOTAL_TTC);
-                string monyWord = XpertHelper.IsNullOrEmpty(MoneyWords) ? "" : MoneyWords.Replace('é', 'e');
-                printerLocal.PrintText(monyWord + Environment.NewLine);
-                printerLocal.PrintText(" " + Environment.NewLine);
-                printerLocal.PrintText(" " + Environment.NewLine);
+                    var MoneyWords = ChiffresLettres.MoneyToLetter(data.TOTAL_TTC);
+                    string monyWord = XpertHelper.IsNullOrEmpty(MoneyWords) ? "" : MoneyWords.Replace('é', 'e');
+                    printerLocal.PrintText(monyWord + Environment.NewLine);
+                    printerLocal.PrintText(" " + Environment.NewLine);
+                    printerLocal.PrintText(" " + Environment.NewLine);
+                }
 
                 //             }
                 //             else

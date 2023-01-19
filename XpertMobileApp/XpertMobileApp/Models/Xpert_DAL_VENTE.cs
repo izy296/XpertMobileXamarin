@@ -75,7 +75,8 @@ namespace XpertMobileApp.DAL
             {
                 if (tOTAL_TTC != value)
                 {
-                    SetProperty(ref tOTAL_TTC, value);
+                    tOTAL_TTC=value;
+                    OnPropertyChanged("TOTAL_TTC");
                 }
             }
         }

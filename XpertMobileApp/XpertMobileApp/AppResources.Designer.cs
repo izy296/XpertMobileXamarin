@@ -3779,6 +3779,14 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_non", resourceCulture);
             }
         }
+        
+        public static string lbl_SaveToPhone
+        {
+            get
+            {
+                return ResourceManager.GetString("lbl_SaveToPhone", resourceCulture);
+            }
+        }
     }
 }
 

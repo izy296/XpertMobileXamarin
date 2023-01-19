@@ -533,7 +533,7 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
                 await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
                 await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
-                
+
                 CustomPopup AlertPopup = new CustomPopup("Suppression des tables de base faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
@@ -938,11 +938,13 @@ namespace XpertMobileApp.SQLite_Managment
                     {
                         CustomPopup AlertPopup = new CustomPopup("Versement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        await AlertPopup.PopupClosedTask;
                     }
                     else
                     {
                         CustomPopup AlertPopup = new CustomPopup("Remboursement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        await AlertPopup.PopupClosedTask;
                     }
                 }
                 else
@@ -957,10 +959,11 @@ namespace XpertMobileApp.SQLite_Managment
                     if (!string.IsNullOrEmpty(item.CODE_DOC))
                     {
                         View_VTE_VENTE vente = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.CODE_VENTE == item.CODE_DOC).FirstAsync();
-                        vente.TOTAL_TTC = item.TOTAL_ENCAISS;
-                    }
+                        vente.TOTAL_PAYE= item.TOTAL_ENCAISS;
+                        var rowEffected=await GetInstance().UpdateAsync(vente);
 
-                    var id = await GetInstance().UpdateAsync(item);
+                        var id = await GetInstance().UpdateAsync(item);
+                    }
                 }
                 await UpdateSoldeTiers(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
             }
@@ -968,6 +971,7 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
+                await AlertPopup.PopupClosedTask;
             }
         }
 
@@ -2310,7 +2314,7 @@ namespace XpertMobileApp.SQLite_Managment
                 }
                 return true;
             }
-            
+
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
@@ -2478,9 +2482,10 @@ namespace XpertMobileApp.SQLite_Managment
                     var encaissElement = encaiss.Where(e => e.CODE_DOC == vente.CODE_VENTE && e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
                     if (encaissElement != null)
                     {
-                        encaissElement.TOTAL_ENCAISS += vente.TOTAL_RECU;
+                        encaissElement.TOTAL_ENCAISS = vente.TOTAL_RECU;
                         encaissElement.DATE_ENCAISS = DateTime.Now;
                     }
+                    vente.TOTAL_PAYE = vente.TOTAL_TTC;
 
                     await GetInstance().UpdateAsync(vente);
 

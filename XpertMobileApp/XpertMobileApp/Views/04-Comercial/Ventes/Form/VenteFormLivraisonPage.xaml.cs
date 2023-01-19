@@ -94,6 +94,12 @@ namespace XpertMobileApp.Views
                         CODE_TIERS = "CXPERTCOMPTOIR",
                         NOM_TIERS1 = "COMPTOIR"
                     };
+                else
+                    SelectedTiers = new View_TRS_TIERS()
+                    {
+                        CODE_TIERS = "",
+                        NOM_TIERS1 = ""
+                    };
             }
             else
             {
@@ -303,6 +309,7 @@ namespace XpertMobileApp.Views
                 return;
             }
             */
+
             if (viewModel.TypeDoc == "BR")
             {
                 retourSelector.viewModel.Tier = viewModel.SelectedTiers;

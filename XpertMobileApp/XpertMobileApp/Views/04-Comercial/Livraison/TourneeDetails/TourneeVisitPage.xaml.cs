@@ -426,5 +426,42 @@ namespace XpertMobileApp.Views
                 ActivitysCollectionView.SelectedItem = null;
             }
         }
+
+        private async void OnDeleteSwipeItemInvoked(object sender, EventArgs e)
+        {
+            SwipeItem itemSwipe = sender as SwipeItem;
+            View_TRS_TIERS_ACTIVITY item = itemSwipe.BindingContext as View_TRS_TIERS_ACTIVITY;
+            if (item.TYPE_DOC == "ENC" || item.TYPE_DOC == "DEC")
+            {
+                var enc = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elm => elm.CODE_ENCAISS == item.CODE_DOC).FirstAsync();
+                if (enc != null)
+                {
+                    if (XpertHelper.IsNullOrEmpty(enc.CODE_DOC))
+                    {
+                        await SQLite_Manager.GetInstance().DeleteAsync(enc);
+                    }
+                    else
+                    {
+                        await UserDialogs.Instance.AlertAsync("Supprimmer le document parent !", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    }
+                }
+            }
+            else
+            {
+                var enc = await SQLite_Manager.GetInstance().Table<View_TRS_ENCAISS>().Where(elm => elm.CODE_DOC == item.CODE_DOC).FirstAsync();
+                var doc = await SQLite_Manager.GetInstance().Table<View_VTE_VENTE>().Where(elm => elm.CODE_VENTE == item.CODE_DOC).FirstAsync();
+                if (enc != null)
+                {
+                    await SQLite_Manager.GetInstance().DeleteAsync(enc);
+                }
+                await SQLite_Manager.GetInstance().DeleteAsync(doc);
+
+            }
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await viewModel.ExecuteLoadActiviteCommand();
+
+            });
+        }
     }
 }

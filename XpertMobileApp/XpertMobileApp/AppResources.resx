@@ -1396,4 +1396,7 @@
   <data name="txt_oui" xml:space="preserve">
     <value>Oui</value>
   </data>
+  <data name="lbl_SaveToPhone" xml:space="preserve">
+    <value>Enregistrer Sur le Téléphone</value>
+  </data>
 </root>

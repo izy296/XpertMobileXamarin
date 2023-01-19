@@ -41,7 +41,9 @@ namespace XpertMobileApp.Droid
             Manifest.Permission.ReadPhoneState,
             Manifest.Permission.Camera,
             Manifest.Permission.AccessCoarseLocation,
-            Manifest.Permission.AccessFineLocation
+            Manifest.Permission.AccessFineLocation,
+            Manifest.Permission.ReadExternalStorage,
+            Manifest.Permission.WriteExternalStorage
         };
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -54,7 +56,7 @@ namespace XpertMobileApp.Droid
             Instance = this;
 
             // Init popup plugin
-            Rg.Plugins.Popup.Popup.Init(this,savedInstanceState);
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
 
             UserDialogs.Init(this);
 
@@ -75,13 +77,37 @@ namespace XpertMobileApp.Droid
 
             LoadApplication(new App());
 
+            var result = false;
+            var absolutePath = Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDocuments).AbsolutePath;
+            String extStorageState = Android.OS.Environment.GetExternalStorageState(Android.OS.Environment.GetExternalStoragePublicDirectory(Android.OS.Environment.DirectoryDocuments));
+            if (Android.OS.Environment.MediaMounted.Equals(extStorageState))
+            {
+                result = true;
+            }
+
+            if ((int)Build.VERSION.SdkInt >= 23)
+            {
+                foreach (var permission in PERMISSIONS_NEED)
+                {
+                    if (CheckSelfPermission(permission) != Permission.Granted)
+                    {
+                        RequestPermissions(PERMISSIONS_NEED, RequestLocationId);
+                    }
+                    else
+                    {
+                        // Permissions already granted - display a message.
+                    }
+
+                }
+            }
             // fonction qui empêche l'application de se fermer par une exception
 
             AndroidEnvironment.UnhandledExceptionRaiser += (s, e) =>
             {
                 try
                 {
-                    throw e.Exception;
+                    e.Handled = true;
+                    UserDialogs.Instance.AlertAsync(e.Exception.Message, "Alert", "Ok");
                 }
                 catch (InvalidOperationException ex)
                 {

@@ -31,7 +31,11 @@ namespace XpertMobileApp.ViewModels
         public List<View_TRS_TIERS_ACTIVITY> Activitys
         {
             get { return activitys; }
-            set { SetProperty(ref activitys, value); }
+            set
+            {
+                SetProperty(ref activitys, value);
+                OnPropertyChanged("Activitys");
+            }
         }
         public TourneeVisitViewModel()
         {
@@ -54,11 +58,11 @@ namespace XpertMobileApp.ViewModels
                 IsBusy = true;
                 var Activity = await SQLite_Manager.Get_TRS_TIERS_ACTIVITY_Async(Item.CODE_TIERS);
                 var updatedTierSolde = await SQLite_Manager.GetClient(Item.CODE_TIERS);
-                if(updatedTierSolde != null)
+                if (updatedTierSolde != null)
                 {
                     Item.SOLDE_TIERS = updatedTierSolde.SOLDE_TIERS;
                 }
-                if (Activity != null)
+                if (Activity != null || Activitys!=Activity)
                     Activitys = Activity as List<View_TRS_TIERS_ACTIVITY>;
             }
             catch (Exception ex)
@@ -72,7 +76,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        public async Task UpdateVisteStatus(TourneeStatus selectedItem,bool tourneClosed=false)
+        public async Task UpdateVisteStatus(TourneeStatus selectedItem, bool tourneClosed = false)
         {
             bool modified = false;
             if (Item.CODE_ETAT_VISITE != selectedItem)

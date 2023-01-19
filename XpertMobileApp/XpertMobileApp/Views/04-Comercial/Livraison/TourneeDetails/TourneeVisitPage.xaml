@@ -110,49 +110,60 @@
                                     <DataTemplate>
                                         <StackLayout
                                             Padding="5">
-                                            <Frame 
+                                            <SwipeView>
+                                                <SwipeView.RightItems>
+                                                    <SwipeItems>
+                                                        <SwipeItem Text="Delete"
+                                                            IconImageSource="delete.png"
+                                                            BackgroundColor="LightPink"
+                                                            Invoked="OnDeleteSwipeItemInvoked" />
+                                                    </SwipeItems>
+                                                </SwipeView.RightItems>
+                                                <Frame 
                                                 CornerRadius="10" 
                                                 Padding="5" 
                                                 BackgroundColor="White" 
                                                 HasShadow="True"  
                                                 OutlineColor="white"
                                                 VerticalOptions="CenterAndExpand">
-                                                <Grid>
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition/>
-                                                    </Grid.RowDefinitions>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <Image 
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition/>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="Auto"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image 
                                                 WidthRequest="40"
                                                 Grid.Column="0" Source="{Binding TYPE_DOC,StringFormat='TVisit_{0}.png'}"/>
-                                                    <StackLayout
+                                                        <StackLayout
                                                     VerticalOptions="FillAndExpand"
                                                     HorizontalOptions="FillAndExpand"
                                                     Orientation="Vertical"
                                                     Grid.Column="1">
-                                                        <Label
+                                                            <Label
                                                         Text="{Binding TYPE_DOC,Converter={StaticResource TypeDocConverter}}"
                                                         TextColor="Black">
-                                                        </Label>
-                                                        <Grid>
-                                                            <Label
+                                                            </Label>
+                                                            <Grid>
+                                                                <Label
                                                             Grid.Column="0"
                                                             Text="{Binding TOTAL_PAYE,StringFormat='{0:N2} DA'}"
                                                             TextColor="{StaticResource Primary}">
-                                                            </Label>
-                                                            <Label Grid.Column="1"
+                                                                </Label>
+                                                                <Label Grid.Column="1"
                                                                    Text="{Binding DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}"
                                                                    TextColor="Black">
-                                                            </Label>
-                                                        </Grid>
-                                                    </StackLayout>
-                                                </Grid>
+                                                                </Label>
+                                                            </Grid>
+                                                        </StackLayout>
+                                                    </Grid>
 
-                                            </Frame>
+                                                </Frame>
 
+
+                                            </SwipeView>
                                         </StackLayout>
                                     </DataTemplate>
                                 </CollectionView.ItemTemplate>
