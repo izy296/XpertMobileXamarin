@@ -42,28 +42,40 @@ namespace XpertMobileApp.Api
     {
         public static string LOCAL_DB_NAME = "XpertLocalDb.db3";
 
+        public static string AppName => appName;
+        private static string appName
+        {
+            get
+            {
+
 #if RELEASE
-        public static string AppName = Apps.XCOM_Abattoir;
+                        return Apps.XCOM_Abattoir;
 #endif
 
 #if Debug
-                public static string AppName = Apps.XAGRI_Mob;
+                               return Apps.XAGRI_Mob;
 #endif
 
 #if XMBL
-                public static string AppName = Apps.XCOM_Livraison;
+                return Apps.XCOM_Livraison;
 
 #endif
 #if XMAG
-                public static string AppName = Apps.XAGRI_Mob;
+                                return Apps.XAGRI_Mob;
 
 #endif
 #if XMAB
-        public static string AppName = Apps.XCOM_Abattoir;
+                        return Apps.XCOM_Abattoir;
+#else 
+                return Apps.XCOM_Livraison;
 
 #endif
-        //
-        //public static string AppName = Apps.XAGRI_Mob;
+            }
+        }
+
+
+
+        // public static string AppName = Apps.XAGRI_Mob;
 
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
 
