@@ -154,7 +154,8 @@
                 <DataTemplate>
                     <ViewCell Height="40">
                         <ViewCell.View>
-                            <StackLayout BackgroundColor="#dcefff"
+                            <StackLayout 
+                                         BackgroundColor="{DynamicResource MenuItemGroup}"
                                          HeightRequest="40"
                                          Orientation="Horizontal"
                                          Spacing="0">

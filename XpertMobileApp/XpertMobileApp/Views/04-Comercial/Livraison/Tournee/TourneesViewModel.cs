@@ -211,8 +211,7 @@ namespace XpertMobileApp.ViewModels
                 bool answer = false;
                 if (item.ETAT_TOURNEE == TourneeStatus.Started)
                 {
-
-                    answer = await App.Current.MainPage.DisplayAlert(AppResources.tourneeStatusClosedMessage, AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    answer = await App.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.tourneeStatusClosedMessage, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
                         item.ETAT_TOURNEE = TourneeStatus.Closed;
@@ -220,7 +219,7 @@ namespace XpertMobileApp.ViewModels
                 }
                 else if (item.ETAT_TOURNEE == TourneeStatus.Planned)
                 {
-                    answer = await App.Current.MainPage.DisplayAlert(AppResources.tourneeStatusStartMessage, AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    answer = await App.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.tourneeStatusStartMessage, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
                         item.ETAT_TOURNEE = TourneeStatus.Started;
@@ -228,7 +227,7 @@ namespace XpertMobileApp.ViewModels
                 }
                 else if (item.ETAT_TOURNEE == TourneeStatus.Closed)
                 {
-                    answer = await App.Current.MainPage.DisplayAlert(AppResources.tourneeStatusReopenMessage, AppResources.alrt_msg_Alert, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
+                    answer = await App.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert,AppResources.tourneeStatusReopenMessage, AppResources.exit_Button_Yes, AppResources.exit_Button_No);
                     if (answer)
                     {
                         item.ETAT_TOURNEE = TourneeStatus.Started;

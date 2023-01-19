@@ -834,11 +834,11 @@ namespace XpertMobileApp.DAL
                 }
                 else if (ETAT_TOURNEE == TourneeStatus.EnRoute)
                 {
-                    return "#6fc2e3";
+                    return "#7EC384";
                 }
                 else if (ETAT_TOURNEE == TourneeStatus.Visited)
                 {
-                    return "#009DDC";
+                    return "#7EC384";
                 }
                 else if (ETAT_TOURNEE == TourneeStatus.Delivered)
                 {
@@ -1047,11 +1047,11 @@ namespace XpertMobileApp.DAL
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.EnRoute)
                 {
-                    return "#6fc2e3";
+                    return "#7EC384";
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Visited)
                 {
-                    return "#009DDC";
+                    return "#7EC384";
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Delivered)
                 {
@@ -1071,7 +1071,7 @@ namespace XpertMobileApp.DAL
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Started)
                 {
-                    return "#6fc2e3";
+                    return "#7EC384";
                 }
                 else if (CODE_ETAT_VISITE == TourneeStatus.Closed)
                 {

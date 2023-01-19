@@ -110,7 +110,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Tournee).ToString(),
                         Title = "Tournee",
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         CodeObjet = Xpert.XpertObjets.LIV_TOURNEE,
                         Action = Xpert.XpertActions.AcSelect,
                         IconImage = "route.png"
@@ -121,7 +121,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Livraison).ToString(),
                         Title = "Livraisons",
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         CodeObjet = Xpert.XpertObjets.VTE_LIVRAISON,
                         Action = Xpert.XpertActions.AcSelect,
                         IconImage = "boxliv.png"
@@ -131,7 +131,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.TransfertStock).ToString(),
                         Title = "Chargement",
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         IconImage = "syncicon.png"
                     });
 
@@ -149,7 +149,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Tiers).ToString(),
                         Title = AppResources.pn_Client,
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         IconImage = "clients.png"
                     });
 
@@ -157,7 +157,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Encaissements).ToString(),
                         Title = Constants.AppName != Apps.X_DISTRIBUTION ? "Versement" : "Paiement",
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         IconImage = "tresorerieicon.png"
                     });
 
@@ -165,7 +165,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         CODE_ANALYSE = ((int)MenuItemType.Produits).ToString(),
                         Title = "Produits",
-                        Color = "#fff",
+                        Color = "#f0f0f0",
                         IconImage = "produiticon.png"
                     });
 

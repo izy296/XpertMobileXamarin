@@ -10,7 +10,6 @@
         <animations:ScaleAnimation 
             PositionIn="Bottom"
             PositionOut="Bottom"
-           
             DurationIn="400"
             DurationOut="300"
             EasingIn="SinOut"
@@ -20,14 +19,14 @@
     
     <StackLayout 
         VerticalOptions="EndAndExpand" 
-        HorizontalOptions="FillAndExpand" 
-       >
+        HorizontalOptions="FillAndExpand">
+        
         <yummy:PancakeView CornerRadius="20,20,0,0" 
-                               Padding="15" 
+                           Padding="15" 
                            BackgroundColor="WhiteSmoke">
             <StackLayout>
-                <Button x:Name="StatusButton" CornerRadius="15" BackgroundColor="{Binding tournee.ETAT_COLOR}" Text="Demarer" Clicked="ChangeTourneeStatus"></Button>
-                <Button x:Name="DetailsButton" CornerRadius="15" BackgroundColor="{StaticResource Primary}" Text="Details" Clicked="DetailsClicked"></Button>
+                <Button x:Name="StatusButton" CornerRadius="15" BackgroundColor="{Binding tournee.ETAT_COLOR}" Text="Demarrer" Clicked="ChangeTourneeStatus"></Button>
+                <Button x:Name="DetailsButton" CornerRadius="15" BackgroundColor="#FBD9CD" TextColor="#F26430" Text="Details" Clicked="DetailsClicked"></Button>
             </StackLayout>
         </yummy:PancakeView>
 

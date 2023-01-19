@@ -26,7 +26,7 @@ namespace XpertMobileApp.Views
                 if (this.tournee.ETAT_TOURNEE == TourneeStatus.Planned)
                 {
                     StatusButton.Text = AppResources.tourneePopUpStart;
-                    StatusButton.BackgroundColor = Color.Green;
+                    StatusButton.BackgroundColor = Color.FromHex("#2196F3");
                     StatusButton.TextColor = Color.White;
                 }
                 else if (this.tournee.ETAT_TOURNEE == TourneeStatus.Started)
