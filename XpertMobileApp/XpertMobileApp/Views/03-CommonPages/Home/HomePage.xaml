@@ -25,34 +25,68 @@
     <ContentPage.Content>
         <StackLayout Spacing="0" Padding="0" Margin="0" BackgroundColor="Transparent">
             <!-- Liste des comptes -->
-            <yummy:PancakeView CornerRadius="0,0,40,40" Padding="0,0,0,70" 
-                   Margin="0" IsClippedToBounds="true"
-                   BorderColor="{StaticResource NavigationPrimary}"
-                   BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
-                
-                <StackLayout Spacing="10" Padding="15,0,15,15" >
-                    <StackLayout Orientation="Vertical" Padding="0" Margin="15,0,15,15">
-                        <Label x:Name="lblClientName" Text="Manafiaa" FontSize="Medium" FontFamily="{StaticResource FontGilroySemiBold}"
-                               HorizontalTextAlignment="Center" TextColor="White"/>
+            <yummy:PancakeView CornerRadius="0,0,40,40" 
+                               Padding="0,0,0,70" 
+                               Margin="0" IsClippedToBounds="true"
+                               BorderColor="{StaticResource NavigationPrimary}"
+                               BackgroundColor="{StaticResource NavigationPrimary}" HasShadow="False" >
+
+                <StackLayout Spacing="10" 
+                             Padding="15,0,15,15" >
+                    <StackLayout Orientation="Vertical" 
+                                 Padding="0" 
+                                 Margin="15,0,15,15">
+
+                        <Label x:Name="lblClientName" 
+                               Text="Manafiaa" 
+                               FontSize="Medium" 
+                               FontFamily="{StaticResource FontGilroySemiBold}"
+                               HorizontalTextAlignment="Center" 
+                               TextColor="White"/>
+
+                    </StackLayout>
+                    
+                    <StackLayout>
+                        <FlexLayout Direction="Row"                             
+                                    JustifyContent="Center"
+                                    AlignItems="Center"
+                                    HorizontalOptions="Center">
+
+                            <Label x:Name="connectionStatus"
+                               FontSize="11"
+                               HorizontalTextAlignment="Center"
+                               HorizontalOptions="Center"
+                               VerticalTextAlignment="Center"
+                               TextColor="White"/>
+
+                            <Image x:Name="connectionStatusIcon"
+                                   Source="nowifi.png"
+                                   Margin="5,0,0,0"
+                                   WidthRequest="17"
+                                   HeightRequest="17"/>
+
+                        </FlexLayout>
                     </StackLayout>
 
                     <Label 
-                        HorizontalOptions="Center" Style="{StaticResource FAwesome-B-Solid}" 
+                        HorizontalOptions="Center" 
+                        Style="{StaticResource FAwesome-B-Solid}" 
                         TextColor="White" FontSize="90"
                         Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
-                        BackgroundColor="Transparent" 
-                        />
-                    
+                        BackgroundColor="Transparent" />
+
                     <StackLayout Orientation="Vertical" Padding="0" Margin="0">
-                        <Label Text="Bienvenue" TextColor="White" FontAttributes="Bold" 
-                                    FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                        <Label Text="Bienvenue"
+                               TextColor="White"
+                               FontAttributes="Bold" 
+                               FontFamily="{StaticResource FontGilroyLight}"   FontSize="Medium" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
 
                         <Label x:Name="lblUser" Text="Mohamed" FontSize="Default" FontFamily="{StaticResource FontGilroyRegular}"
                                HorizontalTextAlignment="Center" TextColor="White"/>
                     </StackLayout>
                 </StackLayout>
             </yummy:PancakeView>
-            
+
             <syncfusion:SfListView Margin="10,-60,10,0"
                 x:Name="listView"
                 SelectionMode="None"
@@ -63,37 +97,37 @@
                 SelectionBackgroundColor="AliceBlue"
                 BackgroundColor="Transparent"
                 >
-                    
-                    <syncfusion:SfListView.ItemSize>
-                        <forms:OnIdiom x:TypeArguments="x:Double"
+
+                <syncfusion:SfListView.ItemSize>
+                    <forms:OnIdiom x:TypeArguments="x:Double"
                       Phone="150"
                       Tablet="200"
                       Desktop="200"/>
-                    </syncfusion:SfListView.ItemSize>
-                    
-                    <syncfusion:SfListView.LayoutManager>
-                        <syncfusion:GridLayout>
-                            <syncfusion:GridLayout.SpanCount>
-                                <forms:OnIdiom x:TypeArguments="x:Int32"
+                </syncfusion:SfListView.ItemSize>
+
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout>
+                        <syncfusion:GridLayout.SpanCount>
+                            <forms:OnIdiom x:TypeArguments="x:Int32"
                                 Phone="2"
                                 Tablet="3"
                                 Desktop="3"/>
-                            </syncfusion:GridLayout.SpanCount>
-                        </syncfusion:GridLayout>
-                    </syncfusion:SfListView.LayoutManager>
-                    
-                    <syncfusion:SfListView.ItemTemplate>
-                        <DataTemplate>
-                            <!--
+                        </syncfusion:GridLayout.SpanCount>
+                    </syncfusion:GridLayout>
+                </syncfusion:SfListView.LayoutManager>
+
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--
                              {Binding Color} OutlineColor="LightGray"
                               -->
                         <yummy:PancakeView BackgroundColor="{Binding Color}" CornerRadius="17"
                                    Margin="8" Padding="4" HasShadow="{OnPlatform Android=true, iOS=true, macOS=false, UWP=true}">
-                                <Grid Padding="0" ColumnSpacing="0" Margin="0" >
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height= "*" />
-                                    </Grid.RowDefinitions>
-<!--
+                            <Grid Padding="0" ColumnSpacing="0" Margin="0" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "*" />
+                                </Grid.RowDefinitions>
+                                <!--
                                 <Label Grid.Row="0" Text="{Binding Title}"  FontSize="Default" Margin="0,8,0,0"
                      VerticalOptions="Start" HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
 
@@ -115,13 +149,13 @@
                                                            FontSize="Subtitle" 
                                                            Clicked="Btn_Menu_Clicked" />
 
-                               
+
 
                             </Grid>
-                            </yummy:PancakeView>
-                        </DataTemplate>
-                    </syncfusion:SfListView.ItemTemplate>
-                </syncfusion:SfListView>
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
 
         </StackLayout>
     </ContentPage.Content>

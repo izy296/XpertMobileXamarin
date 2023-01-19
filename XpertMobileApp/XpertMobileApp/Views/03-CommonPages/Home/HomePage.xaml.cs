@@ -27,6 +27,15 @@ namespace XpertMobileApp.Views
             lblUser.Text = App.User?.UserName;
             lblClientName.Text = App.Settings.ClientName;
             BindingContext = viewModel = new HomeViewModel();
+            if(App.Online)
+            {
+                connectionStatus.Text = "En ligne";
+                connectionStatusIcon.Source = "wifi.png";
+            }else
+            {
+                connectionStatus.Text = "Hors ligne";
+                connectionStatusIcon.Source = "nowifi.png";
+            }
         }
 
         protected async override void OnAppearing()
@@ -52,6 +61,7 @@ namespace XpertMobileApp.Views
             }
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
+
         }
 
         private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
