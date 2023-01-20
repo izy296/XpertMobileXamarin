@@ -12,6 +12,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
+using XpertMobileAppManafiaa.SQLite_Managment;
 
 namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 {
@@ -39,12 +40,12 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
                     var itemSynchronised = false;
                     /* Synchronisation des Tiers */
                     labelTiers.FontAttributes = FontAttributes.Bold;
-                    itemSynchronised = await UpdateDatabase.SyncTiersToServer();
+                    itemSynchronised = await SyncManager.SyncTiersToServer();
                     labelTiers.FontAttributes = FontAttributes.None;
                     if (itemSynchronised)
                     {
                         syncTiers.IsVisible = true;
-                        UpdateDatabase.DeleteAllTiersSInQLite();
+                        SyncManager.DeleteAllTiersSInQLite();
                     }
                     else
                     {
@@ -56,12 +57,12 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 
                     /* Synchronisation des encaiss */
                     labelEncaiss.FontAttributes = FontAttributes.Bold;
-                    itemSynchronised = await UpdateDatabase.SyncEncaissToServer();
+                    itemSynchronised = await SyncManager.SyncEncaissToServer();
                     labelEncaiss.FontAttributes = FontAttributes.None;
                     if (itemSynchronised)
                     {
                         syncEncaiss.IsVisible = true;
-                        UpdateDatabase.DeleteAllEncaissInSQlite();
+                        SyncManager.DeleteAllEncaissInSQlite();
                     }
                     else
                     {
@@ -75,11 +76,12 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
                     /* Synchronisation des ventes */
 
                     labelVentes.FontAttributes = FontAttributes.Bold;
-                    itemSynchronised = await UpdateDatabase.SyncVenteToServer();
+                    itemSynchronised = await SyncManager.SyncVenteToServer();
                     labelVentes.FontAttributes = FontAttributes.None;
                     if (itemSynchronised)
                     {
                         syncVentes.IsVisible = true;
+                        SyncManager.DeleteAllVentesInSQLite();
                     }
                     else
                     {
@@ -92,31 +94,31 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 
 
                     /* Synchronisation des commandes */
-                    labelCommande.FontAttributes = FontAttributes.Bold;
-                    itemSynchronised = await UpdateDatabase.SyncCommandToServer();
-                    labelCommande.FontAttributes = FontAttributes.None;
-                    if (itemSynchronised)
-                    {
-                        syncCommande.IsVisible = true;
-                        UpdateDatabase.DeleteAllVentesInSQLite();
-                    }
+                    //labelCommande.FontAttributes = FontAttributes.Bold;
+                    //itemSynchronised = await UpdateDatabase.SyncCommandToServer();
+                    //labelCommande.FontAttributes = FontAttributes.None;
+                    //if (itemSynchronised)
+                    //{
+                    //    syncCommande.IsVisible = true;
+                    //    UpdateDatabase.DeleteAllVentesInSQLite();
+                    //}
 
-                    else
-                    {
-                        syncCommande.Source = "incorrect.png";
-                        syncCommande.IsVisible = true;
-                    }
+                    //else
+                    //{
+                    //    syncCommande.Source = "incorrect.png";
+                    //    syncCommande.IsVisible = true;
+                    //}
                     /* -------------------------------- */
                     /* Synchronisation des Tournee */
                     labelTournee.FontAttributes = FontAttributes.Bold;
-                    itemSynchronised = await UpdateDatabase.SyncTourneesToServer();
+                    itemSynchronised = await SyncManager.SyncTourneesToServer();
                     labelTournee.FontAttributes = FontAttributes.None;
 
                     if (itemSynchronised)
                     {
                         syncTournees.IsVisible = true;
                         buttonYes.IsEnabled = true;
-                        UpdateDatabase.DeleteAllTourneeInSQLite();
+                        SyncManager.DeleteAllTourneeInSQLite();
                     }
                     else
                     {

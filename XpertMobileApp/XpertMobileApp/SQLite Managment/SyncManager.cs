@@ -13,6 +13,7 @@ using XpertMobileApp.ViewModels;
 using System.Linq;
 using XpertMobileApp.Models;
 using SQLite;
+using XpertMobileApp.Api.Services;
 
 namespace XpertMobileAppManafiaa.SQLite_Managment
 {
@@ -61,65 +62,199 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
                 await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
             }
         }
+        /* begin section of Synchronisation tiers */
 
-
-        public static async Task SyncTiersToServer()
+        /// <summary>
+        /// Uploader la liste des tiers aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncTiersToServer()
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var Tiers = await getInstance().Table<View_TRS_TIERS>().ToListAsync();
-                List<View_TRS_TIERS> listNewTiers = new List<View_TRS_TIERS>();
-                foreach (var item in Tiers)
-                {
-                    if (item.ETAT_TIERS == STAT_TIERS_MOBILE.ADDED || item.ETAT_TIERS == STAT_TIERS_MOBILE.UPDATED)
-                    {
-                        listNewTiers.Add(item);
-                    }
-                }
+                List<View_TRS_TIERS> listNewTiers = await getInstance().Table<View_TRS_TIERS>().Where(item => item.ETAT_TIERS == STAT_TIERS_MOBILE.ADDED || item.ETAT_TIERS == STAT_TIERS_MOBILE.UPDATED).ToListAsync();
+
                 if (listNewTiers.Count > 0 && listNewTiers != null)
                 {
                     var bll = new TiersManager();
                     var res = await bll.SyncTiers(listNewTiers);
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("TIERS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
-                //UserDialogs.Instance.HideLoading();
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Tiers!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "TIERS";
+                throw ex;
             }
         }
-
-        public static async Task SyncEncaissToServer()
+        /// <summary>
+        /// Delete all the clients (tiers) which was stored in sqlite ... 
+        /// </summary>
+        public async static void DeleteAllTiersSInQLite()
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                var encaiss = await getInstance().Table<View_TRS_ENCAISS>().ToListAsync();
-                if (encaiss.Count > 0 && encaiss != null)
+                await getInstance().DeleteAllAsync<View_TRS_TIERS>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /* End section of Synchronisation tiers */
+
+
+
+        /// <summary>
+        /// Update all logs 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public async static Task<bool> UpdateLogs(string operation)
+        {
+            try
+            {
+                var tournee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                var listCodeTournee = tournee.Select(x => x.CODE_TOURNEE).ToArray();
+                var logListe = await getInstance().Table<LOG_SYNCHRONISATION>().Where(element => listCodeTournee.Contains(element.CODE_TOURNEE)).ToListAsync();
+
+                bool allRowChecked = false;
+                foreach (var log in logListe)
+                {
+                    allRowChecked = await UpdateLog(log, operation);
+                    if (!allRowChecked)
+                        return false;
+                }
+                return allRowChecked;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Update One Log with datetime.now
+        /// </summary>
+        /// <param name="log"></param>
+        /// <param name="operation"></param>
+        /// <returns></returns>
+        public static async Task<bool> UpdateLog(LOG_SYNCHRONISATION log, string operation)
+        {
+            try
+            {
+                switch (operation)
+                {
+                    case "COMMANDE":
+                        log.SYNC_COMMANDE = DateTime.Now;
+                        break;
+                    case "VENTE":
+                        log.SYNC_VENTE = DateTime.Now;
+                        break;
+                    case "TOURNEE":
+                        log.SYNC_TOURNEE = DateTime.Now;
+                        break;
+                    case "TIERS":
+                        log.SYNC_TIERS = DateTime.Now;
+                        break;
+                    case "ENCAISS":
+                        log.SYNC_ENCAISS = DateTime.Now;
+                        break;
+                    default:
+                        return false;
+                }
+
+                await getInstance().UpdateAsync(log);
+                var tourneeDetails = await getInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        /* Begin Section of Synchronisation Encaiss */
+
+        /// <summary>
+        /// Synchronisation de la liste des encaiss aux serveur 
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncEncaissToServer()
+        {
+            try
+            {
+                var encaissList = await getInstance().Table<View_TRS_ENCAISS>().Where(e => e.IS_SYNCHRONISABLE == true).ToListAsync();
+                if (encaissList.Count() > 0 && encaissList != null)
                 {
                     var bll = new EncaissManager();
-                    var res = await bll.SyncEncaiss(encaiss);
-                    await getInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+                    var res = await bll.SyncEncaiss(encaissList);
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("ENCAISS"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
-                //UserDialogs.Instance.HideLoading();
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("erreur de synchronisation des Encaissements !!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "ENCAISS";
+                throw ex;
             }
         }
 
-
-        public static async Task<string> SyncVenteToServer()
+        /// <summary>
+        /// Delete all the encaiss which was stored in  sqlite
+        /// </summary>
+        public static async void DeleteAllEncaissInSQlite()
         {
             try
             {
-                //UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                await getInstance().DeleteAllAsync<View_TRS_ENCAISS>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        /* End Section of Synchronisation Encaiss*/
+
+
+        /* Begin section of Synchronisation VENTES */
+
+        /// <summary>
+        /// Delete all the VENTES Which is stored in sqlite 
+        /// </summary>
+        /// /// <summary>
+        /// Synchronisation de la liste des ventes aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncVenteToServer()
+        {
+            try
+            {
+
 
                 var ListVentes = await getInstance().Table<View_VTE_VENTE>().ToListAsync();
                 var vteDetails = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
@@ -155,21 +290,46 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
                     var bll = CrudManager.GetVteBll(VentesTypes.Livraison);
                     var res = await bll.SyncVentes(ListVentes, App.PrefixCodification, App.CODE_MAGASIN, CodeCompteUser);
 
-                    await getInstance().DeleteAllAsync<View_VTE_VENTE>();
-                    await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("VENTE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
+                    return true;
 
-                    UserDialogs.Instance.HideLoading();
-                    return res;
+                    // Commenter cette section a cause de donnes utilisé avec les commandes et vider les tableauxs apres la synchronisation
+                    // des commandes
                 }
+                return true;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                ex.Data["opeartion"] = "VENTES";
+                throw ex;
             }
-            return "";
+            return false;
         }
+        public static async void DeleteAllVentesInSQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_VTE_VENTE>();
+                await getInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                //await getInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /* End section of Synchronisation VENTES */
+
+      
 
         public static async Task<string> SyncRetourStock()
         {
@@ -218,6 +378,77 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
             return string.Empty;
         }
 
+
+
+
+
+
+
+        /* begin  section of Synchronisation TOURNEE */
+
+        /// <summary>
+        /// Synchronisation de la liste des Tournees aux serveur
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> SyncTourneesToServer()
+        {
+            try
+            {
+
+                //var ListTorunee = await getInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+                //var tourneeDetails = await getInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
+
+                //if (ListTorunee.Count > 0 && ListTorunee != null)
+                //{
+                //    foreach (var iTournee in ListTorunee)
+                //    {
+                //        var details = tourneeDetails.Where(e => e.CODE_TOURNEE == iTournee.CODE_TOURNEE).ToList();
+                //        if (details.Count() > 0 && details != null)
+                //            iTournee.Details = details;
+                //    }
+
+                //    var compte = await getComptes();
+
+                //    var bll = CrudManager.Tournee;
+                //    var res = await bll.SyncTournee(ListTorunee);
+                //    if (res)
+                //    {
+                //        if (await UpdateLogs("COMMANDE"))
+                //        {
+                //            return true;
+                //        }
+                //        return false;
+                //    }
+                //    return false;
+                //}
+                return true;
+            }
+
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "TOURNEE";
+                throw ex;
+            }
+        }
+
+
+        public async static void DeleteAllTourneeInSQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_LIV_TOURNEE>();
+                await getInstance().DeleteAllAsync<View_LIV_TOURNEE_DETAIL>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        /* End Section of synchronisation TOURNEE */
         public static async Task<View_LIV_TOURNEE> ClotureTournee()
         {
 
@@ -332,6 +563,15 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
                 if (obj != null && obj.Count > 0)
                 {
                     App.CODE_MAGASIN = obj[0].CODE_MAGASIN;
+                    /* Initialisation de la table Log */
+                    LOG_SYNCHRONISATION logItem = new LOG_SYNCHRONISATION();
+                    foreach (var item in obj)
+                    {
+                        logItem.CODE_TOURNEE = item.CODE_TOURNEE;
+                        await getInstance().InsertAsync(logItem);
+                    }
+
+                    var objTest = await getInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
                 }
             }
         }

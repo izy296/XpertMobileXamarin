@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
+using XpertMobileAppManafiaa.SQLite_Managment;
 
 namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 {
@@ -54,33 +55,33 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 
         }
 
-        //private async void SyncDownload(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (App.Online)
-        //        {
-        //            Btn_Upload.IsEnabled = false;
-        //            Btn_Download.IsEnabled = false;
+        private async void SyncDownload(object sender, EventArgs e)
+        {
+            try
+            {
+                if (App.Online)
+                {
+                    Btn_Upload.IsEnabled = false;
+                    Btn_Download.IsEnabled = false;
 
-        //            syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
-        //            await UpdateDatabase.SynchroniseDownload();
-        //            //syncImage.CancelAnimations();
-        //            Btn_Upload.IsEnabled = true;
-        //            Btn_Download.IsEnabled = true;
-        //        }
-        //        else
-        //        {
-        //            CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
-        //            await PopupNavigation.Instance.PushAsync(AlertPopup);
-        //        }
+                    syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
+                    await SyncManager.synchroniseDownload();
+                    //syncImage.CancelAnimations();
+                    Btn_Upload.IsEnabled = true;
+                    Btn_Download.IsEnabled = true;
+                }
+                else
+                {
+                    CustomPopup AlertPopup = new CustomPopup("Veuillez verifier votre connexion au serveur ! ", trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+                }
 
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //syncImage.CancelAnimations();
-        //        Btn_Upload.IsEnabled = true;
-        //    }
-        //}
+            }
+            catch (Exception ex)
+            {
+                //syncImage.CancelAnimations();
+                Btn_Upload.IsEnabled = true;
+            }
+        }
     }
 }

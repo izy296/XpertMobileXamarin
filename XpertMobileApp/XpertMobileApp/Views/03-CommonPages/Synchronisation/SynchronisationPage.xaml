@@ -58,7 +58,7 @@
                     TextColor="#fff"
                     Text="Download" 
                     FontSize="13"
-                    
+                    Clicked="SyncDownload"
                     ImageSource="cloud_download.png"
                     ContentLayout="Bottom,0"/>
 
