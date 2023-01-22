@@ -34,9 +34,9 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
         static string StockMethodName;
         static string CodeMagasin;
 
-        private static SQLiteAsyncConnection getInstance() 
+        private static SQLiteAsyncConnection getInstance()
         {
-           return  UpdateDatabase.getInstance();
+            return UpdateDatabase.getInstance();
         }
 
         #region send data from mobile to server
@@ -329,57 +329,90 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
 
         /* End section of Synchronisation VENTES */
 
-      
 
-        public static async Task<string> SyncRetourStock()
+
+
+
+        /* begin  section of Synchronisation retour stock */
+
+        public static async Task<bool> SyncRetourStock()
         {
             try
             {
                 var ListEntrees = await getInstance().Table<View_STK_ENTREE>().ToListAsync();
                 var EntreesDetails = await getInstance().Table<View_STK_ENTREE_DETAIL>().ToListAsync();
-                foreach (var item in ListEntrees)
+                if (ListEntrees.Count > 0 && ListEntrees != null)
                 {
-                    List<View_STK_ENTREE_DETAIL> objdetail = new List<View_STK_ENTREE_DETAIL>();
-                    try
+
+                    foreach (var item in ListEntrees)
                     {
+                        List<View_STK_ENTREE_DETAIL> objdetail = new List<View_STK_ENTREE_DETAIL>();
+                        try
+                        {
 
 
-                        objdetail = EntreesDetails?.Where(x => x.CODE_ENTREE == item.CODE_ENTREE)?.ToList();
+                            objdetail = EntreesDetails?.Where(x => x.CODE_ENTREE == item.CODE_ENTREE)?.ToList();
+                        }
+                        catch
+                        {
+                            objdetail = null;
+                        }
+                        finally
+                        {
+                            item.Details = objdetail;
+                        }
+
                     }
-                    catch
+                    if (string.IsNullOrEmpty(App.CODE_MAGASIN))
                     {
-                        objdetail = null;
-                    }
-                    finally
-                    {
-                        item.Details = objdetail;
+                        View_LIV_TOURNEE Tournee = await getInstance().Table<View_LIV_TOURNEE>().FirstOrDefaultAsync();
+                        if (Tournee != null)
+                        {
+                            App.CODE_MAGASIN = Tournee.CODE_MAGASIN;
+                        }
                     }
 
+                    var res = await CrudManager.Stock.SyncRetourStock(ListEntrees, App.CODE_MAGASIN);
+                    if (!string.IsNullOrEmpty(res))
+                    {
+                        if (await UpdateLogs("VENTE"))
+                        {
+                            return true;
+                        }
+                        return false;
+                    }
                 }
-                if (string.IsNullOrEmpty(App.CODE_MAGASIN))
-                {
-                    View_LIV_TOURNEE Tournee = await getInstance().Table<View_LIV_TOURNEE>().FirstOrDefaultAsync();
-                    if (Tournee != null)
-                    {
-                        App.CODE_MAGASIN = Tournee.CODE_MAGASIN;
-                    }
-                }
-                var res = await CrudManager.Stock.SyncRetourStock(ListEntrees, App.CODE_MAGASIN);
-                await getInstance().DeleteAllAsync<View_STK_ENTREE>();
-                await getInstance().DeleteAllAsync<View_STK_ENTREE_DETAIL>();
-                return res;
+
+
+                return true;
+
+
+
             }
             catch (Exception ex)
             {
+                SyncManager.DeleteAllretourStockInSQLite();
+
                 UserDialogs.Instance.HideLoading();
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //await UserDialogs.Instance.AlertAsync("Erreur de synchronisation des ventes!!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                return false;
             }
-            return string.Empty;
+        }
+        public static async void DeleteAllretourStockInSQLite()
+        {
+            try
+            {
+                await getInstance().DeleteAllAsync<View_STK_ENTREE>();
+                await getInstance().DeleteAllAsync<View_STK_ENTREE_DETAIL>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
 
-
+        /* End section of Synchronisation retour stock  */
 
 
 
@@ -480,75 +513,52 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
         public static async Task synchroniseDownload()
         {
 
-            //using (IProgressDialog progress = UserDialogs.Instance.Progress("Progress", null, null, true, MaskType.Black))
-            //{
-            //    progress.PercentComplete = 0;
-
-            //    //5%
-            //    progress.PercentComplete = 5;
-
-            //    //30
-            //    progress.PercentComplete = 35;
-
-            //    //25
-            //    progress.PercentComplete = 60;
-
-
-            //    //5%
-                
-            //    progress.PercentComplete = 65;
-
-            //    //15%
-            //    progress.PercentComplete = 80;
-
-            //    //5%
-               
-            //    progress.PercentComplete = 85;
-
-            //    //15%
-                
-            //    progress.PercentComplete = 100;
-
-            //}
-
-
-
-            bool isconnected = await App.IsConected();
-            if (isconnected)
+            try
             {
-                //add try 
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-                await UpdateDatabase.initialisationDbLocal();
+                bool isconnected = await App.IsConected();
+                if (isconnected)
+                {
+                    //add try 
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                    await UpdateDatabase.initialisationDbLocal();
+                    await SyncLivTournee();
+                    await SyncLivTourneeDetail();
 
 
+                    await SyncProductAutoriserVente();
+                    await UpdateDatabase.SyncData<View_TRS_TIERS, TRS_TIERS>();
 
-                await SyncProductAutoriserVente();
-                await UpdateDatabase.SyncData<View_TRS_TIERS, TRS_TIERS>();
 
-                await SyncLivTournee();
-                await SyncLivTourneeDetail();
-                await SyncStock();
-                await SyncUsers();
+                    await SyncStock();
+                    await SyncUsers();
 
-                await syncPermission();
-                await UpdateDatabase.SyncSysParams();
-                await syncSession();
-                await UpdateDatabase.SyncFamille();
-                await UpdateDatabase.SyncTypeTiers();
-                await UpdateDatabase.SyncSecteurs();
-                await UpdateDatabase.SyncBseCompte();
-                await UpdateDatabase.SyncMotifs();
-                await UpdateDatabase.SyncProductPriceByQuantity();
-                await UpdateDatabase.AssignMagasin();
+                    await syncPermission();
+                    await UpdateDatabase.SyncSysParams();
+                    await syncSession();
+                    await UpdateDatabase.SyncFamille();
+                    await UpdateDatabase.SyncTypeTiers();
+                    await UpdateDatabase.SyncSecteurs();
+                    await UpdateDatabase.SyncBseCompte();
+                    await UpdateDatabase.SyncMotifs();
+                    await UpdateDatabase.SyncProductPriceByQuantity();
+                    await UpdateDatabase.AssignMagasin();
 
-                UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Synchronisation faite avec succes", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
+                else
+                {
+                    UserDialogs.Instance.HideLoading();
+                    await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                }
             }
-            else
+            catch (Exception)
             {
                 UserDialogs.Instance.HideLoading();
-                await UserDialogs.Instance.AlertAsync("Veuillez verifier votre connexion au serveur ! ", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                throw;
             }
+
+
         }
 
         public static async Task SyncLivTournee()
@@ -571,7 +581,10 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
                         await getInstance().InsertAsync(logItem);
                     }
 
-                    var objTest = await getInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
+                }
+                else
+                {
+                    throw new Exception("Veuillez verifier votre tournee");
                 }
             }
         }

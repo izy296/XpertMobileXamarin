@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp;
+using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 using XpertMobileAppManafiaa.SQLite_Managment;
@@ -57,6 +58,8 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 
                     /* Synchronisation des encaiss */
                     labelEncaiss.FontAttributes = FontAttributes.Bold;
+                    SyncManager.DeleteAllEncaissInSQlite();
+
                     itemSynchronised = await SyncManager.SyncEncaissToServer();
                     labelEncaiss.FontAttributes = FontAttributes.None;
                     if (itemSynchronised)
@@ -93,21 +96,21 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
 
 
 
-                    /* Synchronisation des commandes */
-                    //labelCommande.FontAttributes = FontAttributes.Bold;
-                    //itemSynchronised = await UpdateDatabase.SyncCommandToServer();
-                    //labelCommande.FontAttributes = FontAttributes.None;
-                    //if (itemSynchronised)
-                    //{
-                    //    syncCommande.IsVisible = true;
-                    //    UpdateDatabase.DeleteAllVentesInSQLite();
-                    //}
+                    /* Synchronisation des retour stock  */
+                    labelCommande.FontAttributes = FontAttributes.Bold;
+                    itemSynchronised = await SyncManager.SyncRetourStock();
+                    labelCommande.FontAttributes = FontAttributes.None;
+                    if (itemSynchronised)
+                    {
+                        syncRetourStock.IsVisible = true;
+                        SyncManager.DeleteAllretourStockInSQLite();
+                    }
 
-                    //else
-                    //{
-                    //    syncCommande.Source = "incorrect.png";
-                    //    syncCommande.IsVisible = true;
-                    //}
+                    else
+                    {
+                        syncRetourStock.Source = "incorrect.png";
+                        syncRetourStock.IsVisible = true;
+                    }
                     /* -------------------------------- */
                     /* Synchronisation des Tournee */
                     labelTournee.FontAttributes = FontAttributes.Bold;
@@ -141,32 +144,32 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
                 switch (ex.Data["opeartion"])
                 {
                     case "TIERS":
-                        syncTiers.Source = syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
-                        syncTiers.IsVisible = syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        syncTiers.Source = syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncRetourStock.Source = "incorrect.png";
+                        syncTiers.IsVisible = syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncRetourStock.IsVisible = true;
                         labelTiers.FontAttributes = FontAttributes.None;
                         buttonYes.IsEnabled = true;
                         break;
                     case "ENCAISS":
-                        syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
-                        syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        syncEncaiss.Source = syncVentes.Source = syncTournees.Source = syncRetourStock.Source = "incorrect.png";
+                        syncEncaiss.IsVisible = syncVentes.IsVisible = syncTournees.IsVisible = syncRetourStock.IsVisible = true;
                         labelEncaiss.FontAttributes = FontAttributes.None;
                         buttonYes.IsEnabled = true;
                         break;
                     case "VENTES":
-                        syncVentes.Source = syncTournees.Source = syncCommande.Source = "incorrect.png";
-                        syncVentes.IsVisible = syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        syncVentes.Source = syncTournees.Source = syncRetourStock.Source = "incorrect.png";
+                        syncVentes.IsVisible = syncTournees.IsVisible = syncRetourStock.IsVisible = true;
                         labelVentes.FontAttributes = FontAttributes.None;
                         buttonYes.IsEnabled = true;
                         break;
                     case "TOURNEE":
-                        syncTournees.Source = syncCommande.Source = "incorrect.png";
-                        syncTournees.IsVisible = syncCommande.IsVisible = true;
+                        syncTournees.Source = syncRetourStock.Source = "incorrect.png";
+                        syncTournees.IsVisible = syncRetourStock.IsVisible = true;
                         labelTournee.FontAttributes = FontAttributes.None;
                         buttonYes.IsEnabled = true;
                         break;
                     case "COMMANDES":
-                        syncCommande.Source = "incorrect.png";
-                        syncCommande.IsVisible = true;
+                        syncRetourStock.Source = "incorrect.png";
+                        syncRetourStock.IsVisible = true;
                         labelCommande.FontAttributes = FontAttributes.None;
                         buttonYes.IsEnabled = true;
                         break;

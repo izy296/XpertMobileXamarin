@@ -1,4 +1,5 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,8 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
         {
             try
             {
-                if (App.Online)
+                bool isconnected = await App.IsConected();
+                if (isconnected)
                 {
                     Btn_Upload.IsEnabled = false;
                     Btn_Download.IsEnabled = false;
@@ -49,8 +51,9 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
             }
             catch (Exception ex)
             {
-                //syncImage.CancelAnimations();
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 Btn_Upload.IsEnabled = true;
+                Btn_Download.IsEnabled = true;
             }
 
         }
@@ -59,7 +62,9 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
         {
             try
             {
-                if (App.Online)
+                bool isconnected = await App.IsConected();
+
+                if (isconnected)
                 {
                     Btn_Upload.IsEnabled = false;
                     Btn_Download.IsEnabled = false;
@@ -79,8 +84,9 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
             }
             catch (Exception ex)
             {
-                //syncImage.CancelAnimations();
+                await UserDialogs.Instance.AlertAsync(ex.Message, AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                 Btn_Upload.IsEnabled = true;
+                Btn_Download.IsEnabled = true;
             }
         }
     }

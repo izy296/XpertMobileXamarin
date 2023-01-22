@@ -60,8 +60,8 @@
 
                     <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
 
-                        <Label Text="Synchronisation des commandes" FontSize="12" TextColor="#000" x:Name="labelCommande"/>
-                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncCommande"/>
+                        <Label Text="Synchronisation des retour stock" FontSize="12" TextColor="#000" x:Name="labelCommande"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncRetourStock"/>
 
                     </FlexLayout>
 
