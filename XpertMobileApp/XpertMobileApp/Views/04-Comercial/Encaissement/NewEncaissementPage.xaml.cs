@@ -138,6 +138,7 @@ namespace XpertMobileApp.Views
                     if (Item.TOTAL_ENCAISS <= 0)
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        return;
                     }
                 }
                 else
@@ -145,6 +146,7 @@ namespace XpertMobileApp.Views
                     if (Item.TOTAL_ENCAISS >= 0)
                     {
                         await UserDialogs.Instance.AlertAsync("Veuillez verifier le montant!", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
+                        return;
                     }
                 }
 
