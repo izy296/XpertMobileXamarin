@@ -2,6 +2,7 @@
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,19 +24,34 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views;
+using XpertMobileAppManafiaa.Api.Models.Interfaces;
 
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace XpertMobileApp
 {
     public partial class App : Application
-
-
     {
 
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
 
         public static bool Online = false;
+
+        /// <summary>
+        /// To ensure that the popup that shows that there is no internet will be open if we are in the sync page only  
+        /// </summary>
+        private static bool CanCheckInternet { get; set; }
+        public static bool canCheckInternet
+        {
+            get
+            {
+                return CanCheckInternet;
+            }
+            set
+            {
+                CanCheckInternet = value;
+            }
+        }
         public static string PrefixCodification { get; internal set; }
         public static string CODE_MAGASIN { get; internal set; }
 
@@ -120,7 +136,7 @@ namespace XpertMobileApp
             }
             else
             {
-                 MainPage = new LoginPage();
+                MainPage = new LoginPage();
                 //MainPage = new ActivationPage(licState);
             }
         }
@@ -223,9 +239,31 @@ namespace XpertMobileApp
             // Handle when your app sleeps
         }
 
-        protected override void OnResume()
+        protected async override void OnResume()
         {
             // Handle when your app resumes
+            if (!await IsConected() && canCheckInternet)
+            {
+                CustomPopup AlertPopup = new CustomPopup("Connexion introuvable, voulez-vous vous connecter  ? ", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                canCheckInternet = false;
+
+                //When your app resumes and you aren't connected yet ! if the user choose to reconnect another time ...
+                if (await AlertPopup.PopupClosedTask)
+                {
+                    if (AlertPopup.Result)
+                    {
+                        App.canCheckInternet = true;
+                        DependencyService.Get<ISettingsStart>().StartSettings();
+                    }
+                }
+            }
+            else if(await IsConected() && canCheckInternet)
+            {
+                CustomPopup AlertPopup = new CustomPopup("Connexion etablie avec succée ", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                canCheckInternet = false;
+            }
         }
 
         public static void SetAppLanguage(string language)
@@ -395,7 +433,7 @@ namespace XpertMobileApp
 
         private async static void CheckIfInternetOverTimeAsync()
         {
-            if (! await App.IsConected())
+            if (!await App.IsConected())
             {
                 Device.BeginInvokeOnMainThread(async () =>
                 {
@@ -409,7 +447,8 @@ namespace XpertMobileApp
             }
             else
             {
-                Device.BeginInvokeOnMainThread(() => {
+                Device.BeginInvokeOnMainThread(() =>
+                {
                     labelInfo.IsVisible = false;
                     // Remettre l'affichage de l'alerte a false quand internet revient
                     alertDisplayed = false;

@@ -17,6 +17,7 @@ using XpertMobileApp.SQLite_Managment;
 
 namespace XpertMobileApp.ViewModels
 {
+
     public static class VentesTypes
     {
         public static string Vente { get { return ""; } }

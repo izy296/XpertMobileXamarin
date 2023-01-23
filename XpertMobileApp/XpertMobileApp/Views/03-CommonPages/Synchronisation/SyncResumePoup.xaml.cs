@@ -1,4 +1,5 @@
 ﻿using Acr.UserDialogs;
+using Plugin.Connectivity;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
@@ -35,8 +36,8 @@ namespace XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation
         {
             try
             {
-                bool isconnected = await App.IsConected();
-                if (isconnected)
+                bool isConnected = await App.IsConected();
+                if (isConnected)
                 {
                     var itemSynchronised = false;
                     /* Synchronisation des Tiers */

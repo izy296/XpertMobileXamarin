@@ -232,6 +232,12 @@
     <EmbeddedResource Update="CustomControls\CustomPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\03-CommonPages\Synchronisation\SynchronisationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\03-CommonPages\Synchronisation\SyncResumePoup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\04-Comercial\Templates\ReviewTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

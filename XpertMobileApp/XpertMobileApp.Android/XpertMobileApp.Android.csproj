@@ -96,10 +96,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="bindigJarPrinterSPRT">
-      <HintPath>..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
+      <HintPath>..\..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
     </Reference>
     <Reference Include="EZioAD">
-      <HintPath>..\Xpert.Dll\Godex\Godex\Android\EZioAD.dll</HintPath>
+      <HintPath>..\..\Xpert.Dll\Godex\Android\EZioAD.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -239,6 +239,7 @@
     <Compile Include="Services\DeviceInfos.cs" />
     <Compile Include="Services\PrinterSPRT.cs" />
     <Compile Include="SplashActivity.cs" />
+    <Compile Include="Services\StartSettings_Implementation.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\FA5FreeRegular400.otf" />
@@ -462,6 +463,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest_Release.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\incorrect.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\correct.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\pattern.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\nowifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\wifi.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
