@@ -62,9 +62,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'XMBL|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\XMBL\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>XMBL;</DefineConstants>
     <DebugType>portable</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <AndroidManifest>Properties\AndroidManifest_XMBL.xml</AndroidManifest>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
@@ -72,9 +73,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'XMAG|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\XMAG\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
+    <DefineConstants>XMAG;</DefineConstants>
     <DebugType>portable</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
+    <AndroidManifest>Properties\AndroidManifest_XMAG.xml</AndroidManifest>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <LangVersion>8.0</LangVersion>
     <ErrorReport>prompt</ErrorReport>
@@ -96,10 +98,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="bindigJarPrinterSPRT">
-      <HintPath>..\..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
+      <HintPath>..\Xpert.Dll\bindigJarPrinterSPRT.dll</HintPath>
     </Reference>
     <Reference Include="EZioAD">
-      <HintPath>..\..\Xpert.Dll\Godex\Android\EZioAD.dll</HintPath>
+      <HintPath>..\Xpert.Dll\Godex\Godex\Android\EZioAD.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Android" />
     <Reference Include="System" />
@@ -478,6 +480,13 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\wifi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\BoxStatistics.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest_XMAG.xml" />
+    <Content Include="Properties\AndroidManifest_XMBL.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
