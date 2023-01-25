@@ -13,6 +13,7 @@ using XpertMobileApp.Views.Entree;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.DaytimeDelivery;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.Stock;
 using XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation;
+using XpertMobileAppManafiaa.Views._06_Manafiaa.Resume;
 
 namespace XpertMobileApp.Views
 {
@@ -28,7 +29,7 @@ namespace XpertMobileApp.Views
             FlowDirection = App.PageFlowDirection;
 
             MasterBehavior = MasterBehavior.Popover;
-            if ( Constants.AppName == Apps.XCOM_Livraison)
+            if (Constants.AppName == Apps.XCOM_Livraison)
             {
                 this.Detail = new NavigationPage(new HomePage());
                 MenuPages.Add((int)MenuItemType.Home, (NavigationPage)Detail);
@@ -42,63 +43,64 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public ContentPage GetMenuPage(int idPage) 
+        public ContentPage GetMenuPage(int idPage)
         {
-                switch (idPage)
-                {
-                    case (int)MenuItemType.Home:
-                        return new HomePage();
-                    case (int)MenuItemType.Sessions:
-                        return new DaytimeDelivery_DashBord();
-                    case (int)MenuItemType.Tresorerie:
-                        return new TresoreriePage();
-                    case (int)MenuItemType.Encaissements:
-                        return new EncaissementsPage();
-                    case (int)MenuItemType.Achats:
-                        return new AchatsPage();
-                    case (int)MenuItemType.AchatsProduction:
+            switch (idPage)
+            {
+                case (int)MenuItemType.Home:
+                    return new HomePage();
+                case (int)MenuItemType.Sessions:
+                    return new DaytimeDelivery_DashBord();
+                case (int)MenuItemType.Tresorerie:
+                    return new TresoreriePage();
+                case (int)MenuItemType.Encaissements:
+                    return new EncaissementsPage();
+                case (int)MenuItemType.Achats:
+                    return new AchatsPage();
+                case (int)MenuItemType.AchatsProduction:
                     {
                         if (Constants.AppName == Apps.XCOM_Abattoir)
                             return new AchatsOHPageAbattoire(AchRecMotifs.PesageForProduction);
                         else
                             return new AchatsOHPage(AchRecMotifs.PesageForProduction);
                     }
-                    case (int)MenuItemType.OrdresProduction:
-                        return new ProductionsPage(AchRecMotifs.PesageForProduction);
-                    case (int)MenuItemType.Ventes:
-                        return new VentesPage(VentesTypes.Vente);
-                    case (int)MenuItemType.Livraison:
-                        return new VentesPage(VentesTypes.Livraison);
-         
+                case (int)MenuItemType.OrdresProduction:
+                    return new ProductionsPage(AchRecMotifs.PesageForProduction);
+                case (int)MenuItemType.Ventes:
+                    return new VentesPage(VentesTypes.Vente);
+                case (int)MenuItemType.Livraison:
+                    return new VentesPage(VentesTypes.Livraison);
                 case (int)MenuItemType.VenteComptoir:
-                        return new VentesPage(VentesTypes.VenteComptoir);
-                    case (int)MenuItemType.SimpleIndicators:
-                        return new SimpleIndicators();
-                    case (int)MenuItemType.Tournee:
-                        return new TourneesPage();
-                    case (int)MenuItemType.MyCommandes:
-                     //   return new Paging();
-                    case (int)MenuItemType.Commandes:
-                        return new CommandesPage();
-                    case (int)MenuItemType.Produits:
-                        return new StockPage();
-                    case (int)MenuItemType.Manquants:
-                        return new ManquantsPage();
-                    case (int)MenuItemType.Tiers:
-                        return new TiersPage();
-                    case (int)MenuItemType.EncAnalyses:
-                        return new sf_EncAnalysesPage();
-                    case (int)MenuItemType.AchatAgroAnalyses:
-                        return new AchatsAnalysesPage();
-                    case (int)MenuItemType.Settings:
-                        return new SettingsPage();
-                    case (int)MenuItemType.About:
-                        return new AboutPage();
+                    return new VentesPage(VentesTypes.VenteComptoir);
+                case (int)MenuItemType.SimpleIndicators:
+                    return new SimpleIndicators();
+                case (int)MenuItemType.Tournee:
+                    return new TourneesPage();
+                case (int)MenuItemType.MyCommandes:
+                //   return new Paging();
+                case (int)MenuItemType.Commandes:
+                    return new CommandesPage();
+                case (int)MenuItemType.Produits:
+                    return new StockPage();
+                case (int)MenuItemType.Manquants:
+                    return new ManquantsPage();
+                case (int)MenuItemType.Tiers:
+                    return new TiersPage();
+                case (int)MenuItemType.EncAnalyses:
+                    return new sf_EncAnalysesPage();
+                case (int)MenuItemType.AchatAgroAnalyses:
+                    return new AchatsAnalysesPage();
+                case (int)MenuItemType.Settings:
+                    return new SettingsPage();
+                case (int)MenuItemType.About:
+                    return new AboutPage();
                 case (int)MenuItemType.entreeStock:
-                    return new  EntreesPage();
-                    //return new EntreeFormPage(null,null);
+                    return new EntreesPage();
+                case (int)MenuItemType.statistics:
+                    return new ResumePage();
+                //return new EntreeFormPage(null,null);
                 default:
-                        return new HomePage();
+                    return new HomePage();
             }
         }
 
@@ -189,6 +191,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.synchronisation:
                         MenuPages.Add(id, new NavigationPage(new SynchronisationPage()));
+                        break;
+                    case (int)MenuItemType.statistics:
+                        MenuPages.Add(id, new NavigationPage(new ResumePage()));
                         break;
                 }
             }

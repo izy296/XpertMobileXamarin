@@ -15,7 +15,7 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Impr" Icon="printer_24.png" Clicked="AchImpr_Clicked" />
+        <!--<ToolbarItem Text="Impr" Icon="printer_24.png" Clicked="AchImpr_Clicked" />-->
         <ToolbarItem Text="{i18n:Translate lp_btn_Settings}" Icon="settings_32.png" Clicked="HeaderSettings_Clicked" >
         </ToolbarItem>
     </ContentPage.ToolbarItems>

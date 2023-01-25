@@ -17,7 +17,7 @@ using XpertMobileApp.Api.Services;
 
 namespace XpertMobileAppManafiaa.SQLite_Managment
 {
-    internal class SyncManager
+    public class SyncManager
     {
         static string codeVendeur;
         static string CodeTournee;
@@ -580,7 +580,6 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
                         logItem.CODE_TOURNEE = item.CODE_TOURNEE;
                         await getInstance().InsertAsync(logItem);
                     }
-
                 }
                 else
                 {
@@ -647,5 +646,19 @@ namespace XpertMobileAppManafiaa.SQLite_Managment
         }
 
         #endregion
+
+#region Other Sqlite functions
+        public static async Task<List<View_STK_STATISTICS>> GetStatistics()
+        {
+            string query = @"SELECT S.CODE_PRODUIT,S.DESIGNATION, sum( S.QUANTITE ) QTE_STOCK,SUM(V.QUANTITE) QTE_VENTE,SUM(V.MT_TTC) MNT_TOTAL FROM View_STK_STOCK S
+                             Left JOIN View_VTE_VENTE_LOT V ON S.CODE_PRODUIT = V.CODE_PRODUIT  
+                             GROUP BY S.CODE_PRODUIT,S.DESIGNATION";
+            var prods = await getInstance().Table<View_STK_PRODUITS>().ToListAsync();
+            var stock = await getInstance().Table<View_STK_STOCK>().ToListAsync();
+            var lot = await getInstance().Table<View_VTE_VENTE_LOT>().ToListAsync();
+            var stats = await getInstance().QueryAsync<View_STK_STATISTICS>(query);
+            return stats;
+        }
+#endregion
     }
 }

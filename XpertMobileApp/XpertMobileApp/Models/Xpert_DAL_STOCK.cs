@@ -52,6 +52,7 @@ namespace XpertMobileApp.Models
                 return DATE_PEREMPTION != null ? "Ex : " + DATE_PEREMPTION.Value.ToString("dd/MM/yyyy") : "";
             }
         }
+        public string DESIGNATION { get; set; }
     }
 
     public partial class View_STK_STOCK : STK_STOCK
@@ -574,16 +575,6 @@ namespace XpertMobileApp.Models
         public bool HAS_NEW_ID_STOCK { get; set; }//varchar(100)
     }
 
-
-
-
-
-
-
-
-
-
-
     public partial class VIEW_ACH_INFO_ANEX : ACH_INFO_ANEX
     {
         public decimal PRIX_PRODUIT { get; set; }
@@ -597,5 +588,15 @@ namespace XpertMobileApp.Models
                 return PRIX_PRODUIT * QUANTITE_APPORT;
             }
         }
+    }
+
+    public partial class View_STK_STATISTICS : BASE_CLASS
+    {
+        public string CODE_PRODUIT { get; set; }
+        public string DESIGNATION { get; set; }
+        public decimal QTE_STOCK { get; set; }
+        public decimal QTE_VENTE { get; set; }
+        public decimal MNT_TOTAL { get; set; }
+
     }
 }

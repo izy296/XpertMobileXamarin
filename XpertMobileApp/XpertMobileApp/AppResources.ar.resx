@@ -817,4 +817,7 @@
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>هل أنت متأكد من أنك تريد الخروج؟</value>
   </data>
+  <data name="pn_Statistics" xml:space="preserve">
+    <value>ملخص</value>
+  </data>
 </root>

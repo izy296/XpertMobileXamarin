@@ -916,5 +916,7 @@
   <data name="msg_ExitWarning" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir quitter?</value>
   </data>
-
+  <data name="pn_Statistics" xml:space="preserve">
+    <value>Resume</value>
+  </data>
 </root>

@@ -310,6 +310,7 @@ namespace XpertMobileApp.Views
             FilterPanel.IsVisible = false;
             ent_SelectedIdentifiant.Text = "";
             ent_SelectedTiers= null;
+            StatusPicker.SelectedItem = null;
             viewModel.LoadItemsCommand.Execute(null);
         }
 

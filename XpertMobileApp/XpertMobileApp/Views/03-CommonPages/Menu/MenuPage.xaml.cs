@@ -24,7 +24,7 @@ namespace XpertMobileApp.Views
         {
             InitializeComponent();
 
-            lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.fullName) ? "" : App.User.Token.fullName;
+            lbl_MenuUser.Text = string.IsNullOrEmpty(App.User?.Token?.userName) ? "" : App.User.Token.userName;
 
            
              if (Constants.AppName == Apps.XCOM_Livraison) 
@@ -34,6 +34,7 @@ namespace XpertMobileApp.Views
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Livraison, Image = "", Title = AppResources.pn_Livraison });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.entreeStock, Image = "", Title = "Bon de retour" });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tournee, Image = "", Title = "Mes tournées" });
+                menuItems.Add(new HomeMenuItem { Id = MenuItemType.statistics, Image = "", Title = AppResources.pn_Statistics });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Encaissements, Image = "", Title = AppResources.pn_encaissement });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Tiers, Image = "", Title = AppResources.pn_Tiers });
                 menuItems.Add(new HomeMenuItem { Id = MenuItemType.Settings, Image = "", Title = AppResources.pn_Settings });

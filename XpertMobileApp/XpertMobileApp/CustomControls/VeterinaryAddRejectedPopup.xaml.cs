@@ -115,11 +115,13 @@ namespace XpertMobileApp.Views
                     }
 
                 }
+
                 Result = selectedList;
+                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
                 taskCompletionSource.SetResult(true);
                 await PopupNavigation.Instance.PopAsync();
                 MessagingCenter.Unsubscribe<AchatFormPageAbattoire, List<PRESTATION_REJECTED>>(this, "RejectedList");
-                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
+
             }
             catch (Exception ex)
             {
@@ -131,10 +133,11 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
                 taskCompletionSource.SetResult(true);
                 await PopupNavigation.Instance.PopAsync();
                 MessagingCenter.Unsubscribe<AchatFormPageAbattoire, List<PRESTATION_REJECTED>>(this, "RejectedList");
-                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
+
             }
             catch (Exception ex)
             {

@@ -43,6 +43,7 @@ namespace XpertMobileApp.Api.Models
         Export,
         Import,
         entreeStock,
-        synchronisation
+        synchronisation,
+        statistics
     }
 }

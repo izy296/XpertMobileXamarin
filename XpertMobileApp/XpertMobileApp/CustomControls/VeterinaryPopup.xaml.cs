@@ -78,9 +78,9 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
                 Result = true;
                 taskCompletionSource.SetResult(true);
-                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
                 await PopupNavigation.Instance.PopAsync();
             }
             catch (Exception ex)

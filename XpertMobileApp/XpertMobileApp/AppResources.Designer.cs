@@ -1239,6 +1239,16 @@ namespace XpertMobileApp {
             }
         }
         
+
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Ventes psychotropes.
+        /// </summary>
+        internal static string pn_Statistics {
+            get {
+                return ResourceManager.GetString("pn_Statistics", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Qte Produite.
         /// </summary>
