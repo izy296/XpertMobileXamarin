@@ -214,6 +214,9 @@
     <Compile Update="Views\06-Manafiaa\Production\Abattoir\AchatsOHPageAbattoire.xaml.cs">
       <DependentUpon>AchatsOHPageAbattoire.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\06-Manafiaa\Statistics\StatisticsPage.xaml.cs">
+      <DependentUpon>StatisticsPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

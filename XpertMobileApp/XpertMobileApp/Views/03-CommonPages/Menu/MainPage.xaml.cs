@@ -13,7 +13,7 @@ using XpertMobileApp.Views.Entree;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.DaytimeDelivery;
 using XpertMobileAppManafiaa.Views._06_Manafiaa.Stock;
 using XpertMobileAppManafiaa.Views._03_CommonPages.Synchronisation;
-using XpertMobileAppManafiaa.Views._06_Manafiaa.Resume;
+using XpertMobileAppManafiaa.Views._06_Manafiaa.Statistics;
 
 namespace XpertMobileApp.Views
 {
@@ -97,7 +97,7 @@ namespace XpertMobileApp.Views
                 case (int)MenuItemType.entreeStock:
                     return new EntreesPage();
                 case (int)MenuItemType.statistics:
-                    return new ResumePage();
+                    return new StatisticsPage();
                 //return new EntreeFormPage(null,null);
                 default:
                     return new HomePage();
@@ -193,7 +193,7 @@ namespace XpertMobileApp.Views
                         MenuPages.Add(id, new NavigationPage(new SynchronisationPage()));
                         break;
                     case (int)MenuItemType.statistics:
-                        MenuPages.Add(id, new NavigationPage(new ResumePage()));
+                        MenuPages.Add(id, new NavigationPage(new StatisticsPage()));
                         break;
                 }
             }

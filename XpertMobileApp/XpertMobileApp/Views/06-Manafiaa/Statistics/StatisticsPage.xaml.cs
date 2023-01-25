@@ -12,18 +12,18 @@ using XpertMobileApp.Views;
 using XpertMobileApp;
 using XpertMobileApp.Models;
 
-namespace XpertMobileAppManafiaa.Views._06_Manafiaa.Resume
+namespace XpertMobileAppManafiaa.Views._06_Manafiaa.Statistics
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ResumePage : ContentPage
+    public partial class StatisticsPage : ContentPage
     {
-        ResumeViewModel viewModel;
+        StatisticsViewModel viewModel;
 
-        public ResumePage()
+        public StatisticsPage()
         {
             InitializeComponent();
 
-            BindingContext = viewModel = new ResumeViewModel();
+            BindingContext = viewModel = new StatisticsViewModel();
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

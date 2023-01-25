@@ -10,11 +10,11 @@ using XpertMobileAppManafiaa.SQLite_Managment;
 namespace XpertMobileApp.ViewModels
 {
 
-    public class ResumeViewModel : CrudBaseViewModel2<View_STK_STATISTICS, View_STK_STATISTICS>
+    public class StatisticsViewModel : CrudBaseViewModel2<View_STK_STATISTICS, View_STK_STATISTICS>
     {
-        public ResumeViewModel()
+        public StatisticsViewModel()
         {
-            Title = AppResources.pn_Produits;
+            Title = AppResources.pn_Statistics;
         }
 
         protected override QueryInfos GetFilterParams()
