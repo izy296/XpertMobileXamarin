@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+	<!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -59,1344 +59,1353 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
-  <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
-  </resheader>
-  <resheader name="version">
-    <value>2.0</value>
-  </resheader>
-  <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </resheader>
-  <data name="lp_btn_Login" xml:space="preserve">
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="lp_btn_Login" xml:space="preserve">
     <value>Connexion</value>
   </data>
-  <data name="lp_btn_Settings" xml:space="preserve">
+	<data name="lp_btn_Settings" xml:space="preserve">
     <value>Paramétre</value>
   </data>
-  <data name="lp_lbl_PassWord" xml:space="preserve">
+	<data name="lp_lbl_PassWord" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
-  <data name="lp_lbl_UserName" xml:space="preserve">
+	<data name="lp_lbl_UserName" xml:space="preserve">
     <value>Nom d'utilisateur</value>
   </data>
-  <data name="lp_ph_PassWord" xml:space="preserve">
+	<data name="lp_ph_PassWord" xml:space="preserve">
     <value>Mot de passe</value>
   </data>
-  <data name="lp_ph_UserName" xml:space="preserve">
+	<data name="lp_ph_UserName" xml:space="preserve">
     <value>Nom d'utilisateur</value>
   </data>
-  <data name="pn_About" xml:space="preserve">
+	<data name="pn_About" xml:space="preserve">
     <value>À propos</value>
   </data>
-  <data name="pn_Analyses" xml:space="preserve">
+	<data name="pn_Analyses" xml:space="preserve">
     <value>Analyses</value>
   </data>
-  <data name="pn_encaissement" xml:space="preserve">
+	<data name="pn_encaissement" xml:space="preserve">
     <value>Versement &amp; Remboursement</value>
   </data>
-  <data name="pn_home" xml:space="preserve">
+	<data name="pn_home" xml:space="preserve">
     <value>Accueil</value>
   </data>
-  <data name="sp_btn_SaveSettings" xml:space="preserve">
+	<data name="sp_btn_SaveSettings" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
-  <data name="sp_btn_TestConnection" xml:space="preserve">
+	<data name="sp_btn_TestConnection" xml:space="preserve">
     <value>Tester la connexion</value>
   </data>
-  <data name="sp_lbl_ConnexionInfos" xml:space="preserve">
+	<data name="sp_lbl_ConnexionInfos" xml:space="preserve">
     <value>Informations de connexion</value>
   </data>
-  <data name="sp_lbl_PortNumber" xml:space="preserve">
+	<data name="sp_lbl_PortNumber" xml:space="preserve">
     <value>Port</value>
   </data>
-  <data name="sp_lbl_SelectLanguage" xml:space="preserve">
+	<data name="sp_lbl_SelectLanguage" xml:space="preserve">
     <value>Langage</value>
   </data>
-  <data name="sp_lbl_ServerName" xml:space="preserve">
+	<data name="sp_lbl_ServerName" xml:space="preserve">
     <value>Serveur</value>
   </data>
-  <data name="alrt_msg_Cancel" xml:space="preserve">
+	<data name="alrt_msg_Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="alrt_msg_ConnectionError" xml:space="preserve">
+	<data name="alrt_msg_ConnectionError" xml:space="preserve">
     <value>Connexion échoué veuillez vérifier les informations du serveur</value>
   </data>
-  <data name="alrt_msg_ConnectionSucces" xml:space="preserve">
+	<data name="alrt_msg_ConnectionSucces" xml:space="preserve">
     <value>Connexion établie avec succes</value>
   </data>
-  <data name="alrt_msg_Info" xml:space="preserve">
+	<data name="alrt_msg_Info" xml:space="preserve">
     <value>Infos</value>
   </data>
-  <data name="alrt_msg_MissingServerInfos" xml:space="preserve">
+	<data name="alrt_msg_MissingServerInfos" xml:space="preserve">
     <value>Veuillez renseigner les informations du serveur</value>
   </data>
-  <data name="alrt_msg_Ok" xml:space="preserve">
+	<data name="alrt_msg_Ok" xml:space="preserve">
     <value>Ok</value>
   </data>
-  <data name="alrt_msg_SaveSettings" xml:space="preserve">
+	<data name="alrt_msg_SaveSettings" xml:space="preserve">
     <value>Voulez-vous enregistrer la configuration</value>
   </data>
-  <data name="alrt_msg_SettingsSaved" xml:space="preserve">
+	<data name="alrt_msg_SettingsSaved" xml:space="preserve">
     <value>La configuration a été enregistrées avec succès</value>
   </data>
-  <data name="alrt_msg_title_Settings" xml:space="preserve">
+	<data name="alrt_msg_title_Settings" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="abtp_lbl_AppDescription" xml:space="preserve">
+	<data name="abtp_lbl_AppDescription" xml:space="preserve">
     <value>, elle vous permet d'accéder a vos informations rapidement là ou vous soyez</value>
   </data>
-  <data name="abtp_lbl_DevelopedBy" xml:space="preserve">
+	<data name="abtp_lbl_DevelopedBy" xml:space="preserve">
     <value>Application développé  par </value>
   </data>
-  <data name="abtp_lbl_LearnMore" xml:space="preserve">
+	<data name="abtp_lbl_LearnMore" xml:space="preserve">
     <value>En savoir plus ..</value>
   </data>
-  <data name="CompanyName" xml:space="preserve">
+	<data name="CompanyName" xml:space="preserve">
     <value>XpertSoft</value>
   </data>
-  <data name="alrt_msg_Alert" xml:space="preserve">
+	<data name="alrt_msg_Alert" xml:space="preserve">
     <value>Alerte</value>
   </data>
-  <data name="app_speech_Hello" xml:space="preserve">
+	<data name="app_speech_Hello" xml:space="preserve">
     <value>Bonjour</value>
   </data>
-  <data name="lp_Login" xml:space="preserve">
+	<data name="lp_Login" xml:space="preserve">
     <value>Login</value>
   </data>
-  <data name="lp_login_WrongAcces" xml:space="preserve">
+	<data name="lp_login_WrongAcces" xml:space="preserve">
     <value>Nom d'utilisateur ou mot de passe incorrect!</value>
   </data>
-  <data name="btn_Close" xml:space="preserve">
+	<data name="btn_Close" xml:space="preserve">
     <value>Fermer</value>
   </data>
-  <data name="DATE_ENCAISS" xml:space="preserve">
+	<data name="DATE_ENCAISS" xml:space="preserve">
     <value>Date:</value>
   </data>
-  <data name="DESIGN_COMPTE" xml:space="preserve">
+	<data name="DESIGN_COMPTE" xml:space="preserve">
     <value>Compte</value>
   </data>
-  <data name="DESIGN_MOTIF" xml:space="preserve">
+	<data name="DESIGN_MOTIF" xml:space="preserve">
     <value>Motif</value>
   </data>
-  <data name="NOM_TIERS" xml:space="preserve">
+	<data name="NOM_TIERS" xml:space="preserve">
     <value>Tiers</value>
   </data>
-  <data name="TOTAL_ENCAISS" xml:space="preserve">
+	<data name="TOTAL_ENCAISS" xml:space="preserve">
     <value>Total encaissé</value>
   </data>
-  <data name="CODE_COMPTE" xml:space="preserve">
+	<data name="CODE_COMPTE" xml:space="preserve">
     <value>Compte</value>
   </data>
-  <data name="CODE_MOTIF" xml:space="preserve">
+	<data name="CODE_MOTIF" xml:space="preserve">
     <value>Motif</value>
   </data>
-  <data name="CODE_TIERS" xml:space="preserve">
+	<data name="CODE_TIERS" xml:space="preserve">
     <value>Tiers</value>
   </data>
-  <data name="msg_EnterTheAmount" xml:space="preserve">
+	<data name="msg_EnterTheAmount" xml:space="preserve">
     <value>Entrer le montant s'il vous plaît </value>
   </data>
-  <data name="SOLDE_TIERS" xml:space="preserve">
+	<data name="SOLDE_TIERS" xml:space="preserve">
     <value>Solde tiers</value>
   </data>
-  <data name="cmd_Add" xml:space="preserve">
+	<data name="cmd_Add" xml:space="preserve">
     <value>Ajouter</value>
   </data>
-  <data name="cmd_Cancel" xml:space="preserve">
+	<data name="cmd_Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="cmd_Delete" xml:space="preserve">
+	<data name="cmd_Delete" xml:space="preserve">
     <value>Supprimer</value>
   </data>
-  <data name="cmd_Save" xml:space="preserve">
+	<data name="cmd_Save" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
-  <data name="cmd_Update" xml:space="preserve">
+	<data name="cmd_Update" xml:space="preserve">
     <value>Modifier</value>
   </data>
-  <data name="txt_Compte" xml:space="preserve">
+	<data name="txt_Compte" xml:space="preserve">
     <value>Compte</value>
   </data>
-  <data name="txt_Decaiss" xml:space="preserve">
+	<data name="txt_Decaiss" xml:space="preserve">
     <value>Remboursement</value>
   </data>
-  <data name="txt_Encaiss" xml:space="preserve">
+	<data name="txt_Encaiss" xml:space="preserve">
     <value>Versement</value>
   </data>
-  <data name="txt_Today" xml:space="preserve">
+	<data name="txt_Today" xml:space="preserve">
     <value>Aujourd'hui</value>
   </data>
-  <data name="txt_User" xml:space="preserve">
+	<data name="txt_User" xml:space="preserve">
     <value>Utilisateur</value>
   </data>
-  <data name="txt_UserSession" xml:space="preserve">
+	<data name="txt_UserSession" xml:space="preserve">
     <value>Session</value>
   </data>
-  <data name="txt_All" xml:space="preserve">
+	<data name="txt_All" xml:space="preserve">
     <value>Tous</value>
   </data>
-  <data name="txt_Day" xml:space="preserve">
+	<data name="txt_Day" xml:space="preserve">
     <value>Jour</value>
   </data>
-  <data name="txt_Month" xml:space="preserve">
+	<data name="txt_Month" xml:space="preserve">
     <value>Mois</value>
   </data>
-  <data name="txt_Week" xml:space="preserve">
+	<data name="txt_Week" xml:space="preserve">
     <value>Semaine</value>
   </data>
-  <data name="txt_Year" xml:space="preserve">
+	<data name="txt_Year" xml:space="preserve">
     <value>Année</value>
   </data>
-  <data name="msg_Confirmation" xml:space="preserve">
+	<data name="msg_Confirmation" xml:space="preserve">
     <value>Confirmation</value>
   </data>
-  <data name="msg_DeleteConfirmation" xml:space="preserve">
+	<data name="msg_DeleteConfirmation" xml:space="preserve">
     <value>Voulez-vous vraiment supprimer cet élément ?</value>
   </data>
-  <data name="cmd_Filter" xml:space="preserve">
+	<data name="cmd_Filter" xml:space="preserve">
     <value>Filtre</value>
   </data>
-  <data name="txt_EndDate" xml:space="preserve">
+	<data name="txt_EndDate" xml:space="preserve">
     <value>Date fin</value>
   </data>
-  <data name="txt_Filter" xml:space="preserve">
+	<data name="txt_Filter" xml:space="preserve">
     <value>Filtrer</value>
   </data>
-  <data name="txt_StartDate" xml:space="preserve">
+	<data name="txt_StartDate" xml:space="preserve">
     <value>Date début</value>
   </data>
-  <data name="txt_MarginsByseller" xml:space="preserve">
+	<data name="txt_MarginsByseller" xml:space="preserve">
     <value>Marges par vendeur</value>
   </data>
-  <data name="txt_SalesBySeller" xml:space="preserve">
+	<data name="txt_SalesBySeller" xml:space="preserve">
     <value>Ventes par vendeur</value>
   </data>
-  <data name="cmd_SelectElement" xml:space="preserve">
+	<data name="cmd_SelectElement" xml:space="preserve">
     <value>Sélectionner</value>
   </data>
-  <data name="ph_seachedtxt" xml:space="preserve">
+	<data name="ph_seachedtxt" xml:space="preserve">
     <value>Rechercher ....</value>
   </data>
-  <data name="cmd_seach" xml:space="preserve">
+	<data name="cmd_seach" xml:space="preserve">
     <value>Chercher</value>
   </data>
-  <data name="cmd_Disconnect" xml:space="preserve">
+	<data name="cmd_Disconnect" xml:space="preserve">
     <value>Déconnexion</value>
   </data>
-  <data name="txt_Margin" xml:space="preserve">
+	<data name="txt_Margin" xml:space="preserve">
     <value>Marges</value>
   </data>
-  <data name="txt_Sales" xml:space="preserve">
+	<data name="txt_Sales" xml:space="preserve">
     <value>Ventes</value>
   </data>
-  <data name="txt_Seler" xml:space="preserve">
+	<data name="txt_Seler" xml:space="preserve">
     <value>Vendeur</value>
   </data>
-  <data name="txt_TotalMarginBySeler" xml:space="preserve">
+	<data name="txt_TotalMarginBySeler" xml:space="preserve">
     <value>Total marges par vendeur</value>
   </data>
-  <data name="txt_TotalSalesBySeler" xml:space="preserve">
+	<data name="txt_TotalSalesBySeler" xml:space="preserve">
     <value>Total ventes par vendeur</value>
   </data>
-  <data name="error_AccountNotEmpty" xml:space="preserve">
+	<data name="error_AccountNotEmpty" xml:space="preserve">
     <value>Veuillez sélectionner un compte</value>
   </data>
-  <data name="error_ThirdNotEmpty" xml:space="preserve">
+	<data name="error_ThirdNotEmpty" xml:space="preserve">
     <value>Veuillez sélectionner un tiers</value>
   </data>
-  <data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
+	<data name="alrt_msg_CantTestConnexionSettings" xml:space="preserve">
     <value>Erreur lors de la tentative de connexion</value>
   </data>
-  <data name="err_msg_badConnexionUrl" xml:space="preserve">
+	<data name="err_msg_badConnexionUrl" xml:space="preserve">
     <value>L'url de connexion est incorrecte</value>
   </data>
-  <data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
+	<data name="err_msg_IncorrectLoginInfos" xml:space="preserve">
     <value>Veuillez vérifier les informations d'authentification</value>
   </data>
-  <data name="err_msg_loadingDataError" xml:space="preserve">
+	<data name="err_msg_loadingDataError" xml:space="preserve">
     <value>Erreur de chargement de données</value>
   </data>
-  <data name="txt_Comptes" xml:space="preserve">
+	<data name="txt_Comptes" xml:space="preserve">
     <value>Comptes</value>
   </data>
-  <data name="txt_Encaissments" xml:space="preserve">
+	<data name="txt_Encaissments" xml:space="preserve">
     <value>Encaissements</value>
   </data>
-  <data name="txt_ShouldUpdateVersion" xml:space="preserve">
+	<data name="txt_ShouldUpdateVersion" xml:space="preserve">
     <value>Veuillez procéder a la mise à jour de vote application pour pouvoir continuer a l'utiliser</value>
   </data>
-  <data name="txt_UpdateVersion" xml:space="preserve">
+	<data name="txt_UpdateVersion" xml:space="preserve">
     <value>Mettre à jour</value>
   </data>
-  <data name="sp_lbl_ServiceName" xml:space="preserve">
+	<data name="sp_lbl_ServiceName" xml:space="preserve">
     <value>Url du service</value>
   </data>
-  <data name="txt_Loading" xml:space="preserve">
+	<data name="txt_Loading" xml:space="preserve">
     <value>Chargement ...</value>
   </data>
-  <data name="pn_Activation" xml:space="preserve">
+	<data name="pn_Activation" xml:space="preserve">
     <value>Activation</value>
   </data>
-  <data name="pn_Login" xml:space="preserve">
+	<data name="pn_Login" xml:space="preserve">
     <value>Authentification</value>
   </data>
-  <data name="InvalidDevice" xml:space="preserve">
+	<data name="InvalidDevice" xml:space="preserve">
     <value>Cette licence est généré pour un autre appareil</value>
   </data>
-  <data name="lp_btn_Activate" xml:space="preserve">
+	<data name="lp_btn_Activate" xml:space="preserve">
     <value>Activer</value>
   </data>
-  <data name="lp_lbl_ClientId" xml:space="preserve">
+	<data name="lp_lbl_ClientId" xml:space="preserve">
     <value>Identifiant client</value>
   </data>
-  <data name="lp_lbl_UserEemail" xml:space="preserve">
+	<data name="lp_lbl_UserEemail" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="lp_ph_ClientId" xml:space="preserve">
+	<data name="lp_ph_ClientId" xml:space="preserve">
     <value>Identifiant client</value>
   </data>
-  <data name="lp_ph_UserEemail" xml:space="preserve">
+	<data name="lp_ph_UserEemail" xml:space="preserve">
     <value>Email</value>
   </data>
-  <data name="msg_ActivationSucces" xml:space="preserve">
+	<data name="msg_ActivationSucces" xml:space="preserve">
     <value>L'activation de votre licence s'est éffectué avec succes, vous pouvez désormais utiliser votre application.</value>
   </data>
-  <data name="msg_Licence_Cracked" xml:space="preserve">
+	<data name="msg_Licence_Cracked" xml:space="preserve">
     <value>Vous utilisez une licence crackée</value>
   </data>
-  <data name="msg_Licence_Expired" xml:space="preserve">
+	<data name="msg_Licence_Expired" xml:space="preserve">
     <value>Votre licence a expiré, vous devez réactiver votre application</value>
   </data>
-  <data name="msg_Licence_NotActivated" xml:space="preserve">
+	<data name="msg_Licence_NotActivated" xml:space="preserve">
     <value>Votre application n'est pas encore activée, veuillez procéder a son activation.</value>
   </data>
-  <data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
+	<data name="alrt_msg_MissingDeviceInfos" xml:space="preserve">
     <value>Vous devez autoriser l'application a accéder aux informations de votre appareil pour pouvoir vous identifier et vous permettre d'activer votre licence.</value>
   </data>
-  <data name="lp_lbl_UserPhone" xml:space="preserve">
+	<data name="lp_lbl_UserPhone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
-  <data name="lp_ph_UserPhone" xml:space="preserve">
+	<data name="lp_ph_UserPhone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
-  <data name="Exception_errMsg_20" xml:space="preserve">
+	<data name="Exception_errMsg_20" xml:space="preserve">
     <value>L'option demandé n'est pas disponible dans votre licence</value>
   </data>
-  <data name="Exception_errMsg_21" xml:space="preserve">
+	<data name="Exception_errMsg_21" xml:space="preserve">
     <value>Client avec produit concerné non existant</value>
   </data>
-  <data name="Exception_errMsg_22" xml:space="preserve">
+	<data name="Exception_errMsg_22" xml:space="preserve">
     <value>Nombre de licences expiré</value>
   </data>
-  <data name="Exception_errMsg_23" xml:space="preserve">
+	<data name="Exception_errMsg_23" xml:space="preserve">
     <value>Vous êtes déjà enregistré</value>
   </data>
-  <data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
+	<data name="alrt_msg_CondifirmDesactivateLicence" xml:space="preserve">
     <value>Si vous désactivé votre licence vous ne pourrez plus l'utiliser jusqu'a sa reactivation, voulez vous continuer ?</value>
   </data>
-  <data name="msg_ExpireOn" xml:space="preserve">
+	<data name="msg_ExpireOn" xml:space="preserve">
     <value>Expire le</value>
   </data>
-  <data name="sp_btn_RemoveLicence" xml:space="preserve">
+	<data name="sp_btn_RemoveLicence" xml:space="preserve">
     <value>Désactiver la licence</value>
   </data>
-  <data name="sp_lbl_LicenceInfos" xml:space="preserve">
+	<data name="sp_lbl_LicenceInfos" xml:space="preserve">
     <value>Information sur la licence</value>
   </data>
-  <data name="Exception_errMsg_31" xml:space="preserve">
+	<data name="Exception_errMsg_31" xml:space="preserve">
     <value>Votre licence a déjà été désactivé!</value>
   </data>
-  <data name="Exception_errMsg_32" xml:space="preserve">
+	<data name="Exception_errMsg_32" xml:space="preserve">
     <value>Licence ou Identifiant CRM introuvables !</value>
   </data>
-  <data name="msg_DeactivationSucces" xml:space="preserve">
+	<data name="msg_DeactivationSucces" xml:space="preserve">
     <value>La désactivation de votre licence s'est déroulé avec succes.</value>
   </data>
-  <data name="pn_Ventes" xml:space="preserve">
+	<data name="pn_Ventes" xml:space="preserve">
     <value>Ventes</value>
   </data>
-  <data name="txt_Details" xml:space="preserve">
+	<data name="txt_Details" xml:space="preserve">
     <value>Détails</value>
   </data>
-  <data name="txt_header" xml:space="preserve">
+	<data name="txt_header" xml:space="preserve">
     <value>Entête</value>
   </data>
-  <data name="txt_Client" xml:space="preserve">
+	<data name="txt_Client" xml:space="preserve">
     <value>Client</value>
   </data>
-  <data name="pn_Tiers" xml:space="preserve">
+	<data name="pn_Tiers" xml:space="preserve">
     <value>Tiers</value>
   </data>
-  <data name="txt_Famille" xml:space="preserve">
+	<data name="txt_Famille" xml:space="preserve">
     <value>Famille</value>
   </data>
-  <data name="txt_Types" xml:space="preserve">
+	<data name="txt_Types" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="pn_Produits" xml:space="preserve">
+	<data name="pn_Produits" xml:space="preserve">
     <value>Produits</value>
   </data>
-  <data name="txt_Acommande" xml:space="preserve">
+	<data name="txt_Acommande" xml:space="preserve">
     <value>A Cmdé</value>
   </data>
-  <data name="txt_Arrivage" xml:space="preserve">
+	<data name="txt_Arrivage" xml:space="preserve">
     <value>Arrivage</value>
   </data>
-  <data name="txt_Lots" xml:space="preserve">
+	<data name="txt_Lots" xml:space="preserve">
     <value>Lots</value>
   </data>
-  <data name="txt_Prix" xml:space="preserve">
+	<data name="txt_Prix" xml:space="preserve">
     <value>Prix</value>
   </data>
-  <data name="txt_Product" xml:space="preserve">
+	<data name="txt_Product" xml:space="preserve">
     <value>Produit</value>
   </data>
-  <data name="txt_Qte" xml:space="preserve">
+	<data name="txt_Qte" xml:space="preserve">
     <value>Qté Produit</value>
   </data>
-  <data name="txt_QteMin" xml:space="preserve">
+	<data name="txt_QteMin" xml:space="preserve">
     <value>Qté Min</value>
   </data>
-  <data name="txt_Ref" xml:space="preserve">
+	<data name="txt_Ref" xml:space="preserve">
     <value>Réf</value>
   </data>
-  <data name="txt_Rotation" xml:space="preserve">
+	<data name="txt_Rotation" xml:space="preserve">
     <value>Rotation</value>
   </data>
-  <data name="txt_CovredDays" xml:space="preserve">
+	<data name="txt_CovredDays" xml:space="preserve">
     <value>Couverts</value>
   </data>
-  <data name="pn_RfidScan" xml:space="preserve">
+	<data name="pn_RfidScan" xml:space="preserve">
     <value>Rfid scan</value>
   </data>
-  <data name="sp_btn_SaveRfid" xml:space="preserve">
+	<data name="sp_btn_SaveRfid" xml:space="preserve">
     <value>Enregistrer</value>
   </data>
-  <data name="txt_MANQUANTS" xml:space="preserve">
+	<data name="txt_MANQUANTS" xml:space="preserve">
     <value>Manquants</value>
   </data>
-  <data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
+	<data name="txt_InfosProdNbrDaysAnalysed" xml:space="preserve">
     <value>Infos collectées au cours des 30 derniers jours</value>
   </data>
-  <data name="txt_QTE_VENTE" xml:space="preserve">
+	<data name="txt_QTE_VENTE" xml:space="preserve">
     <value>Vendu</value>
   </data>
-  <data name="pn_rfid_inventaire" xml:space="preserve">
+	<data name="pn_rfid_inventaire" xml:space="preserve">
     <value>Inventaire RFID</value>
   </data>
-  <data name="pn_Manquants" xml:space="preserve">
+	<data name="pn_Manquants" xml:space="preserve">
     <value>Manquants</value>
   </data>
-  <data name="txt_Search" xml:space="preserve">
+	<data name="txt_Search" xml:space="preserve">
     <value>Recherche</value>
   </data>
-  <data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
+	<data name="alrt_msg_multiLotForCodeBarre" xml:space="preserve">
     <value>Il y a plusieurs lots pour ce code à barres !</value>
   </data>
-  <data name="txt_Typesproduct" xml:space="preserve">
+	<data name="txt_Typesproduct" xml:space="preserve">
     <value>Type de produit</value>
   </data>
-  <data name="txt_CA" xml:space="preserve">
+	<data name="txt_CA" xml:space="preserve">
     <value>Chiffre d'affaires</value>
   </data>
-  <data name="Alrt_failInitRFID_Reader" xml:space="preserve">
+	<data name="Alrt_failInitRFID_Reader" xml:space="preserve">
     <value>L'initialisation du lecteur RFID a échoué!</value>
   </data>
-  <data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
+	<data name="Alert_Deplicatrd_Rfid_Tages" xml:space="preserve">
     <value>L'une des Tags scannée est déjà affectées a un lots !</value>
   </data>
-  <data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
+	<data name="alrt_msg_NotFondLotFromCodeBarre" xml:space="preserve">
     <value>Pas de lot correspondants a ce code à barre !</value>
   </data>
-  <data name="btn_Clear_Text" xml:space="preserve">
+	<data name="btn_Clear_Text" xml:space="preserve">
     <value>Effacer</value>
   </data>
-  <data name="btn_Filter_RFID_Text" xml:space="preserve">
+	<data name="btn_Filter_RFID_Text" xml:space="preserve">
     <value>Config</value>
   </data>
-  <data name="btn_scanCodeBarre" xml:space="preserve">
+	<data name="btn_scanCodeBarre" xml:space="preserve">
     <value>Scanner Code à barre</value>
   </data>
-  <data name="btn_scan_Rfid_Text" xml:space="preserve">
+	<data name="btn_scan_Rfid_Text" xml:space="preserve">
     <value>Balayage</value>
   </data>
-  <data name="btn_Stop_Scan_Rfid" xml:space="preserve">
+	<data name="btn_Stop_Scan_Rfid" xml:space="preserve">
     <value>Arréter</value>
   </data>
-  <data name="btn_Trait_Rfids_text" xml:space="preserve">
+	<data name="btn_Trait_Rfids_text" xml:space="preserve">
     <value>Traitement</value>
   </data>
-  <data name="lbl_Continues_scan_RFID" xml:space="preserve">
+	<data name="lbl_Continues_scan_RFID" xml:space="preserve">
     <value>Continue</value>
   </data>
-  <data name="lbl_DateInventqire_Text" xml:space="preserve">
+	<data name="lbl_DateInventqire_Text" xml:space="preserve">
     <value>Date :</value>
   </data>
-  <data name="lbl_lot_txt" xml:space="preserve">
+	<data name="lbl_lot_txt" xml:space="preserve">
     <value>Lot.</value>
   </data>
-  <data name="lbl_NumInventaire" xml:space="preserve">
+	<data name="lbl_NumInventaire" xml:space="preserve">
     <value>Num inventaire :</value>
   </data>
-  <data name="alrt_notOpenInventary_Text" xml:space="preserve">
+	<data name="alrt_notOpenInventary_Text" xml:space="preserve">
     <value>Pas d'inventaire ouvert !</value>
   </data>
-  <data name="pn_Commandes" xml:space="preserve">
+	<data name="pn_Commandes" xml:space="preserve">
     <value>Commandes clients</value>
   </data>
-  <data name="txt_EcheanceDate" xml:space="preserve">
+	<data name="txt_EcheanceDate" xml:space="preserve">
     <value>Échéance</value>
   </data>
-  <data name="txt_ScanRow" xml:space="preserve">
+	<data name="txt_ScanRow" xml:space="preserve">
     <value>Scanner</value>
   </data>
-  <data name="txt_SelectRow" xml:space="preserve">
+	<data name="txt_SelectRow" xml:space="preserve">
     <value>Sélectionner</value>
   </data>
-  <data name="pn_NewCommande" xml:space="preserve">
+	<data name="pn_NewCommande" xml:space="preserve">
     <value>Nouvelle commande</value>
   </data>
-  <data name="cmd_remove" xml:space="preserve">
+	<data name="cmd_remove" xml:space="preserve">
     <value>Enlever</value>
   </data>
-  <data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
+	<data name="error_DateShouldBeGreaterThanToday" xml:space="preserve">
     <value>Veuillez corriger la date d'échéance</value>
   </data>
-  <data name="pn_Catalogues" xml:space="preserve">
+	<data name="pn_Catalogues" xml:space="preserve">
     <value>Catalogue</value>
   </data>
-  <data name="txt_NewProduct" xml:space="preserve">
+	<data name="txt_NewProduct" xml:space="preserve">
     <value>Nouveaux</value>
   </data>
-  <data name="txt_Buy" xml:space="preserve">
+	<data name="txt_Buy" xml:space="preserve">
     <value>Ajouter au panier</value>
   </data>
-  <data name="txt_ConfimDelProductCmd" xml:space="preserve">
+	<data name="txt_ConfimDelProductCmd" xml:space="preserve">
     <value>Voulez vous vraiment supprimer ce produit du panier ?</value>
   </data>
-  <data name="txt_Cat_CommandesSaved" xml:space="preserve">
+	<data name="txt_Cat_CommandesSaved" xml:space="preserve">
     <value>Votre commande a bien été envoyée!</value>
   </data>
-  <data name="txt_Cat_CommandesUpdated" xml:space="preserve">
+	<data name="txt_Cat_CommandesUpdated" xml:space="preserve">
     <value>Votre commande a bien été modifiée!</value>
   </data>
-  <data name="pn_Achats" xml:space="preserve">
+	<data name="pn_Achats" xml:space="preserve">
     <value>Achats</value>
   </data>
-  <data name="PESEE_ENTREE" xml:space="preserve">
+	<data name="PESEE_ENTREE" xml:space="preserve">
     <value>Pesée d'entrée</value>
   </data>
-  <data name="PESEE_SORTIE" xml:space="preserve">
+	<data name="PESEE_SORTIE" xml:space="preserve">
     <value>Pesée de sortie</value>
   </data>
-  <data name="pn_NewPurchase" xml:space="preserve">
+	<data name="pn_NewPurchase" xml:space="preserve">
     <value>Nouvelle pesée</value>
   </data>
-  <data name="txt_Chauffeur" xml:space="preserve">
+	<data name="txt_Chauffeur" xml:space="preserve">
     <value>Chauffeur</value>
   </data>
-  <data name="txt_Immatriculation" xml:space="preserve">
+	<data name="txt_Immatriculation" xml:space="preserve">
     <value>Matricule</value>
   </data>
-  <data name="txt_Date" xml:space="preserve">
+	<data name="txt_Date" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="txt_Status" xml:space="preserve">
+	<data name="txt_Status" xml:space="preserve">
     <value>État</value>
   </data>
-  <data name="pn_NewReception" xml:space="preserve">
+	<data name="pn_NewReception" xml:space="preserve">
     <value>Nouvelle pesée</value>
   </data>
-  <data name="txt_EmballageEntree" xml:space="preserve">
+	<data name="txt_EmballageEntree" xml:space="preserve">
     <value>Entrées</value>
   </data>
-  <data name="txt_EmballageSortie" xml:space="preserve">
+	<data name="txt_EmballageSortie" xml:space="preserve">
     <value>Sortie</value>
   </data>
-  <data name="txt_EmballageVides" xml:space="preserve">
+	<data name="txt_EmballageVides" xml:space="preserve">
     <value>Vides</value>
   </data>
-  <data name="txt_agri_Prix" xml:space="preserve">
+	<data name="txt_agri_Prix" xml:space="preserve">
     <value>Prix :</value>
   </data>
-  <data name="txt_agri_QBrute" xml:space="preserve">
+	<data name="txt_agri_QBrute" xml:space="preserve">
     <value>Q.Brute :</value>
   </data>
-  <data name="txt_agri_QDechet" xml:space="preserve">
+	<data name="txt_agri_QDechet" xml:space="preserve">
     <value>Q.Déchet :</value>
   </data>
-  <data name="txt_agri_QNet" xml:space="preserve">
+	<data name="txt_agri_QNet" xml:space="preserve">
     <value>Q.Net :</value>
   </data>
-  <data name="txt_agri_TauxDechet" xml:space="preserve">
+	<data name="txt_agri_TauxDechet" xml:space="preserve">
     <value>Déchet % :</value>
   </data>
-  <data name="pn_MyCommandes" xml:space="preserve">
+	<data name="pn_MyCommandes" xml:space="preserve">
     <value>Mes commandes</value>
   </data>
-  <data name="txt_Waiting" xml:space="preserve">
+	<data name="txt_Waiting" xml:space="preserve">
     <value>Traitement ...</value>
   </data>
-  <data name="pn_Bordereaux" xml:space="preserve">
+	<data name="pn_Bordereaux" xml:space="preserve">
     <value>Bordereaux</value>
   </data>
-  <data name="pn_VtePsychotrop" xml:space="preserve">
+	<data name="pn_VtePsychotrop" xml:space="preserve">
     <value>Ventes psychotropes</value>
   </data>
-  <data name="txt_InfosPsyco" xml:space="preserve">
+	<data name="txt_InfosPsyco" xml:space="preserve">
     <value>Ordonnancier</value>
   </data>
-  <data name="txt_Centre" xml:space="preserve">
+	<data name="txt_Centre" xml:space="preserve">
     <value>Centre</value>
   </data>
-  <data name="txt_Mnt_Cloture" xml:space="preserve">
+	<data name="txt_Mnt_Cloture" xml:space="preserve">
     <value>Montant clôture</value>
   </data>
-  <data name="txt_Mnt_Credits" xml:space="preserve">
+	<data name="txt_Mnt_Credits" xml:space="preserve">
     <value>Crédits</value>
   </data>
-  <data name="txt_Mnt_Ecart" xml:space="preserve">
+	<data name="txt_Mnt_Ecart" xml:space="preserve">
     <value>ÉCART</value>
   </data>
-  <data name="txt_Mnt_Retour" xml:space="preserve">
+	<data name="txt_Mnt_Retour" xml:space="preserve">
     <value>Retour</value>
   </data>
-  <data name="txt_Mnt_TarifCHIFA" xml:space="preserve">
+	<data name="txt_Mnt_TarifCHIFA" xml:space="preserve">
     <value>Tarif Chifa</value>
   </data>
-  <data name="txt_Mnt_VenteCash" xml:space="preserve">
+	<data name="txt_Mnt_VenteCash" xml:space="preserve">
     <value>Vente cash</value>
   </data>
-  <data name="pn_session" xml:space="preserve">
+	<data name="pn_session" xml:space="preserve">
     <value>Sessions</value>
   </data>
-  <data name="txt_Cat_DocumentSaved" xml:space="preserve">
+	<data name="txt_Cat_DocumentSaved" xml:space="preserve">
     <value>Document enregistré avec succès !
 </value>
   </data>
-  <data name="txt_Cat_DocumentUpdated" xml:space="preserve">
+	<data name="txt_Cat_DocumentUpdated" xml:space="preserve">
     <value>Document modifié avec succès !</value>
   </data>
-  <data name="tct_Type" xml:space="preserve">
+	<data name="tct_Type" xml:space="preserve">
     <value>Type</value>
   </data>
-  <data name="txt_Categorie" xml:space="preserve">
+	<data name="txt_Categorie" xml:space="preserve">
     <value>Famille</value>
   </data>
-  <data name="txt_LastName" xml:space="preserve">
+	<data name="txt_LastName" xml:space="preserve">
     <value>Prénom</value>
   </data>
-  <data name="txt_Name" xml:space="preserve">
+	<data name="txt_Name" xml:space="preserve">
     <value>Nom</value>
   </data>
-  <data name="txt_TotalAchatsByProduct" xml:space="preserve">
+	<data name="txt_TotalAchatsByProduct" xml:space="preserve">
     <value>Achat par produit</value>
   </data>
-  <data name="txt_phone" xml:space="preserve">
+	<data name="txt_phone" xml:space="preserve">
     <value>Téléphone</value>
   </data>
-  <data name="pn_AchatsProduction" xml:space="preserve">
+	<data name="pn_AchatsProduction" xml:space="preserve">
     <value>Réception pour production</value>
   </data>
-  <data name="pn_OrdresProduction" xml:space="preserve">
+	<data name="pn_OrdresProduction" xml:space="preserve">
     <value>Ordres de production</value>
   </data>
-  <data name="QTE_PRODUITE" xml:space="preserve">
+	<data name="QTE_PRODUITE" xml:space="preserve">
     <value>Qte Produite</value>
   </data>
-  <data name="txt_QteProduite" xml:space="preserve">
+	<data name="txt_QteProduite" xml:space="preserve">
     <value>Qte Produite</value>
   </data>
-  <data name="txt_Productivite" xml:space="preserve">
+	<data name="txt_Productivite" xml:space="preserve">
     <value>Productivité</value>
   </data>
-  <data name="txt_QteApport" xml:space="preserve">
+	<data name="txt_QteApport" xml:space="preserve">
     <value>Apport</value>
   </data>
-  <data name="cmd_Verif" xml:space="preserve">
+	<data name="cmd_Verif" xml:space="preserve">
     <value>Vérification</value>
   </data>
-  <data name="pn_Tresorerie" xml:space="preserve">
+	<data name="pn_Tresorerie" xml:space="preserve">
     <value>Trésorerie</value>
   </data>
-  <data name="txt_ProductRef" xml:space="preserve">
+	<data name="txt_ProductRef" xml:space="preserve">
     <value>Nom/Réf</value>
   </data>
-  <data name="pn_Settings" xml:space="preserve">
+	<data name="pn_Settings" xml:space="preserve">
     <value>Configuration</value>
   </data>
-  <data name="sp_lbl_Activate" xml:space="preserve">
+	<data name="sp_lbl_Activate" xml:space="preserve">
     <value>Activé</value>
   </data>
-  <data name="sp_lbl_Notifications" xml:space="preserve">
+	<data name="sp_lbl_Notifications" xml:space="preserve">
     <value>Notifications</value>
   </data>
-  <data name="txt_Solde" xml:space="preserve">
+	<data name="txt_Solde" xml:space="preserve">
     <value>Solde</value>
   </data>
-  <data name="vteTotalVente" xml:space="preserve">
+	<data name="vteTotalVente" xml:space="preserve">
     <value>Total ventes</value>
   </data>
-  <data name="vte_TotalBoite" xml:space="preserve">
+	<data name="vte_TotalBoite" xml:space="preserve">
     <value>Total boite</value>
   </data>
-  <data name="vte_TotalProd" xml:space="preserve">
+	<data name="vte_TotalProd" xml:space="preserve">
     <value>Total produits</value>
   </data>
-  <data name="TOTAL_BTE" xml:space="preserve">
+	<data name="TOTAL_BTE" xml:space="preserve">
     <value>Total boites : </value>
   </data>
-  <data name="TOTAL_PROD" xml:space="preserve">
+	<data name="TOTAL_PROD" xml:space="preserve">
     <value>Total produits : </value>
   </data>
-  <data name="TOTAL_TTC" xml:space="preserve">
+	<data name="TOTAL_TTC" xml:space="preserve">
     <value>Total ventes :</value>
   </data>
-  <data name="MONT_BORD" xml:space="preserve">
+	<data name="MONT_BORD" xml:space="preserve">
     <value>Montant Bordereau</value>
   </data>
-  <data name="NBR_FACTS" xml:space="preserve">
+	<data name="NBR_FACTS" xml:space="preserve">
     <value>Nbr factures</value>
   </data>
-  <data name="TOTAL_AJUSTEMENT" xml:space="preserve">
+	<data name="TOTAL_AJUSTEMENT" xml:space="preserve">
     <value>Montant ajustement</value>
   </data>
-  <data name="TOTAL_EXCLUDED" xml:space="preserve">
+	<data name="TOTAL_EXCLUDED" xml:space="preserve">
     <value>Montant rejets</value>
   </data>
-  <data name="TOTAL_OFFICINE_PAYE" xml:space="preserve">
+	<data name="TOTAL_OFFICINE_PAYE" xml:space="preserve">
     <value>Total officine payé</value>
   </data>
-  <data name="TOTAL_TO_PAY" xml:space="preserve">
+	<data name="TOTAL_TO_PAY" xml:space="preserve">
     <value>Montant Officine</value>
   </data>
-  <data name="MONT_ASSURE" xml:space="preserve">
+	<data name="MONT_ASSURE" xml:space="preserve">
     <value>Montant assurés</value>
   </data>
-  <data name="SUM_MAJORATION" xml:space="preserve">
+	<data name="SUM_MAJORATION" xml:space="preserve">
     <value>Montant majoration</value>
   </data>
-  <data name="txt_etat" xml:space="preserve">
+	<data name="txt_etat" xml:space="preserve">
     <value>État</value>
   </data>
-  <data name="sp_lbl_rinter" xml:space="preserve">
+	<data name="sp_lbl_rinter" xml:space="preserve">
     <value>Imprimante</value>
   </data>
-  <data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
+	<data name="alrt_msg_NoPrinterSelected" xml:space="preserve">
     <value>Aucune imprimante selectionnée!</value>
   </data>
-  <data name="sp_btn_TestPrint" xml:space="preserve">
+	<data name="sp_btn_TestPrint" xml:space="preserve">
     <value>Tester</value>
   </data>
-  <data name="cmd_selectPrinter" xml:space="preserve">
+	<data name="cmd_selectPrinter" xml:space="preserve">
     <value>Choisir une imprimante</value>
   </data>
-  <data name="pn_NewSales" xml:space="preserve">
+	<data name="pn_NewSales" xml:space="preserve">
     <value>Nouvelle vente</value>
   </data>
-  <data name="cmd_Validate" xml:space="preserve">
+	<data name="cmd_Validate" xml:space="preserve">
     <value>Valider</value>
   </data>
-  <data name="alrt_msg_NoConnexion" xml:space="preserve">
+	<data name="alrt_msg_NoConnexion" xml:space="preserve">
     <value>Vous n'êtes pas connecté au serveur</value>
   </data>
-  <data name="msg_ShouldPrepaireSession" xml:space="preserve">
+	<data name="msg_ShouldPrepaireSession" xml:space="preserve">
     <value>Vous n'avez pas de session ouverte en cours, vous devez en préparer une ! Clicker sur Ok pour préparer une sessions.</value>
   </data>
-  <data name="cmd_selectMagasin" xml:space="preserve">
+	<data name="cmd_selectMagasin" xml:space="preserve">
     <value />
   </data>
-  <data name="sp_lbl_VteMagasin" xml:space="preserve">
+	<data name="sp_lbl_VteMagasin" xml:space="preserve">
     <value>Magasin de vente</value>
   </data>
-  <data name="txt_actionsSucces" xml:space="preserve">
+	<data name="txt_actionsSucces" xml:space="preserve">
     <value>Opération terminée avec succès</value>
   </data>
-  <data name="pn_NewVente" xml:space="preserve">
+	<data name="pn_NewVente" xml:space="preserve">
     <value>Nouvelle vente</value>
   </data>
-  <data name="sp_lbl_SalesMagasin" xml:space="preserve">
+	<data name="sp_lbl_SalesMagasin" xml:space="preserve">
     <value>Magasin de vente</value>
   </data>
-  <data name="sp_lbl_SalesCaisseDedier" xml:space="preserve">
+	<data name="sp_lbl_SalesCaisseDedier" xml:space="preserve">
     <value>Caisse dédiée</value>
   </data>
-  <data name="pn_Livraison" xml:space="preserve">
+	<data name="pn_Livraison" xml:space="preserve">
     <value>Livraisons</value>
   </data>
-  <data name="pn_VteComptoir" xml:space="preserve">
+	<data name="pn_VteComptoir" xml:space="preserve">
     <value>Ventes comptoir</value>
   </data>
-  <data name="pn_Mytournees" xml:space="preserve">
+	<data name="pn_Mytournees" xml:space="preserve">
     <value>Mes tournées</value>
   </data>
-  <data name="pn_dsdsdsds" xml:space="preserve">
+	<data name="pn_dsdsdsds" xml:space="preserve">
     <value>sdsdsdsds</value>
   </data>
-  <data name="pn_Simpleindicator" xml:space="preserve">
+	<data name="pn_Simpleindicator" xml:space="preserve">
     <value>Indicateurs</value>
   </data>
-  <data name="txt_DateNaissance" xml:space="preserve">
+	<data name="txt_DateNaissance" xml:space="preserve">
     <value>Date naissance</value>
   </data>
-  <data name="sys_prefix_add" xml:space="preserve">
+	<data name="sys_prefix_add" xml:space="preserve">
     <value>Configurer l'appareil</value>
   </data>
-  <data name="sys_prefix_get" xml:space="preserve">
+	<data name="sys_prefix_get" xml:space="preserve">
     <value>Récupérer votre préfixe</value>
   </data>
-  <data name="pn_Fournisseur" xml:space="preserve">
+	<data name="pn_Fournisseur" xml:space="preserve">
     <value>Fournisseur:</value>
   </data>
-  <data name="Exception_errMsg_33" xml:space="preserve">
+	<data name="Exception_errMsg_33" xml:space="preserve">
     <value>Nombre d'appareil limite atteint !</value>
   </data>
-  <data name="Exception_errMsg_34" xml:space="preserve">
+	<data name="Exception_errMsg_34" xml:space="preserve">
     <value>Identifiant CRM non valide !</value>
   </data>
-  <data name="alrt_quit_Application" xml:space="preserve">
+	<data name="alrt_quit_Application" xml:space="preserve">
     <value>Voulez-vous quitter l'application ?</value>
   </data>
-  <data name="pn_Enter" xml:space="preserve">
+	<data name="pn_Enter" xml:space="preserve">
     <value>Entre</value>
   </data>
-  <data name="pn_Sortie" xml:space="preserve">
+	<data name="pn_Sortie" xml:space="preserve">
     <value>Sortie</value>
   </data>
-  <data name="txt_Motif" xml:space="preserve">
+	<data name="txt_Motif" xml:space="preserve">
     <value>Motif</value>
   </data>
-  <data name="txt_Cloture" xml:space="preserve">
+	<data name="txt_Cloture" xml:space="preserve">
     <value>Clôturée</value>
   </data>
-  <data name="txt_Non_Cloture" xml:space="preserve">
+	<data name="txt_Non_Cloture" xml:space="preserve">
     <value>Non Clôturée</value>
   </data>
-  <data name="lp_lbl_me_souvenir" xml:space="preserve">
+	<data name="lp_lbl_me_souvenir" xml:space="preserve">
     <value>Se souvenir de moi </value>
   </data>
-  <data name="sp_motDePassOnly" xml:space="preserve">
+	<data name="sp_motDePassOnly" xml:space="preserve">
     <value>Connecter avec mot de pass seulement.</value>
   </data>
-  <data name="pn_Saissi" xml:space="preserve">
+	<data name="pn_Saissi" xml:space="preserve">
     <value>Saisie Par</value>
   </data>
-  <data name="exit_Button_No" xml:space="preserve">
+	<data name="exit_Button_No" xml:space="preserve">
     <value>Non</value>
   </data>
-  <data name="exit_Button_Yes" xml:space="preserve">
+	<data name="exit_Button_Yes" xml:space="preserve">
     <value>Oui</value>
   </data>
-  <data name="msg_ExitTitle" xml:space="preserve">
+	<data name="msg_ExitTitle" xml:space="preserve">
     <value>Confirmer Quitter</value>
   </data>
-  <data name="msg_ExitWarning" xml:space="preserve">
+	<data name="msg_ExitWarning" xml:space="preserve">
     <value>Êtes-vous sûr de vouloir quitter?</value>
   </data>
-  <data name="pn_EntreeStock" xml:space="preserve">
+	<data name="pn_EntreeStock" xml:space="preserve">
     <value>Entree du stock </value>
   </data>
-  <data name="txt_Ajout_Url" xml:space="preserve">
+	<data name="txt_Ajout_Url" xml:space="preserve">
     <value>Veuillez saisir votre Url de service</value>
   </data>
-  <data name="txt_modification_message" xml:space="preserve">
+	<data name="txt_modification_message" xml:space="preserve">
     <value>Modification effectuée avec succès</value>
   </data>
-  <data name="txt_modification_message_url" xml:space="preserve">
+	<data name="txt_modification_message_url" xml:space="preserve">
     <value>Modifier votre Url</value>
   </data>
-  <data name="txt_modification_succee" xml:space="preserve">
+	<data name="txt_modification_succee" xml:space="preserve">
     <value>Modification Réussie!</value>
   </data>
-  <data name="txt_modification_url" xml:space="preserve">
+	<data name="txt_modification_url" xml:space="preserve">
     <value>Modifier l'Url</value>
   </data>
-  <data name="txt_Nv_Url" xml:space="preserve">
+	<data name="txt_Nv_Url" xml:space="preserve">
     <value>Nouveau Url </value>
   </data>
-  <data name="txt_sp_Url" xml:space="preserve">
+	<data name="txt_sp_Url" xml:space="preserve">
     <value>Suppresion url</value>
   </data>
-  <data name="txt_suppression_message_url" xml:space="preserve">
+	<data name="txt_suppression_message_url" xml:space="preserve">
     <value>Vous être sur le point de supprimer le service Sélectionner</value>
   </data>
-  <data name="txt_supp_message_url" xml:space="preserve">
+	<data name="txt_supp_message_url" xml:space="preserve">
     <value>Suppression effectuée avec succès</value>
   </data>
-  <data name="txt_supp_reussite" xml:space="preserve">
+	<data name="txt_supp_reussite" xml:space="preserve">
     <value>Suppression Réussie!</value>
   </data>
-  <data name="txt_alert" xml:space="preserve">
+	<data name="txt_alert" xml:space="preserve">
     <value>Alert</value>
   </data>
-  <data name="txt_alert_message" xml:space="preserve">
+	<data name="txt_alert_message" xml:space="preserve">
     <value>Vous n'êtes pas connecté aux serveur</value>
   </data>
-  <data name="alrt_msg_Erreur_Traitement_Requéte" xml:space="preserve">
+	<data name="alrt_msg_Erreur_Traitement_Requéte" xml:space="preserve">
     <value>Erreur lors de triatement de la requête</value>
   </data>
-  <data name="alrt_msg_ManquantSaved" xml:space="preserve">
+	<data name="alrt_msg_ManquantSaved" xml:space="preserve">
     <value>Validation avec succès</value>
   </data>
-  <data name="alrt_msg_MissingMotif" xml:space="preserve">
+	<data name="alrt_msg_MissingMotif" xml:space="preserve">
     <value>Le type de manquant ne peut pas être vide!</value>
   </data>
-  <data name="alrt_msg_MissingProduit" xml:space="preserve">
+	<data name="alrt_msg_MissingProduit" xml:space="preserve">
     <value>Un produit doit être indiqué pour pouvoir créer un manquant! </value>
   </data>
-  <data name="alrt_msg_MissingQuantite" xml:space="preserve">
+	<data name="alrt_msg_MissingQuantite" xml:space="preserve">
     <value>Vous devez saisir une quantité supérieur à zéro pour le manquant </value>
   </data>
-  <data name="alrt_msg_title_Manquant" xml:space="preserve">
+	<data name="alrt_msg_title_Manquant" xml:space="preserve">
     <value>Validation </value>
   </data>
-  <data name="ph_Produit" xml:space="preserve">
+	<data name="ph_Produit" xml:space="preserve">
     <value>Poduits</value>
   </data>
-  <data name="txt_Annule" xml:space="preserve">
+	<data name="txt_Annule" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="txt_QteGenerique" xml:space="preserve">
+	<data name="txt_QteGenerique" xml:space="preserve">
     <value>Qté Génériques</value>
   </data>
-  <data name="txt_Quantite" xml:space="preserve">
+	<data name="txt_Quantite" xml:space="preserve">
     <value>Quantite</value>
   </data>
-  <data name="txt_Traite" xml:space="preserve">
+	<data name="txt_Traite" xml:space="preserve">
     <value>Traitée</value>
   </data>
-  <data name="txt_Valider" xml:space="preserve">
+	<data name="txt_Valider" xml:space="preserve">
     <value>Valider</value>
   </data>
-  <data name="txt_Saisi" xml:space="preserve">
+	<data name="txt_Saisi" xml:space="preserve">
     <value>Saisi Par </value>
   </data>
-  <data name="txt_AfficherStockMin" xml:space="preserve">
+	<data name="txt_AfficherStockMin" xml:space="preserve">
     <value>Stock minimum</value>
   </data>
-  <data name="sp_ajout_url" xml:space="preserve">
+	<data name="sp_ajout_url" xml:space="preserve">
     <value>Ajouter un nouveau url</value>
   </data>
-  <data name="sp_btn_ajouter" xml:space="preserve">
+	<data name="sp_btn_ajouter" xml:space="preserve">
     <value>Ajouter</value>
   </data>
-  <data name="sp_btn_annuler" xml:space="preserve">
+	<data name="sp_btn_annuler" xml:space="preserve">
     <value>Annuler</value>
   </data>
-  <data name="sp_lbl_titre" xml:space="preserve">
+	<data name="sp_lbl_titre" xml:space="preserve">
     <value>Titre :</value>
   </data>
-  <data name="sp_lbl_url" xml:space="preserve">
+	<data name="sp_lbl_url" xml:space="preserve">
     <value>Url :</value>
   </data>
-  <data name="lbl_modifier_url" xml:space="preserve">
+	<data name="lbl_modifier_url" xml:space="preserve">
     <value>Modifier votre url </value>
   </data>
-  <data name="sp_btn_editer" xml:space="preserve">
+	<data name="sp_btn_editer" xml:space="preserve">
     <value>Modifier</value>
   </data>
-  <data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
+	<data name="alrt_msg_ConfirmAjoutManquant" xml:space="preserve">
     <value>Ce produit est déja signalé automatiquement comme manquant, voulez vous continiuer?</value>
   </data>
-  <data name="pn_TransfertDeFond" xml:space="preserve">
+	<data name="pn_TransfertDeFond" xml:space="preserve">
     <value>Transfert de Fond </value>
   </data>
-  <data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
+	<data name="txt_mssg_codeBarre_aucun_produits" xml:space="preserve">
     <value>il n'existe aucun produit avec ce Code Barre</value>
   </data>
-  <data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
+	<data name="txt_mssg_codeBarre_p_produits" xml:space="preserve">
     <value>Il ya une erreur quelle que part il existe plusieurs produits avec le mème Code Barre</value>
   </data>
-  <data name="lbl_compteDest" xml:space="preserve">
+	<data name="lbl_compteDest" xml:space="preserve">
     <value>Compte Déstination</value>
   </data>
-  <data name="lbl_compteSource" xml:space="preserve">
+	<data name="lbl_compteSource" xml:space="preserve">
     <value>Compte Source</value>
   </data>
-  <data name="txt_fond_genere_cloture" xml:space="preserve">
+	<data name="txt_fond_genere_cloture" xml:space="preserve">
     <value>Transferts genérés par les clotures.</value>
   </data>
-  <data name="txt_nv_transfert_fond" xml:space="preserve">
+	<data name="txt_nv_transfert_fond" xml:space="preserve">
     <value>Nouveau Transfert de fond </value>
   </data>
-  <data name="lp_txt_alert_url_manquant" xml:space="preserve">
+	<data name="lp_txt_alert_url_manquant" xml:space="preserve">
     <value>Url Manquant ! Veuillez ajouter un url valide.</value>
   </data>
-  <data name="sp_txt_alert_modification" xml:space="preserve">
+	<data name="sp_txt_alert_modification" xml:space="preserve">
     <value>Liste vide ! Veuillez inserer une adresse valide. </value>
   </data>
-  <data name="sp_txt_alert_supression" xml:space="preserve">
+	<data name="sp_txt_alert_supression" xml:space="preserve">
     <value>Liste vide ! Vous ne pouvez pas supprimer un url.</value>
   </data>
-  <data name="txt_montant" xml:space="preserve">
+	<data name="txt_montant" xml:space="preserve">
     <value>Montant</value>
   </data>
-  <data name="txt_comfirmation_ajout_virement" xml:space="preserve">
+	<data name="txt_comfirmation_ajout_virement" xml:space="preserve">
     <value>Transfert de fond effectué avec succée.</value>
   </data>
-  <data name="txt_Destination" xml:space="preserve">
+	<data name="txt_Destination" xml:space="preserve">
     <value>Déstination</value>
   </data>
-  <data name="txt_mode_reg" xml:space="preserve">
+	<data name="txt_mode_reg" xml:space="preserve">
     <value>Mode.reg</value>
   </data>
-  <data name="txt_Source" xml:space="preserve">
+	<data name="txt_Source" xml:space="preserve">
     <value>Source</value>
   </data>
-  <data name="txt_alert_code_motif" xml:space="preserve">
+	<data name="txt_alert_code_motif" xml:space="preserve">
     <value>Veuillez Selectionner un motif</value>
   </data>
-  <data name="txt_alert_comptedestination" xml:space="preserve">
+	<data name="txt_alert_comptedestination" xml:space="preserve">
     <value>Veuillez selectionner un compte destination</value>
   </data>
-  <data name="txt_alert_compte_source" xml:space="preserve">
+	<data name="txt_alert_compte_source" xml:space="preserve">
     <value>Veuillez selectionner un compte source</value>
   </data>
-  <data name="txt_alert_montant" xml:space="preserve">
+	<data name="txt_alert_montant" xml:space="preserve">
     <value>Veuillez entrer le montant a transferé</value>
   </data>
-  <data name="lbl_edit_transfert_de_fond" xml:space="preserve">
+	<data name="lbl_edit_transfert_de_fond" xml:space="preserve">
     <value>Modification Transfert de fond </value>
   </data>
-  <data name="pp_label_labo" xml:space="preserve">
+	<data name="pp_label_labo" xml:space="preserve">
     <value>Labo</value>
   </data>
-  <data name="pp_label_tags" xml:space="preserve">
+	<data name="pp_label_tags" xml:space="preserve">
     <value>Tag produit</value>
   </data>
-  <data name="pp_text_Rupture" xml:space="preserve">
+	<data name="pp_text_Rupture" xml:space="preserve">
     <value>En Rupture</value>
   </data>
-  <data name="pp_text_sActive" xml:space="preserve">
+	<data name="pp_text_sActive" xml:space="preserve">
     <value>Actif</value>
   </data>
-  <data name="pp_text_Service" xml:space="preserve">
+	<data name="pp_text_Service" xml:space="preserve">
     <value>Service</value>
   </data>
-  <data name="pp_text_sInActive" xml:space="preserve">
+	<data name="pp_text_sInActive" xml:space="preserve">
     <value>Inactif</value>
   </data>
-  <data name="pp_text_StockMinimum" xml:space="preserve">
+	<data name="pp_text_StockMinimum" xml:space="preserve">
     <value>Afficher Stock minimum</value>
   </data>
-  <data name="txt_Pts_Fidelites" xml:space="preserve">
+	<data name="txt_Pts_Fidelites" xml:space="preserve">
     <value>Pts Fidélités</value>
   </data>
-  <data name="pn_Notification" xml:space="preserve">
+	<data name="pn_Notification" xml:space="preserve">
     <value>Notifications</value>
   </data>
-  <data name="np_Alert_Delete" xml:space="preserve">
+	<data name="np_Alert_Delete" xml:space="preserve">
     <value>Suppresion</value>
   </data>
-  <data name="np_txt_alert_delete" xml:space="preserve">
+	<data name="np_txt_alert_delete" xml:space="preserve">
     <value>Toutes Les Notifications sont supprimé</value>
   </data>
-  <data name="np_txt_alert_Notification" xml:space="preserve">
+	<data name="np_txt_alert_Notification" xml:space="preserve">
     <value>Toutes les notifications ont été supprimées avec succès</value>
   </data>
-  <data name="codebarre_corps_message" xml:space="preserve">
+	<data name="codebarre_corps_message" xml:space="preserve">
     <value>Saisir un code barre</value>
   </data>
-  <data name="codebarre_error_corps_message" xml:space="preserve">
+	<data name="codebarre_error_corps_message" xml:space="preserve">
     <value>Le Codebarre est vide</value>
   </data>
-  <data name="codebarre_titre_message" xml:space="preserve">
+	<data name="codebarre_titre_message" xml:space="preserve">
     <value>Code à barre</value>
   </data>
-  <data name="lbl_MultiPrinter" xml:space="preserve">
+	<data name="lbl_MultiPrinter" xml:space="preserve">
     <value>Plusieurs imprimantes</value>
   </data>
-  <data name="txt_Msg_List_Impremant_Ajout" xml:space="preserve">
+	<data name="txt_Msg_List_Impremant_Ajout" xml:space="preserve">
     <value>La liste des imprimantes disponibles est vide</value>
   </data>
-  <data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
+	<data name="txt_Msg_List_Impremant_Vide" xml:space="preserve">
     <value>La liste des imprimantes est vide</value>
   </data>
-  <data name="ab_VerifMaj" xml:space="preserve">
+	<data name="ab_VerifMaj" xml:space="preserve">
     <value>Mise à jour </value>
   </data>
-  <data name="t" xml:space="preserve">
+	<data name="t" xml:space="preserve">
     <value>Version actuelle</value>
   </data>
-  <data name="ab_newMaj" xml:space="preserve">
+	<data name="ab_newMaj" xml:space="preserve">
     <value>Nouvelle version</value>
   </data>
-  <data name="ap_update_failed" xml:space="preserve">
+	<data name="ap_update_failed" xml:space="preserve">
     <value>la mise à jour a échoué</value>
   </data>
-  <data name="ap_update_success" xml:space="preserve">
+	<data name="ap_update_success" xml:space="preserve">
     <value>La mise à jour s'est terminée avec succès</value>
   </data>
-  <data name="ap_updating_txt" xml:space="preserve">
+	<data name="ap_updating_txt" xml:space="preserve">
     <value>Veuillez patienter, Mise à jour des fichiers sur le serveur...</value>
   </data>
-  <data name="ap_new_update" xml:space="preserve">
+	<data name="ap_new_update" xml:space="preserve">
     <value>Une nouvelle version est disponible</value>
   </data>
-  <data name="ap_updated" xml:space="preserve">
+	<data name="ap_updated" xml:space="preserve">
     <value>Vous étes à jour</value>
   </data>
-  <data name="ap_new_update_web" xml:space="preserve">
+	<data name="ap_new_update_web" xml:space="preserve">
     <value>Il y a une mise à jour pour les fichiers du serveur. Veuillez continuer à les mettre à jour</value>
   </data>
-  <data name="sp_ServerChanged" xml:space="preserve">
+	<data name="sp_ServerChanged" xml:space="preserve">
     <value>Le changement d'url de service nécessite une authentification</value>
   </data>
-  <data name="Update_Notification_Header" xml:space="preserve">
+	<data name="Update_Notification_Header" xml:space="preserve">
     <value>Mise à jour disponible</value>
   </data>
-  <data name="Update_Notification_Text" xml:space="preserve">
+	<data name="Update_Notification_Text" xml:space="preserve">
     <value>Il y a une nouvelle version</value>
   </data>
-  <data name="txt_Facture" xml:space="preserve">
+	<data name="txt_Facture" xml:space="preserve">
     <value>Facture:</value>
   </data>
-  <data name="txt_Note" xml:space="preserve">
+	<data name="txt_Note" xml:space="preserve">
     <value>Note:</value>
   </data>
-  <data name="sp_session_error" xml:space="preserve">
+	<data name="sp_session_error" xml:space="preserve">
     <value>Il n'y a pas de session trouvée</value>
   </data>
-  <data name="vdp_ImpressionError" xml:space="preserve">
+	<data name="vdp_ImpressionError" xml:space="preserve">
     <value>L'impression du ticket a échoué</value>
   </data>
-  <data name="vdp_ImpressionSuccess" xml:space="preserve">
+	<data name="vdp_ImpressionSuccess" xml:space="preserve">
     <value>Le ticket a été imprimé avec succès</value>
   </data>
-  <data name="pn_Echanges" xml:space="preserve">
+	<data name="pn_Echanges" xml:space="preserve">
     <value>Echanges</value>
   </data>
-  <data name="txt_type_tiers" xml:space="preserve">
+	<data name="txt_type_tiers" xml:space="preserve">
     <value>Type tiers</value>
   </data>
-  <data name="txt_Labo" xml:space="preserve">
+	<data name="txt_Labo" xml:space="preserve">
     <value>Laboratoire</value>
   </data>
-  <data name="txt_type_produit" xml:space="preserve">
+	<data name="txt_type_produit" xml:space="preserve">
     <value>Type de produit</value>
   </data>
-  <data name="pn_RotationDesProduits" xml:space="preserve">
+	<data name="pn_RotationDesProduits" xml:space="preserve">
     <value>Rotations Des Produits</value>
   </data>
-  <data name="rdp_Ach" xml:space="preserve">
+	<data name="rdp_Ach" xml:space="preserve">
     <value>Achats</value>
   </data>
-  <data name="rdp_Touts" xml:space="preserve">
+	<data name="rdp_Touts" xml:space="preserve">
     <value>Touts</value>
   </data>
-  <data name="rdp_Vte" xml:space="preserve">
+	<data name="rdp_Vte" xml:space="preserve">
     <value>Ventes</value>
   </data>
-  <data name="txt_triepar" xml:space="preserve">
+	<data name="txt_triepar" xml:space="preserve">
     <value>Trier par :</value>
   </data>
-  <data name="PEncDec_Design_Mode" xml:space="preserve">
+	<data name="PEncDec_Design_Mode" xml:space="preserve">
     <value>Mode Règlement</value>
   </data>
-  <data name="PEncDec_Note_Enc" xml:space="preserve">
+	<data name="PEncDec_Note_Enc" xml:space="preserve">
     <value>Note</value>
   </data>
-  <data name="pn_TransfertStock" xml:space="preserve">
+	<data name="pn_TransfertStock" xml:space="preserve">
     <value>Chargement / Déchargement</value>
   </data>
-  <data name="tsdp_Creation" xml:space="preserve">
+	<data name="tsdp_Creation" xml:space="preserve">
     <value>Créer par :</value>
   </data>
-  <data name="tsdp_Date" xml:space="preserve">
+	<data name="tsdp_Date" xml:space="preserve">
     <value>Date :</value>
   </data>
-  <data name="tsdp_MagasinDestination" xml:space="preserve">
+	<data name="tsdp_MagasinDestination" xml:space="preserve">
     <value>Destination :</value>
   </data>
-  <data name="tsdp_MagasinSource" xml:space="preserve">
+	<data name="tsdp_MagasinSource" xml:space="preserve">
     <value>Source :</value>
   </data>
-  <data name="tsdp_Note" xml:space="preserve">
+	<data name="tsdp_Note" xml:space="preserve">
     <value>Note :</value>
   </data>
-  <data name="tsdp_Titre" xml:space="preserve">
+	<data name="tsdp_Titre" xml:space="preserve">
     <value>Tranfert de Stock</value>
   </data>
-  <data name="tsdp_TotalAchat" xml:space="preserve">
+	<data name="tsdp_TotalAchat" xml:space="preserve">
     <value>Total Achat :</value>
   </data>
-  <data name="pn_synchronisation" xml:space="preserve">
+	<data name="pn_synchronisation" xml:space="preserve">
     <value>Synchronisation</value>
   </data>
-  <data name="txt_reinstall_app" xml:space="preserve">
+	<data name="txt_reinstall_app" xml:space="preserve">
     <value>Veuillez reinstaller votre application.</value>
   </data>
-  <data name="pn_Client" xml:space="preserve">
+	<data name="pn_Client" xml:space="preserve">
     <value>Clients</value>
   </data>
-  <data name="txt_offline" xml:space="preserve">
+	<data name="txt_offline" xml:space="preserve">
     <value>Hors ligne</value>
   </data>
-  <data name="txt_online" xml:space="preserve">
+	<data name="txt_online" xml:space="preserve">
     <value>En ligne</value>
+  </data>
+	<data name="TOTAL_ACHAT" xml:space="preserve">
+    <value>Total Achat</value>
+  </data>
+	<data name="TAUX_MARGE" xml:space="preserve">
+    <value>Taux Marge</value>
+  </data>
+	<data name="TOTAL_MARGE" xml:space="preserve">
+    <value>Total Marge</value>
   </data>
   <data name="TOTAL_PPA" xml:space="preserve">
     <value>Total PPA</value>
   </data>
-  <data name="TOTAL_SHP" xml:space="preserve">
+	<data name="TOTAL_SHP" xml:space="preserve">
     <value>Total SHP</value>
   </data>
-  <data name="TOTAL_NB_VENTE" xml:space="preserve">
+	<data name="TOTAL_NB_VENTE" xml:space="preserve">
     <value>Nombre de ventes</value>
   </data>
-  <data name="msg_Reconnect" xml:space="preserve">
+	<data name="msg_Reconnect" xml:space="preserve">
     <value>vous êtes déconnecté souhaitez être connecté ?</value>
   </data>
-  <data name="btn_downloadData" xml:space="preserve">
+	<data name="btn_downloadData" xml:space="preserve">
     <value>Téléchargement de données</value>
   </data>
-  <data name="btn_uploadData" xml:space="preserve">
+	<data name="btn_uploadData" xml:space="preserve">
     <value>Téléversement de données </value>
   </data>
-  <data name="txt_DisplayGrid" xml:space="preserve">
+	<data name="txt_DisplayGrid" xml:space="preserve">
     <value>Affichage par Grile</value>
   </data>
-  <data name="txt_DisplayInline" xml:space="preserve">
+	<data name="txt_DisplayInline" xml:space="preserve">
     <value>Affichage par Ligne</value>
   </data>
-  <data name="txt_SyncData" xml:space="preserve">
+	<data name="txt_SyncData" xml:space="preserve">
     <value>Synchronisation de donnés</value>
   </data>
-  <data name="TOTAL_DECAISS" xml:space="preserve">
+	<data name="TOTAL_DECAISS" xml:space="preserve">
     <value>Total Décaissé</value>
   </data>
-  <data name="txt_ConfigPrefix" xml:space="preserve">
+	<data name="txt_ConfigPrefix" xml:space="preserve">
     <value>Le préfixe n'est pas configuré, Voulez-vous le configurer ?</value>
   </data>
-  <data name="txt_erreurProduit" xml:space="preserve">
+	<data name="txt_erreurProduit" xml:space="preserve">
     <value>Une erreur c'est produit ! Vueillez reconnecté</value>
   </data>
-  <data name="txt_prefixConfSucce" xml:space="preserve">
+	<data name="txt_prefixConfSucce" xml:space="preserve">
     <value>Préfix configuré avec succés</value>
   </data>
-  <data name="LocationTurnedOffMessage" xml:space="preserve">
+	<data name="LocationTurnedOffMessage" xml:space="preserve">
     <value>Activer la location et ressayer</value>
   </data>
-  <data name="tourneeClientLocationVide" xml:space="preserve">
+	<data name="tourneeClientLocationVide" xml:space="preserve">
     <value>Location est Vide, Voulez vous la mise a jour avec votre position</value>
   </data>
-  <data name="tourneeClosedMessage" xml:space="preserve">
+	<data name="tourneeClosedMessage" xml:space="preserve">
     <value>Decloturer la tournee et ressayer</value>
   </data>
-  <data name="tourneeLocalisationErrorMessage" xml:space="preserve">
+	<data name="tourneeLocalisationErrorMessage" xml:space="preserve">
     <value>Veuillez verifier la localisation</value>
   </data>
-  <data name="tourneeLocalisationLabel" xml:space="preserve">
+	<data name="tourneeLocalisationLabel" xml:space="preserve">
     <value>Localisation</value>
   </data>
-  <data name="tourneeMapLabel" xml:space="preserve">
+	<data name="tourneeMapLabel" xml:space="preserve">
     <value>Route</value>
   </data>
-  <data name="tourneePopUpClose" xml:space="preserve">
+	<data name="tourneePopUpClose" xml:space="preserve">
     <value>Cloturé</value>
   </data>
-  <data name="tourneePopUpOpen" xml:space="preserve">
+	<data name="tourneePopUpOpen" xml:space="preserve">
     <value>Decloturé</value>
   </data>
-  <data name="tourneePopUpStart" xml:space="preserve">
+	<data name="tourneePopUpStart" xml:space="preserve">
     <value>Demarrer</value>
   </data>
-  <data name="tourneeStatusCanceled" xml:space="preserve">
+	<data name="tourneeStatusCanceled" xml:space="preserve">
     <value>Annulé</value>
   </data>
-  <data name="tourneeStatusClosedMessage" xml:space="preserve">
+	<data name="tourneeStatusClosedMessage" xml:space="preserve">
     <value>Cloturer La Tournee ?</value>
   </data>
-  <data name="tourneeStatusDelivered" xml:space="preserve">
+	<data name="tourneeStatusDelivered" xml:space="preserve">
     <value>Livré</value>
   </data>
-  <data name="tourneeStatusInRoute" xml:space="preserve">
+	<data name="tourneeStatusInRoute" xml:space="preserve">
     <value>En Route</value>
   </data>
-  <data name="tourneeStatusNotVisited" xml:space="preserve">
+	<data name="tourneeStatusNotVisited" xml:space="preserve">
     <value>Pas visité</value>
   </data>
-  <data name="tourneeStatusPlaned" xml:space="preserve">
+	<data name="tourneeStatusPlaned" xml:space="preserve">
     <value>Planifié</value>
   </data>
-  <data name="tourneeStatusReopenMessage" xml:space="preserve">
+	<data name="tourneeStatusReopenMessage" xml:space="preserve">
     <value>Ouvrir La Tournee ?</value>
   </data>
-  <data name="tourneeStatusStartMessage" xml:space="preserve">
+	<data name="tourneeStatusStartMessage" xml:space="preserve">
     <value>Demarrer La Tournee ?</value>
   </data>
-  <data name="tourneeStatusUpdateSuccessful" xml:space="preserve">
+	<data name="tourneeStatusUpdateSuccessful" xml:space="preserve">
     <value>Mise a jour avec success</value>
   </data>
-  <data name="tourneeStatusVisited" xml:space="preserve">
+	<data name="tourneeStatusVisited" xml:space="preserve">
     <value>Visité</value>
   </data>
-  <data name="tourneeStatusVisitedNotDelivered" xml:space="preserve">
+	<data name="tourneeStatusVisitedNotDelivered" xml:space="preserve">
     <value>Visité non livré</value>
   </data>
-  <data name="visiteStatusChangeConfirm" xml:space="preserve">
+	<data name="visiteStatusChangeConfirm" xml:space="preserve">
     <value>Modifier Le Status ?</value>
   </data>
-  <data name="pn_Inventaire" xml:space="preserve">
+	<data name="pn_Inventaire" xml:space="preserve">
     <value>Inventaire</value>
   </data>
-  <data name="txt_non" xml:space="preserve">
+	<data name="txt_non" xml:space="preserve">
     <value>Non</value>
   </data>
-  <data name="txt_oui" xml:space="preserve">
+	<data name="txt_oui" xml:space="preserve">
     <value>Oui</value>
   </data>
-  <data name="lbl_SaveToPhone" xml:space="preserve">
+	<data name="lbl_SaveToPhone" xml:space="preserve">
     <value>Enregistrer Sur le Téléphone</value>
   </data>
 </root>

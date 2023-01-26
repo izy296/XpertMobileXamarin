@@ -7,7 +7,8 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
              xmlns:cmp="clr-namespace:XpertMobileApp.Components" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-                 Title="{Binding Title}"
+             xmlns:CustomControls="clr-namespace:XpertMobileApp.CustomControls"
+             Title="{Binding Title}"
              x:Name="Ventes">
 
     <ContentPage.ToolbarItems>
@@ -27,9 +28,7 @@
                 AbsoluteLayout.LayoutFlags="All" 
                 AbsoluteLayout.LayoutBounds="0,0,1,1"
                 VerticalOptions="FillAndExpand">
-
                 <ScrollView>
-
                     <!-- Items listing  -->
                     <ListView x:Name="ItemsListView"
                     VerticalOptions="Fill"
@@ -68,9 +67,7 @@
                         </ListView.Footer>
 
                     </ListView>
-
                 </ScrollView>
-
                 <!--Summaries Section-->
                 <StackLayout 
                     Spacing="0"
@@ -82,8 +79,7 @@
                         x:Name="ArrowUp"
                         IsVisible="true"
                         HorizontalOptions="Center"
-                        Spacing="0"
-                        >
+                        Spacing="0">
 
                         <yummy:PancakeView 
                                 BackgroundColor="#1E47BD" 
@@ -110,31 +106,33 @@
                     </StackLayout>
 
                     <Frame
-                    Margin="0"
-                    x:Name="SummariesInfos" 
-                    Style="{StaticResource FrameForList}" 
-                    BackgroundColor="#1E47BD"
-                    BorderColor="#1E47BD" 
-                    IsVisible="{Binding HasAdmin}"
-                    HeightRequest="30">
+                        Margin="0"
+                        x:Name="SummariesInfos" 
+                        Style="{StaticResource FrameForList}" 
+                        BackgroundColor="#1E47BD"
+                        BorderColor="#1E47BD" 
+                        IsVisible="{Binding HasAdmin}"
+                        HeightRequest="30">
 
                         <Frame.GestureRecognizers>
                             <TapGestureRecognizer Tapped="ShowHide_Clicked"/>
                         </Frame.GestureRecognizers>
 
 
-                        <Grid>
+                        <Grid x:Name="gridSamuary"
+                              VerticalOptions="FillAndExpand"
+                              HeightRequest="250">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="100"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
                             <ListView 
                                 x:Name="SummariesListView"
-                                VerticalOptions="Fill"
+                                VerticalOptions="FillAndExpand"
                                 ItemsSource="{Binding Summaries}" 
                                 ItemTapped="ShowHide_Clicked"
                                 HasUnevenRows="true"
-                                SelectionMode="None"                        
+                                SelectionMode="None"  
                                 SeparatorVisibility="None">
 
                                 <ListView.ItemTemplate>
@@ -157,7 +155,7 @@
 
                                                     <Label 
                                                         Grid.Column="1" 
-                                                        Text="{Binding Value, StringFormat='{0:N2}'}" 
+                                                        Text="{Binding Title, StringFormat='{0:N2}'}" 
                                                         TextColor="White" 
                                                         HorizontalOptions="EndAndExpand" 
                                                         HorizontalTextAlignment="End"/>
@@ -171,7 +169,6 @@
                     </Frame>
 
                 </StackLayout>
-
             </StackLayout>
             <!--floating button-->
             <Button 
@@ -189,9 +186,7 @@
                 Padding="10"
                 Margin="0,0,15,15"
                 Clicked="ShowHideFilter"/>
-
-
-
+            
         </AbsoluteLayout>
 
     </ContentPage.Content>

@@ -39,15 +39,18 @@ namespace XpertMobileApp.Models
     public class SAMMUARY
     {
         public string key { get; set; } // varchar(50)
-        public string Title 
+        public string Title
         {
-            get 
+            get
             {
-                return Value + " " + Unit;
-            } 
-        
+                return key == "Taux Marge" ? Value + " " + "%" : Value + " " + Unit;
+            }
+
         } // varchar(50)
-        public string Value { get; set; } 
+        public string Value
+        {
+            get; set;
+        }
         public string Unit { get; set; } = "DA";
         public bool NewBloc { get; set; } = false;
         public Color ValueColor { get; set; } = Color.FromArgb(167, 116, 108);

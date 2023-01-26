@@ -178,17 +178,16 @@ namespace XpertMobileApp.Views
         {
             if (tapped)
             {
-                SummariesInfos.HeightRequest = 30;
+                SummariesInfos.HeightRequest = SummariesListView.HeightRequest = 30;
                 tapped = !tapped;
                 arrow_img.RotateTo(0, 400, Easing.Linear);
             }
             else
             {
-                SummariesInfos.HeightRequest = 85;
+                SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 180;
                 tapped = !tapped;
                 arrow_img.RotateTo(180, 400, Easing.Linear);
             }
-
         }
 
         private async void ShowHideFilter(object sender, EventArgs e)

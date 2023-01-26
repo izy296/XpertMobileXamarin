@@ -1150,6 +1150,9 @@
   <data name="txt_online" xml:space="preserve">
     <value>متصل</value>
   </data>
+	<data name="TOTAL_MARGE" xml:space="preserve">
+    <value>مبلغ الربح</value>
+  </data>
   <data name="TOTAL_PPA" xml:space="preserve">
     <value>مبلغ PPA</value>
   </data>
