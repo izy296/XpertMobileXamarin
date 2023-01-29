@@ -16,6 +16,29 @@ namespace XpertMobileApp.ViewModels
 {
     public class BordereauxViewModel : CrudBaseViewModel2<CFA_BORDEREAU, View_CFA_BORDEREAU>
     {
+        public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
+        public DateTime EndDate { get; set; } = DateTime.Now;
+
+        private string searchedText;
+        public string SearchedText
+        {
+            get { return searchedText; }
+            set { SetProperty(ref searchedText, value); }
+        }
+        public ObservableCollection<CFA_CENTRES> Centres { get; set; }
+        private CFA_CENTRES selectedCentre;
+        public CFA_CENTRES SelectedCentre
+        {
+            get { return selectedCentre; }
+            set { SetProperty(ref selectedCentre, value); }
+        }
+        public ObservableCollection<CFA_ETAT> brdStatus { get; set; }
+        private CFA_ETAT selectedSTATUS;
+        public CFA_ETAT SelectedSTATUS
+        {
+            get { return selectedSTATUS; }
+            set { SetProperty(ref selectedSTATUS, value); }
+        }
 
         public BordereauxViewModel()
         {
@@ -57,33 +80,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        #region filters data
-
-        public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-3);
-        public DateTime EndDate { get; set; } = DateTime.Now;
-
-        private string searchedText;
-        public string SearchedText
-        {
-            get { return searchedText; }
-            set { SetProperty(ref searchedText, value); }
-        }
-
-        public ObservableCollection<CFA_CENTRES> Centres { get; set; }
-        CFA_CENTRES selectedCentre;
-        public CFA_CENTRES SelectedCentre
-        {
-            get { return selectedCentre; }
-            set { SetProperty(ref selectedCentre, value); }
-        }
-
-        public ObservableCollection<CFA_ETAT> brdStatus { get; set; }
-        CFA_ETAT selectedSTATUS;
-        public CFA_ETAT SelectedSTATUS
-        {
-            get { return selectedSTATUS; }
-            set { SetProperty(ref selectedSTATUS, value); }
-        }
+        
 
         async Task ExecuteLoadExtrasDataCommand()
         {
@@ -94,8 +91,8 @@ namespace XpertMobileApp.ViewModels
             try
             {
                 IsLoadExtrasBusy = true;
-                await ExecuteLoadTypesProduitCommand();
-                await ExecuteLoadTypesCommand();
+                await ExecuteLoadBordereauxStatusCommand();
+                await ExecuteLoadBordereauxCentresCommand();
             }
             catch (Exception ex)
             {
@@ -108,20 +105,20 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadTypesProduitCommand()
+        async Task ExecuteLoadBordereauxStatusCommand()
         {
 
             try
             {
                 brdStatus.Clear();
-                var itemsC = await WebServiceClient.getBordereauxSTATUS();
+                var itemsB = await WebServiceClient.getBordereauxSTATUS();
 
                 CFA_ETAT allElem = new CFA_ETAT();
                 allElem.CODE_ETAT = "";
                 allElem.DESIGN_ETAT = AppResources.txt_All;
-                itemsC.Add(allElem);
+                itemsB.Add(allElem);
 
-                foreach (var itemC in itemsC)
+                foreach (var itemC in itemsB)
                 {
                     brdStatus.Add(itemC);
                 }
@@ -131,25 +128,24 @@ namespace XpertMobileApp.ViewModels
                 await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
                     AppResources.alrt_msg_Ok);
             }
-
         }
 
-        async Task ExecuteLoadTypesCommand()
+        async Task ExecuteLoadBordereauxCentresCommand()
         {
 
             try
             {
                 Centres.Clear();
-                var itemsC = await WebServiceClient.getBordereauxCentresTypes();
+                var itemsBC = await WebServiceClient.getBordereauxCentresTypes();
 
                 CFA_CENTRES allElem = new CFA_CENTRES();
                 allElem.CODE = "";
                 allElem.DESIGNATION = "";
                 Centres.Add(allElem);
 
-                foreach (var itemC in itemsC)
+                foreach (var itemBC in itemsBC)
                 {
-                    Centres.Add(itemC);
+                    Centres.Add(itemBC);
                 }
             }
             catch (Exception ex)
@@ -166,6 +162,5 @@ namespace XpertMobileApp.ViewModels
             SelectedCentre = null;
             SelectedSTATUS = null;
         }
-        #endregion
     }
 }
