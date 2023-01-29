@@ -198,7 +198,7 @@ namespace XpertMobileApp.ViewModels
                 DateTime startDate = DateTime.Now;
                 // STAT_VTE_BY_USER stat = await WebServiceClient.GetTotalMargeParVendeur(startDate, endDate);
 
-                await ExecuteLoadTypesProduitCommand();
+                await ExecuteLoadCfaFactStatusCommand();
 
                 // TotalTurnover = stat.MONTANT_VENTE;
                 // TotalMargin = stat.MONTANT_MARGE;
@@ -249,9 +249,8 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadTypesProduitCommand()
+        async Task ExecuteLoadCfaFactStatusCommand()
         {
-
             try
             {
                 FactStatus.Clear();
