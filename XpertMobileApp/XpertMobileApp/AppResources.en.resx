@@ -1158,4 +1158,7 @@
   <data name="pn_Bordereaux" xml:space="preserve">
     <value>Slip follow-up</value>
   </data>
+  <data name="txt_facture_chifa" xml:space="preserve">
+    <value>CHIFA Bill</value>
+  </data>
 </root>

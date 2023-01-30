@@ -49,7 +49,8 @@ namespace XpertMobileApp.Api.Models
         Echange,
         RotationDesProduits,
         TransfertStock,
-        Synchronisation
+        Synchronisation,
+        MenuChifa
     }
 
     public enum MenuItemGroup

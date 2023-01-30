@@ -1150,7 +1150,7 @@
   <data name="txt_online" xml:space="preserve">
     <value>متصل</value>
   </data>
-	<data name="TOTAL_MARGE" xml:space="preserve">
+  <data name="TOTAL_MARGE" xml:space="preserve">
     <value>مبلغ الربح</value>
   </data>
   <data name="TOTAL_PPA" xml:space="preserve">
@@ -1248,5 +1248,8 @@
   </data>
   <data name="lbl_SaveToPhone" xml:space="preserve">
     <value>حفظ على الهاتف</value>
+  </data>
+  <data name="txt_facture_chifa" xml:space="preserve">
+    <value>فاتورة شفاء</value>
   </data>
 </root>

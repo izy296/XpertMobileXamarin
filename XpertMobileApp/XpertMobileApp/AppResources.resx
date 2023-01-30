@@ -689,6 +689,8 @@
   </data>
   <data name="pn_Bordereaux" xml:space="preserve">
     <value>Suivi des Bordereaux</value>
+  <data name="pn_Bordereaux" xml:space="preserve">
+    <value>Bordereaux</value>
   </data>
   <data name="pn_VtePsychotrop" xml:space="preserve">
     <value>Ventes psychotropes</value>
@@ -1407,5 +1409,8 @@
   </data>
   <data name="lbl_SaveToPhone" xml:space="preserve">
     <value>Enregistrer Sur le Téléphone</value>
+  </data>
+  <data name="txt_facture_chifa" xml:space="preserve">
+    <value>Facture CHIFA</value>
   </data>
 </root>

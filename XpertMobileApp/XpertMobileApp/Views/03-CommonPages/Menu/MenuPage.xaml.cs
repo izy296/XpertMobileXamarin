@@ -307,6 +307,7 @@ namespace XpertMobileApp.Views
                             CodeObjet = XpertObjets.View_STK_ECHANGE,
                             Action = XpertActions.AcSelect,
                             IsNewModule = true,
+                            Image= "wheelbarrow.png"
                         });
 
                         /* Pyschotrope */
@@ -316,7 +317,8 @@ namespace XpertMobileApp.Views
                             ItemGroup = MenuItemGroup.Psychotrope,
                             Title = AppResources.pn_VtePsychotrop,
                             CodeObjet = XpertObjets.VTE_PSYCHOTROP,
-                            Action = XpertActions.AcSelect
+                            Action = XpertActions.AcSelect,
+                            Image = "psychology.png"
                         });
 
                         /* Chifa */
@@ -326,7 +328,17 @@ namespace XpertMobileApp.Views
                             ItemGroup = MenuItemGroup.CHIFA,
                             Title = AppResources.pn_Bordereaux,
                             CodeObjet = XpertObjets.CFA_BORDEREAU,
-                            Action = XpertActions.AcSelect
+                            Action = XpertActions.AcSelect,
+                            Image="slip.png"
+                        });
+
+                        /* Menu Chifa */
+                        menuItems.Add(new HomeMenuItem
+                        {
+                            Id = MenuItemType.MenuChifa,
+                            ItemGroup = MenuItemGroup.CHIFA,
+                            Title = AppResources.txt_facture_chifa,
+                            Image = "slip.png"
                         });
                     }
                 }

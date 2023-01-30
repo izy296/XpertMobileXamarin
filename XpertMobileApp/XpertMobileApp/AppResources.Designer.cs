@@ -3779,12 +3779,20 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("txt_non", resourceCulture);
             }
         }
-        
+
         public static string lbl_SaveToPhone
         {
             get
             {
                 return ResourceManager.GetString("lbl_SaveToPhone", resourceCulture);
+            }
+        }
+
+        public static string txt_facture_chifa
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_facture_chifa", resourceCulture);
             }
         }
     }

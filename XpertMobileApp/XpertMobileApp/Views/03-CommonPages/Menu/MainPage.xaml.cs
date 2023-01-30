@@ -13,6 +13,7 @@ using System.Linq;
 using Plugin.FirebasePushNotification;
 using XpertMobileApp.Views._04_Comercial.Echange;
 using XpertMobileApp.Views._03_CommonPages.Synchronisation;
+using XpertMobileApp.Views._05_Officine.Chifa;
 
 namespace XpertMobileApp.Views
 {
@@ -139,6 +140,8 @@ namespace XpertMobileApp.Views
                     return new TransfertStock();
                 case (int)MenuItemType.Synchronisation:
                     return new SynchronisationPage();
+                case (int)MenuItemType.MenuChifa:
+                    return new ChifaMenu();
                 default:
                     return new HomePage();
             }
@@ -272,6 +275,9 @@ namespace XpertMobileApp.Views
                         break;
                     case (int)MenuItemType.Synchronisation:
                         MenuPages.Add(id, new NavigationPage(new SynchronisationPage()));
+                        break;
+                    case (int)MenuItemType.MenuChifa:
+                        MenuPages.Add(id, new NavigationPage(new ChifaMenu()));
                         break;
                 }
             }
