@@ -689,8 +689,6 @@
   </data>
   <data name="pn_Bordereaux" xml:space="preserve">
     <value>Suivi des Bordereaux</value>
-  <data name="pn_Bordereaux" xml:space="preserve">
-    <value>Bordereaux</value>
   </data>
   <data name="pn_VtePsychotrop" xml:space="preserve">
     <value>Ventes psychotropes</value>
@@ -1412,5 +1410,44 @@
   </data>
   <data name="txt_facture_chifa" xml:space="preserve">
     <value>Facture CHIFA</value>
+  </data>
+  <data name="txt_chifaTotaux" xml:space="preserve">
+    <value>Totaux</value>
+  </data>
+  <data name="txt_mntOfiicine" xml:space="preserve">
+    <value>Montant Officine</value>
+  </data>
+  <data name="txt_mntMajoration" xml:space="preserve">
+    <value>Montant Majoration</value>
+  </data>
+  <data name="txt_mntAssure" xml:space="preserve">
+    <value>Montant Assuré</value>
+  </data>
+  <data name="txt_NumFacture" xml:space="preserve">
+    <value>N° Facture</value>
+  </data>
+  <data name="txt_DateDeSoin" xml:space="preserve">
+    <value>Date de Soin</value>
+  </data>
+  <data name="txt_NbrVignettes" xml:space="preserve">
+    <value>Nombre de Vignettes</value>
+  </data>
+  <data name="txt_NumAssure" xml:space="preserve">
+    <value>N° Assuré</value>
+  </data>
+  <data name="txt_MontFacture" xml:space="preserve">
+    <value>Mont. Facture</value>
+  </data>
+  <data name="txt_Specialite" xml:space="preserve">
+    <value>Spécialité</value>
+  </data>
+  <data name="txt_msg_BorderauxInfo" xml:space="preserve">
+    <value>Récupération des informations de borderau</value>
+  </data>
+  <data name="txt_msg_RecuperationFactures" xml:space="preserve">
+    <value>Récupération des Factures</value>
+  </data>
+  <data name="pn_BordereauxChifa" xml:space="preserve">
+    <value>Bordereaux Chifa</value>
   </data>
 </root>

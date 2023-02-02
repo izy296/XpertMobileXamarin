@@ -756,6 +756,8 @@ namespace XpertMobileApp.DAL
         public int Chifa_Pharmenos { get; set; } // int(10)        
         public string CREATED_BY { get; set; }
         public decimal TOTAL_CONV_TO_PAY { get; set; } // money(19,4)
+        public decimal NUM_ASSURE { get; set; } // money(19,4)
+        public DateTime? DATE_SOIN { get; set; }
 
         // Extension not in database
         public int importSate { get; set; }

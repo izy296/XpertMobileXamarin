@@ -217,6 +217,17 @@ namespace XpertMobileApp.DAL
         #endregion
     }
 
+    public partial class View_CFA_BORDEREAUX_CHIFA : CFA_BORDEREAU
+    {
+        public decimal MONT_MAJORATION { get; set; }
+        public decimal MONT_OFFICINE { get; set; }
+        public decimal MONT_FACTURE { get; set; }
+        public decimal MONT_ACHAT { get; set; }
+        public decimal TOTAL { get; set; }
+        public decimal TOTAL_CHIFA { get; set; }
+        public decimal TOTAL_CASNOS { get; set; }
+        public decimal TOTAL_PHARMNOS { get; set; }
+    }
 
     public partial class CFA_CENTRES
     {

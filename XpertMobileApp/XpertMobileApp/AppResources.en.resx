@@ -1161,4 +1161,43 @@
   <data name="txt_facture_chifa" xml:space="preserve">
     <value>CHIFA Bill</value>
   </data>
+	<data name="txt_chifaTotaux" xml:space="preserve">
+    <value>Totals</value>
+  </data>
+	<data name="txt_mntOfiicine" xml:space="preserve">
+    <value>Pharmacy amount</value>
+  </data>
+	<data name="txt_mntMajoration" xml:space="preserve">
+    <value>Amount Surcharge</value>
+  </data>
+	<data name="txt_mntAssure" xml:space="preserve">
+    <value>Insured amount</value>
+  </data>
+	<data name="txt_NumFacture" xml:space="preserve">
+    <value>No Invoice</value>
+  </data>
+	<data name="txt_DateDeSoin" xml:space="preserve">
+    <value>Treatment date</value>
+  </data>
+	<data name="txt_NbrVignettes" xml:space="preserve">
+    <value>Number of Thumbnails</value>
+  </data>
+	<data name="txt_NumAssure" xml:space="preserve">
+    <value>Insured number</value>
+  </data>
+	<data name="txt_MontFacture" xml:space="preserve">
+    <value>Amount Invoice</value>
+  </data>
+	<data name="txt_Specialite" xml:space="preserve">
+    <value>Speciality</value>
+  </data>
+	<data name="txt_msg_BorderauxInfo" xml:space="preserve">
+    <value>Retrieving slip information</value>
+  </data>
+	<data name="txt_msg_RecuperationFactures" xml:space="preserve">
+    <value>Invoice Recovery</value>
+  </data>
+	<data name="pn_BordereauxChifa" xml:space="preserve">
+    <value>Chifa slips</value>
+  </data>
 </root>

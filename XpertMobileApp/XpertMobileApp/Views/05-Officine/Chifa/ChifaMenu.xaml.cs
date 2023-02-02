@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
-using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
 namespace XpertMobileApp.Views._05_Officine.Chifa
 {
@@ -75,8 +74,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 int id = ((sender as PancakeView).BindingContext as MenuChifaItem).ID;
                 switch (id)
                 {
+                    case 0:
+                        Navigation.PushAsync(new BordereauxChifaPage());
+                        break;
                     case 1:
-                        Navigation.PushAsync(new RapportJournalierFactureCHIFA());
+                        //Navigation.PushAsync(new RapportJournalierFactureCHIFA());
                         break;
                 }
 

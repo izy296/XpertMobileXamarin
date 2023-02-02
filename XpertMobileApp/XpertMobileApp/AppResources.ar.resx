@@ -1252,4 +1252,43 @@
   <data name="txt_facture_chifa" xml:space="preserve">
     <value>فاتورة شفاء</value>
   </data>
+	<data name="txt_chifaTotaux" xml:space="preserve">
+    <value>المجاميع</value>
+  </data>
+	<data name="txt_mntOfiicine" xml:space="preserve">
+    <value>مبلغ الصيدلية</value>
+  </data>
+	<data name="txt_mntMajoration" xml:space="preserve">
+    <value>مبلغ التكلفة الإضافية</value>
+  </data>
+	<data name="txt_mntAssure" xml:space="preserve">
+    <value>المبلغ المؤمن عليه</value>
+  </data>
+	<data name="txt_NumFacture" xml:space="preserve">
+    <value>رقم الفاتورة.</value>
+  </data>
+	<data name="txt_DateDeSoin" xml:space="preserve">
+    <value>تاريخ العلاج</value>
+  </data>
+	<data name="txt_NbrVignettes" xml:space="preserve">
+    <value>عدد الصور المصغرة</value>
+  </data>
+	<data name="txt_NumAssure" xml:space="preserve">
+    <value>رقم المؤمن عليه</value>
+  </data>
+	<data name="txt_MontFacture" xml:space="preserve">
+    <value>مبلغ الفاتورة</value>
+  </data>
+	<data name="txt_Specialite" xml:space="preserve">
+    <value>تخصص</value>
+  </data>
+	<data name="txt_msg_BorderauxInfo" xml:space="preserve">
+    <value>استرجاع معلومات بوردورو</value>
+  </data>
+	<data name="txt_msg_RecuperationFactures" xml:space="preserve">
+    <value>استرداد الفاتورة</value>
+  </data>
+	<data name="pn_BordereauxChifa" xml:space="preserve">
+    <value>"قسيمة الشفاء"</value>
+  </data>
 </root>

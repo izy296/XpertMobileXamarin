@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
@@ -140,6 +141,30 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_URL, ServiceUrlDico.BORDEREAUX_ETAT_URL);
 
             return await RetrievAauthorizedData<CFA_ETAT>(url);
+        }
+
+        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center="0", int page = 1, int count = 10)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
+            url += "?numBordereau=" + numBorderaux;
+            url += "&page=" + page;
+            url += "&count=" + count;
+            url += "&center=" + center;
+            return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
+        }
+
+        internal static async Task<List<View_CFA_BORDEREAUX_CHIFA>> GetCFAByNumBordereaux(string numBorderaux)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_CHIFA_URL, ServiceUrlDico.BORDEREAUX_CHIFA_BY_NUM_URL);
+            url += "?numBordereau=" + numBorderaux;
+            return await RetrievAauthorizedData<View_CFA_BORDEREAUX_CHIFA>(url);
+        }
+        
+        internal static async Task<List<View_CFA_BORDEREAUX_CHIFA>> GetCFABordereaux(QueryInfos queryInfos)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_CHIFA_URL, ServiceUrlDico.BORDEREAUX_CHIFA_SELECT_URL);
+            return await WSApi2.PostAauthorizedValue<List<View_CFA_BORDEREAUX_CHIFA>, QueryInfos>(url, queryInfos, Token);
+
         }
 
         internal static async Task<List<Get_Print_ds_ViewTrsEncaiss>> GetDataTecketCaisseEncaisse(string cODE_ENCAISS)

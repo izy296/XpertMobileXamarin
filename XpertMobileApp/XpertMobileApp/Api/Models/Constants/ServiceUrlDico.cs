@@ -153,14 +153,21 @@ namespace XpertMobileApp.Helpers
         public static string Find_Current_Non_CF_Manquants = "FindCurrent_Non_CF_Manquants";
 
 
-        // Centres bordereaux 
+        // Centres Suivi bordereaux 
         public static string BORDEREAUX_URL = "CFA_BORDEREAU";
         public static string BORDEREAUX_CENTRES_URL = "GetBordereauxCentres";
         public static string BORDEREAUX_ETAT_URL = "GetBordereauxStatus";
 
+
+        // Centres bordereaux CHIFA
+        public static string BORDEREAUX_CHIFA_URL = "CFA_BORDEREAUX_CHIFA";
+        public static string BORDEREAUX_CHIFA_BY_NUM_URL = "GetCFAByNumBordereaux";
+        public static string BORDEREAUX_CHIFA_SELECT_URL = "SelectBordereaux";
+
         // Centres bordereaux         
         public static string CFA_FACTURE_CHIFA_URL = "FACTURE_CHIFA";
         public static string CFA_FACTURE_ETAT_URL = "GetCFAFactsStatus";
+        public static string CFA_FACTURE_BORDEREAUX_URL = "GetCFAFactsByNumBordereaux";
 
         // RFID
         public static string RFID_URL = "RFID";

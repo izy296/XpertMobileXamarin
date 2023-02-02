@@ -1303,6 +1303,17 @@ namespace XpertMobileApp
         }
 
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Bordereaux.
+        /// </summary>
+        internal static string pn_Bordereaux_Chifa
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Bordereaux_Chifa", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Catalogue.
         /// </summary>
         internal static string pn_Catalogues
@@ -3793,6 +3804,109 @@ namespace XpertMobileApp
             get
             {
                 return ResourceManager.GetString("txt_facture_chifa", resourceCulture);
+            }
+        }
+
+        public static string txt_chifaTotaux
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_chifaTotaux", resourceCulture);
+            }
+        }
+
+        public static string txt_mntOfiicine
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_mntOfiicine", resourceCulture);
+            }
+        }
+
+        public static string txt_mntMajoration
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_mntMajoration", resourceCulture);
+            }
+        }
+
+        public static string txt_mntAssure
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_mntAssure", resourceCulture);
+            }
+        }
+
+        public static string txt_NumFacture
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_NumFacture", resourceCulture);
+            }
+        }
+
+        public static string txt_DateDeSoin
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_DateDeSoin", resourceCulture);
+            }
+        }
+        public static string txt_NbrVignettes
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_NbrVignettes", resourceCulture);
+            }
+        }
+
+        public static string txt_NumAssure
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_NumAssure", resourceCulture);
+            }
+        }
+
+        public static string txt_MontFacture
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_MontFacture", resourceCulture);
+            }
+        }
+
+        public static string txt_Specialite
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Specialite", resourceCulture);
+            }
+        }
+
+        public static string txt_msg_BorderauxInfo
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_msg_BorderauxInfo", resourceCulture);
+            }
+        }
+
+        public static string txt_msg_RecuperationFactures
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_msg_RecuperationFactures", resourceCulture);
+            }
+        }
+
+        public static string pn_BordereauxChifa
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_BordereauxChifa", resourceCulture);
             }
         }
     }
