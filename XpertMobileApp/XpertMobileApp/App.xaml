@@ -181,6 +181,13 @@
             <!-- ***************** Rotation *****************-->
             <!--End Data Template Selector-->
 
+            <!-- ***************** Bordereaux CHIFA *****************-->
+            <DataTemplate x:Key="BordereauxCHIFA">
+                <template:BordereauxChifaPageTemplate />
+            </DataTemplate>
+            <!-- ***************** Rotation *****************-->
+
+
 
             <!-- Font Gilroy -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
