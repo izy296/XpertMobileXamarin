@@ -1442,12 +1442,15 @@
     <value>Spécialité</value>
   </data>
   <data name="txt_msg_BorderauxInfo" xml:space="preserve">
-    <value>Récupération des informations de borderau</value>
+    <value>Récupération des informations de borderaux</value>
   </data>
   <data name="txt_msg_RecuperationFactures" xml:space="preserve">
     <value>Récupération des Factures</value>
   </data>
   <data name="pn_BordereauxChifa" xml:space="preserve">
     <value>Bordereaux Chifa</value>
+  </data>
+  <data name="pn_Beneficiaire" xml:space="preserve">
+    <value>Beneficiaires</value>
   </data>
 </root>

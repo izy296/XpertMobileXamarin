@@ -158,6 +158,9 @@ namespace XpertMobileApp.Helpers
         public static string BORDEREAUX_CENTRES_URL = "GetBordereauxCentres";
         public static string BORDEREAUX_ETAT_URL = "GetBordereauxStatus";
 
+        public static string CFA_MOBILE_FACTURE_URL = "CFA_MOBILE_FACTURE";
+        public static string CFA_MOBILE_FACTURE_SUMMARY_URL = "GetFactsSummary";
+
 
         // Centres bordereaux CHIFA
         public static string BORDEREAUX_CHIFA_URL = "CFA_BORDEREAUX_CHIFA";

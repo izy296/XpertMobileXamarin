@@ -151,6 +151,14 @@ namespace XpertMobileApp.Services
             url += "&count=" + count;
             url += "&center=" + center;
             return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
+        } 
+        
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCfa_Beneficaires_Summary(string startDate, string endDate)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_SUMMARY_URL);
+            url += "?startDate=" + startDate;
+            url += "&endDate=" + endDate;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
         }
 
         internal static async Task<List<View_CFA_BORDEREAUX_CHIFA>> GetCFAByNumBordereaux(string numBorderaux)

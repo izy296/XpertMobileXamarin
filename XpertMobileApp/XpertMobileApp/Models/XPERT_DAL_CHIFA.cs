@@ -25,7 +25,7 @@ namespace XpertMobileApp.DAL
 
         //-------------------------
         public decimal MONT_ASSURE { get; set; }
-        public decimal SUM_MAJORATION { get; set; } 
+        public decimal SUM_MAJORATION { get; set; }
         public decimal TOTAL_FACTURES { get; set; }
 
         public decimal TOTAL_TO_PAY { get; set; }
@@ -245,4 +245,53 @@ namespace XpertMobileApp.DAL
         public static string Payed { get { return "05"; } }
         public static string Archived { get { return "06"; } }
     }
+    public partial class CFA_BENEFICIAIRE : BASE_CLASS
+    {
+        public string NO_ASSURE { get; set; } // char(12)
+        public string RANG_AD { get; set; } // char(2)
+        public string NOM { get; set; } // varchar(20)        
+        public string PRENOM { get; set; } // varchar(20)        
+        public string NOM_ASSURE { get; set; } // varchar(20)        
+        public string PRENOM_ASSURE { get; set; } // varchar(20)        
+    }
+
+    public partial class View_CFA_BENEFICIAIRE : CFA_BENEFICIAIRE
+    {
+
+    }
+
+    public partial class View_CFA_MOBILE_DETAIL_FACTURE : BASE_CLASS
+    {
+        public string NUM_ASSURE { get; set; }
+        public string NOMC_TIERS { get; set; }
+        public string LOT { get; set; }
+        public decimal SHP { get; set; }
+        public decimal PPA { get; set; }
+        public string DUREE_TRAIT { get; set; }
+        public decimal QUANTITE { get; set; }
+        public string PRIX_VENTE { get; set; }
+        public string RAND_AD { get; set; }
+        public string CODE_TIERS { get; set; }
+        public string NUM_BOURDEREAU { get; set; }
+        public DateTime DATE_FACTURE { get; set; }
+        public string CODE_CLIENT { get; set; }
+        public bool PSYCHOTHROPE { get; set; }
+        public decimal MONT_MAJORATION { get; set; }
+        public decimal MONT_FACTURE { get; set; }
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string TYPE_PRODUIT { get; set; }
+        public decimal TARIF { get; set; }
+        public string DOSAGE { get; set; }
+        public string DESIGN_FORME { get; set; }
+        public decimal TOTAL_FACTURES { get; set; }
+        public decimal MONTANT_FACTURES { get; set; }
+
+    }
+
+    public partial class CFA_MOBILE_DETAIL_FACTURE : View_CFA_MOBILE_DETAIL_FACTURE
+    {
+
+    }
+
 }
+

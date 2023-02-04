@@ -20,6 +20,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
         public string ICON { get; set; }
         public double NbFACTURE { get; set; }
         public double MtTotal { get; set; }
+        public bool ShowStats { get; set; }
     }
     public partial class ChifaMenu : ContentPage
     {
@@ -51,13 +52,23 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 ID = 0,
                 TITLE = "Bordereau",
                 BGCOLOR = "#f0f0f0",
-            });
+                ShowStats = true
+            }) ;
 
             MenuItems.Add(new MenuChifaItem
             {
                 ID = 1,
                 TITLE = "Aujourd'hui",
                 BGCOLOR = "#f0f0f0",
+                ShowStats = true
+            });
+
+            MenuItems.Add(new MenuChifaItem
+            {
+                ID = 2,
+                TITLE = AppResources.pn_Beneficiaire,
+                BGCOLOR = "#f0f0f0",
+                ShowStats = false
             });
 
         }
@@ -79,6 +90,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                         break;
                     case 1:
                         //Navigation.PushAsync(new RapportJournalierFactureCHIFA());
+                        break;
+                    case 2:
+                        Navigation.PushAsync(new BeneficiaresPage());
                         break;
                 }
 

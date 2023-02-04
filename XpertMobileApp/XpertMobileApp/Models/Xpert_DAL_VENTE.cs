@@ -743,6 +743,8 @@ namespace XpertMobileApp.DAL
         public decimal MONT_ACHAT { get; set; }
         public decimal MONT_TOTAL { get; set; }
         public string DESIGN_ETAT { get; set; }
+        public decimal TOTAL_ASSURE { get; set; }
+        public decimal TOTAL_AYD { get; set; }
     }
 
     public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA

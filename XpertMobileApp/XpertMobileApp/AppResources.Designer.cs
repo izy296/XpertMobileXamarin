@@ -3909,6 +3909,14 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_BordereauxChifa", resourceCulture);
             }
         }
+
+        public static string pn_Beneficiaire
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire", resourceCulture);
+            }
+        }
     }
 }
 

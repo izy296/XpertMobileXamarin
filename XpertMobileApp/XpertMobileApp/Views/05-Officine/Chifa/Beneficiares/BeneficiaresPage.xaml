@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:XBasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:base="clr-namespace:XpertMobileApp.Base"
+             x:Class="XpertMobileApp.Views.BeneficiaresPage"
+             Title="{Binding Title}">
+    <base:XBasePage.Content>
+        <StackLayout BackgroundColor="White">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Date Debute"
+                    FontSize="Micro"
+                    FontAttributes="Bold"
+                    VerticalOptions="End"
+                    TextColor="{DynamicResource NavigationPrimary}"
+                    />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Date Fin"
+                    FontSize="Micro"
+                    FontAttributes="Bold"
+                    VerticalOptions="End"
+                    TextColor="{DynamicResource NavigationPrimary}"
+                    />
+                <DatePicker 
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    TextColor="Black"
+                    FontSize="15"
+                    Format="dd-MM-yyyy"
+                    Date="{Binding StartDate, Mode=TwoWay}"
+                    DateSelected="DatePicker_PropertyChanged"/>
+                <DatePicker 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    TextColor="Black"
+                    FontSize="15"
+                    Format="dd-MM-yyyy"
+                    DateSelected="DatePicker_PropertyChanged"
+                    Date="{Binding EndDate, Mode=TwoWay}"/>
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Text="Total Assure"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="End"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{DynamicResource NavigationPrimary}"
+                    />
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="Total Ayd"
+                    FontSize="Medium"
+                    FontAttributes="Bold"
+                    VerticalOptions="End"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{DynamicResource NavigationPrimary}"
+                    />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Text="{Binding Summary.TOTAL_ASSURE}"
+                    FontSize="Small"
+                    VerticalOptions="Start"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    Text="{Binding Summary.TOTAL_AYD}"
+                    FontSize="Small"
+                    FontAttributes="Bold"
+                    VerticalOptions="Start"
+                    TextColor="Black"
+                    HorizontalOptions="CenterAndExpand"
+                    />
+            </Grid>
+            <RefreshView
+                    x:Name="refreshView"
+                    Refreshing="ExecutePullToRefresh"
+                    IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                    VerticalOptions="FillAndExpand">
+                <CollectionView
+                    x:Name="ListView"
+                    ItemsSource="{Binding Items}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SelectionChanged="OnItemSelected"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Always"
+                    RemainingItemsThreshold="1"
+                    RemainingItemsThresholdReachedCommand="{Binding ExecuteLoadItemsCommand}"
+                    ItemTemplate="{StaticResource BeneficiaresPageTemplate}">
+                </CollectionView>
+            </RefreshView>
+        </StackLayout>
+    </base:XBasePage.Content>
+</base:XBasePage>

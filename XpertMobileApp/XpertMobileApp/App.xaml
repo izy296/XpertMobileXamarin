@@ -185,7 +185,12 @@
             <DataTemplate x:Key="BordereauxCHIFA">
                 <template:BordereauxChifaPageTemplate />
             </DataTemplate>
-            <!-- ***************** Rotation *****************-->
+            
+            <!-- ***************** Benificiares CHIFA *****************-->
+            <DataTemplate x:Key="BeneficiaresPageTemplate">
+                <template:BeneficiaresPageTemplate />
+            </DataTemplate>
+            
 
 
 

@@ -83,21 +83,24 @@
                                        FontAttributes="Bold"
                                        TextColor="#0c0c0f"
                                        VerticalOptions="Center"
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding ShowStats}"/>
                                 
                                 <Label Grid.Row="2"
                                        Text="Factures"
                                        FontSize="13"
                                        TextColor="#0c0c0f"
                                        VerticalOptions="Center"
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding ShowStats}"/>
 
                                 <Label Grid.Row="3"
                                        FontSize="13"
                                        TextColor="#0c0c0d"
                                        Text="{Binding MtTotal}" 
                                        VerticalOptions="End"
-                                       HorizontalOptions="Center"/>
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding ShowStats}"/>
                             </Grid>
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="NavigateFromCHIFAMenu"/>
