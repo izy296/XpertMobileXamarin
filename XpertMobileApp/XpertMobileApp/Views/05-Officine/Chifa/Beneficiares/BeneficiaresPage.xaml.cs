@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -42,6 +43,10 @@ namespace XpertMobileApp.Views
         public override void SearchCommand()
         {
             base.SearchCommand();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await viewModel.ExecuteSearch(SearchBarText);
+            });
         }
 
 
@@ -49,6 +54,48 @@ namespace XpertMobileApp.Views
         {
             if (viewModel != null)
                 viewModel.ExecuteLoadItemsCommand();
+        }
+
+        private void Order_By_Clicked(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                viewModel.OrderBy++;
+                if (viewModel.OrderBy == 4)
+                    viewModel.OrderBy = -1;
+                switch (viewModel.OrderBy)
+                {
+                    case -1:
+                        btn_Order.IconImageSource = "SortBy.png";
+                        break;
+                    case 0:
+                        btn_Order.IconImageSource = "SortByAlphabetAsc.png";
+                        break;
+                    case 1:
+                        btn_Order.IconImageSource = "SortByAlphabetDesc.png";
+                        break;
+                    case 2:
+                        btn_Order.IconImageSource = "SortByNumberAsc.png";
+                        break;
+                    case 3:
+                        btn_Order.IconImageSource = "SortByNumberDesc.png";
+                        break;
+                }
+
+                if (viewModel.timer != null)
+                {
+                    viewModel.timer.Stop();
+                    viewModel.timer.Dispose();
+                }
+                viewModel.timer = new Timer();
+                viewModel.timer.Interval = 1000;
+                viewModel.timer.Elapsed += viewModel.t_Tick;
+                viewModel.timer.Start();
+                TotalSeconds = new TimeSpan(0, 0, 0, 2);
+
+            });
+
+
         }
     }
 }

@@ -91,4 +91,5 @@ namespace XpertMobileApp.Views
             await PopupNavigation.Instance.PushAsync(itemSelector);
         }
     }
+
 }

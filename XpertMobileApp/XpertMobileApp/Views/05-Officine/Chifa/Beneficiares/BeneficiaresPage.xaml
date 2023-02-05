@@ -3,7 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:base="clr-namespace:XpertMobileApp.Base"
              x:Class="XpertMobileApp.Views.BeneficiaresPage"
              Title="{Binding Title}">
+    <base:XBasePage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Order"  Text="OrderBy" Clicked="Order_By_Clicked">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="SortBy.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </base:XBasePage.ToolbarItems>
     <base:XBasePage.Content>
+            
         <StackLayout BackgroundColor="White">
             <Grid>
                 <Grid.RowDefinitions>
@@ -73,7 +83,7 @@
                 <Label
                     Grid.Row="3"
                     Grid.Column="0"
-                    Text="{Binding Summary.TOTAL_ASSURE}"
+                    Text="{Binding Summary.TOTAL_ASSURE,StringFormat='{0:N0}'}"
                     FontSize="Small"
                     VerticalOptions="Start"
                     TextColor="Black"
@@ -82,7 +92,7 @@
                 <Label
                     Grid.Row="3"
                     Grid.Column="1"
-                    Text="{Binding Summary.TOTAL_AYD}"
+                    Text="{Binding Summary.TOTAL_AYD,StringFormat='{0:N0}'}"
                     FontSize="Small"
                     FontAttributes="Bold"
                     VerticalOptions="Start"
@@ -104,7 +114,7 @@
                     SelectionMode="Single"
                     VerticalScrollBarVisibility="Always"
                     RemainingItemsThreshold="1"
-                    RemainingItemsThresholdReachedCommand="{Binding ExecuteLoadItemsCommand}"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadItemsMoreCommand}"
                     ItemTemplate="{StaticResource BeneficiaresPageTemplate}">
                 </CollectionView>
             </RefreshView>
