@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA.CHIFATemplateFacture">
+    <ContentView.Content>
+        <StackLayout>
+            <StackLayout Padding="2">
+                <yummy:PancakeView  
+                                Margin="10" 
+                                Padding="15" 
+                                CornerRadius="10" 
+                                BackgroundColor="White" >
+                    <yummy:PancakeView.Shadow>
+                        <yummy:DropShadow Color="#000000" Offset="4,4" />
+                    </yummy:PancakeView.Shadow>
+
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="20"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <Label Grid.Row="0"  
+                               Grid.ColumnSpan="2" 
+                               Text="{Binding NOMC_TIERS,FallbackValue='Nom Prénom'}" 
+                               FontSize="Medium" 
+                               TextColor="Black" />
+
+                        <!--Left Side-->
+
+                        <!--Num Facture-->
+                        <Label Grid.Row="1"  
+                               Grid.Column="0" 
+                               Text="N° Facture" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}" />
+
+                        <Label Grid.Row="2"  
+                               Grid.Column="0" 
+                               Text="{Binding NUM_FACTURE}" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+                        <!--Date de soin-->
+                        <Label Grid.Row="3"  
+                               Grid.Column="0" 
+                               Text="Date de Soin" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}" />
+                        
+                        <Label Grid.Row="4"  
+                               Grid.Column="0" 
+                               Text="{Binding DATE_SOIN,FallbackValue='N/A'}" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+                        <!--Nombre de vignettes-->
+                        <Label Grid.Row="5"  
+                               Grid.Column="0" 
+                               Text="Nombre de Vignettes" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}" />
+                        
+                        <Label Grid.Row="6"  
+                               Grid.Column="0" 
+                               Text="N/A" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+                        <!--Right Side-->
+
+                        <!--Numero Assuré-->
+                        <Label Grid.Row="1"  
+                               Grid.Column="1" 
+                               Text="N° Assuré" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}" 
+                                           />
+                        <Label Grid.Row="2"  
+                               Grid.Column="1" 
+                               Text="{Binding NUMASSUR_RAND,FallbackValue='N/A'}" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+                        <!--Mont Facture-->
+                        <Label Grid.Row="3"  
+                               Grid.Column="1" 
+                               Text="Mont. Facture" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+                        
+                        <Label Grid.Row="4"  
+                               Grid.Column="1" 
+                               Text="{Binding MONT_FACTURE,StringFormat='{0:N2} DA'}" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+                        <!--Specialite-->
+                        <Label Grid.Row="5"  
+                               Grid.Column="1" 
+                               Text="Spécialité" 
+                               FontSize="Micro" 
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+                        
+                        <Label Grid.Row="6"  
+                               Grid.Column="1" 
+                               Text="Generalist" 
+                               FontSize="Small" 
+                               TextColor="Black"/>
+
+
+                    </Grid>
+
+                </yummy:PancakeView>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

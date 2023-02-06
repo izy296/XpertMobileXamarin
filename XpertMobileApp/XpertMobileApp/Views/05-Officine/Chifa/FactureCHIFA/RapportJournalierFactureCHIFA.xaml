@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA.RapportJournalierFactureCHIFA"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms" xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" xmlns:template1="clr-namespace:XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA" xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             Title="Rapport journalier"
+             BackgroundColor="#ffffff">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <!--Carousel to show different day to apply in filter -->
+            <StackLayout VerticalOptions="Start"
+                         HeightRequest="40"
+                         Orientation="Horizontal"
+                         Padding="10,0"
+                         BackgroundColor="#087565">
+                <syncfusion1:SfListView x:Name="listView1" 
+                                        IsScrollBarVisible="false"
+                                        SelectionGesture="Tap"
+                                        SelectionMode="Single"
+                                        IsStickyHeader="True"
+                                        Orientation="Horizontal"
+                                        ItemSize="90"
+                                        SelectionBackgroundColor="#fff"
+                                        ItemsSource="{Binding DateTimeListe}">
+
+
+                    <syncfusion1:SfListView.SelectedItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Text="{Binding DesignationDate}"
+                                        Padding="0"
+                                        WidthRequest="90"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="#fff"
+                                        TextColor="#f1f1f1"
+                                        Grid.Column="0"
+                                        FontSize="13"
+                                        Clicked="selectDate"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </syncfusion1:SfListView.SelectedItemTemplate>
+                    <syncfusion1:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="90"/>
+                                </Grid.ColumnDefinitions>
+                                <Button Text="{Binding DesignationDate}"
+                                        Padding="0"
+                                        WidthRequest="90"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="Transparent"
+                                        TextColor="#f1f1f1"
+                                        Grid.Column="0"
+                                        FontSize="13"
+                                        Clicked="selectDate"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </syncfusion1:SfListView.ItemTemplate>
+                </syncfusion1:SfListView>
+
+
+            </StackLayout>
+
+
+            <!--Partie des totaux-->
+            <yummy:PancakeView BackgroundColor="#fff"
+                               CornerRadius="12"
+                               Margin="5"
+                               Padding="5">
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow Color="#000000" Offset="2,2" />
+                </yummy:PancakeView.Shadow>
+                <syncfusion:SfExpander x:Name="expander" 
+                                       IsExpanded="True"
+                                       BackgroundColor="#fff">
+
+                    <!--Header-->
+                    <syncfusion:SfExpander.Header>
+                        <Grid>
+                            <Label  Text="Totaux"
+                                    FontSize="18"
+                                    FontAttributes="Bold"
+                                    Padding="5,10"
+                                    TextColor="#0c0c0f"
+                                    VerticalTextAlignment="Center"/>
+                        </Grid>
+                    </syncfusion:SfExpander.Header>
+
+                    <!--Body-->
+
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="5,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <Label Grid.Row="0"
+                               TextColor="#38383A"
+                               HeightRequest="20" 
+                               FontAttributes="bold"
+                               Text="{Binding InfoFacture}" 
+                               VerticalTextAlignment="Center"/>
+
+                            <BoxView Grid.Row="1" 
+                                 BackgroundColor="#ddd"/>
+
+                            <Grid Grid.Row="2" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Montant Officine-->
+                                <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Montant Officine"/>
+
+                                <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   HorizontalOptions="End"
+                                   Text="{Binding TotauxFactures.MONT_OFFICINE,StringFormat='{0:N2} DA'}"/>
+
+                                <!--Montant Majoration-->
+                                <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="Montant Majoration"/>
+
+                                <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   HorizontalOptions="End"
+                                   Text="{Binding TotauxFactures.MONT_MAJORATION,StringFormat='{0:N2} DA'}"/>
+
+                                <!--Montant Assuré-->
+                                <Label Grid.Row="2"
+                                   Grid.Column="0"
+                                   Text="Montant Assuré"/>
+
+                                <Label Grid.Row="2"
+                                   Grid.Column="1"
+                                   HorizontalOptions="End"
+                                   Text="{Binding TotauxFactures.MONT_ASSURE,StringFormat='{0:N2} DA'}"/>
+                            </Grid>
+
+
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                    <!--Custimaztion-->
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup>
+                                <VisualState Name="Expanded">
+                                    <VisualState.Setters>
+                                        <Setter Property="HeaderBackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Collapsed">
+                                    <VisualState.Setters>
+                                        <Setter Property="HeaderBackgroundColor" Value="transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </syncfusion:SfExpander>
+            </yummy:PancakeView>
+
+            <!--liste des facture par date-->
+            <Frame Background="#fff"
+                   CornerRadius="12"       
+                   Margin="5"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" 
+                                 Grid.RowSpan="2"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2">
+                        <Label 
+                            Padding="10,15,10,20"
+                            Text="Liste des Factures"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#0c0c0f"/>
+                        <!--Liste view des facture-->
+
+                        <ListView 
+                              x:Name="ItemsListView"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding Items}"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding LoadItemsCommand}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement"
+                              ItemSelected="OnItemSelected">
+
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <template1:CHIFATemplateFacture />
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Grid>
+                            </ListView.Footer>
+                        </ListView>
+                    </StackLayout>
+                    <!--floating button-->
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        x:Name="floatingButton" 
+                        ImageSource="filter.png"
+                        IsVisible="True"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                        CornerRadius="100"
+                        BackgroundColor="{Binding EtatFiltre}"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Padding="10"
+                        Margin="0,0,15,15"
+                        Clicked="ShowHideFilter"
+                />
+                </Grid>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

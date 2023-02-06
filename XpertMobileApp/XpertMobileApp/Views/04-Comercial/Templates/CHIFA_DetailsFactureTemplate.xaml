@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             x:Class="XpertMobileApp.Views._04_Comercial.Templates.CHIFA_DetailsFactureTemplate">
+    <ContentView.Content>
+        <yummy:PancakeView  BackgroundColor="#fff"
+                            Padding="10"
+                            Margin="0,5"
+                            CornerRadius="12">
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                </Grid.RowDefinitions>
+
+                <!--Designation produit Row One-->
+                <StackLayout Grid.Column="0" 
+                             Grid.ColumnSpan="3" 
+                             Grid.Row="0" 
+                             Spacing="5" 
+                             Padding="0" 
+                             Orientation="Horizontal">
+
+                    <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                           TextColor="{DynamicResource NavigationPrimary}" 
+                           FontAttributes="Bold" 
+                           FontSize="Default"/>
+
+                </StackLayout>
+                <yummy:PancakeView
+                    Grid.Row="3"
+                    Grid.Column="2"
+                    BackgroundColor="red"
+                    CornerRadius="7"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    IsVisible="{Binding isPsychotrope}"
+                    HeightRequest="20"
+                    WidthRequest="30">
+
+                    <Label Text="PSY" 
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           TextColor="#fff" 
+                           FontSize="7"/>
+
+                </yummy:PancakeView>
+
+                <!--ROW TWO-->
+                <Label Grid.Column="2" 
+                       Grid.Row="1" 
+                       Text="{ Binding MONT_MAJORATION, StringFormat='Major.: {0:N2}'}" 
+                       TextColor="black"
+                       FontSize="13" 
+                       HorizontalOptions="Start" />
+
+                <Label Grid.Column="1" 
+                       Grid.Row="1" 
+                       Text="{ Binding SHP, StringFormat='SHP : {0:N2}'}" 
+                       FontSize="13" 
+                       HorizontalOptions="Start" 
+                       TextColor="black"/>
+
+                <Label Grid.Column="0" 
+                       Grid.Row="1" 
+                       Text="{ Binding PPA, StringFormat=' PPA : {0:N2}'}" 
+                       FontSize="13" 
+                       HorizontalOptions="Start" 
+                       TextColor="black"/>
+
+
+
+                <!--ROW THREE-->
+                <Label Grid.Column="0" 
+                       Grid.Row="2" 
+                       Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
+                       TextColor="black"
+                       FontSize="13" 
+                       HorizontalOptions="Start" />
+
+                <Label Grid.Column="1" 
+                       Grid.Row="2" 
+                       Text="{ Binding PRIX_VENTE, StringFormat='PV : {0:N2}'}" 
+                       FontSize="13"
+                       HorizontalOptions="Start" 
+                       TextColor="black"/>
+
+
+                <!--Row Four-->
+                <Label Grid.Column="0" 
+                       Grid.Row="3" 
+                       Text="{ Binding DUREE_TRAIT, StringFormat='Traitement :{0}Jr'}" 
+                       TextColor="black"
+                       FontSize="13"
+                       HorizontalOptions="Start" />
+
+                <Label Grid.Column="1" 
+                       Grid.Row="3" 
+                       Text="{ Binding MONT_ASSURE, StringFormat='MT.ASSU : {0:N2}'}"
+                       FontSize="13" 
+                       HorizontalOptions="Start" 
+                       TextColor="black"/>
+
+                <Label Grid.Column="2" 
+                       Grid.Row="3" 
+                       Text="{ Binding MT_VENTE, StringFormat='MT.Vente: {0:N2}'}"                       
+                       FontSize="13"
+                       HorizontalOptions="Start" 
+                       TextColor="black"/>
+
+
+            </Grid>
+        </yummy:PancakeView>
+    </ContentView.Content>
+</ContentView>

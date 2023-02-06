@@ -188,6 +188,26 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
+        internal static async Task<List<DateTime>> get_CFA_Fact_Dates()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_DATE);
+
+            return await RetrievAauthorizedData<DateTime>(url);
+        }
+        
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetDetailsFacture(string codeFacture)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_DETAIL_FACTURE);
+            url += "?NumFacture=" + codeFacture;
+            return await RetrievValAauthorizedData<List<View_CFA_MOBILE_DETAIL_FACTURE>>(url);
+        }
+
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetTotauxFactureCHIFA(DateTime date)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_TOTAUX_FACTURE);
+            url += "?date=" + date;
+            return await RetrievValAauthorizedData<List<View_CFA_MOBILE_FACTURE>>(url);
+        }
 
         internal static async Task<List<Get_Print_VTE_TiketCaisse>> GetDataTecketCaisseVente(string res)
         {
@@ -272,7 +292,7 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.New_Version_URL);
             return await RetrievValAauthorizedData<string>(url);
         }
-        
+
         internal static async Task<string> GetNewWebApiVersion()
         {
             string url = WSApi2.CreateLink(ServiceUrlDico.WEBAPI_XML_URL);
@@ -517,7 +537,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<BSE_TABLE_TYPE>(url);
         }
 
-        public static async Task<List<RotationDesProduitsDetails>> GetRotationProduitDetails(string codeProduit, string startDate, string endDate,string domain)
+        public static async Task<List<RotationDesProduitsDetails>> GetRotationProduitDetails(string codeProduit, string startDate, string endDate, string domain)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ROTATION_URL, ServiceUrlDico.ROTATION_SELECT_PRODUCT);
             url += WSApi2.AddParam(url, "codeProduit", codeProduit);
@@ -631,7 +651,6 @@ namespace XpertMobileApp.Services
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.SORTIE_TYPE_URL, ServiceUrlDico.SORTIE_GET_TYPE);
             return await RetrievAauthorizedData<BSE_SORTIE_TYPE>(url);
         }
-
         /// <summary>
         /// pour la recupérarion des types des sortie de stock
         /// </summary>
@@ -659,7 +678,7 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "typeTiers", typeTiers);
             url += WSApi2.AddParam(url, "isPharmacien", isPharmacien);
             return await RetrievAauthorizedData<View_TRS_TIERS>(url);
-        } 
+        }
         internal static async Task<List<View_TRS_TIERS>> GetTier(string codeTier)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TRS_TIER_GET_TIER);
@@ -695,7 +714,6 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT_DETAIL>(url);
         }
-
         //internal static async Task<View_STK_INVENTAIRE_DETAIL> GetInventaireDetail(string numIvent, string codeBarre)
         //{
         //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);
@@ -713,9 +731,8 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.USER_URL, ServiceUrlDico.USER_GET_IDS);
             return await RetrievAauthorizedData<View_SYS_USER>(url);
-
-            #endregion
         }
+        #endregion
         internal static async Task<bool> printTicket(string codeVent, string printerName)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);

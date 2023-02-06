@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             xmlns:template="clr-namespace:XpertMobileApp.Views._04_Comercial.Templates"
+             Title="{Binding NavigationBar_Title}" 
+             x:Class="XpertMobileApp.Views._04_Comercial.Templates.CHIFA_FactureDetailsTemplate">
+
+    <ContentPage.Content>
+        <StackLayout Background="#fff">
+            <yummy:PancakeView VerticalOptions="Start" 
+                               BackgroundColor="#fff"
+                               Padding="10"
+                               Margin="10"
+                               CornerRadius="12">
+                                <yummy:PancakeView.Shadow> 
+                                    <yummy:DropShadow Color="#000000" Offset="4,4" /> 
+                                </yummy:PancakeView.Shadow>
+                <Grid >
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="25"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Numero facture-->
+                    <FlexLayout Direction="Row" JustifyContent="Start" AlignItems="Center"
+                                Grid.Row="0" 
+                                Grid.Column="0" 
+                                Grid.ColumnSpan="2">
+                        <Label Text="Bénéf : "
+                               FontSize="13"
+                               FontAttributes="bold"
+                               VerticalOptions="Center"
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+
+                        <Label Text="{Binding BENEFICIAIRE}" 
+                               FontSize="12"
+                               VerticalOptions="Center"
+                               TextColor="#0c0c0f"/>
+                    </FlexLayout>
+
+                    <!--N° bordereau-->
+                    <FlexLayout Direction="Row" JustifyContent="Start" AlignItems="Center" Grid.Row="1" Grid.Column="0">
+                        <Label Text="N° Bordereau : "
+                               FontAttributes="bold"
+                               FontSize="13"
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+
+                        <Label Text="{Binding NumBorderau}" 
+                               Margin="5,0,0,0"
+                               FontSize="12"
+                               VerticalOptions="Center"
+                               TextColor="#0c0c0f"/>
+                    </FlexLayout>
+
+                    <!--N° Assuré-->
+                    <FlexLayout Direction="row" JustifyContent="Start" AlignItems="Center" Grid.Row="1" Grid.Column="1">
+                        <Label Text="N° Bénéf : "
+                               FontSize="13"
+                               FontAttributes="bold"
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+
+                        <Label Text="{Binding CfaFacture.NUM_ASSURE}"
+                               FontSize="12"
+                               VerticalOptions="Center"
+                               TextColor="#0c0c0f"/>
+                    </FlexLayout>
+
+                    <!--Date Facture-->
+                    <FlexLayout Direction="row" JustifyContent="Start" AlignItems="Center" Grid.Row="2" Grid.Column="0">
+                        <Label Text="Date Facture : "
+                               FontSize="13"
+                               FontAttributes="bold"
+                               VerticalOptions="Center"
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+
+                        <Label Text="{Binding CfaFacture.DATE_FACTURE,StringFormat='{0:dd/MM/yyyy}'}" 
+                               FontSize="12"
+                               VerticalOptions="Center"
+                               TextColor="#0c0c0f"/>
+                    </FlexLayout>
+
+                    <!--Montant Majoration-->
+                    <FlexLayout Direction="row" JustifyContent="Start" AlignItems="Center" Grid.Row="2" Grid.Column="1">
+                        <Label Text="MT.Majoration : "
+                               FontSize="13"
+                               FontAttributes="bold"
+                               VerticalOptions="Center"
+                               TextColor="{DynamicResource NavigationPrimary}"/>
+
+                        <Label Text="{Binding MtMajoration}" 
+                               FontSize="12"
+                               VerticalOptions="Center"
+                               TextColor="#0c0c0f"/>
+                    </FlexLayout>
+
+                    <!--partie des totaux-->
+                    <yummy:PancakeView
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        BackgroundColor="{DynamicResource NavigationPrimary}"
+                        Padding="10"
+                        CornerRadius="12">  
+                        <StackLayout>
+                            <FlexLayout JustifyContent="SpaceBetween" Direction="Row">
+                                <Label Text="Prix total : " TextColor="#fff"/>
+                                <Label Text="{Binding PrixTotal, StringFormat='{0:N2} DA'}" TextColor="#fff"/>
+                            </FlexLayout>
+
+                            <FlexLayout JustifyContent="SpaceBetween" Direction="Row">
+                                <Label Text="Tarif Total : " TextColor="#fff"/>
+                                <Label Text="{Binding TarifTotal, StringFormat='{0:N2} DA'}" TextColor="#fff"/>
+                            </FlexLayout>
+                        </StackLayout>
+                    </yummy:PancakeView>
+
+                </Grid>
+            </yummy:PancakeView>
+
+            <yummy:PancakeView BackgroundColor="#f1f1f1"
+                               Padding="10"
+                               Margin="0"
+                               CornerRadius="12">
+
+                <ListView x:Name="ItemsListView"
+                    VerticalOptions="Fill"
+                    ItemsSource="{Binding FactureDetail}"
+                    HasUnevenRows="true" 
+                    SeparatorVisibility="None"                            
+                    RefreshCommand="{Binding LoadItemsCommand}"
+                    IsPullToRefreshEnabled="true"
+                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                    CachingStrategy="RecycleElement"
+                    ItemSelected="OnItemSelected">
+
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <template:CHIFA_DetailsFactureTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+
+                </ListView>
+            </yummy:PancakeView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

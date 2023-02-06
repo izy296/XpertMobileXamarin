@@ -75,7 +75,7 @@ namespace XpertMobileApp.DAL
             {
                 if (tOTAL_TTC != value)
                 {
-                    tOTAL_TTC=value;
+                    tOTAL_TTC = value;
                     OnPropertyChanged("TOTAL_TTC");
                 }
             }
@@ -734,6 +734,7 @@ namespace XpertMobileApp.DAL
         public decimal MONT_ASSURE { get; set; }
         public decimal MONT_FACTURE { get; set; }
         public string CODE_CLIENT { get; set; }
+        public string RAND_AD { get; set; }
     }
 
     public partial class View_CFA_MOBILE_FACTURE : FACTURE_CHIFA
@@ -743,8 +744,74 @@ namespace XpertMobileApp.DAL
         public decimal MONT_ACHAT { get; set; }
         public decimal MONT_TOTAL { get; set; }
         public string DESIGN_ETAT { get; set; }
+        public double MONT_MAJORATION { get; set; }
+        public double TOTAL_CHIFA { get; set; }
+        public double TOTAL_CASNOS { get; set; }
+        public double TOTAL_HORS_CHIFA { get; set; }
+        public string NUMASSUR_RAND
+        {
+            get
+            {
+                return NUM_ASSURE.ToString() + "-" + RAND_AD.ToString();
+            }
+            set
+            {
+                NUMASSUR_RAND = value;
+            }
+        }
+        //for Mobile only 
+        public string NavigationBar_Title
+        {
+            get
+            {
+                return $"Facture N° {NUM_FACTURE} {String.Format($"Du :{DATE_FACTURE:dd/MM/yyyy}")}";
+            }
+            set
+            {
+                NavigationBar_Title = value;
+            }
+        }
+
         public decimal TOTAL_ASSURE { get; set; }
         public decimal TOTAL_AYD { get; set; }
+    }
+
+    /// <summary>
+    /// Vue créer pour avoir 
+    /// </summary>
+    public partial class View_CFA_MOBILE_DETAIL_FACTURE : BASE_CLASS
+    {
+        public double SHP { get; set; }
+        public double PPA { get; set; }
+        public int DUREE_TRAIT { get; set; }
+        public int QUANTITE { get; set; }
+        public double PRIX_VENTE { get; set; }
+        public string NUM_BOURDEREAU { get; set; }
+        public DateTime DATE_FACTURE { get; set; }
+        public int PSYCHOTHROPE { get; set; }
+        public string NUM_FACTURE { get; set; }
+        public double MONT_MAJORATION { get; set; }
+        public string DESIGNATION_PRODUIT { get; set; }
+        public string TYPE_PRODUIT { get; set; }
+        public double TARIF { get; set; }
+        public string DOSAGE { get; set; }
+        public string DESIGN_FORME { get; set; }
+        public double MONT_ASSURE { get; set; }
+        public bool isPsychotrope
+        {
+            get
+            {
+                if(this.PSYCHOTHROPE == 0)
+                {
+                    return false;
+                }
+                return true;
+            }
+            set
+            {
+                isPsychotrope = value;  
+            }
+        }
     }
 
     public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA
@@ -765,8 +832,6 @@ namespace XpertMobileApp.DAL
         public int importSate { get; set; }
         public string ETAT_ENCAISS { get; set; }
         public decimal MONT_ASSURE_SANS_REMISE { get; set; }
-
-
     }
 
     #region Livraison
