@@ -1453,4 +1453,22 @@
   <data name="pn_Beneficiaire" xml:space="preserve">
     <value>Beneficiaires</value>
   </data>
+  <data name="pn_Beneficiaire_OrederBy_Num_ASC" xml:space="preserve">
+    <value>Trier par Num Assure ↑</value>
+  </data>
+  <data name="pn_Beneficiaire_OrederBy_Num_DESC" xml:space="preserve">
+    <value>Trier par Num Assure ↓</value>
+  </data>
+  <data name="pn_Beneficiaire_OrederBy_Montant_ASC" xml:space="preserve">
+    <value>Trier par Montant Factures ↑</value>
+  </data>
+  <data name="pn_Beneficiaire_OrederBy_Montant_DESC" xml:space="preserve">
+    <value>Trier par Montant Factures ↓</value>
+  </data>
+  <data name="pn_Beneficiaire_OrederBy_nbrFacts_ASC" xml:space="preserve">
+    <value>Trier par Nbr Factures ↑</value>
+  </data>
+  <data name="pn_Beneficiaire_OrederBy_nbrFacts_DESC" xml:space="preserve">
+    <value>Trier par Nbr Factures ↓</value>
+  </data>
 </root>

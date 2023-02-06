@@ -1294,4 +1294,22 @@
 	<data name="pn_Beneficiaire" xml:space="preserve">
     <value>قائمة المستفيدين</value>
   </data>
+	<data name="pn_Beneficiaire_OrederBy_Num_ASC" xml:space="preserve">
+    <value>الفرز حسب رقم المؤمن عليه ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Num_DESC" xml:space="preserve">
+    <value>الفرز حسب رقم المؤمن عليه ↓</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Montant_ASC" xml:space="preserve">
+    <value>فرز حسب مبلغ الفواتير ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Montant_DESC" xml:space="preserve">
+    <value>فرز حسب مبلغ الفواتير ↓</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_nbrFacts_ASC" xml:space="preserve">
+    <value>فرز حسب عدد الفواتير ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_nbrFacts_DESC" xml:space="preserve">
+    <value>فرز حسب عدد الفواتير ↓</value>
+  </data>
 </root>

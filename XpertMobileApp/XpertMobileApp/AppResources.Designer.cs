@@ -3917,6 +3917,54 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire", resourceCulture);
             }
         }
+        
+        public static string pn_Beneficiaire_OrederBy_Num_ASC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Num_ASC", resourceCulture);
+            }
+        }
+        
+        public static string pn_Beneficiaire_OrederBy_Num_DESC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Num_DESC", resourceCulture);
+            }
+        }
+        
+        public static string pn_Beneficiaire_OrederBy_Montant_ASC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Montant_ASC", resourceCulture);
+            }
+        }
+        
+        public static string pn_Beneficiaire_OrederBy_Montant_DESC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Montant_DESC", resourceCulture);
+            }
+        }
+        
+        public static string pn_Beneficiaire_OrederBy_nbrFacts_ASC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_nbrFacts_ASC", resourceCulture);
+            }
+        }
+        
+        public static string pn_Beneficiaire_OrederBy_nbrFacts_DESC
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_Beneficiaire_OrederBy_nbrFacts_DESC", resourceCulture);
+            }
+        }
     }
 }
 

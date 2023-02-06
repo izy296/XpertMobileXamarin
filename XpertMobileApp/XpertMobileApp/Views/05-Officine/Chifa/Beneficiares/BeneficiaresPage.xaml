@@ -4,13 +4,22 @@
              x:Class="XpertMobileApp.Views.BeneficiaresPage"
              Title="{Binding Title}">
     <base:XBasePage.ToolbarItems>
-        <ToolbarItem x:Name="btn_Order"  Text="OrderBy" Clicked="Order_By_Clicked">
+        <!--<ToolbarItem x:Name="btn_Order"  Text="OrderBy" Clicked="Order_By_Clicked" Order="Primary">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="Android" Value="SortBy.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>
+        </ToolbarItem>-->
+        <ToolbarItem x:Name="btn_Order_nb_asc" IconImageSource="SortBy.png"  Text="Trier par Num Assure ↑" Clicked="Order_By_Clicked" Order="Secondary"/>
+        <ToolbarItem x:Name="btn_Order_nb_desc" IconImageSource="SortBy.png"  Text="Trier par Num Assure ↓" Clicked="Order_By_Clicked" Order="Secondary"/>
+
+        <ToolbarItem x:Name="btn_Order_Money_asc" IconImageSource="SortBy.png"  Text="Trier par Montant Factures ↑" Clicked="Order_By_Clicked" Order="Secondary"/>
+        <ToolbarItem x:Name="btn_Order_Money_desc" IconImageSource="SortBy.png"  Text="Trier par Montant Factures ↓" Clicked="Order_By_Clicked" Order="Secondary"/>
+
+        <ToolbarItem x:Name="btn_Order_Factures_asc" IconImageSource="SortBy.png" Text="Trier par Nbr Factures ↑" Clicked="Order_By_Clicked" Order="Secondary"/>
+        <ToolbarItem x:Name="btn_Order_Factures_desc" IconImageSource="SortBy.png" Text="Trier par Nbr Factures ↓" Clicked="Order_By_Clicked" Order="Secondary"/>
+
     </base:XBasePage.ToolbarItems>
     <base:XBasePage.Content>
             
@@ -106,7 +115,7 @@
                     IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
                     VerticalOptions="FillAndExpand">
                 <CollectionView
-                    x:Name="ListView"
+                    x:Name="ItemsListView"
                     ItemsSource="{Binding Items}"
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"

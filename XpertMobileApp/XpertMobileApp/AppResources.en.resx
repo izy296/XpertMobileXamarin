@@ -1203,4 +1203,22 @@
    <data name="pn_Beneficiaire" xml:space="preserve">
     <value>	List of Beneficiaries</value>
   </data>
+	<data name="pn_Beneficiaire_OrederBy_Num_ASC" xml:space="preserve">
+    <value>Sort by Num Assure ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Num_DESC" xml:space="preserve">
+    <value>Sort by Num Assure ↓</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Montant_ASC" xml:space="preserve">
+    <value>Sort by Amount Invoices ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_Montant_DESC" xml:space="preserve">
+    <value>Sort by Amount Invoices ↓</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_nbrFacts_ASC" xml:space="preserve">
+    <value>Sort by Nbr Invoices ↑</value>
+  </data>
+	<data name="pn_Beneficiaire_OrederBy_nbrFacts_DESC" xml:space="preserve">
+    <value>Sort by Nbr Invoices ↓</value>
+  </data>
 </root>

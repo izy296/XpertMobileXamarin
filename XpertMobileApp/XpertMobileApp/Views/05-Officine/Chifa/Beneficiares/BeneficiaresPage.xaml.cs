@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Base;
 using XpertMobileApp.Views._05_Officine.Chifa.Beneficiares;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views
 {
@@ -23,20 +24,31 @@ namespace XpertMobileApp.Views
             viewModel.Title = AppResources.pn_Beneficiaire;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
-            viewModel.ExecuteLoadItemsCommand();
+            if (viewModel.Items.Count==0)
+               await viewModel.ExecuteLoadItemsCommand();
         }
 
         private void ExecutePullToRefresh(object sender, EventArgs e)
         {
             viewModel.ExecuteLoadItemsCommand();
+            viewModel.IsRefreshing = false;
         }
 
-        private void OnItemSelected(object sender, SelectionChangedEventArgs e)
+        private async void OnItemSelected(object sender, SelectionChangedEventArgs e)
         {
+            View_CFA_MOBILE_DETAIL_FACTURE item = null;
+            if (e.CurrentSelection.Count > 0)
+                item = e.CurrentSelection[0] as View_CFA_MOBILE_DETAIL_FACTURE;
+            if (item == null)
+                return;
 
+            await Navigation.PushAsync(new BeneficiaresDetailPage(item));
+
+            // Manually deselect item.
+            ItemsListView.SelectedItem = null;
         }
 
 
@@ -58,43 +70,33 @@ namespace XpertMobileApp.Views
 
         private void Order_By_Clicked(object sender, EventArgs e)
         {
-            Device.BeginInvokeOnMainThread(async () =>
+            var text = (sender as ToolbarItem).Text;
+            if (text == AppResources.pn_Beneficiaire_OrederBy_Num_ASC)
             {
-                viewModel.OrderBy++;
-                if (viewModel.OrderBy == 4)
-                    viewModel.OrderBy = -1;
-                switch (viewModel.OrderBy)
-                {
-                    case -1:
-                        btn_Order.IconImageSource = "SortBy.png";
-                        break;
-                    case 0:
-                        btn_Order.IconImageSource = "SortByAlphabetAsc.png";
-                        break;
-                    case 1:
-                        btn_Order.IconImageSource = "SortByAlphabetDesc.png";
-                        break;
-                    case 2:
-                        btn_Order.IconImageSource = "SortByNumberAsc.png";
-                        break;
-                    case 3:
-                        btn_Order.IconImageSource = "SortByNumberDesc.png";
-                        break;
-                }
+                viewModel.OrderBy = 0;
+            }
+            else if (text == AppResources.pn_Beneficiaire_OrederBy_Num_DESC)
+            {
+                viewModel.OrderBy = 1;
+            }            
+            else if (text == AppResources.pn_Beneficiaire_OrederBy_Montant_ASC)
+            {
+                viewModel.OrderBy = 2;
+            }   
+            else if (text == AppResources.pn_Beneficiaire_OrederBy_Montant_DESC)
+            {
+                viewModel.OrderBy = 3;
+            }
+            else if (text == AppResources.pn_Beneficiaire_OrederBy_nbrFacts_ASC)
+            {
+                viewModel.OrderBy = 4;
+            }
+            else if (text == AppResources.pn_Beneficiaire_OrederBy_nbrFacts_DESC)
+            {
+                viewModel.OrderBy = 5;
+            }
 
-                if (viewModel.timer != null)
-                {
-                    viewModel.timer.Stop();
-                    viewModel.timer.Dispose();
-                }
-                viewModel.timer = new Timer();
-                viewModel.timer.Interval = 1000;
-                viewModel.timer.Elapsed += viewModel.t_Tick;
-                viewModel.timer.Start();
-                TotalSeconds = new TimeSpan(0, 0, 0, 2);
-
-            });
-
+            viewModel.ExecuteLoadItemsCommand();
 
         }
     }

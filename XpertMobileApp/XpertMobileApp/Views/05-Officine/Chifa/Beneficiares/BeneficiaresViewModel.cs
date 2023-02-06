@@ -36,11 +36,13 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
         public DateTime EndDate { get; set; } = DateTime.Now;
 
         // -1 order by disabled
-        // 0 order by nom asc
-        // 1 order by nom desc
-        // 2 order by num asc
-        // 3 order by num desc
-        private int orderBy { get; set; } = -1;
+        // 0 order by num asc
+        // 1 order by num desc
+        // 2 order by nbr asc
+        // 3 order by nbr desc
+        // 4 order by montant asc
+        // 5 order by montant desc
+        private int orderBy { get; set; } = 0;
         public int OrderBy
         {
             get
@@ -80,16 +82,16 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
                 OnPropertyChanged("Summary");
             }
         }
-        private bool isRefresing { get; set; } = false;
+        private bool isRefreshing { get; set; } = false;
         public bool IsRefreshing
         {
             get
             {
-                return isRefresing;
+                return isRefreshing;
             }
             set
             {
-                isRefresing = value;
+                isRefreshing = value;
                 OnPropertyChanged("IsRefreshing");
             }
         }
@@ -112,7 +114,8 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
 
         protected override QueryInfos GetSelectParams()
         {
-            return base.GetSelectParams();
+            base.GetSelectParams();
+            return qb.QueryInfos;
         }
 
         protected override QueryInfos GetFilterParams()
@@ -120,19 +123,21 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
             base.GetFilterParams();
             if (!string.IsNullOrEmpty(SearchText))
                 this.AddCondition<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NOMC_TIERS, Operator.LIKE_ANY, SearchText);
+            this.AddSelect("NUM_ASSURE,NOMC_TIERS,CODE_TIERS,RAND_AD,COUNT(NUM_ASSURE) TOTAL_FACTURES,SUM(MONT_FACTURE) MONTANT_FACTURES,DATE_FACTURE");
             this.AddCondition<View_CFA_MOBILE_DETAIL_FACTURE, DateTime>(e => e.DATE_FACTURE, Operator.BETWEEN_DATE, StartDate, EndDate);
-            this.AddSelect("NUM_ASSURE,NOMC_TIERS,RAND_AD,COUNT(NUM_ASSURE) TOTAL_FACTURES,SUM(MONT_FACTURE) MONTANT_FACTURES,DATE_FACTURE");
-            this.AddGroupBy("NUM_ASSURE,RAND_AD,NOMC_TIERS,DATE_FACTURE");
-            if (OrderBy == -1)
-                this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NUM_ASSURE, Sort.DESC);
-            else if (OrderBy == 0)
-                this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NOMC_TIERS, Sort.ASC);
+            this.AddGroupBy("NUM_ASSURE,RAND_AD,NOMC_TIERS,DATE_FACTURE,CODE_TIERS");
+            if (OrderBy == 0)
+                this.AddOrderBy("NUM_ASSURE", Sort.ASC);
             else if (OrderBy ==1)
-                this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NOMC_TIERS, Sort.DESC);
-            else if (OrderBy ==2)
-                this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NUM_ASSURE, Sort.ASC);
-            else if (OrderBy ==3)
-                this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.NUM_ASSURE, Sort.DESC);
+                this.AddOrderBy("NUM_ASSURE", Sort.DESC);
+            else if (OrderBy == 2)
+                this.AddOrderBy("MONTANT_FACTURES", Sort.ASC);
+            else if (OrderBy == 3)
+                this.AddOrderBy("MONTANT_FACTURES", Sort.DESC);
+            else if (OrderBy == 4)
+                this.AddOrderBy("TOTAL_FACTURES", Sort.ASC);
+            else if (OrderBy == 5)
+                this.AddOrderBy("TOTAL_FACTURES", Sort.DESC);
             return qb.QueryInfos;
         }
 
@@ -213,27 +218,6 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
         {
             SearchText = SearchBarText;
             await ExecuteLoadItemsCommand();
-        }
-
-        public async void t_Tick(object sender, EventArgs e)
-        {
-            if (TotalSeconds == new TimeSpan(0, 0, 0, 0))
-            {
-                //do something after hitting 0, in this example it just stops/resets the timer
-                await ExecuteLoadItemsCommand();
-                if (timer != null)
-                {
-                    timer.Stop();
-                    timer.Dispose();
-                }
-                TotalSeconds = new TimeSpan(0, 0, 0, 2);
-            }
-            else
-            {
-                if (TotalSeconds != (new TimeSpan(0, 0, 0, 0)))
-                    TotalSeconds = TotalSeconds.Subtract(new TimeSpan(0, 0, 0, 2));
-
-            }
         }
 
     }
