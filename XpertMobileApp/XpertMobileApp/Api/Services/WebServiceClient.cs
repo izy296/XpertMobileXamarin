@@ -143,14 +143,24 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
-        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center="0", int page = 1, int count = 10)
+        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center="0", string codeTier = "", int page = 1, int count = 10)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
             url += "&page=" + page;
             url += "&count=" + count;
             url += "&center=" + center;
+            url += "&codeTier=" + codeTier;
+
             return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
+        }  
+        
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetFactChronic(string numAssure)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_CHRONIC_URL);
+            url += "?numAssure=" + numAssure;
+
+            return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
         } 
         
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCfa_Beneficaires_Summary(string startDate, string endDate)

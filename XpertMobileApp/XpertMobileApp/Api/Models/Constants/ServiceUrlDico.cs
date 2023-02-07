@@ -160,6 +160,7 @@ namespace XpertMobileApp.Helpers
 
         public static string CFA_MOBILE_FACTURE_URL = "CFA_MOBILE_FACTURE";
         public static string CFA_MOBILE_FACTURE_SUMMARY_URL = "GetFactsSummary";
+        public static string CFA_MOBILE_FACTURE_CHRONIC_URL = "GetFactChronic";
 
 
         // Centres bordereaux CHIFA

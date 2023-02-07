@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             x:Class="XpertMobileApp.Views.BeneficiaresDetailPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <yummy:PancakeView CornerRadius="0,0,25,25" 
+                               Padding="0,0,0,10" 
+                               Margin="0" IsClippedToBounds="true"
+                               BorderColor="{DynamicResource NavigationPrimary}"
+                               BackgroundColor="{DynamicResource NavigationPrimary}" 
+                               HasShadow="False" >
+                <StackLayout
+                    Orientation="Vertical"
+                    Margin="10"
+                    >
+                    <Label 
+                        HorizontalOptions="Center" 
+                        Style="{StaticResource FAwesome-B-Solid}" 
+                        TextColor="White" 
+                        FontSize="90"
+                        Text="{x:Static fontawesome:FontAwesomeIcons.usercircle}" 
+                        BackgroundColor="Transparent" 
+                        />
+
+                    <Label
+                        Text="{Binding Item.NOMC_TIERS,FallbackValue='Nom Prénom'}"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"
+                        />
+                    <StackLayout
+                        Orientation="Horizontal"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="FillAndExpand"
+                        >
+                        <Label
+                            Text="{Binding Item.TOTAL_FACTURES,StringFormat='{0:N0} Factures'}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            />
+                        <BoxView VerticalOptions="FillAndExpand" WidthRequest="1" BackgroundColor="White"/>
+                        <Label
+                            Text="{Binding Item.MONTANT_FACTURES,StringFormat='{0:N2} DA',FallbackValue='0 DA'}"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="CenterAndExpand"
+                            />
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+
+            <StackLayout
+                Orientation="Vertical"
+                Margin="10">
+                <Label      Text="{Binding Item.NUM_ASSURE,StringFormat='Num Assure : {0:N0}'}"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <Label      Text="{Binding Item.RAND_AD,StringFormat='Rand Ad : {0:N0}'}"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <Label      Text="{Binding Tier.TEL1_TIERS,StringFormat='Num Tél 1: {0:N0}'}"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="StartAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ModifyTEL1}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label      Text="{Binding Tier.TEL2_TIERS,StringFormat='Num Tél 2: {0:N0}'}"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="StartAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ModifyTEL2}" />
+                    </Label.GestureRecognizers>
+                </Label>
+                <StackLayout 
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand">
+                    <Button 
+                        x:Name="Appel_Btn"
+                        Text="Appel"
+                        CornerRadius="10"
+                        TextColor="White"
+                        BackgroundColor="{DynamicResource NavigationPrimary}"
+                        ImageSource="Phone25.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Clicked="Appel_Btn_Clicked"
+                            />
+
+                    <Button
+                        x:Name="SMS_Btn"
+                        Text="SMS"
+                        CornerRadius="10"
+                        TextColor="White"
+                        BackgroundColor="{DynamicResource NavigationPrimary}"
+                        ImageSource="SMS25.png"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Clicked="SMS_Btn_Clicked"
+                            />
+
+                    <Button
+                        x:Name="Facts_Btn"
+                        Text="Les Factures"
+                        CornerRadius="10"
+                        TextColor="White"
+                        BackgroundColor="{DynamicResource NavigationPrimary}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Clicked="Facts_Btn_Clicked"
+                            />
+                </StackLayout>
+            </StackLayout>
+
+            <RefreshView
+                    x:Name="refreshView"
+                    Refreshing="ExecutePullToRefresh"
+                    IsRefreshing="{Binding IsRefreshing,Mode=TwoWay}"
+                    VerticalOptions="FillAndExpand">
+                <CollectionView
+                    x:Name="ItemsListView"
+                    ItemsSource="{Binding Items}"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    SelectionChanged="OnItemSelected"
+                    SelectionMode="Single"
+                    VerticalScrollBarVisibility="Always"
+                    RemainingItemsThreshold="1"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadItemsMoreCommand}">
+                    <!--ItemTemplate="{StaticResource BordereauxCHIFA}"-->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout></StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
