@@ -76,12 +76,11 @@
                 BackgroundColor="White"
                 >
                 <yummy:PancakeView.Shadow>
-                    <yummy:DropShadow Color="#000000" Offset="7,7" />
+                    <yummy:DropShadow Color="#000000" Offset="2,2" />
                 </yummy:PancakeView.Shadow>
                 <StackLayout Orientation="Vertical"
                              VerticalOptions="FillAndExpand">
-                    <syncfusion:SfExpander x:Name="expander"
-                                           BackgroundColor="White">
+                    <syncfusion:SfExpander x:Name="expander">
                         <!--Header-->
                         <syncfusion:SfExpander.Header>
                             <StackLayout
@@ -94,7 +93,7 @@
                                     FontAttributes="Bold"
                                     TextColor="{DynamicResource NavigationPrimary}"
                                     VerticalOptions="CenterAndExpand"/>
-                                
+
                                 <Label Text="{Binding Item.NUM_BORDEREAU,StringFormat='({0})'}"
                                     Margin="0"
                                     FontSize="Large"
@@ -115,7 +114,7 @@
                                    TextColor="Black"
                                    Opacity="0.7"/>
 
-                                <StackLayout 
+                                <!--<StackLayout 
                                     HorizontalOptions="FillAndExpand"
                                     VerticalOptions="Center"
                                     Orientation="Horizontal"
@@ -137,7 +136,7 @@
                                            TextColor="{DynamicResource NavigationPrimary}"
                                            FontSize="Micro"    
                                            Opacity="0.7"/>
-                                </StackLayout>
+                                </StackLayout>-->
                                 <Grid Padding="5,10">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>

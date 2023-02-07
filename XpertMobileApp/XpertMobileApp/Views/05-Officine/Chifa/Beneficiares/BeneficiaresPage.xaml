@@ -60,7 +60,9 @@
                     FontSize="15"
                     Format="dd-MM-yyyy"
                     Date="{Binding StartDate, Mode=TwoWay}"
-                    DateSelected="DatePicker_PropertyChanged"/>
+                    DateSelected="DatePicker_PropertyChanged"
+                    />
+                
                 <DatePicker 
                     Grid.Row="1"
                     Grid.Column="1"

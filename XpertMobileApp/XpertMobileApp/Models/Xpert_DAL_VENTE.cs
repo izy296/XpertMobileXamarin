@@ -774,6 +774,10 @@ namespace XpertMobileApp.DAL
 
         public decimal TOTAL_ASSURE { get; set; }
         public decimal TOTAL_AYD { get; set; }
+        public int DUREE_TRAIT { get; set; }
+        public DateTime DATE_SOIN { get; set; }
+        public DateTime DATE_PREVUE { get { return DATE_SOIN.AddDays(DUREE_TRAIT); } }
+
     }
     public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA
     {
