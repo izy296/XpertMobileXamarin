@@ -143,7 +143,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
-        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center="0", string codeTier = "", int page = 1, int count = 10)
+        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", int page = 1, int count = 10)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
@@ -153,16 +153,16 @@ namespace XpertMobileApp.Services
             url += "&codeTier=" + codeTier;
 
             return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
-        }  
-        
+        }
+
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetFactChronic(string numAssure)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_CHRONIC_URL);
             url += "?numAssure=" + numAssure;
 
             return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
-        } 
-        
+        }
+
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCfa_Beneficaires_Summary(string startDate, string endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_SUMMARY_URL);
@@ -177,12 +177,12 @@ namespace XpertMobileApp.Services
             url += "?numBordereau=" + numBorderaux;
             return await RetrievAauthorizedData<View_CFA_BORDEREAUX_CHIFA>(url);
         }
-        
+
         internal static async Task<List<View_CFA_BORDEREAUX_CHIFA>> GetCFABordereaux(QueryInfos queryInfos)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_CHIFA_URL, ServiceUrlDico.BORDEREAUX_CHIFA_SELECT_URL);
             return await WSApi2.PostAauthorizedValue<List<View_CFA_BORDEREAUX_CHIFA>, QueryInfos>(url, queryInfos, Token);
-
+            
         }
 
         internal static async Task<List<Get_Print_ds_ViewTrsEncaiss>> GetDataTecketCaisseEncaisse(string cODE_ENCAISS)
@@ -204,7 +204,7 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<DateTime>(url);
         }
-        
+
         internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetDetailsFacture(string codeFacture)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_DETAIL_FACTURE);
@@ -219,13 +219,29 @@ namespace XpertMobileApp.Services
             return await RetrievValAauthorizedData<List<View_CFA_MOBILE_FACTURE>>(url);
         }
 
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetListFactureByDci(string startDate, string endDate, string displayType, QueryInfos filterParams,int page, int pageSize)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_DETAIL_MOBILE_URL, ServiceUrlDico.CFA_LISTE_FACT_BY_DCI);
+            url += WSApi2.AddParam(url, "displayType", displayType);
+            url += WSApi2.AddParam(url, "endDate", endDate);
+            url += WSApi2.AddParam(url, "startDate", startDate);
+            url += WSApi2.AddParam(url, "page", page.ToString());
+            url += WSApi2.AddParam(url, "pageSize", pageSize.ToString());
+            return await WSApi2.PostAauthorizedValue<List<View_CFA_MOBILE_DETAIL_FACTURE>, QueryInfos>(url, filterParams, Token);
+        }
+
+        internal static async Task<View_CFA_MOBILE_FACTURE> GetTodayCountFacture()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_FACTURE_COUNT_TODAY);
+            return await RetrievValAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
+        }
+
         internal static async Task<List<Get_Print_VTE_TiketCaisse>> GetDataTecketCaisseVente(string res)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.TIKET_CAISS_PRINT_VENTE_URL);
             url += "?codeVente=" + res;
             return await RetrievAauthorizedData<Get_Print_VTE_TiketCaisse>(url);
         }
-
         public static async Task<decimal> GetQteStockByProdeuct(string res)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.MANQUANTS_URL, ServiceUrlDico.Get_Qte_By_Produit);

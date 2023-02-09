@@ -11,7 +11,7 @@
                 HeightRequest="120">
                 <StackLayout Orientation="Vertical">
 
-                    <Label Text="Menu CHIFA"
+                    <Label Text="Module CHIFA"
                        FontSize="22"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
@@ -97,7 +97,7 @@
                                 <Label Grid.Row="3"
                                        FontSize="13"
                                        TextColor="#0c0c0d"
-                                       Text="{Binding MtTotal}" 
+                                       Text="{Binding MtTotal,StringFormat='{0:N2} DA'}" 
                                        VerticalOptions="End"
                                        HorizontalOptions="Center"
                                        IsVisible="{Binding ShowStats}"/>

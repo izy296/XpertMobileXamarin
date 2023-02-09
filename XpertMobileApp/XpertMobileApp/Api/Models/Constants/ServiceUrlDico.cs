@@ -172,12 +172,17 @@ namespace XpertMobileApp.Helpers
         public static string CFA_FACTURE_CHIFA_URL = "FACTURE_CHIFA";
         public static string CFA_FACTURE_ETAT_URL = "GetCFAFactsStatus";
         public static string CFA_FACTURE_BORDEREAUX_URL = "GetCFAFactsByNumBordereaux";
+
         //Date des factures CHIFA
+        public static string CFA_FACTURE_DETAIL_MOBILE_URL = "CFA_MOBILE_DETAIL_FACTURE";
         public static string CFA_FACTURE_DATE = "GetDateFactures";
+        public static string CFA_FACTURE_COUNT_TODAY = "GetTodayCountFacture";
+
 
         //Details facture chifa 
         public static string CFA_DETAIL_FACTURE = "GetCFAFactDetails";
         public static string CFA_TOTAUX_FACTURE = "GetTotauxFactureCHIFA";
+        public static string CFA_LISTE_FACT_BY_DCI = "GetListFactByDci";
 
         // RFID
         public static string RFID_URL = "RFID";

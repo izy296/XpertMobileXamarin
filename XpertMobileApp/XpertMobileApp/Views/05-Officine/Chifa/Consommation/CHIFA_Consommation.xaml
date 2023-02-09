@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage  xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:pulltoRefresh="clr-namespace:Syncfusion.SfPullToRefresh.XForms;assembly=Syncfusion.SfPullToRefresh.XForms" xmlns:base="clr-namespace:XpertMobileApp.Base"
+             Title="Consommation"
+             BackgroundColor="#fefefe"
+             CurrentPageChanged="TabbedPage_CurrentPageChanged"
+             BarBackgroundColor="{DynamicResource NavigationPrimary}"
+             x:Class="XpertMobileApp.Views._05_Officine.Chifa.Consommation.CHIFA_Consommation">
+    <!--Pages can be added as references or inline-->
+    <TabbedPage.ToolbarItems>
+
+        <ToolbarItem Name="MenuItem1" Order="Secondary" Icon="Microsoft.png" Clicked="MenuItem1_Clicked" Text="Ordre Alphabétique" Priority="0" />
+        <ToolbarItem Name="MenuItem2" Order="Secondary" Icon="Xamarin.png" Clicked="MenuItem2_Clicked" Text="Montant" Priority="0" />
+        <ToolbarItem Name="MenuItem2" Order="Secondary" Icon="Xamarin.png" Clicked="MenuItem3_Clicked" Text="Quantité" Priority="0" />
+    </TabbedPage.ToolbarItems>
+    <!--Page of medicament par Dci-->
+    <ContentPage Title="DCI" 
+                 IconImageSource="dci.png"
+                 BackgroundColor="#fefefe">
+        <StackLayout>
+            <!--date Filters container-->
+            <Grid  HorizontalOptions="FillAndExpand"
+               Padding="10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="0">
+                    <Label Text="Date début:"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        Date="{Binding StartDate, Mode=TwoWay}" />
+                </StackLayout>
+
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="1">
+                    <Label Text="Date fin :"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        Date="{Binding EndDate, Mode=TwoWay}" />
+                </StackLayout>
+
+            </Grid>
+
+
+            <!--Liste des medicament par DCI-->
+            <Frame Background="transparent"
+                   CornerRadius="12"       
+                   Margin="5,0"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" 
+                                 Grid.RowSpan="2"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2">
+                        <Label 
+                            Padding="10,15,10,10"
+                            Text="Liste des Médicaments"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#0c0c0f"/>
+                        <!--Liste view des facture-->
+                        <ListView 
+                              x:Name="ItemsListView"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding ListeFactByDci}"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding ExecuteLoadFactByDci}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement"
+                              ItemSelected="OnItemSelected">
+
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame CornerRadius="12"
+                                           Margin="7">
+                                            <Grid Padding="5" HorizontalOptions="Fill">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="35" />
+                                                    <RowDefinition Height="25" />
+                                                    <RowDefinition Height="25" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="6*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--Designation DCI-->
+                                                <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="#0c0c0c"
+                                                   FontSize="15"
+                                                   FontAttributes="bold"
+                                                   Text="{Binding DESIGN_DCI}"/>
+
+                                                <!--Reference Produit-->
+                                                <Label Grid.Row="1"
+                                                   FontSize="13"
+                                                   Text="{Binding REFERENCE,StringFormat='{0}'}"
+                                                   TextColor="#2f2f2f"/>
+
+                                                <!--QUANTITE produit-->
+                                                <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="Start"
+                                                        AlignItems="End"
+                                                        Grid.Column="0">
+                                                    <Label Text="{Binding QUANTITE}"
+                                                       FontSize="18"
+                                                       Margin="0,0,5,0"
+                                                       FontAttributes="bold"
+                                                       
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                    <Label Text="Unités"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                                </FlexLayout>
+
+                                                <!--Montant Facture-->
+                                                <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        AlignItems="End"
+                                                        JustifyContent="Center"
+                                                        Grid.Column="1">
+
+                                                    <Label Text="{Binding MONT_FACTURE,StringFormat='{0:N2}'}"
+                                                       FontSize="18"
+                                                       FontAttributes="bold"
+                                                       Margin="0,0,5,0"
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                    <Label Text="DA"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                                </FlexLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Grid>
+                            </ListView.Footer>
+                        </ListView>
+
+
+                    </StackLayout>
+                    <!--floating button-->
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        x:Name="floatingButton" 
+                        ImageSource="filter.png"
+                        IsVisible="True"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                        CornerRadius="100"
+                        BackgroundColor="{Binding EtatFiltre}"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Padding="10"
+                        Margin="0,0,15,15"
+                        Clicked="ShowHideFilter"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+
+    </ContentPage>
+
+
+    <!--Page of medicament par Nom commercial-->
+    <ContentPage Title="Nom Commercial" IconImageSource="pill.png">
+        <StackLayout>
+            <!--date Filters container-->
+            <Grid  HorizontalOptions="FillAndExpand"
+               Padding="10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="0">
+                    <Label Text="Date début:"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        Date="{Binding StartDate, Mode=TwoWay}" />
+                </StackLayout>
+
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="1">
+                    <Label Text="Date fin :"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        Date="{Binding EndDate, Mode=TwoWay}" />
+                </StackLayout>
+
+            </Grid>
+
+
+            <!--Liste des medicament par DCI-->
+            <Frame Background="transparent"
+                   CornerRadius="12"       
+                   Margin="5,0"
+                   HasShadow="True"
+                   Padding="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="80"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" 
+                                 Grid.RowSpan="2"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2">
+                        <Label 
+                            Padding="10,15,10,10"
+                            Text="Liste des Médicaments"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#0c0c0f"/>
+                        <!--Liste view des facture-->
+                        <ListView 
+                              x:Name="ItemsListView1"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding ListeFactByDci}"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding LoadItemsCommand}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement"
+                              ItemSelected="OnItemSelected">
+
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame CornerRadius="12"
+                                           Margin="7">
+                                            <Grid Padding="5" HorizontalOptions="Fill">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="35" />
+                                                    <RowDefinition Height="25" />
+                                                    <RowDefinition Height="25" />
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="4*"/>
+                                                    <ColumnDefinition Width="6*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <!--Designation Produit-->
+                                                <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="#0c0c0c"
+                                                   FontSize="15"
+                                                   FontAttributes="bold"
+                                                   Text="{Binding DESIGNATION_PRODUIT}"/>
+
+                                                <!--Reference Produit-->
+                                                <Label Grid.Row="1"
+                                                   FontSize="13"
+                                                   Text="{Binding REFERENCE,StringFormat='{0}'}"
+                                                   TextColor="#2f2f2f"/>
+
+                                                <!--QUANTITE produit-->
+                                                <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="Start"
+                                                        AlignItems="End"
+                                                        Grid.Column="0">
+                                                    <Label Text="{Binding QUANTITE}"
+                                                       FontSize="18"
+                                                       Margin="0,0,5,0"
+                                                       FontAttributes="bold"
+                                                       
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                    <Label Text="Unités"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                                </FlexLayout>
+
+                                                <!--Montant Facture-->
+                                                <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        AlignItems="End"
+                                                        JustifyContent="Center"
+                                                        Grid.Column="1">
+
+                                                    <Label Text="{Binding MONT_FACTURE,StringFormat='{0:N2}'}"
+                                                       FontSize="18"
+                                                       FontAttributes="bold"
+                                                       Margin="0,0,5,0"
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                    <Label Text="DA"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                                </FlexLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Grid>
+                            </ListView.Footer>
+                        </ListView>
+
+
+                    </StackLayout>
+                    <!--floating button-->
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        x:Name="floatingButton1" 
+                        ImageSource="filter.png"
+                        IsVisible="True"
+                        AbsoluteLayout.LayoutFlags="PositionProportional"
+                        AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                        CornerRadius="100"
+                        BackgroundColor="{Binding EtatFiltre}"
+                        HeightRequest="60"
+                        WidthRequest="60"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Padding="10"
+                        Margin="0,0,15,15"
+                        Clicked="ShowHideFilter"/>
+                </Grid>
+            </Frame>
+        </StackLayout>
+
+    </ContentPage>
+</TabbedPage>

@@ -302,6 +302,9 @@ namespace XpertMobileApp.DAL
                 isPsychotrope = value;
             }
         }
+        public string DESIGN_DCI { get; set; }
+        public string CODE_DCI { get; set; }
+        public string REFERENCE { get; set; }
 
     }
 
