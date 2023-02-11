@@ -1221,4 +1221,7 @@
 	<data name="pn_Beneficiaire_OrederBy_nbrFacts_DESC" xml:space="preserve">
     <value>Sort by Nbr Invoices ↓</value>
   </data>
+	<data name="pn_ChronicFollowUp" xml:space="preserve">
+    <value>Trier par Nbr Factures ↓</value>
+  </data>
 </root>

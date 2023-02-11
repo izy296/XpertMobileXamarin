@@ -3964,6 +3964,14 @@ namespace XpertMobileApp
             {
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_nbrFacts_DESC", resourceCulture);
             }
+        }  
+        
+        public static string pn_ChronicFollowUp
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_ChronicFollowUp", resourceCulture);
+            }
         }
     }
 }

@@ -1312,4 +1312,7 @@
 	<data name="pn_Beneficiaire_OrederBy_nbrFacts_DESC" xml:space="preserve">
     <value>فرز حسب عدد الفواتير ↓</value>
   </data>
+	<data name="pn_ChronicFollowUp" xml:space="preserve">
+    <value>متابعة العلاجات المزمنة</value>
+  </data>
 </root>

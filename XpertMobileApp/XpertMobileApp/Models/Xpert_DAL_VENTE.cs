@@ -796,6 +796,13 @@ namespace XpertMobileApp.DAL
         public int importSate { get; set; }
         public string ETAT_ENCAISS { get; set; }
         public decimal MONT_ASSURE_SANS_REMISE { get; set; }
+        public string NUM_ASSURE_RAND
+        {
+            get
+            {
+                return NUM_ASSURE + "-" + RAND_AD;
+            }
+        }
     }
 
     #region Livraison

@@ -189,6 +189,11 @@
             <!-- ***************** Benificiares CHIFA *****************-->
             <DataTemplate x:Key="BeneficiaresPageTemplate">
                 <template:BeneficiaresPageTemplate />
+            </DataTemplate> 
+            
+            <!-- ***************** Benificiares CHIFA *****************-->
+            <DataTemplate x:Key="MaladesChroniquesTemplate">
+                <template:MaladesChroniquesTemplate />
             </DataTemplate>
             
 

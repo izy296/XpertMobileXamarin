@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             x:Class="XpertMobileApp.Views.Templates.MaladesChroniquesTemplate">
+    <ContentPage.Content>
+        <yummy:PancakeView 
+                    Margin="10"
+                    Padding="15"
+                    CornerRadius="10"
+                    BackgroundColor="White"
+                    >
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow Color="#000000" Offset="4,4" />
+                </yummy:PancakeView.Shadow>
+                <StackLayout>
+                    <Grid RowSpacing="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+
+                        <!--Nom Prenom Facture-->
+
+                        <Label 
+                            Grid.Row="0" 
+                            Grid.Column="0"
+                            Text="Nom Beneficiare"
+                            FontSize="Micro"
+                            FontAttributes="Bold"
+                            TextColor="{DynamicResource NavigationPrimary}"
+                            VerticalOptions="End"
+                            />
+
+                        <Label 
+                            Grid.Row="1" 
+                            Grid.ColumnSpan="2"
+                            Text="{Binding NOMC_TIERS,FallbackValue='Nom Prénom'}"
+                            FontSize="Medium"
+                            TextColor="Black"
+                        />
+
+                        <!--Left Side-->
+
+                        <!--Num Facture-->
+                        <Label 
+                            Grid.Row="2" 
+                            Grid.ColumnSpan="2"
+                            Text="{Binding NUM_ASSURE,FallbackValue='N/A'}"
+                            FontSize="Small"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            VerticalOptions="End"
+                            />
+
+
+                        <!--Date de prevue-->
+                        <Label 
+                            Grid.Row="3" 
+                            Grid.Column="0"
+                            Text="Date Prévue"
+                            FontSize="Micro"
+                            TextColor="{DynamicResource NavigationPrimary}"
+                            VerticalOptions="End" 
+                            FontAttributes="Bold"
+                            />
+
+                        <Label 
+                            Grid.Row="4" 
+                            Grid.Column="0"
+                            Text="{Binding DATE_PREVUE,FallbackValue='N/A',StringFormat='{0:dd/MM/yyyy}'}"
+                            FontSize="Small"
+                            TextColor="Black"
+                            />
+
+                        <Label 
+                            Grid.Row="5" 
+                            Grid.Column="0"
+                            Text="Date de Facture"
+                            FontSize="Micro"
+                            TextColor="{DynamicResource NavigationPrimary}"
+                            VerticalOptions="End"
+                            FontAttributes="Bold"
+                            />
+                        <Label 
+                            Grid.Row="6" 
+                            Grid.Column="0"
+                            Text="{Binding DATE_FACTURE,FallbackValue='N/A',StringFormat='{0:dd/MM/yyyy}'}"
+                            FontSize="Small"
+                            TextColor="Black"
+                            />
+
+                        <!--Right Side-->
+
+                        <!--Mont Facture-->
+
+                        <Label 
+                            Grid.Row="3" 
+                            Grid.Column="1"
+                            Text="Num Facture"
+                            FontSize="Micro"
+                            TextColor="{DynamicResource NavigationPrimary}"
+                            VerticalOptions="End"
+                            FontAttributes="Bold"
+                            />
+                        <Label 
+                            Grid.Row="4" 
+                            Grid.Column="1"
+                            Text="{Binding NUM_FACTURE,FallbackValue='N/A'}"
+                            FontSize="Small"
+                            TextColor="Black"
+                            />
+
+                    </Grid>
+                    <syncfusion:SfExpander 
+                            x:Name="expander" 
+                            HeaderBackgroundColor="White" 
+                            HeaderIconPosition="None">
+                        <!--Header-->
+                        <syncfusion:SfExpander.Header>
+                            <StackLayout
+                                    HorizontalOptions="Center"
+                                    BackgroundColor="White">
+                                <!--TITLE-->
+                                <Label Text="Traitements"
+                                        Margin="5,5,5,5"
+                                        FontSize="Small"
+                                        FontAttributes="Bold"
+                                        TextColor="{DynamicResource NavigationPrimary}"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </syncfusion:SfExpander.Header>
+
+                        <!--Body-->
+
+
+                        <syncfusion:SfExpander.Content>
+                            <StackLayout 
+                                     VerticalOptions="Center">
+                                <CollectionView
+                                    x:Name="TraitmentsListView"                                
+                                    ItemsSource="{Binding Traitments}"
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectionMode="Single"
+                                    VerticalScrollBarVisibility="Always">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate>
+                                            <yummy:PancakeView 
+                                                    Margin="15"
+                                                    CornerRadius="10"
+                                                    BackgroundColor="White"
+                                                    >
+                                                <yummy:PancakeView.Shadow>
+                                                    <yummy:DropShadow Color="#000000" Offset="4,4" />
+                                                </yummy:PancakeView.Shadow>
+
+                                                <StackLayout
+                                                        VerticalOptions="Center">
+                                                    <Label
+                                                        Text="{Binding DESIGNATION_PRODUIT}"
+                                                        Margin="5"
+                                                        FontSize="Small"
+                                                        FontAttributes="Bold"
+                                                        TextColor="BLACK"
+                                                        VerticalOptions="CenterAndExpand"
+                                                        HorizontalOptions="StartAndExpand"
+                                                        />
+                                                    <StackLayout 
+                                                            HorizontalOptions="StartAndExpand"
+                                                            Orientation="Horizontal">
+                                                        <Label
+                                                            Text="{Binding QUNATITE}"
+                                                            Margin="5"
+                                                            FontSize="Small"
+                                                            FontAttributes="Bold"
+                                                            TextColor="BLACK"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="Center"
+                                                            />
+                                                        <Label
+                                                            Text="{Binding DUREE_TRAIT}"
+                                                            Margin="5"
+                                                            FontSize="Small"
+                                                            FontAttributes="Bold"
+                                                            TextColor="BLACK"
+                                                            VerticalOptions="CenterAndExpand"
+                                                            HorizontalOptions="Center"
+                                                            />
+                                                    </StackLayout>
+
+                                                </StackLayout>
+                                            </yummy:PancakeView>
+
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                            </StackLayout>
+                        </syncfusion:SfExpander.Content>
+
+                    </syncfusion:SfExpander>
+
+
+                </StackLayout>
+            </yummy:PancakeView>
+
+    </ContentPage.Content>
+</ContentPage>

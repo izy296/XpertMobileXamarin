@@ -13,8 +13,9 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views;
 
-namespace XpertMobileApp.Views._05_Officine.Chifa.BordereauxChifa
+namespace XpertMobileApp.Api.ViewModels
 {
     public class BordereauxChifaViewModel : CrudBaseViewModel2<CFA_BORDEREAU, View_CFA_BORDEREAUX_CHIFA>
     {
@@ -240,6 +241,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.BordereauxChifa
                 UserDialogs.Instance.ShowLoading(AppResources.txt_msg_BorderauxInfo);
                 //queryBuilder.AddCondition<View_CFA_BORDEREAUX_CHIFA,DateTime?>(e=>e.CREATED_ON, Operator.BETWEEN_DATE,DateTime.Now);
                 qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Operator.NOT_EQUAL, "VIDE");
+                qb.AddOrderBy<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Sort.DESC);
                 qb.AddPaging(1, 1);
                 var result = await WebServiceClient.GetCFABordereaux(qb.QueryInfos);
                 if (result != null)
@@ -267,6 +269,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.BordereauxChifa
                 qb.InitQuery();
                 //queryBuilder.AddCondition<View_CFA_BORDEREAUX_CHIFA,DateTime?>(e=>e.CREATED_ON, Operator.GREATER_DATE,DateTime.Now.AddMonths(-1));
                 qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Operator.NOT_EQUAL, "VIDE");
+                qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, decimal>(e => e.TOTAL_NB_CHIFA, Operator.GREATER, 10);
+                qb.AddOrderBy<View_CFA_BORDEREAUX_CHIFA,string>(e => e.NUM_BORDEREAU, Sort.DESC);
+                
                 qb.AddPaging(1, 5);
                 BordereauxList = new ObservableCollection<View_CFA_BORDEREAUX_CHIFA>(await WebServiceClient.GetCFABordereaux(qb.QueryInfos));
                 qb.InitQuery();

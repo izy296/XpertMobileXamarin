@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.PancakeView;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.ViewModels;
+using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views._05_Officine.Chifa.Consommation;
-using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
 namespace XpertMobileApp.Views._05_Officine.Chifa
@@ -108,6 +110,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
             }
         }
         public Command LoadCountTodayFacture { get; set; }
+        public Command LoadCountTodayBourderaux { get; set; }
         public ChifaMenu()
         {
             InitializeComponent();
@@ -117,6 +120,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
             MenuItems = new ObservableCollection<MenuChifaItem>();
 
             LoadCountTodayFacture = new Command(async () => await ExecuteLoadCountFactureCHIFA());
+            LoadCountTodayBourderaux = new Command(async () => await ExecuteLoadCountBordereauCHIFA());
 
             /* Ajout des items dans le menu CHIFA*/
             MenuItems.Add(new MenuChifaItem
@@ -152,6 +156,14 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 BGCOLOR = "#f0f0f0",
                 ShowStats = false
             });
+            
+            MenuItems.Add(new MenuChifaItem
+            {
+                ID = 4,
+                TITLE = AppResources.pn_ChronicFollowUp,
+                BGCOLOR = "#f0f0f0",
+                ShowStats = false
+            });
 
         }
 
@@ -164,6 +176,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
         {
             base.OnAppearing();
             LoadCountTodayFacture.Execute(null);
+            LoadCountTodayBourderaux.Execute(null);
         }
         async Task ExecuteLoadCountFactureCHIFA()
         {
@@ -179,6 +192,40 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                     MenuItems.Insert(1,new MenuChifaItem
                     {
                         ID = 1,
+                        TITLE = "Aujourd'hui",
+                        BGCOLOR = "#f0f0f0",
+                        ShowStats = true,
+                        NbFACTURE = TotalFactByDay,
+                        MtTotal = MontFactureToday
+                    });
+                }
+            }
+            catch (Exception ex)
+            {
+                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
+                    AppResources.alrt_msg_Ok);
+            }
+        }
+
+        async Task ExecuteLoadCountBordereauCHIFA()
+        {
+            try
+            {
+                var qb = new XpertSqlBuilder();
+                qb.InitQuery();
+                qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Operator.NOT_EQUAL, "VIDE");
+                qb.AddPaging(1, 1);
+                var list = await WebServiceClient.GetCFABordereaux(qb.QueryInfos);
+                var lastBordereau = list.FirstOrDefault();
+                if (lastBordereau != null)
+                {
+                    TotalFactByDay = (int)lastBordereau.TOTAL_NB_FACTURES_CFA;
+                    MontFactureToday = lastBordereau.MONT_FACTURE;
+                    var itemToRemove = MenuItems.Single(r => r.ID == 0);
+                    MenuItems.Remove(itemToRemove);
+                    MenuItems.Insert(0, new MenuChifaItem
+                    {
+                        ID = 0,
                         TITLE = "Aujourd'hui",
                         BGCOLOR = "#f0f0f0",
                         ShowStats = true,
@@ -211,6 +258,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                         break;
                     case 3:
                         Navigation.PushAsync(new CHIFA_Consommation());
+                        break;
+                    case 4:
+                        Navigation.PushAsync(new SuiviChroniquesPage());
                         break;
                 }
 

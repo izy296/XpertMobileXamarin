@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.Base;
 using XpertMobileApp.DAL;
-using XpertMobileApp.Views._05_Officine.Chifa.BordereauxChifa;
 
 namespace XpertMobileApp.Views
 {

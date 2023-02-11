@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace XpertMobileApp.DAL
@@ -223,10 +224,11 @@ namespace XpertMobileApp.DAL
         public decimal MONT_OFFICINE { get; set; }
         public decimal MONT_FACTURE { get; set; }
         public decimal MONT_ACHAT { get; set; }
-        public decimal TOTAL { get; set; }
-        public decimal TOTAL_CHIFA { get; set; }
-        public decimal TOTAL_CASNOS { get; set; }
-        public decimal TOTAL_PHARMNOS { get; set; }
+        public decimal TOTAL_NB_FACTURES_CFA { get; set; }
+        public decimal TOTAL_NB_FACTURES_PHARMNOS { get; set; }
+        public decimal TOTAL_NB_CHIFA { get; set; }
+        public decimal TOTAL_NB_CASNOS { get; set; }
+        public decimal TOTAL_NB_PHARMNOS { get; set; }
     }
 
     public partial class CFA_CENTRES
@@ -305,6 +307,26 @@ namespace XpertMobileApp.DAL
         public string DESIGN_DCI { get; set; }
         public string CODE_DCI { get; set; }
         public string REFERENCE { get; set; }
+        public string NUM_ASSURE_RAND
+        {
+            get
+            {
+                return NUM_ASSURE + "-" + RAND_AD;
+            }
+        }
+
+        public DateTime DATE_PREVUE
+        {
+            get
+            {
+                return DATE_FACTURE.AddDays(DUREE_TRAIT);
+            }
+        }
+
+        private ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> traitments { get; set; }
+        public ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> Traitments { get { return traitments; } set { traitments = value; OnPropertyChanged("Traitments"); } }
+        private ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> malades { get; set; }
+        public ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> Malades { get { return malades; } set { malades = value; OnPropertyChanged("Malades"); } }
 
     }
 
