@@ -75,7 +75,13 @@
                             VerticalOptions="CenterAndExpand"
                             HorizontalOptions="StartAndExpand"/>
 
-                <Label      Text="{Binding Tier.TEL1_TIERS,StringFormat='Num Tél 1: {0:N0}'}"
+                <Label      Text="{Binding Tier.SOLDE,StringFormat='Solde : {0:N0} DA',FallbackValue='Solde : 0 DA'}"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="StartAndExpand"/>
+
+                <Label      Text="{Binding Tier.TEL1_TIERS,StringFormat='Num Tél 1: {0:N0}',FallbackValue='Num Tél 1: '}"
                             FontAttributes="Bold"
                             FontSize="Medium"
                             VerticalOptions="CenterAndExpand"
@@ -85,7 +91,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label      Text="{Binding Tier.TEL2_TIERS,StringFormat='Num Tél 2: {0:N0}'}"
+                <Label      Text="{Binding Tier.TEL2_TIERS,StringFormat='Num Tél 2: {0:N0}',FallbackValue='Num Tél 2: '}"
                             FontAttributes="Bold"
                             FontSize="Medium"
                             VerticalOptions="CenterAndExpand"
@@ -132,6 +138,17 @@
                         VerticalOptions="CenterAndExpand"
                         Clicked="Facts_Btn_Clicked"
                             />
+                    
+                    <!--<Button
+                        x:Name="Endroit_Btn"
+                        Text="Les Endroits"
+                        CornerRadius="10"
+                        TextColor="White"
+                        BackgroundColor="{DynamicResource NavigationPrimary}"
+                        HorizontalOptions="Center"
+                        VerticalOptions="CenterAndExpand"
+                        Clicked="Endroit_Btn_Clicked"
+                            />-->
                 </StackLayout>
             </StackLayout>
 
@@ -215,10 +232,15 @@
 
                                         <Label Grid.Row="4" 
                                            Grid.Column="0"
-                                           Text="{Binding NUM_FACTURE}"
+                                           Text="{Binding NUM_FACTURE,StringFormat='{0} &#xf35a;'}"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
                                            FontSize="Small"
                                            TextColor="Black"
-                                           />
+                                           >
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                                            </Label.GestureRecognizers>
+                                        </Label>
 
                                         <!--Right Side-->
 

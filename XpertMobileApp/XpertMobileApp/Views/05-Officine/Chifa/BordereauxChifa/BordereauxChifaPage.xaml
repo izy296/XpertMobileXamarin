@@ -109,7 +109,7 @@
 
                         <syncfusion:SfExpander.Content>
                             <StackLayout >
-                                <Label Text="{Binding Item.TOTAL ,StringFormat='({0:N0}) Factures'}"
+                                <Label Text="{Binding Item.TOTAL_NB_FACTURES_CFA ,StringFormat='({0:N0}) Factures'}"
 
                                    TextColor="Black"
                                    Opacity="0.7"/>
@@ -218,7 +218,7 @@
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     SelectionChanged="OnItemSelected"
-                    SelectionMode="Single"
+                    SelectionMode="None"
                     VerticalScrollBarVisibility="Always"
                     RemainingItemsThreshold="1"
                     RemainingItemsThresholdReachedCommand="{Binding LoadBillsCommand}"

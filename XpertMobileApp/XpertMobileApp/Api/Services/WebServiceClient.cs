@@ -768,5 +768,64 @@ namespace XpertMobileApp.Services
 
         }
 
+        #region CHIFA
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectPatients(int period=0,string dateName="DF")
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_PATIENTS_URL);
+            url += "?period=" + period;
+            url += "&dateName=" + dateName;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }
+
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectTraitment(string numFacture)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_TRAITMENT_URL);
+            url += "?numFacture=" + numFacture;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        } 
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectMedications(int period=0,string dateName="DF")
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_MEDICACTIONS_URL);
+            url += "?period=" + period;
+            url += "&dateName=" + dateName;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }  
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectPatientByMedication(string codeProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_PATIENTS_BY_MEDICATION_URL);
+            url += "?codeProduit=" + codeProduit;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }
+        
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectBeneficiare(string numBeneficiare)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_BENEFICIARE_URL);
+            url += "?numBeneficiare=" + numBeneficiare;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }
+        
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectFactsByBeneficiare(string numAssure, string rand)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_FACTS_URL);
+            url += "?numAssure=" + numAssure;
+            url += "&rand=" + rand;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectBeneficiareRelatives(string numAssure)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_DETAIL_SELECT_RELATIVES_URL);
+            url += "?numAssure=" + numAssure;
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+
+        }
+        #endregion
+
+
     }
 }

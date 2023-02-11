@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Class="XpertMobileApp.Views.Templates.BordereauxChifaPageTemplate">
     <ContentView.Content>
 
@@ -55,10 +56,14 @@
 
                     <Label Grid.Row="2" 
                                            Grid.Column="0"
-                                           Text="{Binding NUM_FACTURE}"
+                                           Text="{Binding NUM_FACTURE,StringFormat='{0} &#xf35a;'}"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
                                            FontSize="Small"
-                                           TextColor="Black"
-                                           />
+                                           TextColor="Black">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_NUM_FACTURE"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <!--Date de soin-->
                     <Label Grid.Row="3" 
@@ -71,7 +76,7 @@
                            />
                     <Label Grid.Row="4" 
                                            Grid.Column="0"
-                                           Text="{Binding DATE_SOIN,FallbackValue='N/A'}"
+                                           Text="{Binding DATE_SOIN,FallbackValue='N/A',StringFormat='{0:dd/MM/yyyy}'}"
                                            FontSize="Small"
                                            TextColor="Black"
                                            />
@@ -105,10 +110,15 @@
                                            />
                     <Label Grid.Row="2" 
                                            Grid.Column="1"
-                                           Text="{Binding NUM_ASSURE,FallbackValue='N/A'}"
+                                           Text="{Binding NUM_ASSURE_RAND,FallbackValue='N/A',StringFormat='{0} &#xf35a;'}"
+                                           FontFamily="{StaticResource FontAwesomeRegular}"
                                            FontSize="Small"
                                            TextColor="Black"
-                                           />
+                                           >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_NUM_ASSURE"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
 
                     <!--Mont Facture-->
                     <Label Grid.Row="3" 
@@ -127,7 +137,7 @@
                                            />
 
                     <!--Specialite-->
-                    <Label Grid.Row="5" 
+                    <!--<Label Grid.Row="5" 
                                            Grid.Column="1"
                                            Text="{i18n:Translate txt_Specialite}"
                                            FontSize="Micro"
@@ -140,7 +150,7 @@
                                            Text="Generalist"
                                            FontSize="Small"
                                            TextColor="Black"
-                                           />
+                                           />-->
 
 
                 </Grid>

@@ -26,11 +26,11 @@ namespace XpertMobileApp.Views.ViewModels
 
         private async void ModifyTEL1_Update(object obj)
         {
-            PhonePopup popup = new PhonePopup("Modifier la telephone","Annuler","Modifier", Tier.TEL1_TIERS);
+            PhonePopup popup = new PhonePopup("Modifier la telephone", "Annuler", "Modifier", Tier.TEL1_TIERS);
             await PopupNavigation.Instance.PushAsync(popup);
             if (await popup.PopupClosedTask)
             {
-                if (popup.Result!=""  && popup.Result != Tier.TEL1_TIERS)
+                if (popup.Result != "" && popup.Result != Tier.TEL1_TIERS)
                 {
                     Tier.TEL1_TIERS = popup.Result;
                     await CrudManager.TiersManager.UpdateItemAsync(Tier);
@@ -150,15 +150,22 @@ namespace XpertMobileApp.Views.ViewModels
 
         public Command LoadItemsMoreCommand { get; set; }
 
-        public BeneficiaresDetailViewModel(View_CFA_MOBILE_DETAIL_FACTURE item)
+        public BeneficiaresDetailViewModel(View_CFA_MOBILE_DETAIL_FACTURE item, bool preloaded = true)
         {
             Title = AppResources.pn_BordereauxChifa;
             LoadItemsMoreCommand = new Command(async () => { await ExecuteLoadMoreItemsCommand(); });
-            Item = item;
             Items = new ObservableCollection<View_CFA_MOBILE_FACTURE>();
 
             Device.InvokeOnMainThreadAsync(async () =>
             {
+                if (!preloaded)
+                {
+                    var listBeneficiares = await WebServiceClient.SelectBeneficiare(item.NUM_ASSURE);
+                    Item = listBeneficiares.FirstOrDefault();
+                    await ExecuteLoadItemsCommand();
+                }
+                else
+                    Item = item;
                 var list = await WebServiceClient.GetTier(Item.CODE_TIERS);
                 if (list != null || list.Count > 0)
                     Tier = list[0];
@@ -204,7 +211,7 @@ namespace XpertMobileApp.Views.ViewModels
         {
             try
             {
-                if (IsBusy)
+                if (IsBusy || Item==null)
                     return;
                 IsBusy = true;
                 Items.Clear();

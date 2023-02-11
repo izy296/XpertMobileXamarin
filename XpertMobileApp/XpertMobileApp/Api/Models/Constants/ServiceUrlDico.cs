@@ -180,6 +180,14 @@ namespace XpertMobileApp.Helpers
 
 
         //Details facture chifa 
+        public static string CFA_DETAIL_FACTURE_URL = "CFA_MOBILE_DETAIL_FACTURE";
+        public static string CFA_DETAIL_SELECT_PATIENTS_URL = "SelectPatients";
+        public static string CFA_DETAIL_SELECT_TRAITMENT_URL = "SelectTraitment";
+        public static string CFA_DETAIL_SELECT_MEDICACTIONS_URL = "SelectMedications";
+        public static string CFA_DETAIL_SELECT_PATIENTS_BY_MEDICATION_URL = "SelectPatientByMedication";
+        public static string CFA_DETAIL_SELECT_BENEFICIARE_URL = "SelectBeneficiare";
+        public static string CFA_DETAIL_SELECT_FACTS_URL = "SelectFactsByBeneficiare";
+        public static string CFA_DETAIL_SELECT_RELATIVES_URL = "SelectBeneficiareRelatives";
         public static string CFA_DETAIL_FACTURE = "GetCFAFactDetails";
         public static string CFA_TOTAUX_FACTURE = "GetTotauxFactureCHIFA";
         public static string CFA_LISTE_FACT_BY_DCI = "GetListFactByDci";
