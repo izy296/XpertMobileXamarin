@@ -163,11 +163,11 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
         }
 
-        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCfa_Beneficaires_Summary(string startDate, string endDate)
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCfa_Beneficaires_Summary(DateTime startDate, DateTime endDate)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_SUMMARY_URL);
-            url += "?startDate=" + startDate;
-            url += "&endDate=" + endDate;
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
             return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
         }
 

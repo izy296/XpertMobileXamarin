@@ -158,7 +158,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
             try
             {
                 UserDialogs.Instance.ShowLoading();
-                var res = await WebServiceClient.GetCfa_Beneficaires_Summary(StartDate.ToString("MM/dd/yyyy HH:mm:ss"), EndDate.ToString("MM/dd/yyyy HH:mm:ss"));
+                var res = await WebServiceClient.GetCfa_Beneficaires_Summary(StartDate, EndDate);
                 Summary = res[0];
                 UserDialogs.Instance.HideLoading();
             }
