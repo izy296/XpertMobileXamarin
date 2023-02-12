@@ -55,7 +55,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             ListeFactByDci = new ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE>();
             LoadListeFactByDciCommand = new Command(async () => await ExecuteLoadFactByDci());
             LoadListClearFactByDciCommand = new Command(async () => await InitAndReloadItemList());
-            PageSize = 30;
+            PageSize = 80;
         }
 
         public string GetCurrentDisplayType()
