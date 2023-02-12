@@ -163,10 +163,10 @@
                                         Margin="8,8"
                                         FontFamily="{StaticResource FontGilroyBold}"
                                         FontSize="16"
-                                        FontAttributes="Bold"
+                                        FontAttributes="none"
                                         HorizontalOptions="Start"
                                         Text="{Binding Key}"
-                                        TextColor="{DynamicResource Gray-900}"
+                                        TextColor="#fff"
                                         VerticalOptions="Center" />
 
                             </StackLayout>
@@ -191,7 +191,7 @@
 
                                     <Label  Text="{Binding Title}" 
                                             FontSize="Default" 
-                                            FontAttributes="Bold" 
+                                            FontAttributes="None" 
                                             FontFamily="{StaticResource FontGilroySemiBold}"/>
                                 </StackLayout>
 
@@ -256,7 +256,8 @@
                     Text="{i18n:Translate cmd_Disconnect}" 
                     HeightRequest="40" 
                     HorizontalOptions="Fill" 
-                    BackgroundColor="{StaticResource Accent}" 
+                    TextColor="#fff"
+                    BackgroundColor="{DynamicResource NavigationPrimary}" 
                     BorderRadius="5" 
                     BorderWidth="1" 
                     Clicked="btn_Disconnect_Clicked"/>

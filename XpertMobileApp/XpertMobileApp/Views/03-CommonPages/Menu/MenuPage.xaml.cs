@@ -338,6 +338,7 @@ namespace XpertMobileApp.Views
                             Id = MenuItemType.MenuChifa,
                             ItemGroup = MenuItemGroup.CHIFA,
                             Title = AppResources.txt_facture_chifa,
+                            IsNewModule = true,
                             Image = "slip.png"
                         });
                     }

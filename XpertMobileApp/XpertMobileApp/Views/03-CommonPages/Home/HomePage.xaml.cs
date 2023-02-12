@@ -47,8 +47,8 @@ namespace XpertMobileApp.Views
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
                     Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#B1D7B4"; // vert claire
-                    Application.Current.Resources["MenuItemGroup"] = "#B1D7B4";
+                    Application.Current.Resources["MenuAccent"] = "#087565"; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] = "#087565";
                 }
                 else
                 {
@@ -56,8 +56,8 @@ namespace XpertMobileApp.Views
                     Application.Current.Resources["MenuAccent"] = "#96d1ff";
                 }
 
-                connectionStatus.Text = AppResources.txt_online;
-                connectionStatusIcon.Source = "wifi.png";
+                //connectionStatus.Text = AppResources.txt_online;
+                //connectionStatusIcon.Source = "wifi.png";
             }
 
             else
@@ -71,13 +71,12 @@ namespace XpertMobileApp.Views
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
                     Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#B1D7B4"; // vert claire
-                    Application.Current.Resources["MenuItemGroup"] = "#B1D7B4"; // vert claire
+                    Application.Current.Resources["MenuAccent"] = "#087565"; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] = "#087565"; // vert claire
                 }
-                connectionStatus.Text = AppResources.txt_offline;
-                connectionStatusIcon.Source = "nowifi.png";
+                //connectionStatus.Text = AppResources.txt_offline;
+                //connectionStatusIcon.Source = "nowifi.png";
             }
-
         }
 
         protected async override void OnAppearing()
