@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+            xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" 
+            xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+            BarBackgroundColor="{DynamicResource NavigationPrimary}"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core" xmlns:template1="clr-namespace:XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            BarTextColor="#fff"
+            Title="Consommation Details"
+            CurrentPageChanged="TabbedPage_CurrentPageChanged"  
+            x:Class="XpertMobileApp.Views._05_Officine.Chifa.Consommation.CHIFA_ConsommationDetail">
+    <ContentPage 
+                 Title="Consommation" 
+                 BackgroundColor="#fefefe">
+        <StackLayout>
+
+            <!--Header resumé-->
+            <yummy:PancakeView BackgroundColor="#fff"
+                               CornerRadius="12"
+                               Margin="5"
+                               Padding="5">
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow Color="#000000" Offset="2,2" />
+                </yummy:PancakeView.Shadow>
+                <syncfusion:SfExpander x:Name="expander" 
+                                       IsExpanded="True"
+                                       BackgroundColor="#fff">
+
+                    <!--Body-->
+
+                    <syncfusion:SfExpander.Content>
+                        <Grid Padding="5,10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="1"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" 
+                                   x:Name="designationProduit"
+                                   FontSize="24"
+                                   Text="{Binding Item.DESIGN_DCI}"
+                                   TextColor="#0c0c0c"
+                                   />
+
+                            <FlexLayout Grid.Row="1">
+                                <Label Text="{Binding Item.QUANTITE}"/>
+                                <Label Text="Unité" Margin="5,0,0,0"/>
+                            </FlexLayout>
+
+
+                            <BoxView Grid.Row="2" 
+                                 BackgroundColor="#ddd"/>
+
+                            <Grid Grid.Row="3" Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <!--Montant Officine-->
+                                <Label Grid.Row="0"
+                                   Grid.Column="0"
+                                   Text="Montant Total"/>
+
+                                <Label Grid.Row="0"
+                                   Grid.Column="1"
+                                   HorizontalOptions="End"
+                                   Text="{Binding Item.MONT_FACTURE,StringFormat='{0:N2} DA'}"/>
+
+                                <!--Montant Majoration-->
+                                <Label Grid.Row="1"
+                                   Grid.Column="0"
+                                   Text="Montant Majoration"/>
+
+                                <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   HorizontalOptions="End"
+                                   Text="{Binding Item.MONT_MAJORATION,StringFormat='{0:N2} DA'}"/>
+                            </Grid>
+
+
+                        </Grid>
+                    </syncfusion:SfExpander.Content>
+                    <!--Custimaztion-->
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroupList>
+                            <VisualStateGroup>
+                                <VisualState Name="Expanded">
+                                    <VisualState.Setters>
+                                        <Setter Property="HeaderBackgroundColor" Value="Transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState Name="Collapsed">
+                                    <VisualState.Setters>
+                                        <Setter Property="HeaderBackgroundColor" Value="transparent"/>
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateGroupList>
+                    </VisualStateManager.VisualStateGroups>
+                </syncfusion:SfExpander>
+            </yummy:PancakeView>
+
+            <!--Liste of products-->
+            <Frame Background="transparent"
+                   CornerRadius="12"       
+                   Margin="5,0"
+                   HasShadow="True"
+                   Padding="0">
+
+                <StackLayout Grid.Row="0" 
+                                 Grid.RowSpan="2"
+                                 Grid.Column="0"
+                                 Grid.ColumnSpan="2">
+                    <Label 
+                            Padding="10,15,10,10"
+                            Text="Liste des produits"
+                            FontSize="18"
+                            FontAttributes="Bold"
+                            TextColor="#0c0c0f"/>
+                    <!--Liste view des facture-->
+                    <ListView 
+                              x:Name="ItemsListView"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding DetailList}"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding GetConsommationDetails}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement"
+                              SelectionMode="None">
+
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Frame CornerRadius="12"
+                                           Margin="7">
+                                        <Grid Padding="5" HorizontalOptions="Fill">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35" />
+                                                <RowDefinition Height="25" />
+                                                <RowDefinition Height="25" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="6*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--Designation DCI-->
+                                            <Label Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Grid.ColumnSpan="2"
+                                                   TextColor="#0c0c0c"
+                                                   FontSize="15"
+                                                   FontAttributes="bold"
+                                                   Text="{Binding DESIGNATION_PRODUIT}"/>
+
+                                            <!--Reference Produit-->
+                                            <Label Grid.Row="1"
+                                                   FontSize="13"
+                                                   Text="{Binding REFERENCE,StringFormat='{0}'}"
+                                                   TextColor="#2f2f2f"/>
+
+                                            <!--QUANTITE produit-->
+                                            <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="Start"
+                                                        AlignItems="End"
+                                                        Grid.Column="0">
+                                                <Label Text="{Binding QUANTITE}"
+                                                       FontSize="18"
+                                                       Margin="0,0,5,0"
+                                                       FontAttributes="bold"
+                                                       
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                <Label Text="Unités"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                            </FlexLayout>
+
+                                            <!--Montant Facture-->
+                                            <FlexLayout Grid.Row="2"
+                                                        Direction="row"
+                                                        HorizontalOptions="EndAndExpand"
+                                                        AlignItems="End"
+                                                        JustifyContent="Center"
+                                                        Grid.Column="1">
+
+                                                <Label Text="{Binding MONT_FACTURE,StringFormat='{0:N2}'}"
+                                                       FontSize="18"
+                                                       FontAttributes="bold"
+                                                       Margin="0,0,5,0"
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                <Label Text="DA"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                                            </FlexLayout>
+                                        </Grid>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.Footer>
+                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
+                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage
+        Title="Factures"
+        BackgroundColor="#fff">
+        <StackLayout>
+
+            <Label 
+                    Padding="10,15,10,5"
+                    Text="Liste des Factures"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="#0c0c0f"/>
+
+            <Grid Margin="10,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+
+                <FlexLayout Grid.Row="0" Grid.Column="0">
+                    <Label Text="Du :"/>
+                    <Label Text="{Binding startDate, StringFormat='{0:dd/MM/yyyy}'}"
+                           TextColor="#0c0c0c"/>
+                </FlexLayout>
+
+                <FlexLayout Grid.Row="0" Grid.Column="1">
+                    <Label Text="aux :"/>
+                    <Label Text="{Binding endDate, StringFormat='{0:dd/MM/yyyy}'}"
+                           TextColor="#0c0c0c"/>
+                </FlexLayout>
+
+                <FlexLayout Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" JustifyContent="Start" AlignItems="End">
+                    <Label Text="{Binding CountFacture}" TextColor="#0c0c0c" Margin="0,0,5,0" FontSize="17"/>
+                    <Label Text="Factures"/>
+                </FlexLayout>
+            </Grid>
+
+            <Frame Background="transparent"
+                   CornerRadius="12"       
+                   Margin="5"
+                   HasShadow="True"
+                   Padding="0">
+
+                <StackLayout Grid.Row="0" 
+                         Grid.RowSpan="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2">
+
+                    <!--Liste view des facture-->
+
+                    <ListView 
+                        x:Name="ItemsListView1"
+                        VerticalOptions="Fill"
+                        ItemsSource="{Binding FactureList}"
+                        HasUnevenRows="true" 
+                        SeparatorVisibility="None"                            
+                        RefreshCommand="{Binding GetFactureListByReference}"
+                        IsPullToRefreshEnabled="true"
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                        CachingStrategy="RecycleElement"
+                        SelectionMode="None">
+
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template1:CHIFATemplateFacture />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.Footer>
+                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
+                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+
+
+    </ContentPage>
+
+    <ContentPage
+        Title="Bénéficiaires"
+        BackgroundColor="#fff">
+
+        <Frame Background="transparent"
+                   CornerRadius="12"       
+                   Margin="5"
+                   HasShadow="True"
+                   Padding="0">
+
+            <StackLayout Grid.Row="0" 
+                         Grid.RowSpan="2"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2">
+
+                <!--Liste view des facture-->
+                <Label 
+                    Padding="10,15,10,5"
+                    Text="Liste des bénéficiaires"
+                    FontSize="18"
+                    FontAttributes="Bold"
+                    TextColor="#0c0c0f"/>
+                
+                <ListView 
+                        x:Name="ItemsListView2"
+                        VerticalOptions="Fill"
+                        ItemsSource="{Binding BeneficiaireList}"
+                        HasUnevenRows="true" 
+                        SeparatorVisibility="None"                            
+                        RefreshCommand="{Binding GetBeneficiaireByCodeDci}"
+                        IsPullToRefreshEnabled="true"
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                        CachingStrategy="RecycleElement"
+                        SelectionMode="None">
+
+                    <ListView.Behaviors>
+                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                    </ListView.Behaviors>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout
+                                Padding="2">
+                                    <yummy:PancakeView 
+                        Margin="4"
+                        Padding="15"
+                        CornerRadius="10"
+                        BackgroundColor="White">
+                                        <yummy:PancakeView.Shadow>
+                                            <yummy:DropShadow Color="#000000" Offset="4,4" />
+                                        </yummy:PancakeView.Shadow>
+
+                                        <Grid RowSpacing="0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+
+                                            <Label Grid.Row="0" 
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding NOMC_TIERS,FallbackValue='Nom Prénom'}"
+                                           FontSize="Medium"
+                                           TextColor="Black"
+                                           />
+                                            <Label Grid.Row="1" 
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding NUM_ASSURE,FallbackValue='Num Assure'}"
+                                           FontSize="Small"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           />
+                                            <Label Grid.Row="2" 
+                                           Grid.Column="0"
+                                           Text="{Binding TOTAL_FACTURES,StringFormat='{0:N0} Factures',FallbackValue='0 Factures'}"
+                                           FontSize="Small"
+                                           TextColor="Black"
+                                           />
+
+                                            <Label Grid.Row="2" 
+                                           Grid.Column="1"
+                                           Text="{Binding MONTANT_FACTURES,StringFormat='{0:N2} DA',FallbackValue='Num Assure'}"
+                                           FontSize="Small"
+                                           TextColor="Black"
+                                           />
+
+                                        </Grid>
+
+                                    </yummy:PancakeView>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                    <ListView.Footer>
+                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                            <!-- set the footer to have a zero height when invisible -->
+                            <Grid.Triggers>
+                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                    <Setter Property="HeightRequest" Value="0" />
+                                </Trigger>
+                            </Grid.Triggers>
+                            <!-- the loading content -->
+                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                        </Grid>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+        </Frame>
+
+    </ContentPage>
+</TabbedPage>

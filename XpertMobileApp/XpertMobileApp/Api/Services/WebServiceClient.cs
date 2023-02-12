@@ -215,21 +215,50 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetTotauxFactureCHIFA(DateTime date)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_TOTAUX_FACTURE);
-            url += "?date=" + date;
+            url += "?date=" + WSApi2.GetStartDateQuery(date);
             return await RetrievValAauthorizedData<List<View_CFA_MOBILE_FACTURE>>(url);
         }
 
-        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetListFactureByDci(string startDate, string endDate, string displayType, QueryInfos filterParams,int page, int pageSize)
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetListFactureByDci(DateTime startDate, DateTime endDate, string displayType, QueryInfos filterParams,int page, int pageSize)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_DETAIL_MOBILE_URL, ServiceUrlDico.CFA_LISTE_FACT_BY_DCI);
             url += WSApi2.AddParam(url, "displayType", displayType);
-            url += WSApi2.AddParam(url, "endDate", endDate);
-            url += WSApi2.AddParam(url, "startDate", startDate);
+            url += WSApi2.AddParam(url, "endDate", WSApi2.GetStartDateQuery(endDate));
+            url += WSApi2.AddParam(url, "startDate", WSApi2.GetStartDateQuery(startDate));
             url += WSApi2.AddParam(url, "page", page.ToString());
             url += WSApi2.AddParam(url, "pageSize", pageSize.ToString());
             return await WSApi2.PostAauthorizedValue<List<View_CFA_MOBILE_DETAIL_FACTURE>, QueryInfos>(url, filterParams, Token);
         }
+        
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetListFactDetailByDci(DateTime startDate, DateTime endDate, string codeDCI, string reference)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_DETAIL_MOBILE_URL, ServiceUrlDico.CFA_LISTE_CONSOMMATION_BY_DCI);
+            
+            url += "?startDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&endDate=" + WSApi2.GetEndDateQuery(endDate);
+            url += "&codeDCI=" + codeDCI;
+            url += "&reference=" + reference;
 
+            return await RetrievValAauthorizedData<List<View_CFA_MOBILE_DETAIL_FACTURE>>(url);
+        }
+
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetFactureListByReference(string codeDCI, string reference, string startDate, string endDate)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_DETAIL_MOBILE_URL, ServiceUrlDico.CFA_LISTE_Facture_BY_REF);
+            url += "?startDate=" + startDate;
+            url += "&endDate=" + endDate;
+            url += "&codeDCI=" + codeDCI;
+            url += "&reference=" + reference;
+            return await RetrievValAauthorizedData<List<View_CFA_MOBILE_FACTURE>>(url);
+        }
+
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> GetBeneficiaireByDci(string codeDCI)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_DETAIL_MOBILE_URL, ServiceUrlDico.CFA_LISTE_BeneficiaireByDci);
+            url += "?codeDCI=" + codeDCI;
+            return await RetrievValAauthorizedData<List<View_CFA_MOBILE_DETAIL_FACTURE>>(url);
+
+        }
         internal static async Task<View_CFA_MOBILE_FACTURE> GetTodayCountFacture()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_FACTURE_COUNT_TODAY);

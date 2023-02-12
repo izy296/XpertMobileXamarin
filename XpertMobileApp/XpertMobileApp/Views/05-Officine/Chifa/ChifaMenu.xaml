@@ -60,12 +60,13 @@
                                            Padding="2" 
                                            HasShadow="False">
 
-                            <Grid     Padding="10" 
-                                      ColumnSpacing="0" 
-                                      Margin="0" >
+                            <Grid     
+                                Padding="10" 
+                                ColumnSpacing="0" 
+                                Margin="0" >
 
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height= "*" />
+                                    <RowDefinition Height= "auto" />
                                     <RowDefinition Height= "*" />
                                     <RowDefinition Height= "*" />
                                 </Grid.RowDefinitions>
@@ -73,6 +74,8 @@
                                 <Label Grid.Row="0"
                                        Text="{Binding TITLE}"
                                        FontSize="15"
+                                       HorizontalTextAlignment="Center"
+                                       VerticalTextAlignment="Center"
                                        TextColor="#0c0c0f"
                                        VerticalOptions="StartAndExpand"
                                        HorizontalOptions="Center"/>

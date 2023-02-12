@@ -82,18 +82,18 @@
                                  Grid.ColumnSpan="2">
                         <Label 
                             Padding="10,15,10,10"
-                            Text="Liste des Médicaments"
+                            Text="Liste des DCI"
                             FontSize="18"
                             FontAttributes="Bold"
                             TextColor="#0c0c0f"/>
                         <!--Liste view des facture-->
                         <ListView 
-                              x:Name="ItemsListView"
+                              x:Name="ItemsListView3"
                               VerticalOptions="Fill"
                               ItemsSource="{Binding ListeFactByDci}"
                               HasUnevenRows="true" 
-                              SeparatorVisibility="None"                            
-                              RefreshCommand="{Binding ExecuteLoadFactByDci}"
+                              SeparatorVisibility="None"      
+                              RefreshCommand="{Binding LoadListClearFactByDciCommand}"
                               IsPullToRefreshEnabled="true"
                               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                               CachingStrategy="RecycleElement"
@@ -216,8 +216,7 @@
 
 
     </ContentPage>
-
-
+    
     <!--Page of medicament par Nom commercial-->
     <ContentPage Title="Nom Commercial" IconImageSource="pill.png">
         <StackLayout>
@@ -296,7 +295,7 @@
                               ItemsSource="{Binding ListeFactByDci}"
                               HasUnevenRows="true" 
                               SeparatorVisibility="None"                            
-                              RefreshCommand="{Binding LoadItemsCommand}"
+                              RefreshCommand="{Binding LoadListClearFactByDciCommand}"
                               IsPullToRefreshEnabled="true"
                               IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                               CachingStrategy="RecycleElement"

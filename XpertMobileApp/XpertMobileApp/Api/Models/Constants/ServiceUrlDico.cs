@@ -191,6 +191,9 @@ namespace XpertMobileApp.Helpers
         public static string CFA_DETAIL_FACTURE = "GetCFAFactDetails";
         public static string CFA_TOTAUX_FACTURE = "GetTotauxFactureCHIFA";
         public static string CFA_LISTE_FACT_BY_DCI = "GetListFactByDci";
+        public static string CFA_LISTE_CONSOMMATION_BY_DCI = "GetListFactDetailByDci";
+        public static string CFA_LISTE_Facture_BY_REF = "GetFactureListByReference";
+        public static string CFA_LISTE_BeneficiaireByDci = "GetBeneficiaireByDci";
 
         // RFID
         public static string RFID_URL = "RFID";

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
 {
@@ -33,8 +34,12 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
         {
             try
             {
-                await Navigation.PushAsync(new CHIFA_ConsommationDetail());
-                ItemsListView1.SelectedItem = null;
+                View_CFA_MOBILE_DETAIL_FACTURE ConsommationItem = (View_CFA_MOBILE_DETAIL_FACTURE)e.SelectedItem;
+                if (ConsommationItem != null)
+                {
+                    await Navigation.PushAsync(new CHIFA_ConsommationDetail(viewModel, ConsommationItem, viewModel.StartDate, viewModel.EndDate));
+                    ItemsListView1.SelectedItem = null;
+                }
             }
             catch (Exception ex)
             {
@@ -74,7 +79,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                         viewModel.ConsommationDisplayType = ConsommationDisplayType.NOMC;
                     }
 
-                    viewModel.LoadListeFactByDciCommand.Execute(null);
+                    viewModel.InitAndReloadItemList();
                 }
             }
             catch (Exception ex)

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
@@ -48,14 +49,16 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
         public bool orderByQuatity { get; set; }
         public bool orderByPrice { get; set; }
         public Command LoadListeFactByDciCommand { get; set; }
+        public Command LoadListClearFactByDciCommand { get; set; }
         public CHIFA_ConsommationViewModel()
         {
             ListeFactByDci = new ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE>();
             LoadListeFactByDciCommand = new Command(async () => await ExecuteLoadFactByDci());
+            LoadListClearFactByDciCommand = new Command(async () => await InitAndReloadItemList());
             PageSize = 30;
         }
 
-        private string GetCurrentDisplayType()
+        public string GetCurrentDisplayType()
         {
             string type = "";
             switch (ConsommationDisplayType)
@@ -70,6 +73,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             return type;
         }
 
+        
         public async Task InitAndReloadItemList()
         {
             try
@@ -98,12 +102,12 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
                     this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.DESIGN_DCI);
-                    this.AddGroupBy("DESIGN_DCI, REFERENCE");
+                    this.AddGroupBy("DESIGN_DCI, REFERENCE, CODE_DCI");
                 }
                 else
                 {
                     this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.DESIGNATION_PRODUIT);
-                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI");
                 }
 
             }
@@ -112,11 +116,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 this.AddOrderBy("MONT_FACTURE");
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
-                    this.AddGroupBy("DESIGN_DCI, MONT_FACTURE, REFERENCE");
+                    this.AddGroupBy("DESIGN_DCI, MONT_FACTURE, REFERENCE, CODE_DCI");
                 }
                 else
                 {
-                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, ");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI");
                 }
             }
             else if (orderByQuatity)
@@ -124,11 +128,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 this.AddOrderBy("QUANTITE");
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
-                    this.AddGroupBy("DESIGN_DCI, QUANTITE, REFERENCE");
+                    this.AddGroupBy("DESIGN_DCI, QUANTITE, REFERENCE, CODE_DCI");
                 }
                 else
                 {
-                    this.AddGroupBy("DESIGNATION_PRODUIT, QUANTITE, REFERENCE");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, QUANTITE, REFERENCE, CODE_DCI");
                 }
             }
 
@@ -140,13 +144,13 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             try
             {
                 if (IsBusy)
-                    return;
+                    return ;
                 IsBusy = true;
                 var page = (ListeFactByDci.Count / PageSize) + 1;
 
                 var liste = await WebServiceClient.GetListFactureByDci(
-                    StartDate.ToString("MM/dd/yyyy HH:MM:ss"),
-                    EndDate.ToString("MM/dd/yyyy HH:MM:ss"),
+                    StartDate,
+                    EndDate,
                     GetCurrentDisplayType(),
                     GetFilterParams(),
                     page,
