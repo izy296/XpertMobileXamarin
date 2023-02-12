@@ -39,18 +39,18 @@
                     Grid.Row="0"
                     Grid.Column="0"
                     Text="Date Debute"
-                    FontSize="Micro"
+                    FontSize="Small"
                     FontAttributes="Bold"
-                    VerticalOptions="End"
+                    VerticalOptions="Center"
                     TextColor="{DynamicResource NavigationPrimary}"
                     />
                 <Label
                     Grid.Row="0"
                     Grid.Column="1"
                     Text="Date Fin"
-                    FontSize="Micro"
+                    FontSize="Small"
                     FontAttributes="Bold"
-                    VerticalOptions="End"
+                    VerticalOptions="Center"
                     TextColor="{DynamicResource NavigationPrimary}"
                     />
                 <DatePicker 
@@ -84,7 +84,7 @@
                 <Label
                     Grid.Row="2"
                     Grid.Column="1"
-                    Text="Total Ayd"
+                    Text="Total AYD"
                     FontSize="Medium"
                     FontAttributes="Bold"
                     VerticalOptions="End"
@@ -96,6 +96,7 @@
                     Grid.Column="0"
                     Text="{Binding Summary.TOTAL_ASSURE,StringFormat='{0:N0}'}"
                     FontSize="Small"
+                    FontAttributes="Bold"
                     VerticalOptions="Start"
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand"

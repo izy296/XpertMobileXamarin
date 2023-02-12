@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
@@ -19,6 +20,13 @@ namespace XpertMobileApp.Api.ViewModels
 {
     public class BordereauxChifaViewModel : CrudBaseViewModel2<CFA_BORDEREAU, View_CFA_BORDEREAUX_CHIFA>
     {
+        private string searchText { get; set; }
+        public string SearchText
+        {
+            get { return searchText; }
+            set { searchText = value; OnPropertyChanged("SearchText"); }
+        }
+
         private string title { get; set; }
         public string Title
         {
@@ -40,7 +48,8 @@ namespace XpertMobileApp.Api.ViewModels
             {
                 return item;
             }
-            set {
+            set
+            {
                 item = value;
                 OnPropertyChanged("Item");
             }
@@ -57,11 +66,15 @@ namespace XpertMobileApp.Api.ViewModels
             }
         }
 
-        private CFA_CENTRES selectedCentre { get; set; } = new CFA_CENTRES() { CODE="0",DESIGNATION=""};
-        public CFA_CENTRES SelectedCentre { get { return selectedCentre; } set {
+        private CFA_CENTRES selectedCentre { get; set; } = new CFA_CENTRES() { CODE = "0", DESIGNATION = "" };
+        public CFA_CENTRES SelectedCentre
+        {
+            get { return selectedCentre; }
+            set
+            {
                 selectedCentre = value;
                 OnPropertyChanged("SelectedCentre");
-            } 
+            }
         }
 
         private ObservableCollection<View_CONVENTION_FACTURE> chifaFacturesList { get; set; }
@@ -105,7 +118,8 @@ namespace XpertMobileApp.Api.ViewModels
 
             Item = new View_CFA_BORDEREAUX_CHIFA();
 
-            new Command(async () => {
+            new Command(async () =>
+            {
                 await ExecuteLoadLastBordereaux();
                 await ExecuteLoadFacturesCommand();
             }).Execute(null);
@@ -138,8 +152,8 @@ namespace XpertMobileApp.Api.ViewModels
 
         public async Task RefreshData()
         {
-                await ExecuteLoadBordereauxInfo();
-                await ExecutePullToRefresh();
+            await ExecuteLoadBordereauxInfo();
+            await ExecutePullToRefresh();
         }
 
         protected override QueryInfos GetSelectParams()
@@ -197,15 +211,12 @@ namespace XpertMobileApp.Api.ViewModels
                     return;
                 IsBusy = true;
                 await Items.LoadMoreAsync();
+                IsBusy = false;
             }
             catch (Exception ex)
             {
                 CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
 
@@ -219,7 +230,7 @@ namespace XpertMobileApp.Api.ViewModels
                 }
                 FactureLoadMore = true;
                 UserDialogs.Instance.ShowLoading(AppResources.txt_msg_RecuperationFactures);
-                ChifaFacturesList = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, center: SelectedCentre.CODE));
+                ChifaFacturesList = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText, center: SelectedCentre.CODE));
                 UserDialogs.Instance.HideLoading();
                 IsRefreshing = false;
             }
@@ -234,6 +245,14 @@ namespace XpertMobileApp.Api.ViewModels
                 IsRefreshing = false;
             }
         }
+
+        public async Task ExecuteSearch(string SearchBarText)
+        {
+            SearchText = SearchBarText;
+            ChifaFacturesList.Clear();
+            await ExecuteLoadFacturesCommand();
+        }
+
         public async Task ExecuteLoadLastBordereaux()
         {
             try
@@ -270,8 +289,8 @@ namespace XpertMobileApp.Api.ViewModels
                 //queryBuilder.AddCondition<View_CFA_BORDEREAUX_CHIFA,DateTime?>(e=>e.CREATED_ON, Operator.GREATER_DATE,DateTime.Now.AddMonths(-1));
                 qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Operator.NOT_EQUAL, "VIDE");
                 qb.AddCondition<View_CFA_BORDEREAUX_CHIFA, decimal>(e => e.TOTAL_NB_CHIFA, Operator.GREATER, 10);
-                qb.AddOrderBy<View_CFA_BORDEREAUX_CHIFA,string>(e => e.NUM_BORDEREAU, Sort.DESC);
-                
+                qb.AddOrderBy<View_CFA_BORDEREAUX_CHIFA, string>(e => e.NUM_BORDEREAU, Sort.DESC);
+
                 qb.AddPaging(1, 5);
                 BordereauxList = new ObservableCollection<View_CFA_BORDEREAUX_CHIFA>(await WebServiceClient.GetCFABordereaux(qb.QueryInfos));
                 qb.InitQuery();
@@ -299,7 +318,7 @@ namespace XpertMobileApp.Api.ViewModels
                 if (ChifaFacturesList.Count == 0)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_msg_RecuperationFactures);
-                    ChifaFacturesList = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, center: SelectedCentre.CODE));
+                    ChifaFacturesList = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU,search:SearchText, center: SelectedCentre.CODE));
                     UserDialogs.Instance.HideLoading();
                 }
                 else
@@ -308,7 +327,7 @@ namespace XpertMobileApp.Api.ViewModels
                     {
                         var stop = true;
                         var page = (int)(Math.Round((decimal)(ChifaFacturesList.Count / 10)) + 1);
-                        var list = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, page: page,center:SelectedCentre.CODE));
+                        var list = new ObservableCollection<View_CONVENTION_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText, page: page, center: SelectedCentre.CODE));
                         foreach (var item in list)
                         {
                             if (!ChifaFacturesList.Any(e => e.NUM_FACTURE == item.NUM_FACTURE))
@@ -317,6 +336,7 @@ namespace XpertMobileApp.Api.ViewModels
                                 stop = false;
                             }
                         }
+                        //ChifaFacturesList.Count == (int)Item.TOTAL_NB_FACTURES_CFA
                         if (stop)
                         {
                             FactureLoadMore = false;
@@ -324,16 +344,13 @@ namespace XpertMobileApp.Api.ViewModels
                     }
 
                 }
+                IsBusy = false;
             }
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
                 CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
     }

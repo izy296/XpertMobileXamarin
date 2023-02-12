@@ -47,8 +47,8 @@
                               HorizontalOptions="FillAndExpand">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="4*"/>
@@ -59,10 +59,10 @@
                                 Grid.Row="0"
                                 Grid.Column="0"
                                 Text="Period : "
-                                FontSize="Micro"
+                                FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
-                                VerticalOptions="End"
+                                VerticalOptions="Center"
                                 />
                             <Picker 
                                 Grid.Row="1"
@@ -78,11 +78,11 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Text="Export"
-                                FontSize="Micro"
+                                Text="Export : "
+                                FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
-                                VerticalOptions="End"
+                                VerticalOptions="Center"
                                 />
 
                             <Button

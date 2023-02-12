@@ -220,7 +220,7 @@
                     SelectionChanged="OnItemSelected"
                     SelectionMode="None"
                     VerticalScrollBarVisibility="Always"
-                    RemainingItemsThreshold="1"
+                    RemainingItemsThreshold="0"
                     RemainingItemsThresholdReachedCommand="{Binding LoadBillsCommand}"
                     ItemTemplate="{StaticResource BordereauxCHIFA}">
                 </CollectionView>

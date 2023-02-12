@@ -147,6 +147,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 ID = 2,
                 TITLE = AppResources.pn_Beneficiaire,
                 BGCOLOR = "#f0f0f0",
+                ICON = "group.png",
                 ShowStats = false
             });
             MenuItems.Add(new MenuChifaItem
@@ -154,6 +155,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 ID = 3,
                 TITLE = "Consommation des Médicament",
                 BGCOLOR = "#f0f0f0",
+                ICON = "pills.png",
                 ShowStats = false
             });
             
@@ -162,6 +164,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 ID = 4,
                 TITLE = AppResources.pn_ChronicFollowUp,
                 BGCOLOR = "#f0f0f0",
+                ICON = "users.png",
                 ShowStats = false
             });
 
@@ -226,7 +229,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                     MenuItems.Insert(0, new MenuChifaItem
                     {
                         ID = 0,
-                        TITLE = "Aujourd'hui",
+                        TITLE = "Bordereau",
                         BGCOLOR = "#f0f0f0",
                         ShowStats = true,
                         NbFACTURE = TotalFactByDay,

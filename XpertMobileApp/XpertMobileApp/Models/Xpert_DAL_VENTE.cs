@@ -803,6 +803,7 @@ namespace XpertMobileApp.DAL
                 return NUM_ASSURE + "-" + RAND_AD;
             }
         }
+        public string CENTRE { get; set; } // char(5)
     }
 
     #region Livraison

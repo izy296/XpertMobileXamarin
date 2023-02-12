@@ -31,6 +31,17 @@ namespace XpertMobileApp.Views
             //await viewModel.ExecuteLoadBordereauxInfo();
             //await viewModel.ExecuteLoadFacturesCommand();
             await viewModel.ExecuteLoadLastsBordereaux();
+            expander.IsExpanded = true;
+        }
+
+
+        public override void SearchCommand()
+        {
+            base.SearchCommand();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await viewModel.ExecuteSearch(SearchBarText);
+            });
         }
 
         private void OnItemSelected(object sender, SelectionChangedEventArgs e)

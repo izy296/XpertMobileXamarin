@@ -143,7 +143,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
-        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", int page = 1, int count = 10)
+        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "",string search = "", int page = 1, int count = 10)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
@@ -151,6 +151,7 @@ namespace XpertMobileApp.Services
             url += "&count=" + count;
             url += "&center=" + center;
             url += "&codeTier=" + codeTier;
+            url += "&search=" + search;
 
             return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
         }

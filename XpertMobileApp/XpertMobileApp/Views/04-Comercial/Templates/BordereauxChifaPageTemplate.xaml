@@ -81,10 +81,10 @@
                                            TextColor="Black"
                                            />
 
-                    <!--Nombre de vignettes-->
+                    <!--Centre-->
                     <Label Grid.Row="5" 
                                            Grid.Column="0"
-                                           Text="{i18n:Translate txt_NbrVignettes}"
+                                           Text="Center"
                                            FontSize="Micro"
                                            TextColor="{DynamicResource NavigationPrimary}"
                                            VerticalOptions="End"
@@ -92,7 +92,7 @@
                                            />
                     <Label Grid.Row="6" 
                                            Grid.Column="0"
-                                           Text="{Binding QUANTITE,FallbackValue='N/A'}"
+                                           Text="{Binding CENTRE,FallbackValue='N/A'}"
                                            FontSize="Small"
                                            TextColor="Black"
                                            />
