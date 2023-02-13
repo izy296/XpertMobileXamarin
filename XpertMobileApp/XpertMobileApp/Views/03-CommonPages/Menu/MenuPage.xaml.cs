@@ -288,16 +288,16 @@ namespace XpertMobileApp.Views
                             });
 
                             /* Inventaire */
-                            menuItems.Add(new HomeMenuItem
-                            {
-                                Id = MenuItemType.Inventaire,
-                                ItemGroup = MenuItemGroup.Stock,
-                                Title = AppResources.pn_Inventaire,
-                                CodeObjet = XpertObjets.STK_INVENTAIRE,
-                                Action = XpertActions.AcSelect,
-                                Image = "Inventory.png"
+                            //menuItems.Add(new HomeMenuItem
+                            //{
+                            //    Id = MenuItemType.Inventaire,
+                            //    ItemGroup = MenuItemGroup.Stock,
+                            //    Title = AppResources.pn_Inventaire,
+                            //    CodeObjet = XpertObjets.STK_INVENTAIRE,
+                            //    Action = XpertActions.AcSelect,
+                            //    Image = "Inventory.png"
 
-                            });
+                            //});
 
                         }
                     }
