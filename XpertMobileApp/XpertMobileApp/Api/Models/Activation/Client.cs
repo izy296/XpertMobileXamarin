@@ -15,7 +15,7 @@ namespace XpertMobileApp.Models
         public string AppName { get; set; }
         public string Mobile_Version { get; set; }
         public string LicenceTxt { get; set; }
-
+        public bool DemoMode { get; set; }
         public Client() { }
 
         public Client(string email, string clientId)

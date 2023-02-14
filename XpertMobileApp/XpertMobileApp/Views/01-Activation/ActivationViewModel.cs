@@ -26,7 +26,30 @@ namespace XpertMobileApp.ViewModels
         public IDeviceInfos DInfos = DependencyService.Get<IDeviceInfos>();
 
         public Client Client { get; set; }
-
+        private bool phoneFormatCorrect { get; set; } = false;
+        public bool PhoneFormatCorrect
+        {
+            get
+            {
+                return phoneFormatCorrect;
+            }
+            set
+            {
+                phoneFormatCorrect = value;
+            }
+        }
+        private bool emailFormatCorrect { get; set; } = false;
+        public bool EmailFormatCorrect
+        {
+            get
+            {
+                return emailFormatCorrect;
+            }
+            set
+            {
+                emailFormatCorrect = value;
+            }
+        }
         public ActivationViewModel()
         {
             Client = new Client();

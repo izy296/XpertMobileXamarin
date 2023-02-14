@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
              xmlns:fontawesome="clr-namespace:FontAwesome"
-             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     x:Class="XpertMobileApp.Views.LoginPage"
              BackgroundColor="White"
              >
@@ -162,17 +162,41 @@
                                     AlignItems="Center" 
                                     JustifyContent="Start">
 
+                                    <syncfusion:SfCheckBox 
+                                    x:Name="checkBoxDemo" 
+                                       IsChecked="False" 
+                                       CornerRadius="0.0"
+                                       BorderWidth="2"
+                                       ControlSize="0"
+                                       StateChanged="OnDemoCheckBoxCheckedChanged"
+                                       CheckedColor="{DynamicResource Primary}"
+                                       UncheckedColor="{DynamicResource Primary}"/>
+                                    
+                                    <Label Text="Mode Démo" 
+                                           x:Name="labelDemo"
+                                    FontSize="16"/>
+
+                                </FlexLayout>
+                                
+                                <FlexLayout Padding="9,10,0,0" 
+                                    Direction="row" 
+                                    AlignItems="Center" 
+                                    JustifyContent="Start">
+                                    
                                     <CheckBox Color="{StaticResource Primary}"
                                       x:Name="checkBox"
                                       CheckedChanged="OnCheckBoxCheckedChanged"
+                                      IsVisible="false"
                                       IsChecked="{Binding isChecked}"/>
+                                    
                                     <Label Text="{i18n:Translate lp_lbl_me_souvenir} " 
                                     FontSize="16"/>
 
                                 </FlexLayout>
 
                                 <Button 
-                                    x:Name="Btn_LogIn" Margin="14,15,14,0" 
+                                    x:Name="Btn_LogIn" 
+                                    Margin="14,15,14,0" 
                                     BorderRadius="12"
                                     Style="{DynamicResource DefaultBtnStyle}"
                                     Text="{i18n:Translate lp_btn_Login}" 

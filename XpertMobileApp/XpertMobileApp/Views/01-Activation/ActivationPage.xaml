@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:XpertMobileApp.ViewModels"
-             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Class="XpertMobileApp.Views.ActivationPage"
              
              BackgroundColor="White"
@@ -17,7 +17,7 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -41,18 +41,22 @@
                         HeightRequest="125" />
                 </ContentView>
             </StackLayout>
-            
-            
-            <Label x:Name="lic_Message" Text="" Margin="20,20,20,0" XAlign="Center" TextColor="Red" Style="{StaticResource DefaultTextStyle}" />
+            <Label x:Name="lic_Message" 
+                   Text="" 
+                   Margin="20,20,20,0" 
+                   XAlign="Start" 
+                   TextColor="Red" 
+                   Style="{StaticResource DefaultTextStyle}" />
+
         </StackLayout>
         <ScrollView 
             Grid.Row="1" 
             BackgroundColor="Transparent" 
             VerticalOptions="FillAndExpand">
-            
+
             <StackLayout 
                 Orientation="Vertical" 
-                Padding="16,40,16,40" 
+                Padding="16,20,16,40" 
                 Spacing="10" 
                 VerticalOptions="Center">
 
@@ -64,41 +68,83 @@
                     </Grid.ColumnDefinitions>
 
                     <StackLayout Grid.Column="1">
+                        <FlexLayout JustifyContent="SpaceBetween"
+                                    HorizontalOptions="Start"
+                                    Margin="0,20,0,10" 
+                                    AlignItems="Center">
+
+                            <Label x:Name="demo_message" 
+                                   Text="Mode demo  " 
+                                   FontSize="15"
+                                   XAlign="Start" 
+                                   TextColor="red" 
+                                   Style="{StaticResource DefaultTextStyle}" />
+
+                            <syncfusion:SfCheckBox x:Name="checkBox" 
+                                       IsChecked="False" 
+                                       CornerRadius="5.0"
+                                       BorderWidth="2"
+                                       ControlSize="0"
+                                       StateChanged="EnterInDemoMode"
+                                       CheckedColor="{DynamicResource Primary}"
+                                       UncheckedColor="red"/>
+
+                        </FlexLayout>
+                        
                         <StackLayout>
                             <Label 
                                 x:Name="Lbl_UserEemail" 
                                 Text="{i18n:Translate lp_lbl_UserEemail}" 
                                 Style="{StaticResource BlackDefaultLblStyle}" />
-                            
+
                             <Entry 
                                 x:Name="Ent_UserEemail" 
+                                Unfocused="VerifyEmail"
                                 Text="{ Binding Client.Email, Mode=TwoWay}" 
                                 Placeholder="{i18n:Translate lp_ph_UserEemail}" />
+                            
+                            <Label x:Name="lbl_email_warning"
+                                   Text="Vueillez entrer un format email valide !"
+                                   FontSize="12"
+                                   IsVisible="false"
+                                   BackgroundColor="#F9C6C6"
+                                   TextColor="#E50509"
+                                   Padding="10"/>
                         </StackLayout>
+                        
 
                         <StackLayout>
                             <Label 
                                 x:Name="Lbl_UserPhone" 
                                 Text="{i18n:Translate lp_lbl_UserPhone}" 
                                 Style="{StaticResource BlackDefaultLblStyle}" />
-                            
+
                             <Entry 
                                 x:Name="Ent_UserPhone" 
                                 Text="{ Binding Client.Phone, Mode=TwoWay}" 
+                                Unfocused="VerifyPhoneNumber"
                                 Placeholder="{i18n:Translate lp_ph_UserPhone}" />
+                            
+                            <Label x:Name="lbl_phone_warning"
+                                   Text="Veuillez entrer un numéro valide !"
+                                   FontSize="12"
+                                   IsVisible="false"
+                                   BackgroundColor="#F9C6C6"
+                                   TextColor="#E50509"
+                                   Padding="10"/>
                         </StackLayout>
-                        
+
                         <StackLayout Padding="0,10,0,0">
                             <Label 
                                 x:Name="Lbl_ClientId" 
                                 Text="{i18n:Translate lp_lbl_ClientId}" 
                                 Style="{StaticResource BlackDefaultLblStyle}"/>
-                            
+
                             <Entry 
                                 x:Name="Ent_ClientId" 
                                 Text="{Binding Client.ClientId, Mode=TwoWay}" 
                                 Placeholder="{i18n:Translate lp_ph_ClientId}" />
-                            
+
                         </StackLayout>
 
                         <StackLayout Padding="0,10,0,0" IsVisible="False">
@@ -106,23 +152,37 @@
                                 x:Name="Lbl_DeviceId" 
                                 Text="DeviceId" 
                                 Style="{StaticResource BlackDefaultLblStyle}"/>
-                            
+
                             <Label 
                                 x:Name="val_DeviceId" 
                                 Text="{Binding Client.DeviceId}"/>
-                            
+
                         </StackLayout>
-                        
-                        <StackLayout Padding="0" Orientation="Horizontal">
+
+                        <StackLayout Padding="0" 
+                                     HorizontalOptions="Fill"
+                                     Orientation="Vertical">
                             <Button 
                                 x:Name="Btn_LogIn" 
                                 Margin="0,15,0,0" 
                                 BorderRadius="5" 
-                                HorizontalOptions="Center"
+                                CornerRadius="12"
+                                HorizontalOptions="StartAndExpand"
                                 Style="{DynamicResource DefaultBtnStyle}"
-                                Text="{i18n:Translate lp_btn_Activate}" 
+                                Text="Activer"
+                                WidthRequest="230"
+                                HeightRequest="38"
+                                FontSize="12"
                                 Clicked="ActivateUserAsync"/>
-
+                            
+                            <Label x:Name="lbl_check_warning"
+                                   Text="Veuillez remplir touts les champs !"
+                                   FontSize="12"
+                                   IsVisible="false"
+                                   BackgroundColor="#F9C6C6"
+                                   TextColor="#E50509"
+                                   Padding="10"/>
+                            
                             <ActivityIndicator 
                                 x:Name="ActivitySpiner" 
                                 Color="Red" 

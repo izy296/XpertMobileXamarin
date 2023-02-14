@@ -2,6 +2,8 @@
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Linq;
+using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -72,6 +74,12 @@ namespace XpertMobileApp.Views
             if (viewModel.IsBusy)
                 return;
 
+            if(!viewModel.PhoneFormatCorrect || !viewModel.EmailFormatCorrect)
+            {
+                lbl_check_warning.IsVisible = true;
+                return;
+            }
+            lbl_check_warning.IsVisible = false;
             var DInfos = DependencyService.Get<IDeviceInfos>();
             /*
             if (!DInfos.HasPermission())
@@ -145,6 +153,81 @@ namespace XpertMobileApp.Views
                 return true;
             }
             return false;
+        }
+
+        private void EnterInDemoMode(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            try
+            {
+                if (e.IsChecked.HasValue && e.IsChecked.Value)
+                {
+                    Ent_ClientId.IsEnabled = false;
+                    Ent_ClientId.IsPassword = true;
+                    viewModel.Client.ClientId = "1540";
+                    viewModel.Client.DemoMode = true;
+                }
+                else
+                {
+                    Ent_ClientId.IsEnabled = true;
+                    Ent_ClientId.IsPassword = false;
+                    viewModel.Client.ClientId = String.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void VerifyEmail(object sender, FocusEventArgs e)
+        {
+            try
+            {
+                string email = Ent_UserEemail.Text.ToString();
+                Regex regex = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Match match = regex.Match(email);
+                if (match.Success)
+                {
+                    lbl_phone_warning.IsVisible = false;
+                    viewModel.EmailFormatCorrect = true;
+                }
+
+                else
+                {
+                    lbl_phone_warning.IsVisible = true;
+                    viewModel.EmailFormatCorrect = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private void VerifyPhoneNumber(object sender, FocusEventArgs e)
+        {
+            try
+            {
+                string phone = Ent_UserPhone.Text.ToString();
+                var regex = new Regex(@"^(00213|\+213|0)(5|6|7)[0-9]{8}$");
+                Match match = regex.Match(phone);
+                if (match.Success)
+                {
+                    lbl_phone_warning.IsVisible = false;
+                    viewModel.PhoneFormatCorrect = true;
+                }
+                else
+                {
+                    lbl_phone_warning.IsVisible = true;
+                    viewModel.PhoneFormatCorrect = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

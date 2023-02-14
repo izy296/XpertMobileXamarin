@@ -31,6 +31,14 @@ namespace XpertMobileApp.Views
 
             NavigationPage.SetHasNavigationBar(this, false);
             Init();
+
+            // Check if the user if is in the demo mode !
+            Client client = App.ClientDatabase.GetFirstItemAsync().Result;
+            if (client.DemoMode == true)
+            {
+                checkBoxDemo.IsVisible = true;
+                labelDemo.IsVisible = true;
+            }
         }
         private void Init()
         {
@@ -375,6 +383,32 @@ namespace XpertMobileApp.Views
                     App.SettingsDatabase.SaveItemAsync(App.Settings);
                 }
             }
+        }
+
+        private void OnDemoCheckBoxCheckedChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            try
+            {
+                if (e.IsChecked.HasValue && e.IsChecked.Value)
+                {
+                    Ent_UserName.IsEnabled = Ent_PassWord.IsEnabled =  false;
+                    Btn_LogIn.Text = "Connexion en mode demo";
+                    Ent_UserName.Text = "Administrateur";
+                    Ent_PassWord.Text = "00";
+                } else
+                {
+                    Ent_UserName.IsEnabled = Ent_PassWord.IsEnabled = true;
+                    Btn_LogIn.Text = "Connexion";
+                    Ent_UserName.Text = "";
+                    Ent_PassWord.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
         }
     }
 }
