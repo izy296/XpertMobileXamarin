@@ -125,7 +125,7 @@
                     SelectionChanged="OnItemSelected"
                     SelectionMode="Single"
                     VerticalScrollBarVisibility="Always"
-                    RemainingItemsThreshold="1"
+                    RemainingItemsThreshold="0"
                     RemainingItemsThresholdReachedCommand="{Binding LoadItemsMoreCommand}"
                     ItemTemplate="{StaticResource BeneficiaresPageTemplate}">
                 </CollectionView>

@@ -143,7 +143,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
-        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "",string search = "", int page = 1, int count = 10)
+        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", string search = "", int page = 1, int count = 10)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
@@ -154,6 +154,32 @@ namespace XpertMobileApp.Services
             url += "&search=" + search;
 
             return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
+        }
+
+        internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectBeneficiares(DateTime startDate, DateTime endDate, string search = "",int orderBy=0, int page = 1, int count = 10)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_BENEFICIARE_URL);
+            url += "?page=" + page;
+            url += "&count=" + count;
+            url += "&SearchText=" + search;
+            url += "&StartDate=" + WSApi2.GetStartDateQuery(startDate);
+            url += "&EndDate=" + WSApi2.GetEndDateQuery(endDate);
+            url += "&orderBy=" + orderBy.ToString();
+
+            return await RetrievAauthorizedData<View_CFA_MOBILE_DETAIL_FACTURE>(url);
+        } 
+        
+        internal static async Task<int> SelectBeneficiaresCount(DateTime startDate, DateTime endDate, string search = "", int orderBy = 0, int page = 1, int count = 10)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_DETAIL_FACTURE_URL, ServiceUrlDico.CFA_MOBILE_FACTURE_BENEFICIARE_COUNT_URL);
+            url += WSApi2.AddParam(url, "page", page.ToString());
+            url += WSApi2.AddParam(url, "count", count.ToString());
+            url += WSApi2.AddParam(url, "orderBy", orderBy.ToString());
+            url += WSApi2.AddParam(url, "SearchText", search);
+            url += WSApi2.AddParam(url, "EndDate", WSApi2.GetStartDateQuery(endDate));
+            url += WSApi2.AddParam(url, "StartDate", WSApi2.GetStartDateQuery(startDate));
+
+            return await WSApi2.PostAauthorizedValue<int, string>(url,"",Token);
         }
 
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetFactChronic(string numAssure)

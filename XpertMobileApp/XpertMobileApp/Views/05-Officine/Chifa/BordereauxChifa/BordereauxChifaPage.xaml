@@ -6,6 +6,7 @@
                  x:Class="XpertMobileApp.Views.BordereauxChifaPage"
                  xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                  xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+                 xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
                  Title="{Binding Title}">
     <base:XBasePage.Content>
         <StackLayout VerticalOptions="FillAndExpand"
@@ -26,12 +27,13 @@
                      VerticalOptions="Start"
                          HeightRequest="40"
                          Padding="10,0">
-                    <syncfusion1:SfListView x:Name="listView1"  
+                    <syncfusion1:SfListView x:Name="BordereauxListView"  
                                         IsScrollBarVisible="false" 
                                         Orientation="Horizontal" 
-                                        ItemSize="80" 
+                                        ItemSize="110" 
                                         SelectionMode="None" 
-                                        ItemsSource="{Binding BordereauxList}">
+                                        ItemsSource="{Binding BordereauxList}"
+                                            >
 
                         <syncfusion1:SfListView.ItemTemplate>
                             <DataTemplate>
@@ -42,16 +44,31 @@
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="100"/>
                                     </Grid.ColumnDefinitions>
-                                    <Button Text="{Binding NUM_BORDEREAU}" 
-                                        Padding="0" 
-                                        WidthRequest="100" 
-                                        HorizontalOptions="CenterAndExpand" 
-                                        VerticalOptions="Center" 
-                                        BackgroundColor="Transparent" 
-                                        TextColor="#f1f1f1" 
-                                        Grid.Column="0" 
-                                        Clicked="ButtonClicked" 
-                                        />
+                                    <yummy:PancakeView
+                                        CornerRadius="15"
+                                        BackgroundColor="#057665"
+                                        BorderThickness="5"
+                                        BorderColor="White"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand">
+                                        <yummy:PancakeView.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="ButtonClicked"/>
+                                        </yummy:PancakeView.GestureRecognizers>
+                                        <Label 
+                                            x:Name="BordereauButton"
+                                            HorizontalOptions="CenterAndExpand" 
+                                            VerticalOptions="CenterAndExpand"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"
+                                            MinimumHeightRequest="50"
+                                            HeightRequest="35"
+                                            Padding="0"
+                                            Text="{Binding NUM_BORDEREAU}"
+                                            TextColor="White"
+                                            WidthRequest="130"
+                                            >
+                                        </Label>
+                                    </yummy:PancakeView>
 
                                     <!--<Label Grid.Column="0" 
                                        WidthRequest="100" 
@@ -80,7 +97,7 @@
                 </yummy:PancakeView.Shadow>
                 <StackLayout Orientation="Vertical"
                              VerticalOptions="FillAndExpand">
-                    <syncfusion:SfExpander x:Name="expander">
+                    <syncfusion:SfExpander x:Name="expander" HeaderBackgroundColor="White">
                         <!--Header-->
                         <syncfusion:SfExpander.Header>
                             <StackLayout

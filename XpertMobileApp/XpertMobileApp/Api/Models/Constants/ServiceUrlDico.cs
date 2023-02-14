@@ -161,6 +161,8 @@ namespace XpertMobileApp.Helpers
         public static string CFA_MOBILE_FACTURE_URL = "CFA_MOBILE_FACTURE";
         public static string CFA_MOBILE_FACTURE_SUMMARY_URL = "GetFactsSummary";
         public static string CFA_MOBILE_FACTURE_CHRONIC_URL = "GetFactChronic";
+        public static string CFA_MOBILE_FACTURE_BENEFICIARE_URL = "SelectBeneficiares";
+        public static string CFA_MOBILE_FACTURE_BENEFICIARE_COUNT_URL = "SelectBeneficiaresCount";
 
 
         // Centres bordereaux CHIFA
@@ -187,6 +189,7 @@ namespace XpertMobileApp.Helpers
         public static string CFA_DETAIL_SELECT_PATIENTS_BY_MEDICATION_URL = "SelectPatientByMedication";
         public static string CFA_DETAIL_SELECT_BENEFICIARE_URL = "SelectBeneficiare";
         public static string CFA_DETAIL_SELECT_FACTS_URL = "SelectFactsByBeneficiare";
+        public static string CFA_DETAIL_SELECT_FACT_URL = "SelectFactures";
         public static string CFA_DETAIL_SELECT_RELATIVES_URL = "SelectBeneficiareRelatives";
         public static string CFA_DETAIL_FACTURE = "GetCFAFactDetails";
         public static string CFA_TOTAUX_FACTURE = "GetTotauxFactureCHIFA";

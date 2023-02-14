@@ -15,8 +15,8 @@
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>-->
-        <ToolbarItem x:Name="btn_DateFacture" IconImageSource="SortBy.png"  Text="Trier par Date Facture" Clicked="Order_By_Date" Order="Secondary"/>
-        <ToolbarItem x:Name="btn_DateSoin" IconImageSource="SortBy.png"  Text="Trier par Date Soin" Clicked="Order_By_Date" Order="Secondary"/>
+        <ToolbarItem x:Name="btn_DateFacture" IconImageSource="SortBy.png"  Text="{i18n:Translate psc_OrderBy_DFacture}" Clicked="Order_By_Date" Order="Secondary"/>
+        <ToolbarItem x:Name="btn_DateSoin" IconImageSource="SortBy.png"  Text="{i18n:Translate psc_OrderBy_DSoin}" Clicked="Order_By_Date" Order="Secondary"/>
 
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -58,7 +58,7 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                Text="Period : "
+                                Text="{i18n:Translate psc_Period}"
                                 FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
@@ -78,7 +78,7 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Text="Export : "
+                                Text="{i18n:Translate psc_Export}"
                                 FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
@@ -138,7 +138,7 @@
                                                     <Label 
                                                     Grid.Row="0" 
                                                     Grid.Column="0"
-                                                    Text="Nom Beneficiare"
+                                                    Text="{i18n:Translate psc_Nom_Beneficiare}"
                                                     FontSize="Micro"
                                                     FontAttributes="Bold"
                                                     TextColor="{DynamicResource NavigationPrimary}"
@@ -175,7 +175,7 @@
                                                     <Label 
                                                     Grid.Row="3" 
                                                     Grid.Column="0"
-                                                    Text="Date Prévue"
+                                                    Text="{i18n:Translate psc_Date_Prevue}"
                                                     FontSize="Micro"
                                                     TextColor="{DynamicResource NavigationPrimary}"
                                                     VerticalOptions="End" 
@@ -193,7 +193,7 @@
                                                     <Label 
                                                     Grid.Row="5" 
                                                     Grid.Column="0"
-                                                    Text="Date de Facture"
+                                                    Text="{i18n:Translate psc_Date_de_Facture}"
                                                     FontSize="Micro"
                                                     TextColor="{DynamicResource NavigationPrimary}"
                                                     VerticalOptions="End"
@@ -214,7 +214,7 @@
                                                     <Label 
                                                     Grid.Row="3" 
                                                     Grid.Column="1"
-                                                    Text="Num Facture"
+                                                    Text="{i18n:Translate psc_Num_Facture}"
                                                     FontSize="Micro"
                                                     TextColor="{DynamicResource NavigationPrimary}"
                                                     VerticalOptions="End"
@@ -237,7 +237,7 @@
                                                     <Label 
                                                     Grid.Row="5" 
                                                     Grid.Column="1"
-                                                    Text="Duree Trait"
+                                                    Text="{i18n:Translate psc_Duree_Trait}"
                                                     FontSize="Micro"
                                                     TextColor="{DynamicResource NavigationPrimary}"
                                                     VerticalOptions="End"
@@ -263,7 +263,7 @@
                                                         HorizontalOptions="Center"
                                                         BackgroundColor="White">
                                                             <!--TITLE-->
-                                                            <Label Text="Traitements"
+                                                            <Label Text="{i18n:Translate psc_Traitements}"
                                                                 Margin="5,5,5,5"
                                                                 FontSize="Small"
                                                                 FontAttributes="Bold"
@@ -380,11 +380,11 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="0"
-                                Text="Period : "
-                                FontSize="Micro"
+                                Text="{i18n:Translate psc_Period}"
+                                FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
-                                VerticalOptions="End"
+                                VerticalOptions="Center"
                                 />
                             <Picker 
                                 Grid.Row="1"
@@ -400,11 +400,11 @@
                             <Label 
                                 Grid.Row="0"
                                 Grid.Column="1"
-                                Text="Export"
-                                FontSize="Micro"
+                                Text="{i18n:Translate psc_Export}"
+                                FontSize="Small"
                                 FontAttributes="Bold"
                                 TextColor="{DynamicResource NavigationPrimary}"
-                                VerticalOptions="End"
+                                VerticalOptions="Center"
                                 />
 
                             <Button
@@ -503,7 +503,7 @@
                                                         HorizontalOptions="Center"
                                                         BackgroundColor="White">
                                                             <!--TITLE-->
-                                                            <Label Text="Medicaiments"
+                                                            <Label Text="{i18n:Translate psc_Beneficiaries}"
                                                                 Margin="5,5,5,5"
                                                                 FontSize="Small"
                                                                 FontAttributes="Bold"
@@ -565,7 +565,7 @@
                                                                                     HorizontalOptions="Center"
                                                                                     />
                                                                                         <Label
-                                                                                    Text="{Binding NUM_ASSURE,StringFormat='NUm Assure : {0}'}"
+                                                                                    Text="{Binding NUM_ASSURE,StringFormat='Num Assure : {0}'}"
                                                                                     Margin="5"
                                                                                     FontSize="Small"
                                                                                     FontAttributes="Bold"

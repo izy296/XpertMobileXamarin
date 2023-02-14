@@ -122,11 +122,11 @@ namespace XpertMobileApp.Api.ViewModels
             Items = new InfiniteScrollCollection<View_CFA_MOBILE_DETAIL_FACTURE>();
 
             var jours = 90;
-            var text = " prochains jours";
+            var text = AppResources.psc_Jours_Prochain;
             for (int i = 0; i < 10; i++)
             {
                 if (i == 5)
-                    text = " jours precedents";
+                    text = AppResources.psc_Jours_Precedents; 
 
                 Periods.Add(new PeriodObject()
                 {

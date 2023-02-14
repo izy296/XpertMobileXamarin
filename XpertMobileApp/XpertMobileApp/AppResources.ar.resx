@@ -1315,4 +1315,56 @@
 	<data name="pn_ChronicFollowUp" xml:space="preserve">
     <value>متابعة العلاجات المزمنة</value>
   </data>
+	<data name="pbd_Call" xml:space="preserve">
+    <value>إتصال</value>
+  </data>
+	<data name="pbd_SMS" xml:space="preserve">
+    <value>رسالة قصيرة</value>
+  </data>
+	<data name="pbd_Bills" xml:space="preserve">
+    <value>الفواتير</value>
+  </data>
+	<data name="pbd_Phone_Msg" xml:space="preserve">
+    <value>اختر رقم الهاتف</value>
+  </data>
+	<data name="psc_OrderBy_DFacture" xml:space="preserve">
+    <value>فرز حسب تاريخ الفاتورة</value>
+  </data>
+	<data name="psc_OrderBy_DSoin" xml:space="preserve">
+    <value>فرز حسب تاريخ المعالجة</value>
+  </data>
+
+	<data name="psc_Period" xml:space="preserve">
+    <value>فترة : </value>
+  </data>
+	<data name="psc_Export" xml:space="preserve">
+    <value>تصدير : </value>
+  </data>
+	<data name="psc_Nom_Beneficiare" xml:space="preserve">
+    <value>اسم المستفيد</value>
+  </data>
+	<data name="psc_Date_Prevue" xml:space="preserve">
+    <value>التاريخ المتوقع</value>
+  </data>
+	<data name="psc_Date_de_Facture" xml:space="preserve">
+    <value>تاريخ الفاتورة</value>
+  </data>
+	<data name="psc_Num_Facture" xml:space="preserve">
+    <value>رقم الفاتورة</value>
+  </data>
+	<data name="psc_Duree_Trait" xml:space="preserve">
+    <value>مدة العلاج</value>
+  </data>
+	<data name="psc_Traitements" xml:space="preserve">
+    <value>العلاجات</value>
+  </data>
+	<data name="psc_Beneficiaries" xml:space="preserve">
+    <value>المستفيدون</value>
+  </data>
+	<data name="psc_Jours_Precedents" xml:space="preserve">
+    <value> أيام سابقة</value>
+  </data>
+	<data name="psc_Jours_Prochain" xml:space="preserve">
+    <value> الايام القادمة</value>
+  </data>
 </root>

@@ -14,6 +14,7 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
+using Xamarin.Forms.Extended;
 
 namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
 {
@@ -32,6 +33,8 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
             set { _totalSeconds = value; }
 
         }
+
+        public bool FactureLoadMore { get; set; } = true;
         public DateTime StartDate { get; set; } = DateTime.Now.AddMonths(-1);
         public DateTime EndDate { get; set; } = DateTime.Now;
 
@@ -109,7 +112,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
         public BeneficiaresViewModel()
         {
             Title = AppResources.pn_BordereauxChifa;
-            LoadItemsMoreCommand = new Command(async () => { await ExecuteLoadMoreItemsCommand(); });
+            LoadItemsMoreCommand = new Command(async () => { await ExecuteLoadItemsCommand(); });
         }
 
         protected override QueryInfos GetSelectParams()
@@ -176,47 +179,52 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Beneficiares
                 if (IsBusy)
                     return;
                 IsBusy = true;
-                Items.Clear();
-                await ExecuteLoadSummaries();
-                UserDialogs.Instance.ShowLoading();
-                await Items.LoadMoreAsync();
-                UserDialogs.Instance.HideLoading();
+                if (Items.Count == 0)
+                {
+                    FactureLoadMore = true;
+                    await ExecuteLoadSummaries();
+                    UserDialogs.Instance.ShowLoading();
+                    Items = new InfiniteScrollCollection<View_CFA_MOBILE_DETAIL_FACTURE>(new InfiniteScrollCollection<View_CFA_MOBILE_DETAIL_FACTURE>(await WebServiceClient.SelectBeneficiares(search: SearchText, orderBy: OrderBy, startDate: StartDate, endDate: EndDate)));
+                    var count = await WebServiceClient.SelectBeneficiaresCount(search: SearchText, orderBy: OrderBy, startDate: StartDate, endDate: EndDate);
+                    if (Items.Count >= count)
+                        FactureLoadMore = false;
+                    UserDialogs.Instance.HideLoading();
+                }
+                else
+                {
+                    if (FactureLoadMore)
+                    {
+                        UserDialogs.Instance.ShowLoading();
+                        var currnetPage = (int)(Math.Round((decimal)(Items.Count / 10)));
+                        var page = currnetPage + 1;
+
+                        var count = await WebServiceClient.SelectBeneficiaresCount(search: SearchText, orderBy: OrderBy, startDate: StartDate, endDate: EndDate, page: page);
+
+                        var list = new InfiniteScrollCollection<View_CFA_MOBILE_DETAIL_FACTURE>(new InfiniteScrollCollection<View_CFA_MOBILE_DETAIL_FACTURE>(await WebServiceClient.SelectBeneficiares(search: SearchText,orderBy:OrderBy, startDate: StartDate, endDate: EndDate,page:page)));
+                        Items.AddRange(list);
+
+                        if (Items.Count >= count)
+                            FactureLoadMore = false;
+ 
+                        UserDialogs.Instance.HideLoading();
+                    }
+
+                }
+                OnPropertyChanged("Items");
+                IsBusy = false;
             }
             catch (Exception ex)
             {
-                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
-                await PopupNavigation.Instance.PushAsync(AlertPopup);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
-        public async Task ExecuteLoadMoreItemsCommand()
-        {
-            try
-            {
-                if (IsBusy)
-                    return;
-                IsBusy = true;
-                UserDialogs.Instance.ShowLoading();
-                await Items.LoadMoreAsync();
                 UserDialogs.Instance.HideLoading();
-            }
-            catch (Exception ex)
-            {
                 CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
-            }
-            finally
-            {
-                IsBusy = false;
             }
         }
 
         public async Task ExecuteSearch(string SearchBarText)
         {
             SearchText = SearchBarText;
+            Items.Clear();
             await ExecuteLoadItemsCommand();
         }
 

@@ -106,7 +106,7 @@
                     VerticalOptions="CenterAndExpand">
                     <Button 
                         x:Name="Appel_Btn"
-                        Text="Appel"
+                        Text="{i18n:Translate pbd_Call}"
                         CornerRadius="10"
                         TextColor="White"
                         BackgroundColor="{DynamicResource NavigationPrimary}"
@@ -118,7 +118,7 @@
 
                     <Button
                         x:Name="SMS_Btn"
-                        Text="SMS"
+                        Text="{i18n:Translate pbd_SMS}"
                         CornerRadius="10"
                         TextColor="White"
                         BackgroundColor="{DynamicResource NavigationPrimary}"
@@ -130,7 +130,7 @@
 
                     <Button
                         x:Name="Facts_Btn"
-                        Text="Les Factures"
+                        Text="{i18n:Translate pbd_Bills}"
                         CornerRadius="10"
                         TextColor="White"
                         BackgroundColor="{DynamicResource NavigationPrimary}"

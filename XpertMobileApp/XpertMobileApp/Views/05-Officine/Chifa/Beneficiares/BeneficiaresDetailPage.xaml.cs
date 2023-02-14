@@ -45,7 +45,7 @@ namespace XpertMobileApp.Views
 
         private async void SMS_Btn_Clicked(object sender, EventArgs e)
         {
-            PhonePopup popup = new PhonePopup("Choisi le num telephone", "Annuler", "Ok",listPhones:new List<string>(){ viewModel.Tier.TEL1_TIERS, viewModel.Tier.TEL2_TIERS });
+            PhonePopup popup = new PhonePopup(AppResources.pbd_Phone_Msg, AppResources.sp_btn_annuler, AppResources.alrt_msg_Ok, listPhones:new List<string>(){ viewModel.Tier.TEL1_TIERS, viewModel.Tier.TEL2_TIERS });
             await PopupNavigation.Instance.PushAsync(popup);
             if (await popup.PopupClosedTask)
             {
@@ -55,7 +55,7 @@ namespace XpertMobileApp.Views
 
         private async void Appel_Btn_Clicked(object sender, EventArgs e)
         {
-            PhonePopup popup = new PhonePopup("Choisi le num telephone", "Annuler", "Ok", listPhones: new List<string>() { viewModel.Tier.TEL1_TIERS, viewModel.Tier.TEL2_TIERS });
+            PhonePopup popup = new PhonePopup(AppResources.pbd_Phone_Msg, AppResources.sp_btn_annuler, AppResources.alrt_msg_Ok, listPhones: new List<string>() { viewModel.Tier.TEL1_TIERS, viewModel.Tier.TEL2_TIERS });
             await PopupNavigation.Instance.PushAsync(popup);
             if (await popup.PopupClosedTask)
             {

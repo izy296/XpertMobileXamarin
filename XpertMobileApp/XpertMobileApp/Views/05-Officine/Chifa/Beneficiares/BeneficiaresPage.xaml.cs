@@ -31,9 +31,10 @@ namespace XpertMobileApp.Views
                await viewModel.ExecuteLoadItemsCommand();
         }
 
-        private void ExecutePullToRefresh(object sender, EventArgs e)
+        private async void ExecutePullToRefresh(object sender, EventArgs e)
         {
-            viewModel.ExecuteLoadItemsCommand();
+            viewModel.Items.Clear();
+            await viewModel.ExecuteLoadItemsCommand();
             viewModel.IsRefreshing = false;
         }
 
@@ -65,7 +66,9 @@ namespace XpertMobileApp.Views
         private void DatePicker_PropertyChanged(object sender, DateChangedEventArgs e)
         {
             if (viewModel != null)
-                viewModel.ExecuteLoadItemsCommand();
+            {
+                viewModel.Items.Clear();
+                viewModel.ExecuteLoadItemsCommand(); }
         }
 
         private void Order_By_Clicked(object sender, EventArgs e)
@@ -96,6 +99,7 @@ namespace XpertMobileApp.Views
                 viewModel.OrderBy = 5;
             }
 
+            viewModel.Items.Clear();
             viewModel.ExecuteLoadItemsCommand();
 
         }

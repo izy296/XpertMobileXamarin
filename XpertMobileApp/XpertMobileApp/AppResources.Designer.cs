@@ -3973,6 +3973,136 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_ChronicFollowUp", resourceCulture);
             }
         }
+        
+        public static string pbd_Call
+        {
+            get
+            {
+                return ResourceManager.GetString("pbd_Call", resourceCulture);
+            }
+        }
+        
+        public static string pbd_SMS
+        {
+            get
+            {
+                return ResourceManager.GetString("pbd_SMS", resourceCulture);
+            }
+        }
+        
+        public static string pbd_Bills
+        {
+            get
+            {
+                return ResourceManager.GetString("pbd_Bills", resourceCulture);
+            }
+        } 
+        public static string pbd_Phone_Msg
+        {
+            get
+            {
+                return ResourceManager.GetString("pbd_Phone_Msg", resourceCulture);
+            }
+        } 
+        public static string psc_OrderBy_DFacture
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_OrderBy_DFacture", resourceCulture);
+            }
+        } 
+        public static string psc_OrderBy_DSoin
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_OrderBy_DSoin", resourceCulture);
+            }
+        } 
+        public static string psc_Period
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Period", resourceCulture);
+            }
+        }
+              
+        public static string psc_Export
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Export", resourceCulture);
+            }
+        }
+                
+        public static string psc_Nom_Beneficiare
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Nom_Beneficiare", resourceCulture);
+            }
+        }
+               
+        public static string psc_Date_Prevue
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Date_Prevue", resourceCulture);
+            }
+        }               
+        
+        public static string psc_Date_de_Facture
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Date_de_Facture", resourceCulture);
+            }
+        }
+        
+        public static string psc_Num_Facture
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Num_Facture", resourceCulture);
+            }
+        }
+        public static string psc_Duree_Trait
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Duree_Trait", resourceCulture);
+            }
+        }
+        public static string psc_Traitements
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Traitements", resourceCulture);
+            }
+        }
+
+        public static string psc_Beneficiaries
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Beneficiaries", resourceCulture);
+            }
+        } 
+        public static string psc_Jours_Precedents
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Jours_Precedents", resourceCulture);
+            }
+        }
+        
+        public static string psc_Jours_Prochain
+        {
+            get
+            {
+                return ResourceManager.GetString("psc_Jours_Prochain", resourceCulture);
+            }
+        }
+
     }
 }
 

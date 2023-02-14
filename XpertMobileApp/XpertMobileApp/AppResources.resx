@@ -688,7 +688,7 @@
     <value>Traitement ...</value>
   </data>
   <data name="pn_Bordereaux" xml:space="preserve">
-    <value>Suivie des Bordereaux</value>
+    <value>Suivi des Bordereaux</value>
   </data>
   <data name="pn_VtePsychotrop" xml:space="preserve">
     <value>Ventes psychotropes</value>
@@ -1473,5 +1473,56 @@
   </data>
   <data name="pn_ChronicFollowUp" xml:space="preserve">
     <value>Suivi de traitements chroniques</value>
+  </data>
+	<data name="pbd_Call" xml:space="preserve">
+    <value>Appel</value>
+  </data>
+	<data name="pbd_SMS" xml:space="preserve">
+    <value>SMS</value>
+  </data>
+	<data name="pbd_Bills" xml:space="preserve">
+    <value>Les Factures</value>
+  </data>
+	<data name="pbd_Phone_Msg" xml:space="preserve">
+    <value>Choisi le numéro téléphone</value>
+  </data>
+	<data name="psc_OrderBy_DFacture" xml:space="preserve">
+    <value>Trier par Date Facture</value>
+  </data>
+	<data name="psc_OrderBy_DSoin" xml:space="preserve">
+    <value>Trier par Date Soin</value>
+  </data>
+	<data name="psc_Period" xml:space="preserve">
+    <value>Période : </value>
+  </data>
+	<data name="psc_Export" xml:space="preserve">
+    <value>Exportation : </value>
+  </data>
+	<data name="psc_Nom_Beneficiare" xml:space="preserve">
+    <value>Nom Bénéficiaire</value>
+  </data>
+	<data name="psc_Date_Prevue" xml:space="preserve">
+    <value>Date Prévue</value>
+  </data>
+	<data name="psc_Date_de_Facture" xml:space="preserve">
+    <value>Date de Facture</value>
+  </data>
+	<data name="psc_Num_Facture" xml:space="preserve">
+    <value>Num Facture</value>
+  </data>
+	<data name="psc_Duree_Trait" xml:space="preserve">
+    <value>Duree Trait</value>
+  </data>
+	<data name="psc_Traitements" xml:space="preserve">
+    <value>Traitements</value>
+  </data>	
+	<data name="psc_Beneficiaries" xml:space="preserve">
+    <value>Bénéficiaires</value>
+  </data>
+	<data name="psc_Jours_Precedents" xml:space="preserve">
+    <value> jours précédents</value>
+  </data>
+	<data name="psc_Jours_Prochain" xml:space="preserve">
+    <value> prochains jours</value>
   </data>
 </root>
