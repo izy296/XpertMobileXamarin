@@ -168,12 +168,14 @@
                                        CornerRadius="0.0"
                                        BorderWidth="2"
                                        ControlSize="0"
+                                       IsVisible="false"
                                        StateChanged="OnDemoCheckBoxCheckedChanged"
                                        CheckedColor="{DynamicResource Primary}"
                                        UncheckedColor="{DynamicResource Primary}"/>
                                     
                                     <Label Text="Mode Démo" 
                                            x:Name="labelDemo"
+                                           IsVisible="false"
                                     FontSize="16"/>
 
                                 </FlexLayout>
@@ -186,7 +188,6 @@
                                     <CheckBox Color="{StaticResource Primary}"
                                       x:Name="checkBox"
                                       CheckedChanged="OnCheckBoxCheckedChanged"
-                                      IsVisible="false"
                                       IsChecked="{Binding isChecked}"/>
                                     
                                     <Label Text="{i18n:Translate lp_lbl_me_souvenir} " 
