@@ -1165,7 +1165,7 @@
   <data name="ab_VerifMaj" xml:space="preserve">
     <value>Mise à jour </value>
   </data>
-  <data name="t" xml:space="preserve">
+  <data name="ab_currentVersion" xml:space="preserve">
     <value>Version actuelle</value>
   </data>
   <data name="ab_newMaj" xml:space="preserve">

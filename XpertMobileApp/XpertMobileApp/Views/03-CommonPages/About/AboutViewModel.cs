@@ -68,14 +68,14 @@ namespace XpertMobileApp.ViewModels
                 Version webVersion = new Version(res);
 
                 var resNewVersion = await WebServiceClient.GetNewWebApiVersion();
-                var xml = await WebServiceClient.GetNewVersion();
-                XDocument docWebApiXml = XDocument.Parse(xml);
+                //var xml = await WebServiceClient.GetNewVersion();
+                XDocument docWebApiXml = XDocument.Parse(resNewVersion);
                 XElement itemWebApiXml = docWebApiXml.Element("item");
 
                 Version newVersion = new Version (itemWebApiXml.Element("version").Value);
 
                 UserDialogs.Instance.HideLoading();
-                if (newVersion > webVersion)
+                if (newVersion >= webVersion)
                     return true;
                 else return false;
             }
