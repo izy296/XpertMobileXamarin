@@ -23,7 +23,22 @@ namespace XpertMobileApp.ViewModels
 
     public class HomeViewModel : BaseViewModel
     {
-        public ObservableCollection<TDB_SIMPLE_INDICATORS> Items { get; set; }
+        private ObservableCollection<TDB_SIMPLE_INDICATORS> items { get; set; }
+        public ObservableCollection<TDB_SIMPLE_INDICATORS> Items
+        {
+            get
+            {
+                return items;
+            }
+
+            set
+            {
+                items = value;
+                OnPropertyChanged("Items");
+            }
+        }
+
+
         public Command LoadItemsCommand { get; set; }
 
         public ObservableCollection<TRS_JOURNEES> Sessions { get; set; }
@@ -79,7 +94,7 @@ namespace XpertMobileApp.ViewModels
                     {
                         this.CurrentSession = item;
                     }
-                    
+
                 }
                 */
             }
@@ -90,7 +105,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadItemsCommand()
+        public async Task ExecuteLoadItemsCommand()
         {
             try
             {
