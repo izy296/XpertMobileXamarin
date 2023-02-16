@@ -92,7 +92,7 @@ namespace XpertMobileApp.Views
                 {
                     googlePlay_btn.IsEnabled = true;
                     googlePlay_btn.Opacity = 1;
-                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.ap_new_update, trueMessage: AppResources.alrt_msg_Ok);
                     await PopupNavigation.Instance.PushAsync(AlertPopup);
                     await animateButton(googlePlay_btn);
                 }
@@ -104,7 +104,7 @@ namespace XpertMobileApp.Views
                     {
                         Update_btn.IsEnabled = true;
                         Update_btn.BackgroundColor = Color.FromHex("#7EC384");
-                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_new_update_web, trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
                         await animateButton(Update_btn);
                     }
@@ -112,7 +112,7 @@ namespace XpertMobileApp.Views
                     {
                         Update_btn.IsEnabled = false;
                         Update_btn.BackgroundColor = Color.FromHex("#ddd");
-                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_Alert, trueMessage: AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_updated, trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
                     }
                 }
