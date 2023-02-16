@@ -103,7 +103,7 @@ namespace XpertMobileApp.Views
             }
 
             if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+                await viewModel.ExecuteLoadItemsCommand();
             if (viewModel.Sessions.Count == 0)
                 viewModel.LoadSessionsCommand.Execute(null);
 
@@ -132,24 +132,21 @@ namespace XpertMobileApp.Views
                 new MenuPage("1");
             }
 
-
-
             //Synchroniser les données si la connexion existe !
             //await SyncDataIfDbEmpty();
             /* Custumazing the home menu */
 
-            if(Constants.AppName == Apps.XCOM_Mob ||Constants.AppName == Apps.XPH_Mob)
-            {
-                //Get the height of the listview ...
-                double menuHeight = this.listView.Height;
+            //if(Constants.AppName == Apps.XCOM_Mob ||Constants.AppName == Apps.XPH_Mob)
+            //{
+            //    //Get the height of the listview ...
+            //    double menuHeight = this.listView.Height;
 
-                //calculate the 
-                int numberOfBtnInHomeMenu = viewModel.Items.Count;
+            //    //calculate the 
+            //    int numberOfBtnInHomeMenu = viewModel.Items.Count;
 
-                listView.ItemSize = (menuHeight / numberOfBtnInHomeMenu) * 2;
-                UserDialogs.Instance.HideLoading();
-            }
-            
+            //    listView.ItemSize = (menuHeight / numberOfBtnInHomeMenu) * 2;
+            //    UserDialogs.Instance.HideLoading();
+            //}
         }
         private void btn_Refresh_Clicked(object sender, EventArgs e)
         {
