@@ -110,7 +110,7 @@
                                            />
                     <Label Grid.Row="2" 
                                            Grid.Column="1"
-                                           Text="{Binding NUM_ASSURE_RAND,FallbackValue='N/A',StringFormat='{0} &#xf35a;'}"
+                                           Text="{Binding NUMASSUR_RAND,FallbackValue='N/A',StringFormat='{0} &#xf35a;'}"
                                            FontFamily="{StaticResource FontAwesomeRegular}"
                                            FontSize="Small"
                                            TextColor="Black"

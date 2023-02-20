@@ -99,7 +99,6 @@
                                 ItemsSource="{Binding Items}"
                                 VerticalOptions="FillAndExpand"
                                 HorizontalOptions="FillAndExpand"
-                                SelectionChanged="OnItemSelected"
                                 SelectionMode="None"
                                 VerticalScrollBarVisibility="Always">
                             <!--ItemTemplate="{StaticResource MaladesChroniquesTemplate}">-->
@@ -421,7 +420,6 @@
                                 ItemsSource="{Binding Items}"
                                 VerticalOptions="FillAndExpand"
                                 HorizontalOptions="FillAndExpand"
-                                SelectionChanged="OnItemSelected"
                                 SelectionMode="None"
                                 VerticalScrollBarVisibility="Always">
                             <!--ItemTemplate="{StaticResource MaladesChroniquesTemplate}">-->

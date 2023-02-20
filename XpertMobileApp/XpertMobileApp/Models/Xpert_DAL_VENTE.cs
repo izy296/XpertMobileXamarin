@@ -741,6 +741,7 @@ namespace XpertMobileApp.DAL
     {
         public string NOMC_TIERS { get; set; }
         public string NUM_ASSURE { get; set; }
+        public string CENTRE{ get; set; }
         public decimal MONT_ACHAT { get; set; }
         public decimal MONT_TOTAL { get; set; }
         public string DESIGN_ETAT { get; set; }
@@ -777,6 +778,8 @@ namespace XpertMobileApp.DAL
         public DateTime DATE_SOIN { get; set; }
         public DateTime DATE_PREVUE { get { return DATE_SOIN.AddDays(DUREE_TRAIT); } }
         public int TOTAL_NB_FACTURE { get; set; }
+        public int TYPE { get; set; }
+
     }
     public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA
     {

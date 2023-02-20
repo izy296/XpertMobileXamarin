@@ -143,7 +143,7 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<CFA_ETAT>(url);
         }
 
-        internal static async Task<List<View_CONVENTION_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", string search = "", int page = 1, int count = 10)
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", string search = "", int page = 1, int count = 10)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
@@ -153,7 +153,15 @@ namespace XpertMobileApp.Services
             url += "&codeTier=" + codeTier;
             url += "&search=" + search;
 
-            return await RetrievAauthorizedData<View_CONVENTION_FACTURE>(url);
+            return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
+        } 
+        
+        internal static async Task<List<View_CFA_MOBILE_FACTURE>> AnalyseFactures(string numBorderaux)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_FACTURE_ANALYSE);
+            url += "?numBordereau=" + numBorderaux;
+
+            return await RetrievAauthorizedData<View_CFA_MOBILE_FACTURE>(url);
         }
 
         internal static async Task<List<View_CFA_MOBILE_DETAIL_FACTURE>> SelectBeneficiares(DateTime startDate, DateTime endDate, string search = "",int orderBy=0, int page = 1, int count = 10)
@@ -209,6 +217,13 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_CHIFA_URL, ServiceUrlDico.BORDEREAUX_CHIFA_SELECT_URL);
             return await WSApi2.PostAauthorizedValue<List<View_CFA_BORDEREAUX_CHIFA>, QueryInfos>(url, queryInfos, Token);
+            
+        } 
+        
+        internal static async Task<int> GetCFABordereauxCount(QueryInfos queryInfos)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.BORDEREAUX_CHIFA_URL, ServiceUrlDico.BORDEREAUX_CHIFA_SELECT_COUNT_URL);
+            return await WSApi2.PostAauthorizedValue<int, QueryInfos>(url, queryInfos, Token);
             
         }
 

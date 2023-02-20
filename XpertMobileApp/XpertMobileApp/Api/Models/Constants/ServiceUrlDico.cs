@@ -169,6 +169,7 @@ namespace XpertMobileApp.Helpers
         public static string BORDEREAUX_CHIFA_URL = "CFA_BORDEREAUX_CHIFA";
         public static string BORDEREAUX_CHIFA_BY_NUM_URL = "GetCFAByNumBordereaux";
         public static string BORDEREAUX_CHIFA_SELECT_URL = "SelectBordereaux";
+        public static string BORDEREAUX_CHIFA_SELECT_COUNT_URL = "SelectBordereauxCount";
 
         // Centres bordereaux         
         public static string CFA_FACTURE_CHIFA_URL = "FACTURE_CHIFA";
@@ -179,6 +180,7 @@ namespace XpertMobileApp.Helpers
         public static string CFA_FACTURE_DETAIL_MOBILE_URL = "CFA_MOBILE_DETAIL_FACTURE";
         public static string CFA_FACTURE_DATE = "GetDateFactures";
         public static string CFA_FACTURE_COUNT_TODAY = "GetTodayCountFacture";
+        public static string CFA_FACTURE_ANALYSE= "AnalyseFactures";
 
 
         //Details facture chifa 

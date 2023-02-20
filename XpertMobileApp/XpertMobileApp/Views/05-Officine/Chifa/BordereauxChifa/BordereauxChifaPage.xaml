@@ -8,6 +8,9 @@
                  xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
                  xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
                  Title="{Binding Title}">
+    <base:XBasePage.ToolbarItems>
+        <ToolbarItem x:Name="btn_Borderaux" IconImageSource="slipWhite.png"  Text="Borderaux List" Clicked="Borderaux_Clicked" Priority="1"/>
+    </base:XBasePage.ToolbarItems>
     <base:XBasePage.Content>
         <StackLayout VerticalOptions="FillAndExpand"
                      Orientation="Vertical"
@@ -126,10 +129,11 @@
 
                         <syncfusion:SfExpander.Content>
                             <StackLayout >
-                                <Label Text="{Binding Item.TOTAL_NB_FACTURES_CFA ,StringFormat='({0:N0}) Factures'}"
-
-                                   TextColor="Black"
-                                   Opacity="0.7"/>
+                                <Label 
+                                    Padding="10"
+                                    Text="{Binding Item.TOTAL_NB_FACTURES_CFA ,StringFormat='({0:N0}) Factures'}"
+                                    TextColor="Black"
+                                    Opacity="0.7"/>
 
                                 <!--<StackLayout 
                                     HorizontalOptions="FillAndExpand"
@@ -161,8 +165,34 @@
                                         <RowDefinition Height="auto"/>
                                     </Grid.RowDefinitions>
 
+                                    <StackLayout
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"
+                                        >
+                                        <FlexLayout
+                                        x:Name="AFactures_section"
+                                        Direction="Row"
+                                        JustifyContent="Center"
+                                          Wrap="Wrap"
+                                        HorizontalOptions="CenterAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                            <flex:FlexButton
+                                            x:Name="AFactures_btn"
+                                            Padding="8"
+                                            Text="Analyse des Factures"
+                                            FontSize="Small"
+                                            CornerRadius="15"
+                                            ForegroundColor="White"
+                                            BackgroundColor="LightSeaGreen"
+                                            BorderColor="White"
+                                            BorderThickness="1"
+                                            Clicked="AFactures_btn_Clicked"
+                                            />
+                                        </FlexLayout>
+                                    </StackLayout>
+
                                     <BoxView Grid.Row="1"  
-                                 BackgroundColor="#ddd"/>
+                                        BackgroundColor="#ddd"/>
 
                                     <Grid Grid.Row="2" Padding="10">
                                         <Grid.RowDefinitions>

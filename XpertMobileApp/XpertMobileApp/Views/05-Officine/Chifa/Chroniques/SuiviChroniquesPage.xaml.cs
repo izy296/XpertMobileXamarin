@@ -13,7 +13,6 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
-using SelectionChangedEventArgs = Xamarin.Forms.SelectionChangedEventArgs;
 
 namespace XpertMobileApp.Views
 {
@@ -45,11 +44,6 @@ namespace XpertMobileApp.Views
         }
 
         private void CentrePicker_PropertyChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void OnItemSelected(object sender, SelectionChangedEventArgs e)
         {
 
         }
