@@ -74,7 +74,7 @@ namespace XpertMobileApp.Views
             if (viewModel.IsBusy)
                 return;
 
-            if(!viewModel.PhoneFormatCorrect || !viewModel.EmailFormatCorrect)
+            if (!viewModel.PhoneFormatCorrect || !viewModel.EmailFormatCorrect)
             {
                 lbl_check_warning.IsVisible = true;
                 return;
@@ -189,13 +189,13 @@ namespace XpertMobileApp.Views
                 Match match = regex.Match(email);
                 if (match.Success)
                 {
-                    lbl_phone_warning.IsVisible = false;
+                    lbl_email_warning.IsVisible = false;
                     viewModel.EmailFormatCorrect = true;
                 }
 
                 else
                 {
-                    lbl_phone_warning.IsVisible = true;
+                    lbl_email_warning.IsVisible = true;
                     viewModel.EmailFormatCorrect = true;
                 }
             }
@@ -209,7 +209,12 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                string phone = Ent_UserPhone.Text.ToString();
+                string phone = string.Empty;
+                if (Ent_UserPhone.Text != null)
+                {
+                    phone = Ent_UserPhone.Text;
+                }
+
                 var regex = new Regex(@"^(00213|\+213|0)(5|6|7)[0-9]{8}$");
                 Match match = regex.Match(phone);
                 if (match.Success)
