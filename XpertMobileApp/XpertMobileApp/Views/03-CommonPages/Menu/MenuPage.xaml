@@ -24,7 +24,7 @@
                   GroupShortNameBinding="{Binding Key}">
 
             <ListView.Header>
-                <StackLayout BackgroundColor="{DynamicResource  MenuAccent}" VerticalOptions="FillAndExpand">
+                <StackLayout BackgroundColor="#fff" VerticalOptions="FillAndExpand">
                     <Grid VerticalOptions="Center">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />

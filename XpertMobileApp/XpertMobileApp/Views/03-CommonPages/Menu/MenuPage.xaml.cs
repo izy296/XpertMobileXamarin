@@ -533,12 +533,12 @@ namespace XpertMobileApp.Views
             /* Styling elements when app is in offline mode or online mode */
             if (!App.Online)
             {
-                Lbl_AppFullName.TextColor = Color.White;
-                ClientId.TextColor = Color.White;
-                XpertVersion.TextColor = Color.White;
-                XpertExpireDate.TextColor = Color.White;
+                Lbl_AppFullName.TextColor = Color.Black;
+                ClientId.TextColor = Color.Black;
+                XpertVersion.TextColor = Color.Black;
+                XpertExpireDate.TextColor = Color.Black;
                 connetionStatus.Text = "mode: " + AppResources.txt_offline;
-                connetionStatus.TextColor = Color.White;
+                connetionStatus.TextColor = Color.Black;
             }
             else
             {

@@ -21,6 +21,11 @@ namespace XpertMobileApp.Views
         HomeViewModel viewModel;
         private bool KeepAnimate { get; set; } = false;
 
+        public enum AppColor
+        {
+            
+
+        }
         public HomePage()
         {
             InitializeComponent();
@@ -41,14 +46,14 @@ namespace XpertMobileApp.Views
             {
                 if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-                    Application.Current.Resources["NavigationPrimary"] = "#FF9500"; //orange foncé
-                    Application.Current.Resources["MenuAccent"] = "#FFDCA9";
+                    Application.Current.Resources["NavigationPrimary"] = App.XDISTMainColor; //orange foncé
+                    Application.Current.Resources["MenuAccent"] = App.XDISTMainColor;
                 }
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
-                    Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#087565"; // vert claire
-                    Application.Current.Resources["MenuItemGroup"] = "#087565";
+                    Application.Current.Resources["NavigationPrimary"] = App.XPharmMainColor; // Vert foncé
+                    Application.Current.Resources["MenuAccent"] = App.XPharmMainColor; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] =App.XPharmMainColor;
                 }
                 else
                 {
@@ -64,21 +69,43 @@ namespace XpertMobileApp.Views
             {
                 if (Constants.AppName == Apps.X_DISTRIBUTION)
                 {
-                    Application.Current.Resources["MenuItemGroup"] = "#FBEEC9"; //orange Claire
-                    Application.Current.Resources["NavigationPrimary"] = "#5B5B5B";
-                    Application.Current.Resources["MenuAccent"] = "#5B5B5B";
+                    Application.Current.Resources["MenuItemGroup"] = App.XDISTMainColor; //orange Claire
+                    Application.Current.Resources["NavigationPrimary"] = App.XDISTMainColor;
+                    Application.Current.Resources["MenuAccent"] = App.XDISTMainColor;
                 }
                 else if (Constants.AppName == Apps.XPH_Mob)
                 {
-                    Application.Current.Resources["NavigationPrimary"] = "#087565"; // Vert foncé
-                    Application.Current.Resources["MenuAccent"] = "#087565"; // vert claire
-                    Application.Current.Resources["MenuItemGroup"] = "#087565"; // vert claire
+                    Application.Current.Resources["NavigationPrimary"] = App.XPharmMainColor; // Vert foncé
+                    Application.Current.Resources["MenuAccent"] = App.XPharmMainColor; // vert claire
+                    Application.Current.Resources["MenuItemGroup"] = App.XPharmMainColor; // vert claire
                 }
                 //connectionStatus.Text = AppResources.txt_offline;
                 //connectionStatusIcon.Source = "nowifi.png";
             }
+
+            // handle the witch between offline and online mode...
+            handleOfflineMode();
         }
 
+        private void handleOfflineMode()
+        {
+            try
+            {
+                if (App.Online)
+                {
+                    switchHorsLigne.IsOn = true;
+                }
+                else
+                {
+                    switchHorsLigne.IsOn = false;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -214,7 +241,7 @@ namespace XpertMobileApp.Views
             KeepAnimate = false;
             await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Notification);
         }
-        public async static void CheckIfUserWantReconnect()
+        public async void CheckIfUserWantReconnect()
         {
             try
             {
@@ -230,6 +257,10 @@ namespace XpertMobileApp.Views
                             {
                                 CustomPopup AlertPopup = new CustomPopup("Veuillez vous connectez a l'internet !", trueMessage: AppResources.alrt_msg_Ok);
                                 await PopupNavigation.Instance.PushAsync(AlertPopup);
+                            }
+                            else
+                            {
+                                switchHorsLigne.IsOn = true;
                             }
                         }
                     }
@@ -287,6 +318,50 @@ namespace XpertMobileApp.Views
         private void listView_SelectionChanged(object sender, ItemSelectionChangedEventArgs e)
         {
 
+        }
+
+        private async void State_StateChanging(object sender, Syncfusion.XForms.Buttons.SwitchStateChangingEventArgs e)
+        {
+            try
+            {
+                this.switchHorsLigne.IsBusy = true;
+                if (!switchHorsLigne.IsBusy)
+                {
+                    if (!App.Online)
+                    {
+                        bool isConnected = await App.IsConected();
+                        if (isConnected)
+                        {
+                            this.switchHorsLigne.IsOn = true;
+                            CustomPopup customPopup = new CustomPopup("Vous avez passé aux mode en ligne", AppResources.txt_non, AppResources.txt_oui);
+                            await PopupNavigation.Instance.PushAsync(customPopup);
+                        }
+                        else
+                        {
+                            this.switchHorsLigne.IsOn = false;
+                            CustomPopup AlertPopup = new CustomPopup("Veuillez vous connectez a l'internet !", trueMessage: AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        }
+                    }
+                    else
+                    {
+                        App.Online = false;
+                        this.switchHorsLigne.IsOn = false;
+                        CustomPopup customPopup = new CustomPopup("Vous avez passé aux mode hors ligne", AppResources.txt_non, AppResources.txt_oui);
+                        await PopupNavigation.Instance.PushAsync(customPopup);
+                    }
+                    this.switchHorsLigne.IsBusy = false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+            }
         }
     }
 }

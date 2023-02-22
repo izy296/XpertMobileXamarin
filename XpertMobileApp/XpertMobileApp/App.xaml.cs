@@ -1,8 +1,10 @@
 ﻿using Acr.UserDialogs;
+using DLToolkit.Forms.Controls;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
 using Plugin.Multilingual;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +22,7 @@ using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.Api.Models.Interfaces;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Data;
@@ -36,7 +39,8 @@ namespace XpertMobileApp
     {
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
-
+        public static string XPharmMainColor = "#52B2A7";
+        public static string XDISTMainColor = "#FF9500";
         public static bool Online = false;
         public static bool showReconnectMessage { get; set; } = true;
         public static bool showPrefixConfigurationMessage { get; set; } = true;
@@ -104,7 +108,7 @@ namespace XpertMobileApp
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
             LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
             PreventLinkerFromStrippingCommonLocalizationReferences();
-
+            FlowListView.Init();
             this.IsToastExitConfirmation = false;
 
             if (licState == LicState.Valid && Constants.AppName != Apps.XAGRI_Mob)
@@ -393,10 +397,29 @@ namespace XpertMobileApp
             IsInForeground = false;
         }
 
-        protected override async void OnResume()
+        protected async override void OnResume()
         {
             // Handle when your app resumes
             IsInForeground = true;
+
+            // Handle when your app resumes
+            if (!await IsConected())
+            {
+                CustomPopup AlertPopup = new CustomPopup("Connexion introuvable, voulez-vous vous connecter  ? ", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                if (await AlertPopup.PopupClosedTask)
+                {
+                    if (AlertPopup.Result)
+                    {
+                        DependencyService.Get<ISettingsStart>().StartSettings();
+                    }
+                }
+            }
+            else
+            {
+                CustomPopup AlertPopup = new CustomPopup("Connexion etablie avec succée ", trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+            }
         }
         //Methode to set url services 
         public async static void SetUrlServices(UrlService urlService)
@@ -419,12 +442,6 @@ namespace XpertMobileApp
                     }
                 }
                 Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
-                //string value = urlService.DisplayurlService;
-                //urlService.Selected = true;
-                //if (!string.IsNullOrEmpty(value))
-                //{
-                //    Settings.ServiceUrl = value;
-                //}
             }
             catch (Exception e)
             {
@@ -500,7 +517,6 @@ namespace XpertMobileApp
         {
             get
             {
-
 
                 //searching in the json file stocked in the local db a valid url wich is  selected in settings page...
                 List<UrlService> liste = new List<UrlService>();

@@ -1,11 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
              x:Class="XpertMobileApp.Views._05_Officine.Chifa.ChifaMenu">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical" VerticalOptions="Start">
             <yummy:PancakeView
-                BackgroundColor="#087565"
+                BackgroundColor="{DynamicResource NavigationPrimary}"
                 CornerRadius="0,0,30,30"
                 VerticalOptions="StartAndExpand"
                 HeightRequest="120">
@@ -29,9 +31,11 @@
             <syncfusion:SfListView  Margin="10,-30,10,15"
                                     x:Name="listView"
                                     SelectionMode="None"
-                                    SelectionChanged="listView_SelectionChanged"
+                                    SelectionChanged="NavigateFromCHIFAMenu"
                                     ItemsSource="{Binding MenuItems}"
                                     AutoFitMode="None"
+                                    VerticalOptions="Start"
+                                    HeightRequest="240"
                                     SelectionBackgroundColor="AliceBlue">
 
                 <syncfusion:SfListView.ItemSize>
@@ -72,7 +76,7 @@
                                     <RowDefinition Height= "Auto" />
                                     <RowDefinition Height= "Auto" />
                                 </Grid.RowDefinitions>
-                                
+
                                 <Label Grid.Row="0"
                                        Text="{Binding TITLE}"
                                        FontSize="15"
@@ -99,7 +103,7 @@
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"
                                        IsVisible="{Binding ShowStats}"/>
-                                
+
                                 <Label Grid.Row="3"
                                        Text="Factures"
                                        FontSize="13"
@@ -119,6 +123,78 @@
                             </Grid>
                             <yummy:PancakeView.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="NavigateFromCHIFAMenu"/>
+                            </yummy:PancakeView.GestureRecognizers>
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+
+
+            <!--List WIth ICONS-->
+            <syncfusion:SfListView  Margin="10,-30,10,15"
+                                    VerticalOptions="Start"
+                                    x:Name="listView1"
+                                    SelectionMode="None"
+                                    SelectionChanged="listView_SelectionChanged"
+                                    ItemsSource="{Binding MenuWithIcon}"
+                                    AutoFitMode="None"
+                                    SelectionBackgroundColor="AliceBlue">
+
+                <syncfusion:SfListView.ItemSize>
+                    <OnIdiom x:TypeArguments="x:Double"
+                             Phone="140"
+                             Tablet="200"
+                             Desktop="200"/>
+                </syncfusion:SfListView.ItemSize>
+
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout>
+                        <syncfusion:GridLayout.SpanCount>
+                            <OnIdiom x:TypeArguments="x:Int32"
+                                Phone="2"
+                                Tablet="3"
+                                Desktop="3"/>
+                        </syncfusion:GridLayout.SpanCount>
+                    </syncfusion:GridLayout>
+                </syncfusion:SfListView.LayoutManager>
+
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <yummy:PancakeView BackgroundColor="{Binding BGCOLOR}" 
+                                           CornerRadius="6"
+                                           Margin="5" 
+                                           Padding="2" 
+                                           HasShadow="False">
+
+                            <Grid   Padding="10" 
+                                    ColumnSpacing="0" 
+                                    Margin="0" 
+                                    VerticalOptions="CenterAndExpand">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height= "45"/>
+                                    <RowDefinition Height= "*" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Row="0"
+                                       Text="{Binding TITLE}"
+                                       FontSize="15"
+                                       TextColor="#0c0c0f"
+                                       VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontAttributes="Bold"
+                                       VerticalOptions="StartAndExpand"
+                                       HorizontalOptions="CenterAndExpand"/>
+
+                                <Image
+                                    Grid.Row="1"
+                                    Source="{Binding ICON}"
+                                    HeightRequest="45"
+                                    VerticalOptions="End"
+                                    HorizontalOptions="CenterAndExpand"/>
+                            </Grid>
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="NavigateFromCHIFAMenuWithIcon"/>
                             </yummy:PancakeView.GestureRecognizers>
                         </yummy:PancakeView>
                     </DataTemplate>
