@@ -5,11 +5,46 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:syncfusion1="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              BackgroundColor="White"
-             FlowDirection="MatchParent"
-             
-             >
+             FlowDirection="MatchParent">
+
+    <NavigationPage.TitleView>
+        <syncfusion1:SfSwitch IsOn="False" HorizontalOptions="End" VisualType="Custom" WidthRequest="80" x:Name="switchHorsLigne">
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="On">
+                        <VisualState.Setters>
+                            <Setter Property="SwitchSettings">
+                                <Setter.Value>
+                                    <syncfusion1:DefaultSwitchSettings  
+                                        x:TypeArguments="syncfusion1:OnState"
+                                        ThumbColor="White" 
+                                        ThumbBorderColor="White"
+                                        TrackColor="#efefef"
+                                        ThumbImageSource="switchonline.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Off">
+                        <VisualState.Setters>
+                            <Setter Property="SwitchSettings">
+                                <Setter.Value>
+                                    <syncfusion1:DefaultSwitchSettings 
+                                        ThumbColor="White"
+                                        TrackColor="#efefef"
+                                        x:TypeArguments="syncfusion1:OffState"
+                                        ThumbBorderColor="White"
+                                        ThumbImageSource="switchoffline.png"/>
+                                </Setter.Value>
+                            </Setter>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </syncfusion1:SfSwitch>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <StackLayout Spacing="0" 
@@ -71,7 +106,7 @@
                                  Padding="0" 
                                  Margin="0">
 
-                        <FlexLayout Direction="Row"                             
+                        <!--<FlexLayout Direction="Row"                             
                                     JustifyContent="Center"
                                     AlignItems="Center"
                                     HorizontalOptions="Center">
@@ -89,7 +124,7 @@
                                    WidthRequest="17"
                                    HeightRequest="17"/>
 
-                        </FlexLayout>
+                        </FlexLayout>-->
 
 
                         <Label Text="Bienvenue" 
@@ -112,13 +147,11 @@
             </yummy:PancakeView>
 
             <syncfusion:SfListView  Margin="10,-40,10,15"
+                                    
                                     x:Name="listView"
-                                    SelectionMode="None"
                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                                     SelectionChanged="listView_SelectionChanged"
-                                    ItemsSource="{Binding Items}"
-                                    AutoFitMode="None"
-                                    SelectionBackgroundColor="AliceBlue">
+                                    ItemsSource="{Binding Items}">
 
                 <syncfusion:SfListView.ItemSize>
                     <OnIdiom x:TypeArguments="x:Double"
