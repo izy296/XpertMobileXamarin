@@ -304,7 +304,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                         Navigation.PushAsync(new CHIFA_Consommation());
                         break;
                     case 4:
-                        Navigation.PushAsync(new SuiviChroniquesPage());
+                        Navigation.PushAsync(new SuiviChroniquesPage());   
                         break;
                 }
 
