@@ -332,9 +332,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                     case 4:
                         Navigation.PushAsync(new SuiviChroniquesPage());
                         break;
-                    case 5:
-                        Navigation.PushAsync(new CHIFA_ClassificationByLabo());
-                        break;
+                    //case 5:
+                    //    Navigation.PushAsync(new CHIFA_ClassificationByLabo());
+                    //    break;
                 }
             }
             catch (Exception ex)
