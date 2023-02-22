@@ -1,5 +1,4 @@
 ﻿using Acr.UserDialogs;
-using DLToolkit.Forms.Controls;
 using Newtonsoft.Json;
 using Plugin.Connectivity;
 using Plugin.FirebasePushNotification;
@@ -108,7 +107,6 @@ namespace XpertMobileApp
             LicenceInfos licenceInfos = LicActivator.GetLicenceInfos();
             LicState licState = LicActivator.CheckLicence(licenceInfos).Result;
             PreventLinkerFromStrippingCommonLocalizationReferences();
-            FlowListView.Init();
             this.IsToastExitConfirmation = false;
 
             if (licState == LicState.Valid && Constants.AppName != Apps.XAGRI_Mob)
