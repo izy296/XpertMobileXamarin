@@ -187,13 +187,13 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 BGCOLOR = "#f0f0f0",
                 ICON = "users.png",
             });
-            MenuWithIcon.Add(new MenuChifaItemWithIcon
-            {
-                ID = 5,
-                TITLE = AppResources.p_classification,
-                BGCOLOR = "#f0f0f0",
-                ICON = "laboratory.png",
-            });
+            //MenuWithIcon.Add(new MenuChifaItemWithIcon
+            //{
+            //    ID = 5,
+            //    TITLE = AppResources.p_classification,
+            //    BGCOLOR = "#f0f0f0",
+            //    ICON = "laboratory.png",
+            //});
         }
 
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
