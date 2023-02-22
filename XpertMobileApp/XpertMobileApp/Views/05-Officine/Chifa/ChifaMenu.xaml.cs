@@ -16,6 +16,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo;
 using XpertMobileApp.Views._05_Officine.Chifa.Consommation;
 using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
@@ -66,6 +67,15 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
             changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+    public class MenuChifaItemWithIcon
+    {
+        public int ID { get; set; }
+        public string TITLE { get; set; }
+        public string BGCOLOR { get; set; }
+        public string ICON { get; set; }
+    }
+
+
     public partial class ChifaMenu : ContentPage
     {
         private int totalFactByDay { get; set; }
@@ -109,6 +119,19 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 OnPropertyChanged("MenuItems");
             }
         }
+        public ObservableCollection<MenuChifaItemWithIcon> menuWithIcon { get; set; }
+        public ObservableCollection<MenuChifaItemWithIcon> MenuWithIcon
+        {
+            get
+            {
+                return menuWithIcon;
+            }
+            set
+            {
+                menuWithIcon = value;
+                OnPropertyChanged("MenuWithIcon");
+            }
+        }
         public Command LoadCountTodayFacture { get; set; }
         public Command LoadCountTodayBourderaux { get; set; }
         public ChifaMenu()
@@ -118,7 +141,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
 
             /* Initialisation du menu CHIFA*/
             MenuItems = new ObservableCollection<MenuChifaItem>();
-
+            MenuWithIcon = new ObservableCollection<MenuChifaItemWithIcon>();
             LoadCountTodayFacture = new Command(async () => await ExecuteLoadCountFactureCHIFA());
             LoadCountTodayBourderaux = new Command(async () => await ExecuteLoadCountBordereauCHIFA());
 
@@ -142,37 +165,55 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
 
             });
 
-            MenuItems.Add(new MenuChifaItem
+            // Menu with icon 
+            MenuWithIcon.Add(new MenuChifaItemWithIcon
             {
                 ID = 2,
                 TITLE = AppResources.pn_Beneficiaire,
                 BGCOLOR = "#f0f0f0",
-                ICON = "group.png",
-                ShowStats = false
+                ICON = "people.png",
             });
-            MenuItems.Add(new MenuChifaItem
+            MenuWithIcon.Add(new MenuChifaItemWithIcon
             {
                 ID = 3,
                 TITLE = "Consommation des Médicament",
                 BGCOLOR = "#f0f0f0",
-                ICON = "pills.png",
-                ShowStats = false
+                ICON = "prescription.png",
             });
-            
-            MenuItems.Add(new MenuChifaItem
+            MenuWithIcon.Add(new MenuChifaItemWithIcon
             {
                 ID = 4,
                 TITLE = AppResources.pn_ChronicFollowUp,
                 BGCOLOR = "#f0f0f0",
                 ICON = "users.png",
-                ShowStats = false
             });
-
+            MenuWithIcon.Add(new MenuChifaItemWithIcon
+            {
+                ID = 5,
+                TITLE = AppResources.p_classification,
+                BGCOLOR = "#f0f0f0",
+                ICON = "laboratory.png",
+            });
         }
 
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
         {
-
+            int id = ((sender as PancakeView).BindingContext as MenuChifaItemWithIcon).ID;
+            switch (id)
+            {
+                case 2:
+                    Navigation.PushAsync(new BeneficiaresPage());
+                    break;
+                case 3:
+                    Navigation.PushAsync(new CHIFA_Consommation());
+                    break;
+                case 4:
+                    Navigation.PushAsync(new SuiviChroniquesPage());
+                    break;
+                case 5:
+                    Navigation.PushAsync(new CHIFA_ClassificationByLabo());
+                    break;
+            }
         }
 
         protected override void OnAppearing()
@@ -192,7 +233,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                     MontFactureToday = CountFactureForToday.MONT_FACTURE;
                     var itemToRemove = MenuItems.Single(r => r.ID == 1);
                     MenuItems.Remove(itemToRemove);
-                    MenuItems.Insert(1,new MenuChifaItem
+                    MenuItems.Insert(1, new MenuChifaItem
                     {
                         ID = 1,
                         TITLE = "Aujourd'hui",
@@ -267,6 +308,34 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                         break;
                 }
 
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void NavigateFromCHIFAMenuWithIcon(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = ((sender as PancakeView).BindingContext as MenuChifaItemWithIcon).ID;
+                switch (id)
+                {
+                    case 2:
+                        Navigation.PushAsync(new BeneficiaresPage());
+                        break;
+                    case 3:
+                        Navigation.PushAsync(new CHIFA_Consommation());
+                        break;
+                    case 4:
+                        Navigation.PushAsync(new SuiviChroniquesPage());
+                        break;
+                    case 5:
+                        Navigation.PushAsync(new CHIFA_ClassificationByLabo());
+                        break;
+                }
             }
             catch (Exception ex)
             {
