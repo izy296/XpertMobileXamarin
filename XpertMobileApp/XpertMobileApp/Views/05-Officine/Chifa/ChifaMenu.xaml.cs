@@ -16,7 +16,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
-using XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo;
+//using XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo;
 using XpertMobileApp.Views._05_Officine.Chifa.Consommation;
 using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
