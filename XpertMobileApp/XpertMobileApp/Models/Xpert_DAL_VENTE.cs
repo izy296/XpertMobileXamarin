@@ -778,7 +778,7 @@ namespace XpertMobileApp.DAL
         public DateTime DATE_SOIN { get; set; }
         public DateTime DATE_PREVUE { get { return DATE_SOIN.AddDays(DUREE_TRAIT); } }
         public int TOTAL_NB_FACTURE { get; set; }
-        public int TYPE { get; set; }
+        public int GROUPE_ANALYSE_FACTURE { get; set; }
 
     }
     public partial class View_CONVENTION_FACTURE : FACTURE_CHIFA
