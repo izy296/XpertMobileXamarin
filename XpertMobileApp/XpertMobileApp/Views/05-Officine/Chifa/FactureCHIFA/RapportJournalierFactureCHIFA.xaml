@@ -2,7 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA.RapportJournalierFactureCHIFA"
-             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms" xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" xmlns:template1="clr-namespace:XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA" xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:carousel="clr-namespace:Syncfusion.SfCarousel.XForms;assembly=Syncfusion.SfCarousel.XForms" 
+             xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
+             xmlns:template1="clr-namespace:XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA"
              Title="Rapport journalier"
              BackgroundColor="#ffffff">
     <ContentPage.Content>
@@ -13,7 +19,7 @@
                          HeightRequest="40"
                          Orientation="Horizontal"
                          Padding="10,0"
-                         BackgroundColor="#087565">
+                         BackgroundColor="{DynamicResource NavigationPrimary}">
                 <syncfusion1:SfListView x:Name="listView1" 
                                         IsScrollBarVisible="false"
                                         SelectionGesture="Tap"

@@ -499,11 +499,7 @@ namespace XpertMobileApp.Views
                     if (itemitem.Id == (MenuItemType)Convert.ToInt32(item))
                         selected = itemitem;
                 }
-                var selectedElement = selected;
-                menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault().SelectedBackgroundColor = Color.FromHex("#F6BD4A");
-                tempMenuItems[0].SelectedBackgroundColor = Color.Transparent;
-                tempMenuItems[0] = menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault();
-                //ListViewMenu.SelectedItem = selected;
+                ListViewMenu.SelectedItem = selected;
                 ((MasterDetailPage)App.Current.MainPage).Detail.Focus();
             });
 
@@ -711,13 +707,6 @@ namespace XpertMobileApp.Views
             }
         }
 
-        private void ListViewMenu_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var selectedElement = e.Item as HomeMenuItem;
-            menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault().SelectedBackgroundColor = Color.FromHex("#F6BD4A");
-            tempMenuItems[0].SelectedBackgroundColor = Color.Transparent;
-            tempMenuItems[0] = menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault();
-        }
     }
 
 }
