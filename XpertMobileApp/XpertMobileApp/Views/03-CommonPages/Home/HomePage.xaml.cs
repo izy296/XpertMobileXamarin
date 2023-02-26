@@ -21,11 +21,6 @@ namespace XpertMobileApp.Views
         HomeViewModel viewModel;
         private bool KeepAnimate { get; set; } = false;
 
-        public enum AppColor
-        {
-            
-
-        }
         public HomePage()
         {
             InitializeComponent();

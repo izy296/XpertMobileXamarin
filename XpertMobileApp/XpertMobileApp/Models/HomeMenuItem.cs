@@ -14,7 +14,22 @@ namespace XpertMobileApp.Models
     public class HomeMenuItem : INotifyPropertyChanged
     {
         private int countOfNotifications = 0;
-
+        private Color selectedBackgroundColor;
+        public Color SelectedBackgroundColor
+        {
+            set
+            {
+                if (selectedBackgroundColor != value)
+                {
+                    selectedBackgroundColor = value;
+                    OnPropertyChanged("SelectedBackgroundColor");
+                }
+            }
+            get
+            {
+                return selectedBackgroundColor;
+            }
+        }
         public XpertObjets CodeObjet { get; set; } = XpertObjets.None;
 
         public XpertActions Action { get; set; } = XpertActions.None;
@@ -67,6 +82,14 @@ namespace XpertMobileApp.Models
                 MessagingCenter.Send(this, "refreshBell", "");
             }
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            var changed = PropertyChanged;
+            if (changed == null)
+                return;
+
+            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 

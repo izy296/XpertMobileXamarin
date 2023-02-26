@@ -1474,55 +1474,79 @@
   <data name="pn_ChronicFollowUp" xml:space="preserve">
     <value>Suivi de traitements chroniques</value>
   </data>
-	<data name="pbd_Call" xml:space="preserve">
+  <data name="p_classification" xml:space="preserve">
+    <value>Labos et classes Thérapeutiques</value>
+  </data>
+  <data name="pbd_Call" xml:space="preserve">
     <value>Appel</value>
   </data>
-	<data name="pbd_SMS" xml:space="preserve">
+  <data name="pbd_SMS" xml:space="preserve">
     <value>SMS</value>
   </data>
-	<data name="pbd_Bills" xml:space="preserve">
+  <data name="pbd_Bills" xml:space="preserve">
     <value>Les Factures</value>
   </data>
-	<data name="pbd_Phone_Msg" xml:space="preserve">
+  <data name="pbd_Phone_Msg" xml:space="preserve">
     <value>Choisi le numéro téléphone</value>
   </data>
-	<data name="psc_OrderBy_DFacture" xml:space="preserve">
+  <data name="psc_OrderBy_DFacture" xml:space="preserve">
     <value>Trier par Date Facture</value>
   </data>
-	<data name="psc_OrderBy_DSoin" xml:space="preserve">
+  <data name="psc_OrderBy_DSoin" xml:space="preserve">
     <value>Trier par Date Soin</value>
   </data>
-	<data name="psc_Period" xml:space="preserve">
+  <data name="psc_Period" xml:space="preserve">
     <value>Période : </value>
   </data>
-	<data name="psc_Export" xml:space="preserve">
+  <data name="psc_Export" xml:space="preserve">
     <value>Exportation : </value>
   </data>
-	<data name="psc_Nom_Beneficiare" xml:space="preserve">
+  <data name="psc_Nom_Beneficiare" xml:space="preserve">
     <value>Nom Bénéficiaire</value>
   </data>
-	<data name="psc_Date_Prevue" xml:space="preserve">
+  <data name="psc_Date_Prevue" xml:space="preserve">
     <value>Date Prévue</value>
   </data>
-	<data name="psc_Date_de_Facture" xml:space="preserve">
+  <data name="psc_Date_de_Facture" xml:space="preserve">
     <value>Date de Facture</value>
   </data>
-	<data name="psc_Num_Facture" xml:space="preserve">
+  <data name="psc_Num_Facture" xml:space="preserve">
     <value>Num Facture</value>
   </data>
-	<data name="psc_Duree_Trait" xml:space="preserve">
+  <data name="psc_Duree_Trait" xml:space="preserve">
     <value>Duree Trait</value>
   </data>
-	<data name="psc_Traitements" xml:space="preserve">
+  <data name="psc_Traitements" xml:space="preserve">
     <value>Traitements</value>
-  </data>	
-	<data name="psc_Beneficiaries" xml:space="preserve">
+  </data>
+  <data name="psc_Beneficiaries" xml:space="preserve">
     <value>Bénéficiaires</value>
   </data>
-	<data name="psc_Jours_Precedents" xml:space="preserve">
+  <data name="psc_Jours_Precedents" xml:space="preserve">
     <value> jours précédents</value>
   </data>
-	<data name="psc_Jours_Prochain" xml:space="preserve">
+  <data name="psc_Jours_Prochain" xml:space="preserve">
     <value> prochains jours</value>
+  </data>
+  <data name="lbl_dateFacture" xml:space="preserve">
+    <value>Date Facture</value>
+  </data>
+  <data name="lbl_NbVignette" xml:space="preserve">
+    <value>Nombre de vignettes</value>
+  </data>
+  <data name="txt_beneficiaire" xml:space="preserve">
+    <value>Bénéf</value>
+  </data>
+  <data name="txt_da" xml:space="preserve">
+    <value>DA</value>
+  </data>
+  <data name="txt_listeFacture" xml:space="preserve">
+    <value>Liste des factures</value>
+  </data>
+  <data name="txt_NumBordereau" xml:space="preserve">
+    <value>N° Borderaeau</value>
+  </data>
+  <data name="txt_unites" xml:space="preserve">
+    <value>Unités</value>
   </data>
 </root>

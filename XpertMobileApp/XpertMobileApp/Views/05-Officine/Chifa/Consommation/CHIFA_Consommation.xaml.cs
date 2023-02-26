@@ -37,9 +37,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 View_CFA_MOBILE_DETAIL_FACTURE ConsommationItem = (View_CFA_MOBILE_DETAIL_FACTURE)e.SelectedItem;
                 if (ConsommationItem != null)
                 {
-                    await Navigation.PushAsync(new CHIFA_ConsommationDetail(viewModel, ConsommationItem, viewModel.StartDate, viewModel.EndDate));
+                    await Navigation.PushAsync(new CHIFA_ConsommationDetail(ConsommationItem, viewModel.StartDate, viewModel.EndDate, SenderType.CONSOMMATION.ToString()));
                     ItemsListView1.SelectedItem = null;
+                    ItemsListView3.SelectedItem = null;
                 }
+
             }
             catch (Exception ex)
             {
@@ -126,6 +128,19 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+
+        private void DatePicker_Unfocused(object sender, DateChangedEventArgs e)
+        {
+            try
+            {
+                viewModel.InitAndReloadItemList();
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }

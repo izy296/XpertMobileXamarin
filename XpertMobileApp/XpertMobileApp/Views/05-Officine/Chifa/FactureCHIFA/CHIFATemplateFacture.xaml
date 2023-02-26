@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              x:Class="XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA.CHIFATemplateFacture">
     <ContentView.Content>
         <StackLayout>
@@ -41,7 +43,7 @@
                         <!--Num Facture-->
                         <Label Grid.Row="1"  
                                Grid.Column="0" 
-                               Text="N° Facture" 
+                               Text="{i18n:Translate txt_NumFacture}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}" />
 
@@ -54,7 +56,7 @@
                         <!--Date de soin-->
                         <Label Grid.Row="3"  
                                Grid.Column="0" 
-                               Text="Date de Soin" 
+                               Text="{i18n:Translate txt_DateDeSoin}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}" />
                         
@@ -67,7 +69,7 @@
                         <!--Nombre de vignettes-->
                         <Label Grid.Row="5"  
                                Grid.Column="0" 
-                               Text="Nombre de Vignettes" 
+                               Text="{i18n:Translate lbl_NbVignette}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}" />
                         
@@ -82,7 +84,7 @@
                         <!--Numero Assuré-->
                         <Label Grid.Row="1"  
                                Grid.Column="1" 
-                               Text="N° Assuré" 
+                               Text="{i18n:Translate txt_NumAssure}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}" 
                                            />
@@ -95,7 +97,7 @@
                         <!--Mont Facture-->
                         <Label Grid.Row="3"  
                                Grid.Column="1" 
-                               Text="Mont. Facture" 
+                               Text="{i18n:Translate txt_MontFacture}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}"/>
                         
@@ -108,7 +110,7 @@
                         <!--Specialite-->
                         <Label Grid.Row="5"  
                                Grid.Column="1" 
-                               Text="Spécialité" 
+                               Text="{i18n:Translate Spécialité}" 
                                FontSize="Micro" 
                                TextColor="{DynamicResource NavigationPrimary}"/>
                         

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             x:Class="XpertMobileApp.Views._04_Comercial.Templates.CHIFA_ConsommationMedicTemplate">
+  <ContentView.Content>
+        <Frame CornerRadius="12"
+                                           Margin="7">
+            <Grid Padding="5" HorizontalOptions="Fill">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="25" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="6*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Designation DCI-->
+                <Label  Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        FontAttributes="bold"
+                        Text="{Binding DESIGN_DCI}"/>
+                
+                <Label  Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        FontAttributes="bold"
+                        Text="{Binding DESIGNATION_PRODUIT}"/>
+
+                <!--Reference Produit-->
+                <Label  Grid.Row="1"
+                        FontSize="13"
+                        Text="{Binding REFERENCE,StringFormat='{0}'}"
+                        TextColor="#2f2f2f"/>
+
+                <!--QUANTITE produit-->
+                <FlexLayout Grid.Row="2"
+                            Direction="row"
+                            HorizontalOptions="Start"
+                            AlignItems="End"
+                            Grid.Column="0">
+                    
+                    <Label Text="{Binding QUANTITE}"
+                           FontSize="18"
+                           Margin="0,0,5,0"
+                           FontAttributes="bold"
+                           TextColor="{DynamicResource NavigationPrimary}"/>
+
+                    <Label  Text="{i18n:Translate txt_unites}"
+                            TextColor="#0c0c0c"
+                            FontSize="15"/>
+                    
+                </FlexLayout>
+
+                <!--Montant Facture-->
+                <FlexLayout Grid.Row="2"
+                            Direction="row"
+                            HorizontalOptions="EndAndExpand"
+                            AlignItems="End"
+                            JustifyContent="Center"
+                            Grid.Column="1">
+ 
+                    <Label  Text="{Binding MONT_FACTURE,StringFormat='{0:N2}'}"
+                            FontSize="18"
+                            FontAttributes="bold"
+                            Margin="0,0,5,0"
+                            TextColor="{DynamicResource NavigationPrimary}"/>
+
+                    <Label Text="DA"
+                                                       TextColor="#0c0c0c"
+                                                       FontSize="15"/>
+                </FlexLayout>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

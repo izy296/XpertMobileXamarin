@@ -37,21 +37,6 @@
                            Margin="0,15"
                            TextColor="Black"/>
                     <StackLayout Orientation="Horizontal">
-                        <flex:FlexButton
-                            x:Name="buttonNon"
-                            HorizontalOptions="FillAndExpand" 
-                            MinimumHeightRequest="50"
-                            HeightRequest="35"
-                            Padding="0"
-                            Margin="5"
-                            WidthRequest="130"
-                            Text="Non"
-                            CornerRadius="15"
-                            ForegroundColor="#ffffff"
-                            BackgroundColor="#e65b65"
-                            BorderColor="#e65b65"
-                            BorderThickness="1"
-                            Clicked="AnswerWithNo"/>
 
                         <flex:FlexButton
                             x:Name="buttonYes"
@@ -68,6 +53,23 @@
                             BorderThickness="1"
                             WidthRequest="130"
                             Clicked="AnswerWithYes"/>
+                        
+                        <flex:FlexButton
+                            x:Name="buttonNon"
+                            HorizontalOptions="FillAndExpand" 
+                            MinimumHeightRequest="50"
+                            HeightRequest="35"
+                            Padding="0"
+                            Margin="5"
+                            WidthRequest="130"
+                            Text="Non"
+                            CornerRadius="15"
+                            ForegroundColor="#ffffff"
+                            BackgroundColor="#e65b65"
+                            BorderColor="#e65b65"
+                            BorderThickness="1"
+                            Clicked="AnswerWithNo"/>
+
                     </StackLayout>
                 </StackLayout>
             </yummy:PancakeView>

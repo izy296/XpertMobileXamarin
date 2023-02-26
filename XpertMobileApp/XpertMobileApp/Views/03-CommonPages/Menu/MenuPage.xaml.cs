@@ -28,6 +28,7 @@ namespace XpertMobileApp.Views
     {
         MainPage RootPage { get => Application.Current.MainPage as MainPage; }
         List<HomeMenuItem> menuItems;
+        List<HomeMenuItem> tempMenuItems;
         ObservableCollection<Grouping<string, int, HomeMenuItem>> menuItemsGrouped;
         private int numberOfNotifications;
         public int NumberOfNotifications
@@ -60,7 +61,7 @@ namespace XpertMobileApp.Views
 
             // Initialisation de la liste de menu ...
             menuItems = new List<HomeMenuItem>();
-
+            tempMenuItems = new List<HomeMenuItem>();
             /* Menu Commun entre (XCOM && XPH_mob && X_DISTRIBUTION) */
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.XPH_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
@@ -498,7 +499,11 @@ namespace XpertMobileApp.Views
                     if (itemitem.Id == (MenuItemType)Convert.ToInt32(item))
                         selected = itemitem;
                 }
-                ListViewMenu.SelectedItem = selected;
+                var selectedElement = selected;
+                menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault().SelectedBackgroundColor = Color.FromHex("#F6BD4A");
+                tempMenuItems[0].SelectedBackgroundColor = Color.Transparent;
+                tempMenuItems[0] = menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault();
+                //ListViewMenu.SelectedItem = selected;
                 ((MasterDetailPage)App.Current.MainPage).Detail.Focus();
             });
 
@@ -639,6 +644,12 @@ namespace XpertMobileApp.Views
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
 
+            if (menuItems.Count() > 0)
+            {
+                menuItems[0].SelectedBackgroundColor = Color.FromHex("#F6BD4A");
+                tempMenuItems.Add(menuItems[0]);
+            }
+
         }
 
 
@@ -689,7 +700,7 @@ namespace XpertMobileApp.Views
                     }
                     catch (Exception ex)
                     {
-
+                        throw ex;
                     }
 
                 }
@@ -700,6 +711,13 @@ namespace XpertMobileApp.Views
             }
         }
 
+        private void ListViewMenu_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var selectedElement = e.Item as HomeMenuItem;
+            menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault().SelectedBackgroundColor = Color.FromHex("#F6BD4A");
+            tempMenuItems[0].SelectedBackgroundColor = Color.Transparent;
+            tempMenuItems[0] = menuItems.Where(el => el.Id == selectedElement.Id).FirstOrDefault();
+        }
     }
 
 }

@@ -314,7 +314,7 @@ namespace XpertMobileApp.DAL
                 return NUM_ASSURE + "-" + RAND_AD;
             }
         }
-
+        public string CODE_PRODUIT { get; set; }
         public DateTime DATE_PREVUE
         {
             get
@@ -322,7 +322,11 @@ namespace XpertMobileApp.DAL
                 return DATE_FACTURE.AddDays(DUREE_TRAIT);
             }
         }
-
+        public string DESIGNATION_LABO { get; set; }
+        public string CODE { get; set; }
+        public string PAYE { get; set; }
+        public string DESIGNATION_FAMILLE { get; set; }
+        public string CODE_FAMILLE { get; set; }
         private ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> traitments { get; set; }
         public ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> Traitments { get { return traitments; } set { traitments = value; OnPropertyChanged("Traitments"); } }
         private ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> malades { get; set; }

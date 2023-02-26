@@ -1,0 +1,345 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+            xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+            xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" 
+            xmlns:Template="clr-namespace:XpertMobileApp.Views._04_Comercial.Templates" 
+            xmlns:classificationlabo="clr-namespace:XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo" 
+            Title="Classification" 
+             x:Class="XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo.CHIFA_ClassificationByLabo">
+            <!--CurrentPageChanged="TabbedPage_CurrentPageChanged"
+            BarBackgroundColor="{DynamicResource NavigationPrimary}"-->
+           
+
+    <!--Classification by laboratoire-->
+    <!--<ContentPage 
+                  
+                 IconImageSource="labor.png"
+                 BackgroundColor="#fefefe">-->
+        <StackLayout>
+
+            <Grid  HorizontalOptions="FillAndExpand"
+                   Padding="10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="0">
+                    <Label Text="Date début:"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        DateSelected="DatePicker_DateSelected"
+                        Date="{Binding SelectedStartDate, Mode=TwoWay}" />
+                </StackLayout>
+
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="1">
+                    <Label Text="Date fin :"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        DateSelected="DatePicker_DateSelected"
+                        Date="{Binding SelectedEndDate, Mode=TwoWay}" />
+                </StackLayout>
+
+            </Grid>
+
+            <!--Liste of products-->
+            <Frame Background="transparent"
+                   CornerRadius="12"  
+                   VerticalOptions="FillAndExpand"
+                   HeightRequest="200"
+                   Margin="5,0"
+                   HasShadow="True"
+                   Padding="0">
+                <StackLayout>
+
+                    <Label 
+                        Padding="10,15,10,10"
+                        Text="Liste des produits par laboratoires"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        TextColor="#0c0c0f"/>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView 
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              x:Name="ItemsListView"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding Items}"
+                                ItemSelected="ItemsListView_ItemSelected"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding LoadItemsCommand}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement">
+
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Template:CHIFA_ProduitByLabo/>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    <!-- set the footer to have a zero height when invisible -->
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    <!-- the loading content -->
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Grid>
+                            </ListView.Footer>
+                        </ListView>
+
+                        <!--floating button-->
+                        <Button
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            x:Name="floatingButton" 
+                            ImageSource="filter.png"
+                            IsVisible="True"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                            CornerRadius="100"
+                            BackgroundColor="{DynamicResource Primary}"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Padding="10"
+                            Margin="0,0,15,15"
+                            Clicked="ShowHideFilter"/>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    <!--</ContentPage>-->
+    
+    <!--Classe THERAPEUTIQUE--><!--
+    <ContentPage 
+                 Title="Classe Thérapeutique" 
+                 IconImageSource="multiple.png"
+                 BackgroundColor="#fefefe">
+        <StackLayout>
+
+            <Grid  HorizontalOptions="FillAndExpand"
+                   Padding="10,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="0">
+                    <Label Text="Date début:"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        DateSelected="DatePicker_DateSelected"
+                        Date="{Binding SelectedStartDate, Mode=TwoWay}" />
+                </StackLayout>
+
+
+                <StackLayout 
+                    Padding="5,0"
+                    Orientation="Vertical"
+                    Grid.Column="1">
+                    <Label Text="Date fin :"
+                           TextColor="#0c0c0c"/>
+                    <DatePicker 
+                        TextColor="#0c0c0c"
+                        FontSize="15"
+                        Format="dd/MM/yyyy"
+                        DateSelected="DatePicker_DateSelected"
+                        Date="{Binding SelectedEndDate, Mode=TwoWay}" />
+                </StackLayout>
+
+            </Grid>
+
+            --><!--Liste of products--><!--
+            <Frame Background="transparent"
+                   CornerRadius="12"  
+                   VerticalOptions="FillAndExpand"
+                   HeightRequest="200"
+                   Margin="5,0"
+                   HasShadow="True"
+                   Padding="0">
+                <StackLayout>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="80"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="80"/>
+                        </Grid.ColumnDefinitions>
+
+                        <ListView 
+                              Grid.Row="0"
+                              Grid.RowSpan="2"
+                              Grid.Column="0"
+                              Grid.ColumnSpan="2"
+                              x:Name="ItemsListView1"
+                              VerticalOptions="Fill"
+                              ItemsSource="{Binding Items}"
+                              ItemSelected="ItemsListView_ItemSelected"
+                              HasUnevenRows="true" 
+                              SeparatorVisibility="None"                            
+                              RefreshCommand="{Binding LoadItemsCommand}"
+                              IsPullToRefreshEnabled="true"
+                              IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                              CachingStrategy="RecycleElement">
+
+                            <ListView.Behaviors>
+                                <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                            </ListView.Behaviors>
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Frame  Padding="10" 
+                                                Margin="5"
+                                                CornerRadius="12"
+                                                BackgroundColor="#fff">
+
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition/>
+                                                    <RowDefinition/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <FlexLayout Grid.Row="0" 
+                                                            Grid.Column="0" 
+                                                            Grid.ColumnSpan="2"
+                                                            JustifyContent="Start"
+                                                            AlignItems="Center">
+
+                                                    <Label Text="{Binding DESIGNATION_FAMILLE}"/>
+
+                                                </FlexLayout>
+
+                                                <FlexLayout Grid.Row="1" 
+                                                            Grid.Column="0" 
+                                                            JustifyContent="Start"
+                                                            AlignItems="Center">
+
+                                                    <Label  FontSize="16" 
+                                                            TextColor="#0c0c0c"
+                                                            FontAttributes="Bold"
+                                                            Text="{Binding QUANTITE}"/>
+
+                                                    <Label Text="Produits"
+                                                           Margin="5,0,5,0"/>
+
+                                                </FlexLayout>
+
+                                                <FlexLayout Grid.Row="1" 
+                                                            Grid.Column="1" 
+                                                            JustifyContent="End"
+                                                            AlignItems="Center">
+
+                                                    <Label 
+                                                        Text="{Binding MONT_FACTURE, StringFormat='{0:N2} DA'}"
+                                                        FontSize="15"
+                                                        TextColor="{DynamicResource NavigationPrimary}"/>
+
+                                                </FlexLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+
+                            <ListView.Footer>
+                                <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                    --><!-- set the footer to have a zero height when invisible --><!--
+                                    <Grid.Triggers>
+                                        <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                            <Setter Property="HeightRequest" Value="0" />
+                                        </Trigger>
+                                    </Grid.Triggers>
+                                    --><!-- the loading content --><!--
+                                    <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                                </Grid>
+                            </ListView.Footer>
+                        </ListView>
+
+                        --><!--floating button--><!--
+                        <Button
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            x:Name="floatingButton1" 
+                            ImageSource="filter.png"
+                            IsVisible="True"
+                            AbsoluteLayout.LayoutFlags="PositionProportional"
+                            AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                            CornerRadius="100"
+                            BackgroundColor="{DynamicResource Primary}"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Padding="10"
+                            Margin="0,0,15,15"
+                            Clicked="ShowHideFilter"/>
+                    </Grid>
+
+                </StackLayout>
+            </Frame>
+
+        </StackLayout>
+    </ContentPage>-->
+</ContentPage>

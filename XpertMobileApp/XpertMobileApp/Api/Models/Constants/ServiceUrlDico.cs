@@ -180,6 +180,7 @@ namespace XpertMobileApp.Helpers
         public static string CFA_FACTURE_DETAIL_MOBILE_URL = "CFA_MOBILE_DETAIL_FACTURE";
         public static string CFA_FACTURE_DATE = "GetDateFactures";
         public static string CFA_FACTURE_COUNT_TODAY = "GetTodayCountFacture";
+        public static string CFA_LABO_COUNT = "GetCountLabo";
         public static string CFA_FACTURE_ANALYSE= "AnalyseFactures";
 
 

@@ -17,9 +17,9 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                <!--<StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
-                </StackLayout>
+                </StackLayout>-->
 
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="2">
                     <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>                    

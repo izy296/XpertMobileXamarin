@@ -13,10 +13,13 @@ using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
 namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
 {
+    public enum SenderType { LABO, THERAP, CONSOMMATION };
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CHIFA_ConsommationDetail : TabbedPage
     {
         private CHIFA_ConsommationViewModel viewModel;
+        public SenderType SenderType { get; set; }
         public View_CFA_MOBILE_DETAIL_FACTURE Item { get; set; }
         public ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE> DetailList { get; set; }
         public ObservableCollection<View_CFA_MOBILE_FACTURE> FactureList { get; set; }
@@ -35,19 +38,33 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             set
             {
                 countFacture = value;
-                OnPropertyChanged("CountFacture");
+                OnPropertyChanged("CountFacture"); 
             }
         }
-        public CHIFA_ConsommationDetail(CHIFA_ConsommationViewModel viewModel, View_CFA_MOBILE_DETAIL_FACTURE ConsommationItem, DateTime StartDate, DateTime EndDate)
+        public CHIFA_ConsommationDetail(View_CFA_MOBILE_DETAIL_FACTURE ConsommationItem, DateTime StartDate, DateTime EndDate, string type)
         {
             InitializeComponent();
-            this.viewModel = viewModel;
             this.Item = ConsommationItem;
             this.startDate = StartDate;
             this.endDate = EndDate;
             DetailList = new ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE>();
             FactureList = new ObservableCollection<View_CFA_MOBILE_FACTURE>();
             BeneficiaireList = new ObservableCollection<View_CFA_MOBILE_DETAIL_FACTURE>();
+            if (type == SenderType.CONSOMMATION.ToString())
+            {
+                if(!string.IsNullOrEmpty(ConsommationItem.DESIGNATION_PRODUIT))
+                    designationProduit.Text = ConsommationItem.DESIGNATION_PRODUIT;
+                else
+                    designationProduit.Text = ConsommationItem.DESIGN_DCI;
+            }
+            else if (type == SenderType.LABO.ToString())
+            {
+                designationProduit.Text = ConsommationItem.DESIGNATION_LABO;
+            }
+            else if (type == SenderType.THERAP.ToString())
+            {
+                designationProduit.Text = ConsommationItem.DESIGNATION_FAMILLE;
+            }
             BindingContext = this;
         }
 
@@ -66,13 +83,19 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                     return;
                 }
                 IsBusy = true;
-                DateTime startDate = viewModel.StartDate;
-                DateTime endDate = viewModel.EndDate;
-                string reference = Item.REFERENCE.ToString();
+                DateTime startDate = this.startDate;
+                DateTime endDate = this.endDate;
+                string reference = "";
+                if (Item.REFERENCE != null)
+                {
+                    reference = Item.REFERENCE.ToString();
+                }
+
                 if (Item.CODE_DCI != null)
                 {
                     string codeDCI = Item.CODE_DCI.ToString();
-                    var Items = await WebServiceClient.GetListFactDetailByDci(startDate, endDate, codeDCI, reference);
+                    string codeProduit = Item.CODE_PRODUIT.ToString();
+                    var Items = await WebServiceClient.GetListFactDetailByDci(startDate, endDate, codeDCI, reference, codeProduit);
 
                     if (Items != null)
                     {
@@ -103,10 +126,14 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 }
                 IsBusy = true;
 
-                string startDate = viewModel.StartDate.ToString("MM/dd/yyyy HH:MM:ss");
-                string endDate = viewModel.EndDate.ToString("MM/dd/yyyy HH:MM:ss");
+                DateTime startDate = this.startDate;
+                DateTime endDate = this.endDate;
                 string codeDCI = Item.CODE_DCI.ToString();
-                string reference = Item.REFERENCE.ToString();
+                string reference = String.Empty;
+                if (Item.REFERENCE != null)
+                {
+                    reference = Item.REFERENCE.ToString();
+                }
 
                 var FactureList = await WebServiceClient.GetFactureListByReference(codeDCI, reference, startDate, endDate);
                 CountFacture = FactureList.Count();
@@ -171,7 +198,7 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                     Title = "Liste des factures";
                     await GetFactureListByReference();
                 }
-                if(title == "Bénéficiaires")
+                if (title == "Bénéficiaires")
                 {
                     Title = "Liste des bénéficiaires";
                     await GetBeneficiaireByCodeDci();
@@ -180,6 +207,21 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 {
                     Title = "Liste des consommations";
                 }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void ItemsListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            try
+            {
+                View_CFA_MOBILE_DETAIL_FACTURE cFAObject = (View_CFA_MOBILE_DETAIL_FACTURE)e.SelectedItem;
+                //await Navigation.PushAsync(new CHIFA_FactureDetailsTemplate(cFAObject));
+                ItemsListView.SelectedItem = null;
             }
             catch (Exception ex)
             {

@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views._04_Comercial.Templates.CHIFA_ProduitByLabo">
+    <ContentView.Content>
+        <Frame Padding="10" 
+                Margin="5"
+                CornerRadius="12"
+                BackgroundColor="#fff">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <FlexLayout Grid.Row="0" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="2"
+                            JustifyContent="Start"
+                            AlignItems="Center">
+                    
+                    <Label Text="Lab : " 
+                           FontAttributes="Bold" 
+                           TextColor="#0c0c0c"/>
+                    
+                    <Label Text="{Binding DESIGNATION_LABO}"/>
+                </FlexLayout>
+
+                <FlexLayout Grid.Row="1" 
+                            Grid.Column="0" 
+                            JustifyContent="Start"
+                            AlignItems="Center">
+
+                    <Label FontSize="16" 
+                            TextColor="#0c0c0c"
+                            FontAttributes="Bold"
+                            Text="{Binding QUANTITE}"/>
+                    <Label Text="Produits"
+                            Margin="5,0,5,0"/>
+                </FlexLayout>
+                <FlexLayout Grid.Row="1" 
+                            Grid.Column="1" 
+                            JustifyContent="End"
+                            AlignItems="Center">
+
+                    <Label Text="{Binding MONT_FACTURE, StringFormat='{0:N2} DA'}"
+                                                       FontSize="15"
+                                                       TextColor="{DynamicResource NavigationPrimary}"/>
+
+                </FlexLayout>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

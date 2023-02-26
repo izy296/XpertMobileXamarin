@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="XpertMobileApp.Views._04_Comercial.Templates.CHIFA_beneficiaireTemplate">
+  <ContentView.Content>
+        <StackLayout Padding="2">
+            <yummy:PancakeView 
+                     Margin="4"
+                     Padding="15"
+                     CornerRadius="10"
+                     BackgroundColor="White">
+                
+                <yummy:PancakeView.Shadow>
+                    <yummy:DropShadow Color="#000000" Offset="4,4" />
+                </yummy:PancakeView.Shadow>
+
+                <Grid RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Label Grid.Row="0" 
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding NOMC_TIERS,FallbackValue='Nom Prénom'}"
+                                           FontSize="Medium"
+                                           TextColor="Black"
+                                           />
+                    <Label Grid.Row="1" 
+                                           Grid.ColumnSpan="2"
+                                           Text="{Binding NUM_ASSURE,FallbackValue='Num Assure'}"
+                                           FontSize="Small"
+                                           FontAttributes="Bold"
+                                           TextColor="Black"
+                                           />
+                    <Label Grid.Row="2" 
+                                           Grid.Column="0"
+                                           Text="{Binding TOTAL_FACTURES,StringFormat='{0:N0} Factures',FallbackValue='0 Factures'}"
+                                           FontSize="Small"
+                                           TextColor="Black"
+                                           />
+
+                    <Label Grid.Row="2" 
+                                           Grid.Column="1"
+                                           Text="{Binding MONTANT_FACTURES,StringFormat='{0:N2} DA',FallbackValue='Num Assure'}"
+                                           FontSize="Small"
+                                           TextColor="Black"
+                                           />
+
+                </Grid>
+
+            </yummy:PancakeView>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

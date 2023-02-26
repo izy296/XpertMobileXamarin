@@ -73,7 +73,6 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
             return type;
         }
 
-        
         public async Task InitAndReloadItemList()
         {
             try
@@ -102,12 +101,12 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
                     this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.DESIGN_DCI);
-                    this.AddGroupBy("DESIGN_DCI, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGN_DCI, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
                 else
                 {
                     this.AddOrderBy<View_CFA_MOBILE_DETAIL_FACTURE, string>(e => e.DESIGNATION_PRODUIT);
-                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
 
             }
@@ -116,11 +115,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 this.AddOrderBy("MONT_FACTURE");
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
-                    this.AddGroupBy("DESIGN_DCI, MONT_FACTURE, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGN_DCI, MONT_FACTURE, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
                 else
                 {
-                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
             }
             else if (orderByQuatity)
@@ -128,11 +127,11 @@ namespace XpertMobileApp.Views._05_Officine.Chifa.Consommation
                 this.AddOrderBy("QUANTITE");
                 if (GetCurrentDisplayType() == ConsommationDisplayType.DCI.ToString())
                 {
-                    this.AddGroupBy("DESIGN_DCI, QUANTITE, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGN_DCI, QUANTITE, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
                 else
                 {
-                    this.AddGroupBy("DESIGNATION_PRODUIT, QUANTITE, REFERENCE, CODE_DCI");
+                    this.AddGroupBy("DESIGNATION_PRODUIT, QUANTITE, REFERENCE, CODE_DCI, CODE_PRODUIT");
                 }
             }
 

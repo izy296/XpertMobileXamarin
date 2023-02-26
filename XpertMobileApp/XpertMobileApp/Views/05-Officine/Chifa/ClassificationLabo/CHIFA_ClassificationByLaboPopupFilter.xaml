@@ -4,7 +4,7 @@
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="XpertMobileApp.Views.CHIFARapportJournalierFacturePopupFilter"
+             x:Class="XpertMobileApp.Views.CHIFA_ClassificationByLaboPopupFilter"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
 
     <ContentPage.Content>
@@ -55,53 +55,16 @@
                                 </Grid>
 
 
-                                <!--Date de la facture-->
-                                <FlexLayout Direction="Column">
+                                
+                                <!--laboratoire-->
+                                <FlexLayout Direction="Column" 
+                                            IsVisible="{Binding LaboPageIsVisible}"
+                                            x:Name="labo_container">
                                     <Label
-                                    Text="{i18n:Translate lbl_dateFacture}"
+                                    Text="{i18n:Translate txt_Labo}"
                                     FontSize="16"
-                                    Margin="5,0,0,0"
+                                    Margin="5,0,0,5"
                                     TextColor="#5D5E65"/>
-
-                                    <!--Grid for the icon and the picker-->
-                                    <Grid 
-                                        Margin="4,4,5,5"
-                                        RowSpacing="0">
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="22"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-
-                                        <Image 
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Source="datePIcon.png"
-                                        HeightRequest="22"
-                                        WidthRequest="22"/>
-
-                                        <DatePicker 
-                                            Grid.Row="0"
-                                            Grid.Column="1"
-                                            Margin="2,-2,5,0"
-                                            TextColor="Gray"
-                                            FontSize="15"
-                                            Format="dd/MM/yyyy"
-                                            Date="{Binding SelectedDate, Mode=TwoWay}" />
-                                    </Grid>
-                                </FlexLayout>
-
-                                <!--Numero de facture-->
-                                <FlexLayout Direction="Column">
-                                    <Label
-                                        Text="{i18n:Translate txt_NumFacture}"
-                                        FontSize="16"
-                                        Margin="5,0,0,0"
-                                        TextColor="#5D5E65"/>
 
                                     <!--Grid for the icon and the picker of numero de facture -->
                                     <Grid 
@@ -141,13 +104,79 @@
                                                 Grid.Row="0"  
                                                 Grid.ColumnSpan="2"
                                                 x:Name="ent_SearchedTiers" 
-                                                TextColor="Black" Text="{Binding SearchedNumFacture, Mode=TwoWay}"
+                                                TextColor="Black" Text="{Binding SearchLaboratory, Mode=TwoWay}"
                                                 FontSize="14"
-                                                Keyboard="Numeric"
                                                 Margin="2,-2,5,0"/>
 
                                             <Image  
                                                 x:Name="initNumFactEntry"
+                                                Margin="0,0,14,17"
+                                                VerticalOptions="End"
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                Source="Supp.png">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Tapped="InitializeNumFactureEntry"/>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </Grid>
+                                    </Grid>
+                                </FlexLayout>
+
+                                <!--classe therap-->
+                                <FlexLayout Direction="Column" 
+                                            IsVisible="{Binding TherapPageIsVisible}"
+                                            x:Name="therap_container">
+                                    <Label
+                                    Text="Classe Thérapeutique"
+                                    FontSize="16"
+                                    Margin="5,0,0,5"
+                                    TextColor="#5D5E65"/>
+
+                                    <!--Grid for the icon and the picker of numero de facture -->
+                                    <Grid 
+                                        Margin="4,0,5,5"
+                                        RowSpacing="0">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="22"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Image 
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Source="tiersIcon.png"
+                                            HeightRequest="22"
+                                            WidthRequest="22"/>
+                                        <Grid
+                                            Grid.Row="0"
+                                            Grid.Column="1">
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="30"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="35"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Entry 
+                                                Grid.Column="0" 
+                                                Grid.Row="0"  
+                                                Grid.ColumnSpan="2"
+                                                x:Name="entry_classtherap" 
+                                                TextColor="Black" Text="{Binding SearchClassTherap, Mode=TwoWay}"
+                                                FontSize="14"
+                                                Margin="2,-2,5,0"/>
+
+                                            <Image  
+                                                x:Name="initNumFactEntry1"
                                                 Margin="0,0,14,17"
                                                 VerticalOptions="End"
                                                 Grid.Row="0"

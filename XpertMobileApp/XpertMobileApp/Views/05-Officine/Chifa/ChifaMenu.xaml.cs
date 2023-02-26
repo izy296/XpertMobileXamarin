@@ -16,7 +16,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
-//using XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo;
+using XpertMobileApp.Views._05_Officine.Chifa.ClassificationLabo;
 using XpertMobileApp.Views._05_Officine.Chifa.Consommation;
 using XpertMobileApp.Views._05_Officine.Chifa.FactureCHIFA;
 
@@ -132,13 +132,13 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 OnPropertyChanged("MenuWithIcon");
             }
         }
+        string myvariable = null; 
         public Command LoadCountTodayFacture { get; set; }
         public Command LoadCountTodayBourderaux { get; set; }
         public ChifaMenu()
         {
             InitializeComponent();
             BindingContext = this;
-
             /* Initialisation du menu CHIFA*/
             MenuItems = new ObservableCollection<MenuChifaItem>();
             MenuWithIcon = new ObservableCollection<MenuChifaItemWithIcon>();
@@ -187,13 +187,13 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 BGCOLOR = "#f0f0f0",
                 ICON = "users.png",
             });
-            //MenuWithIcon.Add(new MenuChifaItemWithIcon
-            //{
-            //    ID = 5,
-            //    TITLE = AppResources.p_classification,
-            //    BGCOLOR = "#f0f0f0",
-            //    ICON = "laboratory.png",
-            //});
+            MenuWithIcon.Add(new MenuChifaItemWithIcon
+            {
+                ID = 5,
+                TITLE = AppResources.p_classification,
+                BGCOLOR = "#f0f0f0",
+                ICON = "laboratory.png",
+            });
         }
 
         private void listView_SelectionChanged(object sender, Syncfusion.ListView.XForms.ItemSelectionChangedEventArgs e)
@@ -210,9 +210,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                 case 4:
                     Navigation.PushAsync(new SuiviChroniquesPage());
                     break;
-                //case 5:
-                //    Navigation.PushAsync(new CHIFA_ClassificationByLabo());
-                //    break;
+                case 5:
+                    Navigation.PushAsync(new CHIFA_ClassificationByLabo());
+                    break;
             }
         }
 
@@ -332,9 +332,9 @@ namespace XpertMobileApp.Views._05_Officine.Chifa
                     case 4:
                         Navigation.PushAsync(new SuiviChroniquesPage());
                         break;
-                    //case 5:
-                    //    Navigation.PushAsync(new CHIFA_ClassificationByLabo());
-                    //    break;
+                    case 5:
+                        Navigation.PushAsync(new CHIFA_ClassificationByLabo());
+                        break;
                 }
             }
             catch (Exception ex)

@@ -12,13 +12,11 @@
                 VerticalOptions="StartAndExpand"
                 HeightRequest="120">
                 <StackLayout Orientation="Vertical">
-
                     <Label Text="Module CHIFA"
                        FontSize="22"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        TextColor="#f5f5f5"/>
-
                     <Label Text="Suivie des bordereaux et facture CHIFA"
                        FontSize="16"
                        HorizontalOptions="Center"

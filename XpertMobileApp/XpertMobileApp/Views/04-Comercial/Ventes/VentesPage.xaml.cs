@@ -178,12 +178,14 @@ namespace XpertMobileApp.Views
         {
             if (tapped)
             {
+                floatingButton.Opacity = 1;
                 SummariesInfos.HeightRequest = SummariesListView.HeightRequest = 30;
                 tapped = !tapped;
                 arrow_img.RotateTo(0, 400, Easing.Linear);
             }
             else
             {
+                floatingButton.Opacity = 0.2;
                 SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 180;
                 tapped = !tapped;
                 arrow_img.RotateTo(180, 400, Easing.Linear);
