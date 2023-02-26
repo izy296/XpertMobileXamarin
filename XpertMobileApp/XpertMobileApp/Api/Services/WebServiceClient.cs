@@ -145,7 +145,7 @@ namespace XpertMobileApp.Services
 
         internal static async Task<List<View_CFA_MOBILE_FACTURE>> GetCFAFactsByNumBordereaux(string numBorderaux, string center = "0", string codeTier = "", string search = "", int page = 1, int count = 10)
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_FACTURE_CHIFA_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.CFA_MOBILE_FACTURE_URL, ServiceUrlDico.CFA_FACTURE_BORDEREAUX_URL);
             url += "?numBordereau=" + numBorderaux;
             url += "&page=" + page;
             url += "&count=" + count;

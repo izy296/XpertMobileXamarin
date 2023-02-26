@@ -50,6 +50,12 @@ namespace XpertMobileApp.Views
                    viewModel.Item = s;
 
                    await viewModel.RefreshData();
+                   var list = AFactures_section.Children.Where(x => x.StyleId != "this").ToList();
+                   foreach (var button in list)
+                   {
+                       AFactures_section.Children.Remove(button);
+                   };
+                   AFactures_btn.IsVisible = true;
                });
         }
 
@@ -116,11 +122,6 @@ namespace XpertMobileApp.Views
             AFactures_btn_Clicked(obj, new EventArgs());
         }
 
-        private async void CentrePicker_PropertyChanged(object sender, EventArgs e)
-        {
-            if (viewModel != null && viewModel.Item.NUM_BORDEREAU != null)
-                await viewModel.ExecutePullToRefresh();
-        }
 
         private void BordereauxListView_ScrollStateChanged(object sender, ScrollStateChangedEventArgs e)
         {
@@ -137,14 +138,12 @@ namespace XpertMobileApp.Views
             UserDialogs.Instance.ShowLoading();
             viewModel.FacturesAnlayse = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.AnalyseFactures(viewModel.Item.NUM_BORDEREAU));
 
-
-
             if (XpertHelper.IsNotNullAndNotEmpty(viewModel.FacturesAnlayse))
             {
                 //Hide element
                 AFactures_btn.IsVisible = false;
                 //create button for each group
-                FlexButton psychothrope, ordPlus3000, chroniques;
+                FlexButton psychothrope, ordPlus3000, chroniques, Chevauchements;
                 psychothrope = new FlexButton()
                 {
                     FontSize = (double)NamedSize.Default,
@@ -190,17 +189,36 @@ namespace XpertMobileApp.Views
                     ClickedCommand = new Command(FilterByCategory),
                     //ClickedCommandParameter = 
                 };
+                Chevauchements = new FlexButton()
+                {
+                    FontSize = (double)NamedSize.Default,
+                    CornerRadius = 15,
+                    Padding = 8,
+                    ForegroundColor = Color.White,
+                    BorderColor = Color.White,
+                    BackgroundColor = Color.LightSeaGreen,
+                    BorderThickness = 1,
+                    VerticalOptions = LayoutOptions.FillAndExpand,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
+                    IsEnabled = true,
+                    ClickedCommand = new Command(FilterByCategory),
+                    //ClickedCommandParameter = 
+                };
                 chroniques.StyleId = 0.ToString();
                 psychothrope.StyleId = 1.ToString();
                 ordPlus3000.StyleId = 2.ToString();
+                Chevauchements.StyleId = 3.ToString();
 
-                psychothrope.Text = "Psychothrope (" + viewModel.FacturesAnlayse.Where(x => x.TYPE == 1).Count() + ")";
-                chroniques.Text = "Chroniques (" + viewModel.FacturesAnlayse.Where(x => x.TYPE == 0).Count() + ")";
-                ordPlus3000.Text = "Plus de  3000 DA (" + viewModel.FacturesAnlayse.Where(x => x.TYPE == 2).Count() + ")";
+
+                psychothrope.Text = "Psychothrope (" + viewModel.FacturesAnlayse.Where(x => x.GROUPE_ANALYSE_FACTURE == 1).Count() + ")";
+                chroniques.Text = "Chroniques (" + viewModel.FacturesAnlayse.Where(x => x.GROUPE_ANALYSE_FACTURE == 0).Count() + ")";
+                ordPlus3000.Text = "Plus de  3000 DA (" + viewModel.FacturesAnlayse.Where(x => x.GROUPE_ANALYSE_FACTURE == 2).Count() + ")";
+                Chevauchements.Text = "Chevauchements (" + viewModel.FacturesAnlayse.Where(x => x.GROUPE_ANALYSE_FACTURE == 3).GroupBy(x=>x.NUM_FACTURE).Count() + ")";
 
                 psychothrope.ClickedCommandParameter = psychothrope;
                 chroniques.ClickedCommandParameter = chroniques;
                 ordPlus3000.ClickedCommandParameter = ordPlus3000;
+                Chevauchements.ClickedCommandParameter = Chevauchements;
 
                 //Padding = "8"
                 //                            Text = "Analyse des Factures"
@@ -216,14 +234,17 @@ namespace XpertMobileApp.Views
                 AFactures_section.Children.Add(psychothrope);
                 AFactures_section.Children.Add(chroniques);
                 AFactures_section.Children.Add(ordPlus3000);
-                UserDialogs.Instance.HideLoading();
+                AFactures_section.Children.Add(Chevauchements);
+                //UserDialogs.Instance.HideLoading();
             }
             else
             {
                 //show error
+                CustomPopup mssg = new CustomPopup("la resultat d'analyse est vide");
+                await PopupNavigation.Instance.PushAsync(mssg);
 
             }
-
+            UserDialogs.Instance.HideLoading();
         }
 
         public void ResetButtons()
@@ -250,5 +271,10 @@ namespace XpertMobileApp.Views
             await viewModel.ExecuteLoadFacturesCommand();
         }
 
+        private async void CentrePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (viewModel != null && viewModel.Item.NUM_BORDEREAU != null)
+                await viewModel.ExecutePullToRefresh();
+        }
     }
 }

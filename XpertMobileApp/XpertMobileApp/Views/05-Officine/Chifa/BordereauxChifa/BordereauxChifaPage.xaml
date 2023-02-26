@@ -6,7 +6,7 @@
                  x:Class="XpertMobileApp.Views.BordereauxChifaPage"
                  xmlns:syncfusion1="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
                  xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-                 xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+                 xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex" xmlns:syncfusion2="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
                  Title="{Binding Title}">
     <base:XBasePage.ToolbarItems>
         <ToolbarItem x:Name="btn_Borderaux" IconImageSource="slipWhite.png"  Text="Borderaux List" Clicked="Borderaux_Clicked" Priority="1"/>
@@ -18,14 +18,29 @@
 
             <StackLayout BackgroundColor="{DynamicResource NavigationPrimary}"
                          Padding="10,0,10,10">
-                <Picker x:Name="CentrePicker" 
-                        Title="Centre"  
+                <inputLayout:SfTextInputLayout
+                    Hint="Centre"
+                    ContainerType="Outlined"
+                    BackgroundColor="{DynamicResource NavigationPrimary}"
+                    Padding="0"
+                    FocusedColor="White"
+                    UnfocusedColor="White"
+                    VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand"
+                    >
+                    <combobox:SfComboBox
                         TextColor="White"
-                        ItemsSource="{Binding Centres}"
-                        ItemDisplayBinding="{Binding DESIGNATION}"
+                        DataSource="{Binding Centres}"
+                        DisplayMemberPath="DESIGNATION"
                         SelectedItem="{Binding SelectedCentre}"
-                        SelectedIndexChanged="CentrePicker_PropertyChanged"
-                        ></Picker>
+                        VerticalOptions="Center"
+                        ShowClearButton="False"
+                        PropertyChanged="CentrePicker_PropertyChanged"
+                        >
+                    </combobox:SfComboBox>
+
+                </inputLayout:SfTextInputLayout>
+                
                 <StackLayout 
                      VerticalOptions="Start"
                          HeightRequest="40"

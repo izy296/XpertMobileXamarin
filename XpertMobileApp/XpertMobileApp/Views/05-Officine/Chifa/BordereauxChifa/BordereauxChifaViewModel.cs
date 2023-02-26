@@ -158,7 +158,7 @@ namespace XpertMobileApp.Api.ViewModels
             Centres.Add(new CFA_CENTRES
             {
                 CODE = "0",
-                DESIGNATION = "",
+                DESIGNATION = "TOUTS",
             });
             Centres.Add(new CFA_CENTRES
             {
@@ -347,7 +347,10 @@ namespace XpertMobileApp.Api.ViewModels
                 if (SelectedCategory != -1)
                 {
                     FactureLoadMore = false;
-                    var list = FacturesAnlayse.Where(e => e.TYPE == SelectedCategory).ToList();
+                    List<View_CFA_MOBILE_FACTURE> list = new List<View_CFA_MOBILE_FACTURE>();
+                    if (SelectedCategory != 3)
+                        list = FacturesAnlayse.Where(e => e.GROUPE_ANALYSE_FACTURE == SelectedCategory).ToList();
+                    else list = FacturesAnlayse.Where(e => e.GROUPE_ANALYSE_FACTURE == SelectedCategory).GroupBy(e=>e.NUM_FACTURE).Select(group => group.First()).ToList();
                     if (ChifaFacturesList.Count == 0)
                     { 
                         ChifaFacturesList = new ObservableCollection<View_CFA_MOBILE_FACTURE>(list); 
@@ -360,7 +363,9 @@ namespace XpertMobileApp.Api.ViewModels
                 {
                     FactureLoadMore = true;
                     UserDialogs.Instance.ShowLoading(AppResources.txt_msg_RecuperationFactures);
+                    if (SelectedCentre!=null)
                     ChifaFacturesList = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText, center: SelectedCentre.CODE));
+                    else ChifaFacturesList = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText));
                     UserDialogs.Instance.HideLoading();
                 }
                 else
@@ -369,7 +374,11 @@ namespace XpertMobileApp.Api.ViewModels
                     {
                         var stop = true;
                         var page = (int)(Math.Round((decimal)(ChifaFacturesList.Count / 10)) + 1);
-                        var list = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText, page: page, center: SelectedCentre.CODE));
+                        var list = new ObservableCollection<View_CFA_MOBILE_FACTURE>();
+                        if (SelectedCentre != null)
+                            list = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText, center: SelectedCentre.CODE));
+                        else list = new ObservableCollection<View_CFA_MOBILE_FACTURE>(await WebServiceClient.GetCFAFactsByNumBordereaux(Item.NUM_BORDEREAU, search: SearchText));
+
                         foreach (var item in list)
                         {
                             if (!ChifaFacturesList.Any(e => e.NUM_FACTURE == item.NUM_FACTURE))
