@@ -3917,7 +3917,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_Num_ASC
         {
             get
@@ -3925,7 +3925,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Num_ASC", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_Num_DESC
         {
             get
@@ -3933,7 +3933,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Num_DESC", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_Montant_ASC
         {
             get
@@ -3941,7 +3941,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Montant_ASC", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_Montant_DESC
         {
             get
@@ -3949,7 +3949,7 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_Montant_DESC", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_nbrFacts_ASC
         {
             get
@@ -3957,20 +3957,28 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_nbrFacts_ASC", resourceCulture);
             }
         }
-        
+
         public static string pn_Beneficiaire_OrederBy_nbrFacts_DESC
         {
             get
             {
                 return ResourceManager.GetString("pn_Beneficiaire_OrederBy_nbrFacts_DESC", resourceCulture);
             }
-        }  
-        
+        }
+
         public static string pn_ChronicFollowUp
         {
             get
             {
                 return ResourceManager.GetString("pn_ChronicFollowUp", resourceCulture);
+            }
+        }
+
+        public static string p_classification
+        {
+            get
+            {
+                return ResourceManager.GetString("p_classification", resourceCulture);
             }
         }
         
