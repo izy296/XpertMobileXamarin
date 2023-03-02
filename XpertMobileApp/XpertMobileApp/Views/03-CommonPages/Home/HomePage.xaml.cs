@@ -53,7 +53,8 @@ namespace XpertMobileApp.Views
                 else
                 {
                     Application.Current.Resources["NavigationPrimary"] = "#2196F3";
-                    Application.Current.Resources["MenuAccent"] = "#96d1ff";
+                    Application.Current.Resources["MenuAccent"] = "#2196F3";
+                    Application.Current.Resources["MenuItemGroup"] = "#2196F3"; // vert claire
                 }
 
                 //connectionStatus.Text = AppResources.txt_online;
@@ -73,6 +74,12 @@ namespace XpertMobileApp.Views
                     Application.Current.Resources["NavigationPrimary"] = App.XPharmMainColor; // Vert foncé
                     Application.Current.Resources["MenuAccent"] = App.XPharmMainColor; // vert claire
                     Application.Current.Resources["MenuItemGroup"] = App.XPharmMainColor; // vert claire
+                }
+                else
+                {
+                    Application.Current.Resources["NavigationPrimary"] = "#2196F3";
+                    Application.Current.Resources["MenuAccent"] = "#2196F3";
+                    Application.Current.Resources["MenuItemGroup"] = "#2196F3"; // vert claire
                 }
                 //connectionStatus.Text = AppResources.txt_offline;
                 //connectionStatusIcon.Source = "nowifi.png";
