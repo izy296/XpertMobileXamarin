@@ -232,6 +232,14 @@ namespace XpertMobileApp.ViewModels
                             CodeObjet = Xpert.XpertObjets.ACH_MANQUANTS,
                             Action = Xpert.XpertActions.AcSelect
                         });
+                        res.Add(new TDB_SIMPLE_INDICATORS()
+                        {
+                            CODE_ANALYSE = ((int)MenuItemType.VenteComptoir).ToString(),
+                            Title = "Ventes comptoir",
+                            Color = "#f1f1f1",
+                            CodeObjet = Xpert.XpertObjets.VTE_COMPTOIR,
+                            Action = Xpert.XpertActions.AcSelect
+                        });
                     }
 
 
