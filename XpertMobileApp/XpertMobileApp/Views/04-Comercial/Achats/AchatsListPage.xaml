@@ -7,7 +7,7 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              Title="{Binding Title}"
-             xmlns:views="clr-namespace:XpertMobileApp.Views.Templates"
+             xmlns:views="clr-namespace:XpertMobileApp.Views.Templates" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Name="Achats">
 
     <ContentPage.ToolbarItems>
@@ -36,50 +36,170 @@
             HorizontalOptions="Fill"
             Padding="0,0,0,0"
             FlowDirection="LeftToRight">
-
-            <ScrollView AbsoluteLayout.LayoutFlags="All" 
+            <StackLayout AbsoluteLayout.LayoutFlags="All" 
                         AbsoluteLayout.LayoutBounds="0,0,1,1">
+                <ScrollView >
+                    <!-- Items listing  -->
+                    <ListView x:Name="ItemsListView"
+                                VerticalOptions="Fill"
+                                ItemsSource="{Binding Items}"
+                                HasUnevenRows="true" 
+                                BackgroundColor="Transparent"
+                                SeparatorVisibility="None"
+                                RefreshCommand="{Binding LoadItemsCommand}"
+                                IsPullToRefreshEnabled="true"
+                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                                CachingStrategy="RecycleElement"
+                                ItemSelected="OnItemSelected">
 
-                <!-- Items listing  -->
-                <ListView x:Name="ItemsListView"
-                    VerticalOptions="Fill"
-                    ItemsSource="{Binding Items}"
-                    HasUnevenRows="true" 
-                    BackgroundColor="Transparent"
-                    SeparatorVisibility="None"
-                    RefreshCommand="{Binding LoadItemsCommand}"
-                    IsPullToRefreshEnabled="true"
-                    IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                    CachingStrategy="RecycleElement"
-                    ItemSelected="OnItemSelected">
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
 
-                    <ListView.Behaviors>
-                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                    </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template:AchatsListTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:AchatsListTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+                        <ListView.Footer>
+                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
+                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
 
-                    <ListView.Footer>
-                        <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                            <!-- set the footer to have a zero height when invisible -->
-                            <Grid.Triggers>
-                                <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                    <Setter Property="HeightRequest" Value="0" />
-                                </Trigger>
-                            </Grid.Triggers>
-                            <!-- the loading content -->
-                            <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                </ScrollView>
+
+                
+                <!--Sammary section--> 
+                <StackLayout 
+                    Spacing="0"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1" >
+
+                    <StackLayout
+                        x:Name="ArrowUp"
+                        IsVisible="true"
+                        HorizontalOptions="Center"
+                        Spacing="0">
+
+                        <yummy:PancakeView 
+                                BackgroundColor="#1E47BD" 
+                                CornerRadius="30,30,0,0"
+                                HorizontalOptions="Center"
+                                WidthRequest="50"
+                                HeightRequest="45">
+
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ShowHide_Clicked"/>
+                            </yummy:PancakeView.GestureRecognizers>
+
+                            <Image 
+                                x:Name="arrow_img"
+                                Source="uparrow.png"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
+                            </Image>
+
+                        </yummy:PancakeView>
+
+                    </StackLayout>
+
+                    <Frame
+                        Margin="0"
+                        x:Name="SummariesInfos" 
+                        Style="{StaticResource FrameForList}" 
+                        BackgroundColor="#1E47BD"
+                        BorderColor="#1E47BD" 
+                        HeightRequest="30">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowHide_Clicked"/>
+                        </Frame.GestureRecognizers>
+
+
+                        <Grid x:Name="gridSamuary"
+                              VerticalOptions="FillAndExpand"
+                              HeightRequest="250">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <FlexLayout HorizontalOptions="EndAndExpand" 
+                                        JustifyContent="End"
+                                        AlignItems="Center"
+                                        Grid.Row="0">
+                                <Label Text="Inclure les échanges reçu"
+                                       FontAttributes="Bold"
+                                       TextColor="#fff"/>
+                                <syncfusion:SfCheckBox x:Name="checkBox" 
+                                       IsChecked="False" 
+                                       CornerRadius="5.0"
+                                       BorderWidth="2"
+                                       ControlSize="0"
+                                        StateChanged="checkBox_StateChanged"
+                                       CheckedColor="#fff"
+                                       UncheckedColor="#fff"/>
+                            </FlexLayout>
+                            
+                            <ListView 
+                                Grid.Row="1"
+                                x:Name="SummariesListView"
+                                VerticalOptions="FillAndExpand"
+                                ItemsSource="{Binding Summaries}" 
+                                ItemTapped="ShowHide_Clicked"
+                                HasUnevenRows="true"
+                                SelectionMode="None"  
+                                SeparatorVisibility="None">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout 
+                                                Spacing="0" 
+                                                Padding="2,5" 
+                                                Orientation="Horizontal">
+
+                                                <Grid 
+                                                    HorizontalOptions="FillAndExpand" 
+                                                    VerticalOptions="Start">
+
+                                                    <Label 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding key}" 
+                                                        TextColor="White" 
+                                                        FontAttributes="Bold"/>
+
+                                                    <Label 
+                                                        Grid.Column="1" 
+                                                        Text="{Binding Title, StringFormat='{0:N2}'}" 
+                                                        TextColor="White" 
+                                                        HorizontalOptions="EndAndExpand" 
+                                                        HorizontalTextAlignment="End"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
-                    </ListView.Footer>
-                </ListView>
-            </ScrollView>
+                    </Frame>
 
+                </StackLayout>
+            </StackLayout>
             <!--floating button-->
             <Button 
                 x:Name="floatingButton" 

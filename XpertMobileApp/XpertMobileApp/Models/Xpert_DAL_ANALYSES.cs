@@ -43,7 +43,8 @@ namespace XpertMobileApp.Models
         {
             get
             {
-                return key == "Taux Marge" ? Value + " " + "%" : Value + " " + Unit;
+                return key == "Taux Marge" ? Value + " " + "%" : 
+                       key == "NB Achat" ? Value : Value + " " + Unit ;
             }
 
         } // varchar(50)

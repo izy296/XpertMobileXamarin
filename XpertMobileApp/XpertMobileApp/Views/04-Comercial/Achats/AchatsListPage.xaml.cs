@@ -15,6 +15,7 @@ namespace XpertMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AchatsListPage : ContentPage
     {
+        private bool tapped { get; set; } = false;
         private string typeDoc = "LF";
         private string motifDoc = AchRecMotifs.PesageReception;
         AchatsListViewModel viewModel;
@@ -90,7 +91,8 @@ namespace XpertMobileApp.Views
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
 
-                LoadStats();
+                if (viewModel.Items.Count <= 0)
+                    LoadStats();
 
                 viewModel.LoadExtrasDataCommand.Execute(null);
             }
@@ -159,6 +161,55 @@ namespace XpertMobileApp.Views
             AchatsPopupFilter filter = new AchatsPopupFilter(viewModel);
             //Load data for the first time ...
             await PopupNavigation.Instance.PushAsync(filter);
+        }
+
+        private void ShowHide_Clicked(object sender, EventArgs e)
+        {
+            if (tapped)
+            {
+                floatingButton.Opacity = 1;
+                SummariesInfos.HeightRequest = SummariesListView.HeightRequest = 30;
+                tapped = !tapped;
+                arrow_img.RotateTo(0, 400, Easing.Linear);
+            }
+            else
+            {
+                floatingButton.Opacity = 0.2;
+                if (viewModel.HasAdmin)
+                {
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 220;
+                }
+                else {
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 55;
+                }
+
+                tapped = !tapped;
+                arrow_img.RotateTo(180, 400, Easing.Linear);
+            }
+        }
+
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            try
+            {
+                if (e.IsChecked.HasValue && e.IsChecked.Value)
+                {
+                    viewModel.InclureEchange = true;
+                    viewModel.Summaries.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+                else
+                {
+                    viewModel.InclureEchange = false;
+                    viewModel.Summaries.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

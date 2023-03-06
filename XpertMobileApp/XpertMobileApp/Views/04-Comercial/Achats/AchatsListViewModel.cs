@@ -22,7 +22,7 @@ namespace XpertMobileApp.ViewModels
 
 
         public string TypeDoc { get; set; } = "LF";
-
+        public bool InclureEchange { get; set; } = false;
         public string RefDocum { get; set; } // Reference du document original (fournisseur)
 
         decimal totalTurnover;
@@ -64,7 +64,7 @@ namespace XpertMobileApp.ViewModels
 
         public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
         public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
-        
+
 
         public ObservableCollection<View_BSE_COMPTE> Client { get; set; }
         public View_BSE_COMPTE SelectedClient { get; set; }
@@ -81,10 +81,10 @@ namespace XpertMobileApp.ViewModels
         {
             Title = AppResources.pn_Achats;
             TypeDoc = typeDoc;
-
             Status = new ObservableCollection<BSE_DOCUMENT_STATUS>();
             base.InitConstructor();
             LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
+            LoadSummaries = true;
         }
 
         async Task ExecuteLoadExtrasDataCommand()
@@ -122,7 +122,6 @@ namespace XpertMobileApp.ViewModels
                     allElem.CODE_STATUS = "";
                     allElem.NAME = "";
                     Status.Add(allElem);
-
                     foreach (var itemC in itemsC)
                     {
                         Status.Add(itemC);
@@ -136,12 +135,7 @@ namespace XpertMobileApp.ViewModels
             }
             else
             {
-                //Status.Clear();
-                //var itemsC = await SQLite_Manager.getManquantsTypes();
-                //foreach (var itemC in itemsC)
-                //{
-                //    Status.Add(itemC);
-                //}
+
             }
 
         }
@@ -158,14 +152,19 @@ namespace XpertMobileApp.ViewModels
         {
             base.GetFilterParams();
 
-            this.AddCondition<View_ACH_DOCUMENT, DateTime?>(e => e.DATE_DOC, Operator.BETWEEN_DATE, StartDate, EndDate);            
+            this.AddCondition<View_ACH_DOCUMENT, DateTime?>(e => e.DATE_DOC, Operator.BETWEEN_DATE, StartDate, EndDate);
 
             if (!string.IsNullOrEmpty(SelectedTiers?.CODE_TIERS))
                 this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_TIERS, SelectedTiers?.CODE_TIERS);
 
             if (!string.IsNullOrEmpty(RefDocum))
                 this.AddCondition<View_ACH_DOCUMENT, string>(e => e.REF_TIERS, RefDocum);
-            
+
+            if(!InclureEchange)
+            {
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES02");
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES05");
+            }
 
             //if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
             //   this.AddCondition<View_ACH_DOCUMENT, string>(e => e.STATUS_DOC, SelectedStatus?.CODE_STATUS);
@@ -209,6 +208,16 @@ namespace XpertMobileApp.ViewModels
         {
             base.OnAfterLoadItems(list);
 
+            Summaries.Add(Summaries[2]);
+            Summaries.RemoveAt(2);
+
+            if (!this.HasAdmin)
+            {
+                var Tot_Achat = Summaries[1];
+                Summaries.Clear();
+                Summaries.Add(Tot_Achat);
+            }
+                
             int i = 0;
             foreach (var item in list)
             {
