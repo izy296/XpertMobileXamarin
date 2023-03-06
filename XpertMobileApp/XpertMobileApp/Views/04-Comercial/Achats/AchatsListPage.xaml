@@ -214,7 +214,7 @@
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Padding="10"
-                Margin="0,0,15,15"
+                Margin="0,0,15,45"
                 Clicked="ShowHideFilter"/>
             <views:BaseFilter 
                 x:Name="BaseFilterView" 
