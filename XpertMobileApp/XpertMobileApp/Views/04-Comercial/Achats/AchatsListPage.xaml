@@ -134,29 +134,11 @@
                               VerticalOptions="FillAndExpand"
                               HeightRequest="250">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="25"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <FlexLayout HorizontalOptions="EndAndExpand" 
-                                        JustifyContent="End"
-                                        AlignItems="Center"
-                                        Grid.Row="0">
-                                <Label Text="Inclure les échanges reçu"
-                                       FontAttributes="Bold"
-                                       TextColor="#fff"/>
-                                <syncfusion:SfCheckBox x:Name="checkBox" 
-                                       IsChecked="False" 
-                                       CornerRadius="5.0"
-                                       BorderWidth="2"
-                                       ControlSize="0"
-                                        StateChanged="checkBox_StateChanged"
-                                       CheckedColor="#fff"
-                                       UncheckedColor="#fff"/>
-                            </FlexLayout>
-                            
                             <ListView 
-                                Grid.Row="1"
+                                Grid.Row="0"
                                 x:Name="SummariesListView"
                                 VerticalOptions="FillAndExpand"
                                 ItemsSource="{Binding Summaries}" 
@@ -214,7 +196,7 @@
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Padding="10"
-                Margin="0,0,15,45"
+                Margin="0,0,15,50"
                 Clicked="ShowHideFilter"/>
             <views:BaseFilter 
                 x:Name="BaseFilterView" 

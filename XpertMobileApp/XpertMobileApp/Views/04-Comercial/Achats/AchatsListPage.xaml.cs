@@ -175,40 +175,17 @@ namespace XpertMobileApp.Views
             else
             {
                 floatingButton.Opacity = 0.2;
-                if (viewModel.HasAdmin)
+                if (viewModel.HasAdmin && viewModel.Summaries.Count > 0)
                 {
-                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 220;
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 180;
                 }
-                else {
+                else
+                {
                     SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 55;
                 }
 
                 tapped = !tapped;
                 arrow_img.RotateTo(180, 400, Easing.Linear);
-            }
-        }
-
-        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
-        {
-            try
-            {
-                if (e.IsChecked.HasValue && e.IsChecked.Value)
-                {
-                    viewModel.InclureEchange = true;
-                    viewModel.Summaries.Clear();
-                    viewModel.LoadItemsCommand.Execute(null);
-                }
-                else
-                {
-                    viewModel.InclureEchange = false;
-                    viewModel.Summaries.Clear();
-                    viewModel.LoadItemsCommand.Execute(null);
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
             }
         }
     }

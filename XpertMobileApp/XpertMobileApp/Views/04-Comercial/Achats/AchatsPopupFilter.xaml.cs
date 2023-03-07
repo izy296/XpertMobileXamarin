@@ -113,6 +113,30 @@ namespace XpertMobileApp.Views
                 RefDocumentEntry.Text = "";
             }
         }
+
+        private void checkBox_StateChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
+        {
+            try
+            {
+                if (e.IsChecked.HasValue && e.IsChecked.Value)
+                {
+                    viewModel.InclureEchange = true;
+                    viewModel.Summaries.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+                else
+                {
+                    viewModel.InclureEchange = false;
+                    viewModel.Summaries.Clear();
+                    viewModel.LoadItemsCommand.Execute(null);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
 

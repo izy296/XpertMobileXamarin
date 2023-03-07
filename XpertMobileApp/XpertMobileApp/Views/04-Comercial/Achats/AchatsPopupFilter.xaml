@@ -5,7 +5,7 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
              x:Class="XpertMobileApp.Views.AchatsPopupFilter"
-             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms">
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms">
 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
@@ -354,7 +354,25 @@
                                         </Grid>
                                     </Grid>
                                 </FlexLayout>
-
+                                
+                                <FlexLayout HorizontalOptions="EndAndExpand" 
+                                            JustifyContent="Start"
+                                            AlignItems="Center"
+                                            Margin="9,0,0,0"
+                                            >
+                                    
+                                    <Label Text="Inclure les échanges reçu"
+                                       FontAttributes="Bold"
+                                       TextColor="#5D5E65"/>
+                                    <syncfusion:SfCheckBox x:Name="checkBox" 
+                                       IsChecked="False" 
+                                       CornerRadius="5.0"
+                                       BorderWidth="2"
+                                       ControlSize="0"
+                                        StateChanged="checkBox_StateChanged"
+                                       CheckedColor="#2196F3"
+                                       UncheckedColor="#2196F3"/>
+                                </FlexLayout>
                                 <!--Buttons to close and apply the filter-->
                                 <StackLayout  
                                     Padding="0"                     
