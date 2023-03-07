@@ -1286,7 +1286,13 @@
     <value>En ligne</value>
   </data>
 	<data name="TOTAL_ACHAT" xml:space="preserve">
-    <value>Total Achat</value>
+    <value>Total Achat Ht</value>
+  </data>
+	<data name="TOTAL_VENTE" xml:space="preserve">
+    <value>Total Vente</value>
+  </data>
+	<data name="TOTAL_TVA" xml:space="preserve">
+    <value>Total TVA</value>
   </data>
 	<data name="TAUX_MARGE" xml:space="preserve">
     <value>Taux Marge</value>

@@ -15,17 +15,16 @@ namespace XpertMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AchatsListPage : ContentPage
     {
+        public string CurrentStream = Guid.NewGuid().ToString();
         private bool tapped { get; set; } = false;
         private string typeDoc = "LF";
         private string motifDoc = AchRecMotifs.PesageReception;
         AchatsListViewModel viewModel;
-        public string CurrentStream = Guid.NewGuid().ToString();
+        
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
 
         XpertBaseFilterModel filterObjectTest;
-
-        private bool opened = false; //Concerning the filter 
 
         public AchatsListPage()
         {
@@ -177,7 +176,7 @@ namespace XpertMobileApp.Views
                 floatingButton.Opacity = 0.2;
                 if (viewModel.HasAdmin && viewModel.Summaries.Count > 0)
                 {
-                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 180;
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 220;
                 }
                 else
                 {

@@ -162,8 +162,8 @@ namespace XpertMobileApp.ViewModels
 
             if (!InclureEchange)
             {
-                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES02");
-                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES05");
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL_WITH_FIELD_ISNULL, "ES02");
+                this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL_WITH_FIELD_ISNULL, "ES05");
             }
 
             //if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
@@ -211,7 +211,9 @@ namespace XpertMobileApp.ViewModels
             if (Summaries.Count > 0)
             {
                 Summaries.Add(Summaries[2]);
+                Summaries.Add(Summaries[0]);
                 Summaries.RemoveAt(2);
+                Summaries.RemoveAt(0);
 
                 if (!this.HasAdmin)
                 {
@@ -220,7 +222,6 @@ namespace XpertMobileApp.ViewModels
                     Summaries.Add(Tot_Achat);
                 }
             }
-
             int i = 0;
             foreach (var item in list)
             {
