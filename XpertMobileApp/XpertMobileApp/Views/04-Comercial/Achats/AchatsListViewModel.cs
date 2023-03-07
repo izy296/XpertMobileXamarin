@@ -160,7 +160,7 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(RefDocum))
                 this.AddCondition<View_ACH_DOCUMENT, string>(e => e.REF_TIERS, RefDocum);
 
-            if(!InclureEchange)
+            if (!InclureEchange)
             {
                 this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES02");
                 this.AddCondition<View_ACH_DOCUMENT, string>(e => e.CODE_MOTIF, Operator.NOT_EQUAL, "ES05");
@@ -208,16 +208,19 @@ namespace XpertMobileApp.ViewModels
         {
             base.OnAfterLoadItems(list);
 
-            Summaries.Add(Summaries[2]);
-            Summaries.RemoveAt(2);
-
-            if (!this.HasAdmin)
+            if (Summaries.Count > 0)
             {
-                var Tot_Achat = Summaries[1];
-                Summaries.Clear();
-                Summaries.Add(Tot_Achat);
+                Summaries.Add(Summaries[2]);
+                Summaries.RemoveAt(2);
+
+                if (!this.HasAdmin)
+                {
+                    var Tot_Achat = Summaries[1];
+                    Summaries.Clear();
+                    Summaries.Add(Tot_Achat);
+                }
             }
-                
+
             int i = 0;
             foreach (var item in list)
             {
