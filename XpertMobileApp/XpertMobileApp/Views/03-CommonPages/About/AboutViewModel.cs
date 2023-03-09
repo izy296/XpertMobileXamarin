@@ -74,7 +74,13 @@ namespace XpertMobileApp.ViewModels
 
                 Version newVersion = new Version (itemWebApiXml.Element("version").Value);
 
+                // pour tester la fonctionalité de mise a jour WebApi en cas de passage a la version 2.8.0
+                //Version newVersion = new Version ("2.8.0");
+
+
                 UserDialogs.Instance.HideLoading();
+                if (newVersion == new Version("2.8.0"))
+                    return true;
                 if (newVersion >= webVersion)
                     return true;
                 else return false;
