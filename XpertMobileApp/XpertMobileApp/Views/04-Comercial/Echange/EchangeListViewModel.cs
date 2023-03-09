@@ -38,6 +38,7 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
             {
                 await ExecuteLoadData();
             });
+            LoadSummaries = true;
         }
         protected override QueryInfos GetFilterParams()
         {

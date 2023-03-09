@@ -6,10 +6,10 @@
              xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
              BackgroundColor="#ecf0f1"
              xmlns:fontawesome="clr-namespace:FontAwesome"
-             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"  
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              FlowDirection="MatchParent"
              Title="{Binding Title}">
-    
+
     <!--<ContentPage.ToolbarItems>
         <ToolbarItem 
             x:Name="btn_Additem" 
@@ -26,12 +26,13 @@
             HorizontalOptions="Fill"
             Padding="0,0,0,0"
             FlowDirection="LeftToRight">
-
-            <!-- *******  Listing the items  *******-->
-            <ScrollView 
+            
+            <StackLayout                 
                 AbsoluteLayout.LayoutFlags="All" 
                 AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <ListView 
+                <!-- *******  Listing the items  *******-->
+                <ScrollView >
+                    <ListView 
                         x:Name="ItemsListView"  
                         ItemsSource="{Binding Items}"  
                         VerticalOptions="FillAndExpand"  
@@ -43,43 +44,143 @@
                         CachingStrategy="RecycleElement"
                         ItemSelected="OnItemSelected"
                         >
-                    <ListView.Behaviors>
-                        <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                    </ListView.Behaviors>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <template:EchangeTemplate />
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    <ListView.Footer>
-                        <Grid 
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template:EchangeTemplate />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        <ListView.Footer>
+                            <Grid 
                             Padding="6" 
                             IsVisible="{Binding IsBusy}">
-                            <!-- set the footer to have a zero height when invisible -->
-                            <Grid.Triggers>
-                                <Trigger 
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger 
                                     TargetType="Grid" 
                                     Property="IsVisible" 
                                     Value="False">
-                                    <Setter 
+                                        <Setter 
                                         Property="HeightRequest" 
                                         Value="0" />
-                                </Trigger>
-                            </Grid.Triggers>
-                            <!-- the loading content -->
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
 
-                            <Label 
+                                <Label 
                                     Text="Loading..." 
                                     VerticalOptions="Center" 
                                     HorizontalOptions="Center" />
-                        </Grid>
-                    </ListView.Footer>
-                </ListView>
-            </ScrollView>
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
+                </ScrollView>
+                <!--Sammary section-->
+                <StackLayout 
+                    Spacing="0"
+                    AbsoluteLayout.LayoutFlags="All" 
+                    AbsoluteLayout.LayoutBounds="0,0,1,1" >
 
-            <!-- *******  filter floating button  ******* -->
+                    <StackLayout
+                        x:Name="ArrowUp"
+                        IsVisible="true"
+                        HorizontalOptions="Center"
+                        Spacing="0">
+
+                        <yummy:PancakeView 
+                                BackgroundColor="#1E47BD" 
+                                CornerRadius="30,30,0,0"
+                                HorizontalOptions="Center"
+                                WidthRequest="50"
+                                HeightRequest="45">
+
+                            <yummy:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ShowHide_Clicked"/>
+                            </yummy:PancakeView.GestureRecognizers>
+
+                            <Image 
+                                x:Name="arrow_img"
+                                Source="uparrow.png"
+                                WidthRequest="20"
+                                HeightRequest="20"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center">
+                            </Image>
+
+                        </yummy:PancakeView>
+
+                    </StackLayout>
+
+                    <Frame
+                        Margin="0"
+                        x:Name="SummariesInfos" 
+                        Style="{StaticResource FrameForList}" 
+                        BackgroundColor="#1E47BD"
+                        BorderColor="#1E47BD" 
+                        HeightRequest="30">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="ShowHide_Clicked"/>
+                        </Frame.GestureRecognizers>
+
+
+                        <Grid x:Name="gridSamuary"
+                              VerticalOptions="FillAndExpand"
+                              HeightRequest="250">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <ListView 
+                                Grid.Row="0"
+                                x:Name="SummariesListView"
+                                VerticalOptions="FillAndExpand"
+                                ItemsSource="{Binding Summaries}" 
+                                ItemTapped="ShowHide_Clicked"
+                                HasUnevenRows="true"
+                                SelectionMode="None"  
+                                SeparatorVisibility="None">
+
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout 
+                                                Spacing="0" 
+                                                Padding="2,5" 
+                                                Orientation="Horizontal">
+
+                                                <Grid 
+                                                    HorizontalOptions="FillAndExpand" 
+                                                    VerticalOptions="Start">
+
+                                                    <Label 
+                                                        Grid.Column="0" 
+                                                        Text="{Binding key}" 
+                                                        TextColor="White" 
+                                                        FontAttributes="Bold"/>
+
+                                                    <Label 
+                                                        Grid.Column="1" 
+                                                        Text="{Binding Title, StringFormat='{0:N2}'}" 
+                                                        TextColor="White" 
+                                                        HorizontalOptions="EndAndExpand" 
+                                                        HorizontalTextAlignment="End"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Grid>
+                    </Frame>
+
+                </StackLayout>
+                <!-- *******  filter floating button  ******* -->
+            </StackLayout>
             <Button 
                 x:Name="floatingButton" 
                 ImageSource="filter.png"
@@ -93,7 +194,7 @@
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="CenterAndExpand"
                 Padding="10"
-                Margin="0,0,15,15"
+                Margin="0,0,15,55"
                 Clicked="ShowHideFilter"/>
 
         </AbsoluteLayout>

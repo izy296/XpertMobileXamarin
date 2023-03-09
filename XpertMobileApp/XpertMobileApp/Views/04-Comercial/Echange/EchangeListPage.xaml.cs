@@ -1,10 +1,5 @@
 ﻿using Rg.Plugins.Popup.Services;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Models;
@@ -14,6 +9,7 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EchangeListPage : ContentPage
     {
+        private bool tapped { get; set;} = false;
         private EchangeListViewModel viewModel;
         public EchangeListPage()
         {
@@ -61,6 +57,32 @@ namespace XpertMobileApp.Views._04_Comercial.Echange
         {
             NewEchangePopupPage echangePopUp = new NewEchangePopupPage();
             await PopupNavigation.Instance.PushAsync(echangePopUp);
+        }
+
+        private void ShowHide_Clicked(object sender, EventArgs e)
+        {
+            if (tapped)
+            {
+                floatingButton.Opacity = 1;
+                SummariesInfos.HeightRequest = SummariesListView.HeightRequest = 30;
+                tapped = !tapped;
+                arrow_img.RotateTo(0, 400, Easing.Linear);
+            }
+            else
+            {
+                floatingButton.Opacity = 0.2;
+                if (viewModel.HasAdmin && viewModel.Summaries.Count > 0)
+                {
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 150;
+                }
+                else
+                {
+                    SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 55;
+                }
+
+                tapped = !tapped;
+                arrow_img.RotateTo(180, 400, Easing.Linear);
+            }
         }
     }
 }

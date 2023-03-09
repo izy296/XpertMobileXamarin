@@ -1306,6 +1306,9 @@
 	<data name="TOTAL_PPA" xml:space="preserve">
     <value>Total PPA</value>
   </data>
+	<data name="TOTAL_ECHANGE" xml:space="preserve">
+    <value>Total Echange</value>
+  </data>
 	<data name="TOTAL_SHP" xml:space="preserve">
     <value>Total SHP</value>
   </data>
