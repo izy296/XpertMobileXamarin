@@ -861,6 +861,7 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_DEPART_TOURNEE { get; set; }
         public DateTime? DATE_RETOUR_TOURNEE { get; set; }
         public DateTime? DATE_LAST_SYNC_TOURNEE { get; set; }
+        public TourneeType TYPE_TOURNEE { get; set; }
     }
     public partial class View_LIV_TOURNEE : LIV_TOURNEE
     {
@@ -1017,6 +1018,12 @@ namespace XpertMobileApp.DAL
         EnRoute = 21,
         Started = 22,
         Closed = 30
+    }
+    
+    public enum TourneeType : byte
+    {
+        Open = 0,
+        Programmed = 1
     }
     public partial class View_LIV_TOURNEE_DETAIL : LIV_TOURNEE_DETAIL
     {
