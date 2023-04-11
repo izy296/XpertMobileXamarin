@@ -726,6 +726,13 @@ namespace XpertMobileApp.Services
 
             return await RetrievValAauthorizedData<View_STK_INVENTAIRE>(url);
         }
+
+        internal static async Task<View_STK_INVENTAIRE> getOpenInventaire()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_INVENTAIRE_URL, ServiceUrlDico.STK_INVENTAIRE_OPEN);
+
+            return await RetrievValAauthorizedData<View_STK_INVENTAIRE>(url);
+        }
         internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots, string modeValidate, string numInve, bool isOuvert)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_UPDATE_CURENT_INV);
@@ -818,6 +825,38 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT_DETAIL>(url);
         }
+        
+        internal static async Task<List<View_STK_INVENTAIRE_DETAIL>> GetCodeBarreLotInventaireInfo(string codeBarre, string numInventaire)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_INVENTAIRE_DETAIL_URL, ServiceUrlDico.STK_INVENTAIRE_DETAIL_GET_LOT_INFO);
+            url += "?codeBarre="+codeBarre;
+            url += "&numInventaire="+numInventaire;
+            return await RetrievAauthorizedData<View_STK_INVENTAIRE_DETAIL>(url);
+        }  
+        
+        internal static async Task<bool> UpdateInventoryAndPlacement(STK_MOBILE obj)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_INVENTAIRE_DETAIL_URL, ServiceUrlDico.STK_INVENTAIRE_DETAIL_UPDATE);
+            return await WSApi2.PostAauthorizedValue<bool, STK_MOBILE>(url, obj, App.User.Token.access_token);
+        }
+
+        internal static async Task<List<View_STK_STOCK>> GetLotByCodeBarreAndMagasin(string codeBarreLot, string codeMagasin)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_STOCK_URL, ServiceUrlDico.STK_STOCK_GET_LOT_INFO);
+            url += "?codeBarreLot=" + codeBarreLot;
+            url += "&codeMagasin=" + codeMagasin;
+            return await RetrievAauthorizedData<View_STK_STOCK>(url);
+        }
+        internal static async Task<bool> StockAdjustement(int? idStock, decimal qteAfter, decimal qteOld)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_AJUSTEMENT_DETAIL_URL, ServiceUrlDico.STK_AJUSTEMENT_DETAIL_UPDATE_URL);
+            url += "?idStock=" + idStock;
+            url += "&qteOld=" + qteOld;
+            url += "&qteAfter=" + qteAfter;
+            return await RetrievValAauthorizedData<bool>(url);
+        }
+
+
         //internal static async Task<View_STK_INVENTAIRE_DETAIL> GetInventaireDetail(string numIvent, string codeBarre)
         //{
         //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.Print_Url);

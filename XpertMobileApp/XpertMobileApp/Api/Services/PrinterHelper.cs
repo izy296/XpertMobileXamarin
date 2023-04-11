@@ -177,9 +177,9 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 SYS_USER user = await SQLite_Manager.getUserInfo(App.User.UserName);
 
                 var fn = data.CODE_VENTE.Replace("/","") + ".txt";
-                var file = Path.Combine(appDirectory.GetPublicDirectroy()+"/Abattoir/", fn);
-                if (!Directory.Exists(appDirectory.GetPublicDirectroy() + "/Abattoir/"))
-                    Directory.CreateDirectory(appDirectory.GetPublicDirectroy() + "/Abattoir/");
+                var file = Path.Combine(appDirectory.GetPublicDirectroy()+"/"+App.GetAppName()+"/", fn);
+                if (!Directory.Exists(appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/"))
+                    Directory.CreateDirectory(appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/");
                 //File.WriteAllText(file, "Hello World");
                 using (StreamWriter writer = new StreamWriter(file))
                 {
@@ -323,8 +323,8 @@ namespace XpertMobileSettingsPage.Helpers.Services
                 //             {
                 //                 await UserDialogs.Instance.AlertAsync(AppResources.alrt_msg_Info, "L'imprimante n'a pas pu êtreconnectée!", AppResources.alrt_msg_Ok);
                 //             }
-                if (Constants.AppName == Apps.X_DISTRIBUTION)
-                    printerLocal.closeConnection();
+                //if (Constants.AppName == Apps.X_DISTRIBUTION)
+                //    printerLocal.closeConnection();
 
             }
             catch (Exception ex)

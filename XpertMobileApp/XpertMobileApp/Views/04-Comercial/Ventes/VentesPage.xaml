@@ -12,7 +12,7 @@
              x:Name="Ventes">
 
     <ContentPage.ToolbarItems>
-        <cmp:XToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked"/>
+        <cmp:XToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" IsVisible="{Binding IsAddPermited}" Clicked="AddItem_Clicked"/>
         <!--<cmp:XToolbarItem x:Name="btn_delete" Text="Supprimer" Clicked="deleteAllVente"/>-->
     </ContentPage.ToolbarItems>
 

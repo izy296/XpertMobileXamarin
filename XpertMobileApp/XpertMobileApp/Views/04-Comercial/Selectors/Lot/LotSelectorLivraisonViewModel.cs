@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -111,7 +112,8 @@ namespace XpertMobileApp.ViewModels
             }
 
             if (!XpertHelper.IsNullOrEmpty(SearchedText))
-                result = result.Where(e => e.DESIGNATION_PRODUIT.Contains(SearchedText)).ToList();
+                result = result.Where(e => e.DESIGNATION_PRODUIT.IndexOf(SearchedText, StringComparison.OrdinalIgnoreCase) >=0).ToList();
+
             return result;
         }
 
@@ -135,5 +137,7 @@ namespace XpertMobileApp.ViewModels
 
             return qb.QueryInfos;
         }
+
+
     }
 }

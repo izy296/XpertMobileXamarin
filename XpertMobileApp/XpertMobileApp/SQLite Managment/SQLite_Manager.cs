@@ -502,13 +502,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                var listeTourneeClents = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
-                foreach (var tournee in listeTourneeClents)
-                {
-                    var itemsS = await WebServiceClient.GetClients(tournee.CODE_TOURNEE);
-                    if (itemsS != null)
-                        await GetInstance().InsertAllAsync(itemsS);
-                }
+                await SyncData<View_TRS_TIERS, TRS_TIERS>();
             }
             catch (Exception ex)
             {
@@ -959,8 +953,8 @@ namespace XpertMobileApp.SQLite_Managment
                     if (!string.IsNullOrEmpty(item.CODE_DOC))
                     {
                         View_VTE_VENTE vente = await GetInstance().Table<View_VTE_VENTE>().Where(e => e.CODE_VENTE == item.CODE_DOC).FirstAsync();
-                        vente.TOTAL_PAYE= item.TOTAL_ENCAISS;
-                        var rowEffected=await GetInstance().UpdateAsync(vente);
+                        vente.TOTAL_PAYE = item.TOTAL_ENCAISS;
+                        var rowEffected = await GetInstance().UpdateAsync(vente);
 
                         var id = await GetInstance().UpdateAsync(item);
                     }
@@ -1186,6 +1180,16 @@ namespace XpertMobileApp.SQLite_Managment
                     var objTest = await GetInstance().Table<LOG_SYNCHRONISATION>().ToListAsync();
                 }
             }
+        }
+
+        /// <summary>
+        /// recuperé les tounrnés de livraison en cours
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<List<View_LIV_TOURNEE>> GetTournee()
+        {
+            var res = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
+            return res;
         }
 
         /// <summary>
@@ -2357,6 +2361,7 @@ namespace XpertMobileApp.SQLite_Managment
                 {
                     var encaissement = new View_TRS_ENCAISS();
                     var listeTiers = await GetInstance().Table<View_TRS_TIERS>().ToListAsync();
+                    var listeVisit = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
                     //var obj = await GetInstance().Table<View_VTE_VENTE>().ToListAsync();
                     vente.TOTAL_PAYE = vente.MT_VERSEMENT = vente.TOTAL_RECU;
                     vente.TOTAL_RESTE = vente.TOTAL_TTC - vente.TOTAL_PAYE;
@@ -2368,6 +2373,35 @@ namespace XpertMobileApp.SQLite_Managment
                     vente.CODE_VENTE = await generateCode(vente.TYPE_DOC, vente.ID.ToString());
                     vente.NUM_VENTE = await generateNum(vente.TYPE_DOC, vente.ID.ToString());
                     vente.DATE_VENTE = DateTime.Now;
+
+                    var visit = listeVisit.Where(e => e.CODE_TIERS == vente.CODE_TIERS).FirstOrDefault();
+
+                    if (visit != null)
+                        vente.MBL_CODE_TOURNEE_DETAIL = visit.CODE_DETAIL;
+
+                    if (string.IsNullOrEmpty(vente.MBL_CODE_TOURNEE_DETAIL))
+                    {
+                        var CODE_TOURNEE_DETAIL = Guid.NewGuid().ToString().Replace("-","");
+                        var tier = await GetClient(vente.CODE_TIERS);
+                        await GetInstance().InsertAsync(new View_LIV_TOURNEE_DETAIL()
+                        {
+                            CODE_TOURNEE = vente.CODE_TOURNEE,
+                            CODE_DETAIL = CODE_TOURNEE_DETAIL,
+                            CODE_ETAT = null,
+                            CODE_ETAT_VISITE = TourneeStatus.Delivered,
+                            CODE_TIERS = vente.CODE_TIERS,
+                            CODE_VENTE = vente.CODE_VENTE,
+                            CREATED_BY  = App.User.UserName,
+                            CREATED_ON = DateTime.Now,
+                            MODIFIED_BY = App.User.UserName,
+                            MODIFIED_ON = DateTime.Now,
+                            GPS_LATITUDE = vente.GPS_LATITUDE,
+                            GPS_LONGITUDE = vente.GPS_LONGITUDE,
+                            FULL_NOM_TIERS = tier.FULL_NOM_TIERS,
+                            SOLDE_TIERS = tier.SOLDE_TIERS,
+                            VISITE_CATEGORIE = 1
+                        }) ;
+                    }
 
                     if (vente.TYPE_DOC == "BR")
                     {

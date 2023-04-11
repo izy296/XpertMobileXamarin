@@ -13,6 +13,9 @@ using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.SQLite_Managment;
+using XpertMobileApp.Views;
+using Rg.Plugins.Popup.Services;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -30,6 +33,7 @@ namespace XpertMobileApp.ViewModels
         public string TypeVente = VentesTypes.Vente;
         public ObservableCollection<SAMMUARY> SummariesReversed;
         public bool IsVtesList { get; set; } = false;
+        public bool IsAddPermited { get; set; } = true;
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -57,7 +61,19 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<View_BSE_COMPTE> User { get; set; }
         public View_BSE_COMPTE SelectedUser { get; set; }
         public Command LoadUsersCommand { get; set; }
-
+        private List<View_LIV_TOURNEE> tourneeOpen { get; set; }
+        public List<View_LIV_TOURNEE> TourneeOpen
+        {
+            get
+            {
+                return tourneeOpen;
+            }
+            set
+            {
+                tourneeOpen = value;
+            }
+        }
+        public View_LIV_TOURNEE SelectedTournee { get; set; }
         protected override string ContoleurName
         {
             get
@@ -114,9 +130,34 @@ namespace XpertMobileApp.ViewModels
             {
                 LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
             }
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await LoadTourneeOpen();
+                    if (TourneeOpen.Count > 0)
+                    {
+                        TourneeOpenSelector AlertPopup = new TourneeOpenSelector("There is Multiple Tournee Open", falseMessage: AppResources.alrt_msg_Cancel, trueMessage: AppResources.alrt_msg_Ok);
+                        AlertPopup.Items = TourneeOpen;
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        await AlertPopup.PopupClosedTask;
+                        SelectedTournee = AlertPopup.Result;
+                    }
+                    else
+                    {
+                        SelectedTournee = TourneeOpen.FirstOrDefault();
+                    }
+                    if (SelectedTournee.TYPE_TOURNEE != TourneeType.Open)
+                    {
+                        IsAddPermited = false;
+                    }
+                });
+            }
+
             if (App.Online)
                 StartDate = DateTime.Now;
-    }
+        }
 
         protected override QueryInfos GetFilterParams()
         {
@@ -301,6 +342,11 @@ namespace XpertMobileApp.ViewModels
             {
                 IsBusy = false;
             }
+        }
+
+        async Task LoadTourneeOpen()
+        {
+            TourneeOpen = await SQLite_Manager.GetTournee();
         }
     }
 
