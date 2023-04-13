@@ -23,6 +23,7 @@ using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Achats;
+using XpertMobileApp.Views.Encaissement;
 using XpertMobileApp.Views.Helper;
 using XpertMobileSettingsPage.Helpers.Services;
 using ZXing.Net.Mobile.Forms;
@@ -32,7 +33,7 @@ namespace XpertMobileApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class VenteFormLivraisonPage : ContentPage
     {
-        private VenteFormLivraisonViewModel viewModel;
+        public VenteFormLivraisonViewModel viewModel;
 
         SYS_MOBILE_PARAMETRE parames;
 
@@ -51,7 +52,7 @@ namespace XpertMobileApp.Views
             }
         }
 
-        public VenteFormLivraisonPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails = "")
+        public VenteFormLivraisonPage(View_VTE_VENTE vente, string typeDoc, View_TRS_TIERS tiers = null, string codeTourneeDetails = "", string codeTournee = "")
         {
             InitializeComponent();
 
@@ -59,6 +60,8 @@ namespace XpertMobileApp.Views
             var vte = vente == null ? new View_VTE_VENTE() : vente;
             if (vente == null)
             {
+                if (!string.IsNullOrEmpty(codeTournee))
+                    vte.CODE_TOURNEE = codeTournee;
                 vte.ID_Random = XpertHelper.RandomString(7);
                 vte.TYPE_DOC = typeDoc;
                 vte.TYPE_VENTE = typeDoc;
@@ -144,6 +147,28 @@ namespace XpertMobileApp.Views
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     viewModel.AddNewRows(selectedItem, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+
+            MessagingCenter.Subscribe<VenteDetailPage, List<View_VTE_JOURNAL_DETAIL>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var list = new List<View_STK_STOCK>();
+                    foreach (var item in selectedItem)
+                    {
+                        list.Add(new View_STK_STOCK()
+                        {
+                            SelectedPrice = item.PRIX_VENTE,
+                            SelectedQUANTITE = item.QUANTITE,
+                            ID_STOCK = item.ID_STOCK,
+                            CODE_BARRE_LOT = item.CODE_BARRE_LOT,
+                            CODE_BARRE = item.CODE_BARRE,
+                            CODE_PRODUIT = item.CODE_PRODUIT,
+                            DESIGNATION_PRODUIT = item.DESIGNATION
+                        });
+                    }
+                    viewModel.AddNewRows(list, false); // false veut dire le type de produit ajouter est une vente (pas retour)
                 });
             });
 

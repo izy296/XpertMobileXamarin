@@ -106,7 +106,7 @@ namespace XpertMobileApp.Views
                 {
                     if (Constants.AppName == Apps.X_DISTRIBUTION)
                     {
-                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
+                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc, codeTournee:viewModel.SelectedTournee.CODE_TOURNEE));
                         return;
                     }
                     var res = await DisplayAlert(AppResources.msg_Confirmation, AppResources.msg_ShouldPrepaireSession, AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
@@ -119,7 +119,7 @@ namespace XpertMobileApp.Views
                 else
                 {
                     if (Constants.AppName == Apps.XCOM_Livraison || Constants.AppName == Apps.X_DISTRIBUTION)
-                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc));
+                        await Navigation.PushAsync(new VenteFormLivraisonPage(null, typeDoc, codeTournee: viewModel.SelectedTournee.CODE_TOURNEE));
                     else
                         await Navigation.PushAsync(new VenteFormPage(null, typeDoc));
                 }
