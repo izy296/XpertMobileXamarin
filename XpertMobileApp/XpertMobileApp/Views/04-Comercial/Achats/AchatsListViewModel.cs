@@ -21,6 +21,7 @@ namespace XpertMobileApp.ViewModels
     {
 
 
+        string currentQB = null;
         public string TypeDoc { get; set; } = "LF";
         public bool InclureEchange { get; set; } = false;
         public string RefDocum { get; set; } // Reference du document original (fournisseur)
@@ -230,17 +231,27 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task ExecuteLoadItemsCommand()
+        internal override async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
                 return;
 
             try
             {
-                Items.Clear();
-
-                // liste des ventes
+                IsBusy = true;
+                if (currentQB != null && currentQB != GetFilterParams().StringCondition)
+                {
+                    currentQB = GetFilterParams().StringCondition;
+                    Items.Clear();
+                }
+                else
+                {
+                    if (Items.Count >= ElementsCount && Items.Count != 0)
+                        return;
+                    currentQB = GetFilterParams().StringCondition;
+                }
                 await Items.LoadMoreAsync();
+                IsBusy = false;
             }
             catch (Exception ex)
             {
@@ -250,6 +261,23 @@ namespace XpertMobileApp.ViewModels
             finally
             {
                 IsBusy = false;
+            }
+
+        }
+        public Command PullTORefresh
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    if (IsBusy)
+                    {
+                        return;
+                    }
+                    currentQB = "Empty";
+                    await ExecuteLoadItemsCommand();
+                    IsBusy = false;
+                });
             }
         }
     }

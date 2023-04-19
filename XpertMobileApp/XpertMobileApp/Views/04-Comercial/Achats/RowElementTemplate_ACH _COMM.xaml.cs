@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views._04_Comercial.Achats;
 using XpertMobileApp.Views._04_Comercial.TransfertDeFond;
 
 namespace XpertMobileApp.Views.Templates
@@ -20,13 +22,19 @@ namespace XpertMobileApp.Views.Templates
         {
             InitializeComponent();
         }
-        private async void showReclamation(object sender, EventArgs e)
+        //private async void showReclamation(object sender, EventArgs e)
+        //{
+        //    ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
+        //    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+        //    await reclamationInfo.GetReclamation();
+        //    UserDialogs.Instance.HideLoading();
+        //    await PopupNavigation.Instance.PushAsync(reclamationInfo);
+        //}
+
+        private async void OnUpdateSwipeItemInvoked(object sender, EventArgs e)
         {
-            ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
-            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-            await reclamationInfo.GetReclamation();
-            UserDialogs.Instance.HideLoading();
-            await PopupNavigation.Instance.PushAsync(reclamationInfo);
+            var tr = (sender as SwipeItem)?.Parent?.Parent?.Parent?.BindingContext as View_ACH_DOCUMENT;
+            await Navigation.PushAsync(new NewAchatPage(item:tr));
         }
     }
 }

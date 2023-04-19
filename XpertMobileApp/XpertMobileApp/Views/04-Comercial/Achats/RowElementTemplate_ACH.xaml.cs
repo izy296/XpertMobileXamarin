@@ -19,13 +19,18 @@ namespace XpertMobileApp.Views.Templates
             InitializeComponent();
         }
 
-        private async void showReclamation(object sender, EventArgs e)
+        //private async void showReclamation(object sender, EventArgs e)
+        //{
+        //    ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
+        //    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+        //    await reclamationInfo.GetReclamation();
+        //    UserDialogs.Instance.HideLoading();
+        //    await PopupNavigation.Instance.PushAsync(reclamationInfo);
+        //}
+
+        private void OnUpdateSwipeItemInvoked(object sender, EventArgs e)
         {
-            ReclamationPopupPage reclamationInfo = new ReclamationPopupPage(this.CodeReclamaion.Text.ToString());
-            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
-            await reclamationInfo.GetReclamation();
-            UserDialogs.Instance.HideLoading();
-            await PopupNavigation.Instance.PushAsync(reclamationInfo);
+
         }
     }
 
