@@ -73,8 +73,8 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
                     Btn_Download.IsEnabled = false;
                     syncImage.RotateTo(350 * 360, 10 * 60 * 1000);
 
-                    SyncResumeDownloadPopup popup = new SyncResumeDownloadPopup();
-                    await PopupNavigation.Instance.PushAsync(popup);
+                    //SyncResumeDownloadPopup popup = new SyncResumeDownloadPopup();
+                    //await PopupNavigation.Instance.PushAsync(popup);
 
                     await SQLite_Manager.SynchroniseDownload();
                     syncImage.CancelAnimations();
