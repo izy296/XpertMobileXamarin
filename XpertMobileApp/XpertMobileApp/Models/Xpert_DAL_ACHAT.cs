@@ -38,6 +38,8 @@ namespace XpertMobileApp.DAL
 
     public partial class ACH_DOCUMENT : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_DOC { get; set; } // varchar(50)
         public string NUM_DOC { get; set; } // varchar(20)
         public DateTime? DATE_DOC { get; set; } // datetime(3)
@@ -158,8 +160,6 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE_TIERS { get; set; }
         public string DESIGNATION_STATUS { get; set; }
         public decimal TAUX_MARGE { get; set; }
-        public string TAUX_MARGE_DOC { get; set; }
-
 
         // Mobile extension
         public decimal QTE_NET { get; set; }
@@ -244,6 +244,8 @@ namespace XpertMobileApp.DAL
 
     public partial class ACH_DOCUMENT_DETAIL : BASE_CLASS
     {
+        [PrimaryKey, AutoIncrement]
+        public int ID { get; set; }
         public string CODE_DOC_DETAIL { get; set; } // varchar(32)
         public string CODE_ORIGINE_DETAIL { get; set; } // varchar(32)
         public string CODE_DOC { get; set; } // varchar(50)
@@ -263,7 +265,19 @@ namespace XpertMobileApp.DAL
 
         public decimal QTE_BONUS { get; set; } // numeric(19,2)
         public decimal QTE_RECUE { get; set; } // numeric(19,2)
-        public decimal PRIX_UNITAIRE { get; set; } // money(19,4)
+        private decimal pRIX_UNITAIRE;
+        public decimal PRIX_UNITAIRE
+        {
+            get
+            {
+                return pRIX_UNITAIRE;
+            }
+            set
+            {
+                pRIX_UNITAIRE = value;
+                OnPropertyChanged("PRIX_UNITAIRE");
+            }
+        }// money(19,4)
         public decimal PPA { get; set; } // money(19,4)
         public decimal SHP { get; set; } // money(19,4)
         public decimal PRIX_VENTE { get; set; } // money(19,4)
@@ -310,7 +324,7 @@ namespace XpertMobileApp.DAL
 
         // Mobile extension
 
-        public decimal qUANTITE_NET_PRIMAIRE { get; set; }
+        private decimal qUANTITE_NET_PRIMAIRE { get; set; }
 
         public decimal QUANTITE_NET_PRIMAIRE
         {
@@ -328,7 +342,7 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public decimal qUANTITE { get; set; }
+        private decimal qUANTITE { get; set; }
 
         public decimal QUANTITE
         {
@@ -346,7 +360,7 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public bool iS_PRINCIPAL { get; set; }
+        private bool iS_PRINCIPAL { get; set; }
 
         public bool IS_PRINCIPAL
         {
@@ -416,7 +430,6 @@ namespace XpertMobileApp.DAL
     {
         [JsonIgnore]
         public ACH_DOCUMENT Parent_Doc { get; set; }
-
         public string NUM_DOC { get; set; } // varchar(20)
         public DateTime? DATE_DOC { get; set; } // datetime(3)
         public string CODE_TIERS { get; set; } // varchar(32)
@@ -460,7 +473,7 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        // Extension mobile
+        //Extension mobile
         private bool? edited_BY_QteNet { get; set; } = null;
         public bool? Edited_BY_QteNet
         {
@@ -478,9 +491,11 @@ namespace XpertMobileApp.DAL
             }
         }
 
-        public List<VIEW_ACH_INFO_ANEX> ANNEX_USERS;
+        public List<VIEW_ACH_INFO_ANEX> ANNEX_USERS { get; set; }
 
-        private List<View_BSE_EMBALLAGE> embalages;
+        private List<View_BSE_EMBALLAGE> embalages { get; set; }
+
+
         public List<View_BSE_EMBALLAGE> Embalages
         {
             get
@@ -497,7 +512,7 @@ namespace XpertMobileApp.DAL
                     Diff_Poids_Caisses = diff >= 0 ? "+" + diff.ToString("N0") : "-" + diff.ToString("N0");
 
                     Nbr_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE);
-                    Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
+                    //Poids_Caisses = Embalages.Sum(x => x.QUANTITE_ENTREE * x.QUANTITE_UNITE);
 
                     OnPropertyChanged("Diff_Poids_Caisses");
                     OnPropertyChanged("Poids_Caisses");
@@ -528,7 +543,53 @@ namespace XpertMobileApp.DAL
             }
         }
     }
+    public partial class View_ACH_DOCUMENT_DETAIL_MOBILE : ACH_DOCUMENT_DETAIL
+    {
+        public string NUM_DOC { get; set; } // varchar(20)
+        public DateTime? DATE_DOC { get; set; } // datetime(3)
+        public string CODE_TIERS { get; set; } // varchar(32)
+        public string TYPE_DOC { get; set; } // varchar(4)
+        public string REF_TIERS { get; set; } // varchar(50)
+        public string TIERS_NOMC { get; set; } // varchar(501)
+        public string DESIGNATION_PRODUIT { get; set; } // varchar(404)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // varchar(32)
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string UNITE { get; set; } // varchar(50)
+        public string DESIGNATION_UNITE { get; set; }
+        public string CODE_UNITE_ENTETE { get; set; }
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public string DESIGN_LABO { get; set; } // varchar(2500)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)
+        public string DESIGN_EMPLACEMENT { get; set; } // varchar(100)
+        public decimal QTE_MANQUANTS { get; set; } // numeric(38,2)
+        public int LITIGES { get; set; } // int(10)
+        public string OLD_CB { get; set; }
+        public bool UPDATE_STOCK { get; set; }
+        public bool INCLUDE_UG { get; set; }
+        public bool PPA_BY_PRIXVENTE { get; set; }
+        public string CODE_MOTIF { get; set; } // varchar(100)
+        public string DESIGNATION_MOTIF { get; set; } // varchar(100)
+        public string CODE_FAMILLE_TIERS { get; set; }
+        public string DESIGN_FAMILLE_TIERS { get; set; }
+        public decimal MT_ACHAT { get; set; }
+        public bool PSYCHOTHROPE { get; set; } // tinyint(3)
 
+        public bool IS_ACHAT
+        {
+            get
+            {
+                return CODE_MOTIF != AchRecMotifs.PesageForProduction;
+            }
+        }
+
+
+    }
     public partial class ACH_RECLAMATIONS
     {
         public int? CODE_RECLAMATION { get; set; } // int(10)
@@ -646,7 +707,8 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                return Api.Constants.AppName == Api.Apps.X_DISTRIBUTION ? QUANTITE : qTE_STOCK;
+
+                return Api.Constants.AppName == Api.Apps.X_DISTRIBUTION && !App.Online ? QUANTITE : qTE_STOCK;
             }
             set
             {
@@ -729,7 +791,9 @@ namespace XpertMobileApp.DAL
                     }
                     else
                     {
+                        //http://izdiharmarket.portmap.io:8880/Images/GetImage?codeProduit=000174
                         image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                        //image_source = ImageSource.FromUri(new Uri("http://izdiharmarket.portmap.io:8880/Images/GetImage?codeProduit=000174"));
                     }
                 }
                 return image_source;
@@ -738,6 +802,11 @@ namespace XpertMobileApp.DAL
             {
                 image_source = value;
             }
+        }
+
+        public static implicit operator List<object>(View_STK_PRODUITS v)
+        {
+            throw new NotImplementedException();
         }
     }
 

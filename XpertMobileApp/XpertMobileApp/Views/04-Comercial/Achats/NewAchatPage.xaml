@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             Title="Nouvel Achat"
+             BackgroundColor="#fff"
+             x:Class="XpertMobileApp.Views._04_Comercial.Achats.NewAchatPage">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Frame CornerRadius="8"
+                   BackgroundColor="#fff"
+                   Margin="10"
+                   Padding="10"
+                   VerticalOptions="Start"
+                   HasShadow="True">
+                <StackLayout>
+                    <FlexLayout Direction="Row">
+
+                        <!--Tiers selector -->
+                        <inputLayout:SfTextInputLayout
+                                Hint="{i18n:Translate pn_Fournisseur}" 
+                                InputViewPadding="14"
+                                IsHintAlwaysFloated="true" 
+                                FocusedColor="{DynamicResource Primary}"
+                                UnfocusedColor="{DynamicResource Primary}"    
+                                ContainerType="Outlined"
+                                Margin="3,0,0,0"
+                                OutlineCornerRadius="5">
+
+                            <Entry
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                x:Name="ent_SelectedTiers"
+                                Text="{Binding SelectedFournisseur.NOM_TIERS1}"
+                                FontSize="14"
+                                IsEnabled="false"
+                                TextColor="Black"  
+                                Margin="2,-2,5,0"/>
+
+                            <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                <inputLayout:LabelStyle FontSize="12"/>
+                            </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <Image  
+                                    x:Name="searchIcon"
+                                    Margin="0,0,14,5"
+                                    VerticalOptions="Start"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Source="chercher_bleu.png">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="btn_Select_Clicked"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+
+                        </inputLayout:SfTextInputLayout>
+
+                        <!--Num Facture-->
+                        <inputLayout:SfTextInputLayout
+                            Hint="N° Facture" 
+                            Margin="3,0,0,0"
+                            InputViewPadding="14"
+                            IsHintAlwaysFloated="true" 
+                            FocusedColor="{DynamicResource Primary}"
+                            UnfocusedColor="{DynamicResource Primary}"    
+                            ContainerType="Outlined"
+                            OutlineCornerRadius="5">
+
+                            <Entry FontSize="14" Text="{Binding EnteredNumFacture, Mode=TwoWay}"/>
+
+                            <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                <inputLayout:LabelStyle FontSize="12"/>
+                            </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <Image Source="spreadsheet.png">
+                                </Image>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+                        </inputLayout:SfTextInputLayout>
+
+                    </FlexLayout>
+                </StackLayout>
+            </Frame >
+
+            <Frame CornerRadius="8"
+                   BackgroundColor="#fff"
+                   Margin="10,0,10,5"
+                   VerticalOptions="FillAndExpand"
+                   HasShadow="True">
+
+                <StackLayout>
+                    <FlexLayout Direction="Row"
+                                JustifyContent="SpaceBetween"
+                                AlignItems="Center">
+
+                        <Label Text="{i18n:Translate Produits}"
+                               TextColor="#0c0c0c"
+                               FontSize="18"
+                               FontAttributes="None"/>
+                        <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                            <Image Source="addblack.png" 
+                               WidthRequest="24" 
+                               HeightRequest="24"
+                               x:Name="addProduct">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="AddProduct"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <Image Source="scanner.png" 
+                               WidthRequest="24" 
+                               HeightRequest="24"
+                               x:Name="scanProduct">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ScanProduct"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+
+
+                    </FlexLayout>
+
+                    <CollectionView 
+                        x:Name="collectionView"
+                            ItemsSource="{Binding ItemRows}"
+                            SelectionChanged="CollectionView_SelectionChanged"  
+                            SelectionMode="Single">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame 
+                                    CornerRadius="3" 
+                                    Padding="0,5" 
+                                    Margin="0,5" 
+                                    BackgroundColor="Transparent" 
+                                    HasShadow="True"  
+                                    OutlineColor="Transparent">
+
+                                    <Grid  BackgroundColor="Transparent" >
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackLayout 
+                                            Grid.Column="0" 
+                                            Grid.Row="0" 
+                                            Grid.RowSpan="2" 
+                                            Spacing="5" 
+                                            Padding="0" 
+                                            VerticalOptions="Fill" 
+                                            HorizontalOptions="Fill" 
+                                            BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
+                                            HeightRequest="40"/>
+
+
+
+                                        <StackLayout 
+                                            Grid.Column="1" 
+                                            Grid.ColumnSpan="3" 
+                                            Grid.Row="0" 
+                                            Spacing="5" 
+                                            Padding="0">
+
+                                            <Label Text="{Binding DESIGNATION_PRODUIT}" 
+                                                   TextColor="{StaticResource DefaultTextColor}" 
+                                                   FontAttributes="Bold" 
+                                                   FontSize="Default"/>
+
+                                        </StackLayout>
+                                        <Label Grid.Column="1" 
+                                               Grid.Row="1" 
+                                               Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
+                                               Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
+
+                                        <Label Grid.Column="2" 
+                                               Grid.Row="1"
+                                               Text="{ Binding PRIX_UNITAIRE, StringFormat='P : {0:N2} DA'}" 
+                                               FontSize="Default" 
+                                               HorizontalOptions="End" />
+
+                                        <Label Grid.Column="3" 
+                                               Grid.Row="1" 
+                                               Text="{ Binding MT_HT, StringFormat='{0:N2} DA'}" 
+                                               FontSize="Default" 
+                                               HorizontalOptions="End" 
+                                               TextColor="Red"/>
+
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Frame>
+
+            <flex:FlexButton
+                    VerticalOptions="End"
+                    HorizontalOptions="FillAndExpand"
+                    MinimumHeightRequest="50"
+                    HeightRequest="40"
+                    Padding="0"
+                    Margin="10,0,10,5"
+                    Text="Valider"
+                    CornerRadius="15"
+                    ForegroundColor="#ffffff"
+                    BackgroundColor="{DynamicResource NavigationPrimary}"
+                    BorderColor="{DynamicResource NavigationPrimary}"
+                    BorderThickness="1"
+                    WidthRequest="130"
+                    Clicked="CreateNewSell"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

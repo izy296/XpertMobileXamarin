@@ -602,13 +602,19 @@ namespace XpertMobileApp.Services
         #endregion
 
         #region Produits
-
         public static async Task<View_AssistantCommandes> GetProduitDetails(string codeProduit)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_URL, ServiceUrlDico.PRODUITS_DETAILS_URL);
             url += WSApi2.AddParam(url, "codeProduit", codeProduit);
 
             return await RetrievValAauthorizedData<View_AssistantCommandes>(url);
+        }
+        public static async Task<List<View_BSE_PRODUIT_AUTRE_UNITE>> GetProduitAutreUnite(string codeProduit)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PRODUITS_UNITE_MESURE_URL_XCOM, ServiceUrlDico.PRODUIT_GET_UNITE_MESURE);
+            url += WSApi2.AddParam(url, "codeProduit", codeProduit);
+
+            return await RetrievValAauthorizedData<List<View_BSE_PRODUIT_AUTRE_UNITE>>(url);
         }
 
         public static async Task<View_AssistantCommandes> GetProduitRefDetails(string refProduit)

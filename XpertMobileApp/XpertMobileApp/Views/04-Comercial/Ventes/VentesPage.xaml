@@ -68,9 +68,11 @@
 
                     </ListView>
                 </ScrollView>
+                
                 <!--Summaries Section-->
                 <StackLayout 
                     Spacing="0"
+                    IsVisible="{Binding HasAdmin}"
                     AbsoluteLayout.LayoutFlags="All" 
                     AbsoluteLayout.LayoutBounds="0,0,1,1" >
 
@@ -152,7 +154,7 @@
                                                         Text="{Binding key}" 
                                                         TextColor="White" 
                                                         FontAttributes="Bold"/>
-
+ 
                                                     <Label 
                                                         Grid.Column="1" 
                                                         Text="{Binding Title, StringFormat='{0:N2}'}" 

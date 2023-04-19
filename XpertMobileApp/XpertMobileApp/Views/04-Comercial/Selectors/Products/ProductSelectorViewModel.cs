@@ -1,6 +1,7 @@
 ﻿using Acr.UserDialogs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Extended;
@@ -38,7 +39,13 @@ namespace XpertMobileApp.ViewModels
                 (item as BASE_CLASS).Index = i;
             }
         }
+        public override async Task<List<View_STK_PRODUITS>> SelectByPageFromSqlLite(QueryInfos filter)
+        {
 
+            List<View_STK_PRODUITS> tempList =  await base.SelectByPageFromSqlLite(filter);
+            tempList = tempList.GroupBy(x => x.DESIGNATION).Select(x => x.First()).ToList();
+            return tempList;
+        }
         protected override QueryInfos GetFilterParams()
         {
             base.GetFilterParams();

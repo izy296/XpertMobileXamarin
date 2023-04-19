@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
-             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
-             x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SyncResumePoup">
+<pages:PopupPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup" 
+    xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+    x:Class="XpertMobileApp.Views._03_CommonPages.Synchronisation.SyncResumeUploadPopup">
 
     <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
@@ -68,6 +69,12 @@
 
                         <Label Text="Synchronisation des Tournées" FontSize="12" TextColor="#000" x:Name="labelTournee"/>
                         <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncTournees"/>
+
+                    </FlexLayout>
+                    <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+
+                        <Label Text="Synchronisation des Achats" FontSize="12" TextColor="#000" x:Name="labelAchat"/>
+                        <Image Source="correct.png" WidthRequest="16" HeightRequest="16" IsVisible="false" x:Name="syncAchat"/>
 
                     </FlexLayout>
 

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" 
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex" 
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+                 x:Class="XpertMobileApp.Views._04_Comercial.Achats.EditPrixUnitairePopup">
+    <ContentPage.Content>
+        <StackLayout>
+            <yummy:PancakeView  CornerRadius="9"
+                                Padding="10"
+                                VerticalOptions="CenterAndExpand"
+                                HorizontalOptions="Center"
+                                WidthRequest="300"
+                                BackgroundColor="#fff">
+
+                <StackLayout Orientation="Vertical">
+
+                    <Image 
+                        x:Name="closeIcon"
+                        VerticalOptions="Start"
+                        HorizontalOptions="End"
+                        WidthRequest="24"
+                        Source="closeIcon.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Close_filter_popup_with_Icon"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label x:Name="produit_label" 
+                           Text="Nom du produits"
+                           FontSize="16"
+                           TextColor="#0c0c0c"
+                           HorizontalOptions="Center"/>
+                    <StackLayout x:Name="inputsWrapper" Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="58"/>
+                            </Grid.RowDefinitions>
+                            
+                            <inputLayout:SfTextInputLayout
+                                    Hint="Unités" 
+                                    Margin="5,0,5,0"
+                                    InputViewPadding="14"
+                                    IsHintAlwaysFloated="true" 
+                                    FocusedColor="{DynamicResource Primary}"
+                                    UnfocusedColor="{DynamicResource Primary}"    
+                                    ContainerType="Outlined"
+                                    OutlineCornerRadius="5">
+
+                                <Entry FontSize="14" 
+                                   Text="{Binding CountUnite}" 
+                                   x:Name="unite_field"/>
+
+                                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                    <inputLayout:LabelStyle FontSize="12"/>
+                                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                            </inputLayout:SfTextInputLayout>
+
+                            <button:SfButton 
+                                VerticalOptions="End"
+                                Text="+1"
+                                TextColor="#fff"
+                                CornerRadius="5"
+                                BackgroundColor="#7EC384"
+                                BorderColor = "#7EC384"
+                                Grid.Column="1" 
+                                BorderWidth="1"
+                                FontSize="14"
+                                Clicked="AddUnite"
+                                HeightRequest="49"/>
+
+                            <button:SfButton 
+                                VerticalOptions="End"   
+                                Text="-1" 
+                                BorderWidth="1"
+                                CornerRadius="5"   
+                                BorderColor = "#e65b65"
+                                BackgroundColor="#e65b65"
+                                HeightRequest="49"
+                                Grid.Column="2"
+                                FontSize="14"
+                                Clicked="SubstractUnite"
+                                TextColor="#fff"/>
+                        </Grid>
+                    </StackLayout>
+                    <!--Unités-->
+                    
+
+                    <!--Num Facture-->
+                    <inputLayout:SfTextInputLayout
+                            Hint="Prix unitaire" 
+                            Margin="5,0,5,0"
+                            InputViewPadding="14"
+                            IsHintAlwaysFloated="true" 
+                            FocusedColor="{DynamicResource Primary}"
+                            UnfocusedColor="{DynamicResource Primary}"    
+                            ContainerType="Outlined"
+                            OutlineCornerRadius="5">
+
+                        <Entry FontSize="14" Text="{Binding Result.PRIX_UNITAIRE, Mode=TwoWay}"/>
+
+                        <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                            <inputLayout:LabelStyle FontSize="12"/>
+                        </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <Image Source="money_bag.png"/>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+                    </inputLayout:SfTextInputLayout>
+
+                    <!--Quantité Total-->
+                    <Label Text="{Binding QuantityTotal,StringFormat='Quantité Total :{0:N2}'}" 
+                           TextColor="#0c0c0c"
+                           FontSize="16" 
+                           HorizontalOptions="Center"/>
+
+
+                    <StackLayout Orientation="Horizontal">
+
+                        <flex:FlexButton
+                            x:Name="buttonYes"
+                            HorizontalOptions="FillAndExpand" 
+                            MinimumHeightRequest="50"
+                            HeightRequest="35"
+                            Padding="0"
+                            Margin="5"
+                            Text="Enregistrer"
+                            CornerRadius="15"
+                            ForegroundColor="#ffffff"
+                            BackgroundColor="#2196F3"
+                            BorderColor="#2196F3"
+                            BorderThickness="1"
+                            WidthRequest="130"
+                            Clicked="Close_filter_popup"/>
+
+                    </StackLayout>
+                </StackLayout>
+            </yummy:PancakeView>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

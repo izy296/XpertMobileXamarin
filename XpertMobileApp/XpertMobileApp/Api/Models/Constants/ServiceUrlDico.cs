@@ -125,6 +125,9 @@ namespace XpertMobileApp.Helpers
 
         // Produits
 
+        public static string PRODUITS_UNITE_MESURE_URL_XCOM = "BSE_PRODUIT_AUTRE_UNITE_XCOM";
+        public static string PRODUITS_UNITE_MESURE_URL = "BSE_PRODUIT_AUTRE_UNITE";
+        public static string PRODUIT_GET_UNITE_MESURE = "GetAutreUniteByProduit";
         public static string PRODUITS_URL = "Produits";
 
         public static string PRODUITS_DETAILS_URL = "GetProduitDetails";

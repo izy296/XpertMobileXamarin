@@ -185,7 +185,7 @@ namespace XpertMobileApp.Views
             }
             else
             {
-                floatingButton.Opacity = 0.2;
+                floatingButton.Opacity = 0.05;
                 SummariesInfos.HeightRequest = SummariesListView.HeightRequest = gridSamuary.HeightRequest = 180;
                 tapped = !tapped;
                 arrow_img.RotateTo(180, 400, Easing.Linear);

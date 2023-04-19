@@ -1024,4 +1024,15 @@ namespace XpertMobileApp.Models
         public bool DEFAULT_IMAGE { get; set; } // varchar(50)
     }
 
+    public partial class BSE_PRODUIT_LISTE_CB
+    {
+        public string CODE_DETAIL { get; set; }
+        public string CODE_PRODUIT { get; set; }
+        public string CODE_BARRE { get; set; }
+        public bool LISTE_CB_PRODUIT_PUBLIC { get; set; }
+        public bool SYNCHRONISE { get; set; }
+        public DateTime? DATE_SYNCHRONISATION { get; set; }//[datetime] NULL
+
+    }
+
 }

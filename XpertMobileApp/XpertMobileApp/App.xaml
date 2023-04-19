@@ -124,6 +124,14 @@
                                                         AchatPharm = "{StaticResource AchatPharm}"
                                                         AchatComm = "{StaticResource AchatComm}"/>
 
+
+            <DataTemplate x:Key="AchatDetail">
+                <template:AchatDetailsRowElement_ACH_COMM/>
+            </DataTemplate>
+
+            <templateSelector:AchatDetailsSelectorTemplate x:Key="AchatDetailsTemplateSelector"
+                                                           AchatDetailsComm="{StaticResource AchatDetail}"
+                                                           AchatDetailsPharm="{StaticResource AchatDetail}"/>
             <!--***************** ACHAT *****************-->
 
 
@@ -175,7 +183,7 @@
                 <template:RowElementTemplate_Rotation_COMM />
             </DataTemplate>
 
-            <templateSelector:RotationDataSelectorTemplate   x:Key="RotationTemplateSelector" 
+            <templateSelector:RotationDataSelectorTemplate  x:Key="RotationTemplateSelector" 
                                                             RotationPharm="{StaticResource RotationPharm}"
                                                             RotationComm="{StaticResource RotationComm}"/>
             <!-- ***************** Rotation *****************-->
@@ -196,14 +204,21 @@
                 <template:MaladesChroniquesTemplate />
             </DataTemplate>
             
-
-
-
             <!-- Font Gilroy -->
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyLight">
                 <On Platform="Android" Value="Gilroy-Light.ttf#GilroyLight" />
                 <On Platform="iOS" Value="Gilroy-Light" />
                 <On Platform="UWP" Value="/Assets/Gilroy-Light.ttf#Font Gilroy Light" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontPoppinsLight">
+                <On Platform="Android" Value="PoppinsLight.ttf#PoppinsLight" />
+                <On Platform="iOS" Value="PoppinsLight" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="FontPoppinsRegular">
+                <On Platform="Android" Value="PoppinsRegular.ttf#PoppinsRegular" />
+                <On Platform="iOS" Value="PoppinsRegular" />
+                <On Platform="UWP" Value="/Assets/Gilroy-Regular.ttf#Font Gilroy Regular" />
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontGilroyMedium">
                 <On Platform="Android" Value="Gilroy-Medium.ttf#GilroyMedium" />
@@ -222,11 +237,6 @@
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="FontMontserat">
                 <On Platform="Android" Value="Montserrat-SemiBold.ttf#Montserrat-SemiBold.ttf" />
-                <On Platform="iOS" Value="Gilroy-SemiBold" />
-                <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
-            </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="FontPoppins">
-                <On Platform="Android" Value="Poppins-Regular.ttf#Poppins-Regular.ttf" />
                 <On Platform="iOS" Value="Gilroy-SemiBold" />
                 <On Platform="UWP" Value="/Assets/Gilroy-SemiBold.ttf#Font Gilroy SemiBold" />
             </OnPlatform>
@@ -341,8 +351,8 @@
             <Style TargetType="NavigationPage">
 
                 <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationPrimary}" />
-
                 <Setter Property="BarTextColor" Value="White" />
+                
             </Style>
            
 
@@ -387,9 +397,9 @@
 
             <Style x:Key="FrameForList" TargetType="Frame">
                 <Setter Property="CornerRadius" Value="8" />
-                <Setter Property="Padding" Value="5" />
+                <Setter Property="Padding" Value="8" />
                 <Setter Property="Margin" Value="8,3,8,3" />
-                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BackgroundColor" Value="#fff"/>
                 <Setter Property="HasShadow" Value="True"/>
                 <Setter Property="OutlineColor" Value="Transparent"/>
             </Style>
@@ -403,7 +413,7 @@
                 <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="VerticalOptions" Value="Center"/>
             </Style>
-
+            
             <Style x:Key="FAwesome-B-Brands" TargetType="Button">
                 <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrands}" />
                 <Setter Property="FontSize" Value="25" />

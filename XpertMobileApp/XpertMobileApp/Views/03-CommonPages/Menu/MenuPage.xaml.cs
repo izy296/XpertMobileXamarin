@@ -74,6 +74,17 @@ namespace XpertMobileApp.Views
                     Title = AppResources.pn_home
                 });
 
+                /* Achat */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Achats,
+                    ItemGroup = MenuItemGroup.Achats,
+                    Title = AppResources.pn_Achats,
+                    CodeObjet = XpertObjets.ACH_DOCUMENT,
+                    Action = XpertActions.AcSelect,
+                    Image = "achat.png"
+                });
+                
                 /* Page Encaissement */
                 menuItems.Add(new HomeMenuItem
                 {
@@ -206,18 +217,6 @@ namespace XpertMobileApp.Views
                                 Action = XpertActions.AcSelect,
                             });
 
-
-                            /* Achat */
-                            menuItems.Add(new HomeMenuItem
-                            {
-                                Id = MenuItemType.Achats,
-                                ItemGroup = MenuItemGroup.Achats,
-                                Title = AppResources.pn_Achats,
-                                CodeObjet = XpertObjets.ACH_DOCUMENT,
-                                Action = XpertActions.AcSelect,
-                                Image = "achat.png"
-                            });
-
                             /* Session */
                             menuItems.Add(new HomeMenuItem
                             {
@@ -321,7 +320,7 @@ namespace XpertMobileApp.Views
                             CodeObjet = XpertObjets.View_STK_ECHANGE,
                             Action = XpertActions.AcSelect,
                             IsNewModule = true,
-                            Image= "wheelbarrow.png"
+                            Image = "wheelbarrow.png"
                         });
 
                         /* Pyschotrope */
@@ -343,7 +342,7 @@ namespace XpertMobileApp.Views
                             Title = AppResources.pn_Bordereaux,
                             CodeObjet = XpertObjets.CFA_BORDEREAU,
                             Action = XpertActions.AcSelect,
-                            Image="slip.png"
+                            Image = "slip.png"
                         });
 
                         /* Menu Chifa */

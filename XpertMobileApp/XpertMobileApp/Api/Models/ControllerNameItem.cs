@@ -8,6 +8,7 @@ namespace XpertMobileApp.Api.Models
     {
         VTE_COMMANDE,
         ACH_ACHATS,
+        ACH_RECEPTION,
         BSE_MAGASINS,
         BSE_LIEUX,
         BSE_COMPTE,

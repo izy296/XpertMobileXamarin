@@ -10,14 +10,17 @@
              xmlns:views="clr-namespace:XpertMobileApp.Views.Templates" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
              x:Name="Achats">
 
-    <ContentPage.ToolbarItems>
-        <!--<ToolbarItem x:Name="btn_Additem" Text="{i18n:Translate cmd_Add}" Clicked="AddItem_Clicked">
+    <ContentPage.ToolbarItems >
+        <ToolbarItem x:Name="btn_Additem" 
+                     Text="{i18n:Translate cmd_Add}" 
+                     Clicked="AddNewAchat">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="add.png"/>
                     <On Platform="UWP" Value="add.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
-        </ToolbarItem>-->
+        </ToolbarItem>
 
         <!--<ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
@@ -38,50 +41,23 @@
             FlowDirection="LeftToRight">
             <StackLayout AbsoluteLayout.LayoutFlags="All" 
                         AbsoluteLayout.LayoutBounds="0,0,1,1">
-                <ScrollView >
-                    <!-- Items listing  -->
-                    <ListView x:Name="ItemsListView"
-                                VerticalOptions="Fill"
-                                ItemsSource="{Binding Items}"
-                                HasUnevenRows="true" 
-                                BackgroundColor="Transparent"
-                                SeparatorVisibility="None"
-                                RefreshCommand="{Binding LoadItemsCommand}"
-                                IsPullToRefreshEnabled="true"
-                                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                                CachingStrategy="RecycleElement"
-                                ItemSelected="OnItemSelected">
+                <RefreshView 
+                        Command="{Binding PullTORefresh}"
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}">
+                    <CollectionView x:Name="ClientsView"
+                                        AbsoluteLayout.LayoutFlags="All" 
+                                        AbsoluteLayout.LayoutBounds="0,0,1,1"
+                                        VerticalOptions="FillAndExpand"
+                                        ItemsSource="{Binding Items}"
+                                        ItemTemplate="{StaticResource AchatTemplateSelector}"
+                                        SelectionMode="Single"
+                                        RemainingItemsThreshold="1"
+                                        RemainingItemsThresholdReachedCommand="{Binding LoadItemsCommand}"
+                                        SelectionChanged="EmployeeView_SelectionChanged">
+                    </CollectionView>
+                </RefreshView>
 
-                        <ListView.Behaviors>
-                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
-                        </ListView.Behaviors>
-
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <template:AchatsListTemplate />
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-
-                        <ListView.Footer>
-                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
-                                <!-- set the footer to have a zero height when invisible -->
-                                <Grid.Triggers>
-                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
-                                        <Setter Property="HeightRequest" Value="0" />
-                                    </Trigger>
-                                </Grid.Triggers>
-                                <!-- the loading content -->
-                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
-                            </Grid>
-                        </ListView.Footer>
-                    </ListView>
-
-                </ScrollView>
-
-                
-                <!--Sammary section--> 
+                <!--Sammary section-->
                 <StackLayout 
                     Spacing="0"
                     AbsoluteLayout.LayoutFlags="All" 

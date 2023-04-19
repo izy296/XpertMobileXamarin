@@ -16,6 +16,7 @@ using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
 using Xpert.Common.WSClient.Services;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.ComWSManager;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
@@ -117,6 +118,10 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().CreateTableAsync<STK_PRODUITS_IMAGES>();
                 await GetInstance().CreateTableAsync<BSE_PRODUIT_LABO>();
                 await GetInstance().CreateTableAsync<LOG_SYNCHRONISATION>();
+                await GetInstance().CreateTableAsync<View_ACH_DOCUMENT>();
+                await GetInstance().CreateTableAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
+                await GetInstance().CreateTableAsync<BSE_PRODUIT_LISTE_CB>();
+                await GetInstance().CreateTableAsync<BSE_MODE_REG>();
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
             }
             catch (Exception e)
@@ -125,6 +130,25 @@ namespace XpertMobileApp.SQLite_Managment
             }
         }
 
+        internal async static Task<List<View_ACH_DOCUMENT_DETAIL_MOBILE>> GetAchatDetails(string codeAchat)
+        {
+            try
+            {
+                var exception = GetInstance().Table<View_ACH_DOCUMENT_DETAIL_MOBILE>().ToListAsync().Exception;
+                if (exception == null)
+                {
+                    var achatDetails = await GetInstance().Table<View_ACH_DOCUMENT_DETAIL_MOBILE>().Where(e => e.CODE_DOC == codeAchat).ToListAsync();
+                    return achatDetails;
+                }
+                else throw exception;
+            }
+            catch (Exception ex)
+            {
+                CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                return null;
+            }
+        }
 
         public static async Task<IEnumerable<View_STK_STOCK>> GetProduitPrixUniteByCodeFamille(string codeFamille, string columnName = "p.DESIGNATION_PRODUIT", string order = "ASC")
         {
@@ -217,7 +241,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
 
             // 
-            string query = $@"SELECT DISTINCT DESIGNATION_UNITE,PRIX_VENTE,COEFFICIENT FROM View_BSE_PRODUIT_AUTRE_UNITE WHERE CODE_PRODUIT ='{codeProduit}'";
+            string query = $@"SELECT DISTINCT CODE_PRODUIT,DESIGNATION_PRODUIT, DESIGNATION_UNITE,PRIX_VENTE,COEFFICIENT FROM View_BSE_PRODUIT_AUTRE_UNITE WHERE CODE_PRODUIT ='{codeProduit}'";
             var list = await GetInstance().QueryAsync<View_BSE_PRODUIT_AUTRE_UNITE>(query);
             return list;
         }
@@ -353,7 +377,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
                 return false;
             }
         }
@@ -430,7 +454,6 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncLabos();
                     await SyncProduitFamille();
                     await SyncStatusCommande();
-                    await SyncProduitType();
                     await SyncCommande(); //worked  await SyncLivTournee();//worked !
                     await SyncStatusCommande(); //To Delete On Download
                     await SyncProduitType(); //To Delete On Download
@@ -451,7 +474,7 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncSecteurs();//worked ! //To Delete On Download
                     await SyncBseCompte();//worked ! //To Delete On Download
                     await SyncMotifs();//worked ! //To Delete On Download
-
+                    await SyncMagasin();
                     await SyncUsers(); //worked ! 
                     await SyncConfigMachine(); //worked 
                     await SyncTransfers();
@@ -460,17 +483,14 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
                     await SyncImages();
+                    //await SyncBSE_PRODUIT_LISTE_CB();
 
-                    await SyncData<View_STK_PRODUITS, STK_PRODUITS>();
-
-
+                    var produits2 = await GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
+                    await SyncBseModReg();
                     // Todo add row to log table when downloading
-
-
-
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     //await syncSession(); //worked !
-                    //await SyncMagasin();                                                                                           
+                    //await SyncMagasin();
                     //await SyncProduct();
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>(); // we don't need to sync all the encaiss 
                     //await SyncData<View_STK_STOCK, STK_STOCK>();
@@ -494,6 +514,38 @@ namespace XpertMobileApp.SQLite_Managment
             catch (Exception ex)
             {
                 UserDialogs.Instance.HideLoading();
+                throw ex;
+            }
+        }
+
+        private async static Task SyncBseModReg()
+        {
+            try
+            {
+                if (App.Online)
+                {
+                    var modeRegsList = await WebServiceClient.GetMODE_REGs();
+                    if (modeRegsList != null)
+                        await GetInstance().InsertAllAsync(modeRegsList);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static async Task<List<BSE_MODE_REG>> GetBseMode()
+        {
+            try
+            {
+                var listRegMode = await GetInstance().Table<BSE_MODE_REG>().ToListAsync();
+                return listRegMode;
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }
@@ -525,7 +577,6 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
                 await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
-                await GetInstance().DeleteAllAsync<View_STK_PRODUITS>();
                 await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
 
                 CustomPopup AlertPopup = new CustomPopup("Suppression des tables de base faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
@@ -547,6 +598,18 @@ namespace XpertMobileApp.SQLite_Managment
 
                 var tourneeCLients = listClients.Where(p => listeTourneeClents.Any(p2 => p2.CODE_TIERS == p.CODE_TIERS)).ToList();
                 return tourneeCLients as List<View_TRS_TIERS>;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static async Task<List<View_TRS_TIERS>> GetSuppliers()
+        {
+            try
+            {
+                var listSuppliers = await GetInstance().Table<View_TRS_TIERS>().Where(e => e.CODE_TYPE == "F").ToListAsync();
+                return listSuppliers as List<View_TRS_TIERS>;
             }
             catch (Exception ex)
             {
@@ -703,6 +766,129 @@ namespace XpertMobileApp.SQLite_Managment
                 throw ex;
             }
         }
+        #endregion
+
+        #region Achat
+        public static async Task UpdateAchat(View_ACH_DOCUMENT achat)
+        {
+            try
+            {
+                if (achat != null)
+                {
+                    //UpdateAchat the purchases
+                    await GetInstance().UpdateAsync(achat);
+                    if (achat.Details != null)
+                    {
+                        foreach (var detail in achat.Details)
+                        {
+                            var rowsEffected = await GetInstance().UpdateAsync(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL_MOBILE>(detail));
+                            if (rowsEffected == 0)
+                            {
+                                detail.CODE_DOC = achat.CODE_DOC;
+                                detail.CODE_TIERS = achat.CODE_TIERS;
+                                detail.REF_TIERS = achat.REF_TIERS;
+                                detail.TIERS_NOMC = achat.TIERS_NomC;
+                                detail.TYPE_DOC = achat.TYPE_DOC;
+                                await GetInstance().InsertAsync(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL_MOBILE>(detail));
+                            }
+                        }
+                    }
+                    var liste = await GetInstance().Table<View_ACH_DOCUMENT_DETAIL_MOBILE>().ToListAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// Methode a pour but d'insérer un achat dans la base local SQLITE...
+        /// </summary>
+        /// <returns></returns>
+        public static async Task<bool> InsertAchat(View_ACH_DOCUMENT achat)
+        {
+            try
+            {
+                if (achat != null)
+                {
+                    achat.TYPE_DOC = "LF";
+                    achat.CODE_DOC = await generateCode(achat.TYPE_DOC);
+                    achat.NUM_DOC = await generateNum(achat.TYPE_DOC);
+
+                    //Insertion d'achat dans l'sqlite
+                    var id = await GetInstance().InsertAsync(achat);
+
+                    //Inserting details 
+                    if (achat.Details.Count > 0)
+                    {
+                        foreach (var item in achat.Details)
+                        {
+                            item.CODE_DOC = achat.CODE_DOC;
+                            item.CODE_TIERS = achat.CODE_TIERS;
+                            item.REF_TIERS = achat.REF_TIERS;
+                            item.TIERS_NOMC = achat.TIERS_NomC;
+                            item.TYPE_DOC = achat.TYPE_DOC;
+                            await GetInstance().InsertAsync(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL_MOBILE>(item));
+                        }
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async static void DeleteAllPurchasesInSQLite()
+        {
+            try
+            {
+                await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public static async Task<bool> SyncPurchasesToServer()
+        {
+            try
+            {
+                var purchases = await GetInstance().Table<View_ACH_DOCUMENT>().ToListAsync();
+                var purchasesDetails = await GetInstance().Table<View_ACH_DOCUMENT_DETAIL_MOBILE>().ToListAsync();
+
+                if (purchases.Count > 0 && purchases != null)
+                {
+                    //Attach the details to the purchase object 
+                    foreach (var purchase in purchases)
+                    {
+                        var details = purchasesDetails.Where(e => e.CODE_DOC == purchase.CODE_DOC).ToList();
+                        purchase.Details = new List<View_ACH_DOCUMENT_DETAIL>();
+                        if (details.Count() > 0 && details != null)
+                        {
+                            foreach (var item in details)
+                            {
+                                purchase.Details.Add(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL>(item));
+                            }
+                        }
+                    }
+                    
+                    ReceptionManager bll = new ReceptionManager();
+                    return await bll.SyncAchats(purchases);
+
+                }
+                    return true; 
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                ex.Data["opeartion"] = "ACHAT";
+                throw ex;
+            }
+        }
+
         #endregion
 
         #region Tresorerie
@@ -903,6 +1089,8 @@ namespace XpertMobileApp.SQLite_Managment
         /// <returns></returns>
         public static async Task AjoutEncaissement(View_TRS_ENCAISS item, Location location, string codeCompte = "")
         {
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+
             if (!string.IsNullOrEmpty(App.PrefixCodification))
             {
                 if (string.IsNullOrEmpty(item.CODE_ENCAISS))
@@ -930,12 +1118,14 @@ namespace XpertMobileApp.SQLite_Managment
                     await GetInstance().UpdateAsync(item);
                     if (item.CODE_TYPE == "ENC")
                     {
+                        UserDialogs.Instance.HideLoading();
                         CustomPopup AlertPopup = new CustomPopup("Versement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
                         await AlertPopup.PopupClosedTask;
                     }
                     else
                     {
+                        UserDialogs.Instance.HideLoading();
                         CustomPopup AlertPopup = new CustomPopup("Remboursement a été effectuée avec succès!", trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
                         await AlertPopup.PopupClosedTask;
@@ -960,9 +1150,11 @@ namespace XpertMobileApp.SQLite_Managment
                     }
                 }
                 await UpdateSoldeTiers(item.TOTAL_ENCAISS, item.CODE_TIERS, item.CODE_TYPE);
+                UserDialogs.Instance.HideLoading();
             }
             else
             {
+                UserDialogs.Instance.HideLoading();
                 CustomPopup AlertPopup = new CustomPopup("Veuillez configurer le Prefix", trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
                 await AlertPopup.PopupClosedTask;
@@ -1151,7 +1343,6 @@ namespace XpertMobileApp.SQLite_Managment
             selectedItem.ETAT_COLOR = "#FFA500";
             return await GetInstance().UpdateAsync(selectedItem);
         }
-
         /// <summary>
         /// Synchroniser les tounrnés de livraison par le code vendeur
         /// </summary>
@@ -1181,7 +1372,6 @@ namespace XpertMobileApp.SQLite_Managment
                 }
             }
         }
-
         /// <summary>
         /// recuperé les tounrnés de livraison en cours
         /// </summary>
@@ -1212,12 +1402,10 @@ namespace XpertMobileApp.SQLite_Managment
             }
             catch (Exception)
             {
-
                 throw;
             }
 
         }
-
         /// <summary>
         /// Retourne la liste des tournés ...
         /// </summary>
@@ -1236,8 +1424,6 @@ namespace XpertMobileApp.SQLite_Managment
                 return tiersFiltred;
             }
         }
-
-
         /// <summary>
         /// Obtenir la liste des secteurs 
         /// </summary>
@@ -1247,7 +1433,6 @@ namespace XpertMobileApp.SQLite_Managment
             var Secteurs = await GetInstance().Table<BSE_TABLE>().ToListAsync();
             return Secteurs;
         }
-
         public static async Task SyncProduitType()
         {
             try
@@ -1269,7 +1454,6 @@ namespace XpertMobileApp.SQLite_Managment
                 throw ex;
             }
         }
-
         public static async Task<List<BSE_PRODUIT_TYPE>> GetProduitType()
         {
             try
@@ -1319,8 +1503,6 @@ namespace XpertMobileApp.SQLite_Managment
                 throw ex;
             }
         }
-
-
         public static async Task UpdateTourneeDetail(View_VTE_VENTE vente)
         {
             string codeTourneeDetail = vente.MBL_CODE_TOURNEE_DETAIL;
@@ -1345,6 +1527,18 @@ namespace XpertMobileApp.SQLite_Managment
 
         #region Stock 
 
+        public static async Task SyncBSE_PRODUIT_LISTE_CB()
+        {
+            try
+            {
+                await SyncData<BSE_PRODUIT_LISTE_CB, BSE_PRODUIT_LISTE_CB>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         /// <summary>
         /// Synchroniser le stock par magasin ...
         /// </summary>
@@ -1358,6 +1552,7 @@ namespace XpertMobileApp.SQLite_Managment
                 paramStock = "CodeMagasin=" + CodeMagasin;
                 StockMethodName = "GetStockByMagsin";
                 await SyncData<View_STK_STOCK, STK_STOCK>(false, paramStock, StockMethodName);
+                var obj1 = await GetInstance().Table<View_LIV_TOURNEE>().ToListAsync();
             }
         }
 
@@ -1532,7 +1727,10 @@ namespace XpertMobileApp.SQLite_Managment
             try
             {
                 var produitsList = await GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
-                var produit = produitsList.Where(element => element.CODE_BARRE.Equals(codeBar)).ToList();
+                var produit = produitsList.
+                        Where(element => element.CODE_BARRE.Equals(codeBar))
+                        .GroupBy(x => x.DESIGNATION)
+                        .Select(x => x.First()).ToList();
                 return produit;
             }
             catch (Exception ex)
@@ -1797,7 +1995,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                 //Compare le nom d'utilisateur avec le mot de passe ...
                 //prendre en charge la connexion avec mot de pass unique 
-                if (item.ID_USER.ToLower() == user.UserName.ToLower() || item.PASS_USER == password)
+                if (item.ID_USER.ToLower() == user.UserName.ToLower() || item.PASS_USER.ToLower() == password.ToLower())
                 {
                     return item;
                 }
@@ -1849,7 +2047,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
 
         /// <summary>
-        /// Retourne  la liste des compte ...
+        /// Retourne  la liste des comptes ...
         /// </summary>
         /// <returns></returns>
         public static async Task<List<View_BSE_COMPTE>> getComptes()
@@ -1969,7 +2167,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                var exception = SQLite_Manager.GetInstance().Table<View_VTE_COMMANDE>().ToListAsync().Exception;
+                var exception = GetInstance().Table<View_VTE_COMMANDE>().ToListAsync().Exception;
                 if (exception == null)
                 {
 
@@ -1985,7 +2183,6 @@ namespace XpertMobileApp.SQLite_Managment
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
                 return null;
             }
-
         }
 
         /// <summary>
@@ -2561,7 +2758,6 @@ namespace XpertMobileApp.SQLite_Managment
         }
         #endregion
 
-
         /// <summary>
         /// methode utilisé seulement dans mode offline retourne pris gros ou pris details
         /// </summary>
@@ -2602,37 +2798,19 @@ namespace XpertMobileApp.SQLite_Managment
         /// <param name="TypeDoc"></param>
         /// <param name="ID"></param>
         /// <returns></returns>
-        public static async Task<string> generateCode(string TypeDoc, string ID)
+        public static async Task<string> generateCode(string TypeDoc, string ID = "")
         {
 
-            var date = DateTime.Now.Year.ToString();
-            var date2 = "";
-            if (date.Length == 2)
-            {
-                date2 = "/" + date.Substring(0, 2);
-            }
-            else if (date.Length == 4)
-            {
-                date2 = "/" + date.Substring(2, 2);
-            }
-
-            var code = date + TypeDoc + ID + date2 + "/" + App.PrefixCodification;
+            string minutesSeconds = DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+            string hours = DateTime.Now.Hour.ToString();
+            var code = minutesSeconds + TypeDoc + ID + hours + "/" + App.PrefixCodification;
             return code;
         }
 
-        public static async Task<string> generateNum(string TypeDoc, string ID)
+        public static async Task<string> generateNum(string TypeDoc, string ID = "")
         {
-            var date = DateTime.Now.Year.ToString();
-            var date2 = "";
-            if (date.Length == 2)
-            {
-                date2 = "/" + date.Substring(0, 2);
-            }
-            else if (date.Length == 4)
-            {
-                date2 = "/" + date.Substring(2, 2);
-            }
-            var num = ID + date2 + "/" + App.PrefixCodification;
+            var date = "/" + DateTime.Now.Minute.ToString() + DateTime.Now.Second.ToString();
+            var num = ID + date + "/" + App.PrefixCodification;
             return num;
         }
 

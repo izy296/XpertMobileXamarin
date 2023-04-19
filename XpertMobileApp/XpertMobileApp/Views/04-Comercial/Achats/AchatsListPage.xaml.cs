@@ -8,6 +8,7 @@ using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.ViewModels;
+using XpertMobileApp.Views._04_Comercial.Achats;
 using XpertMobileApp.Views.Templates;
 
 namespace XpertMobileApp.Views
@@ -20,7 +21,7 @@ namespace XpertMobileApp.Views
         private string typeDoc = "LF";
         private string motifDoc = AchRecMotifs.PesageReception;
         AchatsListViewModel viewModel;
-        
+
         SYS_MOBILE_PARAMETRE parames;
         List<SYS_OBJET_PERMISSION> permissions;
 
@@ -34,17 +35,6 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new AchatsListViewModel(typeDoc);
 
-            //if (StatusPicker.ItemsSource != null && StatusPicker.ItemsSource.Count > 0)
-            //{
-            //    StatusPicker.SelectedItem = StatusPicker.ItemsSource[1];
-            //}
-
-            //MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
-            //{
-            //    viewModel.SelectedTiers = selectedItem;
-            //    ent_SelectedTiers.Text = selectedItem.NOM_TIERS1;
-            //});
-
             MessagingCenter.Subscribe<BaseFilter, XpertBaseFilterModel>(this, CurrentStream, async (obj, selectedFilter) =>
             {
                 filterObjectTest = selectedFilter;
@@ -55,24 +45,16 @@ namespace XpertMobileApp.Views
                 btn_ApplyFilter_Clicked(null, null);
             });
 
+            if (!App.Online && Constants.AppName == Apps.XCOM_Mob)
+            {
+                if (ToolbarItems.Count > 0)
+                    ToolbarItems.RemoveAt(0);
+            }
         }
-
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
-        {
-            var item = args.SelectedItem as View_ACH_DOCUMENT;
-            if (item == null)
-                return;
-
-            await Navigation.PushAsync(new AchatDetailPage(item));
-
-            // Manually deselect item.
-            ItemsListView.SelectedItem = null;
-        }
-
-        async void AddItem_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new AchatFormPage(null, typeDoc, motifDoc));
-        }
+            async void AddNewAchat(object sender, EventArgs e)
+            {
+                await Navigation.PushAsync(new FournisseursList());
+            }
 
         protected override void OnDisappearing()
         {
@@ -81,8 +63,6 @@ namespace XpertMobileApp.Views
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
-
 
             var connectivity = CrossConnectivity.Current;
             if (connectivity.IsConnected)
@@ -114,9 +94,6 @@ namespace XpertMobileApp.Views
 
         private void Filter_Clicked(object sender, EventArgs e)
         {
-            //FilterPanel.IsVisible = !FilterPanel.IsVisible;           
-
-
             if (this.BaseFilterView.IsVisible)
                 BaseFilterView.Hide();
             else
@@ -133,33 +110,11 @@ namespace XpertMobileApp.Views
             viewModel.LoadItemsCommand.Execute(null);
         }
 
-        private void ComptePicker_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private TiersSelector itemSelector;
         private async void btn_Select_Clicked(object sender, EventArgs e)
         {
             itemSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(itemSelector);
-        }
-
-        private void BaseFilterView_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-
-        }
-
-        private void BaseFilterView_BindingContextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private async void ShowHideFilter(object sender, EventArgs e)
-        {
-            AchatsPopupFilter filter = new AchatsPopupFilter(viewModel);
-            //Load data for the first time ...
-            await PopupNavigation.Instance.PushAsync(filter);
         }
 
         private void ShowHide_Clicked(object sender, EventArgs e)
@@ -186,6 +141,39 @@ namespace XpertMobileApp.Views
                 tapped = !tapped;
                 arrow_img.RotateTo(180, 400, Easing.Linear);
             }
+        }
+
+        private async void EmployeeView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (e.CurrentSelection.Count != 0)
+                {
+                    var item = e.CurrentSelection[0] as View_ACH_DOCUMENT;
+                    if (item != null)
+                    {
+                        //UserDialogs.Instance.AlertAsync(); 
+                        await Navigation.PushAsync(new AchatDetailPage(item));
+                        ClientsView.SelectedItem = null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        private async void ShowHideFilter(object sender, EventArgs e)
+        {
+            AchatsPopupFilter filter = new AchatsPopupFilter(viewModel);
+            //Load data for the first time ...
+            await PopupNavigation.Instance.PushAsync(filter);
+        }
+
+        private void BaseFilterView_BindingContextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
