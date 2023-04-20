@@ -321,6 +321,8 @@ namespace XpertMobileApp.Models
                 OnPropertyChanged("Selected");
             }
         }
+        public string DESIGNATION { get; set; }
+        public decimal PRIX_ACHAT { get; set; }
     }
     public partial class STK_STOCK_RFID
     {
@@ -912,7 +914,7 @@ namespace XpertMobileApp.Models
         //pour l'utilisé dans le mobile...
         [Ignore]
         public List<View_STK_TRANSFERT_DETAIL> DETAILS { get; set; }
-        
+
         [Ignore]
         public string IMAGE_TYPE
         {
@@ -1033,6 +1035,169 @@ namespace XpertMobileApp.Models
         public bool SYNCHRONISE { get; set; }
         public DateTime? DATE_SYNCHRONISATION { get; set; }//[datetime] NULL
 
+    }
+
+    public partial class STK_INVENTAIRE_DETAIL : BASE_CLASS
+    {
+        public string CODE_DETAIL { get; set; } // varchar(40)
+        public string NUM_INVENT { get; set; } // varchar(32)
+        public int? ID_STOCK { get; set; } // int(10)
+        public decimal? QTE_STOCK_INITIAL { get; set; } // numeric(19,2)
+        public decimal? QTE_STOCK_SAISIE { get; set; } // numeric(19,2)
+        public decimal? QTE_STOCK_CLOTURE { get; set; } // numeric(19,2)
+        public decimal? QTE_INVENTAIRE { get; set; } // numeric(19,2)
+        public decimal? QTE_ECART { get; set; } // numeric(19,2)
+        public DateTime? DATE_SAISIE { get; set; } // 
+        public string SAISIE_PAR { get; set; } // varchar(50)
+        public bool MAJ_STOCK { get; set; }
+        public string MACHINE_USER { get; set; } // varchar(300)
+        public string CODE_PRODUIT { get; set; } // varchar(20)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+        public string LOT { get; set; } // varchar(50)
+        public string NUM_ENTREE { get; set; } // varchar(20)
+        public decimal PPA { get; set; } // 
+        public decimal SHP { get; set; } // 
+        public decimal PRIX_HT { get; set; } //
+        public string MODE_VALIDATE { get; set; }
+        public string Type_Origine_lot { get; set; }
+        public string VERSION_PREPARATION { get; set; }
+        public string VERSION_SAISIE { get; set; }
+
+    }
+    public partial class View_STK_INVENTAIRE_DETAIL : STK_INVENTAIRE_DETAIL
+    {
+        public string CODE_BARRE_LOT { get; set; }
+        public string LIB_PRODUIT { get; set; }
+        public DateTime? DATE_PEREMPTION { get; set; }
+        public string DESIGNATION { get; set; }
+        public string MAGASIN { get; set; }
+        public string EMPLACEMENT { get; set; }
+        public decimal PRIX_ACHAT { get; set; }
+        public bool IS_INVENTORY { get; set; }
+        public decimal? QTE_STOCK { get; set; }
+        public decimal? QTE_GLOBAL { get; set; }
+        public string CODE_EMPLACEMENT { get; set; }
+
+        // cette section pour le module inventaire
+
+        public string QTE_STOCK_GLOBAL { 
+            get 
+            { 
+                return QTE_STOCK.ToString()+" / "+ QTE_GLOBAL.ToString();
+            }
+        }
+        public decimal PRIX_VENTE
+        {
+            get
+            {
+                return PPA + SHP;
+            }
+        }
+
+        public string DesignationType_origine_lot
+        {
+            get
+            {
+                if (Type_Origine_lot != null)
+                {
+                    if (Type_Origine_lot == "1" || Type_Origine_lot == "à partir de [STOCK_LOT]")
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : "Lot en stock (Démarrage de l'inventaire)");
+                    }
+                    else if (Type_Origine_lot == "2" || Type_Origine_lot == "à partir de [_STOCK_ENTREE]")
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : "Entrée en stock n° :" + ((this.NUM_ENTREE == null) ? "" : this.NUM_ENTREE));
+                    }
+                    else if (Type_Origine_lot == "3" || Type_Origine_lot == "à partir de [_INVENTAIRE]")
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : "Création inventaire");
+                    }
+                    else if (Type_Origine_lot == "4" || Type_Origine_lot == "à partir de [_TRANSFERT_MAGASIN]")
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : "Transfert inter-magasin N° " + ((this.NUM_ENTREE == null) ? "" : this.NUM_ENTREE));
+                    }
+                    else if (Type_Origine_lot == "5")
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : "Importation code barre");
+                    }
+                    else
+                    {
+                        return "Origine : " + ((Type_Origine_lot == null) ? " / " : Type_Origine_lot);
+                    }
+                }
+                else return null;
+            }
+        }
+
+    }
+
+    public partial class STK_MOBILE
+    {
+        public int? ID_STOCK { get; set; }
+        public string CODE_DETAIL { get; set; }
+        public string CODE_DOCUMENT { get; set; }
+        public string TYPE_DOCUMENT { get; set; }
+        public decimal QTE_MOBILE { get; set; }
+        public DateTime CREATED_ON { get; set; }
+        public string CREATED_BY { get; set; }
+        public string MACHINE_USER { get; set; }
+        public string APP_NAME { get; set; }
+        public string MODE_VALIDATE { get; set; }
+        public string CODE_EMPLACMENT { get; set; }
+        public string OLD_CODE_EMPLACMENT { get; set; }
+    }
+
+    public partial class STK_AJUSTEMENT_DETAIL : BASE_CLASS
+    {
+        public string CODE_DETAIL { get; set; } // varchar(32)
+        public string CODE_AJUST { get; set; } // varchar(32)
+        public int? ID_STOCK { get; set; } // int(10)
+        public DateTime? DATE_AJUST { get; set; } // datetime(3)
+        public decimal QTE_STK_BEFORE { get; set; } // numeric(18,2)
+        public decimal QTE_MVT { get; set; } // numeric(18,2)
+        public decimal QTE_STK_AFTER { get; set; } // numeric(18,2)
+        public DateTime? CREATED_ON { get; set; } // datetime(3)
+        public string CREATED_BY { get; set; } // varchar(200)
+        public DateTime? MODIFIED_ON { get; set; } // datetime(3)
+        public string MODIFIED_BY { get; set; } // varchar(200)
+    }
+
+    public partial class View_STK_AJUSTEMENT_DETAIL : STK_AJUSTEMENT_DETAIL
+    {
+        public string DESIGNATION { get; set; } // varchar(404)
+        public string CODE_MAGASIN { get; set; } // varchar(10)
+                                                 // char(8)
+        public string CODE_BARRE { get; set; } // nvarchar(250)
+        public string CODE_BARRE_LOT { get; set; } // nvarchar(1500)
+        public string CODE_EMPLACEMENT { get; set; } // varchar(10)
+        public string LOT { get; set; } // varchar(50)
+        public decimal QTE_STOCK { get; set; } // numeric(18,2)
+        public decimal PPA { get; set; } // money(19,4)
+        public decimal SHP { get; set; } // money(19,4)
+        public string DESIGN_MAGASIN { get; set; } // varchar(100)
+        public string REF_PRODUIT { get; set; } // nvarchar(250)
+        public decimal PRIX_ACH_HT { get; set; } // money(19,4)
+        public decimal PRIX_VENTE { get; set; } // money(19,4)
+        public short TYPE_PRODUIT { get; set; } // smallint(5)
+        public decimal TARIF { get; set; } // money(19,4)
+        public string CODE_LABO { get; set; } // smallint(5)
+        public string CODE_FORME { get; set; } // varchar(20)
+        public string DESIGN_FORME { get; set; } // varchar(100)
+        public string UNITE { get; set; } // varchar(50)
+        public string CONDIT { get; set; } // varchar(50)
+        public string DOSAGE { get; set; } // varchar(50)
+        public decimal MT_ACHAT { get; set; } // money(19,4)
+        public decimal MT_AJUSTEMENT
+        {
+            get
+            {
+                return (this.PPA * this.QTE_MVT) + (this.SHP * this.QTE_MVT);
+            }
+            set
+            {
+                this.MT_AJUSTEMENT = value;
+            }
+        }
     }
 
 }
