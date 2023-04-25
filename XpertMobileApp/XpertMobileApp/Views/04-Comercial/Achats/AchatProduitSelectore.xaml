@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:template="clr-namespace:XpertMobileApp.Views.Templates" 
+             xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
+             Title="{i18n:Translate pn_Produits}"
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="XpertMobileApp.Views._04_Comercial.Achats.AchatProduitSelectore">
+    
+    <ContentPage.ToolbarItems >
+        <ToolbarItem x:Name="btn_Additem" 
+                     Text="{i18n:Translate cmd_Add}" 
+                     Clicked="SelectProduct">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="check.png"/>
+                    <On Platform="UWP" Value="check.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+ 
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <StackLayout BackgroundColor="White">
+                <Frame CornerRadius="8"
+                   BackgroundColor="#fff"
+                   Margin="5"
+                   Padding="10"
+                   VerticalOptions="Start"
+                   HasShadow="True">
+                    <inputLayout:SfTextInputLayout
+                                Hint="{i18n:Translate txt_Search}" 
+                                InputViewPadding="14"
+                                IsHintAlwaysFloated="true" 
+                                FocusedColor="{DynamicResource Primary}"
+                                UnfocusedColor="{DynamicResource Primary}"    
+                                ContainerType="Outlined"
+                                Margin="3,0,0,0"
+                                OutlineCornerRadius="5">
+
+                        <Entry
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                x:Name="ent_SelectedTiers"
+                                Text="{Binding SearchedText, Mode=TwoWay}"
+                                FontSize="14"
+                                IsEnabled="True"
+                                TextColor="Black"  
+                                Margin="2,-2,5,0"/>
+
+                        <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                            <inputLayout:LabelStyle FontSize="12"/>
+                        </inputLayout:SfTextInputLayout.HelperLabelStyle>
+
+                        <inputLayout:SfTextInputLayout.TrailingView>
+                            <Image  
+                                    x:Name="searchIcon"
+                                    Margin="0,0,14,5"
+                                    VerticalOptions="Start"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Source="chercher_bleu.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="SearchProduct"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </inputLayout:SfTextInputLayout.TrailingView>
+
+                    </inputLayout:SfTextInputLayout>
+                </Frame>
+
+                <!-- Listing -->
+
+                <Frame CornerRadius="8"
+                       Padding="0"
+                   BackgroundColor="#fff"
+                   Margin="5"
+                   VerticalOptions="Start"
+                   HasShadow="True">
+
+                    <ListView x:Name="ItemsListView"
+                        ItemsSource="{Binding Items}"
+                        VerticalOptions="FillAndExpand"
+                        HasUnevenRows="true"
+                        SelectedItem="{Binding SelectedItem}"
+                        RefreshCommand="{Binding LoadItemsCommand}"
+                        IsPullToRefreshEnabled="true"
+                        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                        CachingStrategy="RecycleElement"
+                        ItemSelected="OnItemSelected">
+
+                        <ListView.Behaviors>
+                            <scroll:InfiniteScrollBehavior IsLoadingMore="{Binding IsBusy}"/>
+                        </ListView.Behaviors>
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <template:ProduitTemplate_COMM />
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+
+                        <ListView.Footer>
+                            <Grid Padding="6" IsVisible="{Binding IsBusy}">
+                                <!-- set the footer to have a zero height when invisible -->
+                                <Grid.Triggers>
+                                    <Trigger TargetType="Grid" Property="IsVisible" Value="False">
+                                        <Setter Property="HeightRequest" Value="0" />
+                                    </Trigger>
+                                </Grid.Triggers>
+                                <!-- the loading content -->
+                                <Label Text="Loading..." VerticalOptions="Center" HorizontalOptions="Center" />
+                            </Grid>
+                        </ListView.Footer>
+                    </ListView>
+                </Frame>
+            </StackLayout >
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

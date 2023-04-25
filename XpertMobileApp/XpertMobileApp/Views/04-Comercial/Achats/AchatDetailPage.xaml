@@ -2,8 +2,23 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.AchatDetailPage"
-             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
-             Title="{Binding Title}">
+             xmlns:i18n="clr-namespace:XpertMobileApp.Helpers">
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Vertical" Spacing="0">
+            
+            <Label x:Name="title" 
+               TextColor="#fff" 
+               FontSize="18"
+               FontAttributes="Bold"
+               Margin="0,0,5,0"
+               HorizontalTextAlignment="Start" />
+            
+            <Label x:Name="tiersNom" 
+               TextColor="#fff" 
+               FontSize="13"
+               HorizontalTextAlignment="Start" />
+        </StackLayout>
+    </NavigationPage.TitleView>
     <StackLayout x:Name="sl_content" Padding="5" >
 
         <!--Entete Achat-->
@@ -49,16 +64,13 @@
         </Frame>
 
         <!--Detail Achat-->
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" OutlineColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
                 <!--<StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                     <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>-->
-
-
-
                 <RefreshView 
                     x:Name="refreshView"
                     Refreshing="RefreshView_Refreshing"

@@ -803,10 +803,51 @@ namespace XpertMobileApp.DAL
                 image_source = value;
             }
         }
+        //for mobile only 
 
-        public static implicit operator List<object>(View_STK_PRODUITS v)
+
+        private decimal pRIX_UNITAIRE = 0;
+        [Ignore]
+        public decimal PRIX_UNITAIRE
         {
-            throw new NotImplementedException();
+            get { return pRIX_UNITAIRE; }
+            set
+            {
+                pRIX_UNITAIRE = value;
+                OnPropertyChanged("PRIX_UNITAIRE");
+            }
+        }
+
+        private decimal qUANTITY_SELECTIONNER = 0;
+        [Ignore]
+        public decimal QUANTITY_SELECTIONNER
+        {
+            get
+            {
+                return qUANTITY_SELECTIONNER;
+            }
+            set
+            {
+                qUANTITY_SELECTIONNER = value;
+                OnPropertyChanged("QUANTITY_SELECTIONNER");
+                OnPropertyChanged("SELECTED_COLOR");
+            }
+        }
+
+        [Ignore]
+        public Color SELECTED_COLOR
+        {
+            get
+            {
+                if (QUANTITY_SELECTIONNER > 0)
+                {
+                    return Color.FromHex("D9F0EF");
+                }
+                else
+                {
+                    return Color.White;
+                }
+            }
         }
     }
 

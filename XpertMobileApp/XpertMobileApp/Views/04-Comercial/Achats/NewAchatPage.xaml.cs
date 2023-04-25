@@ -54,6 +54,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             get { return item; }
             set { item = value; }
         }
+
         private DateTime selectedDateEcheance = DateTime.Now;
         public DateTime SelectedDateEcheance
         {
@@ -82,6 +83,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 OnPropertyChanged("EnteredNumFacture");
             }
         }
+
         private ObservableCollection<View_BSE_MAGASIN> magasinsList;
         public ObservableCollection<View_BSE_MAGASIN> MagasinsList
         {
@@ -109,7 +111,9 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         //        OnPropertyChanged("SelectedMagasin");
         //    }
         //}
+
         private ProductSelector productSelector;
+
         private TiersSelector itemSelector;
         public enum TypeOperation
         {
@@ -160,13 +164,14 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
 
             productSelector = new ProductSelector();
 
-            MessagingCenter.Subscribe<ProductSelector, View_STK_PRODUITS>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
+            MessagingCenter.Subscribe<AchatProduitSelectore, View_ACH_DOCUMENT_DETAIL>(this, MCDico.ITEM_SELECTED, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
                 {
                     this.AddNewRow(selectedItem);
                 });
             });
+
             /* Product Selector*/
 
             ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>();
@@ -187,7 +192,6 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             {
                 await GetAchatDetailWhenModifiying();
             }
-            await LoadMagasins();
         }
 
         private async void AddProduct(object sender, EventArgs e)
@@ -196,7 +200,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             {
                 await addProduct.ScaleTo(0.75, 50, Easing.Linear);
                 await addProduct.ScaleTo(1, 50, Easing.Linear);
-                await PopupNavigation.Instance.PushAsync(productSelector);
+                await Navigation.PushAsync(new AchatProduitSelectore());
             }
             catch (Exception ex)
             {
@@ -218,11 +222,6 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     await UserDialogs.Instance.AlertAsync("Veuillez Saisir un Numéro de facture", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
                     return;
                 }
-                //else if (SelectedMagasin == null && App.Online)
-                //{
-                //    await UserDialogs.Instance.AlertAsync("Veuillez selectionner un magasin", AppResources.alrt_msg_Alert, AppResources.alrt_msg_Ok);
-                //    return;
-                //}
                 foreach (var item in ItemRows)
                 {
                     if (item.PRIX_UNITAIRE == 0)
@@ -247,6 +246,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     foreach (var item in this.Item.Details)
                     {
                         item.CODE_MAGASIN = "01";
+                        item.QTE_RECUE = item.QUANTITE;
                     }
 
                     Item.CODE_MAGASIN = "01";
@@ -258,6 +258,15 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     {
                         await CrudManager.Reception.UpdateItemAsync(Item);
                     }
+                    if (achatOperation != TypeOperation.Edit.ToString())
+                    {
+                        CustomPopup ComfirmPopup = new CustomPopup(Message: "Achat crée avec succées", trueMessage: "Ok");
+                        await PopupNavigation.Instance.PushAsync(ComfirmPopup);
+                        for (var counter = 1; counter < 2; counter++)
+                        {
+                            Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                        }
+                    }
                     await Navigation.PopAsync();
                 }
                 else
@@ -265,6 +274,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     foreach (var item in this.Item.Details)
                     {
                         item.CODE_MAGASIN = "01";
+                        item.QTE_RECUE = item.QUANTITE;
                         Item.TOTAL_TTC_REEL += item.PRIX_UNITAIRE;
                         Item.TOTAL_HT += item.PRIX_UNITAIRE * item.QUANTITE;
                         Item.TOTAL_MARGE += item.PRIX_VENTE - item.PRIX_UNITAIRE;
@@ -275,6 +285,8 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     if (achatOperation != TypeOperation.Edit.ToString())
                     {
                         await SQLite_Manager.InsertAchat(Item);
+                        CustomPopup ComfirmPopup = new CustomPopup(Message: "Achat crée avec succées", trueMessage: "Ok");
+                        await PopupNavigation.Instance.PushAsync(ComfirmPopup);
                         for (var counter = 1; counter < 2; counter++)
                         {
                             Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
@@ -282,8 +294,9 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     }
                     else
                     {
+                        CustomPopup ComfirmPopup = new CustomPopup(Message: "Modification faites avec succées", trueMessage: "Ok");
+                        await PopupNavigation.Instance.PushAsync(ComfirmPopup);
                         await SQLite_Manager.UpdateAchat(Item);
-
                     }
                     await Navigation.PopAsync();
                 }
@@ -312,7 +325,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 row.SHP = product.SHP;
                 row.PPA = product.PPA;
                 row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-                row.PRIX_VENTE = product.PRIX_VENTE_HT; // TODO mettre le bon prix
+                row.PRIX_VENTE = product.PRIX_VENTE_HT;
                 row.QUANTITE = 1;
                 this.ItemRows.Add(row);
             }
@@ -322,11 +335,27 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
             row.Index = ItemRows.Count();
         }
+        private void AddNewRow(View_ACH_DOCUMENT_DETAIL product)
+        {
+            var row = this.ItemRows.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
+            if (row == null)
+            {
+                row = new View_ACH_DOCUMENT_DETAIL();
+                this.ItemRows.Add(product);
+            }
+            else
+            {
+                ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>(ItemRows.Where(e => e.CODE_PRODUIT != product.CODE_PRODUIT).ToList());
+                row.QUANTITE = product.QUANTITE;
+                row.PRIX_UNITAIRE = product.PRIX_UNITAIRE;
+                ItemRows.Add(row);
+            }
+            row.Index = ItemRows.Count();
+        }
         #endregion
 
         public async Task LoadMagasins()
         {
-
             try
             {
                 // Load Magasins

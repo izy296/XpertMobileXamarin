@@ -70,7 +70,6 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
         }
 
-
         private EditAchatArgs result;
         private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
         public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
@@ -119,11 +118,9 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             {
                 this.Produit = Produit;
                 produit_label.Text = Produit.DESIGNATION_PRODUIT;
-                QuantityTotal = CountUnite = result.QUANTITY = produit.QUANTITE; 
+                QuantityTotal = result.QUANTITY = CountUnite = produit.QUANTITE;
                 result.PRIX_UNITAIRE = produit.PRIX_UNITAIRE;
             }
-
-
             BindingContext = this;
         }
         protected override async void OnAppearing()
@@ -150,8 +147,8 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                         Grid grid = new Grid();
                         grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(58) });
                         grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(2, GridUnitType.Star) });
+                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
+                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
 
                         // add the entry to the grid 
 
@@ -180,6 +177,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                         Entry entry = new Entry
                         {
                             FontSize = 14,
+                            Keyboard = Keyboard.Numeric,
                             Text = "0",
                         };
 
@@ -195,18 +193,19 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                             VerticalOptions = LayoutOptions.End,
                             Text = "+" + unite.COEFFICIENT.ToString("0.00"),
                             TextColor = Color.White,
-                            CornerRadius = 5,
+                            CornerRadius = 50,
                             BackgroundColor = Color.FromHex("#7EC384"),
                             BorderColor = Color.FromHex("#7EC384"),
                             BorderWidth = 1,
                             FontSize = 14,
-                            HeightRequest = 49,
+                            HeightRequest = 48,
+                            WidthRequest = 48,
                         };
 
 
                         buttonAdd.CommandParameter = unite.COEFFICIENT;
                         buttonAdd.Clicked += AddUnite;
-                        grid.Children.Add(buttonAdd, 1, 0);
+
 
 
                         //add the second button to the grid 
@@ -215,17 +214,18 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                             VerticalOptions = LayoutOptions.End,
                             Text = "-" + unite.COEFFICIENT.ToString("0.00"),
                             TextColor = Color.White,
-                            CornerRadius = 5,
+                            CornerRadius = 50,
                             BackgroundColor = Color.FromHex("#e65b65"),
                             BorderColor = Color.FromHex("#e65b65"),
                             BorderWidth = 1,
                             FontSize = 14,
-                            HeightRequest = 49,
+                            HeightRequest = 48,
+                            WidthRequest = 48,
                         };
                         subsButton.CommandParameter = unite.COEFFICIENT;
                         subsButton.Clicked += SubstractUnite;
-                        grid.Children.Add(subsButton, 2, 0);
-
+                        grid.Children.Add(buttonAdd, 2, 0);
+                        grid.Children.Add(subsButton, 1, 0);
                         // add the grid to the stack layout
                         inputsWrapper.Children.Add(grid);
                     }
@@ -281,23 +281,27 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
 
         private void SubstractUnite(object sender, EventArgs e)
         {
-            if (CountUnite > 0)
+            var coeff = ((SfButton)sender).CommandParameter as decimal?;
+            if (coeff == null)
             {
-                var coeff = ((SfButton)sender).CommandParameter as decimal?;
-                if (coeff == null)
+                if (countUnite > 0)
                 {
                     coeff = 1;
                     CountUnite -= coeff;
                 }
-                else
+            }
+            else
+            {
+                if (countUnite - coeff > 0)
                 {
                     CountColis -= coeff;
                     ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (countColis / coeff).ToString();
                 }
-                QuantityTotal = countUnite + CountColis;
             }
-
+            QuantityTotal = countUnite + CountColis;
         }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {

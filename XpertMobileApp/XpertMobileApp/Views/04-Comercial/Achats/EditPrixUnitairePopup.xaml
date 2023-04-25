@@ -37,8 +37,8 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="6*"/>
-                                <ColumnDefinition Width="2*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="48"/>
+                                <ColumnDefinition Width="48"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="58"/>
@@ -56,6 +56,7 @@
 
                                 <Entry FontSize="14" 
                                    Text="{Binding CountUnite}" 
+                                   Keyboard="Numeric"
                                    x:Name="unite_field"/>
 
                                 <inputLayout:SfTextInputLayout.HelperLabelStyle>
@@ -64,30 +65,34 @@
                             </inputLayout:SfTextInputLayout>
 
                             <button:SfButton 
-                                VerticalOptions="End"
-                                Text="+1"
-                                TextColor="#fff"
-                                CornerRadius="5"
-                                BackgroundColor="#7EC384"
-                                BorderColor = "#7EC384"
-                                Grid.Column="1" 
-                                BorderWidth="1"
-                                FontSize="14"
-                                Clicked="AddUnite"
-                                HeightRequest="49"/>
-
-                            <button:SfButton 
                                 VerticalOptions="End"   
                                 Text="-1" 
                                 BorderWidth="1"
-                                CornerRadius="5"   
+                                CornerRadius="50"   
                                 BorderColor = "#e65b65"
                                 BackgroundColor="#e65b65"
-                                HeightRequest="49"
-                                Grid.Column="2"
+                                HeightRequest="48"
+                                WidthRequest="48"
+                                Grid.Column="1"
                                 FontSize="14"
                                 Clicked="SubstractUnite"
                                 TextColor="#fff"/>
+                            
+                            <button:SfButton 
+                                VerticalOptions="End"
+                                Text="+1"
+                                TextColor="#fff"
+                                CornerRadius="50"
+                                BackgroundColor="#7EC384"
+                                BorderColor = "#7EC384"
+                                Grid.Column="2" 
+                                BorderWidth="1"
+                                FontSize="14"
+                                Clicked="AddUnite"
+                                HeightRequest="48"
+                                WidthRequest="48"/>
+
+
                         </Grid>
                     </StackLayout>
                     <!--Unités-->
@@ -104,7 +109,9 @@
                             ContainerType="Outlined"
                             OutlineCornerRadius="5">
 
-                        <Entry FontSize="14" Text="{Binding Result.PRIX_UNITAIRE, Mode=TwoWay}"/>
+                        <Entry FontSize="14" 
+                               Keyboard="Numeric"
+                               Text="{Binding Result.PRIX_UNITAIRE, Mode=TwoWay}"/>
 
                         <inputLayout:SfTextInputLayout.HelperLabelStyle>
                             <inputLayout:LabelStyle FontSize="12"/>

@@ -72,8 +72,8 @@ namespace XpertMobileApp.Views
 
                 if (viewModel.Items.Count <= 0)
                     LoadStats();
-
-                viewModel.LoadExtrasDataCommand.Execute(null);
+                viewModel.LoadItemsCommand.Execute(null);
+                //viewModel.LoadExtrasDataCommand.Execute(null);
             }
 
             if (!AppManager.HasAdmin)

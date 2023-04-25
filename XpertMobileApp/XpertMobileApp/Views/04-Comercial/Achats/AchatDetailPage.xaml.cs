@@ -35,17 +35,13 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             this.Item = achat;
-
+            this.tiersNom.Text = achat.TIERS_NomC.ToString();
+            this.title.Text = "Achats";
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>(achat, achat.CODE_DOC);
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             HideFields();
-            //// TODO put into th generic view model 
-            //MessagingCenter.Subscribe<SessionsViewModel, View_VTE_VENTE>(this, MCDico.REFRESH_ITEM, async (obj, item) =>
-            //{
-            //    // viewModel.Item = item;
-            //});
         }
 
         protected override void OnAppearing()
@@ -58,7 +54,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                if (Constants.AppName == Apps.XCOM_Mob)
+                if (Constants.AppName != Apps.XCOM_Mob)
                 {
                     labelShp.IsVisible = false;
                     labelPpa.IsVisible = false;
@@ -93,6 +89,7 @@ namespace XpertMobileApp.Views
                 else
                 {
                     // Get the details from the sqlite ....
+                    this.viewModel.Title = this.Item.TIERS_TITLE;
                     var AchatList = await SQLite_Manager.GetAchatDetails(this.Item.CODE_DOC);
                     foreach (var item in AchatList)
                     {

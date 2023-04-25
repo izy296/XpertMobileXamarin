@@ -845,6 +845,7 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
+                await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT>();
                 await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
             }
             catch (Exception ex)

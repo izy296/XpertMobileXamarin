@@ -18,7 +18,7 @@
                 <StackLayout>
                     <FlexLayout Direction="Row">
 
-                        <!--Tiers selector -->
+                        <!--Fournisseur selector -->
                         <inputLayout:SfTextInputLayout
                                 Hint="{i18n:Translate pn_Fournisseur}" 
                                 InputViewPadding="14"
