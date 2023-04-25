@@ -55,7 +55,7 @@
                                     OutlineCornerRadius="5">
 
                                 <Entry FontSize="14" 
-                                   Text="{Binding CountUnite}" 
+                                   Text="{Binding CountUnite,Mode=TwoWay}" 
                                    Keyboard="Numeric"
                                    x:Name="unite_field"/>
 
