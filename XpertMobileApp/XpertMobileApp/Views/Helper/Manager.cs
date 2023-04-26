@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,8 +38,8 @@ namespace XpertMobileApp.Views.Helper
         {
             try
             {
-                GeolocationRequest geolocationRequest = new GeolocationRequest(accuracy:GeolocationAccuracy.Medium,timeout: TimeSpan.FromSeconds(3));
-                 return await Geolocation.GetLocationAsync(geolocationRequest);  //(request, cts.Token);
+                GeolocationRequest geolocationRequest = new GeolocationRequest(accuracy: GeolocationAccuracy.Medium, timeout: TimeSpan.FromSeconds(3));
+                return await Geolocation.GetLocationAsync(geolocationRequest);  //(request, cts.Token);
             }
             catch (Exception Ex)
             {
@@ -61,13 +62,16 @@ namespace XpertMobileApp.Views.Helper
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        public static decimal TotalQuantiteUnite(List<View_BSE_PRODUIT_AUTRE_UNITE> list)
+        public static decimal TotalQuantiteUnite(List<View_BSE_PRODUIT_AUTRE_UNITE> list, bool multiplication = true)
         {
             if (list != null)
             {
                 decimal total = 0;
                 foreach (var item in list)
-                    total += QuantiteUnitetoQuantite(item);
+                    if (multiplication)
+                        total += QuantiteUnitetoQuantite(item);
+                    else
+                        total += item.SelectedQUANTITE;
                 return total;
             }
             else

@@ -22,16 +22,8 @@
             </ToolbarItem.Icon>
         </ToolbarItem>
 
-        <!--<ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
-            <ToolbarItem.Icon>
-                <OnPlatform x:TypeArguments="FileImageSource">
-                    <On Platform="UWP" Value="filter.png"/>
-                    <On Platform="Android" Value="filter.png"/>
-                </OnPlatform>
-            </ToolbarItem.Icon>
-        </ToolbarItem>-->
-    </ContentPage.ToolbarItems>
 
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
 
         <AbsoluteLayout 

@@ -84,37 +84,25 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
         }
 
-        private ObservableCollection<View_BSE_MAGASIN> magasinsList;
-        public ObservableCollection<View_BSE_MAGASIN> MagasinsList
+        private decimal totalPrice;
+
+        public decimal TotalPrice
         {
             get
             {
-                return magasinsList;
+                return totalPrice;
             }
             set
             {
-                magasinsList = value;
-                OnPropertyChanged("MagasinsList");
+                totalPrice = value;
+                OnPropertyChanged("TotalPrice");
             }
         }
-
-        //private View_BSE_MAGASIN selectedMagasin;
-        //public View_BSE_MAGASIN SelectedMagasin
-        //{
-        //    get
-        //    {
-        //        return selectedMagasin;
-        //    }
-        //    set
-        //    {
-        //        selectedMagasin = value;
-        //        OnPropertyChanged("SelectedMagasin");
-        //    }
-        //}
 
         private ProductSelector productSelector;
 
         private TiersSelector itemSelector;
+        private bool itemAdded { get; set; } = false;
         public enum TypeOperation
         {
             Edit,
@@ -175,14 +163,8 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             /* Product Selector*/
 
             ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>();
-            MagasinsList = new ObservableCollection<View_BSE_MAGASIN>();
 
             BindingContext = this;
-
-            if (!App.Online)
-            {
-                //MagasinList.IsEnabled = false;
-            }
 
         }
         protected override async void OnAppearing()
@@ -192,8 +174,15 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             {
                 await GetAchatDetailWhenModifiying();
             }
-        }
 
+            if (this.ItemRows !=null && this.ItemRows.Count > 0)
+            {
+                foreach (var item in ItemRows)
+                {
+                    TotalPrice = totalPrice + (item.PRIX_UNITAIRE * item.QUANTITE);
+                }
+            }
+        }
         private async void AddProduct(object sender, EventArgs e)
         {
             try
@@ -314,6 +303,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         #region Produit 
         private void AddNewRow(View_STK_PRODUITS product)
         {
+            itemAdded = true;
             var row = this.ItemRows.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
 
             if (row == null)
@@ -335,8 +325,10 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
             row.Index = ItemRows.Count();
         }
+
         private void AddNewRow(View_ACH_DOCUMENT_DETAIL product)
         {
+            itemAdded = true;
             var row = this.ItemRows.Where(e => e.CODE_PRODUIT == product.CODE_PRODUIT).FirstOrDefault();
             if (row == null)
             {
@@ -352,36 +344,8 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
             row.Index = ItemRows.Count();
         }
+
         #endregion
-
-        public async Task LoadMagasins()
-        {
-            try
-            {
-                // Load Magasins
-                MagasinsList.Clear();
-                List<View_BSE_MAGASIN> ListMagasin;
-                if (App.Online)
-                {
-                    ListMagasin = await CrudManager.BSE_MAGASINS.GetItemsAsync() as List<View_BSE_MAGASIN>;
-
-                    View_BSE_MAGASIN allElem = new View_BSE_MAGASIN();
-                    allElem.CODE = "";
-                    allElem.DESIGNATION = "Aucun";
-                    MagasinsList.Add(allElem);
-
-                    foreach (var itemC in ListMagasin)
-                    {
-                        MagasinsList.Add(itemC);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
-            }
-        }
 
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -390,6 +354,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 if (e.CurrentSelection.Count > 0)
                 {
                     var Produit = (e.CurrentSelection[0] as View_ACH_DOCUMENT_DETAIL);
+                    decimal oldMT_HT = Produit.MT_HT;
                     if (item == null)
                         return;
                     EditPrixUnitairePopup popup = new EditPrixUnitairePopup(Produit);
@@ -402,6 +367,9 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                             {
                                 tom.PRIX_UNITAIRE = popup.Result.PRIX_UNITAIRE;
                                 tom.QUANTITE = (decimal)popup.Result.QUANTITY;
+                                tom.MT_HT = tom.PRIX_UNITAIRE * tom.QUANTITE;
+                                TotalPrice = totalPrice + (tom.PRIX_UNITAIRE * tom.QUANTITE) - oldMT_HT;
+                                //Produit.MT_HT = tom.PRIX_UNITAIRE * tom.QUANTITE;
                             }
                         }
                     }
@@ -494,9 +462,12 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         {
             try
             {
+                TotalPrice = 0;
                 if (App.Online)
                 {
+
                     var listeDetails = await WebServiceClient.GetAchatsDetails(this.Item.CODE_DOC);
+
                     foreach (var item in listeDetails)
                     {
                         this.ItemRows.Add(item);
@@ -504,14 +475,19 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 }
                 else
                 {
-                    // Get the details from the sqlite ....
                     var AchatList = await SQLite_Manager.GetAchatDetails(this.Item.CODE_DOC);
                     foreach (var item in AchatList)
                     {
                         this.ItemRows.Add(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL>(item));
                     }
                 }
+
+                // Get the details from the sqlite ...
+                this.ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>(this.ItemRows.GroupBy(x => x.CODE_PRODUIT)
+                      .Select(g => g.First()).ToList());
                 UserDialogs.Instance.HideLoading();
+
+
             }
             catch (Exception ex)
             {

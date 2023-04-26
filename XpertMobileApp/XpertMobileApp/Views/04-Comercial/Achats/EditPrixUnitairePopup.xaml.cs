@@ -30,60 +30,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         private TaskCompletionSource<bool> taskCompletionSource;
         public Task<bool> PopupClosedTask { get { return taskCompletionSource.Task; } }
 
-        private decimal? countUnite = 0;
-        public decimal? CountUnite
-        {
-            get
-            {
-                return countUnite;
-            }
-            set
-            {
-                countUnite = value;
-                OnPropertyChanged("CountUnite");
-            }
-        }
-
-        private decimal? countColis = 0;
-        public decimal? CountColis
-        {
-            get
-            {
-                return countColis;
-            }
-            set
-            {
-                countColis = value;
-                OnPropertyChanged("CountColis");
-            }
-        }
-
-        private decimal? quantityTotal = 0;
-
-        public decimal? QuantityTotal
-        {
-            get { return quantityTotal; }
-            set
-            {
-                quantityTotal = value;
-                OnPropertyChanged("QuantityTotal");
-            }
-        }
-
         private EditAchatArgs result;
-        private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
-        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
-        {
-            get
-            {
-                return unitesList;
-            }
-            set
-            {
-                unitesList = value;
-                OnPropertyChanged("UnitesList");
-            }
-        }
         public EditAchatArgs Result
         {
             get { return result; }
@@ -113,12 +60,12 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             this.CloseWhenBackgroundIsClicked = false;
             taskCompletionSource = new TaskCompletionSource<bool>();
             Result = new EditAchatArgs();
-            UnitesList = new List<View_BSE_PRODUIT_AUTRE_UNITE>();
             if (Produit != null)
             {
                 this.Produit = Produit;
                 produit_label.Text = Produit.DESIGNATION_PRODUIT;
-                QuantityTotal = result.QUANTITY = CountUnite = produit.QUANTITE;
+                result.QUANTITY = this.produit.SelectedQUANTITE = produit.QUANTITE;
+                qteTotal.Text = "Quantité Total " + Produit.QUANTITE;
                 result.PRIX_UNITAIRE = produit.PRIX_UNITAIRE;
             }
             BindingContext = this;
@@ -126,109 +73,107 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            if (UnitesList != null && UnitesList.Count <= 0)
+
+            if (App.Online)
             {
-                if (App.Online)
-                {
-                    // get unite by produit 
-                    UnitesList = await WebServiceClient.GetProduitAutreUnite(Produit.CODE_PRODUIT);
-                }
-                else
-                {
-                    UnitesList = await SQLite_Manager.GetUniteByProduit(Produit.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
-                }
+                // get unite by produit 
+                this.produit.UnitesList = await WebServiceClient.GetProduitAutreUnite(Produit.CODE_PRODUIT);
+            }
+            else
+            {
+                this.produit.UnitesList = await SQLite_Manager.GetUniteByProduit(Produit.CODE_PRODUIT) as List<View_BSE_PRODUIT_AUTRE_UNITE>;
+            }
 
-                if (UnitesList.Count > 0)
+            if (this.produit.UnitesList.Count > 0)
+            {
+                foreach (var unite in this.produit.UnitesList)
                 {
-                    foreach (var unite in UnitesList)
+                    //Definning the grid ...
+
+                    Grid grid = new Grid();
+                    grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(58) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
+                    grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
+
+                    // add the entry to the grid 
+
+                    SfTextInputLayout inputLayout = new SfTextInputLayout
                     {
-                        //Definning the grid ...
+                        Hint = "Colis",
+                        Margin = new Thickness(5, 0, 5, 0),
+                        InputViewPadding = new Thickness(14),
+                        IsHintAlwaysFloated = true,
+                        FocusedColor = (Color)Application.Current.Resources["Primary"],
+                        UnfocusedColor = (Color)Application.Current.Resources["Primary"],
+                        ContainerType = ContainerType.Outlined,
+                        OutlineCornerRadius = 5,
 
-                        Grid grid = new Grid();
-                        grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(58) });
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(6, GridUnitType.Star) });
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
-                        grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(48) });
-
-                        // add the entry to the grid 
-
-                        SfTextInputLayout inputLayout = new SfTextInputLayout
+                        InputView = new Entry
                         {
-                            Hint = "Colis",
-                            Margin = new Thickness(5, 0, 5, 0),
-                            InputViewPadding = new Thickness(14),
-                            IsHintAlwaysFloated = true,
-                            FocusedColor = (Color)Application.Current.Resources["Primary"],
-                            UnfocusedColor = (Color)Application.Current.Resources["Primary"],
-                            ContainerType = ContainerType.Outlined,
-                            OutlineCornerRadius = 5,
-
-                            InputView = new Entry
-                            {
-                                FontSize = 12,
-                            },
-                            HelperLabelStyle = new LabelStyle
-                            {
-                                FontSize = 15
-                            }
-                        };
-
-                        // definning the entry ..
-                        Entry entry = new Entry
+                            FontSize = 12,
+                        },
+                        HelperLabelStyle = new LabelStyle
                         {
-                            FontSize = 14,
-                            Keyboard = Keyboard.Numeric,
-                            Text = "0",
-                        };
+                            FontSize = 15
+                        }
+                    };
+                    // definning the entry ..
+                    Entry entry = new Entry
+                    {
+                        FontSize = 14,
+                        Keyboard = Keyboard.Numeric,
+                        Text = "0",
+                    };
+                    entry.SetBinding(Entry.TextProperty, nameof(unite.SelectedQUANTITE), BindingMode.TwoWay);
 
-                        // add the entry inside the layout...
-                        inputLayout.InputView = entry;
+                    // add the entry inside the layout...
+                    inputLayout.InputView = entry;
 
-                        // add the Layout inside the grid...
-                        grid.Children.Add(inputLayout, 0, 0);
+                    // add the Layout inside the grid...
+                    grid.Children.Add(inputLayout, 0, 0);
 
-                        // add the Buttons to the Grid 
-                        SfButton buttonAdd = new SfButton
-                        {
-                            VerticalOptions = LayoutOptions.End,
-                            Text = "+" + unite.COEFFICIENT.ToString("0.00"),
-                            TextColor = Color.White,
-                            CornerRadius = 50,
-                            BackgroundColor = Color.FromHex("#7EC384"),
-                            BorderColor = Color.FromHex("#7EC384"),
-                            BorderWidth = 1,
-                            FontSize = 14,
-                            HeightRequest = 48,
-                            WidthRequest = 48,
-                        };
-
-
-                        buttonAdd.CommandParameter = unite.COEFFICIENT;
-                        buttonAdd.Clicked += AddUnite;
+                    // add the Buttons to the Grid 
+                    SfButton buttonAdd = new SfButton
+                    {
+                        VerticalOptions = LayoutOptions.End,
+                        Text = "+" + unite.COEFFICIENT.ToString("0.00"),
+                        TextColor = Color.White,
+                        CornerRadius = 50,
+                        BackgroundColor = Color.FromHex("#7EC384"),
+                        BorderColor = Color.FromHex("#7EC384"),
+                        BorderWidth = 1,
+                        FontSize = 14,
+                        HeightRequest = 48,
+                        WidthRequest = 48,
+                    };
 
 
+                    buttonAdd.CommandParameter = unite;
+                    buttonAdd.Clicked += AddUnite;
 
-                        //add the second button to the grid 
-                        SfButton subsButton = new SfButton
-                        {
-                            VerticalOptions = LayoutOptions.End,
-                            Text = "-" + unite.COEFFICIENT.ToString("0.00"),
-                            TextColor = Color.White,
-                            CornerRadius = 50,
-                            BackgroundColor = Color.FromHex("#e65b65"),
-                            BorderColor = Color.FromHex("#e65b65"),
-                            BorderWidth = 1,
-                            FontSize = 14,
-                            HeightRequest = 48,
-                            WidthRequest = 48,
-                        };
-                        subsButton.CommandParameter = unite.COEFFICIENT;
-                        subsButton.Clicked += SubstractUnite;
-                        grid.Children.Add(buttonAdd, 2, 0);
-                        grid.Children.Add(subsButton, 1, 0);
-                        // add the grid to the stack layout
-                        inputsWrapper.Children.Add(grid);
-                    }
+
+
+                    //add the second button to the grid 
+                    SfButton subsButton = new SfButton
+                    {
+                        VerticalOptions = LayoutOptions.End,
+                        Text = "-" + unite.COEFFICIENT.ToString("0.00"),
+                        TextColor = Color.White,
+                        CornerRadius = 50,
+                        BackgroundColor = Color.FromHex("#e65b65"),
+                        BorderColor = Color.FromHex("#e65b65"),
+                        BorderWidth = 1,
+                        FontSize = 14,
+                        HeightRequest = 48,
+                        WidthRequest = 48,
+                    };
+                    subsButton.CommandParameter = unite;
+                    subsButton.Clicked += SubstractUnite;
+                    grid.Children.Add(buttonAdd, 2, 0);
+                    grid.Children.Add(subsButton, 1, 0);
+                    // add the grid to the stack layout
+                    inputsWrapper.Children.Add(grid);
                 }
             }
         }
@@ -236,7 +181,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         {
             try
             {
-                Result.QUANTITY = QuantityTotal;
+                Result.QUANTITY = decimal.Parse(Produit.TotalSelectedQuantite);
                 taskCompletionSource.SetResult(true);
                 await PopupNavigation.Instance.PopAsync();
             }
@@ -261,44 +206,45 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
 
         private void AddUnite(object sender, EventArgs e)
         {
-            if (CountUnite >= 0)
+            if (produit.SelectedQUANTITE >= 0)
             {
 
-                var coeff = ((SfButton)sender).CommandParameter as decimal?;
-                if (coeff == null)
+                var unite = ((SfButton)sender).CommandParameter as View_BSE_PRODUIT_AUTRE_UNITE;
+                if (unite == null)
                 {
-                    coeff = 1;
-                    CountUnite += coeff;
+                    Produit.SelectedQUANTITE += 1;
                 }
                 else
                 {
-                    CountColis += coeff;
-                    ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (countColis / coeff).ToString();
+                    unite.SelectedQUANTITE += unite.COEFFICIENT;
+                    OnPropertyChanged("TotalSelectedQuantite");
+                    ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (unite.SelectedQUANTITE / unite.COEFFICIENT).ToString();
+                    
                 }
-                QuantityTotal = countUnite + CountColis;
+                qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
             }
         }
 
         private void SubstractUnite(object sender, EventArgs e)
         {
-            var coeff = ((SfButton)sender).CommandParameter as decimal?;
-            if (coeff == null)
+            var unite = ((SfButton)sender).CommandParameter as View_BSE_PRODUIT_AUTRE_UNITE;
+            if (unite == null)
             {
-                if (countUnite > 0)
+                if (Produit.SelectedQUANTITE > 0)
                 {
-                    coeff = 1;
-                    CountUnite -= coeff;
+                    Produit.SelectedQUANTITE -= 1;
                 }
             }
             else
             {
-                if (countUnite - coeff > 0)
+                if (unite.SelectedQUANTITE > 0)
                 {
-                    CountColis -= coeff;
-                    ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (countColis / coeff).ToString();
+                    unite.SelectedQUANTITE -= unite.COEFFICIENT;
+                    OnPropertyChanged("TotalSelectedQuantite");
+                    ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (unite.SelectedQUANTITE / unite.COEFFICIENT).ToString();
                 }
+                qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
             }
-            QuantityTotal = countUnite + CountColis;
         }
 
 
@@ -306,6 +252,11 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void unite_field_Unfocused(object sender, FocusEventArgs e)
+        {
+
         }
     }
 

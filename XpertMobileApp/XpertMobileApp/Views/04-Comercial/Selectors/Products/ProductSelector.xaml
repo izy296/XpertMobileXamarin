@@ -8,9 +8,8 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              x:Class="XpertMobileApp.Views.ProductSelector">
   <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
-    <StackLayout BackgroundColor="White">
-
-       <!-- Filter -->
+        <StackLayout BackgroundColor="White">
+            <!-- Filter -->
        <Grid Margin="5,10,5,5">
            <Grid.ColumnDefinitions>
                <ColumnDefinition Width="*"/>

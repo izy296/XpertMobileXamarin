@@ -9,6 +9,7 @@ using SQLite;
 using Xamarin.Forms;
 using System.IO;
 using XpertMobileApp.SQLite_Managment;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.DAL
 {
@@ -287,7 +288,17 @@ namespace XpertMobileApp.DAL
         public decimal COUT_ACHAT { get; set; } // money(19,4)
         public decimal TAUX_MARGE { get; set; } // money(19,4)
         public decimal PRIX_TTC { get; set; } // money(19,4)
-        public decimal MT_HT { get; set; } // money(19,4)
+        private decimal mT_HT;
+
+        public decimal MT_HT// money(19,4)
+        {
+            get { return mT_HT; }
+            set
+            {
+                mT_HT = value;
+                OnPropertyChanged("MT_HT");
+            }
+        }
         public decimal MT_RISTOURNE { get; set; } // money(19,4)
         public decimal MT_TVA { get; set; } // money(19,4)
         public decimal MT_RISTOURNE_FACT { get; set; } // money(19,4)
@@ -540,6 +551,44 @@ namespace XpertMobileApp.DAL
             get
             {
                 return QTE_BONUS > 0 ? true : false; ;
+            }
+        }
+
+        //Mobile only 
+        private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
+        [Ignore]
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
+        {
+            get
+            {
+                return unitesList;
+            }
+            set
+            {
+                unitesList = value;
+            }
+        }
+        [Ignore]
+        public string TotalSelectedQuantite
+        {
+            get
+            {
+                return (SelectedQUANTITE + Manager.TotalQuantiteUnite(UnitesList, false)).ToString();
+            }
+        }
+
+        private decimal selectedQUANTITE;
+        public decimal SelectedQUANTITE
+        {
+            get
+            {
+                return selectedQUANTITE;
+            }
+            set
+            {
+                selectedQUANTITE = value;
+                OnPropertyChanged("SelectedQUANTITE");
+                OnPropertyChanged("TotalSelectedQuantite");
             }
         }
     }

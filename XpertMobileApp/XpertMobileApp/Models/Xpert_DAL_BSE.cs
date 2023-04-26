@@ -51,9 +51,9 @@ namespace XpertMobileApp.Models
     {
         public string DESIGNATION_UNITE { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
-        private decimal selectedQUANTITE { get; set; }
+        private decimal selectedQUANTITE { get; set; } = 0;
         [Ignore]
-        public Decimal SelectedQUANTITE
+        public decimal SelectedQUANTITE
         {
             get
             {
@@ -63,6 +63,7 @@ namespace XpertMobileApp.Models
             {
                 selectedQUANTITE = value;
                 OnPropertyChanged("SelectedQUANTITE");
+                OnPropertyChanged("TotalSelectedQuantite");
             }
         }
     }

@@ -28,7 +28,11 @@ namespace XpertMobileApp.Views
         public View_ACH_DOCUMENT Item
         {
             get { return item; }
-            set { item = value; }
+            set
+            {
+                item = value;
+                OnPropertyChanged("Item");
+            }
         }
         public AchatDetailPage(View_ACH_DOCUMENT achat)
         {
@@ -38,7 +42,6 @@ namespace XpertMobileApp.Views
             this.tiersNom.Text = achat.TIERS_NomC.ToString();
             this.title.Text = "Achats";
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>(achat, achat.CODE_DOC);
-
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
             HideFields();
@@ -96,6 +99,7 @@ namespace XpertMobileApp.Views
                         viewModel.ItemRows.Add(XpertHelper.CloneObject<View_ACH_DOCUMENT_DETAIL>(item));
                     }
                 }
+                this.CountTotal.Text = viewModel.ItemRows.Count().ToString();
                 UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)

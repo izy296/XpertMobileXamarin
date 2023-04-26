@@ -3,10 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
-             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex"
+             xmlns:flex="clr-namespace:Flex.Controls;assembly=Flex" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              Title="Nouvel Achat"
              BackgroundColor="#fff"
              x:Class="XpertMobileApp.Views._04_Comercial.Achats.NewAchatPage">
+
+    <ContentPage.ToolbarItems >
+        <ToolbarItem x:Name="btn_Additem" 
+                     Text="{i18n:Translate cmd_Add}" 
+                     Clicked="CreateNewSell">
+            <ToolbarItem.Icon>
+                <OnPlatform x:TypeArguments="FileImageSource">
+                    <On Platform="Android" Value="check.png"/>
+                    <On Platform="UWP" Value="check.png"/>
+                </OnPlatform>
+            </ToolbarItem.Icon>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
             <Frame CornerRadius="8"
@@ -204,22 +218,21 @@
                     </CollectionView>
                 </StackLayout>
             </Frame>
+            <yummy:PancakeView BackgroundColor="#1E47BD" CornerRadius="5,5,0,0">
+                <StackLayout Orientation="Horizontal" Spacing="5" Padding="15" HorizontalOptions="Center">
 
-            <flex:FlexButton
-                    VerticalOptions="End"
-                    HorizontalOptions="FillAndExpand"
-                    MinimumHeightRequest="50"
-                    HeightRequest="40"
-                    Padding="0"
-                    Margin="10,0,10,5"
-                    Text="Valider"
-                    CornerRadius="15"
-                    ForegroundColor="#ffffff"
-                    BackgroundColor="{DynamicResource NavigationPrimary}"
-                    BorderColor="{DynamicResource NavigationPrimary}"
-                    BorderThickness="1"
-                    WidthRequest="130"
-                    Clicked="CreateNewSell"/>
+                    <StackLayout Orientation="Vertical" Margin="10,0,0,0" Spacing="0">
+
+                        <Label Text="{ Binding TotalPrice, StringFormat='Total : {0:N2} DA'}" 
+                               FontSize="16"
+                               TextColor="#fff"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Start"/>
+                        
+                    </StackLayout>
+
+                </StackLayout>
+            </yummy:PancakeView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

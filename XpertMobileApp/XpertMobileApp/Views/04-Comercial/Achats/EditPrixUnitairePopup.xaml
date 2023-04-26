@@ -43,7 +43,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="58"/>
                             </Grid.RowDefinitions>
-                            
+
                             <inputLayout:SfTextInputLayout
                                     Hint="Unités" 
                                     Margin="5,0,5,0"
@@ -55,7 +55,7 @@
                                     OutlineCornerRadius="5">
 
                                 <Entry FontSize="14" 
-                                   Text="{Binding CountUnite,Mode=TwoWay}" 
+                                   Text="{Binding Produit.SelectedQUANTITE,Mode=TwoWay}" 
                                    Keyboard="Numeric"
                                    x:Name="unite_field"/>
 
@@ -77,7 +77,7 @@
                                 FontSize="14"
                                 Clicked="SubstractUnite"
                                 TextColor="#fff"/>
-                            
+
                             <button:SfButton 
                                 VerticalOptions="End"
                                 Text="+1"
@@ -96,7 +96,7 @@
                         </Grid>
                     </StackLayout>
                     <!--Unités-->
-                    
+
 
                     <!--Num Facture-->
                     <inputLayout:SfTextInputLayout
@@ -123,7 +123,8 @@
                     </inputLayout:SfTextInputLayout>
 
                     <!--Quantité Total-->
-                    <Label Text="{Binding QuantityTotal,StringFormat='Quantité Total :{0:N2}'}" 
+                    <Label x:Name="qteTotal"
+ 
                            TextColor="#0c0c0c"
                            FontSize="16" 
                            HorizontalOptions="Center"/>
