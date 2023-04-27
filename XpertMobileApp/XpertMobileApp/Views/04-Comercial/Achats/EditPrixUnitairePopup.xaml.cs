@@ -243,8 +243,8 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     OnPropertyChanged("TotalSelectedQuantite");
                     ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (unite.SelectedQUANTITE / unite.COEFFICIENT).ToString();
                 }
-                qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
             }
+            qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
         }
 
 
@@ -254,9 +254,16 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void unite_field_Unfocused(object sender, FocusEventArgs e)
+        private void Entry_Completed(object sender, FocusEventArgs e)
         {
-
+            try
+            {
+                qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 

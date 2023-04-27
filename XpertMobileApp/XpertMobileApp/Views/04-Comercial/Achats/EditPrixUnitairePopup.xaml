@@ -56,6 +56,7 @@
 
                                 <Entry FontSize="14" 
                                    Text="{Binding Produit.SelectedQUANTITE,Mode=TwoWay}" 
+                                   Unfocused="Entry_Completed"
                                    Keyboard="Numeric"
                                    x:Name="unite_field"/>
 
@@ -124,7 +125,6 @@
 
                     <!--Quantité Total-->
                     <Label x:Name="qteTotal"
- 
                            TextColor="#0c0c0c"
                            FontSize="16" 
                            HorizontalOptions="Center"/>

@@ -333,6 +333,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             if (row == null)
             {
                 row = new View_ACH_DOCUMENT_DETAIL();
+                product.MT_HT = product.QUANTITE * product.PRIX_UNITAIRE;
                 this.ItemRows.Add(product);
             }
             else
@@ -340,6 +341,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>(ItemRows.Where(e => e.CODE_PRODUIT != product.CODE_PRODUIT).ToList());
                 row.QUANTITE = product.QUANTITE;
                 row.PRIX_UNITAIRE = product.PRIX_UNITAIRE;
+                row.MT_HT = product.PRIX_UNITAIRE * product.QUANTITE;
                 ItemRows.Add(row);
             }
             row.Index = ItemRows.Count();
@@ -369,7 +371,6 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                                 tom.QUANTITE = (decimal)popup.Result.QUANTITY;
                                 tom.MT_HT = tom.PRIX_UNITAIRE * tom.QUANTITE;
                                 TotalPrice = totalPrice + (tom.PRIX_UNITAIRE * tom.QUANTITE) - oldMT_HT;
-                                //Produit.MT_HT = tom.PRIX_UNITAIRE * tom.QUANTITE;
                             }
                         }
                     }

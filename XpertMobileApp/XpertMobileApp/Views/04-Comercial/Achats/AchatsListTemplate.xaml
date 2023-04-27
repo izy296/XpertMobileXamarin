@@ -2,42 +2,51 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.Templates.AchatsListTemplate">
-  <ContentView.Content>
-        <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#edeceb">
-            <Grid  BackgroundColor="Transparent" >
+    <ContentView.Content>
+        <SwipeView>
+            <SwipeView.RightItems>
+                <SwipeItems>
+                    <SwipeItem Text="Modifier"
+                               IconImageSource="SelectionEdit.png"
+                               BackgroundColor="LightBlue"
+                               Invoked="OnUpdateSwipeItemInvoked" />
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3"/>
-                    <ColumnDefinition Width="1.7*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+                </SwipeItems>
+            </SwipeView.RightItems>
+            <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#edeceb">
+                <Grid  BackgroundColor="Transparent" >
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3"/>
+                        <ColumnDefinition Width="1.7*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
 
-                <!--<StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--<StackLayout Grid.Column="0" Grid.Row="0"  Grid.RowSpan="2" Spacing="5" Padding="0" VerticalOptions="Fill" 
                                  HorizontalOptions="Fill" BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" HeightRequest="40">
                 </StackLayout>-->
 
-                <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="2">
-                    <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>                    
-                    <Label Text="{Binding REF_TIERS}" TextColor="Orange" FontAttributes="Bold" FontSize="Default"/>
-                    <Label Text="{Binding DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}"/>
-                    <Label Text="{ Binding TAUX_MARGE_DOC, StringFormat='{0:N2} DA'}" IsVisible="false" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End" TextColor="Green"/>
-                </StackLayout>
+                    <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="0" Margin="2">
+                        <Label Text="{Binding TIERS_NomC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding REF_TIERS}" TextColor="Orange" FontAttributes="Bold" FontSize="Default"/>
+                        <Label Text="{Binding DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}"/>
+                        <Label Text="{ Binding TAUX_MARGE, StringFormat='{0:N2} DA'}" IsVisible="false" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End" TextColor="Green"/>
+                    </StackLayout>
 
-                <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
-                    <Label Text="{ Binding TOTAL_TTC_REEL, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End" TextColor="Green"/>
-                    <Label Text="{ Binding TOTAL_MARGE, StringFormat='Marge : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
-                    <Label Text="{ Binding TYPE_DOC}" TextColor="Black" FontAttributes="Italic" FontSize="Default" HorizontalOptions="End"/>                    
-                    <Label Text="{ Binding TOTAL_RISTOURNE_REEL, StringFormat='Ristourne : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" IsVisible="False"/>
-                    <Label Text="{ Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Header" HorizontalOptions="End" TextColor="Black" IsVisible="False" />
-                    <Label Text="{ Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Header" HorizontalOptions="End" TextColor="Black" IsVisible="False" />
-                </StackLayout>
-            </Grid>
-        </Frame>
-
+                    <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0" Margin="5">
+                        <Label Text="{ Binding TOTAL_TTC_REEL, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="End" TextColor="Green"/>
+                        <Label Text="{ Binding TOTAL_MARGE, StringFormat='Marge : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" TextColor="Red"/>
+                        <Label Text="{ Binding TYPE_DOC}" TextColor="Black" FontAttributes="Italic" FontSize="Default" HorizontalOptions="End"/>
+                        <Label Text="{ Binding TOTAL_RISTOURNE_REEL, StringFormat='Ristourne : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End" IsVisible="False"/>
+                        <Label Text="{ Binding DESIGNATION_STATUS}" FontAttributes="Bold" FontSize="Header" HorizontalOptions="End" TextColor="Black" IsVisible="False" />
+                    </StackLayout>
+                </Grid>
+            </Frame>
+        </SwipeView>
     </ContentView.Content>
 </ContentView>
