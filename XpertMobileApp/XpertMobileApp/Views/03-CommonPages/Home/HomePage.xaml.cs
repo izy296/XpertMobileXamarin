@@ -9,6 +9,7 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Interfaces;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;

@@ -31,11 +31,12 @@ using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
 
-//[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace XpertMobileApp
 {
     public partial class App : Application
     {
+        
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
         public static string XPharmMainColor = "#52B2A7";
@@ -415,8 +416,9 @@ namespace XpertMobileApp
             }
             else
             {
-                CustomPopup AlertPopup = new CustomPopup("Connexion etablie avec succée ", trueMessage: AppResources.alrt_msg_Ok);
-                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                //CustomPopup AlertPopup = new CustomPopup("", trueMessage: AppResources.alrt_msg_Ok);
+                //await PopupNavigation.Instance.PushAsync(AlertPopup);
+                DependencyService.Get<Interfaces.IMessage>().LongAlert("Connexion etablie avec succée");
             }
         }
         //Methode to set url services 
