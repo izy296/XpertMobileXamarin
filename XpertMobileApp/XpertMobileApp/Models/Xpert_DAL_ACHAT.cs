@@ -866,6 +866,20 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("PRIX_UNITAIRE");
             }
         }
+        private bool selected { get; set; }
+        [Ignore]
+        public bool Selected
+        {
+            get
+            {
+                return selected;
+            }
+            set
+            {
+                selected = value;
+                OnPropertyChanged("Selected");
+            }
+        }
 
         private decimal qUANTITY_SELECTIONNER = 0;
         [Ignore]
@@ -896,6 +910,20 @@ namespace XpertMobileApp.DAL
                 {
                     return Color.White;
                 }
+            }
+        }
+
+        private List<View_BSE_PRODUIT_AUTRE_UNITE> unitesList { get; set; }
+        [Ignore]
+        public List<View_BSE_PRODUIT_AUTRE_UNITE> UnitesList
+        {
+            get
+            {
+                return unitesList;
+            }
+            set
+            {
+                unitesList = value;
             }
         }
     }

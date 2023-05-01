@@ -6,11 +6,13 @@
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers"
              xmlns:scroll="clr-namespace:Xamarin.Forms.Extended;assembly=Xamarin.Forms.Extended.InfiniteScrolling"
              xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms" 
-             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms"
+             xmlns:maps="clr-namespace:Syncfusion.SfMaps.XForms;assembly=Syncfusion.SfMaps.XForms" 
+             xmlns:cmp="clr-namespace:XpertMobileApp.Components"
              Title="{Binding Title}"
              x:Name="Visites">
 
     <ContentPage.ToolbarItems>
+        <cmp:XToolbarItem x:Name="btn_Additem" IconImageSource="add.png" Text="{i18n:Translate cmd_Add}" IsEnabled="{Binding IsAddPermited}" Clicked="AddItem_Clicked"/>
         <!--<ToolbarItem x:Name="btn_Filter"  Text="{i18n:Translate cmd_Filter}" Clicked="Filter_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">

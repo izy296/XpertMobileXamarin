@@ -33,13 +33,14 @@ namespace XpertMobileApp.Views
         public TourneesDetailsPage(string codeTournee, View_LIV_TOURNEE item = null)
         {
             InitializeComponent();
+            BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
+            viewModel.MyMapPage = this;
             if (item != null)
             {
                 Item = item;
+                if (Item.TYPE_TOURNEE == TourneeType.Open)
+                    viewModel.IsAddPermited = true;
             }
-            BindingContext = viewModel = new TourneesDetailsViewModel(codeTournee);
-            viewModel.MyMapPage = this;
-
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
@@ -57,6 +58,7 @@ namespace XpertMobileApp.Views
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
+            await PopupNavigation.Instance.PushAsync(new TiersSelector(viewModel.CurrentStream));
             // await Navigation.PushModalAsync(new NavigationPage(new NewEncaissementPage(null, viewModel.EncaissDisplayType)));
         }
 
@@ -72,6 +74,38 @@ namespace XpertMobileApp.Views
                 //}
             }
             LoadData();
+
+            MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream, async (sender, selectedItem) =>
+            {
+                if (selectedItem != null)
+                {
+                    var CODE_TOURNEE_DETAIL = Guid.NewGuid().ToString().Replace("-", "");
+                    var tier = await SQLite_Manager.GetClient(selectedItem.CODE_TIERS);
+                    var tierTournee = await SQLite_Manager.FilterTournee(codeTiers:selectedItem.CODE_TIERS);
+                    if (tierTournee.Count == 0)
+                        await SQLite_Manager.GetInstance().InsertAsync(new View_LIV_TOURNEE_DETAIL()
+                        {
+                            CODE_TOURNEE = Item.CODE_TOURNEE,
+                            CODE_DETAIL = CODE_TOURNEE_DETAIL,
+                            CODE_ETAT = null,
+                            CODE_ETAT_VISITE = TourneeStatus.Delivered,
+                            CODE_TIERS = tier.CODE_TIERS,
+                            CREATED_BY = App.User.UserName,
+                            CREATED_ON = DateTime.Now,
+                            MODIFIED_BY = App.User.UserName,
+                            MODIFIED_ON = DateTime.Now,
+                            FULL_NOM_TIERS = tier.FULL_NOM_TIERS,
+                            SOLDE_TIERS = tier.SOLDE_TIERS,
+                            VISITE_CATEGORIE = 1
+                        });
+                    else
+                    {
+
+                    }
+                    LoadData();
+                }
+
+            });
             //   if (viewModel.Familles.Count == 0)
             //       viewModel.LoadExtrasDataCommand.Execute(null);
         }
@@ -284,6 +318,9 @@ namespace XpertMobileApp.Views
         {
             if (cts != null && !cts.IsCancellationRequested)
                 cts.Cancel();
+
+            MessagingCenter.Unsubscribe<TiersSelector, View_TRS_TIERS>(this, viewModel.CurrentStream);
+
             base.OnDisappearing();
         }
         internal async Task<View_TRS_TIERS> SelectScanedTiers(string cb_tiers)

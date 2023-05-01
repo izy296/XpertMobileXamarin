@@ -23,6 +23,8 @@ using Rg.Plugins.Popup.Services;
 using XpertMobileApp.Views._04_Comercial.Selectors.Settings;
 using TranslateExtension = XpertMobileApp.Helpers.TranslateExtension;
 using XpertMobileApp.Api;
+using System.Net;
+using System.Net.Sockets;
 
 namespace XpertMobileApp.Views
 {
@@ -77,7 +79,6 @@ namespace XpertMobileApp.Views
 
                 List<UrlService> liste = new List<UrlService>();
                 liste.Add(url);
-
                 App.Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
                 App.Settings.ClientId = "1540";
                 App.SettingsDatabase.SaveItemAsync(App.Settings);
@@ -786,6 +787,20 @@ namespace XpertMobileApp.Views
             if (MultiPrinters != null && MultiPrinters.Count > 0)
                 await PopupNavigation.Instance.PushAsync(new PrinterSelector(MultiPrinters, "REMOVE"));
             else await DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+        }
+
+        private async void Btn_ExportBaseDeDonne_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await SQLite_Manager.ExportDatabase();
+                await DisplayAlert(AppResources.alrt_msg_Alert, "Export avec succès", AppResources.alrt_msg_Ok);
+            }
+            catch(Exception ex)
+            {
+                await DisplayAlert(AppResources.alrt_msg_Alert, "Export Echoue", AppResources.alrt_msg_Ok);
+            }
+
         }
     }
 }

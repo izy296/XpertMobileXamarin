@@ -264,16 +264,20 @@ namespace XpertMobileApp.Views
                             string res = await SQLite_Manager.AjoutVente(viewModel.Item);
                             if (!XpertHelper.IsNullOrEmpty(res))
                             {
-                                await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
+                                //await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                                 if (viewModel.imprimerTecketCaiss)
                                 {
                                     await PrinterHelper.PrintBL(viewModel.Item);
+
                                 }
                                 if (Constants.AppName != Apps.X_DISTRIBUTION)
                                     ParentviewModel.InitNewVentes();
                                 else ParentLivraisonviewModel.InitNewVentes();
 
                                 await PopupNavigation.Instance.PopAsync();
+                                var stack = (Application.Current.MainPage as MainPage).Detail.Navigation.NavigationStack;
+                                await stack[stack.Count - 1].Navigation.PopAsync();
+                                
                             }
                             else
                             {

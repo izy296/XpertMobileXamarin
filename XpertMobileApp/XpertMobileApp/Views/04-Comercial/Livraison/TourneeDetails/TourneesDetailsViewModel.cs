@@ -37,6 +37,21 @@ namespace XpertMobileApp.ViewModels
             get { return myMapPage; }
             set { SetProperty(ref myMapPage, value); }
         }
+
+        private bool isAddPermited { get; set; } = false;
+        public bool IsAddPermited
+        {
+            get
+            {
+                return isAddPermited;
+            }
+            set
+            {
+                isAddPermited = value;
+                OnPropertyChanged("IsAddPermited");
+            }
+        }
+
         public TourneesDetailsViewModel(string codeTournee)
         {
             Title = "Visites";
@@ -71,7 +86,6 @@ namespace XpertMobileApp.ViewModels
             if (App.Online)
             {
                 clientsInfo = await WebServiceClient.GetClients(_CodeTournee);
-
             }
             else
             {

@@ -55,6 +55,7 @@ namespace XpertMobileApp.SQLite_Managment
         }
         #region Methode db standard
 
+        public static IAppDirectory appDirectory = DependencyService.Get<IAppDirectory>();
 
         /// <summary>
         /// Retourne la db crée ...
@@ -76,6 +77,20 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 return db;
             }
+        }
+
+        public static async Task ExportDatabase()
+        {
+            string clientId = App.Settings.ClientId.ToString();
+            string AppName = Constants.AppName.ToString();
+            var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
+            var externalPath = Path.Combine(appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/", "backupDatabase " + DateTime.Now.ToString("dddd MM yyyy HH:mm:ss") + ".db");
+            File.Copy(databasePath, externalPath, true);
+            //StreamReader reader = new StreamReader(databasePath);
+            //StreamWriter writer = new StreamWriter(externalPath);
+            //writer.Write(reader.ReadToEnd());
+            //writer.Close();
+            //reader.Close();
         }
         /// <summary>
         /// Création des différents table dans la db local ...
@@ -482,11 +497,13 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
+                    await SyncData<View_BSE_PRODUIT_UNITE, BSE_PRODUIT_UNITE>();
                     await SyncImages();
                     //await SyncBSE_PRODUIT_LISTE_CB();
 
                     var produits2 = await GetInstance().Table<View_STK_PRODUITS>().ToListAsync();
                     await SyncBseModReg();
+                    //await ExportDatabase();
                     // Todo add row to log table when downloading
                     //await SyncData<View_TRS_ENCAISS, TRS_ENCAISS>();
                     //await syncSession(); //worked !
@@ -575,9 +592,12 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_TRS_TIERS>();
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE>();
                 await GetInstance().DeleteAllAsync<View_VTE_VENTE_LOT>();
+                await GetInstance().DeleteAllAsync<View_VTE_VENTE_LIVRAISON>();
                 await GetInstance().DeleteAllAsync<View_TRS_ENCAISS>();
                 await GetInstance().DeleteAllAsync<BSE_PRODUIT_FAMILLE>();
                 await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
+                await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT>();
+                await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
 
                 CustomPopup AlertPopup = new CustomPopup("Suppression des tables de base faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
@@ -875,12 +895,12 @@ namespace XpertMobileApp.SQLite_Managment
                             }
                         }
                     }
-                    
+
                     ReceptionManager bll = new ReceptionManager();
                     return await bll.SyncAchats(purchases);
 
                 }
-                    return true; 
+                return true;
             }
             catch (Exception ex)
             {
@@ -1412,17 +1432,22 @@ namespace XpertMobileApp.SQLite_Managment
         /// </summary>
         /// <param name="search"></param>
         /// <returns></returns>
-        public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search)
+        public static async Task<List<View_LIV_TOURNEE_DETAIL>> FilterTournee(string search = "", string codeTiers = "")
         {
             List<View_LIV_TOURNEE_DETAIL> allTiers = await GetInstance().Table<View_LIV_TOURNEE_DETAIL>().ToListAsync();
-            if (search == "")
+            if (!string.IsNullOrEmpty(codeTiers))
             {
-                return allTiers;
+                var tiersFiltred = allTiers.Where(x => x.CODE_TIERS == codeTiers.ToUpper()).ToList();
+                return tiersFiltred;
             }
-            else
+            else if (!string.IsNullOrEmpty(search))
             {
                 var tiersFiltred = allTiers.Where(x => x.FULL_NOM_TIERS.ToUpper().Contains(search.ToUpper())).ToList();
                 return tiersFiltred;
+            }
+            else
+            {
+                return allTiers;
             }
         }
         /// <summary>
@@ -1576,6 +1601,37 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 var listLabos = await GetInstance().Table<BSE_PRODUIT_LABO>().ToListAsync();
                 return listLabos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static async Task<View_STK_STOCK> Getlot(string codeProduit)
+        {
+            try
+            {
+                var listLot = await GetInstance().Table<View_STK_STOCK>().ToListAsync();
+                return listLot.Where(e => e.CODE_PRODUIT == codeProduit).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public static async Task<List<View_VTE_VENTE_PRODUIT>> GetCommandeDetailsImporte(string codeVente)
+        {
+            try
+            {
+                var ventDetails = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
+                string queryNew = $"SELECT CODE_DETAIL,SUM(QUANTITE) QTE_IMPORT,ID_STOCK,CODE_PRODUIT FROM View_VTE_VENTE_LIVRAISON WHERE IFNULL(CODE_DETAIL_ORIGINE,'')<>'' GROUP BY ID_STOCK";
+
+                var listLot = await GetInstance().QueryAsync<View_VTE_VENTE_PRODUIT>(queryNew);
+                return listLot;
             }
             catch (Exception ex)
             {
@@ -2104,6 +2160,13 @@ namespace XpertMobileApp.SQLite_Managment
             {
                 CommandeMethode = "SyncCommande";
                 await SyncData<View_VTE_COMMANDE, VTE_COMMANDE>(false, "", CommandeMethode);
+                var list = await GetInstance().Table<View_VTE_COMMANDE>().ToListAsync();
+                foreach (var item in list)
+                {
+                    await SyncData<View_VTE_VENTE_LOT, VTE_COMMANDE>(false, "codeCommande=" + item.CODE_VENTE, "GetCommandesDetails");
+                }
+
+                var listTT = await GetInstance().Table<View_VTE_VENTE_LIVRAISON>().ToListAsync();
 
             }
             catch (Exception ex)
@@ -2230,7 +2293,7 @@ namespace XpertMobileApp.SQLite_Managment
                         List<View_VTE_VENTE_LIVRAISON> objdetailDistrib = new List<View_VTE_VENTE_LIVRAISON>();
                         try
                         {
-                            if (vteDetails.Count > 0)
+                            if (Constants.AppName != Apps.X_DISTRIBUTION)
                             {
                                 objdetail = vteDetails?.Where(x => x.CODE_VENTE == iVente.CODE_VENTE)?.ToList();
                             }
@@ -2245,9 +2308,9 @@ namespace XpertMobileApp.SQLite_Managment
                         }
                         finally
                         {
-                            if (objdetail.Count > 0)
+                            if (Constants.AppName != Apps.X_DISTRIBUTION)
                                 iVente.Details = objdetail;
-                            else if (objdetailDistrib.Count > 0)
+                            else
                             {
                                 iVente.Details = new List<View_VTE_VENTE_LOT>();
                                 foreach (var v in objdetailDistrib)
@@ -2555,6 +2618,7 @@ namespace XpertMobileApp.SQLite_Managment
             }
             else
             {
+                View_VTE_VENTE origineVente = null;
                 if (string.IsNullOrEmpty(vente.CODE_VENTE))
                 {
                     var encaissement = new View_TRS_ENCAISS();
@@ -2579,7 +2643,7 @@ namespace XpertMobileApp.SQLite_Managment
 
                     if (string.IsNullOrEmpty(vente.MBL_CODE_TOURNEE_DETAIL))
                     {
-                        var CODE_TOURNEE_DETAIL = Guid.NewGuid().ToString().Replace("-","");
+                        var CODE_TOURNEE_DETAIL = Guid.NewGuid().ToString().Replace("-", "");
                         var tier = await GetClient(vente.CODE_TIERS);
                         await GetInstance().InsertAsync(new View_LIV_TOURNEE_DETAIL()
                         {
@@ -2589,7 +2653,7 @@ namespace XpertMobileApp.SQLite_Managment
                             CODE_ETAT_VISITE = TourneeStatus.Delivered,
                             CODE_TIERS = vente.CODE_TIERS,
                             CODE_VENTE = vente.CODE_VENTE,
-                            CREATED_BY  = App.User.UserName,
+                            CREATED_BY = App.User.UserName,
                             CREATED_ON = DateTime.Now,
                             MODIFIED_BY = App.User.UserName,
                             MODIFIED_ON = DateTime.Now,
@@ -2597,8 +2661,8 @@ namespace XpertMobileApp.SQLite_Managment
                             GPS_LONGITUDE = vente.GPS_LONGITUDE,
                             FULL_NOM_TIERS = tier.FULL_NOM_TIERS,
                             SOLDE_TIERS = tier.SOLDE_TIERS,
-                            VISITE_CATEGORIE = 1
-                        }) ;
+                            VISITE_CATEGORIE = 1,
+                        });
                     }
 
                     if (vente.TYPE_DOC == "BR")
@@ -2609,6 +2673,15 @@ namespace XpertMobileApp.SQLite_Managment
                     else if (vente.TYPE_DOC == "BL")
                     {
                         encaissement.CODE_TYPE = "ENC";
+                        if (!string.IsNullOrEmpty(vente.CODE_ORIGINE))
+                        {
+                            origineVente = await GetVente(vente.CODE_ORIGINE);
+                            if (origineVente == null)
+                            {
+                                origineVente = await GetCommande(vente.CODE_ORIGINE);
+                                origineVente.Details = await getVenteDetails(vente.CODE_ORIGINE);
+                            }
+                        }
                     }
 
                     await GetInstance().UpdateAsync(vente);
@@ -2661,6 +2734,23 @@ namespace XpertMobileApp.SQLite_Managment
 
                     await UpdateTourneeDetail(vente);
                     await UpdateTournee();
+                    if (origineVente != null)
+                    {
+                        var changeStatusToFinished = true;
+                        var listImporte = await GetCommandeDetailsImporte(origineVente.CODE_VENTE);
+                        origineVente.Details.ForEach(elm =>
+                        {
+                            var qteImport = listImporte.Where(elmWhere => elmWhere.CODE_PRODUIT == elm.CODE_PRODUIT).FirstOrDefault().QTE_IMPORT;
+                            if (elm.QUANTITE >= qteImport)
+                                changeStatusToFinished = false;
+                        });
+                        if (changeStatusToFinished)
+                            origineVente.STATUS_DOC = DocStatus.Termine;
+                        else
+                            origineVente.STATUS_DOC = DocStatus.Livre;
+                        var commandToUpdate = XpertHelper.CloneObject<View_VTE_COMMANDE>(origineVente);
+                        await GetInstance().UpdateAsync(commandToUpdate);
+                    }
 
                     return vente.CODE_VENTE;
                 }
@@ -2724,7 +2814,6 @@ namespace XpertMobileApp.SQLite_Managment
                     if (vente.TYPE_DOC != "CC")
                         await UpdateStockAfterModification(venteOld, vente);
                     await GetInstance().UpdateAsync(encaissElement);
-
 
                     return vente.CODE_VENTE;
                 }

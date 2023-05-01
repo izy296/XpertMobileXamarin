@@ -284,6 +284,23 @@
 
                         </StackLayout>
                     </Frame>
+
+                    <!-- Export informations -->
+                    <Frame Style="{StaticResource FrameForListing}" 
+                           IsVisible="{Binding IsConnected}">
+
+                        <StackLayout 
+                                     Padding="10" >
+
+                            <Button 
+                                     Text="Export Base De Donnes" 
+                                     CornerRadius="8"
+                                     Style="{DynamicResource DefaultBtnStyle}"
+                                     Clicked="Btn_ExportBaseDeDonne_Clicked"/>
+
+                        </StackLayout>
+                    </Frame>
+
                 </StackLayout>
 
                 <Grid Padding="0,0,0,10" x:Name="CommandeGrid" VerticalOptions="End">

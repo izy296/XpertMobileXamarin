@@ -57,6 +57,21 @@ namespace XpertMobileApp.ViewModels
         public ObservableCollection<BSE_DOCUMENT_STATUS> Status { get; set; }
         public BSE_DOCUMENT_STATUS SelectedStatus { get; set; }
 
+        private List<View_LIV_TOURNEE> tourneeOpen { get; set; }
+        public List<View_LIV_TOURNEE> TourneeOpen
+        {
+            get
+            {
+                return tourneeOpen;
+            }
+            set
+            {
+                tourneeOpen = value;
+            }
+        }
+        public View_LIV_TOURNEE SelectedTournee { get; set; }
+
+
         public CommandesViewModel()
         {
             Title = AppResources.pn_Commandes;
@@ -121,6 +136,8 @@ namespace XpertMobileApp.ViewModels
             if (!string.IsNullOrEmpty(SelectedStatus?.CODE_STATUS))
                 res = res.Where(e => e.STATUS_DOC == SelectedStatus?.CODE_STATUS).ToList();
 
+            res = res.Where(e => e.ETAT_VENTE != "FV").ToList();
+
             return res;
         }
         protected override QueryInfos GetSelectParams()
@@ -153,7 +170,7 @@ namespace XpertMobileApp.ViewModels
                 return;
             try
             {
-
+                IsBusy = true;
                 Items.Clear();
                 // liste des ventes
                 await Items.LoadMoreAsync();
@@ -170,7 +187,7 @@ namespace XpertMobileApp.ViewModels
                     }
 
                 }
-
+                IsBusy = false;
 
             }
             catch (Exception ex)
@@ -178,10 +195,10 @@ namespace XpertMobileApp.ViewModels
                 CustomPopup AlertPopup = new CustomPopup(WSApi2.GetExceptionMessage(ex), trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
-            finally
-            {
-                IsBusy = false;
-            }
+        }
+        public async Task LoadTourneeOpen()
+        {
+            TourneeOpen = await SQLite_Manager.GetTournee();
         }
     }
 

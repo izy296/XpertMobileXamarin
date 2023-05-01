@@ -172,6 +172,41 @@ namespace XpertMobileApp.Views
                 });
             });
 
+            MessagingCenter.Subscribe<CommandeDetailPage, List<View_VTE_JOURNAL_DETAIL>>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var list = new List<View_STK_STOCK>();
+                    foreach (var item in selectedItem)
+                    {
+                        list.Add(new View_STK_STOCK()
+                        {
+                            SelectedPrice = item.PRIX_VENTE,
+                            SelectedQUANTITE = item.QUANTITE,
+                            ID_STOCK = item.ID_STOCK,
+                            CODE_BARRE_LOT = item.CODE_BARRE_LOT,
+                            CODE_BARRE = item.CODE_BARRE,
+                            CODE_PRODUIT = item.CODE_PRODUIT,
+                            DESIGNATION_PRODUIT = item.DESIGNATION,
+                            HAS_NEW_ID_STOCK = true
+                        });
+                    }
+                    viewModel.AddNewRows(list, false); // false veut dire le type de produit ajouter est une vente (pas retour)
+                });
+            });
+
+            MessagingCenter.Subscribe<CommandeDetailPage, string>(this, "ImprotedFromCommand", async (obj, selectedItem) =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    viewModel.Item.CODE_ORIGINE = selectedItem;
+                    foreach (var item in viewModel.ItemRows)
+                    {
+                        item.CODE_DETAIL_ORIGINE = selectedItem;
+                    }
+                });
+            });
+
             MessagingCenter.Subscribe<VenteFormLivraisonPage, View_STK_STOCK>(this, viewModel.CurrentStream, async (obj, selectedItem) =>
             {
                 Device.BeginInvokeOnMainThread(() =>
@@ -246,6 +281,11 @@ namespace XpertMobileApp.Views
             {
                 parames = await AppManager.GetSysParams();
                 permissions = await AppManager.GetPermissions();
+            }
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                POINTS_FIDELITE_LAYOUT.IsVisible = false;
             }
 
             // viewModel.ImmatriculationList = await GetImmatriculations("");

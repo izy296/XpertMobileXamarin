@@ -68,7 +68,7 @@ namespace XpertMobileApp.Views
 
             BindingContext = viewModel = new QteUpdaterViewModel(item);
             NUD_Price.Value = item.SelectedPrice;
-            NUD_Qte.Value = item.SelectedQUANTITE;
+            NUD_Qte.Value = item.QUANTITE;
             new Command(async async =>
             {
                 ExecuteLoadUnite();
@@ -94,7 +94,7 @@ namespace XpertMobileApp.Views
                     await Task.Delay(1000);
                 }
                 NUD_Price.Value = viewModel.Item.SelectedPrice;
-                NUD_Qte.Value = viewModel.Item.SelectedQUANTITE;
+                NUD_Qte.Value = ItemVenteLivaison.QUANTITE;
                 ExecuteLoadUnite();
             }
             ).Execute(null);

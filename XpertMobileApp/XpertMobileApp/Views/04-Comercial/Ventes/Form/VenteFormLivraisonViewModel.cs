@@ -160,7 +160,7 @@ namespace XpertMobileApp.Views
                     if (row == null)
                     {
                         row = new View_VTE_VENTE_LIVRAISON();
-                        decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
+                        decimal qte = product.SelectedQUANTITE == 0 ? 0 : product.SelectedQUANTITE;
                         // row.Parent_Doc = Item;
                         row.VenteID = row.ID;
                         row.ID = row.ID + "_" + XpertHelper.RandomString(7);
@@ -170,7 +170,7 @@ namespace XpertMobileApp.Views
                         row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
                         row.CODE_BARRE = product.CODE_BARRE;
                         row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-                        row.CODE_DETAIL_ORIGINE = XpertHelper.RandomString(5);
+                        row.CODE_DETAIL = XpertHelper.RandomString(5);
                         row.HAS_NEW_ID_STOCK = product.HAS_NEW_ID_STOCK;
 
                         foreach (var qtcU in product.UnitesList)
@@ -255,7 +255,7 @@ namespace XpertMobileApp.Views
                     if (row == null)
                     {
                         row = new View_VTE_VENTE_LIVRAISON();
-                        decimal qte = product.SelectedQUANTITE == 0 ? 1 : product.SelectedQUANTITE;
+                        decimal qte = product.SelectedQUANTITE == 0 ? 0 : product.SelectedQUANTITE;
                         // row.Parent_Doc = Item;
                         row.VenteID = row.ID;
                         row.ID = row.ID + "_" + XpertHelper.RandomString(7);
@@ -265,7 +265,7 @@ namespace XpertMobileApp.Views
                         row.CODE_BARRE_LOT = product.CODE_BARRE_LOT;
                         row.CODE_BARRE = product.CODE_BARRE;
                         row.DESIGNATION_PRODUIT = product.DESIGNATION_PRODUIT;
-
+                        row.CODE_DETAIL = XpertHelper.RandomString(5);
                         // ajout uniteList a la nouvelle objet
                         row.UnitesList = product.UnitesList;
                         // get prix gros ou detail
@@ -304,7 +304,7 @@ namespace XpertMobileApp.Views
                     {
                         row.PRIX_VTE_HT = product.SelectedPrice;
                         row.PRIX_VTE_TTC = product.SelectedPrice;
-                        row.QUANTITE += product.SelectedQUANTITE;
+                        row.QUANTITE = product.SelectedQUANTITE;
                         if (row.UnitesList == null && product.UnitesList != null)
                         {
                             row.UnitesList = product.UnitesList;
