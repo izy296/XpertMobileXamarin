@@ -63,7 +63,7 @@
                             FontAttributes="Bold" VerticalOptions="Center" TextColor="Gray" />
                 </StackLayout>
 
-                <StackLayout Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
+                <StackLayout x:Name="POINTS_FIDELITE_LAYOUT" Margin="0" Padding="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="Center">
                     <Label Margin="5,0,0,5" Text="Points : " FontSize="Small" 
                            VerticalTextAlignment="Center" VerticalOptions="Center" TextColor="Gray" />
                     <Label Text="{Binding SelectedTiers.TOTAL_POINT_FIDELITE, Mode=TwoWay, StringFormat='{0:N0}'}" FontSize="Small" 
