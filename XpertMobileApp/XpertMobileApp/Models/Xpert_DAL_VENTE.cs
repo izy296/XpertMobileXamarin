@@ -601,6 +601,12 @@ namespace XpertMobileApp.DAL
         public string ID { get; internal set; }
         public string VenteID { get; internal set; }
         public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
+        public decimal QTE_IMPORT { get; set; }
+
+    }
+
+    public partial class View_VTE_VENTE_PRODUIT : View_VTE_VENTE_LOT
+    {
     }
     public partial class View_VTE_JOURNAL_DETAIL : VTE_VENTE_DETAIL
     {
@@ -1244,7 +1250,7 @@ namespace XpertMobileApp.DAL
         public string TYPE_DOC { get; set; }
         public string ID { get; internal set; }
         public string VenteID { get; internal set; }
-        public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
+        public bool HAS_NEW_ID_STOCK { get; set; } // varchar(2500)
 
         private decimal mt_ttc { get; set; }
         public decimal MT_TTC
