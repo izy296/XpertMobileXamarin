@@ -497,7 +497,6 @@ namespace XpertMobileApp.SQLite_Managment
                     await SyncProduiteUnite();
                     await SyncProduiteUniteAutre();
                     await SyncData<View_BSE_PRODUIT_PRIX_VENTE, BSE_PRODUIT_PRIX_VENTE>();
-                    await SyncData<View_BSE_PRODUIT_UNITE, BSE_PRODUIT_UNITE>();
                     await SyncImages();
                     //await SyncBSE_PRODUIT_LISTE_CB();
 
