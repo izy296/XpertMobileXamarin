@@ -84,7 +84,10 @@ namespace XpertMobileApp.SQLite_Managment
             string clientId = App.Settings.ClientId.ToString();
             string AppName = Constants.AppName.ToString();
             var databasePath = Path.Combine(FileSystem.AppDataDirectory, $"{clientId}{AppName}Data.db");
-            var externalPath = Path.Combine(appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/", "backupDatabase " + DateTime.Now.ToString("dddd MM yyyy HH:mm:ss") + ".db");
+            var externalDirectoryPath = appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/";
+            if (!Directory.Exists(externalDirectoryPath))
+                Directory.CreateDirectory(externalDirectoryPath);
+            var externalPath = Path.Combine(externalDirectoryPath, "backupDatabase " + DateTime.Now.ToString("dddd MM yyyy HH:mm:ss") + ".db");
             File.Copy(databasePath, externalPath, true);
             //StreamReader reader = new StreamReader(databasePath);
             //StreamWriter writer = new StreamWriter(externalPath);
