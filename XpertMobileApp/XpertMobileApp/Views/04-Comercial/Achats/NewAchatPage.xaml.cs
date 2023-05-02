@@ -359,7 +359,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     decimal oldMT_HT = Produit.MT_HT;
                     if (item == null)
                         return;
-                    EditPrixUnitairePopup popup = new EditPrixUnitairePopup(Produit);
+                    EditPrixUnitairePopup popup = new EditPrixUnitairePopup(Produit, TypeOperation.Edit);
                     await PopupNavigation.Instance.PushAsync(popup);
                     if (await popup.PopupClosedTask)
                     {
@@ -487,8 +487,6 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 this.ItemRows = new ObservableCollection<View_ACH_DOCUMENT_DETAIL>(this.ItemRows.GroupBy(x => x.CODE_PRODUIT)
                       .Select(g => g.First()).ToList());
                 UserDialogs.Instance.HideLoading();
-
-
             }
             catch (Exception ex)
             {

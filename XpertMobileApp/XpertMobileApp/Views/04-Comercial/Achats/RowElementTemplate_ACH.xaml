@@ -4,15 +4,6 @@
              x:Class=" XpertMobileApp.Views.Templates.RowElementTemplate_ACH">
     <ContentView.Content>
         <SwipeView>
-            <SwipeView.RightItems>
-                <SwipeItems>
-                    <SwipeItem Text="Modifier"
-                               IconImageSource="SelectionEdit.png"
-                               BackgroundColor="LightBlue"
-                               Invoked="OnUpdateSwipeItemInvoked" />
-
-                </SwipeItems>
-            </SwipeView.RightItems>
             <Frame CornerRadius="8" Padding="5,5,5,5" Margin="8,3,8,3" BackgroundColor="White" HasShadow="True" OutlineColor="#edeceb">
                 <Grid  BackgroundColor="Transparent" >
 

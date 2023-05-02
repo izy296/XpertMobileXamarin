@@ -22,7 +22,7 @@
     <StackLayout x:Name="sl_content">
 
         <!--Entete Achat-->
-        <Frame CornerRadius="10" Padding="5"  BackgroundColor="White" HasShadow="True"  OutlineColor="White" Margin="5">
+        <Frame CornerRadius="4" Padding="5,10"  BackgroundColor="White" HasShadow="True"  OutlineColor="White" Margin="5">
             <Grid  BackgroundColor="White" >
 
                 <Grid.ColumnDefinitions>
@@ -36,8 +36,8 @@
                 </Grid.RowDefinitions>
 
                 <StackLayout Grid.Column="0" Grid.Row="1" Spacing="5" Padding="10">
-                    <Label Text="{Binding Item.CODE_DOC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="Default"/>
-                    <Label Text="{Binding Item.DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start"/>
+                    <Label Text="{Binding Item.CODE_DOC}" TextColor="{StaticResource DefaultTextColor}" FontAttributes="Bold" FontSize="16"/>
+                    <Label Text="{Binding Item.DATE_DOC, StringFormat='{0:dd/MM/yyyy}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="Start" FontSize="15"/>
 
                     <Label x:Name="labelPpa" Text="{ Binding Item.TOTAL_PPA, StringFormat='Total PPA : {0:N2} DA'}" FontSize="Default" HorizontalOptions="Start"/>
                     <!--<Label Text="{ Binding Item.TOTAL_MARGE, StringFormat='Total Marge : {0:N2} DA'}" FontSize="Default" HorizontalOptions="Start"/>-->
@@ -46,8 +46,8 @@
                 <StackLayout Grid.Column="1" Grid.Row="1" Spacing="5" Padding="10">
                     <!--<Label Text="{ Binding Item.TOTAL_TTC_REEL, StringFormat='{0:N2} DA'}" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" TextColor="Green"/>
                     <Label Text="{ Binding Item.TOTAL_RISTOURNE_REEL, StringFormat='Ristourne : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End"/>-->
-                    <Label Text="{Binding Item.CREATED_BY , StringFormat= '{0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End"/>
-                    <Label Text="{Binding Item.TIERS_NomC , StringFormat= '{0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End" />
+                    <Label Text="{Binding Item.CREATED_BY , StringFormat= '{0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End" FontSize="16"/>
+                    <Label Text="{Binding Item.TIERS_NomC , StringFormat= '{0}'}" TextColor="{StaticResource DefaultTextColor}" HorizontalOptions="End" FontSize="15"/>
                     <Label x:Name="labelShp" Text="{ Binding Item.TOTAL_SHP, StringFormat='Total SHP : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End"/>
                     <!--<Label Text="{ Binding Item.TOTAL_TVA, StringFormat='Total TVA : {0:N2} DA'}" FontSize="Default" HorizontalOptions="End"/>
                     <Label Text="{ Binding Item.TAUX_MARGE, StringFormat='Taux Marge : {0:N2}  '}" FontSize="Default" HorizontalOptions="End"/>-->
@@ -56,31 +56,32 @@
         </Frame>
 
         <!--Detail Achat-->
-        <Frame CornerRadius="10" Padding="5" HasShadow="False" Margin="5" BackgroundColor="White" OutlineColor="White" >
-            <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
-                <!--<StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
+        <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
+
+            <!--<StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
                     <Label Text="{i18n:Translate txt_Details}" TextColor="{StaticResource Primary}" FontSize="Large" FontAttributes="Bold"/>
                     <BoxView BackgroundColor="#EFEFEF" HeightRequest="0.5"></BoxView>
                 </StackLayout>-->
-                <RefreshView 
+            <RefreshView 
                     x:Name="refreshView"
                     Refreshing="RefreshView_Refreshing"
                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
 
-                    <CollectionView 
+                <CollectionView 
                         ItemsSource="{Binding ItemRows}"
                         ItemTemplate="{StaticResource AchatDetailsTemplateSelector}">
-                    </CollectionView>
+                </CollectionView>
 
-                </RefreshView>
-                <!--<Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
+            </RefreshView>
+            <!--<Button x:Name="Btn_Print" Margin="0,15,0,0" Style="{DynamicResource DefaultBtnStyle}" CornerRadius="8"
                                 Text="Imprimer" Clicked="PrintAsync"/>-->
-            </StackLayout>
-        </Frame>
+        </StackLayout>
+        
+        
         <yummy:PancakeView BackgroundColor="#1E47BD" CornerRadius="5,5,0,0">
             <StackLayout Orientation="Horizontal" Spacing="5" Padding="15" HorizontalOptions="Center">
-                
+
                 <StackLayout x:Name="articlesCount" Spacing="0" Orientation="Vertical" VerticalOptions="Center">
                     <Label x:Name="CountTotal" TextColor="#fff" HorizontalTextAlignment="Center" FontSize="16" FontAttributes="Bold">10</Label>
                     <Label TextColor="#fff" HorizontalTextAlignment="Center" FontSize="15" FontAttributes="Bold">Article(s)</Label>
@@ -91,7 +92,7 @@
                              BackgroundColor="#fff" 
                              HeightRequest="40" 
                              VerticalOptions="Center"/>
-                
+
                 <StackLayout Orientation="Vertical" Margin="10,0,0,0" Spacing="0">
                     <Label Text="{ Binding Item.TOTAL_HT, StringFormat='Total : {0:N2} DA'}" 
                            FontSize="16"

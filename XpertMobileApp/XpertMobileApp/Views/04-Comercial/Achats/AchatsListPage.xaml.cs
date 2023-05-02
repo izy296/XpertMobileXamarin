@@ -45,16 +45,16 @@ namespace XpertMobileApp.Views
                 btn_ApplyFilter_Clicked(null, null);
             });
 
-            if (!App.Online && Constants.AppName == Apps.XCOM_Mob)
+            if (Constants.AppName == Apps.XPH_Mob)
             {
                 if (ToolbarItems.Count > 0)
                     ToolbarItems.RemoveAt(0);
             }
         }
-            async void AddNewAchat(object sender, EventArgs e)
-            {
-                await Navigation.PushAsync(new FournisseursList());
-            }
+        async void AddNewAchat(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new FournisseursList());
+        }
 
         protected override void OnDisappearing()
         {

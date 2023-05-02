@@ -11,6 +11,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.ViewModels;
+using static XpertMobileApp.Views._04_Comercial.Achats.NewAchatPage;
 
 namespace XpertMobileApp.Views._04_Comercial.Achats
 {
@@ -85,8 +86,9 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                         ItemRow.PRIX_VENTE = ProductSelected.PRIX_VENTE_HT;
                         ItemRow.QUANTITE = ProductSelected.QUANTITY_SELECTIONNER;
                         ItemRow.PRIX_UNITAIRE = ProductSelected.PRIX_UNITAIRE;
+                        ItemRow.Prix_ACHAT_HT = ProductSelected.PRIX_ACHAT_HT;
                     }
-                    EditPrixUnitairePopup popup = new EditPrixUnitairePopup(ItemRow);
+                    EditPrixUnitairePopup popup = new EditPrixUnitairePopup(ItemRow, TypeOperation.Add);
                     await PopupNavigation.Instance.PushAsync(popup);
                     if (await popup.PopupClosedTask)
                     {

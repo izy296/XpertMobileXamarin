@@ -87,33 +87,32 @@ namespace XpertMobileApp.Views
             }
 
             // handle the witch between offline and online mode...
-            handleOfflineMode();
+            //handleOfflineMode();
         }
 
-        private void handleOfflineMode()
-        {
-            try
-            {
-                if (App.Online)
-                {
-                    switchHorsLigne.IsOn = true;
-                }
-                else
-                {
-                    switchHorsLigne.IsOn = false;
-                }
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
+        //private void handleOfflineMode()
+        //{
+        //    try
+        //    {
+        //        if (App.Online)
+        //        {
+        //            switchHorsLigne.IsOn = true;
+        //        }
+        //        else
+        //        {
+        //            switchHorsLigne.IsOn = false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-            CheckIfUserWantReconnect();
+            //CheckIfUserWantReconnect();
             CHeckIfPrefixIsConfigured();
             try
             {
@@ -328,7 +327,7 @@ namespace XpertMobileApp.Views
             try
             {
                 this.switchHorsLigne.IsBusy = true;
-                if (!switchHorsLigne.IsBusy)
+                if (switchHorsLigne.IsBusy)
                 {
                     if (!App.Online)
                     {
@@ -336,26 +335,20 @@ namespace XpertMobileApp.Views
                         if (isConnected)
                         {
                             this.switchHorsLigne.IsOn = true;
-                            CustomPopup customPopup = new CustomPopup("Vous avez passé aux mode en ligne", AppResources.txt_non, AppResources.txt_oui);
-                            await PopupNavigation.Instance.PushAsync(customPopup);
-                        }
-                        else
+                            DependencyService.Get<IMessage>().ShortAlert("Vous avez passé aux mode en ligne");
+                        }else
                         {
                             this.switchHorsLigne.IsOn = false;
-                            CustomPopup AlertPopup = new CustomPopup("Veuillez vous connectez a l'internet !", trueMessage: AppResources.alrt_msg_Ok);
-                            await PopupNavigation.Instance.PushAsync(AlertPopup);
                         }
                     }
                     else
                     {
                         App.Online = false;
                         this.switchHorsLigne.IsOn = false;
-                        CustomPopup customPopup = new CustomPopup("Vous avez passé aux mode hors ligne", AppResources.txt_non, AppResources.txt_oui);
-                        await PopupNavigation.Instance.PushAsync(customPopup);
+                        DependencyService.Get<IMessage>().ShortAlert("Vous avez passé aux mode hors ligne");
                     }
                     this.switchHorsLigne.IsBusy = false;
                 }
-
             }
             catch (Exception ex)
             {

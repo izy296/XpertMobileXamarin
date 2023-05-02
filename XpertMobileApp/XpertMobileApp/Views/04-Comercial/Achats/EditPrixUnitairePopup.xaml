@@ -100,9 +100,20 @@
 
 
                     <!--Num Facture-->
-                    <inputLayout:SfTextInputLayout
+                    <StackLayout x:Name="inputsWrapper2" Orientation="Vertical">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5.5*"/>
+                                <ColumnDefinition Width="4.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="58"/>
+                            </Grid.RowDefinitions>
+
+                            <inputLayout:SfTextInputLayout
+                            Grid.Column="0"
                             Hint="Prix unitaire" 
-                            Margin="5,0,5,0"
+                            Margin="5,0,1,0"
                             InputViewPadding="14"
                             IsHintAlwaysFloated="true" 
                             FocusedColor="{DynamicResource Primary}"
@@ -110,18 +121,43 @@
                             ContainerType="Outlined"
                             OutlineCornerRadius="5">
 
-                        <Entry FontSize="14" 
+                                <Entry FontSize="14" 
                                Keyboard="Numeric"
                                Text="{Binding Result.PRIX_UNITAIRE, Mode=TwoWay}"/>
 
-                        <inputLayout:SfTextInputLayout.HelperLabelStyle>
-                            <inputLayout:LabelStyle FontSize="12"/>
-                        </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                    <inputLayout:LabelStyle FontSize="12"/>
+                                </inputLayout:SfTextInputLayout.HelperLabelStyle>
 
-                        <inputLayout:SfTextInputLayout.TrailingView>
-                            <Image Source="money_bag.png"/>
-                        </inputLayout:SfTextInputLayout.TrailingView>
-                    </inputLayout:SfTextInputLayout>
+                                <inputLayout:SfTextInputLayout.TrailingView>
+                                    <Image Source="money_bag.png"/>
+                                </inputLayout:SfTextInputLayout.TrailingView>
+                            </inputLayout:SfTextInputLayout>
+
+                            <inputLayout:SfTextInputLayout
+                                Grid.Column="1"
+                                Hint="Dérnier P.A" 
+                                Margin="1,0,5,0"
+                                InputViewPadding="14"
+                                IsHintAlwaysFloated="true" 
+                                FocusedColor="{DynamicResource Primary}"
+                                UnfocusedColor="{DynamicResource Primary}"    
+                                ContainerType="Outlined"
+                                OutlineCornerRadius="5">
+
+                                <Entry FontSize="14" 
+                                       Keyboard="Numeric"
+                                       IsEnabled="False"
+                                       Text="{Binding Produit.Prix_ACHAT_HT}"/>
+
+                                <inputLayout:SfTextInputLayout.HelperLabelStyle>
+                                    <inputLayout:LabelStyle FontSize="12"/>
+                                </inputLayout:SfTextInputLayout.HelperLabelStyle>
+                            </inputLayout:SfTextInputLayout>
+
+                        </Grid>
+                    </StackLayout>
+
 
                     <!--Quantité Total-->
                     <Label x:Name="qteTotal"

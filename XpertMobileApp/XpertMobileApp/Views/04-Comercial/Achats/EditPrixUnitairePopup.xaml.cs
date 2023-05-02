@@ -14,6 +14,7 @@ using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Services;
+using static XpertMobileApp.Views._04_Comercial.Achats.NewAchatPage;
 
 namespace XpertMobileApp.Views._04_Comercial.Achats
 {
@@ -23,6 +24,11 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
     {
         public decimal? QUANTITY { get; set; } = 0;
         public decimal PRIX_UNITAIRE { get; set; } = 0;
+    }
+    public enum OperationType
+    {
+        Edit,
+        Add
     }
     public partial class EditPrixUnitairePopup : PopupPage, INotifyPropertyChanged
     {
@@ -54,7 +60,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
             }
         }
 
-        public EditPrixUnitairePopup(View_ACH_DOCUMENT_DETAIL Produit)
+        public EditPrixUnitairePopup(View_ACH_DOCUMENT_DETAIL Produit, TypeOperation op)
         {
             InitializeComponent();
             this.CloseWhenBackgroundIsClicked = false;
@@ -67,6 +73,11 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                 result.QUANTITY = this.produit.SelectedQUANTITE = produit.QUANTITE;
                 qteTotal.Text = "Quantité Total " + Produit.QUANTITE;
                 result.PRIX_UNITAIRE = produit.PRIX_UNITAIRE;
+
+                if (op == TypeOperation.Edit)
+                {
+                    Produit.Prix_ACHAT_HT = produit.PRIX_UNITAIRE;
+                }
             }
             BindingContext = this;
         }
@@ -219,7 +230,7 @@ namespace XpertMobileApp.Views._04_Comercial.Achats
                     unite.SelectedQUANTITE += unite.COEFFICIENT;
                     OnPropertyChanged("TotalSelectedQuantite");
                     ((((sender as SfButton).Parent as Grid).Children[0] as SfTextInputLayout).InputView as Entry).Text = (unite.SelectedQUANTITE / unite.COEFFICIENT).ToString();
-                    
+
                 }
                 qteTotal.Text = "Quantité Total " + Produit.TotalSelectedQuantite;
             }

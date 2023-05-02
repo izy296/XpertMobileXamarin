@@ -578,6 +578,7 @@ namespace XpertMobileApp.DAL
         }
 
         private decimal selectedQUANTITE;
+        [Ignore]
         public decimal SelectedQUANTITE
         {
             get
@@ -591,6 +592,51 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("TotalSelectedQuantite");
             }
         }
+        private decimal prix_ACHAT_HT;
+        [Ignore]
+        public decimal Prix_ACHAT_HT
+        {
+            get
+            {
+                return prix_ACHAT_HT;
+            }
+            set
+            {
+                prix_ACHAT_HT = value;
+                OnPropertyChanged("Prix_ACHAT_HT");
+            }
+        }
+        private ImageSource image_source { get; set; }
+        [Ignore]
+        public ImageSource IMAGE_SOURCE
+        {
+            get
+            {
+                if (image_source == null)
+                {
+
+                    if (!App.Online)
+                    {
+                        var IMAGE = SQLite_Manager.GetImage(CODE_PRODUIT);
+                        if (IMAGE != null)
+                            image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                        else image_source = ImageSource.FromFile("defaultProdImg.png");
+                    }
+                    else
+                    {
+                        //http://izdiharmarket.portmap.io:8880/Images/GetImage?codeProduit=000174
+                        image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                        //image_source = ImageSource.FromUri(new Uri("http://izdiharmarket.portmap.io:8880/Images/GetImage?codeProduit=000174"));
+                    }
+                }
+                return image_source;
+            }
+            set
+            {
+                image_source = value;
+            }
+        }
+
     }
     public partial class View_ACH_DOCUMENT_DETAIL_MOBILE : ACH_DOCUMENT_DETAIL
     {

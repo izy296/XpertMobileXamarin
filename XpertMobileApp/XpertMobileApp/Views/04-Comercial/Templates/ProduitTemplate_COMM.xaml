@@ -49,13 +49,13 @@
 
                     <StackLayout Grid.Column="2" Grid.Row="1" Spacing="5" Padding="0">
 
-                        <Label Text="{Binding PRIX_ACHAT_HT, StringFormat='P.ACHAT: {0}'}" 
+                        <Label Text="{Binding PRIX_ACHAT_HT, StringFormat='P.A: {0}'}" 
                                FontAttributes="Bold" 
                                FontSize="Default" 
                                HorizontalOptions="End" 
                                TextColor="Green"/>
 
-                        <Label Text="{Binding QTE_STOCK, StringFormat='QTE.STOCK: {0}'}" 
+                        <Label Text="{Binding QTE_STOCK, StringFormat='QTE: {0}'}" 
                                FontAttributes="Bold" 
                                FontSize="Default" 
                                HorizontalOptions="End" 

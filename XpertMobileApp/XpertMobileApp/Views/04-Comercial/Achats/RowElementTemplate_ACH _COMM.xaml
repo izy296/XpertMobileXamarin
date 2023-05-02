@@ -5,8 +5,9 @@
     <ContentView.Content>
         <SwipeView>
             <SwipeView.RightItems>
-                <SwipeItems>
-                    <SwipeItem Text="Modifier"
+                <SwipeItems x:Name="swipeItems">
+                    <SwipeItem x:Name="editBtn"
+                               Text="Modifier"
                                IconImageSource="SelectionEdit.png"
                                BackgroundColor="LightBlue"
                                Invoked="OnUpdateSwipeItemInvoked" />
