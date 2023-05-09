@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -85,6 +86,17 @@ namespace XpertMobileApp.Views.Encaissement
                     Title = AppResources.pn_Commandes;
                 else if (Item.TYPE_VENTE == "BR")
                     Title = "Bon Retour";
+            }
+
+            if (Constants.AppName == Apps.XPH_Mob)
+            {
+                if (ToolbarItems.Count > 0)
+                {
+                    var buttonToRemove = ToolbarItems.Where(e => e.StyleId == "TransferToBL").First();
+                    if (buttonToRemove != null)
+                        ToolbarItems.Remove(buttonToRemove);
+                }
+
             }
         }
 
@@ -264,44 +276,59 @@ namespace XpertMobileApp.Views.Encaissement
                 try
                 {
                     string printerToUse = App.Settings.PrinterName;
-                    if (App.Settings.EnableMultiPrinter)
+                    if (!App.Online)
                     {
-                        List<XPrinter> Liste;
-                        if (Manager.isJson(App.Settings.MultiPrinterList))
-                        {
-                            Liste = JsonConvert.DeserializeObject<List<XPrinter>>(App.Settings.MultiPrinterList);
-
-                            if (Liste != null && Liste.Count != 0)
-                            {
-                                var popupPrinter = new MultiPrinterSelector(Liste);
-                                await PopupNavigation.Instance.PushAsync(popupPrinter);
-                                var resPop = await popupPrinter.PopupClosedTask;
-                                if (resPop != "Null")
-                                    printerToUse = resPop;
-                            }
-                            else await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
-                        }
-                        else
-                        {
-                            await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
-                        }
-                    }
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                    bool res = await WebServiceClient.printTicket(vente.CODE_VENTE, printerToUse);
-                    UserDialogs.Instance.HideLoading();
-                    if (res)
-                    {
-                        await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionSuccess, AppResources.alrt_msg_Alert,
-        AppResources.alrt_msg_Ok);
+                        Device.BeginInvokeOnMainThread(async() => {
+                            if (Constants.AppName == Apps.X_DISTRIBUTION)
+                                vente.DetailsDistrib = await SQLite_Manager.getVenteDetailsDistrib(vente.CODE_VENTE);
+                            else vente.Details = await SQLite_Manager.getVenteDetails(vente.CODE_VENTE);
+                            await PrinterHelper.PrintBL(vente);
+                            return;
+                        });
                     }
                     else
                     {
-                        await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionError, AppResources.alrt_msg_Alert,
-        AppResources.alrt_msg_Ok);
+                        if (App.Settings.EnableMultiPrinter)
+                        {
+                            List<XPrinter> Liste;
+                            if (Manager.isJson(App.Settings.MultiPrinterList))
+                            {
+                                Liste = JsonConvert.DeserializeObject<List<XPrinter>>(App.Settings.MultiPrinterList);
+
+                                if (Liste != null && Liste.Count != 0)
+                                {
+                                    var popupPrinter = new MultiPrinterSelector(Liste);
+                                    await PopupNavigation.Instance.PushAsync(popupPrinter);
+                                    var resPop = await popupPrinter.PopupClosedTask;
+                                    if (resPop != "Null")
+                                        printerToUse = resPop;
+                                }
+                                else await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                            }
+                            else
+                            {
+                                await Application.Current.MainPage.DisplayAlert(AppResources.alrt_msg_Alert, AppResources.txt_Msg_List_Impremant_Vide, AppResources.alrt_msg_Ok);
+                            }
+                        }
+                        UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+
+                        bool res = await WebServiceClient.printTicket(vente.CODE_VENTE, printerToUse);
+                        UserDialogs.Instance.HideLoading();
+                        if (res)
+                        {
+                            await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionSuccess, AppResources.alrt_msg_Alert,
+            AppResources.alrt_msg_Ok);
+                        }
+                        else
+                        {
+                            await UserDialogs.Instance.AlertAsync(AppResources.vdp_ImpressionError, AppResources.alrt_msg_Alert,
+            AppResources.alrt_msg_Ok);
+
+                        }
+                        //vente.Details = Printerdetails;
+                        //PrinterHelper.PrintBL(vente);
 
                     }
-                    //vente.Details = Printerdetails;
-                    //PrinterHelper.PrintBL(vente);
                 }
                 catch (Exception ex)
                 {
@@ -363,6 +390,14 @@ AppResources.alrt_msg_Ok);
         {
             var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
             await Navigation.PushAsync(new VenteFormLivraisonPage(Item, Item.TYPE_DOC, client));
+        }
+
+        private async void TransferClicked(object sender, EventArgs e)
+        {
+            var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
+            VenteFormLivraisonPage ventePage = new VenteFormLivraisonPage(null, "BL", client, Item.MBL_CODE_TOURNEE_DETAIL);
+            await Navigation.PushAsync(ventePage);
+            MessagingCenter.Send(this, ventePage.viewModel.CurrentStream, new List<View_VTE_JOURNAL_DETAIL>(viewModel.ItemRows));
         }
     }
 }

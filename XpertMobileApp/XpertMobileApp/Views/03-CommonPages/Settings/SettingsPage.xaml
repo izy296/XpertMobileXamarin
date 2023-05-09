@@ -285,7 +285,7 @@
                         </StackLayout>
                     </Frame>
 
-                    <!-- Export informations -->
+                    <!-- Export informations --><!--
                     <Frame Style="{StaticResource FrameForListing}" 
                            IsVisible="{Binding IsConnected}">
 
@@ -299,7 +299,7 @@
                                      Clicked="Btn_ExportBaseDeDonne_Clicked"/>
 
                         </StackLayout>
-                    </Frame>
+                    </Frame>-->
 
                 </StackLayout>
 

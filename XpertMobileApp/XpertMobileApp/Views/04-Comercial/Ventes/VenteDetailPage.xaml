@@ -12,6 +12,12 @@
             IconImageSource="editIcon.png"
             Clicked="EditClicked"
             />
+        <ToolbarItem
+            x:Name="TransferToBL"
+            IsEnabled="{Binding App.Online}"
+            IconImageSource="bl.png"
+            Clicked="TransferClicked"
+            />
     </ContentPage.ToolbarItems>
     <StackLayout x:Name="sl_content" Padding="5" >
 

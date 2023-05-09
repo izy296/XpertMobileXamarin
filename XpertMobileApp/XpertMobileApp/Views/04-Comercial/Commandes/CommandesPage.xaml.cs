@@ -1,8 +1,11 @@
-﻿using Rg.Plugins.Popup.Services;
+﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
 using XpertMobileApp.ViewModels;
 
@@ -62,6 +65,42 @@ namespace XpertMobileApp.Views
             base.OnAppearing();
 
 
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (viewModel.SelectedTournee == null)
+                    {
+                        await viewModel.LoadTourneeOpen();
+                        if (viewModel.TourneeOpen.Count > 1)
+                        {
+                            TourneeOpenSelector AlertPopup = new TourneeOpenSelector("There is Multiple Tournee Open", falseMessage: AppResources.alrt_msg_Cancel, trueMessage: AppResources.alrt_msg_Ok);
+                            AlertPopup.Items = viewModel.TourneeOpen;
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
+                            await AlertPopup.PopupClosedTask;
+                            if (AlertPopup.Result != null)
+                                viewModel.SelectedTournee = AlertPopup.Result;
+                            else
+                            {
+                                await UserDialogs.Instance.AlertAsync("Aucun Tournee est seléctioné ,s'il vous plait essayez une autre fois", AppResources.alrt_msg_Alert,
+                                    AppResources.alrt_msg_Ok);
+                                await Navigation.PopAsync();
+                            }
+                        }
+                        else if (viewModel.TourneeOpen.Count == 0)
+                        {
+                            await UserDialogs.Instance.AlertAsync("Aucun Tournee est assigner a vous ,s'il vous plait synchroniser les tournes", AppResources.alrt_msg_Alert,
+                                AppResources.alrt_msg_Ok);
+                            await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Synchronisation);
+                        }
+                        else
+                        {
+                            viewModel.SelectedTournee = viewModel.TourneeOpen.FirstOrDefault();
+                        }
+                    }
+
+                });
+            }
             if (viewModel.Items.Count == 0)
                 LoadStats();
         }

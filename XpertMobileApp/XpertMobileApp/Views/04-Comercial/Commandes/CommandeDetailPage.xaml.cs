@@ -92,6 +92,17 @@ namespace XpertMobileApp.Views
                 else TransferToBL.IsEnabled = false;
             }
 
+            if (Constants.AppName == Apps.XPH_Mob)
+            {
+                if (ToolbarItems.Count > 0)
+                {
+                    var buttonToRemove = ToolbarItems.Where(e => e.StyleId == "TransferToBL").First();
+                    if (buttonToRemove != null)
+                        ToolbarItems.Remove(buttonToRemove);
+                }
+
+            }
+
             BindingContext = this.viewModel = new ItemRowsDetailViewModel<View_VTE_VENTE, View_VTE_VENTE_LOT>(Item, Item.CODE_VENTE);
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
@@ -213,8 +224,8 @@ namespace XpertMobileApp.Views
                 if (obj.QUANTITE > 0)
                     listDetails.Add(obj);
             }
-            if(listDetails.Count >0)
-            await Navigation.PushAsync(ventePage);
+            if (listDetails.Count > 0)
+                await Navigation.PushAsync(ventePage);
             else
             {
                 Item.STATUS_DOC = DocStatus.Termine;
