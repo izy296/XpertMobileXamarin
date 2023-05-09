@@ -325,11 +325,11 @@ namespace XpertMobileApp.Views
                     return;
                 }*/
 
-                if (SelectedFamille == null)
-                {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir la famille du tiers.", AppResources.alrt_msg_Ok);
-                    return;
-                }
+                //if (SelectedFamille == null)
+                //{
+                //    await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir la famille du tiers.", AppResources.alrt_msg_Ok);
+                //    return;
+                //}
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 if (App.Online)
                 {

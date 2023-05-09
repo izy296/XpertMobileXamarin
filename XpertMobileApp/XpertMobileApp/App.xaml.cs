@@ -130,7 +130,7 @@ namespace XpertMobileApp
                         App.User.GroupName = token.GroupName;
                         App.User.ClientId = licenceInfos.ClientId;
                         App.User.Token = token;
-
+                        App.IsConected();
                         MainPage = new MainPage();
                     }
                     else
@@ -634,7 +634,7 @@ namespace XpertMobileApp
         }
 
         // ------ Internet connexion infos ---------
-        #region Verification de la connexion internet et affichage d'une alerte en cas de deconnexion
+#region Verification de la connexion internet et affichage d'une alerte en cas de deconnexion
 
         private static bool alertDisplayed = false;
         private static Label labelInfo;
@@ -688,7 +688,7 @@ namespace XpertMobileApp
             await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_alert_message, AppResources.alrt_msg_Ok);
         }
 
-        #endregion
+#endregion
 
         private string getFormatedValue(object value)
         {

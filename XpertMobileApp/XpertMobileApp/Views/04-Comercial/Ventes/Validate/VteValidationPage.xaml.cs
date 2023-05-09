@@ -261,18 +261,23 @@ namespace XpertMobileApp.Views
                     {
                         if (viewModel.Item.Details != null || viewModel.Item.DetailsDistrib != null)
                         {
+                            View_VTE_VENTE objectToPrint = new View_VTE_VENTE();
+                            objectToPrint = viewModel.Item;
                             string res = await SQLite_Manager.AjoutVente(viewModel.Item);
                             if (!XpertHelper.IsNullOrEmpty(res))
                             {
                                 //await DisplayAlert(AppResources.alrt_msg_Info, AppResources.txt_actionsSucces, AppResources.alrt_msg_Ok);
                                 if (viewModel.imprimerTecketCaiss)
                                 {
-                                    await PrinterHelper.PrintBL(viewModel.Item);
-
+                                    Device.BeginInvokeOnMainThread(async () =>
+                                    {
+                                        await PrinterHelper.PrintBL(objectToPrint);
+                                        if (Constants.AppName != Apps.X_DISTRIBUTION)
+                                            ParentviewModel.InitNewVentes();
+                                        else ParentLivraisonviewModel.InitNewVentes();
+                                    });
                                 }
-                                if (Constants.AppName != Apps.X_DISTRIBUTION)
-                                    ParentviewModel.InitNewVentes();
-                                else ParentLivraisonviewModel.InitNewVentes();
+
 
                                 await PopupNavigation.Instance.PopAsync();
                                 var stack = (Application.Current.MainPage as MainPage).Detail.Navigation.NavigationStack;

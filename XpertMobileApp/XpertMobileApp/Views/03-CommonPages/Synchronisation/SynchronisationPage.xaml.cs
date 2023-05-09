@@ -67,6 +67,9 @@ namespace XpertMobileApp.Views._03_CommonPages.Synchronisation
         {
             try
             {
+                var check = await UserDialogs.Instance.ConfirmAsync("Telechargement des donnes, voulez-vous vous continuer  ? ", "Alert", "Oui", "Non");
+                if (!check)
+                    return;
                 if (await App.IsConected())
                 {
                     Btn_Upload.IsEnabled = false;

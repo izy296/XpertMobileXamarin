@@ -16,6 +16,7 @@ using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.Views;
 using Rg.Plugins.Popup.Services;
+using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -33,7 +34,15 @@ namespace XpertMobileApp.ViewModels
         public string TypeVente = VentesTypes.Vente;
         public ObservableCollection<SAMMUARY> SummariesReversed;
         public bool IsVtesList { get; set; } = false;
-        public bool IsAddPermited { get; set; } = true;
+        private bool isAddPermited { get; set; } = true;
+        public bool IsAddPermited { get {
+                return isAddPermited;
+            }set
+            {
+                isAddPermited = value;
+                OnPropertyChanged("IsAddPermited");
+            }
+        }
 
         decimal totalTurnover;
         public decimal TotalTurnover
@@ -129,30 +138,6 @@ namespace XpertMobileApp.ViewModels
             if (typeVente == VentesTypes.Vente)
             {
                 LoadExtrasDataCommand = new Command(async () => await ExecuteLoadExtrasDataCommand());
-            }
-
-            if (Constants.AppName == Apps.X_DISTRIBUTION)
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await LoadTourneeOpen();
-                    if (TourneeOpen.Count > 0)
-                    {
-                        TourneeOpenSelector AlertPopup = new TourneeOpenSelector("There is Multiple Tournee Open", falseMessage: AppResources.alrt_msg_Cancel, trueMessage: AppResources.alrt_msg_Ok);
-                        AlertPopup.Items = TourneeOpen;
-                        await PopupNavigation.Instance.PushAsync(AlertPopup);
-                        await AlertPopup.PopupClosedTask;
-                        SelectedTournee = AlertPopup.Result;
-                    }
-                    else
-                    {
-                        SelectedTournee = TourneeOpen.FirstOrDefault();
-                    }
-                    if (SelectedTournee.TYPE_TOURNEE != TourneeType.Open)
-                    {
-                        IsAddPermited = false;
-                    }
-                });
             }
 
             if (App.Online)
@@ -344,7 +329,7 @@ namespace XpertMobileApp.ViewModels
             }
         }
 
-        async Task LoadTourneeOpen()
+        public async Task LoadTourneeOpen()
         {
             TourneeOpen = await SQLite_Manager.GetTournee();
         }

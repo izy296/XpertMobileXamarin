@@ -87,7 +87,7 @@ namespace XpertMobileApp.SQLite_Managment
             var externalDirectoryPath = appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/";
             if (!Directory.Exists(externalDirectoryPath))
                 Directory.CreateDirectory(externalDirectoryPath);
-            var externalPath = Path.Combine(externalDirectoryPath, "backupDatabase " + DateTime.Now.ToString("dddd MM yyyy HH:mm:ss") + ".db");
+            var externalPath = Path.Combine(appDirectory.GetPublicDirectroy() + "/" + App.GetAppName() + "/", "backupDatabase " + DateTime.Now.ToString("dddd MM yyyy HH:mm:ss") + ".db");
             File.Copy(databasePath, externalPath, true);
             //StreamReader reader = new StreamReader(databasePath);
             //StreamWriter writer = new StreamWriter(externalPath);
@@ -600,6 +600,8 @@ namespace XpertMobileApp.SQLite_Managment
                 await GetInstance().DeleteAllAsync<View_VTE_COMMANDE>();
                 await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT>();
                 await GetInstance().DeleteAllAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
+                await GetInstance().DeleteAllAsync<SYS_OBJET_PERMISSION>();
+
 
                 CustomPopup AlertPopup = new CustomPopup("Suppression des tables de base faite avec succes", trueMessage: AppResources.alrt_msg_Ok);
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
@@ -1722,7 +1724,10 @@ namespace XpertMobileApp.SQLite_Managment
                 foreach (var detail in vente.Details)
                 {
                     var oldDetail = venteOld.Details.Where(e => e.ID_STOCK == detail.ID_STOCK).FirstOrDefault();
-                    detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                    if (detail.QUANTITE > oldDetail.QUANTITE)
+                        detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                    else if (detail.QUANTITE < oldDetail.QUANTITE)
+                        detail.QUANTITE = oldDetail.QUANTITE - detail.QUANTITE;
                 }
             }
 
@@ -1731,7 +1736,10 @@ namespace XpertMobileApp.SQLite_Managment
                 foreach (var detail in vente.DetailsDistrib)
                 {
                     var oldDetail = venteOld.DetailsDistrib.Where(e => e.ID_STOCK == detail.ID_STOCK).FirstOrDefault();
-                    detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                    if (detail.QUANTITE >= oldDetail.QUANTITE)
+                        detail.QUANTITE = detail.QUANTITE - oldDetail.QUANTITE;
+                    else if (detail.QUANTITE < oldDetail.QUANTITE)
+                        detail.QUANTITE = oldDetail.QUANTITE - detail.QUANTITE;
                 }
             }
 
