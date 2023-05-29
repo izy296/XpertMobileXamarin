@@ -57,7 +57,7 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                if (Constants.AppName != Apps.XCOM_Mob)
+                if (Constants.AppName != Apps.XPH_Mob)
                 {
                     labelShp.IsVisible = false;
                     labelPpa.IsVisible = false;

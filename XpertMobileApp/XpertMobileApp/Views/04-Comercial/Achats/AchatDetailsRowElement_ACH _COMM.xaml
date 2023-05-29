@@ -16,13 +16,14 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="20"/>
                     </Grid.RowDefinitions>
 
                     <Image Grid.Column="0"
                            Grid.Row="0"
                            Grid.RowSpan="2"
+                           Aspect="AspectFill"
                            Source="{Binding IMAGE_SOURCE}"/>
 
                     <StackLayout 

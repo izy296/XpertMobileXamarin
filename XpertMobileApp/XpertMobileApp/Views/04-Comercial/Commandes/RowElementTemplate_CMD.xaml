@@ -11,8 +11,8 @@
             
             <Frame 
                 CornerRadius="3" 
-                Padding="5" 
-                Margin="5" 
+                Padding="0,5" 
+                Margin="0,5" 
                 BackgroundColor="Transparent" 
                 HasShadow="True"  
                 OutlineColor="Transparent">
@@ -20,7 +20,7 @@
                 <Grid  BackgroundColor="Transparent" >
 
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4"/>
+                        <ColumnDefinition Width="80"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -31,18 +31,11 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <StackLayout 
-                        Grid.Column="0" 
-                        Grid.Row="0" 
-                        Grid.RowSpan="2" 
-                        Spacing="5" 
-                        Padding="0" 
-                        VerticalOptions="Fill" 
-                        HorizontalOptions="Fill" 
-                        BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
-                        HeightRequest="40"/>
-
-
+                    <StackLayout    Grid.Column="0"
+                                Grid.RowSpan="3"
+                                Grid.Row="0">
+                        <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="CenterAndExpand" Aspect="AspectFill"/>
+                    </StackLayout>
 
                     <StackLayout 
                         Grid.Column="1" 
@@ -73,19 +66,19 @@
                     <Label Grid.Column="1" 
                            Grid.Row="1" 
                            Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
-                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="End" />
+                           Margin="0,0,0,0" FontAttributes="Bold" FontSize="Default" HorizontalOptions="Start" />
                     
                     <Label Grid.Column="2" 
                            Grid.Row="1" 
                            Text="{ Binding PRIX_VTE_HT, StringFormat='P : {0:N2} DA'}" 
                            FontSize="Default" 
-                           HorizontalOptions="End" />
+                           HorizontalOptions="Start" />
                     
                     <Label Grid.Column="3" 
                            Grid.Row="1" 
                            Text="{ Binding MT_HT, StringFormat='{0:N2} DA'}" 
                            FontSize="Default" 
-                           HorizontalOptions="End" 
+                           HorizontalOptions="Start" 
                            TextColor="Red"/>
 
                 </Grid>

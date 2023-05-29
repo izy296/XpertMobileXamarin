@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using SQLite;
 using XpertMobileApp.Api.Services;
 using XpertMobileApp.Models;
+using Xamarin.Forms;
+using System.IO;
 
 namespace XpertMobileApp.DAL
 {
@@ -541,7 +543,6 @@ namespace XpertMobileApp.DAL
 
     public partial class View_VTE_VENTE_LOT : VTE_VENTE_DETAIL
     {
-        public string IMAGE_URL { get; set; }
         public string NUM_VENTE { get; set; } // varchar(32)
         public DateTime? DATE_VENTE { get; set; } // datetime(3)
         public string NOM_TIERS { get; set; } // varchar(501)
@@ -602,6 +603,61 @@ namespace XpertMobileApp.DAL
         public string VenteID { get; internal set; }
         public bool HAS_NEW_ID_STOCK { get; set; } = false; // varchar(2500)
         public decimal QTE_IMPORT { get; set; }
+        public byte[] IMAGE { get; set; }
+        private string iMAGE_URL { get; set; }
+        private ImageSource image_source { get; set; }
+        [Ignore]
+        public ImageSource IMAGE_SOURCE
+        {
+            get
+            {
+                if (image_source == null)
+                {
+                    if (!App.Online)
+                    {
+                        if (IMAGE != null)
+                            image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                        else image_source = ImageSource.FromFile("defaultProdImg.png");
+                    }
+                    else
+                    {
+                        image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                    }
+                }
+                return image_source;
+            }
+            set
+            {
+                image_source = value;
+            }
+        }
+        [Ignore]
+        public string IMAGE_URL
+        {
+            get
+            {
+                if (App.Online)
+                {
+                    return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+                }
+                else
+                {
+                    if (IMAGE != null)
+                        if (iMAGE_URL == null)
+                        {
+                            iMAGE_URL = BitConverter.ToString(IMAGE);
+                            return iMAGE_URL;
+                        }
+                        else
+                        {
+                            return iMAGE_URL;
+                        }
+
+                    else return null;
+                }
+            }
+            set { }
+        }
 
     }
 
@@ -675,6 +731,58 @@ namespace XpertMobileApp.DAL
             get
             {
                 return DATE_VENTE.Value.ToShortDateString();
+            }
+        }
+        public byte[] IMAGE { get; set; }
+        private string iMAGE_URL { get; set; }
+        private ImageSource image_source { get; set; }
+        public ImageSource IMAGE_SOURCE
+        {
+            get
+            {
+                if (image_source == null)
+                {
+                    if (!App.Online)
+                    {
+                        if (IMAGE != null)
+                            image_source = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                        else image_source = ImageSource.FromFile("defaultProdImg.png");
+                    }
+                    else
+                    {
+                        image_source = ImageSource.FromUri(new Uri(App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT)));
+                    }
+                }
+                return image_source;
+            }
+            set
+            {
+                image_source = value;
+            }
+        }
+        public string IMAGE_URL
+        {
+            get
+            {
+                if (App.Online)
+                {
+                    return App.RestServiceUrl.Replace("api/", "") + string.Format("Images/GetImage?codeProduit={0}", CODE_PRODUIT);
+                }
+                else
+                {
+                    if (IMAGE != null)
+                        if (iMAGE_URL == null)
+                        {
+                            iMAGE_URL = BitConverter.ToString(IMAGE);
+                            return iMAGE_URL;
+                        }
+                        else
+                        {
+                            return iMAGE_URL;
+                        }
+
+                    else return null;
+                }
             }
         }
     }

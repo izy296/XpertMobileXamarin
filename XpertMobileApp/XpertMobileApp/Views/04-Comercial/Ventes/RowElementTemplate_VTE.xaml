@@ -4,109 +4,98 @@
              x:Class=" XpertMobileApp.Views.Templates.RowElementTemplate_VTE">
     <ContentView.Content>
 
-        <StackLayout Spacing="10" 
-                     Padding="0" 
-                     BackgroundColor="Transparent">
-
-            <Frame CornerRadius="3" 
-                       Padding="5" 
-                       Margin="5" 
-                       BackgroundColor="Transparent" 
-                       HasShadow="True"  
-                       OutlineColor="Transparent">
-
-                <Grid  BackgroundColor="Transparent" >
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="4"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.55*"/>
-                        <ColumnDefinition Width="1.6*"/>
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <StackLayout Grid.Column="0" 
-                                 Grid.Row="0" 
-                                 Grid.RowSpan="3" 
-                                 Spacing="5" 
-                                 Padding="0" 
-                                 VerticalOptions="Fill" 
-                                 HorizontalOptions="Fill" 
-                                 BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
-                                 HeightRequest="40">
-                    </StackLayout>
+        <Frame CornerRadius="8" 
+               Padding="5,5,5,5" 
+               Margin="8,3,8,3" 
+               BackgroundColor="White" 
+               HasShadow="True" 
+               BorderColor="#edeceb">
 
 
-                    <!--ROW ONE-->
-                    <StackLayout Grid.Column="1" 
-                                 Grid.ColumnSpan="3" 
-                                 Grid.Row="0" 
-                                 Spacing="5" 
-                                 Padding="0" 
-                                 Orientation="Horizontal">
+            <Grid  BackgroundColor="Transparent" >
 
-                        <Label Text="{Binding DESIGNATION}" 
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+
+                <!--Row One Image-->
+                <StackLayout Grid.Column="0"
+                             Grid.Row="1"
+                             Grid.RowSpan="3">
+                    <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="CenterAndExpand" Aspect="AspectFill"/>
+                </StackLayout>
+
+                <!--ROW TWO-->
+                <StackLayout    Grid.Column="0" 
+                                Grid.ColumnSpan="3" 
+                                Grid.Row="0" 
+                                Spacing="5" 
+                                Padding="0" 
+                                Orientation="Horizontal">
+
+                    <Label Text="{Binding DESIGNATION}" 
                                TextColor="{StaticResource DefaultTextColor}" 
                                FontAttributes="Bold" 
                                FontSize="Default"/>
 
-                    </StackLayout>
+                </StackLayout>
 
-
-
-                    <!--ROW TWO-->
-                    <Label Grid.Column="1" 
+                <!--ROW TWO-->
+                <Label Grid.Column="1" 
                            Grid.Row="1" 
                            Text="{ Binding LOT, StringFormat='Lot: {0:N2}'}" 
                            TextColor="black" 
                            FontSize="Default" 
                            HorizontalOptions="Start" />
 
-                    <Label Grid.Column="2" 
+                <Label Grid.Column="2" 
                            Grid.Row="1" 
+                           Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
+                           TextColor="black"
+                           FontSize="Default" 
+                           HorizontalOptions="End" />
+
+                <!--ROW THREE-->
+                <Label Grid.Column="1" 
+                           Grid.Row="2" 
                            Text="{ Binding SHP, StringFormat='SHP : {0:N2}'}" 
                            FontSize="Default" 
                            HorizontalOptions="Start" 
                            TextColor="black"/>
 
-                    <Label Grid.Column="3" 
-                           Grid.Row="1" 
+                <Label Grid.Column="2" 
+                           Grid.Row="2" 
                            Text="{ Binding PPA, StringFormat=' PPA : {0:N2}'}" 
                            FontSize="Default" 
                            HorizontalOptions="End" 
                            TextColor="black"/>
-
-
-
-                    <!--ROW THREE-->
-                    <Label Grid.Column="1" 
-                           Grid.Row="2" 
-                           Text="{ Binding QUANTITE, StringFormat='Qte : {0:N2}'}" 
-                           TextColor="black"
-                           FontSize="Default" 
-                           HorizontalOptions="Start" />
-
-                    <Label Grid.Column="2" 
-                           Grid.Row="2" 
+                
+                <!--Row four-->
+                <Label Grid.Column="1" 
+                           Grid.Row="3" 
                            Text="{ Binding PRIX_VENTE, StringFormat='PV : {0:N2} DA'}" 
                            FontSize="Default" 
                            HorizontalOptions="Start" 
                            TextColor="black"/>
 
-                    <Label Grid.Column="3" 
-                           Grid.Row="2" 
+                <Label Grid.Column="2" 
+                           Grid.Row="3" 
                            Text="{ Binding MT_VENTE, StringFormat='MT: {0:N2} DA'}" 
                            FontSize="Default" 
                            HorizontalOptions="End" 
                            TextColor="Red"/>
 
-                </Grid>
-            </Frame>
-        </StackLayout>
+            </Grid>
+        </Frame>
     </ContentView.Content>
 </ContentView>

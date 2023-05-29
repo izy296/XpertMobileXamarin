@@ -83,6 +83,41 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
         }
+        /// <summary>
+        ///  1- Check The version of the mobile if it is less compared to what is mentioned in the xml file 
+        /// send the client to google play to download new version 
+        ///  2- Check the version of the WebAPi if it is less they perform an update 
+        /// </summary>
+        public async void UpdateMobileAndApi()
+        {
+            try
+            {
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
+                if (await CheckForNewUpdates()) //Check the version of the mobile app ...
+                {
+                    //Go to the google play and download the new version if exists ...
+                    Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
+                }
+                if (await CheckForWebApiUpdate()) // Check  the version Of the webApi ...
+                {
+                    if (await UpdateToNewVersion())
+                    {
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_success, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                    }
+                    else
+                    {
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_failed, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                    }
+                }
+                UserDialogs.Instance.HideLoading();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         private async void CheckForUpdate(object sender, EventArgs e)
         {

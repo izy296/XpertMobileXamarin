@@ -16,7 +16,7 @@ namespace XpertMobileApp.Views._Templates.TemplateSelector
         {
             if (Constants.AppName == Apps.XCOM_Mob || Constants.AppName == Apps.X_DISTRIBUTION)
             {
-                return ProduitsPage.displayGrid == true ? ProduitVerticalComm : ProduitComm;
+                return ProduitsPage.displayGrid ? ProduitVerticalComm : ProduitComm;
             }
             else
             {

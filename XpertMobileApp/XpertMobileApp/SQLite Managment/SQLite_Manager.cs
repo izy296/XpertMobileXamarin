@@ -103,44 +103,54 @@ namespace XpertMobileApp.SQLite_Managment
         {
             try
             {
-                await GetInstance().CreateTableAsync<View_STK_PRODUITS>();
-                await GetInstance().CreateTableAsync<View_TRS_TIERS>();
-                await GetInstance().CreateTableAsync<View_LIV_TOURNEE>();
-                await GetInstance().CreateTableAsync<View_LIV_TOURNEE_DETAIL>();
-                await GetInstance().CreateTableAsync<View_STK_STOCK>();
-                await GetInstance().CreateTableAsync<View_VTE_VENTE_LOT>();
-                await GetInstance().CreateTableAsync<View_VTE_VENTE>();
-                await GetInstance().CreateTableAsync<SYS_USER>();
-                await GetInstance().CreateTableAsync<SYS_OBJET_PERMISSION>();
-                await GetInstance().CreateTableAsync<TRS_JOURNEES>();
-                await GetInstance().CreateTableAsync<Token>();
-                await GetInstance().CreateTableAsync<View_BSE_TIERS_FAMILLE>();
-                await GetInstance().CreateTableAsync<BSE_TABLE_TYPE>();
-                await GetInstance().CreateTableAsync<BSE_TABLE>();
-                await GetInstance().CreateTableAsync<BSE_PRODUIT_FAMILLE>();
-                await GetInstance().CreateTableAsync<SYS_CONFIGURATION_MACHINE>();
-                await GetInstance().CreateTableAsync<SYS_MOBILE_PARAMETRE>();
-                await GetInstance().CreateTableAsync<View_TRS_ENCAISS>();
-                await GetInstance().CreateTableAsync<View_BSE_COMPTE>();
-                await GetInstance().CreateTableAsync<BSE_ENCAISS_MOTIFS>();
-                await GetInstance().CreateTableAsync<View_VTE_COMMANDE>();
-                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY>();
-                await GetInstance().CreateTableAsync<View_STK_TRANSFERT>();
-                await GetInstance().CreateTableAsync<View_STK_TRANSFERT_DETAIL>();
-                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_AUTRE_UNITE>();
-                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_UNITE_COEFFICIENT>();
-                await GetInstance().CreateTableAsync<View_BSE_PRODUIT_PRIX_VENTE>();
-                await GetInstance().CreateTableAsync<View_VTE_VENTE_LIVRAISON>();
-                await GetInstance().CreateTableAsync<BSE_DOCUMENT_STATUS>();
-                await GetInstance().CreateTableAsync<BSE_PRODUIT_TYPE>();
-                await GetInstance().CreateTableAsync<STK_PRODUITS_IMAGES>();
-                await GetInstance().CreateTableAsync<BSE_PRODUIT_LABO>();
-                await GetInstance().CreateTableAsync<LOG_SYNCHRONISATION>();
-                await GetInstance().CreateTableAsync<View_ACH_DOCUMENT>();
-                await GetInstance().CreateTableAsync<View_ACH_DOCUMENT_DETAIL_MOBILE>();
-                await GetInstance().CreateTableAsync<BSE_PRODUIT_LISTE_CB>();
-                await GetInstance().CreateTableAsync<BSE_MODE_REG>();
+                
+                List<Type> tableTypes = new List<Type>
+                {
+                                typeof(View_STK_PRODUITS),
+                                typeof(View_TRS_TIERS),
+                                typeof(View_LIV_TOURNEE),
+                                typeof(View_LIV_TOURNEE_DETAIL),
+                                typeof(View_STK_STOCK),
+                                typeof(View_VTE_VENTE_LOT),
+                                typeof(View_VTE_VENTE),
+                                typeof(SYS_USER),
+                                typeof(SYS_OBJET_PERMISSION),
+                                typeof(TRS_JOURNEES),
+                                typeof(Token),
+                                typeof(View_BSE_TIERS_FAMILLE),
+                                typeof(BSE_TABLE_TYPE),
+                                typeof(BSE_TABLE),
+                                typeof(BSE_PRODUIT_FAMILLE),
+                                typeof(SYS_CONFIGURATION_MACHINE),
+                                typeof(SYS_MOBILE_PARAMETRE),
+                                typeof(View_TRS_ENCAISS),
+                                typeof(View_BSE_COMPTE),
+                                typeof(BSE_ENCAISS_MOTIFS),
+                                typeof(View_VTE_COMMANDE),
+                                typeof(View_BSE_PRODUIT_PRIX_VENTE_BY_QUANTITY),
+                                typeof(View_STK_TRANSFERT),
+                                typeof(View_STK_TRANSFERT_DETAIL),
+                                typeof(View_BSE_PRODUIT_AUTRE_UNITE),
+                                typeof(View_BSE_PRODUIT_UNITE_COEFFICIENT),
+                                typeof(View_BSE_PRODUIT_PRIX_VENTE),
+                                typeof(View_VTE_VENTE_LIVRAISON),
+                                typeof(BSE_DOCUMENT_STATUS),
+                                typeof(BSE_PRODUIT_TYPE),
+                                typeof(STK_PRODUITS_IMAGES),
+                                typeof(BSE_PRODUIT_LABO),
+                                typeof(LOG_SYNCHRONISATION),
+                                typeof(View_ACH_DOCUMENT),
+                                typeof(View_ACH_DOCUMENT_DETAIL_MOBILE),
+                                typeof(BSE_PRODUIT_LISTE_CB),
+                                typeof(BSE_MODE_REG)
+                            };
+
+                foreach (Type tableType in tableTypes)
+                {
+                    await GetInstance().CreateTableAsync(tableType);
+                }
                 await CreateView_TRS_TIERS_ACTIVITY_Async();
+
             }
             catch (Exception e)
             {

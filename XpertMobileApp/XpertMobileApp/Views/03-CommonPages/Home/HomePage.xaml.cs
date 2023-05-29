@@ -21,14 +21,14 @@ namespace XpertMobileApp.Views
     {
         HomeViewModel viewModel;
         private bool KeepAnimate { get; set; } = false;
-
+        public AboutPage aboutPage { get; }
         public HomePage()
         {
             InitializeComponent();
+            aboutPage = new AboutPage();
             // Title = AppResources.pn_home;
             lblUser.Text = App.User?.Token.userName;
             lblClientName.Text = App.Settings.ClientName;
-
             var userGroup = App.User.UserGroup;
             if (userGroup == "AD")
                 notificationBell.IsVisible = true;
@@ -49,7 +49,7 @@ namespace XpertMobileApp.Views
                 {
                     Application.Current.Resources["NavigationPrimary"] = App.XPharmMainColor; // Vert foncé
                     Application.Current.Resources["MenuAccent"] = App.XPharmMainColor; // vert claire
-                    Application.Current.Resources["MenuItemGroup"] =App.XPharmMainColor;
+                    Application.Current.Resources["MenuItemGroup"] = App.XPharmMainColor;
                 }
                 else
                 {
@@ -89,25 +89,6 @@ namespace XpertMobileApp.Views
             // handle the witch between offline and online mode...
             //handleOfflineMode();
         }
-
-        //private void handleOfflineMode()
-        //{
-        //    try
-        //    {
-        //        if (App.Online)
-        //        {
-        //            switchHorsLigne.IsOn = true;
-        //        }
-        //        else
-        //        {
-        //            switchHorsLigne.IsOn = false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw;
-        //    }
-        //}
         protected async override void OnAppearing()
         {
             base.OnAppearing();
@@ -161,21 +142,8 @@ namespace XpertMobileApp.Views
                 new MenuPage("1");
             }
 
-            //Synchroniser les données si la connexion existe !
-            //await SyncDataIfDbEmpty();
-            /* Custumazing the home menu */
-
-            //if(Constants.AppName == Apps.XCOM_Mob ||Constants.AppName == Apps.XPH_Mob)
-            //{
-            //    //Get the height of the listview ...
-            //    double menuHeight = this.listView.Height;
-
-            //    //calculate the 
-            //    int numberOfBtnInHomeMenu = viewModel.Items.Count;
-
-            //    listView.ItemSize = (menuHeight / numberOfBtnInHomeMenu) * 2;
-            //    UserDialogs.Instance.HideLoading();
-            //}
+            //Check for Updates if exists and update the mobile and the web Api 
+            aboutPage.UpdateMobileAndApi();
         }
         private void btn_Refresh_Clicked(object sender, EventArgs e)
         {
@@ -336,7 +304,8 @@ namespace XpertMobileApp.Views
                         {
                             this.switchHorsLigne.IsOn = true;
                             DependencyService.Get<IMessage>().ShortAlert("Vous avez passé aux mode en ligne");
-                        }else
+                        }
+                        else
                         {
                             this.switchHorsLigne.IsOn = false;
                         }

@@ -127,7 +127,7 @@
             Margin="5" 
             BackgroundColor="White" 
             HasShadow="True"  
-            OutlineColor="White">
+            BorderColor="White">
                 <StackLayout 
                     x:Name="sl_rows" 
                     VerticalOptions="Start" >

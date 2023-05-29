@@ -21,7 +21,7 @@
     </ContentPage.ToolbarItems>
     <StackLayout x:Name="sl_content" Padding="5" >
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  BorderColor="White">
             <Grid  BackgroundColor="White" >
 
                 <Grid.ColumnDefinitions>
@@ -53,7 +53,7 @@
             </Grid>
         </Frame>
 
-        <Frame x:Name="InfosPsyco" IsVisible="False" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame x:Name="InfosPsyco" IsVisible="False" CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  BorderColor="White">
             <Grid  BackgroundColor="White" >
 
                 <Grid.ColumnDefinitions>
@@ -83,7 +83,7 @@
             </Grid>
         </Frame>
 
-        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  OutlineColor="White">
+        <Frame CornerRadius="10" Padding="5" Margin="5" BackgroundColor="White" HasShadow="True"  BorderColor="White">
             <StackLayout x:Name="sl_rows" VerticalOptions="Start" >
 
                 <StackLayout x:Name="DetailsHeader" Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">

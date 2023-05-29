@@ -9,7 +9,8 @@
                     <Grid  BackgroundColor="Transparent" >
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="4"/>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
@@ -21,24 +22,18 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <StackLayout Grid.Column="0" 
-                                 Grid.Row="0" 
-                                 Grid.RowSpan="5" 
-                                 Spacing="5" 
-                                 Padding="0" 
-                                 VerticalOptions="Fill" 
-                                 HorizontalOptions="Fill" 
-                                 BackgroundColor="{Binding Index, Converter={StaticResource oddEvenInvert}}" 
-                                 HeightRequest="40">
-                        </StackLayout>
+
 
                         <!--Column Gauche-->
-                        
-                        
-                            <!-- ******* Désignation produit ******* --> 
+                        <StackLayout    Grid.Column="0"
+                                Grid.RowSpan="3"
+                                Grid.Row="1">
+                            <Image Source="{Binding IMAGE_SOURCE}" VerticalOptions="CenterAndExpand" Aspect="AspectFill"/>
+                        </StackLayout>
+                        <!-- ******* Désignation produit ******* --> 
                             <Label 
-                                Grid.Column="1"
-                                Grid.ColumnSpan="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
                                 Grid.Row="0"
                                 Text="{Binding DESIGNATION_PRODUIT}"  
                                 TextColor="{StaticResource DefaultTextColor}" 
@@ -77,7 +72,7 @@
                                 Grid.Row="4"
                                 Grid.ColumnSpan="2"
                                 Text="{ Binding DATE_PEREMPTION, StringFormat='Date Peremption: {0:dd/MM/yyyy}'}"
-                                HorizontalOptions="CenterAndExpand"
+                                HorizontalOptions="Start"
                                 IsVisible="true"/>
 
                         <!--Fin de la column Gauche--> 
@@ -102,6 +97,7 @@
                                 Text="{ Binding PRIX_UNITAIRE, StringFormat='P.U: {0:N2} DA'}"
                                 HorizontalOptions="Start"
                                 IsVisible="true"/>
+                        
                         <!--Fin column droite-->
                     </Grid>
                 </Frame>
