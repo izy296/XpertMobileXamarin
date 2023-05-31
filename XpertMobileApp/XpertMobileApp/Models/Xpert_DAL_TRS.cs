@@ -70,7 +70,7 @@ namespace XpertMobileApp.DAL
         public DateTime? DATE_ECHEANCE { get; set; } // datetime(3)
         //public decimal TOTAL_PAYE { get; set; } // money(19,4) Calculé dans la vue
         public string CODE_TYPE { get; set; } // varchar(4)
-        public string REF_REG { get; set; } // varchar(200)
+        public string REF_REG { get; set; } // varchar(200)   
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "PEncDec_Note_Enc")]
         public string NOTE_ENC { get; set; } // text(2147483647)
         public string CODE_VIR { get; set; } // varchar(32)
@@ -115,7 +115,8 @@ namespace XpertMobileApp.DAL
         [FieldInfos(VisibleInForm = false, VisibleInFich = true, Designation = "PEncDec_Design_Mode")]
         public string DESIGN_MODE { get; set; } // varchar(300)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
-        public decimal TOTAL_PAYE { get; set; } // money(19,4)
+
+        public decimal TOTAL_PAYE;// money(19,4)
         public string TYPE_TIERS { get; set; } // varchar(5)
         public string ADRESSE_TIERS { get; set; } // varchar(500)
         public string NUM_ASSURE { get; set; } // varchar(12)
@@ -137,7 +138,6 @@ namespace XpertMobileApp.DAL
         {
             return AppResources.pn_encaissement + " N° : " + NUM_ENCAISS;
         }
-
         public Color ValColor
         {
             get
@@ -145,7 +145,6 @@ namespace XpertMobileApp.DAL
                 return CODE_TYPE == "ENC" ? Color.Black : Color.Red;
             }
         }
-
         public string ValIcon
         {
             get
@@ -159,7 +158,7 @@ namespace XpertMobileApp.DAL
         {
             get
             {
-                    return is_synchronisable;
+                return is_synchronisable;
             }
             set
             {
@@ -398,7 +397,6 @@ namespace XpertMobileApp.DAL
         public string DESIGN_FAMILLE { get; set; } // varchar(50)
         public string DESIGNATION_TYPE { get; set; } // varchar(200)
         public decimal SOLDE_TIERS { get; set; } // money(19,4)        
-
         public string SOLDE_TIERS_TXT { get; set; } // money(19,4)         
         public string NUM_CARTE_FIDELITE { get; set; } // varchar(20)
         public string CODE_CARTE_FIDELITE { get; set; } // varchar(20)
