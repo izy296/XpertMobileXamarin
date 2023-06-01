@@ -75,6 +75,7 @@ namespace XpertMobileApp.Helpers
         public static string New_Version_URL = "GetVersion";
         public static string Update_URL = "Update";
         public static string WebApiVersion = "WebApiVersion";
+        public static string TunnelUrl = "http://xpertsoft.biz/XpertDecodeWebAPI/api/ProdActivationMobile/GetMobileUrl";
 
         // Printer
 

@@ -36,7 +36,7 @@ namespace XpertMobileApp
 {
     public partial class App : Application
     {
-        
+
         private static string LOCAL_DB_NAME = Constants.LOCAL_DB_NAME;
         public static User User { get; internal set; }
         public static string XPharmMainColor = "#52B2A7";
@@ -130,7 +130,7 @@ namespace XpertMobileApp
                         App.User.GroupName = token.GroupName;
                         App.User.ClientId = licenceInfos.ClientId;
                         App.User.Token = token;
-                        App.IsConected();
+
                         MainPage = new MainPage();
                     }
                     else
@@ -158,7 +158,6 @@ namespace XpertMobileApp
             }
 
         }
-
         private static void PreventLinkerFromStrippingCommonLocalizationReferences()
         {
             _ = new System.Globalization.GregorianCalendar();
@@ -181,7 +180,6 @@ namespace XpertMobileApp
         {
             return Constants.AppName;
         }
-
         public App()
         {
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("NDYxNTc2QDMxMzkyZTMxMmUzMER2U3c5d05XeFJzbm04aTJwVnB6ejgxRU1wNTNRYTBVOUt6SnhrWk1ZQm89");
@@ -248,8 +246,7 @@ namespace XpertMobileApp
                     }
                 }).Start();
         }
-
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             IsInForeground = true;
             CrossFirebasePushNotification.Current.OnNotificationOpened += async (s, p) =>
@@ -370,32 +367,12 @@ namespace XpertMobileApp
              }
 
          };
-
-
-
-            //CrossFirebasePushNotification.Current.OnNotificationOpened += (s, p) =>
-            //{
-            //    try
-            //    {
-            //        object url;
-            //        // Case action is page to open
-            //        if (p.Data.TryGetValue("urlPage", out url) && !string.IsNullOrEmpty(Convert.ToString(url)))
-            //        {
-            //            Device.OpenUri(new Uri(Convert.ToString(url)));
-            //        }
-            //    }
-            //    catch (Exception e)
-            //    {
-            //    }
-            //};
-
         }
         protected override void OnSleep()
         {
             // Handle when your app sleeps}
             IsInForeground = false;
         }
-
         protected async override void OnResume()
         {
             // Handle when your app resumes
@@ -449,6 +426,44 @@ namespace XpertMobileApp
 
             }
         }
+
+        public static void AddNewUrlService(UrlService url)
+        {
+            try
+            {
+                /* 1- Get the old list of service Url ... */
+                List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+
+                /* 2- Clear the list ... */
+                liste.Clear();
+
+                /* 3- Add the new Url ...*/
+                liste.Add(url);
+
+                /* 3- Set the new url as the default ... */
+
+                foreach (UrlService service in liste) // set all the services to false 
+                {
+                    service.Selected = false;
+                }
+
+
+                for (int i = 0; i < liste.Count; i++) // set true to the selected service ....
+                {
+                    if (liste[i].DisplayUrlService == url.DisplayUrlService)
+                    {
+                        liste[i].Selected = true;
+                    }
+                }
+
+                // 4- Save the new list with the new url ...
+                Settings.ServiceUrl = JsonConvert.SerializeObject(liste);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static void SetAppLanguage(string language)
         {
             try
@@ -474,6 +489,7 @@ namespace XpertMobileApp
 
         public async static Task<bool> IsConected()
         {
+
             List<UrlService> liste = new List<UrlService>();
             liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
             if (liste.Count == 0)
@@ -509,8 +525,32 @@ namespace XpertMobileApp
             //if (!isReachable)
             //    await ShowDisplayAlert();
             Online = isReachable;
+
             return isReachable;
 
+        }
+
+        public async static Task<bool> GetTunnelAddress()
+        {
+            try
+            {
+                string RemoteUrl = await WebServiceClient.GetTunnelUrl();
+                if (RemoteUrl != null)
+                {
+                    AddNewUrlService(new UrlService
+                    {
+                        DisplayUrlService = RemoteUrl,
+                        Selected = false,
+                        Title = RemoteUrl,
+                    });
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public static string RestServiceUrl
@@ -634,7 +674,9 @@ namespace XpertMobileApp
         }
 
         // ------ Internet connexion infos ---------
-#region Verification de la connexion internet et affichage d'une alerte en cas de deconnexion
+
+
+        #region Verification de la connexion internet et affichage d'une alerte en cas de deconnexion
 
         private static bool alertDisplayed = false;
         private static Label labelInfo;
@@ -687,8 +729,7 @@ namespace XpertMobileApp
 
             await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.txt_alert_message, AppResources.alrt_msg_Ok);
         }
-
-#endregion
+        #endregion
 
         private string getFormatedValue(object value)
         {
@@ -711,7 +752,6 @@ namespace XpertMobileApp
 
             return result;
         }
-
         //check if there are pages on your navigation stack
         public bool PromptToConfirmExit
         {

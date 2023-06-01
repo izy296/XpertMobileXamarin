@@ -1,6 +1,8 @@
 ﻿using Acr.UserDialogs;
+using Newtonsoft.Json;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -8,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
+using XpertMobileApp.Api.Models;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
@@ -50,9 +53,10 @@ namespace XpertMobileApp.Views
             Ent_PassWord.Completed += (s, e) => ConnectUserAsync(s, e);
         }
 
-        protected override void OnAppearing()
+        protected override async void OnAppearing()
         {
             base.OnAppearing();
+
             // if the user want to login with password only and he remembered his credietial
             if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "true")
             {
@@ -88,6 +92,29 @@ namespace XpertMobileApp.Views
             }
         }
 
+        async Task GetNewTunnelUrlIfNotConnected()
+        {
+            try
+            {
+                // Check if the current Url is reachable 
+                List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(App.Settings.ServiceUrl);
+                /*  Get the new Url */
+                await App.GetTunnelAddress();
+
+                //if (!await App.IsConected())
+                //{
+                //    // If false means that the current Url is not working
+                //    // we have to get new Url ...
+                //}
+
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+            }
+        }
+
         async void ConnectUserAsync(object sender, EventArgs e)
         {
 
@@ -100,13 +127,18 @@ namespace XpertMobileApp.Views
             }
 
             try
-            {
+            {               
+                
+                
+                // if the url in the moment of login is unreachable 
+                await GetNewTunnelUrlIfNotConnected();
                 bool isconnected = await App.IsConected();
-                if (!isconnected)
-                    if (Constants.AppName != Apps.X_DISTRIBUTION)
-                    {
-                        return;
-                    }
+               
+                //if (!isconnected)
+                ////if (Constants.AppName != Apps.X_DISTRIBUTION)
+                //{
+                //}                
+
                 if (App.Online)
                 {
                     UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -340,7 +372,6 @@ namespace XpertMobileApp.Views
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
-
         protected async Task RecupererPrefix()
         {
             var res = await SQLite_Manager.getPrefix();
@@ -349,13 +380,11 @@ namespace XpertMobileApp.Views
                 App.PrefixCodification = res.PREFIX;
             }
         }
-
         protected void Settings_Clicked(object sender, EventArgs e)
         {
             SettingsPage sp = new SettingsPage(true);
             this.Navigation.PushModalAsync(new NavigationPage(sp));
         }
-
         private void Exit_Clicked(object sender, EventArgs e)
         {
             //System.Environment.Exit(1);
@@ -384,18 +413,18 @@ namespace XpertMobileApp.Views
                 }
             }
         }
-
         private void OnDemoCheckBoxCheckedChanged(object sender, Syncfusion.XForms.Buttons.StateChangedEventArgs e)
         {
             try
             {
                 if (e.IsChecked.HasValue && e.IsChecked.Value)
                 {
-                    Ent_UserName.IsEnabled = Ent_PassWord.IsEnabled =  false;
+                    Ent_UserName.IsEnabled = Ent_PassWord.IsEnabled = false;
                     Btn_LogIn.Text = "Connexion en mode demo";
                     Ent_UserName.Text = "Administrateur";
                     Ent_PassWord.Text = "00";
-                } else
+                }
+                else
                 {
                     Ent_UserName.IsEnabled = Ent_PassWord.IsEnabled = true;
                     Btn_LogIn.Text = "Connexion";

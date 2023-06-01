@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Xpert.Common.DAO;
@@ -420,6 +422,15 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "versionToCompare", Version);
             return await WSApi2.PostAauthorizedValue<string, string>(url, Version, Token);
         }
+
+        internal static async Task<string> GetTunnelUrl()
+        {
+            string url = WSApi2.CreateLink(ServiceUrlDico.TunnelUrl);
+            url += "?ClientID=" + App.Settings.ClientId;
+            url += Constants.AppName == Apps.XPH_Mob ? "&AppName=XPH5" : "&AppName=XCM";
+            var res =  await WSApi2.RetrievAauthorizedValueWithoutTokenAndJson(url);
+            return res;
+        }
         #endregion
 
         #region Ventes
@@ -831,36 +842,8 @@ namespace XpertMobileApp.Services
             url += WSApi2.AddParam(url, "codeTransfer", codeTransfer);
             return await RetrievAauthorizedData<View_STK_TRANSFERT_DETAIL>(url);
         }
-        
-        internal static async Task<List<View_STK_INVENTAIRE_DETAIL>> GetCodeBarreLotInventaireInfo(string codeBarre, string numInventaire)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_INVENTAIRE_DETAIL_URL, ServiceUrlDico.STK_INVENTAIRE_DETAIL_GET_LOT_INFO);
-            url += "?codeBarre="+codeBarre;
-            url += "&numInventaire="+numInventaire;
-            return await RetrievAauthorizedData<View_STK_INVENTAIRE_DETAIL>(url);
-        }  
-        
-        internal static async Task<bool> UpdateInventoryAndPlacement(STK_MOBILE obj)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_INVENTAIRE_DETAIL_URL, ServiceUrlDico.STK_INVENTAIRE_DETAIL_UPDATE);
-            return await WSApi2.PostAauthorizedValue<bool, STK_MOBILE>(url, obj, App.User.Token.access_token);
-        }
 
-        internal static async Task<List<View_STK_STOCK>> GetLotByCodeBarreAndMagasin(string codeBarreLot, string codeMagasin)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_STOCK_URL, ServiceUrlDico.STK_STOCK_GET_LOT_INFO);
-            url += "?codeBarreLot=" + codeBarreLot;
-            url += "&codeMagasin=" + codeMagasin;
-            return await RetrievAauthorizedData<View_STK_STOCK>(url);
-        }
-        internal static async Task<bool> StockAdjustement(int? idStock, decimal qteAfter, decimal qteOld)
-        {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_AJUSTEMENT_DETAIL_URL, ServiceUrlDico.STK_AJUSTEMENT_DETAIL_UPDATE_URL);
-            url += "?idStock=" + idStock;
-            url += "&qteOld=" + qteOld;
-            url += "&qteAfter=" + qteAfter;
-            return await RetrievValAauthorizedData<bool>(url);
-        }
+ 
 
 
         //internal static async Task<View_STK_INVENTAIRE_DETAIL> GetInventaireDetail(string numIvent, string codeBarre)
