@@ -47,6 +47,11 @@ namespace XpertMobileApp.ViewModels
             { 
                this.AddCondition<View_STK_PRODUITS, bool>(e => e.AUTORISER_RECEPTIONS, 1);
             }
+            if (Constants.AppName==Apps.XCOM_Abattoir)
+            {
+                this.AddCondition<View_STK_PRODUITS, bool>(e => e.IS_STOCKABLE, 1);
+
+            }
             this.AddOrderBy<View_STK_PRODUITS, string>(e => e.DESIGNATION_PRODUIT);
             return qb.QueryInfos;
         }           
