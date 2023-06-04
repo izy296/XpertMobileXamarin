@@ -323,6 +323,11 @@ namespace XpertMobileApp.Views
             btn_Get_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
             btn_Get_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
 
+            if (viewModel.Item.STATUS_DOC != DocStatus.EnAttente)
+            {
+                IMMATRICULATION.IsEnabled = false;
+            }
+
             if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
             {
                 ne_PESEE_SORTIE.IsEnabled = false;
@@ -379,6 +384,13 @@ namespace XpertMobileApp.Views
                 btn_RowSelect.IsEnabled = false;
                 btn_RowScan.IsEnabled = false;
             }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Rejeter)
+            {
+                if (viewModel.hasExaminationVeterinaire)
+                {
+                    cmd_VETERINARY.IsEnabled = false;
+                }
+            }
 
             if (viewModel.hasEditDetails == false && viewModel.hasInsertDetails == false)
             {
@@ -386,6 +398,7 @@ namespace XpertMobileApp.Views
                 detailsBarFrame.IsVisible = false;
                 pnl_Header.IsVisible = true;
             }
+
         }
 
         #region Méthodes
