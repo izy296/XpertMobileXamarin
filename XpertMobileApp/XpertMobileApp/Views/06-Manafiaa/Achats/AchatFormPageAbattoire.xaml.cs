@@ -193,11 +193,17 @@ namespace XpertMobileApp.Views
             {
                 ApplyVisibility();
             }
+            else if (AppManager.HasAdmin)
+            {
+                ApplyVisibilityForAdmin();
+
+            }
             else
             {
                 if ((viewModel.Item.STATUS_DOC == DocStatus.EnCours || viewModel.Item.STATUS_DOC == DocStatus.EnAttente) && viewModel.Item.PESEE_ENTREE == 0)
                 {
                     cmd_Terminate.IsVisible = true;
+                    //if (Constants.AppName == Apps.XCOM_Abattoir)
                 }
             }
         }
@@ -215,6 +221,55 @@ namespace XpertMobileApp.Views
             // ne_PESEE_ENTREE.IsEnabled = string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
             // ne_PESEE_SORTIE.IsEnabled = !string.IsNullOrEmpty(this.viewModel.Item.CODE_DOC);
         }
+
+        private void ApplyVisibilityForAdmin()
+        {
+            ApplyVisibility();
+            if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
+            {
+                detailsBar.IsVisible = false;
+                detailsBarFrame.IsVisible = false;
+                ne_PESEE_SORTIE_Label.IsVisible = false;
+                ne_PESEE_SORTIE_Layout.IsVisible = false;
+                dp_EcheanceDate.IsEnabled = true;
+                TiersSelector.IsEnabled = true;
+                btn_TeirsSearch.IsEnabled = true;
+                IMMATRICULATION.IsEnabled = true;
+
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.EnCours)
+            {
+                lbl_VETERINARY.IsVisible = true;
+                cmd_VETERINARY.IsVisible = true;
+                btn_Get_PESEE_ENTREE.IsVisible = false;
+                ne_PESEE_ENTREE_Label.IsVisible = false;
+                ne_PESEE_ENTREE.IsVisible = false;
+                cmd_Buy.IsVisible = false;
+                if (viewModel.Item.VALIDATE == 1 ||
+                    (viewModel.Item.STATUS_DOC != DocStatus.EnCours
+                    && viewModel.Item.STATUS_DOC != DocStatus.Accepter
+                    && viewModel.Item.STATUS_DOC != DocStatus.Rejeter))
+                {
+                    cmd_VETERINARY.IsEnabled = false;
+                }
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Accepter)
+            {
+                ne_PESEE_ENTREE.IsEnabled = true;
+                detailsBar.IsVisible = true;
+                detailsBarFrame.IsVisible = true;
+                btn_Get_PESEE_ENTREE.IsEnabled=true;
+                pnl_Header.IsVisible = true;
+                btn_RowSelect.IsEnabled = true;
+                btn_RowScan.IsEnabled = true;
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Terminer || viewModel.Item.STATUS_DOC == DocStatus.Rejeter)
+            {
+                cmd_Buy.IsEnabled = false;
+                stk_lbl_NOTE.IsEnabled = false;
+            }
+        }
+
 
         private void ApplyVisibility()
         {
@@ -235,9 +290,9 @@ namespace XpertMobileApp.Views
                     ne_PESEE_ENTREE_Label.IsVisible = false;
                     ne_PESEE_ENTREE.IsVisible = false;
                     cmd_Buy.IsVisible = false;
-                    if (viewModel.Item.VALIDATE==1 || 
-                        (viewModel.Item.STATUS_DOC!=DocStatus.EnCours 
-                        && viewModel.Item.STATUS_DOC != DocStatus.Accepter 
+                    if (viewModel.Item.VALIDATE == 1 ||
+                        (viewModel.Item.STATUS_DOC != DocStatus.EnCours
+                        && viewModel.Item.STATUS_DOC != DocStatus.Accepter
                         && viewModel.Item.STATUS_DOC != DocStatus.Rejeter))
                     {
                         cmd_VETERINARY.IsEnabled = false;
@@ -261,7 +316,7 @@ namespace XpertMobileApp.Views
             // Champs d'edition du header
             dp_EcheanceDate.IsEnabled = viewModel.hasEditHeader;
             btn_TeirsSearch.IsEnabled = viewModel.hasEditHeader;
-            jobFieldAutoComplete.IsEnabled = viewModel.hasEditHeader;
+            IMMATRICULATION.IsEnabled = viewModel.hasEditHeader;
             ne_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
             ne_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
 
@@ -275,12 +330,13 @@ namespace XpertMobileApp.Views
 
                 btn_RowSelect.IsEnabled = viewModel.hasEditDetails || viewModel.hasInsertDetails;
                 btn_RowScan.IsEnabled = viewModel.hasEditDetails || viewModel.hasInsertDetails;
+
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.EnAttente)
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
-                jobFieldAutoComplete.IsEnabled = false;
+                IMMATRICULATION.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 //ne_PESEE_SORTIE.IsEnabled = false;
                 btn_Get_PESEE_ENTREE.IsEnabled = false;
@@ -294,7 +350,7 @@ namespace XpertMobileApp.Views
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
-                jobFieldAutoComplete.IsEnabled = false;
+                IMMATRICULATION.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 btn_Get_PESEE_ENTREE.IsEnabled = false;
 
@@ -313,7 +369,7 @@ namespace XpertMobileApp.Views
             {
                 dp_EcheanceDate.IsEnabled = false;
                 btn_TeirsSearch.IsEnabled = false;
-                jobFieldAutoComplete.IsEnabled = false;
+                IMMATRICULATION.IsEnabled = false;
                 ne_PESEE_ENTREE.IsEnabled = false;
                 ne_PESEE_SORTIE.IsEnabled = false;
 
@@ -324,7 +380,7 @@ namespace XpertMobileApp.Views
                 btn_RowScan.IsEnabled = false;
             }
 
-            if (viewModel.hasEditDetails==false && viewModel.hasInsertDetails == false)
+            if (viewModel.hasEditDetails == false && viewModel.hasInsertDetails == false)
             {
                 detailsBar.IsVisible = false;
                 detailsBarFrame.IsVisible = false;
@@ -1251,7 +1307,7 @@ namespace XpertMobileApp.Views
                                         //viewModel.Item.STATUS_DOC = DocStatus.Cloture;
                                         viewModel.Item.STATUS_DOC = DocStatus.Rejeter;
                                         viewModel.Item.VALIDATE = 0;
-                                        UserDialogs.Instance.ShowLoading(); 
+                                        UserDialogs.Instance.ShowLoading();
                                         await bll.UpdateItemAsync(viewModel.Item);
                                         veterinaryValidation = 0;
                                         UserDialogs.Instance.HideLoading();
@@ -1320,15 +1376,15 @@ namespace XpertMobileApp.Views
             {
                 var scanner = new ZXing.Mobile.MobileBarcodeScanner();
                 var result = await scanner.Scan();
-                if (result!=null)
+                if (result != null)
                 {
-                    jobFieldAutoComplete.Text = result.Text;
+                    IMMATRICULATION.Text = result.Text;
                     OnPropertyChanged("SelectedIdentifiant");
                 }
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(ex.Message,"Alerte","Ok");
+                await UserDialogs.Instance.AlertAsync(ex.Message, "Alerte", "Ok");
             }
         }
     }

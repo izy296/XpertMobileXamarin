@@ -87,7 +87,7 @@
                         
                         <auto:AutoCompleteRenderer Watermark="abc..." PopupDelay="0" HorizontalOptions="FillAndExpand"
                             Text="{Binding Item.IMMATRICULATION, Mode=TwoWay}" Grid.Column="0" Grid.Row="0"
-                            WatermarkColor="#adb2bb" TextSize="16" x:Name="jobFieldAutoComplete" 
+                            WatermarkColor="#adb2bb" TextSize="16" x:Name="IMMATRICULATION" 
                             SuggestionMode="Contains" AutoCompleteMode="Suggest" HeightRequest="60" 
                             MinimumPrefixCharacters="2" MaximumDropDownHeight="150" HighlightedTextColor="Red" 
                             TextHighlightMode="MultipleOccurrence" AutoCompleteSource="{Binding ImmatriculationList}" 
