@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Extended;
 using Xpert.Common.DAO;
 using Xpert.Common.WSClient.Helpers;
+using XpertMobileApp.Api;
 using XpertMobileApp.Api.ViewModels;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Services;
