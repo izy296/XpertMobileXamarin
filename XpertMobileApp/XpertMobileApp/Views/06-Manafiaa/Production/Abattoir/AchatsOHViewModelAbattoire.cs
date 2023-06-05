@@ -142,7 +142,9 @@ namespace XpertMobileApp.ViewModels
 
         public AchatsOHViewModelAbattoire(string typeDoc, string motifDoc)
         {
+            if (motifDoc == PesageMotifs.PesageForProduction)
             Title = AppResources.pn_AchatsProduction;
+            else Title = AppResources.pn_AchatsPrestation;
             MotifDoc = motifDoc;
             TypeDoc = typeDoc;
 

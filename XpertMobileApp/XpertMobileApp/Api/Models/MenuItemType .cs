@@ -16,6 +16,7 @@ namespace XpertMobileApp.Api.Models
         Psychotrop,
         Achats,
         AchatsProduction,
+        AchatsPrestation,
         OrdresProduction,
         Reception,
         Catalogues,

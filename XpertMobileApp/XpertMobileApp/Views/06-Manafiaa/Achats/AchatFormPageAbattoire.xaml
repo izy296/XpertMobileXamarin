@@ -42,6 +42,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
@@ -170,6 +171,19 @@
                     <StackLayout x:Name="stk_lbl_NOTE" Grid.Column="1" Grid.Row="8" Orientation="Horizontal" 
                                  Padding="0" Margin="0" Spacing="0" >
                         <Editor Text="{Binding Item.NOTE_DOC, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+                    
+                    <Label x:Name="lbl_Motif" Grid.Column="0" Grid.Row="9" Text="Motif" FontSize="Medium" Margin="5" />
+                    <StackLayout x:Name="picker_Motif" Grid.Column="1" Grid.Row="9" Orientation="Horizontal" 
+                                 Padding="0" Margin="0" Spacing="0" >
+                        <Picker ItemsSource="{Binding Motifs}"
+                                ItemDisplayBinding="{Binding DESIGNATION}"
+                                SelectedItem="{Binding SelectedMotif}"
+                                SelectedIndexChanged="motifsPicker_SelectedIndexChanged"
+                                TextColor="Black"
+                                HorizontalOptions="FillAndExpand"
+                                IsEnabled="False"
+                                x:Name="motifsPicker"/>
                     </StackLayout>
                 </Grid>
             </Frame>

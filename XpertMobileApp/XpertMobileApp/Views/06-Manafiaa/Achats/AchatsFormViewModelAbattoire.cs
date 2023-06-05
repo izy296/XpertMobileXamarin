@@ -11,17 +11,35 @@ namespace XpertMobileApp.Views.Achats
 {
     public class AchatsViewModelAbattoire : ItemRowsDetailViewModel<View_ACH_DOCUMENT, View_ACH_DOCUMENT_DETAIL>
     {
-        private List<String> immatriculationList;        
-        public List<String> ImmatriculationList {
+        private List<String> immatriculationList;
+        public List<String> ImmatriculationList
+        {
             get { return immatriculationList; }
             set { SetProperty(ref immatriculationList, value); }
+        }
+
+        public class AchRecMotifsObject
+        {
+            public string DESIGNATION { get; set; }
+            public string CODE_MOTIF { get; set; }
+        }
+
+        private List<AchRecMotifsObject> motifs { get; set; }
+        public List<AchRecMotifsObject> Motifs
+        {
+            get { return motifs; }
+            set
+            {
+                motifs = value;
+                OnPropertyChanged("Motifs");
+            }
         }
 
         public bool hasEditDetails
         {
             get
             {
-                if (AppManager.HasAdmin && Constants.AppName!=Apps.XCOM_Abattoir) return true;
+                if (AppManager.HasAdmin && Constants.AppName != Apps.XCOM_Abattoir) return true;
                 bool result = false;
                 if (AppManager.permissions != null)
                 {
@@ -29,7 +47,7 @@ namespace XpertMobileApp.Views.Achats
                     result = obj != null && obj.AcUpdate > 0;
                 }
                 return result;
-            }            
+            }
         }
 
         public bool hasInsertDetails
@@ -105,6 +123,13 @@ namespace XpertMobileApp.Views.Achats
             set { SetProperty(ref selectedImmat, value); }
         }
 
+        private AchRecMotifsObject selectedMotif;
+        public AchRecMotifsObject SelectedMotif
+        {
+            get { return selectedMotif; }
+            set { SetProperty(ref selectedMotif, value); }
+        }
+
         public AchatsViewModelAbattoire(View_ACH_DOCUMENT obj, string itemId) : base(obj, itemId)
         {
             /*
@@ -114,6 +139,18 @@ namespace XpertMobileApp.Views.Achats
             ImmatriculationList.Add("CCC-45654");
             ImmatriculationList.Add("TTT-09854");
             */
+            Motifs = new List<AchRecMotifsObject>() {new AchRecMotifsObject()
+            {
+                DESIGNATION = "Production",
+                CODE_MOTIF = PesageMotifs.PesageForProduction
+            },
+            new AchRecMotifsObject()
+            {
+                DESIGNATION = "Prestation",
+                CODE_MOTIF = PesageMotifs.PesagePrestation
+            }};
+
+            SelectedMotif = Motifs.Where(elm=>elm.CODE_MOTIF == Item.CODE_MOTIF).FirstOrDefault();
         }
 
         public decimal CalculatePeseeNet(decimal peseeBrute, List<View_BSE_EMBALLAGE> emballages)
@@ -143,4 +180,5 @@ namespace XpertMobileApp.Views.Achats
         }
 
     }
+
 }

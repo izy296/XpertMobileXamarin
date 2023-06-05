@@ -2401,5 +2401,13 @@ namespace XpertMobileApp {
                 return ResourceManager.GetString("exit_Button_No", resourceCulture);
             }
         }
+
+        public static string pn_AchatsPrestation
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_AchatsPrestation", resourceCulture);
+            }
+        }
     }
 }

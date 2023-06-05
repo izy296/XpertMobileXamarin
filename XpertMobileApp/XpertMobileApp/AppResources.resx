@@ -919,4 +919,7 @@
   <data name="pn_Statistics" xml:space="preserve">
     <value>Statistiques</value>
   </data>
+  <data name="pn_AchatsPrestation" xml:space="preserve">
+    <value>Réception pour Prestation</value>
+  </data>
 </root>

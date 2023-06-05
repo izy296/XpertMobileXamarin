@@ -17,6 +17,7 @@ using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views.Achats;
 using ZXing.Net.Mobile.Forms;
+using static XpertMobileApp.Views.Achats.AchatsViewModelAbattoire;
 
 namespace XpertMobileApp.Views
 {
@@ -39,11 +40,13 @@ namespace XpertMobileApp.Views
             InitializeComponent();
 
             // NavigationPage.SetHasNavigationBar(this, false);
-
-            lbl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
-            tgl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
-            stk_lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
-            lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
+            if (Constants.AppName != Apps.XCOM_Abattoir)
+            {
+                lbl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
+                tgl_IS_Individuel.IsVisible = motif == AchRecMotifs.PesageForProduction;
+                stk_lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
+                lbl_NOTE.IsVisible = motif == AchRecMotifs.PesageForProduction;
+            }
 
             itemSelector = new ProductSelector();
             TiersSelector = new TiersSelector(CurrentStream);
@@ -277,6 +280,11 @@ namespace XpertMobileApp.Views
             cmd_Terminate.IsVisible = false;
             string userGroup = App.User.GroupName;
 
+            if (viewModel.Item.STATUS_DOC != DocStatus.EnAttente)
+            {
+                IMMATRICULATION.IsEnabled = false;
+            }
+
             if (Constants.AppName == Apps.XCOM_Abattoir)
             {
                 ne_PESEE_SORTIE_Label.IsVisible = false;
@@ -322,11 +330,6 @@ namespace XpertMobileApp.Views
 
             btn_Get_PESEE_ENTREE.IsEnabled = viewModel.hasEditHeader;
             btn_Get_PESEE_SORTIE.IsEnabled = viewModel.hasEditHeader;
-
-            if (viewModel.Item.STATUS_DOC != DocStatus.EnAttente)
-            {
-                IMMATRICULATION.IsEnabled = false;
-            }
 
             if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
             {
@@ -1399,6 +1402,11 @@ namespace XpertMobileApp.Views
             {
                 await UserDialogs.Instance.AlertAsync(ex.Message, "Alerte", "Ok");
             }
+        }
+
+        private void motifsPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            viewModel.Item.CODE_MOTIF = viewModel.SelectedMotif.CODE_MOTIF;
         }
     }
 }

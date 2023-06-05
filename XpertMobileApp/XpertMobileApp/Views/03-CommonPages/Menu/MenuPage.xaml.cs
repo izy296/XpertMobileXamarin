@@ -86,6 +86,7 @@ namespace XpertMobileApp.Views
                 {
                     //new HomeMenuItem {Id = MenuItemType.Achats, Image = "", Title=AppResources.pn_Achats },
                     new HomeMenuItem {Id = MenuItemType.AchatsProduction, Image = "", Title=AppResources.pn_AchatsProduction },
+                    new HomeMenuItem {Id = MenuItemType.AchatsPrestation, Image = "", Title=AppResources.pn_AchatsPrestation },
                     //new HomeMenuItem {Id = MenuItemType.OrdresProduction, Image = "", Title=AppResources.pn_OrdresProduction },
                     //new HomeMenuItem{ Id = MenuItemType.synchronisation, Image = "", Title = "Synchronisation" },
                     new HomeMenuItem {Id = MenuItemType.Tiers, Image = "", Title=AppResources.pn_Tiers },

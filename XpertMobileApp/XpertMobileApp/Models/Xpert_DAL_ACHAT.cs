@@ -15,6 +15,12 @@ namespace XpertMobileApp.DAL
         public static string PesageForProduction { get { return "ES11"; } }
     }
 
+    public static class PesageMotifs
+    {
+        public static string PesageForProduction { get { return "ES10"; } }
+        public static string PesagePrestation { get { return "ES11"; } }
+    }
+
     public static class StausAchRecDoc
     {
         public static string EnAttente { get { return "16"; } }
