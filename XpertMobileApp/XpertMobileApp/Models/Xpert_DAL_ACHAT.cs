@@ -113,6 +113,7 @@ namespace XpertMobileApp.DAL
                 OnPropertyChanged("TOTAL_TTC");
             }
         }
+        public string NOTE_TIERS { get; set; }
     }
 
     public partial class View_ACH_DOCUMENT : ACH_DOCUMENT
@@ -428,7 +429,14 @@ namespace XpertMobileApp.DAL
                 if (Math.Round(qTE_BRUTE, 2) != Math.Round(value, 2))
                 {
                     qTE_BRUTE = value;
+                    if (Api.Constants.AppName == Api.Apps.XCOM_Abattoir)
+                    {
+                        QTE_RECUE = value;
+                        QUANTITE = value;
+                    }
                     OnPropertyChanged("QTE_BRUTE");
+                    OnPropertyChanged("QTE_RECUE");
+                    OnPropertyChanged("QUANTITE");
                     OnPropertyChanged("MT_TTC");
                     // ParentDoc.PSEE_UPDATED = true;
                 }
@@ -610,6 +618,7 @@ namespace XpertMobileApp.DAL
         public bool IS_NEW { get; set; }
         public bool SHOW_CATALOG { get; set; }
         public string IMAGE_URL { get; set; }
+        public bool AUTORISE_CERTIFICATE { get; set; }
 
     }
 

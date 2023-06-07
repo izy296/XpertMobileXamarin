@@ -283,6 +283,8 @@ namespace XpertMobileApp.Views
             if (viewModel.Item.STATUS_DOC != DocStatus.EnAttente)
             {
                 IMMATRICULATION.IsEnabled = false;
+                NOTE_TIERS_Layout.IsVisible = false;
+                NOTE_TIERS_Lbl.IsVisible = false;
             }
 
             if (Constants.AppName == Apps.XCOM_Abattoir)
@@ -333,6 +335,8 @@ namespace XpertMobileApp.Views
 
             if (string.IsNullOrEmpty(viewModel.Item.STATUS_DOC))
             {
+                NOTE_TIERS_Layout.IsVisible = true;
+                NOTE_TIERS_Lbl.IsVisible = true;
                 ne_PESEE_SORTIE.IsEnabled = false;
                 btn_Get_PESEE_SORTIE.IsEnabled = false;
 
@@ -372,6 +376,13 @@ namespace XpertMobileApp.Views
                 {
                     cmd_Terminate.IsVisible = true;
                 }
+            }
+            else if (viewModel.Item.STATUS_DOC == DocStatus.Accepter)
+            {
+                ne_PESEE_ENTREE_Label.IsVisible = false;
+                ne_PESEE_ENTREE_Layout.IsVisible = false;
+                lbl_NOTE.IsVisible = false;
+                stk_lbl_NOTE.IsVisible = false;
             }
             else if (viewModel.Item.STATUS_DOC == DocStatus.Terminer || viewModel.Item.STATUS_DOC == DocStatus.Cloturee)
             {
@@ -705,6 +716,7 @@ namespace XpertMobileApp.Views
         {
             TiersSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(TiersSelector);
+            MessagingCenter.Send(this,"motif",viewModel.Item.CODE_MOTIF);
         }
 
         private EmballageSelector EmballageSelector;

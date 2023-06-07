@@ -43,6 +43,7 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <StackLayout Grid.Column="0" Grid.ColumnSpan="2" Spacing="0" Padding="0,5">
@@ -172,9 +173,15 @@
                                  Padding="0" Margin="0" Spacing="0" >
                         <Editor Text="{Binding Item.NOTE_DOC, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
                     </StackLayout>
-                    
-                    <Label x:Name="lbl_Motif" Grid.Column="0" Grid.Row="9" Text="Motif" FontSize="Medium" Margin="5" />
-                    <StackLayout x:Name="picker_Motif" Grid.Column="1" Grid.Row="9" Orientation="Horizontal" 
+
+                    <Label x:Name="NOTE_TIERS_Lbl" Grid.Column="0" Grid.Row="9" Text="Note Tier" FontSize="Medium" Margin="5" />
+                    <StackLayout x:Name="NOTE_TIERS_Layout" Grid.Column="1" Grid.Row="9" Orientation="Horizontal" 
+                                 Padding="0" Margin="0" Spacing="0" >
+                        <Editor Text="{Binding Item.NOTE_TIERS, Mode=TwoWay}" HorizontalOptions="FillAndExpand"/>
+                    </StackLayout>
+
+                    <Label x:Name="lbl_Motif" Grid.Column="0" Grid.Row="10" Text="Motif" FontSize="Medium" Margin="5" />
+                    <StackLayout x:Name="picker_Motif" Grid.Column="1" Grid.Row="10" Orientation="Horizontal" 
                                  Padding="0" Margin="0" Spacing="0" >
                         <Picker ItemsSource="{Binding Motifs}"
                                 ItemDisplayBinding="{Binding DESIGNATION}"
@@ -279,7 +286,7 @@
                                                     <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                     <!-- Déchets -->
-                                                    <Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <!--<Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
 
                                                     <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1"  
                                                          Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
@@ -288,14 +295,14 @@
                                                          ValueChanged="ne_tauxDechetsChanged"
                                                          IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
                                                         />
-                                                    <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>-->
 
                                                     <!-- Qte déchets -->
-                                                    <Label Grid.Column="0" Grid.Row="2" 
+                                                    <!--<Label Grid.Column="0" Grid.Row="2" 
                                                                Text="{i18n:Translate txt_agri_QDechet}"  FontSize="Default" HorizontalOptions="Start"/>
                                                     <Label Grid.Column="1" Grid.Row="2"
                                                             Text="{ Binding QUANTITE_DECHETS, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
-                                                    <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>-->
 
                                                     <!-- Pesée net -->
                                                     <Label Grid.Column="0" Grid.Row="3" 

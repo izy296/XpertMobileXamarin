@@ -120,6 +120,7 @@ namespace XpertMobileApp.DAL
         public string NOTE_VENTE { get; set; } // nvarchar(-1)
         public string CODE_MOTIF { get; set; }
         public string CODE_BARRE { get; set; }
+        public string NOTE_TIERS { get; set; }
     }
     public partial class View_VTE_VENTE : VTE_VENTE
     {

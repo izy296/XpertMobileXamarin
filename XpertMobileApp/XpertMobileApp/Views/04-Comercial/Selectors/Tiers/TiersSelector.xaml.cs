@@ -45,6 +45,8 @@ namespace XpertMobileApp.Views
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);
+
+            MessagingCenter.Subscribe<AchatFormPageAbattoire,string>(this, "motif", async (s,e) => { });
         }
 
         private async void OnClose(object sender, EventArgs e)

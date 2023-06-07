@@ -19,7 +19,7 @@ namespace XpertMobileApp.Services
 
         public static string Token
         {
-            get { return App.User.Token.access_token; } 
+            get { return App.User.Token.access_token; }
         }
 
         public static async Task<List<T>> RetrievAauthorizedData<T>(string url)
@@ -35,7 +35,7 @@ namespace XpertMobileApp.Services
         public static async Task<Token> Login(string baseUrl, string username, string password)
         {
             try
-            { 
+            {
                 string url = baseUrl + "Token";
                 return await WSApi2.Log_in(url, username, password);
             }
@@ -93,10 +93,11 @@ namespace XpertMobileApp.Services
 
         #region Tiers
 
-        internal static async Task<List<View_BSE_TIERS_FAMILLE>> getTiersFamilles()
+        internal static async Task<List<View_BSE_TIERS_FAMILLE>> getTiersFamilles(string codeType = "")
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.TIERS_URL, ServiceUrlDico.TIERS_FAMILLES_URL);
-
+            if (XpertHelper.IsNotNullAndNotEmpty(codeType))
+                url += WSApi2.AddParam(url, "codeType", codeType);
             return await RetrievAauthorizedData<View_BSE_TIERS_FAMILLE>(url);
         }
 
@@ -197,12 +198,12 @@ namespace XpertMobileApp.Services
             string url = ServiceUrlDico.LICENCE_DEACTIVATION_URL;
             string result = await WSApi2.PutValue<Client>(url, client);
 
-            return !string.IsNullOrEmpty(result);            
+            return !string.IsNullOrEmpty(result);
         }
 
         #endregion
 
-        
+
         #region Ventes
 
         public static async Task<List<View_VTE_JOURNAL_DETAIL>> GetVenteDetails(string codeVente)
@@ -220,7 +221,7 @@ namespace XpertMobileApp.Services
 
             return await RetrievAauthorizedData<View_VTE_VENTE_LOT>(url);
         }
-        
+
         public static async Task<List<BSE_DOCUMENTS_TYPE>> GetVenteTypes()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.VENTES_URL, ServiceUrlDico.VENTES_TYPES_URL);
@@ -317,7 +318,7 @@ namespace XpertMobileApp.Services
             return await WSApi2.PostAauthorizedValue<bool, Dictionary<string, int>>(url, values, Token);
         }
 
-        public static async Task<bool> LivrerProduction(string codeDoc, string codeDocDetail,string codeProduction)
+        public static async Task<bool> LivrerProduction(string codeDoc, string codeDocDetail, string codeProduction)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.ACH_PRODUCTION, ServiceUrlDico.PRODUCTION_UPDATE_LIVRAISON_INFOS_URL);
             url += WSApi2.AddParam(url, "param06", "param06");
@@ -415,15 +416,15 @@ namespace XpertMobileApp.Services
         internal static async Task<List<View_STK_STOCK_RFID>> getStockFromRFIDs(List<string> RFIDs)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_STOCK_FROM_RFIDs);
-            return await WSApi2.PostAauthorizedValue< List<View_STK_STOCK_RFID >, List<string>>(url, RFIDs, App.User.Token.access_token);
+            return await WSApi2.PostAauthorizedValue<List<View_STK_STOCK_RFID>, List<string>>(url, RFIDs, App.User.Token.access_token);
         }
         internal static async Task<View_STK_INVENTAIRE> getCurentInventaire()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_GET_CURENT_INV);
-            
+
             return await RetrievValAauthorizedData<View_STK_INVENTAIRE>(url);
         }
-        internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots,string modeValidate,string numInve,bool isOuvert)
+        internal static async Task<bool> UpdateCurentInventaire(List<View_STK_STOCK_RFID> lots, string modeValidate, string numInve, bool isOuvert)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_UPDATE_CURENT_INV);
             url += WSApi2.AddParam(url, "modvalidate", modeValidate);

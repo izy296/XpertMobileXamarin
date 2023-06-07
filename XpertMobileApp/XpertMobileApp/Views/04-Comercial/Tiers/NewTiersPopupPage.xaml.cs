@@ -2,9 +2,11 @@
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -40,8 +42,8 @@ namespace XpertMobileApp.Views
             Types = new ObservableCollection<BSE_TABLE_TYPE>();
             Secteurs = new ObservableCollection<BSE_TABLE>();
 
-            LoadFamilleCommand = new Command(async () => await ExecuteLoadFamillesCommand());
             LoadTypesCommand = new Command(async () => await ExecuteLoadTypesCommand());
+            LoadFamilleCommand = new Command(async () => await ExecuteLoadFamillesCommand());
             LoadSecteursCommand = new Command(async () => await ExecuteLoadSecteursCommand());
 
             if (item != null)
@@ -77,8 +79,9 @@ namespace XpertMobileApp.Views
             if (Types.Count == 0)
                 LoadTypesCommand.Execute(null);
 
-            if (Familles.Count == 0)
-                LoadFamilleCommand.Execute(null);
+            if (Constants.AppName != Apps.XCOM_Abattoir)
+                if (Familles.Count == 0)
+                    LoadFamilleCommand.Execute(null);
 
             if (Secteurs.Count == 0)
                 LoadSecteursCommand.Execute(null);
@@ -180,10 +183,13 @@ namespace XpertMobileApp.Views
                     Types.Clear();
                     var itemsC = await WebServiceClient.getTiersTypes();
 
-                    BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
-                    allElem.CODE_TYPE = "";
-                    allElem.DESIGNATION_TYPE = AppResources.txt_All;
-                    Types.Add(allElem);
+                    if (Constants.AppName != Apps.XCOM_Abattoir)
+                    {
+                        BSE_TABLE_TYPE allElem = new BSE_TABLE_TYPE();
+                        allElem.CODE_TYPE = "";
+                        allElem.DESIGNATION_TYPE = AppResources.txt_All;
+                        Types.Add(allElem);
+                    }
 
                     foreach (var itemC in itemsC)
                     {
@@ -194,6 +200,17 @@ namespace XpertMobileApp.Views
                             TypesPicker.SelectedIndex = Types.IndexOf(itemC);
                         }
                     }
+
+                    if (Constants.AppName == Apps.XCOM_Abattoir)
+                    {
+                        List<BSE_TABLE_TYPE> list = new List<BSE_TABLE_TYPE>();
+                        list.Add(Types.Where(elm => elm.CODE_TYPE == "CF").First());
+                        Types = new ObservableCollection<BSE_TABLE_TYPE>(list);
+                        OnPropertyChanged("Types");
+                        SelectedType = Types.First();
+                        TypesPicker.SelectedIndex = Types.IndexOf(SelectedType);
+                    }
+                    await ExecuteLoadFamillesCommand();
                 }
                 catch (Exception ex)
                 {
@@ -225,7 +242,14 @@ namespace XpertMobileApp.Views
                 try
                 {
                     Familles.Clear();
-                    var itemsC = await WebServiceClient.getTiersFamilles();
+                    List<View_BSE_TIERS_FAMILLE> itemsC;
+                    if (Constants.AppName == Apps.XCOM_Abattoir)
+                    {
+                        if (Types.Count > 0)
+                            itemsC = await WebServiceClient.getTiersFamilles(SelectedType.CODE_TYPE);
+                        else itemsC = await WebServiceClient.getTiersFamilles();
+                    }
+                    else itemsC = await WebServiceClient.getTiersFamilles();
 
                     View_BSE_TIERS_FAMILLE allElem = new View_BSE_TIERS_FAMILLE();
                     allElem.CODE_FAMILLE = "";
@@ -241,6 +265,7 @@ namespace XpertMobileApp.Views
                             FamillesPicker.SelectedIndex = Familles.IndexOf(itemC);
                         }
                     }
+                    OnPropertyChanged("Familles");
                 }
                 catch (Exception ex)
                 {
