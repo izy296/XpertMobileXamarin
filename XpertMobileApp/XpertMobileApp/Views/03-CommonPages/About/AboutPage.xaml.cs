@@ -6,6 +6,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Models.Interfaces;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -88,27 +89,42 @@ namespace XpertMobileApp.Views
         /// send the client to google play to download new version 
         ///  2- Check the version of the WebAPi if it is less they perform an update 
         /// </summary>
-        public async void UpdateMobileAndApi()
+        public async Task UpdateMobileAndApi()
         {
             try
             {
                 UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-                if (await CheckForNewUpdates()) //Check the version of the mobile app ...
+                if (App.Online)
                 {
-                    //Go to the google play and download the new version if exists ...
-                    Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
-                }
-                if (await CheckForWebApiUpdate()) // Check  the version Of the webApi ...
-                {
-                    if (await UpdateToNewVersion())
+                    if (await CheckForNewUpdates()) //Check the version of the mobile app ...
                     {
-                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_success, trueMessage: AppResources.alrt_msg_Ok);
+                        CustomPopup AlertPopup = new CustomPopup("Mise à jour Disponible, Voulez-vous la faire ?", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        if (await AlertPopup.PopupClosedTask)
+                        {
+                            if (AlertPopup.Result)
+                            {
+                                //Go to the google play and download the new version if exists ...
+                                Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
+                            }
+                            else
+                            {
+                                App.WantToUpdate = false;
+                            }
+                        }
                     }
-                    else
+                    if (await CheckForWebApiUpdate() && App.WantToUpdate) // Check  the version Of the webApi ...
                     {
-                        CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_failed, trueMessage: AppResources.alrt_msg_Ok);
-                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        if (await UpdateToNewVersion())
+                        {
+                            CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_success, trueMessage: AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        }
+                        else
+                        {
+                            CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_failed, trueMessage: AppResources.alrt_msg_Ok);
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        }
                     }
                 }
                 UserDialogs.Instance.HideLoading();

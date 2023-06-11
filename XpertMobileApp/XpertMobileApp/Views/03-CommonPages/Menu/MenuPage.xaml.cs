@@ -579,6 +579,7 @@ namespace XpertMobileApp.Views
             else
             {
                 Application.Current.MainPage = new LoginPage();
+                App.runUpdate = true;
             }
         }
 

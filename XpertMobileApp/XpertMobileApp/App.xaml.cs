@@ -42,6 +42,7 @@ namespace XpertMobileApp
         public static string XPharmMainColor = "#52B2A7";
         public static string XDISTMainColor = "#FF9500";
         public static bool Online = false;
+        public static bool runUpdate { get; set; } = true;
         public static bool showReconnectMessage { get; set; } = true;
         public static bool showPrefixConfigurationMessage { get; set; } = true;
         public static string PrefixCodification { get; internal set; }
@@ -49,7 +50,7 @@ namespace XpertMobileApp
         public static decimal PARAM_FIDELITE_TIERS { get; internal set; } = 0;
 
         public static MsgCenter MsgCenter = new MsgCenter();
-
+        public static bool WantToUpdate { get; set; } = false;
         static TokenDatabaseControler tokenDatabase;
         static UserDatabaseControler userDatabase;
         static ClientDatabaseControler clientDatabase;

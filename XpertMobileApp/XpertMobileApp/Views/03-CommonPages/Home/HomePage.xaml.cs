@@ -85,15 +85,24 @@ namespace XpertMobileApp.Views
                 //connectionStatus.Text = AppResources.txt_offline;
                 //connectionStatusIcon.Source = "nowifi.png";
             }
+            //Check for Updates if exists and update the mobile and the web Api 
+            if (App.runUpdate)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await aboutPage.UpdateMobileAndApi();
+                });
+                App.runUpdate = false;
+            }
 
-            // handle the witch between offline and online mode...
-            //handleOfflineMode();
+
+
         }
         protected async override void OnAppearing()
         {
             base.OnAppearing();
             UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
-            //CheckIfUserWantReconnect();
+
             CHeckIfPrefixIsConfigured();
             try
             {
@@ -141,9 +150,6 @@ namespace XpertMobileApp.Views
             {
                 new MenuPage("1");
             }
-
-            //Check for Updates if exists and update the mobile and the web Api 
-            aboutPage.UpdateMobileAndApi();
         }
         private void btn_Refresh_Clicked(object sender, EventArgs e)
         {
