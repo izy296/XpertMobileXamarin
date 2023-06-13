@@ -100,6 +100,8 @@ namespace XpertMobileApp.Views
         {
             try
             {
+                bool isOneEntryEmpty = false;
+
                 var children = ListRejected.Children;
                 foreach (Grid child in children)
                 {
@@ -107,20 +109,31 @@ namespace XpertMobileApp.Views
                     foreach (var gridChild in gridChildren)
                     {
                         if (gridChild.GetType() == typeof(Entry))
-                            if (((Entry)gridChild).Text != "")
+                            if (((Entry)gridChild).Text != "" && ((Entry)gridChild).Text != null)
                                 selectedList.Add(new PRESTATION_REJECTED()
                                 {
                                     DESIGNATION_REJET = ((Entry)gridChild).Text,
                                 });
+                            else
+                            {
+                                isOneEntryEmpty = true;
+                            }
                     }
 
                 }
+                if (!isOneEntryEmpty)
+                {
+                    Result = selectedList;
+                    MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
+                    taskCompletionSource.SetResult(true);
+                    await PopupNavigation.Instance.PopAsync();
+                    MessagingCenter.Unsubscribe<AchatFormPageAbattoire, List<PRESTATION_REJECTED>>(this, "RejectedList");
+                }
+                else
+                {
+                    await PopupNavigation.Instance.PushAsync(new CustomPopup("une ou plusieurs entrées sont vides"));
+                }
 
-                Result = selectedList;
-                MessagingCenter.Send(this, "VeterinaryPopup", entryNote.Text);
-                taskCompletionSource.SetResult(true);
-                await PopupNavigation.Instance.PopAsync();
-                MessagingCenter.Unsubscribe<AchatFormPageAbattoire, List<PRESTATION_REJECTED>>(this, "RejectedList");
 
             }
             catch (Exception ex)
