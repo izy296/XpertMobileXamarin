@@ -82,7 +82,14 @@ namespace XpertMobileApp.Views
 
             // jobFieldAutoComplete.BindingContext = viewModel;
 
-            this.viewModel.Title = string.IsNullOrEmpty(ach.CODE_DOC) ? AppResources.pn_NewPurchase : ach?.ToString();
+            if (Constants.AppName != Apps.XCOM_Abattoir)
+            {
+                this.viewModel.Title = string.IsNullOrEmpty(ach.CODE_DOC) ? AppResources.pn_NewPurchase : ach?.ToString();
+            }
+            else
+            {
+                this.viewModel.Title = (ach.CODE_MOTIF == PesageMotifs.PesagePrestation ? "Nouvelle Prestation" : "Nouvelle Production");
+            }
 
             this.viewModel.LoadRowsCommand = new Command(async () => await ExecuteLoadRowsCommand());
 
@@ -261,7 +268,7 @@ namespace XpertMobileApp.Views
                 ne_PESEE_ENTREE.IsEnabled = true;
                 detailsBar.IsVisible = true;
                 detailsBarFrame.IsVisible = true;
-                btn_Get_PESEE_ENTREE.IsEnabled=true;
+                btn_Get_PESEE_ENTREE.IsEnabled = false;
                 pnl_Header.IsVisible = true;
                 btn_RowSelect.IsEnabled = true;
                 btn_RowScan.IsEnabled = true;
@@ -381,6 +388,7 @@ namespace XpertMobileApp.Views
             {
                 ne_PESEE_ENTREE_Label.IsVisible = false;
                 ne_PESEE_ENTREE_Layout.IsVisible = false;
+                IMMATRICULATION.IsEnabled = false;
                 lbl_NOTE.IsVisible = false;
                 stk_lbl_NOTE.IsVisible = false;
             }
@@ -505,7 +513,12 @@ namespace XpertMobileApp.Views
                 row.PRIX_VENTE = product.PRIX_VENTE_HT;
 
                 row.CODE_MAGASIN = parames?.DEFAULT_ACHATS_MAGASIN;
-                row.LOT = parames?.DEFAULT_COMPAGNE_LOT;
+
+                if (Constants.AppName == Apps.XCOM_Abattoir)
+                    row.LOT = viewModel.Item.CODE_TIERS;
+                else
+                    row.LOT = parames?.DEFAULT_COMPAGNE_LOT;
+
                 row.UNITE = viewModel.Item.CODE_UNITE;
                 row.CODE_UNITE_ENTETE = viewModel.Item.CODE_UNITE;
 
@@ -716,7 +729,7 @@ namespace XpertMobileApp.Views
         {
             TiersSelector.SearchedType = "CF";
             await PopupNavigation.Instance.PushAsync(TiersSelector);
-            MessagingCenter.Send(this,"motif",viewModel.Item.CODE_MOTIF);
+            MessagingCenter.Send(this, "motif", viewModel.Item.CODE_MOTIF);
         }
 
         private EmballageSelector EmballageSelector;

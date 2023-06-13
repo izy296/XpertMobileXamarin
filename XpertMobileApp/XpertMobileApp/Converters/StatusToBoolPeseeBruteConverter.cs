@@ -57,7 +57,7 @@ namespace XpertMobileApp.Converters
 
             if (obj == null) return false;
 
-            if ((obj.Parent_Doc.STATUS_DOC == DocStatus.EnAttente || obj.Parent_Doc.STATUS_DOC == DocStatus.EnCours) && HasPermission) // && obj.Edited_BY_QteNet != true
+            if ((obj.Parent_Doc.STATUS_DOC == DocStatus.EnAttente || obj.Parent_Doc.STATUS_DOC == DocStatus.EnCours || (Constants.AppName == Apps.XCOM_Abattoir && obj.Parent_Doc.STATUS_DOC == DocStatus.Accepter)) && HasPermission) // && obj.Edited_BY_QteNet != true
             {
                 return true;
             }
@@ -97,7 +97,7 @@ namespace XpertMobileApp.Converters
 
             if (obj == null) return false;
 
-            if ((obj.Parent_Doc.STATUS_DOC == DocStatus.EnAttente || obj.Parent_Doc.STATUS_DOC == DocStatus.EnCours) && HasPermission ) //&& obj.Edited_BY_QteNet != false
+            if ((obj.Parent_Doc.STATUS_DOC == DocStatus.EnAttente || obj.Parent_Doc.STATUS_DOC == DocStatus.EnCours || (Constants.AppName == Apps.XCOM_Abattoir && obj.Parent_Doc.STATUS_DOC == DocStatus.Accepter)) && HasPermission ) //&& obj.Edited_BY_QteNet != false
             {
                 return true;
             }

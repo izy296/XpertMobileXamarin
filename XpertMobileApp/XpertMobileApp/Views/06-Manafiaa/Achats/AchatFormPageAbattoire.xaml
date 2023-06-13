@@ -261,10 +261,6 @@
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="35" />
                                                         <RowDefinition Height="35" />
-                                                        <RowDefinition Height="35" />
-                                                        <RowDefinition Height="35" />
-                                                        <RowDefinition Height="35" />
-                                                        <RowDefinition Height="35" />
                                                     </Grid.RowDefinitions>
 
                                                     <!-- Pesée brute -->
@@ -285,38 +281,14 @@
 
                                                     <Label Grid.Column="2" Grid.Row="0" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
-                                                    <!-- Déchets -->
-                                                    <!--<Label Grid.Column="0" Grid.Row="1" Text="{i18n:Translate txt_agri_TauxDechet}" FontSize="Default" HorizontalOptions="Start"/>
-
-                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="1"  
-                                                         Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
-                                                         ParserMode="Double" MaximumNumberDecimalDigits="2" 
-                                                         SelectAllOnFocus="True" Value="{Binding TAUX_DECHET, Mode=TwoWay}" 
-                                                         ValueChanged="ne_tauxDechetsChanged"
-                                                         IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPeseeBruteConverter}}"
-                                                        />
-                                                    <Label Grid.Column="2" Grid.Row="1" Text="%" FontSize="Default" HorizontalOptions="Start"/>-->
-
-                                                    <!-- Qte déchets -->
-                                                    <!--<Label Grid.Column="0" Grid.Row="2" 
-                                                               Text="{i18n:Translate txt_agri_QDechet}"  FontSize="Default" HorizontalOptions="Start"/>
-                                                    <Label Grid.Column="1" Grid.Row="2"
-                                                            Text="{ Binding QUANTITE_DECHETS, StringFormat='{0:N2}'}" HorizontalOptions="Start"/>
-                                                    <Label Grid.Column="2" Grid.Row="2" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>-->
-
-                                                    <!-- Pesée net -->
-                                                    <Label Grid.Column="0" Grid.Row="3" 
+                                                    <Label Grid.Column="0" Grid.Row="1" 
                                                                Text="{i18n:Translate txt_agri_QNet}"  FontSize="Default" HorizontalOptions="Start"/>
-                                                    <!--
-                                                        <Label Grid.Column="1" Grid.Row="3"
-                                                            Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" HorizontalOptions="Start" />
-                                                        -->
 
-                                                    <Label Grid.Column="1" Grid.Row="3"
+                                                    <Label Grid.Column="1" Grid.Row="1"
                                                             Text="{ Binding QUANTITE, StringFormat='{0:N2}'}" 
                                                              IsVisible="{Binding IS_PRINCIPAL}" FontSize="Default" HorizontalOptions="Start" VerticalOptions="Start"/>
 
-                                                    <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="3" 
+                                                    <numeric1:SfNumericTextBox  Grid.Column="1" Grid.Row="1" 
                                                          Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"
                                                          ParserMode="Double" MaximumNumberDecimalDigits="2" 
                                                          ClassId="{Binding CLEANED_CODE_DOC, StringFormat='pn_{0}'}"
@@ -325,30 +297,7 @@
                                                          IsEnabled="{Binding ., Converter={StaticResource enablePeseeNetConverter}}"   
                                                          IsVisible = "{Binding IS_PRINCIPAL, Converter={StaticResource inverseBoolVisibilityConverter}}"/>
 
-                                                    <Label Grid.Column="2" Grid.Row="3" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
-
-                                                    <!-- Prix -->
-                                                    <Label Grid.Column="0" Grid.Row="4" Text="{i18n:Translate txt_agri_Prix}" FontSize="Default" HorizontalOptions="Start"/>
-                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="4" 
-                                                             Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
-                                                             ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
-                                                             SelectAllOnFocus="True" Value="{Binding PRIX_UNITAIRE, Mode=TwoWay}"                    
-                                                             IsEnabled="{Binding Source={x:Reference AchatForm}, Path=BindingContext.Item, Converter={StaticResource statusForPriceConverter}}"
-                                                              ValueChanged="ne_PeseeTTCChanged"
-                                                             />
-                                                    <Label  Grid.Column="2" Grid.Row="4" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
-
-                                                    <!-- Dernier Prix d'Achat fournisseur -->
-                                                    <Label IsVisible="{Binding IS_ACHAT}" Grid.Column="0" Grid.Row="5" Text="{i18n:Translate txt_agri_PrixLast}" FontSize="Default" HorizontalOptions="Start"/>
-                                                    <numeric1:SfNumericTextBox Grid.Column="1" Grid.Row="5" 
-                                                             Minimum="0" FontSize="12" Margin="0,-10,0,0" VerticalOptions="Start"                      
-                                                             ParserMode="Double" MaximumNumberDecimalDigits="2" HorizontalOptions="FillAndExpand"
-                                                             SelectAllOnFocus="True" Value="{Binding LAST_PRIX_ACHAT, Mode=TwoWay}" 
-                                                                                 
-                                                             IsEnabled="False"
-                                                              ValueChanged="ne_PeseeTTCChanged"
-                                                             />
-                                                    <Label  Grid.Column="2" Grid.Row="5" Text=" DA" FontSize="Default" HorizontalOptions="Start"/>
+                                                    <Label Grid.Column="2" Grid.Row="1" Text="Kg" FontSize="Default" HorizontalOptions="Start"/>
 
                                                 </Grid>
 
