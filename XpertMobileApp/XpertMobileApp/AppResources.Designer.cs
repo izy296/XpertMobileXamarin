@@ -1345,6 +1345,17 @@ namespace XpertMobileApp
                 return ResourceManager.GetString("pn_encaissement", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Encaiss &amp; Décaiss.
+        /// </summary>
+        internal static string pn_encaissement_Alt
+        {
+            get
+            {
+                return ResourceManager.GetString("pn_encaissement_Alt", resourceCulture);
+            }
+        }
 
         /// <summary>
         ///   Recherche une chaîne localisée semblable à Accueil.
@@ -2215,6 +2226,17 @@ namespace XpertMobileApp
         }
 
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Décaissement.
+        /// </summary>
+        internal static string txt_Decaiss_Alt
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Decaiss_Alt", resourceCulture);
+            }
+        }
+
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Détails.
         /// </summary>
         internal static string txt_Details
@@ -2277,6 +2299,17 @@ namespace XpertMobileApp
             get
             {
                 return ResourceManager.GetString("txt_Encaiss", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Encaissement.
+        /// </summary>
+        internal static string txt_Encaiss_Alt
+        {
+            get
+            {
+                return ResourceManager.GetString("txt_Encaiss_Alt", resourceCulture);
             }
         }
 

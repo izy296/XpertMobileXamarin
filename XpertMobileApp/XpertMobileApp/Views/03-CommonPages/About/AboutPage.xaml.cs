@@ -38,9 +38,9 @@ namespace XpertMobileApp.Views
         /// Check if there is new version or not 
         /// </summary>
         /// <returns></returns>
-        private async Task<bool> CheckForNewUpdates()
+        private async Task<bool> CheckForNewUpdates(bool showLoading=true)
         {
-            string newVersion = await viewModel.GetNewVersion(NewVersion);
+            string newVersion = await viewModel.GetNewVersion(NewVersion,showLoading:showLoading);
             Version newVersionHolder = new Version(newVersion);
             Version currentVersionHolder = new Version(VersionTracking.CurrentVersion);
             return newVersionHolder > currentVersionHolder ? true : false;
@@ -50,11 +50,11 @@ namespace XpertMobileApp.Views
         /// Send the command to initiat Update process
         /// </summary>
         /// <returns></returns>
-        private async Task<bool> UpdateToNewVersion()
+        private async Task<bool> UpdateToNewVersion(bool showLoading = true)
         {
-            string result = await viewModel.UpdateVersion();
+            string result = await viewModel.UpdateVersion(showLoading);
             if (result != null)
-                if (result.Contains("OK"))
+                if (result.Contains("OK") || result == "NO_UPDATE")
                     return true;
                 else return false;
             else return false;
@@ -93,10 +93,12 @@ namespace XpertMobileApp.Views
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Loading);
                 if (App.Online)
                 {
-                    if (await CheckForNewUpdates()) //Check the version of the mobile app ...
+                    var mobileUpdate = await CheckForNewUpdates(false);
+                    var webUpdate = await CheckForWebApiUpdate(false);
+
+                    if (mobileUpdate || webUpdate) //Check the version of the mobile app ...
                     {
                         CustomPopup AlertPopup = new CustomPopup("Mise à jour Disponible, Voulez-vous la faire ?", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
@@ -105,33 +107,28 @@ namespace XpertMobileApp.Views
                             if (AlertPopup.Result)
                             {
                                 //Go to the google play and download the new version if exists ...
-                                Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
+                                if (mobileUpdate)
+                                    Device.OpenUri(new Uri("https://play.google.com/store/apps/details?id=" + AppInfo.PackageName));
+                                //App.WantToUpdate = true;
+                                if (webUpdate)
+                                    if (await UpdateToNewVersion(false))
+                                    {
+                                        CustomPopup AlertPopupSuccess = new CustomPopup(AppResources.ap_updated, trueMessage: AppResources.alrt_msg_Ok);
+                                        await PopupNavigation.Instance.PushAsync(AlertPopupSuccess);
+                                    }
+                                    else
+                                    {
+                                        CustomPopup AlertPopupFailed = new CustomPopup(AppResources.ap_update_failed, trueMessage: AppResources.alrt_msg_Ok);
+                                        await PopupNavigation.Instance.PushAsync(AlertPopupFailed);
+                                    }
                             }
-                            else
-                            {
-                                App.WantToUpdate = false;
-                            }
-                        }
-                    }
-                    if (await CheckForWebApiUpdate() && App.WantToUpdate) // Check  the version Of the webApi ...
-                    {
-                        if (await UpdateToNewVersion())
-                        {
-                            CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_success, trueMessage: AppResources.alrt_msg_Ok);
-                            await PopupNavigation.Instance.PushAsync(AlertPopup);
-                        }
-                        else
-                        {
-                            CustomPopup AlertPopup = new CustomPopup(AppResources.ap_update_failed, trueMessage: AppResources.alrt_msg_Ok);
-                            await PopupNavigation.Instance.PushAsync(AlertPopup);
                         }
                     }
                 }
-                UserDialogs.Instance.HideLoading();
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Dont show anything
             }
         }
 
@@ -177,9 +174,9 @@ namespace XpertMobileApp.Views
 
         }
 
-        private async Task<bool> CheckForWebApiUpdate()
+        private async Task<bool> CheckForWebApiUpdate(bool showLoading = true)
         {
-            bool res = await viewModel.GetNewWebApiVersion(NewVersion);
+            bool res = await viewModel.GetNewWebApiVersion(NewVersion, showLoading);
             return res;
         }
 

@@ -6,6 +6,7 @@
              xmlns:fontawesome="clr-namespace:FontAwesome"
              xmlns:i18n="clr-namespace:XpertMobileApp.Helpers" xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     x:Class="XpertMobileApp.Views.LoginPage"
+             
              BackgroundColor="White"
              >
 
@@ -251,7 +252,8 @@
                             TextColor="{StaticResource Accent}"
                             Text="{x:Static fontawesome:FontAwesomeIcons.Cog}" 
                             BackgroundColor="White" 
-                            Clicked="Settings_Clicked"/>
+                            Clicked="Settings_Clicked"
+                            IsVisible="false"/>
 
                     <Button x:Name="Btn_Exit" 
                             Margin="0" 

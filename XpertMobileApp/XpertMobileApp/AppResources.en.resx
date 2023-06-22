@@ -162,6 +162,9 @@
 	<data name="pn_encaissement" xml:space="preserve">
     <value>Treasury</value>
   </data>
+	<data name="pn_encaissement_Alt" xml:space="preserve">
+    <value>Cash in / Cash out</value>
+  </data>
 	<data name="pn_home" xml:space="preserve">
     <value>Home</value>
   </data>

@@ -90,7 +90,7 @@ namespace XpertMobileApp.Views
                 {
                     Id = MenuItemType.Encaissements,
                     ItemGroup = MenuItemGroup.Tresorerie,
-                    Title = Constants.AppName != Apps.X_DISTRIBUTION ? AppResources.pn_encaissement : "Paiement",
+                    Title = Constants.AppName != Apps.X_DISTRIBUTION ? AppResources.pn_encaissement_Alt : "Paiement",
                     CodeObjet = XpertObjets.TRS_DECAISS,
                     Action = Xpert.XpertActions.AcSelect,
                     Image = "encaisss.png"
@@ -132,6 +132,28 @@ namespace XpertMobileApp.Views
                     Title = AppResources.pn_About
                 });
 
+                /* Commande */
+                menuItems.Add(new HomeMenuItem
+                {
+                    Id = MenuItemType.Commandes,
+                    ItemGroup = MenuItemGroup.Ventes,
+                    Title = AppResources.pn_Commandes,
+                    Image = "shopping.png",
+                    CodeObjet = XpertObjets.VTE_COMMANDE,
+                    Action = XpertActions.AcSelect
+                });
+
+                ///* Inventaire */
+                //menuItems.Add(new HomeMenuItem
+                //{
+                //    Id = MenuItemType.Inventaire,
+                //    ItemGroup = MenuItemGroup.Stock,
+                //    Title = AppResources.pn_Inventaire,
+                //    CodeObjet = XpertObjets.STK_INVENTAIRE,
+                //    Action = XpertActions.AcSelect,
+                //    Image = "Inventory.png"
+
+                //});
                 // Modules qui existe dans la version Pro Seulement 
                 if (App.Settings.Mobile_Edition >= Mobile_Edition.Pro)
                 {
@@ -284,10 +306,9 @@ namespace XpertMobileApp.Views
                                 CodeObjet = XpertObjets.TDB_ANALYSES,
                                 Action = XpertActions.AcSelect,
                                 Image = "analyse.png"
-
                             });
 
-                            /* Inventaire */
+                            ///* Inventaire */
                             //menuItems.Add(new HomeMenuItem
                             //{
                             //    Id = MenuItemType.Inventaire,
@@ -296,7 +317,6 @@ namespace XpertMobileApp.Views
                             //    CodeObjet = XpertObjets.STK_INVENTAIRE,
                             //    Action = XpertActions.AcSelect,
                             //    Image = "Inventory.png"
-
                             //});
 
                         }

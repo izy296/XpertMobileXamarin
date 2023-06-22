@@ -31,11 +31,12 @@ namespace XpertMobileApp.ViewModels
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> GetNewVersion(Label l)
+        public async Task<string> GetNewVersion(Label l, bool showLoading = true)
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                if (showLoading)
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var xml = await WebServiceClient.GetNewVersion();
                 XDocument docWebApiXml = XDocument.Parse(xml);
                 XElement itemWebApiXml = docWebApiXml.Element("item");
@@ -59,11 +60,12 @@ namespace XpertMobileApp.ViewModels
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<bool> GetNewWebApiVersion(Label l)
+        public async Task<bool> GetNewWebApiVersion(Label l, bool showLoading = true)
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                if (showLoading)
+                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
                 var res = await WebServiceClient.GetWebApiVersion();
                 Version webVersion = new Version(res);
 
@@ -72,16 +74,16 @@ namespace XpertMobileApp.ViewModels
                 XDocument docWebApiXml = XDocument.Parse(resNewVersion);
                 XElement itemWebApiXml = docWebApiXml.Element("item");
 
-                Version newVersion = new Version (itemWebApiXml.Element("version").Value);
-
+                Version newVersion = new Version(itemWebApiXml.Element("version").Value);
+                bool critical = bool.Parse(itemWebApiXml.Element("criticalGlobal").Value);
                 // pour tester la fonctionalité de mise a jour WebApi en cas de passage a la version 2.8.0
                 //Version newVersion = new Version ("2.8.0");
 
-
                 UserDialogs.Instance.HideLoading();
-                if (newVersion == new Version("2.8.0"))
-                    return true;
-                if (newVersion >= webVersion)
+                //if (newVersion == new Version("2.80.0"))
+                //    return true;
+
+                if (newVersion >= webVersion || critical)
                     return true;
                 else return false;
             }
@@ -96,11 +98,12 @@ namespace XpertMobileApp.ViewModels
         /// Send post request to api to update the web api
         /// </summary>
         /// <exception cref="Exception"></exception>
-        public async Task<string> UpdateVersion()
+        public async Task<string> UpdateVersion(bool showLoading = true)
         {
             try
             {
-                UserDialogs.Instance.ShowLoading(AppResources.ap_updating_txt);
+                if (showLoading)
+                    UserDialogs.Instance.ShowLoading(AppResources.ap_updating_txt);
                 string res = await WebServiceClient.UpdateVersion(VersionTracking.CurrentVersion);
                 UserDialogs.Instance.HideLoading();
                 return res;

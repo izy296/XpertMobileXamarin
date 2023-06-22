@@ -45,7 +45,7 @@ namespace XpertMobileApp.Views
 
 
             InitializeComponent();
-            if (string.IsNullOrEmpty(typeVente))
+            if (string.IsNullOrEmpty(typeVente) || typeVente== VentesTypes.VentePSYCO)
                 btn_Additem.IsVisible = false;
 
             itemSelector = new TiersSelector(CurrentStream);
@@ -54,46 +54,6 @@ namespace XpertMobileApp.Views
             //vteGlobalInfos.IsVisible = typeVente == VentesTypes.Vente && viewModel.HasAdmin;
             viewModel.LoadSummaries = true; // typeVente == VentesTypes.Vente
 
-            if (Constants.AppName == Apps.X_DISTRIBUTION)
-            {
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    if (viewModel.SelectedTournee == null)
-                    {
-                        await viewModel.LoadTourneeOpen();
-                        if (viewModel.TourneeOpen.Count > 1)
-                        {
-                            TourneeOpenSelector AlertPopup = new TourneeOpenSelector("There is Multiple Tournee Open", falseMessage: AppResources.alrt_msg_Cancel, trueMessage: AppResources.alrt_msg_Ok);
-                            AlertPopup.Items = viewModel.TourneeOpen;
-                            await PopupNavigation.Instance.PushAsync(AlertPopup);
-                            await AlertPopup.PopupClosedTask;
-                            if (AlertPopup.Result != null)
-                                viewModel.SelectedTournee = AlertPopup.Result;
-                            else
-                            {
-                                await UserDialogs.Instance.AlertAsync("Aucun Tournee est seléctioné ,s'il vous plait essayez une autre fois", AppResources.alrt_msg_Alert,
-                                    AppResources.alrt_msg_Ok);
-                                await Navigation.PopAsync();
-                            }
-                        }
-                        else if (viewModel.TourneeOpen.Count == 0)
-                        {
-                            await UserDialogs.Instance.AlertAsync("Aucun Tournee est assigner a vous ,s'il vous plait synchroniser les tournes", AppResources.alrt_msg_Alert,
-                                AppResources.alrt_msg_Ok);
-                            await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Synchronisation);
-                        }
-                        else
-                        {
-                            viewModel.SelectedTournee = viewModel.TourneeOpen.FirstOrDefault();
-                        }
-                        if (viewModel.SelectedTournee.TYPE_TOURNEE != TourneeType.Open)
-                        {
-                            viewModel.IsAddPermited = false;
-                        }
-                    }
-
-                });
-            }
             //MessagingCenter.Subscribe<TiersSelector, View_TRS_TIERS>(this, CurrentStream, async (obj, selectedItem) =>
             //{
             //    viewModel.SelectedTiers = selectedItem;
@@ -187,6 +147,47 @@ namespace XpertMobileApp.Views
 
             if (viewModel.TypeVente == VentesTypes.Livraison)
                 ArrowUp.IsVisible = false;
+
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    if (viewModel.SelectedTournee == null)
+                    {
+                        await viewModel.LoadTourneeOpen();
+                        if (viewModel.TourneeOpen.Count > 1)
+                        {
+                            TourneeOpenSelector AlertPopup = new TourneeOpenSelector("There is Multiple Tournee Open", falseMessage: AppResources.alrt_msg_Cancel, trueMessage: AppResources.alrt_msg_Ok);
+                            AlertPopup.Items = viewModel.TourneeOpen;
+                            await PopupNavigation.Instance.PushAsync(AlertPopup);
+                            await AlertPopup.PopupClosedTask;
+                            if (AlertPopup.Result != null)
+                                viewModel.SelectedTournee = AlertPopup.Result;
+                            else
+                            {
+                                await UserDialogs.Instance.AlertAsync("Aucun Tournee est seléctioné ,s'il vous plait essayez une autre fois", AppResources.alrt_msg_Alert,
+                                    AppResources.alrt_msg_Ok);
+                                await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Home);
+                            }
+                        }
+                        else if (viewModel.TourneeOpen.Count == 0)
+                        {
+                            await UserDialogs.Instance.AlertAsync("Aucun Tournee est assigner a vous ,s'il vous plait synchroniser les tournes", AppResources.alrt_msg_Alert,
+                                AppResources.alrt_msg_Ok);
+                            await ((MainPage)App.Current.MainPage).NavigateFromMenu((int)MenuItemType.Synchronisation);
+                        }
+                        else
+                        {
+                            viewModel.SelectedTournee = viewModel.TourneeOpen.FirstOrDefault();
+                        }
+                        //if (viewModel.SelectedTournee.TYPE_TOURNEE != TourneeType.Open)
+                        //{
+                        //    viewModel.IsAddPermited = false;
+                        //}
+                    }
+
+                });
+            }
 
 
         }

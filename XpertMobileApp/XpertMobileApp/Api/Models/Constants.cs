@@ -31,9 +31,10 @@ namespace XpertMobileApp.Api
                 return "Edition PRO ";
             else if (CodeEdition == 2)
                 return "Edition STANDARD ";
-            else
+                        else
                 return "Edition LITE ";
         }
+    
     }
 
     public static class Constants
@@ -81,8 +82,8 @@ namespace XpertMobileApp.Api
             AppName = Apps.X_DISTRIBUTION;
             return "XpertMobile DISTRIBUTION";
 #else
-            AppName = appName;
-            return "XpertMobile COMM";
+            AppName = Apps.XPH_Mob;
+            return "XpertMobile OFFICINE";
 #endif
 
         }

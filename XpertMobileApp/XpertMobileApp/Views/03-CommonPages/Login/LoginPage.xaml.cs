@@ -57,6 +57,10 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
+#if !Release
+            Btn_Config.IsVisible = true;
+#endif
+
             // if the user want to login with password only and he remembered his credietial
             if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "true")
             {
@@ -127,21 +131,24 @@ namespace XpertMobileApp.Views
             }
 
             try
-            {               
-                
-                
-                // if the url in the moment of login is unreachable 
-                await GetNewTunnelUrlIfNotConnected();
-                bool isconnected = await App.IsConected();
-               
-                //if (!isconnected)
-                ////if (Constants.AppName != Apps.X_DISTRIBUTION)
-                //{
-                //}                
+            {
 
+
+                // if the url in the moment of login is unreachable 
+                // await GetNewTunnelUrlIfNotConnected();
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                bool isconnected = await App.IsConected();
+
+                if (!isconnected)
+                    if (Constants.AppName != Apps.X_DISTRIBUTION)
+                    {
+                        UserDialogs.Instance.HideLoading();
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_NoConnexion, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        return;
+                    }
                 if (App.Online)
                 {
-                    UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
                     // Create User object And affect to it the username and the password from the textField... 
                     User user;
@@ -176,8 +183,8 @@ namespace XpertMobileApp.Views
                     {
                         UserDialogs.Instance.HideLoading();
 
-                        CustomPopup AlertPopup = new CustomPopup("un soucis est survenu lors de la tentative de connexion!", trueMessage: AppResources.alrt_msg_Ok);
-                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        //CustomPopup AlertPopup = new CustomPopup("un soucis est survenu lors de la tentative de connexion!", trueMessage: AppResources.alrt_msg_Ok);
+                        //await PopupNavigation.Instance.PushAsync(AlertPopup);
                         return;
                     }
 
@@ -342,6 +349,7 @@ namespace XpertMobileApp.Views
                     }
                     else
                     {
+                        UserDialogs.Instance.HideLoading();
                         CustomPopup AlertPopup = new CustomPopup(AppResources.lp_login_WrongAcces, trueMessage: AppResources.alrt_msg_Ok);
                         await PopupNavigation.Instance.PushAsync(AlertPopup);
                         UserDialogs.Instance.HideLoading();

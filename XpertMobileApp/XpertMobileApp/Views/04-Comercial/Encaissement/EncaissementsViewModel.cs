@@ -65,7 +65,7 @@ namespace XpertMobileApp.ViewModels
         } = false;
         public EncaissementsViewModel()
         {
-            Title = AppResources.pn_encaissement;
+            Title = Constants.AppName == Apps.XPH_Mob ? AppResources.pn_encaissement_Alt : AppResources.pn_encaissement;
 
             Comptes = new ObservableCollection<View_BSE_COMPTE>();
             Motifs = new ObservableCollection<BSE_ENCAISS_MOTIFS>();

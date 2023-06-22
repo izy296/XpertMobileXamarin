@@ -2,6 +2,7 @@
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XpertMobileApp.Api;
 using XpertMobileApp.DAL;
 using XpertMobileApp.SQLite_Managment;
 using XpertMobileApp.ViewModels;
@@ -29,6 +30,12 @@ namespace XpertMobileApp.Views
 
             if (viewModel.Comptes.Count == 0)
                 viewModel.LoadExtrasDataCommand.Execute(null);
+
+            if (Constants.AppName == Apps.XPH_Mob)
+            {
+                btn_Decaiss.Text = AppResources.txt_Decaiss_Alt;
+                btn_Encaiss.Text = AppResources.txt_Encaiss_Alt;
+            }
         }
         #region Afficher / ajouter un element
 

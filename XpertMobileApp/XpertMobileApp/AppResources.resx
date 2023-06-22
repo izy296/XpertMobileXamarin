@@ -143,6 +143,9 @@
   </data>
 	<data name="pn_encaissement" xml:space="preserve">
     <value>Versement &amp; Remboursement</value>
+  </data>	
+	<data name="pn_encaissement_Alt" xml:space="preserve">
+    <value>Encaiss / Decaiss</value>
   </data>
 	<data name="pn_home" xml:space="preserve">
     <value>Accueil</value>
@@ -272,6 +275,12 @@
   </data>
 	<data name="txt_Encaiss" xml:space="preserve">
     <value>Versement</value>
+  </data>
+	<data name="txt_Decaiss_Alt" xml:space="preserve">
+    <value>Décaiss</value>
+  </data>
+	<data name="txt_Encaiss_Alt" xml:space="preserve">
+    <value>Encaiss</value>
   </data>
 	<data name="txt_Today" xml:space="preserve">
     <value>Aujourd'hui</value>
