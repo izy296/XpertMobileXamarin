@@ -380,9 +380,24 @@ namespace XpertMobileApp
             IsInForeground = true;
 
             // Handle when your app resumes
-            if (!await IsConected())
+            if (IsNetworkConnected())
             {
-                CustomPopup AlertPopup = new CustomPopup("Connexion introuvable, voulez-vous vous connecter  ? ", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
+                // check if there is a vaible connection
+                if (!await IsConected())
+                {
+                    if (Constants.AppName != Apps.X_DISTRIBUTION)
+                    {
+                        CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_NoConnexion, trueMessage: AppResources.alrt_msg_Ok);
+                        await PopupNavigation.Instance.PushAsync(AlertPopup);
+                        return;
+                    }
+                }
+            }
+            else
+            {
+                //CustomPopup AlertPopup = new CustomPopup("", trueMessage: AppResources.alrt_msg_Ok);
+                //await PopupNavigation.Instance.PushAsync(AlertPopup);
+                CustomPopup AlertPopup = new CustomPopup("Connexion introuvable, voulez-vous connecter  ? ", falseMessage: AppResources.exit_Button_No, trueMessage: "Oui");
                 await PopupNavigation.Instance.PushAsync(AlertPopup);
                 if (await AlertPopup.PopupClosedTask)
                 {
@@ -391,12 +406,6 @@ namespace XpertMobileApp
                         DependencyService.Get<ISettingsStart>().StartSettings();
                     }
                 }
-            }
-            else
-            {
-                //CustomPopup AlertPopup = new CustomPopup("", trueMessage: AppResources.alrt_msg_Ok);
-                //await PopupNavigation.Instance.PushAsync(AlertPopup);
-                DependencyService.Get<Interfaces.IMessage>().LongAlert("Connexion etablie avec succée");
             }
         }
         //Methode to set url services 
@@ -486,6 +495,13 @@ namespace XpertMobileApp
             catch (Exception)
             {
             }
+        }
+        public bool IsNetworkConnected()
+        {
+            if (CrossConnectivity.Current.IsConnected)
+                return true;
+            else
+                return false;
         }
 
         public async static Task<bool> IsConected()

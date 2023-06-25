@@ -58,7 +58,7 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-#if !Release
+#if !RELEASE
             Btn_Config.IsVisible = true;
 #endif
 
