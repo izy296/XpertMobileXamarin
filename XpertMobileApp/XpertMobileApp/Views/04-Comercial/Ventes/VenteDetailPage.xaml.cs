@@ -9,6 +9,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.Api;
+using XpertMobileApp.Api.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
@@ -85,16 +86,19 @@ namespace XpertMobileApp.Views.Encaissement
                 else if (Item.TYPE_VENTE == "CC")
                     Title = AppResources.pn_Commandes;
                 else if (Item.TYPE_VENTE == "BR")
+                {
                     Title = "Bon Retour";
+                }
             }
 
             if (Constants.AppName == Apps.XPH_Mob)
             {
                 if (ToolbarItems.Count > 0)
                 {
-                    var buttonToRemove = ToolbarItems.Where(e => e.StyleId == "TransferToBL").First();
-                    if (buttonToRemove != null)
-                        ToolbarItems.Remove(buttonToRemove);
+                    var buttonToRemove = ToolbarItems.Where(e => e.StyleId == "TransferToBL" || e.StyleId == "EditButton").ToList();
+                    foreach (var button in buttonToRemove)
+                        if (button != null)
+                            ToolbarItems.Remove(button);
                 }
 
             }
@@ -278,7 +282,8 @@ namespace XpertMobileApp.Views.Encaissement
                     string printerToUse = App.Settings.PrinterName;
                     if (!App.Online)
                     {
-                        Device.BeginInvokeOnMainThread(async() => {
+                        Device.BeginInvokeOnMainThread(async () =>
+                        {
                             if (Constants.AppName == Apps.X_DISTRIBUTION)
                                 vente.DetailsDistrib = await SQLite_Manager.getVenteDetailsDistrib(vente.CODE_VENTE);
                             else vente.Details = await SQLite_Manager.getVenteDetails(vente.CODE_VENTE);
@@ -357,39 +362,49 @@ AppResources.alrt_msg_Ok);
 
         private async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selected = e.CurrentSelection[0] as View_VTE_JOURNAL_DETAIL;
-            ProduitDetailPage produitDetailPage = new ProduitDetailPage(selected.CODE_PRODUIT);
-            if (App.Online)
+            if (XpertHelper.IsNotNullAndNotEmpty(e.CurrentSelection))
             {
-                await Navigation.PushAsync(produitDetailPage);
-                Device.BeginInvokeOnMainThread(() => { 
-                    try
+                var selected = e.CurrentSelection[0] as View_VTE_JOURNAL_DETAIL;
+                ProduitDetailPage produitDetailPage = new ProduitDetailPage(selected.CODE_PRODUIT);
+                if (App.Online)
+                {
+                    await Navigation.PushAsync(produitDetailPage);
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                        collectionView.SelectedItem = null;
-                    }
-                    catch
+                        try
+                        {
+                            collectionView.SelectedItem = null;
+                        }
+                        catch
+                        {
+                        }
+                    });
+                }
+                else
+                {
+                    Device.BeginInvokeOnMainThread(() =>
                     {
-                    }
-                });
+                        try
+                        {
+                            collectionView.SelectedItem = null;
+                        }
+                        catch
+                        {
+                        }
+                    });
+                }
             }
-            else
-            {
-                Device.BeginInvokeOnMainThread(() => {
-                    try
-                    {
-                        collectionView.SelectedItem = null;
-                    }
-                    catch
-                    {
-                    }
-                });
-            }
+
         }
 
         private async void EditClicked(object sender, EventArgs e)
         {
-            var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
-            await Navigation.PushAsync(new VenteFormLivraisonPage(Item, Item.TYPE_DOC, client));
+            if (Constants.AppName == Apps.X_DISTRIBUTION)
+            {
+                var client = await SQLite_Manager.GetClient(Item.CODE_TIERS);
+                await Navigation.PushAsync(new VenteFormLivraisonPage(Item, Item.TYPE_DOC, client));
+
+            }
         }
 
         private async void TransferClicked(object sender, EventArgs e)
