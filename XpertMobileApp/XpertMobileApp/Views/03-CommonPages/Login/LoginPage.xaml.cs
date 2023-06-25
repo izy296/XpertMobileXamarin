@@ -11,6 +11,7 @@ using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
 using XpertMobileApp.Api.Models;
+using XpertMobileApp.Interfaces;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.SQLite_Managment;
@@ -102,14 +103,17 @@ namespace XpertMobileApp.Views
             {
                 // Check if the current Url is reachable 
                 List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(App.Settings.ServiceUrl);
-                /*  Get the new Url */
-                await App.GetTunnelAddress();
 
-                //if (!await App.IsConected())
-                //{
-                //    // If false means that the current Url is not working
-                //    // we have to get new Url ...
-                //}
+                if (!await App.IsConected())
+                {
+                    // If false means that the current Url is not working
+                    // we have to get new Url ...
+
+                    /*  Get the new Url */
+                    await App.GetTunnelAddress();
+                    await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    DependencyService.Get<IMessage>().ShortAlert("Service Url a été Mise A jour avec le lien publique");
+                }
 
 
             }
@@ -121,6 +125,7 @@ namespace XpertMobileApp.Views
 
         async void ConnectUserAsync(object sender, EventArgs e)
         {
+            UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
 
             // Check if the WebService is configured
             if (string.IsNullOrEmpty(App.RestServiceUrl))
@@ -135,8 +140,7 @@ namespace XpertMobileApp.Views
 
 
                 // if the url in the moment of login is unreachable 
-                // await GetNewTunnelUrlIfNotConnected();
-                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                await GetNewTunnelUrlIfNotConnected();
                 bool isconnected = await App.IsConected();
 
                 if (!isconnected)

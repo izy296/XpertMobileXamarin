@@ -18,6 +18,7 @@ using XpertMobileApp.Helpers;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.Views;
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -94,7 +95,7 @@ namespace XpertMobileApp.ViewModels
                 {
                     url = new UrlService
                     {
-                        DisplayUrlService = lInfos.Mobile_Remote_URL,
+                        DisplayUrlService = Manager.UrlServiceFormatter(lInfos.Mobile_Remote_URL),
                         Selected = true,
                         Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"
                     };

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -28,6 +29,26 @@ namespace XpertMobileApp.Views.Helper
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// check if a url service ending with "/" else append one at the end and return it
+        /// </summary>
+        /// <param name="urlService"></param>
+        /// <returns></returns>
+        public static string UrlServiceFormatter(string urlService)
+        {
+            string urlServiceFormatted = urlService;
+            if (urlServiceFormatted != null)
+            {
+                if (urlServiceFormatted.Last() != '/')
+                {
+                    urlServiceFormatted = string.Concat(urlServiceFormatted, '/');
+                }
+            }
+            else throw new Exception("urlService is NUll");
+
+            return urlServiceFormatted;
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ using XpertMobileApp.Models;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views;
-
+using XpertMobileApp.Views.Helper;
 
 namespace XpertMobileApp
 {
@@ -540,9 +540,9 @@ namespace XpertMobileApp
                 {
                     AddNewUrlService(new UrlService
                     {
-                        DisplayUrlService = RemoteUrl,
+                        DisplayUrlService = Manager.UrlServiceFormatter(RemoteUrl),
                         Selected = false,
-                        Title = RemoteUrl,
+                        Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise",
                     });
                     return true;
                 }

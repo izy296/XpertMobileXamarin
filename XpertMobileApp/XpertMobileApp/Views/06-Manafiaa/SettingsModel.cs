@@ -258,7 +258,7 @@ namespace XpertMobileApp.ViewModels
                     //execute when migrating to the new version of (xpret mobile )
                     UrlService ObjtoSerialize = new UrlService
                     {
-                        DisplayUrlService = Settings.ServiceUrl,
+                        DisplayUrlService = Manager.UrlServiceFormatter(Settings.ServiceUrl),
                         Selected = true,
                         Title = Settings.ServiceUrl
                     };
