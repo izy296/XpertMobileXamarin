@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿//using DocumentFormat.OpenXml.Wordprocessing;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -403,6 +403,12 @@ namespace XpertMobileApp.Services
         {
             string url = WSApi2.CreateLink(ServiceUrlDico.WEBAPI_XML_URL);
             return await RetrievValAauthorizedData<string>(url);
+        }
+
+        internal static async Task<bool> GetIsWebApiSelfHosted()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.WebApiSelfHosted);
+            return await RetrievValAauthorizedData<bool>(url);
         }
 
         internal static async Task<string> GetNewVersion()

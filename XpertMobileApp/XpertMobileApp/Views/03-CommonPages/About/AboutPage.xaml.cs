@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models.Interfaces;
+using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 
 namespace XpertMobileApp.Views
@@ -38,9 +39,9 @@ namespace XpertMobileApp.Views
         /// Check if there is new version or not 
         /// </summary>
         /// <returns></returns>
-        private async Task<bool> CheckForNewUpdates(bool showLoading=true)
+        private async Task<bool> CheckForNewUpdates(bool showLoading = true)
         {
-            string newVersion = await viewModel.GetNewVersion(NewVersion,showLoading:showLoading);
+            string newVersion = await viewModel.GetNewVersion(NewVersion, showLoading: showLoading);
             Version newVersionHolder = new Version(newVersion);
             Version currentVersionHolder = new Version(VersionTracking.CurrentVersion);
             return newVersionHolder > currentVersionHolder ? true : false;
@@ -52,12 +53,42 @@ namespace XpertMobileApp.Views
         /// <returns></returns>
         private async Task<bool> UpdateToNewVersion(bool showLoading = true)
         {
-            string result = await viewModel.UpdateVersion(showLoading);
-            if (result != null)
-                if (result.Contains("OK") || result == "NO_UPDATE")
-                    return true;
+            // check the type of the webapi
+            var isSelfHosted = await WebServiceClient.GetIsWebApiSelfHosted();
+            if (!isSelfHosted)
+            {
+                // if the webapi is hosted on IIS
+                string result = await viewModel.UpdateVersion(showLoading);
+                if (result != null)
+                    if (result.Contains("OK") || result == "NO_UPDATE")
+                        return true;
+                    else return false;
                 else return false;
-            else return false;
+            }
+            else
+            {
+                // if the webapi is hosted with windows service
+                UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
+                // send the command to update to the webapi and dont wait for the response as the api will launch an autoupdater that will kill the process
+                viewModel.UpdateVersion(false);
+
+                // wait for 30s for the api to start up again, maximum of 3 attempts
+                var retrys = 3;
+                while (retrys>0)
+                {
+                    await Task.Delay(30000);
+                    // check if the api is up and running
+                    if (!await App.IsConected())
+                        retrys--;
+                    else break;
+                }
+
+                // check if there is a new update
+                // (This means that the function will return false, which means that there is no new version and that the update was successful.)
+                var res = await CheckForWebApiUpdate(false);
+                UserDialogs.Instance.HideLoading();
+                return !res;
+            }
         }
         /// <summary>
         /// Check if the current version is up to date or not and enable button to update it ....

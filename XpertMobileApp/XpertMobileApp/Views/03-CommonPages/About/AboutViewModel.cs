@@ -45,7 +45,8 @@ namespace XpertMobileApp.ViewModels
 
                 newVersion = NewVersion;
                 l.Text = newVersion;
-                UserDialogs.Instance.HideLoading();
+                if (showLoading)
+                    UserDialogs.Instance.HideLoading();
                 return NewVersion;
             }
             catch (Exception ex)
@@ -78,8 +79,8 @@ namespace XpertMobileApp.ViewModels
                 bool critical = bool.Parse(itemWebApiXml.Element("criticalGlobal").Value);
                 // pour tester la fonctionalité de mise a jour WebApi en cas de passage a la version 2.8.0
                 //Version newVersion = new Version ("2.8.0");
-
-                UserDialogs.Instance.HideLoading();
+                if (showLoading)
+                    UserDialogs.Instance.HideLoading();
                 //if (newVersion == new Version("2.80.0"))
                 //    return true;
 
@@ -105,7 +106,8 @@ namespace XpertMobileApp.ViewModels
                 if (showLoading)
                     UserDialogs.Instance.ShowLoading(AppResources.ap_updating_txt);
                 string res = await WebServiceClient.UpdateVersion(VersionTracking.CurrentVersion);
-                UserDialogs.Instance.HideLoading();
+                if (showLoading)
+                    UserDialogs.Instance.HideLoading();
                 return res;
             }
             catch (Exception ex)

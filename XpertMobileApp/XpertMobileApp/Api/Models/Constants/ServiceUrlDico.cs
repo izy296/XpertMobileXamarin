@@ -75,6 +75,7 @@ namespace XpertMobileApp.Helpers
         public static string New_Version_URL = "GetVersion";
         public static string Update_URL = "Update";
         public static string WebApiVersion = "WebApiVersion";
+        public static string WebApiSelfHosted = "IsSelfHosted";
         public static string TunnelUrl = "http://xpertsoft.biz/XpertDecodeWebAPI/api/ProdActivationMobile/GetMobileUrl";
 
         // Printer
@@ -267,8 +268,14 @@ namespace XpertMobileApp.Helpers
         public static string STK_INVENTAIRE_OPEN = "GetOpenInventory";
 
         public static string STK_INVENTAIRE_DETAIL_URL = "STK_INVENTAIRE_DETAIL";
-        public static string STK_INVENTAIRE_DETAIL_GET_LOT_INFO = "GetCodeBarreLotInfo";
-        public static string STK_INVENTAIRE_DETAIL_INSERT = "InsertInventory";
+        public static string STK_INVENTAIRE_DETAIL_GET_LOT_INFO = "GetCodeBarreLotInventaireInfo";
+        public static string STK_INVENTAIRE_DETAIL_UPDATE = "UpdateInventoryAndPlacement";
+        
+        public static string STK_AJUSTEMENT_DETAIL_URL = "STK_AJUSTEMENT_DETAIL";
+        public static string STK_AJUSTEMENT_DETAIL_UPDATE_URL = "StockAdjustement";
+
+        public static string STK_STOCK_URL = "STK_STOCK";
+        public static string STK_STOCK_GET_LOT_INFO = "GetLotByCodeBarreAndMagasin";
     }
 
 }
