@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -445,10 +446,20 @@ namespace XpertMobileApp
                 List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
 
                 /* 2- Clear the list ... */
-                liste.Clear();
+                //liste.Clear();
 
                 /* 3- Add the new Url ...*/
-                liste.Add(url);
+                //liste.Add(url);
+                var urlIfExist = liste.Where(e => e.TypeUrl == url.TypeUrl).FirstOrDefault();
+                if (urlIfExist != null)
+                {
+                    urlIfExist = url;
+                }
+                else
+                {
+                    liste.Add(url);
+
+                }
 
                 /* 3- Set the new url as the default ... */
 
@@ -552,14 +563,27 @@ namespace XpertMobileApp
             try
             {
                 string RemoteUrl = await WebServiceClient.GetTunnelUrl();
+                //.Where(elm=>elm.TypeUrl==UrlService.TypeService.Remote).First()
+                var serviceUrl = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
                 if (RemoteUrl != null)
                 {
-                    AddNewUrlService(new UrlService
+                    var serviceRemoteUrl = serviceUrl.Where(elm => elm.TypeUrl == UrlService.TypeService.Remote).FirstOrDefault();
+                    if (serviceRemoteUrl != null)
                     {
-                        DisplayUrlService = Manager.UrlServiceFormatter(RemoteUrl),
-                        Selected = false,
-                        Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise",
-                    });
+                        serviceRemoteUrl.DisplayUrlService = RemoteUrl;
+                        Settings.ServiceUrl = JsonConvert.SerializeObject(new List<UrlService>() { serviceRemoteUrl });
+                        await App.SettingsDatabase.SaveItemAsync(Settings);
+                    }
+                    else
+                    {
+                        AddNewUrlService(new UrlService
+                        {
+                            DisplayUrlService = Manager.UrlServiceFormatter(RemoteUrl),
+                            Selected = false,
+                            Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"+$@"({UrlService.TypeService.Remote})",
+                            TypeUrl = UrlService.TypeService.Remote
+                        });
+                    }
                     return true;
                 }
                 return false;
@@ -593,6 +617,31 @@ namespace XpertMobileApp
                 {
                     return ServiceUrlDico.BASE_URL;
                 }
+            }
+        }
+
+        public static bool ServiceUrlIsRemote
+        {
+            get
+            {
+                List<UrlService> liste = new List<UrlService>();
+                if (Settings.ServiceUrl != null)
+                {
+                    liste = JsonConvert.DeserializeObject<List<UrlService>>(Settings.ServiceUrl);
+                    foreach (var item in liste)
+                    {
+                        if (item.Selected == true)
+                        {
+                            return item.TypeUrl== UrlService.TypeService.Remote ? true : false;
+                        }
+                    }
+                    return false;
+                }
+                else
+                {
+                    return false;
+                }
+
             }
         }
 

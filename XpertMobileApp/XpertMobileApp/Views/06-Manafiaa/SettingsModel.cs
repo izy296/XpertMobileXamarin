@@ -22,7 +22,7 @@ using XpertMobileApp.Api.Models;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using XpertMobileApp.Views.Helper;
-
+using XpertMobileApp.Interfaces;
 
 namespace XpertMobileApp.ViewModels
 {
@@ -126,6 +126,34 @@ namespace XpertMobileApp.ViewModels
                 Settings.Notifiaction = jsonNotification;
             }
             await SaveSettings();
+        }
+
+
+        public static async Task GetNewTunnelUrlIfNotConnected()
+        {
+            try
+            {
+                // Check if the current Url is reachable 
+                List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(App.Settings.ServiceUrl);
+
+                if (!await App.IsConected())
+                {
+                    // If false means that the current Url is not working
+                    // we have to get new Url ...
+
+                    /*  Get the new Url */
+                    await App.GetTunnelAddress();
+                    await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    //OnPropertyChanged("DisplayUrlService");
+                    DependencyService.Get<IMessage>().ShortAlert("Service Url a été Mise A jour avec le lien publique");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                //await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
+            }
         }
 
         /// <summary>

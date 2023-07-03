@@ -22,7 +22,7 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_ACH_MANQUANTS> Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
 
-        internal static CrudService<View_TRS_ENCAISS> Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
+        internal static CrudService<View_TRS_ENCAISS> Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.TRS_ENCAISS), App.User.Token);
 
         internal static CrudService<View_ACH_DOCUMENT> Achats = new CrudService<View_ACH_DOCUMENT>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.ACH_ACHATS), App.User.Token);
 
@@ -87,7 +87,7 @@ namespace XpertMobileApp.Api.Managers
             ProductionInfosManager = new ProductionInfosManager();
             TiersManager = new TiersManager();
 
-            Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, "TRS_ENCAISS", App.User.Token);
+            Encaiss = new CrudService<View_TRS_ENCAISS>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.TRS_ENCAISS), App.User.Token);
             Manquant = new CrudService<View_ACH_MANQUANTS>(App.RestServiceUrl, "ACH_MANQUANTS", App.User.Token);
             Productions = new CrudService<View_PRD_AGRICULTURE>(App.RestServiceUrl, "PRD_AGRICULTURE", App.User.Token);
             SimpleIndicatorsService = new CrudService<TDB_SIMPLE_INDICATORS>(App.RestServiceUrl, "TDB_SIMPLE_INDICATORS", App.User.Token);

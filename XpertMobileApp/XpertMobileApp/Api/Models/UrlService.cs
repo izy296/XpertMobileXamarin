@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace XpertMobileApp.Api.Models
 {
-    public class UrlService
+    public class UrlService : INotifyPropertyChanged
     {
+        public enum TypeService
+        {
+            Local,
+            Remote
+        }
+
         //Urlservice Model 
         public bool Selected
         {
@@ -25,5 +32,12 @@ namespace XpertMobileApp.Api.Models
             set;
         }
 
+        public TypeService TypeUrl 
+        { 
+            get;
+            set;
+        } = TypeService.Remote;
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

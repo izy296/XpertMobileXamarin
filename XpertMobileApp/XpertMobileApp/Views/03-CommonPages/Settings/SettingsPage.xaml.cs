@@ -410,6 +410,7 @@ namespace XpertMobileApp.Views
                 TimeSpan ts = new TimeSpan(0, 0, 0, msTimeout);
                 string furl = url.Replace(":" + port.ToString(), "");
                 bool reachable = await connectivity.IsRemoteReachable(furl, port, msTimeout);
+                bool reachable2 = await connectivity.IsReachable(furl, port);
 
                 return reachable;
             }

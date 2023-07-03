@@ -97,32 +97,6 @@ namespace XpertMobileApp.Views
             }
         }
 
-        async Task GetNewTunnelUrlIfNotConnected()
-        {
-            try
-            {
-                // Check if the current Url is reachable 
-                List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(App.Settings.ServiceUrl);
-
-                if (!await App.IsConected())
-                {
-                    // If false means that the current Url is not working
-                    // we have to get new Url ...
-
-                    /*  Get the new Url */
-                    await App.GetTunnelAddress();
-                    await App.SettingsDatabase.SaveItemAsync(App.Settings);
-                    DependencyService.Get<IMessage>().ShortAlert("Service Url a été Mise A jour avec le lien publique");
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert(AppResources.lp_Login, ex.Message, AppResources.alrt_msg_Ok);
-            }
-        }
-
         async void ConnectUserAsync(object sender, EventArgs e)
         {
             UserDialogs.Instance.ShowLoading(AppResources.txt_Waiting);
@@ -140,7 +114,8 @@ namespace XpertMobileApp.Views
 
 
                 // if the url in the moment of login is unreachable 
-                await GetNewTunnelUrlIfNotConnected();
+                if (App.ServiceUrlIsRemote)
+                    await SettingsModel.GetNewTunnelUrlIfNotConnected();
                 bool isconnected = await App.IsConected();
 
                 if (!isconnected)
@@ -392,10 +367,13 @@ namespace XpertMobileApp.Views
                 App.PrefixCodification = res.PREFIX;
             }
         }
-        protected void Settings_Clicked(object sender, EventArgs e)
-        {
+        protected async void Settings_Clicked(object sender, EventArgs e)
+        {/*
             SettingsPage sp = new SettingsPage(true);
             this.Navigation.PushModalAsync(new NavigationPage(sp));
+            */
+            SettingsPopup sp = new SettingsPopup();
+            await PopupNavigation.Instance.PushAsync(sp);
         }
         private void Exit_Clicked(object sender, EventArgs e)
         {

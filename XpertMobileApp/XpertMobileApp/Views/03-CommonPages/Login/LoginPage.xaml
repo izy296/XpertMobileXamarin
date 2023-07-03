@@ -66,7 +66,6 @@
         <yummy:PancakeView 
             Grid.Row="1"
             CornerRadius="25,25,0,0" 
-            Padding="0,0,0,55" 
             Margin="0,-20,0,0" 
             IsClippedToBounds="true"
             BorderColor="White"
@@ -83,8 +82,8 @@
                        Style="{StaticResource LabelTitleStyle}"/>
 
                 </StackLayout>
-                <ScrollView  BackgroundColor="Transparent" VerticalOptions="FillAndExpand">
-                    <StackLayout Orientation="Vertical" Padding="0,30,0,80" Spacing="4" VerticalOptions="Center">
+                <ScrollView  BackgroundColor="Transparent">
+                    <StackLayout Orientation="Vertical" Spacing="4" VerticalOptions="Center">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
