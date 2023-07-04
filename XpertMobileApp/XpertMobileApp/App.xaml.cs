@@ -11,6 +11,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ using System.Xml.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Model;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Managers;
@@ -549,13 +551,32 @@ namespace XpertMobileApp
             TimeSpan ts = new TimeSpan(0, 0, 0, 50);
 
             string furl = url.Replace(":" + port.ToString(), "");
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port) && await IsConnectedWithAcceptedStatusCode(url);
             //if (!isReachable)
             //    await ShowDisplayAlert();
             Online = isReachable;
 
             return isReachable;
 
+        }
+
+        public async static Task<bool> IsConnectedWithAcceptedStatusCode(string url)
+        {
+            bool res = false;
+
+            string fullUrl = WSApi2.CreateLink(Manager.UrlServiceFormatter(url), ServiceUrlDico.BASE_URL.Replace("/",""), ServiceUrlDico.ACCESSBILITY_URL, ServiceUrlDico.ACCESSBILITY_URL_TEST);
+
+            using (HttpClient httpClient = new HttpClient())
+            {
+                httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
+
+                var httpResponse = await httpClient.GetAsync(fullUrl);
+
+                if (httpResponse.IsSuccessStatusCode)
+                    res = true;
+            }
+
+            return res;
         }
 
         public async static Task<bool> GetTunnelAddress()
@@ -568,10 +589,13 @@ namespace XpertMobileApp
                 if (RemoteUrl != null)
                 {
                     var serviceRemoteUrl = serviceUrl.Where(elm => elm.TypeUrl == UrlService.TypeService.Remote).FirstOrDefault();
+
+                    if (RemoteUrl == serviceRemoteUrl.DisplayUrlService)
+                        return false;
                     if (serviceRemoteUrl != null)
                     {
                         serviceRemoteUrl.DisplayUrlService = RemoteUrl;
-                        Settings.ServiceUrl = JsonConvert.SerializeObject(new List<UrlService>() { serviceRemoteUrl });
+                        Settings.ServiceUrl = JsonConvert.SerializeObject(serviceUrl);
                         await App.SettingsDatabase.SaveItemAsync(Settings);
                     }
                     else
@@ -580,7 +604,7 @@ namespace XpertMobileApp
                         {
                             DisplayUrlService = Manager.UrlServiceFormatter(RemoteUrl),
                             Selected = false,
-                            Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"+$@"({UrlService.TypeService.Remote})",
+                            Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise" + $@"({UrlService.TypeService.Remote})",
                             TypeUrl = UrlService.TypeService.Remote
                         });
                     }
@@ -632,7 +656,7 @@ namespace XpertMobileApp
                     {
                         if (item.Selected == true)
                         {
-                            return item.TypeUrl== UrlService.TypeService.Remote ? true : false;
+                            return item.TypeUrl == UrlService.TypeService.Remote ? true : false;
                         }
                     }
                     return false;

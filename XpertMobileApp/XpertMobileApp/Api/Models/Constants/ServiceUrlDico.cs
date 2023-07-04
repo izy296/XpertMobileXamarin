@@ -78,6 +78,10 @@ namespace XpertMobileApp.Helpers
         public static string WebApiSelfHosted = "IsSelfHosted";
         public static string TunnelUrl = "http://xpertsoft.biz/XpertDecodeWebAPI/api/ProdActivationMobile/GetMobileUrl";
 
+        // Accesseblity
+        public static string ACCESSBILITY_URL = "Accessibility";
+        public static string ACCESSBILITY_URL_TEST = "IsAccessible";
+
         // Printer
 
         public static string Print_Url = "PrintVente";

@@ -142,10 +142,14 @@ namespace XpertMobileApp.ViewModels
                     // we have to get new Url ...
 
                     /*  Get the new Url */
-                    await App.GetTunnelAddress();
-                    await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    if (await App.GetTunnelAddress())
+                    {
+                        DependencyService.Get<IMessage>().ShortAlert("Service Url a été Mise A jour avec le lien publique");
+                        await App.SettingsDatabase.SaveItemAsync(App.Settings);
+                    }
+                    else DependencyService.Get<IMessage>().ShortAlert("Service Url a été le meme");
+
                     //OnPropertyChanged("DisplayUrlService");
-                    DependencyService.Get<IMessage>().ShortAlert("Service Url a été Mise A jour avec le lien publique");
                 }
 
 

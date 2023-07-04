@@ -86,7 +86,7 @@
                         VerticalOptions="CenterAndExpand">
 
                         <inputLayout:SfTextInputLayout.HintLabelStyle>
-                            <inputLayout:LabelStyle FontSize="10">
+                            <inputLayout:LabelStyle FontSize="15">
                             </inputLayout:LabelStyle>
                         </inputLayout:SfTextInputLayout.HintLabelStyle>
 
@@ -97,7 +97,7 @@
                         <Entry 
                             x:Name="LocalIp"
                             Text="{Binding DisplayUrlService}"
-                            FontSize="10"/>
+                            FontSize="15"/>
                     </inputLayout:SfTextInputLayout>
 
                     <syncfusion:SfRadioButton 
@@ -125,7 +125,7 @@
                         VerticalOptions="CenterAndExpand">
 
                         <inputLayout:SfTextInputLayout.HintLabelStyle>
-                            <inputLayout:LabelStyle FontSize="10">
+                            <inputLayout:LabelStyle FontSize="15">
                             </inputLayout:LabelStyle>
                         </inputLayout:SfTextInputLayout.HintLabelStyle>
 
@@ -136,7 +136,7 @@
                         <Entry 
                             x:Name="RemoteIp" 
                             Text="{Binding DisplayUrlService}"
-                            FontSize="10"/>
+                            FontSize="15"/>
                     </inputLayout:SfTextInputLayout>
                     
                     <StackLayout
