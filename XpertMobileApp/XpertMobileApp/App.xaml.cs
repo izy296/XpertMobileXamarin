@@ -563,17 +563,31 @@ namespace XpertMobileApp
         public async static Task<bool> IsConnectedWithAcceptedStatusCode(string url)
         {
             bool res = false;
+            bool ngrok = false;
 
-            string fullUrl = WSApi2.CreateLink(Manager.UrlServiceFormatter(url), ServiceUrlDico.BASE_URL.Replace("/",""), ServiceUrlDico.ACCESSBILITY_URL, ServiceUrlDico.ACCESSBILITY_URL_TEST);
+            string fullUrl = WSApi2.CreateLink(Manager.UrlServiceFormatter(url), ServiceUrlDico.BASE_URL.Replace("/", ""), ServiceUrlDico.ACCESSBILITY_URL, ServiceUrlDico.ACCESSBILITY_URL_TEST);
+            //Regex ip = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
+            //var localMode = (ip.Match(fullUrl) != null);
 
-            using (HttpClient httpClient = new HttpClient())
+            if (url.Contains("ngrok"))
+                ngrok= true;
+
+            try
             {
-                httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    httpClient.Timeout = TimeSpan.FromMilliseconds(5000);
 
-                var httpResponse = await httpClient.GetAsync(fullUrl);
+                    var httpResponse = await httpClient.GetAsync(fullUrl);
 
-                if (httpResponse.IsSuccessStatusCode)
-                    res = true;
+                    if ((!ngrok && (httpResponse.IsSuccessStatusCode || httpResponse.StatusCode == System.Net.HttpStatusCode.NotFound))
+                        || ngrok && httpResponse.IsSuccessStatusCode)
+                        res = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                res = true;
             }
 
             return res;
