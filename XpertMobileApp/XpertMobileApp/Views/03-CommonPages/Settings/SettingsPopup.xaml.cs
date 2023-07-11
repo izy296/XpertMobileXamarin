@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Newtonsoft.Json;
+using Plugin.Connectivity;
 using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using Syncfusion.XForms.Buttons;
@@ -19,6 +20,7 @@ using Xamarin.Forms.Xaml;
 using XpertMobileApp.Api;
 using XpertMobileApp.Api.Models;
 using XpertMobileApp.DAL;
+using XpertMobileApp.Helpers;
 using XpertMobileApp.Services;
 using XpertMobileApp.ViewModels;
 using XpertMobileApp.Views.Helper;
@@ -79,7 +81,7 @@ namespace XpertMobileApp.Views
                     {
                         DisplayUrlService = "http://",
                         Selected = false,
-                        Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise" +"(Remote)",
+                        Title = Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise" + "(Remote)",
                         TypeUrl = UrlService.TypeService.Remote
                     });
                 RemoteIp.BindingContext = viewModel.UrlServices.Last();
@@ -103,13 +105,74 @@ namespace XpertMobileApp.Views
                 radioButtonRemoteIp.IsChecked = true;
             else if (((UrlService)LocalIp.BindingContext).Selected)
                 radioButtonLocalIp.IsChecked = true;
+
+            serverChanged = false;
+        }
+
+        async Task<IPAddress> ScanWebApi()
+        {
+            IPAddress ipAddress = null;
+            var client = new HttpClient();
+            client.Timeout = new TimeSpan(2000);
+
+            //Start with a list of URLs
+            var urls = new List<string>();
+
+            for (int i = 1; i < 255; i++)
+                urls.Add($"http://192.168.1.{i}:100/api/{ServiceUrlDico.ACCESSBILITY_URL}/{ServiceUrlDico.ACCESSBILITY_URL_TEST}");
+
+            List<string> urls2 = new List<string>();
+
+            foreach (string url in urls)
+            {
+                if (await CrossConnectivity.Current.IsRemoteReachable(url))
+                    urls2.Add(url);
+            }
+
+            //Start requests for all of them
+            List<Task<HttpResponseMessage>> requests =null;
+            try
+            {
+                requests = urls.Select
+                (
+                    url => client.GetAsync(url)
+                ).ToList();
+            }
+            catch (Exception ex)
+            {
+                //
+            }
+
+             if (requests!=null)
+            {
+                //Wait for all the requests to finish
+                await Task.WhenAll(requests);
+
+                //Get the responses
+                var responses = requests.Select
+                    (
+                        task => task.Result
+                    );
+
+                foreach (var r in responses)
+                {
+                    // Extract the message body
+                    var s = await r.Content.ReadAsStringAsync();
+                    if (s == "Accessible")
+                        ipAddress = IPAddress.Parse(r.RequestMessage.RequestUri.Host);
+                    Console.WriteLine(s);
+                }
+            }
+
+            client.Dispose();
+            return ipAddress;
         }
 
         private async void radioButton_StateChanged(object sender, StateChangedEventArgs e)
         {
+            serverChanged = true;
             if (e.IsChecked.HasValue && e.IsChecked.Value)
             {
-                serverChanged = true;
                 var buttonClassId = (sender as SfRadioButton).ClassId;
                 if (buttonClassId == radioButtonsClass.radioButtonLocalIp.ToString())
                 {
@@ -117,36 +180,7 @@ namespace XpertMobileApp.Views
                     RemoteIpLayout.IsEnabled = false;
                     ((UrlService)LocalIp.BindingContext).Selected = true;
                     ((UrlService)RemoteIp.BindingContext).Selected = false;
-                    //if (LocalIp.Text.Contains("192.168.1.1"))
-                    //{
-                    //    new Thread(async () =>
-                    //    {
-
-                    //        using (HttpClient httpClient = new HttpClient(new HttpClientHandler()))
-                    //        {
-                    //            httpClient.Timeout = new TimeSpan(2000);
-                    //            for (int ip = 1; ip < 255; ip++)
-                    //            {
-                    //                try
-                    //                {
-
-                    //                    var url = $@"http://192.168.1.{ip}:100";
-                    //                    var res = await httpClient.GetAsync(url);
-                    //                    if (res.IsSuccessStatusCode)
-                    //                    {
-                    //                        var localIp = url;
-                    //                    }
-                    //                }
-                    //                catch (Exception ex)
-                    //                {
-                    //                    continue;
-                    //                    var error = ex.ToString();
-                    //                }
-                    //            }
-
-                    //        }
-                    //    }).Start();
-                    //}
+                    //await ScanWebApi();
                 }
                 else if (buttonClassId == radioButtonsClass.radioButtonRemoteIp.ToString())
                 {
@@ -181,13 +215,18 @@ namespace XpertMobileApp.Views
 
         private async void CancelBtn_Clicked(object sender, EventArgs e)
         {
-            if (serverChanged)
+            List<UrlService> liste = JsonConvert.DeserializeObject<List<UrlService>>(App.Settings.ServiceUrl);
+            var changed = !viewModel.UrlServices.All(elm => liste.Any(elm2 => elm2.Selected == elm.Selected && elm2.DisplayUrlService == elm.DisplayUrlService));
+            if (changed)
             {
                 var action = await DisplayAlert(AppResources.alrt_msg_title_Settings, AppResources.alrt_msg_SaveSettings,
                         AppResources.alrt_msg_Ok, AppResources.alrt_msg_Cancel);
 
                 if (action)
                 {
+
+                    var list = JsonConvert.SerializeObject(viewModel.UrlServices);
+                    viewModel.Settings.ServiceUrl = list;
                     await viewModel.SaveSettings();
                     await PopupNavigation.Instance.PopAsync();
                 }
@@ -204,12 +243,12 @@ namespace XpertMobileApp.Views
             var selected = viewModel.UrlServices.Where(elm => elm.Selected).First();
 
             // append to the name of the urls to distiguish between remote/local addresse + fix the format of the address to have a last '/'
-            foreach(var serviceUrl in viewModel.UrlServices)
+            foreach (var serviceUrl in viewModel.UrlServices)
             {
                 if (serviceUrl.Title == (Constants.AppName == Apps.XPH_Mob ? "Pharmacie" : "Entreprise"))
                 {
                     serviceUrl.Title += $@"({serviceUrl.TypeUrl})";
-                    serviceUrl.DisplayUrlService =  Manager.UrlServiceFormatter(serviceUrl.DisplayUrlService);
+                    serviceUrl.DisplayUrlService = Manager.UrlServiceFormatter(serviceUrl.DisplayUrlService);
                 }
             }
 
@@ -238,6 +277,37 @@ namespace XpertMobileApp.Views
                 }
 
             }
+        }
+
+        private async void CheckBtn_Clicked(object sender, EventArgs e)
+        {
+            var serviceUrlTemp = App.Settings.ServiceUrl;
+            try
+            {
+                var list = JsonConvert.SerializeObject(viewModel.UrlServices);
+                App.Settings.ServiceUrl = list;
+                UserDialogs.Instance.ShowLoading();
+                if (await App.IsConected())
+                {
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_ConnectionSucces, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+                }
+                else
+                {
+                    CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_ConnectionError, trueMessage: AppResources.alrt_msg_Ok);
+                    await PopupNavigation.Instance.PushAsync(AlertPopup);
+                }
+                UserDialogs.Instance.HideLoading();
+                App.Settings.ServiceUrl = serviceUrlTemp;
+            }
+            catch (Exception ex)
+            {
+                UserDialogs.Instance.HideLoading();
+                CustomPopup AlertPopup = new CustomPopup(AppResources.alrt_msg_ConnectionError, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+                App.Settings.ServiceUrl = serviceUrlTemp;
+            }
+
         }
     }
 }

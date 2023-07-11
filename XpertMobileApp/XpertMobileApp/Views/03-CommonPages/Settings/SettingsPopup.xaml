@@ -96,7 +96,7 @@
 
                         <Entry 
                             x:Name="LocalIp"
-                            Text="{Binding DisplayUrlService}"
+                            Text="{Binding DisplayUrlService,Mode=TwoWay}"
                             FontSize="15"/>
                     </inputLayout:SfTextInputLayout>
 
@@ -135,7 +135,7 @@
 
                         <Entry 
                             x:Name="RemoteIp" 
-                            Text="{Binding DisplayUrlService}"
+                            Text="{Binding DisplayUrlService,Mode=TwoWay}"
                             FontSize="15"/>
                     </inputLayout:SfTextInputLayout>
                     
@@ -145,6 +145,7 @@
                         Orientation="Horizontal"
                         HorizontalOptions="EndAndExpand">
                         <Button x:Name="CancelBtn"  Text="Annuler" CornerRadius="15" Clicked="CancelBtn_Clicked"></Button>
+                        <Button x:Name="CheckBtn" Text="Tester" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Accent}" Clicked="CheckBtn_Clicked"></Button>
                         <Button x:Name="ConfirmBtn" Text="Enregestrer" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Primary}" Clicked="ConfirmBtn_Clicked"></Button>
                     </StackLayout>
 

@@ -58,9 +58,7 @@ namespace XpertMobileApp.Views
         {
             base.OnAppearing();
 
-#if !RELEASE
             Btn_Config.IsVisible = true;
-#endif
 
             // if the user want to login with password only and he remembered his credietial
             if (App.Settings.ConnectWithPasswordOnly && App.Settings.IsChecked == "true")
