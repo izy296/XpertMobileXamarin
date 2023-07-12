@@ -47,11 +47,24 @@ namespace XpertMobileApp.Views
             Ent_UserEemail.Completed += (s, e) => Ent_ClientId.Focus();
             Ent_ClientId.Completed += (s, e) => ActivateUserAsync(s, e);
 
+            Ent_UserEemail.TextChanged += Ent_UserEemail_TextChanged;
+            Ent_UserPhone.TextChanged += Ent_UserPhone_TextChanged;
+
             var DInfos = DependencyService.Get<IDeviceInfos>();
             if (!DInfos.HasPermission())
             {
                 DInfos.RequestPermissions();
             }
+        }
+
+        private void Ent_UserPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            VerifyPhoneNumber(sender, null);
+        }
+
+        private void Ent_UserEemail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            VerifyEmail(sender,null);
         }
 
         protected override void OnAppearing()
