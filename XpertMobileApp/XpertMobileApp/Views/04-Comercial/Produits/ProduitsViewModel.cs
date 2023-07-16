@@ -280,6 +280,7 @@ namespace XpertMobileApp.ViewModels
             this.AddSelect<View_STK_PRODUITS, string>(e => e.REFERENCE);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.CODE_PRODUIT);
             this.AddSelect<View_STK_PRODUITS, decimal>(e => e.PRIX_VENTE_HT);
+            this.AddSelect<View_STK_PRODUITS, decimal>(e => e.PRIX_ACHAT_HT);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_DCI);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_FAMILLE);
             this.AddSelect<View_STK_PRODUITS, string>(e => e.DESIGN_LABO);
