@@ -114,6 +114,12 @@ namespace XpertMobileApp
             PreventLinkerFromStrippingCommonLocalizationReferences();
             this.IsToastExitConfirmation = false;
 
+            if (Constants.AppName==Apps.XM_D_PRICE)
+            {
+                MainPage = new DisplayPricePage();
+                return;
+            }
+
             if (licState == LicState.Valid && Constants.AppName != Apps.XAGRI_Mob)
             {
                 Settings.Mobile_Edition = licenceInfos != null ? licenceInfos.Mobile_Edition : Mobile_Edition.Lite;

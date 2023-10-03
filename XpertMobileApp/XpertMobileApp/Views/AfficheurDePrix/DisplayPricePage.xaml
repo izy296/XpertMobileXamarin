@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XpertMobileApp.Views.DisplayPricePage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Black"
+                     Padding="0">
+            <Frame 
+                BackgroundColor="CadetBlue"
+                >
+                <Label Text="JUMPY BEURRE DE CACAHUETTE SANS SUCRE/ SPORT 700G"
+                   TextColor="White"
+                   FontSize="75"
+                   LineBreakMode="CharacterWrap"
+                   HorizontalTextAlignment="Start"/>
+            </Frame>
+            <Grid
+                RowSpacing="0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                    
+                <Label 
+                    x:Name="labelPrice"
+                    Grid.Row="0"
+                    Text="Prix:"
+                   TextColor="White"
+                   FontSize="50"/>
+                <Entry
+                    x:Name="labelPriceValue"
+                   Grid.Row="1"
+                    Text="1500,00 DA"
+                   TextColor="White"
+                   FontSize="85"
+                   HorizontalTextAlignment="Center"/>
+                <BoxView 
+                    Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                     HeightRequest="3"
+                     BackgroundColor="White"/>
+                <Label 
+                    x:Name="labelPromotion"
+                    Grid.Row="3"
+                    Text="Promotion:"
+                   TextColor="White"
+                   FontSize="50"/>
+                <Label
+                    x:Name="labelPromotionPrix"
+                    Grid.Row="4"
+                    Text="800,00 DA"
+                   TextColor="Yellow"
+                   FontSize="85"
+                   HorizontalTextAlignment="Center"/>
+                <StackLayout 
+                    IsVisible="False"
+                    Grid.Row="5"
+                    Orientation="Horizontal"
+                    HorizontalOptions="CenterAndExpand">
+                    <Label BackgroundColor="Red"
+                       Padding="5"
+                       Text="Valable au : 25/02/2024"
+                       FontSize="25"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       WidthRequest="200"/>
+                    <Label BackgroundColor="Red"
+                       FontSize="25"
+                       Padding="5"
+                       Text="Qte Min : 2"
+                       VerticalTextAlignment="Center"
+                       TextColor="White"/>
+                    <Label BackgroundColor="Red"
+                       FontSize="25"
+                       Padding="5"
+                       Text="Qte Restent : 1"
+                       VerticalTextAlignment="Center"
+                       TextColor="White"/>
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

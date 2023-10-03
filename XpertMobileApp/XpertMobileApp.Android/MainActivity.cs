@@ -24,6 +24,7 @@ using Rg.Plugins.Popup.Extensions;
 using Rg.Plugins.Popup.Services;
 using ListView = Xamarin.Forms.ListView;
 using System.Diagnostics;
+using XpertMobileApp.Droid.Services;
 
 namespace XpertMobileApp.Droid
 {
@@ -34,6 +35,8 @@ namespace XpertMobileApp.Droid
 
         public static Toolbar ToolBar { get; private set; }
         internal static MainActivity Instance { get; private set; }
+
+        string bareCode { get; set; }
 
         const int RequestLocationId = 0;
 
@@ -196,6 +199,21 @@ namespace XpertMobileApp.Droid
             */
             // InitPermissions();
         }
+
+        public override bool OnKeyDown([GeneratedEnum] Keycode keyCode, KeyEvent e)
+        {
+            if (keyCode == Keycode.Enter)
+            {
+                MessagingCenter.Send(Xamarin.Forms.Application.Current, "BareCode",bareCode);
+                bareCode = "";
+            }
+            else
+            {
+                bareCode += Convert.ToChar(e.UnicodeChar);
+            }
+            return base.OnKeyDown(keyCode, e);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
 
@@ -238,7 +256,6 @@ namespace XpertMobileApp.Droid
                 }
             }
         }
-
 
         protected override void OnNewIntent(Intent intent)
         {

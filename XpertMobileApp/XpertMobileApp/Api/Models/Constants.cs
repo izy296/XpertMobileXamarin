@@ -17,6 +17,7 @@ namespace XpertMobileApp.Api
         public static string XCOM_Livraison = "XCOM_Livraison";  // XpertMobile Livraison Manafiaa
         public static string X_BOUTIQUE = "X_BOUTIQUE";  //Boutique Web
         public static string X_DISTRIBUTION = "X_DIST"; //XpertMobile Distibution.
+        public static string XM_D_PRICE = "X_DISPLAY_PRICE"; //XpertMobile Distibution.
     }
 
     public static class Mobile_Edition
@@ -81,6 +82,10 @@ namespace XpertMobileApp.Api
 #if XM_DIST
             AppName = Apps.X_DISTRIBUTION;
             return "XpertMobile DISTRIBUTION";
+#endif
+#if XM_D_PRICE
+            AppName = Apps.XM_D_PRICE;
+            return "XpertMobile Afficheur De Prix";
 #else
             AppName = Apps.XPH_Mob;
             return "XpertMobile OFFICINE";
@@ -88,8 +93,11 @@ namespace XpertMobileApp.Api
 
         }
         public static TimeSpan ImageCashValidityTimeSpan => new TimeSpan(0, 50, 0);
-
+#if release
         public static bool DebugMode = false;
+#else
+        public static bool DebugMode = true;
+#endif
 
     }
 }
