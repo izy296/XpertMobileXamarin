@@ -114,8 +114,17 @@ namespace XpertMobileApp
             PreventLinkerFromStrippingCommonLocalizationReferences();
             this.IsToastExitConfirmation = false;
 
-            if (Constants.AppName==Apps.XM_D_PRICE)
+            if (Constants.AppName == Apps.XM_D_PRICE)
             {
+                if (Settings.ServiceUrl == null)
+                {
+                    List<UrlService> list = new List<UrlService>();
+                    list.Add(new UrlService
+                    { Selected = true, Title = "", DisplayUrlService = "http://192.168.1.68:9010/", TypeUrl = UrlService.TypeService.Local });
+
+                    Settings.ServiceUrl = JsonConvert.SerializeObject(list);
+                    App.SettingsDatabase.SaveItemAsync(App.Settings);
+                }
                 MainPage = new DisplayPricePage();
                 return;
             }
@@ -576,7 +585,7 @@ namespace XpertMobileApp
             //var localMode = (ip.Match(fullUrl) != null);
 
             if (url.Contains("ngrok"))
-                ngrok= true;
+                ngrok = true;
 
             try
             {

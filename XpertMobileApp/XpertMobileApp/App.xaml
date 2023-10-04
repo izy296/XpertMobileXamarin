@@ -296,6 +296,7 @@
             <local:CurrencyFormatConverter x:Key="currencyFormatConverter"/>
             <local:InverseBoolVisibilityConverter x:Key="inverseBoolVisibilityConverter"/>
             <local:StatusToBoolForPriceConverter x:Key="statusForPriceConverter"/>
+            <local:NullToBooleanConverter x:Key="NullToBooleanConverter"/>
             <local:StatusToBoolPeseeBruteConverter x:Key="statusForPeseeBruteConverter"/>
             <local:StringToVisibilityConverter x:Key="stringToVisibilityConverter"/>
             <local:EnablePeseeBruteConverter x:Key="enablePeseeBruteConverter"/>
@@ -314,6 +315,8 @@
             <local:TypeDocConverter x:Key="TypeDocConverter"/>
             <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
             <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
+            <local:ModeValidatConverter x:Key="ModeValidatConverter"/>
+            <local:IsInvertoryColorConverter x:Key="IsInvertoryColorConverter"/>
             <!--Global Styles-->
 
 

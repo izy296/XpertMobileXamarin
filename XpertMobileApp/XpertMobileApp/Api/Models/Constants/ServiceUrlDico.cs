@@ -280,6 +280,13 @@ namespace XpertMobileApp.Helpers
 
         public static string STK_STOCK_URL = "STK_STOCK";
         public static string STK_STOCK_GET_LOT_INFO = "GetLotByCodeBarreAndMagasin";
+
+
+        // Display Price
+        public static string STK_DISPLAY_PRICE_XCOM = "STK_DISPLAY_PRICE_XCOM";
+        public static string STK_DISPLAY_PRICE_XCOM_GET_PRODUCT = "GetProductAndPromoByBarcode";
+        public static string STK_DISPLAY_PRICE_XCOM_GET_PUB = "GetPubImages";
+
     }
 
 }

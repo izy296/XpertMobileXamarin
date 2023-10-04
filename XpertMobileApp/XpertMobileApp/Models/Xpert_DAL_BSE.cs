@@ -1,7 +1,10 @@
 ﻿using SQLite;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Text;
+using Xamarin.Forms;
 using XpertMobileApp.DAL;
 
 namespace XpertMobileApp.Models
@@ -52,7 +55,6 @@ namespace XpertMobileApp.Models
         public string DESIGNATION_UNITE { get; set; }
         public string DESIGNATION_PRODUIT { get; set; }
         private decimal selectedQUANTITE { get; set; } = 0;
-        [Ignore]
         public decimal SelectedQUANTITE
         {
             get
@@ -110,5 +112,36 @@ namespace XpertMobileApp.Models
         public DateTime SYNC_TOURNEE { get; set; }
         public DateTime SYNC_COMMANDE { get; set; }
     }
+
+    public partial class BSE_IMAGE_PUBLICITE
+    {
+        public string CODE_IMAGE { get; set; } // varchar(11)
+        public byte[] IMAGE { get; set; } // varchar(50)
+
+
+        private ImageSource pICTURE = null;
+        public ImageSource PICTURE
+        {
+            get
+            {
+                if (IMAGE == null)
+                {
+                    return null;
+                }
+                else if (pICTURE != null)
+
+                {
+                    // Picture déjà crée
+                    return pICTURE;
+                }
+                else
+                {
+                    pICTURE = ImageSource.FromStream(() => new MemoryStream(IMAGE));
+                    return pICTURE;
+                }
+            }
+        }
+    }
+
 }
 

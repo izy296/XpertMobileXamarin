@@ -2,13 +2,63 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="XpertMobileApp.Views.DisplayPricePage">
-    <ContentPage.Content>
-        <StackLayout BackgroundColor="Black"
+    <AbsoluteLayout 
+            VerticalOptions="Fill" 
+            HorizontalOptions="Fill"
+            Padding="0,0,0,0"
+            >
+        <StackLayout
+            x:Name="PubSection"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            IsVisible="{Binding StandBy}"
+            Margin="0"
+            Padding="0"
+            >
+            <CarouselView 
+                x:Name="Carousel"
+                Margin="0"
+                ItemsSource="{Binding Images}"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout
+                            Margin="0">
+                            <Frame 
+                                Margin="0"
+                                Padding="0"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+                                <StackLayout>
+                                    <Image Source="{Binding PICTURE}"
+                               Aspect="Fill"
+                               HorizontalOptions="FillAndExpand"
+                               VerticalOptions="FillAndExpand"/>
+                                    <!--<Label Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center" />-->
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </StackLayout>
+        <StackLayout 
+            x:Name="DisplayPriceSection"
+            AbsoluteLayout.LayoutFlags="All"
+            AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+            IsVisible="{Binding ShowDisplayPrice}"
+            BackgroundColor="Black"
+                     VerticalOptions="FillAndExpand"
                      Padding="0">
             <Frame 
                 BackgroundColor="CadetBlue"
                 >
-                <Label Text="JUMPY BEURRE DE CACAHUETTE SANS SUCRE/ SPORT 700G"
+                <Label Text="{Binding Item.DESIGNATION_PRODUIT}"
                    TextColor="White"
                    FontSize="75"
                    LineBreakMode="CharacterWrap"
@@ -24,8 +74,6 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="2"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                     
                 <Label 
@@ -34,10 +82,10 @@
                     Text="Prix:"
                    TextColor="White"
                    FontSize="50"/>
-                <Entry
+                <Label
                     x:Name="labelPriceValue"
                    Grid.Row="1"
-                    Text="1500,00 DA"
+                    Text="{Binding Item.PRODUIT_RPIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
                    TextColor="White"
                    FontSize="85"
                    HorizontalTextAlignment="Center"/>
@@ -46,47 +94,71 @@
                     HorizontalOptions="FillAndExpand"
                      HeightRequest="3"
                      BackgroundColor="White"/>
-                <Label 
-                    x:Name="labelPromotion"
+                <StackLayout
+                    x:Name="PromotionSection"
                     Grid.Row="3"
+                    IsVisible="{Binding Item.IS_PROMOTION}"
+                    Orientation="Vertical">
+                 <Label 
+                    x:Name="labelPromotion"
                     Text="Promotion:"
                    TextColor="White"
                    FontSize="50"/>
-                <Label
-                    x:Name="labelPromotionPrix"
+                    <Label
+                    x:Name="labelPromotionPrice"
                     Grid.Row="4"
-                    Text="800,00 DA"
+                    Text="{Binding Item.PROMO_RPIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
                    TextColor="Yellow"
                    FontSize="85"
                    HorizontalTextAlignment="Center"/>
-                <StackLayout 
-                    IsVisible="False"
-                    Grid.Row="5"
+                    <StackLayout 
                     Orientation="Horizontal"
                     HorizontalOptions="CenterAndExpand">
-                    <Label BackgroundColor="Red"
+                        <Label BackgroundColor="Red"
+                       IsVisible="{Binding Item.PROMO_DATE_FIN,Converter={StaticResource NullToBooleanConverter}}"  
                        Padding="5"
-                       Text="Valable au : 25/02/2024"
+                       Text="{Binding Item.PROMO_DATE_FIN,StringFormat='Valable au : {0:dd/MM/yyyy}',FallbackValue='Valable au : N/A'}"
                        FontSize="25"
                        TextColor="White"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        WidthRequest="200"/>
-                    <Label BackgroundColor="Red"
+                        <Label BackgroundColor="Red"
                        FontSize="25"
                        Padding="5"
-                       Text="Qte Min : 2"
+                       IsVisible="{Binding Item.PROMO_QTE_MIN,Converter={StaticResource NullToBooleanConverter}}"  
+                       Text="{Binding Item.PROMO_QTE_MIN,StringFormat='Qte Min : {0}',FallbackValue='Qte Min : 0'}"
                        VerticalTextAlignment="Center"
                        TextColor="White"/>
-                    <Label BackgroundColor="Red"
+                        <Label BackgroundColor="Red"
                        FontSize="25"
                        Padding="5"
-                       Text="Qte Restent : 1"
+                       IsVisible="{Binding Item.PROMO_QTE_RESTANTE,Converter={StaticResource NullToBooleanConverter}}"
+                       Text="{Binding Item.PROMO_QTE_RESTANTE,StringFormat='Qte Restent : {0}',FallbackValue='Qte Restent : 0'}"
                        VerticalTextAlignment="Center"
                        TextColor="White"/>
+                    </StackLayout>
                 </StackLayout>
+
             </Grid>
 
         </StackLayout>
-    </ContentPage.Content>
+
+        <Button 
+                x:Name="floatingButton" 
+                ImageSource="settings_32.png"
+                IsVisible="True"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                AbsoluteLayout.LayoutBounds="1, 1, AutoSize, AutoSize"
+                CornerRadius="100"
+                BackgroundColor="CadetBlue"
+                HeightRequest="60"
+                WidthRequest="60"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Padding="10"
+                Margin="0,0,15,15"
+                Clicked="ShowConfig"
+                />
+    </AbsoluteLayout>
 </ContentPage>

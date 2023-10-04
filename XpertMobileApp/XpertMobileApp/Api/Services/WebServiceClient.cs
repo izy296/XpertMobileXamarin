@@ -717,6 +717,23 @@ namespace XpertMobileApp.Services
             return await RetrievAauthorizedData<View_STK_PRODUITS>(url);
         }
 
+        /// <summary>
+        /// fonction pour récupérer le produit qui a le code-barres scanné dans le domaine officine
+        /// </summary>
+        /// <param name="codeBarre"></param>
+        /// <returns></returns>
+        public static async Task<INFO_PROMOTION_DISPLAY_PRICE> GetProductAndPromotionByCodeBarre(string codeBarre)
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM_GET_PRODUCT);
+            url += WSApi2.AddParam(url, "codeBarre", codeBarre);
+            return await WSApi2.RetrievAauthorizedValueWithoutToken<INFO_PROMOTION_DISPLAY_PRICE>(url);
+        }
+
+        public static async Task<List<BSE_IMAGE_PUBLICITE>> GetPubImages()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM_GET_PUB);
+            return await WSApi2.RetrievAauthorizedValueWithoutToken<List<BSE_IMAGE_PUBLICITE>>(url);
+        }
         //internal static async Task<List<View_STK_PRODUITS>> getProducts()
         //{
         //    string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.PROD_URL, ServiceUrlDico.PROD_URL_GET_ALL);
@@ -729,7 +746,6 @@ namespace XpertMobileApp.Services
         internal static async Task<int> AddRfids(List<STK_STOCK_RFID> rfids)
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.RFID_URL, ServiceUrlDico.RFID_AddRFIDs_URL);
-
             return await WSApi2.PostAauthorizedValue<int, List<STK_STOCK_RFID>>(url, rfids, App.User.Token.access_token);
         }
         internal static async Task<List<View_STK_STOCK>> getStckFroIdStock(int IDStock)
