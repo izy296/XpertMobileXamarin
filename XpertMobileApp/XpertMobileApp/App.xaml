@@ -187,6 +187,17 @@
                                                             RotationPharm="{StaticResource RotationPharm}"
                                                             RotationComm="{StaticResource RotationComm}"/>
             <!-- ***************** Rotation *****************-->
+
+
+            <!--***************** DISPLAY PRICE PROMO ******************-->
+
+            <DataTemplate x:Key="DisplayPromo">
+                <template:DisplayPromoTemplate/>
+            </DataTemplate>
+
+            <templateSelector:DPromoDataSelectorTemplate x:Key="DPromoTemplateSelector"
+                                                           DisplayPromo="{StaticResource DisplayPromo}"/>
+            <!--***************** DISPLAY PRICE PROMO ******************-->
             <!--End Data Template Selector-->
 
             <!-- ***************** Bordereaux CHIFA *****************-->

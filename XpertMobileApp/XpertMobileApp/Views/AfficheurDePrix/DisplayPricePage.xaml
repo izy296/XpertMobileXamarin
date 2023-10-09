@@ -7,7 +7,7 @@
             HorizontalOptions="Fill"
             Padding="0,0,0,0"
             >
-        <StackLayout
+        <Grid
             x:Name="PubSection"
             AbsoluteLayout.LayoutFlags="All"
             AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
@@ -15,38 +15,25 @@
             Margin="0"
             Padding="0"
             >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
             <CarouselView 
+                Grid.Row="0"
+                Grid.Column="0"
                 x:Name="Carousel"
                 Margin="0"
+                ItemTemplate="{StaticResource DPromoTemplateSelector}"
                 ItemsSource="{Binding Images}"
                 HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand">
-                <CarouselView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout
-                            Margin="0">
-                            <Frame 
-                                Margin="0"
-                                Padding="0"
-                       HorizontalOptions="FillAndExpand"
-                       VerticalOptions="FillAndExpand">
-                                <StackLayout>
-                                    <Image Source="{Binding PICTURE}"
-                               Aspect="Fill"
-                               HorizontalOptions="FillAndExpand"
-                               VerticalOptions="FillAndExpand"/>
-                                    <!--<Label Text="{Binding Name}"
-                               FontAttributes="Bold"
-                               FontSize="Large"
-                               HorizontalOptions="Center"
-                               VerticalOptions="Center" />-->
-                                </StackLayout>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CarouselView.ItemTemplate>
-            </CarouselView>
-        </StackLayout>
+                VerticalOptions="FillAndExpand"/>
+
+        </Grid>
         <StackLayout 
             x:Name="DisplayPriceSection"
             AbsoluteLayout.LayoutFlags="All"

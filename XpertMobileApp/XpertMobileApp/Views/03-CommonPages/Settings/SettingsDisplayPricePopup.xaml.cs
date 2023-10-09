@@ -134,5 +134,15 @@ namespace XpertMobileApp.Views
             }
 
         }
+
+        private void SyncConfiBtn_Clicked(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "SyncConfig", "start");
+        }
+
+        private void RefreshImages(object sender, EventArgs e)
+        {
+            MessagingCenter.Send(this, "RefreshImages", "start");
+        }
     }
 }

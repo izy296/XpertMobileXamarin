@@ -129,7 +129,6 @@ namespace XpertMobileApp.Models
                     return null;
                 }
                 else if (pICTURE != null)
-
                 {
                     // Picture déjà crée
                     return pICTURE;
@@ -141,6 +140,13 @@ namespace XpertMobileApp.Models
                 }
             }
         }
+    }
+
+    public partial class BSE_DISPLAY_PRICE_CONFIG
+    {
+        public double CarouselInterval { get; set; }
+        public double StandByInterval { get; set; }
+        public double ClearScreenInterval { get; set; }
     }
 
 }

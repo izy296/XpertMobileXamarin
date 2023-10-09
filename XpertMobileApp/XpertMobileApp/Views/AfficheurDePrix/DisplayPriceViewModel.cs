@@ -1,6 +1,9 @@
 ﻿using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +12,14 @@ using Xpert.Common.WSClient.Helpers;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
 using XpertMobileApp.Services;
+using XpertMobileApp.Views;
 
 namespace XpertMobileApp.ViewModels
 {
     public class DisplayPriceViewModel : BaseViewModel
     {
+
+        public BSE_DISPLAY_PRICE_CONFIG displayPriceConfig;
 
         private string bareCode;
 
@@ -25,8 +31,8 @@ namespace XpertMobileApp.ViewModels
                 bareCode = value;
             }
         }
-        private List<BSE_IMAGE_PUBLICITE> images;
-        public List<BSE_IMAGE_PUBLICITE> Images
+        private ObservableCollection<BSE_IMAGE_PUBLICITE> images;
+        public ObservableCollection<BSE_IMAGE_PUBLICITE> Images
         {
             get { return images; }
             set
@@ -70,6 +76,8 @@ namespace XpertMobileApp.ViewModels
         public DisplayPriceViewModel()
         {
             InitDisplay();
+            Images = new ObservableCollection<BSE_IMAGE_PUBLICITE>();
+            displayPriceConfig = new BSE_DISPLAY_PRICE_CONFIG() { CarouselInterval = 7, ClearScreenInterval = 15, StandByInterval = 30 };
         }
 
         public void InitDisplay()
@@ -92,25 +100,46 @@ namespace XpertMobileApp.ViewModels
             };
         }
 
+        public async Task GetConfig()
+        {
+            try
+            {
+                BSE_DISPLAY_PRICE_CONFIG config = await WebServiceClient.GetDisplayPriceConfig();
+                if (config != null)
+                {
+                    displayPriceConfig = config;
+                }
+            }
+            catch (Exception ex)
+            {
+                CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
+            }
+        }
+
         public async Task GetPubImages()
         {
             try
             {
-
+                Images = new ObservableCollection<BSE_IMAGE_PUBLICITE>();
                 var res = await WebServiceClient.GetPubImages();
                 if (res != null)
                 {
-                    if (res.Count > 0) 
+                    if (res.Count > 0 && Images.Count==0) 
                     {
                         Images = res;
+                        foreach(var image in Images)
+                        {
+                            var x = image.PICTURE;
+                        }
                         MessagingCenter.Send(this, "StartSLider", "StartSLider");
                     }
                 }
             }
             catch (Exception ex)
             {
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
 
@@ -135,8 +164,8 @@ namespace XpertMobileApp.ViewModels
             catch (Exception ex)
             {
                 DisplayProductError();
-                await UserDialogs.Instance.AlertAsync(WSApi2.GetExceptionMessage(ex), AppResources.alrt_msg_Alert,
-                    AppResources.alrt_msg_Ok);
+                CustomPopup AlertPopup = new CustomPopup(ex.Message, trueMessage: AppResources.alrt_msg_Ok);
+                await PopupNavigation.Instance.PushAsync(AlertPopup);
             }
         }
     }

@@ -86,10 +86,34 @@
                         Grid.Row="2"
                         Grid.ColumnSpan="2"
                         Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand">
-                        <Button x:Name="CancelBtn"  Text="Annuler" CornerRadius="15" Clicked="CancelBtn_Clicked"></Button>
-                        <Button x:Name="CheckBtn" Text="Tester" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Accent}" Clicked="CheckBtn_Clicked"></Button>
-                        <Button x:Name="ConfirmBtn" Text="Enregestrer" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Primary}" Clicked="ConfirmBtn_Clicked"></Button>
+                        HorizontalOptions="FillAndExpand">
+                        <Grid
+                            HorizontalOptions="FillAndExpand">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="StartAndExpand"
+                                         Grid.Column="0">
+                                <Button x:Name="SyncBtn" Text="Sync Config" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Green}" Clicked="SyncConfiBtn_Clicked"></Button>
+                                <!--<Button x:Name="RefreshBtn" Text="Images Mise a jour" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource PrimaryLighterColor}" Clicked="RefreshImages"></Button>-->
+                            </StackLayout>
+
+                            <StackLayout Orientation="Horizontal"
+                                         HorizontalOptions="EndAndExpand"
+                                         Grid.Column="1">
+                                <Button x:Name="CancelBtn"  Text="Annuler" CornerRadius="15" Clicked="CancelBtn_Clicked"></Button>
+                                <Button x:Name="CheckBtn" Text="Tester" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Accent}" Clicked="CheckBtn_Clicked"></Button>
+                                <Button x:Name="ConfirmBtn" Text="Enregestrer" TextColor="White" CornerRadius="15" BackgroundColor="{DynamicResource Primary}" Clicked="ConfirmBtn_Clicked"></Button>
+                            </StackLayout>
+                        </Grid>
+
                     </StackLayout>
 
                 </Grid>

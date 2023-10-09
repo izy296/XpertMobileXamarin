@@ -286,6 +286,7 @@ namespace XpertMobileApp.Helpers
         public static string STK_DISPLAY_PRICE_XCOM = "STK_DISPLAY_PRICE_XCOM";
         public static string STK_DISPLAY_PRICE_XCOM_GET_PRODUCT = "GetProductAndPromoByBarcode";
         public static string STK_DISPLAY_PRICE_XCOM_GET_PUB = "GetPubImages";
+        public static string STK_DISPLAY_PRICE_XCOM_GET_CONFIG = "GetConfig";
 
     }
 

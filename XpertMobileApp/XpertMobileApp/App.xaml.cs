@@ -274,28 +274,34 @@ namespace XpertMobileApp
                 {
                     //Sauvegarde de notification dans l'événement d'ouverture et
                     //l'affichage de detaile dans le cas de donnes additionnelles
-                    if (p.Data["title"].ToString() != AppResources.Update_Notification_Header)
-                        new SettingsModel().setNotificationAsync(new Notification()
-                        {
-                            Title = p.Data["title"].ToString(),
-                            Message = p.Data["body"].ToString(),
-                            Module = p.Data["moduleName"].ToString(),
-                            User = p.Data["user"].ToString(),
-                            Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
-                            TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
-                        });
-                    // code responable a la refresh de badge de notification
-                    MessagingCenter.Send(this, "RELOAD_MENU", "");
-                    MessagingCenter.Send(this, "RELOAD_NOTIF", "");
-                    MainPage RootPage = App.Current.MainPage as MainPage;
-                    Enum.TryParse(p.Data["moduleName"].ToString(), out MenuItemType result);
-                    if (result != MenuItemType.None)
+                    object res;
+                    bool titleExist = p.Data.TryGetValue("title",out res);
+                    if (titleExist)
                     {
-                        await RootPage.NavigateFromMenu(Convert.ToInt32(result));
-                        if (p.Data.ContainsKey("extras"))
-                            MessagingCenter.Send(this, "ExtraData", p.Data["extras"]);
+                        if (p.Data["title"].ToString() != AppResources.Update_Notification_Header)
+                            new SettingsModel().setNotificationAsync(new Notification()
+                            {
+                                Title = p.Data["title"].ToString(),
+                                Message = p.Data["body"].ToString(),
+                                Module = p.Data["moduleName"].ToString(),
+                                User = p.Data["user"].ToString(),
+                                Extras = p.Data.ContainsKey("extras") ? p.Data["extras"] : null,
+                                TimeNotification = DateTime.Parse(p.Data["timeNotification"].ToString())
+                            });
+                        // code responable a la refresh de badge de notification
+                        MessagingCenter.Send(this, "RELOAD_MENU", "");
+                        MessagingCenter.Send(this, "RELOAD_NOTIF", "");
+                        MainPage RootPage = App.Current.MainPage as MainPage;
+                        Enum.TryParse(p.Data["moduleName"].ToString(), out MenuItemType result);
+                        if (result != MenuItemType.None)
+                        {
+                            await RootPage.NavigateFromMenu(Convert.ToInt32(result));
+                            if (p.Data.ContainsKey("extras"))
+                                MessagingCenter.Send(this, "ExtraData", p.Data["extras"]);
+                        }
+                        else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.lp_txt_alert_url_manquant, AppResources.alrt_msg_Ok);
                     }
-                    else await App.Current.MainPage.DisplayAlert(AppResources.txt_alert, AppResources.lp_txt_alert_url_manquant, AppResources.alrt_msg_Ok);
+
                 }
                 catch (Exception ex)
                 {

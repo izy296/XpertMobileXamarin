@@ -729,10 +729,16 @@ namespace XpertMobileApp.Services
             return await WSApi2.RetrievAauthorizedValueWithoutToken<INFO_PROMOTION_DISPLAY_PRICE>(url);
         }
 
-        public static async Task<List<BSE_IMAGE_PUBLICITE>> GetPubImages()
+        public static async Task<ObservableCollection<BSE_IMAGE_PUBLICITE>> GetPubImages()
         {
             string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM_GET_PUB);
-            return await WSApi2.RetrievAauthorizedValueWithoutToken<List<BSE_IMAGE_PUBLICITE>>(url);
+            return await WSApi2.RetrievAauthorizedValueWithoutToken<ObservableCollection<BSE_IMAGE_PUBLICITE>>(url);
+        }
+
+        public static async Task<BSE_DISPLAY_PRICE_CONFIG> GetDisplayPriceConfig()
+        {
+            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM, ServiceUrlDico.STK_DISPLAY_PRICE_XCOM_GET_CONFIG);
+            return await WSApi2.RetrievAauthorizedValueWithoutToken<BSE_DISPLAY_PRICE_CONFIG>(url);
         }
         //internal static async Task<List<View_STK_PRODUITS>> getProducts()
         //{
