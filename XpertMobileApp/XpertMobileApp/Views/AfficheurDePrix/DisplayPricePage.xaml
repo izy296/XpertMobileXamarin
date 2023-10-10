@@ -72,7 +72,7 @@
                 <Label
                     x:Name="labelPriceValue"
                    Grid.Row="1"
-                    Text="{Binding Item.PRODUIT_RPIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
+                    Text="{Binding Item.PRODUIT_PRIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
                    TextColor="White"
                    FontSize="85"
                    HorizontalTextAlignment="Center"/>
@@ -94,7 +94,7 @@
                     <Label
                     x:Name="labelPromotionPrice"
                     Grid.Row="4"
-                    Text="{Binding Item.PROMO_RPIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
+                    Text="{Binding Item.PROMO_PRIX,StringFormat='{0:N2} DA',FallbackValue='0,00 DA'}"
                    TextColor="Yellow"
                    FontSize="85"
                    HorizontalTextAlignment="Center"/>
@@ -114,14 +114,14 @@
                        FontSize="25"
                        Padding="5"
                        IsVisible="{Binding Item.PROMO_QTE_MIN,Converter={StaticResource NullToBooleanConverter}}"  
-                       Text="{Binding Item.PROMO_QTE_MIN,StringFormat='Qte Min : {0}',FallbackValue='Qte Min : 0'}"
+                       Text="{Binding Item.PROMO_QTE_MIN,StringFormat='Qte Min : {0:N0}'}"
                        VerticalTextAlignment="Center"
                        TextColor="White"/>
                         <Label BackgroundColor="Red"
                        FontSize="25"
                        Padding="5"
                        IsVisible="{Binding Item.PROMO_QTE_RESTANTE,Converter={StaticResource NullToBooleanConverter}}"
-                       Text="{Binding Item.PROMO_QTE_RESTANTE,StringFormat='Qte Restent : {0}',FallbackValue='Qte Restent : 0'}"
+                       Text="{Binding Item.PROMO_QTE_RESTANTE,StringFormat='Qte Restent : {0:N0}'}"
                        VerticalTextAlignment="Center"
                        TextColor="White"/>
                     </StackLayout>

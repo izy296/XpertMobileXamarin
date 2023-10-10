@@ -85,7 +85,7 @@ namespace XpertMobileApp.ViewModels
             Item = new INFO_PROMOTION_DISPLAY_PRICE()
             {
                 DESIGNATION_PRODUIT = "SCANNEZ UN PRODUIT",
-                PRODUIT_RPIX = 0,
+                PRODUIT_PRIX = 0,
                 IS_PROMOTION = false
             };
         }
@@ -95,7 +95,7 @@ namespace XpertMobileApp.ViewModels
             Item = new INFO_PROMOTION_DISPLAY_PRICE()
             {
                 DESIGNATION_PRODUIT = "PRODUIT NON TROUVEE",
-                PRODUIT_RPIX = 0,
+                PRODUIT_PRIX = 0,
                 IS_PROMOTION = false
             };
         }

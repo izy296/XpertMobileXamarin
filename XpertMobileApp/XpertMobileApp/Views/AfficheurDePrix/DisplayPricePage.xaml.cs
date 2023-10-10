@@ -177,7 +177,6 @@ namespace XpertMobileApp.Views
 
             newTimer.Elapsed += elapsed;
             newTimer.Enabled = true;
-            timerCount++;
             return newTimer;
         }
 
