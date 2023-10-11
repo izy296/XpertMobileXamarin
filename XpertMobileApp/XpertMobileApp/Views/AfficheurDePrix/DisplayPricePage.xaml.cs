@@ -79,8 +79,10 @@ namespace XpertMobileApp.Views
 
             });
 
+        }
 
-
+        private void SubscribeToMessagingCenter()
+        {
             MessagingCenter.Subscribe<Application, string>(this, "BareCode", (o, e) =>
             {
                 // do something whenever the message is sent
@@ -166,6 +168,37 @@ namespace XpertMobileApp.Views
                 }
 
             });
+
+            MessagingCenter.Subscribe<SettingsDisplayPricePopup, string>(this, "SettingsSaved", (o, e) =>
+            {
+                UnsubscribeToMessagingCenter();
+                App.Current.MainPage = new DisplayPricePage();
+            });
+        }
+
+        private void UnsubscribeToMessagingCenter()
+        {
+            MessagingCenter.Unsubscribe<Application, string>(this, "BareCode");
+
+            MessagingCenter.Unsubscribe<SettingsDisplayPricePopup, string>(this, "SyncConfig");
+
+            MessagingCenter.Unsubscribe<SettingsDisplayPricePopup, string>(this, "RefreshImages");
+
+            MessagingCenter.Unsubscribe<DisplayPriceViewModel, string>(this, "StartSLider");
+
+            MessagingCenter.Unsubscribe<SettingsDisplayPricePopup, string>(this, "SettingsSaved");
+        }
+
+        protected override void OnAppearing()
+        {
+            SubscribeToMessagingCenter();
+            base.OnAppearing();
+        }
+
+        protected override void OnDisappearing()
+        {
+            UnsubscribeToMessagingCenter();
+            base.OnDisappearing();
         }
 
         private Timer InitTimer(ElapsedEventHandler elapsed, double interval = 0)
@@ -201,7 +234,9 @@ namespace XpertMobileApp.Views
 
         private void StandBuy_Elapsed(object sender, ElapsedEventArgs e)
         {
-            ShowPubImages();
+            if (viewModel.Images.Count > 0)
+                ShowPubImages();
+            else HidePubImages();
         }
 
         private void ShowPubImages()

@@ -66,7 +66,7 @@ namespace XpertMobileApp.Views
                     var list = JsonConvert.SerializeObject(viewModel.UrlServices);
                     viewModel.Settings.ServiceUrl = list;
                     await viewModel.SaveSettings();
-
+                    MessagingCenter.Send(this, "SettingsSaved", "Reload");
                     await PopupNavigation.Instance.PopAsync();
                 }
                 else
