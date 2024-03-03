@@ -407,8 +407,15 @@ namespace XpertMobileApp.Services
 
         internal static async Task<bool> GetIsWebApiSelfHosted()
         {
-            string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.WebApiSelfHosted);
-            return await RetrievValAauthorizedData<bool>(url);
+            try
+            {
+                string url = WSApi2.CreateLink(App.RestServiceUrl, ServiceUrlDico.WebApiVersion, ServiceUrlDico.WebApiSelfHosted);
+                return await RetrievValAauthorizedData<bool>(url);
+            }
+            catch (Exception exp)
+            {
+                return false;
+            }
         }
 
         internal static async Task<string> GetNewVersion()
