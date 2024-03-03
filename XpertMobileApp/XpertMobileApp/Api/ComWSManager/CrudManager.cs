@@ -36,7 +36,7 @@ namespace XpertMobileApp.Api.Managers
 
         internal static CrudService<View_BSE_COMPTE> BSE_COMPTE = new CrudService<View_BSE_COMPTE>(App.RestServiceUrl, "BSE_COMPTE", App.User.Token);
 
-        internal static CrudService<View_VTE_VENTE> Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, "VTE_VENTE", App.User.Token);
+        internal static CrudService<View_VTE_VENTE> Ventes = new CrudService<View_VTE_VENTE>(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.VTE_VENTE), App.User.Token);
 
         internal static CrudService<View_WishList> WishList = new CrudService<View_WishList>(App.RestServiceUrl, "WishList", App.User.Token);
 

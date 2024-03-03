@@ -4,6 +4,7 @@ using Xpert.Common.WSClient.Helpers;
 using Xpert.Common.WSClient.Services;
 using XpertMobileApp.DAL;
 using XpertMobileApp.Models;
+using XpertMobileApp.Api.Models;
 
 namespace XpertMobileApp.Api.Managers
 {
@@ -11,9 +12,9 @@ namespace XpertMobileApp.Api.Managers
     class SessionsManager : CrudService<TRS_JOURNEES>
     {
         public SessionsManager() :
-            base(App.RestServiceUrl, "TRS_JOURNEES", App.User.Token)
+            base(App.RestServiceUrl, ControllerNameSwitch.GetControllerName(ControllerNameItem.TRS_JOURNEES), App.User.Token)
         {
-
+            
         }
 
         public async Task<TRS_JOURNEES> GetCurrentSession() 
