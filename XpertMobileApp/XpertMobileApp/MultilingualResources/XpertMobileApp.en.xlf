@@ -705,8 +705,8 @@
           <target state="new">Votre commande a bien été modifiée!</target>
         </trans-unit>
         <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
-          <source>Liste des pesées</source>
-          <target state="new">Liste des pesées</target>
+          <source>Achats</source>
+          <target state="new">Achats</target>
         </trans-unit>
         <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
           <source>Pesée d'entrée</source>
@@ -1728,8 +1728,8 @@
           <target state="new">Votre commande a bien été modifiée!</target>
         </trans-unit>
         <trans-unit id="pn_Achats" translate="yes" xml:space="preserve">
-          <source>Liste des pesées</source>
-          <target state="new">Liste des pesées</target>
+          <source>Achats</source>
+          <target state="new">Achats</target>
         </trans-unit>
         <trans-unit id="PESEE_ENTREE" translate="yes" xml:space="preserve">
           <source>Pesée d'entrée</source>
