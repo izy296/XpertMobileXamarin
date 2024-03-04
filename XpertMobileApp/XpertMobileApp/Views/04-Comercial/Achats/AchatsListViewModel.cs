@@ -59,7 +59,7 @@ namespace XpertMobileApp.ViewModels
         public View_TRS_TIERS SelectedTiers { get; set; }
 
         public EncaissDisplayType EncaissDisplayType { get; set; }
-        public DateTime StartDate { get; set; } = DateTime.ParseExact("2020-03-21", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        public DateTime StartDate { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
         public DateTime EndDate { get; set; } = DateTime.Now;
 
 
@@ -145,7 +145,7 @@ namespace XpertMobileApp.ViewModels
         {
             get
             {
-                return "ACH_ACHATS";
+                return Constants.AppName == Apps.XPH_Mob ? "ACH_ACHATS" : "ACH_ACHATS_XCOM";
             }
         }
 

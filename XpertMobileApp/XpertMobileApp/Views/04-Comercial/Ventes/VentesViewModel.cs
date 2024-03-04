@@ -100,6 +100,10 @@ namespace XpertMobileApp.ViewModels
                 {
                     return "XCOM_VTE_LIVRAISON";
                 }*/
+                else if(Constants.AppName == Apps.XCOM_Mob)
+                {
+                    return "VTE_VENTE_XCOM";
+                }
                 else
                 {
                     if (Constants.AppName == Apps.XCOM_Livraison)
@@ -219,7 +223,7 @@ namespace XpertMobileApp.ViewModels
                 this.AddSelect<View_VTE_VENTE, string>(e => e.CREATED_BY);
                 this.AddSelect<View_VTE_VENTE, string>(e => e.NOM_TIERS);
                 this.AddSelect<View_VTE_VENTE, DateTime?>(e => e.DATE_VENTE);
-                this.AddSelect<View_VTE_VENTE, decimal>(e => e.TOTAL_PAYE);
+                this.AddSelect<View_VTE_VENTE, decimal>(e => e.TOTAL_TTC);
                 this.AddSelect<View_VTE_VENTE, decimal>(e => e.TOTAL_RESTE);
             }
 

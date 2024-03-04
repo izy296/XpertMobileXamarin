@@ -101,7 +101,7 @@
                                       <StackLayout Padding="0,-10,15,0" Margin="0,0,0,0" Spacing="0" Orientation="Vertical" 
                                            IsVisible="{Binding HasSelectedQUANTITE}" >
                                           
-                                             <Label Text="{Binding SelectedQUANTITE, StringFormat='{0:N0}'}" FontSize="Medium" 
+                                             <Label Text="{Binding SelectedQUANTITE, StringFormat='{0:N2}'}" FontSize="Medium" 
                                          HorizontalOptions="Center" TextColor="Black" FontAttributes="Bold" />
                                              <StackLayout Padding="0" Margin="0" Orientation="Horizontal">
                                                     <Button ImageSource="pencil.png" Clicked="DelUpdate_Clicked" CornerRadius="15" 

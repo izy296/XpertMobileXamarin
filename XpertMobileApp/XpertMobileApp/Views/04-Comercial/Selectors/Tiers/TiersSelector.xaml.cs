@@ -73,7 +73,7 @@ namespace XpertMobileApp.Views
             {
                 if (string.IsNullOrEmpty(viewModel.SelectedItem.TEL1_TIERS))
                 {
-                    await DisplayAlert(AppResources.alrt_msg_Alert, "Veullez saisir un numero de téléphone pour ce tiers avant de continuer", AppResources.alrt_msg_Ok);
+                    await DisplayAlert(AppResources.alrt_msg_Alert, "Veuillez saisir un numero de téléphone pour ce tiers avant de continuer", AppResources.alrt_msg_Ok);
                 }
                 else
                 {

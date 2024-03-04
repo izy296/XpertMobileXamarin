@@ -10,7 +10,7 @@
              xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              xmlns:numeric1="clr-namespace:Syncfusion.SfNumericTextBox.XForms;assembly=Syncfusion.SfNumericTextBox.XForms"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-             xmlns:auto="clr-namespace:XpertMobileApp.Views"
+             xmlns:auto="clr-namespace:XpertMobileApp.Views"             
              x:Name="VenteForm"
              Title="{Binding Title}">
 
