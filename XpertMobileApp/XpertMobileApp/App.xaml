@@ -326,8 +326,8 @@
             <local:TypeDocConverter x:Key="TypeDocConverter"/>
             <local:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter"/>
             <local:BoolToColorConverter x:Key="BoolToColorConverter"/>
-            <local:ModeValidatConverter x:Key="ModeValidatConverter"/>
-            <local:IsInvertoryColorConverter x:Key="IsInvertoryColorConverter"/>
+            <!--<local:ModeValidatConverter x:Key="ModeValidatConverter"/>-->
+            <!--<local:IsInvertoryColorConverter x:Key="IsInvertoryColorConverter"/>-->
             <!--Global Styles-->
 
 

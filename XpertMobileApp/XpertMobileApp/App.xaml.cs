@@ -572,7 +572,8 @@ namespace XpertMobileApp
             TimeSpan ts = new TimeSpan(0, 0, 0, 50);
 
             string furl = url.Replace(":" + port.ToString(), "");
-            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port) && await IsConnectedWithAcceptedStatusCode(url);
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable(furl, port);
+                //&& await IsConnectedWithAcceptedStatusCode(url);
             //if (!isReachable)
             //    await ShowDisplayAlert();
             Online = isReachable;
