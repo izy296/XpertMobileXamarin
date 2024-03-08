@@ -1,9 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--com.xpertsoft.ComMobileAppComm-->
-<!--com.xpertsoft.ComMobileApp-->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="11000" android:versionName="1.0.0" package="com.xpertsoft.ComMobileAppXDPrice" android:installLocation="preferExternal">
-	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="29" />
-	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="22792" android:versionName="2.792" 
+          package="com.xpertsoft.ComMobileApp" android:installLocation="preferExternal">
+	<uses-sdk android:targetSdkVersion="31" android:minSdkVersion="18" />
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 	<uses-permission android:name="android.permission.INTERNET" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -16,19 +14,17 @@
 	<uses-permission android:name="android.permission.BLUETOOTH" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.VIBRATE" />
+	<uses-permission android:name="android.permission.FLASHLIGHT" />
+	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 	<uses-feature android:name="android.hardware.location" android:required="false" />
 	<uses-feature android:name="android.hardware.location.gps" android:required="false" />
 	<uses-feature android:name="android.hardware.location.network" android:required="false" />
-	<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-	<application android:usesCleartextTraffic="true" android:label="XpertMobile AFFICHEUR DE PRIX" android:icon="@drawable/icon">
-		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdInternalReceiver" android:exported="false" />
-		<receiver android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver" android:exported="true" android:permission="com.google.android.c2dm.permission.SEND">
+	<application android:label="XpertMobile OFFICINE" android:icon="@drawable/icon">
+		<service android:name="crc6494e14b9856016c30.PNFirebaseMessagingService" android:exported="true">
 			<intent-filter>
-				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
-				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-				<category android:name="${applicationId}" />
+				<action android:name="com.google.firebase.MESSAGING_EVENT" />
 			</intent-filter>
-		</receiver>
+		</service>
 	</application>
 </manifest>
